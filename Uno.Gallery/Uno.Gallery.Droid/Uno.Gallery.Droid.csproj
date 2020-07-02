@@ -51,6 +51,18 @@
     <EnableLLVM>true</EnableLLVM>
     <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
   </PropertyGroup>
+	<ItemGroup>
+		<Compile Include="..\Uno.Gallery.UWP\App.xaml.cs" />
+		<ApplicationDefinition Include="..\Uno.Gallery.UWP\App.xaml" Visible="False" />
+		<Page Include="..\Uno.Gallery.UWP\Views\**\*.xaml" Visible="False">
+			<Link>Views\%(RecursiveDir)%(FileName)%(Extension)</Link>
+			<SubType>Designer</SubType>
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Compile Include="..\Uno.Gallery.UWP\Views\**\*.cs" Visible="False">
+			<Link>Views\%(RecursiveDir)%(FileName)%(Extension)</Link>
+		</Compile>
+	</ItemGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
     <Reference Include="Mono.Android.Export" />
