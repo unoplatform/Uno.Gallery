@@ -16,5 +16,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Controls\SamplePageLayout.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\SnippetView.cs" />
   </ItemGroup>
 </Project>

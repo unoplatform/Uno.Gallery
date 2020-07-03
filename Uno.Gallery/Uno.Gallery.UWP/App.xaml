@@ -11,6 +11,7 @@
         Required by Visual Studio project and item templates
         -->
 				<ResourceDictionary Source="Views/Styles/SamplePageLayout.xaml" />
+				<ResourceDictionary Source="Views/Styles/SnippetView.xaml" />
 			</ResourceDictionary.MergedDictionaries>
 		</ResourceDictionary>
 	</Application.Resources>
