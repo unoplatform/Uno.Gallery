@@ -1,0 +1,36 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					xmlns:controls="using:Uno.Gallery.Controls">
+
+	<Style x:Key="DefaultSamplePageLayoutStyle"
+		   TargetType="controls:SamplePageLayout">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="controls:SamplePageLayout">
+					<Grid>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="auto" />
+							<RowDefinition Height="auto" />
+							<RowDefinition Height="*" />
+						</Grid.RowDefinitions>
+
+						<TextBlock Text="{TemplateBinding Title}" />
+
+						<TextBlock Text="{TemplateBinding Description}"
+								   Grid.Row="1" />
+
+						<ContentPresenter x:Name="ContentPresenter"
+										  Content="{TemplateBinding Content}"
+										  ContentTemplate="{TemplateBinding ContentTemplate}"
+										  VerticalAlignment="Stretch"
+										  HorizontalAlignment="Stretch"
+										  Grid.Row="2" />
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style TargetType="controls:SamplePageLayout"
+		   BasedOn="{StaticResource DefaultSamplePageLayoutStyle}" />
+</ResourceDictionary>
