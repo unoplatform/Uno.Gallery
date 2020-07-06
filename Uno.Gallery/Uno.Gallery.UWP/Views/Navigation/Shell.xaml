@@ -1,0 +1,60 @@
+<UserControl x:Class="Uno.Gallery.Shell"
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+			 xmlns:local="using:AppUIBasics"
+			 xmlns:controls="using:Windows.UI.Xaml.Controls">
+
+	<UserControl.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="../Styles/SamplePageLayout.xaml" />
+				<ResourceDictionary Source="../Styles/SnippetView.xaml" />
+			</ResourceDictionary.MergedDictionaries>
+
+			<DataTemplate x:Key="NavigationViewHeaderTemplate">
+				<TextBlock Text="{Binding}" />
+			</DataTemplate>
+		</ResourceDictionary>
+	</UserControl.Resources>
+
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition />
+		</Grid.ColumnDefinitions>
+
+		<Border x:Name="AppTitleBar"
+				Grid.Column="1"
+				IsHitTestVisible="True"
+				VerticalAlignment="Top"
+				Background="Transparent"
+				Height="{Binding ElementName=NavigationViewControl, Path=CompactPaneLength}"
+				Canvas.ZIndex="1">
+			<TextBlock x:Name="AppTitle"
+					   Text="Uno.Gallery"
+					   VerticalAlignment="Center"
+					   Style="{StaticResource CaptionTextBlockStyle}" />
+		</Border>
+
+		<controls:NavigationView x:Name="NavigationViewControl"
+								 Canvas.ZIndex="0"
+								 AlwaysShowHeader="True"
+								 Header=" "
+								 IsTabStop="False"
+								 Grid.Column="1">
+			<controls:NavigationView.AutoSuggestBox>
+				<AutoSuggestBox x:Name="controlsSearchBox"
+								x:FieldModifier="public"
+								PlaceholderText="Search"
+								QueryIcon="Find"
+								MinWidth="200"
+								VerticalAlignment="Center">
+				</AutoSuggestBox>
+			</controls:NavigationView.AutoSuggestBox>
+
+			<Frame x:Name="rootFrame" />
+		</controls:NavigationView>
+	</Grid>
+</UserControl>
