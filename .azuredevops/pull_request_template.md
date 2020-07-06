@@ -23,7 +23,6 @@ Please check if your PR fulfills the following requirements:
 - [ ] Existing XML documentation and comments have been updated.
 - [ ] Architecture documents have been updated.
 - [ ] Tested on iOS.
-- [ ] Tested on MacOS.
 - [ ] Tested on Wasm.
 - [ ] Tested on Android.
 - [ ] Tested on UWP.
