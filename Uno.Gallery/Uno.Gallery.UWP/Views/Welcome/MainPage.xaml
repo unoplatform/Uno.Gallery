@@ -9,10 +9,24 @@
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 		<controls:SamplePageLayout Title="Hello world!"
-										  Description="This is a test">
-			<Grid Background="Red">
-				<TextBlock Text="Test" />
-			</Grid>
+								   Description="This is a test">
+			<StackPanel Margin="16"
+						Background="Cyan">
+
+				<controls:SnippetView Title="Sample 1">
+					<Button Content="Test" />
+				</controls:SnippetView>
+
+				<controls:SnippetView Title="Sample 2">
+					<StackPanel Background="Red"
+								Orientation="Horizontal">
+						<Button Content="Test"
+								Background="White" />
+
+						<TextBlock Text="Test text" />
+					</StackPanel>
+				</controls:SnippetView>
+			</StackPanel>
 		</controls:SamplePageLayout>
 	</Grid>
 </Page>

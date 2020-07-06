@@ -8,6 +8,9 @@ using Windows.UI.Xaml.Controls;
 
 namespace Uno.Gallery.Controls
 {
+	/// <summary>
+	/// This control is used as a template for each sample page.
+	/// </summary>
 	public partial class SamplePageLayout : ContentControl
 	{
 		public string Title
