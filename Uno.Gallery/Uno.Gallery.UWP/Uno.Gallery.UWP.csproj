@@ -144,7 +144,6 @@
     <Compile Include="Views\Samples\ButtonSamplePage.xaml.cs">
       <DependentUpon>ButtonSamplePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Samples\ButtonSamplePageViewModel.cs" />
     <Compile Include="Views\Samples\Sample.cs" />
     <Compile Include="Views\Welcome\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>

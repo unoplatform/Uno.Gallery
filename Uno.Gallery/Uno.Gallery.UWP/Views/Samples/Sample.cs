@@ -12,7 +12,6 @@ namespace Uno.Gallery
 		{
 			Title = attribute.Title;
 			Description = attribute.Description;
-			ViewModelType = attribute.ViewModelType;
 			ViewType = viewType;
 		}
 
@@ -21,7 +20,5 @@ namespace Uno.Gallery
 		public string Description { get; }
 
 		public Type ViewType { get; }
-
-		public Type ViewModelType { get; }
 	}
 }

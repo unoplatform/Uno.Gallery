@@ -65,13 +65,11 @@ namespace Uno.Gallery
 			{
 				var selectedItem = args.SelectedItem as NavigationViewItem;
 				var sample = selectedItem.DataContext as Sample;
-				sender.Content = new SamplePageLayout()
-				{
-					Title = sample.Title,
-					Description = sample.Description,
-					DataContext = Activator.CreateInstance(sample.ViewModelType),
-					Content = Activator.CreateInstance(sample.ViewType)
-				};
+
+				var page = (Page) Activator.CreateInstance(sample.ViewType);
+				page.DataContext = sample;
+
+				sender.Content = page;
 			}
 		}
 		
