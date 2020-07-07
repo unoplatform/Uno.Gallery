@@ -145,6 +145,9 @@
       <DependentUpon>ButtonSamplePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Samples\Sample.cs" />
+    <Compile Include="Views\Samples\TextBoxSamplePage.xaml.cs">
+      <DependentUpon>TextBoxSamplePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Welcome\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -170,6 +173,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Samples\ButtonSamplePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Samples\TextBoxSamplePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
