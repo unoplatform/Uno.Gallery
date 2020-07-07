@@ -10,18 +10,15 @@ namespace Uno.Gallery
 	[AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = true)]
 	public sealed class SamplePageAttribute : Attribute
 	{
-		public SamplePageAttribute(string title, string description, Type viewModelType)
+		public SamplePageAttribute(string title, string description)
 		{
 			Title = title;
 			Description = description;
-			ViewModelType = viewModelType;
 		}
 
 		public string Title { get; }
 
 		public string Description { get; }
-
-		public Type ViewModelType { get; }
 
 		public static IReadOnlyList<Sample> GetAllSamples()
 		{

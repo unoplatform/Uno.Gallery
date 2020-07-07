@@ -4,11 +4,142 @@
 	  xmlns:local="using:Uno.Gallery.Views.Samples"
 	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	  mc:Ignorable="d"
-	  d:DesignHeight="300"
-	  d:DesignWidth="400">
+	  xmlns:controls="using:Uno.Gallery.Controls"
+	  mc:Ignorable="d">
 
-	<Grid>
-		<Button Content="{Binding ButtonContent}" />
+	<Page.Resources>
+		<Style x:Key="CustomButtonStyle"
+			   TargetType="Button">
+
+			<Setter Property="Background"
+					Value="Red" />
+			<Setter Property="CornerRadius"
+					Value="8" />
+			<Setter Property="Padding"
+					Value="4" />
+			<Setter Property="MinHeight"
+					Value="48" />
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="Button">
+						<Grid Height="{TemplateBinding Height}">
+
+							<VisualStateManager.VisualStateGroups>
+								<VisualStateGroup x:Name="CommonStates">
+									<VisualState x:Name="Normal" />
+									<VisualState x:Name="PointerOver" />
+									<VisualState x:Name="Pressed">
+										<VisualState.Setters>
+											<Setter Target="BackgroundBorder.Background"
+													Value="Black" />
+											<Setter Target="ContentPresenter.Foreground"
+													Value="White" />
+										</VisualState.Setters>
+									</VisualState>
+									<VisualState x:Name="Disabled">
+										<VisualState.Setters>
+											<Setter Target="BackgroundBorder.Background"
+													Value="Gray" />
+										</VisualState.Setters>
+									</VisualState>
+								</VisualStateGroup>
+							</VisualStateManager.VisualStateGroups>
+
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="auto" />
+							</Grid.ColumnDefinitions>
+
+							<Border x:Name="BackgroundBorder"
+									Background="{TemplateBinding Background}"
+									CornerRadius="{TemplateBinding CornerRadius}" />
+
+							<ContentPresenter x:Name="ContentPresenter"
+											  Content="{TemplateBinding Content}"
+											  ContentTransitions="{TemplateBinding ContentTransitions}"
+											  ContentTemplate="{TemplateBinding ContentTemplate}"
+											  Margin="{TemplateBinding Padding}"
+											  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+											  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+											  AutomationProperties.AccessibilityView="Raw" />
+						</Grid>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+
+	</Page.Resources>
+
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<controls:SamplePageLayout Title="{Binding Title}"
+								   Description="{Binding Description}"
+								   Mode="Default">
+
+			<controls:SamplePageLayout.DefaultTemplate>
+				<DataTemplate>
+					<StackPanel>
+						<controls:SnippetView Title="Default button style">
+							<Button Content="Button" />
+						</controls:SnippetView>
+
+						<controls:SnippetView Title="Disabled button">
+							<Button Content="Disabled button"
+									IsEnabled="False" />
+						</controls:SnippetView>
+
+						<controls:SnippetView Title="Button with custom States">
+							<Button Content="Button"
+									Style="{StaticResource CustomButtonStyle}" />
+						</controls:SnippetView>
+
+						<controls:SnippetView Title="Disabled button with custom style">
+							<Button Content="Disabled button"
+									Style="{StaticResource CustomButtonStyle}"
+									IsEnabled="False" />
+						</controls:SnippetView>
+					</StackPanel>
+				</DataTemplate>
+			</controls:SamplePageLayout.DefaultTemplate>
+
+			<controls:SamplePageLayout.MaterialTemplate>
+				<DataTemplate>
+					<StackPanel>
+
+						<controls:SnippetView Title="Contained button style">
+							<Button Content="CONTAINED"
+									Style="{StaticResource MaterialContainedButtonStyle}" />
+						</controls:SnippetView>
+
+						<controls:SnippetView Title="Disabled contained button style">
+							<Button Content="CONTAINED DISABLED"
+									IsEnabled="False"
+									Style="{StaticResource MaterialContainedButtonStyle}" />
+						</controls:SnippetView>
+
+						<controls:SnippetView Title="Outline button style">
+							<Button Content="OUTLINED"
+									Style="{StaticResource MaterialOutlinedButtonStyle}" />
+						</controls:SnippetView>
+
+						<controls:SnippetView Title="Disabled outline button style">
+							<Button Content="OUTLINED DISABLED"
+									IsEnabled="False"
+									Style="{StaticResource MaterialOutlinedButtonStyle}" />
+						</controls:SnippetView>
+
+						<controls:SnippetView Title="Text button style">
+							<Button Content="TEXT"
+									Style="{StaticResource MaterialTextButtonStyle}" />
+						</controls:SnippetView>
+
+						<controls:SnippetView Title="Disabled text button style">
+							<Button Content="TEXT DISABLED"
+									IsEnabled="False"
+									Style="{StaticResource MaterialTextButtonStyle}" />
+						</controls:SnippetView>
+					</StackPanel>
+				</DataTemplate>
+			</controls:SamplePageLayout.MaterialTemplate>
+		</controls:SamplePageLayout>
 	</Grid>
 </Page>

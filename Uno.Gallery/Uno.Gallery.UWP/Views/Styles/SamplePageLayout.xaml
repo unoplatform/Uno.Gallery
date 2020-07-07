@@ -4,10 +4,37 @@
 
 	<Style x:Key="DefaultSamplePageLayoutStyle"
 		   TargetType="controls:SamplePageLayout">
+
+		<Setter Property="Padding"
+				Value="16" />
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="controls:SamplePageLayout">
 					<Grid>
+						<VisualStateManager.VisualStateGroups>
+							<VisualStateGroup x:Name="States">
+								<VisualState x:Name="Default">
+									<VisualState.Setters>
+										<Setter Target="DefaultContentPresenter.Visibility"
+												Value="Visible" />
+									</VisualState.Setters>
+								</VisualState>
+								<VisualState x:Name="Material">
+									<VisualState.Setters>
+										<Setter Target="MaterialContentPresenter.Visibility"
+												Value="Visible" />
+									</VisualState.Setters>
+								</VisualState>
+								<VisualState x:Name="Native">
+									<VisualState.Setters>
+										<Setter Target="NativeContentPresenter.Visibility"
+												Value="Visible" />
+									</VisualState.Setters>
+								</VisualState>
+							</VisualStateGroup>
+						</VisualStateManager.VisualStateGroups>
+
+
 						<Grid.RowDefinitions>
 							<RowDefinition Height="auto" />
 							<RowDefinition Height="auto" />
@@ -19,11 +46,31 @@
 						<TextBlock Text="{TemplateBinding Description}"
 								   Grid.Row="1" />
 
-						<ContentPresenter x:Name="ContentPresenter"
+						<ContentPresenter x:Name="DefaultContentPresenter"
 										  Content="{TemplateBinding Content}"
-										  ContentTemplate="{TemplateBinding ContentTemplate}"
+										  ContentTemplate="{TemplateBinding DefaultTemplate}"
+										  Margin="{TemplateBinding Padding}"
 										  VerticalAlignment="Stretch"
 										  HorizontalAlignment="Stretch"
+										  Visibility="Collapsed"
+										  Grid.Row="2" />
+
+						<ContentPresenter x:Name="MaterialContentPresenter"
+										  Content="{TemplateBinding Content}"
+										  ContentTemplate="{TemplateBinding MaterialTemplate}"
+										  Margin="{TemplateBinding Padding}"
+										  VerticalAlignment="Stretch"
+										  HorizontalAlignment="Stretch"
+										  Visibility="Collapsed"
+										  Grid.Row="2" />
+
+						<ContentPresenter x:Name="NativeContentPresenter"
+										  Content="{TemplateBinding Content}"
+										  ContentTemplate="{TemplateBinding NativeTemplate}"
+										  Margin="{TemplateBinding Padding}"
+										  VerticalAlignment="Stretch"
+										  HorizontalAlignment="Stretch"
+										  Visibility="Collapsed"
 										  Grid.Row="2" />
 					</Grid>
 				</ControlTemplate>

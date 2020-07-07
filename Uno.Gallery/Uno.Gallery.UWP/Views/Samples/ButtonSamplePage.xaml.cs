@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Uno.Gallery.Views.Samples
 {
-	[SamplePage("Button", "Simple button sample", typeof(ButtonSamplePageViewModel))]
+	[SamplePage("Button", "Simple button sample")]
 	public sealed partial class ButtonSamplePage : Page
 	{
 		public ButtonSamplePage()
