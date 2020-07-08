@@ -25,6 +25,7 @@ namespace Uno.Gallery
 			var query = from type in FindDefinedAssemblies(Assembly.GetExecutingAssembly())
 						let sampleAttribute = FindSampleAttribute(type)
 						where sampleAttribute != null
+						orderby sampleAttribute.Title
 						select new Sample(sampleAttribute, type.AsType());
 
 			return query.ToArray();
