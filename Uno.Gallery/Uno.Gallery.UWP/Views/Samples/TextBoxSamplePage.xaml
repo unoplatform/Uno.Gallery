@@ -15,8 +15,7 @@
 
 			<controls:SamplePageLayout.DefaultTemplate>
 				<DataTemplate>
-					<ScrollViewer BorderThickness="1"
-								  Margin="12"
+					<ScrollViewer Margin="12"
 								  Padding="12">
 						<StackPanel>
 
@@ -50,8 +49,7 @@
 
 			<controls:SamplePageLayout.MaterialTemplate>
 				<DataTemplate>
-					<ScrollViewer BorderThickness="1"
-								  Margin="12"
+					<ScrollViewer Margin="12"
 								  Padding="12">
 						<StackPanel>
 

@@ -138,6 +138,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Samples\TextBlockSamplePage.xaml.cs">
+      <DependentUpon>TextBlockSamplePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Samples\CheckBoxSamplePage.xaml.cs">
       <DependentUpon>CheckBoxSamplePage.xaml</DependentUpon>
     </Compile>
@@ -171,6 +174,10 @@
     <Content Include="Properties\Default.rd.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\Samples\TextBlockSamplePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\Samples\CheckBoxSamplePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
