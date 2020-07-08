@@ -41,16 +41,37 @@ namespace Uno.Gallery
 #endif
 			var root = GetShell();
 			AddNavigationItems(root);
+			AddSettingsItem(root);
 
 			// Ensure the current window is active
 			Windows.UI.Xaml.Window.Current.Activate();
 		}
 
+		private void AddSettingsItem(Shell shell)
+		{
+			var navigationView = (NavigationView)shell.FindName("NavigationViewControl");
+
+#if WINDOWS_UWP
+			navigationView.IsSettingsVisible = true;
+			navigationView.Loaded += NavigationView_Loaded;
+
+			void NavigationView_Loaded(object sender, RoutedEventArgs e)
+			{
+				// Change the settings text to toggle the theme
+				var settingsItem = (NavigationViewItem)navigationView.SettingsItem;
+				settingsItem.Content = "Toggle Light/Dark theme";
+				navigationView.Loaded -= NavigationView_Loaded;
+			}
+#else
+			navigationView.IsSettingsVisible = false;
+#endif
+		}
+
 		private void AddNavigationItems(Shell shell)
 		{
 			var navigationView = (NavigationView)shell.FindName("NavigationViewControl");
-			
-			foreach(var sample in SamplePageAttribute.GetAllSamples())
+
+			foreach (var sample in SamplePageAttribute.GetAllSamples())
 			{
 				navigationView.MenuItems.Add(new NavigationViewItem()
 				{
@@ -59,17 +80,42 @@ namespace Uno.Gallery
 				});
 			}
 
-			navigationView.SelectionChanged += NavigationView_SelectionChanged;
+			navigationView.ItemInvoked += NavigationView_ItemInvoked;
 
-			void NavigationView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
+			void NavigationView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
 			{
-				var selectedItem = args.SelectedItem as NavigationViewItem;
-				var sample = selectedItem.DataContext as Sample;
+				if (args.IsSettingsInvoked)
+				{
+					ToggleTheme();
+				}
+				else
+				{
+					var selectedItem = args.InvokedItemContainer;
+					var sample = selectedItem.DataContext as Sample;
 
-				var page = (Page) Activator.CreateInstance(sample.ViewType);
-				page.DataContext = sample;
+					var page = (Page) Activator.CreateInstance(sample.ViewType);
+					page.DataContext = sample;
 
-				sender.Content = page;
+					sender.Content = page;
+				}
+			}
+
+			void ToggleTheme()
+			{
+#if WINDOWS_UWP
+			// Set theme for window root.
+			if (Window.Current.Content is FrameworkElement frameworkElement)
+			{
+				if (frameworkElement.ActualTheme == ElementTheme.Dark)
+				{
+					frameworkElement.RequestedTheme = ElementTheme.Light;
+				}
+				else
+				{
+					frameworkElement.RequestedTheme = ElementTheme.Dark;
+				}
+			}
+#endif
 			}
 		}
 		

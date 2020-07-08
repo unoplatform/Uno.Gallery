@@ -39,6 +39,7 @@
 		</Border>
 
 		<controls:NavigationView x:Name="NavigationViewControl"
+								 Style="{StaticResource MaterialNavigationViewStyle}"
 								 Canvas.ZIndex="0"
 								 AlwaysShowHeader="True"
 								 Header=" "
