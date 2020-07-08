@@ -141,6 +141,9 @@
     <Compile Include="Views\Samples\ToggleSwitchSamplePage.xaml.cs">
       <DependentUpon>ToggleSwitchSamplePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Samples\RadioButtonSamplePage.xaml.cs">
+      <DependentUpon>RadioButtonSamplePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Samples\TextBlockSamplePage.xaml.cs">
       <DependentUpon>TextBlockSamplePage.xaml</DependentUpon>
     </Compile>
@@ -183,6 +186,10 @@
     <Page Include="Views\Samples\ToggleSwitchSamplePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Samples\RadioButtonSamplePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Samples\TextBlockSamplePage.xaml">
       <Generator>MSBuild:Compile</Generator>

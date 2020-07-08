@@ -1,0 +1,82 @@
+﻿<Page x:Class="Uno.Gallery.Views.Samples.RadioButtonSamplePage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:local="using:Uno.Gallery.Views.Samples"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  xmlns:controls="using:Uno.Gallery.Controls"
+	  mc:Ignorable="d">
+
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<controls:SamplePageLayout Title="{Binding Title}"
+								   Description="{Binding Description}"
+								   Mode="Default">
+
+			<controls:SamplePageLayout.DefaultTemplate>
+				<DataTemplate>
+					<StackPanel>
+						
+						<!-- RadioButton OFF -->
+						<controls:SnippetView Title="Unchecked RadioButton">
+							<RadioButton GroupName="RadioButtonDemo"/>
+						</controls:SnippetView>
+
+						<!-- RadioButton ON -->
+						<controls:SnippetView Title="Checked RadioButton">
+							<RadioButton GroupName="RadioButtonDemo"
+										 IsChecked="True" />
+						</controls:SnippetView>
+
+						<!-- RadioButton OFF Disabled -->
+						<controls:SnippetView Title="Disabled Unchecked RadioButton">
+							<RadioButton Content="UNCHECKED DISABLED"
+										 IsEnabled="False" />
+						</controls:SnippetView>
+
+						<!-- RadioButton ON Disabled -->
+						<controls:SnippetView Title="Disabled Checked RadioButton">
+							<RadioButton Content="CHECKED DISABLED"
+										 IsChecked="True"
+										 IsEnabled="False" />
+						</controls:SnippetView>
+					</StackPanel>
+				</DataTemplate>
+			</controls:SamplePageLayout.DefaultTemplate>
+
+			<controls:SamplePageLayout.MaterialTemplate>
+				<DataTemplate>
+					<StackPanel>
+						
+						<!-- RadioButton OFF -->
+						<controls:SnippetView Title="Unchecked RadioButton">
+							<RadioButton GroupName="RadioButtonDemo"
+										 Style="{StaticResource MaterialRadioButtonStyle}" />
+						</controls:SnippetView>
+
+						<!-- RadioButton ON -->
+						<controls:SnippetView Title="Checked RadioButton">
+							<RadioButton GroupName="RadioButtonDemo"
+										 Style="{StaticResource MaterialRadioButtonStyle}"
+										 IsChecked="True" />
+						</controls:SnippetView>
+
+						<!-- RadioButton OFF Disabled -->
+						<controls:SnippetView Title="Disabled Unchecked RadioButton">
+							<RadioButton Content="UNCHECKED DISABLED"
+										 IsEnabled="False"
+										 Style="{StaticResource MaterialRadioButtonStyle}" />
+						</controls:SnippetView>
+
+						<!-- RadioButton ON Disabled -->
+						<controls:SnippetView Title="Disabled Checked RadioButton">
+							<RadioButton Content="CHECKED DISABLED"
+										 IsChecked="True"
+										 IsEnabled="False"
+										 Style="{StaticResource MaterialRadioButtonStyle}" />
+						</controls:SnippetView>
+					</StackPanel>
+				</DataTemplate>
+			</controls:SamplePageLayout.MaterialTemplate>
+		</controls:SamplePageLayout>
+	</Grid>
+</Page>
