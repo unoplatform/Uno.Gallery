@@ -150,6 +150,9 @@
     <Compile Include="Views\Samples\ButtonSamplePage.xaml.cs">
       <DependentUpon>ButtonSamplePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Samples\PasswordBoxSamplePage.xaml.cs">
+      <DependentUpon>PasswordBoxSamplePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Samples\Sample.cs" />
     <Compile Include="Views\Samples\TextBoxSamplePage.xaml.cs">
       <DependentUpon>TextBoxSamplePage.xaml</DependentUpon>
@@ -191,6 +194,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Samples\TextBoxSamplePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Samples\PasswordBoxSamplePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
