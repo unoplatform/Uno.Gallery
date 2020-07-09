@@ -25,5 +25,7 @@ namespace Uno.Gallery
 		{
 			this.InitializeComponent();
 		}
+
+		public Frame GetFrame() => rootFrame;
 	}
 }

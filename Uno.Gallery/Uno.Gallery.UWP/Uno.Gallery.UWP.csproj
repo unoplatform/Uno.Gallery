@@ -14,7 +14,7 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Filter" Version="1.1.1" />
     <PackageReference Include="Uno.Core" Version="2.0.0" />
     <PackageReference Include="Uno.Material">
-      <Version>0.1.0-dev.258</Version>
+      <Version>0.1.0-dev.300</Version>
     </PackageReference>
   </ItemGroup>
   <PropertyGroup>
