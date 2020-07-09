@@ -148,6 +148,9 @@
     <Compile Include="Views\Navigation\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Navigation\FabSamplePage.xaml.cs">
+      <DependentUpon>FabSamplePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Samples\ToggleSwitchSamplePage.xaml.cs">
       <DependentUpon>ToggleSwitchSamplePage.xaml</DependentUpon>
     </Compile>
@@ -202,6 +205,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Navigation\Home.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Navigation\FabSamplePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
