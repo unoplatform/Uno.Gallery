@@ -235,7 +235,8 @@ namespace Uno.Gallery
 			if (!(Windows.UI.Xaml.Window.Current.Content is Shell rootPage))
 			{
 				rootPage = new Shell();
-				rootFrame = (Frame)rootPage.FindName("rootFrame");
+				rootFrame = rootPage.GetFrame();
+
 				if (rootFrame == null)
 				{
 					throw new Exception("Root frame not found");
@@ -247,7 +248,7 @@ namespace Uno.Gallery
 			}
 			else
 			{
-				rootFrame = (Frame)rootPage.FindName("rootFrame");
+				rootFrame = rootPage.GetFrame();
 			}
 
 			return rootPage;
