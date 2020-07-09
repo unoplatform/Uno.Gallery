@@ -141,6 +141,13 @@
     <Compile Include="Views\Samples\NavigationViewSamplePage.xaml.cs">
       <DependentUpon>NavigationViewSamplePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Navigation\NavigationItemType.cs" />
+    <Compile Include="Views\Navigation\ColorPalettePage.xaml.cs">
+      <DependentUpon>ColorPalettePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Navigation\Home.xaml.cs">
+      <DependentUpon>Home.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Samples\ToggleSwitchSamplePage.xaml.cs">
       <DependentUpon>ToggleSwitchSamplePage.xaml</DependentUpon>
     </Compile>
@@ -187,6 +194,14 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\Samples\NavigationViewSamplePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Navigation\ColorPalettePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Navigation\Home.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

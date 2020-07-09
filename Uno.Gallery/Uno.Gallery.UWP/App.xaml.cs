@@ -71,6 +71,20 @@ namespace Uno.Gallery
 		{
 			var navigationView = (NavigationView)shell.FindName("NavigationViewControl");
 
+			navigationView.MenuItems.Add(new NavigationViewItem()
+			{
+				Content = "Home",
+				DataContext = NavigationItemType.Home
+			});
+
+			navigationView.MenuItems.Add(new NavigationViewItem()
+			{
+				Content = "Color Palette",
+				DataContext = NavigationItemType.ColorPalette
+			});
+
+			navigationView.MenuItems.Add(new NavigationViewItemSeparator());
+
 			foreach (var sample in SamplePageAttribute.GetAllSamples())
 			{
 				navigationView.MenuItems.Add(new NavigationViewItem()
@@ -91,12 +105,30 @@ namespace Uno.Gallery
 				else
 				{
 					var selectedItem = args.InvokedItemContainer;
-					var sample = selectedItem.DataContext as Sample;
+					if (selectedItem.DataContext is Sample sample)
+					{
+						var page = (Page)Activator.CreateInstance(sample.ViewType);
+						page.DataContext = sample;
 
-					var page = (Page) Activator.CreateInstance(sample.ViewType);
-					page.DataContext = sample;
+						sender.Content = page;
+					}
+					else if (selectedItem.DataContext is NavigationItemType itemType)
+					{
+						object page;
+						switch(itemType)
+						{
+							case NavigationItemType.ColorPalette:
+								page = new ColorPalettePage();
+								break;
+							case NavigationItemType.Home:
+								page = new HomeSamplePage();
+								break;
+							default:
+								throw new InvalidOperationException($"Value {itemType} is not supported for NavigationItemType.");
+						}
 
-					sender.Content = page;
+						sender.Content = page;
+					}
 				}
 			}
 
