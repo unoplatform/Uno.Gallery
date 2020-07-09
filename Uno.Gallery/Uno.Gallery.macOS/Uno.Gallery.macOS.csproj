@@ -82,7 +82,10 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Uno.Material">
-      <Version>0.1.0-dev.258</Version>
+      <Version>0.1.0-dev.300</Version>
+    </PackageReference>
+    <PackageReference Include="Uno.UI">
+      <Version>3.0.0-dev.719</Version>
     </PackageReference>
     <PackageReference Include="Uno.UI.RemoteControl" Version="2.4.0" Condition="'$(Configuration)'=='Debug'" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
