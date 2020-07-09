@@ -9,10 +9,9 @@
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 		<controls:SamplePageLayout Title="{Binding Title}"
-								   Description="{Binding Description}"
-								   Mode="Default">
+								   Description="{Binding Description}">
 
-			<controls:SamplePageLayout.DefaultTemplate>
+			<controls:SamplePageLayout.FluentTemplate>
 				<DataTemplate>
 					<StackPanel>
 						
@@ -41,7 +40,7 @@
 						</controls:SnippetView>
 					</StackPanel>
 				</DataTemplate>
-			</controls:SamplePageLayout.DefaultTemplate>
+			</controls:SamplePageLayout.FluentTemplate>
 
 			<controls:SamplePageLayout.MaterialTemplate>
 				<DataTemplate>

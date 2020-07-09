@@ -9,9 +9,8 @@
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 		<controls:SamplePageLayout Title="Hello world!"
-								   Description="This is a test"
-								   Mode="Default">
-			<controls:SamplePageLayout.DefaultTemplate>
+								   Description="This is a test">
+			<controls:SamplePageLayout.FluentTemplate>
 				<DataTemplate>
 					<StackPanel Background="Cyan">
 
@@ -30,7 +29,7 @@
 						</controls:SnippetView>
 					</StackPanel>
 				</DataTemplate>
-			</controls:SamplePageLayout.DefaultTemplate>
+			</controls:SamplePageLayout.FluentTemplate>
 
 			<controls:SamplePageLayout.MaterialTemplate>
 				<DataTemplate>
