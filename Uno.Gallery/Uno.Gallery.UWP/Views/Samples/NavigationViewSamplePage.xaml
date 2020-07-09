@@ -20,7 +20,7 @@
 						<StackPanel>
 
 							<!-- NavigationView Text -->
-							<TextBlock Text="The Navigation View control is the expandable and collapseable menu that you see in the top-left of your screen"
+							<TextBlock Text="The Navigation View control is the expandable and collapsible menu that you see in the top-left of your screen"
 									   FontSize="16"
 									   TextWrapping="Wrap"
 									   Margin="12,12,12,0" />
@@ -49,7 +49,7 @@
 						<StackPanel>
 
 							<!-- NavigationView Text -->
-							<TextBlock Text="The Navigation View control is the expandable and collapseable menu that you see in the top-left of your screen"
+							<TextBlock Text="The Navigation View control is the expandable and collapsible menu that you see in the top-left of your screen"
 									   FontSize="16"
 									   TextWrapping="Wrap"
 									   Foreground="{StaticResource MaterialPrimaryBrush}"
