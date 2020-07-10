@@ -1,0 +1,44 @@
+﻿<Page x:Class="Uno.Gallery.Views.Samples.ProgressRingSamplePage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:local="using:Uno.Gallery.Views.Samples"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  xmlns:controls="using:Uno.Gallery.Controls"
+	  mc:Ignorable="d">
+
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<controls:SamplePageLayout Title="{Binding Title}"
+								   Description="{Binding Description}"
+								   Mode="Default">
+
+			<controls:SamplePageLayout.DefaultTemplate>
+				<DataTemplate>
+					<StackPanel>
+
+						<controls:SnippetView Title="Active">
+							<ProgressRing Foreground="Black"
+										  IsActive="True"
+										  HorizontalAlignment="Left"/>
+						</controls:SnippetView>
+
+						<controls:SnippetView Title="Inactive">
+							<ProgressRing Foreground="Black"
+										  IsActive="False"
+										  HorizontalAlignment="Left"/>
+						</controls:SnippetView>
+					</StackPanel>
+				</DataTemplate>
+			</controls:SamplePageLayout.DefaultTemplate>
+
+			<controls:SamplePageLayout.MaterialTemplate>
+				<DataTemplate>
+					<StackPanel>
+
+						<!-- TODO #188598 : Add material samples -->
+					</StackPanel>
+				</DataTemplate>
+			</controls:SamplePageLayout.MaterialTemplate>
+		</controls:SamplePageLayout>
+	</Grid>
+</Page>
