@@ -13,8 +13,7 @@
 								   Mode="Default">
 			<controls:SamplePageLayout.DefaultTemplate>
 				<DataTemplate>
-					<StackPanel Margin="16"
-								Background="Cyan">
+					<StackPanel Background="Cyan">
 
 						<controls:SnippetView Title="Sample 1">
 							<Button Content="Test" />
