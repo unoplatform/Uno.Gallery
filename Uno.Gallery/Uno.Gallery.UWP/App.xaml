@@ -8,6 +8,8 @@
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
 				<material:MaterialLibraryResources />
+				<ResourceDictionary Source="Views/Styles/SamplePageLayout.xaml" />
+				<ResourceDictionary Source="Views/Styles/SnippetView.xaml" />
 			</ResourceDictionary.MergedDictionaries>
 		</ResourceDictionary>
 	</Application.Resources>

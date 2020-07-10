@@ -3,15 +3,6 @@
 			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 			 xmlns:muxc="using:Microsoft.UI.Xaml.Controls">
 
-	<UserControl.Resources>
-		<ResourceDictionary>
-			<ResourceDictionary.MergedDictionaries>
-				<ResourceDictionary Source="../Styles/SamplePageLayout.xaml" />
-				<ResourceDictionary Source="../Styles/SnippetView.xaml" />
-			</ResourceDictionary.MergedDictionaries>						
-		</ResourceDictionary>
-	</UserControl.Resources>
-
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
 		<Grid.RowDefinitions>

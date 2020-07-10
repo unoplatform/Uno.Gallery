@@ -141,13 +141,13 @@
     <Compile Include="Views\Samples\NavigationViewSamplePage.xaml.cs">
       <DependentUpon>NavigationViewSamplePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Navigation\ColorPalettePage.xaml.cs">
+    <Compile Include="Views\ColorPalettePage.xaml.cs">
       <DependentUpon>ColorPalettePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Navigation\Home.xaml.cs">
+    <Compile Include="Views\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Navigation\FabSamplePage.xaml.cs">
+    <Compile Include="Views\Samples\FabSamplePage.xaml.cs">
       <DependentUpon>FabSamplePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Samples\ToggleSwitchSamplePage.xaml.cs">
@@ -162,7 +162,7 @@
     <Compile Include="Views\Samples\CheckBoxSamplePage.xaml.cs">
       <DependentUpon>CheckBoxSamplePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Navigation\Shell.xaml.cs">
+    <Compile Include="Views\Shell.xaml.cs">
       <DependentUpon>Shell.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Samples\ButtonSamplePage.xaml.cs">
@@ -198,15 +198,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Navigation\ColorPalettePage.xaml">
+    <Page Include="Views\ColorPalettePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Navigation\Home.xaml">
+    <Page Include="Views\Home.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Navigation\FabSamplePage.xaml">
+    <Page Include="Views\Samples\FabSamplePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -226,7 +226,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Navigation\Shell.xaml">
+    <Page Include="Views\Shell.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
