@@ -24,8 +24,26 @@ namespace Uno.Gallery
 		public Shell()
 		{
 			this.InitializeComponent();
+
+			InitializeSafeArea();
 		}
 
-		public Frame GetFrame() => rootFrame;
+		public NavigationView NavigationView => NavigationViewControl;
+
+		/// <summary>
+		/// This method handles the top padding for phones like iPhone X.
+		/// </summary>
+		private void InitializeSafeArea()
+		{
+			var full = Windows.UI.Xaml.Window.Current.Bounds;
+			var bounds = ApplicationView.GetForCurrentView().VisibleBounds;
+
+			var topPadding = Math.Abs(full.Top - bounds.Top);
+
+			if (topPadding > 0)
+			{
+				TopPaddingRow.Height = new GridLength(topPadding);
+			}
+		}
 	}
 }

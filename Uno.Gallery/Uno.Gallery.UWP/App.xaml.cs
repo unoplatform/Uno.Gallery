@@ -39,9 +39,9 @@ namespace Uno.Gallery
 				// this.DebugSettings.EnableFrameRateCounter = true;
 			}
 #endif
-			var root = GetShell();
-			AddNavigationItems(root);
-			AddSettingsItem(root);
+			var shell = GetShell();
+			AddNavigationItems(shell);
+			AddSettingsItem(shell);
 
 			// Ensure the current window is active
 			Windows.UI.Xaml.Window.Current.Activate();
@@ -69,7 +69,7 @@ namespace Uno.Gallery
 
 		private void AddNavigationItems(Shell shell)
 		{
-			var navigationView = (NavigationView)shell.FindName("NavigationViewControl");
+			var navigationView = shell.NavigationView;
 
 			navigationView.MenuItems.Add(new NavigationViewItem()
 			{
@@ -135,32 +135,22 @@ namespace Uno.Gallery
 			void ToggleTheme()
 			{
 #if WINDOWS_UWP
-			// Set theme for window root.
-			if (Window.Current.Content is FrameworkElement frameworkElement)
-			{
-				if (frameworkElement.ActualTheme == ElementTheme.Dark)
+				// Set theme for window root.
+				if (Window.Current.Content is FrameworkElement frameworkElement)
 				{
-					frameworkElement.RequestedTheme = ElementTheme.Light;
+					if (frameworkElement.ActualTheme == ElementTheme.Dark)
+					{
+						frameworkElement.RequestedTheme = ElementTheme.Light;
+					}
+					else
+					{
+						frameworkElement.RequestedTheme = ElementTheme.Dark;
+					}
 				}
-				else
-				{
-					frameworkElement.RequestedTheme = ElementTheme.Dark;
-				}
-			}
 #endif
 			}
 		}
 		
-		/// <summary>
-		/// Invoked when Navigation to a certain page fails
-		/// </summary>
-		/// <param name="sender">The Frame which failed navigation</param>
-		/// <param name="e">Details about the navigation failure</param>
-		void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
-		{
-			throw new Exception($"Failed to load {e.SourcePageType.FullName}: {e.Exception}");
-		}
-
 		/// <summary>
 		/// Invoked when application execution is being suspended.  Application state is saved
 		/// without knowing whether the application will be terminated or resumed with the contents
@@ -231,27 +221,16 @@ namespace Uno.Gallery
 
 		private Shell GetShell()
 		{
-			Frame rootFrame;
-			if (!(Windows.UI.Xaml.Window.Current.Content is Shell rootPage))
+			if (Windows.UI.Xaml.Window.Current.Content is Shell shell)
 			{
-				rootPage = new Shell();
-				rootFrame = rootPage.GetFrame();
-
-				if (rootFrame == null)
-				{
-					throw new Exception("Root frame not found");
-				}
-				
-				rootFrame.NavigationFailed += OnNavigationFailed;
-
-				Windows.UI.Xaml.Window.Current.Content = rootPage;
+				return shell;
 			}
 			else
 			{
-				rootFrame = rootPage.GetFrame();
+				shell = new Shell();
+				Windows.UI.Xaml.Window.Current.Content = shell;
+				return shell;
 			}
-
-			return rootPage;
 		}
 	}
 }
