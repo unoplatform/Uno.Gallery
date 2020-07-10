@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.Gallery.iOS", "Uno.Gall
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.Gallery.UWP", "Uno.Gallery\Uno.Gallery.UWP\Uno.Gallery.UWP.csproj", "{B4470685-43A9-4CBD-88C8-C16675042D53}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.Gallery.Wasm", "Uno.Gallery\Uno.Gallery.Wasm\Uno.Gallery.Wasm.csproj", "{49D3CAA2-546E-4E7A-BE97-2B01B04DB462}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Uno.Gallery.Wasm", "Uno.Gallery\Uno.Gallery.Wasm\Uno.Gallery.Wasm.csproj", "{49D3CAA2-546E-4E7A-BE97-2B01B04DB462}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.Gallery.macOS", "Uno.Gallery\Uno.Gallery.macOS\Uno.Gallery.macOS.csproj", "{F5478E89-9761-4894-A8C7-B2F27342E404}"
 EndProject
@@ -162,6 +162,7 @@ Global
 		{EF1962DD-F6FF-46A1-B846-BE4A1FFDE32B}.Debug|ARM64.ActiveCfg = Debug|iPhone
 		{EF1962DD-F6FF-46A1-B846-BE4A1FFDE32B}.Debug|iPhone.ActiveCfg = Debug|iPhone
 		{EF1962DD-F6FF-46A1-B846-BE4A1FFDE32B}.Debug|iPhone.Build.0 = Debug|iPhone
+		{EF1962DD-F6FF-46A1-B846-BE4A1FFDE32B}.Debug|iPhone.Deploy.0 = Debug|iPhone
 		{EF1962DD-F6FF-46A1-B846-BE4A1FFDE32B}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
 		{EF1962DD-F6FF-46A1-B846-BE4A1FFDE32B}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
 		{EF1962DD-F6FF-46A1-B846-BE4A1FFDE32B}.Debug|x64.ActiveCfg = Debug|iPhone

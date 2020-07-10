@@ -15,7 +15,9 @@
     <PRIResource Include="$(MSBuildThisFileDirectory)Strings\en\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)Attributes\SamplePageAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\NavigationItemType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Sample.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\SamplePageAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\SamplePageLayout.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\SnippetView.cs" />
   </ItemGroup>
