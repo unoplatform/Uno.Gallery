@@ -8,7 +8,7 @@
 			<ResourceDictionary.MergedDictionaries>
 				<ResourceDictionary Source="../Styles/SamplePageLayout.xaml" />
 				<ResourceDictionary Source="../Styles/SnippetView.xaml" />
-			</ResourceDictionary.MergedDictionaries>			
+			</ResourceDictionary.MergedDictionaries>						
 		</ResourceDictionary>
 	</UserControl.Resources>
 
@@ -20,8 +20,13 @@
 			<RowDefinition Height="*" />
 		</Grid.RowDefinitions>
 
+		<!-- We set CompactModeThresholdWidth to a very high value so that it never happens. We don't want to use the compact mode.-->
 		<NavigationView x:Name="NavigationViewControl"
 						Style="{StaticResource MaterialNavigationViewStyle}"
+						OpenPaneLength="220"
+						CompactPaneLength="0"
+						ExpandedModeThresholdWidth="600"
+						CompactModeThresholdWidth="100000"
 						IsBackButtonVisible="Collapsed"
 						IsBackEnabled="False"
 						IsTabStop="False"
