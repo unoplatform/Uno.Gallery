@@ -15,9 +15,7 @@
 
 			<controls:SamplePageLayout.DefaultTemplate>
 				<DataTemplate>
-					<ScrollViewer Margin="12"
-								  Padding="12">
-						<StackPanel>
+					<StackPanel>
 
 							<!-- NavigationView Text -->
 							<TextBlock Text="The Navigation View control is the expandable and collapsible menu that you see in the top-left of your screen"
@@ -38,15 +36,12 @@
 							
 							<!--TODO add button to see code behind-->
 						</StackPanel>
-					</ScrollViewer>
 				</DataTemplate>
 			</controls:SamplePageLayout.DefaultTemplate>
 
 			<controls:SamplePageLayout.MaterialTemplate>
 				<DataTemplate>
-					<ScrollViewer Margin="12"
-								  Padding="12">
-						<StackPanel>
+					<StackPanel>
 
 							<!-- NavigationView Text -->
 							<TextBlock Text="The Navigation View control is the expandable and collapsible menu that you see in the top-left of your screen"
@@ -70,7 +65,6 @@
 
 							<!--TODO add button to see code behind-->
 						</StackPanel>
-					</ScrollViewer>
 				</DataTemplate>
 			</controls:SamplePageLayout.MaterialTemplate>
 		</controls:SamplePageLayout>

@@ -46,32 +46,33 @@
 						<TextBlock Text="{TemplateBinding Description}"
 								   Grid.Row="1" />
 
-						<ContentPresenter x:Name="DefaultContentPresenter"
-										  Content="{TemplateBinding Content}"
-										  ContentTemplate="{TemplateBinding DefaultTemplate}"
-										  Margin="{TemplateBinding Padding}"
-										  VerticalAlignment="Stretch"
-										  HorizontalAlignment="Stretch"
-										  Visibility="Collapsed"
-										  Grid.Row="2" />
+						<ScrollViewer Grid.Row="2">
+							<Grid>
+								<ContentPresenter x:Name="DefaultContentPresenter"
+							                  Content="{TemplateBinding Content}"
+							                  ContentTemplate="{TemplateBinding DefaultTemplate}"
+							                  Margin="{TemplateBinding Padding}"
+							                  VerticalAlignment="Stretch"
+							                  HorizontalAlignment="Stretch"
+							                  Visibility="Collapsed"/>
 
-						<ContentPresenter x:Name="MaterialContentPresenter"
+								<ContentPresenter x:Name="MaterialContentPresenter"
 										  Content="{TemplateBinding Content}"
 										  ContentTemplate="{TemplateBinding MaterialTemplate}"
 										  Margin="{TemplateBinding Padding}"
 										  VerticalAlignment="Stretch"
 										  HorizontalAlignment="Stretch"
-										  Visibility="Collapsed"
-										  Grid.Row="2" />
+										  Visibility="Collapsed"/>
 
-						<ContentPresenter x:Name="NativeContentPresenter"
+								<ContentPresenter x:Name="NativeContentPresenter"
 										  Content="{TemplateBinding Content}"
 										  ContentTemplate="{TemplateBinding NativeTemplate}"
 										  Margin="{TemplateBinding Padding}"
 										  VerticalAlignment="Stretch"
 										  HorizontalAlignment="Stretch"
-										  Visibility="Collapsed"
-										  Grid.Row="2" />
+										  Visibility="Collapsed"/>
+							</Grid>
+						</ScrollViewer>
 					</Grid>
 				</ControlTemplate>
 			</Setter.Value>

@@ -15,21 +15,15 @@
 
 			<controls:SamplePageLayout.DefaultTemplate>
 				<DataTemplate>
-					<ScrollViewer Margin="12"
-								  Padding="12">
-						<StackPanel>
-
+					<StackPanel>
 							<!--TODO 188666 add default samples?-->
 						</StackPanel>
-					</ScrollViewer>
 				</DataTemplate>
 			</controls:SamplePageLayout.DefaultTemplate>
 
 			<controls:SamplePageLayout.MaterialTemplate>
 				<DataTemplate>
-					<ScrollViewer Margin="12"
-								  Padding="12">
-						<StackPanel>
+					<StackPanel>
 
 							<controls:SnippetView Title="With Icon">
 								<!-- Known Issue, ElevatedView adds white border around fab in WASM -->
@@ -58,7 +52,6 @@
 								</Button>
 							</controls:SnippetView>
 						</StackPanel>
-					</ScrollViewer>
 				</DataTemplate>
 			</controls:SamplePageLayout.MaterialTemplate>
 		</controls:SamplePageLayout>
