@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,6 +40,24 @@ namespace Uno.Gallery.Controls
 
 		public static readonly DependencyProperty DescriptionProperty =
 			DependencyProperty.Register("Description", typeof(string), typeof(SamplePageLayout), new PropertyMetadata(string.Empty));
+
+		public string Source
+		{
+			get { return (string)GetValue(SourceProperty); }
+			set { SetValue(SourceProperty, value); }
+		}
+
+		public static readonly DependencyProperty SourceProperty =
+			DependencyProperty.Register("Source", typeof(string), typeof(SamplePageLayout), new PropertyMetadata(string.Empty));
+
+		public SamplePageLayoutMode Mode
+		{
+			get { return (SamplePageLayoutMode)GetValue(ModeProperty); }
+			set { SetValue(ModeProperty, value); }
+		}
+
+		public static readonly DependencyProperty ModeProperty =
+			DependencyProperty.Register("Mode", typeof(SamplePageLayoutMode), typeof(SamplePageLayout), new PropertyMetadata(SamplePageLayoutMode.Default, OnModeChanged));
 
 		public DataTemplate MaterialTemplate
 		{

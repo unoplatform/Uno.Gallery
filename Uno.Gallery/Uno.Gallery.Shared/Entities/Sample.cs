@@ -12,12 +12,15 @@ namespace Uno.Gallery
 		{
 			Title = attribute.Title;
 			Description = attribute.Description;
+			Source = attribute.Source;
 			ViewType = viewType;
 		}
 
 		public string Title { get; }
 
 		public string Description { get; }
+
+		public string Source { get; }
 
 		public Type ViewType { get; }
 	}
