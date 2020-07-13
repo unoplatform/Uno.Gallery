@@ -4,16 +4,19 @@
 
 	<Style x:Key="DefaultSnippetViewStyle"
 		   TargetType="controls:SnippetView">
+		<Setter Property="Padding"
+				Value="12,12,12,0" />
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="controls:SnippetView">
-					<Grid>
+					<Grid Margin="{TemplateBinding Padding}">
 						<Grid.RowDefinitions>
 							<RowDefinition Height="auto" />
 							<RowDefinition Height="*" />
 						</Grid.RowDefinitions>
 
-						<TextBlock Text="{TemplateBinding Title}" />
+						<TextBlock Text="{TemplateBinding Title}"
+								   Margin="0,12,0,4"/>
 						
 						<!-- TODO #188326 Add the control that displays the xaml code -->
 						<ContentPresenter x:Name="ContentPresenter"

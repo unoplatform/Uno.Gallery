@@ -26,15 +26,21 @@
 					<StackPanel>
 
 						<controls:SnippetView Title="With Icon">
+							<Button Style="{StaticResource MaterialFabStyle}">
+								<extensions:ControlExtensions.Icon>
+									<SymbolIcon Symbol="Add" />
+								</extensions:ControlExtensions.Icon>
+							</Button>
+						</controls:SnippetView>
+
+						<controls:SnippetView Title="With Label">
 							<Button Content="CREATE"
-									Style="{StaticResource MaterialFabStyle}"
-									Margin="{StaticResource ConsecutiveItemMargin}" />
+									Style="{StaticResource MaterialFabStyle}" />
 						</controls:SnippetView>
 
 						<controls:SnippetView Title="With Icon and Label">
 							<Button Content="CREATE"
-									Style="{StaticResource MaterialFabStyle}"
-									Margin="{StaticResource ConsecutiveItemMargin}">
+									Style="{StaticResource MaterialFabStyle}">
 								<extensions:ControlExtensions.Icon>
 									<SymbolIcon Symbol="Add" />
 								</extensions:ControlExtensions.Icon>
