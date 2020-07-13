@@ -2,15 +2,21 @@
 					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 					xmlns:controls="using:Uno.Gallery.Controls">
 
+	<Thickness x:Key="SamplePadding">24</Thickness>
+
+	<Thickness x:Key="FirstItemMargin">12,0</Thickness>
+
+	<Thickness x:Key="ConsecutiveItemMargin">12,12,12,0</Thickness>
+
 	<Style x:Key="DefaultSamplePageLayoutStyle"
 		   TargetType="controls:SamplePageLayout">
 
 		<Setter Property="Padding"
-				Value="16" />
+				Value="{StaticResource SamplePadding}" />
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="controls:SamplePageLayout">
-					<Grid>
+					<Grid Margin="{TemplateBinding Padding}">
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup x:Name="States">
 								<VisualState x:Name="Default">
