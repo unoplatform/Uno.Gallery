@@ -138,6 +138,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Samples\ProgressRingSamplePage.xaml.cs">
+      <DependentUpon>ProgressRingSamplePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Samples\NavigationViewSamplePage.xaml.cs">
       <DependentUpon>NavigationViewSamplePage.xaml</DependentUpon>
     </Compile>
@@ -194,6 +197,10 @@
     <Content Include="Properties\Default.rd.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\Samples\ProgressRingSamplePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\Samples\NavigationViewSamplePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
