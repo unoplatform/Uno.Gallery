@@ -19,9 +19,9 @@
 					<Grid Margin="{TemplateBinding Padding}">
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup x:Name="States">
-								<VisualState x:Name="Default">
+								<VisualState x:Name="Fluent">
 									<VisualState.Setters>
-										<Setter Target="DefaultContentPresenter.Visibility"
+										<Setter Target="FluentContentPresenter.Visibility"
 												Value="Visible" />
 									</VisualState.Setters>
 								</VisualState>
@@ -40,43 +40,66 @@
 							</VisualStateGroup>
 						</VisualStateManager.VisualStateGroups>
 
-
 						<Grid.RowDefinitions>
+							<RowDefinition Height="auto" />
 							<RowDefinition Height="auto" />
 							<RowDefinition Height="auto" />
 							<RowDefinition Height="*" />
 						</Grid.RowDefinitions>
 
-						<TextBlock Text="{TemplateBinding Title}" />
+						<StackPanel Orientation="Horizontal"
+									BorderBrush="LightGray"
+									BorderThickness="0,0,0,1"
+									HorizontalAlignment="Stretch">
 
-						<TextBlock Text="{TemplateBinding Description}"
+							<RadioButton x:Name="PART_FluentRadioButton"
+										 Content="Fluent"
+										 Margin="0,0,16,0"
+										 Style="{StaticResource SampleLayoutModeRadioButtonStyle}" />
+
+							<RadioButton x:Name="PART_MaterialRadioButton"
+										 Content="Material"
+										 Margin="0,0,16,0"
+										 Style="{StaticResource SampleLayoutModeRadioButtonStyle}" />
+
+							<RadioButton x:Name="PART_NativeRadioButton"
+										 Content="Native"
+										 Margin="0,0,16,0"
+										 Style="{StaticResource SampleLayoutModeRadioButtonStyle}" />
+						</StackPanel>
+
+
+						<TextBlock Text="{TemplateBinding Title}"
 								   Grid.Row="1" />
 
-						<ScrollViewer Grid.Row="2">
+						<TextBlock Text="{TemplateBinding Description}"
+								   Grid.Row="2" />
+
+						<ScrollViewer Grid.Row="3">
 							<Grid>
-								<ContentPresenter x:Name="DefaultContentPresenter"
-							                  Content="{TemplateBinding Content}"
-							                  ContentTemplate="{TemplateBinding DefaultTemplate}"
-							                  Margin="{TemplateBinding Padding}"
-							                  VerticalAlignment="Stretch"
-							                  HorizontalAlignment="Stretch"
-							                  Visibility="Collapsed"/>
+								<ContentPresenter x:Name="FluentContentPresenter"
+												  Content="{TemplateBinding Content}"
+												  ContentTemplate="{TemplateBinding FluentTemplate}"
+												  Margin="{TemplateBinding Padding}"
+												  VerticalAlignment="Stretch"
+												  HorizontalAlignment="Stretch"
+												  Visibility="Collapsed" />
 
 								<ContentPresenter x:Name="MaterialContentPresenter"
-										  Content="{TemplateBinding Content}"
-										  ContentTemplate="{TemplateBinding MaterialTemplate}"
-										  Margin="{TemplateBinding Padding}"
-										  VerticalAlignment="Stretch"
-										  HorizontalAlignment="Stretch"
-										  Visibility="Collapsed"/>
+												  Content="{TemplateBinding Content}"
+												  ContentTemplate="{TemplateBinding MaterialTemplate}"
+												  Margin="{TemplateBinding Padding}"
+												  VerticalAlignment="Stretch"
+												  HorizontalAlignment="Stretch"
+												  Visibility="Collapsed" />
 
 								<ContentPresenter x:Name="NativeContentPresenter"
-										  Content="{TemplateBinding Content}"
-										  ContentTemplate="{TemplateBinding NativeTemplate}"
-										  Margin="{TemplateBinding Padding}"
-										  VerticalAlignment="Stretch"
-										  HorizontalAlignment="Stretch"
-										  Visibility="Collapsed"/>
+												  Content="{TemplateBinding Content}"
+												  ContentTemplate="{TemplateBinding NativeTemplate}"
+												  Margin="{TemplateBinding Padding}"
+												  VerticalAlignment="Stretch"
+												  HorizontalAlignment="Stretch"
+												  Visibility="Collapsed" />
 							</Grid>
 						</ScrollViewer>
 					</Grid>

@@ -3,15 +3,16 @@
 			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 			 xmlns:local="using:Uno.Gallery"
 			 xmlns:material="using:Uno.Material">
-	
+
 	<Application.Resources>
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
 				<material:MaterialLibraryResources />
+				<ResourceDictionary Source="Views/Styles/RadioButton.xaml" />
 				<ResourceDictionary Source="Views/Styles/SamplePageLayout.xaml" />
 				<ResourceDictionary Source="Views/Styles/SnippetView.xaml" />
 			</ResourceDictionary.MergedDictionaries>
 		</ResourceDictionary>
 	</Application.Resources>
-	
+
 </Application>
