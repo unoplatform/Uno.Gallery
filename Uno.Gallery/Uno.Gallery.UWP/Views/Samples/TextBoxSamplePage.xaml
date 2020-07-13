@@ -15,9 +15,7 @@
 
 			<controls:SamplePageLayout.DefaultTemplate>
 				<DataTemplate>
-					<ScrollViewer Margin="12"
-								  Padding="12">
-						<StackPanel>
+					<StackPanel>
 
 							<!-- Default -->
 							<controls:SnippetView Title="Default">
@@ -43,15 +41,12 @@
 										 AcceptsReturn="True" />
 							</controls:SnippetView>
 						</StackPanel>
-					</ScrollViewer>
 				</DataTemplate>
 			</controls:SamplePageLayout.DefaultTemplate>
 
 			<controls:SamplePageLayout.MaterialTemplate>
 				<DataTemplate>
-					<ScrollViewer Margin="12"
-								  Padding="12">
-						<StackPanel>
+					<StackPanel>
 
 							<!-- Default -->
 							<controls:SnippetView Title="Default">
@@ -81,7 +76,6 @@
 										 AcceptsReturn="True" />
 							</controls:SnippetView>
 						</StackPanel>
-					</ScrollViewer>
 				</DataTemplate>
 			</controls:SamplePageLayout.MaterialTemplate>
 		</controls:SamplePageLayout>

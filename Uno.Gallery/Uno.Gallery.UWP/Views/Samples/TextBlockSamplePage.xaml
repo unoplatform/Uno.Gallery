@@ -15,9 +15,7 @@
 
 			<controls:SamplePageLayout.DefaultTemplate>
 				<DataTemplate>
-					<ScrollViewer Margin="12"
-								  Padding="12">
-						<StackPanel>
+					<StackPanel>
 
 							<controls:SnippetView Title="FontSize">
 								<TextBlock Text="FontSize 48"
@@ -47,15 +45,12 @@
 								</TextBlock>
 							</controls:SnippetView>
 						</StackPanel>
-					</ScrollViewer>
 				</DataTemplate>
 			</controls:SamplePageLayout.DefaultTemplate>
 
 			<controls:SamplePageLayout.MaterialTemplate>
 				<DataTemplate>
-					<ScrollViewer Margin="12"
-								  Padding="12">
-						<StackPanel>
+					<StackPanel>
 
 							<!-- Headline 1 -->
 							<controls:SnippetView Title="Headline 1">
@@ -135,7 +130,6 @@
 										   Style="{StaticResource MaterialOverline}" />
 							</controls:SnippetView>
 						</StackPanel>
-					</ScrollViewer>
 				</DataTemplate>
 			</controls:SamplePageLayout.MaterialTemplate>
 		</controls:SamplePageLayout>
