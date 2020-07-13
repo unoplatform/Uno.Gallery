@@ -20,5 +20,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\SamplePageAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\SamplePageLayout.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\SnippetView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\SourceSdk.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\EnumHelper.cs" />
   </ItemGroup>
 </Project>

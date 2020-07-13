@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Uno.Gallery.Views.Samples
 {
-	[SamplePage("PasswordBox", "PasswordBox sample")]
+	[SamplePage("PasswordBox", "PasswordBox sample", SourceSdk.WinUI)]
 	public sealed partial class PasswordBoxSamplePage : Page
 	{
 		public PasswordBoxSamplePage()

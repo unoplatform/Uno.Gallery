@@ -40,6 +40,15 @@ namespace Uno.Gallery.Controls
 		public static readonly DependencyProperty DescriptionProperty =
 			DependencyProperty.Register("Description", typeof(string), typeof(SamplePageLayout), new PropertyMetadata(string.Empty));
 
+		public string Source
+		{
+			get { return (string)GetValue(SourceProperty); }
+			set { SetValue(SourceProperty, value); }
+		}
+
+		public static readonly DependencyProperty SourceProperty =
+			DependencyProperty.Register("Source", typeof(string), typeof(SamplePageLayout), new PropertyMetadata(string.Empty));
+
 		public DataTemplate MaterialTemplate
 		{
 			get { return (DataTemplate)GetValue(MaterialTemplateProperty); }

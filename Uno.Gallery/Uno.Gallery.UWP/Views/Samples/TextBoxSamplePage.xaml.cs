@@ -2,7 +2,7 @@
 
 namespace Uno.Gallery.Views.Samples
 {
-	[SamplePage("TextBox", "TextBox sample")]
+	[SamplePage("TextBox", "TextBox sample", SourceSdk.WinUI)]
 	public sealed partial class TextBoxSamplePage : Page
 	{
 		public TextBoxSamplePage()

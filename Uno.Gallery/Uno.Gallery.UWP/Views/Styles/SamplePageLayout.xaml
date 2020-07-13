@@ -44,6 +44,7 @@
 							<RowDefinition Height="auto" />
 							<RowDefinition Height="auto" />
 							<RowDefinition Height="auto" />
+							<RowDefinition Height="auto" />
 							<RowDefinition Height="*" />
 						</Grid.RowDefinitions>
 
@@ -75,7 +76,10 @@
 						<TextBlock Text="{TemplateBinding Description}"
 								   Grid.Row="2" />
 
-						<ScrollViewer Grid.Row="3">
+						<TextBlock Text="{TemplateBinding Source}"
+						           Grid.Row="3" />
+
+						<ScrollViewer Grid.Row="4">
 							<Grid>
 								<ContentPresenter x:Name="FluentContentPresenter"
 												  Content="{TemplateBinding Content}"

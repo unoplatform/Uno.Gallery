@@ -11,7 +11,8 @@
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 		<controls:SamplePageLayout Title="{Binding Title}"
-								   Description="{Binding Description}">
+								   Description="{Binding Description}"
+								   Source="{Binding Source}">
 
 			<controls:SamplePageLayout.FluentTemplate>
 				<DataTemplate>
