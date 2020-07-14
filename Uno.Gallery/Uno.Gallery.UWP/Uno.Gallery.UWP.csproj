@@ -153,6 +153,9 @@
     <Compile Include="Views\Samples\FabSamplePage.xaml.cs">
       <DependentUpon>FabSamplePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Samples\TimePickerSamplePage.xaml.cs">
+      <DependentUpon>TimePickerSamplePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Samples\ToggleSwitchSamplePage.xaml.cs">
       <DependentUpon>ToggleSwitchSamplePage.xaml</DependentUpon>
     </Compile>
@@ -216,6 +219,10 @@
     <Page Include="Views\Samples\FabSamplePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Samples\TimePickerSamplePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Samples\ToggleSwitchSamplePage.xaml">
       <Generator>MSBuild:Compile</Generator>
