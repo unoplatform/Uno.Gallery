@@ -1,0 +1,58 @@
+﻿<Page x:Class="Uno.Gallery.Views.Samples.ComboBoxSamplePage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:local="using:Uno.Gallery.Views.Samples"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  xmlns:controls="using:Uno.Gallery.Controls"
+	  mc:Ignorable="d">
+
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<controls:SamplePageLayout Title="{Binding Title}"
+								   Description="{Binding Description}"
+								   Source="{Binding Source}">
+
+			<controls:SamplePageLayout.FluentTemplate>
+				<DataTemplate>
+					<StackPanel>
+
+						<!-- ComboBox -->
+						<controls:SnippetView Title="ComboBox">
+							<ComboBox PlaceholderText="Placeholder"
+									  ItemsSource="abcdefg" />
+						</controls:SnippetView>
+
+						<!-- ComboBox Disabled -->
+						<controls:SnippetView Title="Disabled ComboBox">
+							<ComboBox PlaceholderText="Placeholder"
+									  ItemsSource="abcdefg"
+									  IsEnabled="False" />
+						</controls:SnippetView>
+					</StackPanel>
+				</DataTemplate>
+			</controls:SamplePageLayout.FluentTemplate>
+
+			<controls:SamplePageLayout.MaterialTemplate>
+				<DataTemplate>
+					<StackPanel>
+
+						<!-- ComboBox -->
+						<controls:SnippetView Title="ComboBox">
+							<ComboBox Style="{StaticResource MaterialComboBoxStyle}"
+									  PlaceholderText="Placeholder"
+									  ItemsSource="abcdefg" />
+						</controls:SnippetView>
+
+						<!-- ComboBox Disabled -->
+						<controls:SnippetView Title="Disabled ComboBox">
+							<ComboBox Style="{StaticResource MaterialComboBoxStyle}"
+									  PlaceholderText="Placeholder"
+									  ItemsSource="abcdefg"
+									  IsEnabled="False" />
+						</controls:SnippetView>
+					</StackPanel>
+				</DataTemplate>
+			</controls:SamplePageLayout.MaterialTemplate>
+		</controls:SamplePageLayout>
+	</Grid>
+</Page>
