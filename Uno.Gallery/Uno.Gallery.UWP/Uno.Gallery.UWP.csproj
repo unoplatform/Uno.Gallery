@@ -141,8 +141,8 @@
     <Compile Include="Views\Samples\ComboBoxSamplePage.xaml.cs">
       <DependentUpon>ComboBoxSamplePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Samples\ProgressRingSamplePage.xaml.cs">
-      <DependentUpon>ProgressRingSamplePage.xaml</DependentUpon>
+    <Compile Include="Views\Samples\ProgressSamplePage.xaml.cs">
+      <DependentUpon>ProgressSamplePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Samples\NavigationViewSamplePage.xaml.cs">
       <DependentUpon>NavigationViewSamplePage.xaml</DependentUpon>
@@ -207,7 +207,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Samples\ProgressRingSamplePage.xaml">
+    <Page Include="Views\Samples\ProgressSamplePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
