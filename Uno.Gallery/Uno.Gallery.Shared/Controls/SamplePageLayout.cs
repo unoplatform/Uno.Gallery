@@ -18,7 +18,7 @@ namespace Uno.Gallery.Controls
 		private const string VisualStateMaterial = "Material";
 		private const string VisualStateNative = "Native";
 
-		private static SamplePageLayoutMode _mode = SamplePageLayoutMode.Fluent;
+		private static SamplePageLayoutMode _mode = SamplePageLayoutMode.Material;
 
 		#region Dependency Properties
 
@@ -110,15 +110,15 @@ namespace Uno.Gallery.Controls
 		{
 			switch (_mode)
 			{
-				case SamplePageLayoutMode.Material:
-					_materialRadioButton.IsChecked = true;
-					break;
 				case SamplePageLayoutMode.Native:
 					_nativeRadioButton.IsChecked = true;
 					break;
 				case SamplePageLayoutMode.Fluent:
-				default:
 					_fluentRadioButton.IsChecked = true;
+					break;
+				case SamplePageLayoutMode.Material:
+				default:
+					_materialRadioButton.IsChecked = true;
 					break;
 			}
 		}
