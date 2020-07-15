@@ -102,6 +102,11 @@ namespace Uno.Gallery.Controls
 			_nativeRadioButton.Click += OnNativeRadioButtonChecked;
 #endif
 
+			// Only show the Native tab when it's applicable
+#if !__IOS__ && !__MACOS__ && !__ANDROID__
+			_nativeRadioButton.Visibility = Visibility.Collapsed;
+#endif
+
 			SetCurrentRadioButton();
 			UpdateVisualState();
 		}
