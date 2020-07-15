@@ -15,9 +15,9 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Uno.Gallery
 {
-	public sealed partial class ColorPalettePage : Page
+	public sealed partial class MaterialPalettePage : Page
 	{
-		public ColorPalettePage()
+		public MaterialPalettePage()
 		{
 			this.InitializeComponent();
 		}
