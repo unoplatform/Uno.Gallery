@@ -17,20 +17,20 @@
 				<DataTemplate>
 					<StackPanel>
 
-							<controls:SnippetView Title="OFF">
-								<ToggleSwitch Header="Header" />
-							</controls:SnippetView>
+						<controls:SnippetView Title="OFF">
+							<ToggleSwitch Header="Header" />
+						</controls:SnippetView>
 
-							<controls:SnippetView Title="ON">
-								<ToggleSwitch Header="Header"
-											  IsOn="True" />
-							</controls:SnippetView>
+						<controls:SnippetView Title="ON">
+							<ToggleSwitch Header="Header"
+										  IsOn="True" />
+						</controls:SnippetView>
 
-							<controls:SnippetView Title="DISABLED">
-								<ToggleSwitch Header="Header"
-											  IsEnabled="False" />
-							</controls:SnippetView>
-						</StackPanel>
+						<controls:SnippetView Title="DISABLED">
+							<ToggleSwitch Header="Header"
+										  IsEnabled="False" />
+						</controls:SnippetView>
+					</StackPanel>
 				</DataTemplate>
 			</controls:SamplePageLayout.FluentTemplate>
 
@@ -38,25 +38,49 @@
 				<DataTemplate>
 					<StackPanel>
 
-							<controls:SnippetView Title="OFF">
-								<ToggleSwitch Header="Header"
-											  Style="{StaticResource MaterialToggleSwitchStyle}" />
-							</controls:SnippetView>
+						<controls:SnippetView Title="OFF">
+							<ToggleSwitch Header="Header"
+										  Style="{StaticResource MaterialToggleSwitchStyle}" />
+						</controls:SnippetView>
 
-							<controls:SnippetView Title="ON">
-								<ToggleSwitch Header="Header"
-											  Style="{StaticResource MaterialToggleSwitchStyle}"
-											  IsOn="True" />
-							</controls:SnippetView>
+						<controls:SnippetView Title="ON">
+							<ToggleSwitch Header="Header"
+										  Style="{StaticResource MaterialToggleSwitchStyle}"
+										  IsOn="True" />
+						</controls:SnippetView>
 
-							<controls:SnippetView Title="DISABLED">
-								<ToggleSwitch Header="Header"
-											  Style="{StaticResource MaterialToggleSwitchStyle}"
-											  IsEnabled="False" />
-							</controls:SnippetView>
-						</StackPanel>
+						<controls:SnippetView Title="DISABLED">
+							<ToggleSwitch Header="Header"
+										  Style="{StaticResource MaterialToggleSwitchStyle}"
+										  IsEnabled="False" />
+						</controls:SnippetView>
+					</StackPanel>
 				</DataTemplate>
 			</controls:SamplePageLayout.MaterialTemplate>
+
+			<controls:SamplePageLayout.NativeTemplate>
+				<DataTemplate>
+					<StackPanel>
+
+						<controls:SnippetView Title="OFF">
+							<ToggleSwitch Header="Header"
+										  Style="{StaticResource NativeDefaultToggleSwitch}" />
+						</controls:SnippetView>
+
+						<controls:SnippetView Title="ON">
+							<ToggleSwitch Header="Header"
+										  Style="{StaticResource NativeDefaultToggleSwitch}"
+										  IsOn="True" />
+						</controls:SnippetView>
+
+						<controls:SnippetView Title="DISABLED">
+							<ToggleSwitch Header="Header"
+										  Style="{StaticResource NativeDefaultToggleSwitch}"
+										  IsEnabled="False" />
+						</controls:SnippetView>
+					</StackPanel>
+				</DataTemplate>
+			</controls:SamplePageLayout.NativeTemplate>
 		</controls:SamplePageLayout>
 	</Grid>
 </Page>
