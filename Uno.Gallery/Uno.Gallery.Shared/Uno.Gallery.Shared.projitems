@@ -9,7 +9,43 @@
     <Import_RootNamespace>Uno.Gallery.Shared</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\AndroidIcon_Medium.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\AndroidIcon_Medium@2x.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\AndroidIcon_Medium@3x.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\AndroidIcon_Small.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\AndroidIcon_Small@2x.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\AndroidIcon_Small@3x.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\AppleIcon_Medium.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\AppleIcon_Medium@2x.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\AppleIcon_Medium@3x.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\AppleIcon_Small.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\AppleIcon_Small@2x.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\AppleIcon_Small@3x.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\FluentIcon_Medium.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\FluentIcon_Medium@2x.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\FluentIcon_Medium@3x.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\FluentIcon_Small.scale-100.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\FluentIcon_Small.scale-200.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\FluentIcon_Small.scale-300.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\MaterialIcon_Medium.scale-100.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\MaterialIcon_Medium.scale-200.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\MaterialIcon_Medium.scale-300.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\MaterialIcon_Small.scale-100.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\MaterialIcon_Small.scale-200.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\MaterialIcon_Small.scale-300.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\SharedAssets.md" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\UnoGalleryLogo_Dark.scale-100.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\UnoGalleryLogo_Dark.scale-200.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\UnoGalleryLogo_Dark.scale-300.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\UnoGalleryLogo_Light.scale-100.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\UnoGalleryLogo_Light.scale-200.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\UnoGalleryLogo_Light.scale-300.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\UnoLogo_Medium.scale-100.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\UnoLogo_Medium.scale-200.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\UnoLogo_Medium.scale-300.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\UnoLogo_Small.scale-100.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\UnoLogo_Small.scale-200.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\UnoLogo_Small.scale-300.png" />
   </ItemGroup>
   <ItemGroup>
     <PRIResource Include="$(MSBuildThisFileDirectory)Strings\en\Resources.resw" />
