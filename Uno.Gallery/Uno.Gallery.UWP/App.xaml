@@ -13,7 +13,6 @@
 				<ResourceDictionary Source="Views/Styles/RadioButton.xaml" />
 				<ResourceDictionary Source="Views/Styles/SamplePageLayout.xaml" />
 				<ResourceDictionary Source="Views/Styles/SnippetView.xaml" />
-				<ResourceDictionary Source="Views/Styles/TextBlock.xaml" />
 				<ResourceDictionary Source="Views/Styles/XamlDisplay.xaml" />
 			</ResourceDictionary.MergedDictionaries>
 		</ResourceDictionary>

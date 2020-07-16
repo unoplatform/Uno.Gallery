@@ -15,6 +15,35 @@ namespace Uno.Gallery.Extensions
 {
 	public static class XamlDisplayExtensions
 	{
+		/* Header, Description: [optional] texts for display
+		 * IgnorePath: [required] ignore everything except descendent(s) of this path; see: PrettyXamlFormatter.IgnorePath
+		 * PrettyXaml: [reserved] custom formatted xaml based on IgnorePath
+		 */
+
+		#region Property: Header
+
+		public static DependencyProperty HeaderProperty { get; } = DependencyProperty.RegisterAttached(
+			"Header",
+			typeof(string),
+			typeof(XamlDisplayExtensions),
+			new PropertyMetadata(default));
+
+		public static string GetHeader(XamlDisplay obj) => (string)obj.GetValue(HeaderProperty);
+		public static void SetHeader(XamlDisplay obj, string value) => obj.SetValue(HeaderProperty, value);
+
+		#endregion
+		#region Property: Description
+
+		public static DependencyProperty DescriptionProperty { get; } = DependencyProperty.RegisterAttached(
+			"Description",
+			typeof(string),
+			typeof(XamlDisplayExtensions),
+			new PropertyMetadata(default));
+
+		public static string GetDescription(XamlDisplay obj) => (string)obj.GetValue(DescriptionProperty);
+		public static void SetDescription(XamlDisplay obj, string value) => obj.SetValue(DescriptionProperty, value);
+
+		#endregion
 		#region Property: IgnorePath
 
 		public static DependencyProperty IgnorePathProperty { get; } = DependencyProperty.RegisterAttached(

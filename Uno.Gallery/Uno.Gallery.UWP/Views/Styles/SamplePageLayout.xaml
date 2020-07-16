@@ -8,7 +8,7 @@
 
 	<win:Thickness x:Key="SamplePagePadding">36</win:Thickness>
 	<xamarin:Thickness x:Key="SamplePagePadding">24</xamarin:Thickness>
-	<Thickness x:Key="SampleContentPadding">0,24,0,0</Thickness>
+	<Thickness x:Key="SampleContentPadding">0,0,0,0</Thickness>
 
 	<Thickness x:Key="FirstItemMargin">12,0</Thickness>
 	<Thickness x:Key="ConsecutiveItemMargin">12,12,12,0</Thickness>

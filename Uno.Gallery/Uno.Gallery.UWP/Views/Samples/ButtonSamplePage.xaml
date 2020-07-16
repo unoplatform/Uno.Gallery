@@ -74,11 +74,9 @@
 					<StackPanel>
 
 						<!-- Contained Buttons -->
-						<TextBlock Text="Contained Buttons"
-								   Style="{StaticResource SampleSectionHeaderStyle}" />
-						<TextBlock Text="Contained buttons are high-emphasis, distinguished by their use of elevation and fill. They contain actions that are primary to your app."
-								   Style="{StaticResource SampleSectionBodyStyle}" />
 						<smtx:XamlDisplay UniqueKey="ButtonSamplePage_MaterialContained"
+										  extensions:XamlDisplayExtensions.Header="Contained Buttons"
+										  extensions:XamlDisplayExtensions.Description="Contained buttons are high-emphasis, distinguished by their use of elevation and fill. They contain actions that are primary to your app."
 										  extensions:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
 							<StackPanel>
 								<Button Content="CONTAINED"
@@ -90,11 +88,9 @@
 						</smtx:XamlDisplay>
 
 						<!-- Outline Buttons -->
-						<TextBlock Text="Outline Buttons"
-								   Style="{StaticResource SampleSectionHeaderStyle}" />
-						<TextBlock Text="Outline buttons are low-emphasis. They contain actions that are secondary to your app."
-								   Style="{StaticResource SampleSectionBodyStyle}" />
 						<smtx:XamlDisplay UniqueKey="ButtonSamplePage_MaterialOutlined"
+										  extensions:XamlDisplayExtensions.Header="Outline Buttons"
+										  extensions:XamlDisplayExtensions.Description="Outline buttons are low-emphasis. They contain actions that are secondary to your app."
 										  extensions:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
 							<StackPanel>
 								<Button Content="OUTLINED"
@@ -106,11 +102,8 @@
 						</smtx:XamlDisplay>
 
 						<!-- Text Buttons -->
-						<TextBlock Text="Text Buttons"
-								   Style="{StaticResource SampleSectionHeaderStyle}" />
-						<TextBlock Text="Excepteur sint occaecat cupidatat non proident sunt in culpa qui officia deserunt mollit anim id est laborum"
-								   Style="{StaticResource SampleSectionBodyStyle}" />
 						<smtx:XamlDisplay UniqueKey="ButtonSamplePage_MaterialText"
+										  extensions:XamlDisplayExtensions.Header="Text Buttons"
 										  extensions:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
 							<StackPanel>
 								<Button Content="TEXT"
@@ -129,9 +122,8 @@
 					<StackPanel>
 
 						<!-- Default button style -->
-						<TextBlock Text="Default button style"
-								   Style="{StaticResource SampleSectionHeaderStyle}" />
 						<smtx:XamlDisplay UniqueKey="ButtonSamplePage_FluentDefault"
+										  extensions:XamlDisplayExtensions.Header="Default button style"
 										  extensions:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
 							<StackPanel>
 								<Button Content="Button" />
@@ -141,9 +133,8 @@
 						</smtx:XamlDisplay>
 
 						<!-- Button with custom states -->
-						<TextBlock Text="Button with custom states"
-								   Style="{StaticResource SampleSectionHeaderStyle}" />
 						<smtx:XamlDisplay UniqueKey="ButtonSamplePage_FluentCustom"
+										  extensions:XamlDisplayExtensions.Header="Button with custom states"
 										  extensions:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
 							<StackPanel>
 								<Button Content="Button"
