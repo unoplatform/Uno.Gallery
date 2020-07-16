@@ -1,0 +1,9 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					xmlns:local="using:Uno.Gallery.Views.Styles.Application">
+
+	<Color x:Key="SeparatorColor">#FFE8E8E8</Color>
+
+	<SolidColorBrush x:Key="SeparatorColorBrush"
+					 Color="{StaticResource SeparatorColor}" />
+</ResourceDictionary>

@@ -1,0 +1,66 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					xmlns:controls="using:Uno.Gallery.Controls">
+
+	<!-- TODO #189387 Adapt the style for mobile users -->
+	<Style x:Key="DefaulThreeColorPaletteViewStyle"
+		   TargetType="controls:ThreeColorPaletteView">
+
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="controls:ThreeColorPaletteView">
+					<Grid>
+
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*" />
+							<ColumnDefinition Width="*" />
+						</Grid.ColumnDefinitions>
+
+						<Grid.RowDefinitions>
+							<RowDefinition Height="auto" />
+							<RowDefinition Height="auto" />
+							<RowDefinition Height="auto" />
+							<RowDefinition Height="44" />
+						</Grid.RowDefinitions>
+
+						<TextBlock Text="{TemplateBinding Title}"
+								   Grid.ColumnSpan="2"
+						   Style="{StaticResource MaterialHeadline4}" />
+
+						<TextBlock Text="{TemplateBinding Description}"
+								   Margin="0,16,0,0"
+								   Grid.Row="1"
+								   Grid.ColumnSpan="2"
+						   Style="{StaticResource MaterialBody1}" />
+
+						<controls:ColorPaletteView ColorName="{TemplateBinding FirstColorName}"
+												   ColorBrush="{TemplateBinding FirstColorBrush}"
+												   Foreground="{TemplateBinding FirstColorForeground}"
+												   Style="{StaticResource SimpleColorPaletteViewStyle}"
+												   VerticalContentAlignment="Bottom"
+												   Height="88"
+												   Margin="0,28,0,0"
+												   Grid.Row="2"
+												   Grid.ColumnSpan="2" />
+
+						<controls:ColorPaletteView ColorName="{TemplateBinding SecondColorName}"
+												   ColorBrush="{TemplateBinding SecondColorBrush}"
+												   Foreground="{TemplateBinding SecondColorForeground}"
+												   Style="{StaticResource SimpleColorPaletteViewStyle}"
+												   Grid.Row="3" />
+
+						<controls:ColorPaletteView ColorName="{TemplateBinding ThirdColorName}"
+												   ColorBrush="{TemplateBinding ThirdColorBrush}"
+												   Foreground="{TemplateBinding ThirdColorForeground}"
+												   Style="{StaticResource SimpleColorPaletteViewStyle}"
+												   Grid.Row="3"
+												   Grid.Column="1" />
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style TargetType="controls:ThreeColorPaletteView"
+		   BasedOn="{StaticResource DefaulThreeColorPaletteViewStyle}" />
+</ResourceDictionary>

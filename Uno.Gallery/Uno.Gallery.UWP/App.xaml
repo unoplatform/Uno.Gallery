@@ -14,8 +14,9 @@
 				<ResourceDictionary Source="Views/Styles/SamplePageLayout.xaml" />
 				<ResourceDictionary Source="Views/Styles/SnippetView.xaml" />
 				<ResourceDictionary Source="Views/Styles/XamlDisplay.xaml" />
+				<ResourceDictionary Source="Views/Styles/SamplePageLayout.xaml" />
+				<ResourceDictionary Source="Views/Styles/_Styles.xaml" />
 			</ResourceDictionary.MergedDictionaries>
 		</ResourceDictionary>
 	</Application.Resources>
-
 </Application>

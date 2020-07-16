@@ -81,8 +81,8 @@ namespace Uno.Gallery
 
 			navigationView.MenuItems.Add(new NavigationViewItem()
 			{
-				Content = "Color Palette",
-				DataContext = NavigationItemType.ColorPalette
+				Content = "Palette for Material",
+				DataContext = NavigationItemType.MaterialPalette
 			});
 
 			navigationView.MenuItems.Add(new NavigationViewItemSeparator());
@@ -119,8 +119,8 @@ namespace Uno.Gallery
 						object page;
 						switch(itemType)
 						{
-							case NavigationItemType.ColorPalette:
-								page = new ColorPalettePage();
+							case NavigationItemType.MaterialPalette:
+								page = new MaterialPalettePage();
 								break;
 							case NavigationItemType.Home:
 								page = new HomeSamplePage();

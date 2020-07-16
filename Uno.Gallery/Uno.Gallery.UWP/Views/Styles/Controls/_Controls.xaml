@@ -1,0 +1,16 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					xmlns:local="using:Uno.Gallery.Views.Styles.Controls">
+
+	<!-- Please keep this list ordered alphabetically -->
+
+	<ResourceDictionary.MergedDictionaries>
+		<ResourceDictionary Source="ColorPaletteView.xaml" />
+		<ResourceDictionary Source="Path.xaml" />
+		<ResourceDictionary Source="RadioButton.xaml" />
+		<ResourceDictionary Source="SnippetView.xaml" />
+		<ResourceDictionary Source="ThreeColorPaletteView.xaml" />
+	</ResourceDictionary.MergedDictionaries>
+
+</ResourceDictionary>
+
