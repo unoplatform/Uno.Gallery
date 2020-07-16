@@ -14,7 +14,7 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Filter" Version="1.1.1" />
     <PackageReference Include="Uno.Core" Version="2.0.0" />
     <PackageReference Include="Uno.Material">
-      <Version>0.1.0-dev.300</Version>
+      <Version>0.1.0-dev.327</Version>
     </PackageReference>
     <PackageReference Include="Uno.ShowMeTheXAML">
       <Version>1.0.55</Version>
@@ -147,8 +147,8 @@
     <Compile Include="Views\Samples\ComboBoxSamplePage.xaml.cs">
       <DependentUpon>ComboBoxSamplePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Samples\ProgressRingSamplePage.xaml.cs">
-      <DependentUpon>ProgressRingSamplePage.xaml</DependentUpon>
+    <Compile Include="Views\Samples\ProgressSamplePage.xaml.cs">
+      <DependentUpon>ProgressSamplePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Samples\NavigationViewSamplePage.xaml.cs">
       <DependentUpon>NavigationViewSamplePage.xaml</DependentUpon>
@@ -213,7 +213,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Samples\ProgressRingSamplePage.xaml">
+    <Page Include="Views\Samples\ProgressSamplePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

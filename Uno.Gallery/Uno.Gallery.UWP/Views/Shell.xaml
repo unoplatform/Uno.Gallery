@@ -13,11 +13,8 @@
 
 		<!-- We set CompactModeThresholdWidth to a very high value so that it never happens. We don't want to use the compact mode.-->
 		<NavigationView x:Name="NavigationViewControl"
-						Style="{StaticResource MaterialNavigationViewStyle}"
+						Style="{StaticResource MaterialNoCompactMenuNavigationViewStyle}"
 						OpenPaneLength="220"
-						CompactPaneLength="0"
-						ExpandedModeThresholdWidth="600"
-						CompactModeThresholdWidth="100000"
 						IsBackButtonVisible="Collapsed"
 						IsBackEnabled="False"
 						IsTabStop="False"
