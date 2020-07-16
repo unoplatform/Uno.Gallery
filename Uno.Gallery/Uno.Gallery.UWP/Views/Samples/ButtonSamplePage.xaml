@@ -5,20 +5,19 @@
 	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	  xmlns:controls="using:Uno.Gallery.Controls"
-	  mc:Ignorable="d">
+	  xmlns:smtx="using:ShowMeTheXAML"
+	  xmlns:todo="what should be done"
+	  xmlns:extensions="using:Uno.Gallery.Extensions"
+	  mc:Ignorable="d todo">
 
 	<Page.Resources>
 		<Style x:Key="CustomButtonStyle"
 			   TargetType="Button">
 
-			<Setter Property="Background"
-					Value="Red" />
-			<Setter Property="CornerRadius"
-					Value="8" />
-			<Setter Property="Padding"
-					Value="4" />
-			<Setter Property="MinHeight"
-					Value="48" />
+			<Setter Property="Background" Value="Red" />
+			<Setter Property="CornerRadius" Value="8" />
+			<Setter Property="Padding" Value="4" />
+			<Setter Property="MinHeight" Value="48" />
 			<Setter Property="Template">
 				<Setter.Value>
 					<ControlTemplate TargetType="Button">
@@ -30,16 +29,13 @@
 									<VisualState x:Name="PointerOver" />
 									<VisualState x:Name="Pressed">
 										<VisualState.Setters>
-											<Setter Target="BackgroundBorder.Background"
-													Value="Black" />
-											<Setter Target="ContentPresenter.Foreground"
-													Value="White" />
+											<Setter Target="BackgroundBorder.Background" Value="Black" />
+											<Setter Target="ContentPresenter.Foreground" Value="White" />
 										</VisualState.Setters>
 									</VisualState>
 									<VisualState x:Name="Disabled">
 										<VisualState.Setters>
-											<Setter Target="BackgroundBorder.Background"
-													Value="Gray" />
+											<Setter Target="BackgroundBorder.Background" Value="Gray" />
 										</VisualState.Setters>
 									</VisualState>
 								</VisualStateGroup>
@@ -67,79 +63,100 @@
 				</Setter.Value>
 			</Setter>
 		</Style>
-
 	</Page.Resources>
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 		<controls:SamplePageLayout Title="{Binding Title}"
 								   Description="{Binding Description}"
 								   Source="{Binding Source}">
-
-			<controls:SamplePageLayout.FluentTemplate>
-				<DataTemplate>
-					<StackPanel>
-						<controls:SnippetView Title="Default button style">
-							<Button Content="Button" />
-						</controls:SnippetView>
-
-						<controls:SnippetView Title="Disabled button">
-							<Button Content="Disabled button"
-									IsEnabled="False" />
-						</controls:SnippetView>
-
-						<controls:SnippetView Title="Button with custom States">
-							<Button Content="Button"
-									Style="{StaticResource CustomButtonStyle}" />
-						</controls:SnippetView>
-
-						<controls:SnippetView Title="Disabled button with custom style">
-							<Button Content="Disabled button"
-									Style="{StaticResource CustomButtonStyle}"
-									IsEnabled="False" />
-						</controls:SnippetView>
-					</StackPanel>
-				</DataTemplate>
-			</controls:SamplePageLayout.FluentTemplate>
-
 			<controls:SamplePageLayout.MaterialTemplate>
 				<DataTemplate>
 					<StackPanel>
 
-						<controls:SnippetView Title="Contained button style">
-							<Button Content="CONTAINED"
-									Style="{StaticResource MaterialContainedButtonStyle}" />
-						</controls:SnippetView>
+						<!-- Contained Buttons -->
+						<TextBlock Text="Contained Buttons"
+								   Style="{StaticResource SampleSectionHeaderStyle}" />
+						<TextBlock Text="Contained buttons are high-emphasis, distinguished by their use of elevation and fill. They contain actions that are primary to your app."
+								   Style="{StaticResource SampleSectionBodyStyle}" />
+						<smtx:XamlDisplay UniqueKey="ButtonSamplePage_MaterialContained"
+										  extensions:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+							<StackPanel>
+								<Button Content="CONTAINED"
+										Style="{StaticResource MaterialContainedButtonStyle}" />
+								<Button Content="CONTAINED DISABLED"
+										IsEnabled="False"
+										Style="{StaticResource MaterialContainedButtonStyle}" />
+							</StackPanel>
+						</smtx:XamlDisplay>
 
-						<controls:SnippetView Title="Disabled contained button style">
-							<Button Content="CONTAINED DISABLED"
-									IsEnabled="False"
-									Style="{StaticResource MaterialContainedButtonStyle}" />
-						</controls:SnippetView>
+						<!-- Outline Buttons -->
+						<TextBlock Text="Outline Buttons"
+								   Style="{StaticResource SampleSectionHeaderStyle}" />
+						<TextBlock Text="Outline buttons are low-emphasis. They contain actions that are secondary to your app."
+								   Style="{StaticResource SampleSectionBodyStyle}" />
+						<smtx:XamlDisplay UniqueKey="ButtonSamplePage_MaterialOutlined"
+										  extensions:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+							<StackPanel>
+								<Button Content="OUTLINED"
+										Style="{StaticResource MaterialOutlinedButtonStyle}" />
+								<Button Content="OUTLINED DISABLED"
+										IsEnabled="False"
+										Style="{StaticResource MaterialOutlinedButtonStyle}" />
+							</StackPanel>
+						</smtx:XamlDisplay>
 
-						<controls:SnippetView Title="Outline button style">
-							<Button Content="OUTLINED"
-									Style="{StaticResource MaterialOutlinedButtonStyle}" />
-						</controls:SnippetView>
+						<!-- Text Buttons -->
+						<TextBlock Text="Text Buttons"
+								   Style="{StaticResource SampleSectionHeaderStyle}" />
+						<TextBlock Text="Excepteur sint occaecat cupidatat non proident sunt in culpa qui officia deserunt mollit anim id est laborum"
+								   Style="{StaticResource SampleSectionBodyStyle}" />
+						<smtx:XamlDisplay UniqueKey="ButtonSamplePage_MaterialText"
+										  extensions:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+							<StackPanel>
+								<Button Content="TEXT"
+										Style="{StaticResource MaterialTextButtonStyle}" />
+								<Button Content="TEXT DISABLED"
+										IsEnabled="False"
+										Style="{StaticResource MaterialTextButtonStyle}" />
+							</StackPanel>
+						</smtx:XamlDisplay>
 
-						<controls:SnippetView Title="Disabled outline button style">
-							<Button Content="OUTLINED DISABLED"
-									IsEnabled="False"
-									Style="{StaticResource MaterialOutlinedButtonStyle}" />
-						</controls:SnippetView>
-
-						<controls:SnippetView Title="Text button style">
-							<Button Content="TEXT"
-									Style="{StaticResource MaterialTextButtonStyle}" />
-						</controls:SnippetView>
-
-						<controls:SnippetView Title="Disabled text button style">
-							<Button Content="TEXT DISABLED"
-									IsEnabled="False"
-									Style="{StaticResource MaterialTextButtonStyle}" />
-						</controls:SnippetView>
 					</StackPanel>
 				</DataTemplate>
 			</controls:SamplePageLayout.MaterialTemplate>
+			<controls:SamplePageLayout.FluentTemplate>
+				<DataTemplate>
+					<StackPanel>
+
+						<!-- Default button style -->
+						<TextBlock Text="Default button style"
+								   Style="{StaticResource SampleSectionHeaderStyle}" />
+						<smtx:XamlDisplay UniqueKey="ButtonSamplePage_FluentDefault"
+										  extensions:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+							<StackPanel>
+								<Button Content="Button" />
+								<Button Content="Disabled button"
+										IsEnabled="False" />
+							</StackPanel>
+						</smtx:XamlDisplay>
+
+						<!-- Button with custom states -->
+						<TextBlock Text="Button with custom states"
+								   Style="{StaticResource SampleSectionHeaderStyle}" />
+						<smtx:XamlDisplay UniqueKey="ButtonSamplePage_FluentCustom"
+										  extensions:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+							<StackPanel>
+								<Button Content="Button"
+										Style="{StaticResource CustomButtonStyle}" />
+								<Button Content="Disabled button"
+										Style="{StaticResource CustomButtonStyle}"
+										IsEnabled="False" />
+							</StackPanel>
+						</smtx:XamlDisplay>
+
+					</StackPanel>
+				</DataTemplate>
+			</controls:SamplePageLayout.FluentTemplate>
 		</controls:SamplePageLayout>
 	</Grid>
 </Page>
