@@ -15,7 +15,10 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Uno.Gallery.Views.Samples
 {
-	[SamplePage("Button", "Simple button sample", SourceSdk.WinUI)]
+	[SamplePage(
+		"Button",
+		"Button styles for actions in forms, dialogs, and more with support for multiple sizes, states, and more.",
+		SourceSdk.WinUI)]
 	public sealed partial class ButtonSamplePage : Page
 	{
 		public ButtonSamplePage()

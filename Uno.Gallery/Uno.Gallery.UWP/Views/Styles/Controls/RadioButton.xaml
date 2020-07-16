@@ -4,6 +4,8 @@
 	<Style x:Key="SampleLayoutModeRadioButtonStyle"
 		   TargetType="RadioButton">
 
+		<Setter Property="FontSize"
+				Value="18" />
 		<Setter Property="Padding"
 				Value="0,8" />
 		<Setter Property="MinWidth"
@@ -58,8 +60,8 @@
 										  Margin="{TemplateBinding Padding}"/>
 
 						<Border x:Name="BottomBorder"
-								BorderBrush="Black"
-								BorderThickness="0,0,0,1"
+								BorderBrush="{StaticResource MaterialPrimaryBrush}"
+								BorderThickness="0,0,0,2"
 								Visibility="Collapsed" />
 					</Grid>
 				</ControlTemplate>

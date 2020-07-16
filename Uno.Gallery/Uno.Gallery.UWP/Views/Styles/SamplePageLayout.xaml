@@ -1,112 +1,149 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-					xmlns:controls="using:Uno.Gallery.Controls">
+					xmlns:controls="using:Uno.Gallery.Controls"
+					xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+					xmlns:win="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+					xmlns:xamarin="http://uno.ui/xamarin"
+					mc:Ignorable="xamarin">
 
-	<Thickness x:Key="SamplePadding">24</Thickness>
+	<win:Thickness x:Key="SamplePagePadding">36</win:Thickness>
+	<xamarin:Thickness x:Key="SamplePagePadding">24</xamarin:Thickness>
+	<Thickness x:Key="SampleContentPadding">0,0,0,0</Thickness>
 
 	<Thickness x:Key="FirstItemMargin">12,0</Thickness>
-
 	<Thickness x:Key="ConsecutiveItemMargin">12,12,12,0</Thickness>
 
 	<Style x:Key="DefaultSamplePageLayoutStyle"
 		   TargetType="controls:SamplePageLayout">
 
-		<Setter Property="Padding"
-				Value="{StaticResource SamplePadding}" />
+		<Setter Property="BorderBrush" Value="LightGray" />
+		<Setter Property="BorderThickness" Value="1,0,0,0" />
+
+		<Setter Property="Padding" Value="{StaticResource SamplePagePadding}" />
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="controls:SamplePageLayout">
-					<Grid Margin="{TemplateBinding Padding}">
+					<ScrollViewer BorderBrush="{TemplateBinding BorderBrush}"
+								  BorderThickness="{TemplateBinding BorderThickness}">
+						<Grid Margin="{TemplateBinding Padding}">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="*" />
+								<RowDefinition Height="Auto" />
+								<RowDefinition Height="Auto" />
+							</Grid.RowDefinitions>
+
+							<!-- Content -->
+							<StackPanel Grid.Row="0">
+								<TextBlock Text="{TemplateBinding Title}"
+										   FontSize="46"
+										   Margin="0,0,0,16" />
+
+								<TextBlock Text="{TemplateBinding Description}"
+										   FontSize="23"
+										   Margin="0,0,0,16"
+										   TextWrapping="WrapWholeWords"
+										   Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Description, Converter={StaticResource IsNullOrEmptyToCollapsed}, FallbackValue=Collapsed}" />
+
+								<TextBlock FontSize="10"
+										   Text="SOURCE" />
+								<TextBlock Text="{TemplateBinding Source}"
+										   FontSize="16"
+										   Margin="0,0,0,16" />
+
+								<StackPanel Orientation="Horizontal"
+											BorderBrush="LightGray"
+											BorderThickness="0,0,0,1"
+											HorizontalAlignment="Stretch">
+
+									<RadioButton x:Name="PART_MaterialRadioButton"
+												 Content="Material"
+												 Margin="0,0,16,0"
+												 Visibility="Collapsed"
+												 Style="{StaticResource SampleLayoutModeRadioButtonStyle}" />
+
+									<RadioButton x:Name="PART_FluentRadioButton"
+												 Content="Fluent"
+												 Margin="0,0,16,0"
+												 Visibility="Collapsed"
+												 Style="{StaticResource SampleLayoutModeRadioButtonStyle}" />
+
+									<RadioButton x:Name="PART_NativeRadioButton"
+												 Content="Native"
+												 Margin="0,0,16,0"
+												 Visibility="Collapsed"
+												 Style="{StaticResource SampleLayoutModeRadioButtonStyle}" />
+								</StackPanel>
+
+								<Grid>
+									<ContentPresenter x:Name="MaterialContentPresenter"
+													  Content="{TemplateBinding Content}"
+													  ContentTemplate="{TemplateBinding MaterialTemplate}"
+													  VerticalAlignment="Stretch"
+													  HorizontalAlignment="Stretch"
+													  Padding="{StaticResource SampleContentPadding}"
+													  Visibility="Collapsed" />
+
+									<ContentPresenter x:Name="FluentContentPresenter"
+													  Content="{TemplateBinding Content}"
+													  ContentTemplate="{TemplateBinding FluentTemplate}"
+													  VerticalAlignment="Stretch"
+													  HorizontalAlignment="Stretch"
+													  Padding="{StaticResource SampleContentPadding}"
+													  Visibility="Collapsed" />
+
+									<ContentPresenter x:Name="NativeContentPresenter"
+													  Content="{TemplateBinding Content}"
+													  ContentTemplate="{TemplateBinding NativeTemplate}"
+													  VerticalAlignment="Stretch"
+													  HorizontalAlignment="Stretch"
+													  Padding="{StaticResource SampleContentPadding}"
+													  Visibility="Collapsed" />
+								</Grid>
+							</StackPanel>
+
+							<!-- Separator -->
+							<!--<Rectangle Grid.Row="1"
+									   Margin="0,24"
+									   Height="1"
+									   Fill="LightGray" />-->
+
+							<!-- Footer -->
+							<!--<Grid Grid.Row="2">
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="*" />
+									<ColumnDefinition Width="Auto" />
+									<ColumnDefinition Width="Auto" />
+								</Grid.ColumnDefinitions>
+
+								<TextBlock Grid.Column="0"
+										   Text="Uno Gallery" />
+								<Button Grid.Column="1"
+										Content="About" />
+								<Button Grid.Column="2"
+										Content="Feedback" />
+							</Grid>-->
+						</Grid>
+
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup x:Name="States">
-								<VisualState x:Name="Fluent">
-									<VisualState.Setters>
-										<Setter Target="FluentContentPresenter.Visibility"
-												Value="Visible" />
-									</VisualState.Setters>
-								</VisualState>
 								<VisualState x:Name="Material">
 									<VisualState.Setters>
-										<Setter Target="MaterialContentPresenter.Visibility"
-												Value="Visible" />
+										<Setter Target="MaterialContentPresenter.Visibility" Value="Visible" />
+									</VisualState.Setters>
+								</VisualState>
+								<VisualState x:Name="Fluent">
+									<VisualState.Setters>
+										<Setter Target="FluentContentPresenter.Visibility" Value="Visible" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="Native">
 									<VisualState.Setters>
-										<Setter Target="NativeContentPresenter.Visibility"
-												Value="Visible" />
+										<Setter Target="NativeContentPresenter.Visibility" Value="Visible" />
 									</VisualState.Setters>
 								</VisualState>
 							</VisualStateGroup>
 						</VisualStateManager.VisualStateGroups>
-
-						<Grid.RowDefinitions>
-							<RowDefinition Height="auto" />
-							<RowDefinition Height="auto" />
-							<RowDefinition Height="auto" />
-							<RowDefinition Height="auto" />
-							<RowDefinition Height="*" />
-						</Grid.RowDefinitions>
-
-						<StackPanel Orientation="Horizontal"
-									BorderBrush="LightGray"
-									BorderThickness="0,0,0,1"
-									HorizontalAlignment="Stretch">
-
-							<RadioButton x:Name="PART_MaterialRadioButton"
-										 Content="Material"
-										 Margin="0,0,16,0"
-										 Style="{StaticResource SampleLayoutModeRadioButtonStyle}" />
-
-							<RadioButton x:Name="PART_FluentRadioButton"
-										 Content="Fluent"
-										 Margin="0,0,16,0"
-										 Style="{StaticResource SampleLayoutModeRadioButtonStyle}" />
-
-							<RadioButton x:Name="PART_NativeRadioButton"
-										 Content="Native"
-										 Margin="0,0,16,0"
-										 Style="{StaticResource SampleLayoutModeRadioButtonStyle}" />
-						</StackPanel>
-
-
-						<TextBlock Text="{TemplateBinding Title}"
-								   Grid.Row="1" />
-
-						<TextBlock Text="{TemplateBinding Description}"
-								   Grid.Row="2" />
-
-						<TextBlock Text="{TemplateBinding Source}"
-						           Grid.Row="3" />
-
-						<ScrollViewer Grid.Row="4">
-							<Grid>
-								<ContentPresenter x:Name="FluentContentPresenter"
-												  Content="{TemplateBinding Content}"
-												  ContentTemplate="{TemplateBinding FluentTemplate}"
-												  Margin="{TemplateBinding Padding}"
-												  VerticalAlignment="Stretch"
-												  HorizontalAlignment="Stretch"
-												  Visibility="Collapsed" />
-
-								<ContentPresenter x:Name="MaterialContentPresenter"
-												  Content="{TemplateBinding Content}"
-												  ContentTemplate="{TemplateBinding MaterialTemplate}"
-												  Margin="{TemplateBinding Padding}"
-												  VerticalAlignment="Stretch"
-												  HorizontalAlignment="Stretch"
-												  Visibility="Collapsed" />
-
-								<ContentPresenter x:Name="NativeContentPresenter"
-												  Content="{TemplateBinding Content}"
-												  ContentTemplate="{TemplateBinding NativeTemplate}"
-												  Margin="{TemplateBinding Padding}"
-												  VerticalAlignment="Stretch"
-												  HorizontalAlignment="Stretch"
-												  Visibility="Collapsed" />
-							</Grid>
-						</ScrollViewer>
-					</Grid>
+					</ScrollViewer>
 				</ControlTemplate>
 			</Setter.Value>
 		</Setter>

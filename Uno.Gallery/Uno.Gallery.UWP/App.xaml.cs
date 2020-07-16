@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using ShowMeTheXAML;
 using System;
 using Uno.Gallery.Controls;
 using Windows.ApplicationModel;
@@ -21,6 +22,7 @@ namespace Uno.Gallery
 		public App()
 		{
 			ConfigureFilters(global::Uno.Extensions.LogExtensionPoint.AmbientLoggerFactory);
+			ConfigureXamlDisplay();
 
 			this.InitializeComponent();
 			this.Suspending += OnSuspending;
@@ -231,6 +233,11 @@ namespace Uno.Gallery
 				Windows.UI.Xaml.Window.Current.Content = shell;
 				return shell;
 			}
+		}
+
+		static void ConfigureXamlDisplay()
+		{
+			XamlDisplay.Init();
 		}
 	}
 }

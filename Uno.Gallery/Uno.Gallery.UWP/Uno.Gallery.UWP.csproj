@@ -16,6 +16,12 @@
     <PackageReference Include="Uno.Material">
       <Version>0.1.0-dev.327</Version>
     </PackageReference>
+    <PackageReference Include="Uno.ShowMeTheXAML">
+      <Version>1.0.55</Version>
+    </PackageReference>
+    <PackageReference Include="Uno.ShowMeTheXAML.MSBuild">
+      <Version>1.0.55</Version>
+    </PackageReference>
   </ItemGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -308,6 +314,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Styles\_Styles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Styles\Controls\XamlDisplay.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
