@@ -84,6 +84,12 @@
     <PackageReference Include="Uno.Material">
       <Version>0.1.0-dev.300</Version>
     </PackageReference>
+    <PackageReference Include="Uno.ShowMeTheXAML">
+      <Version>1.0.55</Version>
+    </PackageReference>
+    <PackageReference Include="Uno.ShowMeTheXAML.MSBuild">
+      <Version>1.0.55</Version>
+    </PackageReference>
     <PackageReference Include="Uno.UI">
       <Version>3.0.0-dev.719</Version>
     </PackageReference>

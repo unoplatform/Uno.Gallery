@@ -1,0 +1,57 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+					xmlns:extensions="using:Uno.Gallery.Extensions"
+					xmlns:smtx="using:ShowMeTheXAML"
+					xmlns:todo="what should be done"
+					mc:Ignorable="todo">
+
+	<Style x:Key="ExpanderXamlDisplayStyle"
+		   TargetType="smtx:XamlDisplay">
+		<Setter Property="Margin" Value="0,16" />
+		<Setter Property="BorderBrush" Value="LightGray" />
+		<Setter Property="BorderThickness" Value="1" />
+
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="smtx:XamlDisplay">
+					<Grid BorderBrush="{TemplateBinding BorderBrush}"
+						  BorderThickness="{TemplateBinding BorderThickness}">
+						<Grid.RowDefinitions>
+							<RowDefinition Height="Auto" />
+							<RowDefinition Height="Auto" />
+						</Grid.RowDefinitions>
+
+						<ContentPresenter Grid.Row="0"
+										  Padding="16"
+										  Content="{TemplateBinding Content}" />
+						<ToggleButton x:Name="RevealButton"
+									  Grid.Row="0"
+									  Content="icon:Reveal"
+									  IsChecked="False"
+									  Margin="16"
+									  HorizontalAlignment="Right"
+									  VerticalAlignment="Top" />
+
+						<ScrollViewer Grid.Row="1"
+									  Background="WhiteSmoke"
+									  Visibility="{Binding ElementName=RevealButton, Path=IsChecked, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}">
+							<TextBlock Padding="16"
+									   Text="{Binding Path=(extensions:XamlDisplayExtensions.PrettyXaml), RelativeSource={RelativeSource TemplatedParent}}" />
+						</ScrollViewer>
+						<Button Grid.Row="1"
+								Margin="16"
+								Content="icon:Copy"
+								HorizontalAlignment="Right"
+								VerticalAlignment="Top"
+								Visibility="{Binding ElementName=RevealButton, Path=IsChecked, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}" />
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style TargetType="smtx:XamlDisplay"
+		   BasedOn="{StaticResource ExpanderXamlDisplayStyle}" />
+
+</ResourceDictionary>
