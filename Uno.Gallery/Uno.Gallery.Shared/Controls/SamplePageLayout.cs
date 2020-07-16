@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Uno.Disposables;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
@@ -40,6 +41,8 @@ namespace Uno.Gallery.Controls
 		private RadioButton _fluentRadioButton;
 		private RadioButton _nativeRadioButton;
 
+		private readonly SerialDisposable _subscriptions = new SerialDisposable();
+
 		protected override void OnApplyTemplate()
 		{
 			base.OnApplyTemplate();
@@ -48,11 +51,28 @@ namespace Uno.Gallery.Controls
 			_fluentRadioButton = (RadioButton)GetTemplateChild(FluentRadioButtonPartName);
 			_nativeRadioButton = (RadioButton)GetTemplateChild(NativeRadioButtonPartName);
 
-			_materialRadioButton.Click += OnLayoutRadioButtonChecked;
-			_fluentRadioButton.Click += OnLayoutRadioButtonChecked;
-			_nativeRadioButton.Click += OnLayoutRadioButtonChecked;
+			// ensure previous subscriptions is removed before adding new ones, in case OnApplyTemplate is called multiple times
+			var disposables = new CompositeDisposable();
+			_subscriptions.Disposable = disposables;
+
+			BindOnClick(_materialRadioButton);
+			BindOnClick(_fluentRadioButton);
+			BindOnClick(_nativeRadioButton);
 
 			UpdateLayoutRadioButtons();
+
+			void BindOnClick(RadioButton radio)
+			{
+				radio.Click += OnLayoutRadioButtonChecked;
+				Disposable
+					.Create(() => radio.Click -= OnLayoutRadioButtonChecked)
+					.DisposeWith(disposables);
+			}
+		}
+
+		private void RegisterEvent(RoutedEventHandler click)
+		{
+			click += OnLayoutRadioButtonChecked;
 		}
 
 		private void UpdateLayoutRadioButtons()
