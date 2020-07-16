@@ -1,0 +1,312 @@
+﻿<Page x:Class="Uno.Gallery.MaterialPalettePage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:local="using:Uno.Gallery.Views.Samples"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  xmlns:controls="using:Uno.Gallery.Controls"
+	  mc:Ignorable="d">
+
+	<Page.Resources>
+
+		<Style x:Key="ActionMaterialPrimaryButtonSample"
+			   TargetType="Button">
+
+			<Setter Property="CornerRadius"
+					Value="4" />
+			<Setter Property="MinHeight"
+					Value="44" />
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="Button">
+						<Grid x:Name="RootGrid"
+							  Background="{StaticResource MaterialPrimaryBrush}"
+							  CornerRadius="{TemplateBinding CornerRadius}">
+
+							<VisualStateManager.VisualStateGroups>
+								<VisualStateGroup x:Name="CommonStates">
+									<VisualState x:Name="Normal" />
+									<VisualState x:Name="PointerOver" />
+									<VisualState x:Name="Pressed">
+										<VisualState.Setters>
+											<Setter Target="RootGrid.Background"
+													Value="{StaticResource MaterialPrimaryVariantDarkBrush}" />
+										</VisualState.Setters>
+									</VisualState>
+								</VisualStateGroup>
+							</VisualStateManager.VisualStateGroups>
+
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="auto" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+
+							<Path Fill="{StaticResource MaterialOnPrimaryBrush}"
+								  Width="24"
+								  Height="24"
+								  Margin="16,0,4,0"
+								  Data="M2.01 21L23 12 2.01 3 2 10 17 12 2 14z" />
+
+							<ContentPresenter Content="{TemplateBinding Content}"
+											  ContentTemplate="{TemplateBinding ContentTemplate}"
+											  ContentTransitions="{TemplateBinding ContentTransitions}"
+											  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+											  Foreground="{StaticResource MaterialOnPrimaryBrush}"
+											  AutomationProperties.AccessibilityView="Raw"
+											  Margin="4,0,20,0"
+											  Grid.Column="1" />
+						</Grid>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+
+		<Style x:Key="ActionMaterialSecondaryButtonSample"
+			   TargetType="Button"
+			   BasedOn="{StaticResource ActionMaterialPrimaryButtonSample}">
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="Button">
+						<Grid x:Name="RootGrid"
+							  Background="{StaticResource MaterialSecondaryBrush}"
+							  CornerRadius="{TemplateBinding CornerRadius}">
+
+							<VisualStateManager.VisualStateGroups>
+								<VisualStateGroup x:Name="CommonStates">
+									<VisualState x:Name="Normal" />
+									<VisualState x:Name="PointerOver" />
+									<VisualState x:Name="Pressed">
+										<VisualState.Setters>
+											<Setter Target="RootGrid.Background"
+													Value="{StaticResource MaterialSecondaryVariantDarkBrush}" />
+										</VisualState.Setters>
+									</VisualState>
+								</VisualStateGroup>
+							</VisualStateManager.VisualStateGroups>
+
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="auto" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+
+							<Path Fill="{StaticResource MaterialOnSecondaryBrush}"
+								  Width="24"
+								  Height="24"
+								  Margin="16,0,4,0"
+								  Data="M2.01 21L23 12 2.01 3 2 10 17 12 2 14z" />
+
+							<ContentPresenter Content="{TemplateBinding Content}"
+											  ContentTemplate="{TemplateBinding ContentTemplate}"
+											  ContentTransitions="{TemplateBinding ContentTransitions}"
+											  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+											  Foreground="{StaticResource MaterialOnSecondaryBrush}"
+											  AutomationProperties.AccessibilityView="Raw"
+											  Margin="4,0,20,0"
+											  Grid.Column="1" />
+						</Grid>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+	</Page.Resources>
+
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+		  Margin="0,48,0,0">
+
+		<Grid.RowDefinitions>
+			<RowDefinition Height="auto" />
+			<RowDefinition Height="auto" />
+			<RowDefinition Height="auto" />
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+
+		<TextBlock Text="Palette for Material"
+				   Style="{StaticResource MaterialHeadline3}"
+				   Margin="48,0" />
+
+		<TextBlock Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore."
+				   Style="{StaticResource MaterialSubtitle1}"
+				   Margin="48,15,48,0"
+				   Grid.Row="1" />
+
+		<!-- Separator -->
+		<Rectangle Fill="{StaticResource SeparatorColorBrush}"
+				   Height="1"
+				   Margin="48,32,48,0"
+				   Grid.Row="2" />
+		
+		<!-- TODO #189549 Include the Table of content here -->
+
+		<ScrollViewer Grid.Row="3">
+			<StackPanel Padding="48,40,48,48">
+
+				<!-- Primary colors section -->
+				<controls:ThreeColorPaletteView Title="Primary Colors"
+												Description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore."
+												FirstColorName="Primary"
+												FirstColorBrush="{StaticResource MaterialPrimaryBrush}"
+												FirstColorForeground="{StaticResource MaterialOnPrimaryBrush}"
+												SecondColorName="PrimaryVariantDark"
+												SecondColorBrush="{StaticResource MaterialPrimaryVariantDarkBrush}"
+												SecondColorForeground="{StaticResource MaterialOnPrimaryBrush}"
+												ThirdColorName="PrimaryVariantLight"
+												ThirdColorBrush="{StaticResource MaterialPrimaryVariantLightBrush}"
+												ThirdColorForeground="Black" />
+
+				<!-- Separator -->
+				<Rectangle Fill="{StaticResource SeparatorColorBrush}"
+						   Height="1"
+						   Margin="0,48" />
+
+				<!-- Secondary colors section -->
+				<controls:ThreeColorPaletteView Title="Secondary Colors"
+												Description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore."
+												FirstColorName="Secondary"
+												FirstColorBrush="{StaticResource MaterialSecondaryBrush}"
+												FirstColorForeground="{StaticResource MaterialOnSecondaryBrush}"
+												SecondColorName="SecondaryVariantDark"
+												SecondColorBrush="{StaticResource MaterialSecondaryVariantDarkBrush}"
+												SecondColorForeground="{StaticResource MaterialOnSecondaryBrush}"
+												ThirdColorName="SecondaryVariantLight"
+												ThirdColorBrush="{StaticResource MaterialSecondaryVariantLightBrush}"
+												ThirdColorForeground="{StaticResource MaterialOnSecondaryBrush}" />
+
+				<!-- Separator -->
+				<Rectangle Fill="{StaticResource SeparatorColorBrush}"
+						   Height="1"
+						   Margin="0,48" />
+
+				<!-- Elements section -->
+				<TextBlock Text="Elements"
+						   Style="{StaticResource MaterialHeadline4}" />
+
+				<TextBlock Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore."
+						   Style="{StaticResource MaterialBody1}"
+						   Margin="0,16,0,0" />
+
+				<controls:ColorPaletteView ColorName="Background"
+										   ColorBrush="{StaticResource MaterialBackgroundBrush}"
+										   Foreground="{StaticResource MaterialOnBackgroundBrush}"
+										   Description="Appears behind scrollable content."
+										   Style="{StaticResource ColorPaletteWithBottomDescriptionViewStyle}"
+										   BorderBrush="{StaticResource MaterialOnSurfaceFocusedBrush}"
+										   BorderThickness="1"
+										   ColorHeight="88"
+										   Margin="0,48,0,0" />
+
+				<controls:ColorPaletteView ColorName="Surface"
+										   ColorBrush="{StaticResource MaterialSurfaceBrush}"
+										   Foreground="{StaticResource MaterialOnSurfaceBrush}"
+										   Description="Affects surfaces of components such as cards and news."
+										   Style="{StaticResource ColorPaletteWithBottomDescriptionViewStyle}"
+										   BorderBrush="{StaticResource MaterialOnSurfaceFocusedBrush}"
+										   BorderThickness="1"
+										   ColorHeight="88"
+										   Margin="0,48,0,0" />
+
+				<controls:ColorPaletteView ColorName="Error"
+										   ColorBrush="{StaticResource MaterialErrorBrush}"
+										   Foreground="{StaticResource MaterialOnErrorBrush}"
+										   Description="Indicate errors in components."
+										   Style="{StaticResource ColorPaletteWithBottomDescriptionViewStyle}"
+										   ColorHeight="88"
+										   Margin="0,48,0,0" />
+
+				<!-- Separator -->
+				<Rectangle Fill="{StaticResource SeparatorColorBrush}"
+						   Height="1"
+						   Margin="0,48" />
+
+				<!-- On colors section -->
+
+				<TextBlock Text="On Colors"
+						   Style="{StaticResource MaterialHeadline4}" />
+
+				<TextBlock Text="Affects elements such as texts or icons appearing in front of a surface. OnPrimaryBrush is for an element displayed over a surface primary color."
+						   Style="{StaticResource MaterialBody1}"
+						   Margin="0,16,0,0" />
+
+				<controls:ColorPaletteView Title="OnPrimary"
+										   Description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore."
+										   ColorName="OnPrimary Color"
+										   ColorSecondaryName="Primary Color"
+										   ColorBrush="{StaticResource MaterialPrimaryBrush}"
+										   Foreground="{StaticResource MaterialOnPrimaryBrush}"
+										   Margin="0,48,0,0" />
+
+				<StackPanel Orientation="Horizontal"
+							Margin="0,16,0,0">
+
+					<TextBlock Text="Example:"
+							   Style="{StaticResource MaterialBody1}"
+							   VerticalAlignment="Center" />
+
+					<Button Content="Action"
+							Style="{StaticResource ActionMaterialPrimaryButtonSample}"
+							Margin="20,0,0,0" />
+				</StackPanel>
+
+				<controls:ColorPaletteView Title="OnSecondary"
+										   Description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore."
+										   ColorName="OnSecondary Color"
+										   ColorSecondaryName="Secondary Color"
+										   ColorBrush="{StaticResource MaterialSecondaryBrush}"
+										   Foreground="{StaticResource MaterialOnSecondaryBrush}"
+										   Margin="0,48,0,0" />
+
+				<StackPanel Orientation="Horizontal"
+							Margin="0,16,0,0">
+
+					<TextBlock Text="Example:"
+							   Style="{StaticResource MaterialBody1}"
+							   VerticalAlignment="Center" />
+
+					<Button Content="Action"
+							Style="{StaticResource ActionMaterialSecondaryButtonSample}"
+							Margin="20,0,0,0" />
+				</StackPanel>
+
+				<controls:ColorPaletteView Title="OnBackground"
+										   Description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore."
+										   ColorName="OnBackground Color"
+										   ColorSecondaryName="Background Color"
+										   ColorBrush="{StaticResource MaterialBackgroundBrush}"
+										   Foreground="{StaticResource MaterialOnBackgroundBrush}"
+										   BorderBrush="{StaticResource MaterialOnSurfaceFocusedBrush}"
+										   BorderThickness="1"
+										   Margin="0,48,0,0" />
+
+				<!-- In the desktop version, there's a drop shadow for this Color palette, but not on the mobile version. #189387 -->
+				<controls:ColorPaletteView Title="OnSurface"
+										   Description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore."
+										   ColorName="OnSurfaceColor"
+										   ColorSecondaryName="Surface Color"
+										   ColorBrush="{StaticResource MaterialSurfaceBrush}"
+										   Foreground="{StaticResource MaterialOnSurfaceBrush}"
+										   Margin="0,48,0,0" />
+
+				<controls:ColorPaletteView Title="OnError"
+										   Description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore."
+										   ColorName="OnError"
+										   ColorSecondaryName="Error Color"
+										   ColorBrush="{StaticResource MaterialErrorBrush}"
+										   Foreground="{StaticResource MaterialOnErrorBrush}"
+										   Margin="0,48,0,0" />
+
+				<!-- Separator -->
+				<Rectangle Fill="{StaticResource SeparatorColorBrush}"
+						   Height="1"
+						   Margin="0,48" />
+
+				<!-- TODO #189478 Add rediection command to Google material Color docs -->
+				<TextBlock Style="{StaticResource MaterialBody1}">
+					<Run Text="For more information refer to" />
+					
+					<Hyperlink>
+						<Run Text="Google's Material Color System." />
+					</Hyperlink>
+				</TextBlock>
+			</StackPanel>
+		</ScrollViewer>
+	</Grid>
+</Page>

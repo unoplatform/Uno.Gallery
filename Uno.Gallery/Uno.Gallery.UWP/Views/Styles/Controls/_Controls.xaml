@@ -5,9 +5,11 @@
 	<!-- Please keep this list ordered alphabetically -->
 
 	<ResourceDictionary.MergedDictionaries>
+		<ResourceDictionary Source="ColorPaletteView.xaml" />
 		<ResourceDictionary Source="Path.xaml" />
 		<ResourceDictionary Source="RadioButton.xaml" />
 		<ResourceDictionary Source="SnippetView.xaml" />
+		<ResourceDictionary Source="ThreeColorPaletteView.xaml" />
 	</ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>

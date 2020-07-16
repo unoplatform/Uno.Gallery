@@ -147,8 +147,8 @@
     <Compile Include="Views\Samples\NavigationViewSamplePage.xaml.cs">
       <DependentUpon>NavigationViewSamplePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ColorPalettePage.xaml.cs">
-      <DependentUpon>ColorPalettePage.xaml</DependentUpon>
+    <Compile Include="Views\ColorPalette\MaterialPalettePage.xaml.cs">
+      <DependentUpon>MaterialPalettePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
@@ -215,7 +215,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\ColorPalettePage.xaml">
+    <Page Include="Views\ColorPalette\MaterialPalettePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -279,9 +279,17 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Styles\Controls\ColorPaletteView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\Styles\Controls\Path.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Styles\Controls\ThreeColorPaletteView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Styles\Controls\_Controls.xaml">
       <SubType>Designer</SubType>
