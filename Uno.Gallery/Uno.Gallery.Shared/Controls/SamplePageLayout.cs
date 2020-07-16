@@ -28,7 +28,13 @@ namespace Uno.Gallery.Controls
 		{
 			new LayoutModeMapping(SamplePageLayoutMode.Material, _materialRadioButton, VisualStateMaterial, MaterialTemplate),
 			new LayoutModeMapping(SamplePageLayoutMode.Fluent, _fluentRadioButton, VisualStateFluent, FluentTemplate),
+#if __IOS__ || __MACOS__ || __ANDROID__
+			// native tab is only shown when applicable
 			new LayoutModeMapping(SamplePageLayoutMode.Native, _nativeRadioButton, VisualStateNative, NativeTemplate),
+#else
+			// undefined template are not selectable and wont be selected by default
+			new LayoutModeMapping(SamplePageLayoutMode.Native, _nativeRadioButton, VisualStateNative, default),
+#endif
 		};
 		private RadioButton _materialRadioButton;
 		private RadioButton _fluentRadioButton;
