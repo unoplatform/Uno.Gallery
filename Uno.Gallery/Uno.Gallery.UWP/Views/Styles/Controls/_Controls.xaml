@@ -10,6 +10,7 @@
 		<ResourceDictionary Source="RadioButton.xaml" />
 		<ResourceDictionary Source="SnippetView.xaml" />
 		<ResourceDictionary Source="ThreeColorPaletteView.xaml" />
+		<ResourceDictionary Source="XamlDisplay.xaml" />
 	</ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>

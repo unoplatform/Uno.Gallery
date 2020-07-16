@@ -1,5 +1,27 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-					xmlns:local="using:Uno.Gallery.Views.Styles.Application">
+					xmlns:converters="using:Uno.Gallery.Converters">
+
+	<converters:FromBoolToValueConverter x:Key="TrueToVisible"
+										 TrueValue="Visible"
+										 NullOrFalseValue="Collapsed" />
+	<converters:FromBoolToValueConverter x:Key="TrueOrNullToVisible"
+										 NullOrTrueValue="Visible"
+										 FalseValue="Collapsed" />
+	<converters:FromBoolToValueConverter x:Key="TrueToCollapsed"
+										 TrueValue="Collapsed"
+										 NullOrFalseValue="Visible" />
+	<converters:FromBoolToValueConverter x:Key="TrueOrNullToCollapsed"
+										 NullOrTrueValue="Collapsed"
+										 FalseValue="Visible" />
+
+	<converters:FromStringToValueConverter x:Key="IsNullOrEmptyToVisible"
+										   Check="IsNullOrEmpty"
+										   TrueValue="Visible"
+										   FalseValue="Collapsed" />
+	<converters:FromStringToValueConverter x:Key="IsNullOrEmptyToCollapsed"
+										   Check="IsNullOrEmpty"
+										   TrueValue="Collapsed"
+										   FalseValue="Visible" />
 
 </ResourceDictionary>
