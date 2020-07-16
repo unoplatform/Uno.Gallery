@@ -8,6 +8,10 @@
 	  mc:Ignorable="d"
 	  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+	<Page.Resources>
+		<x:String x:Key="LoremIpsumBody">Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet. Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant.</x:String>
+		<x:String x:Key="LoremIpsumCaption">Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper commodo primis ornare himenaeos</x:String>
+	</Page.Resources>
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 		<controls:SamplePageLayout Title="{Binding Title}"
 								   Description="{Binding Description}"
@@ -16,35 +20,53 @@
 			<controls:SamplePageLayout.FluentTemplate>
 				<DataTemplate>
 					<StackPanel>
+						<!--Style from Windows Type Ramp. As documented here https://docs.microsoft.com/en-us/windows/uwp/design/controls-and-patterns/xaml-theme-resources#the-xaml-type-ramp -->
+						<controls:SnippetView Title="Typography">
+							<StackPanel>
+								<TextBlock Text="Header"
+									   Style="{StaticResource HeaderTextBlockStyle}" />
+								<TextBlock Text="SubHeader"
+									   Style="{StaticResource SubheaderTextBlockStyle}" />
+								<TextBlock Text="Title"
+									   Style="{StaticResource TitleTextBlockStyle}" />
+								<TextBlock Text="Subtitle"
+									   Style="{StaticResource SubtitleTextBlockStyle}" />
+								<TextBlock Text="Base"
+									   Style="{StaticResource BaseTextBlockStyle}" />
+								<TextBlock Text="{StaticResource LoremIpsumBody}"
+									   Style="{StaticResource BodyTextBlockStyle}" />
+								<TextBlock Text="{StaticResource LoremIpsumCaption}"
+									   Style="{StaticResource CaptionTextBlockStyle}" />
+							</StackPanel>
+						</controls:SnippetView>
 
-							<controls:SnippetView Title="FontSize">
-								<TextBlock Text="FontSize 48"
-										   FontSize="48" />
-							</controls:SnippetView>
-
-							<controls:SnippetView Title="Foreground">
-								<TextBlock Text="Red Foreground"
-										   Foreground="Red" />
-							</controls:SnippetView>
-
-							<controls:SnippetView Title="Italic">
+						<controls:SnippetView Title="Weights Styles">
+							<StackPanel>
 								<TextBlock Text="Italic"
-										   FontStyle="Italic" />
-							</controls:SnippetView>
-
-							<controls:SnippetView Title="Bold">
+										FontStyle="Italic" />
+								<TextBlock Text="Light"
+										FontWeight="Light" />
 								<TextBlock Text="Bold"
-										   FontWeight="Bold" />
-							</controls:SnippetView>
+										FontWeight="Bold" />
+								<TextBlock Text="ExtraBold"
+										FontWeight="ExtraBold" />
+							</StackPanel>
+						</controls:SnippetView>
 
-							<controls:SnippetView Title="Runs">
-								<TextBlock>
-									<Run Text="Run 1" />
-									<Run Text="Run 2 Bolded"
-										 FontWeight="Bold" />
-								</TextBlock>
-							</controls:SnippetView>
-						</StackPanel>
+						<controls:SnippetView Title="CharacterSpacing">
+							<TextBlock Text="The quick brown fox jumps over the lazy dog"
+										CharacterSpacing="100" />
+						</controls:SnippetView>
+
+						<controls:SnippetView Title="Inlines">
+							<TextBlock>
+								<Run Text="The" />
+								<Run Text="quick" FontStyle="Italic" />
+								<Run Text="brown" Foreground="Brown" FontWeight="Bold" />
+								<Run Text="fox jumps over the lazy dog" />
+							</TextBlock>
+						</controls:SnippetView>
+					</StackPanel>
 				</DataTemplate>
 			</controls:SamplePageLayout.FluentTemplate>
 
@@ -102,13 +124,13 @@
 
 							<!-- Body 1 -->
 							<controls:SnippetView Title="Body 1">
-								<TextBlock Text="Body 1 - Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet. Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant."
+							<TextBlock Text="{StaticResource LoremIpsumBody}"
 										   Style="{StaticResource MaterialBody1}" />
 							</controls:SnippetView>
 
 							<!-- Body 2 -->
 							<controls:SnippetView Title="Body 2">
-								<TextBlock Text="Body 2 - Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet. Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant."
+							<TextBlock Text="{StaticResource LoremIpsumBody}"
 										   Style="{StaticResource MaterialBody2}" />
 							</controls:SnippetView>
 
