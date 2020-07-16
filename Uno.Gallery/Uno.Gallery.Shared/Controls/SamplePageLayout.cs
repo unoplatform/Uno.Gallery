@@ -14,164 +14,102 @@ namespace Uno.Gallery.Controls
 	/// </summary>
 	public partial class SamplePageLayout : ContentControl
 	{
-		private const string VisualStateFluent = "Fluent";
-		private const string VisualStateMaterial = "Material";
-		private const string VisualStateNative = "Native";
+		private const string VisualStateMaterial = nameof(SamplePageLayoutMode.Material);
+		private const string VisualStateFluent = nameof(SamplePageLayoutMode.Fluent);
+		private const string VisualStateNative = nameof(SamplePageLayoutMode.Native);
 
-		private static SamplePageLayoutMode _mode = SamplePageLayoutMode.Fluent;
+		private const string MaterialRadioButtonPartName = "PART_MaterialRadioButton";
+		private const string FluentRadioButtonPartName = "PART_FluentRadioButton";
+		private const string NativeRadioButtonPartName = "PART_NativeRadioButton";
 
-		#region Dependency Properties
+		private static SamplePageLayoutMode _mode = SamplePageLayoutMode.Material;
 
-		public string Title
+		private IReadOnlyCollection<LayoutModeMapping> LayoutModeMappings => new List<LayoutModeMapping>
 		{
-			get { return (string)GetValue(TitleProperty); }
-			set { SetValue(TitleProperty, value); }
-		}
-
-		public static readonly DependencyProperty TitleProperty =
-			DependencyProperty.Register("Title", typeof(string), typeof(SamplePageLayout), new PropertyMetadata(string.Empty));
-
-		public string Description
-		{
-			get { return (string)GetValue(DescriptionProperty); }
-			set { SetValue(DescriptionProperty, value); }
-		}
-
-		public static readonly DependencyProperty DescriptionProperty =
-			DependencyProperty.Register("Description", typeof(string), typeof(SamplePageLayout), new PropertyMetadata(string.Empty));
-
-		public string Source
-		{
-			get { return (string)GetValue(SourceProperty); }
-			set { SetValue(SourceProperty, value); }
-		}
-
-		public static readonly DependencyProperty SourceProperty =
-			DependencyProperty.Register("Source", typeof(string), typeof(SamplePageLayout), new PropertyMetadata(string.Empty));
-
-		public DataTemplate MaterialTemplate
-		{
-			get { return (DataTemplate)GetValue(MaterialTemplateProperty); }
-			set { SetValue(MaterialTemplateProperty, value); }
-		}
-
-		public static readonly DependencyProperty MaterialTemplateProperty =
-			DependencyProperty.Register("MaterialTemplate", typeof(DataTemplate), typeof(SamplePageLayout), new PropertyMetadata(null));
-
-		public DataTemplate NativeTemplate
-		{
-			get { return (DataTemplate)GetValue(NativeTemplateProperty); }
-			set { SetValue(NativeTemplateProperty, value); }
-		}
-
-		public static readonly DependencyProperty NativeTemplateProperty =
-			DependencyProperty.Register("NativeTemplate", typeof(DataTemplate), typeof(SamplePageLayout), new PropertyMetadata(null));
-
-		public DataTemplate FluentTemplate
-		{
-			get { return (DataTemplate)GetValue(FluentTemplateProperty); }
-			set { SetValue(FluentTemplateProperty, value); }
-		}
-
-		public static readonly DependencyProperty FluentTemplateProperty =
-			DependencyProperty.Register("FluentTemplate", typeof(DataTemplate), typeof(SamplePageLayout), new PropertyMetadata(null));
-
-		#endregion
-
-		private RadioButton _fluentRadioButton;
+			new LayoutModeMapping(SamplePageLayoutMode.Material, _materialRadioButton, VisualStateMaterial, MaterialTemplate),
+			new LayoutModeMapping(SamplePageLayoutMode.Fluent, _fluentRadioButton, VisualStateFluent, FluentTemplate),
+			new LayoutModeMapping(SamplePageLayoutMode.Native, _nativeRadioButton, VisualStateNative, NativeTemplate),
+		};
 		private RadioButton _materialRadioButton;
+		private RadioButton _fluentRadioButton;
 		private RadioButton _nativeRadioButton;
 
 		protected override void OnApplyTemplate()
 		{
 			base.OnApplyTemplate();
 
-			_fluentRadioButton = (RadioButton)GetTemplateChild("PART_FluentRadioButton");
-			_materialRadioButton = (RadioButton)GetTemplateChild("PART_MaterialRadioButton");
-			_nativeRadioButton = (RadioButton)GetTemplateChild("PART_NativeRadioButton");
+			_materialRadioButton = (RadioButton)GetTemplateChild(MaterialRadioButtonPartName);
+			_fluentRadioButton = (RadioButton)GetTemplateChild(FluentRadioButtonPartName);
+			_nativeRadioButton = (RadioButton)GetTemplateChild(NativeRadioButtonPartName);
 
-			// TODO #189081 : Fix crashing on event registered on wasm
-#if !__WASM__
-			_fluentRadioButton.Click -= OnFluentRadioButtonChecked;
-			_fluentRadioButton.Click += OnFluentRadioButtonChecked;
+			_materialRadioButton.Click += OnLayoutRadioButtonChecked;
+			_fluentRadioButton.Click += OnLayoutRadioButtonChecked;
+			_nativeRadioButton.Click += OnLayoutRadioButtonChecked;
 
-			_materialRadioButton.Click -= OnMaterialRadioButtonChecked;
-			_materialRadioButton.Click += OnMaterialRadioButtonChecked;
-
-			_nativeRadioButton.Click -= OnNativeRadioButtonChecked;
-			_nativeRadioButton.Click += OnNativeRadioButtonChecked;
-#endif
-
-			SetCurrentRadioButton();
-			UpdateVisualState();
+			UpdateLayoutRadioButtons();
 		}
 
-		private void SetCurrentRadioButton()
+		private void UpdateLayoutRadioButtons()
 		{
-			switch (_mode)
+			var mappings = LayoutModeMappings;
+			var previouslySelected = default(LayoutModeMapping);
+
+			foreach (var mapping in mappings)
 			{
-				case SamplePageLayoutMode.Material:
-					_materialRadioButton.IsChecked = true;
-					break;
-				case SamplePageLayoutMode.Native:
-					_nativeRadioButton.IsChecked = true;
-					break;
-				case SamplePageLayoutMode.Fluent:
-				default:
-					_fluentRadioButton.IsChecked = true;
-					break;
+				mapping.RadioButton.Visibility = mapping.Template != null ? Visibility.Visible : Visibility.Collapsed;
+				if (mapping.Template != null && mapping.Mode == _mode)
+				{
+					previouslySelected = mapping;
+				}
+			}
+
+			// selected mode is based on previous selection and availability (whether the template is defined)
+			var selected = previouslySelected ?? mappings.FirstOrDefault(x => x.Template != null);
+			if (selected != null)
+			{
+				UpdateLayoutMode(transitionTo: selected.Mode);
 			}
 		}
 
-		private void OnNativeRadioButtonChecked(object sender, RoutedEventArgs e)
+		private void OnLayoutRadioButtonChecked(object sender, RoutedEventArgs e)
 		{
-			var selectedRadioButton = (RadioButton)sender;
-			ChangeRadioButtonSelection(selectedRadioButton, SamplePageLayoutMode.Native);
-			UpdateVisualState();
-		}
-
-		private void OnMaterialRadioButtonChecked(object sender, RoutedEventArgs e)
-		{
-			var selectedRadioButton = (RadioButton)sender;
-			ChangeRadioButtonSelection(selectedRadioButton, SamplePageLayoutMode.Material);
-			UpdateVisualState();
-		}
-
-		private void OnFluentRadioButtonChecked(object sender, RoutedEventArgs e)
-		{
-			var selectedRadioButton = (RadioButton)sender;
-			ChangeRadioButtonSelection(selectedRadioButton, SamplePageLayoutMode.Fluent);
-			UpdateVisualState();
-		}
-
-		private void ChangeRadioButtonSelection(RadioButton selectedRadioButton, SamplePageLayoutMode mode)
-		{
-			selectedRadioButton.IsChecked = true;
-			_mode = mode;
-		}
-
-		private void UpdateVisualState()
-		{
-			switch (_mode)
+			if (sender is RadioButton radio && LayoutModeMappings.FirstOrDefault(x => x.RadioButton == radio) is LayoutModeMapping mapping)
 			{
-				case SamplePageLayoutMode.Material:
-					VisualStateManager.GoToState(this, VisualStateMaterial, useTransitions: true);
-					break;
-				case SamplePageLayoutMode.Native:
-					VisualStateManager.GoToState(this, VisualStateNative, useTransitions: true);
-					break;
-				case SamplePageLayoutMode.Fluent:
-				default:
-					VisualStateManager.GoToState(this, VisualStateFluent, useTransitions: true);
-					break;
+				_mode = mapping.Mode;
+				UpdateLayoutMode();
 			}
 		}
-	}
 
-	public enum SamplePageLayoutMode
-	{
-		Fluent,
-		Material,
-		Native
+		private void UpdateLayoutMode(SamplePageLayoutMode? transitionTo = null)
+		{
+			var mode = transitionTo ?? _mode;
+
+			var current = LayoutModeMappings.FirstOrDefault(x => x.Mode == mode);
+			if (current != null)
+			{
+				if (transitionTo.HasValue)
+				{
+					current.RadioButton.IsChecked = true;
+				}
+
+				VisualStateManager.GoToState(this, current.VisualStateName, useTransitions: true);
+			}
+		}
+
+		private class LayoutModeMapping
+		{
+			public SamplePageLayoutMode Mode { get; set; }
+			public RadioButton RadioButton { get; set; }
+			public string VisualStateName { get; set; }
+			public DataTemplate Template { get; set; }
+
+			public LayoutModeMapping(SamplePageLayoutMode mode, RadioButton radioButton, string visualStateName, DataTemplate template)
+			{
+				Mode = mode;
+				RadioButton = radioButton;
+				VisualStateName = visualStateName;
+				Template = template;
+			}
+		}
 	}
 }
