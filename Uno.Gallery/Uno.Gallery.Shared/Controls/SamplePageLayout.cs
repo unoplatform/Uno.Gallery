@@ -104,8 +104,28 @@ namespace Uno.Gallery.Controls
 			_nativeRadioButton.Visibility = Visibility.Collapsed;
 #endif
 
+			RemoveEmptyTabs();
+
 			SetCurrentRadioButton();
 			UpdateVisualState();
+		}
+
+		private void RemoveEmptyTabs()
+		{
+			if (FluentTemplate == null)
+			{
+				_fluentRadioButton.Visibility = Visibility.Collapsed;
+			}
+
+			if (MaterialTemplate == null)
+			{
+				_materialRadioButton.Visibility = Visibility.Collapsed;
+			}
+
+			if (NativeTemplate == null)
+			{
+				_nativeRadioButton.Visibility = Visibility.Collapsed;
+			}
 		}
 
 		private void SetCurrentRadioButton()

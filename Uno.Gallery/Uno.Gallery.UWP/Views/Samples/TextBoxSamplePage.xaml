@@ -17,30 +17,30 @@
 				<DataTemplate>
 					<StackPanel>
 
-							<!-- Default -->
-							<controls:SnippetView Title="Default">
-								<TextBox PlaceholderText="Default" />
-							</controls:SnippetView>
+						<!-- Default -->
+						<controls:SnippetView Title="Default">
+							<TextBox PlaceholderText="Default" />
+						</controls:SnippetView>
 
-							<!-- TexBox Disabled -->
-							<controls:SnippetView Title="Disabled">
-								<TextBox PlaceholderText="Disabled"
-										 IsEnabled="False" />
-							</controls:SnippetView>
+						<!-- TexBox Disabled -->
+						<controls:SnippetView Title="Disabled">
+							<TextBox PlaceholderText="Disabled"
+									 IsEnabled="False" />
+						</controls:SnippetView>
 
-							<!-- TexBox Outline -->
-							<controls:SnippetView Title="Outline">
-								<TextBox PlaceholderText="Outline"
-										 Header="Header" />
-							</controls:SnippetView>
+						<!-- TexBox Outline -->
+						<controls:SnippetView Title="Outline">
+							<TextBox PlaceholderText="Outline"
+									 Header="Header" />
+						</controls:SnippetView>
 
-							<!-- TexBox MultiLine -->
-							<controls:SnippetView Title="Multiline">
-								<TextBox Text="Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet. Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant."
-										 TextWrapping="Wrap"
-										 AcceptsReturn="True" />
-							</controls:SnippetView>
-						</StackPanel>
+						<!-- TexBox MultiLine -->
+						<controls:SnippetView Title="Multiline">
+							<TextBox Text="Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet. Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant."
+									 TextWrapping="Wrap"
+									 AcceptsReturn="True" />
+						</controls:SnippetView>
+					</StackPanel>
 				</DataTemplate>
 			</controls:SamplePageLayout.FluentTemplate>
 
@@ -48,34 +48,34 @@
 				<DataTemplate>
 					<StackPanel>
 
-							<!-- Default -->
-							<controls:SnippetView Title="Default">
-								<TextBox PlaceholderText="Default"
-										 Style="{StaticResource DefaultMaterialTextBoxStyle}" />
-							</controls:SnippetView>
+						<!-- Default -->
+						<controls:SnippetView Title="Default">
+							<TextBox PlaceholderText="Default"
+									 Style="{StaticResource MaterialFilledTextBoxStyle}" />
+						</controls:SnippetView>
 
-							<!-- TexBox Disabled -->
-							<controls:SnippetView Title="Disabled">
-								<TextBox PlaceholderText="Disabled"
-										 Style="{StaticResource DefaultMaterialTextBoxStyle}"
-										 IsEnabled="False" />
-							</controls:SnippetView>
+						<!-- TexBox Disabled -->
+						<controls:SnippetView Title="Disabled">
+							<TextBox PlaceholderText="Disabled"
+									 Style="{StaticResource MaterialFilledTextBoxStyle}"
+									 IsEnabled="False" />
+						</controls:SnippetView>
 
-							<!-- TexBox Outline -->
-							<controls:SnippetView Title="Outline">
-								<TextBox PlaceholderText="Outline"
-										 Header="Header"
-										 Style="{StaticResource OutlineMaterialTextBoxStyle}" />
-							</controls:SnippetView>
+						<!-- TexBox Outline -->
+						<controls:SnippetView Title="Outline">
+							<TextBox PlaceholderText="Outline"
+									 Header="Header"
+									 Style="{StaticResource MaterialOutlinedTextBoxStyle}" />
+						</controls:SnippetView>
 
-							<!-- TexBox MultiLine -->
-							<controls:SnippetView Title="Multiline">
-								<TextBox Text="Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet. Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant."
-										 Style="{StaticResource DefaultMaterialTextBoxStyle}"
-										 TextWrapping="Wrap"
-										 AcceptsReturn="True" />
-							</controls:SnippetView>
-						</StackPanel>
+						<!-- TexBox MultiLine -->
+						<controls:SnippetView Title="Multiline">
+							<TextBox Text="Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet. Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant."
+									 Style="{StaticResource MaterialFilledTextBoxStyle}"
+									 TextWrapping="Wrap"
+									 AcceptsReturn="True" />
+						</controls:SnippetView>
+					</StackPanel>
 				</DataTemplate>
 			</controls:SamplePageLayout.MaterialTemplate>
 		</controls:SamplePageLayout>
