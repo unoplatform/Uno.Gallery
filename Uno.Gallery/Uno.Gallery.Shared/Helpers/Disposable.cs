@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Uno.Gallery.Shared.Helpers
+namespace Uno.Gallery
 {
 	internal static class Disposable
 	{

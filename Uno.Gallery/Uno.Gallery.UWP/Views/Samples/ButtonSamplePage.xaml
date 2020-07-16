@@ -7,7 +7,7 @@
 	  xmlns:controls="using:Uno.Gallery.Controls"
 	  xmlns:smtx="using:ShowMeTheXAML"
 	  xmlns:todo="what should be done"
-	  xmlns:extensions="using:Uno.Gallery.Extensions"
+	  xmlns:gallery="using:Uno.Gallery"
 	  mc:Ignorable="d todo">
 
 	<Page.Resources>
@@ -75,9 +75,9 @@
 
 						<!-- Contained Buttons -->
 						<smtx:XamlDisplay UniqueKey="ButtonSamplePage_MaterialContained"
-										  extensions:XamlDisplayExtensions.Header="Contained Buttons"
-										  extensions:XamlDisplayExtensions.Description="Contained buttons are high-emphasis, distinguished by their use of elevation and fill. They contain actions that are primary to your app."
-										  extensions:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+										  smtx:XamlDisplayExtensions.Header="Contained Buttons"
+										  smtx:XamlDisplayExtensions.Description="Contained buttons are high-emphasis, distinguished by their use of elevation and fill. They contain actions that are primary to your app."
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
 							<StackPanel>
 								<Button Content="CONTAINED"
 										Style="{StaticResource MaterialContainedButtonStyle}" />
@@ -89,9 +89,9 @@
 
 						<!-- Outline Buttons -->
 						<smtx:XamlDisplay UniqueKey="ButtonSamplePage_MaterialOutlined"
-										  extensions:XamlDisplayExtensions.Header="Outline Buttons"
-										  extensions:XamlDisplayExtensions.Description="Outline buttons are low-emphasis. They contain actions that are secondary to your app."
-										  extensions:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+										  smtx:XamlDisplayExtensions.Header="Outline Buttons"
+										  smtx:XamlDisplayExtensions.Description="Outline buttons are low-emphasis. They contain actions that are secondary to your app."
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
 							<StackPanel>
 								<Button Content="OUTLINED"
 										Style="{StaticResource MaterialOutlinedButtonStyle}" />
@@ -103,8 +103,8 @@
 
 						<!-- Text Buttons -->
 						<smtx:XamlDisplay UniqueKey="ButtonSamplePage_MaterialText"
-										  extensions:XamlDisplayExtensions.Header="Text Buttons"
-										  extensions:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+										  smtx:XamlDisplayExtensions.Header="Text Buttons"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
 							<StackPanel>
 								<Button Content="TEXT"
 										Style="{StaticResource MaterialTextButtonStyle}" />
@@ -123,8 +123,8 @@
 
 						<!-- Default button style -->
 						<smtx:XamlDisplay UniqueKey="ButtonSamplePage_FluentDefault"
-										  extensions:XamlDisplayExtensions.Header="Default button style"
-										  extensions:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+										  smtx:XamlDisplayExtensions.Header="Default button style"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
 							<StackPanel>
 								<Button Content="Button" />
 								<Button Content="Disabled button"
@@ -134,8 +134,8 @@
 
 						<!-- Button with custom states -->
 						<smtx:XamlDisplay UniqueKey="ButtonSamplePage_FluentCustom"
-										  extensions:XamlDisplayExtensions.Header="Button with custom states"
-										  extensions:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+										  smtx:XamlDisplayExtensions.Header="Button with custom states"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
 							<StackPanel>
 								<Button Content="Button"
 										Style="{StaticResource CustomButtonStyle}" />

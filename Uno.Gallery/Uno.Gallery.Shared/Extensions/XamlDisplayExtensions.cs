@@ -1,4 +1,5 @@
-﻿using System;
+﻿#pragma warning disable
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -8,14 +9,15 @@ using System.Xml;
 using System.Xml.Linq;
 using ShowMeTheXAML;
 using Uno.Extensions;
-using Uno.Gallery.Shared.Helpers;
+using Uno.Gallery;
 using Windows.UI.Xaml;
 
-namespace Uno.Gallery.Extensions
+namespace ShowMeTheXAML
 {
 	public static class XamlDisplayExtensions
 	{
-		/* Header, Description: [optional] texts for display
+		/* This code comes from Uno.ShowMeTheXaml
+		 * Header, Description: [optional] texts for display
 		 * IgnorePath: [required] ignore everything except descendent(s) of this path; see: PrettyXamlFormatter.IgnorePath
 		 * PrettyXaml: [reserved] custom formatted xaml based on IgnorePath
 		 */
