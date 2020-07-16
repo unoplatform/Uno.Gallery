@@ -90,8 +90,6 @@ namespace Uno.Gallery.Controls
 			_materialRadioButton = (RadioButton)GetTemplateChild("PART_MaterialRadioButton");
 			_nativeRadioButton = (RadioButton)GetTemplateChild("PART_NativeRadioButton");
 
-			// TODO #189081 : Fix crashing on event registered on wasm
-#if !__WASM__
 			_fluentRadioButton.Click -= OnFluentRadioButtonChecked;
 			_fluentRadioButton.Click += OnFluentRadioButtonChecked;
 
@@ -100,7 +98,6 @@ namespace Uno.Gallery.Controls
 
 			_nativeRadioButton.Click -= OnNativeRadioButtonChecked;
 			_nativeRadioButton.Click += OnNativeRadioButtonChecked;
-#endif
 
 			// Only show the Native tab when it's applicable
 #if !__IOS__ && !__MACOS__ && !__ANDROID__
