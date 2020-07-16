@@ -60,7 +60,7 @@
 										  Margin="{TemplateBinding Padding}"/>
 
 						<Border x:Name="BottomBorder"
-								BorderBrush="MediumPurple"
+								BorderBrush="{StaticResource MaterialPrimaryBrush}"
 								BorderThickness="0,0,0,2"
 								Visibility="Collapsed" />
 					</Grid>
