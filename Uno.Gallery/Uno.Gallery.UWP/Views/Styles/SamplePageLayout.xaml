@@ -41,7 +41,8 @@
 								<TextBlock Text="{TemplateBinding Description}"
 										   FontSize="23"
 										   Margin="0,0,0,16"
-										   TextWrapping="WrapWholeWords" />
+										   TextWrapping="WrapWholeWords"
+										   Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Description, Converter={StaticResource IsNullOrEmptyToCollapsed}, FallbackValue=Collapsed}" />
 
 								<TextBlock FontSize="10"
 										   Text="SOURCE" />
