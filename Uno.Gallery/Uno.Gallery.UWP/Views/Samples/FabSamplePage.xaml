@@ -3,7 +3,9 @@
 	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	  xmlns:controls="using:Uno.Gallery.Controls"
 	  xmlns:extensions="using:Uno.Material.Extensions"
+	  xmlns:gallery="using:Uno.Gallery"
 	  xmlns:local="using:Uno.Gallery.Views.Samples"
+	  xmlns:smtx="using:ShowMeTheXAML"
 	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	  mc:Ignorable="d"
@@ -28,27 +30,33 @@
 				<DataTemplate>
 					<StackPanel>
 
-						<controls:SnippetView Title="With Icon">
+						<smtx:XamlDisplay UniqueKey="FabSamplePage_Material_WithIcon"
+										  smtx:XamlDisplayExtensions.Header="With Icon"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
 							<Button Style="{StaticResource MaterialFabStyle}">
 								<extensions:ControlExtensions.Icon>
 									<SymbolIcon Symbol="Add" />
 								</extensions:ControlExtensions.Icon>
 							</Button>
-						</controls:SnippetView>
+						</smtx:XamlDisplay>
 
-						<controls:SnippetView Title="With Label">
+						<smtx:XamlDisplay UniqueKey="FabSamplePage_Material_WithLabel"
+										  smtx:XamlDisplayExtensions.Header="With Label"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
 							<Button Content="CREATE"
 									Style="{StaticResource MaterialFabStyle}" />
-						</controls:SnippetView>
+						</smtx:XamlDisplay>
 
-						<controls:SnippetView Title="With Icon and Label">
+						<smtx:XamlDisplay UniqueKey="FabSamplePage_Material_WithIconAndLabel"
+										  smtx:XamlDisplayExtensions.Header="With Icon and Label"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
 							<Button Content="CREATE"
 									Style="{StaticResource MaterialFabStyle}">
 								<extensions:ControlExtensions.Icon>
 									<SymbolIcon Symbol="Add" />
 								</extensions:ControlExtensions.Icon>
 							</Button>
-						</controls:SnippetView>
+						</smtx:XamlDisplay>
 					</StackPanel>
 				</DataTemplate>
 			</controls:SamplePageLayout.MaterialTemplate>

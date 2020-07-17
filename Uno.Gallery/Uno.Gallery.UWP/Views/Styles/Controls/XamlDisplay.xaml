@@ -35,12 +35,18 @@
 								<RowDefinition Height="Auto" />
 								<RowDefinition Height="Auto" />
 							</Grid.RowDefinitions>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="Auto" />
+							</Grid.ColumnDefinitions>
 
 							<ContentPresenter Grid.Row="0"
+											  Grid.Column="0"
 											  Padding="16"
 											  Content="{TemplateBinding Content}" />
 							<ToggleButton x:Name="RevealButton"
 										  Grid.Row="0"
+										  Grid.Column="1"
 										  Content="icon:Reveal"
 										  IsChecked="False"
 										  Margin="16"
@@ -50,6 +56,7 @@
 										  ios:Visibility="Collapsed" />
 
 							<ScrollViewer Grid.Row="1"
+										  Grid.Column="0"
 										  Background="WhiteSmoke"
 										  win:Visibility="{Binding ElementName=RevealButton, Path=IsChecked, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
 										  ios:Visibility="Collapsed"
@@ -59,7 +66,8 @@
 										   Text="{Binding Path=(smtx:XamlDisplayExtensions.PrettyXaml), RelativeSource={RelativeSource TemplatedParent}}" />
 							</ScrollViewer>
 							<Button Grid.Row="1"
-									Margin="16"
+									Grid.Column="1"
+									Margin="16,0"
 									Content="icon:Copy"
 									HorizontalAlignment="Right"
 									VerticalAlignment="Top"

@@ -1,10 +1,12 @@
 ﻿<Page x:Class="Uno.Gallery.Views.Samples.TimePickerSamplePage"
 	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:controls="using:Uno.Gallery.Controls"
 	  xmlns:local="using:Uno.Gallery.Views.Samples"
+	  xmlns:gallery="using:Uno.Gallery"
+	  xmlns:smtx="using:ShowMeTheXAML"
 	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	  xmlns:controls="using:Uno.Gallery.Controls"
 	  mc:Ignorable="d">
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -15,19 +17,25 @@
 			<controls:SamplePageLayout.NativeTemplate>
 				<DataTemplate>
 					<StackPanel>
-						<controls:SnippetView Title="Default TimePicker">
+						<smtx:XamlDisplay UniqueKey="TimePickerSamplePage_Fluent_Default"
+										  smtx:XamlDisplayExtensions.Header="Default TimePicker"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
 							<TimePicker />
-						</controls:SnippetView>
+						</smtx:XamlDisplay>
 
 						<!-- Property MinuteIncrements is not working on iOS https://github.com/unoplatform/uno/issues/3540 -->
-						<controls:SnippetView Title="TimePicker with Minute Increment">
+						<smtx:XamlDisplay UniqueKey="TimePickerSamplePage_Fluent_Increment"
+										  smtx:XamlDisplayExtensions.Header="TimePicker with Minute Increment"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
 							<TimePicker MinuteIncrement="15" />
-						</controls:SnippetView>
+						</smtx:XamlDisplay>
 
 						<!-- Property ClockIdentifier autoresets to default value on first pressed on iOS https://github.com/unoplatform/uno/issues/3541 -->
-						<controls:SnippetView Title="TimePicker with Clock Identifier">
+						<smtx:XamlDisplay UniqueKey="TimePickerSamplePage_Fluent_Clock"
+										  smtx:XamlDisplayExtensions.Header="TimePicker with Clock Identifier"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
 							<TimePicker ClockIdentifier="24HourClock" />
-						</controls:SnippetView>
+						</smtx:XamlDisplay>
 					</StackPanel>
 				</DataTemplate>
 			</controls:SamplePageLayout.NativeTemplate>

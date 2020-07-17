@@ -5,6 +5,8 @@
 	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	  xmlns:controls="using:Uno.Gallery.Controls"
+	  xmlns:gallery="using:Uno.Gallery"
+	  xmlns:smtx="using:ShowMeTheXAML"
 	  mc:Ignorable="d">
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -16,50 +18,53 @@
 					<StackPanel>
 
 						<!-- ProgressRing Active -->
-						<controls:SnippetView Title="ProgressRing Active">
+						<smtx:XamlDisplay UniqueKey="ProgressSamplePage_Fluent_Active"
+										  smtx:XamlDisplayExtensions.Header="ProgressRing Active"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
 							<ProgressRing Foreground="Black"
 										  IsActive="True"
-										  HorizontalAlignment="Left"/>
-						</controls:SnippetView>
+										  HorizontalAlignment="Left" />
+						</smtx:XamlDisplay>
 
 						<!-- ProgressRing InActive -->
-						<controls:SnippetView Title="ProgressRing Inactive">
+						<smtx:XamlDisplay UniqueKey="ProgressSamplePage_Fluent_Inactive"
+										  smtx:XamlDisplayExtensions.Header="ProgressRing Inactive"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
 							<ProgressRing Foreground="Black"
 										  IsActive="False"
-										  HorizontalAlignment="Left"/>
-						</controls:SnippetView>
-						
+										  HorizontalAlignment="Left" />
+						</smtx:XamlDisplay>
+
 						<!-- Slider -->
-						<controls:SnippetView Title="Slider to set ProgressBar Percentage">
+						<smtx:XamlDisplay UniqueKey="ProgressSamplePage_Fluent_Slider"
+										  smtx:XamlDisplayExtensions.Header="Slider to set ProgressBar Percentage"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
 							<Slider x:Name="progressSlider"
 									Minimum="0"
 									Maximum="100" />
-						</controls:SnippetView>
+						</smtx:XamlDisplay>
 
 						<!-- ProgressBar -->
-						<controls:SnippetView Title="ProgressBar">
+						<smtx:XamlDisplay UniqueKey="ProgressSamplePage_Fluent_ProgressBar"
+										  smtx:XamlDisplayExtensions.Header="ProgressBar"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
 							<ProgressBar Value="{Binding Value, ElementName=progressSlider}"
 										 Minimum="0"
 										 Maximum="100" />
-						</controls:SnippetView>
+						</smtx:XamlDisplay>
 
 						<!-- ProgressBar Indeterminate -->
-						<controls:SnippetView Title="Indeterminate ProgressBar">
+						<smtx:XamlDisplay UniqueKey="ProgressSamplePage_Fluent_ProgressBarIndeterminate"
+										  smtx:XamlDisplayExtensions.Header="Indeterminate ProgressBar"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
 							<ProgressBar IsIndeterminate="True" />
-						</controls:SnippetView>
+						</smtx:XamlDisplay>
 					</StackPanel>
 				</DataTemplate>
 			</controls:SamplePageLayout.FluentTemplate>
 
-			<controls:SamplePageLayout.MaterialTemplate>
-				<DataTemplate>
-					<StackPanel>
-
-						<!-- TODO #188598 : Add ProgressRing material samples -->
-						<!-- TODO #189269 : Add ProgressBar material samples -->
-					</StackPanel>
-				</DataTemplate>
-			</controls:SamplePageLayout.MaterialTemplate>
+			<!-- TODO #188598 : Add ProgressRing material samples -->
+			<!-- TODO #189269 : Add ProgressBar material samples -->
 		</controls:SamplePageLayout>
 	</Grid>
 </Page>
