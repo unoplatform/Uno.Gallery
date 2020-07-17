@@ -5,6 +5,8 @@
 	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	  xmlns:controls="using:Uno.Gallery.Controls"
+	  xmlns:gallery="using:Uno.Gallery"
+	  xmlns:smtx="using:ShowMeTheXAML"
 	  mc:Ignorable="d">
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -17,28 +19,36 @@
 					<StackPanel>
 						
 						<!-- RadioButton OFF -->
-						<controls:SnippetView Title="Unchecked RadioButton">
+						<smtx:XamlDisplay UniqueKey="RadioButtonSamplePage_Fluent_Off"
+										  smtx:XamlDisplayExtensions.Header="Unchecked RadioButton"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
 							<RadioButton GroupName="RadioButtonDemo"/>
-						</controls:SnippetView>
+						</smtx:XamlDisplay>
 
 						<!-- RadioButton ON -->
-						<controls:SnippetView Title="Checked RadioButton">
+						<smtx:XamlDisplay UniqueKey="RadioButtonSamplePage_Fluent_On"
+										  smtx:XamlDisplayExtensions.Header="Checked RadioButton"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
 							<RadioButton GroupName="RadioButtonDemo"
 										 IsChecked="True" />
-						</controls:SnippetView>
+						</smtx:XamlDisplay>
 
 						<!-- RadioButton OFF Disabled -->
-						<controls:SnippetView Title="Disabled Unchecked RadioButton">
+						<smtx:XamlDisplay UniqueKey="RadioButtonSamplePage_Fluent_OffDisabled"
+										  smtx:XamlDisplayExtensions.Header="Disabled Unchecked RadioButton"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
 							<RadioButton Content="UNCHECKED DISABLED"
 										 IsEnabled="False" />
-						</controls:SnippetView>
+						</smtx:XamlDisplay>
 
 						<!-- RadioButton ON Disabled -->
-						<controls:SnippetView Title="Disabled Checked RadioButton">
+						<smtx:XamlDisplay UniqueKey="RadioButtonSamplePage_Fluent_OnDisabled"
+										  smtx:XamlDisplayExtensions.Header="Disabled Checked RadioButton"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
 							<RadioButton Content="CHECKED DISABLED"
 										 IsChecked="True"
 										 IsEnabled="False" />
-						</controls:SnippetView>
+						</smtx:XamlDisplay>
 					</StackPanel>
 				</DataTemplate>
 			</controls:SamplePageLayout.FluentTemplate>
@@ -48,32 +58,40 @@
 					<StackPanel>
 						
 						<!-- RadioButton OFF -->
-						<controls:SnippetView Title="Unchecked RadioButton">
+						<smtx:XamlDisplay UniqueKey="RadioButtonSamplePage_Material_Off"
+										  smtx:XamlDisplayExtensions.Header="Unchecked RadioButton"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
 							<RadioButton GroupName="RadioButtonDemo"
 										 Style="{StaticResource MaterialRadioButtonStyle}" />
-						</controls:SnippetView>
+						</smtx:XamlDisplay>
 
 						<!-- RadioButton ON -->
-						<controls:SnippetView Title="Checked RadioButton">
+						<smtx:XamlDisplay UniqueKey="RadioButtonSamplePage_Material_On"
+										  smtx:XamlDisplayExtensions.Header="Checked RadioButton"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
 							<RadioButton GroupName="RadioButtonDemo"
 										 Style="{StaticResource MaterialRadioButtonStyle}"
 										 IsChecked="True" />
-						</controls:SnippetView>
+						</smtx:XamlDisplay>
 
 						<!-- RadioButton OFF Disabled -->
-						<controls:SnippetView Title="Disabled Unchecked RadioButton">
+						<smtx:XamlDisplay UniqueKey="RadioButtonSamplePage_Material_DisabledOff"
+										  smtx:XamlDisplayExtensions.Header="Disabled Unchecked RadioButton"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
 							<RadioButton Content="UNCHECKED DISABLED"
 										 IsEnabled="False"
 										 Style="{StaticResource MaterialRadioButtonStyle}" />
-						</controls:SnippetView>
+						</smtx:XamlDisplay>
 
 						<!-- RadioButton ON Disabled -->
-						<controls:SnippetView Title="Disabled Checked RadioButton">
+						<smtx:XamlDisplay UniqueKey="RadioButtonSamplePage_Material_DisabledOn"
+										  smtx:XamlDisplayExtensions.Header="Disabled Checked RadioButton"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
 							<RadioButton Content="CHECKED DISABLED"
 										 IsChecked="True"
 										 IsEnabled="False"
 										 Style="{StaticResource MaterialRadioButtonStyle}" />
-						</controls:SnippetView>
+						</smtx:XamlDisplay>
 					</StackPanel>
 				</DataTemplate>
 			</controls:SamplePageLayout.MaterialTemplate>

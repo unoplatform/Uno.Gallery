@@ -14,19 +14,15 @@
 				<DataTemplate>
 					<StackPanel Background="Cyan">
 
-						<controls:SnippetView Title="Sample 1">
-							<Button Content="Test" />
-						</controls:SnippetView>
+						<Button Content="Test" />
 
-						<controls:SnippetView Title="Sample 2">
-							<StackPanel Background="Red"
-										Orientation="Horizontal">
-								<Button Content="Test"
-										Background="White" />
+						<StackPanel Background="Red"
+									Orientation="Horizontal">
+							<Button Content="Test"
+									Background="White" />
 
-								<TextBlock Text="Test text" />
-							</StackPanel>
-						</controls:SnippetView>
+							<TextBlock Text="Test text" />
+						</StackPanel>
 					</StackPanel>
 				</DataTemplate>
 			</controls:SamplePageLayout.FluentTemplate>

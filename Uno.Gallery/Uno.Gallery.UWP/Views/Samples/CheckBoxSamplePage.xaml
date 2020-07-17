@@ -1,10 +1,11 @@
 ﻿<Page x:Class="Uno.Gallery.Views.Samples.CheckBoxSamplePage"
 	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	  xmlns:local="using:Uno.Gallery.Views.Samples"
 	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  xmlns:gallery="using:Uno.Gallery"
 	  xmlns:controls="using:Uno.Gallery.Controls"
+	  xmlns:smtx="using:ShowMeTheXAML"
 	  mc:Ignorable="d">
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -17,48 +18,57 @@
 					<StackPanel>
 
 						<!-- CheckBox No Content -->
-						<controls:SnippetView Title="No Content">
+						<smtx:XamlDisplay UniqueKey="CheckBoxSamplePage_Fluent_NoContent"
+										  smtx:XamlDisplayExtensions.Header="No Content"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
 							<CheckBox />
-						</controls:SnippetView>
+						</smtx:XamlDisplay>
 
 						<!-- CheckBox OFF -->
-						<controls:SnippetView Title="Unchecked">
+						<smtx:XamlDisplay UniqueKey="CheckBoxSamplePage_Fluent_Unchecked"
+										  smtx:XamlDisplayExtensions.Header="Unchecked"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
 							<CheckBox Content="UNCHECKED" />
-						</controls:SnippetView>
+						</smtx:XamlDisplay>
 
 						<!-- CheckBox ON -->
-						<controls:SnippetView Title="Checked">
+						<smtx:XamlDisplay UniqueKey="CheckBoxSamplePage_Fluent_Checked"
+										  smtx:XamlDisplayExtensions.Header="Checked">
 							<CheckBox Content="CHECKED"
 									  IsChecked="True" />
-						</controls:SnippetView>
+						</smtx:XamlDisplay>
 
 						<!-- CheckBox Indeterminate -->
-						<controls:SnippetView Title="Indeterminate">
+						<smtx:XamlDisplay UniqueKey="CheckBoxSamplePage_Fluent_Indeterminate"
+										  smtx:XamlDisplayExtensions.Header="Indeterminate">
 							<CheckBox Content="INDETERMINATE"
 									  IsThreeState="True"
 									  IsChecked="{x:Null}" />
-						</controls:SnippetView>
+						</smtx:XamlDisplay>
 
 						<!-- CheckBox OFF Disabled -->
-						<controls:SnippetView Title="Disabled">
+						<smtx:XamlDisplay UniqueKey="CheckBoxSamplePage_Fluent_Disabled"
+										  smtx:XamlDisplayExtensions.Header="Disabled">
 							<CheckBox Content="DISABLED"
 									  IsEnabled="False" />
-						</controls:SnippetView>
+						</smtx:XamlDisplay>
 
 						<!-- CheckBox ON Disabled -->
-						<controls:SnippetView Title="Checked &amp; Disabled">
+						<smtx:XamlDisplay UniqueKey="CheckBoxSamplePage_Fluent_Checked_Disabled"
+										  smtx:XamlDisplayExtensions.Header="Checked &amp; Disabled">
 							<CheckBox Content="CHECKED DISABLED"
 									  IsEnabled="False"
 									  IsChecked="True" />
-						</controls:SnippetView>
+						</smtx:XamlDisplay>
 
 						<!-- Checkbox Indeterminate Disabled -->
-						<controls:SnippetView Title="Indeterminate &amp; Disabled">
+						<smtx:XamlDisplay UniqueKey="CheckBoxSamplePage_Fluent_Indeterminate_Disabled"
+										  smtx:XamlDisplayExtensions.Header="Indeterminate &amp; Disabled">
 							<CheckBox Content="INDETERMINATE DISABLED"
 									  IsEnabled="False"
 									  IsThreeState="True"
 									  IsChecked="{x:Null}" />
-						</controls:SnippetView>
+						</smtx:XamlDisplay>
 					</StackPanel>
 				</DataTemplate>
 			</controls:SamplePageLayout.FluentTemplate>
@@ -68,54 +78,63 @@
 					<StackPanel>
 
 						<!-- CheckBox No Content -->
-						<controls:SnippetView Title="No Content">
+						<smtx:XamlDisplay UniqueKey="CheckBoxSamplePage_Material_NoContent"
+										  smtx:XamlDisplayExtensions.Header="No Content"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
 							<CheckBox Style="{StaticResource MaterialCheckBoxStyle}" />
-						</controls:SnippetView>
+						</smtx:XamlDisplay>
 
 						<!-- CheckBox OFF -->
-						<controls:SnippetView Title="Off">
-							<CheckBox Content="UNCHECKED"
-									  Style="{StaticResource MaterialCheckBoxStyle}" />
-						</controls:SnippetView>
+						<smtx:XamlDisplay UniqueKey="CheckBoxSamplePage_Material_Unchecked"
+										  smtx:XamlDisplayExtensions.Header="Unchecked"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
+							<CheckBox Style="{StaticResource MaterialCheckBoxStyle}" 
+									  Content="UNCHECKED" />
+						</smtx:XamlDisplay>
 
 						<!-- CheckBox ON -->
-						<controls:SnippetView Title="On">
-							<CheckBox Content="CHECKED"
-									  Style="{StaticResource MaterialCheckBoxStyle}"
+						<smtx:XamlDisplay UniqueKey="CheckBoxSamplePage_Material_Checked"
+										  smtx:XamlDisplayExtensions.Header="Checked">
+							<CheckBox Style="{StaticResource MaterialCheckBoxStyle}" 
+									  Content="CHECKED"
 									  IsChecked="True" />
-						</controls:SnippetView>
+						</smtx:XamlDisplay>
 
 						<!-- CheckBox Indeterminate -->
-						<controls:SnippetView Title="Indeterminate">
-							<CheckBox Content="INDETERMINATE"
-									  Style="{StaticResource MaterialCheckBoxStyle}"
+						<smtx:XamlDisplay UniqueKey="CheckBoxSamplePage_Material_Indeterminate"
+										  smtx:XamlDisplayExtensions.Header="Indeterminate">
+							<CheckBox Style="{StaticResource MaterialCheckBoxStyle}" 
+									  Content="INDETERMINATE"
 									  IsThreeState="True"
 									  IsChecked="{x:Null}" />
-						</controls:SnippetView>
+						</smtx:XamlDisplay>
 
 						<!-- CheckBox OFF Disabled -->
-						<controls:SnippetView Title="Disabled">
-							<CheckBox Content="DISABLED"
-									  Style="{StaticResource MaterialCheckBoxStyle}"
+						<smtx:XamlDisplay UniqueKey="CheckBoxSamplePage_Material_Disabled"
+										  smtx:XamlDisplayExtensions.Header="Disabled">
+							<CheckBox Style="{StaticResource MaterialCheckBoxStyle}" 
+									  Content="DISABLED"
 									  IsEnabled="False" />
-						</controls:SnippetView>
+						</smtx:XamlDisplay>
 
 						<!-- CheckBox ON Disabled -->
-						<controls:SnippetView Title="Checked &amp; Disabled">
-							<CheckBox Content="CHECKED DISABLED"
-									  Style="{StaticResource MaterialCheckBoxStyle}"
+						<smtx:XamlDisplay UniqueKey="CheckBoxSamplePage_Material_Checked_Disabled"
+										  smtx:XamlDisplayExtensions.Header="Checked &amp; Disabled">
+							<CheckBox Style="{StaticResource MaterialCheckBoxStyle}" 
+									  Content="CHECKED DISABLED"
 									  IsEnabled="False"
 									  IsChecked="True" />
-						</controls:SnippetView>
+						</smtx:XamlDisplay>
 
 						<!-- Checkbox Indeterminate Disabled -->
-						<controls:SnippetView Title="Indeterminate &amp; Disabled">
-							<CheckBox Content="INDETERMINATE DISABLED"
-									  Style="{StaticResource MaterialCheckBoxStyle}"
+						<smtx:XamlDisplay UniqueKey="CheckBoxSamplePage_Material_Indeterminate_Disabled"
+										  smtx:XamlDisplayExtensions.Header="Indeterminate &amp; Disabled">
+							<CheckBox Style="{StaticResource MaterialCheckBoxStyle}" 
+									  Content="INDETERMINATE DISABLED"
 									  IsEnabled="False"
 									  IsThreeState="True"
 									  IsChecked="{x:Null}" />
-						</controls:SnippetView>
+						</smtx:XamlDisplay>
 					</StackPanel>
 				</DataTemplate>
 			</controls:SamplePageLayout.MaterialTemplate>
