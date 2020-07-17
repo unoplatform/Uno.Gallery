@@ -147,6 +147,9 @@
     <Compile Include="Views\Samples\ComboBoxSamplePage.xaml.cs">
       <DependentUpon>ComboBoxSamplePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Samples\DatePickerSamplePage.xaml.cs">
+      <DependentUpon>DatePickerSamplePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Samples\ProgressSamplePage.xaml.cs">
       <DependentUpon>ProgressSamplePage.xaml</DependentUpon>
     </Compile>
@@ -212,6 +215,10 @@
     <Page Include="Views\Samples\ComboBoxSamplePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Samples\DatePickerSamplePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Samples\ProgressSamplePage.xaml">
       <Generator>MSBuild:Compile</Generator>
