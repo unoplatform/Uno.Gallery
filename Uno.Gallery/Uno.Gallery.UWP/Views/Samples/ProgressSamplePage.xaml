@@ -19,8 +19,7 @@
 
 						<!-- ProgressRing Active -->
 						<smtx:XamlDisplay UniqueKey="ProgressSamplePage_Fluent_Active"
-										  smtx:XamlDisplayExtensions.Header="ProgressRing Active"
-										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
+										  smtx:XamlDisplayExtensions.Header="ProgressRing Active">
 							<ProgressRing Foreground="Black"
 										  IsActive="True"
 										  HorizontalAlignment="Left" />
@@ -28,8 +27,7 @@
 
 						<!-- ProgressRing InActive -->
 						<smtx:XamlDisplay UniqueKey="ProgressSamplePage_Fluent_Inactive"
-										  smtx:XamlDisplayExtensions.Header="ProgressRing Inactive"
-										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
+										  smtx:XamlDisplayExtensions.Header="ProgressRing Inactive">
 							<ProgressRing Foreground="Black"
 										  IsActive="False"
 										  HorizontalAlignment="Left" />
@@ -37,8 +35,7 @@
 
 						<!-- Slider -->
 						<smtx:XamlDisplay UniqueKey="ProgressSamplePage_Fluent_Slider"
-										  smtx:XamlDisplayExtensions.Header="Slider to set ProgressBar Percentage"
-										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
+										  smtx:XamlDisplayExtensions.Header="Slider to set ProgressBar Percentage">
 							<Slider x:Name="progressSlider"
 									Minimum="0"
 									Maximum="100" />
@@ -46,8 +43,7 @@
 
 						<!-- ProgressBar -->
 						<smtx:XamlDisplay UniqueKey="ProgressSamplePage_Fluent_ProgressBar"
-										  smtx:XamlDisplayExtensions.Header="ProgressBar"
-										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
+										  smtx:XamlDisplayExtensions.Header="ProgressBar">
 							<ProgressBar Value="{Binding Value, ElementName=progressSlider}"
 										 Minimum="0"
 										 Maximum="100" />

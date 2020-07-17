@@ -31,8 +31,7 @@
 					<StackPanel>
 
 						<smtx:XamlDisplay UniqueKey="FabSamplePage_Material_WithIcon"
-										  smtx:XamlDisplayExtensions.Header="With Icon"
-										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
+										  smtx:XamlDisplayExtensions.Header="With Icon">
 							<Button Style="{StaticResource MaterialFabStyle}">
 								<extensions:ControlExtensions.Icon>
 									<SymbolIcon Symbol="Add" />
@@ -41,15 +40,13 @@
 						</smtx:XamlDisplay>
 
 						<smtx:XamlDisplay UniqueKey="FabSamplePage_Material_WithLabel"
-										  smtx:XamlDisplayExtensions.Header="With Label"
-										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
+										  smtx:XamlDisplayExtensions.Header="With Label">
 							<Button Content="CREATE"
 									Style="{StaticResource MaterialFabStyle}" />
 						</smtx:XamlDisplay>
 
 						<smtx:XamlDisplay UniqueKey="FabSamplePage_Material_WithIconAndLabel"
-										  smtx:XamlDisplayExtensions.Header="With Icon and Label"
-										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
+										  smtx:XamlDisplayExtensions.Header="With Icon and Label">
 							<Button Content="CREATE"
 									Style="{StaticResource MaterialFabStyle}">
 								<extensions:ControlExtensions.Icon>

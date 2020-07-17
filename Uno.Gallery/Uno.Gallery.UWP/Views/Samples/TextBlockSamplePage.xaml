@@ -59,15 +59,13 @@
 						</smtx:XamlDisplay>
 
 						<smtx:XamlDisplay UniqueKey="TextBlockSamplePage_Fluent_CharacterSpacing"
-										  smtx:XamlDisplayExtensions.Header="Character Spacing"
-										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
+										  smtx:XamlDisplayExtensions.Header="Character Spacing">
 							<TextBlock Text="The quick brown fox jumps over the lazy dog"
 										CharacterSpacing="100" />
 						</smtx:XamlDisplay>
 
 						<smtx:XamlDisplay UniqueKey="TextBlockSamplePage_Fluent_Inlines"
-										  smtx:XamlDisplayExtensions.Header="Inlines"
-										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
+										  smtx:XamlDisplayExtensions.Header="Inlines">
 							<TextBlock>
 								<Run Text="The" />
 								<Run Text="quick" FontStyle="Italic" />

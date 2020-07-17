@@ -18,22 +18,19 @@
 				<DataTemplate>
 					<StackPanel>
 						<smtx:XamlDisplay UniqueKey="TimePickerSamplePage_Fluent_Default"
-										  smtx:XamlDisplayExtensions.Header="Default TimePicker"
-										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
+										  smtx:XamlDisplayExtensions.Header="Default TimePicker">
 							<TimePicker />
 						</smtx:XamlDisplay>
 
 						<!-- Property MinuteIncrements is not working on iOS https://github.com/unoplatform/uno/issues/3540 -->
 						<smtx:XamlDisplay UniqueKey="TimePickerSamplePage_Fluent_Increment"
-										  smtx:XamlDisplayExtensions.Header="TimePicker with Minute Increment"
-										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
+										  smtx:XamlDisplayExtensions.Header="TimePicker with Minute Increment">
 							<TimePicker MinuteIncrement="15" />
 						</smtx:XamlDisplay>
 
 						<!-- Property ClockIdentifier autoresets to default value on first pressed on iOS https://github.com/unoplatform/uno/issues/3541 -->
 						<smtx:XamlDisplay UniqueKey="TimePickerSamplePage_Fluent_Clock"
-										  smtx:XamlDisplayExtensions.Header="TimePicker with Clock Identifier"
-										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
+										  smtx:XamlDisplayExtensions.Header="TimePicker with Clock Identifier">
 							<TimePicker ClockIdentifier="24HourClock" />
 						</smtx:XamlDisplay>
 					</StackPanel>
