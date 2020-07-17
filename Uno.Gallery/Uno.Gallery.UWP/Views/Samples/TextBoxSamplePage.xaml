@@ -20,31 +20,27 @@
 
 						<!-- Default -->
 						<smtx:XamlDisplay UniqueKey="TextBoxSamplePage_Fluent_Default"
-										  smtx:XamlDisplayExtensions.Header="Default"
-										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
+										  smtx:XamlDisplayExtensions.Header="Default">
 							<TextBox PlaceholderText="Default" />
 						</smtx:XamlDisplay>
 
 						<!-- TexBox Disabled -->
 						<smtx:XamlDisplay UniqueKey="TextBoxSamplePage_Fluent_Disabled"
-										  smtx:XamlDisplayExtensions.Header="Disabled"
-										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
+										  smtx:XamlDisplayExtensions.Header="Disabled">
 							<TextBox PlaceholderText="Disabled"
 									 IsEnabled="False" />
 						</smtx:XamlDisplay>
 
 						<!-- TexBox Outline -->
 						<smtx:XamlDisplay UniqueKey="TextBoxSamplePage_Fluent_Outline"
-										  smtx:XamlDisplayExtensions.Header="Outline"
-										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
+										  smtx:XamlDisplayExtensions.Header="Outline">
 							<TextBox PlaceholderText="Outline"
 									 Header="Header" />
 						</smtx:XamlDisplay>
 
 						<!-- TexBox MultiLine -->
 						<smtx:XamlDisplay UniqueKey="TextBoxSamplePage_Fluent_Multiline"
-										  smtx:XamlDisplayExtensions.Header="Multiline"
-										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
+										  smtx:XamlDisplayExtensions.Header="Multiline">
 							<TextBox Text="Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet. Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant."
 									 TextWrapping="Wrap"
 									 AcceptsReturn="True" />

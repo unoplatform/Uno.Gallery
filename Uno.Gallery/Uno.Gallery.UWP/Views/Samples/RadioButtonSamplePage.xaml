@@ -20,31 +20,27 @@
 						
 						<!-- RadioButton OFF -->
 						<smtx:XamlDisplay UniqueKey="RadioButtonSamplePage_Fluent_Off"
-										  smtx:XamlDisplayExtensions.Header="Unchecked RadioButton"
-										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
+										  smtx:XamlDisplayExtensions.Header="Unchecked RadioButton">
 							<RadioButton GroupName="RadioButtonDemo"/>
 						</smtx:XamlDisplay>
 
 						<!-- RadioButton ON -->
 						<smtx:XamlDisplay UniqueKey="RadioButtonSamplePage_Fluent_On"
-										  smtx:XamlDisplayExtensions.Header="Checked RadioButton"
-										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
+										  smtx:XamlDisplayExtensions.Header="Checked RadioButton">
 							<RadioButton GroupName="RadioButtonDemo"
 										 IsChecked="True" />
 						</smtx:XamlDisplay>
 
 						<!-- RadioButton OFF Disabled -->
 						<smtx:XamlDisplay UniqueKey="RadioButtonSamplePage_Fluent_OffDisabled"
-										  smtx:XamlDisplayExtensions.Header="Disabled Unchecked RadioButton"
-										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
+										  smtx:XamlDisplayExtensions.Header="Disabled Unchecked RadioButton">
 							<RadioButton Content="UNCHECKED DISABLED"
 										 IsEnabled="False" />
 						</smtx:XamlDisplay>
 
 						<!-- RadioButton ON Disabled -->
 						<smtx:XamlDisplay UniqueKey="RadioButtonSamplePage_Fluent_OnDisabled"
-										  smtx:XamlDisplayExtensions.Header="Disabled Checked RadioButton"
-										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
+										  smtx:XamlDisplayExtensions.Header="Disabled Checked RadioButton">
 							<RadioButton Content="CHECKED DISABLED"
 										 IsChecked="True"
 										 IsEnabled="False" />
@@ -59,16 +55,14 @@
 						
 						<!-- RadioButton OFF -->
 						<smtx:XamlDisplay UniqueKey="RadioButtonSamplePage_Material_Off"
-										  smtx:XamlDisplayExtensions.Header="Unchecked RadioButton"
-										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
+										  smtx:XamlDisplayExtensions.Header="Unchecked RadioButton">
 							<RadioButton GroupName="RadioButtonDemo"
 										 Style="{StaticResource MaterialRadioButtonStyle}" />
 						</smtx:XamlDisplay>
 
 						<!-- RadioButton ON -->
 						<smtx:XamlDisplay UniqueKey="RadioButtonSamplePage_Material_On"
-										  smtx:XamlDisplayExtensions.Header="Checked RadioButton"
-										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
+										  smtx:XamlDisplayExtensions.Header="Checked RadioButton">
 							<RadioButton GroupName="RadioButtonDemo"
 										 Style="{StaticResource MaterialRadioButtonStyle}"
 										 IsChecked="True" />
@@ -76,8 +70,7 @@
 
 						<!-- RadioButton OFF Disabled -->
 						<smtx:XamlDisplay UniqueKey="RadioButtonSamplePage_Material_DisabledOff"
-										  smtx:XamlDisplayExtensions.Header="Disabled Unchecked RadioButton"
-										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
+										  smtx:XamlDisplayExtensions.Header="Disabled Unchecked RadioButton">
 							<RadioButton Content="UNCHECKED DISABLED"
 										 IsEnabled="False"
 										 Style="{StaticResource MaterialRadioButtonStyle}" />
@@ -85,8 +78,7 @@
 
 						<!-- RadioButton ON Disabled -->
 						<smtx:XamlDisplay UniqueKey="RadioButtonSamplePage_Material_DisabledOn"
-										  smtx:XamlDisplayExtensions.Header="Disabled Checked RadioButton"
-										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
+										  smtx:XamlDisplayExtensions.Header="Disabled Checked RadioButton">
 							<RadioButton Content="CHECKED DISABLED"
 										 IsChecked="True"
 										 IsEnabled="False"
