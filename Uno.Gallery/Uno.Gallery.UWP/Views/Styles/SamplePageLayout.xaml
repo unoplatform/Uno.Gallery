@@ -6,8 +6,6 @@
 					xmlns:xamarin="http://uno.ui/xamarin"
 					mc:Ignorable="xamarin">
 
-	<win:Thickness x:Key="SamplePagePadding">36</win:Thickness>
-	<xamarin:Thickness x:Key="SamplePagePadding">24</xamarin:Thickness>
 	<Thickness x:Key="SampleContentPadding">0,0,0,0</Thickness>
 
 	<Thickness x:Key="FirstItemMargin">12,0</Thickness>
@@ -15,100 +13,111 @@
 
 	<Style x:Key="DefaultSamplePageLayoutStyle"
 		   TargetType="controls:SamplePageLayout">
-
-		<Setter Property="BorderBrush" Value="LightGray" />
-		<Setter Property="BorderThickness" Value="1,0,0,0" />
-
-		<Setter Property="Padding" Value="{StaticResource SamplePagePadding}" />
+		<Setter Property="BorderBrush"
+				Value="LightGray" />
+		<Setter Property="BorderThickness"
+				Value="1,0,0,0" />
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="controls:SamplePageLayout">
-					<ScrollViewer BorderBrush="{TemplateBinding BorderBrush}"
-								  BorderThickness="{TemplateBinding BorderThickness}">
-						<Grid Margin="{TemplateBinding Padding}">
-							<Grid.RowDefinitions>
-								<RowDefinition Height="*" />
-								<RowDefinition Height="Auto" />
-								<RowDefinition Height="Auto" />
-							</Grid.RowDefinitions>
+					<Grid Padding="{TemplateBinding Padding}"
+						  BorderBrush="{TemplateBinding BorderBrush}"
+						  BorderThickness="{TemplateBinding BorderThickness}">
+						<Grid.RowDefinitions>
+							<RowDefinition Height="Auto" />
+							<RowDefinition Height="*" />
+						</Grid.RowDefinitions>
 
-							<!-- Content -->
-							<StackPanel Grid.Row="0">
-								<TextBlock Text="{TemplateBinding Title}"
-										   FontSize="46"
-										   Margin="0,0,0,16" />
+						<TextBlock x:Name="PART_Title"
+								   Text="{TemplateBinding Title}"
+								   FontSize="46"
+								   Margin="24,0" />
 
-								<TextBlock Text="{TemplateBinding Description}"
-										   FontSize="23"
-										   Margin="0,0,0,16"
-										   TextWrapping="WrapWholeWords"
-										   Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Description, Converter={StaticResource IsNullOrEmptyToCollapsed}, FallbackValue=Collapsed}" />
+						<ScrollViewer x:Name="PART_ScrollViewer"
+									  Grid.Row="1">
+							<Grid Margin="0,0,0,24">
+								<Grid.RowDefinitions>
+									<RowDefinition Height="*" />
+									<RowDefinition Height="Auto" />
+									<RowDefinition Height="Auto" />
+								</Grid.RowDefinitions>
 
-								<TextBlock FontSize="10"
-										   Text="SOURCE" />
-								<TextBlock Text="{TemplateBinding Source}"
-										   FontSize="16"
-										   Margin="0,0,0,16" />
+								<!-- Content -->
+								<StackPanel Grid.Row="0"
+											Margin="24,0">
 
-								<StackPanel Orientation="Horizontal"
-											BorderBrush="LightGray"
-											BorderThickness="0,0,0,1"
-											HorizontalAlignment="Stretch">
+									<TextBlock Text="{TemplateBinding Description}"
+											   FontSize="23"
+											   Margin="0,16,0,0"
+											   TextWrapping="WrapWholeWords"
+											   Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Description, Converter={StaticResource IsNullOrEmptyToCollapsed}, FallbackValue=Collapsed}" />
 
-									<RadioButton x:Name="PART_MaterialRadioButton"
-												 Content="Material"
-												 Margin="0,0,16,0"
-												 Visibility="Collapsed"
-												 Style="{StaticResource SampleLayoutModeRadioButtonStyle}" />
+									<TextBlock FontSize="10"
+											   Text="SOURCE" />
+									<TextBlock Text="{TemplateBinding Source}"
+											   FontSize="16"
+											   Margin="0,0,0,16" />
 
-									<RadioButton x:Name="PART_FluentRadioButton"
-												 Content="Fluent"
-												 Margin="0,0,16,0"
-												 Visibility="Collapsed"
-												 Style="{StaticResource SampleLayoutModeRadioButtonStyle}" />
+									<StackPanel x:Name="PART_ScrollingTabs"
+												Orientation="Horizontal"
+												BorderBrush="LightGray"
+												BorderThickness="0,0,0,1"
+												HorizontalAlignment="Stretch">
 
-									<RadioButton x:Name="PART_NativeRadioButton"
-												 Content="Native"
-												 Margin="0,0,16,0"
-												 Visibility="Collapsed"
-												 Style="{StaticResource SampleLayoutModeRadioButtonStyle}" />
+										<RadioButton x:Name="PART_MaterialRadioButton"
+													 Content="Material"
+													 Margin="0,0,16,0"
+													 Visibility="Collapsed"
+													 Style="{StaticResource SampleLayoutModeRadioButtonStyle}" />
+
+										<RadioButton x:Name="PART_FluentRadioButton"
+													 Content="Fluent"
+													 Margin="0,0,16,0"
+													 Visibility="Collapsed"
+													 Style="{StaticResource SampleLayoutModeRadioButtonStyle}" />
+
+										<RadioButton x:Name="PART_NativeRadioButton"
+													 Content="Native"
+													 Margin="0,0,16,0"
+													 Visibility="Collapsed"
+													 Style="{StaticResource SampleLayoutModeRadioButtonStyle}" />
+									</StackPanel>
+
+									<Grid>
+										<ContentPresenter x:Name="MaterialContentPresenter"
+														  Content="{TemplateBinding Content}"
+														  ContentTemplate="{TemplateBinding MaterialTemplate}"
+														  VerticalAlignment="Stretch"
+														  HorizontalAlignment="Stretch"
+														  Padding="{StaticResource SampleContentPadding}"
+														  Visibility="Collapsed" />
+
+										<ContentPresenter x:Name="FluentContentPresenter"
+														  Content="{TemplateBinding Content}"
+														  ContentTemplate="{TemplateBinding FluentTemplate}"
+														  VerticalAlignment="Stretch"
+														  HorizontalAlignment="Stretch"
+														  Padding="{StaticResource SampleContentPadding}"
+														  Visibility="Collapsed" />
+
+										<ContentPresenter x:Name="NativeContentPresenter"
+														  Content="{TemplateBinding Content}"
+														  ContentTemplate="{TemplateBinding NativeTemplate}"
+														  VerticalAlignment="Stretch"
+														  HorizontalAlignment="Stretch"
+														  Padding="{StaticResource SampleContentPadding}"
+														  Visibility="Collapsed" />
+									</Grid>
 								</StackPanel>
 
-								<Grid>
-									<ContentPresenter x:Name="MaterialContentPresenter"
-													  Content="{TemplateBinding Content}"
-													  ContentTemplate="{TemplateBinding MaterialTemplate}"
-													  VerticalAlignment="Stretch"
-													  HorizontalAlignment="Stretch"
-													  Padding="{StaticResource SampleContentPadding}"
-													  Visibility="Collapsed" />
-
-									<ContentPresenter x:Name="FluentContentPresenter"
-													  Content="{TemplateBinding Content}"
-													  ContentTemplate="{TemplateBinding FluentTemplate}"
-													  VerticalAlignment="Stretch"
-													  HorizontalAlignment="Stretch"
-													  Padding="{StaticResource SampleContentPadding}"
-													  Visibility="Collapsed" />
-
-									<ContentPresenter x:Name="NativeContentPresenter"
-													  Content="{TemplateBinding Content}"
-													  ContentTemplate="{TemplateBinding NativeTemplate}"
-													  VerticalAlignment="Stretch"
-													  HorizontalAlignment="Stretch"
-													  Padding="{StaticResource SampleContentPadding}"
-													  Visibility="Collapsed" />
-								</Grid>
-							</StackPanel>
-
-							<!-- Separator -->
-							<!--<Rectangle Grid.Row="1"
+								<!-- Separator -->
+								<!--<Rectangle Grid.Row="1"
 									   Margin="0,24"
 									   Height="1"
 									   Fill="LightGray" />-->
 
-							<!-- Footer -->
-							<!--<Grid Grid.Row="2">
+								<!-- Footer -->
+								<!--<Grid Grid.Row="2">
 								<Grid.ColumnDefinitions>
 									<ColumnDefinition Width="*" />
 									<ColumnDefinition Width="Auto" />
@@ -122,28 +131,64 @@
 								<Button Grid.Column="2"
 										Content="Feedback" />
 							</Grid>-->
-						</Grid>
+							</Grid>
+
+						</ScrollViewer>
+
+						<!-- This is the sticky tabs that appear when we scroll enough. -->
+						<StackPanel x:Name="PART_StickyTabs"
+									Background="{StaticResource MaterialBackgroundBrush}"
+									Margin="24,0"
+									Orientation="Horizontal"
+									BorderBrush="LightGray"
+									BorderThickness="0,0,0,1"
+									Grid.Row="1"
+									VerticalAlignment="Top"
+									HorizontalAlignment="Stretch"
+									Visibility="Collapsed">
+
+							<RadioButton x:Name="PART_StickyMaterialRadioButton"
+										 Content="Material"
+										 Margin="0,0,16,0"
+										 Visibility="Collapsed"
+										 Style="{StaticResource SampleLayoutModeRadioButtonStyle}" />
+
+							<RadioButton x:Name="PART_StickyFluentRadioButton"
+										 Content="Fluent"
+										 Margin="0,0,16,0"
+										 Visibility="Collapsed"
+										 Style="{StaticResource SampleLayoutModeRadioButtonStyle}" />
+
+							<RadioButton x:Name="PART_StickyNativeRadioButton"
+										 Content="Native"
+										 Margin="0,0,16,0"
+										 Visibility="Collapsed"
+										 Style="{StaticResource SampleLayoutModeRadioButtonStyle}" />
+						</StackPanel>
 
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup x:Name="States">
 								<VisualState x:Name="Material">
 									<VisualState.Setters>
-										<Setter Target="MaterialContentPresenter.Visibility" Value="Visible" />
+										<Setter Target="MaterialContentPresenter.Visibility"
+												Value="Visible" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="Fluent">
 									<VisualState.Setters>
-										<Setter Target="FluentContentPresenter.Visibility" Value="Visible" />
+										<Setter Target="FluentContentPresenter.Visibility"
+												Value="Visible" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="Native">
 									<VisualState.Setters>
-										<Setter Target="NativeContentPresenter.Visibility" Value="Visible" />
+										<Setter Target="NativeContentPresenter.Visibility"
+												Value="Visible" />
 									</VisualState.Setters>
 								</VisualState>
 							</VisualStateGroup>
 						</VisualStateManager.VisualStateGroups>
-					</ScrollViewer>
+					</Grid>
 				</ControlTemplate>
 			</Setter.Value>
 		</Setter>
