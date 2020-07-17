@@ -19,15 +19,13 @@
 
 						<!-- CheckBox No Content -->
 						<smtx:XamlDisplay UniqueKey="CheckBoxSamplePage_Fluent_NoContent"
-										  smtx:XamlDisplayExtensions.Header="No Content"
-										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
+										  smtx:XamlDisplayExtensions.Header="No Content">
 							<CheckBox />
 						</smtx:XamlDisplay>
 
 						<!-- CheckBox OFF -->
 						<smtx:XamlDisplay UniqueKey="CheckBoxSamplePage_Fluent_Unchecked"
-										  smtx:XamlDisplayExtensions.Header="Unchecked"
-										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
+										  smtx:XamlDisplayExtensions.Header="Unchecked">
 							<CheckBox Content="UNCHECKED" />
 						</smtx:XamlDisplay>
 
@@ -79,15 +77,13 @@
 
 						<!-- CheckBox No Content -->
 						<smtx:XamlDisplay UniqueKey="CheckBoxSamplePage_Material_NoContent"
-										  smtx:XamlDisplayExtensions.Header="No Content"
-										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
+										  smtx:XamlDisplayExtensions.Header="No Content">
 							<CheckBox Style="{StaticResource MaterialCheckBoxStyle}" />
 						</smtx:XamlDisplay>
 
 						<!-- CheckBox OFF -->
 						<smtx:XamlDisplay UniqueKey="CheckBoxSamplePage_Material_Unchecked"
-										  smtx:XamlDisplayExtensions.Header="Unchecked"
-										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
+										  smtx:XamlDisplayExtensions.Header="Unchecked">
 							<CheckBox Style="{StaticResource MaterialCheckBoxStyle}" 
 									  Content="UNCHECKED" />
 						</smtx:XamlDisplay>
