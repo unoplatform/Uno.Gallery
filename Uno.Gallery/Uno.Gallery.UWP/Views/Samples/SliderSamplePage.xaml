@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="Uno.Gallery.Views.Samples.DatePickerSamplePage"
+    x:Class="Uno.Gallery.Views.Samples.SliderSamplePage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Uno.Gallery.Views.Samples"
@@ -17,19 +17,21 @@
 			<controls:SamplePageLayout.NativeTemplate>
 				<DataTemplate>
 					<StackPanel>
-						<smtx:XamlDisplay UniqueKey="DatePickerSamplePage_Native_Default"
-										  smtx:XamlDisplayExtensions.Header="Default DatePicker"
+						<smtx:XamlDisplay UniqueKey="SliderSamplePage_Native_Default"
+										  smtx:XamlDisplayExtensions.Header="Default Slider"
 										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
-							<DatePicker />
+							<Slider />
 						</smtx:XamlDisplay>
 
-						<!--<smtx:XamlDisplay UniqueKey="DatePickerSamplePage_Native_Increment"
-										  smtx:XamlDisplayExtensions.Header="DatePicker with Format"
+						<!--<smtx:XamlDisplay UniqueKey="SliderSamplePage_Native_Ticks"
+										  smtx:XamlDisplayExtensions.Header="Slider with Ticks"
 										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
-							<DatePicker YearVisible="False"
-										DayFormat="{}{day.integer} {dayofweek.abbreviated}" />
+							<Slider TickFrequency="10"
+									TickPlacement="Outside"
+									Minimum="0"
+									Maximum="100" />
 						</smtx:XamlDisplay>-->
-						
+
 					</StackPanel>
 				</DataTemplate>
 			</controls:SamplePageLayout.NativeTemplate>
