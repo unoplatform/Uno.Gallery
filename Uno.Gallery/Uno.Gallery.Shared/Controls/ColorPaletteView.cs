@@ -12,6 +12,11 @@ namespace Uno.Gallery.Controls
 	/// </summary>
 	public partial class ColorPaletteView : Control
 	{
+		public ColorPaletteView()
+		{
+			DefaultStyleKey = typeof(ColorPaletteView);
+		}
+
 		public string Title
 		{
 			get { return (string)GetValue(TitleProperty); }

@@ -83,6 +83,12 @@ namespace Uno.Gallery
 				DataContext = NavigationItemType.MaterialPalette
 			});
 
+			navigationView.MenuItems.Add(new NavigationViewItem()
+			{
+				Content = "Palette for Fluent",
+				DataContext = NavigationItemType.FluentPalette
+			});
+
 			navigationView.MenuItems.Add(new NavigationViewItemSeparator());
 
 			foreach (var sample in SamplePageAttribute.GetAllSamples())
@@ -119,6 +125,9 @@ namespace Uno.Gallery
 						{
 							case NavigationItemType.MaterialPalette:
 								page = new MaterialPalettePage();
+								break;
+							case NavigationItemType.FluentPalette:
+								page = new FluentPalettePage();
 								break;
 							case NavigationItemType.Home:
 								page = new HomeSamplePage();

@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Controls\ColorPaletteView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\FluentColorAccentView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\ThreeColorPaletteView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\FromColorBrushToHexConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\NavigationItemType.cs" />

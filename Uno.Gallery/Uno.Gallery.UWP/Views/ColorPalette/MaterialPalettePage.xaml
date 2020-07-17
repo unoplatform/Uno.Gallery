@@ -298,11 +298,10 @@
 						   Height="1"
 						   Margin="0,48" />
 
-				<!-- TODO #189478 Add rediection command to Google material Color docs -->
 				<TextBlock Style="{StaticResource MaterialBody1}">
 					<Run Text="For more information refer to" />
 					
-					<Hyperlink>
+					<Hyperlink NavigateUri="https://material.io/design/color/the-color-system.html#color-usage-and-palettes">
 						<Run Text="Google's Material Color System." />
 					</Hyperlink>
 				</TextBlock>

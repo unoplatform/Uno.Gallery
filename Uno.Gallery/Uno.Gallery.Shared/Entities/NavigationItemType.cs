@@ -9,6 +9,7 @@ namespace Uno.Gallery
 	public enum NavigationItemType
 	{
 		Home,
-		MaterialPalette
+		MaterialPalette,
+		FluentPalette
 	}
 }
