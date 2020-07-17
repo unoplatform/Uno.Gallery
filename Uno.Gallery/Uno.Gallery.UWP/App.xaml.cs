@@ -72,7 +72,6 @@ namespace Uno.Gallery
 			var shell = new Shell();
 			var nv = shell.NavigationView;
 			AddNavigationItems(nv);
-			SetupSettingButton(nv);
 
 			// navigation + setting handler
 			nv.ItemInvoked += OnNavigationItemInvoked;
@@ -82,32 +81,12 @@ namespace Uno.Gallery
 
 		private void OnNavigationItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs e)
 		{
-			if (!e.IsSettingsInvoked)
+			if (e.InvokedItemContainer.DataContext is Sample sample)
 			{
-				if (e.InvokedItemContainer.DataContext is Sample sample)
-				{
-					var page = (Page)Activator.CreateInstance(sample.ViewType);
-					page.DataContext = sample;
+				var page = (Page)Activator.CreateInstance(sample.ViewType);
+				page.DataContext = sample;
 
-					sender.Content = page;
-				}
-			}
-			else
-			{
-#if WINDOWS_UWP
-				// Set theme for window root.
-				if (Window.Current.Content is FrameworkElement frameworkElement)
-				{
-					if (frameworkElement.ActualTheme == ElementTheme.Dark)
-					{
-						frameworkElement.RequestedTheme = ElementTheme.Light;
-					}
-					else
-					{
-						frameworkElement.RequestedTheme = ElementTheme.Dark;
-					}
-				}
-#endif
+				sender.Content = page;
 			}
 		}
 
@@ -142,25 +121,6 @@ namespace Uno.Gallery
 					});
 				}
 			}
-		}
-
-		private void SetupSettingButton(NavigationView nv)
-		{
-#if WINDOWS_UWP
-			nv.IsSettingsVisible = true;
-			nv.Loaded += OnNavigationViewLoaded;
-
-			void OnNavigationViewLoaded(object sender, RoutedEventArgs e)
-			{
-				if (nv.SettingsItem is NavigationViewItem item)
-				{
-					item.Content = "Toggle Light/Dark theme";
-					nv.Loaded -= OnNavigationViewLoaded;
-				}
-			}
-#else
-			nv.IsSettingsVisible = false;
-#endif
 		}
 
 		/// <summary>
