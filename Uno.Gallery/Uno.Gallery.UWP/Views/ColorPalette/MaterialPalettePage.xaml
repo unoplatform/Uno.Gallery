@@ -134,7 +134,7 @@
 				   Height="1"
 				   Margin="48,32,48,0"
 				   Grid.Row="2" />
-		
+
 		<!-- TODO #189549 Include the Table of content here -->
 
 		<ScrollViewer Grid.Row="3">
@@ -232,6 +232,7 @@
 										   ColorSecondaryName="Primary Color"
 										   ColorBrush="{StaticResource MaterialPrimaryBrush}"
 										   Foreground="{StaticResource MaterialOnPrimaryBrush}"
+										   Style="{StaticResource InvertedColorPaletteViewStyle}"
 										   Margin="0,48,0,0" />
 
 				<StackPanel Orientation="Horizontal"
@@ -252,6 +253,7 @@
 										   ColorSecondaryName="Secondary Color"
 										   ColorBrush="{StaticResource MaterialSecondaryBrush}"
 										   Foreground="{StaticResource MaterialOnSecondaryBrush}"
+										   Style="{StaticResource InvertedColorPaletteViewStyle}"
 										   Margin="0,48,0,0" />
 
 				<StackPanel Orientation="Horizontal"
@@ -273,16 +275,17 @@
 										   ColorBrush="{StaticResource MaterialBackgroundBrush}"
 										   Foreground="{StaticResource MaterialOnBackgroundBrush}"
 										   BorderBrush="{StaticResource MaterialOnSurfaceFocusedBrush}"
+										   Style="{StaticResource InvertedColorPaletteViewStyle}"
 										   BorderThickness="1"
 										   Margin="0,48,0,0" />
 
-				<!-- In the desktop version, there's a drop shadow for this Color palette, but not on the mobile version. #189387 -->
 				<controls:ColorPaletteView Title="OnSurface"
 										   Description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore."
 										   ColorName="OnSurfaceColor"
 										   ColorSecondaryName="Surface Color"
 										   ColorBrush="{StaticResource MaterialSurfaceBrush}"
 										   Foreground="{StaticResource MaterialOnSurfaceBrush}"
+										   Style="{StaticResource InvertedColorPaletteViewStyleWithElevatedView}"
 										   Margin="0,48,0,0" />
 
 				<controls:ColorPaletteView Title="OnError"
@@ -291,6 +294,7 @@
 										   ColorSecondaryName="Error Color"
 										   ColorBrush="{StaticResource MaterialErrorBrush}"
 										   Foreground="{StaticResource MaterialOnErrorBrush}"
+										   Style="{StaticResource InvertedColorPaletteViewStyle}"
 										   Margin="0,48,0,0" />
 
 				<!-- Separator -->

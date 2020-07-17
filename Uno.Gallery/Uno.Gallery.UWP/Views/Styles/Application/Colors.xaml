@@ -1,9 +1,12 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-					xmlns:local="using:Uno.Gallery.Views.Styles.Application">
+					xmlns:local="using:Uno.Gallery.Views.Styles.Application"
+					xmlns:material="using:Uno.Material">
 
-	<Color x:Key="SeparatorColor">#FFE8E8E8</Color>
+	<ResourceDictionary.MergedDictionaries>
+		<material:MaterialLibraryResources />
+	</ResourceDictionary.MergedDictionaries>
 
-	<SolidColorBrush x:Key="SeparatorColorBrush"
-					 Color="{StaticResource SeparatorColor}" />
+	<StaticResource x:Key="SeparatorColorBrush"
+					ResourceKey="MaterialOnSurfaceFocusedBrush" />
 </ResourceDictionary>
