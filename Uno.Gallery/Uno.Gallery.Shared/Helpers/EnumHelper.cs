@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace Uno.Gallery.Shared.Helpers
+namespace Uno.Gallery
 {
 	public static class EnumHelper
 	{

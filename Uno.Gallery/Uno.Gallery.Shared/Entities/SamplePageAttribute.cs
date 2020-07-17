@@ -6,7 +6,6 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Uno.Gallery.Controls;
-using Uno.Gallery.Shared.Helpers;
 
 namespace Uno.Gallery
 {
