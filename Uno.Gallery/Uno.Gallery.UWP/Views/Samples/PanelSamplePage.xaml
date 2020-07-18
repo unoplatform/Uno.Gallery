@@ -17,10 +17,102 @@
 			<controls:SamplePageLayout.FluentTemplate>
 				<DataTemplate>
 					<StackPanel>
-						<smtx:XamlDisplay UniqueKey="PanelSamplePage_Fluent_Default"
-										  smtx:XamlDisplayExtensions.Header="Default Panel"
+						<smtx:XamlDisplay UniqueKey="PanelSamplePage_Fluent_StackPanel"
+										  smtx:XamlDisplayExtensions.Header="StackPanel"
 										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
-							<DatePicker />
+							<StackPanel HorizontalAlignment="Left"
+										Orientation="Horizontal">
+								<Rectangle Fill="Red"
+										   Width="50"
+										   Height="50" />
+								<Rectangle Fill="Blue"
+										   Width="50"
+										   Height="50" />
+								<Rectangle Fill="Green"
+										   Width="50"
+										   Height="50" />
+								<Rectangle Fill="Yellow"
+										   Width="50"
+										   Height="50" />
+							</StackPanel>
+						</smtx:XamlDisplay>
+
+						<smtx:XamlDisplay UniqueKey="PanelSamplePage_Fluent_Grid"
+										  smtx:XamlDisplayExtensions.Header="Grid"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
+							<Grid HorizontalAlignment="Left">
+								<Grid.RowDefinitions>
+									<RowDefinition Height="50" />
+									<RowDefinition Height="50" />
+								</Grid.RowDefinitions>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="50" />
+									<ColumnDefinition Width="50" />
+								</Grid.ColumnDefinitions>
+								<Rectangle Fill="Red" />
+								<Rectangle Fill="Blue"
+										   Grid.Column="1" />
+								<Rectangle Fill="Green"
+										   Grid.Row="1" />
+								<Rectangle Fill="Yellow"
+										   Grid.Row="1"
+										   Grid.Column="1" />
+							</Grid>
+						</smtx:XamlDisplay>
+
+						<smtx:XamlDisplay UniqueKey="PanelSamplePage_Fluent_Canvas"
+										  smtx:XamlDisplayExtensions.Header="Canvas"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
+							<Canvas HorizontalAlignment="Left"
+									Width="120"
+									Height="120">
+								<Rectangle Fill="Red"
+										   Width="50"
+										   Height="50" />
+								<Rectangle Fill="Blue"
+										   Width="50"
+										   Height="50"
+										   Canvas.Left="20"
+										   Canvas.Top="20" />
+								<Rectangle Fill="Green"
+										   Width="50"
+										   Height="50"
+										   Canvas.Left="40"
+										   Canvas.Top="40" />
+								<Rectangle Fill="Yellow"
+										   Width="50"
+										   Height="50"
+										   Canvas.Left="60"
+										   Canvas.Top="60" />
+							</Canvas>
+						</smtx:XamlDisplay>
+
+						<smtx:XamlDisplay UniqueKey="PanelSamplePage_Fluent_RelativePanel"
+										  smtx:XamlDisplayExtensions.Header="RelativePanel"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
+							<RelativePanel HorizontalAlignment="Left"
+										   Width="200">
+								<Rectangle x:Name="Red"
+										   Fill="Red"
+										   Height="50"
+										   Width="50" />
+								<Rectangle x:Name="Blue"
+										   Fill="Blue"
+										   Height="50"
+										   Width="50"
+										   RelativePanel.RightOf="Red" />
+								<Rectangle x:Name="Green"
+										   Fill="Green"
+										   Height="50"
+										   Width="50"
+										   RelativePanel.AlignRightWithPanel="True" />
+								<Rectangle x:Name="Yellow"
+										   Fill="Yellow"
+										   Height="50"
+										   Width="50"
+										   RelativePanel.Below="Green"
+										   RelativePanel.AlignHorizontalCenterWith="Green" />
+							</RelativePanel>
 						</smtx:XamlDisplay>
 
 					</StackPanel>
