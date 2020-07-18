@@ -144,11 +144,26 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Samples\AnimationSamplePage.xaml.cs">
+      <DependentUpon>AnimationSamplePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Samples\BrushSamplePage.xaml.cs">
+      <DependentUpon>BrushSamplePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Samples\ComboBoxSamplePage.xaml.cs">
       <DependentUpon>ComboBoxSamplePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Samples\DatePickerSamplePage.xaml.cs">
       <DependentUpon>DatePickerSamplePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Samples\FlipViewSamplePage.xaml.cs">
+      <DependentUpon>FlipViewSamplePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Samples\MessageDialogSamplePage.xaml.cs">
+      <DependentUpon>MessageDialogSamplePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Samples\PanelSamplePage.xaml.cs">
+      <DependentUpon>PanelSamplePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Samples\ProgressSamplePage.xaml.cs">
       <DependentUpon>ProgressSamplePage.xaml</DependentUpon>
@@ -164,6 +179,9 @@
     </Compile>
     <Compile Include="Views\Samples\FabSamplePage.xaml.cs">
       <DependentUpon>FabSamplePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Samples\ShapeSamplePage.xaml.cs">
+      <DependentUpon>ShapeSamplePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Samples\SliderSamplePage.xaml.cs">
       <DependentUpon>SliderSamplePage.xaml</DependentUpon>
@@ -215,11 +233,31 @@
     <Content Include="Properties\Default.rd.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\Samples\AnimationSamplePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Samples\BrushSamplePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Samples\ComboBoxSamplePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Samples\DatePickerSamplePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Samples\FlipViewSamplePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Samples\MessageDialogSamplePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Samples\PanelSamplePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -242,6 +280,10 @@
     <Page Include="Views\Samples\FabSamplePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Samples\ShapeSamplePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Samples\SliderSamplePage.xaml">
       <SubType>Designer</SubType>
