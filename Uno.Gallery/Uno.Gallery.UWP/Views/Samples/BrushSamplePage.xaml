@@ -17,11 +17,61 @@
 			<controls:SamplePageLayout.FluentTemplate>
 				<DataTemplate>
 					<StackPanel>
-						<smtx:XamlDisplay UniqueKey="BrushSamplePage_Fluent_Default"
-										  smtx:XamlDisplayExtensions.Header="Default Brush"
+						<smtx:XamlDisplay UniqueKey="BrushSamplePage_Fluent_SolidColorBrush"
+										  smtx:XamlDisplayExtensions.Header="Default SolidColorBrush"
 										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
-							<DatePicker />
+							<Border Height="100"
+									Width="100"
+									CornerRadius="50"
+									HorizontalAlignment="Left">
+								<Border.Background>
+									<SolidColorBrush Color="Red" />
+								</Border.Background>
+							</Border>
 						</smtx:XamlDisplay>
+
+						<smtx:XamlDisplay UniqueKey="BrushSamplePage_Fluent_LinearGradientBrush"
+										  smtx:XamlDisplayExtensions.Header="Default LinearGradientBrush"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
+							<Border Height="100"
+									Width="100"
+									CornerRadius="50"
+									HorizontalAlignment="Left">
+								<Border.Background>
+									<LinearGradientBrush StartPoint="0,0"
+														 EndPoint="1,1">
+										<GradientStop Color="Red"
+													  Offset="0.0" />
+										<GradientStop Color="Orange"
+													  Offset="0.17" />
+										<GradientStop Color="Yellow"
+													  Offset="0.33" />
+										<GradientStop Color="Green"
+													  Offset="0.5" />
+										<GradientStop Color="Blue"
+													  Offset="0.67" />
+										<GradientStop Color="Indigo"
+													  Offset="0.83" />
+										<GradientStop Color="Violet"
+													  Offset="1.0" />
+									</LinearGradientBrush>
+								</Border.Background>
+							</Border>
+						</smtx:XamlDisplay>
+
+						<!--<smtx:XamlDisplay UniqueKey="BrushSamplePage_Fluent_ImageBrush"
+										  smtx:XamlDisplayExtensions.Header="Default ImageBrush"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
+							<Border Height="100"
+									Width="100"
+									CornerRadius="50"
+									HorizontalAlignment="Left">
+								<Border.Background>
+									<ImageBrush ImageSource="ms-appx:///Assets/Post04.jpg"
+												Stretch="UniformToFill" />
+								</Border.Background>
+							</Border>
+						</smtx:XamlDisplay>-->
 
 					</StackPanel>
 				</DataTemplate>
