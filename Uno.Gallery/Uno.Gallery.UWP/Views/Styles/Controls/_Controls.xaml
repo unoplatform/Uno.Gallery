@@ -6,6 +6,7 @@
 
 	<ResourceDictionary.MergedDictionaries>
 		<ResourceDictionary Source="ColorPaletteView.xaml" />
+		<ResourceDictionary Source="FluentPaletteView.xaml" />
 		<ResourceDictionary Source="Path.xaml" />
 		<ResourceDictionary Source="RadioButton.xaml" />
 		<ResourceDictionary Source="ThreeColorPaletteView.xaml" />
