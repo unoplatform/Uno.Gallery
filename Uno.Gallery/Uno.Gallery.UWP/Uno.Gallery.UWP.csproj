@@ -147,6 +147,9 @@
     <Compile Include="Views\ColorPalette\FluentPalettePage.xaml.cs">
       <DependentUpon>FluentPalettePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Samples\BottomNavigationBarSamplePage.xaml.cs">
+      <DependentUpon>BottomNavigationBarSamplePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Samples\ComboBoxSamplePage.xaml.cs">
       <DependentUpon>ComboBoxSamplePage.xaml</DependentUpon>
     </Compile>
@@ -213,6 +216,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\ColorPalette\FluentPalettePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Samples\BottomNavigationBarSamplePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
