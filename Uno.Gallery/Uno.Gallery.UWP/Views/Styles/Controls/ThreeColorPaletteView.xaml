@@ -11,6 +11,14 @@
 					<Grid>
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup>
+								<VisualState x:Name="Desktop">
+									<VisualState.StateTriggers>
+										<AdaptiveTrigger MinWindowWidth="720" />
+									</VisualState.StateTriggers>
+									<VisualState.Setters>
+									</VisualState.Setters>
+								</VisualState>
+								
 								<VisualState x:Name="Mobile">
 									<VisualState.StateTriggers>
 										<AdaptiveTrigger MinWindowWidth="0" />
@@ -27,14 +35,7 @@
 										<Setter Target="SecondColorPaletteView.(Grid.ColumnSpan)"
 												Value="2" />
 									</VisualState.Setters>
-								</VisualState>
-								<VisualState x:Name="Desktop">
-									<VisualState.StateTriggers>
-										<AdaptiveTrigger MinWindowWidth="720" />
-									</VisualState.StateTriggers>
-									<VisualState.Setters>
-									</VisualState.Setters>
-								</VisualState>
+								</VisualState>								
 							</VisualStateGroup>
 						</VisualStateManager.VisualStateGroups>
 
