@@ -5,6 +5,7 @@
 	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	  xmlns:controls="using:Uno.Gallery.Controls"
+	  xmlns:extensions="using:Uno.Material.Extensions"
 	  xmlns:smtx="using:ShowMeTheXAML"
 	  mc:Ignorable="d">
 
@@ -20,18 +21,16 @@
 						<!-- ComboBox -->
 						<smtx:XamlDisplay UniqueKey="ComboBoxSamplePage_Fluent_ComboBox"
 										  smtx:XamlDisplayExtensions.Header="ComboBox"
-										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
-							<ComboBox PlaceholderText="Placeholder"
-									  ItemsSource="abcdefg" />
-						</smtx:XamlDisplay>
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+							<StackPanel Spacing="16">
 
-						<!-- ComboBox Disabled -->
-						<smtx:XamlDisplay UniqueKey="ComboBoxSamplePage_Fluent_Disabled"
-										  smtx:XamlDisplayExtensions.Header="Disabled ComboBox"
-										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
-							<ComboBox PlaceholderText="Placeholder"
-										ItemsSource="abcdefg"
-										IsEnabled="False" />
+								<ComboBox PlaceholderText="Placeholder"
+										  ItemsSource="abcdefg" />
+								<ComboBox PlaceholderText="Disabled"
+										  ItemsSource="abcdefg"
+										  IsEnabled="False" />
+
+							</StackPanel>
 						</smtx:XamlDisplay>
 					</StackPanel>
 				</DataTemplate>
@@ -40,24 +39,29 @@
 			<controls:SamplePageLayout.MaterialTemplate>
 				<DataTemplate>
 					<StackPanel>
-						
+
 						<!-- ComboBox -->
 						<smtx:XamlDisplay UniqueKey="ComboBoxSamplePage_Material_ComboBox"
 										  smtx:XamlDisplayExtensions.Header="ComboBox"
-										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
-							<ComboBox Style="{StaticResource MaterialComboBoxStyle}"
-									  PlaceholderText="Placeholder"
-									  ItemsSource="abcdefg" />
-						</smtx:XamlDisplay>
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+							<StackPanel Spacing="16">
 
-						<!-- ComboBox Disabled -->
-						<smtx:XamlDisplay UniqueKey="ComboBoxSamplePage_Material_Disabled"
-										  smtx:XamlDisplayExtensions.Header="Disabled ComboBox"
-										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
-							<ComboBox Style="{StaticResource MaterialComboBoxStyle}"
-									  PlaceholderText="Placeholder"
-									  ItemsSource="abcdefg"
-									  IsEnabled="False" />
+								<ComboBox Style="{StaticResource MaterialComboBoxStyle}"
+										  PlaceholderText="Placeholder"
+										  ItemsSource="abcdefg" />
+								<ComboBox Style="{StaticResource MaterialComboBoxStyle}"
+										  PlaceholderText="ComboBox + Icon"
+										  ItemsSource="abcdefg">
+									<extensions:ControlExtensions.Icon>
+										<SymbolIcon Symbol="Character" />
+									</extensions:ControlExtensions.Icon>
+								</ComboBox>
+								<ComboBox Style="{StaticResource MaterialComboBoxStyle}"
+										  PlaceholderText="Disabled ComboBox"
+										  ItemsSource="abcdefg"
+										  IsEnabled="False" />
+
+							</StackPanel>
 						</smtx:XamlDisplay>
 					</StackPanel>
 				</DataTemplate>
