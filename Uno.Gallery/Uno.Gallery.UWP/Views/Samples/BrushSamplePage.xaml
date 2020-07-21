@@ -18,7 +18,7 @@
 				<DataTemplate>
 					<StackPanel>
 						<smtx:XamlDisplay UniqueKey="BrushSamplePage_Fluent_SolidColorBrush"
-										  smtx:XamlDisplayExtensions.Header="Default SolidColorBrush"
+										  smtx:XamlDisplayExtensions.Header="SolidColorBrush"
 										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
 							<Border Height="100"
 									Width="100"
@@ -31,7 +31,7 @@
 						</smtx:XamlDisplay>
 
 						<smtx:XamlDisplay UniqueKey="BrushSamplePage_Fluent_LinearGradientBrush"
-										  smtx:XamlDisplayExtensions.Header="Default LinearGradientBrush"
+										  smtx:XamlDisplayExtensions.Header="LinearGradientBrush"
 										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
 							<Border Height="100"
 									Width="100"
@@ -59,8 +59,8 @@
 							</Border>
 						</smtx:XamlDisplay>
 
-						<!--<smtx:XamlDisplay UniqueKey="BrushSamplePage_Fluent_ImageBrush"
-										  smtx:XamlDisplayExtensions.Header="Default ImageBrush"
+						<smtx:XamlDisplay UniqueKey="BrushSamplePage_Fluent_ImageBrush"
+										  smtx:XamlDisplayExtensions.Header="ImageBrush"
 										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
 							<Border Height="100"
 									Width="100"
@@ -71,7 +71,7 @@
 												Stretch="UniformToFill" />
 								</Border.Background>
 							</Border>
-						</smtx:XamlDisplay>-->
+						</smtx:XamlDisplay>
 
 					</StackPanel>
 				</DataTemplate>
