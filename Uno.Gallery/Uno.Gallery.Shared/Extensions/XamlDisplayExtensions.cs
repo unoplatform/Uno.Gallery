@@ -16,9 +16,9 @@ namespace ShowMeTheXAML
 {
 	public static class XamlDisplayExtensions
 	{
-		/* This code comes from Uno.ShowMeTheXaml
-		 * Header, Description: [optional] texts for display
+		/* Header, Description: [optional] texts for display
 		 * IgnorePath: [required] ignore everything except descendent(s) of this path; see: PrettyXamlFormatter.IgnorePath
+		 *             ^ made [optional='XamlDisplay'] with default style setter
 		 * PrettyXaml: [reserved] custom formatted xaml based on IgnorePath
 		 */
 
