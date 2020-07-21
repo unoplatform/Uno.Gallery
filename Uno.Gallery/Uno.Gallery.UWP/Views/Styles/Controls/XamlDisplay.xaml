@@ -10,75 +10,94 @@
 
 	<Style x:Key="ExpanderXamlDisplayStyle"
 		   TargetType="smtx:XamlDisplay">
-		<Setter Property="Margin" Value="0,24,0,0" />
-		<Setter Property="BorderBrush" Value="LightGray" />
-		<Setter Property="BorderThickness" Value="1" />
-		<Setter Property="smtx:XamlDisplayExtensions.IgnorePath" Value="XamlDisplay" />
+		<Setter Property="smtx:XamlDisplayExtensions.IgnorePath" 
+				Value="XamlDisplay" />
+
+		<Setter Property="Margin"
+				Value="0,24,0,0" />
+		<Setter Property="BorderBrush"
+				Value="LightGray" />
+		<Setter Property="BorderThickness"
+				Value="1" />
 
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="smtx:XamlDisplay">
 					<StackPanel>
 
+						<!-- Header -->
 						<TextBlock Text="{Binding Path=(smtx:XamlDisplayExtensions.Header), RelativeSource={RelativeSource TemplatedParent}}"
-								   FontSize="30"
+								   Style="{StaticResource MaterialHeadline6}"
 								   Visibility="{Binding Path=(smtx:XamlDisplayExtensions.Header), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource IsNullOrEmptyToCollapsed}, FallbackValue=Collapsed}" />
+
+						<!-- Description -->
 						<TextBlock Text="{Binding Path=(smtx:XamlDisplayExtensions.Description), RelativeSource={RelativeSource TemplatedParent}}"
-								   Margin="0,16,0,0"
-								   FontSize="18"
-								   TextWrapping="WrapWholeWords"
-								   Visibility="{Binding Path=(smtx:XamlDisplayExtensions.Description), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource IsNullOrEmptyToCollapsed}, FallbackValue=Collapsed}" />
+								   Style="{StaticResource MaterialBody1}"
+								   Visibility="{Binding Path=(smtx:XamlDisplayExtensions.Description), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource IsNullOrEmptyToCollapsed}, FallbackValue=Collapsed}"
+								   Margin="0,16,0,0" />
 
 						<Grid BorderBrush="{TemplateBinding BorderBrush}"
 							  BorderThickness="{TemplateBinding BorderThickness}"
 							  Margin="0,16,0,0">
+
 							<Grid.RowDefinitions>
 								<RowDefinition Height="Auto" />
 								<RowDefinition Height="Auto" />
 							</Grid.RowDefinitions>
-							<Grid.ColumnDefinitions>
-								<ColumnDefinition Width="*" />
-								<ColumnDefinition Width="Auto" />
-							</Grid.ColumnDefinitions>
 
-							<ContentPresenter Grid.Row="0"
-											  Grid.Column="0"
-											  Padding="16"
-											  Content="{TemplateBinding Content}" />
+							<!-- Content -->
+							<ContentPresenter Content="{TemplateBinding Content}"
+											  Padding="30,30,60,30"
+											  Grid.Row="0" />
+
+							<!-- Reveal Button -->
 							<ToggleButton x:Name="RevealButton"
-										  Grid.Row="0"
-										  Grid.Column="1"
-										  Content="icon:Reveal"
+										  Style="{StaticResource XamlDisplayExpandToggleButtonStyle}"
 										  IsChecked="False"
-										  Margin="16"
 										  HorizontalAlignment="Right"
 										  VerticalAlignment="Top"
 										  android:Visibility="Collapsed"
-										  ios:Visibility="Collapsed" />
+										  ios:Visibility="Collapsed"
+										  Grid.Column="1"
+										  Grid.Row="0" />
 
-							<ScrollViewer Grid.Row="1"
-										  Grid.Column="0"
-										  Background="WhiteSmoke"
+							<ScrollViewer Background="WhiteSmoke"
+										  HorizontalScrollBarVisibility="Auto"
 										  win:Visibility="{Binding ElementName=RevealButton, Path=IsChecked, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
+										  wasm:Visibility="{Binding ElementName=RevealButton, Path=IsChecked, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
 										  ios:Visibility="Collapsed"
 										  android:Visibility="Collapsed"
-										  wasm:Visibility="{Binding ElementName=RevealButton, Path=IsChecked, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}">
-								<TextBlock Padding="16"
-										   Text="{Binding Path=(smtx:XamlDisplayExtensions.PrettyXaml), RelativeSource={RelativeSource TemplatedParent}}"
-										   FontFamily="Consolas"/>
+										  Grid.Row="1">
+
+								<!-- Xaml -->
+								<TextBlock Text="{Binding Path=(smtx:XamlDisplayExtensions.PrettyXaml), RelativeSource={RelativeSource TemplatedParent}}"
+										   FontFamily="Consolas"
+										   Foreground="Black"
+										   Margin="30,20,60,20"/>
 							</ScrollViewer>
-							<Button Grid.Row="1"
-									Grid.Column="1"
-									Margin="16,0"
-									Content="icon:Copy"
+
+							<!-- Copy Button -->
+							<Button Style="{StaticResource MaterialTextButtonStyle}"
+									Padding="0"
 									HorizontalAlignment="Right"
 									VerticalAlignment="Top"
 									win:Visibility="{Binding ElementName=RevealButton, Path=IsChecked, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
+									wasm:Visibility="{Binding ElementName=RevealButton, Path=IsChecked, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
 									ios:Visibility="Collapsed"
 									android:Visibility="Collapsed"
-									wasm:Visibility="{Binding ElementName=RevealButton, Path=IsChecked, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}" />
-						</Grid>
+									Grid.Row="1">
 
+								<!-- Icon -->
+								<Path Data="{StaticResource CopyToClipboardPathStyle}"
+									  Fill="Black"
+									  Height="22"
+									  Width="19"
+									  Stretch="Uniform"
+									  VerticalAlignment="Center"
+									  HorizontalAlignment="Center"
+									  Margin="20"/>
+							</Button>
+						</Grid>
 					</StackPanel>
 				</ControlTemplate>
 			</Setter.Value>

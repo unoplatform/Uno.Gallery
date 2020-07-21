@@ -53,8 +53,8 @@
 						</Grid.RowDefinitions>
 
 						<TextBlock Text="{TemplateBinding Title}"
-								   Grid.ColumnSpan="2"
-								   Style="{StaticResource MaterialHeadline4}" />
+								   Style="{StaticResource MaterialHeadline6}"
+								   Grid.ColumnSpan="2" />
 
 						<TextBlock Text="{TemplateBinding Description}"
 								   Margin="0,16,0,0"
