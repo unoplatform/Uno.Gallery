@@ -29,12 +29,12 @@
 
 						<TextBlock Text="{TemplateBinding ColorName}"
 								   Style="{StaticResource MaterialSubtitle2}"
-								   Foreground="{TemplateBinding Foreground}"
+								   Foreground="{TemplateBinding OnColorBrush}"
 								   VerticalAlignment="Bottom" />
 
-						<TextBlock Text="{Binding ColorBrush, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BrushToHex}}"
+						<TextBlock Text="{TemplateBinding ColorHex}"
 								   Style="{StaticResource MaterialSubtitle2}"
-								   Foreground="{TemplateBinding Foreground}"
+								   Foreground="{TemplateBinding OnColorBrush}"
 								   VerticalAlignment="Top"
 								   Grid.Row="1" />
 					</Grid>
@@ -63,12 +63,12 @@
 
 						<TextBlock Text="{TemplateBinding ColorName}"
 								   Style="{StaticResource MaterialHeadline6}"
-								   Foreground="{TemplateBinding Foreground}"
+								   Foreground="{TemplateBinding OnColorBrush}"
 								   VerticalAlignment="Bottom" />
 
-						<TextBlock Text="{Binding ColorBrush, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BrushToHex}}"
+						<TextBlock Text="{TemplateBinding ColorHex}"
 								   Style="{StaticResource MaterialSubtitle2}"
-								   Foreground="{TemplateBinding Foreground}"
+								   Foreground="{TemplateBinding OnColorBrush}"
 								   VerticalAlignment="Top"
 								   Margin="0,4,0,0"
 								   Grid.Row="1" />
@@ -123,13 +123,11 @@
 						</VisualStateManager.VisualStateGroups>
 
 						<TextBlock Text="{TemplateBinding Title}"
-								   Style="{StaticResource MaterialHeadline5}"
-								   Foreground="Black" />
+								   Style="{StaticResource MaterialHeadline5}" />
 
 						<TextBlock Text="{TemplateBinding Description}"
 								   Margin="0,16,0,0"
 								   Style="{StaticResource MaterialBody1}"
-								   Foreground="Black"
 								   Grid.Row="1" />
 
 						<Grid Background="{TemplateBinding ColorBrush}"
@@ -153,18 +151,18 @@
 							<TextBlock x:Name="ColorNameText"
 									   Text="{TemplateBinding ColorName}"
 									   Style="{StaticResource MaterialHeadline6}"
-									   Foreground="{TemplateBinding Foreground}" />
+									   Foreground="{TemplateBinding OnColorBrush}" />
 
 							<TextBlock x:Name="ColorHexText"
-									   Text="{Binding Foreground, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BrushToHex}}"
+									   Text="{TemplateBinding OnColorHex}"
 									   Style="{StaticResource MaterialSubtitle2}"
-									   Foreground="{TemplateBinding Foreground}"
+									   Foreground="{TemplateBinding OnColorBrush}"
 									   Grid.Row="1" />
 
 							<TextBlock x:Name="SecondaryColorText"
 									   Text="{TemplateBinding ColorSecondaryName}"
 									   Style="{StaticResource MaterialCaption}"
-									   Foreground="{TemplateBinding Foreground}"
+									   Foreground="{TemplateBinding OnColorBrush}"
 									   Opacity="0.5"
 									   VerticalAlignment="Center"
 									   HorizontalAlignment="Right"
@@ -219,13 +217,11 @@
 						</VisualStateManager.VisualStateGroups>
 
 						<TextBlock Text="{TemplateBinding Title}"
-								   Style="{StaticResource MaterialHeadline5}"
-								   Foreground="Black" />
+								   Style="{StaticResource MaterialHeadline5}" />
 
 						<TextBlock Text="{TemplateBinding Description}"
 								   Margin="0,16,0,0"
 								   Style="{StaticResource MaterialBody1}"
-								   Foreground="Black"
 								   Grid.Row="1" />
 
 						<!-- Workaround: Setting the ElevatedView Background White makes sure we see the elevation effect https://github.com/unoplatform/uno/issues/3563 -->
@@ -251,18 +247,18 @@
 								<TextBlock x:Name="ColorNameText"
 										   Text="{TemplateBinding ColorName}"
 										   Style="{StaticResource MaterialHeadline6}"
-										   Foreground="{TemplateBinding Foreground}" />
+										   Foreground="{TemplateBinding OnColorBrush}" />
 
 								<TextBlock x:Name="ColorHexText"
-										   Text="{Binding Foreground, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BrushToHex}}"
+										   Text="{TemplateBinding OnColorHex}"
 										   Style="{StaticResource MaterialSubtitle2}"
-										   Foreground="{TemplateBinding Foreground}"
+										   Foreground="{TemplateBinding OnColorBrush}"
 										   Grid.Row="1" />
 
 								<TextBlock x:Name="SecondaryColorText"
 										   Text="{TemplateBinding ColorSecondaryName}"
 										   Style="{StaticResource MaterialCaption}"
-										   Foreground="{TemplateBinding Foreground}"
+										   Foreground="{TemplateBinding OnColorBrush}"
 										   Opacity="0.5"
 										   VerticalAlignment="Center"
 										   HorizontalAlignment="Right"
@@ -301,18 +297,17 @@
 
 							<TextBlock Text="{TemplateBinding ColorName}"
 									   Style="{StaticResource MaterialHeadline6}"
-									   Foreground="{TemplateBinding Foreground}" />
+									   Foreground="{TemplateBinding OnColorBrush}" />
 
-							<TextBlock Text="{Binding ColorBrush, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource BrushToHex}}"
+							<TextBlock Text="{TemplateBinding ColorHex}"
 									   Style="{StaticResource MaterialSubtitle2}"
-									   Foreground="{TemplateBinding Foreground}"
+									   Foreground="{TemplateBinding OnColorBrush}"
 									   Margin="0,4,0,0"
 									   Grid.Row="1" />
 						</Grid>
 
 						<TextBlock Text="{TemplateBinding Description}"
 								   Style="{StaticResource MaterialCaption}"
-								   Foreground="Black"
 								   Margin="0,16,0,0" />
 					</StackPanel>
 				</ControlTemplate>

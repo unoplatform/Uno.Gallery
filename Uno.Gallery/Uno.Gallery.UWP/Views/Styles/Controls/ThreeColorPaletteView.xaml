@@ -64,7 +64,7 @@
 						<controls:ColorPaletteView x:Name="FirstColorPaletteView"
 												   ColorName="{TemplateBinding FirstColorName}"
 												   ColorBrush="{TemplateBinding FirstColorBrush}"
-												   Foreground="{TemplateBinding FirstColorForeground}"
+												   OnColorBrush="{TemplateBinding FirstColorForeground}"
 												   Style="{StaticResource BiggerSimpleColorPaletteViewStyle}"
 												   VerticalContentAlignment="Bottom"
 												   Height="88"
@@ -75,14 +75,14 @@
 						<controls:ColorPaletteView x:Name="SecondColorPaletteView"
 												   ColorName="{TemplateBinding SecondColorName}"
 												   ColorBrush="{TemplateBinding SecondColorBrush}"
-												   Foreground="{TemplateBinding SecondColorForeground}"
+												   OnColorBrush="{TemplateBinding SecondColorForeground}"
 												   Height="64"
 												   Grid.Row="3" />
 
 						<controls:ColorPaletteView x:Name="ThirdColorPaletteView"
 												   ColorName="{TemplateBinding ThirdColorName}"
 												   ColorBrush="{TemplateBinding ThirdColorBrush}"
-												   Foreground="{TemplateBinding ThirdColorForeground}"
+												   OnColorBrush="{TemplateBinding ThirdColorForeground}"
 												   Height="64"
 												   Grid.Row="3"
 												   Grid.Column="1" />
