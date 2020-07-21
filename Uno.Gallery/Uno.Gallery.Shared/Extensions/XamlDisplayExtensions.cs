@@ -28,7 +28,7 @@ namespace ShowMeTheXAML
 			"Header",
 			typeof(string),
 			typeof(XamlDisplayExtensions),
-			new PropertyMetadata(default, (d, e) => d.Maybe<XamlDisplay>(control => OnHeaderChanged(control, e))));
+			new PropertyMetadata(default));
 
 		public static string GetHeader(XamlDisplay obj) => (string)obj.GetValue(HeaderProperty);
 		public static void SetHeader(XamlDisplay obj, string value) => obj.SetValue(HeaderProperty, value);
@@ -40,7 +40,7 @@ namespace ShowMeTheXAML
 			"Description",
 			typeof(string),
 			typeof(XamlDisplayExtensions),
-			new PropertyMetadata(default, (d, e) => d.Maybe<XamlDisplay>(control => OnDescriptionChanged(control, e))));
+			new PropertyMetadata(default));
 
 		public static string GetDescription(XamlDisplay obj) => (string)obj.GetValue(DescriptionProperty);
 		public static void SetDescription(XamlDisplay obj, string value) => obj.SetValue(DescriptionProperty, value);
@@ -52,7 +52,7 @@ namespace ShowMeTheXAML
 			"IgnorePath",
 			typeof(string),
 			typeof(XamlDisplayExtensions),
-			new PropertyMetadata("XamlDisplay", (d, e) => d.Maybe<XamlDisplay>(control => OnIgnorePathChanged(control, e))));
+			new PropertyMetadata(default, (d, e) => d.Maybe<XamlDisplay>(control => OnIgnorePathChanged(control, e))));
 
 		public static string GetIgnorePath(XamlDisplay obj) => (string)obj.GetValue(IgnorePathProperty);
 		public static void SetIgnorePath(XamlDisplay obj, string value) => obj.SetValue(IgnorePathProperty, value);
@@ -70,52 +70,13 @@ namespace ShowMeTheXAML
 		public static void SetPrettyXaml(XamlDisplay obj, string value) => obj.SetValue(PrettyXamlProperty, value);
 
 		#endregion
-		#region Private Property: IsEnabled
-		public static bool GetIsEnabled(DependencyObject obj)
-		{
-			return (bool)obj.GetValue(IsEnabledProperty);
-		}
-
-		public static void SetIsEnabled(DependencyObject obj, bool value)
-		{
-			obj.SetValue(IsEnabledProperty, value);
-		}
-
-		public static readonly DependencyProperty IsEnabledProperty =
-			DependencyProperty.RegisterAttached("IsEnabled", typeof(bool), typeof(XamlDisplayExtensions), new PropertyMetadata(false));
-
-		#endregion
-
-		private static void OnHeaderChanged(XamlDisplay sender, DependencyPropertyChangedEventArgs e)
-		{
-			RegisterXamlChanges(sender);
-		}
-
-		private static void OnDescriptionChanged(XamlDisplay sender, DependencyPropertyChangedEventArgs e)
-		{
-			RegisterXamlChanges(sender);
-		}
 
 		private static void OnIgnorePathChanged(XamlDisplay sender, DependencyPropertyChangedEventArgs e)
 		{
-			RegisterXamlChanges(sender);
-		}
-
-		private static void RegisterXamlChanges(XamlDisplay sender)
-		{
-			if (GetIsEnabled(sender))
+			sender.RegisterPropertyChangedCallback(XamlDisplay.XamlProperty, OnXamlChanged);
+			if (sender.Xaml != null)
 			{
-				// Xaml Changes are already registered
-			}
-			else
-			{
-				SetIsEnabled(sender, true);
-
-				sender.RegisterPropertyChangedCallback(XamlDisplay.XamlProperty, OnXamlChanged);
-				if (sender.Xaml != null)
-				{
-					OnXamlChanged(sender, XamlDisplay.XamlProperty);
-				}
+				OnXamlChanged(sender, XamlDisplay.XamlProperty);
 			}
 		}
 
