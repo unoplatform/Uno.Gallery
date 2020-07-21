@@ -13,6 +13,7 @@
 		<Setter Property="Margin" Value="0,24,0,0" />
 		<Setter Property="BorderBrush" Value="LightGray" />
 		<Setter Property="BorderThickness" Value="1" />
+		<Setter Property="smtx:XamlDisplayExtensions.IgnorePath" Value="XamlDisplay" />
 
 		<Setter Property="Template">
 			<Setter.Value>
