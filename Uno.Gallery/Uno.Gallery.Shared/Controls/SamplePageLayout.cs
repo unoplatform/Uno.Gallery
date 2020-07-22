@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -162,7 +162,7 @@ namespace Uno.Gallery.Controls
 			if (current != null)
 			{
 				current.RadioButton.IsChecked = true;
-				current.StickyRadioButton.IsChecked = true;				
+				current.StickyRadioButton.IsChecked = true;
 
 				VisualStateManager.GoToState(this, current.VisualStateName, useTransitions: true);
 			}
@@ -172,7 +172,7 @@ namespace Uno.Gallery.Controls
 		{
 #if NETFX_CORE
 			// On UWP we can count on finding a ScrollContentPresenter. 
-			var scp = FindFirstChild<ScrollContentPresenter>(_scrollViewer);
+			var scp = VisualTreeHelperEx.GetFirstDescendant<ScrollContentPresenter>(_scrollViewer);
 			var content = scp?.Content as FrameworkElement;
 			var transform = _scrollingTabs.TransformToVisual(content);
 			return transform.TransformPoint(new Point(0, 0)).Y - _scrollViewer.VerticalOffset;
@@ -183,39 +183,6 @@ namespace Uno.Gallery.Controls
 			var transform = _scrollingTabs.TransformToVisual(this);
 			return transform.TransformPoint(new Point(0, 0)).Y - _title.ActualHeight;
 #endif
-		}
-
-		private static TView FindFirstChild<TView>(DependencyObject dependencyObject)
-		{
-			return InnerFindFirstChild<TView>(new[] { dependencyObject });
-		}
-
-		private static T InnerFindFirstChild<T>(IEnumerable<DependencyObject> elements)
-		{
-			if (!elements.Any())
-			{
-				return default(T);
-			}
-			else
-			{
-				var result = elements.OfType<T>().FirstOrDefault();
-				if (Equals(result, default(T)))
-				{
-					return InnerFindFirstChild<T>(elements.SelectMany(GetChildren));
-				}
-
-				return result;
-			}
-		}
-
-		public static IEnumerable<DependencyObject> GetChildren(DependencyObject dependencyObject)
-		{
-			var count = VisualTreeHelper.GetChildrenCount(dependencyObject);
-
-			for (int i = 0; i < count; i++)
-			{
-				yield return VisualTreeHelper.GetChild(dependencyObject, i);
-			}
 		}
 
 		/// <summary>
