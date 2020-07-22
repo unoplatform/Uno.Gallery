@@ -121,7 +121,7 @@
 		</Grid.RowDefinitions>
 
 		<TextBlock Text="Palette for Material"
-				   Style="{StaticResource MaterialHeadline3}"
+				   Style="{StaticResource MaterialHeadline4}"
 				   Margin="48,0" />
 
 		<TextBlock Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore."
@@ -178,7 +178,7 @@
 
 				<!-- Elements section -->
 				<TextBlock Text="Elements"
-						   Style="{StaticResource MaterialHeadline4}" />
+						   Style="{StaticResource MaterialHeadline6}" />
 
 				<TextBlock Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore."
 						   Style="{StaticResource MaterialBody1}"
@@ -220,7 +220,7 @@
 				<!-- On colors section -->
 
 				<TextBlock Text="On Colors"
-						   Style="{StaticResource MaterialHeadline4}" />
+						   Style="{StaticResource MaterialHeadline5}" />
 
 				<TextBlock Text="Affects elements such as texts or icons appearing in front of a surface. OnPrimaryBrush is for an element displayed over a surface primary color."
 						   Style="{StaticResource MaterialBody1}"

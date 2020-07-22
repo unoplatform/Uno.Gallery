@@ -14,10 +14,14 @@
 		<Style x:Key="CustomButtonStyle"
 			   TargetType="Button">
 
-			<Setter Property="Background" Value="Red" />
-			<Setter Property="CornerRadius" Value="8" />
-			<Setter Property="Padding" Value="4" />
-			<Setter Property="MinHeight" Value="48" />
+			<Setter Property="Background"
+					Value="Red" />
+			<Setter Property="CornerRadius"
+					Value="8" />
+			<Setter Property="Padding"
+					Value="4" />
+			<Setter Property="MinHeight"
+					Value="48" />
 			<Setter Property="Template">
 				<Setter.Value>
 					<ControlTemplate TargetType="Button">
@@ -29,13 +33,16 @@
 									<VisualState x:Name="PointerOver" />
 									<VisualState x:Name="Pressed">
 										<VisualState.Setters>
-											<Setter Target="BackgroundBorder.Background" Value="Black" />
-											<Setter Target="ContentPresenter.Foreground" Value="White" />
+											<Setter Target="BackgroundBorder.Background"
+													Value="Black" />
+											<Setter Target="ContentPresenter.Foreground"
+													Value="White" />
 										</VisualState.Setters>
 									</VisualState>
 									<VisualState x:Name="Disabled">
 										<VisualState.Setters>
-											<Setter Target="BackgroundBorder.Background" Value="Gray" />
+											<Setter Target="BackgroundBorder.Background"
+													Value="Gray" />
 										</VisualState.Setters>
 									</VisualState>
 								</VisualStateGroup>
@@ -65,7 +72,7 @@
 		</Style>
 	</Page.Resources>
 
-	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+	<Grid Background="{StaticResource MaterialBackgroundBrush}">
 		<controls:SamplePageLayout Title="{Binding Title}"
 								   Description="{Binding Description}"
 								   Source="{Binding Source}">
@@ -78,7 +85,7 @@
 										  smtx:XamlDisplayExtensions.Header="Contained Buttons"
 										  smtx:XamlDisplayExtensions.Description="Contained buttons are high-emphasis, distinguished by their use of elevation and fill. They contain actions that are primary to your app."
 										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
-							<StackPanel>
+							<StackPanel Spacing="20">
 								<Button Content="CONTAINED"
 										Style="{StaticResource MaterialContainedButtonStyle}" />
 								<Button Content="CONTAINED DISABLED"
@@ -92,7 +99,7 @@
 										  smtx:XamlDisplayExtensions.Header="Outline Buttons"
 										  smtx:XamlDisplayExtensions.Description="Outline buttons are low-emphasis. They contain actions that are secondary to your app."
 										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
-							<StackPanel>
+							<StackPanel Spacing="20">
 								<Button Content="OUTLINED"
 										Style="{StaticResource MaterialOutlinedButtonStyle}" />
 								<Button Content="OUTLINED DISABLED"
@@ -113,10 +120,10 @@
 										Style="{StaticResource MaterialTextButtonStyle}" />
 							</StackPanel>
 						</smtx:XamlDisplay>
-
 					</StackPanel>
 				</DataTemplate>
 			</controls:SamplePageLayout.MaterialTemplate>
+
 			<controls:SamplePageLayout.FluentTemplate>
 				<DataTemplate>
 					<StackPanel>
@@ -125,7 +132,7 @@
 						<smtx:XamlDisplay UniqueKey="ButtonSamplePage_FluentDefault"
 										  smtx:XamlDisplayExtensions.Header="Default button style"
 										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
-							<StackPanel>
+							<StackPanel Spacing="20">
 								<Button Content="Button" />
 								<Button Content="Disabled button"
 										IsEnabled="False" />
@@ -136,7 +143,7 @@
 						<smtx:XamlDisplay UniqueKey="ButtonSamplePage_FluentCustom"
 										  smtx:XamlDisplayExtensions.Header="Button with custom states"
 										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
-							<StackPanel>
+							<StackPanel Spacing="20">
 								<Button Content="Button"
 										Style="{StaticResource CustomButtonStyle}" />
 								<Button Content="Disabled button"
@@ -144,7 +151,6 @@
 										IsEnabled="False" />
 							</StackPanel>
 						</smtx:XamlDisplay>
-
 					</StackPanel>
 				</DataTemplate>
 			</controls:SamplePageLayout.FluentTemplate>

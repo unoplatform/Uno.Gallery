@@ -4,7 +4,11 @@
 					xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 					xmlns:win="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 					xmlns:xamarin="http://uno.ui/xamarin"
-					mc:Ignorable="xamarin">
+					xmlns:ios="http://uno.ui/ios"
+					xmlns:android="http://uno.ui/android"
+					xmlns:not_android="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+					xmlns:wasm="http://uno.ui/wasm"
+					mc:Ignorable="xamarin ios android wasm">
 
 	<Thickness x:Key="SampleContentPadding">0,0,0,0</Thickness>
 
@@ -13,25 +17,30 @@
 
 	<Style x:Key="DefaultSamplePageLayoutStyle"
 		   TargetType="controls:SamplePageLayout">
+
 		<Setter Property="BorderBrush"
 				Value="LightGray" />
 		<Setter Property="BorderThickness"
 				Value="1,0,0,0" />
+
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="controls:SamplePageLayout">
+
 					<Grid Padding="{TemplateBinding Padding}"
 						  BorderBrush="{TemplateBinding BorderBrush}"
 						  BorderThickness="{TemplateBinding BorderThickness}">
+
 						<Grid.RowDefinitions>
 							<RowDefinition Height="Auto" />
 							<RowDefinition Height="*" />
 						</Grid.RowDefinitions>
 
+						<!-- Title -->
 						<TextBlock x:Name="PART_Title"
 								   Text="{TemplateBinding Title}"
-								   FontSize="46"
-								   Margin="24,0" />
+								   Style="{StaticResource MaterialHeadline4}"
+								   Margin="24,92,24,0" />
 
 						<ScrollViewer x:Name="PART_ScrollViewer"
 									  Grid.Row="1">
@@ -46,44 +55,95 @@
 								<StackPanel Grid.Row="0"
 											Margin="24,0">
 
+									<!-- Description -->
 									<TextBlock Text="{TemplateBinding Description}"
-											   FontSize="23"
-											   Margin="0,16,0,0"
-											   TextWrapping="WrapWholeWords"
-											   Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Description, Converter={StaticResource IsNullOrEmptyToCollapsed}, FallbackValue=Collapsed}" />
+											   Style="{StaticResource MaterialSubtitle1}"
+											   Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Description, Converter={StaticResource IsNullOrEmptyToCollapsed}, FallbackValue=Collapsed}"
+											   Margin="0,16,0,0" />
 
-									<TextBlock FontSize="10"
-											   Text="SOURCE" />
+									<!-- Source label -->
+									<TextBlock Text="SOURCE"
+											   Style="{StaticResource MaterialOverline}"
+											   Margin="0,30,0,0" />
+
+									<!-- Source value -->
 									<TextBlock Text="{TemplateBinding Source}"
-											   FontSize="16"
+											   Style="{StaticResource MaterialBody1}"
 											   Margin="0,0,0,16" />
 
 									<StackPanel x:Name="PART_ScrollingTabs"
 												Orientation="Horizontal"
-												BorderBrush="LightGray"
+												BorderBrush="{TemplateBinding BorderBrush}"
 												BorderThickness="0,0,0,1"
 												HorizontalAlignment="Stretch">
 
+										<!-- Material RadioButton -->
 										<RadioButton x:Name="PART_MaterialRadioButton"
-													 Content="Material"
-													 Margin="0,0,16,0"
+													 Style="{StaticResource SampleLayoutModeRadioButtonStyle}"
 													 Visibility="Collapsed"
-													 Style="{StaticResource SampleLayoutModeRadioButtonStyle}" />
+													 Margin="0,0,16,0">
+											<StackPanel Orientation="Horizontal">
 
+												<!-- Label -->
+												<TextBlock Text="Material"
+														   Style="{StaticResource MaterialHeadline6}" />
+
+												<!-- Icon -->
+												<Image Source="ms-appx:///Assets/MaterialIcon_Small.png"
+													   Stretch="None"
+													   Height="16"
+													   Width="16"
+													   VerticalAlignment="Center"
+													   Margin="10,0,0,0" />
+											</StackPanel>
+										</RadioButton>
+
+										<!-- Fluent RadioButton -->
 										<RadioButton x:Name="PART_FluentRadioButton"
-													 Content="Fluent"
-													 Margin="0,0,16,0"
+													 Style="{StaticResource SampleLayoutModeRadioButtonStyle}"
 													 Visibility="Collapsed"
-													 Style="{StaticResource SampleLayoutModeRadioButtonStyle}" />
+													 Margin="0,0,16,0">
+											<StackPanel Orientation="Horizontal">
 
+												<!-- Label -->
+												<TextBlock Text="Fluent"
+														   Style="{StaticResource MaterialHeadline6}" />
+
+												<!-- Icon -->
+												<Image Source="ms-appx:///Assets/FluentIcon_Small.png"
+													   Stretch="None"
+													   Height="16"
+													   Width="16"
+													   VerticalAlignment="Center"
+													   Margin="10,0,0,0" />
+											</StackPanel>
+										</RadioButton>
+
+										<!-- Native RadioButton -->
 										<RadioButton x:Name="PART_NativeRadioButton"
-													 Content="Native"
-													 Margin="0,0,16,0"
+													 Style="{StaticResource SampleLayoutModeRadioButtonStyle}"
 													 Visibility="Collapsed"
-													 Style="{StaticResource SampleLayoutModeRadioButtonStyle}" />
+													 Margin="0,0,16,0">
+											<StackPanel Orientation="Horizontal">
+
+												<!-- Label -->
+												<TextBlock Text="Native"
+														   Style="{StaticResource MaterialHeadline6}" />
+
+												<!-- Icon -->
+												<Image android:Source="ms-appx:///Assets/AndroidIcon_Small.png"
+													   not_android:Source="ms-appx:///Assets/AppleIcon_Small.png"
+													   Stretch="None"
+													   Width="16"
+													   VerticalAlignment="Center"
+													   Margin="10,0,0,0" />
+											</StackPanel>
+										</RadioButton>
 									</StackPanel>
 
 									<Grid>
+
+										<!-- Material Content -->
 										<ContentPresenter x:Name="MaterialContentPresenter"
 														  Content="{TemplateBinding Content}"
 														  ContentTemplate="{TemplateBinding MaterialTemplate}"
@@ -92,6 +152,7 @@
 														  Padding="{StaticResource SampleContentPadding}"
 														  Visibility="Collapsed" />
 
+										<!-- Fluent Content -->
 										<ContentPresenter x:Name="FluentContentPresenter"
 														  Content="{TemplateBinding Content}"
 														  ContentTemplate="{TemplateBinding FluentTemplate}"
@@ -100,6 +161,7 @@
 														  Padding="{StaticResource SampleContentPadding}"
 														  Visibility="Collapsed" />
 
+										<!-- Native Content -->
 										<ContentPresenter x:Name="NativeContentPresenter"
 														  Content="{TemplateBinding Content}"
 														  ContentTemplate="{TemplateBinding NativeTemplate}"
@@ -109,30 +171,7 @@
 														  Visibility="Collapsed" />
 									</Grid>
 								</StackPanel>
-
-								<!-- Separator -->
-								<!--<Rectangle Grid.Row="1"
-									   Margin="0,24"
-									   Height="1"
-									   Fill="LightGray" />-->
-
-								<!-- Footer -->
-								<!--<Grid Grid.Row="2">
-								<Grid.ColumnDefinitions>
-									<ColumnDefinition Width="*" />
-									<ColumnDefinition Width="Auto" />
-									<ColumnDefinition Width="Auto" />
-								</Grid.ColumnDefinitions>
-
-								<TextBlock Grid.Column="0"
-										   Text="Uno Gallery" />
-								<Button Grid.Column="1"
-										Content="About" />
-								<Button Grid.Column="2"
-										Content="Feedback" />
-							</Grid>-->
 							</Grid>
-
 						</ScrollViewer>
 
 						<!-- This is the sticky tabs that appear when we scroll enough. -->
@@ -140,46 +179,94 @@
 									Background="{StaticResource MaterialBackgroundBrush}"
 									Margin="24,0"
 									Orientation="Horizontal"
-									BorderBrush="LightGray"
+									BorderBrush="{TemplateBinding BorderBrush}"
 									BorderThickness="0,0,0,1"
 									Grid.Row="1"
 									VerticalAlignment="Top"
 									HorizontalAlignment="Stretch"
 									Visibility="Collapsed">
 
+							<!-- Material RadioButton -->
 							<RadioButton x:Name="PART_StickyMaterialRadioButton"
-										 Content="Material"
-										 Margin="0,0,16,0"
+										 Style="{StaticResource SampleLayoutModeRadioButtonStyle}"
 										 Visibility="Collapsed"
-										 Style="{StaticResource SampleLayoutModeRadioButtonStyle}" />
+										 Margin="0,0,16,0">
+								<StackPanel Orientation="Horizontal">
 
+									<!-- Label -->
+									<TextBlock Text="Material"
+											   Style="{StaticResource MaterialHeadline6}" />
+
+									<!-- Icon -->
+									<Image Source="ms-appx:///Assets/MaterialIcon_Small.png"
+										   Stretch="None"
+										   Height="16"
+										   Width="16"
+										   VerticalAlignment="Center"
+										   Margin="10,0,0,0" />
+								</StackPanel>
+							</RadioButton>
+
+							<!-- Fluent RadioButton -->
 							<RadioButton x:Name="PART_StickyFluentRadioButton"
-										 Content="Fluent"
-										 Margin="0,0,16,0"
+										 Style="{StaticResource SampleLayoutModeRadioButtonStyle}"
 										 Visibility="Collapsed"
-										 Style="{StaticResource SampleLayoutModeRadioButtonStyle}" />
+										 Margin="0,0,16,0">
+								<StackPanel Orientation="Horizontal">
 
+									<!-- Label -->
+									<TextBlock Text="Fluent"
+											   Style="{StaticResource MaterialHeadline6}" />
+
+									<!-- Icon -->
+									<Image Source="ms-appx:///Assets/FluentIcon_Small.png"
+										   Stretch="None"
+										   Height="16"
+										   Width="16"
+										   VerticalAlignment="Center"
+										   Margin="10,0,0,0" />
+								</StackPanel>
+							</RadioButton>
+
+							<!-- Native RadioButton -->
 							<RadioButton x:Name="PART_StickyNativeRadioButton"
-										 Content="Native"
-										 Margin="0,0,16,0"
+										 Style="{StaticResource SampleLayoutModeRadioButtonStyle}"
 										 Visibility="Collapsed"
-										 Style="{StaticResource SampleLayoutModeRadioButtonStyle}" />
+										 Margin="0,0,16,0">
+								<StackPanel Orientation="Horizontal">
+
+									<!-- Label -->
+									<TextBlock Text="Native"
+											   Style="{StaticResource MaterialHeadline6}" />
+
+									<!-- Icon -->
+									<Image android:Source="ms-appx:///Assets/AndroidIcon_Small.png"
+										   not_android:Source="ms-appx:///Assets/AppleIcon_Small.png"
+										   Stretch="None"
+										   Width="16"
+										   VerticalAlignment="Center"
+										   Margin="10,0,0,0" />
+								</StackPanel>
+							</RadioButton>
 						</StackPanel>
 
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup x:Name="States">
+
 								<VisualState x:Name="Material">
 									<VisualState.Setters>
 										<Setter Target="MaterialContentPresenter.Visibility"
 												Value="Visible" />
 									</VisualState.Setters>
 								</VisualState>
+
 								<VisualState x:Name="Fluent">
 									<VisualState.Setters>
 										<Setter Target="FluentContentPresenter.Visibility"
 												Value="Visible" />
 									</VisualState.Setters>
 								</VisualState>
+
 								<VisualState x:Name="Native">
 									<VisualState.Setters>
 										<Setter Target="NativeContentPresenter.Visibility"

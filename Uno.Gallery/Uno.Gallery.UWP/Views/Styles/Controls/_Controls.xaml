@@ -10,6 +10,7 @@
 		<ResourceDictionary Source="Path.xaml" />
 		<ResourceDictionary Source="RadioButton.xaml" />
 		<ResourceDictionary Source="ThreeColorPaletteView.xaml" />
+		<ResourceDictionary Source="ToggleButton.xaml" />
 		<ResourceDictionary Source="XamlDisplay.xaml" />
 	</ResourceDictionary.MergedDictionaries>
 
