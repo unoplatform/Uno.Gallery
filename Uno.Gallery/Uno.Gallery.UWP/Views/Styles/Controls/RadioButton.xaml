@@ -28,7 +28,7 @@
 						  Background="{TemplateBinding Background}"
 						  HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
 						  VerticalAlignment="{TemplateBinding VerticalAlignment}"
-						  Opacity="0.4">
+						  Opacity="0.8">
 						<VisualStateManager.VisualStateGroups>
 
 							<VisualStateGroup x:Name="CommonStates">
