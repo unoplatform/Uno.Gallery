@@ -12,6 +12,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Uno.UI.Toolkit;
+using Windows.UI.Popups;
 
 namespace Uno.Gallery.Views.Samples
 {
@@ -25,24 +27,41 @@ namespace Uno.Gallery.Views.Samples
 
 		private void Button_Click(object sender, RoutedEventArgs e)
 		{
-			var messageDialog = new Windows.UI.Popups.MessageDialog("Hello world!");
+			var messageDialog = new MessageDialog("Hello world!");
 			messageDialog.ShowAsync();
 		}
 
 		private void Button_Click2(object sender, RoutedEventArgs e)
 		{
-			var messageDialog = new Windows.UI.Popups.MessageDialog("This is a very important message.", "Notice");
+			var messageDialog = new MessageDialog("This is a very important message.", "Notice");
 			messageDialog.ShowAsync();
 		}
 
 		private void Button_Click3(object sender, RoutedEventArgs e)
 		{
-			var messageDialog = new Windows.UI.Popups.MessageDialog("Are you sure you want to log out?", "Log out")
+			var messageDialog = new MessageDialog("Are you sure you want to log out?", "Log out")
 			{
 				Commands =
 				{
-					new Windows.UI.Popups.UICommand("Cancel"),
-					new Windows.UI.Popups.UICommand("Log out"),
+					new UICommand("Cancel"),
+					new UICommand("Log out"),
+				}
+			};
+			messageDialog.ShowAsync();
+		}
+
+		private void Button_Click4(object sender, RoutedEventArgs e)
+		{
+			var deleteCommand = new UICommand("Delete");
+			deleteCommand.SetDestructive(true);
+
+			var messageDialog = new MessageDialog("Are you sure you want to delete this item?", "Delete")
+			{
+				
+				Commands =
+				{
+					new UICommand("Cancel"),
+					deleteCommand,
 				}
 			};
 			messageDialog.ShowAsync();

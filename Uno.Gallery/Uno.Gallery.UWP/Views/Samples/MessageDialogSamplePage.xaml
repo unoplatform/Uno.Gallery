@@ -7,7 +7,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:Uno.Gallery.Controls"
 	xmlns:smtx="using:ShowMeTheXAML"
-	mc:Ignorable="d">
+	xmlns:ios="http://nventive.com/ios"
+	mc:Ignorable="d ios">
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 		<controls:SamplePageLayout Title="{Binding Title}"
@@ -37,6 +38,15 @@
 							<Button Content="Confirmation prompt"
 									Click="Button_Click3" />
 						</smtx:XamlDisplay>
+
+						<ios:StackPanel>
+							<smtx:XamlDisplay UniqueKey="MessageDialogSamplePage_Fluent_Destructive"
+											  smtx:XamlDisplayExtensions.Header="MessageDialog with Destructive Prompt"
+											  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
+								<Button Content="Destructive prompt"
+										Click="Button_Click4" />
+							</smtx:XamlDisplay>
+						</ios:StackPanel>
 
 					</StackPanel>
 				</DataTemplate>
