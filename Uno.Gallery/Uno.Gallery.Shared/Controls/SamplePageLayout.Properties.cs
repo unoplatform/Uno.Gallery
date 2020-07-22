@@ -106,16 +106,5 @@ namespace Uno.Gallery.Controls
 		}
 
 		#endregion
-		#region Property: Fluent
-		public object Fluent
-		{
-			get { return (object)GetValue(FluentProperty); }
-			set { SetValue(FluentProperty, value); }
-		}
-
-		// Using a DependencyProperty as the backing store for Fluent.  This enables animation, styling, binding, etc...
-		public static readonly DependencyProperty FluentProperty =
-			DependencyProperty.Register("Fluent", typeof(object), typeof(SamplePageLayout), new PropertyMetadata(null));
-		#endregion
 	}
 }

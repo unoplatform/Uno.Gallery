@@ -93,7 +93,7 @@
 														  Visibility="Collapsed" />
 
 										<ContentPresenter x:Name="FluentContentPresenter"
-														  Content="{TemplateBinding Fluent}"
+														  Content="{TemplateBinding Content}"
 														  ContentTemplate="{TemplateBinding FluentTemplate}"
 														  VerticalAlignment="Stretch"
 														  HorizontalAlignment="Stretch"
