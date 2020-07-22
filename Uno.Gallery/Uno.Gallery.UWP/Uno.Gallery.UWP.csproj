@@ -207,6 +207,9 @@
     <Compile Include="Views\Samples\TransformsSamplePage.xaml.cs">
       <DependentUpon>TransformsSamplePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Samples\WebViewSamplePage.xaml.cs">
+      <DependentUpon>WebViewSamplePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Shell.xaml.cs">
       <DependentUpon>Shell.xaml</DependentUpon>
     </Compile>
@@ -366,6 +369,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Samples\TransformsSamplePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Samples\WebViewSamplePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
