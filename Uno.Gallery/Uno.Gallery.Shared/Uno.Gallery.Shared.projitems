@@ -33,6 +33,7 @@
     <Content Include="$(MSBuildThisFileDirectory)Assets\MaterialIcon_Small.scale-100.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\MaterialIcon_Small.scale-200.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\MaterialIcon_Small.scale-300.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Post04.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\SharedAssets.md" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\UnoGalleryLogo_Dark.scale-100.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\UnoGalleryLogo_Dark.scale-200.png" />
