@@ -1,0 +1,54 @@
+steps:
+- task: gitversion/setup@0
+  inputs:
+    versionSpec: '5.0.0'
+  displayName: 'Install GitVersion'
+
+- task: gitversion/execute@0
+  inputs:
+    useConfigFile: true
+    configFilePath: 'build/gitversion.yml'
+  displayName: 'Calculate version'
+
+- task: NuGetToolInstaller@0
+  displayName: 'Install NuGet $(NUGET_VERSION)'
+  inputs:
+    versionSpec: $(NUGET_VERSION)
+    checkLatest: false
+
+- task: NuGetCommand@2
+  displayName: 'Restore solution packages'
+  inputs:
+    command: restore
+    solution: $(Build.SourcesDirectory)/$(SolutionFileName)
+    feedsToUse: 'config'
+    nugetConfigPath: 'nuget.config'
+    verbosityRestore: Normal
+    noCache: true
+
+- task: MSBuild@1
+  displayName: 'Build solution in $(ApplicationConfiguration) | $(ApplicationPlatform)'
+  inputs:
+    solution: $(Build.SourcesDirectory)/$(SolutionFileName)
+    msbuildLocationMethod: version
+    msbuildVersion: latest
+    msbuildArchitecture: x86
+    configuration: $(ApplicationConfiguration)
+    platform: $(ApplicationPlatform)
+    clean: false
+    maximumCpuCount: true
+    restoreNugetPackages: false
+    logProjectEvents: false
+    createLogFile: false
+    msbuildArguments: /p:PackageVersion=$(SemVer) # Set the version of the packages, will have no effect on application projects (Heads).
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish artifact $(ApplicationConfiguration) | $(ApplicationPlatform)'
+  inputs:
+    PathtoPublish: $(Build.ArtifactStagingDirectory)
+    ArtifactName: $(ArtifactName)
+    ArtifactType: Container
+
+- task: PostBuildCleanup@3
+  displayName: 'Post-Build cleanup :  Cleanup files to keep build server clean!'
+  condition: always()

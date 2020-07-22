@@ -1,0 +1,62 @@
+jobs: 
+- job: Publish_TestFlight_iOS
+
+  pool:
+    name: $(macOSPoolName)
+    demands:
+      - Xamarin.iOS -equals 13.16
+    
+  variables:
+  - group: apple.appstore.distribution # import all variables for certificate from the library in azure devops
+
+  steps:
+  - checkout: none
+
+  - task: DownloadBuildArtifacts@0
+    inputs:
+      buildType: current
+      downloadType: single
+      artifactName: $(iOSArtifactName)
+
+  - task: AppStoreRelease@1
+    displayName: 'Push iOS to testflight'
+    inputs:
+      serviceEndpoint: 'apple appstore connection'
+      appIdentifier: 'com.nventive.uno.gallery'
+      appType: 'iOS'
+      ipaPath: '$(PackageOutputPath)/$(iOSArtifactName)/*.ipa'
+      releaseTrack: 'TestFlight'
+      shouldSkipWaitingForProcessing: true
+      teamId: $(appleTeamId)
+      teamName: $(appleTeamName)
+ 
+- job: Publish_TestFlight_macOS
+
+  pool:
+    name: $(macOSPoolName)
+    demands:
+      - Xamarin.iOS -equals 13.16
+    
+  variables:
+  - group: apple.appstore.distribution # import all variables for certificate from the library in azure devops
+
+  steps:
+  - checkout: none
+
+  - task: DownloadBuildArtifacts@0
+    inputs:
+      buildType: current
+      downloadType: single
+      artifactName: $(macOSArtifactName)
+
+  - task: AppStoreRelease@1
+    displayName: 'Push macOS to testflight'
+    inputs:
+      serviceEndpoint: 'apple appstore connection'
+      appIdentifier: 'com.nventive.uno.gallery'
+      appType: 'macOS'
+      ipaPath: '$(PackageOutputPath)/$(macOSArtifactName)/*.pkg'
+      releaseTrack: 'TestFlight'
+      shouldSkipWaitingForProcessing: true
+      teamId: $(appleTeamId)
+      teamName: $(appleTeamName)
