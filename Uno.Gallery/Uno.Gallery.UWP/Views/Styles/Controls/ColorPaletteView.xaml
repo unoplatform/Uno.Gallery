@@ -124,7 +124,7 @@
 						</VisualStateManager.VisualStateGroups>
 
 						<TextBlock Text="{TemplateBinding Title}"
-								   Style="{StaticResource MaterialHeadline5}" />
+								   Style="{StaticResource MaterialHeadline6}" />
 
 						<TextBlock Text="{TemplateBinding Description}"
 								   Margin="0,16,0,0"
@@ -219,7 +219,7 @@
 						</VisualStateManager.VisualStateGroups>
 
 						<TextBlock Text="{TemplateBinding Title}"
-								   Style="{StaticResource MaterialHeadline5}" />
+								   Style="{StaticResource MaterialHeadline6}" />
 
 						<TextBlock Text="{TemplateBinding Description}"
 								   Margin="0,16,0,0"
