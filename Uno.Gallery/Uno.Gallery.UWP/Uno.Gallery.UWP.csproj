@@ -183,6 +183,9 @@
     <Compile Include="Views\Samples\CheckBoxSamplePage.xaml.cs">
       <DependentUpon>CheckBoxSamplePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Samples\WebViewSamplePage.xaml.cs">
+      <DependentUpon>WebViewSamplePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Shell.xaml.cs">
       <DependentUpon>Shell.xaml</DependentUpon>
     </Compile>
@@ -266,6 +269,10 @@
     <Page Include="Views\Samples\CheckBoxSamplePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Samples\WebViewSamplePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Shell.xaml">
       <Generator>MSBuild:Compile</Generator>
