@@ -37,13 +37,12 @@ namespace Uno.Gallery.Views.Samples
 
 		private void Button_Click3(object sender, RoutedEventArgs e)
 		{
-			var messageDialog = new Windows.UI.Popups.MessageDialog("What is the answer to Life, The Universe and Everything?", "Ultimate Question")
+			var messageDialog = new Windows.UI.Popups.MessageDialog("Are you sure you want to log out?", "Log out")
 			{
-				//CancelCommandIndex = 0,
 				Commands =
 				{
-					new Windows.UI.Popups.UICommand("42"),
-					new Windows.UI.Popups.UICommand("Not 42"),
+					new Windows.UI.Popups.UICommand("Cancel"),
+					new Windows.UI.Popups.UICommand("Log out"),
 				}
 			};
 			messageDialog.ShowAsync();

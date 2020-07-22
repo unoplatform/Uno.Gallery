@@ -4,6 +4,24 @@
 
 	<Color x:Key="SeparatorColor">#FFE8E8E8</Color>
 
+	<Color x:Key="Color01">#FF229DFC</Color>
+	<Color x:Key="Color02">#FF7A69F5</Color>
+	<Color x:Key="Color03">#FF6CE5AE</Color>
+	<Color x:Key="Color04">#FFF65678</Color>
+
 	<SolidColorBrush x:Key="SeparatorColorBrush"
 					 Color="{StaticResource SeparatorColor}" />
+
+	<SolidColorBrush x:Key="Color01Brush"
+					 Color="{StaticResource Color01}" />
+
+	<SolidColorBrush x:Key="Color02Brush"
+					 Color="{StaticResource Color02}" />
+
+	<SolidColorBrush x:Key="Color03Brush"
+					 Color="{StaticResource Color03}" />
+
+	<SolidColorBrush x:Key="Color04Brush"
+					 Color="{StaticResource Color04}" />
+
 </ResourceDictionary>

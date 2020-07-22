@@ -23,6 +23,7 @@
 							<Slider />
 						</smtx:XamlDisplay>
 
+						<!--Ticks are not displayed in Android and iOS issue: https://github.com/unoplatform/uno/issues/3554-->
 						<!--<smtx:XamlDisplay UniqueKey="SliderSamplePage_Native_Ticks"
 										  smtx:XamlDisplayExtensions.Header="Slider with Ticks"
 										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">

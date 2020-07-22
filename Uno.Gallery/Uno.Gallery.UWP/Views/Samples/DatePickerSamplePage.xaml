@@ -17,19 +17,12 @@
 			<controls:SamplePageLayout.NativeTemplate>
 				<DataTemplate>
 					<StackPanel>
+						<!--Confirmation/Cancel buttons are not visible in iOS issue: https://github.com/unoplatform/uno/issues/3593-->
 						<smtx:XamlDisplay UniqueKey="DatePickerSamplePage_Native_Default"
 										  smtx:XamlDisplayExtensions.Header="Default DatePicker"
 										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
 							<DatePicker />
 						</smtx:XamlDisplay>
-
-						<!--<smtx:XamlDisplay UniqueKey="DatePickerSamplePage_Native_Increment"
-										  smtx:XamlDisplayExtensions.Header="DatePicker with Format"
-										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
-							<DatePicker YearVisible="False"
-										DayFormat="{}{day.integer} {dayofweek.abbreviated}" />
-						</smtx:XamlDisplay>-->
-						
 					</StackPanel>
 				</DataTemplate>
 			</controls:SamplePageLayout.NativeTemplate>

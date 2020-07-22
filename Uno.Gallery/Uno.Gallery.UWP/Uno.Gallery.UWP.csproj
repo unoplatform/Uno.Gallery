@@ -144,9 +144,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Samples\AnimationSamplePage.xaml.cs">
-      <DependentUpon>AnimationSamplePage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\Samples\BrushSamplePage.xaml.cs">
       <DependentUpon>BrushSamplePage.xaml</DependentUpon>
     </Compile>
@@ -233,10 +230,6 @@
     <Content Include="Properties\Default.rd.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Views\Samples\AnimationSamplePage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\Samples\BrushSamplePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
