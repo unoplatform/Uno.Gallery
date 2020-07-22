@@ -19,7 +19,7 @@
 			<controls:SamplePageLayout.FluentTemplate>
 				<DataTemplate>
 					<TextBlock TextWrapping="Wrap">
-						<Run Text="A floating action button (FAB) represents the primary action of a screen."/>
+						<Run Text="A floating action button (FAB) represents the primary action of a screen." />
 						<LineBreak />
 						<Run Text="Take a look at the Material tab for examples!" />
 					</TextBlock>
@@ -32,27 +32,71 @@
 
 						<smtx:XamlDisplay UniqueKey="FabSamplePage_Material_WithIcon"
 										  smtx:XamlDisplayExtensions.Header="With Icon">
-							<Button Style="{StaticResource MaterialFabStyle}">
-								<extensions:ControlExtensions.Icon>
-									<SymbolIcon Symbol="Add" />
-								</extensions:ControlExtensions.Icon>
-							</Button>
+							<StackPanel Spacing="20">
+
+								<Button Style="{StaticResource MaterialFabStyle}">
+									<extensions:ControlExtensions.Icon>
+										<SymbolIcon Symbol="Add" />
+									</extensions:ControlExtensions.Icon>
+								</Button>
+
+								<Button Style="{StaticResource MaterialSecondaryFabStyle}">
+									<extensions:ControlExtensions.Icon>
+										<SymbolIcon Symbol="Add" />
+									</extensions:ControlExtensions.Icon>
+								</Button>
+
+								<Button Style="{StaticResource MaterialFabStyle}"
+										IsEnabled="False">
+									<extensions:ControlExtensions.Icon>
+										<SymbolIcon Symbol="Add" />
+									</extensions:ControlExtensions.Icon>
+								</Button>
+							</StackPanel>
 						</smtx:XamlDisplay>
 
 						<smtx:XamlDisplay UniqueKey="FabSamplePage_Material_WithLabel"
 										  smtx:XamlDisplayExtensions.Header="With Label">
-							<Button Content="CREATE"
-									Style="{StaticResource MaterialFabStyle}" />
+							<StackPanel Spacing="20">
+
+								<Button Content="DEFAULT"
+										Style="{StaticResource MaterialFabStyle}" />
+
+								<Button Content="SECONDARY"
+										Style="{StaticResource MaterialSecondaryFabStyle}" />
+
+								<Button Content="DISABLED"
+										Style="{StaticResource MaterialFabStyle}"
+										IsEnabled="False" />
+							</StackPanel>
 						</smtx:XamlDisplay>
 
 						<smtx:XamlDisplay UniqueKey="FabSamplePage_Material_WithIconAndLabel"
 										  smtx:XamlDisplayExtensions.Header="With Icon and Label">
-							<Button Content="CREATE"
-									Style="{StaticResource MaterialFabStyle}">
-								<extensions:ControlExtensions.Icon>
-									<SymbolIcon Symbol="Add" />
-								</extensions:ControlExtensions.Icon>
-							</Button>
+							<StackPanel Spacing="20">
+
+								<Button Content="DEFAULT"
+										Style="{StaticResource MaterialFabStyle}">
+									<extensions:ControlExtensions.Icon>
+										<SymbolIcon Symbol="Add" />
+									</extensions:ControlExtensions.Icon>
+								</Button>
+
+								<Button Content="SECONDARY"
+										Style="{StaticResource MaterialSecondaryFabStyle}">
+									<extensions:ControlExtensions.Icon>
+										<SymbolIcon Symbol="Add" />
+									</extensions:ControlExtensions.Icon>
+								</Button>
+
+								<Button Content="DISABLED"
+										Style="{StaticResource MaterialFabStyle}"
+										IsEnabled="False">
+									<extensions:ControlExtensions.Icon>
+										<SymbolIcon Symbol="Add" />
+									</extensions:ControlExtensions.Icon>
+								</Button>
+							</StackPanel>
 						</smtx:XamlDisplay>
 					</StackPanel>
 				</DataTemplate>
