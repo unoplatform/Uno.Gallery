@@ -67,5 +67,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\XamlDisplayExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\Disposable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\EnumHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\VisualTreeHelperEx.cs" />
   </ItemGroup>
 </Project>

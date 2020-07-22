@@ -1,9 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Uno.Disposables;
+using Uno.Gallery.Helpers;
 using Windows.Foundation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -215,6 +216,22 @@ namespace Uno.Gallery.Controls
 			{
 				yield return VisualTreeHelper.GetChild(dependencyObject, i);
 			}
+		}
+
+		/// <summary>
+		/// Get control inside the specified layout template.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="mode">The layout mode in which the control is defined</param>
+		/// <param name="name">The 'x:Name' of the control</param>
+		/// <returns></returns>
+		/// <remarks>The caller must ensure the control is loaded. This is best done from <see cref="FrameworkElement.Loaded"/> event.</remarks>
+		public T GetSampleChild<T>(SamplePageLayoutMode mode, string name)
+			where T : FrameworkElement
+		{
+			var presenter = (ContentPresenter)GetTemplateChild($"{mode}ContentPresenter");
+
+			return VisualTreeHelperEx.GetFirstDescendant<T>(presenter, x => x.Name == name);
 		}
 
 		private class LayoutModeMapping
