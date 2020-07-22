@@ -13,7 +13,7 @@
 							<VisualStateGroup>
 								<VisualState x:Name="Desktop">
 									<VisualState.StateTriggers>
-										<AdaptiveTrigger MinWindowWidth="720" />
+										<AdaptiveTrigger MinWindowWidth="{StaticResource DesktopAdaptiveThresholdWidth}" />
 									</VisualState.StateTriggers>
 									<VisualState.Setters>
 									</VisualState.Setters>

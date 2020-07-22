@@ -10,7 +10,12 @@
 				<material:MaterialLibraryResources />
 
 				<ResourceDictionary Source="Views/Styles/_Styles.xaml" />
+				<ResourceDictionary Source="Views/Styles/ContentPageLayout.xaml" />
 				<ResourceDictionary Source="Views/Styles/SamplePageLayout.xaml" />
+
+				<ResourceDictionary>
+					<x:Double x:Key="DesktopAdaptiveThresholdWidth">720</x:Double>
+				</ResourceDictionary>
 			</ResourceDictionary.MergedDictionaries>
 		</ResourceDictionary>
 	</Application.Resources>

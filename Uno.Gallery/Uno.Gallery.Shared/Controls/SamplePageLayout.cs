@@ -30,7 +30,7 @@ namespace Uno.Gallery.Controls
 		private const string ScrollingTabsPartName = "PART_ScrollingTabs";
 		private const string StickyTabsPartName = "PART_StickyTabs";
 		private const string ScrollViewerPartName = "PART_ScrollViewer";
-		private const string TitlePartName = "PART_Title";
+		private const string TopPartName = "PART_MobileTopBar";
 
 		private static SamplePageLayoutMode _mode = SamplePageLayoutMode.Material;
 
@@ -55,7 +55,7 @@ namespace Uno.Gallery.Controls
 		private RadioButton _stickyNativeRadioButton;
 		private FrameworkElement _scrollingTabs;
 		private FrameworkElement _stickyTabs;
-		private FrameworkElement _title;
+		private FrameworkElement _top;
 		private ScrollViewer _scrollViewer;
 
 		private readonly SerialDisposable _subscriptions = new SerialDisposable();
@@ -73,7 +73,7 @@ namespace Uno.Gallery.Controls
 			_scrollingTabs = (FrameworkElement)GetTemplateChild(ScrollingTabsPartName);
 			_stickyTabs = (FrameworkElement)GetTemplateChild(StickyTabsPartName);
 			_scrollViewer = (ScrollViewer)GetTemplateChild(ScrollViewerPartName);
-			_title = (FrameworkElement)GetTemplateChild(TitlePartName);
+			_top = (FrameworkElement)GetTemplateChild(TopPartName);
 
 			// ensure previous subscriptions is removed before adding new ones, in case OnApplyTemplate is called multiple times
 			var disposables = new CompositeDisposable();
@@ -180,7 +180,7 @@ namespace Uno.Gallery.Controls
 			return transform.TransformPoint(new Point(0, 0)).Y;
 #else
 			var transform = _scrollingTabs.TransformToVisual(this);
-			return transform.TransformPoint(new Point(0, 0)).Y - _title.ActualHeight;
+			return transform.TransformPoint(new Point(0, 0)).Y - _top.ActualHeight;
 #endif
 		}
 

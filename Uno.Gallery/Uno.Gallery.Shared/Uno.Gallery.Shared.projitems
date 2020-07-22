@@ -51,6 +51,7 @@
     <PRIResource Include="$(MSBuildThisFileDirectory)Strings\en\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\ContentPageLayout.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\SamplePageLayout.Properties.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\FromBoolToValueConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\FromNullToValueConverter.cs" />
