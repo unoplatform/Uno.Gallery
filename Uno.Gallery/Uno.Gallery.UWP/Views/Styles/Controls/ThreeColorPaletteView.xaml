@@ -2,7 +2,6 @@
 					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 					xmlns:controls="using:Uno.Gallery.Controls">
 
-	<!-- TODO #189387 Adapt the style for mobile users -->
 	<Style x:Key="DefaulThreeColorPaletteViewStyle"
 		   TargetType="controls:ThreeColorPaletteView">
 
@@ -10,6 +9,35 @@
 			<Setter.Value>
 				<ControlTemplate TargetType="controls:ThreeColorPaletteView">
 					<Grid>
+						<VisualStateManager.VisualStateGroups>
+							<VisualStateGroup>
+								<VisualState x:Name="Desktop">
+									<VisualState.StateTriggers>
+										<AdaptiveTrigger MinWindowWidth="720" />
+									</VisualState.StateTriggers>
+									<VisualState.Setters>
+									</VisualState.Setters>
+								</VisualState>
+								
+								<VisualState x:Name="Mobile">
+									<VisualState.StateTriggers>
+										<AdaptiveTrigger MinWindowWidth="0" />
+									</VisualState.StateTriggers>
+									<VisualState.Setters>
+										<Setter Target="ThirdColorPaletteView.(Grid.Row)"
+												Value="4" />
+										<Setter Target="ThirdColorPaletteView.(Grid.Column)"
+												Value="0" />
+										<Setter Target="SecondColorPaletteView.(Grid.Column)"
+												Value="0" />
+										<Setter Target="ThirdColorPaletteView.(Grid.ColumnSpan)"
+												Value="2" />
+										<Setter Target="SecondColorPaletteView.(Grid.ColumnSpan)"
+												Value="2" />
+									</VisualState.Setters>
+								</VisualState>								
+							</VisualStateGroup>
+						</VisualStateManager.VisualStateGroups>
 
 						<Grid.ColumnDefinitions>
 							<ColumnDefinition Width="*" />
@@ -20,39 +48,43 @@
 							<RowDefinition Height="auto" />
 							<RowDefinition Height="auto" />
 							<RowDefinition Height="auto" />
-							<RowDefinition Height="44" />
+							<RowDefinition Height="auto" />
+							<RowDefinition Height="auto" />
 						</Grid.RowDefinitions>
 
 						<TextBlock Text="{TemplateBinding Title}"
 								   Grid.ColumnSpan="2"
-						   Style="{StaticResource MaterialHeadline4}" />
+								   Style="{StaticResource MaterialHeadline4}" />
 
 						<TextBlock Text="{TemplateBinding Description}"
 								   Margin="0,16,0,0"
 								   Grid.Row="1"
 								   Grid.ColumnSpan="2"
-						   Style="{StaticResource MaterialBody1}" />
+								   Style="{StaticResource MaterialBody1}" />
 
-						<controls:ColorPaletteView ColorName="{TemplateBinding FirstColorName}"
+						<controls:ColorPaletteView x:Name="FirstColorPaletteView"
+												   ColorName="{TemplateBinding FirstColorName}"
 												   ColorBrush="{TemplateBinding FirstColorBrush}"
-												   Foreground="{TemplateBinding FirstColorForeground}"
-												   Style="{StaticResource SimpleColorPaletteViewStyle}"
+												   OnColorBrush="{TemplateBinding FirstColorForeground}"
+												   Style="{StaticResource BiggerSimpleColorPaletteViewStyle}"
 												   VerticalContentAlignment="Bottom"
 												   Height="88"
 												   Margin="0,28,0,0"
 												   Grid.Row="2"
 												   Grid.ColumnSpan="2" />
 
-						<controls:ColorPaletteView ColorName="{TemplateBinding SecondColorName}"
+						<controls:ColorPaletteView x:Name="SecondColorPaletteView"
+												   ColorName="{TemplateBinding SecondColorName}"
 												   ColorBrush="{TemplateBinding SecondColorBrush}"
-												   Foreground="{TemplateBinding SecondColorForeground}"
-												   Style="{StaticResource SimpleColorPaletteViewStyle}"
+												   OnColorBrush="{TemplateBinding SecondColorForeground}"
+												   Height="64"
 												   Grid.Row="3" />
 
-						<controls:ColorPaletteView ColorName="{TemplateBinding ThirdColorName}"
+						<controls:ColorPaletteView x:Name="ThirdColorPaletteView"
+												   ColorName="{TemplateBinding ThirdColorName}"
 												   ColorBrush="{TemplateBinding ThirdColorBrush}"
-												   Foreground="{TemplateBinding ThirdColorForeground}"
-												   Style="{StaticResource SimpleColorPaletteViewStyle}"
+												   OnColorBrush="{TemplateBinding ThirdColorForeground}"
+												   Height="64"
 												   Grid.Row="3"
 												   Grid.Column="1" />
 					</Grid>

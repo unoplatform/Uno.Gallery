@@ -1,0 +1,75 @@
+﻿<Page x:Class="Uno.Gallery.Views.Samples.BottomNavigationBarSamplePage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:local="using:Uno.Gallery.Views.Samples"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  xmlns:controls="using:Uno.Gallery.Controls"
+	  xmlns:entities="using:Uno.Material.Entities"
+	  xmlns:extensions="using:Uno.Gallery.Extensions"
+	  xmlns:material="using:Uno.Material.Controls"
+	  xmlns:smtx="using:ShowMeTheXAML"
+	  xmlns:todo="what should be done"
+	  mc:Ignorable="d todo"
+	  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<controls:SamplePageLayout Title="{Binding Title}"
+								   Description="{Binding Description}"
+								   Source="{Binding Source}">
+			<controls:SamplePageLayout.MaterialTemplate>
+				<DataTemplate>
+
+					<!-- Default Style -->
+					<smtx:XamlDisplay UniqueKey="BottomNavigationBarSamplePage_Default"
+									  smtx:XamlDisplayExtensions.Header="Default Style">
+						<material:BottomNavigationBar>
+							<material:BottomNavigationBar.Items>
+								
+								<material:BottomNavigationBarItem Label="Favorites">
+									<material:BottomNavigationBarItem.Icon>
+										<SymbolIcon Symbol="Favorite" />
+									</material:BottomNavigationBarItem.Icon>
+								</material:BottomNavigationBarItem>
+
+								<material:BottomNavigationBarItem Label="Search">
+									<material:BottomNavigationBarItem.Icon>
+										<SymbolIcon Symbol="Find" />
+									</material:BottomNavigationBarItem.Icon>
+								</material:BottomNavigationBarItem>
+								
+								<material:BottomNavigationBarItem>
+									<material:BottomNavigationBarItem.Icon>
+										<SymbolIcon Symbol="Globe" />
+									</material:BottomNavigationBarItem.Icon>
+									<material:BottomNavigationBarItem.Badge>
+										<entities:BottomNavigationBarBadge IsVisible="True" />
+									</material:BottomNavigationBarItem.Badge>
+								</material:BottomNavigationBarItem>
+
+								<material:BottomNavigationBarItem Label="Notifications">
+									<material:BottomNavigationBarItem.Icon>
+										<SymbolIcon Symbol="Flag" />
+									</material:BottomNavigationBarItem.Icon>
+									<material:BottomNavigationBarItem.Badge>
+										<entities:BottomNavigationBarBadge IsVisible="True"
+																		   Text="12" />
+									</material:BottomNavigationBarItem.Badge>
+								</material:BottomNavigationBarItem>
+
+								<material:BottomNavigationBarItem>
+									<material:BottomNavigationBarItem.Icon>
+										<SymbolIcon Symbol="Setting" />
+									</material:BottomNavigationBarItem.Icon>
+								</material:BottomNavigationBarItem>
+
+							</material:BottomNavigationBar.Items>
+						</material:BottomNavigationBar>
+					</smtx:XamlDisplay>
+
+				</DataTemplate>
+			</controls:SamplePageLayout.MaterialTemplate>
+			s
+		</controls:SamplePageLayout>
+	</Grid>
+</Page>

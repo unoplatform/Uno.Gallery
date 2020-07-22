@@ -4,6 +4,8 @@ using System;
 using Uno.Gallery.Controls;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
+using Windows.Foundation;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -35,12 +37,10 @@ namespace Uno.Gallery
 		/// <param name="e">Details about the launch request and process.</param>
 		protected override void OnLaunched(LaunchActivatedEventArgs e)
 		{
-#if DEBUG
-			if (System.Diagnostics.Debugger.IsAttached)
-			{
-				// this.DebugSettings.EnableFrameRateCounter = true;
-			}
+#if WINDOWS_UWP
+			ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(320, 568)); // (size of the iPhone SE)
 #endif
+
 			var shell = GetShell();
 			AddNavigationItems(shell);
 			AddSettingsItem(shell);
@@ -85,6 +85,12 @@ namespace Uno.Gallery
 				DataContext = NavigationItemType.MaterialPalette
 			});
 
+			navigationView.MenuItems.Add(new NavigationViewItem()
+			{
+				Content = "Palette for Fluent",
+				DataContext = NavigationItemType.FluentPalette
+			});
+
 			navigationView.MenuItems.Add(new NavigationViewItemSeparator());
 
 			foreach (var sample in SamplePageAttribute.GetAllSamples())
@@ -121,6 +127,9 @@ namespace Uno.Gallery
 						{
 							case NavigationItemType.MaterialPalette:
 								page = new MaterialPalettePage();
+								break;
+							case NavigationItemType.FluentPalette:
+								page = new FluentPalettePage();
 								break;
 							case NavigationItemType.Home:
 								page = new HomeSamplePage();

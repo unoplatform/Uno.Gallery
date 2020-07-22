@@ -1,11 +1,11 @@
 ﻿<Page x:Class="Uno.Gallery.Views.Samples.TextBoxSamplePage"
 	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	  xmlns:controls="using:Uno.Gallery.Controls"
-	  xmlns:gallery="using:Uno.Gallery"
-	  xmlns:smtx="using:ShowMeTheXAML"
 	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  xmlns:controls="using:Uno.Gallery.Controls"
+	  xmlns:extensions="using:Uno.Material.Extensions"
+	  xmlns:smtx="using:ShowMeTheXAML"
 	  mc:Ignorable="d"
 	  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -56,37 +56,53 @@
 						<!-- Default -->
 						<smtx:XamlDisplay UniqueKey="TextBoxSamplePage_Material_Default"
 										  smtx:XamlDisplayExtensions.Header="Default"
-										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
-							<TextBox PlaceholderText="Default"
-									 Style="{StaticResource MaterialFilledTextBoxStyle}" />
-						</smtx:XamlDisplay>
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+							<StackPanel Spacing="16">
 
-						<!-- TexBox Disabled -->
-						<smtx:XamlDisplay UniqueKey="TextBoxSamplePage_Material_Disabled"
-										  smtx:XamlDisplayExtensions.Header="Disabled"
-										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
-							<TextBox PlaceholderText="Disabled"
-									 Style="{StaticResource MaterialFilledTextBoxStyle}"
-									 IsEnabled="False" />
+								<TextBox PlaceholderText="Default"
+										 Style="{StaticResource MaterialFilledTextBoxStyle}" />
+								<TextBox PlaceholderText="With Icon"
+										 Style="{StaticResource MaterialFilledTextBoxStyle}">
+									<extensions:ControlExtensions.Icon>
+										<SymbolIcon Symbol="Character" />
+									</extensions:ControlExtensions.Icon>
+								</TextBox>
+								<TextBox PlaceholderText="Disabled"
+										 IsEnabled="False"
+										 Style="{StaticResource MaterialFilledTextBoxStyle}" />
+
+							</StackPanel>
 						</smtx:XamlDisplay>
 
 						<!-- TexBox Outline -->
 						<smtx:XamlDisplay UniqueKey="TextBoxSamplePage_Material_Outline"
 										  smtx:XamlDisplayExtensions.Header="Outline"
-										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
-							<TextBox PlaceholderText="Outline"
-									 Header="Header"
-									 Style="{StaticResource MaterialOutlinedTextBoxStyle}" />
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+							<StackPanel Spacing="16">
+
+								<TextBox PlaceholderText="Outline"
+										 Style="{StaticResource MaterialOutlinedTextBoxStyle}" />
+								<TextBox PlaceholderText="With Icon"
+										 Style="{StaticResource MaterialOutlinedTextBoxStyle}">
+									<extensions:ControlExtensions.Icon>
+										<SymbolIcon Symbol="Character" />
+									</extensions:ControlExtensions.Icon>
+								</TextBox>
+								<TextBox PlaceholderText="Outline Disabled"
+										 IsEnabled="False"
+										 Style="{StaticResource MaterialOutlinedTextBoxStyle}" />
+
+							</StackPanel>
 						</smtx:XamlDisplay>
 
-						<!-- TexBox MultiLine -->
+						<!-- TextBox MultiLine -->
 						<smtx:XamlDisplay UniqueKey="TextBoxSamplePage_Material_Multiline"
 										  smtx:XamlDisplayExtensions.Header="Multiline"
 										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
 							<TextBox Text="Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet. Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant."
-									 Style="{StaticResource MaterialFilledTextBoxStyle}"
 									 TextWrapping="Wrap"
-									 AcceptsReturn="True" />
+									 AcceptsReturn="True"
+									 Style="{StaticResource MaterialFilledTextBoxStyle}" />
 						</smtx:XamlDisplay>
 					</StackPanel>
 				</DataTemplate>

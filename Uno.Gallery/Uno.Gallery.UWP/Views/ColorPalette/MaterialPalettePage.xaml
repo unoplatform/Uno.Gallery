@@ -8,7 +8,7 @@
 	  mc:Ignorable="d">
 
 	<Page.Resources>
-
+		
 		<Style x:Key="ActionMaterialPrimaryButtonSample"
 			   TargetType="Button">
 
@@ -42,10 +42,10 @@
 							</Grid.ColumnDefinitions>
 
 							<Path Fill="{StaticResource MaterialOnPrimaryBrush}"
+								  Data="{StaticResource SendPalettePath}"
 								  Width="24"
 								  Height="24"
-								  Margin="16,0,4,0"
-								  Data="M2.01 21L23 12 2.01 3 2 10 17 12 2 14z" />
+								  Margin="16,0,4,0" />
 
 							<ContentPresenter Content="{TemplateBinding Content}"
 											  ContentTemplate="{TemplateBinding ContentTemplate}"
@@ -90,10 +90,10 @@
 							</Grid.ColumnDefinitions>
 
 							<Path Fill="{StaticResource MaterialOnSecondaryBrush}"
+								  Data="{StaticResource SendPalettePath}"
 								  Width="24"
 								  Height="24"
-								  Margin="16,0,4,0"
-								  Data="M2.01 21L23 12 2.01 3 2 10 17 12 2 14z" />
+								  Margin="16,0,4,0" />
 
 							<ContentPresenter Content="{TemplateBinding Content}"
 											  ContentTemplate="{TemplateBinding ContentTemplate}"
@@ -134,7 +134,7 @@
 				   Height="1"
 				   Margin="48,32,48,0"
 				   Grid.Row="2" />
-		
+
 		<!-- TODO #189549 Include the Table of content here -->
 
 		<ScrollViewer Grid.Row="3">
@@ -186,7 +186,7 @@
 
 				<controls:ColorPaletteView ColorName="Background"
 										   ColorBrush="{StaticResource MaterialBackgroundBrush}"
-										   Foreground="{StaticResource MaterialOnBackgroundBrush}"
+										   OnColorBrush="{StaticResource MaterialOnBackgroundBrush}"
 										   Description="Appears behind scrollable content."
 										   Style="{StaticResource ColorPaletteWithBottomDescriptionViewStyle}"
 										   BorderBrush="{StaticResource MaterialOnSurfaceFocusedBrush}"
@@ -196,7 +196,7 @@
 
 				<controls:ColorPaletteView ColorName="Surface"
 										   ColorBrush="{StaticResource MaterialSurfaceBrush}"
-										   Foreground="{StaticResource MaterialOnSurfaceBrush}"
+										   OnColorBrush="{StaticResource MaterialOnSurfaceBrush}"
 										   Description="Affects surfaces of components such as cards and news."
 										   Style="{StaticResource ColorPaletteWithBottomDescriptionViewStyle}"
 										   BorderBrush="{StaticResource MaterialOnSurfaceFocusedBrush}"
@@ -206,7 +206,7 @@
 
 				<controls:ColorPaletteView ColorName="Error"
 										   ColorBrush="{StaticResource MaterialErrorBrush}"
-										   Foreground="{StaticResource MaterialOnErrorBrush}"
+										   OnColorBrush="{StaticResource MaterialOnErrorBrush}"
 										   Description="Indicate errors in components."
 										   Style="{StaticResource ColorPaletteWithBottomDescriptionViewStyle}"
 										   ColorHeight="88"
@@ -231,7 +231,8 @@
 										   ColorName="OnPrimary Color"
 										   ColorSecondaryName="Primary Color"
 										   ColorBrush="{StaticResource MaterialPrimaryBrush}"
-										   Foreground="{StaticResource MaterialOnPrimaryBrush}"
+										   OnColorBrush="{StaticResource MaterialOnPrimaryBrush}"
+										   Style="{StaticResource InvertedColorPaletteViewStyle}"
 										   Margin="0,48,0,0" />
 
 				<StackPanel Orientation="Horizontal"
@@ -251,7 +252,8 @@
 										   ColorName="OnSecondary Color"
 										   ColorSecondaryName="Secondary Color"
 										   ColorBrush="{StaticResource MaterialSecondaryBrush}"
-										   Foreground="{StaticResource MaterialOnSecondaryBrush}"
+										   OnColorBrush="{StaticResource MaterialOnSecondaryBrush}"
+										   Style="{StaticResource InvertedColorPaletteViewStyle}"
 										   Margin="0,48,0,0" />
 
 				<StackPanel Orientation="Horizontal"
@@ -271,18 +273,19 @@
 										   ColorName="OnBackground Color"
 										   ColorSecondaryName="Background Color"
 										   ColorBrush="{StaticResource MaterialBackgroundBrush}"
-										   Foreground="{StaticResource MaterialOnBackgroundBrush}"
+										   OnColorBrush="{StaticResource MaterialOnBackgroundBrush}"
 										   BorderBrush="{StaticResource MaterialOnSurfaceFocusedBrush}"
+										   Style="{StaticResource InvertedColorPaletteViewStyle}"
 										   BorderThickness="1"
 										   Margin="0,48,0,0" />
 
-				<!-- In the desktop version, there's a drop shadow for this Color palette, but not on the mobile version. #189387 -->
 				<controls:ColorPaletteView Title="OnSurface"
 										   Description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore."
 										   ColorName="OnSurfaceColor"
 										   ColorSecondaryName="Surface Color"
 										   ColorBrush="{StaticResource MaterialSurfaceBrush}"
-										   Foreground="{StaticResource MaterialOnSurfaceBrush}"
+										   OnColorBrush="{StaticResource MaterialOnSurfaceBrush}"
+										   Style="{StaticResource InvertedColorPaletteViewStyleWithElevatedView}"
 										   Margin="0,48,0,0" />
 
 				<controls:ColorPaletteView Title="OnError"
@@ -290,7 +293,8 @@
 										   ColorName="OnError"
 										   ColorSecondaryName="Error Color"
 										   ColorBrush="{StaticResource MaterialErrorBrush}"
-										   Foreground="{StaticResource MaterialOnErrorBrush}"
+										   OnColorBrush="{StaticResource MaterialOnErrorBrush}"
+										   Style="{StaticResource InvertedColorPaletteViewStyle}"
 										   Margin="0,48,0,0" />
 
 				<!-- Separator -->
@@ -298,11 +302,10 @@
 						   Height="1"
 						   Margin="0,48" />
 
-				<!-- TODO #189478 Add rediection command to Google material Color docs -->
 				<TextBlock Style="{StaticResource MaterialBody1}">
 					<Run Text="For more information refer to" />
 					
-					<Hyperlink>
+					<Hyperlink NavigateUri="https://material.io/design/color/the-color-system.html#color-usage-and-palettes">
 						<Run Text="Google's Material Color System." />
 					</Hyperlink>
 				</TextBlock>

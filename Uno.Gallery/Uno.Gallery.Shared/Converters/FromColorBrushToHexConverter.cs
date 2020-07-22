@@ -16,17 +16,22 @@ namespace Uno.Gallery.Converters
 
 		public object Convert(object value, Type targetType, object parameter, string language)
 		{
+			return GetHexName(value);
+		}		
+
+		public object ConvertBack(object value, Type targetType, object parameter, string language)
+		{
+			throw new NotImplementedException();
+		}
+		
+		public static string GetHexName(object value)
+		{
 			if (value is SolidColorBrush brush)
 			{
 				return "#" + brush.Color.R.ToString(HexadecimalStringFormat) + brush.Color.G.ToString(HexadecimalStringFormat) + brush.Color.B.ToString(HexadecimalStringFormat);
 			}
 
 			return string.Empty;
-		}
-
-		public object ConvertBack(object value, Type targetType, object parameter, string language)
-		{
-			throw new NotImplementedException();
 		}
 	}
 }
