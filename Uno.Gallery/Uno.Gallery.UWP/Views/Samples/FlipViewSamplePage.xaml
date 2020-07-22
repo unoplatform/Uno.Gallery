@@ -14,18 +14,82 @@
 								   Description="{Binding Description}"
 								   Source="{Binding Source}">
 
-			<controls:SamplePageLayout.FluentTemplate>
-				<DataTemplate>
-					<StackPanel>
-						<smtx:XamlDisplay UniqueKey="FlipViewSamplePage_Fluent_Default"
-										  smtx:XamlDisplayExtensions.Header="Default FlipView"
+			<controls:SamplePageLayout.Fluent>
+				<StackPanel>
+					<smtx:XamlDisplay UniqueKey="FlipViewSamplePage_Fluent_Default"
+										  smtx:XamlDisplayExtensions.Header="FlipView"
 										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
-							<DatePicker />
-						</smtx:XamlDisplay>
+						<FlipView x:Name="flipView"
+									  SelectedIndex="0">
+							<FlipViewItem>
+								<Grid Background="Red">
+									<Grid.RowDefinitions>
+										<RowDefinition Height="*" />
+										<RowDefinition Height="Auto" />
+										<RowDefinition Height="*" />
+										<RowDefinition Height="100" />
+									</Grid.RowDefinitions>
+									<TextBlock Grid.Row="1"
+												   Foreground="White"
+												   HorizontalAlignment="Center"
+												   VerticalAlignment="Bottom"
+												   FontSize="30"
+												   Text="Item 1" />
+								</Grid>
+							</FlipViewItem>
+							<FlipViewItem>
+								<Grid Background="Blue">
+									<Grid.RowDefinitions>
+										<RowDefinition Height="*" />
+										<RowDefinition Height="Auto" />
+										<RowDefinition Height="*" />
+										<RowDefinition Height="100" />
+									</Grid.RowDefinitions>
+									<TextBlock Grid.Row="1"
+												   Foreground="White"
+												   HorizontalAlignment="Center"
+												   VerticalAlignment="Bottom"
+												   FontSize="30"
+												   Text="Item 2" />
+								</Grid>
+							</FlipViewItem>
+							<FlipViewItem>
+								<Grid Background="Green">
+									<Grid.RowDefinitions>
+										<RowDefinition Height="*" />
+										<RowDefinition Height="Auto" />
+										<RowDefinition Height="*" />
+										<RowDefinition Height="100" />
+									</Grid.RowDefinitions>
+									<TextBlock Grid.Row="1"
+												   Foreground="White"
+												   HorizontalAlignment="Center"
+												   VerticalAlignment="Bottom"
+												   FontSize="30"
+												   Text="Item 3" />
+								</Grid>
+							</FlipViewItem>
+							<FlipViewItem>
+								<Grid Background="Yellow">
+									<Grid.RowDefinitions>
+										<RowDefinition Height="*" />
+										<RowDefinition Height="Auto" />
+										<RowDefinition Height="*" />
+										<RowDefinition Height="100" />
+									</Grid.RowDefinitions>
+									<TextBlock Grid.Row="1"
+												   Foreground="White"
+												   HorizontalAlignment="Center"
+												   VerticalAlignment="Bottom"
+												   FontSize="30"
+												   Text="Item 4" />
+								</Grid>
+							</FlipViewItem>
+						</FlipView>
+					</smtx:XamlDisplay>
 
-					</StackPanel>
-				</DataTemplate>
-			</controls:SamplePageLayout.FluentTemplate>
+				</StackPanel>
+			</controls:SamplePageLayout.Fluent>
 		</controls:SamplePageLayout>
 	</Grid>
 </Page>
