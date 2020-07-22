@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Uno.Disposables;
+using Uno.Gallery.Helpers;
 using Windows.Foundation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -161,7 +162,7 @@ namespace Uno.Gallery.Controls
 			if (current != null)
 			{
 				current.RadioButton.IsChecked = true;
-				current.StickyRadioButton.IsChecked = true;				
+				current.StickyRadioButton.IsChecked = true;
 
 				VisualStateManager.GoToState(this, current.VisualStateName, useTransitions: true);
 			}
@@ -171,7 +172,7 @@ namespace Uno.Gallery.Controls
 		{
 #if NETFX_CORE
 			// On UWP we can count on finding a ScrollContentPresenter. 
-			var scp = FindFirstChild<ScrollContentPresenter>(_scrollViewer);
+			var scp = VisualTreeHelperEx.GetFirstDescendant<ScrollContentPresenter>(_scrollViewer);
 			var content = scp?.Content as FrameworkElement;
 			var transform = _scrollingTabs.TransformToVisual(content);
 			return transform.TransformPoint(new Point(0, 0)).Y - _scrollViewer.VerticalOffset;
@@ -184,37 +185,20 @@ namespace Uno.Gallery.Controls
 #endif
 		}
 
-		private static TView FindFirstChild<TView>(DependencyObject dependencyObject)
+		/// <summary>
+		/// Get control inside the specified layout template.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="mode">The layout mode in which the control is defined</param>
+		/// <param name="name">The 'x:Name' of the control</param>
+		/// <returns></returns>
+		/// <remarks>The caller must ensure the control is loaded. This is best done from <see cref="FrameworkElement.Loaded"/> event.</remarks>
+		public T GetSampleChild<T>(SamplePageLayoutMode mode, string name)
+			where T : FrameworkElement
 		{
-			return InnerFindFirstChild<TView>(new[] { dependencyObject });
-		}
+			var presenter = (ContentPresenter)GetTemplateChild($"{mode}ContentPresenter");
 
-		private static T InnerFindFirstChild<T>(IEnumerable<DependencyObject> elements)
-		{
-			if (!elements.Any())
-			{
-				return default(T);
-			}
-			else
-			{
-				var result = elements.OfType<T>().FirstOrDefault();
-				if (Equals(result, default(T)))
-				{
-					return InnerFindFirstChild<T>(elements.SelectMany(GetChildren));
-				}
-
-				return result;
-			}
-		}
-
-		public static IEnumerable<DependencyObject> GetChildren(DependencyObject dependencyObject)
-		{
-			var count = VisualTreeHelper.GetChildrenCount(dependencyObject);
-
-			for (int i = 0; i < count; i++)
-			{
-				yield return VisualTreeHelper.GetChild(dependencyObject, i);
-			}
+			return VisualTreeHelperEx.GetFirstDescendant<T>(presenter, x => x.Name == name);
 		}
 
 		private class LayoutModeMapping
