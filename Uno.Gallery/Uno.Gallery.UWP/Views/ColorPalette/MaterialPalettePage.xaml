@@ -8,7 +8,7 @@
 	  mc:Ignorable="d">
 
 	<Page.Resources>
-		
+
 		<Style x:Key="ActionMaterialPrimaryButtonSample"
 			   TargetType="Button">
 
@@ -110,35 +110,11 @@
 		</Style>
 	</Page.Resources>
 
-	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-		  Margin="0,48,0,0">
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-		<Grid.RowDefinitions>
-			<RowDefinition Height="auto" />
-			<RowDefinition Height="auto" />
-			<RowDefinition Height="auto" />
-			<RowDefinition Height="*" />
-		</Grid.RowDefinitions>
-
-		<TextBlock Text="Palette for Material"
-				   Style="{StaticResource MaterialHeadline4}"
-				   Margin="48,0" />
-
-		<TextBlock Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore."
-				   Style="{StaticResource MaterialSubtitle1}"
-				   Margin="48,15,48,0"
-				   Grid.Row="1" />
-
-		<!-- Separator -->
-		<Rectangle Fill="{StaticResource SeparatorColorBrush}"
-				   Height="1"
-				   Margin="48,32,48,0"
-				   Grid.Row="2" />
-
-		<!-- TODO #189549 Include the Table of content here -->
-
-		<ScrollViewer Grid.Row="3">
-			<StackPanel Padding="48,40,48,48">
+		<controls:ContentPageLayout Title="Material Palette"
+									Description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.">			
+			<StackPanel>
 
 				<!-- Primary colors section -->
 				<controls:ThreeColorPaletteView Title="Primary Colors"
@@ -310,6 +286,6 @@
 					</Hyperlink>
 				</TextBlock>
 			</StackPanel>
-		</ScrollViewer>
+		</controls:ContentPageLayout>
 	</Grid>
 </Page>

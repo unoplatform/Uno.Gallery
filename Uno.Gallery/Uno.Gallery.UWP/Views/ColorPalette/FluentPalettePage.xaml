@@ -21,27 +21,11 @@
 		</Style>
 	</Page.Resources>
 
-	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-		  Margin="0,48,0,0">
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-		<Grid.RowDefinitions>
-			<RowDefinition Height="auto" />
-			<RowDefinition Height="auto" />
-			<RowDefinition Height="*" />
-		</Grid.RowDefinitions>
-
-		<TextBlock Text="Palette for Fluent"
-				   Style="{StaticResource MaterialHeadline4}"
-				   Margin="48,0" />
-
-		<!-- Separator -->
-		<Rectangle Fill="{StaticResource SeparatorColorBrush}"
-				   Height="1"
-				   Margin="48,32,48,0"
-				   Grid.Row="1" />
-
-		<ScrollViewer Grid.Row="2">
-			<StackPanel Padding="48,40,48,48">
+		<controls:ContentPageLayout Title="Fluent Palette">
+			
+			<StackPanel>
 				<TextBlock Style="{StaticResource MaterialSubtitle1}"
 						   Margin="0,0,0,48">
 					<Run Text="Here's an overview of the Fluent Design color palette." />
@@ -212,6 +196,6 @@
 					</Hyperlink>
 				</TextBlock>
 			</StackPanel>
-		</ScrollViewer>
+		</controls:ContentPageLayout>
 	</Grid>
 </Page>

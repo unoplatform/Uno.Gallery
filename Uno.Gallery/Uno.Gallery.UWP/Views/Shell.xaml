@@ -15,6 +15,7 @@
 		<NavigationView x:Name="NavigationViewControl"
 						Style="{StaticResource MaterialNoCompactMenuNavigationViewStyle}"
 						OpenPaneLength="220"
+						ExpandedModeThresholdWidth="{StaticResource DesktopAdaptiveThresholdWidth}"
 						IsBackButtonVisible="Collapsed"
 						IsBackEnabled="False"
 						IsTabStop="False"
