@@ -18,15 +18,13 @@
 				<DataTemplate>
 					<StackPanel>
 						<smtx:XamlDisplay UniqueKey="SliderSamplePage_Native_Default"
-										  smtx:XamlDisplayExtensions.Header="Default Slider"
-										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
+										  smtx:XamlDisplayExtensions.Header="Default Slider">
 							<Slider />
 						</smtx:XamlDisplay>
 
 						<!--Ticks are not displayed in Android and iOS issue: https://github.com/unoplatform/uno/issues/3554-->
 						<!--<smtx:XamlDisplay UniqueKey="SliderSamplePage_Native_Ticks"
-										  smtx:XamlDisplayExtensions.Header="Slider with Ticks"
-										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
+										  smtx:XamlDisplayExtensions.Header="Slider with Ticks"">
 							<Slider TickFrequency="10"
 									TickPlacement="Outside"
 									Minimum="0"

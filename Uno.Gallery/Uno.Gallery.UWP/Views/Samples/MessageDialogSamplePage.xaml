@@ -19,30 +19,26 @@
 				<DataTemplate>
 					<StackPanel>
 						<smtx:XamlDisplay UniqueKey="MessageDialogSamplePage_Fluent_Default"
-										  smtx:XamlDisplayExtensions.Header="Default MessageDialog"
-										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
+										  smtx:XamlDisplayExtensions.Header="Default MessageDialog">
 							<Button Content="Content only"
 									Click="Button_Click" />
 						</smtx:XamlDisplay>
 
 						<smtx:XamlDisplay UniqueKey="MessageDialogSamplePage_Fluent_Title"
-										  smtx:XamlDisplayExtensions.Header="MessageDialog with Title"
-										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
+										  smtx:XamlDisplayExtensions.Header="MessageDialog with Title">
 							<Button Content="Content and Title"
 									Click="Button_Click2" />
 						</smtx:XamlDisplay>
 
 						<smtx:XamlDisplay UniqueKey="MessageDialogSamplePage_Fluent_Prompt"
-										  smtx:XamlDisplayExtensions.Header="MessageDialog with Prompt"
-										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
+										  smtx:XamlDisplayExtensions.Header="MessageDialog with Prompt">
 							<Button Content="Confirmation prompt"
 									Click="Button_Click3" />
 						</smtx:XamlDisplay>
 
 						<ios:StackPanel>
 							<smtx:XamlDisplay UniqueKey="MessageDialogSamplePage_Fluent_Destructive"
-											  smtx:XamlDisplayExtensions.Header="MessageDialog with Destructive Prompt"
-											  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
+											  smtx:XamlDisplayExtensions.Header="MessageDialog with Destructive Prompt">
 								<Button Content="Destructive prompt"
 										Click="Button_Click4" />
 							</smtx:XamlDisplay>

@@ -18,8 +18,7 @@
 				<DataTemplate>
 					<StackPanel>
 						<smtx:XamlDisplay UniqueKey="PanelSamplePage_Fluent_StackPanel"
-										  smtx:XamlDisplayExtensions.Header="StackPanel"
-										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
+										  smtx:XamlDisplayExtensions.Header="StackPanel">
 							<StackPanel HorizontalAlignment="Left"
 										Orientation="Horizontal">
 								<Rectangle Fill="{StaticResource Color01Brush}"
@@ -38,8 +37,7 @@
 						</smtx:XamlDisplay>
 
 						<smtx:XamlDisplay UniqueKey="PanelSamplePage_Fluent_Grid"
-										  smtx:XamlDisplayExtensions.Header="Grid"
-										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
+										  smtx:XamlDisplayExtensions.Header="Grid">
 							<Grid HorizontalAlignment="Left">
 								<Grid.RowDefinitions>
 									<RowDefinition Height="50" />
@@ -61,8 +59,7 @@
 						</smtx:XamlDisplay>
 
 						<smtx:XamlDisplay UniqueKey="PanelSamplePage_Fluent_Canvas"
-										  smtx:XamlDisplayExtensions.Header="Canvas"
-										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
+										  smtx:XamlDisplayExtensions.Header="Canvas">
 							<Canvas HorizontalAlignment="Left"
 									Width="120"
 									Height="120">
@@ -88,8 +85,7 @@
 						</smtx:XamlDisplay>
 
 						<smtx:XamlDisplay UniqueKey="PanelSamplePage_Fluent_RelativePanel"
-										  smtx:XamlDisplayExtensions.Header="RelativePanel"
-										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
+										  smtx:XamlDisplayExtensions.Header="RelativePanel">
 							<RelativePanel HorizontalAlignment="Left"
 										   Width="200">
 								<Rectangle x:Name="Blue"

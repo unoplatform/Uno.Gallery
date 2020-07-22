@@ -19,8 +19,7 @@
 					<StackPanel>
 						<!--Confirmation/Cancel buttons are not visible in iOS issue: https://github.com/unoplatform/uno/issues/3593-->
 						<smtx:XamlDisplay UniqueKey="DatePickerSamplePage_Native_Default"
-										  smtx:XamlDisplayExtensions.Header="Default DatePicker"
-										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
+										  smtx:XamlDisplayExtensions.Header="Default DatePicker">
 							<DatePicker />
 						</smtx:XamlDisplay>
 					</StackPanel>

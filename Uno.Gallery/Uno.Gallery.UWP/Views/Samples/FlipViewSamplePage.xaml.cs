@@ -21,18 +21,6 @@ namespace Uno.Gallery.Views.Samples
 		public FlipViewSamplePage()
 		{
 			this.InitializeComponent();
-
-			// TODO: Workaround because FlipView doesn't stretch vertically on Android
-#if __ANDROID__
-			//void SyncSize()
-			//{
-			//	flipView.Height = ActualHeight;
-			//	flipView.Width = ActualWidth;
-			//}
-
-			//SizeChanged += (s, e) => SyncSize();
-			//SyncSize();
-#endif
 		}
 	}
 }

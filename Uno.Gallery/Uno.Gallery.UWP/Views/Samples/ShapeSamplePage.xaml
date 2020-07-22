@@ -18,8 +18,7 @@
 				<DataTemplate>
 					<StackPanel>
 						<smtx:XamlDisplay UniqueKey="ShapeSamplePage_Fluent_Ellipse"
-										  smtx:XamlDisplayExtensions.Header="Ellipse"
-										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
+										  smtx:XamlDisplayExtensions.Header="Ellipse">
 							<Ellipse HorizontalAlignment="Left"
 									 Width="100"
 									 Height="100"
@@ -27,8 +26,7 @@
 						</smtx:XamlDisplay>
 
 						<smtx:XamlDisplay UniqueKey="ShapeSamplePage_Fluent_Rectangle"
-										  smtx:XamlDisplayExtensions.Header="Rectangle"
-										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
+										  smtx:XamlDisplayExtensions.Header="Rectangle">
 							<Rectangle HorizontalAlignment="Left"
 									   Height="100"
 									   Width="100"
@@ -38,8 +36,7 @@
 						</smtx:XamlDisplay>
 
 						<smtx:XamlDisplay UniqueKey="ShapeSamplePage_Fluent_Polygon"
-										  smtx:XamlDisplayExtensions.Header="Polygon"
-										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
+										  smtx:XamlDisplayExtensions.Header="Polygon">
 							<Polygon HorizontalAlignment="Left"
 									 Width="100"
 									 Fill="{StaticResource Color03Brush}"
@@ -48,8 +45,7 @@
 						</smtx:XamlDisplay>
 
 						<smtx:XamlDisplay UniqueKey="ShapeSamplePage_Fluent_Path"
-										  smtx:XamlDisplayExtensions.Header="Path"
-										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
+										  smtx:XamlDisplayExtensions.Header="Path">
 							<Path HorizontalAlignment="Left"
 								  Width="100"
 								  Fill="{StaticResource Color04Brush}"

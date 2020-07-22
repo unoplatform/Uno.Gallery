@@ -18,8 +18,7 @@
 				<DataTemplate>
 					<StackPanel>
 						<smtx:XamlDisplay UniqueKey="FlipViewSamplePage_Fluent_Default"
-										  smtx:XamlDisplayExtensions.Header="FlipView"
-										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
+										  smtx:XamlDisplayExtensions.Header="FlipView">
 							<FlipView x:Name="flipView"
 									  Height="600"
 									  SelectedIndex="0">
