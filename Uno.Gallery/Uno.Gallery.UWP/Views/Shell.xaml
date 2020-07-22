@@ -18,6 +18,18 @@
 						IsBackButtonVisible="Collapsed"
 						IsBackEnabled="False"
 						IsTabStop="False"
-						Grid.Row="1" />
+						Grid.Row="1">
+			<NavigationView.PaneHeader>
+				<StackPanel>
+					
+					<!-- Image -->
+					<Grid Background="{ThemeResource UnoLogo_ImageBrush}"
+						  Height="105"
+						  Width="75"
+						  HorizontalAlignment="Left"
+						  Margin="16,8,0,0" />
+				</StackPanel>
+			</NavigationView.PaneHeader>
+		</NavigationView> 
 	</Grid>
 </UserControl>
