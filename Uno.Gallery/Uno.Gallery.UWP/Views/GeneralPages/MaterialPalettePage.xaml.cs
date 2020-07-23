@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Uno.Gallery
 {
+	[SamplePage(SampleCategory.Colors, "Palette for Material", SortOrder = 1)]
 	public sealed partial class MaterialPalettePage : Page
 	{
 		public MaterialPalettePage()

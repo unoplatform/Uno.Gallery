@@ -9,18 +9,11 @@ namespace Uno.Gallery
 	[AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = false)]
 	public sealed class SamplePageAttribute : Attribute
 	{
-		public SamplePageAttribute(string title, string description, SourceSdk source)
-		{
-			Category = SampleCategory.Components;
-			Title = title;
-			Description = description;
-			Source = source;
-		}
-
-		public SamplePageAttribute(SampleCategory category, string title)
+		public SamplePageAttribute(SampleCategory category, string title, SourceSdk source = SourceSdk.WinUI)
 		{
 			Category = category;
 			Title = title;
+			Source = source;
 		}
 
 		/// <summary>
@@ -32,7 +25,7 @@ namespace Uno.Gallery
 
 		public string Description { get; set; }
 
-		public SourceSdk Source { get; set; }
+		public SourceSdk Source { get; }
 
 		/// <summary>
 		/// Sort order with the same <see cref="Category"/>.

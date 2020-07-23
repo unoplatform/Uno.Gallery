@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Uno.Gallery.Views.Samples
 {
-	[SamplePage("Slider", "Slider sample", SourceSdk.WinUI)]
+	[SamplePage(SampleCategory.Components, "Slider")]
 	public sealed partial class SliderSamplePage : Page
 	{
 		public SliderSamplePage()

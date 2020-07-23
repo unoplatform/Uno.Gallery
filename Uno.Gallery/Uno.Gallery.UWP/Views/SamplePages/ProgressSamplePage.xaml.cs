@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Uno.Gallery.Views.Samples
 {
-	[SamplePage("Progress Ring/Bar", "Progress Ring/Bar sample", SourceSdk.WinUI)]
+	[SamplePage(SampleCategory.Components, "Progress Ring/Bar")]
 	public sealed partial class ProgressSamplePage : Page
 	{
 		public ProgressSamplePage()
