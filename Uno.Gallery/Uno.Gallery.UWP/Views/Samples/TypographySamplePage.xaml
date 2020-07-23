@@ -1,0 +1,100 @@
+﻿<Page x:Class="Uno.Gallery.Views.Samples.TypographySamplePage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:controls="using:Uno.Gallery.Controls"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  xmlns:gallery="using:Uno.Gallery"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  xmlns:smtx="using:ShowMeTheXAML"
+	  mc:Ignorable="d">
+
+	<Page.Resources>
+		<x:String x:Key="LoremIpsumBody">Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet. Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant.</x:String>
+		<x:String x:Key="LoremIpsumCaption">Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper commodo primis ornare himenaeos</x:String>
+	</Page.Resources>
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<controls:SamplePageLayout Title="{Binding Title}"
+								   Description="{Binding Description}"
+								   Source="{Binding Source}">
+
+			<controls:SamplePageLayout.FluentTemplate>
+				<DataTemplate>
+					<StackPanel>
+						<!--Style from Windows Type Ramp. As documented here https://docs.microsoft.com/en-us/windows/uwp/design/controls-and-patterns/xaml-theme-resources#the-xaml-type-ramp -->
+						<smtx:XamlDisplay UniqueKey="TypographySamplePage_Fluent"
+										  smtx:XamlDisplayExtensions.Header="Typography"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+							<StackPanel>
+								<TextBlock Text="Header"
+										   Style="{StaticResource HeaderTextBlockStyle}" />
+								<TextBlock Text="SubHeader"
+										   Style="{StaticResource SubheaderTextBlockStyle}" />
+								<TextBlock Text="Title"
+										   Style="{StaticResource TitleTextBlockStyle}" />
+								<TextBlock Text="Subtitle"
+										   Style="{StaticResource SubtitleTextBlockStyle}" />
+								<TextBlock Text="Base"
+										   Style="{StaticResource BaseTextBlockStyle}" />
+								<TextBlock Text="{StaticResource LoremIpsumBody}"
+										   Style="{StaticResource BodyTextBlockStyle}" />
+								<TextBlock Text="{StaticResource LoremIpsumCaption}"
+										   Style="{StaticResource CaptionTextBlockStyle}" />
+							</StackPanel>
+						</smtx:XamlDisplay>
+					</StackPanel>
+				</DataTemplate>
+			</controls:SamplePageLayout.FluentTemplate>
+
+			<controls:SamplePageLayout.MaterialTemplate>
+				<DataTemplate>
+					<smtx:XamlDisplay UniqueKey="TypographySamplePage_Material"
+									  smtx:XamlDisplayExtensions.Header="Typography"
+									  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+						<StackPanel>
+
+							<TextBlock Text="Headline 1"
+									   Style="{StaticResource MaterialHeadline1}" />
+
+							<TextBlock Text="Headline 2"
+									   Style="{StaticResource MaterialHeadline2}" />
+
+							<TextBlock Text="Headline 3"
+									   Style="{StaticResource MaterialHeadline3}" />
+
+							<TextBlock Text="Headline 4"
+									   Style="{StaticResource MaterialHeadline4}" />
+
+							<TextBlock Text="Headline 5"
+									   Style="{StaticResource MaterialHeadline5}" />
+
+							<TextBlock Text="Headline 6"
+									   Style="{StaticResource MaterialHeadline6}" />
+
+							<TextBlock Text="Subtitle 1"
+									   Style="{StaticResource MaterialSubtitle1}" />
+
+							<TextBlock Text="Subtitle 2"
+									   Style="{StaticResource MaterialSubtitle2}" />
+
+							<TextBlock Text="{StaticResource LoremIpsumBody}"
+									   Style="{StaticResource MaterialBody1}" />
+
+							<TextBlock Text="{StaticResource LoremIpsumBody}"
+									   Style="{StaticResource MaterialBody2}" />
+
+							<TextBlock Text="Button"
+									   Style="{StaticResource MaterialButtonTextBlockStyle}" />
+
+							<TextBlock Text="Caption -  Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper commodo primis ornare"
+									   Style="{StaticResource MaterialCaption}" />
+
+							<TextBlock Text="Overline"
+									   Style="{StaticResource MaterialOverline}" />
+						</StackPanel>
+					</smtx:XamlDisplay>
+				</DataTemplate>
+			</controls:SamplePageLayout.MaterialTemplate>
+		</controls:SamplePageLayout>
+	</Grid>
+</Page>
+

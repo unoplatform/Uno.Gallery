@@ -227,6 +227,9 @@
     <Compile Include="Views\Samples\TransformsSamplePage.xaml.cs">
       <DependentUpon>TransformsSamplePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Samples\TypographySamplePage.xaml.cs">
+      <DependentUpon>TypographySamplePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Samples\WebViewSamplePage.xaml.cs">
       <DependentUpon>WebViewSamplePage.xaml</DependentUpon>
     </Compile>
@@ -393,6 +396,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Samples\WebViewSamplePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Samples\TypographySamplePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
