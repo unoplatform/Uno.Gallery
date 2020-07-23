@@ -130,12 +130,37 @@
 
 						<!-- Default button style -->
 						<smtx:XamlDisplay UniqueKey="ButtonSamplePage_FluentDefault"
-										  smtx:XamlDisplayExtensions.Header="Default button style"
+										  smtx:XamlDisplayExtensions.Header="Default Button"
 										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
 							<StackPanel Spacing="20">
 								<Button Content="Button" />
-								<Button Content="Disabled button"
+								<Button Content="Disabled"
 										IsEnabled="False" />
+							</StackPanel>
+						</smtx:XamlDisplay>
+
+						<!-- TextBlock button style -->
+						<!-- Reference https://docs.microsoft.com/en-us/windows/uwp/design/controls-and-patterns/xaml-theme-resources#textblockbuttonstyle -->
+						<smtx:XamlDisplay UniqueKey="ButtonSamplePage_FluentText"
+										  smtx:XamlDisplayExtensions.Header="Text Button"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+							<StackPanel Spacing="20">
+								<Button Content="Text Button"
+										Style="{StaticResource TextBlockButtonStyle}"/>
+								<Button Content="Disabled"
+										Style="{StaticResource TextBlockButtonStyle}"
+										IsEnabled="False" />
+							</StackPanel>
+						</smtx:XamlDisplay>
+
+						<!-- Navigation Back button style -->
+						<!-- Reference https://docs.microsoft.com/en-us/windows/uwp/design/controls-and-patterns/xaml-theme-resources#navigationbackbuttonnormalstyle -->
+						<smtx:XamlDisplay UniqueKey="ButtonSamplePage_FluentBackButton"
+										  smtx:XamlDisplayExtensions.Header="Back Button"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+							<StackPanel Spacing="20">
+								<Button Style="{StaticResource NavigationBackButtonNormalStyle}"/>
+								<Button Style="{StaticResource NavigationBackButtonSmallStyle}"/>
 							</StackPanel>
 						</smtx:XamlDisplay>
 
@@ -146,7 +171,7 @@
 							<StackPanel Spacing="20">
 								<Button Content="Button"
 										Style="{StaticResource CustomButtonStyle}" />
-								<Button Content="Disabled button"
+								<Button Content="Disabled"
 										Style="{StaticResource CustomButtonStyle}"
 										IsEnabled="False" />
 							</StackPanel>
