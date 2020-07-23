@@ -113,7 +113,7 @@
 						<smtx:XamlDisplay UniqueKey="TransformSamplePage_NoTransform"
 										  smtx:XamlDisplayExtensions.Header="No Transforms">
 							
-							<Border Background="{StaticResource MaterialOnBackgroundBrush}"
+							<Border Background="#222222"
 									Width="110"
 									Height="110"
 									Margin="0,25,0,0">
