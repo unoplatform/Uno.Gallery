@@ -9,7 +9,18 @@
 			<ResourceDictionary.MergedDictionaries>
 				<material:MaterialLibraryResources />
 
-				<ResourceDictionary Source="Views/Styles/_Styles.xaml" />
+				<ResourceDictionary Source="Views/Styles/Application/Colors.xaml" />
+				<ResourceDictionary Source="Views/Styles/Application/Converters.xaml" />
+				<ResourceDictionary Source="Views/Styles/Application/Fonts.xaml" />
+
+				<ResourceDictionary Source="Views/Styles/Controls/ColorPaletteView.xaml" />
+				<ResourceDictionary Source="Views/Styles/Controls/FluentPaletteView.xaml" />
+				<ResourceDictionary Source="Views/Styles/Controls/Path.xaml" />
+				<ResourceDictionary Source="Views/Styles/Controls/RadioButton.xaml" />
+				<ResourceDictionary Source="Views/Styles/Controls/ThreeColorPaletteView.xaml" />
+				<ResourceDictionary Source="Views/Styles/Controls/ToggleButton.xaml" />
+				<ResourceDictionary Source="Views/Styles/Controls/XamlDisplay.xaml" />
+
 				<ResourceDictionary Source="Views/Styles/ContentPageLayout.xaml" />
 				<ResourceDictionary Source="Views/Styles/SamplePageLayout.xaml" />
 
