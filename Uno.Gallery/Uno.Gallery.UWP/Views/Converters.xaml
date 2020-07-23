@@ -24,4 +24,6 @@
 										   TrueValue="Collapsed"
 										   FalseValue="Visible" />
 
+	<converters:EnumDescriptionConverter x:Name="EnumToDescription" />
+
 </ResourceDictionary>

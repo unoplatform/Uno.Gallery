@@ -2,68 +2,41 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
-using Uno.Gallery.Controls;
 
 namespace Uno.Gallery
 {
-	[AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = true)]
+	[AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = false)]
 	public sealed class SamplePageAttribute : Attribute
 	{
 		public SamplePageAttribute(string title, string description, SourceSdk source)
 		{
+			Category = SampleCategory.Components;
 			Title = title;
 			Description = description;
-			Source = source.GetDescription();
+			Source = source;
 		}
+
+		public SamplePageAttribute(SampleCategory category, string title)
+		{
+			Category = category;
+			Title = title;
+		}
+
+		/// <summary>
+		/// Sample category with null reserved for Home/Overview.
+		/// </summary>
+		public SampleCategory Category { get; }
 		
 		public string Title { get; }
 
-		public string Description { get; }
+		public string Description { get; set; }
 
-		public string Source { get; }
+		public SourceSdk Source { get; set; }
 
-		public static IReadOnlyList<Sample> GetAllSamples()
-		{
-			var query = from type in FindDefinedAssemblies(Assembly.GetExecutingAssembly())
-						let sampleAttribute = FindSampleAttribute(type)
-						where sampleAttribute != null
-						orderby sampleAttribute.Title
-						select new Sample(sampleAttribute, type.AsType());
-
-			return query.ToArray();
-		}
-
-		private static IEnumerable<TypeInfo> FindDefinedAssemblies(Assembly assembly)
-		{
-			try
-			{
-				return assembly.DefinedTypes.ToArray();
-			}
-			catch (Exception)
-			{
-				return new TypeInfo[0];
-			}
-		}
-
-		private static SamplePageAttribute FindSampleAttribute(TypeInfo type)
-		{
-			try
-			{
-				if (!(type.Namespace?.StartsWith("System.Windows") ?? true))
-				{
-					return type?.GetCustomAttributes()
-						.OfType<SamplePageAttribute>()
-						.FirstOrDefault();
-				}
-				return null;
-			}
-			catch (Exception)
-			{
-				return null;
-			}
-		}
+		/// <summary>
+		/// Sort order with the same <see cref="Category"/>.
+		/// </summary>
+		public int SortOrder { get; set; } = int.MaxValue;
 	}
 }

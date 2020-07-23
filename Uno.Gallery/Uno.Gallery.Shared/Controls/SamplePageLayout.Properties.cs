@@ -49,13 +49,13 @@ namespace Uno.Gallery.Controls
 
 		public static DependencyProperty SourceProperty { get; } = DependencyProperty.Register(
 			nameof(Source),
-			typeof(string),
+			typeof(SourceSdk?),
 			typeof(SamplePageLayout),
 			new PropertyMetadata(default));
 
-		public string Source
+		public SourceSdk? Source
 		{
-			get => (string)GetValue(SourceProperty);
+			get => (SourceSdk?)GetValue(SourceProperty);
 			set => SetValue(SourceProperty, value);
 		}
 

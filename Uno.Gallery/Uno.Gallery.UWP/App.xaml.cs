@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.Logging;
 using ShowMeTheXAML;
 using System;
+using System.Linq;
+using System.Reflection;
 using Uno.Gallery.Controls;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
@@ -41,109 +43,56 @@ namespace Uno.Gallery
 			ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(320, 568)); // (size of the iPhone SE)
 #endif
 
-			var shell = GetShell();
-			AddNavigationItems(shell);
-			AddSettingsItem(shell);
+			var window = Windows.UI.Xaml.Window.Current;
+			if (!(window.Content is Shell))
+			{
+				window.Content = BuildShell();
+			}
 
 			// Ensure the current window is active
-			Windows.UI.Xaml.Window.Current.Activate();
+			window.Activate();
 		}
 
-		private void AddSettingsItem(Shell shell)
+		/// <summary>
+		/// Invoked when application execution is being suspended.  Application state is saved
+		/// without knowing whether the application will be terminated or resumed with the contents
+		/// of memory still intact.
+		/// </summary>
+		/// <param name="sender">The source of the suspend request.</param>
+		/// <param name="e">Details about the suspend request.</param>
+		private void OnSuspending(object sender, SuspendingEventArgs e)
 		{
-			var navigationView = (NavigationView)shell.FindName("NavigationViewControl");
-
-#if WINDOWS_UWP
-			navigationView.IsSettingsVisible = true;
-			navigationView.Loaded += NavigationView_Loaded;
-
-			void NavigationView_Loaded(object sender, RoutedEventArgs e)
-			{
-				// Change the settings text to toggle the theme
-				var settingsItem = (NavigationViewItem)navigationView.SettingsItem;
-				settingsItem.Content = "Toggle Light/Dark theme";
-				navigationView.Loaded -= NavigationView_Loaded;
-			}
-#else
-			navigationView.IsSettingsVisible = false;
-#endif
+			var deferral = e.SuspendingOperation.GetDeferral();
+			//TODO: Save application state and stop any background activity
+			deferral.Complete();
 		}
 
-		private void AddNavigationItems(Shell shell)
+		private Shell BuildShell()
 		{
-			var navigationView = shell.NavigationView;
+			var shell = new Shell();
+			var nv = shell.NavigationView;
+			AddNavigationItems(nv);
+			SetupSettingButton(nv);
 
-			navigationView.MenuItems.Add(new NavigationViewItem()
+			// navigation + setting handler
+			nv.ItemInvoked += OnNavigationItemInvoked;
+
+			return shell;
+		}
+
+		private void OnNavigationItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs e)
+		{
+			if (!e.IsSettingsInvoked)
 			{
-				Content = "Home",
-				DataContext = NavigationItemType.Home
-			});
-
-			navigationView.MenuItems.Add(new NavigationViewItem()
-			{
-				Content = "Palette for Material",
-				DataContext = NavigationItemType.MaterialPalette
-			});
-
-			navigationView.MenuItems.Add(new NavigationViewItem()
-			{
-				Content = "Palette for Fluent",
-				DataContext = NavigationItemType.FluentPalette
-			});
-
-			navigationView.MenuItems.Add(new NavigationViewItemSeparator());
-
-			foreach (var sample in SamplePageAttribute.GetAllSamples())
-			{
-				navigationView.MenuItems.Add(new NavigationViewItem()
+				if (e.InvokedItemContainer.DataContext is Sample sample)
 				{
-					Content = sample.Title,
-					DataContext = sample
-				});
-			}
+					var page = (Page)Activator.CreateInstance(sample.ViewType);
+					page.DataContext = sample;
 
-			navigationView.ItemInvoked += NavigationView_ItemInvoked;
-
-			void NavigationView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
-			{
-				if (args.IsSettingsInvoked)
-				{
-					ToggleTheme();
-				}
-				else
-				{
-					var selectedItem = args.InvokedItemContainer;
-					if (selectedItem.DataContext is Sample sample)
-					{
-						var page = (Page)Activator.CreateInstance(sample.ViewType);
-						page.DataContext = sample;
-
-						sender.Content = page;
-					}
-					else if (selectedItem.DataContext is NavigationItemType itemType)
-					{
-						object page;
-						switch(itemType)
-						{
-							case NavigationItemType.MaterialPalette:
-								page = new MaterialPalettePage();
-								break;
-							case NavigationItemType.FluentPalette:
-								page = new FluentPalettePage();
-								break;
-							case NavigationItemType.Home:
-								page = new HomeSamplePage();
-								break;
-							default:
-								throw new InvalidOperationException($"Value {itemType} is not supported for NavigationItemType.");
-						}
-
-						sender.Content = page;
-					}
+					sender.Content = page;
 				}
 			}
-
-			void ToggleTheme()
+			else
 			{
 #if WINDOWS_UWP
 				// Set theme for window root.
@@ -161,21 +110,58 @@ namespace Uno.Gallery
 #endif
 			}
 		}
-		
-		/// <summary>
-		/// Invoked when application execution is being suspended.  Application state is saved
-		/// without knowing whether the application will be terminated or resumed with the contents
-		/// of memory still intact.
-		/// </summary>
-		/// <param name="sender">The source of the suspend request.</param>
-		/// <param name="e">Details about the suspend request.</param>
-		private void OnSuspending(object sender, SuspendingEventArgs e)
+
+		private void AddNavigationItems(NavigationView nv)
 		{
-			var deferral = e.SuspendingOperation.GetDeferral();
-			//TODO: Save application state and stop any background activity
-			deferral.Complete();
+			var categories = Assembly.GetExecutingAssembly().DefinedTypes
+				.Where(x => x.Namespace?.StartsWith("Uno.Gallery") == true)
+				.Select(x => new { TypeInfo = x, SamplePageAttribute = x.GetCustomAttribute<SamplePageAttribute>() })
+				.Where(x => x.SamplePageAttribute != null)
+				.Select(x => new Sample(x.SamplePageAttribute, x.TypeInfo.AsType()))
+				.OrderByDescending(x => x.SortOrder.HasValue)
+				.ThenBy(x => x.SortOrder)
+				.ThenBy(x => x.Title)
+				.GroupBy(x => x.Category);
+
+			foreach (var category in categories.OrderBy(x => x.Key))
+			{
+				if (category.Key != SampleCategory.None)
+				{
+					nv.MenuItems.Add(new NavigationViewItemHeader
+					{
+						Content = category.Key.GetDescription() ?? category.Key.ToString(),
+					});
+				}
+
+				foreach (var sample in category)
+				{
+					nv.MenuItems.Add(new NavigationViewItem
+					{
+						Content = sample.Title,
+						DataContext = sample
+					});
+				}
+			}
 		}
 
+		private void SetupSettingButton(NavigationView nv)
+		{
+#if WINDOWS_UWP
+			nv.IsSettingsVisible = true;
+			nv.Loaded += OnNavigationViewLoaded;
+
+			void OnNavigationViewLoaded(object sender, RoutedEventArgs e)
+			{
+				if (nv.SettingsItem is NavigationViewItem item)
+				{
+					item.Content = "Toggle Light/Dark theme";
+					nv.Loaded -= OnNavigationViewLoaded;
+				}
+			}
+#else
+			nv.IsSettingsVisible = false;
+#endif
+		}
 
 		/// <summary>
 		/// Configures global logging
@@ -228,20 +214,6 @@ namespace Uno.Gallery
 #else
 				.AddConsole(LogLevel.Information);
 #endif
-		}
-
-		private Shell GetShell()
-		{
-			if (Windows.UI.Xaml.Window.Current.Content is Shell shell)
-			{
-				return shell;
-			}
-			else
-			{
-				shell = new Shell();
-				Windows.UI.Xaml.Window.Current.Content = shell;
-				return shell;
-			}
 		}
 
 		static void ConfigureXamlDisplay()
