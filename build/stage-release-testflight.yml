@@ -7,7 +7,7 @@ jobs:
       - Xamarin.iOS -equals 13.16
     
   variables:
-  - group: apple.appstore.distribution # import all variables for certificate from the library in azure devops
+  - group: apple.appstore.distribution # Import all variables for certificate from the library in azure devops
 
   steps:
   - checkout: none
@@ -19,7 +19,7 @@ jobs:
       artifactName: $(iOSArtifactName)
 
   - task: AppStoreRelease@1
-    displayName: 'Push iOS to testflight'
+    displayName: 'Push iOS to TestFlight'
     inputs:
       serviceEndpoint: 'apple appstore connection'
       appIdentifier: 'com.nventive.uno.gallery'
@@ -29,34 +29,36 @@ jobs:
       shouldSkipWaitingForProcessing: true
       teamId: $(appleTeamId)
       teamName: $(appleTeamName)
- 
-- job: Publish_TestFlight_macOS
 
-  pool:
-    name: $(macOSPoolName)
-    demands:
-      - Xamarin.iOS -equals 13.16
+# Keeping this part commented as we are waiting for more feedback for a specific TestFlight release issue for macOS
+# Related issue : https://github.com/microsoft/app-store-vsts-extension/issues/158
+# - job: Publish_TestFlight_macOS
+
+#   pool:
+#     name: $(macOSPoolName)
+#     demands:
+#       - Xamarin.iOS -equals 13.16
     
-  variables:
-  - group: apple.appstore.distribution # import all variables for certificate from the library in azure devops
+#   variables:
+#   - group: apple.appstore.distribution # Import all variables for certificate from the library in azure devops
 
-  steps:
-  - checkout: none
+#   steps:
+#   - checkout: none
 
-  - task: DownloadBuildArtifacts@0
-    inputs:
-      buildType: current
-      downloadType: single
-      artifactName: $(macOSArtifactName)
+#   - task: DownloadBuildArtifacts@0
+#     inputs:
+#       buildType: current
+#       downloadType: single
+#       artifactName: $(macOSArtifactName)
 
-  - task: AppStoreRelease@1
-    displayName: 'Push macOS to testflight'
-    inputs:
-      serviceEndpoint: 'apple appstore connection'
-      appIdentifier: 'com.nventive.uno.gallery'
-      appType: 'macOS'
-      ipaPath: '$(PackageOutputPath)/$(macOSArtifactName)/*.pkg'
-      releaseTrack: 'TestFlight'
-      shouldSkipWaitingForProcessing: true
-      teamId: $(appleTeamId)
-      teamName: $(appleTeamName)
+#   - task: AppStoreRelease@1
+#     displayName: 'Push macOS to TestFlight'
+#     inputs:
+#       serviceEndpoint: 'apple appstore connection'
+#       appIdentifier: 'com.nventive.uno.gallery'
+#       appType: 'macOS'
+#       ipaPath: '$(PackageOutputPath)/$(macOSArtifactName)/*.pkg'
+#       releaseTrack: 'TestFlight'
+#       shouldSkipWaitingForProcessing: true
+#       teamId: $(appleTeamId)
+#       teamName: $(appleTeamName)

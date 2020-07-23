@@ -70,7 +70,7 @@ variables:
 stages:
 - stage: Build
   jobs:
-  - job: Build_on_Windows # Build samples possible on a windows machine and nuget packages
+  - job: Build_on_Windows # Build UWP and Android on a windows machine
     strategy:
       maxParallel: 3
       matrix:
@@ -90,7 +90,7 @@ stages:
     steps:
       - template: build/stage-build.yml
 
-  - job: Build_on_Mac # Build iOS and macOS samples
+  - job: Build_on_Mac # Build iOS and macOS on a mac
     strategy:
       maxParallel: 3
       matrix:
@@ -110,13 +110,13 @@ stages:
     variables:
     - name: SkipUnknownFrameworks
       value: true # Used by TargetFrameworks.Filtering package to build only what's possible on a mac for the multitargeted library
-    - group: apple.appstore.distribution # import all variables for certificate from the library in azure devops
+    - group: apple.appstore.distribution # Import all variables for certificate from the library in azure devops
 
     steps:
     - task: InstallAppleCertificate@2
       displayName: Install Apple Certificate
       inputs:
-        certSecureFile: 'apple.appstore.distribution.p12' # Name of the p12 certificate in the secure files (in azure devops pipeline)
+        certSecureFile: 'apple.appstore.distribution.p12' # Name of the p12 certificate in the secure files (in azure devops library)
         certPwd: '$(appleappstorecertificatepassword)' 
         keychain: 'temp'
         deleteCert: true
@@ -139,14 +139,15 @@ stages:
 - stage: Release_AppCenter
   # Only release when the build is not a Pull Request and it's using one of the proper release branches
   condition: and(succeeded(), ne(variables['IsLightBuild'], 'true'), eq(variables['IsReleaseBranch'], 'true'))
+  dependsOn: Build
     
   jobs:
   - template: build/stage-release-appcenter.yml
 
-# Keeping this part commented as we are waiting for more feedback for a specific TestFlight Release issue
-# Related issue : https://github.com/microsoft/app-store-vsts-extension/issues/158
-#- stage: Release_TestFlight
+- stage: Release_TestFlight
   # Only release when the build is not a Pull Request and it's using one of the proper release branches
-  #condition: and(succeeded(), ne(variables['IsLightBuild'], 'true'), eq(variables['IsReleaseBranch'], 'true'))
-  #jobs: 
-  #- template: build/stage-release-testflight.yml
+  condition: and(succeeded(), ne(variables['IsLightBuild'], 'true'), eq(variables['IsReleaseBranch'], 'true'))
+  dependsOn: Build
+
+  jobs: 
+  - template: build/stage-release-testflight.yml
