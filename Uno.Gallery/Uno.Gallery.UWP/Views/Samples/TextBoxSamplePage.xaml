@@ -19,29 +19,43 @@
 						<!-- Default -->
 						<smtx:XamlDisplay UniqueKey="TextBoxSamplePage_Fluent_Default"
 										  smtx:XamlDisplayExtensions.Header="Default">
-							<TextBox PlaceholderText="Default" />
+							<StackPanel Spacing="20">
+
+								<TextBox PlaceholderText="Default" />
+
+								<TextBox PlaceholderText="Disabled"
+										 IsEnabled="False" />
+							</StackPanel>
 						</smtx:XamlDisplay>
 
-						<!-- TexBox Disabled -->
-						<smtx:XamlDisplay UniqueKey="TextBoxSamplePage_Fluent_Disabled"
-										  smtx:XamlDisplayExtensions.Header="Disabled">
-							<TextBox PlaceholderText="Disabled"
-									 IsEnabled="False" />
-						</smtx:XamlDisplay>
+						<!-- TexBox Header -->
+						<smtx:XamlDisplay UniqueKey="TextBoxSamplePage_Fluent_Header"
+										  smtx:XamlDisplayExtensions.Header="Header">
+							<StackPanel Spacing="20">
 
-						<!-- TexBox Outline -->
-						<smtx:XamlDisplay UniqueKey="TextBoxSamplePage_Fluent_Outline"
-										  smtx:XamlDisplayExtensions.Header="Outline">
-							<TextBox PlaceholderText="Outline"
-									 Header="Header" />
+								<TextBox PlaceholderText="Text"
+										 Header="Header" />
+								
+								<TextBox PlaceholderText="Disabled"
+										 Header="Header"
+										 IsEnabled="False" />
+							</StackPanel>
 						</smtx:XamlDisplay>
 
 						<!-- TexBox MultiLine -->
 						<smtx:XamlDisplay UniqueKey="TextBoxSamplePage_Fluent_Multiline"
 										  smtx:XamlDisplayExtensions.Header="Multiline">
-							<TextBox Text="Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet. Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant."
-									 TextWrapping="Wrap"
-									 AcceptsReturn="True" />
+							<StackPanel Spacing="20">
+
+								<TextBox Text="Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet. Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant."
+										 TextWrapping="Wrap"
+										 AcceptsReturn="True" />
+
+								<TextBox Text="Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet. Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant."
+										 TextWrapping="Wrap"
+										 AcceptsReturn="True"
+										 IsEnabled="False" />
+							</StackPanel>
 						</smtx:XamlDisplay>
 					</StackPanel>
 				</DataTemplate>
@@ -55,7 +69,7 @@
 						<smtx:XamlDisplay UniqueKey="TextBoxSamplePage_Material_Default"
 										  smtx:XamlDisplayExtensions.Header="Default"
 										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
-							<StackPanel Spacing="16">
+							<StackPanel Spacing="20">
 
 								<TextBox PlaceholderText="Default"
 										 Style="{StaticResource MaterialFilledTextBoxStyle}" />
@@ -76,7 +90,7 @@
 						<smtx:XamlDisplay UniqueKey="TextBoxSamplePage_Material_Outline"
 										  smtx:XamlDisplayExtensions.Header="Outline"
 										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
-							<StackPanel Spacing="16">
+							<StackPanel Spacing="20">
 
 								<TextBox PlaceholderText="Outline"
 										 Style="{StaticResource MaterialOutlinedTextBoxStyle}" />
@@ -97,10 +111,19 @@
 						<smtx:XamlDisplay UniqueKey="TextBoxSamplePage_Material_Multiline"
 										  smtx:XamlDisplayExtensions.Header="Multiline"
 										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
-							<TextBox Text="Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet. Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant."
-									 TextWrapping="Wrap"
-									 AcceptsReturn="True"
-									 Style="{StaticResource MaterialFilledTextBoxStyle}" />
+							<StackPanel Spacing="20">
+
+								<TextBox Text="Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet. Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant."
+										 TextWrapping="Wrap"
+										 AcceptsReturn="True"
+										 Style="{StaticResource MaterialFilledTextBoxStyle}" />
+
+								<TextBox Text="Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet. Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant."
+										 TextWrapping="Wrap"
+										 AcceptsReturn="True"
+										 IsEnabled="False"
+										 Style="{StaticResource MaterialFilledTextBoxStyle}" />
+							</StackPanel>
 						</smtx:XamlDisplay>
 					</StackPanel>
 				</DataTemplate>

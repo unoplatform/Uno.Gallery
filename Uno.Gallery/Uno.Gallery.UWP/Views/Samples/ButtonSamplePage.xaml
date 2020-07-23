@@ -84,8 +84,13 @@
 										  smtx:XamlDisplayExtensions.Description="Contained buttons are high-emphasis, distinguished by their use of elevation and fill. They contain actions that are primary to your app."
 										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
 							<StackPanel Spacing="20">
+								
 								<Button Content="CONTAINED"
 										Style="{StaticResource MaterialContainedButtonStyle}" />
+								
+								<Button Content="SECONDARY CONTAINED"
+										Style="{StaticResource MaterialContainedSecondaryButtonStyle}" />
+								
 								<Button Content="CONTAINED DISABLED"
 										IsEnabled="False"
 										Style="{StaticResource MaterialContainedButtonStyle}" />
@@ -98,8 +103,13 @@
 										  smtx:XamlDisplayExtensions.Description="Outline buttons are low-emphasis. They contain actions that are secondary to your app."
 										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
 							<StackPanel Spacing="20">
+								
 								<Button Content="OUTLINED"
 										Style="{StaticResource MaterialOutlinedButtonStyle}" />
+								
+								<Button Content="SECONDARY OUTLINED"
+										Style="{StaticResource MaterialOutlinedSecondaryButtonStyle}" />
+								
 								<Button Content="OUTLINED DISABLED"
 										IsEnabled="False"
 										Style="{StaticResource MaterialOutlinedButtonStyle}" />
@@ -113,6 +123,10 @@
 							<StackPanel>
 								<Button Content="TEXT"
 										Style="{StaticResource MaterialTextButtonStyle}" />
+								
+								<Button Content="SECONDARY TEXT"
+										Style="{StaticResource MaterialTextSecondaryButtonStyle}" />
+								
 								<Button Content="TEXT DISABLED"
 										IsEnabled="False"
 										Style="{StaticResource MaterialTextButtonStyle}" />
