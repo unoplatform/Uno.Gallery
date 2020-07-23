@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Uno.Gallery.Views.Samples
 {
-	[SamplePage("Brush", "Simple Brush sample", SourceSdk.UnoToolkit)]
+	[SamplePage("Brush", "Simple Brush sample", SourceSdk.WinUI)]
 	public sealed partial class BrushSamplePage : Page
 	{
 		public BrushSamplePage()

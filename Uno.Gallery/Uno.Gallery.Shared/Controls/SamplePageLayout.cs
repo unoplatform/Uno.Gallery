@@ -61,6 +61,21 @@ namespace Uno.Gallery.Controls
 
 		private readonly SerialDisposable _subscriptions = new SerialDisposable();
 
+		public SamplePageLayout()
+		{
+			DataContextChanged += OnDataContextChanged;
+
+			void OnDataContextChanged(object sender, DataContextChangedEventArgs args)
+			{
+				if (args.NewValue is Sample sample)
+				{
+					Title = sample.Title;
+					Description = sample.Description;
+					Source = sample.Source;
+				}
+			}
+		}
+
 		protected override void OnApplyTemplate()
 		{
 			base.OnApplyTemplate();
@@ -105,7 +120,7 @@ namespace Uno.Gallery.Controls
 			void OnScrolled(object sender, ScrollViewerViewChangedEventArgs e)
 			{
 				var relativeOffset = GetRelativeOffset();
-				if(relativeOffset < 0)
+				if (relativeOffset < 0)
 				{
 					_stickyTabs.Visibility = Visibility.Visible;
 				}
@@ -114,7 +129,7 @@ namespace Uno.Gallery.Controls
 					_stickyTabs.Visibility = Visibility.Collapsed;
 				}
 			}
-		}		
+		}
 
 		private void RegisterEvent(RoutedEventHandler click)
 		{

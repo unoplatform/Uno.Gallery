@@ -8,7 +8,7 @@ namespace Uno.Gallery
 {
 	public enum SourceSdk
 	{
-		[Description("Win.UI/Uno.UI")]
+		[Description("WinUI/Uno.UI")]
 		WinUI,
 		[Description("Uno.Material")]
 		UnoMaterial,

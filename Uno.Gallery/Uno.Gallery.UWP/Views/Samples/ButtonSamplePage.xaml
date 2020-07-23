@@ -73,9 +73,7 @@
 	</Page.Resources>
 
 	<Grid Background="{StaticResource MaterialBackgroundBrush}">
-		<controls:SamplePageLayout Title="{Binding Title}"
-								   Description="{Binding Description}"
-								   Source="{Binding Source}">
+		<controls:SamplePageLayout>
 			<controls:SamplePageLayout.MaterialTemplate>
 				<DataTemplate>
 					<StackPanel>
