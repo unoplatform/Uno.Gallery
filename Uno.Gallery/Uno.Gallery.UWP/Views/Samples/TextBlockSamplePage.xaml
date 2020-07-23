@@ -26,11 +26,11 @@
 										  smtx:XamlDisplayExtensions.Header="Foreground">
 							<StackPanel>
 								<TextBlock Text="Red"
-										   Foreground="{StaticResource Color04Brush}" />
+										   Foreground="{StaticResource UnoRedColorBrush}" />
 								<TextBlock Text="Green"
-										   Foreground="{StaticResource Color03Brush}" />
+										   Foreground="{StaticResource UnoGreenColorBrush}" />
 								<TextBlock Text="Blue"
-										   Foreground="{StaticResource Color01Brush}" />
+										   Foreground="{StaticResource UnoBlueColorBrush}" />
 							</StackPanel>
 						</smtx:XamlDisplay>
 

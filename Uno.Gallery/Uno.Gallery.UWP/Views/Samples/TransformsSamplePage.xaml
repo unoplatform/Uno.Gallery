@@ -20,7 +20,7 @@
 						<smtx:XamlDisplay UniqueKey="TransformSamplePage_Scale"
 										  smtx:XamlDisplayExtensions.Header="Scale Transform">
 							
-							<Border Background="{StaticResource Color01Brush}"
+							<Border Background="{StaticResource UnoBlueColorBrush}"
 									Width="110"
 									Height="110">
 								
@@ -43,7 +43,7 @@
 						<smtx:XamlDisplay UniqueKey="TransformSamplePage_Rotate"
 										  smtx:XamlDisplayExtensions.Header="Rotate Transform">
 							
-							<Border Background="{StaticResource Color04Brush}"
+							<Border Background="{StaticResource UnoRedColorBrush}"
 									Width="110"
 									Height="110"
 									Margin="0,25,0,0">
@@ -66,7 +66,7 @@
 						<smtx:XamlDisplay UniqueKey="TransformSamplePage_Translate"
 										  smtx:XamlDisplayExtensions.Header="Translate Transform">
 							
-							<Border Background="{StaticResource Color02Brush}"
+							<Border Background="{StaticResource UnoPurpleColorBrush}"
 									Width="110"
 									Height="110"
 									Margin="0,25,0,0">
@@ -89,7 +89,7 @@
 						<smtx:XamlDisplay UniqueKey="TransformSamplePage_Skew"
 										  smtx:XamlDisplayExtensions.Header="Skew Transform">
 							
-							<Border Background="{StaticResource Color03Brush}"
+							<Border Background="{StaticResource UnoGreenColorBrush}"
 									Width="110"
 									Height="110"
 									Margin="0,25,0,0">

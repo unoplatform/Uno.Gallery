@@ -23,7 +23,7 @@
 									  Height="600"
 									  SelectedIndex="0">
 								<FlipViewItem>
-									<Grid Background="{StaticResource Color01Brush}">
+									<Grid Background="{StaticResource UnoBlueColorBrush}">
 										<Grid.RowDefinitions>
 											<RowDefinition Height="*" />
 											<RowDefinition Height="*" />
@@ -43,7 +43,7 @@
 									</Grid>
 								</FlipViewItem>
 								<FlipViewItem>
-									<Grid Background="{StaticResource Color02Brush}">
+									<Grid Background="{StaticResource UnoPurpleColorBrush}">
 										<Grid.RowDefinitions>
 											<RowDefinition Height="*" />
 											<RowDefinition Height="*" />
@@ -63,7 +63,7 @@
 									</Grid>
 								</FlipViewItem>
 								<FlipViewItem>
-									<Grid Background="{StaticResource Color03Brush}">
+									<Grid Background="{StaticResource UnoGreenColorBrush}">
 										<Grid.RowDefinitions>
 											<RowDefinition Height="*" />
 											<RowDefinition Height="*" />
@@ -83,7 +83,7 @@
 									</Grid>
 								</FlipViewItem>
 								<FlipViewItem>
-									<Grid Background="{StaticResource Color04Brush}">
+									<Grid Background="{StaticResource UnoRedColorBrush}">
 										<Grid.RowDefinitions>
 											<RowDefinition Height="*" />
 											<RowDefinition Height="*" />
