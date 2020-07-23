@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Uno.Gallery.Views.Samples
 {
-	[SamplePage("FlipView", "Simple FlipView sample", SourceSdk.UnoToolkit)]
+	[SamplePage("FlipView", "Simple FlipView sample", SourceSdk.WinUI)]
 	public sealed partial class FlipViewSamplePage : Page
 	{
 		public FlipViewSamplePage()

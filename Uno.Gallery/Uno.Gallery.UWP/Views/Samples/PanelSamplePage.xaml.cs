@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Uno.Gallery.Views.Samples
 {
-	[SamplePage("Panel", "Simple Panel sample", SourceSdk.UnoToolkit)]
+	[SamplePage("Panel", "Simple Panel sample", SourceSdk.WinUI)]
 	public sealed partial class PanelSamplePage : Page
 	{
 		public PanelSamplePage()

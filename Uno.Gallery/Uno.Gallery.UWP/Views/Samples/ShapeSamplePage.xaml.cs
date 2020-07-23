@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Uno.Gallery.Views.Samples
 {
-	[SamplePage("Shape", "Simple Shape sample", SourceSdk.UnoToolkit)]
+	[SamplePage("Shape", "Simple Shape sample", SourceSdk.WinUI)]
 	public sealed partial class ShapeSamplePage : Page
 	{
 		public ShapeSamplePage()
