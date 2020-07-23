@@ -164,89 +164,86 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Samples\BrushSamplePage.xaml.cs">
+    <Compile Include="Views\SamplePages\BrushSamplePage.xaml.cs">
       <DependentUpon>BrushSamplePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ColorPalette\FluentPalettePage.xaml.cs">
+    <Compile Include="Views\GeneralPages\FluentPalettePage.xaml.cs">
       <DependentUpon>FluentPalettePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Samples\BottomNavigationBarSamplePage.xaml.cs">
+    <Compile Include="Views\SamplePages\BottomNavigationBarSamplePage.xaml.cs">
       <DependentUpon>BottomNavigationBarSamplePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Samples\ComboBoxSamplePage.xaml.cs">
+    <Compile Include="Views\SamplePages\ComboBoxSamplePage.xaml.cs">
       <DependentUpon>ComboBoxSamplePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Samples\DatePickerSamplePage.xaml.cs">
+    <Compile Include="Views\SamplePages\DatePickerSamplePage.xaml.cs">
       <DependentUpon>DatePickerSamplePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Samples\FlipViewSamplePage.xaml.cs">
+    <Compile Include="Views\SamplePages\FlipViewSamplePage.xaml.cs">
       <DependentUpon>FlipViewSamplePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Samples\MessageDialogSamplePage.xaml.cs">
+    <Compile Include="Views\SamplePages\MessageDialogSamplePage.xaml.cs">
       <DependentUpon>MessageDialogSamplePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Samples\PanelSamplePage.xaml.cs">
+    <Compile Include="Views\SamplePages\PanelSamplePage.xaml.cs">
       <DependentUpon>PanelSamplePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Samples\ProgressSamplePage.xaml.cs">
+    <Compile Include="Views\SamplePages\ProgressSamplePage.xaml.cs">
       <DependentUpon>ProgressSamplePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Samples\NavigationViewSamplePage.xaml.cs">
+    <Compile Include="Views\SamplePages\NavigationViewSamplePage.xaml.cs">
       <DependentUpon>NavigationViewSamplePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ColorPalette\MaterialPalettePage.xaml.cs">
+    <Compile Include="Views\GeneralPages\MaterialPalettePage.xaml.cs">
       <DependentUpon>MaterialPalettePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Home.xaml.cs">
+    <Compile Include="Views\GeneralPages\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Samples\FabSamplePage.xaml.cs">
+    <Compile Include="Views\SamplePages\FabSamplePage.xaml.cs">
       <DependentUpon>FabSamplePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Samples\ShapeSamplePage.xaml.cs">
+    <Compile Include="Views\SamplePages\ShapeSamplePage.xaml.cs">
       <DependentUpon>ShapeSamplePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Samples\SliderSamplePage.xaml.cs">
+    <Compile Include="Views\SamplePages\SliderSamplePage.xaml.cs">
       <DependentUpon>SliderSamplePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Samples\TimePickerSamplePage.xaml.cs">
+    <Compile Include="Views\SamplePages\TimePickerSamplePage.xaml.cs">
       <DependentUpon>TimePickerSamplePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Samples\ToggleSwitchSamplePage.xaml.cs">
+    <Compile Include="Views\SamplePages\ToggleSwitchSamplePage.xaml.cs">
       <DependentUpon>ToggleSwitchSamplePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Samples\RadioButtonSamplePage.xaml.cs">
+    <Compile Include="Views\SamplePages\RadioButtonSamplePage.xaml.cs">
       <DependentUpon>RadioButtonSamplePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Samples\TextBlockSamplePage.xaml.cs">
+    <Compile Include="Views\SamplePages\TextBlockSamplePage.xaml.cs">
       <DependentUpon>TextBlockSamplePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Samples\CheckBoxSamplePage.xaml.cs">
+    <Compile Include="Views\SamplePages\CheckBoxSamplePage.xaml.cs">
       <DependentUpon>CheckBoxSamplePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Samples\TransformsSamplePage.xaml.cs">
+    <Compile Include="Views\SamplePages\TransformsSamplePage.xaml.cs">
       <DependentUpon>TransformsSamplePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Samples\TypographySamplePage.xaml.cs">
+    <Compile Include="Views\SamplePages\TypographySamplePage.xaml.cs">
       <DependentUpon>TypographySamplePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Samples\WebViewSamplePage.xaml.cs">
+    <Compile Include="Views\SamplePages\WebViewSamplePage.xaml.cs">
       <DependentUpon>WebViewSamplePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Shell.xaml.cs">
       <DependentUpon>Shell.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Samples\ButtonSamplePage.xaml.cs">
+    <Compile Include="Views\SamplePages\ButtonSamplePage.xaml.cs">
       <DependentUpon>ButtonSamplePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Samples\PasswordBoxSamplePage.xaml.cs">
+    <Compile Include="Views\SamplePages\PasswordBoxSamplePage.xaml.cs">
       <DependentUpon>PasswordBoxSamplePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Samples\TextBoxSamplePage.xaml.cs">
+    <Compile Include="Views\SamplePages\TextBoxSamplePage.xaml.cs">
       <DependentUpon>TextBoxSamplePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Welcome\MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -311,95 +308,95 @@
     <Content Include="Properties\Default.rd.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Views\Samples\BrushSamplePage.xaml">
+    <Page Include="Views\SamplePages\BrushSamplePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ColorPalette\FluentPalettePage.xaml">
+    <Page Include="Views\GeneralPages\FluentPalettePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Samples\BottomNavigationBarSamplePage.xaml">
+    <Page Include="Views\SamplePages\BottomNavigationBarSamplePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Samples\ComboBoxSamplePage.xaml">
+    <Page Include="Views\SamplePages\ComboBoxSamplePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Samples\DatePickerSamplePage.xaml">
+    <Page Include="Views\SamplePages\DatePickerSamplePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Samples\FlipViewSamplePage.xaml">
+    <Page Include="Views\SamplePages\FlipViewSamplePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Samples\MessageDialogSamplePage.xaml">
+    <Page Include="Views\SamplePages\MessageDialogSamplePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Samples\PanelSamplePage.xaml">
+    <Page Include="Views\SamplePages\PanelSamplePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Samples\ProgressSamplePage.xaml">
+    <Page Include="Views\SamplePages\ProgressSamplePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Samples\NavigationViewSamplePage.xaml">
+    <Page Include="Views\SamplePages\NavigationViewSamplePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\ColorPalette\MaterialPalettePage.xaml">
+    <Page Include="Views\GeneralPages\MaterialPalettePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Home.xaml">
+    <Page Include="Views\GeneralPages\Home.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Samples\FabSamplePage.xaml">
+    <Page Include="Views\SamplePages\FabSamplePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Samples\ShapeSamplePage.xaml">
+    <Page Include="Views\SamplePages\ShapeSamplePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Samples\SliderSamplePage.xaml">
+    <Page Include="Views\SamplePages\SliderSamplePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Samples\TimePickerSamplePage.xaml">
+    <Page Include="Views\SamplePages\TimePickerSamplePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Samples\ToggleSwitchSamplePage.xaml">
+    <Page Include="Views\SamplePages\ToggleSwitchSamplePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Samples\RadioButtonSamplePage.xaml">
+    <Page Include="Views\SamplePages\RadioButtonSamplePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Samples\TextBlockSamplePage.xaml">
+    <Page Include="Views\SamplePages\TextBlockSamplePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Samples\CheckBoxSamplePage.xaml">
+    <Page Include="Views\SamplePages\CheckBoxSamplePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Samples\TransformsSamplePage.xaml">
+    <Page Include="Views\SamplePages\TransformsSamplePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Samples\WebViewSamplePage.xaml">
+    <Page Include="Views\SamplePages\WebViewSamplePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Samples\TypographySamplePage.xaml">
+    <Page Include="Views\SamplePages\TypographySamplePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -407,51 +404,51 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Samples\ButtonSamplePage.xaml">
+    <Page Include="Views\SamplePages\ButtonSamplePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Samples\TextBoxSamplePage.xaml">
+    <Page Include="Views\SamplePages\TextBoxSamplePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Samples\PasswordBoxSamplePage.xaml">
+    <Page Include="Views\SamplePages\PasswordBoxSamplePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Styles\Application\Colors.xaml">
+    <Page Include="Views\Colors.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Styles\Application\Converters.xaml">
+    <Page Include="Views\Converters.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Styles\Application\Fonts.xaml">
+    <Page Include="Views\Fonts.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Styles\Controls\ColorPaletteView.xaml">
+    <Page Include="Views\Styles\ColorPaletteView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Styles\Controls\FluentPaletteView.xaml">
+    <Page Include="Views\Styles\FluentPaletteView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Styles\Controls\Path.xaml">
+    <Page Include="Views\Styles\Path.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Styles\Controls\ThreeColorPaletteView.xaml">
+    <Page Include="Views\Styles\ThreeColorPaletteView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Styles\Controls\ToggleButton.xaml">
+    <Page Include="Views\Styles\ToggleButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Styles\Controls\RadioButton.xaml">
+    <Page Include="Views\Styles\RadioButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -463,13 +460,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Styles\Controls\XamlDisplay.xaml">
+    <Page Include="Views\Styles\XamlDisplay.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Welcome\MainPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <Import Project="..\Uno.Gallery.Shared\Uno.Gallery.Shared.projitems" Label="Shared" Condition="Exists('..\Uno.Gallery.Shared\Uno.Gallery.Shared.projitems')" />
