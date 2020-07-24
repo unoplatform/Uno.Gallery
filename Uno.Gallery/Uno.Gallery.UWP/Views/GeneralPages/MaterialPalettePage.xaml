@@ -5,6 +5,7 @@
 	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	  xmlns:controls="using:Uno.Gallery.Controls"
+	  xmlns:toolkit="using:Uno.UI.Toolkit"
 	  mc:Ignorable="d">
 
 	<Page.Resources>
@@ -113,7 +114,7 @@
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
 		<controls:ContentPageLayout Title="Material Palette"
-									Description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.">			
+									Description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.">
 			<StackPanel>
 
 				<!-- Primary colors section -->
@@ -203,13 +204,22 @@
 						   Margin="0,16,0,0" />
 
 				<controls:ColorPaletteView Title="OnPrimary"
-										   Description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore."
-										   ColorName="OnPrimary Color"
-										   ColorSecondaryName="Primary Color"
+										   Description="OnPrimary colors are the colors used to display text or icons on the primary color."
+										   ColorName="OnPrimary"
 										   ColorBrush="{StaticResource MaterialPrimaryBrush}"
 										   OnColorBrush="{StaticResource MaterialOnPrimaryBrush}"
 										   Style="{StaticResource InvertedColorPaletteViewStyle}"
 										   Margin="0,48,0,0" />
+
+				<controls:ColorPaletteView ColorName="OnPrimaryMedium"
+										   ColorBrush="{StaticResource MaterialPrimaryBrush}"
+										   OnColorBrush="{StaticResource MaterialOnPrimaryMediumBrush}"
+										   Style="{StaticResource SimpleInvertedColorPaletteViewStyle}" />
+
+				<controls:ColorPaletteView ColorName="OnPrimaryLow"
+										   ColorBrush="{StaticResource MaterialPrimaryBrush}"
+										   OnColorBrush="{StaticResource MaterialOnPrimaryDisabledBrush}"
+										   Style="{StaticResource SimpleInvertedColorPaletteViewStyle}" />
 
 				<StackPanel Orientation="Horizontal"
 							Margin="0,16,0,0">
@@ -224,13 +234,22 @@
 				</StackPanel>
 
 				<controls:ColorPaletteView Title="OnSecondary"
-										   Description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore."
-										   ColorName="OnSecondary Color"
-										   ColorSecondaryName="Secondary Color"
+										   Description="OnSecondary colors are the colors used to display text or icons on the secondary color."
+										   ColorName="OnSecondary"
 										   ColorBrush="{StaticResource MaterialSecondaryBrush}"
 										   OnColorBrush="{StaticResource MaterialOnSecondaryBrush}"
 										   Style="{StaticResource InvertedColorPaletteViewStyle}"
 										   Margin="0,48,0,0" />
+
+				<controls:ColorPaletteView ColorName="OnSecondaryMedium"
+										   ColorBrush="{StaticResource MaterialSecondaryBrush}"
+										   OnColorBrush="{StaticResource MaterialOnSecondaryMediumBrush}"
+										   Style="{StaticResource SimpleInvertedColorPaletteViewStyle}" />
+
+				<controls:ColorPaletteView ColorName="OnSecondaryLow"
+										   ColorBrush="{StaticResource MaterialSecondaryBrush}"
+										   OnColorBrush="{StaticResource MaterialOnSecondaryDisabledBrush}"
+										   Style="{StaticResource SimpleInvertedColorPaletteViewStyle}" />
 
 				<StackPanel Orientation="Horizontal"
 							Margin="0,16,0,0">
@@ -255,14 +274,38 @@
 										   BorderThickness="1"
 										   Margin="0,48,0,0" />
 
-				<controls:ColorPaletteView Title="OnSurface"
-										   Description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore."
-										   ColorName="OnSurfaceColor"
-										   ColorSecondaryName="Surface Color"
-										   ColorBrush="{StaticResource MaterialSurfaceBrush}"
-										   OnColorBrush="{StaticResource MaterialOnSurfaceBrush}"
-										   Style="{StaticResource InvertedColorPaletteViewStyleWithElevatedView}"
-										   Margin="0,48,0,0" />
+				<TextBlock Text="OnSurface"
+						   Style="{StaticResource MaterialHeadline6}"
+						   Margin="0,48,0,0" />
+
+				<TextBlock Text="OnSurface colors are the colors used to display text or icons on the surface color."
+						   Margin="0,16,0,0"
+						   Style="{StaticResource MaterialBody1}" />
+
+				<!-- Workaround: Setting the ElevatedView Background White makes sure we see the elevation effect https://github.com/unoplatform/uno/issues/3563 -->
+				<toolkit:ElevatedView Elevation="6"
+									  ShadowColor="{StaticResource ColorPaletteViewElevationColor}"
+									  Background="White"
+									  Margin="0,28,0,0">
+					<StackPanel Background="{StaticResource MaterialSurfaceBrush}">
+						<controls:ColorPaletteView ColorName="OnSurface"
+												   ColorSecondaryName="Surface Color"
+												   ColorBrush="{StaticResource MaterialSurfaceBrush}"
+												   OnColorBrush="{StaticResource MaterialOnSurfaceBrush}"
+												   Style="{StaticResource InvertedBiggerSimpleColorPaletteViewStyle}" />
+
+						<controls:ColorPaletteView ColorName="OnSurfaceMedium"
+												   ColorBrush="{StaticResource MaterialSurfaceBrush}"
+												   OnColorBrush="{StaticResource MaterialOnSurfaceMediumBrush}"
+												   Style="{StaticResource SimpleInvertedColorPaletteViewStyle}" />
+
+						<controls:ColorPaletteView ColorName="OnSurfaceLow"
+												   ColorBrush="{StaticResource MaterialSurfaceBrush}"
+												   OnColorBrush="{StaticResource MaterialOnSurfaceDisabledBrush}"
+												   Style="{StaticResource SimpleInvertedColorPaletteViewStyle}" />
+					</StackPanel>
+				</toolkit:ElevatedView>
+
 
 				<controls:ColorPaletteView Title="OnError"
 										   Description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore."

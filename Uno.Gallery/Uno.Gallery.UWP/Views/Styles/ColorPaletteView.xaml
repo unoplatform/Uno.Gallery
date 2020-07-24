@@ -78,13 +78,14 @@
 		</Setter>
 	</Style>
 
+	<!-- Displays the OnColor hex code. -->
 	<Style x:Key="InvertedColorPaletteViewStyle"
 		   TargetType="controls:ColorPaletteView">
 
 		<Setter Property="Padding"
-				Value="20" />
+				Value="20,12" />
 		<Setter Property="ColorHeight"
-				Value="100" />
+				Value="88" />
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="controls:ColorPaletteView">
@@ -154,10 +155,19 @@
 									   Style="{StaticResource MaterialHeadline6}"
 									   Foreground="{TemplateBinding OnColorBrush}" />
 
+							<Rectangle Height="12"
+									   Width="12"
+									   Fill="{TemplateBinding OnColorBrush}"
+									   HorizontalAlignment="Left"
+									   VerticalAlignment="Top"
+									   Margin="0,4,0,0"
+									   Grid.Row="1"/>
+							
 							<TextBlock x:Name="ColorHexText"
 									   Text="{TemplateBinding OnColorHex}"
 									   Style="{StaticResource MaterialSubtitle2}"
 									   Foreground="{TemplateBinding OnColorBrush}"
+									   Margin="16,0,0,0"
 									   Grid.Row="1" />
 
 							<TextBlock x:Name="SecondaryColorText"
@@ -177,98 +187,88 @@
 		</Setter>
 	</Style>
 
-	<Style x:Key="InvertedColorPaletteViewStyleWithElevatedView"
-		   TargetType="controls:ColorPaletteView"
-		   BasedOn="{StaticResource InvertedColorPaletteViewStyle}">
+	<!-- Displays the OnColor hex code. -->
+	<Style x:Key="SimpleInvertedColorPaletteViewStyle"
+		   TargetType="controls:ColorPaletteView">
+
+		<Setter Property="Padding"
+				Value="20,12" />
+		<Setter Property="Height"
+				Value="64" />
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="controls:ColorPaletteView">
-					<Grid>
+					<Grid Background="{TemplateBinding ColorBrush}"
+						  Height="{TemplateBinding Height}"
+						  Padding="{TemplateBinding Padding}">
+
 						<Grid.RowDefinitions>
-							<RowDefinition Height="auto" />
-							<RowDefinition Height="auto" />
-							<RowDefinition Height="auto" />
+							<RowDefinition Height="*" />
+							<RowDefinition Height="*" />
 						</Grid.RowDefinitions>
 
-						<VisualStateManager.VisualStateGroups>
-							<VisualStateGroup>
-								<VisualState x:Name="Desktop">
-									<VisualState.StateTriggers>
-										<AdaptiveTrigger MinWindowWidth="{StaticResource DesktopAdaptiveThresholdWidth}" />
-									</VisualState.StateTriggers>
-									<VisualState.Setters>
-									</VisualState.Setters>
-								</VisualState>
-								
-								<VisualState x:Name="Mobile">
-									<VisualState.StateTriggers>
-										<AdaptiveTrigger MinWindowWidth="0" />
-									</VisualState.StateTriggers>
-									<VisualState.Setters>
-										<Setter Target="SecondaryColorText.(Grid.Row)"
-												Value="1" />
-										<Setter Target="SecondaryColorText.(Grid.RowSpan)"
-												Value="1" />
-										<Setter Target="SecondaryColorText.(Grid.Column)"
-												Value="0" />
-										<Setter Target="SecondaryColorText.VerticalAlignment"
-												Value="Top" />
-									</VisualState.Setters>
-								</VisualState>								
-							</VisualStateGroup>
-						</VisualStateManager.VisualStateGroups>
+						<TextBlock Text="{TemplateBinding ColorName}"
+								   Style="{StaticResource MaterialSubtitle2}"
+								   Foreground="{TemplateBinding OnColorBrush}"
+								   VerticalAlignment="Bottom" />
 
-						<TextBlock Text="{TemplateBinding Title}"
-								   Style="{StaticResource MaterialHeadline6}" />
-
-						<TextBlock Text="{TemplateBinding Description}"
-								   Margin="0,16,0,0"
-								   Style="{StaticResource MaterialBody1}"
+						<Rectangle Height="12"
+								   Width="12"
+								   Fill="{TemplateBinding OnColorBrush}"
+								   HorizontalAlignment="Left"
+								   VerticalAlignment="Top"
+								   Margin="0,4,0,0"
 								   Grid.Row="1" />
 
-						<!-- Workaround: Setting the ElevatedView Background White makes sure we see the elevation effect https://github.com/unoplatform/uno/issues/3563 -->
-						<toolkit:ElevatedView Elevation="6"
-											  ShadowColor="{StaticResource ColorPaletteViewElevationColor}"
-											  Background="White"
-											  Height="{TemplateBinding ColorHeight}"
-											  Margin="0,28,0,0"
-											  Grid.Row="2">
-							<Grid Padding="{TemplateBinding Padding}"
-								  Background="{TemplateBinding ColorBrush}">
+						<TextBlock Text="{TemplateBinding OnColorHex}"
+								   Style="{StaticResource MaterialSubtitle2}"
+								   Foreground="{TemplateBinding OnColorBrush}"
+								   VerticalAlignment="Top"
+								   Margin="16,0,0,0"
+								   Grid.Row="1" />
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
 
-								<Grid.ColumnDefinitions>
-									<ColumnDefinition Width="*" />
-									<ColumnDefinition Width="auto" />
-								</Grid.ColumnDefinitions>
+	<!-- Displays the OnColor hex code. -->
+	<Style x:Key="InvertedBiggerSimpleColorPaletteViewStyle"
+		   TargetType="controls:ColorPaletteView"
+		   BasedOn="{StaticResource SimpleColorPaletteViewStyle}">
 
-								<Grid.RowDefinitions>
-									<RowDefinition Height="*" />
-									<RowDefinition Height="*" />
-								</Grid.RowDefinitions>
+		<Setter Property="Height"
+				Value="88" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="controls:ColorPaletteView">
+					<Grid Background="{TemplateBinding ColorBrush}"
+						  Height="{TemplateBinding Height}"
+						  Padding="{TemplateBinding Padding}">
 
-								<TextBlock x:Name="ColorNameText"
-										   Text="{TemplateBinding ColorName}"
-										   Style="{StaticResource MaterialHeadline6}"
-										   Foreground="{TemplateBinding OnColorBrush}" />
+						<Grid.RowDefinitions>
+							<RowDefinition Height="*" />
+							<RowDefinition Height="*" />
+						</Grid.RowDefinitions>
 
-								<TextBlock x:Name="ColorHexText"
-										   Text="{TemplateBinding OnColorHex}"
-										   Style="{StaticResource MaterialSubtitle2}"
-										   Foreground="{TemplateBinding OnColorBrush}"
-										   Grid.Row="1" />
+						<TextBlock Text="{TemplateBinding ColorName}"
+								   Style="{StaticResource MaterialHeadline6}"
+								   Foreground="{TemplateBinding OnColorBrush}" />
 
-								<TextBlock x:Name="SecondaryColorText"
-										   Text="{TemplateBinding ColorSecondaryName}"
-										   Style="{StaticResource MaterialCaption}"
-										   Foreground="{TemplateBinding OnColorBrush}"
-										   Opacity="0.5"
-										   VerticalAlignment="Center"
-										   HorizontalAlignment="Right"
-										   Grid.Column="1"
-										   Grid.Row="0"
-										   Grid.RowSpan="2" />
-							</Grid>
-						</toolkit:ElevatedView>
+						<Rectangle Height="12"
+								   Width="12"
+								   Fill="{TemplateBinding OnColorBrush}"
+								   HorizontalAlignment="Left"
+								   VerticalAlignment="Top"
+								   Margin="0,4,0,0"
+								   Grid.Row="1" />
+						
+						<TextBlock Text="{TemplateBinding OnColorHex}"
+								   Style="{StaticResource MaterialSubtitle2}"
+								   Foreground="{TemplateBinding OnColorBrush}"
+								   VerticalAlignment="Top"
+								   Margin="16,0,0,0"
+								   Grid.Row="1" />
 					</Grid>
 				</ControlTemplate>
 			</Setter.Value>
