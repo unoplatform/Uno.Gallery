@@ -84,7 +84,7 @@
 											   Margin="0,30,0,0" />
 
 									<!-- Source value -->
-									<TextBlock Text="{TemplateBinding Source}"
+									<TextBlock Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Source, Converter={StaticResource EnumToDescription}}"
 											   Style="{StaticResource MaterialBody1}"
 											   Margin="0,0,0,16" />
 

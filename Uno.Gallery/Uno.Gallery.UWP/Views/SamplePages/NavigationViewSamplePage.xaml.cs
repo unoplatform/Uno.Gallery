@@ -3,7 +3,7 @@ using Uno.Gallery.Controls;
 
 namespace Uno.Gallery.Views.Samples
 {
-	[SamplePage("NavigationView", "NavigationView sample", SourceSdk.WinUI)]
+	[SamplePage(SampleCategory.Components, "NavigationView")]
 	public sealed partial class NavigationViewSamplePage : Page
 	{
 		public NavigationViewSamplePage()

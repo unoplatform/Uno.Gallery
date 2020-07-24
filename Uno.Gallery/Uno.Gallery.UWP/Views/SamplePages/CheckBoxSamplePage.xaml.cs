@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Uno.Gallery.Views.Samples
 {
-	[SamplePage("CheckBox", "Simple checkbox sample", SourceSdk.WinUI)]
+	[SamplePage(SampleCategory.Components, "CheckBox")]
 	public sealed partial class CheckBoxSamplePage : Page
 	{
 		public CheckBoxSamplePage()

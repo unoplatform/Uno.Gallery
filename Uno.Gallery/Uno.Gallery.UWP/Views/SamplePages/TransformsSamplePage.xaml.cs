@@ -2,7 +2,7 @@
 
 namespace Uno.Gallery.Views.Samples
 {
-	[SamplePage("Transforms", "Transforms sample", SourceSdk.WinUI)]
+	[SamplePage(SampleCategory.Components, "Transforms")]
 	public sealed partial class TransformsSamplePage : Page
 	{
 		public TransformsSamplePage()

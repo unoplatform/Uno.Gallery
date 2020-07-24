@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Uno.Gallery.Views.Samples
 {
-	[SamplePage("RadioButton", "RadioButton sample", SourceSdk.WinUI)]
+	[SamplePage(SampleCategory.Components, "RadioButton")]
 	public sealed partial class RadioButtonSamplePage : Page
 	{
 		public RadioButtonSamplePage()

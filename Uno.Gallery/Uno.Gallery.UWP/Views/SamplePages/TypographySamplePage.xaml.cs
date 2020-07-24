@@ -2,7 +2,7 @@
 
 namespace Uno.Gallery.Views.Samples
 {
-	[SamplePage("Typography", "Typography sample", SourceSdk.WinUI)]
+	[SamplePage(SampleCategory.Components, "Typography")]
 	public sealed partial class TypographySamplePage : Page
 	{
 		public TypographySamplePage()
