@@ -266,7 +266,6 @@
 				<controls:ColorPaletteView Title="OnBackground"
 										   Description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore."
 										   ColorName="OnBackground Color"
-										   ColorSecondaryName="Background Color"
 										   ColorBrush="{StaticResource MaterialBackgroundBrush}"
 										   OnColorBrush="{StaticResource MaterialOnBackgroundBrush}"
 										   BorderBrush="{StaticResource MaterialOnSurfaceFocusedBrush}"
@@ -289,7 +288,6 @@
 									  Margin="0,28,0,0">
 					<StackPanel Background="{StaticResource MaterialSurfaceBrush}">
 						<controls:ColorPaletteView ColorName="OnSurface"
-												   ColorSecondaryName="Surface Color"
 												   ColorBrush="{StaticResource MaterialSurfaceBrush}"
 												   OnColorBrush="{StaticResource MaterialOnSurfaceBrush}"
 												   Style="{StaticResource InvertedBiggerSimpleColorPaletteViewStyle}" />
@@ -310,7 +308,6 @@
 				<controls:ColorPaletteView Title="OnError"
 										   Description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore."
 										   ColorName="OnError"
-										   ColorSecondaryName="Error Color"
 										   ColorBrush="{StaticResource MaterialErrorBrush}"
 										   OnColorBrush="{StaticResource MaterialOnErrorBrush}"
 										   Style="{StaticResource InvertedColorPaletteViewStyle}"

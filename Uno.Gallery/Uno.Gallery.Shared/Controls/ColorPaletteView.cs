@@ -53,15 +53,6 @@ namespace Uno.Gallery.Controls
 		public static readonly DependencyProperty ColorNameProperty =
 			DependencyProperty.Register("ColorName", typeof(string), typeof(ColorPaletteView), new PropertyMetadata(string.Empty));
 
-		public string ColorSecondaryName
-		{
-			get { return (string)GetValue(ColorSecondaryNameProperty); }
-			set { SetValue(ColorSecondaryNameProperty, value); }
-		}
-
-		public static readonly DependencyProperty ColorSecondaryNameProperty =
-			DependencyProperty.Register("ColorSecondaryName", typeof(string), typeof(ColorPaletteView), new PropertyMetadata(string.Empty));
-
 		public Brush ColorBrush
 		{
 			get { return (Brush)GetValue(ColorBrushProperty); }

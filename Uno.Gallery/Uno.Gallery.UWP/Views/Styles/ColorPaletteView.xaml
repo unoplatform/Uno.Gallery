@@ -96,34 +96,6 @@
 							<RowDefinition Height="auto" />
 						</Grid.RowDefinitions>
 
-						<VisualStateManager.VisualStateGroups>
-							<VisualStateGroup>
-								<VisualState x:Name="Desktop">
-									<VisualState.StateTriggers>
-										<AdaptiveTrigger MinWindowWidth="{StaticResource DesktopAdaptiveThresholdWidth}" />
-									</VisualState.StateTriggers>
-									<VisualState.Setters>
-									</VisualState.Setters>
-								</VisualState>
-
-								<VisualState x:Name="Mobile">
-									<VisualState.StateTriggers>
-										<AdaptiveTrigger MinWindowWidth="0" />
-									</VisualState.StateTriggers>
-									<VisualState.Setters>
-										<Setter Target="SecondaryColorText.(Grid.Row)"
-												Value="1" />
-										<Setter Target="SecondaryColorText.(Grid.RowSpan)"
-												Value="1" />
-										<Setter Target="SecondaryColorText.(Grid.Column)"
-												Value="0" />
-										<Setter Target="SecondaryColorText.VerticalAlignment"
-												Value="Top" />
-									</VisualState.Setters>
-								</VisualState>
-							</VisualStateGroup>
-						</VisualStateManager.VisualStateGroups>
-
 						<TextBlock Text="{TemplateBinding Title}"
 								   Style="{StaticResource MaterialHeadline6}" />
 
@@ -169,17 +141,6 @@
 									   Foreground="{TemplateBinding OnColorBrush}"
 									   Margin="16,0,0,0"
 									   Grid.Row="1" />
-
-							<TextBlock x:Name="SecondaryColorText"
-									   Text="{TemplateBinding ColorSecondaryName}"
-									   Style="{StaticResource MaterialCaption}"
-									   Foreground="{TemplateBinding OnColorBrush}"
-									   Opacity="0.5"
-									   VerticalAlignment="Center"
-									   HorizontalAlignment="Right"
-									   Grid.Column="1"
-									   Grid.Row="0"
-									   Grid.RowSpan="2" />
 						</Grid>
 					</Grid>
 				</ControlTemplate>
