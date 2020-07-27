@@ -114,23 +114,6 @@ namespace Uno.Gallery
 			{
 				ShellNavigateTo(sample);
 			}
-			else
-			{
-#if WINDOWS_UWP
-				// Set theme for window root.
-				if (Window.Current.Content is FrameworkElement frameworkElement)
-				{
-					if (frameworkElement.ActualTheme == ElementTheme.Dark)
-					{
-						frameworkElement.RequestedTheme = ElementTheme.Light;
-					}
-					else
-					{
-						frameworkElement.RequestedTheme = ElementTheme.Dark;
-					}
-				}
-#endif
-			}
 		}
 
 		private void AddNavigationItems(NavigationView nv)
