@@ -99,7 +99,8 @@
 									<Border x:Name="LayoutRoot"
 											BorderThickness="{TemplateBinding BorderThickness}"
 											Opacity="0.8">
-										<ContentPresenter Content="{TemplateBinding Content}" />
+										<ContentPresenter Content="{TemplateBinding Content}"
+														  ContentTemplate="{TemplateBinding ContentTemplate}" />
 
 										<VisualStateManager.VisualStateGroups>
 											<VisualStateGroup x:Name="CommonStates">
