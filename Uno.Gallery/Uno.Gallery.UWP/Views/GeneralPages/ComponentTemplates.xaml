@@ -95,17 +95,17 @@
 	</DataTemplate>
 	<DataTemplate x:Key="MaterialTextBoxExampleTemplate">
 		<StackPanel Spacing="8">
-			<TextBox PlaceholderText="Text2"
-					 Style="{StaticResource MaterialFilledTextBoxStyle}" />
 			<TextBox PlaceholderText="Text1"
+					 Style="{StaticResource MaterialFilledTextBoxStyle}" />
+			<TextBox PlaceholderText="Text2"
 					 Style="{StaticResource MaterialFilledTextBoxStyle}">
 				<extensions:ControlExtensions.Icon>
 					<SymbolIcon Symbol="Character" />
 				</extensions:ControlExtensions.Icon>
 			</TextBox>
-			<TextBox PlaceholderText="Text4"
-					 Style="{StaticResource MaterialOutlinedTextBoxStyle}" />
 			<TextBox PlaceholderText="Text3"
+					 Style="{StaticResource MaterialOutlinedTextBoxStyle}" />
+			<TextBox PlaceholderText="Text4"
 					 Style="{StaticResource MaterialOutlinedTextBoxStyle}">
 				<extensions:ControlExtensions.Icon>
 					<SymbolIcon Symbol="Character" />
