@@ -185,13 +185,14 @@
 							  BorderThickness="1"
 							  Margin="0,24,0,0">
 							<Grid.ColumnDefinitions>
-								<ColumnDefinition Width="240" />
+								<ColumnDefinition Width="160" />
 								<ColumnDefinition Width="*" />
 							</Grid.ColumnDefinitions>
 
 							<StackPanel Grid.Column="0"
 										Padding="16">
 								<TextBlock Text="{Binding Sample.Title}"
+										   TextWrapping="Wrap"
 										   Style="{StaticResource MaterialHeadline6}" />
 								<TextBlock Text="{Binding Sample.Description}"
 										   TextWrapping="WrapWholeWords"
