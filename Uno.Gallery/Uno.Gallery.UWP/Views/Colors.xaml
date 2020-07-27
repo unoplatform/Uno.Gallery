@@ -61,7 +61,7 @@
 	-->
 	<SolidColorBrush x:Key="Foreground01ColorBrush"
 					 Color="{ThemeResource MaterialOnBackgroundColor}"
-					 Opacity="{StaticResource Opacity_01}"  />
+					 Opacity="{StaticResource Opacity01}"  />
 
 	<SolidColorBrush x:Key="Foreground02ColorBrush"
 					 Color="{ThemeResource MaterialOnBackgroundColor}"
