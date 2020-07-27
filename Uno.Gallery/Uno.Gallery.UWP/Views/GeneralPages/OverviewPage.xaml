@@ -57,6 +57,7 @@
 							<Border CornerRadius="4"
 									BorderBrush="LightGray"
 									BorderThickness="1"
+									MaxWidth="240"
 									Padding="24">
 								<StackPanel>
 									<TextBlock Text="todo:Icon" />
