@@ -102,7 +102,7 @@
 
 								<RadioButton GroupName="RadioButtonDemo_Material_2b"
 											 Content="DISABLED CHECKED"
-											 Style="{StaticResource MaterialSecondarRadioButtonStyle}"
+											 Style="{StaticResource MaterialSecondaryRadioButtonStyle}"
 											 IsChecked="True"
 											 IsEnabled="False" />
 							</StackPanel>
