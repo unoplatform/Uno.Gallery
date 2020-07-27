@@ -124,7 +124,7 @@ jobs:
     inputs:
       serverEndpoint: AppCenter
       appSlug: 'nventive/Uno-Gallery-1'
-      appFile: $(System.ArtifactsDirectory)/$(AndroidArtifactName)/*.Gallery-Signed.apk
+      appFile: $(System.ArtifactsDirectory)/$(AndroidArtifactName)/*.demo-Signed.apk
       releaseNotesInput: |
         Uno Gallery
       isSilent: true

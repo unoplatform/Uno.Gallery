@@ -1,0 +1,35 @@
+jobs:
+- job:  Publish_GooglePlay_Android
+  pool: $(windowsPoolName)
+
+  container: nventive/build-agent:vs16.6.0
+
+  variables:
+  - group: 'Uno Gallery Google Play Variables' # Import all variables for the signing from the library in azure devops
+  
+  steps:
+  - checkout: none
+
+  - task: DownloadBuildArtifacts@0
+    inputs:
+      buildType: current
+      downloadType: single
+      artifactName: $(AndroidArtifactName)
+
+  - task: AndroidSigning@3
+    displayName: 'Signing and aligning APK files'
+    inputs:
+      apkFiles: '$(System.ArtifactsDirectory)/$(AndroidArtifactName)/*.apk'
+      apksignerKeystoreFile: nventive.jks # Name of the jks keystore in the secure files (in azure devops library)
+      apksignerKeystorePassword: '$(AndroidSigningStorePass)'
+      apksignerKeystoreAlias: '$(AndroidSigningKeyAlias)'
+      apksignerKeyPassword: '$(AndroidSigningKeyPass)'
+
+  - task: GooglePlayRelease@3
+    displayName: 'Release ARM64 and ARM7 to internal on Google Play'
+    inputs:
+      serviceConnection: 'Uno Gallery Google Play'
+      apkFile: '$(System.ArtifactsDirectory)/$(AndroidArtifactName)/*.demo-arm64-v8a-Signed.apk'
+      languageCode: 'en-CA'
+      additionalApks: '$(System.ArtifactsDirectory)/$(AndroidArtifactName)/*.demo-armeabi-v7a-Signed.apk'
+      track: 'internal'
