@@ -8,15 +8,19 @@
 
 	<Style x:Key="DefaultContentPageLayoutStyle"
 		   TargetType="controls:ContentPageLayout">
+		
 		<Setter Property="BorderBrush"
 				Value="{StaticResource SeparatorColorBrush}" />
 		<Setter Property="BorderThickness"
 				Value="1,0,0,0" />
+		
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="controls:ContentPageLayout">
+					
 					<Grid BorderBrush="{TemplateBinding BorderBrush}"
 						  BorderThickness="{TemplateBinding BorderThickness}">
+						
 						<Grid.RowDefinitions>
 							<RowDefinition Height="Auto" />
 							<RowDefinition Height="*" />
@@ -59,15 +63,17 @@
 									<TextBlock x:Name="ScrollingTitle"
 											   Text="{TemplateBinding Title}"
 											   Style="{StaticResource MaterialHeadline4}"
+											   Foreground="{StaticResource Foreground01ColorBrush}"
 											   Visibility="Collapsed"
-											   Margin="0,32,0,0"/>
+											   Margin="0,32,0,0" />
 
 									<!-- Description (optional) -->
 									<TextBlock Text="{TemplateBinding Description}"
-											   FontSize="23"
-											   Margin="0,16,0,0"
+											   Style="{StaticResource MaterialSubtitle1}"
+											   Foreground="{StaticResource Foreground02ColorBrush}"
 											   TextWrapping="WrapWholeWords"
-											   Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Description, Converter={StaticResource IsNullOrEmptyToCollapsed}, FallbackValue=Collapsed}" />
+											   Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Description, Converter={StaticResource IsNullOrEmptyToCollapsed}, FallbackValue=Collapsed}"
+											   Margin="0,16,0,0" />
 
 									<!-- Separator -->
 									<Rectangle Fill="{StaticResource SeparatorColorBrush}"
@@ -81,33 +87,10 @@
 													  ContentTemplate="{TemplateBinding ContentTemplate}"
 													  VerticalAlignment="Stretch"
 													  HorizontalAlignment="Stretch"
-													  Margin="0,48,0,0"/>
+													  Margin="0,48,0,0" />
 
 								</StackPanel>
-
-								<!-- Separator -->
-								<!--<Rectangle Grid.Row="1"
-									   Margin="0,24"
-									   Height="1"
-									   Fill="LightGray" />-->
-
-								<!-- Footer -->
-								<!--<Grid Grid.Row="2">
-								<Grid.ColumnDefinitions>
-									<ColumnDefinition Width="*" />
-									<ColumnDefinition Width="Auto" />
-									<ColumnDefinition Width="Auto" />
-								</Grid.ColumnDefinitions>
-
-								<TextBlock Grid.Column="0"
-										   Text="Uno Gallery" />
-								<Button Grid.Column="1"
-										Content="About" />
-								<Button Grid.Column="2"
-										Content="Feedback" />
-							</Grid>-->
 							</Grid>
-
 						</ScrollViewer>
 
 						<VisualStateManager.VisualStateGroups>

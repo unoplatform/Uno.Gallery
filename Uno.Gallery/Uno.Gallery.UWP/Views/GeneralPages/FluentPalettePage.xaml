@@ -27,6 +27,7 @@
 			
 			<StackPanel>
 				<TextBlock Style="{StaticResource MaterialSubtitle1}"
+						   Foreground="{StaticResource Foreground02ColorBrush}"
 						   Margin="0,0,0,48">
 					<Run Text="Here's an overview of the Fluent Design color palette." />
 					<LineBreak />
@@ -44,8 +45,10 @@
 
 				<TextBlock Text="Accent, Base and Alt Colors"
 						   Style="{StaticResource MaterialHeadline6}" />
+				
 				<TextBlock Style="{StaticResource MaterialSubtitle1}"
-						   Margin="0,0,0,48">
+						   Foreground="{StaticResource Foreground02ColorBrush}"
+						   Margin="0,16,0,48">
 					<Run Text="Accent color is commonly used to reflect your brand and is commonly used to highlight state information" />
 					<LineBreak />
 					<LineBreak /><Run Text="Base colors can be used for text. Intensity can be High/Medium/Low." />
@@ -188,7 +191,9 @@
 						   Height="1"
 						   Margin="0,48" />
 
-				<TextBlock Style="{StaticResource MaterialBody1}">
+				<TextBlock Style="{StaticResource MaterialBody1}"
+						   Foreground="{StaticResource Foreground02ColorBrush}"
+						   Margin="0,0,0,24">
 					<Run Text="For more information refer to" />
 					
 					<Hyperlink NavigateUri="https://docs.microsoft.com/en-us/windows/uwp/design/style/color#accent-color-palette">

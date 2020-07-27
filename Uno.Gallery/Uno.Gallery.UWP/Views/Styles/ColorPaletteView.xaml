@@ -97,11 +97,13 @@
 						</Grid.RowDefinitions>
 
 						<TextBlock Text="{TemplateBinding Title}"
-								   Style="{StaticResource MaterialHeadline6}" />
+								   Style="{StaticResource MaterialHeadline6}"
+								   Foreground="{StaticResource Foreground01ColorBrush}" />
 
 						<TextBlock Text="{TemplateBinding Description}"
-								   Margin="0,16,0,0"
 								   Style="{StaticResource MaterialBody1}"
+								   Foreground="{StaticResource Foreground02ColorBrush}"
+								   Margin="0,16,0,0"
 								   Grid.Row="1" />
 
 						<Grid Background="{TemplateBinding ColorBrush}"
@@ -271,6 +273,7 @@
 
 						<TextBlock Text="{TemplateBinding Description}"
 								   Style="{StaticResource MaterialCaption}"
+								   Foreground="{StaticResource Foreground04ColorBrush}"		   
 								   Margin="0,16,0,0" />
 					</StackPanel>
 				</ControlTemplate>

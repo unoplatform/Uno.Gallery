@@ -26,21 +26,22 @@
 						ImageSource="ms-appx:///Assets/UnoGalleryLogo_Dark.png"
 						Stretch="Uniform" />
 		</ResourceDictionary>
-		
-		
 	</ResourceDictionary.ThemeDictionaries>
 	
-	
-	
-	
-	
-	<StaticResource x:Key="SeparatorColorBrush"
-					ResourceKey="MaterialOnSurfaceFocusedBrush" />
+	<!-- Opacity for text -->
+	<x:Double x:Key="Opacity01">1</x:Double>
+	<x:Double x:Key="Opacity02">0.8</x:Double>
+	<x:Double x:Key="Opacity03">0.6</x:Double>
+	<x:Double x:Key="Opacity04">0.45</x:Double>
+	<x:Double x:Key="Opacity05">0.2</x:Double>
 
 	<Color x:Key="UnoBlueColor">#FF229DFC</Color>
 	<Color x:Key="UnoPurpleColor">#FF7A69F5</Color>
 	<Color x:Key="UnoGreenColor">#FF6CE5AE</Color>
 	<Color x:Key="UnoRedColor">#FFF65678</Color>
+
+	<StaticResource x:Key="SeparatorColorBrush"
+					ResourceKey="MaterialOnSurfaceFocusedBrush" />
 
 	<SolidColorBrush x:Key="UnoBlueColorBrush"
 					 Color="{StaticResource UnoBlueColor}" />
@@ -54,4 +55,27 @@
 	<SolidColorBrush x:Key="UnoRedColorBrush"
 					 Color="{StaticResource UnoRedColor}" />
 
+	<!-- 
+		The foregrounds brushes are used on Material TextBlock styles from Uno.Material 
+		They differe mostly on Opacity.
+	-->
+	<SolidColorBrush x:Key="Foreground01ColorBrush"
+					 Color="{ThemeResource MaterialOnBackgroundColor}"
+					 Opacity="{StaticResource Opacity_01}"  />
+
+	<SolidColorBrush x:Key="Foreground02ColorBrush"
+					 Color="{ThemeResource MaterialOnBackgroundColor}"
+					 Opacity="{StaticResource Opacity02}"  />
+	
+	<SolidColorBrush x:Key="Foreground03ColorBrush"
+					 Color="{ThemeResource MaterialOnBackgroundColor}"
+					 Opacity="{StaticResource Opacity03}"  />
+	
+	<SolidColorBrush x:Key="Foreground04ColorBrush"
+					 Color="{ThemeResource MaterialOnBackgroundColor}"
+					 Opacity="{StaticResource Opacity04}"  />
+	
+	<SolidColorBrush x:Key="Foreground05ColorBrush"
+					 Color="{ThemeResource MaterialOnBackgroundColor}"
+					 Opacity="{StaticResource Opacity05}"  />
 </ResourceDictionary>
