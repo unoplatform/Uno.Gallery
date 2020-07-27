@@ -15,9 +15,10 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Uno.Gallery
 {
-	[SamplePage(SampleCategory.Colors, "Palette for Material", SortOrder = 1)]
+	[SamplePage(SampleCategory.Colors, "Palette for Material", SortOrder = 1, OverviewCtaText = OverviewCtaText)]
 	public sealed partial class MaterialPalettePage : Page
 	{
+		private const string OverviewCtaText = "View palette for Fluent";
 		public MaterialPalettePage()
 		{
 			this.InitializeComponent();

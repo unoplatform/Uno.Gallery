@@ -27,6 +27,8 @@ namespace Uno.Gallery
 
 		public SourceSdk Source { get; }
 
+		public string OverviewCtaText { get; set; }
+
 		/// <summary>
 		/// Sort order with the same <see cref="Category"/>.
 		/// </summary>

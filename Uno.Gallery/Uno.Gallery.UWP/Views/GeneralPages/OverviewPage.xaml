@@ -66,7 +66,7 @@
 											   TextWrapping="WrapWholeWords"
 											   Visibility="{Binding Description, Converter={StaticResource IsNullOrEmptyToCollapsed}, FallbackValue=Collapsed}"
 											   Style="{StaticResource MaterialBody2}" />
-									<Button Content="{Binding CtaText, FallbackValue='todo:CtaText'}"
+									<Button Content="{Binding OverviewCtaText, FallbackValue='View'}"
 											Click="OverviewPage_Click"
 											Padding="0"
 											Style="{StaticResource MaterialTextButtonStyle}" />
