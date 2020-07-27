@@ -8,13 +8,6 @@ namespace Uno.Gallery.Controls
 {
 	public partial class SamplePageLayout
 	{
-		public enum SamplePageLayoutMode
-		{
-			Fluent,
-			Material,
-			Native
-		}
-
 		#region Property: Title
 
 		public static DependencyProperty TitleProperty { get; } = DependencyProperty.Register(

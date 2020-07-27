@@ -18,9 +18,9 @@ namespace Uno.Gallery.Controls
 	/// </summary>
 	public partial class SamplePageLayout : ContentControl
 	{
-		private const string VisualStateMaterial = nameof(SamplePageLayoutMode.Material);
-		private const string VisualStateFluent = nameof(SamplePageLayoutMode.Fluent);
-		private const string VisualStateNative = nameof(SamplePageLayoutMode.Native);
+		private const string VisualStateMaterial = nameof(Design.Material);
+		private const string VisualStateFluent = nameof(Design.Fluent);
+		private const string VisualStateNative = nameof(Design.Native);
 
 		private const string MaterialRadioButtonPartName = "PART_MaterialRadioButton";
 		private const string FluentRadioButtonPartName = "PART_FluentRadioButton";
@@ -33,18 +33,18 @@ namespace Uno.Gallery.Controls
 		private const string ScrollViewerPartName = "PART_ScrollViewer";
 		private const string TopPartName = "PART_MobileTopBar";
 
-		private static SamplePageLayoutMode _mode = SamplePageLayoutMode.Material;
+		private static Design _design = Design.Material;
 
 		private IReadOnlyCollection<LayoutModeMapping> LayoutModeMappings => new List<LayoutModeMapping>
 		{
-			new LayoutModeMapping(SamplePageLayoutMode.Material, _materialRadioButton, _stickyMaterialRadioButton, VisualStateMaterial, MaterialTemplate),
-			new LayoutModeMapping(SamplePageLayoutMode.Fluent, _fluentRadioButton, _stickyFluentRadioButton, VisualStateFluent, FluentTemplate),
+			new LayoutModeMapping(Design.Material, _materialRadioButton, _stickyMaterialRadioButton, VisualStateMaterial, MaterialTemplate),
+			new LayoutModeMapping(Design.Fluent, _fluentRadioButton, _stickyFluentRadioButton, VisualStateFluent, FluentTemplate),
 #if __IOS__ || __MACOS__ || __ANDROID__
 			// native tab is only shown when applicable
-			new LayoutModeMapping(SamplePageLayoutMode.Native, _nativeRadioButton, _stickyNativeRadioButton, VisualStateNative, NativeTemplate),
+			new LayoutModeMapping(Design.Native, _nativeRadioButton, _stickyNativeRadioButton, VisualStateNative, NativeTemplate),
 #else
 			// undefined template are not selectable and wont be selected by default
-			new LayoutModeMapping(SamplePageLayoutMode.Native, _nativeRadioButton, _stickyNativeRadioButton, VisualStateNative, default),
+			new LayoutModeMapping(Design.Native, _nativeRadioButton, _stickyNativeRadioButton, VisualStateNative, default),
 #endif
 		};
 
@@ -146,7 +146,7 @@ namespace Uno.Gallery.Controls
 				var visibility = mapping.Template != null ? Visibility.Visible : Visibility.Collapsed;
 				mapping.RadioButton.Visibility = visibility;
 				mapping.StickyRadioButton.Visibility = visibility;
-				if (mapping.Template != null && mapping.Mode == _mode)
+				if (mapping.Template != null && mapping.Design == _design)
 				{
 					previouslySelected = mapping;
 				}
@@ -156,7 +156,7 @@ namespace Uno.Gallery.Controls
 			var selected = previouslySelected ?? mappings.FirstOrDefault(x => x.Template != null);
 			if (selected != null)
 			{
-				UpdateLayoutMode(transitionTo: selected.Mode);
+				UpdateLayoutMode(transitionTo: selected.Design);
 			}
 		}
 
@@ -164,16 +164,16 @@ namespace Uno.Gallery.Controls
 		{
 			if (sender is RadioButton radio && LayoutModeMappings.FirstOrDefault(x => x.RadioButton == radio || x.StickyRadioButton == radio) is LayoutModeMapping mapping)
 			{
-				_mode = mapping.Mode;
+				_design = mapping.Design;
 				UpdateLayoutMode();
 			}
 		}
 
-		private void UpdateLayoutMode(SamplePageLayoutMode? transitionTo = null)
+		private void UpdateLayoutMode(Design? transitionTo = null)
 		{
-			var mode = transitionTo ?? _mode;
+			var design = transitionTo ?? _design;
 
-			var current = LayoutModeMappings.FirstOrDefault(x => x.Mode == mode);
+			var current = LayoutModeMappings.FirstOrDefault(x => x.Design == design);
 			if (current != null)
 			{
 				current.RadioButton.IsChecked = true;
@@ -208,7 +208,7 @@ namespace Uno.Gallery.Controls
 		/// <param name="name">The 'x:Name' of the control</param>
 		/// <returns></returns>
 		/// <remarks>The caller must ensure the control is loaded. This is best done from <see cref="FrameworkElement.Loaded"/> event.</remarks>
-		public T GetSampleChild<T>(SamplePageLayoutMode mode, string name)
+		public T GetSampleChild<T>(Design mode, string name)
 			where T : FrameworkElement
 		{
 			var presenter = (ContentPresenter)GetTemplateChild($"{mode}ContentPresenter");
@@ -218,15 +218,15 @@ namespace Uno.Gallery.Controls
 
 		private class LayoutModeMapping
 		{
-			public SamplePageLayoutMode Mode { get; set; }
+			public Design Design { get; set; }
 			public RadioButton RadioButton { get; set; }
 			public RadioButton StickyRadioButton { get; set; }
 			public string VisualStateName { get; set; }
 			public DataTemplate Template { get; set; }
 
-			public LayoutModeMapping(SamplePageLayoutMode mode, RadioButton radioButton, RadioButton stickyRadioButton, string visualStateName, DataTemplate template)
+			public LayoutModeMapping(Design design, RadioButton radioButton, RadioButton stickyRadioButton, string visualStateName, DataTemplate template)
 			{
-				Mode = mode;
+				Design = design;
 				RadioButton = radioButton;
 				StickyRadioButton = stickyRadioButton;
 				VisualStateName = visualStateName;

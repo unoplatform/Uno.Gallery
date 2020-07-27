@@ -24,8 +24,8 @@ namespace Uno.Gallery.Views.GeneralPages
 	{
 		public Sample[] ColorSamples { get; set; }
 		public int SelectedComponentIndex { get; set; }
-		public KeyValuePair<SamplePageLayoutMode, ComponentSampleInfo[]> SelectedComponent { get; set; }
-		public IReadOnlyDictionary<SamplePageLayoutMode, ComponentSampleInfo[]> ComponentSamples { get; set; }
+		public KeyValuePair<Design, ComponentSampleInfo[]> SelectedComponent { get; set; }
+		public IReadOnlyDictionary<Design, ComponentSampleInfo[]> ComponentSamples { get; set; }
 
 		public OverviewPage()
 		{
@@ -67,7 +67,7 @@ namespace Uno.Gallery.Views.GeneralPages
 			ColorSamples = samples.Where(x => x.Category == SampleCategory.Colors).ToArray();
 
 			var componentResources = new ResourceDictionary() { Source = new Uri("ms-resource:///Files/Views/GeneralPages/ComponentTemplates.xaml") };
-			var modes = new[] { SamplePageLayoutMode.Material, SamplePageLayoutMode.Fluent };
+			var modes = new[] { Design.Material, Design.Fluent };
 			ComponentSamples = samples
 				.Where(x => x.Category == SampleCategory.Components)
 				.SelectMany(
@@ -76,7 +76,7 @@ namespace Uno.Gallery.Views.GeneralPages
 					(sample, example) => new ComponentSampleInfo
 					{
 						Sample = sample,
-						Mode = example.Mode,
+						Design = example.Design,
 						ExampleTemplate = componentResources.TryGetValue(example.TemplateKey, out var resource)
 							? (resource is DataTemplate || resource == null)
 								? (DataTemplate)resource
@@ -84,7 +84,7 @@ namespace Uno.Gallery.Views.GeneralPages
 							: throw new KeyNotFoundException("Unable to find resource with key: " + example.TemplateKey)
 					}
 				)
-				.GroupBy(x => x.Mode)
+				.GroupBy(x => x.Design)
 				.ToDictionary(g => g.Key, g => g.ToArray());
 
 			SelectedComponentIndex = 0;
@@ -93,7 +93,7 @@ namespace Uno.Gallery.Views.GeneralPages
 
 		public class ComponentSampleInfo
 		{
-			public SamplePageLayoutMode Mode { get; set; }
+			public Design Design { get; set; }
 
 			public Sample Sample { get; set; }
 
