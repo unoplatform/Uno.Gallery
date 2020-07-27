@@ -4,6 +4,7 @@ using System;
 using System.Linq;
 using System.Reflection;
 using Uno.Gallery.Controls;
+using Uno.Gallery.Views.GeneralPages;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
@@ -19,6 +20,8 @@ namespace Uno.Gallery
 	/// </summary>
 	sealed partial class App : Application
 	{
+		private Shell _shell;
+
 		/// <summary>
 		/// Initializes the singleton application object.  This is the first line of authored code
 		/// executed, and as such is the logical equivalent of main() or WinMain().
@@ -46,7 +49,7 @@ namespace Uno.Gallery
 			var window = Windows.UI.Xaml.Window.Current;
 			if (!(window.Content is Shell))
 			{
-				window.Content = BuildShell();
+				window.Content = _shell = BuildShell();
 			}
 
 			// Ensure the current window is active
@@ -54,7 +57,7 @@ namespace Uno.Gallery
 		}
 
 		/// <summary>
-		/// Invoked when application execution is being suspended.  Application state is saved
+		/// Invoked when application execution is being suspended. Application state is saved
 		/// without knowing whether the application will be terminated or resumed with the contents
 		/// of memory still intact.
 		/// </summary>
@@ -67,17 +70,43 @@ namespace Uno.Gallery
 			deferral.Complete();
 		}
 
+		public void ShellNavigateTo(Sample sample) => ShellNavigateTo(sample.ViewType, trySynchronizeCurrentItem: false);
+
+		public void ShellNavigateTo<TPage>() where TPage : Page => ShellNavigateTo(typeof(TPage));
+
+		private void ShellNavigateTo(Type viewType, bool trySynchronizeCurrentItem = true)
+		{
+			var nv = _shell.NavigationView;
+			if (nv.Content?.GetType() != viewType)
+			{
+				var selected = nv.MenuItems.OfType<NavigationViewItem>().FirstOrDefault(x => trySynchronizeCurrentItem && (x.DataContext as Sample).ViewType == viewType);
+				if (selected != null)
+				{
+					nv.SelectedItem = selected;
+				}
+
+				var page = (Page)Activator.CreateInstance(viewType);
+				page.DataContext = viewType;
+
+				_shell.NavigationView.Content = page;
+			}
+		}
+
+
 		private Shell BuildShell()
 		{
-			var shell = new Shell();
-			var nv = shell.NavigationView;
+			_shell = new Shell();
+			var nv = _shell.NavigationView;
 			AddNavigationItems(nv);
 			SetupSettingButton(nv);
+
+			// landing navigation
+			ShellNavigateTo<OverviewPage>();
 
 			// navigation + setting handler
 			nv.ItemInvoked += OnNavigationItemInvoked;
 
-			return shell;
+			return _shell;
 		}
 
 		private void OnNavigationItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs e)
@@ -86,10 +115,7 @@ namespace Uno.Gallery
 			{
 				if (e.InvokedItemContainer.DataContext is Sample sample)
 				{
-					var page = (Page)Activator.CreateInstance(sample.ViewType);
-					page.DataContext = sample;
-
-					sender.Content = page;
+					ShellNavigateTo(sample);
 				}
 			}
 			else

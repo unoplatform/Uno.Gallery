@@ -1,0 +1,23 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+					xmlns:todo="what should be done"
+					mc:Ignorable="todo">
+
+	<DataTemplate x:Key="TodoExampleTemplate">
+		<TextBlock Text="TODO" />
+	</DataTemplate>
+
+	<DataTemplate x:Key="MaterialButtonExampleTemplate">
+		<StackPanel Spacing="8">
+			<Button Content="Button1"
+					Style="{StaticResource MaterialContainedButtonStyle}" />
+			<Button Content="Button2"
+					Style="{StaticResource MaterialOutlinedButtonStyle}" />
+			<Button Content="Button3"
+					Style="{StaticResource MaterialTextButtonStyle}" />
+		</StackPanel>
+	</DataTemplate>
+	
+	
+</ResourceDictionary>
