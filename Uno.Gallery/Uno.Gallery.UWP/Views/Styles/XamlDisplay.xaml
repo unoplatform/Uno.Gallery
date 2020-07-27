@@ -28,17 +28,19 @@
 						<!-- Header -->
 						<TextBlock Text="{Binding Path=(smtx:XamlDisplayExtensions.Header), RelativeSource={RelativeSource TemplatedParent}}"
 								   Style="{StaticResource MaterialHeadline6}"
+								   Foreground="{StaticResource Foreground01ColorBrush}"
 								   Visibility="{Binding Path=(smtx:XamlDisplayExtensions.Header), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource IsNullOrEmptyToCollapsed}, FallbackValue=Collapsed}" />
 
 						<!-- Description -->
 						<TextBlock Text="{Binding Path=(smtx:XamlDisplayExtensions.Description), RelativeSource={RelativeSource TemplatedParent}}"
 								   Style="{StaticResource MaterialBody1}"
+								   Foreground="{StaticResource Foreground02ColorBrush}"
 								   Visibility="{Binding Path=(smtx:XamlDisplayExtensions.Description), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource IsNullOrEmptyToCollapsed}, FallbackValue=Collapsed}"
 								   Margin="0,16,0,0" />
 
 						<Grid BorderBrush="{TemplateBinding BorderBrush}"
 							  BorderThickness="{TemplateBinding BorderThickness}"
-							  Margin="0,16,0,0">
+							  Margin="0,30,0,0">
 
 							<Grid.RowDefinitions>
 								<RowDefinition Height="Auto" />

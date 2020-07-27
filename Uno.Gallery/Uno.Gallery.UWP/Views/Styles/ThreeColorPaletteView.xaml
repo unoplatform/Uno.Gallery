@@ -54,13 +54,15 @@
 
 						<TextBlock Text="{TemplateBinding Title}"
 								   Style="{StaticResource MaterialHeadline6}"
+								   Foreground="{StaticResource Foreground01ColorBrush}"
 								   Grid.ColumnSpan="2" />
 
 						<TextBlock Text="{TemplateBinding Description}"
+								   Style="{StaticResource MaterialBody1}"
+								   Foreground="{StaticResource Foreground02ColorBrush}"
 								   Margin="0,16,0,0"
 								   Grid.Row="1"
-								   Grid.ColumnSpan="2"
-								   Style="{StaticResource MaterialBody1}" />
+								   Grid.ColumnSpan="2" />
 
 						<controls:ColorPaletteView x:Name="FirstColorPaletteView"
 												   ColorName="{TemplateBinding FirstColorName}"

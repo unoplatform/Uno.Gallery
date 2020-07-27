@@ -70,22 +70,26 @@
 											   Margin="0,32,0,0"
 											   Text="{TemplateBinding Title}"
 											   Style="{StaticResource MaterialHeadline4}"
+											   Foreground="{StaticResource Foreground01ColorBrush}"
 											   Visibility="Collapsed" />
 
 									<!-- Description -->
 									<TextBlock Text="{TemplateBinding Description}"
 											   Style="{StaticResource MaterialSubtitle1}"
+											   Foreground="{StaticResource Foreground02ColorBrush}"
 											   Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Description, Converter={StaticResource IsNullOrEmptyToCollapsed}, FallbackValue=Collapsed}"
 											   Margin="0,16,0,0" />
 
 									<!-- Source label -->
 									<TextBlock Text="SOURCE"
 											   Style="{StaticResource MaterialOverline}"
+											   Foreground="{StaticResource Foreground04ColorBrush}"
 											   Margin="0,30,0,0" />
 
 									<!-- Source value -->
 									<TextBlock Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Source, Converter={StaticResource EnumToDescription}}"
 											   Style="{StaticResource MaterialBody1}"
+											   Foreground="{StaticResource Foreground02ColorBrush}"
 											   Margin="0,0,0,16" />
 
 									<StackPanel x:Name="PART_ScrollingTabs"
