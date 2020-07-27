@@ -64,6 +64,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Controls\FluentColorAccentView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\ThreeColorPaletteView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\FromColorBrushToHexConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\RandomColorConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\OverviewExampleAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Sample.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\SampleCategory.cs" />

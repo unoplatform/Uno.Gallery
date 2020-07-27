@@ -17,6 +17,7 @@ namespace Uno.Gallery.Views.Samples
 {
 	[SamplePage(SampleCategory.Components, "PasswordBox")]
 	[OverviewExample(Design.Material, "MaterialPasswordBoxExampleTemplate")]
+	[OverviewExample(Design.Fluent, "FluentPasswordBoxExampleTemplate")]
 	public sealed partial class PasswordBoxSamplePage : Page
 	{
 		public PasswordBoxSamplePage()

@@ -17,6 +17,7 @@ namespace Uno.Gallery.Views.Samples
 {
 	[SamplePage(SampleCategory.Components, "ComboBox")]
 	[OverviewExample(Design.Material, "MaterialComboBoxExampleTemplate")]
+	[OverviewExample(Design.Fluent, "FluentComboBoxExampleTemplate")]
 	public sealed partial class ComboBoxSamplePage : Page
 	{
 		public ComboBoxSamplePage()

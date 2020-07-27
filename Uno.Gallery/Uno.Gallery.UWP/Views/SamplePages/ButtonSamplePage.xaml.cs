@@ -17,7 +17,7 @@ namespace Uno.Gallery.Views.Samples
 {
 	[SamplePage(SampleCategory.Components, "Button", Description = Description)]
 	[OverviewExample(Design.Material, "MaterialButtonExampleTemplate")]
-	[OverviewExample(Design.Fluent, "TodoExampleTemplate")]
+	[OverviewExample(Design.Fluent, "FluentButtonExampleTemplate")]
 	public sealed partial class ButtonSamplePage : Page
 	{
 		private const string Description = "Button styles for actions in forms, dialogs, and more with support for multiple sizes, states, and more.";
