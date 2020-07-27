@@ -45,5 +45,23 @@ namespace Uno.Gallery
 				TopPaddingRow.Height = new GridLength(topPadding);
 			}
 		}
+
+		private void ToggleButton_Click(object sender, RoutedEventArgs e)
+		{
+#if WINDOWS_UWP
+			// Set theme for window root.
+			if (Window.Current.Content is FrameworkElement frameworkElement)
+			{
+				if (frameworkElement.ActualTheme == ElementTheme.Dark)
+				{
+					frameworkElement.RequestedTheme = ElementTheme.Light;
+				}
+				else
+				{
+					frameworkElement.RequestedTheme = ElementTheme.Dark;
+				}
+			}
+#endif
+		}
 	}
 }
