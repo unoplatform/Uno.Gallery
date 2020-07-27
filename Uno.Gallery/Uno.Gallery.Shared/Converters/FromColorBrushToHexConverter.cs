@@ -28,7 +28,14 @@ namespace Uno.Gallery.Converters
 		{
 			if (value is SolidColorBrush brush)
 			{
-				return "#" + brush.Color.R.ToString(HexadecimalStringFormat) + brush.Color.G.ToString(HexadecimalStringFormat) + brush.Color.B.ToString(HexadecimalStringFormat);
+				var colorHex = "#" + brush.Color.R.ToString(HexadecimalStringFormat) + brush.Color.G.ToString(HexadecimalStringFormat) + brush.Color.B.ToString(HexadecimalStringFormat);
+				if(brush.Opacity != 1)
+				{
+					// Shows " 50%"
+					colorHex += $" {brush.Opacity:P0}";
+				}
+
+				return colorHex;
 			}
 
 			return string.Empty;

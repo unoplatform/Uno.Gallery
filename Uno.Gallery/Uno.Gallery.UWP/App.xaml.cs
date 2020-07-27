@@ -98,7 +98,6 @@ namespace Uno.Gallery
 			_shell = new Shell();
 			var nv = _shell.NavigationView;
 			AddNavigationItems(nv);
-			SetupSettingButton(nv);
 
 			// landing navigation
 			ShellNavigateTo<OverviewPage>();
@@ -111,12 +110,9 @@ namespace Uno.Gallery
 
 		private void OnNavigationItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs e)
 		{
-			if (!e.IsSettingsInvoked)
+			if (e.InvokedItemContainer.DataContext is Sample sample)
 			{
-				if (e.InvokedItemContainer.DataContext is Sample sample)
-				{
-					ShellNavigateTo(sample);
-				}
+				ShellNavigateTo(sample);
 			}
 			else
 			{
@@ -168,25 +164,6 @@ namespace Uno.Gallery
 					});
 				}
 			}
-		}
-
-		private void SetupSettingButton(NavigationView nv)
-		{
-#if WINDOWS_UWP
-			nv.IsSettingsVisible = true;
-			nv.Loaded += OnNavigationViewLoaded;
-
-			void OnNavigationViewLoaded(object sender, RoutedEventArgs e)
-			{
-				if (nv.SettingsItem is NavigationViewItem item)
-				{
-					item.Content = "Toggle Light/Dark theme";
-					nv.Loaded -= OnNavigationViewLoaded;
-				}
-			}
-#else
-			nv.IsSettingsVisible = false;
-#endif
 		}
 
 		/// <summary>

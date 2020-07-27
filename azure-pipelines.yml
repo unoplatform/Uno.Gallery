@@ -151,3 +151,11 @@ stages:
 
   jobs: 
   - template: build/stage-release-testflight.yml
+
+- stage: Release_GooglePlay
+  # Only release when the build is not a Pull Request and it's using one of the proper release branches
+  condition: and(succeeded(), ne(variables['IsLightBuild'], 'true'), eq(variables['IsReleaseBranch'], 'true'))
+  dependsOn: Build
+
+  jobs: 
+  - template: build/stage-release-googleplay.yml
