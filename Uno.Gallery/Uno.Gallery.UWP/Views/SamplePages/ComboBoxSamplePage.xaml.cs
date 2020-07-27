@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Navigation;
 namespace Uno.Gallery.Views.Samples
 {
 	[SamplePage(SampleCategory.Components, "ComboBox")]
+	[OverviewExample(Design.Material, "MaterialComboBoxExampleTemplate")]
 	public sealed partial class ComboBoxSamplePage : Page
 	{
 		public ComboBoxSamplePage()

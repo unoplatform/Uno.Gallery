@@ -205,7 +205,7 @@
 								<ContentControl Content="{Binding}"
 												ContentTemplate="{Binding ExampleTemplate}"
 												HorizontalAlignment="Stretch"
-												HorizontalContentAlignment="Left"
+												HorizontalContentAlignment="Stretch"
 												VerticalAlignment="Stretch"
 												VerticalContentAlignment="Top" />
 							</Border>

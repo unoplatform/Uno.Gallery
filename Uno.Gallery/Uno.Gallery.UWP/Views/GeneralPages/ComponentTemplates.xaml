@@ -1,13 +1,32 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 					xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+					xmlns:extensions="using:Uno.Material.Extensions"
 					xmlns:todo="what should be done"
+					xmlns:material="using:Uno.Material.Controls"
 					mc:Ignorable="todo">
 
 	<DataTemplate x:Key="TodoExampleTemplate">
 		<TextBlock Text="TODO" />
 	</DataTemplate>
 
+	<!-- Material -->
+	<DataTemplate x:Key="MaterialBottomNavigationBarExampleTemplate">
+		<material:BottomNavigationBar>
+			<material:BottomNavigationBar.Items>
+				<material:BottomNavigationBarItem Label="Favorites">
+					<material:BottomNavigationBarItem.Icon>
+						<SymbolIcon Symbol="Favorite" />
+					</material:BottomNavigationBarItem.Icon>
+				</material:BottomNavigationBarItem>
+				<material:BottomNavigationBarItem Label="Search">
+					<material:BottomNavigationBarItem.Icon>
+						<SymbolIcon Symbol="Find" />
+					</material:BottomNavigationBarItem.Icon>
+				</material:BottomNavigationBarItem>
+			</material:BottomNavigationBar.Items>
+		</material:BottomNavigationBar>
+	</DataTemplate>
 	<DataTemplate x:Key="MaterialButtonExampleTemplate">
 		<StackPanel Spacing="8">
 			<Button Content="Button1"
@@ -18,6 +37,145 @@
 					Style="{StaticResource MaterialTextButtonStyle}" />
 		</StackPanel>
 	</DataTemplate>
-	
-	
+	<DataTemplate x:Key="MaterialCheckBoxExampleTemplate">
+		<StackPanel Spacing="8">
+			<CheckBox Content="Checked"
+					  IsChecked="True"
+					  Style="{StaticResource MaterialCheckBoxStyle}" />
+			<CheckBox Content="Unchecked"
+					  IsChecked="False"
+					  Style="{StaticResource MaterialCheckBoxStyle}" />
+			<CheckBox Content="Indeterminate"
+					  IsChecked="{x:Null}"
+					  IsThreeState="True"
+					  Style="{StaticResource MaterialCheckBoxStyle}" />
+		</StackPanel>
+	</DataTemplate>
+	<DataTemplate x:Key="MaterialComboBoxExampleTemplate">
+		<StackPanel Spacing="8">
+			<ComboBox PlaceholderText="Select ..."
+					  Style="{StaticResource MaterialComboBoxStyle}">
+				<ComboBoxItem>Apple</ComboBoxItem>
+				<ComboBoxItem>Banana</ComboBoxItem>
+				<ComboBoxItem>Cactus</ComboBoxItem>
+			</ComboBox>
+		</StackPanel>
+	</DataTemplate>
+	<DataTemplate x:Key="MaterialFabExampleTemplate">
+		<StackPanel Spacing="8">
+			<Button Style="{StaticResource MaterialFabStyle}">
+				<extensions:ControlExtensions.Icon>
+					<SymbolIcon Symbol="Add" />
+				</extensions:ControlExtensions.Icon>
+			</Button>
+			<Button Content="Create"
+					Style="{StaticResource MaterialFabStyle}" />
+			<Button Content="Create"
+					Style="{StaticResource MaterialFabStyle}">
+				<extensions:ControlExtensions.Icon>
+					<SymbolIcon Symbol="Add" />
+				</extensions:ControlExtensions.Icon>
+			</Button>
+		</StackPanel>
+	</DataTemplate>
+	<DataTemplate x:Key="MaterialPasswordBoxExampleTemplate">
+		<StackPanel Spacing="8">
+			<PasswordBox PlaceholderText="Enter password"
+						 Style="{StaticResource MaterialFilledPasswordBoxStyle}" />
+			<PasswordBox PlaceholderText="Confirm password"
+						 Style="{StaticResource MaterialOutlinedPasswordBoxStyle}" />
+		</StackPanel>
+	</DataTemplate>
+	<DataTemplate x:Key="MaterialRadioButtonExampleTemplate">
+		<StackPanel Spacing="8">
+			<RadioButton Content="Checked"
+						 Style="{StaticResource MaterialRadioButtonStyle}"
+						 IsChecked="True" />
+			<RadioButton Content="Unchecked"
+						 Style="{StaticResource MaterialRadioButtonStyle}" />
+		</StackPanel>
+	</DataTemplate>
+	<DataTemplate x:Key="MaterialShapeExampleTemplate">
+		<StackPanel Spacing="8"
+					HorizontalAlignment="Left">
+			<Ellipse Width="50"
+					 Height="50"
+					 Fill="SkyBlue" />
+			<Rectangle Height="50"
+					   Width="50"
+					   RadiusX="10"
+					   RadiusY="10"
+					   Fill="SlateBlue" />
+			<Polygon Width="50"
+					 Fill="PaleGreen"
+					 Stretch="Uniform"
+					 Points="98,118,122,130,117,104,136,86,110,82,98,58,86,82,60,86,79,104,74,130,98,118" />
+			<Path Width="50"
+				  Fill="Crimson"
+				  Stretch="Uniform"
+				  Data="M492.719,166.008c0-73.486-59.573-133.056-133.059-133.056c-47.985,0-89.891,25.484-113.302,63.569 c-23.408-38.085-65.332-63.569-113.316-63.569C59.556,32.952,0,92.522,0,166.008c0,40.009,17.729,75.803,45.671,100.178 l188.545,188.553c3.22,3.22,7.587,5.029,12.142,5.029c4.555,0,8.922-1.809,12.142-5.029l188.545-188.553 C474.988,241.811,492.719,206.017,492.719,166.008z" />
+		</StackPanel>
+	</DataTemplate>
+	<DataTemplate x:Key="MaterialExampleTextBlockTemplate">
+		<TextBlock xml:space="preserve"
+				   TextWrapping="Wrap">TextBlock supports inline tags including <Bold>Bold</Bold>, <Italic>Italic</Italic>, <Underline>Underline</Underline>, <Span Foreground="Red">Span</Span>, and <Hyperlink Foreground="#1079CD"
+					   NavigateUri="https://platform.uno/">Hyperlink</Hyperlink>.
+		</TextBlock>
+	</DataTemplate>
+	<DataTemplate x:Key="MaterialTextBoxExampleTemplate">
+		<StackPanel Spacing="8">
+			<TextBox PlaceholderText="Text2"
+					 Style="{StaticResource MaterialFilledTextBoxStyle}" />
+			<TextBox PlaceholderText="Text1"
+					 Style="{StaticResource MaterialFilledTextBoxStyle}">
+				<extensions:ControlExtensions.Icon>
+					<SymbolIcon Symbol="Character" />
+				</extensions:ControlExtensions.Icon>
+			</TextBox>
+			<TextBox PlaceholderText="Text4"
+					 Style="{StaticResource MaterialOutlinedTextBoxStyle}" />
+			<TextBox PlaceholderText="Text3"
+					 Style="{StaticResource MaterialOutlinedTextBoxStyle}">
+				<extensions:ControlExtensions.Icon>
+					<SymbolIcon Symbol="Character" />
+				</extensions:ControlExtensions.Icon>
+			</TextBox>
+		</StackPanel>
+	</DataTemplate>
+	<DataTemplate x:Key="MaterialToggleSwitchExampleTemplate">
+		<StackPanel Spacing="8">
+			<ToggleSwitch Header="ToggleSwitch"
+						  IsOn="True"
+						  Style="{StaticResource MaterialToggleSwitchStyle}" />
+			<ToggleSwitch Header="Disabled"
+						  IsEnabled="False"
+						  Style="{StaticResource MaterialToggleSwitchStyle}" />
+		</StackPanel>
+	</DataTemplate>
+	<!--
+	<DataTemplate x:Key="MaterialExampleTemplate">
+		<StackPanel Spacing="8">
+		</StackPanel>
+	</DataTemplate>
+	-->
+
+
+	<!-- Fluent -->
+	<!--
+	<DataTemplate x:Key="FluentExampleTemplate">
+		<StackPanel Spacing="8">
+		</StackPanel>
+	</DataTemplate>
+	-->
+
+
+	<!-- Native -->
+	<!--
+	<DataTemplate x:Key="NativeExampleTemplate">
+		<StackPanel Spacing="8">
+		</StackPanel>
+	</DataTemplate>
+	-->
+
+
 </ResourceDictionary>

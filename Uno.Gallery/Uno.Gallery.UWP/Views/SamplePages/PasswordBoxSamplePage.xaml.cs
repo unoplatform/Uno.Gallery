@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Navigation;
 namespace Uno.Gallery.Views.Samples
 {
 	[SamplePage(SampleCategory.Components, "PasswordBox")]
+	[OverviewExample(Design.Material, "MaterialPasswordBoxExampleTemplate")]
 	public sealed partial class PasswordBoxSamplePage : Page
 	{
 		public PasswordBoxSamplePage()

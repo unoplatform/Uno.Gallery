@@ -16,7 +16,7 @@ using Windows.UI.Xaml.Navigation;
 namespace Uno.Gallery.Views.Samples
 {
 	[SamplePage(SampleCategory.Components, "BottomNavigationBar", SourceSdk.UnoMaterial)]
-	[OverviewExample(Design.Material, "TodoExampleTemplate")]
+	[OverviewExample(Design.Material, "MaterialBottomNavigationBarExampleTemplate")]
 	public sealed partial class BottomNavigationBarSamplePage : Page
 	{
 		public BottomNavigationBarSamplePage()
