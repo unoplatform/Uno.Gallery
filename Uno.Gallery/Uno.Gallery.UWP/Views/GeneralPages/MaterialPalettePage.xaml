@@ -114,12 +114,12 @@
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
 		<controls:ContentPageLayout Title="Material Palette"
-									Description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.">
+									Description="Uno.Material comes with a built-in set of named Color and Brush resources. They are used in most control styles provided by Uno.Material, meaning that you can easily style most controls just by changing a few colors.">
 			<StackPanel>
 
 				<!-- Primary colors section -->
 				<controls:ThreeColorPaletteView Title="Primary Colors"
-												Description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore."
+												Description="The primary color is the color you should use in most screens and controls of your app. Uno.Material provides styles based on that color for most of the controls you should need."
 												FirstColorName="Primary"
 												FirstColorBrush="{StaticResource MaterialPrimaryBrush}"
 												FirstColorForeground="{StaticResource MaterialOnPrimaryBrush}"
@@ -137,7 +137,7 @@
 
 				<!-- Secondary colors section -->
 				<controls:ThreeColorPaletteView Title="Secondary Colors"
-												Description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore."
+												Description="Using a secondary color is optional, but it allows you to create more variety in your app. Uno.Material provides styles based on that color for most of the controls you should need."
 												FirstColorName="Secondary"
 												FirstColorBrush="{StaticResource MaterialSecondaryBrush}"
 												FirstColorForeground="{StaticResource MaterialOnSecondaryBrush}"
@@ -157,7 +157,7 @@
 				<TextBlock Text="Elements"
 						   Style="{StaticResource MaterialHeadline6}" />
 
-				<TextBlock Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore."
+				<TextBlock Text="The following elements use colors that don't usually represent your brand."
 						   Style="{StaticResource MaterialBody1}"
 						   Foreground="{StaticResource Foreground02ColorBrush}"
 						   Margin="0,16,0,0" />
@@ -175,7 +175,7 @@
 				<controls:ColorPaletteView ColorName="Surface"
 										   ColorBrush="{StaticResource MaterialSurfaceBrush}"
 										   OnColorBrush="{StaticResource MaterialOnSurfaceBrush}"
-										   Description="Affects surfaces of components such as cards and news."
+										   Description="Affects surfaces of components such as cards, news or even menus."
 										   Style="{StaticResource ColorPaletteWithBottomDescriptionViewStyle}"
 										   BorderBrush="{StaticResource MaterialOnSurfaceFocusedBrush}"
 										   BorderThickness="1"
@@ -200,7 +200,7 @@
 				<TextBlock Text="On Colors"
 						   Style="{StaticResource MaterialHeadline5}" />
 
-				<TextBlock Text="Affects elements such as texts or icons appearing in front of a surface. OnPrimaryBrush is for an element displayed over a surface primary color."
+				<TextBlock Text="These colors affect elements such as texts or icons appearing in front of a surface. For example, OnPrimaryBrush is for an element displayed over a surface primary color."
 						   Style="{StaticResource MaterialBody1}"
 						   Foreground="{StaticResource Foreground02ColorBrush}"
 						   Margin="0,16,0,0" />
@@ -268,7 +268,7 @@
 				</StackPanel>
 
 				<controls:ColorPaletteView Title="OnBackground"
-										   Description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore."
+										   Description="OnBackground is the color used to display text or icons on the background color."
 										   ColorName="OnBackground Color"
 										   ColorBrush="{StaticResource MaterialBackgroundBrush}"
 										   OnColorBrush="{StaticResource MaterialOnBackgroundBrush}"
@@ -310,7 +310,7 @@
 				</toolkit:ElevatedView>
 
 				<controls:ColorPaletteView Title="OnError"
-										   Description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore."
+										   Description="OnError is the color used to display text or icons on the error color."
 										   ColorName="OnError"
 										   ColorBrush="{StaticResource MaterialErrorBrush}"
 										   OnColorBrush="{StaticResource MaterialOnErrorBrush}"
