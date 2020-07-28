@@ -70,23 +70,31 @@ namespace Uno.Gallery
 			deferral.Complete();
 		}
 
-		public void ShellNavigateTo(Sample sample) => ShellNavigateTo(sample.ViewType, trySynchronizeCurrentItem: false);
+		public void ShellNavigateTo(Sample sample) => ShellNavigateTo(sample, trySynchronizeCurrentItem: true);
 
-		public void ShellNavigateTo<TPage>() where TPage : Page => ShellNavigateTo(typeof(TPage));
+		private void ShellNavigateTo<TPage>() where TPage : Page
+		{
+			var type = typeof(TPage);
+			var attribute = type.GetCustomAttribute<SamplePageAttribute>()
+				?? throw new NotSupportedException($"{type} isn't tagged with [{nameof(SamplePageAttribute)}].");
+			var sample = new Sample(attribute, type);
 
-		private void ShellNavigateTo(Type viewType, bool trySynchronizeCurrentItem = true)
+			ShellNavigateTo(sample, trySynchronizeCurrentItem: true);
+		}
+
+		private void ShellNavigateTo(Sample sample, bool trySynchronizeCurrentItem)
 		{
 			var nv = _shell.NavigationView;
-			if (nv.Content?.GetType() != viewType)
+			if (nv.Content?.GetType() != sample.ViewType)
 			{
-				var selected = nv.MenuItems.OfType<NavigationViewItem>().FirstOrDefault(x => trySynchronizeCurrentItem && (x.DataContext as Sample).ViewType == viewType);
+				var selected = nv.MenuItems.OfType<NavigationViewItem>().FirstOrDefault(x => trySynchronizeCurrentItem && (x.DataContext as Sample).ViewType == sample.ViewType);
 				if (selected != null)
 				{
 					nv.SelectedItem = selected;
 				}
 
-				var page = (Page)Activator.CreateInstance(viewType);
-				page.DataContext = viewType;
+				var page = (Page)Activator.CreateInstance(sample.ViewType);
+				page.DataContext = sample;
 
 				_shell.NavigationView.Content = page;
 			}
@@ -112,7 +120,7 @@ namespace Uno.Gallery
 		{
 			if (e.InvokedItemContainer.DataContext is Sample sample)
 			{
-				ShellNavigateTo(sample);
+				ShellNavigateTo(sample, trySynchronizeCurrentItem: false);
 			}
 		}
 
