@@ -19,13 +19,15 @@
 										  smtx:XamlDisplayExtensions.Header="Scale Transform">
 							
 							<Border Background="{StaticResource UnoBlueColorBrush}"
+									HorizontalAlignment="Left"
+									Margin="0,20,0,0"
 									Width="110"
 									Height="110">
 								
 								<!-- ScaleTransform -->
 								<FrameworkElement.RenderTransform>
 									<ScaleTransform ScaleY="0.75"
-													ScaleX="2.25" />
+													ScaleX="2.0" />
 								</FrameworkElement.RenderTransform>
 								
 								<!-- Label -->
@@ -44,7 +46,7 @@
 							<Border Background="{StaticResource UnoRedColorBrush}"
 									Width="110"
 									Height="110"
-									Margin="0,25,0,0">
+									Margin="0,20,0,0">
 								
 								<!-- RotateTransform -->
 								<FrameworkElement.RenderTransform>
@@ -67,7 +69,7 @@
 							<Border Background="{StaticResource UnoPurpleColorBrush}"
 									Width="110"
 									Height="110"
-									Margin="0,25,0,0">
+									Margin="0,20,0,0">
 								
 								<!-- TranslateTransform -->
 								<FrameworkElement.RenderTransform>
@@ -90,7 +92,7 @@
 							<Border Background="{StaticResource UnoGreenColorBrush}"
 									Width="110"
 									Height="110"
-									Margin="0,25,0,0">
+									Margin="0,20,0,0">
 								
 								<!-- SkewTransform -->
 								<FrameworkElement.RenderTransform>
@@ -114,7 +116,7 @@
 							<Border Background="#222222"
 									Width="110"
 									Height="110"
-									Margin="0,25,0,0">
+									Margin="0,20,0,0">
 								
 								<!-- Label -->
 								<TextBlock Text="No transform"
