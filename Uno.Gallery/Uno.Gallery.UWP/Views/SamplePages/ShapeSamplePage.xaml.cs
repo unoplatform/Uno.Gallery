@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Navigation;
 namespace Uno.Gallery.Views.Samples
 {
 	[SamplePage(SampleCategory.Components, "Shape")]
+	[OverviewExample(Design.Fluent, "FluentShapeExampleTemplate")]
 	public sealed partial class ShapeSamplePage : Page
 	{
 		public ShapeSamplePage()

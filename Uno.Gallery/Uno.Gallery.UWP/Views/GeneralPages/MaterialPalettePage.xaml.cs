@@ -15,9 +15,12 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Uno.Gallery
 {
-	[SamplePage(SampleCategory.Colors, "Palette for Material", SortOrder = 1)]
+	[SamplePage(SampleCategory.Colors, "Palette for Material", SortOrder = 1, Description = Description, OverviewCtaText = OverviewCtaText)]
 	public sealed partial class MaterialPalettePage : Page
 	{
+		private const string Description = "View the Uno palette adapted to Material's styles.";
+		private const string OverviewCtaText = "View palette for Material";
+
 		public MaterialPalettePage()
 		{
 			this.InitializeComponent();

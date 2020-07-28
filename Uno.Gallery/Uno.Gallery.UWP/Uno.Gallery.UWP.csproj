@@ -164,6 +164,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\GeneralPages\OverviewPage.xaml.cs">
+      <DependentUpon>OverviewPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SamplePages\BrushSamplePage.xaml.cs">
       <DependentUpon>BrushSamplePage.xaml</DependentUpon>
     </Compile>
@@ -196,9 +199,6 @@
     </Compile>
     <Compile Include="Views\GeneralPages\MaterialPalettePage.xaml.cs">
       <DependentUpon>MaterialPalettePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\GeneralPages\Home.xaml.cs">
-      <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SamplePages\FabSamplePage.xaml.cs">
       <DependentUpon>FabSamplePage.xaml</DependentUpon>
@@ -308,6 +308,14 @@
     <Content Include="Properties\Default.rd.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\GeneralPages\ComponentTemplates.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\GeneralPages\OverviewPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\SamplePages\BrushSamplePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -349,10 +357,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\GeneralPages\MaterialPalettePage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\GeneralPages\Home.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

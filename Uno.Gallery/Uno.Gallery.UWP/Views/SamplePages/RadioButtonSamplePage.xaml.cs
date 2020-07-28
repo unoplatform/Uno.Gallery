@@ -16,6 +16,8 @@ using Windows.UI.Xaml.Navigation;
 namespace Uno.Gallery.Views.Samples
 {
 	[SamplePage(SampleCategory.Components, "RadioButton")]
+	//[OverviewExample(Design.Material, "MaterialRadioButtonExampleTemplate")]
+	[OverviewExample(Design.Fluent, "FluentRadioButtonExampleTemplate")]
 	public sealed partial class RadioButtonSamplePage : Page
 	{
 		public RadioButtonSamplePage()

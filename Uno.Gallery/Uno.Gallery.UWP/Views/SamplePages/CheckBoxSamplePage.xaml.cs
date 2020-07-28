@@ -16,6 +16,8 @@ using Windows.UI.Xaml.Navigation;
 namespace Uno.Gallery.Views.Samples
 {
 	[SamplePage(SampleCategory.Components, "CheckBox")]
+	[OverviewExample(Design.Material, "MaterialCheckBoxExampleTemplate")]
+	[OverviewExample(Design.Fluent, "FluentCheckBoxExampleTemplate")]
 	public sealed partial class CheckBoxSamplePage : Page
 	{
 		public CheckBoxSamplePage()

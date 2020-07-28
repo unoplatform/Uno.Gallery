@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Navigation;
 namespace Uno.Gallery.Views.Samples
 {
 	[SamplePage(SampleCategory.Components, "Panel")]
+	[OverviewExample(Design.Fluent, "FluentPanelExampleTemplate")]
 	public sealed partial class PanelSamplePage : Page
 	{
 		public PanelSamplePage()

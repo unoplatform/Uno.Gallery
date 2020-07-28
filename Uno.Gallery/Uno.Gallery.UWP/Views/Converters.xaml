@@ -26,4 +26,11 @@
 
 	<converters:EnumDescriptionConverter x:Name="EnumToDescription" />
 
+	<converters:RandomColorConverter x:Name="RandomColorBrush"
+									 Provider="Random"
+									 Output="Brush" />
+	<converters:RandomColorConverter x:Name="HashCodeToRandomColorBrush"
+									 Provider="HashCode"
+									 Output="Brush" />
+
 </ResourceDictionary>
