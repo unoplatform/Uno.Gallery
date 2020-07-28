@@ -6,8 +6,6 @@
 
 	<converters:FromColorBrushToHexConverter x:Key="BrushToHex" />
 
-	<Color x:Key="ColorPaletteViewElevationColor">#07000000</Color>
-
 	<Style x:Key="SimpleColorPaletteViewStyle"
 		   TargetType="controls:ColorPaletteView">
 

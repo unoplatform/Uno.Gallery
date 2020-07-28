@@ -9,7 +9,8 @@
 	  mc:Ignorable="d">
 
 	<Page.Resources>
-
+		<Color x:Key="ColorPaletteViewElevationColor">#07000000</Color>
+		
 		<Style x:Key="ActionMaterialPrimaryButtonSample"
 			   TargetType="Button">
 
@@ -286,12 +287,11 @@
 						   Foreground="{StaticResource Foreground02ColorBrush}"
 						   Margin="0,16,0,0" />
 
-				<!-- Workaround: Setting the ElevatedView Background White makes sure we see the elevation effect https://github.com/unoplatform/uno/issues/3563 -->
 				<toolkit:ElevatedView Elevation="6"
 									  ShadowColor="{StaticResource ColorPaletteViewElevationColor}"
-									  Background="White"
+									  Background="{StaticResource MaterialSurfaceBrush}"
 									  Margin="0,28,0,0">
-					<StackPanel Background="{StaticResource MaterialSurfaceBrush}">
+					<StackPanel>
 						<controls:ColorPaletteView ColorName="OnSurface"
 												   ColorBrush="{StaticResource MaterialSurfaceBrush}"
 												   OnColorBrush="{StaticResource MaterialOnSurfaceBrush}"
@@ -320,7 +320,7 @@
 				<!-- Separator -->
 				<Rectangle Fill="{StaticResource SeparatorColorBrush}"
 						   Height="1"
-						   Margin="0,48,0,36"  />
+						   Margin="0,48,0,36" />
 
 				<TextBlock Style="{StaticResource MaterialBody1}"
 						   Foreground="{StaticResource Foreground02ColorBrush}"
