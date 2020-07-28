@@ -47,21 +47,27 @@
 								<RowDefinition Height="Auto" />
 							</Grid.RowDefinitions>
 
-							<!-- Content -->
-							<ContentPresenter Content="{TemplateBinding Content}"
-											  Padding="30,30,60,30"
-											  Grid.Row="0" />
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="*" />
+									<ColumnDefinition Width="Auto"
+													  MinWidth="30"/>
+								</Grid.ColumnDefinitions>
+								
+								<!-- Content -->
+								<ContentPresenter Content="{TemplateBinding Content}"
+												  Padding="30,30,0,30" />
 
-							<!-- Reveal Button -->
-							<ToggleButton x:Name="RevealButton"
-										  Style="{StaticResource XamlDisplayExpandToggleButtonStyle}"
-										  IsChecked="False"
-										  HorizontalAlignment="Right"
-										  VerticalAlignment="Top"
-										  android:Visibility="Collapsed"
-										  ios:Visibility="Collapsed"
-										  Grid.Column="1"
-										  Grid.Row="0" />
+								<!-- Reveal Button -->
+								<ToggleButton x:Name="RevealButton"
+											  Style="{StaticResource XamlDisplayExpandToggleButtonStyle}"
+											  IsChecked="False"
+											  HorizontalAlignment="Right"
+											  VerticalAlignment="Top"
+											  android:Visibility="Collapsed"
+											  ios:Visibility="Collapsed"
+											  Grid.Column="1" />
+							</Grid>
 
 							<ScrollViewer Background="WhiteSmoke"
 										  HorizontalScrollBarVisibility="Auto"

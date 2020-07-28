@@ -21,53 +21,90 @@
 					<!-- Default Style -->
 					<smtx:XamlDisplay UniqueKey="BottomNavigationBarSamplePage_Default"
 									  smtx:XamlDisplayExtensions.Header="Default Style">
-						<material:BottomNavigationBar>
-							<material:BottomNavigationBar.Items>
-								
-								<material:BottomNavigationBarItem Label="Favorites">
-									<material:BottomNavigationBarItem.Icon>
-										<SymbolIcon Symbol="Favorite" />
-									</material:BottomNavigationBarItem.Icon>
-								</material:BottomNavigationBarItem>
+						<StackPanel Spacing="24">
+							
+							<material:BottomNavigationBar>
+								<material:BottomNavigationBar.Items>
 
-								<material:BottomNavigationBarItem Label="Search">
-									<material:BottomNavigationBarItem.Icon>
-										<SymbolIcon Symbol="Find" />
-									</material:BottomNavigationBarItem.Icon>
-								</material:BottomNavigationBarItem>
-								
-								<material:BottomNavigationBarItem>
-									<material:BottomNavigationBarItem.Icon>
-										<SymbolIcon Symbol="Globe" />
-									</material:BottomNavigationBarItem.Icon>
-									<material:BottomNavigationBarItem.Badge>
-										<entities:BottomNavigationBarBadge IsVisible="True" />
-									</material:BottomNavigationBarItem.Badge>
-								</material:BottomNavigationBarItem>
+									<material:BottomNavigationBarItem>
+										<material:BottomNavigationBarItem.Icon>
+											<SymbolIcon Symbol="Favorite" />
+										</material:BottomNavigationBarItem.Icon>
+									</material:BottomNavigationBarItem>
 
-								<material:BottomNavigationBarItem Label="Notifications">
-									<material:BottomNavigationBarItem.Icon>
-										<SymbolIcon Symbol="Flag" />
-									</material:BottomNavigationBarItem.Icon>
-									<material:BottomNavigationBarItem.Badge>
-										<entities:BottomNavigationBarBadge IsVisible="True"
-																		   Text="12" />
-									</material:BottomNavigationBarItem.Badge>
-								</material:BottomNavigationBarItem>
+									<material:BottomNavigationBarItem>
+										<material:BottomNavigationBarItem.Icon>
+											<SymbolIcon Symbol="Find" />
+										</material:BottomNavigationBarItem.Icon>
+									</material:BottomNavigationBarItem>
 
-								<material:BottomNavigationBarItem>
-									<material:BottomNavigationBarItem.Icon>
-										<SymbolIcon Symbol="Setting" />
-									</material:BottomNavigationBarItem.Icon>
-								</material:BottomNavigationBarItem>
+									<material:BottomNavigationBarItem>
+										<material:BottomNavigationBarItem.Icon>
+											<SymbolIcon Symbol="Globe" />
+										</material:BottomNavigationBarItem.Icon>
+										<material:BottomNavigationBarItem.Badge>
+											<entities:BottomNavigationBarBadge IsVisible="True" />
+										</material:BottomNavigationBarItem.Badge>
+									</material:BottomNavigationBarItem>
 
-							</material:BottomNavigationBar.Items>
-						</material:BottomNavigationBar>
+									<material:BottomNavigationBarItem>
+										<material:BottomNavigationBarItem.Icon>
+											<SymbolIcon Symbol="Flag" />
+										</material:BottomNavigationBarItem.Icon>
+									</material:BottomNavigationBarItem>
+
+									<material:BottomNavigationBarItem>
+										<material:BottomNavigationBarItem.Icon>
+											<SymbolIcon Symbol="Setting" />
+										</material:BottomNavigationBarItem.Icon>
+									</material:BottomNavigationBarItem>
+
+								</material:BottomNavigationBar.Items>
+							</material:BottomNavigationBar>
+
+							<material:BottomNavigationBar>
+								<material:BottomNavigationBar.Items>
+
+									<material:BottomNavigationBarItem Label="Favorites">
+										<material:BottomNavigationBarItem.Icon>
+											<SymbolIcon Symbol="Favorite" />
+										</material:BottomNavigationBarItem.Icon>
+									</material:BottomNavigationBarItem>
+
+									<material:BottomNavigationBarItem Label="Search">
+										<material:BottomNavigationBarItem.Icon>
+											<SymbolIcon Symbol="Find" />
+										</material:BottomNavigationBarItem.Icon>
+									</material:BottomNavigationBarItem>
+
+									<material:BottomNavigationBarItem Label="Globe">
+										<material:BottomNavigationBarItem.Icon>
+											<SymbolIcon Symbol="Globe" />
+										</material:BottomNavigationBarItem.Icon>
+									</material:BottomNavigationBarItem>
+
+									<material:BottomNavigationBarItem Label="Notifications">
+										<material:BottomNavigationBarItem.Icon>
+											<SymbolIcon Symbol="Flag" />
+										</material:BottomNavigationBarItem.Icon>
+										<material:BottomNavigationBarItem.Badge>
+											<entities:BottomNavigationBarBadge IsVisible="True"
+																			   Text="12" />
+										</material:BottomNavigationBarItem.Badge>
+									</material:BottomNavigationBarItem>
+
+									<material:BottomNavigationBarItem Label="Settings">
+										<material:BottomNavigationBarItem.Icon>
+											<SymbolIcon Symbol="Setting" />
+										</material:BottomNavigationBarItem.Icon>
+									</material:BottomNavigationBarItem>
+
+								</material:BottomNavigationBar.Items>
+							</material:BottomNavigationBar>
+						</StackPanel>
 					</smtx:XamlDisplay>
-
 				</DataTemplate>
 			</controls:SamplePageLayout.MaterialTemplate>
-			s
 		</controls:SamplePageLayout>
 	</Grid>
 </Page>
