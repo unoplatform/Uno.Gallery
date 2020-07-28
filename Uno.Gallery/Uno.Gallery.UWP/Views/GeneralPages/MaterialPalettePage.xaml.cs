@@ -19,7 +19,7 @@ namespace Uno.Gallery
 	public sealed partial class MaterialPalettePage : Page
 	{
 		private const string Description = "View the Uno palette adapted to Material's styles.";
-		private const string OverviewCtaText = "View palette for Fluent";
+		private const string OverviewCtaText = "View palette for Material";
 
 		public MaterialPalettePage()
 		{
