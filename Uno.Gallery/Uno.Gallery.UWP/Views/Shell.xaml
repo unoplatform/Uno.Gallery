@@ -17,12 +17,13 @@
 						Style="{StaticResource MaterialNoCompactMenuNavigationViewStyle}"
 						OpenPaneLength="220"
 						ExpandedModeThresholdWidth="{StaticResource DesktopAdaptiveThresholdWidth}"
+						IsSettingsVisible="False"
 						IsBackButtonVisible="Collapsed"
 						IsBackEnabled="False"
 						IsTabStop="False"
 						Grid.Row="1">
 			<NavigationView.PaneHeader>
-				<StackPanel>
+				<Grid>
 
 					<!-- Image -->
 					<Grid Background="{ThemeResource UnoLogo_ImageBrush}"
@@ -30,16 +31,17 @@
 						  Width="75"
 						  HorizontalAlignment="Left"
 						  Margin="16,8,0,0" />
-				</StackPanel>
+
+					<ToggleButton Content="Light and Dark"
+								  Style="{StaticResource DarkLightToggleTheme}"
+								  Click="ToggleButton_Click"
+								  Margin="0,0,20,8"
+								  HorizontalAlignment="Right"
+								  VerticalAlignment="Bottom" />
+				</Grid>
 			</NavigationView.PaneHeader>
 		</NavigationView>
 
-		<win:ToggleButton Content="Light and Dark"
-						  Style="{StaticResource DarkLightToggleTheme}"
-						  Click="ToggleButton_Click"
-						  Margin="0,30,30,0"
-						  HorizontalAlignment="Right"
-						  VerticalAlignment="Top"
-						  Grid.Row="1" />
+
 	</Grid>
 </UserControl>
