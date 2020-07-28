@@ -3,6 +3,7 @@
 					xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 					xmlns:smtx="using:ShowMeTheXAML"
 					xmlns:android="http://uno.ui/android"
+					xmlns:extensions="using:Uno.Gallery.Extensions"
 					xmlns:ios="http://uno.ui/ios"
 					xmlns:wasm="http://uno.ui/wasm"
 					xmlns:win="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -86,6 +87,8 @@
 
 							<!-- Copy Button -->
 							<Button Style="{StaticResource MaterialTextButtonStyle}"
+									extensions:ClipboardExtensions.CopyTrigger="ButtonClicked"
+									extensions:ClipboardExtensions.CopyContent="{Binding Path=(smtx:XamlDisplayExtensions.PrettyXaml), RelativeSource={RelativeSource TemplatedParent}}"
 									Padding="0"
 									HorizontalAlignment="Right"
 									VerticalAlignment="Top"
