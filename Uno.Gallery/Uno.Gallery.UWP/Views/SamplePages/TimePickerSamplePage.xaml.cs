@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !__WASM__
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -25,3 +26,4 @@ namespace Uno.Gallery.Views.Samples
 		}
 	}
 }
+#endif
