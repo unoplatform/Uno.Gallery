@@ -42,6 +42,10 @@ namespace Uno.Gallery
 		/// <param name="e">Details about the launch request and process.</param>
 		protected override void OnLaunched(LaunchActivatedEventArgs e)
 		{
+			this.Resources.MergedDictionaries.Add(new Material.MaterialColorPalette());
+			// TODO Create a color palette override xaml file or use Colors.xaml
+			// this.Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = new Uri("ms-appx:///Views/Colors.xaml") });
+			this.Resources.MergedDictionaries.Add(new Material.MaterialLibraryResources());
 #if WINDOWS_UWP
 			ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(320, 568)); // (size of the iPhone SE)
 #endif

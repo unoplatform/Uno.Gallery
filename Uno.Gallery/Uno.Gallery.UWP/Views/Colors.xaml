@@ -3,10 +3,6 @@
 					xmlns:local="using:Uno.Gallery.Views.Styles.Application"
 					xmlns:material="using:Uno.Material">
 
-	<ResourceDictionary.MergedDictionaries>
-		<material:MaterialLibraryResources />
-	</ResourceDictionary.MergedDictionaries>
-
 	<ResourceDictionary.ThemeDictionaries>
 
 		<!-- Light Theme -->

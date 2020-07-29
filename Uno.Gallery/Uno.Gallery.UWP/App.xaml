@@ -7,7 +7,6 @@
 	<Application.Resources>
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
-				<material:MaterialLibraryResources />
 
 				<ResourceDictionary Source="Views/Colors.xaml" />
 				<ResourceDictionary Source="Views/Converters.xaml" />
