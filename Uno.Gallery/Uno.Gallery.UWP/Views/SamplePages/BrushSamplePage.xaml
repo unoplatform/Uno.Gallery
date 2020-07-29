@@ -17,14 +17,11 @@
 					<StackPanel>
 						<smtx:XamlDisplay UniqueKey="BrushSamplePage_Fluent_SolidColorBrush"
 										  smtx:XamlDisplayExtensions.Header="SolidColorBrush">
-							<Border Height="100"
+							<Border Background="{StaticResource UnoRedColorBrush}"
+									Height="100"
 									Width="100"
 									CornerRadius="50"
-									HorizontalAlignment="Left">
-								<Border.Background>
-									<SolidColorBrush Color="Red" />
-								</Border.Background>
-							</Border>
+									HorizontalAlignment="Left" />
 						</smtx:XamlDisplay>
 
 						<smtx:XamlDisplay UniqueKey="BrushSamplePage_Fluent_LinearGradientBrush"
@@ -36,20 +33,18 @@
 								<Border.Background>
 									<LinearGradientBrush StartPoint="0,0"
 														 EndPoint="1,1">
-										<GradientStop Color="Red"
+										<GradientStop Color="{StaticResource UnoGreenColor}"
 													  Offset="0.0" />
-										<GradientStop Color="Orange"
-													  Offset="0.17" />
-										<GradientStop Color="Yellow"
-													  Offset="0.33" />
-										<GradientStop Color="Green"
-													  Offset="0.5" />
-										<GradientStop Color="Blue"
-													  Offset="0.67" />
-										<GradientStop Color="Indigo"
-													  Offset="0.83" />
-										<GradientStop Color="Violet"
-													  Offset="1.0" />
+										<GradientStop Color="{StaticResource UnoGreenColor}"
+													  Offset="0.1" />
+										<GradientStop Color="{StaticResource UnoBlueColor}"
+													  Offset="0.40" />
+										<GradientStop Color="{StaticResource UnoPurpleColor}"
+													  Offset="0.60" />
+										<GradientStop Color="{StaticResource UnoRedColor}"
+													  Offset="0.9" />
+										<GradientStop Color="{StaticResource UnoRedColor}"
+													  Offset="1" />
 									</LinearGradientBrush>
 								</Border.Background>
 							</Border>
