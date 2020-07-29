@@ -17,7 +17,6 @@ using Windows.UI.Xaml.Navigation;
 namespace Uno.Gallery.Views.Samples
 {
 	[SamplePage(SampleCategory.Components, "DatePicker")]
-	[OverviewExample(Design.Fluent, "FluentDatePickerExampleTemplate")]
 	public sealed partial class DatePickerSamplePage : Page
 	{
 		public DatePickerSamplePage()
