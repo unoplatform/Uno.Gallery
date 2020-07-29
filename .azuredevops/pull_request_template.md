@@ -18,7 +18,6 @@ What kind of change does this PR introduce?
 ## PR Checklist 
 Please check if your PR fulfills the following requirements:
 
-
 - [ ] Interface members are XML documented.
 - [ ] Existing XML documentation and comments have been updated.
 - [ ] Architecture documents have been updated.
@@ -26,5 +25,6 @@ Please check if your PR fulfills the following requirements:
 - [ ] Tested on Wasm.
 - [ ] Tested on Android.
 - [ ] Tested on UWP.
+- [ ] Tested in both **Light** and **Dark** themes.
 
 [comment]:# (Please provide any additional information if necessary)
