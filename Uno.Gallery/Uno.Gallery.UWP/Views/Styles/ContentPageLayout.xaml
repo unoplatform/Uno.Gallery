@@ -73,7 +73,7 @@
 									<TextBlock Text="{TemplateBinding Description}"
 											   Style="{StaticResource MaterialSubtitle1}"
 											   Foreground="{StaticResource Foreground02ColorBrush}"
-											   TextWrapping="WrapWholeWords"
+											   TextWrapping="Wrap"
 											   Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Description, Converter={StaticResource IsNullOrEmptyToCollapsed}, FallbackValue=Collapsed}"
 											   Margin="0,16,0,0" />
 

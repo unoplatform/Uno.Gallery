@@ -77,6 +77,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Controls\ContentPageLayout.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\OverviewSampleView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\SamplePageLayout.Properties.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\EnumDescriptionConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\EnumDesignConverter.cs" />
@@ -89,7 +90,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Controls\ThreeColorPaletteView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\FromColorBrushToHexConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\RandomColorConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Entities\OverviewExampleAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Sample.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\SampleCategory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\SamplePageAttribute.cs" />

@@ -99,5 +99,20 @@ namespace Uno.Gallery.Controls
 		}
 
 		#endregion
+
+		#region Property: HeaderTemplate
+		/// <summary>
+		/// The Header is the part above the design tabs (Material|Fluent|Native).
+		/// It contains the Description and the Source in the default style.
+		/// </summary>
+		public DataTemplate HeaderTemplate
+		{
+			get { return (DataTemplate)GetValue(HeaderTemplateProperty); }
+			set { SetValue(HeaderTemplateProperty, value); }
+		}
+
+		public static readonly DependencyProperty HeaderTemplateProperty =
+			DependencyProperty.Register("HeaderTemplate", typeof(DataTemplate), typeof(SamplePageLayout), new PropertyMetadata(null));
+		#endregion
 	}
 }

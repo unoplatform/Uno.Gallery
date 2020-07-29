@@ -14,6 +14,29 @@
 
 	<Thickness x:Key="FirstItemMargin">12,0</Thickness>
 	<Thickness x:Key="ConsecutiveItemMargin">12,12,12,0</Thickness>
+
+	<DataTemplate x:Key="DefaultSamplePageLayoutHeaderTemplate">
+		<StackPanel>
+			<!-- Description -->
+			<TextBlock Text="{Binding Description}"
+					   Style="{StaticResource MaterialSubtitle1}"
+					   Foreground="{StaticResource Foreground02ColorBrush}"
+					   Visibility="{Binding Description, Converter={StaticResource IsNullOrEmptyToCollapsed}, FallbackValue=Collapsed}"
+					   Margin="0,16,0,0" />
+
+			<!-- Source label -->
+			<TextBlock Text="SOURCE"
+					   Style="{StaticResource MaterialOverline}"
+					   Foreground="{StaticResource Foreground04ColorBrush}"
+					   Margin="0,30,0,0" />
+
+			<!-- Source value -->
+			<TextBlock Text="{Binding Source, Converter={StaticResource EnumToDescription}}"
+					   Style="{StaticResource MaterialBody1}"
+					   Foreground="{StaticResource Foreground02ColorBrush}"
+					   Margin="0,0,0,16" />
+		</StackPanel>
+	</DataTemplate>
 	
 	<Style x:Key="DefaultSamplePageLayoutStyle"
 		   TargetType="controls:SamplePageLayout">
@@ -22,6 +45,8 @@
 				Value="LightGray" />
 		<Setter Property="BorderThickness"
 				Value="1,0,0,0" />
+		<Setter Property="HeaderTemplate"
+				Value="{StaticResource DefaultSamplePageLayoutHeaderTemplate}" />
 
 		<Setter Property="Template">
 			<Setter.Value>
@@ -74,25 +99,12 @@
 											   Style="{StaticResource MaterialHeadline4}"
 											   Foreground="{StaticResource Foreground01ColorBrush}"
 											   Visibility="Collapsed" />
-
-									<!-- Description -->
-									<TextBlock Text="{TemplateBinding Description}"
-											   Style="{StaticResource MaterialSubtitle1}"
-											   Foreground="{StaticResource Foreground02ColorBrush}"
-											   Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Description, Converter={StaticResource IsNullOrEmptyToCollapsed}, FallbackValue=Collapsed}"
-											   Margin="0,16,0,0" />
-
-									<!-- Source label -->
-									<TextBlock Text="SOURCE"
-											   Style="{StaticResource MaterialOverline}"
-											   Foreground="{StaticResource Foreground04ColorBrush}"
-											   Margin="0,30,0,0" />
-
-									<!-- Source value -->
-									<TextBlock Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Source, Converter={StaticResource EnumToDescription}}"
-											   Style="{StaticResource MaterialBody1}"
-											   Foreground="{StaticResource Foreground02ColorBrush}"
-											   Margin="0,0,0,16" />
+									
+									<!-- Header (default template contains Description and Source) -->
+									<ContentPresenter Content="{TemplateBinding Content}"
+													  ContentTemplate="{TemplateBinding HeaderTemplate}"
+													  VerticalAlignment="Top"
+													  HorizontalAlignment="Stretch" />
 
 									<StackPanel x:Name="PART_ScrollingTabs"
 												Orientation="Horizontal"

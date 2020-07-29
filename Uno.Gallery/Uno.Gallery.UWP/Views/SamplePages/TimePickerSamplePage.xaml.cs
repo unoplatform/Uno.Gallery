@@ -17,7 +17,6 @@ using Windows.UI.Xaml.Navigation;
 namespace Uno.Gallery.Views.Samples
 {
 	[SamplePage(SampleCategory.Components, "TimePicker")]
-	[OverviewExample(Design.Fluent, "FluentTimePickerExampleTemplate")]
 	public sealed partial class TimePickerSamplePage : Page
 	{
 		public TimePickerSamplePage()

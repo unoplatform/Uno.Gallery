@@ -16,7 +16,6 @@ using Windows.UI.Xaml.Navigation;
 namespace Uno.Gallery.Views.Samples
 {
 	[SamplePage(SampleCategory.Components, "Brush")]
-	[OverviewExample(Design.Fluent, "FluentBrushExampleTemplate")]
 	public sealed partial class BrushSamplePage : Page
 	{
 		public BrushSamplePage()
