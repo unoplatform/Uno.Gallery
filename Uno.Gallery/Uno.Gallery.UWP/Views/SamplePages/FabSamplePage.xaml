@@ -14,16 +14,6 @@
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 		<controls:SamplePageLayout>
 
-			<controls:SamplePageLayout.FluentTemplate>
-				<DataTemplate>
-					<TextBlock TextWrapping="Wrap">
-						<Run Text="A floating action button (FAB) represents the primary action of a screen." />
-						<LineBreak />
-						<Run Text="Take a look at the Material tab for examples!" />
-					</TextBlock>
-				</DataTemplate>
-			</controls:SamplePageLayout.FluentTemplate>
-
 			<controls:SamplePageLayout.MaterialTemplate>
 				<DataTemplate>
 					<StackPanel>

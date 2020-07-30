@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Uno.Gallery.Views.Samples
 {
-	[SamplePage(SampleCategory.Components, "Brush")]
+	[SamplePage(SampleCategory.Components, "Brush", Description = "A brush describes how a surface is painted graphically.")]
 	public sealed partial class BrushSamplePage : Page
 	{
 		public BrushSamplePage()

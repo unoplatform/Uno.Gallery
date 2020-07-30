@@ -27,7 +27,7 @@
 							   Style="{StaticResource MaterialHeadline5}"
 							   Margin="0,24,0,0" />
 					
-					<TextBlock Text="Here's an overview of the available components Uno Platform from a Material or Fluent perspective."
+					<TextBlock Text="Here's an overview of some of the available components from a Material or Fluent perspective."
 							   TextWrapping="Wrap"
 							   Style="{StaticResource MaterialHeadline6}"
 							   Margin="0,16,0,16"/>

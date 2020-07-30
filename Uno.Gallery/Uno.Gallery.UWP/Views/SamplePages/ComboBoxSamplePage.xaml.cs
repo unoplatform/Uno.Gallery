@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Uno.Gallery.Views.Samples
 {
-	[SamplePage(SampleCategory.Components, "ComboBox")]
+	[SamplePage(SampleCategory.Components, "ComboBox", Description = "This control used for selection is a drop-down list that shows its selection in a box.")]
 	public sealed partial class ComboBoxSamplePage : Page
 	{
 		public ComboBoxSamplePage()

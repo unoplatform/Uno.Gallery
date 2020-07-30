@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Uno.Gallery.Views.Samples
 {
-	[SamplePage(SampleCategory.Components, "Progress Ring/Bar")]
+	[SamplePage(SampleCategory.Components, "Progress Ring/Bar", Description = "These controls are used to display progress, either as a bar or a \"spinner\".")]
 	public sealed partial class ProgressSamplePage : Page
 	{
 		public ProgressSamplePage()

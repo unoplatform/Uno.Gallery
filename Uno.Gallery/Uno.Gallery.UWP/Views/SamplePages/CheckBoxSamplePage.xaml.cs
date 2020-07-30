@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Uno.Gallery.Views.Samples
 {
-	[SamplePage(SampleCategory.Components, "CheckBox")]
+	[SamplePage(SampleCategory.Components, "CheckBox", Description = "This is a control that users can check and uncheck. It can also have an indeterminate value.")]
 	public sealed partial class CheckBoxSamplePage : Page
 	{
 		public CheckBoxSamplePage()
