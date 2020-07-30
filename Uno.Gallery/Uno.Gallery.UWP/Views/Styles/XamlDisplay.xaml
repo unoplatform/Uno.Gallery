@@ -80,6 +80,7 @@
 
 								<!-- Xaml -->
 								<TextBlock Text="{Binding Path=(smtx:XamlDisplayExtensions.PrettyXaml), RelativeSource={RelativeSource TemplatedParent}}"
+										   IsTextSelectionEnabled="True"
 										   FontFamily="Consolas"
 										   Foreground="Black"
 										   Margin="30,20,60,20"/>
