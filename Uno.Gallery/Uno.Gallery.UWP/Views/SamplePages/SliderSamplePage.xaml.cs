@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Uno.Gallery.Views.Samples
 {
-	[SamplePage(SampleCategory.Components, "Slider")]
+	[SamplePage(SampleCategory.Components, "Slider", Description = "This control allows users to input a value within a specified range.")]
 	public sealed partial class SliderSamplePage : Page
 	{
 		public SliderSamplePage()

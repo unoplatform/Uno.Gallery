@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Uno.Gallery.Views.Samples
 {
-	[SamplePage(SampleCategory.Components, "PasswordBox")]
+	[SamplePage(SampleCategory.Components, "PasswordBox", Description = "This control is used for passwords or other secret inputs.")]
 	public sealed partial class PasswordBoxSamplePage : Page
 	{
 		public PasswordBoxSamplePage()

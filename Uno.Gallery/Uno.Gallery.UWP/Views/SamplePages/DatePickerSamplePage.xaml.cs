@@ -16,7 +16,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Uno.Gallery.Views.Samples
 {
-	[SamplePage(SampleCategory.Components, "DatePicker")]
+	[SamplePage(SampleCategory.Components, "DatePicker", Description = "This control allows users to pick a date value.")]
 	public sealed partial class DatePickerSamplePage : Page
 	{
 		public DatePickerSamplePage()
