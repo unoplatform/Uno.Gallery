@@ -76,19 +76,19 @@
 										  smtx:XamlDisplayExtensions.Header="Default">
 							<StackPanel Spacing="20">
 
-								<ToggleSwitch Header="OFF"
-											  Style="{StaticResource NativeDefaultToggleSwitch}" />
+								<TextBlock Text="Enabled" />
 
-								<ToggleSwitch Header="ON"
-											  Style="{StaticResource NativeDefaultToggleSwitch}"
+								<ToggleSwitch Style="{StaticResource NativeDefaultToggleSwitch}" />
+
+								<ToggleSwitch Style="{StaticResource NativeDefaultToggleSwitch}"
 											  IsOn="True" />
 
-								<ToggleSwitch Header="DISABLED OFF"
-											  Style="{StaticResource NativeDefaultToggleSwitch}"
+								<TextBlock Text="Disabled" />
+
+								<ToggleSwitch Style="{StaticResource NativeDefaultToggleSwitch}"
 											  IsEnabled="False" />
 
-								<ToggleSwitch Header="DISABLED ON"
-											  Style="{StaticResource NativeDefaultToggleSwitch}"
+								<ToggleSwitch Style="{StaticResource NativeDefaultToggleSwitch}"
 											  IsEnabled="False"
 											  IsOn="True" />
 							</StackPanel>
