@@ -41,18 +41,13 @@
 	<Style x:Key="DefaultSamplePageLayoutStyle"
 		   TargetType="controls:SamplePageLayout">
 
-		<Setter Property="BorderBrush"
-				Value="LightGray" />
-		<Setter Property="BorderThickness"
-				Value="1,0,0,0" />
 		<Setter Property="HeaderTemplate"
 				Value="{StaticResource DefaultSamplePageLayoutHeaderTemplate}" />
 
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="controls:SamplePageLayout">
-					<Grid BorderBrush="{TemplateBinding BorderBrush}"
-						  BorderThickness="{TemplateBinding BorderThickness}">
+					<Grid>
 
 						<Grid.RowDefinitions>
 							<RowDefinition Height="Auto" />
