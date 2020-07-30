@@ -176,6 +176,9 @@
     <Compile Include="Views\SamplePages\BottomNavigationBarSamplePage.xaml.cs">
       <DependentUpon>BottomNavigationBarSamplePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SamplePages\CardSamplePage.xaml.cs">
+      <DependentUpon>CardSamplePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SamplePages\ComboBoxSamplePage.xaml.cs">
       <DependentUpon>ComboBoxSamplePage.xaml</DependentUpon>
     </Compile>
@@ -323,6 +326,10 @@
     <Page Include="Views\SamplePages\BottomNavigationBarSamplePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SamplePages\CardSamplePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\SamplePages\ComboBoxSamplePage.xaml">
       <Generator>MSBuild:Compile</Generator>
