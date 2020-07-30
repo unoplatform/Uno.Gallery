@@ -1,23 +1,30 @@
-﻿<Page
-    x:Class="Uno.Gallery.Views.Samples.SliderSamplePage"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:Uno.Gallery.Views.Samples"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:controls="using:Uno.Gallery.Controls"
-	xmlns:smtx="using:ShowMeTheXAML"
-	mc:Ignorable="d">
+﻿<Page x:Class="Uno.Gallery.Views.Samples.SliderSamplePage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:local="using:Uno.Gallery.Views.Samples"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  xmlns:controls="using:Uno.Gallery.Controls"
+	  xmlns:smtx="using:ShowMeTheXAML"
+	  mc:Ignorable="d">
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 		<controls:SamplePageLayout>
 
-			<controls:SamplePageLayout.NativeTemplate>
+			<controls:SamplePageLayout.FluentTemplate>
 				<DataTemplate>
 					<StackPanel>
-						<smtx:XamlDisplay UniqueKey="SliderSamplePage_Native_Default"
+						<smtx:XamlDisplay UniqueKey="SliderSamplePage_Fluent_Default"
 										  smtx:XamlDisplayExtensions.Header="Default Slider">
-							<Slider />
+							<StackPanel Orientation="Vertical"
+										Spacing="8">
+								<TextBlock>
+									<Run Text="Value:" />
+									<Run Text="{Binding Value, ElementName=DefaultSlider}" />
+								</TextBlock>
+								<Slider x:Name="DefaultSlider"
+										Value="25"/>
+							</StackPanel>
 						</smtx:XamlDisplay>
 
 						<!--Ticks are not displayed in Android and iOS issue: https://github.com/unoplatform/uno/issues/3554-->
@@ -31,7 +38,7 @@
 
 					</StackPanel>
 				</DataTemplate>
-			</controls:SamplePageLayout.NativeTemplate>
+			</controls:SamplePageLayout.FluentTemplate>
 		</controls:SamplePageLayout>
 	</Grid>
 </Page>
