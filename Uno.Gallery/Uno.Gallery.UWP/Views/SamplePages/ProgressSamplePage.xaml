@@ -16,19 +16,11 @@
 				<DataTemplate>
 					<StackPanel>
 
-						<!-- ProgressRing Active -->
-						<smtx:XamlDisplay UniqueKey="ProgressSamplePage_Fluent_Active"
-										  smtx:XamlDisplayExtensions.Header="ProgressRing Active">
+						<!-- ProgressRing -->
+						<smtx:XamlDisplay UniqueKey="ProgressSamplePage_Fluent"
+										  smtx:XamlDisplayExtensions.Header="ProgressRing">
 							<ProgressRing Foreground="{ThemeResource MaterialOnBackgroundBrush}"
 										  IsActive="True"
-										  HorizontalAlignment="Left" />
-						</smtx:XamlDisplay>
-
-						<!-- ProgressRing InActive -->
-						<smtx:XamlDisplay UniqueKey="ProgressSamplePage_Fluent_Inactive"
-										  smtx:XamlDisplayExtensions.Header="ProgressRing Inactive">
-							<ProgressRing Foreground="{ThemeResource MaterialOnBackgroundBrush}"
-										  IsActive="False"
 										  HorizontalAlignment="Left" />
 						</smtx:XamlDisplay>
 
