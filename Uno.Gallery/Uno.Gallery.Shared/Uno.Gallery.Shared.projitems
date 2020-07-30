@@ -29,6 +29,11 @@
     <Content Include="$(MSBuildThisFileDirectory)Assets\AppleIcon_Small.scale-200.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\AppleIcon_Small.scale-300.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\AppleIcon_Small.scale-400.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Avatar.scale-100.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Avatar.scale-150.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Avatar.scale-200.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Avatar.scale-300.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Avatar.scale-400.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\FluentIcon_Medium.scale-100.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\FluentIcon_Medium.scale-150.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\FluentIcon_Medium.scale-200.png" />
@@ -39,6 +44,11 @@
     <Content Include="$(MSBuildThisFileDirectory)Assets\FluentIcon_Small.scale-200.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\FluentIcon_Small.scale-300.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\FluentIcon_Small.scale-400.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\LargeMedia.scale-100.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\LargeMedia.scale-150.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\LargeMedia.scale-200.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\LargeMedia.scale-300.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\LargeMedia.scale-400.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\MaterialIcon_Medium.scale-100.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\MaterialIcon_Medium.scale-150.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\MaterialIcon_Medium.scale-200.png" />
@@ -49,8 +59,12 @@
     <Content Include="$(MSBuildThisFileDirectory)Assets\MaterialIcon_Small.scale-200.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\MaterialIcon_Small.scale-300.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\MaterialIcon_Small.scale-400.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Assets\Post04.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\SharedAssets.md" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\SmallMedia.scale-100.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\SmallMedia.scale-150.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\SmallMedia.scale-200.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\SmallMedia.scale-300.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\SmallMedia.scale-400.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\UnoGalleryLogo_Dark.scale-100.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\UnoGalleryLogo_Dark.scale-150.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\UnoGalleryLogo_Dark.scale-200.png" />

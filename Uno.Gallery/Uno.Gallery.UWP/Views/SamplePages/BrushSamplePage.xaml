@@ -57,7 +57,7 @@
 									CornerRadius="50"
 									HorizontalAlignment="Left">
 								<Border.Background>
-									<ImageBrush ImageSource="ms-appx:///Assets/Post04.jpg"
+									<ImageBrush ImageSource="ms-appx:///Assets/SmallMedia.png"
 												Stretch="UniformToFill" />
 								</Border.Background>
 							</Border>
