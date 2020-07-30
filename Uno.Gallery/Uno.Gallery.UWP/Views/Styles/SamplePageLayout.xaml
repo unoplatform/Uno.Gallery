@@ -62,7 +62,8 @@
 						<!-- Title (visible on desktop) -->
 						<TextBlock x:Name="StickyTitle"
 								   Text="{TemplateBinding Title}"
-								   TextWrapping="Wrap"
+								   MaxLines="1"
+								   TextTrimming="CharacterEllipsis"
 								   Style="{StaticResource MaterialHeadline4}"
 								   Margin="48,0" />
 
@@ -95,7 +96,8 @@
 									<TextBlock x:Name="ScrollingTitle"
 											   Margin="0,32,0,0"
 											   Text="{TemplateBinding Title}"
-											   TextWrapping="Wrap"
+											   MaxLines="1"
+											   TextTrimming="CharacterEllipsis"
 											   Style="{StaticResource MaterialHeadline4}"
 											   Foreground="{StaticResource Foreground01ColorBrush}"
 											   Visibility="Collapsed" />
