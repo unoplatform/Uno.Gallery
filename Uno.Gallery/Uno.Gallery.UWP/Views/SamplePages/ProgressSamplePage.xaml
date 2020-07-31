@@ -24,20 +24,20 @@
 										  HorizontalAlignment="Left" />
 						</smtx:XamlDisplay>
 
-						<!-- Slider -->
-						<smtx:XamlDisplay UniqueKey="ProgressSamplePage_Fluent_Slider"
-										  smtx:XamlDisplayExtensions.Header="Slider to set ProgressBar Percentage">
-							<Slider x:Name="progressSlider"
-									Minimum="0"
-									Maximum="100" />
-						</smtx:XamlDisplay>
-
 						<!-- ProgressBar -->
 						<smtx:XamlDisplay UniqueKey="ProgressSamplePage_Fluent_ProgressBar"
-										  smtx:XamlDisplayExtensions.Header="ProgressBar">
-							<ProgressBar Value="{Binding Value, ElementName=progressSlider}"
-										 Minimum="0"
-										 Maximum="100" />
+										  smtx:XamlDisplayExtensions.Header="ProgressBar"
+										  smtx:XamlDisplayExtensions.Description="Move the slider to update the ProgressBar."
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+							<StackPanel Spacing="24">
+								<Slider x:Name="progressSlider"
+										Minimum="0"
+										Maximum="100" />
+
+								<ProgressBar Value="{Binding Value, ElementName=progressSlider}"
+											 Minimum="0"
+											 Maximum="100" />
+							</StackPanel>
 						</smtx:XamlDisplay>
 
 						<!-- ProgressBar Indeterminate -->
