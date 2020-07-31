@@ -13,6 +13,14 @@
 
 		<!-- Color style for toggle switch -->
 		<item name="colorControlActivated">@color/MaterialPrimaryColor</item>
-		<item name="colorSwitchThumbNormal">@color/MaterialSurfaceColor</item>
+		<item name="colorSwitchThumbNormal">@color/MaterialSurfaceVariantColor</item>
+		
+		<!-- Color style for Date and Time Pickers -->
+		<item name="android:datePickerDialogTheme">@style/AppCompatDialogStyle</item>
+		<item name="android:timePickerDialogTheme">@style/AppCompatDialogStyle</item>
+	</style>
+
+	<style name="AppCompatDialogStyle" parent="Theme.AppCompat.Light.Dialog">
+		<item name="colorAccent">@color/MaterialPrimaryColor</item>
 	</style>
 </resources>

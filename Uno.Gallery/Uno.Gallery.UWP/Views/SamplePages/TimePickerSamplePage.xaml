@@ -3,7 +3,9 @@
 	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	  xmlns:controls="using:Uno.Gallery.Controls"
 	  xmlns:local="using:Uno.Gallery.Views.Samples"
+	  xmlns:android="http://uno.ui/android"
 	  xmlns:gallery="using:Uno.Gallery"
+	  xmlns:ios="http://uno.ui/ios"
 	  xmlns:smtx="using:ShowMeTheXAML"
 	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -50,6 +52,17 @@
 					</StackPanel>
 				</DataTemplate>
 			</controls:SamplePageLayout.FluentTemplate>
+
+			<controls:SamplePageLayout.MaterialTemplate>
+				<DataTemplate>
+					<StackPanel>
+						<smtx:XamlDisplay UniqueKey="TimePickerSamplePage_Material"
+										  smtx:XamlDisplayExtensions.Header="Material TimePicker">
+							<TimePicker ios:FlyoutPresenterStyle="{StaticResource MaterialTimePickerFlyoutPresenterStyle}" />
+						</smtx:XamlDisplay>
+					</StackPanel>
+				</DataTemplate>
+			</controls:SamplePageLayout.MaterialTemplate>
 		</controls:SamplePageLayout>
 	</Grid>
 </Page>
