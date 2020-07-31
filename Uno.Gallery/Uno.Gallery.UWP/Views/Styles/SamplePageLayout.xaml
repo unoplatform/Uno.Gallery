@@ -44,6 +44,9 @@
 		<Setter Property="HeaderTemplate"
 				Value="{StaticResource DefaultSamplePageLayoutHeaderTemplate}" />
 
+		<Setter Property="BorderBrush"
+				Value="{StaticResource SampleBorderBrush}" />
+
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="controls:SamplePageLayout">
