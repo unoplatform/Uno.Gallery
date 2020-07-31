@@ -26,9 +26,29 @@ namespace Uno.Gallery
 			this.InitializeComponent();
 
 			InitializeSafeArea();
+			this.Loaded += OnLoaded;
 		}
 
 		public NavigationView NavigationView => NavigationViewControl;
+
+		private void OnLoaded(object sender, RoutedEventArgs e)
+		{
+			// Initialize the toggle to the current theme.
+			var root = Window.Current.Content as FrameworkElement;
+
+			switch (root.RequestedTheme)
+			{
+				case ElementTheme.Default:
+					DarkLightModeToggle.IsChecked = GetIsSystemDefaultDark();
+					break;
+				case ElementTheme.Light:
+					DarkLightModeToggle.IsChecked = false;
+					break;
+				case ElementTheme.Dark:
+					DarkLightModeToggle.IsChecked = true;
+					break;
+			}
+		}
 
 		/// <summary>
 		/// This method handles the top padding for phones like iPhone X.
@@ -44,6 +64,21 @@ namespace Uno.Gallery
 			{
 				TopPaddingRow.Height = new GridLength(topPadding);
 			}
+		}
+
+		// Determine if system default is dark or light
+		private bool GetIsSystemDefaultDark()
+		{
+#if WINDOWS_UWP
+			var settings = new UISettings();
+			var systemBackground = settings.GetColorValue(UIColorType.Background);
+			var black = Color.FromArgb(255, 0, 0, 0);
+			return systemBackground == black;
+#else
+			// TODO Test and/or find an implementation for iOS Android etc.
+			return false;
+#endif
+
 		}
 
 		private void ToggleButton_Click(object sender, RoutedEventArgs e)
