@@ -20,18 +20,7 @@
 	<controls:SamplePageLayout>
 		<controls:SamplePageLayout.HeaderTemplate>
 			<DataTemplate>
-				<StackPanel>
-					<!-- Text -->
-					<TextBlock Text="Build native mobile, desktop and WebAssembly apps from a single codebase."
-							   TextWrapping="Wrap"
-							   Style="{StaticResource MaterialHeadline5}"
-							   Margin="0,24,0,0" />
-					
-					<TextBlock Text="Here's an overview of some of the available components from a Material or Fluent perspective."
-							   TextWrapping="Wrap"
-							   Style="{StaticResource MaterialHeadline6}"
-							   Margin="0,16,0,16"/>
-				</StackPanel>
+				<local:OverviewPageHeader />
 			</DataTemplate>
 		</controls:SamplePageLayout.HeaderTemplate>
 		<controls:SamplePageLayout.MaterialTemplate>
