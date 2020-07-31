@@ -95,11 +95,11 @@
 					 Color="{ThemeResource MaterialOnBackgroundColor}"
 					 Opacity="{StaticResource Opacity05}"  />
 
-	<SolidColorBrush x:Key="OverviewSampleViewBorderBrush"
+	<SolidColorBrush x:Key="SampleBorderBrush"
 					 Color="{ThemeResource MaterialOnSurfaceColor}"
 					 Opacity="0.13"/>
 
-	<SolidColorBrush x:Key="OverviewSampleViewSampleBrush"
+	<SolidColorBrush x:Key="SampleSecondBackgroundBrush"
 					 Color="{ThemeResource MaterialOnSurfaceColor}"
 					 Opacity="0.05" />
 

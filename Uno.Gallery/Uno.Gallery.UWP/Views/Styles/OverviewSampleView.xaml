@@ -12,7 +12,7 @@
 				<ControlTemplate TargetType="controls:OverviewSampleView">
 					<Grid CornerRadius="4"
 						  Background="{StaticResource MaterialSurfaceBrush}"
-						  BorderBrush="{StaticResource OverviewSampleViewBorderBrush}"
+						  BorderBrush="{StaticResource SampleBorderBrush}"
 						  BorderThickness="1"
 						  Margin="0,24,0,0">
 						<Grid.ColumnDefinitions>
@@ -51,7 +51,7 @@
 						<!-- Sample -->
 						<Border x:Name="SamplePart"
 								Grid.Column="1"
-								Background="{StaticResource OverviewSampleViewSampleBrush}"
+								Background="{StaticResource SampleSecondBackgroundBrush}"
 								Padding="16">
 							<ContentControl Content="{TemplateBinding Content}"
 											ContentTemplate="{TemplateBinding ContentTemplate}"

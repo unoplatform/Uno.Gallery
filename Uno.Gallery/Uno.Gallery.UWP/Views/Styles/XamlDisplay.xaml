@@ -17,7 +17,7 @@
 		<Setter Property="Margin"
 				Value="0,24,0,0" />
 		<Setter Property="BorderBrush"
-				Value="LightGray" />
+				Value="{StaticResource SampleBorderBrush}" />
 		<Setter Property="BorderThickness"
 				Value="1" />
 
@@ -70,7 +70,7 @@
 											  Grid.Column="1" />
 							</Grid>
 
-							<ScrollViewer Background="WhiteSmoke"
+							<ScrollViewer Background="{StaticResource SampleSecondBackgroundBrush}"
 										  HorizontalScrollBarVisibility="Auto"
 										  win:Visibility="{Binding ElementName=RevealButton, Path=IsChecked, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
 										  wasm:Visibility="{Binding ElementName=RevealButton, Path=IsChecked, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
@@ -82,7 +82,7 @@
 								<TextBlock Text="{Binding Path=(smtx:XamlDisplayExtensions.PrettyXaml), RelativeSource={RelativeSource TemplatedParent}}"
 										   IsTextSelectionEnabled="True"
 										   FontFamily="Consolas"
-										   Foreground="Black"
+										   Foreground="{StaticResource MaterialOnSurfaceBrush}"
 										   Margin="30,20,60,20"/>
 							</ScrollViewer>
 
@@ -101,7 +101,7 @@
 
 								<!-- Icon -->
 								<Path Data="{StaticResource CopyToClipboardPathStyle}"
-									  Fill="Black"
+									  Fill="{StaticResource MaterialOnSurfaceMediumBrush}"
 									  Height="22"
 									  Width="19"
 									  Stretch="Uniform"
