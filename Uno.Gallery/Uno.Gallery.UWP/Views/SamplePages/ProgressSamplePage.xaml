@@ -20,9 +20,8 @@
 						<!-- ProgressRing -->
 						<smtx:XamlDisplay UniqueKey="ProgressSamplePage_Fluent"
 										  smtx:XamlDisplayExtensions.Header="ProgressRing">
-							<ProgressRing Foreground="{ThemeResource MaterialOnBackgroundBrush}"
-										  IsActive="True"
-										  HorizontalAlignment="Left" />
+							<winui:ProgressRing IsActive="True"
+												HorizontalAlignment="Left" />
 						</smtx:XamlDisplay>
 
 						<!-- ProgressBar -->
