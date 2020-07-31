@@ -157,7 +157,7 @@
 								Opacity="0"/>
 
 						<Path x:Name="LightSymbol"
-							  Fill="{StaticResource MaterialOnPrimaryColor}"
+							  Fill="White"
 							  Width="24"
 							  Height="24"
 							  HorizontalAlignment="Left"
