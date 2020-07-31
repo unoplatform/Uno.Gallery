@@ -63,7 +63,6 @@
 						<controls:Ripple x:Name="ContentPresenter"
 										 Feedback="{TemplateBinding Foreground}"
 										 FeedbackOpacity="{StaticResource MaterialPressedOpacity}"
-										 RippleSizeMultiplier="{StaticResource MaterialButtonRippleMultiplier}"
 										 BorderBrush="{TemplateBinding BorderBrush}"
 										 BorderThickness="{TemplateBinding BorderThickness}"
 										 ContentTemplate="{TemplateBinding ContentTemplate}"

@@ -7,6 +7,7 @@
 	  xmlns:controls="using:Uno.Gallery.Controls"
 	  xmlns:gallery="using:Uno.Gallery"
 	  xmlns:smtx="using:ShowMeTheXAML"
+	  xmlns:winui="using:Microsoft.UI.Xaml.Controls"
 	  mc:Ignorable="d">
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -34,9 +35,9 @@
 										Minimum="0"
 										Maximum="100" />
 
-								<ProgressBar Value="{Binding Value, ElementName=progressSlider}"
-											 Minimum="0"
-											 Maximum="100" />
+								<winui:ProgressBar Value="{Binding Value, ElementName=progressSlider}"
+												   Minimum="0"
+												   Maximum="100" />
 							</StackPanel>
 						</smtx:XamlDisplay>
 
@@ -44,7 +45,7 @@
 						<smtx:XamlDisplay UniqueKey="ProgressSamplePage_Fluent_ProgressBarIndeterminate"
 										  smtx:XamlDisplayExtensions.Header="Indeterminate ProgressBar"
 										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
-							<ProgressBar IsIndeterminate="True" />
+							<winui:ProgressBar IsIndeterminate="True" />
 						</smtx:XamlDisplay>
 					</StackPanel>
 				</DataTemplate>

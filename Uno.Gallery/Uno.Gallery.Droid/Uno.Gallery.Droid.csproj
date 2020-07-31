@@ -94,7 +94,7 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Uno.Material">
-      <Version>1.0.0-dev.404</Version>
+      <Version>1.0.0-dev.427</Version>
     </PackageReference>
     <PackageReference Include="Uno.ShowMeTheXAML">
       <Version>1.0.58</Version>
@@ -103,7 +103,7 @@
       <Version>1.0.58</Version>
     </PackageReference>
     <PackageReference Include="Uno.UI">
-      <Version>3.0.0-dev.1117</Version>
+      <Version>3.0.0-dev.1262</Version>
     </PackageReference>
     <PackageReference Include="Uno.UI.RemoteControl" Version="3.0.0-dev.1117" Condition="'$(Configuration)'=='Debug'" />
     <PackageReference Include="Uno.UniversalImageLoader" Version="1.9.32" />
