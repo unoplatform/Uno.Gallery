@@ -132,7 +132,7 @@
 												ThirdColorForeground="Black" />
 
 				<!-- Separator -->
-				<Rectangle Fill="{StaticResource SeparatorColorBrush}"
+				<Rectangle Fill="{StaticResource DividerBrush}"
 						   Height="1"
 						   Margin="0,48,0,36" />
 
@@ -150,7 +150,7 @@
 												ThirdColorForeground="{StaticResource MaterialOnSecondaryBrush}" />
 
 				<!-- Separator -->
-				<Rectangle Fill="{StaticResource SeparatorColorBrush}"
+				<Rectangle Fill="{StaticResource DividerBrush}"
 						   Height="1"
 						   Margin="0,48,0,36" />
 
@@ -168,7 +168,7 @@
 										   OnColorBrush="{StaticResource MaterialOnBackgroundBrush}"
 										   Description="Appears behind scrollable content."
 										   Style="{StaticResource ColorPaletteWithBottomDescriptionViewStyle}"
-										   BorderBrush="{StaticResource MaterialOnSurfaceFocusedBrush}"
+										   BorderBrush="{StaticResource DividerBrush}"
 										   BorderThickness="1"
 										   ColorHeight="88"
 										   Margin="0,48,0,0" />
@@ -178,7 +178,7 @@
 										   OnColorBrush="{StaticResource MaterialOnSurfaceBrush}"
 										   Description="Affects surfaces of components such as cards, news or even menus."
 										   Style="{StaticResource ColorPaletteWithBottomDescriptionViewStyle}"
-										   BorderBrush="{StaticResource MaterialOnSurfaceFocusedBrush}"
+										   BorderBrush="{StaticResource DividerBrush}"
 										   BorderThickness="1"
 										   ColorHeight="88"
 										   Margin="0,48,0,0" />
@@ -192,7 +192,7 @@
 										   Margin="0,48,0,0" />
 
 				<!-- Separator -->
-				<Rectangle Fill="{StaticResource SeparatorColorBrush}"
+				<Rectangle Fill="{StaticResource DividerBrush}"
 						   Height="1"
 						   Margin="0,48,0,36" />
 
@@ -273,7 +273,7 @@
 										   ColorName="OnBackground Color"
 										   ColorBrush="{StaticResource MaterialBackgroundBrush}"
 										   OnColorBrush="{StaticResource MaterialOnBackgroundBrush}"
-										   BorderBrush="{StaticResource MaterialOnSurfaceFocusedBrush}"
+										   BorderBrush="{StaticResource DividerBrush}"
 										   Style="{StaticResource InvertedColorPaletteViewStyle}"
 										   BorderThickness="1"
 										   Margin="0,48,0,0" />
@@ -318,7 +318,7 @@
 										   Margin="0,48,0,0" />
 
 				<!-- Separator -->
-				<Rectangle Fill="{StaticResource SeparatorColorBrush}"
+				<Rectangle Fill="{StaticResource DividerBrush}"
 						   Height="1"
 						   Margin="0,48,0,36" />
 
