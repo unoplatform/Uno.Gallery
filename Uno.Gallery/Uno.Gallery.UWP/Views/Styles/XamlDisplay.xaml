@@ -17,7 +17,7 @@
 		<Setter Property="Margin"
 				Value="0,24,0,0" />
 		<Setter Property="BorderBrush"
-				Value="{StaticResource SampleBorderBrush}" />
+				Value="{StaticResource DividerBrush}" />
 		<Setter Property="BorderThickness"
 				Value="1" />
 

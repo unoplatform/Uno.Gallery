@@ -10,7 +10,7 @@
 		   TargetType="controls:ContentPageLayout">
 		
 		<Setter Property="BorderBrush"
-				Value="{StaticResource SeparatorColorBrush}" />
+				Value="{StaticResource DividerBrush}" />
 		<Setter Property="BorderThickness"
 				Value="1,0,0,0" />
 		
@@ -37,7 +37,7 @@
 						<!-- Top bar with Uno logo (visible on mobile) -->
 						<Grid x:Name="MobileTopBar"
 							  Height="48"
-							  BorderBrush="{StaticResource SeparatorColorBrush}"
+							  BorderBrush="{StaticResource DividerBrush}"
 							  BorderThickness="0,0,0,1"
 							  Visibility="Collapsed">
 							<Image Source="ms-appx:///Assets/UnoLogo_Medium.png"
@@ -80,7 +80,7 @@
 											   Margin="0,16,0,0" />
 
 									<!-- Separator -->
-									<Rectangle Fill="{StaticResource SeparatorColorBrush}"
+									<Rectangle Fill="{StaticResource DividerBrush}"
 											   HorizontalAlignment="Stretch"
 											   Height="1"
 											   Margin="0,24,0,0" />

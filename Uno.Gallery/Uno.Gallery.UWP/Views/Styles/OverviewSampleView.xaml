@@ -12,7 +12,7 @@
 				<ControlTemplate TargetType="controls:OverviewSampleView">
 					<Grid CornerRadius="4"
 						  Background="{StaticResource MaterialSurfaceBrush}"
-						  BorderBrush="{StaticResource SampleBorderBrush}"
+						  BorderBrush="{StaticResource DividerBrush}"
 						  BorderThickness="1"
 						  Margin="0,24,0,0">
 						<Grid.ColumnDefinitions>

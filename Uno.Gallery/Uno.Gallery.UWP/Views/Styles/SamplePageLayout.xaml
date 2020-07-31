@@ -45,7 +45,7 @@
 				Value="{StaticResource DefaultSamplePageLayoutHeaderTemplate}" />
 
 		<Setter Property="BorderBrush"
-				Value="{StaticResource SampleBorderBrush}" />
+				Value="{StaticResource DividerBrush}" />
 
 		<Setter Property="Template">
 			<Setter.Value>
@@ -216,7 +216,7 @@
 								   VerticalAlignment="Top"
 								   HorizontalAlignment="Stretch"
 								   Visibility="Collapsed"
-								   Fill="{StaticResource SeparatorColorBrush}" />
+								   Fill="{StaticResource DividerBrush}" />
 
 						<!-- This is the sticky tabs that appear when we scroll enough. -->
 						<StackPanel x:Name="PART_StickyTabs"
