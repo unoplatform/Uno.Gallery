@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.Foundation.Metadata;
 using Windows.UI;
+using Uno.Gallery.Helpers;
 
 namespace Uno.Gallery
 {
@@ -33,13 +34,22 @@ namespace Uno.Gallery
 
 		private void OnLoaded(object sender, RoutedEventArgs e)
 		{
+			SetDarkLightToggleInitialState();
+		}
+
+		private void SetDarkLightToggleInitialState()
+		{
+#if __IOS__ || __MACOS__
+			// Window.Current isn't available on MacOS and iOS
+			DarkLightModeToggle.IsChecked = SystemThemeHelper.GetSystemApplicationTheme() == ApplicationTheme.Dark;
+#else
 			// Initialize the toggle to the current theme.
 			var root = Window.Current.Content as FrameworkElement;
 
-			switch (root.RequestedTheme)
+			switch (root.ActualTheme)
 			{
 				case ElementTheme.Default:
-					DarkLightModeToggle.IsChecked = GetIsSystemDefaultDark();
+					DarkLightModeToggle.IsChecked = SystemThemeHelper.GetSystemApplicationTheme() == ApplicationTheme.Dark;
 					break;
 				case ElementTheme.Light:
 					DarkLightModeToggle.IsChecked = false;
@@ -48,6 +58,7 @@ namespace Uno.Gallery
 					DarkLightModeToggle.IsChecked = true;
 					break;
 			}
+#endif
 		}
 
 		/// <summary>
@@ -64,21 +75,6 @@ namespace Uno.Gallery
 			{
 				TopPaddingRow.Height = new GridLength(topPadding);
 			}
-		}
-
-		// Determine if system default is dark or light
-		private bool GetIsSystemDefaultDark()
-		{
-#if WINDOWS_UWP
-			var settings = new UISettings();
-			var systemBackground = settings.GetColorValue(UIColorType.Background);
-			var black = Color.FromArgb(255, 0, 0, 0);
-			return systemBackground == black;
-#else
-			// TODO Test and/or find an implementation for iOS Android etc.
-			return false;
-#endif
-
 		}
 
 		private void ToggleButton_Click(object sender, RoutedEventArgs e)
