@@ -17,19 +17,19 @@
 						<!-- Scale -->
 						<smtx:XamlDisplay UniqueKey="TransformSamplePage_Scale"
 										  smtx:XamlDisplayExtensions.Header="Scale Transform">
-							
+
 							<Border Background="{StaticResource UnoBlueColorBrush}"
 									HorizontalAlignment="Left"
 									Margin="0,20,0,0"
 									Width="110"
 									Height="110">
-								
+
 								<!-- ScaleTransform -->
 								<FrameworkElement.RenderTransform>
 									<ScaleTransform ScaleY="0.75"
 													ScaleX="2.0" />
 								</FrameworkElement.RenderTransform>
-								
+
 								<!-- Label -->
 								<TextBlock Text="Scale"
 										   Foreground="White"
@@ -42,17 +42,17 @@
 						<!-- Rotate -->
 						<smtx:XamlDisplay UniqueKey="TransformSamplePage_Rotate"
 										  smtx:XamlDisplayExtensions.Header="Rotate Transform">
-							
+
 							<Border Background="{StaticResource UnoRedColorBrush}"
 									Width="110"
 									Height="110"
 									Margin="0,20,0,0">
-								
+
 								<!-- RotateTransform -->
 								<FrameworkElement.RenderTransform>
 									<RotateTransform Angle="15" />
 								</FrameworkElement.RenderTransform>
-								
+
 								<!-- Label -->
 								<TextBlock Text="Rotate"
 										   Foreground="White"
@@ -65,17 +65,17 @@
 						<!-- Translate -->
 						<smtx:XamlDisplay UniqueKey="TransformSamplePage_Translate"
 										  smtx:XamlDisplayExtensions.Header="Translate Transform">
-							
+
 							<Border Background="{StaticResource UnoPurpleColorBrush}"
 									Width="110"
 									Height="110"
 									Margin="0,20,0,0">
-								
+
 								<!-- TranslateTransform -->
 								<FrameworkElement.RenderTransform>
 									<TranslateTransform X="25" />
 								</FrameworkElement.RenderTransform>
-								
+
 								<!-- Label -->
 								<TextBlock Text="Translate"
 										   Foreground="White"
@@ -88,18 +88,18 @@
 						<!-- Skew -->
 						<smtx:XamlDisplay UniqueKey="TransformSamplePage_Skew"
 										  smtx:XamlDisplayExtensions.Header="Skew Transform">
-							
+
 							<Border Background="{StaticResource UnoGreenColorBrush}"
 									Width="110"
 									Height="110"
 									Margin="0,20,0,0">
-								
+
 								<!-- SkewTransform -->
 								<FrameworkElement.RenderTransform>
 									<SkewTransform AngleX="-25"
 												   AngleY="-10" />
 								</FrameworkElement.RenderTransform>
-								
+
 								<!-- Label -->
 								<TextBlock Text="Skew"
 										   Foreground="White"
@@ -112,12 +112,12 @@
 						<!-- No Transform -->
 						<smtx:XamlDisplay UniqueKey="TransformSamplePage_NoTransform"
 										  smtx:XamlDisplayExtensions.Header="No Transforms">
-							
+
 							<Border Background="#222222"
 									Width="110"
 									Height="110"
 									Margin="0,20,0,0">
-								
+
 								<!-- Label -->
 								<TextBlock Text="No transform"
 										   Foreground="White"

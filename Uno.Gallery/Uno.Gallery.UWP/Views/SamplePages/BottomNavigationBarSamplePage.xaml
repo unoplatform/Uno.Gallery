@@ -22,7 +22,7 @@
 					<smtx:XamlDisplay UniqueKey="BottomNavigationBarSamplePage_Default"
 									  smtx:XamlDisplayExtensions.Header="Default Style">
 						<StackPanel Spacing="24">
-							
+
 							<material:BottomNavigationBar>
 								<material:BottomNavigationBar.Items>
 

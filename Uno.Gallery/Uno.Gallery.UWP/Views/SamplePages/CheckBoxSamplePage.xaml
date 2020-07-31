@@ -32,7 +32,7 @@
 								<CheckBox Content="DISABLED CHECKED"
 										  IsChecked="True"
 										  IsEnabled="False" />
-								
+
 								<CheckBox Content="INDETERMINATE"
 										  IsThreeState="True"
 										  IsChecked="{x:Null}" />
@@ -86,7 +86,7 @@
 										  IsEnabled="False" />
 							</StackPanel>
 						</smtx:XamlDisplay>
-						
+
 						<!-- CheckBox -->
 						<smtx:XamlDisplay UniqueKey="CheckBoxSamplePage_Material_Secondary"
 										  smtx:XamlDisplayExtensions.Header="Secondary">
