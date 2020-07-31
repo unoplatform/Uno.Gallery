@@ -1,4 +1,4 @@
-﻿#if !__WASM__
+﻿
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -16,7 +16,9 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Uno.Gallery.Views.Samples
 {
+#if !__WASM__ || __MACOS__
 	[SamplePage(SampleCategory.Components, "DatePicker", Description = "This control allows users to pick a date value.")]
+#endif
 	public sealed partial class DatePickerSamplePage : Page
 	{
 		public DatePickerSamplePage()
@@ -25,4 +27,3 @@ namespace Uno.Gallery.Views.Samples
 		}
 	}
 }
-#endif

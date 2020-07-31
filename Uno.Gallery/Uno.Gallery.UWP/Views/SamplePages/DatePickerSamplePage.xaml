@@ -7,22 +7,34 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:Uno.Gallery.Controls"
 	xmlns:smtx="using:ShowMeTheXAML"
-	mc:Ignorable="d">
+	xmlns:ios="http://nventive.com/ios"
+	xmlns:android="http://nventive.com/android"
+	xmlns:xamarin="http://uno/xamarin"
+	xmlns:win="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	mc:Ignorable="d ios android xamarin">
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 		<controls:SamplePageLayout>
 
-			<controls:SamplePageLayout.NativeTemplate>
+			<controls:SamplePageLayout.FluentTemplate>
 				<DataTemplate>
 					<StackPanel>
-						<!--Confirmation/Cancel buttons are not visible in iOS issue: https://github.com/unoplatform/uno/issues/3593-->
-						<smtx:XamlDisplay UniqueKey="DatePickerSamplePage_Native_Default"
+						<smtx:XamlDisplay UniqueKey="DatePickerSamplePage_Fluent_Default"
 										  smtx:XamlDisplayExtensions.Header="Default DatePicker">
-							<DatePicker />
+
+							<StackPanel>
+								<ios:TextBlock Text="Combination of fluent and native control" />
+								<android:TextBlock Text="Combination of fluent and native control" />
+								<!--Confirmation/Cancel buttons are not visible in iOS issue: https://github.com/unoplatform/uno/issues/3593-->
+								<DatePicker MinWidth="0"
+											xamarin:MaxWidth="PositiveInfinity"
+											win:MaxWidth="Infinity"
+											HorizontalAlignment="Stretch"/>
+							</StackPanel>
 						</smtx:XamlDisplay>
 					</StackPanel>
 				</DataTemplate>
-			</controls:SamplePageLayout.NativeTemplate>
+			</controls:SamplePageLayout.FluentTemplate>
 		</controls:SamplePageLayout>
 	</Grid>
 </Page>
