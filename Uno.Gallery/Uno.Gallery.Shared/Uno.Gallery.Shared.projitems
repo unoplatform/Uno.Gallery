@@ -65,6 +65,16 @@
     <Content Include="$(MSBuildThisFileDirectory)Assets\SmallMedia.scale-200.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\SmallMedia.scale-300.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\SmallMedia.scale-400.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\uno-banner-dark.scale-100.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\uno-banner-dark.scale-150.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\uno-banner-dark.scale-200.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\uno-banner-dark.scale-300.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\uno-banner-dark.scale-400.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\uno-banner-light.scale-100.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\uno-banner-light.scale-150.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\uno-banner-light.scale-200.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\uno-banner-light.scale-300.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\uno-banner-light.scale-400.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\UnoGalleryLogo_Dark.scale-100.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\UnoGalleryLogo_Dark.scale-150.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\UnoGalleryLogo_Dark.scale-200.png" />

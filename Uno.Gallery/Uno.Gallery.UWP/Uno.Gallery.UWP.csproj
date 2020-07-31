@@ -167,6 +167,9 @@
     <Compile Include="Views\GeneralPages\OverviewPage.xaml.cs">
       <DependentUpon>OverviewPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\GeneralPages\OverviewPageHeader.xaml.cs">
+      <DependentUpon>OverviewPageHeader.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SamplePages\BrushSamplePage.xaml.cs">
       <DependentUpon>BrushSamplePage.xaml</DependentUpon>
     </Compile>
@@ -312,6 +315,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\GeneralPages\OverviewPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\GeneralPages\OverviewPageHeader.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

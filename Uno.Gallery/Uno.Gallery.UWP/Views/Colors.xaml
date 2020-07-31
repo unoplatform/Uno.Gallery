@@ -12,15 +12,23 @@
 			<ImageBrush x:Key="UnoLogo_ImageBrush"
 						ImageSource="ms-appx:///Assets/UnoGalleryLogo_Light.png"
 						Stretch="Uniform" />
+
+			<x:String x:Key="OverviewImageSource">ms-appx:///Assets/uno-banner-light.png</x:String>
 		</ResourceDictionary>
 
 		<!-- Dark Theme -->
 		<ResourceDictionary x:Key="Dark">
 
+			<!-- Override the default dark Material background and surface colors -->
+			<Color x:Key="MaterialBackgroundColor">#222224</Color>
+			<Color x:Key="MaterialSurfaceColor">#252529</Color>
+
 			<!-- Not a color but we needed 2 different images for light and dark theme -->
 			<ImageBrush x:Key="UnoLogo_ImageBrush"
 						ImageSource="ms-appx:///Assets/UnoGalleryLogo_Dark.png"
 						Stretch="Uniform" />
+
+			<x:String x:Key="OverviewImageSource">ms-appx:///Assets/uno-banner-dark.png</x:String>
 		</ResourceDictionary>
 	</ResourceDictionary.ThemeDictionaries>
 
@@ -32,6 +40,10 @@
 		ex: <SolidColorBrush x:Key="..." Color="{ThemeResource Material...}" />
 	-->
 	
+
+	<SolidColorBrush x:Key="ApplicationPageBackgroundThemeBrush"
+					 Color="{ThemeResource MaterialBackgroundColor}" />
+
 	<!-- Opacity for text -->
 	<x:Double x:Key="Opacity01">1</x:Double>
 	<x:Double x:Key="Opacity02">0.8</x:Double>
@@ -85,10 +97,10 @@
 
 	<SolidColorBrush x:Key="OverviewSampleViewBorderBrush"
 					 Color="{ThemeResource MaterialOnSurfaceColor}"
-					 Opacity="0.20"/>
+					 Opacity="0.13"/>
 
 	<SolidColorBrush x:Key="OverviewSampleViewSampleBrush"
 					 Color="{ThemeResource MaterialOnSurfaceColor}"
-					 Opacity="0.10" />
+					 Opacity="0.05" />
 
 </ResourceDictionary>
