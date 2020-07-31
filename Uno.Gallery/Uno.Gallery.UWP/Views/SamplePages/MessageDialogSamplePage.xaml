@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:Uno.Gallery.Controls"
 	xmlns:smtx="using:ShowMeTheXAML"
-	xmlns:ios="http://nventive.com/ios"
+	xmlns:ios="http://uno.ui/ios"
 	mc:Ignorable="d ios">
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">

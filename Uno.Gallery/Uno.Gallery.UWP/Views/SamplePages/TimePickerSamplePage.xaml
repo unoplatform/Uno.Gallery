@@ -7,7 +7,11 @@
 	  xmlns:smtx="using:ShowMeTheXAML"
 	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	  mc:Ignorable="d">
+	  xmlns:ios="http://uno.ui/ios"
+	  xmlns:android="http://uno.ui/android"
+	  xmlns:xamarin="http://uno.ui/xamarin"
+	  xmlns:win="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  mc:Ignorable="d ios android xamarin">
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 		<controls:SamplePageLayout>
@@ -15,10 +19,14 @@
 			<controls:SamplePageLayout.FluentTemplate>
 				<DataTemplate>
 					<StackPanel>
+						<ios:TextBlock Text="The TimePicker is composed of two parts: the text button which uses the fluent style, and the flyout picker which is native to the platform."
+								       TextWrapping="Wrap" />
+						<android:TextBlock Text="The TimePicker is composed of two parts: the text button which uses the fluent style, and the flyout picker which is native to the platform."
+										   TextWrapping="Wrap" />
 						<smtx:XamlDisplay UniqueKey="TimePickerSamplePage_Fluent_Default"
 										  smtx:XamlDisplayExtensions.Header="Default TimePicker">
-							<TimePicker MinWidth="0"
-										MaxWidth="99999"
+							<TimePicker xamarin:MaxWidth="PositiveInfinity"
+										win:MaxWidth="Infinity"
 										HorizontalAlignment="Stretch" />
 						</smtx:XamlDisplay>
 
@@ -26,8 +34,8 @@
 						<smtx:XamlDisplay UniqueKey="TimePickerSamplePage_Fluent_Increment"
 										  smtx:XamlDisplayExtensions.Header="TimePicker with Minute Increment">
 							<TimePicker MinuteIncrement="15"
-										MinWidth="0"
-										MaxWidth="99999"
+										xamarin:MaxWidth="PositiveInfinity"
+										win:MaxWidth="Infinity"
 										HorizontalAlignment="Stretch" />
 						</smtx:XamlDisplay>
 
@@ -35,8 +43,8 @@
 						<smtx:XamlDisplay UniqueKey="TimePickerSamplePage_Fluent_Clock"
 										  smtx:XamlDisplayExtensions.Header="TimePicker with Clock Identifier">
 							<TimePicker ClockIdentifier="24HourClock"
-										MinWidth="0"
-										MaxWidth="99999"
+										xamarin:MaxWidth="PositiveInfinity"
+										win:MaxWidth="Infinity"
 										HorizontalAlignment="Stretch" />
 						</smtx:XamlDisplay>
 					</StackPanel>

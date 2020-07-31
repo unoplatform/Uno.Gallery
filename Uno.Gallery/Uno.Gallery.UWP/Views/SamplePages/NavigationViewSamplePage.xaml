@@ -15,25 +15,25 @@
 				<DataTemplate>
 					<StackPanel>
 
-							<!-- NavigationView Text -->
-							<TextBlock Text="The Navigation View control is the expandable and collapsible menu that you see in the top-left of your screen"
-									   FontSize="16"
-									   TextWrapping="Wrap"
-									   Margin="{StaticResource FirstItemMargin}" />
+						<!-- NavigationView Text -->
+						<TextBlock Text="The Navigation View control is the expandable and collapsible menu that you see in the top-left of your screen"
+								   FontSize="16"
+								   TextWrapping="Wrap"
+								   Margin="{StaticResource FirstItemMargin}" />
 
-							<TextBlock Text="It is used to navigate the application."
-									   FontSize="16"
-									   TextWrapping="Wrap"
-									   Margin="{StaticResource ConsecutiveItemMargin}" />
+						<TextBlock Text="It is used to navigate the application."
+								   FontSize="16"
+								   TextWrapping="Wrap"
+								   Margin="{StaticResource ConsecutiveItemMargin}" />
 
-							<!-- Explanation Text -->
-							<TextBlock Text="To use the navigation view to navigate to various pages in your application, code must be added into the xaml and xaml.cs of the page you choose to add it on."
-									   FontSize="14"
-									   TextWrapping="Wrap"
-									   Margin="{StaticResource ConsecutiveItemMargin}" />
-							
-							<!--TODO add button to see code behind-->
-						</StackPanel>
+						<!-- Explanation Text -->
+						<TextBlock Text="To use the navigation view to navigate to various pages in your application, code must be added into the xaml and xaml.cs of the page you choose to add it on."
+								   FontSize="14"
+								   TextWrapping="Wrap"
+								   Margin="{StaticResource ConsecutiveItemMargin}" />
+
+						<!--TODO add button to see code behind-->
+					</StackPanel>
 				</DataTemplate>
 			</controls:SamplePageLayout.FluentTemplate>
 
@@ -41,28 +41,28 @@
 				<DataTemplate>
 					<StackPanel>
 
-							<!-- NavigationView Text -->
-							<TextBlock Text="The Navigation View control is the expandable and collapsible menu that you see in the top-left of your screen"
-									   FontSize="16"
-									   TextWrapping="Wrap"
-									   Foreground="{StaticResource MaterialPrimaryBrush}"
-									   Margin="{StaticResource FirstItemMargin}" />
+						<!-- NavigationView Text -->
+						<TextBlock Text="The Navigation View control is the expandable and collapsible menu that you see in the top-left of your screen"
+								   FontSize="16"
+								   TextWrapping="Wrap"
+								   Foreground="{StaticResource MaterialPrimaryBrush}"
+								   Margin="{StaticResource FirstItemMargin}" />
 
-							<TextBlock Text="It is used to navigate the application."
-									   FontSize="16"
-									   TextWrapping="Wrap"
-									   Foreground="{StaticResource MaterialPrimaryBrush}"
-									   Margin="{StaticResource ConsecutiveItemMargin}" />
+						<TextBlock Text="It is used to navigate the application."
+								   FontSize="16"
+								   TextWrapping="Wrap"
+								   Foreground="{StaticResource MaterialPrimaryBrush}"
+								   Margin="{StaticResource ConsecutiveItemMargin}" />
 
-							<!-- Explanation Text -->
-							<TextBlock Text="To use the navigation view to navigate to various pages in your application, code must be added into the xaml and xaml.cs of the page you choose to add it on."
-									   FontSize="14"
-									   TextWrapping="Wrap"
-									   Foreground="{StaticResource MaterialPrimaryBrush}"
-									   Margin="{StaticResource ConsecutiveItemMargin}"/>
+						<!-- Explanation Text -->
+						<TextBlock Text="To use the navigation view to navigate to various pages in your application, code must be added into the xaml and xaml.cs of the page you choose to add it on."
+								   FontSize="14"
+								   TextWrapping="Wrap"
+								   Foreground="{StaticResource MaterialPrimaryBrush}"
+								   Margin="{StaticResource ConsecutiveItemMargin}"/>
 
-							<!--TODO add button to see code behind-->
-						</StackPanel>
+						<!--TODO add button to see code behind-->
+					</StackPanel>
 				</DataTemplate>
 			</controls:SamplePageLayout.MaterialTemplate>
 		</controls:SamplePageLayout>

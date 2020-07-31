@@ -7,9 +7,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:Uno.Gallery.Controls"
 	xmlns:smtx="using:ShowMeTheXAML"
-	xmlns:ios="http://nventive.com/ios"
-	xmlns:android="http://nventive.com/android"
-	xmlns:xamarin="http://uno/xamarin"
+	xmlns:ios="http://uno.ui/ios"
+	xmlns:android="http://uno.ui/android"
+	xmlns:xamarin="http://uno.ui/xamarin"
 	xmlns:win="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	mc:Ignorable="d ios android xamarin">
 
@@ -19,12 +19,13 @@
 			<controls:SamplePageLayout.FluentTemplate>
 				<DataTemplate>
 					<StackPanel>
+						<ios:TextBlock Text="The DatePicker is composed of two parts: the text button which uses the fluent style, and the flyout picker which is native to the platform."
+								       TextWrapping="Wrap" />
+						<android:TextBlock Text="The DatePicker is composed of two parts: the text button which uses the fluent style, and the flyout picker which is native to the platform."
+										   TextWrapping="Wrap" />
 						<smtx:XamlDisplay UniqueKey="DatePickerSamplePage_Fluent_Default"
 										  smtx:XamlDisplayExtensions.Header="Default DatePicker">
-
 							<StackPanel>
-								<ios:TextBlock Text="Combination of fluent and native control" />
-								<android:TextBlock Text="Combination of fluent and native control" />
 								<!--Confirmation/Cancel buttons are not visible in iOS issue: https://github.com/unoplatform/uno/issues/3593-->
 								<DatePicker MinWidth="0"
 											xamarin:MaxWidth="PositiveInfinity"

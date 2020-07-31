@@ -22,7 +22,7 @@
 
 								<RadioButton GroupName="RadioButtonDemo_Fluent_1a"
 											 Content="" />
-								
+
 								<RadioButton GroupName="RadioButtonDemo_Fluent_1a"
 											 Content="UNCHECKED" />
 
@@ -55,7 +55,7 @@
 
 								<RadioButton GroupName="RadioButtonDemo_Material_1a"
 											 Style="{StaticResource MaterialRadioButtonStyle}" />
-								
+
 								<RadioButton GroupName="RadioButtonDemo_Material_1a"
 											 Content="UNCHECKED"
 											 Style="{StaticResource MaterialRadioButtonStyle}" />
@@ -77,12 +77,12 @@
 											 IsEnabled="False" />
 							</StackPanel>
 						</smtx:XamlDisplay>
-						
+
 						<!-- RadioButton -->
 						<smtx:XamlDisplay UniqueKey="RadioButtonSamplePage_Material_Secondary"
 										  smtx:XamlDisplayExtensions.Header="Secondary">
 							<StackPanel Spacing="8">
-								
+
 								<RadioButton GroupName="RadioButtonDemo_Material_2a"
 											 Style="{StaticResource MaterialSecondaryRadioButtonStyle}" />
 
@@ -94,7 +94,7 @@
 											 Content="CHECKED"
 											 Style="{StaticResource MaterialSecondaryRadioButtonStyle}"
 											 IsChecked="True" />
-								
+
 								<RadioButton GroupName="RadioButtonDemo_Material_2b"
 											 Content="DISABLED UNCHECKED"
 											 Style="{StaticResource MaterialSecondaryRadioButtonStyle}"
