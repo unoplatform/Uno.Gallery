@@ -51,7 +51,7 @@
 										  PlaceholderText="ComboBox + Icon"
 										  ItemsSource="abcdefg">
 									<extensions:ControlExtensions.Icon>
-										<SymbolIcon Symbol="Character" />
+										<SymbolIcon Symbol="Favorite" />
 									</extensions:ControlExtensions.Icon>
 								</ComboBox>
 								<ComboBox Style="{StaticResource MaterialComboBoxStyle}"
