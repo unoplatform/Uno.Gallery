@@ -19,10 +19,9 @@
 			<controls:SamplePageLayout.FluentTemplate>
 				<DataTemplate>
 					<StackPanel>
-						<ios:TextBlock Text="The TimePicker is composed of two parts: the text button which uses the fluent style, and the flyout picker which is native to the platform."
-									   TextWrapping="Wrap" />
-						<android:TextBlock Text="The datepicker is composed of two parts: the text button which uses the fluent style, and the flyout picker which is native to the platform."
-									       TextWrapping="Wrap" />
+						<TextBlock ios:Text="The TimePicker is composed of two parts: the text button which uses the fluent style, and the flyout picker which is native to the platform."
+								   android:Text="The TimePicker is composed of two parts: the text button which uses the fluent style, and the flyout picker which is native to the platform."
+								   TextWrapping="Wrap" />
 						<smtx:XamlDisplay UniqueKey="TimePickerSamplePage_Fluent_Default"
 										  smtx:XamlDisplayExtensions.Header="Default TimePicker">
 							<TimePicker xamarin:MaxWidth="PositiveInfinity"
