@@ -7,6 +7,7 @@
 	  xmlns:controls="using:Uno.Gallery.Controls"
 	  xmlns:gallery="using:Uno.Gallery"
 	  xmlns:smtx="using:ShowMeTheXAML"
+	  xmlns:winui="using:Microsoft.UI.Xaml.Controls"
 	  mc:Ignorable="d">
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -34,9 +35,9 @@
 										Minimum="0"
 										Maximum="100" />
 
-								<ProgressBar Value="{Binding Value, ElementName=progressSlider}"
-											 Minimum="0"
-											 Maximum="100" />
+								<winui:ProgressBar Value="{Binding Value, ElementName=progressSlider}"
+												   Minimum="0"
+												   Maximum="100" />
 							</StackPanel>
 						</smtx:XamlDisplay>
 
@@ -44,14 +45,56 @@
 						<smtx:XamlDisplay UniqueKey="ProgressSamplePage_Fluent_ProgressBarIndeterminate"
 										  smtx:XamlDisplayExtensions.Header="Indeterminate ProgressBar"
 										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
-							<ProgressBar IsIndeterminate="True" />
+							<winui:ProgressBar IsIndeterminate="True" />
 						</smtx:XamlDisplay>
 					</StackPanel>
 				</DataTemplate>
 			</controls:SamplePageLayout.FluentTemplate>
 
+			<controls:SamplePageLayout.MaterialTemplate>
+				<DataTemplate>
+					<StackPanel>
+
+						<!-- ProgressBar -->
+						<smtx:XamlDisplay UniqueKey="ProgressSamplePage_Material_ProgressBar"
+										  smtx:XamlDisplayExtensions.Header="ProgressBar"
+										  smtx:XamlDisplayExtensions.Description="Move the slider to update the ProgressBar."
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+							<StackPanel Spacing="24">
+								<Slider x:Name="progressSlider_Material"
+										Minimum="0"
+										Maximum="100" />
+
+								<winui:ProgressBar Value="{Binding Value, ElementName=progressSlider_Material}"
+												   Style="{StaticResource MaterialProgressBarStyle}"
+												   Minimum="0"
+												   Maximum="100" />
+
+								<winui:ProgressBar Value="{Binding Value, ElementName=progressSlider_Material}"
+												   Style="{StaticResource MaterialSecondaryProgressBarStyle}"
+												   Minimum="0"
+												   Maximum="100" />
+							</StackPanel>
+						</smtx:XamlDisplay>
+
+						<!-- ProgressBar Indeterminate -->
+						<smtx:XamlDisplay UniqueKey="ProgressSamplePage_Material_ProgressBarIndeterminate"
+										  smtx:XamlDisplayExtensions.Header="Indeterminate ProgressBar"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+							<StackPanel Spacing="24">
+
+								<winui:ProgressBar IsIndeterminate="True"
+												   Style="{StaticResource MaterialProgressBarStyle}" />
+
+								<winui:ProgressBar IsIndeterminate="True"
+												   Style="{StaticResource MaterialSecondaryProgressBarStyle}" />
+							</StackPanel>
+						</smtx:XamlDisplay>
+					</StackPanel>
+				</DataTemplate>
+			</controls:SamplePageLayout.MaterialTemplate>
+
 			<!-- TODO #188598 : Add ProgressRing material samples -->
-			<!-- TODO #189269 : Add ProgressBar material samples -->
 		</controls:SamplePageLayout>
 	</Grid>
 </Page>
