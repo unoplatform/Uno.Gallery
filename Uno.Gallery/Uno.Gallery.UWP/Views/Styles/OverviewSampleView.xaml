@@ -4,14 +4,6 @@
 					xmlns:toolkit="using:Uno.UI.Toolkit"
 					xmlns:converters="using:Uno.Gallery.Converters">
 
-	<SolidColorBrush x:Key="OverviewSampleViewBorderBrush"
-					 Color="{ThemeResource MaterialOnSurfaceColor}"
-					 Opacity="0.20"/>
-
-	<SolidColorBrush x:Key="OverviewSampleViewSampleBrush"
-					 Color="{ThemeResource MaterialOnSurfaceColor}"
-					 Opacity="0.10" />
-
 	<Style x:Key="DefaultOverviewSampleViewStyle"
 		   TargetType="controls:OverviewSampleView">
 

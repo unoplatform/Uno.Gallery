@@ -23,6 +23,14 @@
 						Stretch="Uniform" />
 		</ResourceDictionary>
 	</ResourceDictionary.ThemeDictionaries>
+
+	<!-- 
+		note: beside theme color overrides, any resource referencing material colors
+		SHOULD NOT be declared in a ResourceDictionary imported directly from App.xaml.
+		Since they will be loaded before material color palette, and have a transparent color instead.
+
+		ex: <SolidColorBrush x:Key="..." Color="{ThemeResource Material...}" />
+	-->
 	
 	<!-- Opacity for text -->
 	<x:Double x:Key="Opacity01">1</x:Double>
@@ -74,4 +82,13 @@
 	<SolidColorBrush x:Key="Foreground05ColorBrush"
 					 Color="{ThemeResource MaterialOnBackgroundColor}"
 					 Opacity="{StaticResource Opacity05}"  />
+
+	<SolidColorBrush x:Key="OverviewSampleViewBorderBrush"
+					 Color="{ThemeResource MaterialOnSurfaceColor}"
+					 Opacity="0.20"/>
+
+	<SolidColorBrush x:Key="OverviewSampleViewSampleBrush"
+					 Color="{ThemeResource MaterialOnSurfaceColor}"
+					 Opacity="0.10" />
+
 </ResourceDictionary>
