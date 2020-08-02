@@ -3,9 +3,7 @@
 	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	  xmlns:controls="using:Uno.Gallery.Controls"
 	  xmlns:local="using:Uno.Gallery.Views.Samples"
-	  xmlns:android="http://uno.ui/android"
 	  xmlns:gallery="using:Uno.Gallery"
-	  xmlns:ios="http://uno.ui/ios"
 	  xmlns:smtx="using:ShowMeTheXAML"
 	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -32,18 +30,9 @@
 										HorizontalAlignment="Stretch" />
 						</smtx:XamlDisplay>
 
-						<!-- Property MinuteIncrements is not working on iOS https://github.com/unoplatform/uno/issues/3540 -->
-						<smtx:XamlDisplay UniqueKey="TimePickerSamplePage_Fluent_Increment"
-										  smtx:XamlDisplayExtensions.Header="TimePicker with Minute Increment">
-							<TimePicker MinuteIncrement="15"
-										xamarin:MaxWidth="PositiveInfinity"
-										win:MaxWidth="Infinity"
-										HorizontalAlignment="Stretch" />
-						</smtx:XamlDisplay>
-
 						<!-- Property ClockIdentifier autoresets to default value on first pressed on iOS https://github.com/unoplatform/uno/issues/3541 -->
 						<smtx:XamlDisplay UniqueKey="TimePickerSamplePage_Fluent_Clock"
-										  smtx:XamlDisplayExtensions.Header="TimePicker with Clock Identifier">
+										  smtx:XamlDisplayExtensions.Header="TimePicker with 24h Clock">
 							<TimePicker ClockIdentifier="24HourClock"
 										xamarin:MaxWidth="PositiveInfinity"
 										win:MaxWidth="Infinity"
@@ -58,7 +47,10 @@
 					<StackPanel>
 						<smtx:XamlDisplay UniqueKey="TimePickerSamplePage_Material"
 										  smtx:XamlDisplayExtensions.Header="Material TimePicker">
-							<TimePicker ios:FlyoutPresenterStyle="{StaticResource MaterialTimePickerFlyoutPresenterStyle}" />
+							<TimePicker ios:FlyoutPresenterStyle="{StaticResource MaterialTimePickerFlyoutPresenterStyle}"
+										xamarin:MaxWidth="PositiveInfinity"
+										win:MaxWidth="Infinity"
+										HorizontalAlignment="Stretch"/>
 						</smtx:XamlDisplay>
 					</StackPanel>
 				</DataTemplate>
