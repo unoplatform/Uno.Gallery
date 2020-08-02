@@ -16,7 +16,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Uno.Gallery.Views.Samples
 {
-#if !__WASM__ || __MACOS__
+#if !__WASM__ && !__MACOS__
 	[SamplePage(SampleCategory.Components, "TimePicker", Description = "This control allows users to pick a time value.")]
 #endif
 	public sealed partial class TimePickerSamplePage : Page
