@@ -28,7 +28,7 @@
 			<StackPanel>
 				<TextBlock Style="{StaticResource MaterialSubtitle1}"
 						   Foreground="{StaticResource Foreground02ColorBrush}"
-						   Margin="0,0,0,48">
+						   Margin="0,0,0,32">
 					<Run Text="Here's an overview of the Fluent Design color palette." />
 					<LineBreak />
 					<LineBreak /><Run Text="WinUI has a large set of StaticResources and ThemeResources for Fluent Design's Color System." />
@@ -48,7 +48,7 @@
 				
 				<TextBlock Style="{StaticResource MaterialSubtitle1}"
 						   Foreground="{StaticResource Foreground02ColorBrush}"
-						   Margin="0,16,0,48">
+						   Margin="0,16,0,32">
 					<Run Text="Accent color is commonly used to reflect your brand and is commonly used to highlight state information" />
 					<LineBreak />
 					<LineBreak /><Run Text="Base colors can be used for text. Intensity can be High/Medium/Low." />
@@ -146,6 +146,7 @@
 						</StackPanel>
 					</DataTemplate>
 				</controls:FluentColorAccentView>
+
 				<controls:FluentColorAccentView Background="{StaticResource SystemAccentColorDark3}"
 												Foreground="{ThemeResource SystemAltHighColor}"
 												ColorName="SystemAccentColorDark3">
@@ -160,40 +161,134 @@
 						</StackPanel>
 					</DataTemplate>
 				</controls:FluentColorAccentView>
-
-				<!-- Separator -->
-				<Rectangle Fill="{StaticResource DividerBrush}"
-						   Height="1"
-						   Margin="0,48" />
-
-				<controls:ColorPaletteView Title="Chrome Colors"
-										   Description="Chrome colors are for top-level elements such as navigation panes and command bars"
-										   ColorName="SystemChromeHighColor"
-										   ColorBrush="{StaticResource SystemChromeHighColor}"
-										   Foreground="{StaticResource SystemAltHighColor}"
-										   BorderBrush="{StaticResource SystemAltHighColor}"
-										   BorderThickness="1"
-										   Margin="0,48,0,0" />
-
-				<controls:ColorPaletteView Title="Error Text Color"
-										   Description="Error color for inputs in an error state"
-										   ColorName="SystemErrorTextColor"
-										   ColorBrush="{StaticResource SystemControlBackgroundBaseHighBrush}"
-										   Foreground="{StaticResource SystemErrorTextColor}"
-										   BorderBrush="{StaticResource SystemErrorTextColor}"
-										   BorderThickness="1"
-										   Margin="0,48,0,0" />
-				<!-- alt colors section -->
+				
 				<!-- base colors section -->
+				<controls:FluentColorAccentView Background="{ThemeResource SystemChromeLowColor}"
+												Foreground="{ThemeResource SystemBaseHighColor}"
+												ColorName="Base Colors"
+												Height="120"
+												Margin="0,16,0,0">
+					<DataTemplate>
+						<StackPanel>
+							<TextBlock Text="Intensity can be High/Medium/Low."
+									   Foreground="{ThemeResource SystemBaseHighColor}"
+									   Style="{ThemeResource AccentColorCaption}" />
 
+							<TextBlock Text="Colored text is SystemBaseHighColor"
+									   Foreground="{ThemeResource SystemBaseHighColor}"
+									   Style="{ThemeResource AccentColorCaption}"
+									   Margin="0,2,0,0"/>
+							
+							<TextBlock Text="Colored text is SystemBaseMediumColor"
+									   Foreground="{ThemeResource SystemBaseMediumColor}"
+									   Style="{ThemeResource AccentColorCaption}" />
+							
+							<TextBlock Text="Colored text is SystemBaseLowColor"
+									   Foreground="{ThemeResource SystemBaseLowColor}"
+									   Style="{ThemeResource AccentColorCaption}" />
+						</StackPanel>
+					</DataTemplate>
+				</controls:FluentColorAccentView>
+
+				<!-- alt colors section -->
+				<controls:FluentColorAccentView Background="{ThemeResource SystemBaseHighColor}"
+												Foreground="{ThemeResource SystemAltHighColor}"
+												ColorName="Alt Colors"
+												Height="120"
+												Margin="0,1,0,0">
+					<DataTemplate>
+						<StackPanel>
+							
+							<TextBlock Text="Intensity can be High/Medium/Low."
+									   Foreground="{ThemeResource SystemAltHighColor}"
+									   Style="{ThemeResource AccentColorCaption}" />
+
+							<TextBlock Text="Colored text is SystemAltHighColor"
+									   Foreground="{ThemeResource SystemAltHighColor}"
+									   Style="{ThemeResource AccentColorCaption}"
+									   Margin="0,2,0,0"/>
+							
+							<TextBlock Text="Colored text is SystemAltMediumColor"
+									   Foreground="{ThemeResource SystemAltMediumColor}"
+									   Style="{ThemeResource AccentColorCaption}" />
+							
+							<TextBlock Text="Colored text is SystemAltLowColor"
+									   Foreground="{ThemeResource SystemAltLowColor}"
+									   Style="{ThemeResource AccentColorCaption}" />
+						</StackPanel>
+					</DataTemplate>
+				</controls:FluentColorAccentView>
+								
 				<!-- Separator -->
 				<Rectangle Fill="{StaticResource DividerBrush}"
 						   Height="1"
-						   Margin="0,48" />
+						   Margin="0,48,0,36" />
+
+				<!-- Label -->
+				<TextBlock Text="Chrome and Error Text Colors"
+						   Style="{StaticResource MaterialHeadline6}"/>
+				
+				<!-- Description -->
+				<TextBlock Style="{StaticResource MaterialSubtitle1}"
+						   Foreground="{StaticResource Foreground02ColorBrush}"
+						   Margin="0,16,0,32">
+					<Run Text="Chrome colors are for top-level elements such as navigation panes and command bars." />
+					<LineBreak />
+					<LineBreak /><Run Text="Error color for inputs in an error state." />
+				</TextBlock>
+
+				
+				<!-- Chrome -->
+				<controls:FluentColorAccentView Background="{ThemeResource SystemBaseHighColor}"
+												Foreground="{ThemeResource SystemAltHighColor}"
+												ColorName="Chrome Colors"
+												Height="120">
+					<DataTemplate>
+						<StackPanel>
+							<TextBlock Text="Intensity can be High/Medium/Low."
+									   Foreground="{ThemeResource SystemAltHighColor}"
+									   Style="{ThemeResource AccentColorCaption}" />
+
+							<TextBlock Text="Colored text is SystemChromeHighColor"
+									   Foreground="{ThemeResource SystemChromeHighColor}"
+									   Style="{ThemeResource AccentColorCaption}"
+									   Margin="0,2,0,0"/>
+							
+							<TextBlock Text="Colored text is SystemChromeMediumColor"
+									   Foreground="{ThemeResource SystemChromeMediumColor}"
+									   Style="{ThemeResource AccentColorCaption}" />
+							
+							<TextBlock Text="Colored text is SystemChromeLowColor"
+									   Foreground="{ThemeResource SystemChromeLowColor}"
+									   Style="{ThemeResource AccentColorCaption}" />
+						</StackPanel>
+					</DataTemplate>
+				</controls:FluentColorAccentView>
+
+				<!-- Error -->
+				<controls:FluentColorAccentView Background="Black"
+												Foreground="White"
+												ColorName="Error Text Color"
+												Height="70"
+												Margin="0,1,0,0">
+					<DataTemplate>
+						<StackPanel>
+
+							<TextBlock Text="Colored text is SystemErrorTextColor"
+									   Foreground="{ThemeResource SystemErrorTextColor}"
+									   Style="{ThemeResource AccentColorCaption}" />
+						</StackPanel>
+					</DataTemplate>
+				</controls:FluentColorAccentView>
+				
+				<!-- Separator -->
+				<Rectangle Fill="{StaticResource DividerBrush}"
+						   Height="1"
+						   Margin="0,48,0,36" />
 
 				<TextBlock Style="{StaticResource MaterialBody1}"
 						   Foreground="{StaticResource Foreground02ColorBrush}"
-						   Margin="0,0,0,24">
+						   Margin="0,0,0,16">
 					<Run Text="For more information refer to" />
 					
 					<Hyperlink NavigateUri="https://docs.microsoft.com/en-us/windows/uwp/design/style/color#accent-color-palette">

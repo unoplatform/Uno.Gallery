@@ -46,7 +46,7 @@
 
 			<controls:SamplePageLayout.MaterialTemplate>
 				<DataTemplate>
-					<StackPanel Spacing="8">
+					<StackPanel>
 
 						<!-- RadioButton -->
 						<smtx:XamlDisplay UniqueKey="RadioButtonSamplePage_Material"
@@ -81,7 +81,7 @@
 						<!-- RadioButton -->
 						<smtx:XamlDisplay UniqueKey="RadioButtonSamplePage_Material_Secondary"
 										  smtx:XamlDisplayExtensions.Header="Secondary">
-							<StackPanel Spacing="8">
+							<StackPanel>
 
 								<RadioButton GroupName="RadioButtonDemo_Material_2a"
 											 Style="{StaticResource MaterialSecondaryRadioButtonStyle}" />
