@@ -46,7 +46,7 @@
 							<TextBox PlaceholderText="Text2"
 									 Style="{StaticResource MaterialFilledTextBoxStyle}">
 								<extensions:ControlExtensions.Icon>
-									<SymbolIcon Symbol="Character" />
+									<SymbolIcon Symbol="Favorite" />
 								</extensions:ControlExtensions.Icon>
 							</TextBox>
 							<TextBox PlaceholderText="Text3"
@@ -54,7 +54,7 @@
 							<TextBox PlaceholderText="Text4"
 									 Style="{StaticResource MaterialOutlinedTextBoxStyle}">
 								<extensions:ControlExtensions.Icon>
-									<SymbolIcon Symbol="Character" />
+									<SymbolIcon Symbol="Favorite" />
 								</extensions:ControlExtensions.Icon>
 							</TextBox>
 						</StackPanel>

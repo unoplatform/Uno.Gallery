@@ -76,7 +76,7 @@
 								<TextBox PlaceholderText="With Icon"
 										 Style="{StaticResource MaterialFilledTextBoxStyle}">
 									<extensions:ControlExtensions.Icon>
-										<SymbolIcon Symbol="Character" />
+										<SymbolIcon Symbol="Favorite" />
 									</extensions:ControlExtensions.Icon>
 								</TextBox>
 								<TextBox PlaceholderText="Disabled"
@@ -97,7 +97,7 @@
 								<TextBox PlaceholderText="With Icon"
 										 Style="{StaticResource MaterialOutlinedTextBoxStyle}">
 									<extensions:ControlExtensions.Icon>
-										<SymbolIcon Symbol="Character" />
+										<SymbolIcon Symbol="Favorite" />
 									</extensions:ControlExtensions.Icon>
 								</TextBox>
 								<TextBox PlaceholderText="Outline Disabled"
@@ -122,7 +122,7 @@
 										 AcceptsReturn="True"
 										 IsEnabled="False"
 										 Style="{StaticResource MaterialFilledTextBoxStyle}" />
-								
+
 							</StackPanel>
 						</smtx:XamlDisplay>
 					</StackPanel>
