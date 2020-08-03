@@ -13,7 +13,7 @@
 
 			<controls:SamplePageLayout.FluentTemplate>
 				<DataTemplate>
-					<StackPanel>
+					<StackPanel Margin="0,16,0,0">
 
 						<!-- NavigationView Text -->
 						<TextBlock Text="The Navigation View control is the expandable and collapsible menu that you see in the top-left of your screen"
@@ -39,7 +39,7 @@
 
 			<controls:SamplePageLayout.MaterialTemplate>
 				<DataTemplate>
-					<StackPanel>
+					<StackPanel Margin="0,16,0,0">
 
 						<!-- NavigationView Text -->
 						<TextBlock Text="The Navigation View control is the expandable and collapsible menu that you see in the top-left of your screen"
