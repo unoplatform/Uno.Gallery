@@ -3,9 +3,10 @@
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
 		<TargetFramework>netstandard2.0</TargetFramework>
-		<WasmHead>true</WasmHead>
-		<DefineConstants>$(DefineConstants);__WASM__</DefineConstants>
 		<NoWarn>NU1701</NoWarn>
+		<!--<WasmShellGenerateAOTProfile>true</WasmShellGenerateAOTProfile>-->
+		<WasmShellMonoRuntimeExecutionMode>InterpreterAndAOT</WasmShellMonoRuntimeExecutionMode>
+		<WasmShellEnableEmccProfiling>true</WasmShellEnableEmccProfiling>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)'=='Debug'">
 		<MonoRuntimeDebuggerEnabled>true</MonoRuntimeDebuggerEnabled>
@@ -34,6 +35,9 @@
 	</ItemGroup>
 	<ItemGroup>
 		<LinkerDescriptor Include="LinkerConfig.xml" />
+	</ItemGroup>
+	<ItemGroup>
+		<WasmShellEnableAotProfile Include="aot.profile" />
 	</ItemGroup>
 	<ItemGroup>
 		<!--

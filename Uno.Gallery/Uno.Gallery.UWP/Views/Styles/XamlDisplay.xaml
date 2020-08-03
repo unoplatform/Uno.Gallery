@@ -45,7 +45,7 @@
 									<VisualState.Setters>
 										<win:Setter Target="MainContent.Padding"
 													Value="16,16,0,16" />
-										<wasm:Setter Target="MainContent.Padding"
+										<netstdref:Setter Target="MainContent.Padding"
 													 Value="16,16,0,16" />
 										<ios:Setter Target="MainContent.Padding"
 													Value="16" />
@@ -83,7 +83,7 @@
 									<ColumnDefinition Width="*" />
 									<ColumnDefinition Width="Auto"
 													  win:MinWidth="30"
-													  wasm:MinWidth="30" />
+													  netstdref:MinWidth="30" />
 								</Grid.ColumnDefinitions>
 
 								<!-- Content -->
