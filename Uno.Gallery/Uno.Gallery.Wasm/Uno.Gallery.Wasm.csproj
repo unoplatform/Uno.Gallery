@@ -69,11 +69,11 @@
 		<PackageReference Include="Uno.Material" Version="1.0.0-dev.448" />
 		<PackageReference Include="Uno.ShowMeTheXAML" Version="1.0.58" />
 		<PackageReference Include="Uno.ShowMeTheXAML.MSBuild" Version="1.0.58" />
-		<PackageReference Include="Uno.UI.Lottie" Version="3.0.0-dev.1262" />
-		<PackageReference Include="Uno.UI.WebAssembly" Version="3.0.0-dev.1262" />
-		<PackageReference Include="Uno.UI.RemoteControl" Version="3.0.0-dev.1262" Condition="'$(Configuration)'=='Debug'" />
-		<PackageReference Include="Uno.Wasm.Bootstrap" Version="1.4.0-dev.14" />
-		<PackageReference Include="Uno.Wasm.Bootstrap.DevServer" Version="1.4.0-dev.14" />
+		<PackageReference Include="Uno.UI.Lottie" Version="3.0.0-dev.1355" />
+		<PackageReference Include="Uno.UI.WebAssembly" Version="3.0.0-dev.1355" />
+		<PackageReference Include="Uno.UI.RemoteControl" Version="3.0.0-dev.1355" Condition="'$(Configuration)'=='Debug'" />
+		<PackageReference Include="Uno.Wasm.Bootstrap" Version="1.4.0-dev.16" />
+		<PackageReference Include="Uno.Wasm.Bootstrap.DevServer" Version="1.4.0-dev.16" />
 	</ItemGroup>
 	<Import Project="..\Uno.Gallery.Shared\Uno.Gallery.Shared.projitems" Label="Shared" Condition="Exists('..\Uno.Gallery.Shared\Uno.Gallery.Shared.projitems')" />
 </Project>
