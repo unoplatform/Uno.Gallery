@@ -219,7 +219,9 @@ namespace Uno.Gallery
 
 		private void InitializeMaterialStyles()
 		{
-			Uno.Material.Resources.Init(this, new ResourceDictionary() { Source = new Uri("ms-appx:///Views/Colors.xaml") });
+			this.Resources.MergedDictionaries.Add(new Material.MaterialColorPalette());
+			this.Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = new Uri("ms-appx:///Views/Colors.xaml") });
+			this.Resources.MergedDictionaries.Add(new Material.MaterialResources());
 		}
 	}
 }
