@@ -31,6 +31,7 @@
 										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
 							<StackPanel Spacing="24">
 								<Slider x:Name="progressSlider"
+										Value="50"
 										Minimum="0"
 										Maximum="100" />
 
@@ -61,6 +62,7 @@
 										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
 							<StackPanel Spacing="24">
 								<Slider x:Name="progressSlider_Material"
+										Value="50"
 										Minimum="0"
 										Maximum="100" />
 
