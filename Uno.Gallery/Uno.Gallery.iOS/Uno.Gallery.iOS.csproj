@@ -204,18 +204,18 @@
       <Version>1.0.0-dev.448</Version>
     </PackageReference>
     <PackageReference Include="Uno.ShowMeTheXAML">
-      <Version>1.0.58</Version>
+      <Version>1.0.59</Version>
     </PackageReference>
     <PackageReference Include="Uno.ShowMeTheXAML.MSBuild">
-      <Version>1.0.58</Version>
+      <Version>1.0.59</Version>
     </PackageReference>
     <PackageReference Include="Uno.UI">
-      <Version>3.0.0-dev.1262</Version>
+      <Version>3.0.0-dev.1294</Version>
     </PackageReference>
     <PackageReference Include="Uno.UI.Lottie">
-      <Version>3.0.0-dev.1262</Version>
+      <Version>3.0.0-dev.1294</Version>
     </PackageReference>
-    <PackageReference Include="Uno.UI.RemoteControl" Version="3.0.0-dev.1117" Condition="'$(Configuration)'=='Debug'" />
+    <PackageReference Include="Uno.UI.RemoteControl" Version="3.0.0-dev.1294" Condition="'$(Configuration)'=='Debug'" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Filter" Version="1.1.1" />
   </ItemGroup>
