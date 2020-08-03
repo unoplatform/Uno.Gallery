@@ -8,6 +8,9 @@
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
 
+				<!-- Load WinUI resources -->
+				<XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls"/>
+
 				<ResourceDictionary Source="Views/Converters.xaml" />
 				<ResourceDictionary Source="Views/Fonts.xaml" />
 
