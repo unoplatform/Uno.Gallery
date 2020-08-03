@@ -71,6 +71,72 @@ variables:
 stages:
 - stage: Build
   jobs:
+  - job: Build_on_Windows # Build UWP and Android on a windows machine
+    strategy:
+      maxParallel: 3
+      matrix:
+        Android:
+          ApplicationConfiguration: Release
+          ApplicationPlatform: Android
+          ArtifactName: $(AndroidArtifactName)
+        UWP:
+          ApplicationConfiguration: Release
+          ApplicationPlatform: UWP_x64
+          ArtifactName: $(UWPArtifactName)
+    pool:
+      name: $(windowsPoolName)
+    
+    container: nventive/build-agent:vs16.6.0
+
+    steps:
+      - template: build/stage-build.yml
+
+  - job: Build_on_Mac # Build iOS and macOS on a mac
+    strategy:
+      maxParallel: 3
+      matrix:
+        iOS:
+          ApplicationConfiguration: Release
+          ApplicationPlatform: iPhone
+          ArtifactName: $(iOSArtifactName)
+        macOS:
+          ApplicationConfiguration: Release
+          ApplicationPlatform: macOS
+          ArtifactName: $(macOSArtifactName)          
+    pool:
+      name: $(macOSPoolName)
+      demands:
+        - Xamarin.iOS -equals 13.16
+      
+    variables:
+    - name: SkipUnknownFrameworks
+      value: true # Used by TargetFrameworks.Filtering package to build only what's possible on a mac for the multitargeted library
+    - group: apple.appstore.distribution # Import all variables for certificate from the library in azure devops
+
+    steps:
+    - task: InstallAppleCertificate@2
+      displayName: Install Apple Certificate
+      inputs:
+        certSecureFile: 'apple.appstore.distribution.p12' # Name of the p12 certificate in the secure files (in azure devops library)
+        certPwd: '$(appleappstorecertificatepassword)' 
+        keychain: 'temp'
+        deleteCert: true
+    
+    - task: InstallAppleProvisioningProfile@1
+      displayName: 'Install Apple Provisioning Profile'
+      inputs:
+        provisioningProfileLocation: 'secureFiles'
+        provProfileSecureFile: 'Uno_Gallery.mobileprovision' # Name of the .mobileprovision file in the secure files.
+
+    - task: UseDotNet@2
+      displayName: 'Install .Net Core runtime 2.1.x'
+      inputs:
+        version: 2.1.x
+        packageType: 'runtime'
+        installationPath: '$(Agent.ToolsDirectory)/dotnet'
+        
+    - template: build/stage-build.yml
+
   - job: Build_on_Linux
     container: unoplatform/wasm-build:2.2
 
