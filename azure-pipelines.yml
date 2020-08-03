@@ -135,7 +135,7 @@ stages:
         installationPath: '$(Agent.ToolsDirectory)/dotnet'
         
     - template: build/stage-build.yml
-  jobs:
+
   - job: Build_on_Linux
     container: unoplatform/wasm-build:2.2
 
