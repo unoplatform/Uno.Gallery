@@ -70,6 +70,7 @@ variables:
 
 stages:
 - stage: Build
+  jobs:
   - job: Build_on_Windows # Build UWP and Android on a windows machine
     strategy:
       maxParallel: 3
