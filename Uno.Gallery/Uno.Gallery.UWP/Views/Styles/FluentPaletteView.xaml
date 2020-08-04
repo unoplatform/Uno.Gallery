@@ -6,6 +6,7 @@
 	<Style TargetType="TextBlock"
 		   x:Key="AccentColorLabel"
 		   BasedOn="{StaticResource BaseTextBlockStyle}">
+
 		<Style.Setters>
 			<Setter Property="VerticalAlignment"
 					Value="Center" />
@@ -16,36 +17,44 @@
 
 	<Style TargetType="controls:FluentColorAccentView">
 		<Style.Setters>
-			<Setter Property="Height"
-					Value="80" />
+
 			<Setter Property="Template">
 				<Setter.Value>
 					<ControlTemplate TargetType="controls:FluentColorAccentView">
 						<Grid Background="{TemplateBinding Background}">
+							
 							<Grid.ColumnDefinitions>
 								<ColumnDefinition Width="220" />
 								<ColumnDefinition Width="*" />
-								<ColumnDefinition Width="3*" />
+								<ColumnDefinition Width="6*" />
 							</Grid.ColumnDefinitions>
+							
 							<Grid.RowDefinitions>
 								<RowDefinition Height="Auto" />
 								<RowDefinition Height="Auto" />
 							</Grid.RowDefinitions>
+							
 							<TextBlock x:Name="ColorNamePart"
-									   Style="{StaticResource AccentColorLabel}"
 									   Text="{TemplateBinding ColorName}"
-									   Grid.Column="0" />
+									   Style="{StaticResource AccentColorLabel}"
+									   HorizontalAlignment="Left"
+									   VerticalAlignment="Top"
+									   Margin="16,16,16,0" />
+							
 							<ContentPresenter x:Name="ForegroundPart"
 											  ContentTemplate="{TemplateBinding DescriptiveContent}"
-											  Grid.Column="2"
 											  Foreground="{TemplateBinding Foreground}"
 											  HorizontalAlignment="Stretch"
 											  HorizontalContentAlignment="Left"
-											  VerticalAlignment="Center"
-											  VerticalContentAlignment="Center"
-											  Margin="16,0" />
+											  VerticalAlignment="Stretch"
+											  VerticalContentAlignment="Stretch"
+											  Margin="16,18,16,16"
+											  Grid.Column="2"
+											  Grid.RowSpan="3"/>
+							
 							<VisualStateManager.VisualStateGroups>
 								<VisualStateGroup x:Name="FormFactors">
+									
 									<VisualState x:Name="Desktop">
 										<VisualState.StateTriggers>
 											<AdaptiveTrigger MinWindowWidth="{StaticResource DesktopAdaptiveThresholdWidth}" />
@@ -58,17 +67,20 @@
 										<VisualState.StateTriggers>
 											<AdaptiveTrigger MinWindowWidth="0" />
 										</VisualState.StateTriggers>
+										
 										<VisualState.Setters>
+											
 											<Setter Target="ForegroundPart.(Grid.Row)"
 													Value="1" />
+											<Setter Target="ForegroundPart.(Grid.RowSpan)"
+													Value="3" />
 											<Setter Target="ForegroundPart.(Grid.Column)"
 													Value="0" />
 											<Setter Target="ForegroundPart.(Grid.ColumnSpan)"
 													Value="3" />
-											<Setter Target="ColorNamePart.HorizontalAlignment"
-													Value="Left" />
-											<Setter Target="ColorNamePart.Margin"
-													Value="16,16,16,0" />
+											<Setter Target="ForegroundPart.Margin"
+													Value="16,0,16,16" />
+
 											<Setter Target="ColorNamePart.(Grid.ColumnSpan)"
 													Value="3" />
 										</VisualState.Setters>
