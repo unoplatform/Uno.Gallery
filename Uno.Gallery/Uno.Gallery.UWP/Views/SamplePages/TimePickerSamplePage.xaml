@@ -41,20 +41,6 @@
 					</StackPanel>
 				</DataTemplate>
 			</controls:SamplePageLayout.FluentTemplate>
-
-			<controls:SamplePageLayout.MaterialTemplate>
-				<DataTemplate>
-					<StackPanel>
-						<smtx:XamlDisplay UniqueKey="TimePickerSamplePage_Material"
-										  smtx:XamlDisplayExtensions.Header="Material TimePicker">
-							<TimePicker ios:FlyoutPresenterStyle="{StaticResource MaterialTimePickerFlyoutPresenterStyle}"
-										xamarin:MaxWidth="PositiveInfinity"
-										win:MaxWidth="Infinity"
-										HorizontalAlignment="Stretch"/>
-						</smtx:XamlDisplay>
-					</StackPanel>
-				</DataTemplate>
-			</controls:SamplePageLayout.MaterialTemplate>
 		</controls:SamplePageLayout>
 	</Grid>
 </Page>

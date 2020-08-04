@@ -36,20 +36,6 @@
 					</StackPanel>
 				</DataTemplate>
 			</controls:SamplePageLayout.FluentTemplate>
-
-			<controls:SamplePageLayout.MaterialTemplate>
-				<android:DataTemplate>
-					<StackPanel>
-						<smtx:XamlDisplay UniqueKey="DatePickerSamplePage_Material"
-										  smtx:XamlDisplayExtensions.Header="Material DatePicker">
-								<DatePicker MinWidth="0"
-											xamarin:MaxWidth="PositiveInfinity"
-											win:MaxWidth="Infinity"
-											HorizontalAlignment="Stretch"/>
-						</smtx:XamlDisplay>
-					</StackPanel>
-				</android:DataTemplate>
-			</controls:SamplePageLayout.MaterialTemplate>
 		</controls:SamplePageLayout>
 	</Grid>
 </Page>
