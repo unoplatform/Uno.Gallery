@@ -72,6 +72,7 @@
 
 							<ScrollViewer Background="{StaticResource SampleSecondBackgroundBrush}"
 										  HorizontalScrollBarVisibility="Auto"
+										  VerticalScrollBarVisibility="Auto"
 										  win:Visibility="{Binding ElementName=RevealButton, Path=IsChecked, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
 										  wasm:Visibility="{Binding ElementName=RevealButton, Path=IsChecked, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
 										  ios:Visibility="Collapsed"
