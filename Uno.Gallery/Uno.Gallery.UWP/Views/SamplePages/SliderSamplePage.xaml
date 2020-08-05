@@ -26,16 +26,6 @@
 										Value="25"/>
 							</StackPanel>
 						</smtx:XamlDisplay>
-
-						<!--Ticks are not displayed in Android and iOS issue: https://github.com/unoplatform/uno/issues/3554-->
-						<!--<smtx:XamlDisplay UniqueKey="SliderSamplePage_Native_Ticks"
-										  smtx:XamlDisplayExtensions.Header="Slider with Ticks"">
-							<Slider TickFrequency="10"
-									TickPlacement="Outside"
-									Minimum="0"
-									Maximum="100" />
-						</smtx:XamlDisplay>-->
-
 					</StackPanel>
 				</DataTemplate>
 			</controls:SamplePageLayout.FluentTemplate>
