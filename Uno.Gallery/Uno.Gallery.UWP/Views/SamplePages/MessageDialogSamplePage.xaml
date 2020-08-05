@@ -8,6 +8,7 @@
     xmlns:controls="using:Uno.Gallery.Controls"
 	xmlns:smtx="using:ShowMeTheXAML"
 	xmlns:ios="http://uno.ui/ios"
+	xmlns:not_wasm="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	mc:Ignorable="d ios">
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -28,11 +29,13 @@
 									Click="Button_Click2" />
 						</smtx:XamlDisplay>
 
-						<smtx:XamlDisplay UniqueKey="MessageDialogSamplePage_Fluent_Prompt"
+						<not_wasm:StackPanel>
+							<smtx:XamlDisplay UniqueKey="MessageDialogSamplePage_Fluent_Prompt"
 										  smtx:XamlDisplayExtensions.Header="MessageDialog with Prompt">
-							<Button Content="Confirmation prompt"
+								<Button Content="Confirmation prompt"
 									Click="Button_Click3" />
-						</smtx:XamlDisplay>
+							</smtx:XamlDisplay>
+						</not_wasm:StackPanel>
 
 						<ios:StackPanel>
 							<smtx:XamlDisplay UniqueKey="MessageDialogSamplePage_Fluent_Destructive"
