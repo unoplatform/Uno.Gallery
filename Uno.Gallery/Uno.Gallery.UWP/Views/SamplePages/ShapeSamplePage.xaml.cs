@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Uno.Gallery.Views.Samples
 {
-	[SamplePage(SampleCategory.Components, "Shape", Description = "Shape is the base class of shape elements such as Ellipse, Rectangle or Path. Shapes are not templatable as they are drawn directly.")]
+	[SamplePage(SampleCategory.Features, "Shape", Description = "Shape is the base class of shape elements such as Ellipse, Rectangle or Path. Shapes are not templatable as they are drawn directly.")]
 	public sealed partial class ShapeSamplePage : Page
 	{
 		public ShapeSamplePage()

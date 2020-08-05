@@ -18,9 +18,6 @@
 						<smtx:XamlDisplay UniqueKey="CheckBoxSamplePage_Fluent"
 										  smtx:XamlDisplayExtensions.Header="Default">
 							<StackPanel>
-
-								<CheckBox />
-
 								<CheckBox Content="UNCHECKED" />
 
 								<CheckBox Content="DISABLED UNCHECKED"
@@ -55,9 +52,6 @@
 						<smtx:XamlDisplay UniqueKey="CheckBoxSamplePage_Material"
 										  smtx:XamlDisplayExtensions.Header="Default">
 							<StackPanel>
-
-								<CheckBox Style="{StaticResource MaterialCheckBoxStyle}" />
-
 								<CheckBox Style="{StaticResource MaterialCheckBoxStyle}"
 										  Content="UNCHECKED" />
 
@@ -91,9 +85,6 @@
 						<smtx:XamlDisplay UniqueKey="CheckBoxSamplePage_Material_Secondary"
 										  smtx:XamlDisplayExtensions.Header="Secondary">
 							<StackPanel>
-
-								<CheckBox Style="{StaticResource MaterialSecondaryCheckBoxStyle}" />
-
 								<CheckBox Style="{StaticResource MaterialSecondaryCheckBoxStyle}"
 										  Content="UNCHECKED" />
 

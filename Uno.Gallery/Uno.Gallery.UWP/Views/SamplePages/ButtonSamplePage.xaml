@@ -10,68 +10,6 @@
 	  xmlns:gallery="using:Uno.Gallery"
 	  mc:Ignorable="d todo">
 
-	<Page.Resources>
-		<Style x:Key="CustomButtonStyle"
-			   TargetType="Button">
-
-			<Setter Property="Background"
-					Value="Red" />
-			<Setter Property="CornerRadius"
-					Value="8" />
-			<Setter Property="Padding"
-					Value="4" />
-			<Setter Property="MinHeight"
-					Value="48" />
-			<Setter Property="Template">
-				<Setter.Value>
-					<ControlTemplate TargetType="Button">
-						<Grid Height="{TemplateBinding Height}">
-
-							<VisualStateManager.VisualStateGroups>
-								<VisualStateGroup x:Name="CommonStates">
-									<VisualState x:Name="Normal" />
-									<VisualState x:Name="PointerOver" />
-									<VisualState x:Name="Pressed">
-										<VisualState.Setters>
-											<Setter Target="BackgroundBorder.Background"
-													Value="Black" />
-											<Setter Target="ContentPresenter.Foreground"
-													Value="White" />
-										</VisualState.Setters>
-									</VisualState>
-									<VisualState x:Name="Disabled">
-										<VisualState.Setters>
-											<Setter Target="BackgroundBorder.Background"
-													Value="Gray" />
-										</VisualState.Setters>
-									</VisualState>
-								</VisualStateGroup>
-							</VisualStateManager.VisualStateGroups>
-
-							<Grid.ColumnDefinitions>
-								<ColumnDefinition Width="*" />
-								<ColumnDefinition Width="auto" />
-							</Grid.ColumnDefinitions>
-
-							<Border x:Name="BackgroundBorder"
-									Background="{TemplateBinding Background}"
-									CornerRadius="{TemplateBinding CornerRadius}" />
-
-							<ContentPresenter x:Name="ContentPresenter"
-											  Content="{TemplateBinding Content}"
-											  ContentTransitions="{TemplateBinding ContentTransitions}"
-											  ContentTemplate="{TemplateBinding ContentTemplate}"
-											  Margin="{TemplateBinding Padding}"
-											  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-											  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-											  AutomationProperties.AccessibilityView="Raw" />
-						</Grid>
-					</ControlTemplate>
-				</Setter.Value>
-			</Setter>
-		</Style>
-	</Page.Resources>
-
 	<Grid Background="{StaticResource MaterialBackgroundBrush}">
 		<controls:SamplePageLayout>
 			<controls:SamplePageLayout.MaterialTemplate>
@@ -173,19 +111,6 @@
 							<StackPanel Spacing="20">
 								<Button Style="{StaticResource NavigationBackButtonNormalStyle}"/>
 								<Button Style="{StaticResource NavigationBackButtonSmallStyle}"/>
-							</StackPanel>
-						</smtx:XamlDisplay>
-
-						<!-- Button with custom states -->
-						<smtx:XamlDisplay UniqueKey="ButtonSamplePage_FluentCustom"
-										  smtx:XamlDisplayExtensions.Header="Button with custom states"
-										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
-							<StackPanel Spacing="20">
-								<Button Content="Button"
-										Style="{StaticResource CustomButtonStyle}" />
-								<Button Content="Disabled"
-										Style="{StaticResource CustomButtonStyle}"
-										IsEnabled="False" />
 							</StackPanel>
 						</smtx:XamlDisplay>
 					</StackPanel>
