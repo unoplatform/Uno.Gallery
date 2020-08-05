@@ -11,7 +11,7 @@
 
 	<Style x:Key="ExpanderXamlDisplayStyle"
 		   TargetType="smtx:XamlDisplay">
-		<Setter Property="smtx:XamlDisplayExtensions.IgnorePath" 
+		<Setter Property="smtx:XamlDisplayExtensions.IgnorePath"
 				Value="XamlDisplay" />
 
 		<Setter Property="Margin"
@@ -25,6 +25,35 @@
 			<Setter.Value>
 				<ControlTemplate TargetType="smtx:XamlDisplay">
 					<StackPanel>
+						<VisualStateManager.VisualStateGroups>
+							<VisualStateGroup x:Name="FormFactors">
+								<VisualState x:Name="Desktop">
+									<VisualState.StateTriggers>
+										<AdaptiveTrigger MinWindowWidth="{StaticResource DesktopAdaptiveThresholdWidth}" />
+									</VisualState.StateTriggers>
+									<VisualState.Setters>
+										<Setter Target="MainContent.Padding"
+												Value="30,30,0,30" />
+									</VisualState.Setters>
+								</VisualState>
+
+								<VisualState x:Name="Mobile">
+									<VisualState.StateTriggers>
+										<AdaptiveTrigger MinWindowWidth="0" />
+									</VisualState.StateTriggers>
+									<VisualState.Setters>
+										<win:Setter Target="MainContent.Padding"
+													Value="16,16,0,16" />
+										<wasm:Setter Target="MainContent.Padding"
+													 Value="16,16,0,16" />
+										<ios:Setter Target="MainContent.Padding"
+													Value="16" />
+										<android:Setter Target="MainContent.Padding"
+														Value="16" />
+									</VisualState.Setters>
+								</VisualState>
+							</VisualStateGroup>
+						</VisualStateManager.VisualStateGroups>
 
 						<!-- Header -->
 						<TextBlock Text="{Binding Path=(smtx:XamlDisplayExtensions.Header), RelativeSource={RelativeSource TemplatedParent}}"
@@ -52,12 +81,13 @@
 								<Grid.ColumnDefinitions>
 									<ColumnDefinition Width="*" />
 									<ColumnDefinition Width="Auto"
-													  MinWidth="30"/>
+													  win:MinWidth="30"
+													  wasm:MinWidth="30" />
 								</Grid.ColumnDefinitions>
-								
+
 								<!-- Content -->
-								<ContentPresenter Content="{TemplateBinding Content}"
-												  Padding="30,30,0,30" />
+								<ContentPresenter x:Name="MainContent"
+												  Content="{TemplateBinding Content}" />
 
 								<!-- Reveal Button -->
 								<ToggleButton x:Name="RevealButton"
@@ -84,7 +114,7 @@
 										   IsTextSelectionEnabled="True"
 										   FontFamily="Consolas"
 										   Foreground="{StaticResource MaterialOnSurfaceBrush}"
-										   Margin="30,20,60,20"/>
+										   Margin="30,20,60,20" />
 							</ScrollViewer>
 
 							<!-- Copy Button -->
@@ -108,7 +138,7 @@
 									  Stretch="Uniform"
 									  VerticalAlignment="Center"
 									  HorizontalAlignment="Center"
-									  Margin="20"/>
+									  Margin="20" />
 							</Button>
 						</Grid>
 					</StackPanel>
