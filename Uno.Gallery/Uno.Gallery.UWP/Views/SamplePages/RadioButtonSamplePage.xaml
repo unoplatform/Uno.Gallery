@@ -19,10 +19,6 @@
 						<smtx:XamlDisplay UniqueKey="RadioButtonSamplePage_Fluent"
 										  smtx:XamlDisplayExtensions.Header="Default">
 							<StackPanel Spacing="12">
-
-								<RadioButton GroupName="RadioButtonDemo_Fluent_1a"
-											 Content="" />
-
 								<RadioButton GroupName="RadioButtonDemo_Fluent_1a"
 											 Content="UNCHECKED" />
 
@@ -52,10 +48,6 @@
 						<smtx:XamlDisplay UniqueKey="RadioButtonSamplePage_Material"
 										  smtx:XamlDisplayExtensions.Header="Default">
 							<StackPanel>
-
-								<RadioButton GroupName="RadioButtonDemo_Material_1a"
-											 Style="{StaticResource MaterialRadioButtonStyle}" />
-
 								<RadioButton GroupName="RadioButtonDemo_Material_1a"
 											 Content="UNCHECKED"
 											 Style="{StaticResource MaterialRadioButtonStyle}" />
@@ -82,10 +74,6 @@
 						<smtx:XamlDisplay UniqueKey="RadioButtonSamplePage_Material_Secondary"
 										  smtx:XamlDisplayExtensions.Header="Secondary">
 							<StackPanel>
-
-								<RadioButton GroupName="RadioButtonDemo_Material_2a"
-											 Style="{StaticResource MaterialSecondaryRadioButtonStyle}" />
-
 								<RadioButton GroupName="RadioButtonDemo_Material_2a"
 											 Content="UNCHECKED"
 											 Style="{StaticResource MaterialSecondaryRadioButtonStyle}" />

@@ -12,8 +12,9 @@ namespace Uno.Gallery
 		/// </summary>
 		None,
 
-		Colors,
+		Theme,
 		Components,
-		Helpers,
+		Features,
+
 	}
 }
