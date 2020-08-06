@@ -8,19 +8,13 @@
 
 	<Style x:Key="DefaultContentPageLayoutStyle"
 		   TargetType="controls:ContentPageLayout">
-		
-		<Setter Property="BorderBrush"
-				Value="{StaticResource DividerBrush}" />
-		<Setter Property="BorderThickness"
-				Value="1,0,0,0" />
-		
+
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="controls:ContentPageLayout">
-					
-					<Grid BorderBrush="{TemplateBinding BorderBrush}"
-						  BorderThickness="{TemplateBinding BorderThickness}">
-						
+
+					<Grid>
+
 						<Grid.RowDefinitions>
 							<RowDefinition Height="Auto" />
 							<RowDefinition Height="*" />
