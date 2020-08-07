@@ -102,7 +102,7 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Uno.Material">
-      <Version>1.0.0-dev.475</Version>
+      <Version>1.0.0-dev.479</Version>
     </PackageReference>
     <PackageReference Include="Uno.ShowMeTheXAML">
       <Version>1.0.59</Version>
@@ -111,12 +111,12 @@
       <Version>1.0.59</Version>
     </PackageReference>
     <PackageReference Include="Uno.UI">
-      <Version>3.0.0-dev.1447</Version>
+      <Version>3.0.0-dev.1493</Version>
     </PackageReference>
     <PackageReference Include="Uno.UI.Lottie">
-      <Version>3.0.0-dev.1447</Version>
+      <Version>3.0.0-dev.1493</Version>
     </PackageReference>
-    <PackageReference Include="Uno.UI.RemoteControl" Version="3.0.0-dev.1447" Condition="'$(Configuration)'=='Debug'" />
+    <PackageReference Include="Uno.UI.RemoteControl" Version="3.0.0-dev.1493" Condition="'$(Configuration)'=='Debug'" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Filter" Version="1.1.1" />
   </ItemGroup>
@@ -159,7 +159,6 @@
     <Content Include="Resources\Assets\FluentIcon_Medium.png" />
     <Content Include="Resources\Assets\FluentIcon_Small.png" />
     <Content Include="Resources\Assets\LargeMedia.png" />
-        
     <Content Include="Resources\Assets\MaterialIcon_Medium.png" />
     <Content Include="Resources\Assets\MaterialIcon_Small.png" />
     <Content Include="Resources\Assets\SmallMedia.png" />
@@ -168,8 +167,8 @@
     <Content Include="Resources\Assets\UnoGalleryLogo_Dark.png" />
     <Content Include="Resources\Assets\UnoGalleryLogo_Light.png" />
     <Content Include="Resources\Assets\UnoLogo_Medium.png" />
-    <Content Include="Resources\Assets\UnoLogo_Small.png" />        
-  </ItemGroup>        
+    <Content Include="Resources\Assets\UnoLogo_Small.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Mac\Xamarin.Mac.CSharp.targets" />
   <Target Name="VS16Mac_RemoveSystemMemory" BeforeTargets="ResolveAssemblyReferences">
     <!--
