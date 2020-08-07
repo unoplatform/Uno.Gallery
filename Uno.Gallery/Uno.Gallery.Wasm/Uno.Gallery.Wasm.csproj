@@ -39,6 +39,11 @@
 	<ItemGroup>
 		<WasmShellEnableAotProfile Include="aot.profile" />
 	</ItemGroup>
+
+	<ItemGroup>
+		<WasmShellMonoEnvironment Include="MONO_GC_PARAMS" Value="soft-heap-limit=512m,nursery-size=64m,evacuation-threshold=66,major=marksweep" />
+	</ItemGroup>
+
 	<ItemGroup>
 		<!--
     This item group is required by the project template because of the
