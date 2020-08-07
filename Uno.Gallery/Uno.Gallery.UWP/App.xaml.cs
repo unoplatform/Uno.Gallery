@@ -145,6 +145,7 @@ namespace Uno.Gallery
 					nv.MenuItems.Add(new NavigationViewItemHeader
 					{
 						Content = category.Key.GetDescription() ?? category.Key.ToString(),
+						Style = Application.Current.Resources["DefaultNavigationViewItemHeaderStyle"] as Style
 					});
 				}
 
