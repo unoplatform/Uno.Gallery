@@ -150,6 +150,26 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </BundleResource>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Assets\AndroidIcon_Medium.png" />
+    <Content Include="Resources\Assets\AndroidIcon_Small.png" />
+    <Content Include="Resources\Assets\AppleIcon_Medium.png" />
+    <Content Include="Resources\Assets\AppleIcon_Small.png" />
+    <Content Include="Resources\Assets\Avatar.png" />
+    <Content Include="Resources\Assets\FluentIcon_Medium.png" />
+    <Content Include="Resources\Assets\FluentIcon_Small.png" />
+    <Content Include="Resources\Assets\LargeMedia.png" />
+        
+    <Content Include="Resources\Assets\MaterialIcon_Medium.png" />
+    <Content Include="Resources\Assets\MaterialIcon_Small.png" />
+    <Content Include="Resources\Assets\SmallMedia.png" />
+    <Content Include="Resources\Assets\uno-banner-dark.png" />
+    <Content Include="Resources\Assets\uno-banner-light.png" />
+    <Content Include="Resources\Assets\UnoGalleryLogo_Dark.png" />
+    <Content Include="Resources\Assets\UnoGalleryLogo_Light.png" />
+    <Content Include="Resources\Assets\UnoLogo_Medium.png" />
+    <Content Include="Resources\Assets\UnoLogo_Small.png" />        
+  </ItemGroup>        
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Mac\Xamarin.Mac.CSharp.targets" />
   <Target Name="VS16Mac_RemoveSystemMemory" BeforeTargets="ResolveAssemblyReferences">
     <!--
