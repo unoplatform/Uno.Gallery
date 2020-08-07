@@ -16,23 +16,16 @@
 					<StackPanel Margin="0,16,0,0">
 
 						<!-- NavigationView Text -->
-						<TextBlock Text="The Navigation View control is the expandable and collapsible menu that you see in the top-left of your screen"
-								   FontSize="16"
-								   TextWrapping="Wrap"
-								   Margin="{StaticResource FirstItemMargin}" />
+						<TextBlock Text="The NavigationView control is the expandable and collapsible menu that you see in the top-left of your screen."
+								   Style="{StaticResource MaterialBody1}" />
 
-						<TextBlock Text="It is used to navigate the application."
-								   FontSize="16"
-								   TextWrapping="Wrap"
-								   Margin="{StaticResource ConsecutiveItemMargin}" />
+						<TextBlock Text="The style you see in this application comes from the Uno.Material library. Check Microsoft's documentation for more details on the fluent style."
+								   Style="{StaticResource MaterialBody1}"
+								   Margin="0,16" />
+						
+						<HyperlinkButton Content="NavigationView documentation"
+										 NavigateUri="https://docs.microsoft.com/en-us/windows/uwp/design/controls-and-patterns/navigationview"/>
 
-						<!-- Explanation Text -->
-						<TextBlock Text="To use the navigation view to navigate to various pages in your application, code must be added into the xaml and xaml.cs of the page you choose to add it on."
-								   FontSize="14"
-								   TextWrapping="Wrap"
-								   Margin="{StaticResource ConsecutiveItemMargin}" />
-
-						<!--TODO add button to see code behind-->
 					</StackPanel>
 				</DataTemplate>
 			</controls:SamplePageLayout.FluentTemplate>
@@ -42,26 +35,12 @@
 					<StackPanel Margin="0,16,0,0">
 
 						<!-- NavigationView Text -->
-						<TextBlock Text="The Navigation View control is the expandable and collapsible menu that you see in the top-left of your screen"
-								   FontSize="16"
-								   TextWrapping="Wrap"
-								   Foreground="{StaticResource MaterialPrimaryBrush}"
-								   Margin="{StaticResource FirstItemMargin}" />
+						<TextBlock Text="The NavigationView control is the expandable and collapsible menu that you see in the top-left of your screen."
+								   Style="{StaticResource MaterialBody1}" />
 
-						<TextBlock Text="It is used to navigate the application."
-								   FontSize="16"
-								   TextWrapping="Wrap"
-								   Foreground="{StaticResource MaterialPrimaryBrush}"
-								   Margin="{StaticResource ConsecutiveItemMargin}" />
-
-						<!-- Explanation Text -->
-						<TextBlock Text="To use the navigation view to navigate to various pages in your application, code must be added into the xaml and xaml.cs of the page you choose to add it on."
-								   FontSize="14"
-								   TextWrapping="Wrap"
-								   Foreground="{StaticResource MaterialPrimaryBrush}"
-								   Margin="{StaticResource ConsecutiveItemMargin}"/>
-
-						<!--TODO add button to see code behind-->
+						<TextBlock Text="The NavigationView that you see in this application uses a material style that comes from the Uno.Material library. Check how it adjusts itself for mobile form factors!"
+								   Style="{StaticResource MaterialBody1}"
+								   Margin="0,16" />
 					</StackPanel>
 				</DataTemplate>
 			</controls:SamplePageLayout.MaterialTemplate>
