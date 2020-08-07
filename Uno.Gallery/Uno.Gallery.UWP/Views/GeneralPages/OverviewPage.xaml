@@ -29,11 +29,11 @@
 					<!-- Button -->
 					<controls:OverviewSampleView SamplePageType="samples:ButtonSamplePage">
 						<StackPanel Spacing="8">
-							<Button Content="Button1"
+							<Button Content="Contained"
 									Style="{StaticResource MaterialContainedButtonStyle}" />
-							<Button Content="Button2"
+							<Button Content="Outlined"
 									Style="{StaticResource MaterialOutlinedButtonStyle}" />
-							<Button Content="Button3"
+							<Button Content="Text"
 									Style="{StaticResource MaterialTextButtonStyle}" />
 						</StackPanel>
 					</controls:OverviewSampleView>
@@ -41,17 +41,17 @@
 					<!-- TextBox -->
 					<controls:OverviewSampleView SamplePageType="samples:TextBoxSamplePage">
 						<StackPanel Spacing="8">
-							<TextBox PlaceholderText="Text1"
+							<TextBox PlaceholderText="Filled"
 									 Style="{StaticResource MaterialFilledTextBoxStyle}" />
-							<TextBox PlaceholderText="Text2"
+							<TextBox PlaceholderText="Filled with icon"
 									 Style="{StaticResource MaterialFilledTextBoxStyle}">
 								<extensions:ControlExtensions.Icon>
 									<SymbolIcon Symbol="Favorite" />
 								</extensions:ControlExtensions.Icon>
 							</TextBox>
-							<TextBox PlaceholderText="Text3"
+							<TextBox PlaceholderText="Outlined"
 									 Style="{StaticResource MaterialOutlinedTextBoxStyle}" />
-							<TextBox PlaceholderText="Text4"
+							<TextBox PlaceholderText="Outlined with icon"
 									 Style="{StaticResource MaterialOutlinedTextBoxStyle}">
 								<extensions:ControlExtensions.Icon>
 									<SymbolIcon Symbol="Favorite" />
