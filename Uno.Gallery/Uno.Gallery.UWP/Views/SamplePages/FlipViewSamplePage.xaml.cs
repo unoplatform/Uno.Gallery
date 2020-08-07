@@ -16,7 +16,7 @@ using Windows.UI.Xaml.Navigation;
 namespace Uno.Gallery.Views.Samples
 {
 #if !__WASM__ && !__MACOS__
-	[SamplePage(SampleCategory.Components, "FlipView", Description = "This control is used to show a collection of items, one item at a time. You have to \"flip\" to through the items.")]
+	[SamplePage(SampleCategory.Features, "FlipView", Description = "This control is used to show a collection of items, one item at a time. You have to \"flip\" to through the items.")]
 #endif
 	public sealed partial class FlipViewSamplePage : Page
 	{
