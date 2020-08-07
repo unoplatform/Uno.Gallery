@@ -193,16 +193,16 @@
 									   Foreground="{ThemeResource SystemBaseHighColor}"
 									   Style="{ThemeResource AccentColorCaption}" />
 
-							<TextBlock Text="Colored text is SystemBaseHighColor"
+							<TextBlock Text="SystemBaseHighColor"
 									   Foreground="{ThemeResource SystemBaseHighColor}"
 									   Style="{ThemeResource AccentColorCaption}"
 									   Margin="0,2,0,0"/>
 							
-							<TextBlock Text="Colored text is SystemBaseMediumColor"
+							<TextBlock Text="SystemBaseMediumColor"
 									   Foreground="{ThemeResource SystemBaseMediumColor}"
 									   Style="{ThemeResource AccentColorCaption}" />
 							
-							<TextBlock Text="Colored text is SystemBaseLowColor"
+							<TextBlock Text="SystemBaseLowColor"
 									   Foreground="{ThemeResource SystemBaseLowColor}"
 									   Style="{ThemeResource AccentColorCaption}" />
 						</StackPanel>
@@ -221,16 +221,16 @@
 									   Foreground="{ThemeResource SystemAltHighColor}"
 									   Style="{ThemeResource AccentColorCaption}" />
 
-							<TextBlock Text="Colored text is SystemAltHighColor"
+							<TextBlock Text="SystemAltHighColor"
 									   Foreground="{ThemeResource SystemAltHighColor}"
 									   Style="{ThemeResource AccentColorCaption}"
 									   Margin="0,2,0,0"/>
 							
-							<TextBlock Text="Colored text is SystemAltMediumColor"
+							<TextBlock Text="SystemAltMediumColor"
 									   Foreground="{ThemeResource SystemAltMediumColor}"
 									   Style="{ThemeResource AccentColorCaption}" />
 							
-							<TextBlock Text="Colored text is SystemAltLowColor"
+							<TextBlock Text="SystemAltLowColor"
 									   Foreground="{ThemeResource SystemAltLowColor}"
 									   Style="{ThemeResource AccentColorCaption}" />
 						</StackPanel>
@@ -267,16 +267,16 @@
 									   Foreground="{ThemeResource SystemAltHighColor}"
 									   Style="{ThemeResource AccentColorCaption}" />
 
-							<TextBlock Text="Colored text is SystemChromeHighColor"
+							<TextBlock Text="SystemChromeHighColor"
 									   Foreground="{ThemeResource SystemChromeHighColor}"
 									   Style="{ThemeResource AccentColorCaption}"
 									   Margin="0,2,0,0"/>
 							
-							<TextBlock Text="Colored text is SystemChromeMediumColor"
+							<TextBlock Text="SystemChromeMediumColor"
 									   Foreground="{ThemeResource SystemChromeMediumColor}"
 									   Style="{ThemeResource AccentColorCaption}" />
 							
-							<TextBlock Text="Colored text is SystemChromeLowColor"
+							<TextBlock Text="SystemChromeLowColor"
 									   Foreground="{ThemeResource SystemChromeLowColor}"
 									   Style="{ThemeResource AccentColorCaption}" />
 						</StackPanel>
