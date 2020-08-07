@@ -64,6 +64,28 @@
 											  IsOn="True" />
 							</StackPanel>
 						</smtx:XamlDisplay>
+						
+						<smtx:XamlDisplay UniqueKey="ToggleSwitchSamplePage_Material_Secondary"
+										  smtx:XamlDisplayExtensions.Header="Secondary">
+							<StackPanel Spacing="20">
+
+								<ToggleSwitch Header="OFF"
+											  Style="{StaticResource MaterialSecondaryToggleSwitchStyle}" />
+
+								<ToggleSwitch Header="ON"
+											  Style="{StaticResource MaterialSecondaryToggleSwitchStyle}"
+											  IsOn="True" />
+
+								<ToggleSwitch Header="DISABLED OFF"
+											  Style="{StaticResource MaterialSecondaryToggleSwitchStyle}"
+											  IsEnabled="False" />
+
+								<ToggleSwitch Header="DISABLED ON"
+											  Style="{StaticResource MaterialSecondaryToggleSwitchStyle}"
+											  IsEnabled="False"
+											  IsOn="True" />
+							</StackPanel>
+						</smtx:XamlDisplay>
 					</StackPanel>
 				</DataTemplate>
 			</controls:SamplePageLayout.MaterialTemplate>
