@@ -39,12 +39,8 @@ namespace Uno.Gallery
 
 		private void SetDarkLightToggleInitialState()
 		{
-#if __IOS__ || __MACOS__
-			// Window.Current isn't available on MacOS and iOS
-			DarkLightModeToggle.IsChecked = SystemThemeHelper.GetSystemApplicationTheme() == ApplicationTheme.Dark;
-#else
 			// Initialize the toggle to the current theme.
-			var root = Window.Current.Content as FrameworkElement;
+			var root = global::Windows.UI.Xaml.Window.Current.Content as FrameworkElement;
 
 			switch (root.ActualTheme)
 			{
@@ -58,7 +54,6 @@ namespace Uno.Gallery
 					DarkLightModeToggle.IsChecked = true;
 					break;
 			}
-#endif
 		}
 
 		/// <summary>
@@ -79,20 +74,29 @@ namespace Uno.Gallery
 
 		private void ToggleButton_Click(object sender, RoutedEventArgs e)
 		{
-#if WINDOWS_UWP
 			// Set theme for window root.
-			if (Window.Current.Content is FrameworkElement frameworkElement)
+			if (global::Windows.UI.Xaml.Window.Current.Content is FrameworkElement root)
 			{
-				if (frameworkElement.ActualTheme == ElementTheme.Dark)
+				switch (root.ActualTheme)
 				{
-					frameworkElement.RequestedTheme = ElementTheme.Light;
-				}
-				else
-				{
-					frameworkElement.RequestedTheme = ElementTheme.Dark;
+					case ElementTheme.Default:
+						if(SystemThemeHelper.GetSystemApplicationTheme() == ApplicationTheme.Dark)
+						{
+							root.RequestedTheme = ElementTheme.Light;
+						}
+						else
+						{
+							root.RequestedTheme = ElementTheme.Dark;
+						}
+						break;
+					case ElementTheme.Light:
+						root.RequestedTheme = ElementTheme.Dark;
+						break;
+					case ElementTheme.Dark:
+						root.RequestedTheme = ElementTheme.Light;
+						break;
 				}
 			}
-#endif
 		}
 	}
 }
