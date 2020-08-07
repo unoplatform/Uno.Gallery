@@ -18,13 +18,14 @@
 				<ResourceDictionary Source="Views/Styles/ContentPageLayout.xaml" />
 				<ResourceDictionary Source="Views/Styles/FluentPaletteView.xaml" />
 				<ResourceDictionary Source="Views/Styles/OverviewSampleView.xaml" />
+				<ResourceDictionary Source="Views/Styles/NavigationViewItemHeader.xaml" />
 				<ResourceDictionary Source="Views/Styles/Path.xaml" />
 				<ResourceDictionary Source="Views/Styles/RadioButton.xaml" />
 				<ResourceDictionary Source="Views/Styles/SamplePageLayout.xaml" />
 				<ResourceDictionary Source="Views/Styles/ThreeColorPaletteView.xaml" />
 				<ResourceDictionary Source="Views/Styles/ToggleButton.xaml" />
 				<ResourceDictionary Source="Views/Styles/XamlDisplay.xaml" />
-
+				
 				<ResourceDictionary>
 					<x:Double x:Key="DesktopAdaptiveThresholdWidth">720</x:Double>
 				</ResourceDictionary>
