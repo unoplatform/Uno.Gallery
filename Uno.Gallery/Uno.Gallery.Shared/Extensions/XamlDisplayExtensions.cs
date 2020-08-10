@@ -116,7 +116,7 @@ namespace ShowMeTheXAML
 			protected virtual bool NoopInnerCall => false;
 			protected IDisposable OverrideNoopInnerCall(bool value)
 			{
-				return Disposable.Create(() => _noopInnerCallOverride = value, () => _noopInnerCallOverride = null);
+				return new AnonymousDisposable(() => _noopInnerCallOverride = value, () => _noopInnerCallOverride = null);
 			}
 			private XmlWriter GetProxy() => _noopInnerCallOverride ?? NoopInnerCall ? default : _writer;
 

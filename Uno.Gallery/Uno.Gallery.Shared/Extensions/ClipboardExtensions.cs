@@ -76,7 +76,7 @@ namespace Uno.Gallery.Extensions
 		{
 			if (trigger == CopyTrigger.ButtonClicked && sender is ButtonBase button)
 			{
-				return Disposable.Create(() => button.Click += RoutedEventHandler, () => button.Click -= RoutedEventHandler);
+				return new AnonymousDisposable(() => button.Click += RoutedEventHandler, () => button.Click -= RoutedEventHandler);
 			}
 			else
 			{
