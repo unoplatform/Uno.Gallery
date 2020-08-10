@@ -8,10 +8,6 @@
 	  xmlns:smtx="using:ShowMeTheXAML"
 	  mc:Ignorable="d">
 
-	<Page.Resources>
-		<x:String x:Key="LoremIpsumBody">Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet. Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant.</x:String>
-		<x:String x:Key="LoremIpsumCaption">Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper commodo primis ornare himenaeos</x:String>
-	</Page.Resources>
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 		<controls:SamplePageLayout Title="{Binding Title}"
 								   Description="{Binding Description}"
@@ -35,9 +31,9 @@
 										   Style="{StaticResource SubtitleTextBlockStyle}" />
 								<TextBlock Text="Base"
 										   Style="{StaticResource BaseTextBlockStyle}" />
-								<TextBlock Text="{StaticResource LoremIpsumBody}"
+								<TextBlock Text="Body - Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet. Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant."
 										   Style="{StaticResource BodyTextBlockStyle}" />
-								<TextBlock Text="{StaticResource LoremIpsumCaption}"
+								<TextBlock Text="Caption - Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper commodo primis ornare himenaeos"
 										   Style="{StaticResource CaptionTextBlockStyle}" />
 							</StackPanel>
 						</smtx:XamlDisplay>
@@ -76,10 +72,10 @@
 							<TextBlock Text="Subtitle 2"
 									   Style="{StaticResource MaterialSubtitle2}" />
 
-							<TextBlock Text="{StaticResource LoremIpsumBody}"
+							<TextBlock Text="Body 1 - Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet. Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant."
 									   Style="{StaticResource MaterialBody1}" />
 
-							<TextBlock Text="{StaticResource LoremIpsumBody}"
+							<TextBlock Text="Body 2 - Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet. Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant."
 									   Style="{StaticResource MaterialBody2}" />
 
 							<TextBlock Text="Button"
