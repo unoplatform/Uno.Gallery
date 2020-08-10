@@ -58,7 +58,7 @@
 									HorizontalAlignment="Left">
 								<Border.Background>
 									<ImageBrush ImageSource="ms-appx:///Assets/SmallMedia.png"
-												Stretch="UniformToFill" />
+												Stretch="Fill" />
 								</Border.Background>
 							</Border>
 						</smtx:XamlDisplay>
