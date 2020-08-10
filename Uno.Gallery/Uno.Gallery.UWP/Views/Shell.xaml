@@ -26,11 +26,11 @@
 				<Grid>
 
 					<!-- Image -->
-					<Grid Background="{ThemeResource UnoLogo_ImageBrush}"
-						  Height="105"
-						  Width="75"
-						  HorizontalAlignment="Left"
-						  Margin="16,8,0,12" />
+					<Image Source="{ThemeResource UnoLogoImageSource}"
+						   Height="101"
+						   Width="75"
+						   HorizontalAlignment="Left"
+						   Margin="16,8,0,12" />
 
 					<ToggleButton x:Name="DarkLightModeToggle"
 								  Content="Light and Dark"
