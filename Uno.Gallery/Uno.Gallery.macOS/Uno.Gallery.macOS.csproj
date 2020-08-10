@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="..\Uno.Gallery.UWP\App.xaml.cs" />
     <ApplicationDefinition Include="..\Uno.Gallery.UWP\App.xaml" Link="App.xaml" Visible="False" />
+    <Compile Include="MenuHelper.cs" />
     <Page Include="..\Uno.Gallery.UWP\Views\**\*.xaml" Visible="False">
       <Link>Views\%(RecursiveDir)%(FileName)%(Extension)</Link>
       <SubType>Designer</SubType>
