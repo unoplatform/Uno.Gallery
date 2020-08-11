@@ -9,8 +9,6 @@
 	  mc:Ignorable="d">
 
 	<Page.Resources>
-		<Color x:Key="ColorPaletteViewElevationColor">#07000000</Color>
-		
 		<Style x:Key="ActionMaterialPrimaryButtonSample"
 			   TargetType="Button">
 
@@ -288,7 +286,6 @@
 						   Margin="0,16,0,0" />
 
 				<toolkit:ElevatedView Elevation="6"
-									  ShadowColor="{StaticResource ColorPaletteViewElevationColor}"
 									  Background="{StaticResource MaterialSurfaceBrush}"
 									  Margin="0,28,0,0">
 					<StackPanel>
