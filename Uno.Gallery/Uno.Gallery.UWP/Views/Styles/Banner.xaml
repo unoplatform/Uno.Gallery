@@ -1,0 +1,94 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					xmlns:controls="using:Uno.Gallery.Controls">
+
+	<Style x:Key="DefaulBannerStyle"
+		   TargetType="controls:Banner">
+
+		<Setter Property="HorizontalAlignment"
+				Value="Right" />
+		<Setter Property="HorizontalContentAlignment"
+				Value="Right" />
+
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="controls:Banner">
+					<Grid HorizontalAlignment="{TemplateBinding HorizontalAlignment}">
+
+						<VisualStateManager.VisualStateGroups>
+							<VisualStateGroup>
+								<VisualState x:Name="Desktop">
+									<VisualState.StateTriggers>
+										<AdaptiveTrigger MinWindowWidth="1000" />
+									</VisualState.StateTriggers>
+									<VisualState.Setters>
+									</VisualState.Setters>
+								</VisualState>
+
+								<VisualState x:Name="Mobile">
+									<VisualState.StateTriggers>
+										<AdaptiveTrigger MinWindowWidth="0" />
+									</VisualState.StateTriggers>
+									<VisualState.Setters>
+										<Setter Target="BannerButtons.Visibility"
+												Value="Collapsed" />
+									</VisualState.Setters>
+								</VisualState>
+							</VisualStateGroup>
+						</VisualStateManager.VisualStateGroups>
+
+						<StackPanel x:Name="BannerButtons"
+									Orientation="Horizontal"
+									HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}">
+							
+							<Button x:Name="PART_HowItWorkButton"
+									Content="HOW IT WORKS"
+									FontWeight="Medium"
+									Foreground="{StaticResource MaterialOnSurfaceBrush}"
+									Style="{StaticResource MaterialTextButtonStyle}" />
+
+							<Button x:Name="PART_CodeSampleButton"
+									Content="CODE SAMPLES"
+									FontWeight="Medium"
+									Foreground="{StaticResource MaterialOnSurfaceBrush}"
+									Style="{StaticResource MaterialTextButtonStyle}" />
+
+							<Button x:Name="PART_ShowCasesButton"
+									Content="SHOWCASES"
+									FontWeight="Medium"
+									Foreground="{StaticResource MaterialOnSurfaceBrush}"
+									Style="{StaticResource MaterialTextButtonStyle}" />
+
+							<Button x:Name="PART_DocsButton"
+									Content="DOCS"
+									FontWeight="Medium"
+									Foreground="{StaticResource MaterialOnSurfaceBrush}"
+									Style="{StaticResource MaterialTextButtonStyle}" />
+
+							<Button x:Name="PART_BlogButton"
+									Content="BLOG"
+									FontWeight="Medium"
+									Foreground="{StaticResource MaterialOnSurfaceBrush}"
+									Style="{StaticResource MaterialTextButtonStyle}" />
+
+							<Button x:Name="PART_ContactButton"
+									Content="CONTACT"
+									FontWeight="Medium"
+									Foreground="{StaticResource MaterialOnSurfaceBrush}"
+									Style="{StaticResource MaterialTextButtonStyle}" />
+
+							<Button x:Name="PART_GetStartedButton"
+									Content="Get Started"
+									FontWeight="Bold"
+									Style="{StaticResource MaterialContainedButtonStyle}"
+									Margin="32,12" />
+						</StackPanel>
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style TargetType="controls:Banner"
+		   BasedOn="{StaticResource DefaulBannerStyle}" />
+</ResourceDictionary>

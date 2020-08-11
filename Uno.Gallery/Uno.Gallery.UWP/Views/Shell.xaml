@@ -1,16 +1,27 @@
 <UserControl x:Class="Uno.Gallery.Shell"
 			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:controls="using:Uno.Gallery.Controls"
+			 xmlns:not_wasm="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 			 xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
-			 xmlns:win="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+			 xmlns:win="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:wasm="http://uno.ui/wasm"
+			 mc:Ignorable="wasm">
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
 		<Grid.RowDefinitions>
 			<RowDefinition x:Name="TopPaddingRow"
 						   Height="0" />
+			<RowDefinition Height="auto" />
 			<RowDefinition Height="*" />
 		</Grid.RowDefinitions>
+
+		<!-- Banner similar to the Uno webstie (WASM only) -->
+		<wasm:Border Grid.Row="1">
+			<controls:Banner />
+		</wasm:Border>
 
 		<!-- We set CompactModeThresholdWidth to a very high value so that it never happens. We don't want to use the compact mode.-->
 		<NavigationView x:Name="NavigationViewControl"
@@ -21,7 +32,7 @@
 						IsBackButtonVisible="Collapsed"
 						IsBackEnabled="False"
 						IsTabStop="False"
-						Grid.Row="1">
+						Grid.Row="2">
 			<NavigationView.PaneHeader>
 				<Grid>
 
@@ -42,7 +53,5 @@
 				</Grid>
 			</NavigationView.PaneHeader>
 		</NavigationView>
-
-
 	</Grid>
 </UserControl>

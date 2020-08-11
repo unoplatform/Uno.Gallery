@@ -100,6 +100,7 @@
     <PRIResource Include="$(MSBuildThisFileDirectory)Strings\en\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Banner.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\ContentPageLayout.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\OverviewSampleView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\SamplePageLayout.Properties.cs" />
