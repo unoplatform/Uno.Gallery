@@ -11,6 +11,7 @@ using Windows.Foundation;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
 
 namespace Uno.Gallery
@@ -213,9 +214,9 @@ namespace Uno.Gallery
 #endif
 		}
 
-		static void ConfigureXamlDisplay()
+		private void ConfigureXamlDisplay()
 		{
-			XamlDisplay.Init();
+			XamlDisplay.Init(GetType().Assembly);
 		}
 
 		private void InitializeMaterialStyles()

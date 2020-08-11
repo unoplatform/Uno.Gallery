@@ -5,10 +5,10 @@
 					xmlns:android="http://uno.ui/android"
 					xmlns:extensions="using:Uno.Gallery.Extensions"
 					xmlns:ios="http://uno.ui/ios"
+					xmlns:netstdref="http://uno.ui/netstdref"
 					xmlns:macos="http://uno.ui/macos"
-					xmlns:wasm="http://uno.ui/wasm"
 					xmlns:win="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-					mc:Ignorable="android ios wasm macos">
+					mc:Ignorable="android ios netstdref macos">
 
 	<Style x:Key="ExpanderXamlDisplayStyle"
 		   TargetType="smtx:XamlDisplay">
@@ -45,7 +45,7 @@
 									<VisualState.Setters>
 										<win:Setter Target="MainContent.Padding"
 													Value="16,16,0,16" />
-										<wasm:Setter Target="MainContent.Padding"
+										<netstdref:Setter Target="MainContent.Padding"
 													 Value="16,16,0,16" />
 										<ios:Setter Target="MainContent.Padding"
 													Value="16" />
@@ -83,7 +83,7 @@
 									<ColumnDefinition Width="*" />
 									<ColumnDefinition Width="Auto"
 													  win:MinWidth="30"
-													  wasm:MinWidth="30" />
+													  netstdref:MinWidth="30" />
 								</Grid.ColumnDefinitions>
 
 								<!-- Content -->
@@ -105,7 +105,7 @@
 										  HorizontalScrollBarVisibility="Auto"
 										  VerticalScrollBarVisibility="Auto"
 										  win:Visibility="{Binding ElementName=RevealButton, Path=IsChecked, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
-										  wasm:Visibility="{Binding ElementName=RevealButton, Path=IsChecked, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
+										  netstdref:Visibility="{Binding ElementName=RevealButton, Path=IsChecked, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
 										  macos:Visibility="{Binding ElementName=RevealButton, Path=IsChecked, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
 										  ios:Visibility="Collapsed"
 										  android:Visibility="Collapsed"
@@ -127,7 +127,7 @@
 									HorizontalAlignment="Right"
 									VerticalAlignment="Top"
 									win:Visibility="{Binding ElementName=RevealButton, Path=IsChecked, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
-									wasm:Visibility="{Binding ElementName=RevealButton, Path=IsChecked, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
+									netstdref:Visibility="{Binding ElementName=RevealButton, Path=IsChecked, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
 									macos:Visibility="{Binding ElementName=RevealButton, Path=IsChecked, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
 									ios:Visibility="Collapsed"
 									android:Visibility="Collapsed"
