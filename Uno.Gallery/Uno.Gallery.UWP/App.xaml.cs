@@ -34,6 +34,8 @@ namespace Uno.Gallery
 
 			this.InitializeComponent();
 			this.Suspending += OnSuspending;
+
+			AnalyticsService.Initialize();
 		}
 
 		/// <summary>
@@ -98,6 +100,8 @@ namespace Uno.Gallery
 
 				var page = (Page)Activator.CreateInstance(sample.ViewType);
 				page.DataContext = sample;
+
+				AnalyticsService.TrackView(sample?.Title ?? page.GetType().Name);
 
 				_shell.NavigationView.Content = page;
 			}

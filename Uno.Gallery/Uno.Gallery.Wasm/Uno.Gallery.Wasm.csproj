@@ -30,8 +30,8 @@
 		<Content Include="Assets\SplashScreen.png" />
 	</ItemGroup>
 	<ItemGroup>
-		<EmbeddedResource Include="WasmCSS\Fonts.css" />
-		<EmbeddedResource Include="WasmScripts\AppManifest.js" />
+		<EmbeddedResource Include="WasmCSS\*.css" />
+		<EmbeddedResource Include="WasmScripts\*.js" />
 	</ItemGroup>
 	<ItemGroup>
 		<LinkerDescriptor Include="LinkerConfig.xml" />
@@ -83,6 +83,17 @@
 		<PackageReference Include="Uno.UI.RemoteControl" Version="3.0.0-dev.1535" Condition="'$(Configuration)'=='Debug'" />
 		<PackageReference Include="Uno.Wasm.Bootstrap" Version="1.4.0-dev.22" />
 		<PackageReference Include="Uno.Wasm.Bootstrap.DevServer" Version="1.4.0-dev.22" />
+		<PackageReference Include="Microsoft.TypeScript.Compiler" Version="3.1.5">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.TypeScript.MSBuild" Version="3.3.1">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
+	<ItemGroup>
+		<TypeScriptCompile Include="ts\GoogleAnalytics.ts" />
 	</ItemGroup>
 	<Import Project="..\Uno.Gallery.Shared\Uno.Gallery.Shared.projitems" Label="Shared" Condition="Exists('..\Uno.Gallery.Shared\Uno.Gallery.Shared.projitems')" />
 </Project>
