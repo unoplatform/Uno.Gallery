@@ -14,6 +14,7 @@
 				<ResourceDictionary Source="Views/Converters.xaml" />
 				<ResourceDictionary Source="Views/Fonts.xaml" />
 
+				<ResourceDictionary Source="Views/Styles/Banner.xaml" />
 				<ResourceDictionary Source="Views/Styles/ColorPaletteView.xaml" />
 				<ResourceDictionary Source="Views/Styles/ContentPageLayout.xaml" />
 				<ResourceDictionary Source="Views/Styles/FluentPaletteView.xaml" />
