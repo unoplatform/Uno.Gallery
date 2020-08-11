@@ -29,11 +29,11 @@
 					<!-- Button -->
 					<controls:OverviewSampleView SamplePageType="samples:ButtonSamplePage">
 						<StackPanel Spacing="8">
-							<Button Content="Contained"
+							<Button Content="CONTAINED"
 									Style="{StaticResource MaterialContainedButtonStyle}" />
-							<Button Content="Outlined"
+							<Button Content="OUTLINED"
 									Style="{StaticResource MaterialOutlinedButtonStyle}" />
-							<Button Content="Text"
+							<Button Content="TEXT"
 									Style="{StaticResource MaterialTextButtonStyle}" />
 						</StackPanel>
 					</controls:OverviewSampleView>
