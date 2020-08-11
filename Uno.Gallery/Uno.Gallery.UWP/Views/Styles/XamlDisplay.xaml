@@ -46,7 +46,7 @@
 										<win:Setter Target="MainContent.Padding"
 													Value="16,16,0,16" />
 										<netstdref:Setter Target="MainContent.Padding"
-													 Value="16,16,0,16" />
+														  Value="16,16,0,16" />
 										<ios:Setter Target="MainContent.Padding"
 													Value="16" />
 										<android:Setter Target="MainContent.Padding"
@@ -103,7 +103,7 @@
 
 							<ScrollViewer Background="{StaticResource SampleSecondBackgroundBrush}"
 										  HorizontalScrollBarVisibility="Auto"
-										  VerticalScrollBarVisibility="Auto"
+										  VerticalScrollBarVisibility="Disabled"
 										  win:Visibility="{Binding ElementName=RevealButton, Path=IsChecked, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
 										  netstdref:Visibility="{Binding ElementName=RevealButton, Path=IsChecked, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
 										  macos:Visibility="{Binding ElementName=RevealButton, Path=IsChecked, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
