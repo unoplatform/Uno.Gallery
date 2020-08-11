@@ -11,6 +11,100 @@
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 		<controls:SamplePageLayout>
 
+			<controls:SamplePageLayout.MaterialTemplate>
+				<DataTemplate>
+					<StackPanel>
+
+						<!-- Slider Vertical -->
+						<smtx:XamlDisplay UniqueKey="SliderSamplePage_Vertical"
+										  smtx:XamlDisplayExtensions.Header="Default">
+							<StackPanel>
+								<StackPanel Orientation="Horizontal"
+											HorizontalAlignment="Center">
+
+									<Slider Style="{StaticResource MaterialSliderStyle}"
+											Height="200"
+											Value="25"
+											Minimum="0"
+											Maximum="100"
+											Orientation="Vertical" />
+
+									<Slider Style="{StaticResource MaterialSliderStyle}"
+											Height="200"
+											Value="25"
+											Minimum="0"
+											Maximum="100"
+											Orientation="Vertical"
+											IsEnabled="False" />
+
+								</StackPanel>
+								<StackPanel Margin="0,20,0,0">
+
+									<Slider Style="{StaticResource MaterialSliderStyle}"
+											Width="200"
+											Value="25"
+											Minimum="0"
+											Maximum="100"
+											Orientation="Horizontal" />
+
+									<Slider Style="{StaticResource MaterialSliderStyle}"
+											Width="200"
+											Value="25"
+											Minimum="0"
+											Maximum="100"
+											Orientation="Horizontal"
+											IsEnabled="False" />
+								</StackPanel>
+							</StackPanel>
+						</smtx:XamlDisplay>
+
+						<!-- Slider Vertical -->
+						<smtx:XamlDisplay UniqueKey="SliderSamplePage_Secondary"
+										  smtx:XamlDisplayExtensions.Header="Secondary">
+							<StackPanel>
+								<StackPanel Orientation="Horizontal"
+											HorizontalAlignment="Center">
+
+									<Slider Style="{StaticResource MaterialSecondarySliderStyle}"
+											Height="200"
+											Value="25"
+											Minimum="0"
+											Maximum="100"
+											Orientation="Vertical" />
+
+									<Slider Style="{StaticResource MaterialSecondarySliderStyle}"
+											Height="200"
+											Value="25"
+											Minimum="0"
+											Maximum="100"
+											Orientation="Vertical"
+											IsEnabled="False" />
+
+								</StackPanel>
+								
+								<StackPanel Margin="0,20,0,0">
+
+									<Slider Style="{StaticResource MaterialSecondarySliderStyle}"
+											Width="200"
+											Value="25"
+											Minimum="0"
+											Maximum="100"
+											Orientation="Horizontal" />
+
+									<Slider Style="{StaticResource MaterialSecondarySliderStyle}"
+											Width="200"
+											Value="25"
+											Minimum="0"
+											Maximum="100"
+											Orientation="Horizontal"
+											IsEnabled="False" />
+								</StackPanel>
+							</StackPanel>
+						</smtx:XamlDisplay>
+					</StackPanel>
+				</DataTemplate>
+			</controls:SamplePageLayout.MaterialTemplate>
+
 			<controls:SamplePageLayout.FluentTemplate>
 				<DataTemplate>
 					<StackPanel>
@@ -18,12 +112,14 @@
 										  smtx:XamlDisplayExtensions.Header="Default Slider">
 							<StackPanel Orientation="Vertical"
 										Spacing="8">
+
 								<TextBlock>
 									<Run Text="Value:" />
 									<Run Text="{Binding Value, ElementName=DefaultSlider}" />
 								</TextBlock>
+
 								<Slider x:Name="DefaultSlider"
-										Value="25"/>
+										Value="25" />
 							</StackPanel>
 						</smtx:XamlDisplay>
 					</StackPanel>
