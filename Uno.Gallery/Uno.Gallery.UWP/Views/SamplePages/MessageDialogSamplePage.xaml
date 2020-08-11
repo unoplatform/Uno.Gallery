@@ -21,12 +21,26 @@
 										  smtx:XamlDisplayExtensions.Header="Default MessageDialog">
 							<Button Content="Content only"
 									Click="Button_Click" />
+							<!-- with the following C# code
+private void Button_Click(object sender, RoutedEventArgs e)
+{
+	var messageDialog = new MessageDialog("Hello world!");
+	messageDialog.ShowAsync();
+}
+-->
 						</smtx:XamlDisplay>
 
 						<smtx:XamlDisplay UniqueKey="MessageDialogSamplePage_Fluent_Title"
 										  smtx:XamlDisplayExtensions.Header="MessageDialog with Title">
 							<Button Content="Content and Title"
 									Click="Button_Click2" />
+							<!-- with the following C# code
+private void Button_Click2(object sender, RoutedEventArgs e)
+{
+	var messageDialog = new MessageDialog("This is a very important message.", "Notice");
+	messageDialog.ShowAsync();
+}
+-->
 						</smtx:XamlDisplay>
 
 						<not_wasm:StackPanel>
@@ -34,6 +48,20 @@
 										  smtx:XamlDisplayExtensions.Header="MessageDialog with Prompt">
 								<Button Content="Confirmation prompt"
 									Click="Button_Click3" />
+								<!-- with the following C# code
+private void Button_Click3(object sender, RoutedEventArgs e)
+{
+	var messageDialog = new MessageDialog("Are you sure you want to log out?", "Log out")
+	{
+		Commands =
+		{
+			new UICommand("Cancel"),
+			new UICommand("Log out"),
+		}
+	};
+	messageDialog.ShowAsync();
+}
+-->
 							</smtx:XamlDisplay>
 						</not_wasm:StackPanel>
 
@@ -42,6 +70,24 @@
 											  smtx:XamlDisplayExtensions.Header="MessageDialog with Destructive Prompt">
 								<Button Content="Destructive prompt"
 										Click="Button_Click4" />
+								<!-- with the following C# code
+private void Button_Click4(object sender, RoutedEventArgs e)
+{
+	var deleteCommand = new UICommand("Delete");
+	deleteCommand.SetDestructive(true);
+
+	var messageDialog = new MessageDialog("Are you sure you want to delete this item?", "Delete")
+	{
+				
+		Commands =
+		{
+			new UICommand("Cancel"),
+			deleteCommand,
+		}
+	};
+	messageDialog.ShowAsync();
+}
+-->
 							</smtx:XamlDisplay>
 						</ios:StackPanel>
 
