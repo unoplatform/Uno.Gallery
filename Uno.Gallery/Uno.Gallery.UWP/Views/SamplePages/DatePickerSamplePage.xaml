@@ -1,17 +1,14 @@
-﻿<Page
-    x:Class="Uno.Gallery.Views.Samples.DatePickerSamplePage"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:Uno.Gallery.Views.Samples"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:controls="using:Uno.Gallery.Controls"
-	xmlns:smtx="using:ShowMeTheXAML"
-	xmlns:ios="http://uno.ui/ios"
-	xmlns:android="http://uno.ui/android"
-	xmlns:xamarin="http://uno.ui/xamarin"
-	xmlns:win="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-	mc:Ignorable="d ios android xamarin">
+﻿<Page x:Class="Uno.Gallery.Views.Samples.DatePickerSamplePage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:local="using:Uno.Gallery.Views.Samples"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  xmlns:controls="using:Uno.Gallery.Controls"
+	  xmlns:smtx="using:ShowMeTheXAML"
+	  xmlns:ios="http://uno.ui/ios"
+	  xmlns:android="http://uno.ui/android"
+	  mc:Ignorable="d ios android">
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 		<controls:SamplePageLayout>
@@ -20,18 +17,13 @@
 				<DataTemplate>
 					<StackPanel>
 						<ios:TextBlock Text="The DatePicker is composed of two parts: the text button which uses the fluent style, and the flyout picker which is native to the platform."
-								       TextWrapping="Wrap" />
+									   TextWrapping="Wrap" />
 						<android:TextBlock Text="The DatePicker is composed of two parts: the text button which uses the fluent style, and the flyout picker which is native to the platform."
 										   TextWrapping="Wrap" />
+
 						<smtx:XamlDisplay UniqueKey="DatePickerSamplePage_Fluent_Default"
 										  smtx:XamlDisplayExtensions.Header="Default DatePicker">
-							<StackPanel>
-								<!--Confirmation/Cancel buttons are not visible in iOS issue: https://github.com/unoplatform/uno/issues/3593-->
-								<DatePicker MinWidth="0"
-											xamarin:MaxWidth="PositiveInfinity"
-											win:MaxWidth="Infinity"
-											HorizontalAlignment="Stretch"/>
-							</StackPanel>
+							<DatePicker />
 						</smtx:XamlDisplay>
 					</StackPanel>
 				</DataTemplate>

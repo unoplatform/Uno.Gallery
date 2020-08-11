@@ -9,9 +9,7 @@
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	  xmlns:ios="http://uno.ui/ios"
 	  xmlns:android="http://uno.ui/android"
-	  xmlns:xamarin="http://uno.ui/xamarin"
-	  xmlns:win="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-	  mc:Ignorable="d ios android xamarin">
+	  mc:Ignorable="d ios android">
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 		<controls:SamplePageLayout>
@@ -20,23 +18,17 @@
 				<DataTemplate>
 					<StackPanel>
 						<ios:TextBlock Text="The TimePicker is composed of two parts: the text button which uses the fluent style, and the flyout picker which is native to the platform."
-								       TextWrapping="Wrap" />
+									   TextWrapping="Wrap" />
 						<android:TextBlock Text="The TimePicker is composed of two parts: the text button which uses the fluent style, and the flyout picker which is native to the platform."
 										   TextWrapping="Wrap" />
+
 						<smtx:XamlDisplay UniqueKey="TimePickerSamplePage_Fluent_Default"
 										  smtx:XamlDisplayExtensions.Header="Default TimePicker">
-							<TimePicker xamarin:MaxWidth="PositiveInfinity"
-										win:MaxWidth="Infinity"
-										HorizontalAlignment="Stretch" />
+							<TimePicker />
 						</smtx:XamlDisplay>
-
-						<!-- Property ClockIdentifier autoresets to default value on first pressed on iOS https://github.com/unoplatform/uno/issues/3541 -->
 						<smtx:XamlDisplay UniqueKey="TimePickerSamplePage_Fluent_Clock"
 										  smtx:XamlDisplayExtensions.Header="TimePicker with 24h Clock">
-							<TimePicker ClockIdentifier="24HourClock"
-										xamarin:MaxWidth="PositiveInfinity"
-										win:MaxWidth="Infinity"
-										HorizontalAlignment="Stretch" />
+							<TimePicker ClockIdentifier="24HourClock" />
 						</smtx:XamlDisplay>
 					</StackPanel>
 				</DataTemplate>
