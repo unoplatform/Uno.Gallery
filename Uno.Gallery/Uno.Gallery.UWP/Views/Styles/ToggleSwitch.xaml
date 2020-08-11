@@ -1,9 +1,26 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 					xmlns:android="http://uno.ui/android"
+					xmlns:wasm="http://uno.ui/wasm"
 					xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 					xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-					mc:Ignorable="d android">
+					mc:Ignorable="d android wasm">
+
+	<!--Workaround for #192132 wasm: prefix issue-->
+	<wasm:Style x:Key="MaterialToggleSwitchStyle"
+				TargetType="ToggleSwitch"
+				BasedOn="{StaticResource DefaultMaterialToggleSwitchStyle}">
+	</wasm:Style>
+
+	<wasm:Style x:Key="MaterialSecondaryToggleSwitchStyle"
+				TargetType="ToggleSwitch"
+				BasedOn="{StaticResource DefaultMaterialToggleSwitchStyle}">
+
+		<Setter Property="Foreground"
+				Value="{StaticResource MaterialSecondaryVariantDarkBrush}" />
+		<Setter Property="Background"
+				Value="{StaticResource MaterialSecondaryVariantLightBrush}" />
+	</wasm:Style>
 
 	<!-- Native ToggleSwitch colors -->
 	<SolidColorBrush x:Key="NativeOffThumbTint"
