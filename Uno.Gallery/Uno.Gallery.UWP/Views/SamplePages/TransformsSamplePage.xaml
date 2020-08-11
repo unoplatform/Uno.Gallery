@@ -113,14 +113,14 @@
 						<smtx:XamlDisplay UniqueKey="TransformSamplePage_NoTransform"
 										  smtx:XamlDisplayExtensions.Header="No Transforms">
 
-							<Border Background="#222222"
+							<Border Background="{ThemeResource MaterialOnBackgroundBrush}"
 									Width="110"
 									Height="110"
 									Margin="0,20,0,0">
 
 								<!-- Label -->
 								<TextBlock Text="No transform"
-										   Foreground="White"
+										   Foreground="{ThemeResource MaterialBackgroundBrush}"
 										   FontWeight="Bold"
 										   HorizontalAlignment="Center"
 										   VerticalAlignment="Center" />
