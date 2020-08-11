@@ -18,7 +18,7 @@
 			<RowDefinition Height="*" />
 		</Grid.RowDefinitions>
 
-		<!-- Banner similar to the Uno webstie (WASM only) -->
+		<!-- Banner similar to the Uno website (WASM only) -->
 		<wasm:Border Grid.Row="1">
 			<controls:Banner />
 		</wasm:Border>
