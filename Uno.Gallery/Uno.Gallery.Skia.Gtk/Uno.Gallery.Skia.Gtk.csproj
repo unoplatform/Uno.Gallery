@@ -4,10 +4,12 @@
 		<OutputType Condition="'$(Configuration)'=='Release'">WinExe</OutputType>
 		<OutputType Condition="'$(Configuration)'=='Debug'">Exe</OutputType>
 		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<NoWarn>$(NoWarn);NU1701</NoWarn>
 	</PropertyGroup>
 	
 	<ItemGroup>
 		<Compile Include="..\Uno.Gallery.UWP\App.xaml.cs" />
+		<Content Include="..\Uno.Gallery.Shared\Assets\**" Link="Assets\%(RecursiveDir)%(FileName)%(Extension)" CopyToOutputDirectory="Always" />
 		<EmbeddedResource Include="..\Uno.Gallery.UWP\Package.appxmanifest" LogicalName="Package.appxmanifest" />
 		<ApplicationDefinition Include="..\Uno.Gallery.UWP\App.xaml" Link="App.xaml" Visible="False" />
 		<Page Include="..\Uno.Gallery.UWP\Views\**\*.xaml" Visible="False">
