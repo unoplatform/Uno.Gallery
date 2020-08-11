@@ -61,7 +61,9 @@
 										  smtx:XamlDisplayExtensions.Description="Move the slider to update the ProgressBar."
 										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
 							<StackPanel Spacing="24">
+								
 								<Slider x:Name="progressSlider_Material"
+										Style="{StaticResource MaterialSliderStyle}"
 										Value="50"
 										Minimum="0"
 										Maximum="100" />

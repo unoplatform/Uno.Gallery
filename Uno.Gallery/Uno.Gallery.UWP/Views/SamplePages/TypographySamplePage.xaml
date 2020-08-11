@@ -20,19 +20,26 @@
 						<smtx:XamlDisplay UniqueKey="TypographySamplePage_Fluent"
 										  smtx:XamlDisplayExtensions.Header="Typography"
 										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
-							<StackPanel>
+							<StackPanel Spacing="12">
+								
 								<TextBlock Text="Header"
 										   Style="{StaticResource HeaderTextBlockStyle}" />
+								
 								<TextBlock Text="SubHeader"
 										   Style="{StaticResource SubheaderTextBlockStyle}" />
+								
 								<TextBlock Text="Title"
 										   Style="{StaticResource TitleTextBlockStyle}" />
+								
 								<TextBlock Text="Subtitle"
 										   Style="{StaticResource SubtitleTextBlockStyle}" />
+								
 								<TextBlock Text="Base"
 										   Style="{StaticResource BaseTextBlockStyle}" />
+								
 								<TextBlock Text="Body - Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet. Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant."
 										   Style="{StaticResource BodyTextBlockStyle}" />
+								
 								<TextBlock Text="Caption - Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper commodo primis ornare himenaeos"
 										   Style="{StaticResource CaptionTextBlockStyle}" />
 							</StackPanel>
@@ -46,7 +53,7 @@
 					<smtx:XamlDisplay UniqueKey="TypographySamplePage_Material"
 									  smtx:XamlDisplayExtensions.Header="Typography"
 									  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
-						<StackPanel>
+						<StackPanel Spacing="12">
 
 							<TextBlock Text="Headline 1"
 									   Style="{StaticResource MaterialHeadline1}" />
@@ -77,9 +84,9 @@
 
 							<TextBlock Text="Body 2 - Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet. Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant."
 									   Style="{StaticResource MaterialBody2}" />
-
+							
 							<TextBlock Text="Button"
-									   Style="{StaticResource MaterialButtonTextBlockStyle}" />
+									   Style="{StaticResource MaterialButtonText}" />
 
 							<TextBlock Text="Caption -  Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper commodo primis ornare"
 									   Style="{StaticResource MaterialCaption}" />
