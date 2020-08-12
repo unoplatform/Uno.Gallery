@@ -1,0 +1,103 @@
+﻿<Page x:Class="Uno.Gallery.Views.Samples.RadioButtonSamplePage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:local="using:Uno.Gallery.Views.Samples"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  xmlns:controls="using:Uno.Gallery.Controls"
+	  xmlns:gallery="using:Uno.Gallery"
+	  xmlns:smtx="using:ShowMeTheXAML"
+	  mc:Ignorable="">
+
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<controls:SamplePageLayout>
+
+			<controls:SamplePageLayout.FluentTemplate>
+				<DataTemplate>
+					<StackPanel>
+
+						<!-- RadioButton -->
+						<smtx:XamlDisplay UniqueKey="RadioButtonSamplePage_Fluent"
+										  smtx:XamlDisplayExtensions.Header="Default">
+							<StackPanel Spacing="12">
+								<RadioButton GroupName="RadioButtonDemo_Fluent_1a"
+											 Content="UNCHECKED" />
+
+								<RadioButton GroupName="RadioButtonDemo_Fluent_1a"
+											 Content="CHECKED"
+											 IsChecked="True" />
+
+								<RadioButton GroupName="RadioButtonDemo_Fluent_1b"
+											 Content="DISABLED CHECKED"
+											 IsEnabled="False" />
+
+								<RadioButton GroupName="RadioButtonDemo_Fluent_1b"
+											 Content="UNCHECKED DISABLED"
+											 IsChecked="True"
+											 IsEnabled="False" />
+							</StackPanel>
+						</smtx:XamlDisplay>
+					</StackPanel>
+				</DataTemplate>
+			</controls:SamplePageLayout.FluentTemplate>
+
+			<controls:SamplePageLayout.MaterialTemplate>
+				<DataTemplate>
+					<StackPanel>
+
+						<!-- RadioButton -->
+						<smtx:XamlDisplay UniqueKey="RadioButtonSamplePage_Material"
+										  smtx:XamlDisplayExtensions.Header="Default">
+							<StackPanel>
+								<RadioButton GroupName="RadioButtonDemo_Material_1a"
+											 Content="UNCHECKED"
+											 Style="{StaticResource MaterialRadioButtonStyle}" />
+
+								<RadioButton GroupName="RadioButtonDemo_Material_1a"
+											 Content="CHECKED"
+											 Style="{StaticResource MaterialRadioButtonStyle}"
+											 IsChecked="True" />
+
+								<RadioButton GroupName="RadioButtonDemo_Material_1b"
+											 Content="DISABLED UNCHECKED"
+											 Style="{StaticResource MaterialRadioButtonStyle}"
+											 IsEnabled="False" />
+
+								<RadioButton GroupName="RadioButtonDemo_Material_1b"
+											 Content="DISABLED CHECKED"
+											 Style="{StaticResource MaterialRadioButtonStyle}"
+											 IsChecked="True"
+											 IsEnabled="False" />
+							</StackPanel>
+						</smtx:XamlDisplay>
+
+						<!-- RadioButton -->
+						<smtx:XamlDisplay UniqueKey="RadioButtonSamplePage_Material_Secondary"
+										  smtx:XamlDisplayExtensions.Header="Secondary">
+							<StackPanel>
+								<RadioButton GroupName="RadioButtonDemo_Material_2a"
+											 Content="UNCHECKED"
+											 Style="{StaticResource MaterialSecondaryRadioButtonStyle}" />
+
+								<RadioButton GroupName="RadioButtonDemo_Material_2a"
+											 Content="CHECKED"
+											 Style="{StaticResource MaterialSecondaryRadioButtonStyle}"
+											 IsChecked="True" />
+
+								<RadioButton GroupName="RadioButtonDemo_Material_2b"
+											 Content="DISABLED UNCHECKED"
+											 Style="{StaticResource MaterialSecondaryRadioButtonStyle}"
+											 IsEnabled="False" />
+
+								<RadioButton GroupName="RadioButtonDemo_Material_2b"
+											 Content="DISABLED CHECKED"
+											 Style="{StaticResource MaterialSecondaryRadioButtonStyle}"
+											 IsChecked="True"
+											 IsEnabled="False" />
+							</StackPanel>
+						</smtx:XamlDisplay>
+					</StackPanel>
+				</DataTemplate>
+			</controls:SamplePageLayout.MaterialTemplate>
+		</controls:SamplePageLayout>
+	</Grid>
+</Page>

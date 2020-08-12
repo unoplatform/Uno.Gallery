@@ -1,0 +1,100 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					xmlns:controls="using:Uno.Gallery.Controls">
+
+	<Style x:Key="DefaulThreeColorPaletteViewStyle"
+		   TargetType="controls:ThreeColorPaletteView">
+
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="controls:ThreeColorPaletteView">
+					<Grid>
+						<VisualStateManager.VisualStateGroups>
+							<VisualStateGroup>
+								<VisualState x:Name="Desktop">
+									<VisualState.StateTriggers>
+										<AdaptiveTrigger MinWindowWidth="{StaticResource DesktopAdaptiveThresholdWidth}" />
+									</VisualState.StateTriggers>
+									<VisualState.Setters>
+									</VisualState.Setters>
+								</VisualState>
+								
+								<VisualState x:Name="Mobile">
+									<VisualState.StateTriggers>
+										<AdaptiveTrigger MinWindowWidth="0" />
+									</VisualState.StateTriggers>
+									<VisualState.Setters>
+										<Setter Target="ThirdColorPaletteView.(Grid.Row)"
+												Value="4" />
+										<Setter Target="ThirdColorPaletteView.(Grid.Column)"
+												Value="0" />
+										<Setter Target="SecondColorPaletteView.(Grid.Column)"
+												Value="0" />
+										<Setter Target="ThirdColorPaletteView.(Grid.ColumnSpan)"
+												Value="2" />
+										<Setter Target="SecondColorPaletteView.(Grid.ColumnSpan)"
+												Value="2" />
+									</VisualState.Setters>
+								</VisualState>								
+							</VisualStateGroup>
+						</VisualStateManager.VisualStateGroups>
+
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*" />
+							<ColumnDefinition Width="*" />
+						</Grid.ColumnDefinitions>
+
+						<Grid.RowDefinitions>
+							<RowDefinition Height="auto" />
+							<RowDefinition Height="auto" />
+							<RowDefinition Height="auto" />
+							<RowDefinition Height="auto" />
+							<RowDefinition Height="auto" />
+						</Grid.RowDefinitions>
+
+						<TextBlock Text="{TemplateBinding Title}"
+								   Style="{StaticResource MaterialHeadline6}"
+								   Foreground="{StaticResource Foreground01ColorBrush}"
+								   Grid.ColumnSpan="2" />
+
+						<TextBlock Text="{TemplateBinding Description}"
+								   Style="{StaticResource MaterialBody1}"
+								   Foreground="{StaticResource Foreground02ColorBrush}"
+								   Margin="0,16,0,0"
+								   Grid.Row="1"
+								   Grid.ColumnSpan="2" />
+
+						<controls:ColorPaletteView x:Name="FirstColorPaletteView"
+												   ColorName="{TemplateBinding FirstColorName}"
+												   ColorBrush="{TemplateBinding FirstColorBrush}"
+												   OnColorBrush="{TemplateBinding FirstColorForeground}"
+												   Style="{StaticResource BiggerSimpleColorPaletteViewStyle}"
+												   VerticalContentAlignment="Bottom"
+												   Height="88"
+												   Margin="0,28,0,0"
+												   Grid.Row="2"
+												   Grid.ColumnSpan="2" />
+
+						<controls:ColorPaletteView x:Name="SecondColorPaletteView"
+												   ColorName="{TemplateBinding SecondColorName}"
+												   ColorBrush="{TemplateBinding SecondColorBrush}"
+												   OnColorBrush="{TemplateBinding SecondColorForeground}"
+												   Height="64"
+												   Grid.Row="3" />
+
+						<controls:ColorPaletteView x:Name="ThirdColorPaletteView"
+												   ColorName="{TemplateBinding ThirdColorName}"
+												   ColorBrush="{TemplateBinding ThirdColorBrush}"
+												   OnColorBrush="{TemplateBinding ThirdColorForeground}"
+												   Height="64"
+												   Grid.Row="3"
+												   Grid.Column="1" />
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style TargetType="controls:ThreeColorPaletteView"
+		   BasedOn="{StaticResource DefaulThreeColorPaletteViewStyle}" />
+</ResourceDictionary>

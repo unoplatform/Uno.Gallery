@@ -1,0 +1,334 @@
+﻿<Page x:Class="Uno.Gallery.MaterialPalettePage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:local="using:Uno.Gallery.Views.Samples"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  xmlns:controls="using:Uno.Gallery.Controls"
+	  xmlns:toolkit="using:Uno.UI.Toolkit"
+	  mc:Ignorable="d">
+
+	<Page.Resources>
+		<Style x:Key="ActionMaterialPrimaryButtonSample"
+			   TargetType="Button">
+
+			<Setter Property="CornerRadius"
+					Value="4" />
+			<Setter Property="MinHeight"
+					Value="44" />
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="Button">
+						<Grid x:Name="RootGrid"
+							  Background="{StaticResource MaterialPrimaryBrush}"
+							  CornerRadius="{TemplateBinding CornerRadius}">
+
+							<VisualStateManager.VisualStateGroups>
+								<VisualStateGroup x:Name="CommonStates">
+									<VisualState x:Name="Normal" />
+									<VisualState x:Name="PointerOver" />
+									<VisualState x:Name="Pressed">
+										<VisualState.Setters>
+											<Setter Target="RootGrid.Background"
+													Value="{StaticResource MaterialPrimaryVariantDarkBrush}" />
+										</VisualState.Setters>
+									</VisualState>
+								</VisualStateGroup>
+							</VisualStateManager.VisualStateGroups>
+
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="auto" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+
+							<Path Fill="{StaticResource MaterialOnPrimaryBrush}"
+								  Data="{StaticResource SendPalettePath}"
+								  Width="24"
+								  Height="24"
+								  Margin="16,0,4,0" />
+
+							<ContentPresenter Content="{TemplateBinding Content}"
+											  ContentTemplate="{TemplateBinding ContentTemplate}"
+											  ContentTransitions="{TemplateBinding ContentTransitions}"
+											  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+											  Foreground="{StaticResource MaterialOnPrimaryBrush}"
+											  AutomationProperties.AccessibilityView="Raw"
+											  Margin="4,0,20,0"
+											  Grid.Column="1" />
+						</Grid>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+
+		<Style x:Key="ActionMaterialSecondaryButtonSample"
+			   TargetType="Button"
+			   BasedOn="{StaticResource ActionMaterialPrimaryButtonSample}">
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="Button">
+						<Grid x:Name="RootGrid"
+							  Background="{StaticResource MaterialSecondaryBrush}"
+							  CornerRadius="{TemplateBinding CornerRadius}">
+
+							<VisualStateManager.VisualStateGroups>
+								<VisualStateGroup x:Name="CommonStates">
+									<VisualState x:Name="Normal" />
+									<VisualState x:Name="PointerOver" />
+									<VisualState x:Name="Pressed">
+										<VisualState.Setters>
+											<Setter Target="RootGrid.Background"
+													Value="{StaticResource MaterialSecondaryVariantDarkBrush}" />
+										</VisualState.Setters>
+									</VisualState>
+								</VisualStateGroup>
+							</VisualStateManager.VisualStateGroups>
+
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="auto" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+
+							<Path Fill="{StaticResource MaterialOnSecondaryBrush}"
+								  Data="{StaticResource SendPalettePath}"
+								  Width="24"
+								  Height="24"
+								  Margin="16,0,4,0" />
+
+							<ContentPresenter Content="{TemplateBinding Content}"
+											  ContentTemplate="{TemplateBinding ContentTemplate}"
+											  ContentTransitions="{TemplateBinding ContentTransitions}"
+											  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+											  Foreground="{StaticResource MaterialOnSecondaryBrush}"
+											  AutomationProperties.AccessibilityView="Raw"
+											  Margin="4,0,20,0"
+											  Grid.Column="1" />
+						</Grid>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+	</Page.Resources>
+
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+		<controls:ContentPageLayout Title="Material Palette"
+									Description="Uno.Material comes with a built-in set of named Color and Brush resources. They are used in most control styles provided by Uno.Material, meaning that you can easily style most controls just by changing a few colors.">
+			<StackPanel>
+
+				<!-- Primary colors section -->
+				<controls:ThreeColorPaletteView Title="Primary Colors"
+												Description="The primary color is the color you should use in most screens and controls of your app. Uno.Material provides styles based on that color for most of the controls you should need."
+												FirstColorName="Primary"
+												FirstColorBrush="{StaticResource MaterialPrimaryBrush}"
+												FirstColorForeground="{StaticResource MaterialOnPrimaryBrush}"
+												SecondColorName="PrimaryVariantDark"
+												SecondColorBrush="{StaticResource MaterialPrimaryVariantDarkBrush}"
+												SecondColorForeground="{StaticResource MaterialOnPrimaryBrush}"
+												ThirdColorName="PrimaryVariantLight"
+												ThirdColorBrush="{StaticResource MaterialPrimaryVariantLightBrush}"
+												ThirdColorForeground="Black" />
+
+				<!-- Separator -->
+				<Rectangle Fill="{StaticResource DividerBrush}"
+						   Height="1"
+						   Margin="0,48,0,36" />
+
+				<!-- Secondary colors section -->
+				<controls:ThreeColorPaletteView Title="Secondary Colors"
+												Description="Using a secondary color is optional, but it allows you to create more variety in your app. Uno.Material provides styles based on that color for most of the controls you should need."
+												FirstColorName="Secondary"
+												FirstColorBrush="{StaticResource MaterialSecondaryBrush}"
+												FirstColorForeground="{StaticResource MaterialOnSecondaryBrush}"
+												SecondColorName="SecondaryVariantDark"
+												SecondColorBrush="{StaticResource MaterialSecondaryVariantDarkBrush}"
+												SecondColorForeground="{StaticResource MaterialOnSecondaryBrush}"
+												ThirdColorName="SecondaryVariantLight"
+												ThirdColorBrush="{StaticResource MaterialSecondaryVariantLightBrush}"
+												ThirdColorForeground="{StaticResource MaterialOnSecondaryBrush}" />
+
+				<!-- Separator -->
+				<Rectangle Fill="{StaticResource DividerBrush}"
+						   Height="1"
+						   Margin="0,48,0,36" />
+
+				<!-- Elements section -->
+				<TextBlock Text="Elements"
+						   Style="{StaticResource MaterialHeadline6}" />
+
+				<TextBlock Text="The following elements use colors that don't usually represent your brand."
+						   Style="{StaticResource MaterialBody1}"
+						   Foreground="{StaticResource Foreground02ColorBrush}"
+						   Margin="0,16,0,0" />
+
+				<controls:ColorPaletteView ColorName="Background"
+										   ColorBrush="{StaticResource MaterialBackgroundBrush}"
+										   OnColorBrush="{StaticResource MaterialOnBackgroundBrush}"
+										   Description="Appears behind scrollable content."
+										   Style="{StaticResource ColorPaletteWithBottomDescriptionViewStyle}"
+										   BorderBrush="{StaticResource DividerBrush}"
+										   BorderThickness="1"
+										   ColorHeight="88"
+										   Margin="0,48,0,0" />
+
+				<controls:ColorPaletteView ColorName="Surface"
+										   ColorBrush="{StaticResource MaterialSurfaceBrush}"
+										   OnColorBrush="{StaticResource MaterialOnSurfaceBrush}"
+										   Description="Affects surfaces of components such as cards, news or even menus."
+										   Style="{StaticResource ColorPaletteWithBottomDescriptionViewStyle}"
+										   BorderBrush="{StaticResource DividerBrush}"
+										   BorderThickness="1"
+										   ColorHeight="88"
+										   Margin="0,48,0,0" />
+
+				<controls:ColorPaletteView ColorName="Error"
+										   ColorBrush="{StaticResource MaterialErrorBrush}"
+										   OnColorBrush="{StaticResource MaterialOnErrorBrush}"
+										   Description="Indicate errors in components."
+										   Style="{StaticResource ColorPaletteWithBottomDescriptionViewStyle}"
+										   ColorHeight="88"
+										   Margin="0,48,0,0" />
+
+				<!-- Separator -->
+				<Rectangle Fill="{StaticResource DividerBrush}"
+						   Height="1"
+						   Margin="0,48,0,36" />
+
+				<!-- On colors section -->
+
+				<TextBlock Text="On Colors"
+						   Style="{StaticResource MaterialHeadline5}" />
+
+				<TextBlock Text="These colors affect elements such as texts or icons appearing in front of a surface. For example, OnPrimaryBrush is for an element displayed over a surface primary color."
+						   Style="{StaticResource MaterialBody1}"
+						   Foreground="{StaticResource Foreground02ColorBrush}"
+						   Margin="0,16,0,0" />
+
+				<controls:ColorPaletteView Title="OnPrimary"
+										   Description="OnPrimary colors are the colors used to display text or icons on the primary color."
+										   ColorName="OnPrimary"
+										   ColorBrush="{StaticResource MaterialPrimaryBrush}"
+										   OnColorBrush="{StaticResource MaterialOnPrimaryBrush}"
+										   Style="{StaticResource InvertedColorPaletteViewStyle}"
+										   Margin="0,48,0,0" />
+
+				<controls:ColorPaletteView ColorName="OnPrimaryMedium"
+										   ColorBrush="{StaticResource MaterialPrimaryBrush}"
+										   OnColorBrush="{StaticResource MaterialOnPrimaryMediumBrush}"
+										   Style="{StaticResource SimpleInvertedColorPaletteViewStyle}" />
+
+				<controls:ColorPaletteView ColorName="OnPrimaryLow"
+										   ColorBrush="{StaticResource MaterialPrimaryBrush}"
+										   OnColorBrush="{StaticResource MaterialOnPrimaryLowBrush}"
+										   Style="{StaticResource SimpleInvertedColorPaletteViewStyle}" />
+
+				<StackPanel Orientation="Horizontal"
+							Margin="0,16,0,0">
+
+					<TextBlock Text="Example:"
+							   Style="{StaticResource MaterialBody1}"
+							   Foreground="{StaticResource Foreground02ColorBrush}"
+							   VerticalAlignment="Center" />
+
+					<Button Content="Action"
+							Style="{StaticResource ActionMaterialPrimaryButtonSample}"
+							Margin="20,0,0,0" />
+				</StackPanel>
+
+				<controls:ColorPaletteView Title="OnSecondary"
+										   Description="OnSecondary colors are the colors used to display text or icons on the secondary color."
+										   ColorName="OnSecondary"
+										   ColorBrush="{StaticResource MaterialSecondaryBrush}"
+										   OnColorBrush="{StaticResource MaterialOnSecondaryBrush}"
+										   Style="{StaticResource InvertedColorPaletteViewStyle}"
+										   Margin="0,48,0,0" />
+
+				<controls:ColorPaletteView ColorName="OnSecondaryMedium"
+										   ColorBrush="{StaticResource MaterialSecondaryBrush}"
+										   OnColorBrush="{StaticResource MaterialOnSecondaryMediumBrush}"
+										   Style="{StaticResource SimpleInvertedColorPaletteViewStyle}" />
+
+				<controls:ColorPaletteView ColorName="OnSecondaryLow"
+										   ColorBrush="{StaticResource MaterialSecondaryBrush}"
+										   OnColorBrush="{StaticResource MaterialOnSecondaryLowBrush}"
+										   Style="{StaticResource SimpleInvertedColorPaletteViewStyle}" />
+
+				<StackPanel Orientation="Horizontal"
+							Margin="0,16,0,0">
+
+					<TextBlock Text="Example:"
+							   Style="{StaticResource MaterialBody1}"
+							   Foreground="{StaticResource Foreground02ColorBrush}"
+							   VerticalAlignment="Center" />
+
+					<Button Content="Action"
+							Style="{StaticResource ActionMaterialSecondaryButtonSample}"
+							Margin="20,0,0,0" />
+				</StackPanel>
+
+				<controls:ColorPaletteView Title="OnBackground"
+										   Description="OnBackground is the color used to display text or icons on the background color."
+										   ColorName="OnBackground Color"
+										   ColorBrush="{StaticResource MaterialBackgroundBrush}"
+										   OnColorBrush="{StaticResource MaterialOnBackgroundBrush}"
+										   BorderBrush="{StaticResource DividerBrush}"
+										   Style="{StaticResource InvertedColorPaletteViewStyle}"
+										   BorderThickness="1"
+										   Margin="0,48,0,0" />
+
+				<TextBlock Text="OnSurface"
+						   Style="{StaticResource MaterialHeadline6}"
+						   Margin="0,48,0,0" />
+
+				<TextBlock Text="OnSurface colors are the colors used to display text or icons on the surface color."
+						   Style="{StaticResource MaterialBody1}"
+						   Foreground="{StaticResource Foreground02ColorBrush}"
+						   Margin="0,16,0,0" />
+
+				<toolkit:ElevatedView Elevation="6"
+									  Background="{StaticResource MaterialSurfaceBrush}"
+									  Margin="0,28,0,0">
+					<StackPanel>
+						<controls:ColorPaletteView ColorName="OnSurface"
+												   ColorBrush="{StaticResource MaterialSurfaceBrush}"
+												   OnColorBrush="{StaticResource MaterialOnSurfaceBrush}"
+												   Style="{StaticResource InvertedBiggerSimpleColorPaletteViewStyle}" />
+
+						<controls:ColorPaletteView ColorName="OnSurfaceMedium"
+												   ColorBrush="{StaticResource MaterialSurfaceBrush}"
+												   OnColorBrush="{StaticResource MaterialOnSurfaceMediumBrush}"
+												   Style="{StaticResource SimpleInvertedColorPaletteViewStyle}" />
+
+						<controls:ColorPaletteView ColorName="OnSurfaceLow"
+												   ColorBrush="{StaticResource MaterialSurfaceBrush}"
+												   OnColorBrush="{StaticResource MaterialOnSurfaceLowBrush}"
+												   Style="{StaticResource SimpleInvertedColorPaletteViewStyle}" />
+					</StackPanel>
+				</toolkit:ElevatedView>
+
+				<controls:ColorPaletteView Title="OnError"
+										   Description="OnError is the color used to display text or icons on the error color."
+										   ColorName="OnError"
+										   ColorBrush="{StaticResource MaterialErrorBrush}"
+										   OnColorBrush="{StaticResource MaterialOnErrorBrush}"
+										   Style="{StaticResource InvertedColorPaletteViewStyle}"
+										   Margin="0,48,0,0" />
+
+				<!-- Separator -->
+				<Rectangle Fill="{StaticResource DividerBrush}"
+						   Height="1"
+						   Margin="0,48,0,36" />
+
+				<TextBlock Style="{StaticResource MaterialBody1}"
+						   Foreground="{StaticResource Foreground02ColorBrush}"
+						   Margin="0,0,0,16">
+					<Run Text="For more information refer to" />
+					
+					<Hyperlink NavigateUri="https://material.io/design/color/the-color-system.html#color-usage-and-palettes">
+						<Run Text="Google's Material Color System." />
+					</Hyperlink>
+				</TextBlock>
+			</StackPanel>
+		</controls:ContentPageLayout>
+	</Grid>
+</Page>

@@ -6,32 +6,127 @@
     <SharedGUID>6279c845-92f8-4333-ab99-3d213163593c</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>Uno.Gallery.Shared</Import_RootNamespace>
+    <Import_RootNamespace>Uno.Gallery</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="$(MSBuildThisFileDirectory)App.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </ApplicationDefinition>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\AndroidIcon_Medium.scale-100.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\AndroidIcon_Medium.scale-150.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\AndroidIcon_Medium.scale-200.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\AndroidIcon_Medium.scale-300.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\AndroidIcon_Medium.scale-400.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\AndroidIcon_Small.scale-100.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\AndroidIcon_Small.scale-150.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\AndroidIcon_Small.scale-200.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\AndroidIcon_Small.scale-300.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\AndroidIcon_Small.scale-400.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\AppleIcon_Medium.scale-100.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\AppleIcon_Medium.scale-150.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\AppleIcon_Medium.scale-200.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\AppleIcon_Medium.scale-300.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\AppleIcon_Medium.scale-400.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\AppleIcon_Small.scale-100.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\AppleIcon_Small.scale-150.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\AppleIcon_Small.scale-200.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\AppleIcon_Small.scale-300.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\AppleIcon_Small.scale-400.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Avatar.scale-100.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Avatar.scale-150.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Avatar.scale-200.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Avatar.scale-300.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Avatar.scale-400.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\FluentIcon_Medium.scale-100.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\FluentIcon_Medium.scale-150.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\FluentIcon_Medium.scale-200.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\FluentIcon_Medium.scale-300.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\FluentIcon_Medium.scale-400.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\FluentIcon_Small.scale-100.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\FluentIcon_Small.scale-150.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\FluentIcon_Small.scale-200.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\FluentIcon_Small.scale-300.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\FluentIcon_Small.scale-400.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\LargeMedia.scale-100.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\LargeMedia.scale-150.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\LargeMedia.scale-200.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\LargeMedia.scale-300.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\LargeMedia.scale-400.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\MaterialIcon_Medium.scale-100.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\MaterialIcon_Medium.scale-150.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\MaterialIcon_Medium.scale-200.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\MaterialIcon_Medium.scale-300.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\MaterialIcon_Medium.scale-400.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\MaterialIcon_Small.scale-100.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\MaterialIcon_Small.scale-150.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\MaterialIcon_Small.scale-200.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\MaterialIcon_Small.scale-300.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\MaterialIcon_Small.scale-400.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\SharedAssets.md" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\SmallMedia.scale-100.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\SmallMedia.scale-150.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\SmallMedia.scale-200.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\SmallMedia.scale-300.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\SmallMedia.scale-400.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\uno-banner-dark.scale-100.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\uno-banner-dark.scale-150.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\uno-banner-dark.scale-200.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\uno-banner-dark.scale-300.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\uno-banner-dark.scale-400.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\uno-banner-light.scale-100.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\uno-banner-light.scale-150.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\uno-banner-light.scale-200.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\uno-banner-light.scale-300.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\uno-banner-light.scale-400.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\UnoGalleryLogo_Dark.scale-100.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\UnoGalleryLogo_Dark.scale-150.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\UnoGalleryLogo_Dark.scale-200.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\UnoGalleryLogo_Dark.scale-300.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\UnoGalleryLogo_Dark.scale-400.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\UnoGalleryLogo_Light.scale-100.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\UnoGalleryLogo_Light.scale-150.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\UnoGalleryLogo_Light.scale-200.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\UnoGalleryLogo_Light.scale-300.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\UnoGalleryLogo_Light.scale-400.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\UnoLogo_Medium.scale-100.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\UnoLogo_Medium.scale-150.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\UnoLogo_Medium.scale-200.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\UnoLogo_Medium.scale-300.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\UnoLogo_Medium.scale-400.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\UnoLogo_Small.scale-100.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\UnoLogo_Small.scale-150.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\UnoLogo_Small.scale-200.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\UnoLogo_Small.scale-300.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\UnoLogo_Small.scale-400.png" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
-      <DependentUpon>App.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
-    </Compile>
+    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\en\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="$(MSBuildThisFileDirectory)MainPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Banner.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\ContentPageLayout.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\OverviewSampleView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\SamplePageLayout.Properties.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\EnumDescriptionConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\EnumDesignConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\FromBoolToValueConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\EnumConverterBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\FromNullToValueConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\FromStringToValueConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\ColorPaletteView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\FluentColorAccentView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\ThreeColorPaletteView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\FromColorBrushToHexConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\RandomColorConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Domain\AnalyticsService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Sample.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\SampleCategory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\SamplePageAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\SamplePageLayout.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Design.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\SourceSdk.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\ClipboardExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\XamlDisplayExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\Disposable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\EnumHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\SystemThemeHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\VisualTreeHelperEx.cs" />
   </ItemGroup>
-	<ItemGroup>
-		<Content Include="$(MSBuildThisFileDirectory)Assets\SharedAssets.md" />
-	</ItemGroup>
-	<ItemGroup>
-		<PRIResource Include="$(MSBuildThisFileDirectory)Strings\en\Resources.resw" />
-	</ItemGroup>
 </Project>

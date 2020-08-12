@@ -1,0 +1,156 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+					xmlns:smtx="using:ShowMeTheXAML"
+					xmlns:android="http://uno.ui/android"
+					xmlns:extensions="using:Uno.Gallery.Extensions"
+					xmlns:ios="http://uno.ui/ios"
+					xmlns:netstdref="http://uno.ui/netstdref"
+					xmlns:macos="http://uno.ui/macos"
+					xmlns:win="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+					mc:Ignorable="android ios netstdref macos">
+
+	<Style x:Key="ExpanderXamlDisplayStyle"
+		   TargetType="smtx:XamlDisplay">
+		<Setter Property="smtx:XamlDisplayExtensions.IgnorePath"
+				Value="XamlDisplay" />
+
+		<Setter Property="Margin"
+				Value="0,24,0,0" />
+		<Setter Property="BorderBrush"
+				Value="{StaticResource DividerBrush}" />
+		<Setter Property="BorderThickness"
+				Value="1" />
+
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="smtx:XamlDisplay">
+					<StackPanel>
+						<VisualStateManager.VisualStateGroups>
+							<VisualStateGroup x:Name="FormFactors">
+								<VisualState x:Name="Desktop">
+									<VisualState.StateTriggers>
+										<AdaptiveTrigger MinWindowWidth="{StaticResource DesktopAdaptiveThresholdWidth}" />
+									</VisualState.StateTriggers>
+									<VisualState.Setters>
+										<Setter Target="MainContent.Padding"
+												Value="30,30,0,30" />
+									</VisualState.Setters>
+								</VisualState>
+
+								<VisualState x:Name="Mobile">
+									<VisualState.StateTriggers>
+										<AdaptiveTrigger MinWindowWidth="0" />
+									</VisualState.StateTriggers>
+									<VisualState.Setters>
+										<win:Setter Target="MainContent.Padding"
+													Value="16,16,0,16" />
+										<netstdref:Setter Target="MainContent.Padding"
+														  Value="16,16,0,16" />
+										<ios:Setter Target="MainContent.Padding"
+													Value="16" />
+										<android:Setter Target="MainContent.Padding"
+														Value="16" />
+									</VisualState.Setters>
+								</VisualState>
+							</VisualStateGroup>
+						</VisualStateManager.VisualStateGroups>
+
+						<!-- Header -->
+						<TextBlock Text="{Binding Path=(smtx:XamlDisplayExtensions.Header), RelativeSource={RelativeSource TemplatedParent}}"
+								   Style="{StaticResource MaterialHeadline6}"
+								   Foreground="{StaticResource Foreground01ColorBrush}"
+								   Visibility="{Binding Path=(smtx:XamlDisplayExtensions.Header), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource IsNullOrEmptyToCollapsed}, FallbackValue=Collapsed}" />
+
+						<!-- Description -->
+						<TextBlock Text="{Binding Path=(smtx:XamlDisplayExtensions.Description), RelativeSource={RelativeSource TemplatedParent}}"
+								   Style="{StaticResource MaterialBody1}"
+								   Foreground="{StaticResource Foreground02ColorBrush}"
+								   Visibility="{Binding Path=(smtx:XamlDisplayExtensions.Description), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource IsNullOrEmptyToCollapsed}, FallbackValue=Collapsed}"
+								   Margin="0,16,0,0" />
+
+						<Grid BorderBrush="{TemplateBinding BorderBrush}"
+							  BorderThickness="{TemplateBinding BorderThickness}"
+							  Margin="0,30,0,0">
+
+							<Grid.RowDefinitions>
+								<RowDefinition Height="Auto" />
+								<RowDefinition Height="Auto" />
+							</Grid.RowDefinitions>
+
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="*" />
+									<ColumnDefinition Width="Auto"
+													  win:MinWidth="30"
+													  netstdref:MinWidth="30" />
+								</Grid.ColumnDefinitions>
+
+								<!-- Content -->
+								<ContentPresenter x:Name="MainContent"
+												  Content="{TemplateBinding Content}" />
+
+								<!-- Reveal Button -->
+								<ToggleButton x:Name="RevealButton"
+											  Style="{StaticResource XamlDisplayExpandToggleButtonStyle}"
+											  IsChecked="False"
+											  HorizontalAlignment="Right"
+											  VerticalAlignment="Top"
+											  android:Visibility="Collapsed"
+											  ios:Visibility="Collapsed"
+											  Grid.Column="1" />
+							</Grid>
+
+							<ScrollViewer Background="{StaticResource SampleSecondBackgroundBrush}"
+										  HorizontalScrollBarVisibility="Auto"
+										  VerticalScrollBarVisibility="Disabled"
+										  win:Visibility="{Binding ElementName=RevealButton, Path=IsChecked, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
+										  netstdref:Visibility="{Binding ElementName=RevealButton, Path=IsChecked, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
+										  macos:Visibility="{Binding ElementName=RevealButton, Path=IsChecked, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
+										  ios:Visibility="Collapsed"
+										  android:Visibility="Collapsed"
+										  Grid.Row="1">
+
+								<!-- Xaml -->
+								<TextBlock Text="{Binding Path=(smtx:XamlDisplayExtensions.PrettyXaml), RelativeSource={RelativeSource TemplatedParent}}"
+										   IsTextSelectionEnabled="True"
+										   FontFamily="Consolas"
+										   Foreground="{StaticResource MaterialOnSurfaceBrush}"
+										   Margin="30,20,60,20" />
+							</ScrollViewer>
+
+							<!-- Copy Button -->
+							<Button Style="{StaticResource MaterialTextButtonStyle}"
+									extensions:ClipboardExtensions.CopyTrigger="ButtonClicked"
+									extensions:ClipboardExtensions.CopyContent="{Binding Path=(smtx:XamlDisplayExtensions.PrettyXaml), RelativeSource={RelativeSource TemplatedParent}}"
+									Padding="0"
+									HorizontalAlignment="Right"
+									VerticalAlignment="Top"
+									win:Visibility="{Binding ElementName=RevealButton, Path=IsChecked, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
+									netstdref:Visibility="{Binding ElementName=RevealButton, Path=IsChecked, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
+									macos:Visibility="{Binding ElementName=RevealButton, Path=IsChecked, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
+									ios:Visibility="Collapsed"
+									android:Visibility="Collapsed"
+									Grid.Row="1">
+
+								<!-- Icon -->
+								<Path Data="{StaticResource CopyToClipboardPathStyle}"
+									  Fill="{StaticResource MaterialOnSurfaceMediumBrush}"
+									  Height="22"
+									  Width="19"
+									  Stretch="Uniform"
+									  VerticalAlignment="Center"
+									  HorizontalAlignment="Center"
+									  Margin="20" />
+							</Button>
+						</Grid>
+					</StackPanel>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style TargetType="smtx:XamlDisplay"
+		   BasedOn="{StaticResource ExpanderXamlDisplayStyle}" />
+
+</ResourceDictionary>

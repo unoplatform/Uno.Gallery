@@ -8,11 +8,43 @@
 			you need to make sure that the version provided here matches https://github.com/onovotny/MSBuildSdkExtras/blob/master/Source/MSBuild.Sdk.Extras/DefaultItems/ImplicitPackages.targets#L11.
 			This is not an issue when libraries are referenced through nuget packages. See https://github.com/unoplatform/uno/issues/446 for more details.
 			-->
-      <Version>6.2.2</Version>
+      <Version>6.2.10</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Filter" Version="1.1.1" />
+    <PackageReference Include="nventive.Nimue.Application.Building.Light">
+      <Version>0.1.0-alpha.58</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="nventive.Nimue.Application.Packaging">
+      <Version>0.1.0-alpha.58</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="nventive.Nimue.Application.Versioning">
+      <Version>0.1.0-alpha.58</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="nventive.Nimue.TargetFrameworks.Filtering">
+      <Version>0.1.0-alpha.58</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
     <PackageReference Include="Uno.Core" Version="2.0.0" />
+    <PackageReference Include="Uno.Material">
+      <Version>1.0.0-dev.507</Version>
+    </PackageReference>
+    <PackageReference Include="Uno.ShowMeTheXAML">
+      <Version>1.0.59</Version>
+    </PackageReference>
+    <PackageReference Include="Uno.ShowMeTheXAML.MSBuild">
+      <Version>1.0.59</Version>
+    </PackageReference>
+    <PackageReference Include="Uno.UI">
+      <Version>3.0.0-dev.1535</Version>
+    </PackageReference>
   </ItemGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -24,12 +56,12 @@
     <AssemblyName>Uno.Gallery</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
-    <TargetPlatformVersion>10.0.17763.0</TargetPlatformVersion>
-    <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+    <TargetPlatformVersion>10.0.18362.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.18362.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <PackageCertificateKeyFile>Uno.Gallery.Uwp_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <AppxPackageSigningEnabled>false</AppxPackageSigningEnabled>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -126,8 +158,105 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GeneralPages\OverviewPage.xaml.cs">
+      <DependentUpon>OverviewPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GeneralPages\OverviewPageHeader.xaml.cs">
+      <DependentUpon>OverviewPageHeader.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SamplePages\AcrylicSamplePage.xaml.cs">
+      <DependentUpon>AcrylicSamplePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SamplePages\BrushSamplePage.xaml.cs">
+      <DependentUpon>BrushSamplePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GeneralPages\FluentPalettePage.xaml.cs">
+      <DependentUpon>FluentPalettePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SamplePages\BottomNavigationBarSamplePage.xaml.cs">
+      <DependentUpon>BottomNavigationBarSamplePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SamplePages\CardSamplePage.xaml.cs">
+      <DependentUpon>CardSamplePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SamplePages\ComboBoxSamplePage.xaml.cs">
+      <DependentUpon>ComboBoxSamplePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SamplePages\DatePickerSamplePage.xaml.cs">
+      <DependentUpon>DatePickerSamplePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SamplePages\FlipViewSamplePage.xaml.cs">
+      <DependentUpon>FlipViewSamplePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SamplePages\MessageDialogSamplePage.xaml.cs">
+      <DependentUpon>MessageDialogSamplePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SamplePages\PanelSamplePage.xaml.cs">
+      <DependentUpon>PanelSamplePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SamplePages\ProgressSamplePage.xaml.cs">
+      <DependentUpon>ProgressSamplePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SamplePages\NavigationViewSamplePage.xaml.cs">
+      <DependentUpon>NavigationViewSamplePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GeneralPages\MaterialPalettePage.xaml.cs">
+      <DependentUpon>MaterialPalettePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SamplePages\FabSamplePage.xaml.cs">
+      <DependentUpon>FabSamplePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SamplePages\ShapeSamplePage.xaml.cs">
+      <DependentUpon>ShapeSamplePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SamplePages\SliderSamplePage.xaml.cs">
+      <DependentUpon>SliderSamplePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SamplePages\TimePickerSamplePage.xaml.cs">
+      <DependentUpon>TimePickerSamplePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SamplePages\ToggleSwitchSamplePage.xaml.cs">
+      <DependentUpon>ToggleSwitchSamplePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SamplePages\RadioButtonSamplePage.xaml.cs">
+      <DependentUpon>RadioButtonSamplePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SamplePages\TextBlockSamplePage.xaml.cs">
+      <DependentUpon>TextBlockSamplePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SamplePages\CheckBoxSamplePage.xaml.cs">
+      <DependentUpon>CheckBoxSamplePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SamplePages\TransformsSamplePage.xaml.cs">
+      <DependentUpon>TransformsSamplePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SamplePages\TypographySamplePage.xaml.cs">
+      <DependentUpon>TypographySamplePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SamplePages\WebViewSamplePage.xaml.cs">
+      <DependentUpon>WebViewSamplePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Shell.xaml.cs">
+      <DependentUpon>Shell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SamplePages\ButtonSamplePage.xaml.cs">
+      <DependentUpon>ButtonSamplePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SamplePages\PasswordBoxSamplePage.xaml.cs">
+      <DependentUpon>PasswordBoxSamplePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SamplePages\TextBoxSamplePage.xaml.cs">
+      <DependentUpon>TextBoxSamplePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -136,14 +265,247 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\LargeTile.scale-100.png" />
+    <Content Include="Assets\LargeTile.scale-125.png" />
+    <Content Include="Assets\LargeTile.scale-150.png" />
+    <Content Include="Assets\LargeTile.scale-200.png" />
+    <Content Include="Assets\LargeTile.scale-400.png" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
+    <Content Include="Assets\SmallTile.scale-100.png" />
+    <Content Include="Assets\SmallTile.scale-125.png" />
+    <Content Include="Assets\SmallTile.scale-150.png" />
+    <Content Include="Assets\SmallTile.scale-200.png" />
+    <Content Include="Assets\SmallTile.scale-400.png" />
+    <Content Include="Assets\SplashScreen.scale-100.png" />
+    <Content Include="Assets\SplashScreen.scale-125.png" />
+    <Content Include="Assets\SplashScreen.scale-150.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
+    <Content Include="Assets\SplashScreen.scale-400.png" />
+    <Content Include="Assets\Square150x150Logo.scale-100.png" />
+    <Content Include="Assets\Square150x150Logo.scale-125.png" />
+    <Content Include="Assets\Square150x150Logo.scale-150.png" />
     <Content Include="Assets\Square150x150Logo.scale-200.png" />
+    <Content Include="Assets\Square150x150Logo.scale-400.png" />
+    <Content Include="Assets\Square44x44Logo.altform-lightunplated_targetsize-16.png" />
+    <Content Include="Assets\Square44x44Logo.altform-lightunplated_targetsize-24.png" />
+    <Content Include="Assets\Square44x44Logo.altform-lightunplated_targetsize-256.png" />
+    <Content Include="Assets\Square44x44Logo.altform-lightunplated_targetsize-32.png" />
+    <Content Include="Assets\Square44x44Logo.altform-lightunplated_targetsize-48.png" />
+    <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-16.png" />
+    <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-256.png" />
+    <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-32.png" />
+    <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-48.png" />
+    <Content Include="Assets\Square44x44Logo.scale-100.png" />
+    <Content Include="Assets\Square44x44Logo.scale-125.png" />
+    <Content Include="Assets\Square44x44Logo.scale-150.png" />
     <Content Include="Assets\Square44x44Logo.scale-200.png" />
-    <Content Include="Assets\StoreLogo.png" />
+    <Content Include="Assets\Square44x44Logo.scale-400.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-16.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-24.png" />
+    <Content Include="Assets\square44x44logo.targetsize-24_altform-unplated.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-256.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-32.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-48.png" />
+    <Content Include="Assets\StoreLogo.backup.png" />
+    <Content Include="Assets\StoreLogo.scale-100.png" />
+    <Content Include="Assets\StoreLogo.scale-125.png" />
+    <Content Include="Assets\StoreLogo.scale-150.png" />
+    <Content Include="Assets\StoreLogo.scale-200.png" />
+    <Content Include="Assets\StoreLogo.scale-400.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-100.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-125.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-150.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-400.png" />
     <Content Include="Properties\Default.rd.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <Page Include="Views\GeneralPages\OverviewPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\GeneralPages\OverviewPageHeader.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SamplePages\AcrylicSamplePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SamplePages\BrushSamplePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\GeneralPages\FluentPalettePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SamplePages\BottomNavigationBarSamplePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SamplePages\CardSamplePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SamplePages\ComboBoxSamplePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SamplePages\DatePickerSamplePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SamplePages\FlipViewSamplePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SamplePages\MessageDialogSamplePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SamplePages\PanelSamplePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SamplePages\ProgressSamplePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SamplePages\NavigationViewSamplePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\GeneralPages\MaterialPalettePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SamplePages\FabSamplePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SamplePages\ShapeSamplePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SamplePages\SliderSamplePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SamplePages\TimePickerSamplePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SamplePages\ToggleSwitchSamplePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SamplePages\RadioButtonSamplePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SamplePages\TextBlockSamplePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SamplePages\CheckBoxSamplePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SamplePages\TransformsSamplePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SamplePages\WebViewSamplePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SamplePages\TypographySamplePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Shell.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SamplePages\ButtonSamplePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SamplePages\TextBoxSamplePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SamplePages\PasswordBoxSamplePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Colors.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Converters.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Fonts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Styles\Banner.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Styles\NavigationViewItemHeader.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Styles\OverviewSampleView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Styles\ColorPaletteView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Styles\FluentPaletteView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Styles\Path.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Styles\ThreeColorPaletteView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Styles\ToggleButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Styles\RadioButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Styles\ContentPageLayout.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Styles\SamplePageLayout.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Styles\ToggleSwitch.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Styles\XamlDisplay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="..\Uno.Gallery.Shared\Uno.Gallery.Shared.projitems" Label="Shared" Condition="Exists('..\Uno.Gallery.Shared\Uno.Gallery.Shared.projitems')" />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

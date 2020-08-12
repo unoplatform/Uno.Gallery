@@ -1,0 +1,122 @@
+﻿<Page x:Class="Uno.Gallery.Views.Samples.ToggleSwitchSamplePage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:controls="using:Uno.Gallery.Controls"
+	  xmlns:gallery="using:Uno.Gallery"
+	  xmlns:smtx="using:ShowMeTheXAML"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  mc:Ignorable="d">
+
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<controls:SamplePageLayout>
+
+			<controls:SamplePageLayout.FluentTemplate>
+				<DataTemplate>
+					<StackPanel>
+
+						<smtx:XamlDisplay UniqueKey="ToggleSwitchSamplePage_Fluent"
+										  smtx:XamlDisplayExtensions.Header="Default">
+							<StackPanel Spacing="20">
+
+								<ToggleSwitch Header="OFF"
+											  Foreground="{StaticResource MaterialOnBackgroundColor}" />
+
+								<ToggleSwitch Header="ON"
+											  Foreground="{StaticResource MaterialOnBackgroundColor}"
+											  IsOn="True" />
+
+								<ToggleSwitch Header="DISABLED OFF"
+											  IsEnabled="False" />
+
+								<ToggleSwitch Header="DISABLED ON"
+											  IsEnabled="False"
+											  IsOn="True" />
+							</StackPanel>
+						</smtx:XamlDisplay>
+					</StackPanel>
+				</DataTemplate>
+			</controls:SamplePageLayout.FluentTemplate>
+
+			<controls:SamplePageLayout.MaterialTemplate>
+				<DataTemplate>
+					<StackPanel>
+
+						<smtx:XamlDisplay UniqueKey="ToggleSwitchSamplePage_Material"
+										  smtx:XamlDisplayExtensions.Header="Default">
+							<StackPanel Spacing="20">
+
+								<ToggleSwitch Header="OFF"
+											  Style="{StaticResource MaterialToggleSwitchStyle}" />
+
+								<ToggleSwitch Header="ON"
+											  Style="{StaticResource MaterialToggleSwitchStyle}"
+											  IsOn="True" />
+
+								<ToggleSwitch Header="DISABLED OFF"
+											  Style="{StaticResource MaterialToggleSwitchStyle}"
+											  IsEnabled="False" />
+
+								<ToggleSwitch Header="DISABLED ON"
+											  Style="{StaticResource MaterialToggleSwitchStyle}"
+											  IsEnabled="False"
+											  IsOn="True" />
+							</StackPanel>
+						</smtx:XamlDisplay>
+						
+						<smtx:XamlDisplay UniqueKey="ToggleSwitchSamplePage_Material_Secondary"
+										  smtx:XamlDisplayExtensions.Header="Secondary">
+							<StackPanel Spacing="20">
+
+								<ToggleSwitch Header="OFF"
+											  Style="{StaticResource MaterialSecondaryToggleSwitchStyle}" />
+
+								<ToggleSwitch Header="ON"
+											  Style="{StaticResource MaterialSecondaryToggleSwitchStyle}"
+											  IsOn="True" />
+
+								<ToggleSwitch Header="DISABLED OFF"
+											  Style="{StaticResource MaterialSecondaryToggleSwitchStyle}"
+											  IsEnabled="False" />
+
+								<ToggleSwitch Header="DISABLED ON"
+											  Style="{StaticResource MaterialSecondaryToggleSwitchStyle}"
+											  IsEnabled="False"
+											  IsOn="True" />
+							</StackPanel>
+						</smtx:XamlDisplay>
+					</StackPanel>
+				</DataTemplate>
+			</controls:SamplePageLayout.MaterialTemplate>
+
+			<controls:SamplePageLayout.NativeTemplate>
+				<DataTemplate>
+					<StackPanel>
+
+						<smtx:XamlDisplay UniqueKey="ToggleSwitchSamplePage_Native"
+										  smtx:XamlDisplayExtensions.Header="Default">
+							<StackPanel Spacing="20">
+
+								<TextBlock Text="Enabled" />
+
+								<ToggleSwitch Style="{StaticResource NativeDefaultToggleSwitch}" />
+
+								<ToggleSwitch Style="{StaticResource NativeDefaultToggleSwitch}"
+											  IsOn="True" />
+
+								<TextBlock Text="Disabled" />
+
+								<ToggleSwitch Style="{StaticResource NativeDefaultToggleSwitch}"
+											  IsEnabled="False" />
+
+								<ToggleSwitch Style="{StaticResource NativeDefaultToggleSwitch}"
+											  IsEnabled="False"
+											  IsOn="True" />
+							</StackPanel>
+						</smtx:XamlDisplay>
+					</StackPanel>
+				</DataTemplate>
+			</controls:SamplePageLayout.NativeTemplate>
+		</controls:SamplePageLayout>
+	</Grid>
+</Page>

@@ -1,0 +1,37 @@
+﻿<Application x:Class="Uno.Gallery.App"
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:local="using:Uno.Gallery"
+			 xmlns:material="using:Uno.Material">
+
+	<Application.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+
+				<!-- Load WinUI resources -->
+				<XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls"/>
+
+				<ResourceDictionary Source="Views/Converters.xaml" />
+				<ResourceDictionary Source="Views/Fonts.xaml" />
+
+				<ResourceDictionary Source="Views/Styles/Banner.xaml" />
+				<ResourceDictionary Source="Views/Styles/ColorPaletteView.xaml" />
+				<ResourceDictionary Source="Views/Styles/ContentPageLayout.xaml" />
+				<ResourceDictionary Source="Views/Styles/FluentPaletteView.xaml" />
+				<ResourceDictionary Source="Views/Styles/OverviewSampleView.xaml" />
+				<ResourceDictionary Source="Views/Styles/NavigationViewItemHeader.xaml" />
+				<ResourceDictionary Source="Views/Styles/Path.xaml" />
+				<ResourceDictionary Source="Views/Styles/RadioButton.xaml" />
+				<ResourceDictionary Source="Views/Styles/SamplePageLayout.xaml" />
+				<ResourceDictionary Source="Views/Styles/ThreeColorPaletteView.xaml" />
+				<ResourceDictionary Source="Views/Styles/ToggleButton.xaml" />
+				<ResourceDictionary Source="Views/Styles/ToggleSwitch.xaml" />
+				<ResourceDictionary Source="Views/Styles/XamlDisplay.xaml" />
+				
+				<ResourceDictionary>
+					<x:Double x:Key="DesktopAdaptiveThresholdWidth">720</x:Double>
+				</ResourceDictionary>
+			</ResourceDictionary.MergedDictionaries>
+		</ResourceDictionary>
+	</Application.Resources>
+</Application>

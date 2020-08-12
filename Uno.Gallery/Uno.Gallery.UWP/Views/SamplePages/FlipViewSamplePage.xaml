@@ -1,0 +1,110 @@
+﻿<Page
+    x:Class="Uno.Gallery.Views.Samples.FlipViewSamplePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Uno.Gallery.Views.Samples"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Uno.Gallery.Controls"
+	xmlns:smtx="using:ShowMeTheXAML"
+	mc:Ignorable="d">
+
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<controls:SamplePageLayout>
+
+			<controls:SamplePageLayout.FluentTemplate>
+				<DataTemplate>
+					<StackPanel>
+						<smtx:XamlDisplay UniqueKey="FlipViewSamplePage_Fluent_Default"
+										  smtx:XamlDisplayExtensions.Header="FlipView">
+							<FlipView x:Name="flipView"
+									  Height="600"
+									  SelectedIndex="0">
+								<FlipViewItem>
+									<Grid Background="{StaticResource UnoBlueColorBrush}">
+										<Grid.RowDefinitions>
+											<RowDefinition Height="*" />
+											<RowDefinition Height="*" />
+										</Grid.RowDefinitions>
+										<TextBlock Grid.Row="0"
+												   Foreground="White"
+												   HorizontalAlignment="Center"
+												   VerticalAlignment="Bottom"
+												   FontSize="30"
+												   Text="Item 1" />
+										<TextBlock Grid.Row="1"
+												   Foreground="White"
+												   HorizontalAlignment="Center"
+												   VerticalAlignment="Top"
+												   FontSize="30"
+												   Text="Swipe &#x2192;" />
+									</Grid>
+								</FlipViewItem>
+								<FlipViewItem>
+									<Grid Background="{StaticResource UnoPurpleColorBrush}">
+										<Grid.RowDefinitions>
+											<RowDefinition Height="*" />
+											<RowDefinition Height="*" />
+										</Grid.RowDefinitions>
+										<TextBlock Grid.Row="0"
+												   Foreground="White"
+												   HorizontalAlignment="Center"
+												   VerticalAlignment="Bottom"
+												   FontSize="30"
+												   Text="Item 2" />
+										<TextBlock Grid.Row="1"
+												   Foreground="White"
+												   HorizontalAlignment="Center"
+												   VerticalAlignment="Top"
+												   FontSize="30"
+												   Text="&#x2190; Swipe &#x2192;" />
+									</Grid>
+								</FlipViewItem>
+								<FlipViewItem>
+									<Grid Background="{StaticResource UnoGreenColorBrush}">
+										<Grid.RowDefinitions>
+											<RowDefinition Height="*" />
+											<RowDefinition Height="*" />
+										</Grid.RowDefinitions>
+										<TextBlock Grid.Row="0"
+												   Foreground="White"
+												   HorizontalAlignment="Center"
+												   VerticalAlignment="Bottom"
+												   FontSize="30"
+												   Text="Item 3" />
+										<TextBlock Grid.Row="1"
+												   Foreground="White"
+												   HorizontalAlignment="Center"
+												   VerticalAlignment="Top"
+												   FontSize="30"
+												   Text="&#x2190; Swipe &#x2192;" />
+									</Grid>
+								</FlipViewItem>
+								<FlipViewItem>
+									<Grid Background="{StaticResource UnoRedColorBrush}">
+										<Grid.RowDefinitions>
+											<RowDefinition Height="*" />
+											<RowDefinition Height="*" />
+										</Grid.RowDefinitions>
+										<TextBlock Grid.Row="0"
+												   Foreground="White"
+												   HorizontalAlignment="Center"
+												   VerticalAlignment="Bottom"
+												   FontSize="30"
+												   Text="Item 4" />
+										<TextBlock Grid.Row="1"
+												   Foreground="White"
+												   HorizontalAlignment="Center"
+												   VerticalAlignment="Top"
+												   FontSize="30"
+												   Text="&#x2190; Swipe" />
+									</Grid>
+								</FlipViewItem>
+							</FlipView>
+						</smtx:XamlDisplay>
+					</StackPanel>
+				</DataTemplate>
+			</controls:SamplePageLayout.FluentTemplate>
+		</controls:SamplePageLayout>
+	</Grid>
+</Page>

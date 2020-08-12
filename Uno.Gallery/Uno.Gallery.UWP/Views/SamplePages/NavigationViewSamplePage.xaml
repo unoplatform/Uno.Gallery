@@ -1,0 +1,49 @@
+﻿<Page x:Class="Uno.Gallery.Views.Samples.NavigationViewSamplePage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:controls="using:Uno.Gallery.Controls"
+	  xmlns:local="using:Uno.Gallery.Views.Samples"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  mc:Ignorable="d"
+	  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<controls:SamplePageLayout>
+
+			<controls:SamplePageLayout.FluentTemplate>
+				<DataTemplate>
+					<StackPanel Margin="0,16,0,0">
+
+						<!-- NavigationView Text -->
+						<TextBlock Text="The NavigationView control is the expandable and collapsible menu that you see in the top-left of your screen."
+								   Style="{StaticResource MaterialBody1}" />
+
+						<TextBlock Text="The style you see in this application comes from the Uno.Material library. Check Microsoft's documentation for more details on the fluent style."
+								   Style="{StaticResource MaterialBody1}"
+								   Margin="0,16" />
+						
+						<HyperlinkButton Content="NavigationView documentation"
+										 NavigateUri="https://docs.microsoft.com/en-us/windows/uwp/design/controls-and-patterns/navigationview"/>
+
+					</StackPanel>
+				</DataTemplate>
+			</controls:SamplePageLayout.FluentTemplate>
+
+			<controls:SamplePageLayout.MaterialTemplate>
+				<DataTemplate>
+					<StackPanel Margin="0,16,0,0">
+
+						<!-- NavigationView Text -->
+						<TextBlock Text="The NavigationView control is the expandable and collapsible menu that you see in the top-left of your screen."
+								   Style="{StaticResource MaterialBody1}" />
+
+						<TextBlock Text="The NavigationView that you see in this application uses a material style that comes from the Uno.Material library. Check how it adjusts itself for mobile form factors!"
+								   Style="{StaticResource MaterialBody1}"
+								   Margin="0,16" />
+					</StackPanel>
+				</DataTemplate>
+			</controls:SamplePageLayout.MaterialTemplate>
+		</controls:SamplePageLayout>
+	</Grid>
+</Page>

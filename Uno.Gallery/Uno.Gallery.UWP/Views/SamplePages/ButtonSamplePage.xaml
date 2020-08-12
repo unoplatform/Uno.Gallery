@@ -1,0 +1,121 @@
+﻿<Page x:Class="Uno.Gallery.Views.Samples.ButtonSamplePage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:local="using:Uno.Gallery.Views.Samples"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  xmlns:controls="using:Uno.Gallery.Controls"
+	  xmlns:smtx="using:ShowMeTheXAML"
+	  xmlns:todo="what should be done"
+	  xmlns:gallery="using:Uno.Gallery"
+	  mc:Ignorable="d todo">
+
+	<Grid Background="{StaticResource MaterialBackgroundBrush}">
+		<controls:SamplePageLayout>
+			<controls:SamplePageLayout.MaterialTemplate>
+				<DataTemplate>
+					<StackPanel>
+
+						<!-- Contained Buttons -->
+						<smtx:XamlDisplay UniqueKey="ButtonSamplePage_MaterialContained"
+										  smtx:XamlDisplayExtensions.Header="Contained Buttons"
+										  smtx:XamlDisplayExtensions.Description="Contained buttons are high-emphasis, distinguished by their use of elevation and fill. They contain actions that are primary to your app."
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+							<StackPanel Spacing="20">
+
+								<Button Content="CONTAINED"
+										Style="{StaticResource MaterialContainedButtonStyle}" />
+
+								<Button Content="SECONDARY CONTAINED"
+										Style="{StaticResource MaterialContainedSecondaryButtonStyle}" />
+
+								<Button Content="CONTAINED DISABLED"
+										IsEnabled="False"
+										Style="{StaticResource MaterialContainedButtonStyle}" />
+							</StackPanel>
+						</smtx:XamlDisplay>
+
+						<!-- Outline Buttons -->
+						<smtx:XamlDisplay UniqueKey="ButtonSamplePage_MaterialOutlined"
+										  smtx:XamlDisplayExtensions.Header="Outline Buttons"
+										  smtx:XamlDisplayExtensions.Description="Outline buttons are low-emphasis. They contain actions that are secondary to your app."
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+							<StackPanel Spacing="20">
+
+								<Button Content="OUTLINED"
+										Style="{StaticResource MaterialOutlinedButtonStyle}" />
+
+								<Button Content="SECONDARY OUTLINED"
+										Style="{StaticResource MaterialOutlinedSecondaryButtonStyle}" />
+
+								<Button Content="OUTLINED DISABLED"
+										IsEnabled="False"
+										Style="{StaticResource MaterialOutlinedButtonStyle}" />
+							</StackPanel>
+						</smtx:XamlDisplay>
+
+						<!-- Text Buttons -->
+						<smtx:XamlDisplay UniqueKey="ButtonSamplePage_MaterialText"
+										  smtx:XamlDisplayExtensions.Header="Text Buttons"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+							<StackPanel>
+								<Button Content="TEXT"
+										Style="{StaticResource MaterialTextButtonStyle}" />
+
+								<Button Content="SECONDARY TEXT"
+										Style="{StaticResource MaterialTextSecondaryButtonStyle}" />
+
+								<Button Content="TEXT DISABLED"
+										IsEnabled="False"
+										Style="{StaticResource MaterialTextButtonStyle}" />
+							</StackPanel>
+						</smtx:XamlDisplay>
+					</StackPanel>
+				</DataTemplate>
+			</controls:SamplePageLayout.MaterialTemplate>
+
+			<controls:SamplePageLayout.FluentTemplate>
+				<DataTemplate>
+					<StackPanel>
+
+						<!-- Default button style -->
+						<smtx:XamlDisplay UniqueKey="ButtonSamplePage_FluentDefault"
+										  smtx:XamlDisplayExtensions.Header="Default Button"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+							<StackPanel Spacing="20">
+								<Button Content="Button" />
+								<Button Content="Disabled"
+										IsEnabled="False" />
+							</StackPanel>
+						</smtx:XamlDisplay>
+
+						<!-- TextBlock button style -->
+						<!-- Reference https://docs.microsoft.com/en-us/windows/uwp/design/controls-and-patterns/xaml-theme-resources#textblockbuttonstyle -->
+						<smtx:XamlDisplay UniqueKey="ButtonSamplePage_FluentText"
+										  smtx:XamlDisplayExtensions.Header="Text Button"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+							<StackPanel Spacing="20">
+								<Button Content="Text Button"
+										Style="{StaticResource TextBlockButtonStyle}"/>
+								<Button Content="Disabled"
+										Style="{StaticResource TextBlockButtonStyle}"
+										IsEnabled="False" />
+							</StackPanel>
+						</smtx:XamlDisplay>
+
+						<!-- Navigation Back button style -->
+						<!-- Reference https://docs.microsoft.com/en-us/windows/uwp/design/controls-and-patterns/xaml-theme-resources#navigationbackbuttonnormalstyle -->
+						<smtx:XamlDisplay UniqueKey="ButtonSamplePage_FluentBackButton"
+										  smtx:XamlDisplayExtensions.Header="Back Button"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+							<StackPanel Spacing="20">
+								<Button Style="{StaticResource NavigationBackButtonNormalStyle}"/>
+								<Button Style="{StaticResource NavigationBackButtonSmallStyle}"/>
+							</StackPanel>
+						</smtx:XamlDisplay>
+					</StackPanel>
+				</DataTemplate>
+			</controls:SamplePageLayout.FluentTemplate>
+		</controls:SamplePageLayout>
+	</Grid>
+</Page>

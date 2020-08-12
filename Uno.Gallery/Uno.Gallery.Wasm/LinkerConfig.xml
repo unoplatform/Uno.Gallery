@@ -1,8 +1,9 @@
 ﻿<linker>
   <assembly fullname="Uno.Gallery.Wasm" />
-  <assembly fullname="Uno.UI" />
+  <!--<assembly fullname="Uno.UI" />-->
+	<assembly fullname="WebAssembly.Bindings" />
 
-  <assembly fullname="System.Core">
+	<assembly fullname="System.Core">
 	<!-- This is required by JSon.NET and any expression.Compile caller -->
 	<type fullname="System.Linq.Expressions*" />
   </assembly>

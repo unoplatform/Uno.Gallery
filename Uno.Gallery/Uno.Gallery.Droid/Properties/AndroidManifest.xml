@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="Uno.Gallery" android:versionCode="1" android:versionName="1.0">
-  <uses-sdk android:minSdkVersion="16" android:targetSdkVersion="26" />
-  <application android:label="Uno.Gallery"></application>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.nventive.uno.ui.demo" android:versionCode="1" android:versionName="1.0">
+  <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="29" />
+  <application android:label="Uno Gallery" android:icon="@mipmap/ic_launcher"></application>
+  <uses-permission android:name="android.permission.INTERNET"/>
 </manifest>

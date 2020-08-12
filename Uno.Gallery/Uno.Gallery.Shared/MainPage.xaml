@@ -5,9 +5,13 @@
     xmlns:local="using:Uno.Gallery"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+	RequestedTheme="Light">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-		<TextBlock Text="Hello, world!" Margin="20" FontSize="30" />
-    </Grid>
+    <StackPanel Background="Cyan">
+		<TextBlock Text="{Binding Value, ElementName=MySlider}" Margin="30" FontSize="30" />
+		<Slider x:Name="MySlider" Value="15"
+				Margin="20"/>
+		<ToggleSwitch />
+	</StackPanel>
 </Page>

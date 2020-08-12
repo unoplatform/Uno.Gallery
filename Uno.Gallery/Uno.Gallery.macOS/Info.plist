@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleName</key>
-	<string>Uno.Gallery.macOS</string>
+	<string>Uno Gallery</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.companyname.Uno.Gallery-macOS</string>
+	<string>com.nventive.uno.gallery</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>

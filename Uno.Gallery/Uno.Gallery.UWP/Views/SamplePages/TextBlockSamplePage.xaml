@@ -1,0 +1,147 @@
+﻿<Page x:Class="Uno.Gallery.Views.Samples.TextBlockSamplePage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:controls="using:Uno.Gallery.Controls"
+	  xmlns:gallery="using:Uno.Gallery"
+	  xmlns:smtx="using:ShowMeTheXAML"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  mc:Ignorable="d">
+
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<controls:SamplePageLayout>
+
+			<controls:SamplePageLayout.FluentTemplate>
+				<DataTemplate>
+					<StackPanel>
+
+						<smtx:XamlDisplay UniqueKey="TextBlockSamplePage_Fluent_Simple"
+										  smtx:XamlDisplayExtensions.Header="Simple TextBlock">
+							<TextBlock Text="Text" />
+						</smtx:XamlDisplay>
+
+						<smtx:XamlDisplay UniqueKey="TextBlockSamplePage_Fluent_Foreground"
+										  smtx:XamlDisplayExtensions.Header="Foreground">
+							<StackPanel>
+								<TextBlock Text="Red"
+										   Foreground="{StaticResource UnoRedColorBrush}" />
+								<TextBlock Text="Green"
+										   Foreground="{StaticResource UnoGreenColorBrush}" />
+								<TextBlock Text="Blue"
+										   Foreground="{StaticResource UnoBlueColorBrush}" />
+							</StackPanel>
+						</smtx:XamlDisplay>
+
+						<smtx:XamlDisplay UniqueKey="TextBlockSamplePage_Fluent_FontStyle"
+										  smtx:XamlDisplayExtensions.Header="FontStyle">
+							<StackPanel>
+								<TextBlock Text="Normal"
+										   FontStyle="Normal" />
+								<TextBlock Text="Italic"
+										   FontStyle="Italic" />
+							</StackPanel>
+						</smtx:XamlDisplay>
+
+						<smtx:XamlDisplay UniqueKey="TextBlockSamplePage_Fluent_FontWeight"
+										  smtx:XamlDisplayExtensions.Header="FontWeight">
+							<StackPanel>
+								<TextBlock Text="Light"
+										   FontWeight="Light" />
+								<TextBlock Text="Normal"
+										   FontWeight="Normal" />
+								<TextBlock Text="SemiBold"
+										   FontWeight="SemiBold" />
+								<TextBlock Text="Bold"
+										   FontWeight="Bold" />
+								<TextBlock Text="ExtraBold"
+										   FontWeight="ExtraBold" />
+							</StackPanel>
+						</smtx:XamlDisplay>
+
+						<smtx:XamlDisplay UniqueKey="TextBlockSamplePage_Fluent_FontFamily"
+										  smtx:XamlDisplayExtensions.Header="FontFamily">
+							<StackPanel>
+								<TextBlock Text="Normal" />
+								<TextBlock Text="Serif"
+										   FontFamily="serif" />
+								<TextBlock Text="Monospace"
+										   FontFamily="monospace" />
+							</StackPanel>
+						</smtx:XamlDisplay>
+
+						<smtx:XamlDisplay UniqueKey="TextBlockSamplePage_Fluent_FontSize"
+										  smtx:XamlDisplayExtensions.Header="FontSize">
+							<StackPanel>
+								<TextBlock Text="10"
+										   FontSize="10" />
+								<TextBlock Text="20"
+										   FontSize="20" />
+								<TextBlock Text="40"
+										   FontSize="40" />
+							</StackPanel>
+						</smtx:XamlDisplay>
+
+						<smtx:XamlDisplay UniqueKey="TextBlockSamplePage_Fluent_Inlines"
+										  smtx:XamlDisplayExtensions.Header="Inlines">
+							<TextBlock TextWrapping="Wrap">TextBlock supports inline tags including <Bold>Bold</Bold>, <Italic>Italic</Italic>, <Underline>Underline</Underline>, <Span Foreground="Red">Span</Span>, and <Hyperlink Foreground="#1079CD"
+																																																									 NavigateUri="https://platform.uno/">Hyperlink</Hyperlink>.</TextBlock>
+
+						</smtx:XamlDisplay>
+
+						<smtx:XamlDisplay UniqueKey="TextBlockSamplePage_Fluent_Trimming"
+										  smtx:XamlDisplayExtensions.Header="TextTrimming &amp; MaxLines">
+							<TextBlock Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+									   TextTrimming="CharacterEllipsis"
+									   TextWrapping="Wrap"
+									   MaxLines="2" />
+						</smtx:XamlDisplay>
+
+						<smtx:XamlDisplay UniqueKey="TextBlockSamplePage_Fluent_TextAlignment"
+										  smtx:XamlDisplayExtensions.Header="TextAlignment">
+
+							<StackPanel>
+								<TextBlock Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+										   Width="200"
+										   Margin="0,5"
+										   TextWrapping="Wrap"
+										   TextAlignment="Left"
+										   HorizontalAlignment="Left" />
+								<TextBlock Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+										   Width="200"
+										   Margin="0,5"
+										   TextWrapping="Wrap"
+										   TextAlignment="Center"
+										   HorizontalAlignment="Center" />
+								<TextBlock Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+										   Width="200"
+										   Margin="0,5"
+										   TextWrapping="Wrap"
+										   TextAlignment="Right"
+										   HorizontalAlignment="Right" />
+								<TextBlock Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+										   Margin="0,5"
+										   TextWrapping="Wrap"
+										   TextAlignment="Justify"
+										   HorizontalAlignment="Left" />
+							</StackPanel>
+						</smtx:XamlDisplay>
+
+						<smtx:XamlDisplay UniqueKey="TextBlockSamplePage_Fluent_CharacterSpacing"
+										  smtx:XamlDisplayExtensions.Header="CharacterSpacing">
+							<TextBlock Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+									   TextWrapping="Wrap"
+									   CharacterSpacing="100" />
+						</smtx:XamlDisplay>
+
+						<smtx:XamlDisplay UniqueKey="TextBlockSamplePage_Fluent_LineHeight"
+										  smtx:XamlDisplayExtensions.Header="LineHeight">
+							<TextBlock Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+									   TextWrapping="Wrap"
+									   LineHeight="30" />
+						</smtx:XamlDisplay>
+					</StackPanel>
+				</DataTemplate>
+			</controls:SamplePageLayout.FluentTemplate>
+		</controls:SamplePageLayout>
+	</Grid>
+</Page>
