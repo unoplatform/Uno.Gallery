@@ -4,6 +4,7 @@
 		<OutputType>Exe</OutputType>
 		<TargetFramework>netstandard2.0</TargetFramework>
 		<NoWarn>NU1701</NoWarn>
+		<WasmHead>true</WasmHead>
 		<!--<WasmShellGenerateAOTProfile>true</WasmShellGenerateAOTProfile>-->
 		<!--<WasmShellMonoRuntimeExecutionMode>InterpreterAndAOT</WasmShellMonoRuntimeExecutionMode>-->
 		<!--<WasmShellEnableEmccProfiling>true</WasmShellEnableEmccProfiling>-->
