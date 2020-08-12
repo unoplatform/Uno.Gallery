@@ -121,7 +121,7 @@
 										  VerticalAlignment="Stretch"
 										  VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
 										  Grid.ColumnSpan="3" />
-						
+
 						<Grid x:Name="DisabledGrid"
 							  Grid.Column="2"
 							  Grid.Row="1">
@@ -148,5 +148,4 @@
 			</Setter.Value>
 		</Setter>
 	</android:Style>
-
 </ResourceDictionary>
