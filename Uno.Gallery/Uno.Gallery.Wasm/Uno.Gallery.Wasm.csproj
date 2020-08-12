@@ -4,6 +4,7 @@
 		<OutputType>Exe</OutputType>
 		<TargetFramework>netstandard2.0</TargetFramework>
 		<NoWarn>NU1701</NoWarn>
+		<WasmHead>true</WasmHead>
 		<!--<WasmShellGenerateAOTProfile>true</WasmShellGenerateAOTProfile>-->
 		<!--<WasmShellMonoRuntimeExecutionMode>InterpreterAndAOT</WasmShellMonoRuntimeExecutionMode>-->
 		<!--<WasmShellEnableEmccProfiling>true</WasmShellEnableEmccProfiling>-->
@@ -96,4 +97,6 @@
 		<TypeScriptCompile Include="ts\GoogleAnalytics.ts" />
 	</ItemGroup>
 	<Import Project="..\Uno.Gallery.Shared\Uno.Gallery.Shared.projitems" Label="Shared" Condition="Exists('..\Uno.Gallery.Shared\Uno.Gallery.Shared.projitems')" />
+	<Import Project="..\..\Versioning.targets" />
+	<Import Project="..\..\Packaging.targets" />
 </Project>
