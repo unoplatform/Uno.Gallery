@@ -61,14 +61,15 @@
 											   MaxLines="1"
 											   TextTrimming="CharacterEllipsis"
 											   Style="{StaticResource MaterialHeadline4}"
-											   Foreground="{StaticResource Foreground01ColorBrush}"
+											   Foreground="{StaticResource MaterialOnBackgroundBrush}"
 											   Visibility="Collapsed"
 											   Margin="0,32,0,0" />
 
 									<!-- Description (optional) -->
 									<TextBlock Text="{TemplateBinding Description}"
 											   Style="{StaticResource MaterialSubtitle1}"
-											   Foreground="{StaticResource Foreground02ColorBrush}"
+											   Foreground="{StaticResource MaterialOnBackgroundBrush}"
+											   Opacity="0.8"
 											   TextWrapping="Wrap"
 											   Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Description, Converter={StaticResource IsNullOrEmptyToCollapsed}, FallbackValue=Collapsed}"
 											   Margin="0,16,0,0" />

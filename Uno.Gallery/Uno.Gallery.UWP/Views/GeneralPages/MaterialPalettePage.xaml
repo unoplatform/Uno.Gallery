@@ -158,7 +158,8 @@
 
 				<TextBlock Text="The following elements use colors that don't usually represent your brand."
 						   Style="{StaticResource MaterialBody1}"
-						   Foreground="{StaticResource Foreground02ColorBrush}"
+						   Foreground="{StaticResource MaterialOnBackgroundBrush}"
+						   Opacity="0.8"
 						   Margin="0,16,0,0" />
 
 				<controls:ColorPaletteView ColorName="Background"
@@ -201,7 +202,8 @@
 
 				<TextBlock Text="These colors affect elements such as texts or icons appearing in front of a surface. For example, OnPrimaryBrush is for an element displayed over a surface primary color."
 						   Style="{StaticResource MaterialBody1}"
-						   Foreground="{StaticResource Foreground02ColorBrush}"
+						   Foreground="{StaticResource MaterialOnBackgroundBrush}"
+						   Opacity="0.8"
 						   Margin="0,16,0,0" />
 
 				<controls:ColorPaletteView Title="OnPrimary"
@@ -227,7 +229,8 @@
 
 					<TextBlock Text="Example:"
 							   Style="{StaticResource MaterialBody1}"
-							   Foreground="{StaticResource Foreground02ColorBrush}"
+							   Foreground="{StaticResource MaterialOnBackgroundBrush}"
+							   Opacity="0.8"
 							   VerticalAlignment="Center" />
 
 					<Button Content="Action"
@@ -258,7 +261,8 @@
 
 					<TextBlock Text="Example:"
 							   Style="{StaticResource MaterialBody1}"
-							   Foreground="{StaticResource Foreground02ColorBrush}"
+							   Foreground="{StaticResource MaterialOnBackgroundBrush}"
+							   Opacity="0.8"
 							   VerticalAlignment="Center" />
 
 					<Button Content="Action"
@@ -282,7 +286,8 @@
 
 				<TextBlock Text="OnSurface colors are the colors used to display text or icons on the surface color."
 						   Style="{StaticResource MaterialBody1}"
-						   Foreground="{StaticResource Foreground02ColorBrush}"
+						   Foreground="{StaticResource MaterialOnBackgroundBrush}"
+						   Opacity="0.8"
 						   Margin="0,16,0,0" />
 
 				<toolkit:ElevatedView Elevation="6"
@@ -320,7 +325,8 @@
 						   Margin="0,48,0,36" />
 
 				<TextBlock Style="{StaticResource MaterialBody1}"
-						   Foreground="{StaticResource Foreground02ColorBrush}"
+						   Foreground="{StaticResource MaterialOnBackgroundBrush}"
+						   Opacity="0.8"
 						   Margin="0,0,0,16">
 					<Run Text="For more information refer to" />
 					

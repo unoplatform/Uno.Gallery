@@ -20,24 +20,27 @@
 			<!-- Description -->
 			<TextBlock Text="{Binding Description}"
 					   Style="{StaticResource MaterialSubtitle1}"
-					   Foreground="{StaticResource Foreground02ColorBrush}"
+					   Foreground="{StaticResource MaterialOnBackgroundBrush}"
+					   Opacity="0.8"
 					   Visibility="{Binding Description, Converter={StaticResource IsNullOrEmptyToCollapsed}, FallbackValue=Collapsed}"
 					   Margin="0,16,0,0" />
 
 			<!-- Source label -->
 			<TextBlock Text="SOURCE"
 					   Style="{StaticResource MaterialOverline}"
-					   Foreground="{StaticResource Foreground04ColorBrush}"
+					   Foreground="{StaticResource MaterialOnBackgroundBrush}"
+					   Opacity="0.45"
 					   Margin="0,30,0,0" />
 
 			<!-- Source value -->
 			<TextBlock Text="{Binding Source, Converter={StaticResource EnumToDescription}}"
 					   Style="{StaticResource MaterialBody1}"
-					   Foreground="{StaticResource Foreground02ColorBrush}"
+					   Foreground="{StaticResource MaterialOnBackgroundBrush}"
+					   Opacity="0.8"
 					   Margin="0,0,0,16" />
 		</StackPanel>
 	</DataTemplate>
-	
+
 	<Style x:Key="DefaultSamplePageLayoutStyle"
 		   TargetType="controls:SamplePageLayout">
 
@@ -97,9 +100,9 @@
 											   MaxLines="1"
 											   TextTrimming="CharacterEllipsis"
 											   Style="{StaticResource MaterialHeadline4}"
-											   Foreground="{StaticResource Foreground01ColorBrush}"
+											   Foreground="{StaticResource MaterialOnBackgroundBrush}"
 											   Visibility="Collapsed" />
-									
+
 									<!-- Header (default template contains Description and Source) -->
 									<ContentPresenter Content="{TemplateBinding Content}"
 													  ContentTemplate="{TemplateBinding HeaderTemplate}"

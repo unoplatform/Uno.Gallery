@@ -20,10 +20,10 @@
 							<StackPanel Spacing="20">
 
 								<ToggleSwitch Header="OFF"
-											  Foreground="{StaticResource MaterialOnBackgroundColor}" />
+											  Foreground="{StaticResource MaterialOnBackgroundBrush}" />
 
 								<ToggleSwitch Header="ON"
-											  Foreground="{StaticResource MaterialOnBackgroundColor}"
+											  Foreground="{StaticResource MaterialOnBackgroundBrush}"
 											  IsOn="True" />
 
 								<ToggleSwitch Header="DISABLED OFF"

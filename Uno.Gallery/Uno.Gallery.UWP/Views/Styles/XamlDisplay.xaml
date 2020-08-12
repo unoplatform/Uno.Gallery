@@ -59,13 +59,14 @@
 						<!-- Header -->
 						<TextBlock Text="{Binding Path=(smtx:XamlDisplayExtensions.Header), RelativeSource={RelativeSource TemplatedParent}}"
 								   Style="{StaticResource MaterialHeadline6}"
-								   Foreground="{StaticResource Foreground01ColorBrush}"
+								   Foreground="{StaticResource MaterialOnBackgroundBrush}"
 								   Visibility="{Binding Path=(smtx:XamlDisplayExtensions.Header), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource IsNullOrEmptyToCollapsed}, FallbackValue=Collapsed}" />
 
 						<!-- Description -->
 						<TextBlock Text="{Binding Path=(smtx:XamlDisplayExtensions.Description), RelativeSource={RelativeSource TemplatedParent}}"
 								   Style="{StaticResource MaterialBody1}"
-								   Foreground="{StaticResource Foreground02ColorBrush}"
+								   Foreground="{StaticResource MaterialOnBackgroundBrush}"
+								   Opacity="0.8"
 								   Visibility="{Binding Path=(smtx:XamlDisplayExtensions.Description), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource IsNullOrEmptyToCollapsed}, FallbackValue=Collapsed}"
 								   Margin="0,16,0,0" />
 
