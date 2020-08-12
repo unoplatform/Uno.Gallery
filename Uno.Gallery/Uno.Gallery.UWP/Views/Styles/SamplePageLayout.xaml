@@ -125,7 +125,7 @@
 
 												<!-- Icon -->
 												<Image Source="ms-appx:///Assets/MaterialIcon_Small.png"
-													   Stretch="None"
+													   Stretch="Fill"
 													   Height="16"
 													   Width="16"
 													   VerticalAlignment="Center"
@@ -146,7 +146,7 @@
 
 												<!-- Icon -->
 												<Image Source="ms-appx:///Assets/FluentIcon_Small.png"
-													   Stretch="None"
+													   Stretch="Fill"
 													   Height="16"
 													   Width="16"
 													   VerticalAlignment="Center"
