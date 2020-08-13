@@ -96,11 +96,12 @@
 
 						<TextBlock Text="{TemplateBinding Title}"
 								   Style="{StaticResource MaterialHeadline6}"
-								   Foreground="{StaticResource Foreground01ColorBrush}" />
+								   Foreground="{StaticResource MaterialOnBackgroundBrush}" />
 
 						<TextBlock Text="{TemplateBinding Description}"
 								   Style="{StaticResource MaterialBody1}"
-								   Foreground="{StaticResource Foreground02ColorBrush}"
+								   Foreground="{StaticResource MaterialOnBackgroundBrush}"
+								   Opacity="0.8"
 								   Margin="0,16,0,0"
 								   Grid.Row="1" />
 
@@ -133,8 +134,8 @@
 									   HorizontalAlignment="Left"
 									   VerticalAlignment="Top"
 									   Margin="0,4,0,0"
-									   Grid.Row="1"/>
-							
+									   Grid.Row="1" />
+
 							<TextBlock x:Name="ColorHexText"
 									   Text="{TemplateBinding OnColorHex}"
 									   Style="{StaticResource MaterialSubtitle2}"
@@ -223,7 +224,7 @@
 								   VerticalAlignment="Top"
 								   Margin="0,4,0,0"
 								   Grid.Row="1" />
-						
+
 						<TextBlock Text="{TemplateBinding OnColorHex}"
 								   Style="{StaticResource MaterialSubtitle2}"
 								   Foreground="{TemplateBinding OnColorBrush}"
@@ -271,7 +272,8 @@
 
 						<TextBlock Text="{TemplateBinding Description}"
 								   Style="{StaticResource MaterialCaption}"
-								   Foreground="{StaticResource Foreground04ColorBrush}"		   
+								   Foreground="{StaticResource MaterialOnBackgroundBrush}"
+								   Opacity="0.45"
 								   Margin="0,16,0,0" />
 					</StackPanel>
 				</ControlTemplate>
