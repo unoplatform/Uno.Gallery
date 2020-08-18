@@ -176,6 +176,9 @@
     <Compile Include="Views\SamplePages\AcrylicSamplePage.xaml.cs">
       <DependentUpon>AcrylicSamplePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SamplePages\AnimationSamplePage.xaml.cs">
+      <DependentUpon>AnimationSamplePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SamplePages\BrushSamplePage.xaml.cs">
       <DependentUpon>BrushSamplePage.xaml</DependentUpon>
     </Compile>
@@ -329,6 +332,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SamplePages\AcrylicSamplePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SamplePages\AnimationSamplePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
