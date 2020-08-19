@@ -76,7 +76,7 @@
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Uno.Material" Version="1.0.0-dev.507" />
+		<PackageReference Include="Uno.Material" Version="1.0.0-dev.523" />
 		<PackageReference Include="Uno.ShowMeTheXAML" Version="1.0.58" />
 		<PackageReference Include="Uno.ShowMeTheXAML.MSBuild" Version="1.0.58" />
 		<PackageReference Include="Uno.UI.Lottie" Version="3.0.0-dev.1535" />
