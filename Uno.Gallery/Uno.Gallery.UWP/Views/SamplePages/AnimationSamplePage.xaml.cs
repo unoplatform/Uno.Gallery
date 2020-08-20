@@ -18,7 +18,7 @@ using Windows.UI.Xaml.Navigation;
 namespace Uno.Gallery.Views.Samples
 {
 
-	[SamplePage(SampleCategory.Features, "Animation", Description = "Animations samples using VisualStates, DoubleAnimations, EasingFunctions and RenderTransforms")]
+	[SamplePage(SampleCategory.Features, "Animation", Description = "Animations samples using VisualStates, DoubleAnimations, EasingFunctions and RenderTransforms", DocumentationLink = "https://docs.microsoft.com/en-us/windows/uwp/design/motion/xaml-animation")]
 	public sealed partial class AnimationSamplePage : Page
 	{
 		private Control _sampleLayoutRoot;

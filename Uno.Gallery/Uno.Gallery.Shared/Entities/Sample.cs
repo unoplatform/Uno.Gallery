@@ -13,6 +13,7 @@ namespace Uno.Gallery
 			Category = attribute.Category;
 			Title = attribute.Title;
 			Description = attribute.Description;
+			DocumentationLink = attribute.DocumentationLink;
 			Source = attribute.Source;
 			SortOrder = attribute.SortOrder;
 
@@ -24,6 +25,8 @@ namespace Uno.Gallery
 		public string Title { get; }
 
 		public string Description { get; }
+
+		public string DocumentationLink { get; }
 
 		public int? SortOrder { get; }
 

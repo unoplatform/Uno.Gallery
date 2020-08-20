@@ -109,8 +109,8 @@
 										  smtx:XamlDisplayExtensions.Header="Back Button"
 										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
 							<StackPanel Spacing="20">
-								<Button Style="{StaticResource NavigationBackButtonNormalStyle}"/>
-								<Button Style="{StaticResource NavigationBackButtonSmallStyle}"/>
+								<Button Style="{StaticResource NavigationBackButtonNormalStyle}" />
+								<Button Style="{StaticResource NavigationBackButtonSmallStyle}" />
 							</StackPanel>
 						</smtx:XamlDisplay>
 					</StackPanel>

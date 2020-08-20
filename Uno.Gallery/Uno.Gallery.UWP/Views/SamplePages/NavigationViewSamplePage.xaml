@@ -22,10 +22,6 @@
 						<TextBlock Text="The style you see in this application comes from the Uno.Material library. Check Microsoft's documentation for more details on the fluent style."
 								   Style="{StaticResource MaterialBody1}"
 								   Margin="0,16" />
-						
-						<HyperlinkButton Content="NavigationView documentation"
-										 NavigateUri="https://docs.microsoft.com/en-us/windows/uwp/design/controls-and-patterns/navigationview"/>
-
 					</StackPanel>
 				</DataTemplate>
 			</controls:SamplePageLayout.FluentTemplate>
@@ -41,7 +37,7 @@
 						<TextBlock Text="The NavigationView that you see in this application uses a material style that comes from the Uno.Material library. It also supports swipe gestures on iOS and Android."
 								   Style="{StaticResource MaterialBody1}"
 								   Margin="0,16" />
-						
+
 						<TextBlock Text="Check how it adjusts itself for mobile form factors!"
 								   Style="{StaticResource MaterialBody1}" />
 					</StackPanel>

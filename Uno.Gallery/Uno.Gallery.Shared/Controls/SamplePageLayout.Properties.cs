@@ -38,6 +38,21 @@ namespace Uno.Gallery.Controls
 		}
 
 		#endregion
+		#region Property: DocumentationLink
+
+		public static DependencyProperty DocumentationLinkProperty { get; } = DependencyProperty.Register(
+			nameof(DocumentationLink),
+			typeof(string),
+			typeof(SamplePageLayout),
+			new PropertyMetadata(default));
+
+		public string DocumentationLink
+		{
+			get => (string)GetValue(DocumentationLinkProperty);
+			set => SetValue(DocumentationLinkProperty, value);
+		}
+
+		#endregion
 		#region Property: Source
 
 		public static DependencyProperty SourceProperty { get; } = DependencyProperty.Register(

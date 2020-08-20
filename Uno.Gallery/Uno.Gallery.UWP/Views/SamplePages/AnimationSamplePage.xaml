@@ -42,7 +42,7 @@
 									<!-- Animation 2 -->
 									<VisualState x:Name="Animation_2">
 										<Storyboard>
-											
+
 											<DoubleAnimation Storyboard.TargetProperty="ScaleY"
 															 Storyboard.TargetName="ScaleTransform1"
 															 To="0.5"

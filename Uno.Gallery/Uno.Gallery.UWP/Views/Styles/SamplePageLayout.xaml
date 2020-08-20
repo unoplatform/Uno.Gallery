@@ -208,6 +208,24 @@
 														  Padding="{StaticResource SampleContentPadding}"
 														  Visibility="Collapsed" />
 									</Grid>
+
+									<!-- Optional link to documentation -->
+									<StackPanel Visibility="{Binding DocumentationLink, Converter={StaticResource IsNullOrEmptyToCollapsed}}">
+										<Rectangle Fill="{StaticResource DividerBrush}"
+												   Height="1"
+												   Margin="0,48,0,36" />
+
+										<TextBlock Style="{StaticResource MaterialBody1}"
+												   Foreground="{StaticResource MaterialOnBackgroundBrush}"
+												   Opacity="0.8"
+												   Margin="0,0,0,16">
+										<Run Text="For more information refer to the " />
+					
+										<Hyperlink NavigateUri="{Binding DocumentationLink}">
+											<Run Text="official documentation." />
+										</Hyperlink>
+										</TextBlock>
+									</StackPanel>
 								</StackPanel>
 							</Grid>
 						</ScrollViewer>

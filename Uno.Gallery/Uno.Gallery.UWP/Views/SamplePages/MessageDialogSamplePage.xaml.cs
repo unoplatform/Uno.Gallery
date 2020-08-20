@@ -17,7 +17,7 @@ using Windows.UI.Popups;
 
 namespace Uno.Gallery.Views.Samples
 {
-	[SamplePage(SampleCategory.Features, "MessageDialog", Description = "This represents a simple dialog to show to users. Customization is limited to title text, content text and commands.")]
+	[SamplePage(SampleCategory.Features, "MessageDialog", Description = "This represents a simple dialog to show to users. Customization is limited to title text, content text and commands.", DocumentationLink = "https://docs.microsoft.com/en-us/uwp/api/windows.ui.popups.messagedialog")]
 	public sealed partial class MessageDialogSamplePage : Page
 	{
 		public MessageDialogSamplePage()

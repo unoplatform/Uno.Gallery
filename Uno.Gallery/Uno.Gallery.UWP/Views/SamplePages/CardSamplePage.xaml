@@ -321,7 +321,6 @@
 								</material:Card.IconsContentTemplate>
 							</material:Card>
 						</smtx:XamlDisplay>
-
 					</StackPanel>
 				</DataTemplate>
 			</controls:SamplePageLayout.MaterialTemplate>
