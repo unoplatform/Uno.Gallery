@@ -16,20 +16,10 @@ jobs:
       downloadType: single
       artifactName: $(AndroidArtifactName)
 
-  - task: AndroidSigning@3
-    displayName: 'Signing and aligning APK files'
-    inputs:
-      apkFiles: '$(System.ArtifactsDirectory)/$(AndroidArtifactName)/*.apk'
-      apksignerKeystoreFile: nventive.jks # Name of the jks keystore in the secure files (in azure devops library)
-      apksignerKeystorePassword: '$(AndroidSigningStorePass)'
-      apksignerKeystoreAlias: '$(AndroidSigningKeyAlias)'
-      apksignerKeyPassword: '$(AndroidSigningKeyPass)'
-
-  - task: GooglePlayRelease@3
-    displayName: 'Release ARM64 and ARM7 to internal on Google Play'
+  - task: GooglePlayReleaseBundle@3
+    displayName: 'Publish to PlayStore internal track'
     inputs:
       serviceConnection: 'Uno Gallery Google Play'
-      apkFile: '$(System.ArtifactsDirectory)/$(AndroidArtifactName)/*.demo-arm64-v8a-Signed.apk'
+      bundleFile: '$(System.ArtifactsDirectory)/$(AndroidArtifactName)/*.demo-Signed.aab'
+      applicationId: '$(AndroidApplicationId)'
       languageCode: 'en-CA'
-      additionalApks: '$(System.ArtifactsDirectory)/$(AndroidArtifactName)/*.demo-armeabi-v7a-Signed.apk'
-      track: 'internal'

@@ -108,6 +108,9 @@ jobs:
 - job:  Publish_AppCenter_Android
   pool: $(windowsPoolName)
 
+  variables:
+  - group: 'Uno Gallery Google Play Variables' # Import all variables for the signing from the library in azure devops
+    
   container: nventive/build-agent:vs16.6.0
   
   steps:
@@ -118,13 +121,30 @@ jobs:
       buildType: current
       downloadType: single
       artifactName: $(AndroidArtifactName)
+
+  - task: DownloadSecureFile@1
+    name: keyStore
+    displayName: "Download keystore from secure files"
+    inputs:
+      secureFile: nventive.jks
+
+  - task: InstallBundletool@1
+
+  - task: AabConvertToUniversalApk@1
+    inputs:
+      aabFilePath: '$(System.ArtifactsDirectory)/$(AndroidArtifactName)/com.nventive.uno.ui.demo-Signed.aab'
+      keystoreFilePath: '$(keyStore.secureFilePath)'
+      keystorePassword: '$(AndroidSigningStorePass)'
+      keystoreAlias: '$(AndroidSigningKeyAlias)'
+      keystoreAliasPassword: '$(AndroidSigningKeyPass)'
+      outputFolder: '$(Build.SourcesDirectory)/tmp'
   
   - task: AppCenterDistribute@3
     displayName: Deploy Android to AppCenter
     inputs:
       serverEndpoint: AppCenter
       appSlug: 'nventive/Uno-Gallery-1'
-      appFile: $(System.ArtifactsDirectory)/$(AndroidArtifactName)/*.demo-Signed.apk
+      appFile: '$(Build.SourcesDirectory)/tmp/*.apk'
       releaseNotesInput: |
         Uno Gallery
       isSilent: true

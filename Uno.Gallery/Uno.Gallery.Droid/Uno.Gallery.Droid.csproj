@@ -45,13 +45,16 @@
     <WarningLevel>4</WarningLevel>
     <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
-    <AndroidCreatePackagePerAbi>true</AndroidCreatePackagePerAbi>
-    <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
+	  <AndroidCreatePackagePerAbi>false</AndroidCreatePackagePerAbi>
+	  <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
     <AotAssemblies>true</AotAssemblies>
 	  <AndroidEnableProfiledAot>true</AndroidEnableProfiledAot>
 	  <AndroidUseDefaultAotProfile>false</AndroidUseDefaultAotProfile>
     <EnableLLVM>true</EnableLLVM>
     <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
+	  <BundleAssemblies>false</BundleAssemblies>
+	  <AndroidPackageFormat>aab</AndroidPackageFormat>
+	  <AndroidUseAapt2>true</AndroidUseAapt2>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="..\Uno.Gallery.UWP\App.xaml.cs" />

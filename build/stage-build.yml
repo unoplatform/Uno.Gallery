@@ -26,6 +26,12 @@ steps:
     verbosityRestore: Normal
     noCache: true
 
+- task: DownloadSecureFile@1
+  name: keyStore
+  displayName: "Download keystore from secure files"
+  inputs:
+    secureFile: nventive.jks
+
 - task: MSBuild@1
   displayName: 'Build solution in $(ApplicationConfiguration) | $(ApplicationPlatform)'
   inputs:
@@ -40,7 +46,7 @@ steps:
     restoreNugetPackages: false
     logProjectEvents: false
     createLogFile: false
-    msbuildArguments: /p:PackageVersion=$(SemVer) /p:ApplicationVersion=$(MajorMinorPatch)
+    msbuildArguments: /p:PackageVersion=$(SemVer) /p:ApplicationVersion=$(MajorMinorPatch) /p:AndroidSigningKeyStore=$(keyStore.secureFilePath) /p:AndroidSigningStorePass=$(AndroidSigningStorePass) /p:AndroidSigningKeyPass=$(AndroidSigningKeyPass) /p:AndroidSigningKeyAlias=$(AndroidSigningKeyAlias) /p:AndroidKeyStore=true
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish artifact $(ApplicationConfiguration) | $(ApplicationPlatform)'
