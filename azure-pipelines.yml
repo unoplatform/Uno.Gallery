@@ -79,10 +79,12 @@ stages:
           ApplicationConfiguration: Release
           ApplicationPlatform: Android
           ArtifactName: $(AndroidArtifactName)
+          BuildNumberOffset: 400050
         UWP:
           ApplicationConfiguration: Release
           ApplicationPlatform: UWP_x64
           ArtifactName: $(UWPArtifactName)
+          BuildNumberOffset: 50
     pool:
       name: $(windowsPoolName)
     
@@ -102,10 +104,12 @@ stages:
           ApplicationConfiguration: Release
           ApplicationPlatform: iPhone
           ArtifactName: $(iOSArtifactName)
+          BuildNumberOffset: 50
         macOS:
           ApplicationConfiguration: Release
           ApplicationPlatform: macOS
-          ArtifactName: $(macOSArtifactName)          
+          ArtifactName: $(macOSArtifactName)  
+          BuildNumberOffset: 50        
     pool:
       name: $(macOSPoolName)
       demands:
@@ -150,6 +154,7 @@ stages:
       NUGET_PACKAGES: $(build.sourcesdirectory)/.nuget
       SkipUnknowFrameworks: True
       ArtifactName: $(WASMArtifactName)
+      BuildNumberOffset: 50
 
     steps:
       - template: build/stage-build-wasm.yml

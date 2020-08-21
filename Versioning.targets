@@ -43,7 +43,6 @@
 		<PropertyGroup>
 			<PackageName>Ch9</PackageName>
 			<PackageCompanyName>Uno Platform</PackageCompanyName>
-			<BuildNumberOffset>50</BuildNumberOffset>
 			<PackageBuildNumber>$([MSBuild]::Add($(PackageBuildNumber), $(BuildNumberOffset)))</PackageBuildNumber>
 		</PropertyGroup>
 
