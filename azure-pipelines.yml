@@ -86,6 +86,9 @@ stages:
     pool:
       name: $(windowsPoolName)
     
+    variables:
+    - group: 'Uno Gallery Google Play Variables' # Import all variables for the signing from the library in azure devops
+
     container: nventive/build-agent:vs16.6.0
 
     steps:
