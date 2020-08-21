@@ -1,17 +1,17 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-					xmlns:controls="using:Uno.Gallery.Controls"
+					xmlns:local="using:Uno.Gallery"
 					xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 					xmlns:win="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 					xmlns:xamarin="http://uno.ui/xamarin"
 					mc:Ignorable="xamarin">
 
 	<Style x:Key="DefaultContentPageLayoutStyle"
-		   TargetType="controls:ContentPageLayout">
+		   TargetType="local:ContentPageLayout">
 
 		<Setter Property="Template">
 			<Setter.Value>
-				<ControlTemplate TargetType="controls:ContentPageLayout">
+				<ControlTemplate TargetType="local:ContentPageLayout">
 
 					<Grid>
 
@@ -125,6 +125,6 @@
 		</Setter>
 	</Style>
 
-	<Style TargetType="controls:ContentPageLayout"
+	<Style TargetType="local:ContentPageLayout"
 		   BasedOn="{StaticResource DefaultContentPageLayoutStyle}" />
 </ResourceDictionary>

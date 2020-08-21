@@ -1,18 +1,17 @@
 ﻿<Page x:Class="Uno.Gallery.Views.Samples.ComboBoxSamplePage"
 	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	  xmlns:gallery="using:Uno.Gallery"
 	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	  xmlns:controls="using:Uno.Gallery.Controls"
+	  xmlns:local="using:Uno.Gallery"
 	  xmlns:extensions="using:Uno.Material.Extensions"
 	  xmlns:smtx="using:ShowMeTheXAML"
 	  mc:Ignorable="d">
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-		<controls:SamplePageLayout>
+		<local:SamplePageLayout>
 
-			<controls:SamplePageLayout.FluentTemplate>
+			<local:SamplePageLayout.FluentTemplate>
 				<DataTemplate>
 					<StackPanel>
 
@@ -32,9 +31,9 @@
 						</smtx:XamlDisplay>
 					</StackPanel>
 				</DataTemplate>
-			</controls:SamplePageLayout.FluentTemplate>
+			</local:SamplePageLayout.FluentTemplate>
 
-			<controls:SamplePageLayout.MaterialTemplate>
+			<local:SamplePageLayout.MaterialTemplate>
 				<DataTemplate>
 					<StackPanel>
 
@@ -63,7 +62,7 @@
 						</smtx:XamlDisplay>
 					</StackPanel>
 				</DataTemplate>
-			</controls:SamplePageLayout.MaterialTemplate>
-		</controls:SamplePageLayout>
+			</local:SamplePageLayout.MaterialTemplate>
+		</local:SamplePageLayout>
 	</Grid>
 </Page>

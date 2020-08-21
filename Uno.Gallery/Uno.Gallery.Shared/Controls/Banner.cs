@@ -7,7 +7,7 @@ using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-namespace Uno.Gallery.Controls
+namespace Uno.Gallery
 {
 	public partial class Banner : Control
 	{

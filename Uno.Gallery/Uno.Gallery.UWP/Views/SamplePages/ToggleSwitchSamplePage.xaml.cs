@@ -1,5 +1,4 @@
 ﻿using Windows.UI.Xaml.Controls;
-using Uno.Gallery.Controls;
 
 namespace Uno.Gallery.Views.Samples
 {

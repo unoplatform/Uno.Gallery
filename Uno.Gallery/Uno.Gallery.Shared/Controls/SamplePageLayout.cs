@@ -11,7 +11,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media;
 
-namespace Uno.Gallery.Controls
+namespace Uno.Gallery
 {
 	/// <summary>
 	/// This control is used as a template for each sample page.
