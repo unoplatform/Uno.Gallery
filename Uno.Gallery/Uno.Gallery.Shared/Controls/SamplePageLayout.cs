@@ -71,6 +71,7 @@ namespace Uno.Gallery.Controls
 				{
 					Title = sample.Title;
 					Description = sample.Description;
+					DocumentationLink = sample.DocumentationLink;
 					Source = sample.Source;
 				}
 			}

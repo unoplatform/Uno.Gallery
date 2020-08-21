@@ -18,7 +18,7 @@ using Windows.UI.Xaml.Navigation;
 namespace Uno.Gallery.Views.Samples
 {
 
-	[SamplePage(SampleCategory.Features, "Acrylic", Description = "AcrylicBrush is a translucent brush that can be used as background.")]
+	[SamplePage(SampleCategory.Features, "Acrylic", Description = "AcrylicBrush is a translucent brush that can be used as background.", DocumentationLink = "https://docs.microsoft.com/en-us/windows/uwp/design/style/acrylic")]
 	public sealed partial class AcrylicSamplePage : Page
 	{
 		public AcrylicSamplePage()

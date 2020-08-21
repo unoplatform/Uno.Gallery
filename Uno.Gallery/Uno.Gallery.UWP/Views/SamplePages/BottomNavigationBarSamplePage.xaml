@@ -98,7 +98,6 @@
 											<SymbolIcon Symbol="Setting" />
 										</material:BottomNavigationBarItem.Icon>
 									</material:BottomNavigationBarItem>
-
 								</material:BottomNavigationBar.Items>
 							</material:BottomNavigationBar>
 						</StackPanel>

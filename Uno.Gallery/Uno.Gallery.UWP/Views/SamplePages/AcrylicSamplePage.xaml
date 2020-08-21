@@ -61,26 +61,25 @@
 						</macos:Grid>
 						<win:Grid>
 							<smtx:XamlDisplay UniqueKey="AcrylicSamplePage_Fluent_AcrylicHostBackdrop_winui"
-									  smtx:XamlDisplayExtensions.Header="See through your app with HostBackdrop">
+											  smtx:XamlDisplayExtensions.Header="See through your app with HostBackdrop">
 								<Grid Height="300">
 									<Image Stretch="UniformToFill"
-								   Source="{ThemeResource OverviewImageSource}"/>
+										   Source="{ThemeResource OverviewImageSource}" />
 									<Border Width="250"
-									Height="250"
-									HorizontalAlignment="Center"
-									VerticalAlignment="Center"
-									BorderBrush="{StaticResource MaterialPrimaryBrush}"
-									BorderThickness="1">
+											Height="250"
+											HorizontalAlignment="Center"
+											VerticalAlignment="Center"
+											BorderBrush="{StaticResource MaterialPrimaryBrush}"
+											BorderThickness="1">
 										<Border.Background>
 											<media:AcrylicBrush TintOpacity="0.2"
-														BackgroundSource="HostBackdrop"
-														AlwaysUseFallback="False"/>
+																BackgroundSource="HostBackdrop"
+																AlwaysUseFallback="False" />
 										</Border.Background>
 									</Border>
 								</Grid>
 							</smtx:XamlDisplay>
 						</win:Grid>
-
 					</StackPanel>
 				</DataTemplate>
 			</controls:SamplePageLayout.FluentTemplate>

@@ -45,6 +45,15 @@ namespace ShowMeTheXAML
 		public static string GetDescription(XamlDisplay obj) => (string)obj.GetValue(DescriptionProperty);
 		public static void SetDescription(XamlDisplay obj, string value) => obj.SetValue(DescriptionProperty, value);
 
+		public static DependencyProperty DocumentationLinkProperty { get; } = DependencyProperty.RegisterAttached(
+			"DocumentationLink",
+			typeof(string),
+			typeof(XamlDisplayExtensions),
+			new PropertyMetadata(default));
+
+		public static string GetDocumentationLink(XamlDisplay obj) => (string)obj.GetValue(DocumentationLinkProperty);
+		public static void SetDocumentationLink(XamlDisplay obj, string value) => obj.SetValue(DocumentationLinkProperty, value);
+
 		#endregion
 		#region Property: IgnorePath
 
