@@ -48,8 +48,8 @@
     <AndroidCreatePackagePerAbi>true</AndroidCreatePackagePerAbi>
     <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
     <AotAssemblies>true</AotAssemblies>
-	  <AndroidEnableProfiledAot>true</AndroidEnableProfiledAot>
-	  <AndroidUseDefaultAotProfile>false</AndroidUseDefaultAotProfile>
+    <AndroidEnableProfiledAot>true</AndroidEnableProfiledAot>
+    <AndroidUseDefaultAotProfile>false</AndroidUseDefaultAotProfile>
     <EnableLLVM>true</EnableLLVM>
     <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
   </PropertyGroup>
@@ -96,7 +96,7 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Uno.Material">
-      <Version>1.0.0-dev.523</Version>
+      <Version>1.0.0-dev.527</Version>
     </PackageReference>
     <PackageReference Include="Uno.ShowMeTheXAML">
       <Version>1.0.59</Version>
@@ -213,9 +213,9 @@
   <ItemGroup>
     <AndroidResource Include="Resources\mipmap-anydpi-v26\ic_launcher_round.xml" />
   </ItemGroup>
-	<ItemGroup>
-		<AndroidAotProfile Include="$(MSBuildThisFileDirectory)custom.aprof" />
-	</ItemGroup>
+  <ItemGroup>
+    <AndroidAotProfile Include="$(MSBuildThisFileDirectory)custom.aprof" />
+  </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values-night\colors.xml">
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
