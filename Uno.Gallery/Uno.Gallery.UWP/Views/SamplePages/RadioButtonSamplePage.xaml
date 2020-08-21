@@ -1,17 +1,15 @@
 ﻿<Page x:Class="Uno.Gallery.Views.Samples.RadioButtonSamplePage"
 	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	  xmlns:local="using:Uno.Gallery.Views.Samples"
+	  xmlns:local="using:Uno.Gallery"
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	  xmlns:controls="using:Uno.Gallery.Controls"
-	  xmlns:gallery="using:Uno.Gallery"
 	  xmlns:smtx="using:ShowMeTheXAML"
 	  mc:Ignorable="">
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-		<controls:SamplePageLayout>
+		<local:SamplePageLayout>
 
-			<controls:SamplePageLayout.FluentTemplate>
+			<local:SamplePageLayout.FluentTemplate>
 				<DataTemplate>
 					<StackPanel>
 
@@ -19,6 +17,7 @@
 						<smtx:XamlDisplay UniqueKey="RadioButtonSamplePage_Fluent"
 										  smtx:XamlDisplayExtensions.Header="Default">
 							<StackPanel Spacing="12">
+								
 								<RadioButton GroupName="RadioButtonDemo_Fluent_1a"
 											 Content="UNCHECKED" />
 
@@ -38,9 +37,9 @@
 						</smtx:XamlDisplay>
 					</StackPanel>
 				</DataTemplate>
-			</controls:SamplePageLayout.FluentTemplate>
+			</local:SamplePageLayout.FluentTemplate>
 
-			<controls:SamplePageLayout.MaterialTemplate>
+			<local:SamplePageLayout.MaterialTemplate>
 				<DataTemplate>
 					<StackPanel>
 
@@ -48,6 +47,7 @@
 						<smtx:XamlDisplay UniqueKey="RadioButtonSamplePage_Material"
 										  smtx:XamlDisplayExtensions.Header="Default">
 							<StackPanel>
+								
 								<RadioButton GroupName="RadioButtonDemo_Material_1a"
 											 Content="UNCHECKED"
 											 Style="{StaticResource MaterialRadioButtonStyle}" />
@@ -74,6 +74,7 @@
 						<smtx:XamlDisplay UniqueKey="RadioButtonSamplePage_Material_Secondary"
 										  smtx:XamlDisplayExtensions.Header="Secondary">
 							<StackPanel>
+								
 								<RadioButton GroupName="RadioButtonDemo_Material_2a"
 											 Content="UNCHECKED"
 											 Style="{StaticResource MaterialSecondaryRadioButtonStyle}" />
@@ -97,7 +98,7 @@
 						</smtx:XamlDisplay>
 					</StackPanel>
 				</DataTemplate>
-			</controls:SamplePageLayout.MaterialTemplate>
-		</controls:SamplePageLayout>
+			</local:SamplePageLayout.MaterialTemplate>
+		</local:SamplePageLayout>
 	</Grid>
 </Page>

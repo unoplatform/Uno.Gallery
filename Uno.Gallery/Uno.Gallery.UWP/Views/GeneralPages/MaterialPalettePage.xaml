@@ -1,10 +1,9 @@
 ﻿<Page x:Class="Uno.Gallery.MaterialPalettePage"
 	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	  xmlns:local="using:Uno.Gallery.Views.Samples"
+	  xmlns:local="using:Uno.Gallery"
 	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	  xmlns:controls="using:Uno.Gallery.Controls"
 	  xmlns:toolkit="using:Uno.UI.Toolkit"
 	  mc:Ignorable="d">
 
@@ -112,22 +111,22 @@
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-		<controls:ContentPageLayout Title="Material Palette"
-									Description="Uno.Material comes with a built-in set of named Color and Brush resources. They are used in most control styles provided by Uno.Material, meaning that you can easily style most controls just by changing a few colors.">
+		<local:ContentPageLayout Title="Material Palette"
+								 Description="Uno.Material comes with a built-in set of named Color and Brush resources. They are used in most control styles provided by Uno.Material, meaning that you can easily style most controls just by changing a few colors.">
 			<StackPanel>
 
 				<!-- Primary colors section -->
-				<controls:ThreeColorPaletteView Title="Primary Colors"
-												Description="The primary color is the color you should use in most screens and controls of your app. Uno.Material provides styles based on that color for most of the controls you should need."
-												FirstColorName="Primary"
-												FirstColorBrush="{StaticResource MaterialPrimaryBrush}"
-												FirstColorForeground="{StaticResource MaterialOnPrimaryBrush}"
-												SecondColorName="PrimaryVariantDark"
-												SecondColorBrush="{StaticResource MaterialPrimaryVariantDarkBrush}"
-												SecondColorForeground="{StaticResource MaterialOnPrimaryBrush}"
-												ThirdColorName="PrimaryVariantLight"
-												ThirdColorBrush="{StaticResource MaterialPrimaryVariantLightBrush}"
-												ThirdColorForeground="Black" />
+				<local:ThreeColorPaletteView Title="Primary Colors"
+											 Description="The primary color is the color you should use in most screens and controls of your app. Uno.Material provides styles based on that color for most of the controls you should need."
+											 FirstColorName="Primary"
+											 FirstColorBrush="{StaticResource MaterialPrimaryBrush}"
+											 FirstColorForeground="{StaticResource MaterialOnPrimaryBrush}"
+											 SecondColorName="PrimaryVariantDark"
+											 SecondColorBrush="{StaticResource MaterialPrimaryVariantDarkBrush}"
+											 SecondColorForeground="{StaticResource MaterialOnPrimaryBrush}"
+											 ThirdColorName="PrimaryVariantLight"
+											 ThirdColorBrush="{StaticResource MaterialPrimaryVariantLightBrush}"
+											 ThirdColorForeground="Black" />
 
 				<!-- Separator -->
 				<Rectangle Fill="{StaticResource DividerBrush}"
@@ -135,17 +134,17 @@
 						   Margin="0,48,0,36" />
 
 				<!-- Secondary colors section -->
-				<controls:ThreeColorPaletteView Title="Secondary Colors"
-												Description="Using a secondary color is optional, but it allows you to create more variety in your app. Uno.Material provides styles based on that color for most of the controls you should need."
-												FirstColorName="Secondary"
-												FirstColorBrush="{StaticResource MaterialSecondaryBrush}"
-												FirstColorForeground="{StaticResource MaterialOnSecondaryBrush}"
-												SecondColorName="SecondaryVariantDark"
-												SecondColorBrush="{StaticResource MaterialSecondaryVariantDarkBrush}"
-												SecondColorForeground="{StaticResource MaterialOnSecondaryBrush}"
-												ThirdColorName="SecondaryVariantLight"
-												ThirdColorBrush="{StaticResource MaterialSecondaryVariantLightBrush}"
-												ThirdColorForeground="{StaticResource MaterialOnSecondaryBrush}" />
+				<local:ThreeColorPaletteView Title="Secondary Colors"
+											 Description="Using a secondary color is optional, but it allows you to create more variety in your app. Uno.Material provides styles based on that color for most of the controls you should need."
+											 FirstColorName="Secondary"
+											 FirstColorBrush="{StaticResource MaterialSecondaryBrush}"
+											 FirstColorForeground="{StaticResource MaterialOnSecondaryBrush}"
+											 SecondColorName="SecondaryVariantDark"
+											 SecondColorBrush="{StaticResource MaterialSecondaryVariantDarkBrush}"
+											 SecondColorForeground="{StaticResource MaterialOnSecondaryBrush}"
+											 ThirdColorName="SecondaryVariantLight"
+											 ThirdColorBrush="{StaticResource MaterialSecondaryVariantLightBrush}"
+											 ThirdColorForeground="{StaticResource MaterialOnSecondaryBrush}" />
 
 				<!-- Separator -->
 				<Rectangle Fill="{StaticResource DividerBrush}"
@@ -162,33 +161,33 @@
 						   Opacity="0.8"
 						   Margin="0,16,0,0" />
 
-				<controls:ColorPaletteView ColorName="Background"
-										   ColorBrush="{StaticResource MaterialBackgroundBrush}"
-										   OnColorBrush="{StaticResource MaterialOnBackgroundBrush}"
-										   Description="Appears behind scrollable content."
-										   Style="{StaticResource ColorPaletteWithBottomDescriptionViewStyle}"
-										   BorderBrush="{StaticResource DividerBrush}"
-										   BorderThickness="1"
-										   ColorHeight="88"
-										   Margin="0,48,0,0" />
+				<local:ColorPaletteView ColorName="Background"
+										ColorBrush="{StaticResource MaterialBackgroundBrush}"
+										OnColorBrush="{StaticResource MaterialOnBackgroundBrush}"
+										Description="Appears behind scrollable content."
+										Style="{StaticResource ColorPaletteWithBottomDescriptionViewStyle}"
+										BorderBrush="{StaticResource DividerBrush}"
+										BorderThickness="1"
+										ColorHeight="88"
+										Margin="0,48,0,0" />
 
-				<controls:ColorPaletteView ColorName="Surface"
-										   ColorBrush="{StaticResource MaterialSurfaceBrush}"
-										   OnColorBrush="{StaticResource MaterialOnSurfaceBrush}"
-										   Description="Affects surfaces of components such as cards, news or even menus."
-										   Style="{StaticResource ColorPaletteWithBottomDescriptionViewStyle}"
-										   BorderBrush="{StaticResource DividerBrush}"
-										   BorderThickness="1"
-										   ColorHeight="88"
-										   Margin="0,48,0,0" />
+				<local:ColorPaletteView ColorName="Surface"
+										ColorBrush="{StaticResource MaterialSurfaceBrush}"
+										OnColorBrush="{StaticResource MaterialOnSurfaceBrush}"
+										Description="Affects surfaces of components such as cards, news or even menus."
+										Style="{StaticResource ColorPaletteWithBottomDescriptionViewStyle}"
+										BorderBrush="{StaticResource DividerBrush}"
+										BorderThickness="1"
+										ColorHeight="88"
+										Margin="0,48,0,0" />
 
-				<controls:ColorPaletteView ColorName="Error"
-										   ColorBrush="{StaticResource MaterialErrorBrush}"
-										   OnColorBrush="{StaticResource MaterialOnErrorBrush}"
-										   Description="Indicate errors in components."
-										   Style="{StaticResource ColorPaletteWithBottomDescriptionViewStyle}"
-										   ColorHeight="88"
-										   Margin="0,48,0,0" />
+				<local:ColorPaletteView ColorName="Error"
+										ColorBrush="{StaticResource MaterialErrorBrush}"
+										OnColorBrush="{StaticResource MaterialOnErrorBrush}"
+										Description="Indicate errors in components."
+										Style="{StaticResource ColorPaletteWithBottomDescriptionViewStyle}"
+										ColorHeight="88"
+										Margin="0,48,0,0" />
 
 				<!-- Separator -->
 				<Rectangle Fill="{StaticResource DividerBrush}"
@@ -206,23 +205,23 @@
 						   Opacity="0.8"
 						   Margin="0,16,0,0" />
 
-				<controls:ColorPaletteView Title="OnPrimary"
-										   Description="OnPrimary colors are the colors used to display text or icons on the primary color."
-										   ColorName="OnPrimary"
-										   ColorBrush="{StaticResource MaterialPrimaryBrush}"
-										   OnColorBrush="{StaticResource MaterialOnPrimaryBrush}"
-										   Style="{StaticResource InvertedColorPaletteViewStyle}"
-										   Margin="0,48,0,0" />
+				<local:ColorPaletteView Title="OnPrimary"
+										Description="OnPrimary colors are the colors used to display text or icons on the primary color."
+										ColorName="OnPrimary"
+										ColorBrush="{StaticResource MaterialPrimaryBrush}"
+										OnColorBrush="{StaticResource MaterialOnPrimaryBrush}"
+										Style="{StaticResource InvertedColorPaletteViewStyle}"
+										Margin="0,48,0,0" />
 
-				<controls:ColorPaletteView ColorName="OnPrimaryMedium"
-										   ColorBrush="{StaticResource MaterialPrimaryBrush}"
-										   OnColorBrush="{StaticResource MaterialOnPrimaryMediumBrush}"
-										   Style="{StaticResource SimpleInvertedColorPaletteViewStyle}" />
+				<local:ColorPaletteView ColorName="OnPrimaryMedium"
+										ColorBrush="{StaticResource MaterialPrimaryBrush}"
+										OnColorBrush="{StaticResource MaterialOnPrimaryMediumBrush}"
+										Style="{StaticResource SimpleInvertedColorPaletteViewStyle}" />
 
-				<controls:ColorPaletteView ColorName="OnPrimaryLow"
-										   ColorBrush="{StaticResource MaterialPrimaryBrush}"
-										   OnColorBrush="{StaticResource MaterialOnPrimaryLowBrush}"
-										   Style="{StaticResource SimpleInvertedColorPaletteViewStyle}" />
+				<local:ColorPaletteView ColorName="OnPrimaryLow"
+										ColorBrush="{StaticResource MaterialPrimaryBrush}"
+										OnColorBrush="{StaticResource MaterialOnPrimaryLowBrush}"
+										Style="{StaticResource SimpleInvertedColorPaletteViewStyle}" />
 
 				<StackPanel Orientation="Horizontal"
 							Margin="0,16,0,0">
@@ -238,23 +237,23 @@
 							Margin="20,0,0,0" />
 				</StackPanel>
 
-				<controls:ColorPaletteView Title="OnSecondary"
-										   Description="OnSecondary colors are the colors used to display text or icons on the secondary color."
-										   ColorName="OnSecondary"
-										   ColorBrush="{StaticResource MaterialSecondaryBrush}"
-										   OnColorBrush="{StaticResource MaterialOnSecondaryBrush}"
-										   Style="{StaticResource InvertedColorPaletteViewStyle}"
-										   Margin="0,48,0,0" />
+				<local:ColorPaletteView Title="OnSecondary"
+										Description="OnSecondary colors are the colors used to display text or icons on the secondary color."
+										ColorName="OnSecondary"
+										ColorBrush="{StaticResource MaterialSecondaryBrush}"
+										OnColorBrush="{StaticResource MaterialOnSecondaryBrush}"
+										Style="{StaticResource InvertedColorPaletteViewStyle}"
+										Margin="0,48,0,0" />
 
-				<controls:ColorPaletteView ColorName="OnSecondaryMedium"
-										   ColorBrush="{StaticResource MaterialSecondaryBrush}"
-										   OnColorBrush="{StaticResource MaterialOnSecondaryMediumBrush}"
-										   Style="{StaticResource SimpleInvertedColorPaletteViewStyle}" />
+				<local:ColorPaletteView ColorName="OnSecondaryMedium"
+										ColorBrush="{StaticResource MaterialSecondaryBrush}"
+										OnColorBrush="{StaticResource MaterialOnSecondaryMediumBrush}"
+										Style="{StaticResource SimpleInvertedColorPaletteViewStyle}" />
 
-				<controls:ColorPaletteView ColorName="OnSecondaryLow"
-										   ColorBrush="{StaticResource MaterialSecondaryBrush}"
-										   OnColorBrush="{StaticResource MaterialOnSecondaryLowBrush}"
-										   Style="{StaticResource SimpleInvertedColorPaletteViewStyle}" />
+				<local:ColorPaletteView ColorName="OnSecondaryLow"
+										ColorBrush="{StaticResource MaterialSecondaryBrush}"
+										OnColorBrush="{StaticResource MaterialOnSecondaryLowBrush}"
+										Style="{StaticResource SimpleInvertedColorPaletteViewStyle}" />
 
 				<StackPanel Orientation="Horizontal"
 							Margin="0,16,0,0">
@@ -270,15 +269,15 @@
 							Margin="20,0,0,0" />
 				</StackPanel>
 
-				<controls:ColorPaletteView Title="OnBackground"
-										   Description="OnBackground is the color used to display text or icons on the background color."
-										   ColorName="OnBackground Color"
-										   ColorBrush="{StaticResource MaterialBackgroundBrush}"
-										   OnColorBrush="{StaticResource MaterialOnBackgroundBrush}"
-										   BorderBrush="{StaticResource DividerBrush}"
-										   Style="{StaticResource InvertedColorPaletteViewStyle}"
-										   BorderThickness="1"
-										   Margin="0,48,0,0" />
+				<local:ColorPaletteView Title="OnBackground"
+										Description="OnBackground is the color used to display text or icons on the background color."
+										ColorName="OnBackground Color"
+										ColorBrush="{StaticResource MaterialBackgroundBrush}"
+										OnColorBrush="{StaticResource MaterialOnBackgroundBrush}"
+										BorderBrush="{StaticResource DividerBrush}"
+										Style="{StaticResource InvertedColorPaletteViewStyle}"
+										BorderThickness="1"
+										Margin="0,48,0,0" />
 
 				<TextBlock Text="OnSurface"
 						   Style="{StaticResource MaterialHeadline6}"
@@ -294,30 +293,31 @@
 									  Background="{StaticResource MaterialSurfaceBrush}"
 									  Margin="0,28,0,0">
 					<StackPanel>
-						<controls:ColorPaletteView ColorName="OnSurface"
-												   ColorBrush="{StaticResource MaterialSurfaceBrush}"
-												   OnColorBrush="{StaticResource MaterialOnSurfaceBrush}"
-												   Style="{StaticResource InvertedBiggerSimpleColorPaletteViewStyle}" />
 
-						<controls:ColorPaletteView ColorName="OnSurfaceMedium"
-												   ColorBrush="{StaticResource MaterialSurfaceBrush}"
-												   OnColorBrush="{StaticResource MaterialOnSurfaceMediumBrush}"
-												   Style="{StaticResource SimpleInvertedColorPaletteViewStyle}" />
+						<local:ColorPaletteView ColorName="OnSurface"
+												ColorBrush="{StaticResource MaterialSurfaceBrush}"
+												OnColorBrush="{StaticResource MaterialOnSurfaceBrush}"
+												Style="{StaticResource InvertedBiggerSimpleColorPaletteViewStyle}" />
 
-						<controls:ColorPaletteView ColorName="OnSurfaceLow"
-												   ColorBrush="{StaticResource MaterialSurfaceBrush}"
-												   OnColorBrush="{StaticResource MaterialOnSurfaceLowBrush}"
-												   Style="{StaticResource SimpleInvertedColorPaletteViewStyle}" />
+						<local:ColorPaletteView ColorName="OnSurfaceMedium"
+												ColorBrush="{StaticResource MaterialSurfaceBrush}"
+												OnColorBrush="{StaticResource MaterialOnSurfaceMediumBrush}"
+												Style="{StaticResource SimpleInvertedColorPaletteViewStyle}" />
+
+						<local:ColorPaletteView ColorName="OnSurfaceLow"
+												ColorBrush="{StaticResource MaterialSurfaceBrush}"
+												OnColorBrush="{StaticResource MaterialOnSurfaceLowBrush}"
+												Style="{StaticResource SimpleInvertedColorPaletteViewStyle}" />
 					</StackPanel>
 				</toolkit:ElevatedView>
 
-				<controls:ColorPaletteView Title="OnError"
-										   Description="OnError is the color used to display text or icons on the error color."
-										   ColorName="OnError"
-										   ColorBrush="{StaticResource MaterialErrorBrush}"
-										   OnColorBrush="{StaticResource MaterialOnErrorBrush}"
-										   Style="{StaticResource InvertedColorPaletteViewStyle}"
-										   Margin="0,48,0,0" />
+				<local:ColorPaletteView Title="OnError"
+										Description="OnError is the color used to display text or icons on the error color."
+										ColorName="OnError"
+										ColorBrush="{StaticResource MaterialErrorBrush}"
+										OnColorBrush="{StaticResource MaterialOnErrorBrush}"
+										Style="{StaticResource InvertedColorPaletteViewStyle}"
+										Margin="0,48,0,0" />
 
 				<!-- Separator -->
 				<Rectangle Fill="{StaticResource DividerBrush}"
@@ -335,6 +335,6 @@
 					</Hyperlink>
 				</TextBlock>
 			</StackPanel>
-		</controls:ContentPageLayout>
+		</local:ContentPageLayout>
 	</Grid>
 </Page>

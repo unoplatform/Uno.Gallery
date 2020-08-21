@@ -3,7 +3,6 @@ using ShowMeTheXAML;
 using System;
 using System.Linq;
 using System.Reflection;
-using Uno.Gallery.Controls;
 using Uno.Gallery.Views.GeneralPages;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;

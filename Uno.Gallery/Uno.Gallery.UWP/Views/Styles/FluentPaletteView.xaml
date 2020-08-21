@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-					xmlns:controls="using:Uno.Gallery.Controls">
+					xmlns:local="using:Uno.Gallery">
 
 	<!-- Labels inside the Fluent Palette. So using styles from WinUI -->
 	<Style TargetType="TextBlock"
@@ -15,12 +15,12 @@
 		</Style.Setters>
 	</Style>
 
-	<Style TargetType="controls:FluentColorAccentView">
+	<Style TargetType="local:FluentColorAccentView">
 		<Style.Setters>
 
 			<Setter Property="Template">
 				<Setter.Value>
-					<ControlTemplate TargetType="controls:FluentColorAccentView">
+					<ControlTemplate TargetType="local:FluentColorAccentView">
 						<Grid Background="{TemplateBinding Background}">
 							
 							<Grid.ColumnDefinitions>

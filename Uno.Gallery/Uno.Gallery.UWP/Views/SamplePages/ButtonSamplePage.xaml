@@ -1,18 +1,16 @@
 ﻿<Page x:Class="Uno.Gallery.Views.Samples.ButtonSamplePage"
 	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	  xmlns:local="using:Uno.Gallery.Views.Samples"
+	  xmlns:local="using:Uno.Gallery"
 	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	  xmlns:controls="using:Uno.Gallery.Controls"
 	  xmlns:smtx="using:ShowMeTheXAML"
 	  xmlns:todo="what should be done"
-	  xmlns:gallery="using:Uno.Gallery"
 	  mc:Ignorable="d todo">
 
 	<Grid Background="{StaticResource MaterialBackgroundBrush}">
-		<controls:SamplePageLayout>
-			<controls:SamplePageLayout.MaterialTemplate>
+		<local:SamplePageLayout>
+			<local:SamplePageLayout.MaterialTemplate>
 				<DataTemplate>
 					<StackPanel>
 
@@ -59,6 +57,7 @@
 										  smtx:XamlDisplayExtensions.Header="Text Buttons"
 										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
 							<StackPanel>
+
 								<Button Content="TEXT"
 										Style="{StaticResource MaterialTextButtonStyle}" />
 
@@ -72,9 +71,9 @@
 						</smtx:XamlDisplay>
 					</StackPanel>
 				</DataTemplate>
-			</controls:SamplePageLayout.MaterialTemplate>
+			</local:SamplePageLayout.MaterialTemplate>
 
-			<controls:SamplePageLayout.FluentTemplate>
+			<local:SamplePageLayout.FluentTemplate>
 				<DataTemplate>
 					<StackPanel>
 
@@ -83,7 +82,9 @@
 										  smtx:XamlDisplayExtensions.Header="Default Button"
 										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
 							<StackPanel Spacing="20">
+
 								<Button Content="Button" />
+
 								<Button Content="Disabled"
 										IsEnabled="False" />
 							</StackPanel>
@@ -95,8 +96,10 @@
 										  smtx:XamlDisplayExtensions.Header="Text Button"
 										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
 							<StackPanel Spacing="20">
+
 								<Button Content="Text Button"
-										Style="{StaticResource TextBlockButtonStyle}"/>
+										Style="{StaticResource TextBlockButtonStyle}" />
+
 								<Button Content="Disabled"
 										Style="{StaticResource TextBlockButtonStyle}"
 										IsEnabled="False" />
@@ -109,13 +112,15 @@
 										  smtx:XamlDisplayExtensions.Header="Back Button"
 										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
 							<StackPanel Spacing="20">
+
 								<Button Style="{StaticResource NavigationBackButtonNormalStyle}" />
+
 								<Button Style="{StaticResource NavigationBackButtonSmallStyle}" />
 							</StackPanel>
 						</smtx:XamlDisplay>
 					</StackPanel>
 				</DataTemplate>
-			</controls:SamplePageLayout.FluentTemplate>
-		</controls:SamplePageLayout>
+			</local:SamplePageLayout.FluentTemplate>
+		</local:SamplePageLayout>
 	</Grid>
 </Page>

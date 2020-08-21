@@ -4,7 +4,7 @@ using System.Text;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-namespace Uno.Gallery.Controls
+namespace Uno.Gallery
 {
 	public partial class SamplePageLayout
 	{

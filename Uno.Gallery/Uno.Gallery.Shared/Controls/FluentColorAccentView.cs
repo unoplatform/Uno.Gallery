@@ -6,7 +6,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Markup;
 using Windows.UI.Xaml.Media;
 
-namespace Uno.Gallery.Controls
+namespace Uno.Gallery
 {
 	[ContentProperty(Name = nameof(DescriptiveContent))]
 	public partial class FluentColorAccentView : Control

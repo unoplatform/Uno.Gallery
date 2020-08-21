@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-					xmlns:controls="using:Uno.Gallery.Controls"
+					xmlns:local="using:Uno.Gallery"
 					xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 					xmlns:win="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 					xmlns:xamarin="http://uno.ui/xamarin"
@@ -42,7 +42,7 @@
 	</DataTemplate>
 
 	<Style x:Key="DefaultSamplePageLayoutStyle"
-		   TargetType="controls:SamplePageLayout">
+		   TargetType="local:SamplePageLayout">
 
 		<Setter Property="HeaderTemplate"
 				Value="{StaticResource DefaultSamplePageLayoutHeaderTemplate}" />
@@ -52,7 +52,7 @@
 
 		<Setter Property="Template">
 			<Setter.Value>
-				<ControlTemplate TargetType="controls:SamplePageLayout">
+				<ControlTemplate TargetType="local:SamplePageLayout">
 					<Grid>
 
 						<Grid.RowDefinitions>
@@ -380,6 +380,6 @@
 		</Setter>
 	</Style>
 
-	<Style TargetType="controls:SamplePageLayout"
+	<Style TargetType="local:SamplePageLayout"
 		   BasedOn="{StaticResource DefaultSamplePageLayoutStyle}" />
 </ResourceDictionary>

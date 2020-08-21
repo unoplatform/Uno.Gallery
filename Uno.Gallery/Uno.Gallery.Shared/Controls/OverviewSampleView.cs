@@ -5,7 +5,7 @@ using System.Text;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-namespace Uno.Gallery.Controls
+namespace Uno.Gallery
 {
 	[TemplatePart(Name = ViewButtonPartName, Type = typeof(Button))]
 	public partial class OverviewSampleView : ContentControl

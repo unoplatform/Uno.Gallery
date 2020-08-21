@@ -8,7 +8,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 
-namespace Uno.Gallery.Extensions
+namespace Uno.Gallery
 {
 	/// <summary>
 	/// Helper class for clipboard manipulation

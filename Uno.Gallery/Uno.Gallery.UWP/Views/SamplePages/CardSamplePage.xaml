@@ -1,27 +1,28 @@
 ﻿<Page x:Class="Uno.Gallery.Views.SamplePages.CardSamplePage"
 	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	  xmlns:local="using:Uno.Gallery.Views.SamplePages"
+	  xmlns:local="using:Uno.Gallery"
 	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	  xmlns:material="using:Uno.Material.Controls"
-	  xmlns:controls="using:Uno.Gallery.Controls"
 	  xmlns:smtx="using:ShowMeTheXAML"
 	  mc:Ignorable="d"
 	  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-		<controls:SamplePageLayout>
-			<controls:SamplePageLayout.MaterialTemplate>
+		<local:SamplePageLayout>
+			<local:SamplePageLayout.MaterialTemplate>
 				<DataTemplate>
 					<StackPanel>
 
 						<!-- Outlined card -->
 						<smtx:XamlDisplay UniqueKey="CardSamplePage_MaterialOutlinedCard"
 										  smtx:XamlDisplayExtensions.Header="Outlined card">
+							
 							<material:Card HeaderContent="Outlined card"
 										   SubHeaderContent="With title and subtitle only"
 										   Style="{StaticResource MaterialOutlinedCardStyle}">
+								
 								<material:Card.HeaderContentTemplate>
 									<DataTemplate>
 										<TextBlock Text="{Binding}"
@@ -29,6 +30,7 @@
 												   Style="{ThemeResource MaterialHeadline6}" />
 									</DataTemplate>
 								</material:Card.HeaderContentTemplate>
+								
 								<material:Card.SubHeaderContentTemplate>
 									<DataTemplate>
 										<TextBlock Text="{Binding}"
@@ -42,10 +44,12 @@
 						<!-- Elevated card with supporting content -->
 						<smtx:XamlDisplay UniqueKey="CardSamplePage_MaterialElevatedCardWithSupportingContent"
 										  smtx:XamlDisplayExtensions.Header="Elevated card with supporting content">
+							
 							<material:Card HeaderContent="Elevated card"
 										   SubHeaderContent="With supporting content"
 										   SupportingContent="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor."
 										   Style="{StaticResource MaterialElevatedCardStyle}">
+								
 								<material:Card.HeaderContentTemplate>
 									<DataTemplate>
 										<TextBlock Text="{Binding}"
@@ -53,6 +57,7 @@
 												   Style="{ThemeResource MaterialHeadline6}" />
 									</DataTemplate>
 								</material:Card.HeaderContentTemplate>
+								
 								<material:Card.SubHeaderContentTemplate>
 									<DataTemplate>
 										<TextBlock Text="{Binding}"
@@ -60,6 +65,7 @@
 												   Style="{ThemeResource MaterialBody2}" />
 									</DataTemplate>
 								</material:Card.SubHeaderContentTemplate>
+								
 								<material:Card.SupportingContentTemplate>
 									<DataTemplate>
 										<TextBlock Text="{Binding}"
@@ -73,6 +79,7 @@
 						<!-- Outlined card with media content -->
 						<smtx:XamlDisplay UniqueKey="CardSamplePage_MaterialOutlinedCardWithMediaContent"
 										  smtx:XamlDisplayExtensions.Header="Outlined card with media content">
+							
 							<material:Card HeaderContent="Outlined card"
 										   SubHeaderContent="With media content"
 										   MediaContent="ms-appx:///Assets/LargeMedia.png"
@@ -84,6 +91,7 @@
 												   Style="{ThemeResource MaterialHeadline6}" />
 									</DataTemplate>
 								</material:Card.HeaderContentTemplate>
+								
 								<material:Card.SubHeaderContentTemplate>
 									<DataTemplate>
 										<TextBlock Text="{Binding}"
@@ -91,6 +99,7 @@
 												   Style="{ThemeResource MaterialBody2}" />
 									</DataTemplate>
 								</material:Card.SubHeaderContentTemplate>
+								
 								<material:Card.MediaContentTemplate>
 									<DataTemplate>
 										<Image Source="{Binding}"
@@ -104,11 +113,13 @@
 						<!-- Elevated card with media and supporting content -->
 						<smtx:XamlDisplay UniqueKey="CardSamplePage_MaterialElevatedCardWithMediaAndSupportingContent"
 										  smtx:XamlDisplayExtensions.Header="Elevated card with media and supporting content">
+							
 							<material:Card HeaderContent="Elevated card"
 										   SubHeaderContent="With media and supporting content"
 										   MediaContent="ms-appx:///Assets/LargeMedia.png"
 										   SupportingContent="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor."
 										   Style="{StaticResource MaterialElevatedCardStyle}">
+								
 								<material:Card.HeaderContentTemplate>
 									<DataTemplate>
 										<TextBlock Text="{Binding}"
@@ -116,6 +127,7 @@
 												   Style="{ThemeResource MaterialHeadline6}" />
 									</DataTemplate>
 								</material:Card.HeaderContentTemplate>
+								
 								<material:Card.SubHeaderContentTemplate>
 									<DataTemplate>
 										<TextBlock Text="{Binding}"
@@ -123,6 +135,7 @@
 												   Style="{ThemeResource MaterialBody2}" />
 									</DataTemplate>
 								</material:Card.SubHeaderContentTemplate>
+								
 								<material:Card.SupportingContentTemplate>
 									<DataTemplate>
 										<TextBlock Text="{Binding}"
@@ -130,6 +143,7 @@
 												   Style="{ThemeResource MaterialBody2}" />
 									</DataTemplate>
 								</material:Card.SupportingContentTemplate>
+								
 								<material:Card.MediaContentTemplate>
 									<DataTemplate>
 										<Image Source="{Binding}"
@@ -143,11 +157,13 @@
 						<!-- Outlined card with media content, supporting content and supplemental action buttons -->
 						<smtx:XamlDisplay UniqueKey="CardSamplePage_MaterialOutlinedCardWithSupplementalActionButton"
 										  smtx:XamlDisplayExtensions.Header="Outlined card with media content, supporting content and supplemental action button">
+							
 							<material:Card HeaderContent="Outlined card"
 										   SubHeaderContent="With media, supporting content and supplemental action button"
 										   SupportingContent="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor."
 										   MediaContent="ms-appx:///Assets/LargeMedia.png"
 										   Style="{StaticResource MaterialOutlinedCardStyle}">
+								
 								<material:Card.HeaderContentTemplate>
 									<DataTemplate>
 										<TextBlock Text="{Binding}"
@@ -155,6 +171,7 @@
 												   Style="{ThemeResource MaterialHeadline6}" />
 									</DataTemplate>
 								</material:Card.HeaderContentTemplate>
+								
 								<material:Card.SubHeaderContentTemplate>
 									<DataTemplate>
 										<TextBlock Text="{Binding}"
@@ -162,17 +179,22 @@
 												   Style="{ThemeResource MaterialBody2}" />
 									</DataTemplate>
 								</material:Card.SubHeaderContentTemplate>
+								
 								<material:Card.SupportingContentTemplate>
 									<DataTemplate>
 										<StackPanel>
+											
 											<TextBlock Text="{Binding}"
 													   Margin="16,4,16,0"
 													   Style="{ThemeResource MaterialBody2}" />
+											
 											<StackPanel Orientation="Horizontal">
+												
 												<Button Content="ACTION 1"
 														Margin="6"
 														Padding="10,2"
 														Style="{StaticResource MaterialTextButtonStyle}" />
+												
 												<Button Content="ACTION 2"
 														Margin="6"
 														Padding="10,2"
@@ -181,6 +203,7 @@
 										</StackPanel>
 									</DataTemplate>
 								</material:Card.SupportingContentTemplate>
+								
 								<material:Card.MediaContentTemplate>
 									<DataTemplate>
 										<Image Source="{Binding}"
@@ -188,6 +211,7 @@
 											   MaxHeight="194" />
 									</DataTemplate>
 								</material:Card.MediaContentTemplate>
+								
 								<material:Card.IconsContentTemplate>
 									<DataTemplate>
 										<Button Content="{Binding}"
@@ -213,11 +237,13 @@
 						<!-- Elevated card with small media and supporting content -->
 						<smtx:XamlDisplay UniqueKey="CardSamplePage_MaterialElevatedCardWithSmallMediaAndSupportingContent"
 										  smtx:XamlDisplayExtensions.Header="Elevated card with small media and supporting content">
+							
 							<material:Card HeaderContent="Elevated card"
 										   SubHeaderContent="With small media and supporting content"
 										   MediaContent="ms-appx:///Assets/SmallMedia.png"
 										   SupportingContent="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor."
 										   Style="{StaticResource MaterialSmallMediaElevatedCardStyle}">
+								
 								<material:Card.HeaderContentTemplate>
 									<DataTemplate>
 										<TextBlock Text="{Binding}"
@@ -226,6 +252,7 @@
 												   Style="{ThemeResource MaterialHeadline6}" />
 									</DataTemplate>
 								</material:Card.HeaderContentTemplate>
+								
 								<material:Card.SubHeaderContentTemplate>
 									<DataTemplate>
 										<TextBlock Text="{Binding}"
@@ -234,6 +261,7 @@
 												   Style="{ThemeResource MaterialBody2}" />
 									</DataTemplate>
 								</material:Card.SubHeaderContentTemplate>
+								
 								<material:Card.SupportingContentTemplate>
 									<DataTemplate>
 										<Border BorderThickness="0,1,0,0"
@@ -244,6 +272,7 @@
 										</Border>
 									</DataTemplate>
 								</material:Card.SupportingContentTemplate>
+								
 								<material:Card.MediaContentTemplate>
 									<DataTemplate>
 										<Image Source="{Binding}"
@@ -258,6 +287,7 @@
 						<!-- Disabled outlined card with avatar and other content -->
 						<smtx:XamlDisplay UniqueKey="CardSamplePage_MaterialOutlinedCardWithAvatar"
 										  smtx:XamlDisplayExtensions.Header="Disabled outlined card with avatar and other content">
+							
 							<material:Card HeaderContent="Disabled outlined card"
 										   SubHeaderContent="With avatar and other content"
 										   AvatarContent="ms-appx:///Assets/Avatar.png"
@@ -265,6 +295,7 @@
 										   MediaContent="ms-appx:///Assets/LargeMedia.png"
 										   Style="{StaticResource MaterialAvatarElevatedCardStyle}"
 										   IsEnabled="False">
+								
 								<material:Card.HeaderContentTemplate>
 									<DataTemplate>
 										<TextBlock Text="{Binding}"
@@ -273,6 +304,7 @@
 												   Style="{ThemeResource MaterialHeadline6}" />
 									</DataTemplate>
 								</material:Card.HeaderContentTemplate>
+								
 								<material:Card.SubHeaderContentTemplate>
 									<DataTemplate>
 										<TextBlock Text="{Binding}"
@@ -281,6 +313,7 @@
 												   Style="{ThemeResource MaterialBody2}" />
 									</DataTemplate>
 								</material:Card.SubHeaderContentTemplate>
+								
 								<material:Card.AvatarContentTemplate>
 									<DataTemplate>
 										<Image Source="{Binding}"
@@ -288,6 +321,7 @@
 											   MaxHeight="40" />
 									</DataTemplate>
 								</material:Card.AvatarContentTemplate>
+								
 								<material:Card.SupportingContentTemplate>
 									<DataTemplate>
 										<TextBlock Text="{Binding}"
@@ -295,6 +329,7 @@
 												   Style="{ThemeResource MaterialBody2}" />
 									</DataTemplate>
 								</material:Card.SupportingContentTemplate>
+								
 								<material:Card.MediaContentTemplate>
 									<DataTemplate>
 										<Image Source="{Binding}"
@@ -302,6 +337,7 @@
 											   MaxHeight="194" />
 									</DataTemplate>
 								</material:Card.MediaContentTemplate>
+								
 								<material:Card.IconsContentTemplate>
 									<DataTemplate>
 										<Button Content="{Binding}"
@@ -323,7 +359,7 @@
 						</smtx:XamlDisplay>
 					</StackPanel>
 				</DataTemplate>
-			</controls:SamplePageLayout.MaterialTemplate>
-		</controls:SamplePageLayout>
+			</local:SamplePageLayout.MaterialTemplate>
+		</local:SamplePageLayout>
 	</Grid>
 </Page>
