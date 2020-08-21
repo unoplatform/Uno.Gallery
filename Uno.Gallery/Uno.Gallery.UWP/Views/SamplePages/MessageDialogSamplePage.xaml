@@ -18,8 +18,10 @@
 					<StackPanel>
 						<smtx:XamlDisplay UniqueKey="MessageDialogSamplePage_Fluent_Default"
 										  smtx:XamlDisplayExtensions.Header="Default MessageDialog">
+
 							<Button Content="Content only"
-									Click="Button_Click" />
+									Click="Button_Click"
+									Style="{StaticResource MaterialContainedButtonStyle}" />
 							<!-- with the following C# code
 private void Button_Click(object sender, RoutedEventArgs e)
 {
@@ -31,8 +33,10 @@ private void Button_Click(object sender, RoutedEventArgs e)
 
 						<smtx:XamlDisplay UniqueKey="MessageDialogSamplePage_Fluent_Title"
 										  smtx:XamlDisplayExtensions.Header="MessageDialog with Title">
+
 							<Button Content="Content and Title"
-									Click="Button_Click2" />
+									Click="Button_Click2"
+									Style="{StaticResource MaterialContainedButtonStyle}" />
 							<!-- with the following C# code
 private void Button_Click2(object sender, RoutedEventArgs e)
 {
@@ -46,7 +50,8 @@ private void Button_Click2(object sender, RoutedEventArgs e)
 							<smtx:XamlDisplay UniqueKey="MessageDialogSamplePage_Fluent_Prompt"
 											  smtx:XamlDisplayExtensions.Header="MessageDialog with Prompt">
 								<Button Content="Confirmation prompt"
-										Click="Button_Click3" />
+										Click="Button_Click3"
+										Style="{StaticResource MaterialContainedButtonStyle}" />
 								<!-- with the following C# code
 private void Button_Click3(object sender, RoutedEventArgs e)
 {
@@ -67,8 +72,10 @@ private void Button_Click3(object sender, RoutedEventArgs e)
 						<ios:StackPanel>
 							<smtx:XamlDisplay UniqueKey="MessageDialogSamplePage_Fluent_Destructive"
 											  smtx:XamlDisplayExtensions.Header="MessageDialog with Destructive Prompt">
+
 								<Button Content="Destructive prompt"
-										Click="Button_Click4" />
+										Click="Button_Click4"
+										Style="{StaticResource MaterialContainedButtonStyle}" />
 								<!-- with the following C# code
 private void Button_Click4(object sender, RoutedEventArgs e)
 {
