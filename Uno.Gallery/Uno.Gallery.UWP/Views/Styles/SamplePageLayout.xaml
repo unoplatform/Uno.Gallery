@@ -128,7 +128,7 @@
 
 												<!-- Icon -->
 												<Image Source="ms-appx:///Assets/MaterialIcon_Small.png"
-													   Stretch="Fill"
+													   Stretch="UniformToFill"
 													   Height="16"
 													   Width="16"
 													   VerticalAlignment="Center"
@@ -149,7 +149,7 @@
 
 												<!-- Icon -->
 												<Image Source="ms-appx:///Assets/FluentIcon_Small.png"
-													   Stretch="Fill"
+													   Stretch="UniformToFill"
 													   Height="16"
 													   Width="16"
 													   VerticalAlignment="Center"
@@ -171,7 +171,8 @@
 												<!-- Icon -->
 												<Image android:Source="ms-appx:///Assets/AndroidIcon_Small.png"
 													   not_android:Source="ms-appx:///Assets/AppleIcon_Small.png"
-													   Stretch="None"
+													   Stretch="UniformToFill"
+													   Height="16"
 													   Width="16"
 													   VerticalAlignment="Center"
 													   Margin="10,0,0,0" />
@@ -264,7 +265,7 @@
 
 									<!-- Icon -->
 									<Image Source="ms-appx:///Assets/MaterialIcon_Small.png"
-										   Stretch="None"
+										   Stretch="UniformToFill"
 										   Height="16"
 										   Width="16"
 										   VerticalAlignment="Center"
@@ -285,7 +286,7 @@
 
 									<!-- Icon -->
 									<Image Source="ms-appx:///Assets/FluentIcon_Small.png"
-										   Stretch="None"
+										   Stretch="UniformToFill"
 										   Height="16"
 										   Width="16"
 										   VerticalAlignment="Center"
@@ -307,7 +308,8 @@
 									<!-- Icon -->
 									<Image android:Source="ms-appx:///Assets/AndroidIcon_Small.png"
 										   not_android:Source="ms-appx:///Assets/AppleIcon_Small.png"
-										   Stretch="None"
+										   Stretch="UniformToFill"
+										   Height="16"
 										   Width="16"
 										   VerticalAlignment="Center"
 										   Margin="10,0,0,0" />
