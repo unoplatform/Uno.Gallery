@@ -5,6 +5,7 @@
 	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	  xmlns:smtx="using:ShowMeTheXAML"
+	  xmlns:data="using:Uno.Gallery.Entities.Data"
 	  mc:Ignorable="d">
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -14,30 +15,19 @@
 				<DataTemplate>
 					<StackPanel>
 						<smtx:XamlDisplay UniqueKey="ListViewSamplePage_Default"
-										  smtx:XamlDisplayExtensions.Header="Template">
-							
-							<!-- with the following C# code
-public Record[] Records = new Record[] {
+										  smtx:XamlDisplayExtensions.Header="Custom Template">
+							<!-- With C# Code
+public List<Record> Data { get; } = new List<Record>
+{
     new Record(compositionName: "Mass in B minor", artistName: "Johann Sebastian Bach", color: "#159bff"),
     new Record(compositionName: "Third Symphony", artistName: "Ludwig van Beethoven", color: "#7a67f8"),
     new Record(compositionName: "Serse", artistName: "George Frideric Handel", color: "#67e5ad"),
-    new Record(compositionName: "Idomeneo", artistName: "Wolfgang Amadeus Mozart", color: "#f85977")
+    new Record(compositionName: "Idomeneo", artistName: "Wolfgang Amadeus Mozart", color: "#f85977"),
 };
 -->
-							<ListView ItemsSource="{Binding Recordings}">
-
-								<!-- 
-Side Note: 
-If the template is used anywhere else in your app 
-consider making the template a resource.
--->
-								<!-- 
-Side Note: 
-If the template is used anywhere else in your app 
-consider making the template a resource.
--->
+							<ListView ItemsSource="{Binding Data}">
 								<ListView.ItemTemplate>
-									<DataTemplate>
+									<DataTemplate x:DataType="data:Record">
 
 										<Grid Height="69">
 											<Grid.ColumnDefinitions>
@@ -60,20 +50,22 @@ consider making the template a resource.
 
 												<!-- Composition Name -->
 												<TextBlock Text="{Binding CompositionName}"
-														   Style="{ThemeResource BaseTextBlockStyle}"
-														   FontWeight="Semibold"
-														   Foreground="{ThemeResource SystemControlPageTextBaseHighBrush}" />
+														   Style="{StaticResource MaterialSubtitle2}" />
 
 												<!-- Artist Name -->
 												<TextBlock Text="{Binding ArtistName}"
-														   Style="{ThemeResource BodyTextBlockStyle}"
-														   Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" />
+														   Style="{ThemeResource MaterialBody2}" />
 											</StackPanel>
 										</Grid>
 									</DataTemplate>
 								</ListView.ItemTemplate>
 							</ListView>
 						</smtx:XamlDisplay>
+						
+						<!-- Note -->
+						<TextBlock Text="Side Note: If the template is used anywhere else in your app consider making the template a resource."
+								   Style="{StaticResource MaterialCaption}" 
+								   Margin="0,16,0,0"/>
 					</StackPanel>
 				</DataTemplate>
 			</local:SamplePageLayout.FluentTemplate>
