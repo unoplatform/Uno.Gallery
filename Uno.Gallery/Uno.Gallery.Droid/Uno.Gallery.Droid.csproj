@@ -106,7 +106,7 @@
       <Version>3.0.0-dev.1535</Version>
     </PackageReference>
     <PackageReference Include="Uno.UI.Lottie">
-      <Version>3.0.0-dev.1535</Version>
+      <Version>3.0.12</Version>
     </PackageReference>
     <PackageReference Include="Uno.UI.RemoteControl" Version="3.0.0-dev.1535" Condition="'$(Configuration)'=='Debug'" />
     <PackageReference Include="Uno.UniversalImageLoader" Version="1.9.32" />
