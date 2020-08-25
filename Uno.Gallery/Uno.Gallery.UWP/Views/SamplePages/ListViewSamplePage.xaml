@@ -61,11 +61,44 @@ public List<Record> Data { get; } = new List<Record>
 								</ListView.ItemTemplate>
 							</ListView>
 						</smtx:XamlDisplay>
-						
+
 						<!-- Note -->
 						<TextBlock Text="Side Note: If the template is used anywhere else in your app consider making the template a resource."
-								   Style="{StaticResource MaterialCaption}" 
-								   Margin="0,16,0,0"/>
+								   Style="{StaticResource MaterialCaption}"
+								   Margin="0,16,0,0" />
+
+						<smtx:XamlDisplay UniqueKey="ListViewSamplePage_Selection"
+										  smtx:XamlDisplayExtensions.Header="SelectedItem"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+							<StackPanel>
+
+								<!-- Chosen Color -->
+								<TextBlock Foreground="{Binding SelectedItem.Foreground, ElementName=ColorPicker}"
+										   Height="20">
+									<Run Text="Foreground color:" />
+									<Run Text="{Binding SelectedItem.Content, ElementName=ColorPicker}" />
+								</TextBlock>
+
+								<!-- Selection-->
+								<ListView x:Name="ColorPicker"
+										  IsItemClickEnabled="True"
+										  SelectedIndex="0"
+										  Margin="0,16,0,0">
+
+									<ListViewItem Content="Uno Green"
+												  Foreground="{StaticResource UnoGreenColor}" />
+
+									<ListViewItem Content="Uno Blue"
+												  Foreground="{StaticResource UnoBlueColor}" />
+
+									<ListViewItem Content="Uno Purple"
+												  Foreground="{StaticResource UnoPurpleColor}" />
+
+									<ListViewItem Content="Uno Red"
+												  Foreground="{StaticResource UnoRedColor}" />
+								</ListView>
+							</StackPanel>
+						</smtx:XamlDisplay>
 					</StackPanel>
 				</DataTemplate>
 			</local:SamplePageLayout.FluentTemplate>

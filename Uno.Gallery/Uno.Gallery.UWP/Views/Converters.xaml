@@ -33,4 +33,5 @@
 									 Provider="HashCode"
 									 Output="Brush" />
 
+	<converters:DebugConverter x:Key="debug" />
 </ResourceDictionary>
