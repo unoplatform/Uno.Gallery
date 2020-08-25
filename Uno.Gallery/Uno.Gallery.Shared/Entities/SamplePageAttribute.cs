@@ -27,6 +27,8 @@ namespace Uno.Gallery
 
 		public string DocumentationLink { get; set; }
 
+		public Type DataType { get; set; }
+
 		public SourceSdk Source { get; }
 
 		/// <summary>

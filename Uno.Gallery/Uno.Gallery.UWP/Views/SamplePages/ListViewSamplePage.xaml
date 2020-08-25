@@ -1,0 +1,74 @@
+﻿<Page x:Class="Uno.Gallery.Views.Samples.ListViewSamplePage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:local="using:Uno.Gallery"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  xmlns:smtx="using:ShowMeTheXAML"
+	  xmlns:data="using:Uno.Gallery.Entities.Data"
+	  mc:Ignorable="d">
+
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<local:SamplePageLayout>
+
+			<local:SamplePageLayout.FluentTemplate>
+				<DataTemplate>
+					<StackPanel>
+						<smtx:XamlDisplay UniqueKey="ListViewSamplePage_Default"
+										  smtx:XamlDisplayExtensions.Header="Custom Template">
+							<!-- With C# Code
+public List<Record> Data { get; } = new List<Record>
+{
+    new Record(compositionName: "Mass in B minor", artistName: "Johann Sebastian Bach", color: "#159bff"),
+    new Record(compositionName: "Third Symphony", artistName: "Ludwig van Beethoven", color: "#7a67f8"),
+    new Record(compositionName: "Serse", artistName: "George Frideric Handel", color: "#67e5ad"),
+    new Record(compositionName: "Idomeneo", artistName: "Wolfgang Amadeus Mozart", color: "#f85977"),
+};
+-->
+							<ListView ItemsSource="{Binding Data}">
+								<ListView.ItemTemplate>
+									<DataTemplate x:DataType="data:Record">
+
+										<Grid Height="69">
+											<Grid.ColumnDefinitions>
+												<ColumnDefinition Width="Auto" />
+												<ColumnDefinition Width="*" />
+											</Grid.ColumnDefinitions>
+
+											<!-- Colored circle -->
+											<Ellipse Height="48"
+													 Width="48"
+													 Fill="{Binding Color}"
+													 VerticalAlignment="Center"
+													 Grid.Column="0" />
+
+											<!-- Info -->
+											<StackPanel Orientation="Vertical"
+														VerticalAlignment="Center"
+														Margin="12,0,0,0"
+														Grid.Column="1">
+
+												<!-- Composition Name -->
+												<TextBlock Text="{Binding CompositionName}"
+														   Style="{StaticResource MaterialSubtitle2}" />
+
+												<!-- Artist Name -->
+												<TextBlock Text="{Binding ArtistName}"
+														   Style="{ThemeResource MaterialBody2}" />
+											</StackPanel>
+										</Grid>
+									</DataTemplate>
+								</ListView.ItemTemplate>
+							</ListView>
+						</smtx:XamlDisplay>
+						
+						<!-- Note -->
+						<TextBlock Text="Side Note: If the template is used anywhere else in your app consider making the template a resource."
+								   Style="{StaticResource MaterialCaption}" 
+								   Margin="0,16,0,0"/>
+					</StackPanel>
+				</DataTemplate>
+			</local:SamplePageLayout.FluentTemplate>
+		</local:SamplePageLayout>
+	</Grid>
+</Page>

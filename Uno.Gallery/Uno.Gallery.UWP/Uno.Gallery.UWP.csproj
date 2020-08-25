@@ -200,6 +200,9 @@
     <Compile Include="Views\SamplePages\FlipViewSamplePage.xaml.cs">
       <DependentUpon>FlipViewSamplePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SamplePages\ListViewSamplePage.xaml.cs">
+      <DependentUpon>ListViewSamplePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SamplePages\MessageDialogSamplePage.xaml.cs">
       <DependentUpon>MessageDialogSamplePage.xaml</DependentUpon>
     </Compile>
@@ -364,6 +367,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SamplePages\FlipViewSamplePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SamplePages\ListViewSamplePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
