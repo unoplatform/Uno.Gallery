@@ -32,4 +32,5 @@
 	<converters:RandomColorConverter x:Name="HashCodeToRandomColorBrush"
 									 Provider="HashCode" />
 
+	<converters:DebugConverter x:Key="debug" />
 </ResourceDictionary>
