@@ -97,6 +97,4 @@
 		<TypeScriptCompile Include="ts\GoogleAnalytics.ts" />
 	</ItemGroup>
 	<Import Project="..\Uno.Gallery.Shared\Uno.Gallery.Shared.projitems" Label="Shared" Condition="Exists('..\Uno.Gallery.Shared\Uno.Gallery.Shared.projitems')" />
-	<Import Project="..\..\Versioning.targets" />
-	<Import Project="..\..\Packaging.targets" />
 </Project>
