@@ -203,6 +203,9 @@
     <Compile Include="Views\SamplePages\GridViewSamplePage.xaml.cs">
       <DependentUpon>GridViewSamplePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SamplePages\ImageSamplePage.xaml.cs">
+      <DependentUpon>ImageSamplePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SamplePages\HyperlinkButtonSamplePage.xaml.cs">
       <DependentUpon>HyperlinkButtonSamplePage.xaml</DependentUpon>
     </Compile>
@@ -383,6 +386,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SamplePages\GridViewSamplePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SamplePages\ImageSamplePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
