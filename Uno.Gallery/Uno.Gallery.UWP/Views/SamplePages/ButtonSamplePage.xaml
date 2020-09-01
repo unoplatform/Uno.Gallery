@@ -118,17 +118,6 @@
 								<Button Style="{StaticResource NavigationBackButtonSmallStyle}" />
 							</StackPanel>
 						</smtx:XamlDisplay>
-
-						<!-- Navigation Hyperlink button -->
-						<smtx:XamlDisplay UniqueKey="ButtonSamplePage_FluentHyperlinkButton"
-										  smtx:XamlDisplayExtensions.Header="Hyperlink Button"
-										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
-							<StackPanel>
-
-								<HyperlinkButton Content="Uno Platform"
-												 NavigateUri="https://platform.uno/" />
-							</StackPanel>
-						</smtx:XamlDisplay>
 					</StackPanel>
 				</DataTemplate>
 			</local:SamplePageLayout.FluentTemplate>
