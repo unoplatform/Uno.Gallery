@@ -1,0 +1,55 @@
+﻿<Page x:Class="Uno.Gallery.Views.Samples.HyperlinkButtonSamplePage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:local="using:Uno.Gallery"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  xmlns:smtx="using:ShowMeTheXAML"
+	  mc:Ignorable="d">
+
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<local:SamplePageLayout>
+
+			<local:SamplePageLayout.MaterialTemplate>
+				<DataTemplate>
+					<StackPanel>
+
+						<!-- HyperlinkButton Material Default -->
+						<smtx:XamlDisplay UniqueKey="HyperlinkButtonSamplePage_Default"
+										  smtx:XamlDisplayExtensions.Header="Default">
+
+							<HyperlinkButton Content="Uno Platform"
+											 NavigateUri="https://platform.uno/"
+											 Style="{StaticResource MaterialHyperlinkButtonStyle}" />
+						</smtx:XamlDisplay>
+
+						<!-- HyperlinkButton Material Secondary -->
+						<smtx:XamlDisplay UniqueKey="HyperlinkButtonSamplePage_Secondary"
+										  smtx:XamlDisplayExtensions.Header="Secondary">
+
+							<HyperlinkButton Content="Uno Platform"
+											 NavigateUri="https://platform.uno/"
+											 Style="{StaticResource MaterialSecondaryHyperlinkButtonStyle}" />
+						</smtx:XamlDisplay>
+					</StackPanel>
+				</DataTemplate>
+			</local:SamplePageLayout.MaterialTemplate>
+
+			<local:SamplePageLayout.FluentTemplate>
+				<DataTemplate>
+					<StackPanel>
+						
+						<!-- HyperlinkButton Default -->
+						<smtx:XamlDisplay UniqueKey="HyperlinkButtonSamplePage_Fluent_Default"
+										  smtx:XamlDisplayExtensions.Header="Default">
+
+							<HyperlinkButton Content="Microsoft Docs"
+											 NavigateUri="https://docs.microsoft.com" />
+						</smtx:XamlDisplay>
+					</StackPanel>
+				</DataTemplate>
+			</local:SamplePageLayout.FluentTemplate>
+		</local:SamplePageLayout>
+	</Grid>
+</Page>
+

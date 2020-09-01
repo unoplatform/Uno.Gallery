@@ -34,7 +34,7 @@
     </PackageReference>
     <PackageReference Include="Uno.Core" Version="2.0.0" />
     <PackageReference Include="Uno.Material">
-      <Version>1.0.0-dev.527</Version>
+      <Version>1.0.0-dev.535</Version>
     </PackageReference>
     <PackageReference Include="Uno.ShowMeTheXAML">
       <Version>1.0.59</Version>
@@ -202,6 +202,9 @@
     </Compile>
     <Compile Include="Views\SamplePages\GridViewSamplePage.xaml.cs">
       <DependentUpon>GridViewSamplePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SamplePages\HyperlinkButtonSamplePage.xaml.cs">
+      <DependentUpon>HyperlinkButtonSamplePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SamplePages\ListViewSamplePage.xaml.cs">
       <DependentUpon>ListViewSamplePage.xaml</DependentUpon>
@@ -380,6 +383,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SamplePages\GridViewSamplePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SamplePages\HyperlinkButtonSamplePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
