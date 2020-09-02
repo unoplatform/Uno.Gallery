@@ -111,9 +111,8 @@
       <Version>3.0.0-dev.1535</Version>
     </PackageReference>
     <PackageReference Include="Uno.UI.Lottie">
-      <Version>3.1.0-feature.shapes.43</Version>
+      <Version>3.0.0-dev.1535</Version>
     </PackageReference>
-    <PackageReference Include="Com.Airbnb.Android.Lottie" Version="3.4.2" />
     <PackageReference Include="Uno.UI.RemoteControl" Version="3.0.0-dev.1535" Condition="'$(Configuration)'=='Debug'" />
     <PackageReference Include="Uno.UniversalImageLoader" Version="1.9.32" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
