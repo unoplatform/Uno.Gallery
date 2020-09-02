@@ -79,7 +79,7 @@
 		<PackageReference Include="Uno.Material" Version="1.0.0-dev.535" />
 		<PackageReference Include="Uno.ShowMeTheXAML" Version="1.0.58" />
 		<PackageReference Include="Uno.ShowMeTheXAML.MSBuild" Version="1.0.58" />
-		<PackageReference Include="Uno.UI.Lottie" Version="3.0.0-dev.1535" />
+		<PackageReference Include="Uno.UI.Lottie" Version="3.1.0-feature.shapes.43" />
 		<PackageReference Include="Uno.UI.WebAssembly" Version="3.0.0-dev.1535" />
 		<PackageReference Include="Uno.UI.RemoteControl" Version="3.0.0-dev.1535" Condition="'$(Configuration)'=='Debug'" />
 		<PackageReference Include="Uno.Wasm.Bootstrap" Version="1.4.0-dev.22" />

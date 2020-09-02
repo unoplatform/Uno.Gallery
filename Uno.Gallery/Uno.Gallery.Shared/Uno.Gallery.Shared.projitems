@@ -19,6 +19,7 @@
     <Content Include="$(MSBuildThisFileDirectory)Assets\AndroidIcon_Small.scale-200.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\AndroidIcon_Small.scale-300.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\AndroidIcon_Small.scale-400.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Animations\loading_animation_data.json" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\AppleIcon_Medium.scale-100.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\AppleIcon_Medium.scale-150.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\AppleIcon_Medium.scale-200.png" />

@@ -181,6 +181,9 @@
     <BundleResource Include="Resources\Fonts\winjs-symbols.ttf" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Com.Airbnb.iOS.Lottie">
+      <Version>2.5.12</Version>
+    </PackageReference>
     <PackageReference Include="nventive.Nimue.Application.Building.Light">
       <Version>0.1.0-alpha.58</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -214,7 +217,7 @@
       <Version>3.0.0-dev.1535</Version>
     </PackageReference>
     <PackageReference Include="Uno.UI.Lottie">
-      <Version>3.0.0-dev.1535</Version>
+      <Version>3.1.0-feature.shapes.43</Version>
     </PackageReference>
     <PackageReference Include="Uno.UI.RemoteControl" Version="3.0.0-dev.1535" Condition="'$(Configuration)'=='Debug'" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
