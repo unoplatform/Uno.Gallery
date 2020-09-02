@@ -44,6 +44,11 @@
     <Content Include="$(MSBuildThisFileDirectory)Assets\FluentIcon_Small.scale-200.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\FluentIcon_Small.scale-300.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\FluentIcon_Small.scale-400.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\ImageSample.scale-100.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\ImageSample.scale-150.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\ImageSample.scale-200.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\ImageSample.scale-300.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\ImageSample.scale-400.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\LargeMedia.scale-100.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\LargeMedia.scale-150.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\LargeMedia.scale-200.png" />

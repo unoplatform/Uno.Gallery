@@ -21,7 +21,7 @@
 									Height="160"
 									HorizontalAlignment="Center">
 
-								<Image Source="ms-appx:///Assets/LargeMedia.png"
+								<Image Source="ms-appx:///Assets/ImageSample.png"
 									   Stretch="Uniform" />
 							</Border>
 						</smtx:XamlDisplay>
@@ -32,7 +32,7 @@
 									Height="160"
 									HorizontalAlignment="Center">
 
-								<Image Source="ms-appx:///Assets/LargeMedia.png"
+								<Image Source="ms-appx:///Assets/ImageSample.png"
 									   Stretch="UniformToFill" />
 							</Border>
 						</smtx:XamlDisplay>
@@ -43,7 +43,7 @@
 									Height="160"
 									HorizontalAlignment="Center">
 
-								<Image Source="ms-appx:///Assets/LargeMedia.png"
+								<Image Source="ms-appx:///Assets/ImageSample.png"
 									   Stretch="Fill" />
 							</Border>
 						</smtx:XamlDisplay>
@@ -54,7 +54,7 @@
 									Height="160"
 									HorizontalAlignment="Center">
 								
-								<Image Source="ms-appx:///Assets/LargeMedia.png"
+								<Image Source="ms-appx:///Assets/ImageSample.png"
 									   Stretch="None" />
 							</Border>
 						</smtx:XamlDisplay>
