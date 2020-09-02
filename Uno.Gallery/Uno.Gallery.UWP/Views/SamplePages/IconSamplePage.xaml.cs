@@ -15,10 +15,10 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Uno.Gallery.Views.Samples
 {
-	[SamplePage(SampleCategory.Features, "Brush", Description = "A brush describes how a surface is painted graphically.", DocumentationLink = "https://docs.microsoft.com/en-us/uwp/api/windows.ui.xaml.media.brush")]
-	public sealed partial class BrushSamplePage : Page
+	[SamplePage(SampleCategory.Features, "Icon", Description = "Icons provide a visual shorthand for an action, concept, or product. By compressing meaning into a symbolic image, icons can cross language barriers and help conserve an extremely valuable resource: screen space.", DocumentationLink = "https://docs.microsoft.com/en-us/windows/uwp/design/style/icons")]
+	public sealed partial class IconSamplePage : Page
 	{
-		public BrushSamplePage()
+		public IconSamplePage()
 		{
 			this.InitializeComponent();
 		}

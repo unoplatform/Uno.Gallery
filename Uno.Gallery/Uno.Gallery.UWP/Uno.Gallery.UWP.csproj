@@ -209,6 +209,9 @@
     <Compile Include="Views\SamplePages\HyperlinkButtonSamplePage.xaml.cs">
       <DependentUpon>HyperlinkButtonSamplePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SamplePages\IconSamplePage.xaml.cs">
+      <DependentUpon>IconSamplePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SamplePages\ListViewSamplePage.xaml.cs">
       <DependentUpon>ListViewSamplePage.xaml</DependentUpon>
     </Compile>
@@ -394,6 +397,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SamplePages\HyperlinkButtonSamplePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SamplePages\IconSamplePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
