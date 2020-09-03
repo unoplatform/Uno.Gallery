@@ -1,0 +1,55 @@
+﻿<Page x:Class="Uno.Gallery.Views.Samples.BindingSamplePage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:local="using:Uno.Gallery"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  xmlns:smtx="using:ShowMeTheXAML"
+	  mc:Ignorable="d">
+
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<local:SamplePageLayout>
+
+			<local:SamplePageLayout.FluentTemplate>
+				<DataTemplate>
+					<StackPanel>
+
+						<!-- Binding -->
+						<smtx:XamlDisplay UniqueKey="BindingSamplePage_Binding"
+										  smtx:XamlDisplayExtensions.Header="ElementName">
+							<StackPanel>
+
+								<!-- Instruction -->
+								<TextBlock Text="Enter some text:"
+										   Style="{StaticResource MaterialBody1}"
+										   Margin="0,0,0,4" />
+
+								<!-- myTextBox -->
+								<TextBox x:Name="myTextBox"
+										 PlaceholderText="myTextBox"
+										 Style="{StaticResource MaterialFilledTextBoxStyle}"/>
+
+								<!-- Text Value -->
+								<TextBlock Style="{StaticResource MaterialBody1}"
+										   Margin="0,8,0,0">
+									<Run Text="The text of" />
+									<Run Text="{Binding Name, ElementName=myTextBox}" 
+										 FontWeight="Bold"/>
+									<Run Text="is: " />
+									<Run Text="{Binding Text, ElementName=myTextBox}" />
+								</TextBlock>
+
+								<!-- Length Value -->
+								<TextBlock Style="{StaticResource MaterialBody1}">
+									<Run Text="The length is:" />
+									<Run Text="{Binding Text.Length, ElementName=myTextBox}" />
+								</TextBlock>
+							</StackPanel>
+						</smtx:XamlDisplay>
+					</StackPanel>
+				</DataTemplate>
+			</local:SamplePageLayout.FluentTemplate>
+		</local:SamplePageLayout>
+	</Grid>
+</Page>
+
