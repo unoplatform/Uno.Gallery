@@ -19,7 +19,6 @@
     <Content Include="$(MSBuildThisFileDirectory)Assets\AndroidIcon_Small.scale-200.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\AndroidIcon_Small.scale-300.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\AndroidIcon_Small.scale-400.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Assets\Animations\loading_animation_data.json" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\AppleIcon_Medium.scale-100.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\AppleIcon_Medium.scale-150.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\AppleIcon_Medium.scale-200.png" />
@@ -138,5 +137,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\EnumHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\SystemThemeHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\VisualTreeHelperEx.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Animations\*.json" />
+    <AndroidAsset Include="$(MSBuildThisFileDirectory)Assets\Animations\*.json" Link="Assets\Assets\Animations\%(FileName)%(Extension)" />
   </ItemGroup>
 </Project>
