@@ -1,0 +1,130 @@
+﻿<Page x:Class="Uno.Gallery.Views.Samples.FlyoutSamplePage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:local="using:Uno.Gallery"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  xmlns:smtx="using:ShowMeTheXAML"
+	  mc:Ignorable="d">
+
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<local:SamplePageLayout>
+
+			<local:SamplePageLayout.FluentTemplate>
+				<DataTemplate>
+					<StackPanel>
+
+						<smtx:XamlDisplay UniqueKey="FlyoutSamplePage_Flyout"
+										  smtx:XamlDisplayExtensions.Header="Flyout">
+
+							<Button Content="Flyout">
+								<Button.Flyout>
+									<Flyout>
+										<Flyout.FlyoutPresenterStyle>
+											<Style TargetType="FlyoutPresenter">
+												
+												<Setter Property="ScrollViewer.HorizontalScrollMode"
+														Value="Disabled" />
+												<Setter Property="ScrollViewer.HorizontalScrollBarVisibility"
+														Value="Disabled" />
+												<Setter Property="Margin"
+														Value="16" />
+											</Style>
+										</Flyout.FlyoutPresenterStyle>
+
+										<TextBlock Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." 
+												   Style="{StaticResource MaterialBody1}"/>
+									</Flyout>
+								</Button.Flyout>
+							</Button>
+						</smtx:XamlDisplay>
+
+						<smtx:XamlDisplay UniqueKey="FlyoutSamplePage_Flyout_Icons"
+										  smtx:XamlDisplayExtensions.Header="MenuFlyout &amp; Icons">
+
+							<Button Content="Open">
+								<Button.Flyout>
+									<MenuFlyout>
+
+										<MenuFlyoutItem Text="Like">
+											<MenuFlyoutItem.Icon>
+												<SymbolIcon Symbol="Like" />
+											</MenuFlyoutItem.Icon>
+										</MenuFlyoutItem>
+
+										<MenuFlyoutItem Text="Dislike">
+											<MenuFlyoutItem.Icon>
+												<SymbolIcon Symbol="Dislike" />
+											</MenuFlyoutItem.Icon>
+										</MenuFlyoutItem>
+										
+										<MenuFlyoutSeparator />
+
+										<MenuFlyoutItem Text="Calculator"
+														Icon="Calculator" />
+
+										<MenuFlyoutItem Text="Camera"
+														Icon="Camera" />
+
+										<MenuFlyoutItem Text="Calendar"
+														Icon="Calendar" />
+									</MenuFlyout>
+								</Button.Flyout>
+							</Button>
+						</smtx:XamlDisplay>
+
+						<smtx:XamlDisplay UniqueKey="FlyoutSamplePage_MenuFlyout_Toggles"
+										  smtx:XamlDisplayExtensions.Header="MenuFlyout &amp; Toggles">
+
+							<Button Content="Options">
+								<Button.Flyout>
+									<MenuFlyout>
+
+										<MenuFlyoutItem Text="Clear History" />
+
+										<MenuFlyoutSeparator />
+
+										<ToggleMenuFlyoutItem Text="Incognito Mode"
+															  IsChecked="True" />
+
+										<ToggleMenuFlyoutItem Text="Dark Mode"
+															  IsChecked="True" />
+									</MenuFlyout>
+								</Button.Flyout>
+							</Button>
+						</smtx:XamlDisplay>
+
+						<smtx:XamlDisplay UniqueKey="FlyoutSamplePage_Nested_MenuFlyout"
+										  smtx:XamlDisplayExtensions.Header="Nested MenuFlyout">
+
+							<Button Content="Help">
+								<Button.Flyout>
+									<MenuFlyout>
+
+										<MenuFlyoutItem Text="View Help" />
+
+										<MenuFlyoutSubItem Text="Send Feedback">
+
+											<MenuFlyoutItem Text="Report Problem" />
+
+											<MenuFlyoutItem Text="Suggest Feature" />
+
+											<MenuFlyoutSubItem Text="Settings">
+
+												<MenuFlyoutItem Text="Auto Save" />
+
+												<MenuFlyoutItem Text="Start Up" />
+
+												<MenuFlyoutItem Text="Font and Colors" />
+											</MenuFlyoutSubItem>
+										</MenuFlyoutSubItem>
+									</MenuFlyout>
+								</Button.Flyout>
+							</Button>
+						</smtx:XamlDisplay>
+					</StackPanel>
+				</DataTemplate>
+			</local:SamplePageLayout.FluentTemplate>
+		</local:SamplePageLayout>
+	</Grid>
+</Page>
