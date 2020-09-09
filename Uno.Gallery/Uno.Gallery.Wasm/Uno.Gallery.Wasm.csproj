@@ -78,7 +78,7 @@
 		</PackageReference>
 		<PackageReference Include="Uno.Material" Version="1.0.0-dev.573" />
 		<PackageReference Include="Uno.ShowMeTheXAML" Version="1.0.58" />
-		<PackageReference Include="Uno.ShowMeTheXAML.MSBuild" Version="1.0.58" />
+		<PackageReference Include="Uno.ShowMeTheXAML.MSBuild" Version="1.0.59" />
 		<PackageReference Include="Uno.UI.Lottie" Version="3.0.0-dev.1535" />
 		<PackageReference Include="Uno.UI.WebAssembly" Version="3.0.0-dev.1535" />
 		<PackageReference Include="Uno.UI.RemoteControl" Version="3.0.0-dev.1535" Condition="'$(Configuration)'=='Debug'" />
