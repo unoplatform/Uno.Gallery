@@ -1,0 +1,62 @@
+﻿<Page x:Class="Uno.Gallery.Views.SamplePages.ModalStandardBottomSheetSamplePage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:local="using:Uno.Gallery"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  xmlns:extensions="using:Uno.Material.Extensions"
+	  xmlns:material="using:Uno.Material.Controls"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  xmlns:smtx="using:ShowMeTheXAML"
+	  mc:Ignorable="d">
+
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<local:SamplePageLayout>
+
+			<local:SamplePageLayout.MaterialTemplate>
+				<DataTemplate>
+					<Grid VerticalAlignment="Stretch">
+
+						<smtx:XamlPresenter ReferenceKey="ModalStandardBottomSheetSamplePage_Content"
+											HorizontalAlignment="Right"
+											VerticalAlignment="Center"
+											Margin="36" />
+					</Grid>
+				</DataTemplate>
+			</local:SamplePageLayout.MaterialTemplate>
+		</local:SamplePageLayout>
+
+		<smtx:XamlDisplay UniqueKey="ModalStandardBottomSheetSamplePage_Content"
+						  Style="{StaticResource ContentOnlyXamlDisplayStyle}"
+						  Margin="0"
+						  Padding="0">
+			<Grid>
+				<!-- Open ModalStandardBottomSheet -->
+				<ToggleButton x:Name="ToggleButton"
+							  Content="Open Sheet"
+							  HorizontalAlignment="Left"
+							  VerticalAlignment="Bottom"
+							  Margin="24,48" />
+
+				<!-- ModalStandardBottomSheet -->
+				<material:ModalStandardBottomSheet Style="{StaticResource MaterialModalStandardBottomSheetStyle}"
+												   Content="abcdefgh"
+												   HeaderContent="FullScreen Sheet Header"
+												   IsOpened="{Binding IsChecked, ElementName=ToggleButton, Mode=TwoWay}">
+
+					<material:ModalStandardBottomSheet.ContentTemplate>
+						<DataTemplate>
+							<StackPanel Background="{ThemeResource MaterialBackgroundColor}">
+
+								<TextBlock Style="{ThemeResource MaterialHeadline6}"
+										   Text="Sheet Content"
+										   Margin="12" />
+
+								<ListView ItemsSource="{Binding}" />
+							</StackPanel>
+						</DataTemplate>
+					</material:ModalStandardBottomSheet.ContentTemplate>
+				</material:ModalStandardBottomSheet>
+			</Grid>
+		</smtx:XamlDisplay>
+	</Grid>
+</Page>

@@ -37,7 +37,7 @@
     </PackageReference>
     <PackageReference Include="Uno.Core" Version="2.0.0" />
     <PackageReference Include="Uno.Material">
-      <Version>1.0.0-dev.535</Version>
+      <Version>1.0.0-dev.547</Version>
     </PackageReference>
     <PackageReference Include="Uno.ShowMeTheXAML">
       <Version>1.0.59</Version>
@@ -227,6 +227,9 @@
     <Compile Include="Views\SamplePages\MessageDialogSamplePage.xaml.cs">
       <DependentUpon>MessageDialogSamplePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SamplePages\ModalStandardBottomSheetSamplePage.xaml.cs">
+      <DependentUpon>ModalStandardBottomSheetSamplePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SamplePages\PanelSamplePage.xaml.cs">
       <DependentUpon>PanelSamplePage.xaml</DependentUpon>
     </Compile>
@@ -250,6 +253,9 @@
     </Compile>
     <Compile Include="Views\SamplePages\SliderSamplePage.xaml.cs">
       <DependentUpon>SliderSamplePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SamplePages\StandardBottomSheetSamplePage.xaml.cs">
+      <DependentUpon>StandardBottomSheetSamplePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SamplePages\TimePickerSamplePage.xaml.cs">
       <DependentUpon>TimePickerSamplePage.xaml</DependentUpon>
@@ -429,6 +435,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\SamplePages\ModalStandardBottomSheetSamplePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\SamplePages\PanelSamplePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -458,6 +468,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SamplePages\SliderSamplePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SamplePages\StandardBottomSheetSamplePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
