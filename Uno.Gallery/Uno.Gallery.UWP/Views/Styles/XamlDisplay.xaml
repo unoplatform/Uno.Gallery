@@ -150,8 +150,95 @@
 			</Setter.Value>
 		</Setter>
 	</Style>
+	
+	<Style x:Key="ContentOnlyXamlDisplayStyle"
+		   TargetType="smtx:XamlDisplay">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="smtx:XamlDisplay">
+					<ContentPresenter Content="{TemplateBinding Content}" />
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style x:Key="DefaultXamlPresenterStyle"
+		   TargetType="smtx:XamlPresenter">
+		<Setter Property="Formatter"
+				Value="{StaticResource NiceFormatter}" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="smtx:XamlPresenter">
+					<Grid>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="Auto" />
+							<RowDefinition Height="*" />
+						</Grid.RowDefinitions>
+
+						<!-- Reveal Button -->
+						<ToggleButton x:Name="RevealButton"
+									  Style="{StaticResource XamlDisplayExpandToggleButtonStyle}"
+									  IsChecked="False"
+									  HorizontalAlignment="Right"
+									  VerticalAlignment="Top"
+									  android:Visibility="Collapsed"
+									  ios:Visibility="Collapsed" />
+
+						<ScrollViewer Background="{StaticResource SampleSecondBackgroundBrush}"
+									  HorizontalScrollBarVisibility="Auto"
+									  VerticalScrollBarVisibility="Disabled"
+									  win:Visibility="{Binding ElementName=RevealButton, Path=IsChecked, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
+									  netstdref:Visibility="{Binding ElementName=RevealButton, Path=IsChecked, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
+									  macos:Visibility="{Binding ElementName=RevealButton, Path=IsChecked, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
+									  ios:Visibility="Collapsed"
+									  android:Visibility="Collapsed"
+									  MaxHeight="400"
+									  Grid.Row="1">
+
+							<!--Xaml-->
+							<TextBlock Text="{TemplateBinding Xaml}"
+									   IsTextSelectionEnabled="True"
+									   FontFamily="Consolas"
+									   Foreground="{StaticResource MaterialOnSurfaceBrush}"
+									   Margin="30,20,60,20" />
+						</ScrollViewer>
+
+
+						<Button Style="{StaticResource MaterialTextButtonStyle}"
+								local:ClipboardExtensions.CopyTrigger="ButtonClicked"
+								local:ClipboardExtensions.CopyContent="{TemplateBinding Xaml}"
+								Padding="0"
+								HorizontalAlignment="Right"
+								VerticalAlignment="Top"
+								win:Visibility="{Binding ElementName=RevealButton, Path=IsChecked, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
+								netstdref:Visibility="{Binding ElementName=RevealButton, Path=IsChecked, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
+								macos:Visibility="{Binding ElementName=RevealButton, Path=IsChecked, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
+								ios:Visibility="Collapsed"
+								android:Visibility="Collapsed"
+								Grid.Row="1">
+
+							<Path Data="{StaticResource CopyToClipboardPathStyle}"
+								  Fill="{StaticResource MaterialOnSurfaceMediumBrush}"
+								  Height="22"
+								  Width="19"
+								  Stretch="Uniform"
+								  VerticalAlignment="Center"
+								  HorizontalAlignment="Center"
+								  Margin="20" />
+						</Button>
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
 
 	<Style TargetType="smtx:XamlDisplay"
 		   BasedOn="{StaticResource ExpanderXamlDisplayStyle}" />
+	
+	<Style TargetType="smtx:XamlPresenter"
+		   BasedOn="{StaticResource DefaultXamlPresenterStyle}" />
+
+	<smtx:NiceFormatter x:Key="NiceFormatter" />
+
 
 </ResourceDictionary>
