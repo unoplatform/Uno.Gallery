@@ -7,6 +7,7 @@
 					xmlns:ios="http://uno.ui/ios"
 					xmlns:android="http://uno.ui/android"
 					xmlns:not_android="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+					xmlns:material="using:Uno.Material.Controls"
 					xmlns:wasm="http://uno.ui/wasm"
 					mc:Ignorable="xamarin ios android wasm">
 
@@ -212,9 +213,9 @@
 
 									<!-- Optional link to documentation -->
 									<StackPanel Visibility="{Binding DocumentationLink, Converter={StaticResource IsNullOrEmptyToCollapsed}}">
-										<Rectangle Fill="{StaticResource DividerBrush}"
-												   Height="1"
-												   Margin="0,48,0,36" />
+										
+										<material:Divider Style="{StaticResource MaterialDividerStyle}"
+														  Margin="0,48,0,36" />
 
 										<TextBlock Style="{StaticResource MaterialBody1}"
 												   Foreground="{StaticResource MaterialOnBackgroundBrush}"
