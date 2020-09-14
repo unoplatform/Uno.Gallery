@@ -4,6 +4,7 @@
 	  xmlns:local="using:Uno.Gallery"
 	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  xmlns:material="using:Uno.Material.Controls"
 	  mc:Ignorable="d">
 
 	<Page.Resources>
@@ -240,10 +241,9 @@
 					</DataTemplate>
 				</local:FluentColorAccentView>
 
-				<!-- Separator -->
-				<Rectangle Fill="{StaticResource DividerBrush}"
-						   Height="1"
-						   Margin="0,48,0,36" />
+				<!-- Divider -->
+				<material:Divider Style="{StaticResource MaterialDividerStyle}"
+								  Margin="0,48,0,36" />
 
 				<!-- Label -->
 				<TextBlock Text="Chrome and Error Text Colors"
@@ -302,10 +302,9 @@
 					</DataTemplate>
 				</local:FluentColorAccentView>
 
-				<!-- Separator -->
-				<Rectangle Fill="{StaticResource DividerBrush}"
-						   Height="1"
-						   Margin="0,48,0,36" />
+				<!-- Divider -->
+				<material:Divider Style="{StaticResource MaterialDividerStyle}"
+								  Margin="0,48,0,36" />
 
 				<TextBlock Style="{StaticResource MaterialBody1}"
 						   Foreground="{StaticResource MaterialOnBackgroundBrush}"

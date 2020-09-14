@@ -5,6 +5,7 @@
 	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	  xmlns:toolkit="using:Uno.UI.Toolkit"
+	  xmlns:material="using:Uno.Material.Controls"
 	  mc:Ignorable="d">
 
 	<Page.Resources>
@@ -128,10 +129,9 @@
 											 ThirdColorBrush="{StaticResource MaterialPrimaryVariantLightBrush}"
 											 ThirdColorForeground="Black" />
 
-				<!-- Separator -->
-				<Rectangle Fill="{StaticResource DividerBrush}"
-						   Height="1"
-						   Margin="0,48,0,36" />
+				<!-- Divider -->
+				<material:Divider Style="{StaticResource MaterialDividerStyle}"
+								  Margin="0,48,0,36" />
 
 				<!-- Secondary colors section -->
 				<local:ThreeColorPaletteView Title="Secondary Colors"
@@ -146,10 +146,9 @@
 											 ThirdColorBrush="{StaticResource MaterialSecondaryVariantLightBrush}"
 											 ThirdColorForeground="{StaticResource MaterialOnSecondaryBrush}" />
 
-				<!-- Separator -->
-				<Rectangle Fill="{StaticResource DividerBrush}"
-						   Height="1"
-						   Margin="0,48,0,36" />
+				<!-- Divider -->
+				<material:Divider Style="{StaticResource MaterialDividerStyle}"
+								  Margin="0,48,0,36" />
 
 				<!-- Elements section -->
 				<TextBlock Text="Elements"
@@ -189,10 +188,9 @@
 										ColorHeight="88"
 										Margin="0,48,0,0" />
 
-				<!-- Separator -->
-				<Rectangle Fill="{StaticResource DividerBrush}"
-						   Height="1"
-						   Margin="0,48,0,36" />
+				<!-- Divider -->
+				<material:Divider Style="{StaticResource MaterialDividerStyle}"
+								  Margin="0,48,0,36" />
 
 				<!-- On colors section -->
 
@@ -319,10 +317,9 @@
 										Style="{StaticResource InvertedColorPaletteViewStyle}"
 										Margin="0,48,0,0" />
 
-				<!-- Separator -->
-				<Rectangle Fill="{StaticResource DividerBrush}"
-						   Height="1"
-						   Margin="0,48,0,36" />
+				<!-- Divider -->
+				<material:Divider Style="{StaticResource MaterialDividerStyle}"
+								  Margin="0,48,0,36" />
 
 				<TextBlock Style="{StaticResource MaterialBody1}"
 						   Foreground="{StaticResource MaterialOnBackgroundBrush}"
