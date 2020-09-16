@@ -239,6 +239,9 @@
     <Compile Include="Views\SamplePages\PathSamplePage.xaml.cs">
       <DependentUpon>PathSamplePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SamplePages\PersonPictureSamplePage.xaml.cs">
+      <DependentUpon>PersonPictureSamplePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SamplePages\ProgressSamplePage.xaml.cs">
       <DependentUpon>ProgressSamplePage.xaml</DependentUpon>
     </Compile>
@@ -451,6 +454,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SamplePages\PathSamplePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SamplePages\PersonPictureSamplePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
