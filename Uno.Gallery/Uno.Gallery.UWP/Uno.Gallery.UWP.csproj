@@ -182,6 +182,9 @@
     <Compile Include="Views\SamplePages\AnimationSamplePage.xaml.cs">
       <DependentUpon>AnimationSamplePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SamplePages\BindingSamplePage.xaml.cs">
+      <DependentUpon>BindingSamplePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SamplePages\BrushSamplePage.xaml.cs">
       <DependentUpon>BrushSamplePage.xaml</DependentUpon>
     </Compile>
@@ -378,6 +381,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SamplePages\AnimationSamplePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SamplePages\BindingSamplePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
