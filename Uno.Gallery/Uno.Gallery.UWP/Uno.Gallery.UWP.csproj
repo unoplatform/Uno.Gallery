@@ -206,6 +206,9 @@
     <Compile Include="Views\SamplePages\DividerSamplePage.xaml.cs">
       <DependentUpon>DividerSamplePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SamplePages\ElevatedViewSamplePage.xaml.cs">
+      <DependentUpon>ElevatedViewSamplePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SamplePages\FlipViewSamplePage.xaml.cs">
       <DependentUpon>FlipViewSamplePage.xaml</DependentUpon>
     </Compile>
@@ -413,6 +416,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SamplePages\DividerSamplePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SamplePages\ElevatedViewSamplePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
