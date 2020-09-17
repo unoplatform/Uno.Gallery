@@ -17,6 +17,7 @@ using Windows.UI.Xaml.Navigation;
 using Windows.Foundation.Metadata;
 using Windows.UI;
 using Uno.Gallery.Helpers;
+using Windows.UI.Core;
 
 namespace Uno.Gallery
 {
@@ -28,7 +29,12 @@ namespace Uno.Gallery
 
 			InitializeSafeArea();
 			this.Loaded += OnLoaded;
+
+			NestedSampleFrame.RegisterPropertyChangedCallback(ContentControl.ContentProperty, OnNestedSampleFrameChanged);
+			SystemNavigationManager.GetForCurrentView().BackRequested += (s, e) => e.Handled = BackNavigateFromNestedSample();
 		}
+
+		public static Shell GetForCurrentView() => (Shell)Windows.UI.Xaml.Window.Current.Content;
 
 		public NavigationView NavigationView => NavigationViewControl;
 
@@ -97,6 +103,58 @@ namespace Uno.Gallery
 						break;
 				}
 			}
+		}
+
+		private void OnNestedSampleFrameChanged(DependencyObject sender, DependencyProperty dp)
+		{
+			var isInsideNestedSample = NestedSampleFrame.Content != null;
+
+			// prevent empty frame from blocking the content (nav-view) behind it
+			NestedSampleFrame.Visibility = isInsideNestedSample
+				? Visibility.Visible
+				: Visibility.Collapsed;
+
+			// toggle built-in back button for wasm (from browser) and uwp (on title bar)
+			SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = isInsideNestedSample
+				? AppViewBackButtonVisibility.Visible
+				: AppViewBackButtonVisibility.Collapsed;
+		}
+
+		public void ShowNestedSample<TPage>(bool? clearStack = null) where TPage : Page
+		{
+			var wasFrameEmpty = NestedSampleFrame.Content == null;
+			if (NestedSampleFrame.Navigate(typeof(TPage)) && (clearStack ?? wasFrameEmpty))
+			{
+				NestedSampleFrame.BackStack.Clear();
+			}
+		}
+
+		public bool BackNavigateFromNestedSample()
+		{
+			if (NestedSampleFrame.Content == null)
+			{
+				return false;
+			}
+
+			if (NestedSampleFrame.CanGoBack)
+			{
+				NestedSampleFrame.GoBack();
+			}
+			else
+			{
+				NestedSampleFrame.Content = null;
+
+#if __IOS__
+				// This will force reset the UINavigationController, to prevent the back button from appearing when the stack is supposely empty.
+				// note: Merely setting the Frame.Content to null, doesnt fully reset the stack.
+				// When revisiting the page1 again, the previous page1 is still in the UINavigationController stack
+				// causing a back button to appear that takes us back to the previous page1
+				NestedSampleFrame.BackStack.Add(default);
+				NestedSampleFrame.BackStack.Clear();
+#endif
+			}
+
+			return true;
 		}
 	}
 }

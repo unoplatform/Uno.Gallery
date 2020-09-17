@@ -34,6 +34,7 @@
     <Content Include="$(MSBuildThisFileDirectory)Assets\Avatar.scale-200.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Avatar.scale-300.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Avatar.scale-400.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\BackButton.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\FluentIcon_Medium.scale-100.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\FluentIcon_Medium.scale-150.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\FluentIcon_Medium.scale-200.png" />

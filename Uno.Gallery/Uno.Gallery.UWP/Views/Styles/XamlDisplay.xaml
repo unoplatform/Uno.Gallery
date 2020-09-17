@@ -150,7 +150,7 @@
 			</Setter.Value>
 		</Setter>
 	</Style>
-	
+
 	<Style x:Key="ContentOnlyXamlDisplayStyle"
 		   TargetType="smtx:XamlDisplay">
 		<Setter Property="Template">
@@ -175,6 +175,10 @@
 							<RowDefinition Height="*" />
 						</Grid.RowDefinitions>
 
+						<ContentControl Content="{Binding Tag, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+										android:Visibility="Collapsed"
+										ios:Visibility="Collapsed" />
+
 						<!-- Reveal Button -->
 						<ToggleButton x:Name="RevealButton"
 									  Style="{StaticResource XamlDisplayExpandToggleButtonStyle}"
@@ -195,7 +199,7 @@
 									  MaxHeight="400"
 									  Grid.Row="1">
 
-							<!--Xaml-->
+							<!-- Xaml -->
 							<TextBlock Text="{TemplateBinding Xaml}"
 									   IsTextSelectionEnabled="True"
 									   FontFamily="Consolas"
@@ -234,7 +238,7 @@
 
 	<Style TargetType="smtx:XamlDisplay"
 		   BasedOn="{StaticResource ExpanderXamlDisplayStyle}" />
-	
+
 	<Style TargetType="smtx:XamlPresenter"
 		   BasedOn="{StaticResource DefaultXamlPresenterStyle}" />
 
