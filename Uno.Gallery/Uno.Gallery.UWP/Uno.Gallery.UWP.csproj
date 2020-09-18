@@ -37,7 +37,7 @@
     </PackageReference>
     <PackageReference Include="Uno.Core" Version="2.0.0" />
     <PackageReference Include="Uno.Material">
-      <Version>1.0.0-dev.551</Version>
+      <Version>1.0.0-dev.569</Version>
     </PackageReference>
     <PackageReference Include="Uno.ShowMeTheXAML">
       <Version>1.0.59</Version>
@@ -176,6 +176,12 @@
     <Compile Include="Views\GeneralPages\OverviewPageHeader.xaml.cs">
       <DependentUpon>OverviewPageHeader.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\NestedPages\CommandBarSample_NestedMaterialPage1.xaml.cs">
+      <DependentUpon>CommandBarSample_NestedMaterialPage1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NestedPages\CommandBarSample_NestedMaterialPage2.xaml.cs">
+      <DependentUpon>CommandBarSample_NestedMaterialPage2.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SamplePages\AcrylicSamplePage.xaml.cs">
       <DependentUpon>AcrylicSamplePage.xaml</DependentUpon>
     </Compile>
@@ -199,6 +205,9 @@
     </Compile>
     <Compile Include="Views\SamplePages\ComboBoxSamplePage.xaml.cs">
       <DependentUpon>ComboBoxSamplePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SamplePages\CommandBarSamplePage.xaml.cs">
+      <DependentUpon>CommandBarSamplePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SamplePages\DatePickerSamplePage.xaml.cs">
       <DependentUpon>DatePickerSamplePage.xaml</DependentUpon>
@@ -379,6 +388,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\NestedPages\CommandBarSample_NestedMaterialPage1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NestedPages\CommandBarSample_NestedMaterialPage2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\SamplePages\AcrylicSamplePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -410,6 +427,10 @@
     <Page Include="Views\SamplePages\ComboBoxSamplePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SamplePages\CommandBarSamplePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SamplePages\DatePickerSamplePage.xaml">
       <SubType>Designer</SubType>
