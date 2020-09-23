@@ -12,6 +12,28 @@
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 		<local:SamplePageLayout>
 
+			<local:SamplePageLayout.MaterialTemplate>
+				<DataTemplate>
+					<StackPanel>
+
+						<smtx:XamlDisplay UniqueKey="TimePickerSamplePage_Material_Default"
+										  smtx:XamlDisplayExtensions.Header="Default">
+
+							<TimePicker Header="Set Time"
+										Style="{StaticResource MaterialTimePickerStyle}" />
+						</smtx:XamlDisplay>
+
+						<smtx:XamlDisplay UniqueKey="TimePickerSamplePage_Material_Disabled"
+										  smtx:XamlDisplayExtensions.Header="Disabled">
+							
+							<TimePicker Header="Set Time"
+										Style="{StaticResource MaterialTimePickerStyle}"
+										IsEnabled="False" />
+						</smtx:XamlDisplay>
+					</StackPanel>
+				</DataTemplate>
+			</local:SamplePageLayout.MaterialTemplate>
+
 			<local:SamplePageLayout.FluentTemplate>
 				<DataTemplate>
 					<StackPanel>
@@ -23,13 +45,21 @@
 										   TextWrapping="Wrap" />
 
 						<smtx:XamlDisplay UniqueKey="TimePickerSamplePage_Fluent_Default"
-										  smtx:XamlDisplayExtensions.Header="Default TimePicker">
+										  smtx:XamlDisplayExtensions.Header="Default">
+							
 							<TimePicker />
 						</smtx:XamlDisplay>
 
 						<smtx:XamlDisplay UniqueKey="TimePickerSamplePage_Fluent_Clock"
 										  smtx:XamlDisplayExtensions.Header="TimePicker with 24h Clock">
+							
 							<TimePicker ClockIdentifier="24HourClock" />
+						</smtx:XamlDisplay>
+
+						<smtx:XamlDisplay UniqueKey="TimePickerSamplePage_Fluent_Disabled"
+										  smtx:XamlDisplayExtensions.Header="Disabled">
+							
+							<TimePicker IsEnabled="False" />
 						</smtx:XamlDisplay>
 					</StackPanel>
 				</DataTemplate>
