@@ -12,6 +12,28 @@
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 		<local:SamplePageLayout>
 
+			<local:SamplePageLayout.MaterialTemplate>
+				<DataTemplate>
+					<StackPanel>
+
+						<smtx:XamlDisplay UniqueKey="DatePickerSamplePage_Material_Default"
+										  smtx:XamlDisplayExtensions.Header="Default">
+							
+							<DatePicker Header="Set Date" 
+										Style="{StaticResource MaterialDatePickerStyle}" />
+						</smtx:XamlDisplay>
+						
+						<smtx:XamlDisplay UniqueKey="DatePickerSamplePage_Material_Disabled"
+										  smtx:XamlDisplayExtensions.Header="Disabled">
+							
+							<DatePicker Header="Set Date" 
+										Style="{StaticResource MaterialDatePickerStyle}"
+										IsEnabled="False" />
+						</smtx:XamlDisplay>
+					</StackPanel>
+				</DataTemplate>
+			</local:SamplePageLayout.MaterialTemplate>
+
 			<local:SamplePageLayout.FluentTemplate>
 				<DataTemplate>
 
@@ -22,8 +44,13 @@
 										   TextWrapping="Wrap" />
 
 						<smtx:XamlDisplay UniqueKey="DatePickerSamplePage_Fluent_Default"
-										  smtx:XamlDisplayExtensions.Header="Default DatePicker">
+										  smtx:XamlDisplayExtensions.Header="Default">
 							<DatePicker />
+						</smtx:XamlDisplay>
+						
+						<smtx:XamlDisplay UniqueKey="DatePickerSamplePage_Fluent_Disabled"
+										  smtx:XamlDisplayExtensions.Header="Disabled">
+							<DatePicker IsEnabled="False" />
 						</smtx:XamlDisplay>
 					</StackPanel>
 				</DataTemplate>
