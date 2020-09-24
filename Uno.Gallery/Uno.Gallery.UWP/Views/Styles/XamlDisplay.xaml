@@ -244,5 +244,4 @@
 
 	<smtx:NiceFormatter x:Key="NiceFormatter" />
 
-
 </ResourceDictionary>
