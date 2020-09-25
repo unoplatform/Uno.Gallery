@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -22,5 +24,24 @@ namespace Uno.Gallery.Views.Samples
 		{
 			this.InitializeComponent();
 		}
+	}
+
+	public class BindingSamplePageViewModel : INotifyPropertyChanged
+	{
+		public event PropertyChangedEventHandler PropertyChanged;
+
+		private string _text;
+		public string Text
+		{
+			get => _text;
+			set
+			{
+				_text = value;
+				PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Text)));
+				PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(TextLength)));
+			}
+		}
+
+		public string TextLength => Text?.Length.ToString(CultureInfo.InvariantCulture) ?? "[empty]";
 	}
 }
