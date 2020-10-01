@@ -24,12 +24,13 @@ If the matter is security related, please disclose it privately via https://gith
 ## Environment
 
 <!-- For bug reports Check one or more of the following options with "x" -->
+**Devcies:**
 
-Nuget Package:
+**Nuget Package:**
 
-Package Version(s):
+**Package Version(s):**
 
-Affected platform(s):
+**Affected platform(s):**
 
 - [ ] iOS
 - [ ] Android
@@ -38,13 +39,13 @@ Affected platform(s):
 - [ ] Windows
 - [ ] Build tasks
 
-Visual Studio:
+**Visual Studio:**
 
 - [ ] 2017 (version: )
 - [ ] 2019 (version: )
 - [ ] for Mac (version: )
 
-Relevant plugins:
+**Relevant plugins:**
 
 - [ ] Resharper (version: )
 
