@@ -18,8 +18,11 @@
 										  smtx:XamlDisplayExtensions.Header="Default">
 							<StackPanel Spacing="20">
 
-								<ToggleSwitch Header="OFF"
+								<ToggleSwitch x:Name="HiddenLever"
+											  Header="OFF"
 											  Foreground="{StaticResource MaterialOnBackgroundBrush}" />
+								<TextBlock Text="{Binding ElementName=HiddenLever, Path=IsOn, Converter={StaticResource Secret}}"
+										   Visibility="{Binding ElementName=HiddenLever, Path=IsOn}" />
 
 								<ToggleSwitch Header="ON"
 											  Foreground="{StaticResource MaterialOnBackgroundBrush}"
