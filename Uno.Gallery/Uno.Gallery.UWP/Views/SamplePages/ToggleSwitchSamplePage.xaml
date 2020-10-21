@@ -5,8 +5,7 @@
 	  xmlns:smtx="using:ShowMeTheXAML"
 	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	  xmlns:wasm="http:/uno.ui/wasm"
-	  mc:Ignorable="d wasm">
+	  mc:Ignorable="d">
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 		<local:SamplePageLayout>
@@ -17,7 +16,7 @@
 									  smtx:XamlDisplayExtensions.Header="Default"
 									  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel\StackPanel">
 						<StackPanel>
-							<wasm:Grid Visibility="{Binding ElementName=EnabledOffToggleSwitch, Path=IsOn}">
+							<Grid Visibility="{Binding ElementName=HiddenLevel, Path=IsOn}">
 								<Grid.RowDefinitions>
 									<RowDefinition Height="Auto" />
 									<RowDefinition Height="Auto" />
@@ -37,7 +36,7 @@
 										<LineBreak />
 										<Run Text="Please provide" />
 										<Span xml:space="preserve"><Run Text="&quot;" /><Run FontWeight="Bold"
-												 Text="{Binding ElementName=EnabledOffToggleSwitch, Path=IsOn, Converter={StaticResource Secret}}" /><Run Text="&quot;" /></Span>
+												 Text="{Binding ElementName=HiddenLevel, Path=IsOn, Converter={StaticResource Secret}}" /><Run Text="&quot;" /></Span>
 										<Run Text="passcode to dotnet bot." />
 									</TextBlock>
 								</Border>
@@ -54,20 +53,17 @@
 									   Margin="0,0,0,0"
 									   HorizontalAlignment="Left"
 									   VerticalAlignment="Bottom" />
-							</wasm:Grid>
+							</Grid>
 							<StackPanel Spacing="20">
-								<ToggleSwitch x:Name="EnabledOffToggleSwitch"
+								<ToggleSwitch x:Name="HiddenLevel"
 											  Header="OFF"
 											  Foreground="{StaticResource MaterialOnBackgroundBrush}" />
-								<ToggleSwitch x:Name="EnabledOnToggleSwitch"
-											  Header="ON"
+								<ToggleSwitch Header="ON"
 											  Foreground="{StaticResource MaterialOnBackgroundBrush}"
 											  IsOn="True" />
-								<ToggleSwitch x:Name="DisabledOffToggleSwitch"
-											  Header="DISABLED OFF"
+								<ToggleSwitch Header="DISABLED OFF"
 											  IsEnabled="False" />
-								<ToggleSwitch x:Name="DisabledOnToggleSwitch"
-											  Header="DISABLED ON"
+								<ToggleSwitch Header="DISABLED ON"
 											  IsEnabled="False"
 											  IsOn="True" />
 							</StackPanel>
