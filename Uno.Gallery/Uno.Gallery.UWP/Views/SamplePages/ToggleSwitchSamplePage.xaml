@@ -13,67 +13,66 @@
 
 			<local:SamplePageLayout.FluentTemplate>
 				<DataTemplate>
-					<StackPanel>
+					<smtx:XamlDisplay UniqueKey="ToggleSwitchSamplePage_Fluent"
+									  smtx:XamlDisplayExtensions.Header="Default"
+									  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel\StackPanel">
+						<StackPanel>
+							<wasm:Grid Visibility="{Binding ElementName=EnabledOffToggleSwitch, Path=IsOn}">
+								<Grid.RowDefinitions>
+									<RowDefinition Height="Auto" />
+									<RowDefinition Height="Auto" />
+								</Grid.RowDefinitions>
 
-						<smtx:XamlDisplay UniqueKey="ToggleSwitchSamplePage_Fluent"
-										  smtx:XamlDisplayExtensions.Header="Default">
+								<Border Grid.Row="0"
+										Background="#E2068C"
+										CornerRadius="15"
+										Margin="70,0,0,0"
+										Padding="10"
+										HorizontalAlignment="Left"
+										VerticalAlignment="Top">
+									<TextBlock TextWrapping="WrapWholeWords"
+											   FontSize="20"
+											   Foreground="White">
+										<Run Text="Congrats, you've uncovered the passcode for DotNetConf Treasure Hunt." />
+										<LineBreak />
+										<Run Text="Please provide" />
+										<Span xml:space="preserve"><Run Text="&quot;" /><Run FontWeight="Bold"
+												 Text="{Binding ElementName=EnabledOffToggleSwitch, Path=IsOn, Converter={StaticResource Secret}}" /><Run Text="&quot;" /></Span>
+										<Run Text="passcode to dotnet bot." />
+									</TextBlock>
+								</Border>
+								<Polygon Grid.Row="1"
+										 Points="20,0 15,15, 16,16 18,16 19,15 40,0"
+										 Fill="#E2068C"
+										 Margin="65,0,0,70"
+										 VerticalAlignment="Top" />
+
+								<Image Grid.Row="0"
+									   Grid.RowSpan="2"
+									   Source="ms-appx:///Assets/DotnetBot.png"
+									   Width="100"
+									   Margin="0,0,0,0"
+									   HorizontalAlignment="Left"
+									   VerticalAlignment="Bottom" />
+							</wasm:Grid>
 							<StackPanel Spacing="20">
-
-								<ToggleSwitch x:Name="HiddenLever"
+								<ToggleSwitch x:Name="EnabledOffToggleSwitch"
 											  Header="OFF"
 											  Foreground="{StaticResource MaterialOnBackgroundBrush}" />
-								<wasm:Grid Visibility="{Binding ElementName=HiddenLever, Path=IsOn}">
-									<Grid.RowDefinitions>
-										<RowDefinition Height="Auto" />
-										<RowDefinition Height="Auto" />
-									</Grid.RowDefinitions>
-
-									<Border Grid.Row="0"
-											Background="#E2068C"
-											CornerRadius="15"
-											Margin="70,0,0,0"
-											Padding="10"
-											HorizontalAlignment="Left"
-											VerticalAlignment="Top">
-										<TextBlock TextWrapping="WrapWholeWords"
-												   FontSize="20"
-												   Foreground="White">
-											<Run Text="Congrats, you've uncovered the passcode for DotNetConf Treasure Hunt." />
-											<LineBreak />
-											<Run Text="Please provide" />
-											<Span xml:space="preserve"><Run Text="&quot;" /><Run FontWeight="Bold"
-													 Text="{Binding ElementName=HiddenLever, Path=IsOn, Converter={StaticResource Secret}}" /><Run Text="&quot;" /></Span>
-											<Run Text="passcode to dotnet bot." />
-										</TextBlock>
-									</Border>
-									<Polygon Grid.Row="1"
-											 Points="20,0 15,15, 16,16 18,16 19,15 40,0"
-											 Fill="#E2068C"
-											 Margin="65,0,0,70"
-											 VerticalAlignment="Top" />
-
-									<Image Grid.Row="0"
-										   Grid.RowSpan="2"
-										   Source="ms-appx:///Assets/DotnetBot.png"
-										   Width="100"
-										   Margin="0,0,0,0"
-										   HorizontalAlignment="Left"
-										   VerticalAlignment="Bottom" />
-								</wasm:Grid>
-
-								<ToggleSwitch Header="ON"
+								<ToggleSwitch x:Name="EnabledOnToggleSwitch"
+											  Header="ON"
 											  Foreground="{StaticResource MaterialOnBackgroundBrush}"
 											  IsOn="True" />
-
-								<ToggleSwitch Header="DISABLED OFF"
+								<ToggleSwitch x:Name="DisabledOffToggleSwitch"
+											  Header="DISABLED OFF"
 											  IsEnabled="False" />
-
-								<ToggleSwitch Header="DISABLED ON"
+								<ToggleSwitch x:Name="DisabledOnToggleSwitch"
+											  Header="DISABLED ON"
 											  IsEnabled="False"
 											  IsOn="True" />
 							</StackPanel>
-						</smtx:XamlDisplay>
-					</StackPanel>
+						</StackPanel>
+					</smtx:XamlDisplay>
 				</DataTemplate>
 			</local:SamplePageLayout.FluentTemplate>
 
