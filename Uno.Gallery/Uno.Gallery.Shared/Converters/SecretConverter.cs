@@ -11,7 +11,7 @@ namespace Uno.Gallery.Converters
 	public class SecretConverter : IValueConverter
 	{
 		public object Convert(object value, Type targetType, object parameter, string language) => (value as bool?) == true
-			? $"Congrats, you've uncovered the passcode for DotNetConf Treasure Hunt. Please provide \"{GetAnswer()}\" passcode to dotnet bot"
+			? GetAnswer()
 			: default;
 
 		private string GetAnswer()
