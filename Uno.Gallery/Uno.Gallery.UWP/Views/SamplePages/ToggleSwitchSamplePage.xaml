@@ -16,7 +16,8 @@
 									  smtx:XamlDisplayExtensions.Header="Default"
 									  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel\StackPanel">
 						<StackPanel>
-							<Grid Visibility="{Binding ElementName=HiddenLevel, Path=IsOn}">
+							<Grid Visibility="{Binding ElementName=HiddenLevel, Path=IsOn}"
+								  Margin="0,0,0,20">
 								<Grid.RowDefinitions>
 									<RowDefinition Height="Auto" />
 									<RowDefinition Height="Auto" />
@@ -33,11 +34,10 @@
 											   FontSize="20"
 											   Foreground="White">
 										<Run Text="Congrats, you've uncovered the passcode for DotNetConf Treasure Hunt." />
-										<LineBreak />
-										<Run Text="Please provide" />
+										<LineBreak /><Run Text="Please provide" />
 										<Span xml:space="preserve"><Run Text="&quot;" /><Run FontWeight="Bold"
 												 Text="{Binding ElementName=HiddenLevel, Path=IsOn, Converter={StaticResource Secret}}" /><Run Text="&quot;" /></Span>
-										<Run Text="passcode to dotnet bot." />
+										<Run Text="passcode to Twitch bot." />
 									</TextBlock>
 								</Border>
 								<Polygon Grid.Row="1"
@@ -50,7 +50,6 @@
 									   Grid.RowSpan="2"
 									   Source="ms-appx:///Assets/DotnetBot.png"
 									   Width="100"
-									   Margin="0,0,0,0"
 									   HorizontalAlignment="Left"
 									   VerticalAlignment="Bottom" />
 							</Grid>
