@@ -16,15 +16,10 @@ Available on:
 ![Screenshot](./images/Screenshot4.png)
 
 
-## Contributing
-
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on the process for
-contributing to this project.
-
-Be mindful of our [Code of Conduct](CODE_OF_CONDUCT.md).
-
 ## Acknowledgments
 - [Uno Platform](https://platform.uno)
 - [ShowMeTheXaml](https://github.com/Keboo/ShowMeTheXAML) for code snippets. Through [our Fork](https://github.com/unoplatform/ShowMeTheXAML)
 - [WinUI](https://microsoft.github.io/microsoft-ui-xaml/)
 
+## License
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)

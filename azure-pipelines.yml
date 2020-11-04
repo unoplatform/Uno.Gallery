@@ -79,18 +79,13 @@ stages:
           ApplicationConfiguration: Release
           ApplicationPlatform: Android
           ArtifactName: $(AndroidArtifactName)
-          ApplicationBuildNumberOffset: 400050
         UWP:
           ApplicationConfiguration: Release
           ApplicationPlatform: UWP_x64
           ArtifactName: $(UWPArtifactName)
-          ApplicationBuildNumberOffset: 50
     pool:
       name: $(windowsPoolName)
     
-    variables:
-    - group: 'Uno Gallery Google Play Variables' # Import all variables for the signing from the library in azure devops
-
     container: nventive/build-agent:vs16.6.0
 
     steps:
@@ -104,12 +99,10 @@ stages:
           ApplicationConfiguration: Release
           ApplicationPlatform: iPhone
           ArtifactName: $(iOSArtifactName)
-          ApplicationBuildNumberOffset: 50
         macOS:
           ApplicationConfiguration: Release
           ApplicationPlatform: macOS
-          ArtifactName: $(macOSArtifactName)  
-          ApplicationBuildNumberOffset: 50        
+          ArtifactName: $(macOSArtifactName)          
     pool:
       name: $(macOSPoolName)
       demands:
@@ -154,7 +147,6 @@ stages:
       NUGET_PACKAGES: $(build.sourcesdirectory)/.nuget
       SkipUnknowFrameworks: True
       ArtifactName: $(WASMArtifactName)
-      ApplicationBuildNumberOffset: 50
 
     steps:
       - template: build/stage-build-wasm.yml
