@@ -1,54 +1,44 @@
 steps:
+- task: UseDotNet@2
+  condition: eq(variables['IsCanaryBranch'], true)
+  inputs:
+    packageType: runtime
+    version: 2.2.x
+
+- task: nventiveCanaryUpdater@5
+  condition: eq(variables['IsCanaryBranch'], true)
+  inputs:
+    solution: Uno.Gallery.sln
+    useNuGetOrg: true
+    usePrivateFeed: false
+    mergeBranch: true
+    branchToMerge: master
+    nugetUpdaterVersion: 2.1.1
+    packageAuthor: nventive
+    summaryFile: '$(Build.ArtifactStagingDirectory)/Canary.md'
+
+- task: UseDotNet@2
+  condition: eq(variables['IsCanaryBranch'], true)
+  inputs:
+    packageType: runtime
+    version: 3.1.3
+
 - task: gitversion/setup@0
   inputs:
-    versionSpec: '5.0.0'
-  displayName: 'Install GitVersion'
+    versionSpec: 5.x
 
 - task: gitversion/execute@0
   inputs:
+    updateAssemblyInfo: false
     useConfigFile: true
-    configFilePath: 'build/gitversion.yml'
-  displayName: 'Calculate version'
-
-- task: NuGetToolInstaller@0
-  displayName: 'Install NuGet $(NUGET_VERSION)'
-  inputs:
-    versionSpec: $(NUGET_VERSION)
-    checkLatest: false
-
-- task: NuGetCommand@2
-  displayName: 'Restore solution packages'
-  inputs:
-    command: restore
-    solution: $(Build.SourcesDirectory)/$(SolutionFileName)
-    feedsToUse: 'config'
-    nugetConfigPath: 'nuget.config'
-    verbosityRestore: Normal
-    noCache: true
+    configFilePath: build/gitversion.yml
 
 - task: MSBuild@1
-  displayName: 'Build solution in $(ApplicationConfiguration) | $(ApplicationPlatform)'
+  displayName: Build project in Release|$(ApplicationPlatform)
   inputs:
-    solution: $(Build.SourcesDirectory)/$(SolutionFileName)
-    msbuildLocationMethod: version
-    msbuildVersion: latest
-    msbuildArchitecture: x86
-    configuration: $(ApplicationConfiguration)
-    platform: $(ApplicationPlatform)
-    clean: false
-    maximumCpuCount: true
-    restoreNugetPackages: false
-    logProjectEvents: false
-    createLogFile: false
-    msbuildArguments: /p:PackageVersion=$(SemVer) /p:ApplicationVersion=$(MajorMinorPatch)
+    solution: $(Project)
+    msbuildArguments: /ds /m /r /p:Configuration=Release "/p:Platform=$(ApplicationPlatform)" "/p:InformationalVersion=%GITVERSION_InformationalVersion%"
 
 - task: PublishBuildArtifacts@1
-  displayName: 'Publish artifact $(ApplicationConfiguration) | $(ApplicationPlatform)'
   inputs:
-    PathtoPublish: $(Build.ArtifactStagingDirectory)
     ArtifactName: $(ArtifactName)
-    ArtifactType: Container
-
-- task: PostBuildCleanup@3
-  displayName: 'Post-Build cleanup :  Cleanup files to keep build server clean!'
-  condition: always()
