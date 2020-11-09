@@ -41,9 +41,9 @@
 		<WasmShellEnableAotProfile Include="aot.profile" />
 	</ItemGroup>-->
 
-	<!--<ItemGroup>
+	<ItemGroup>
 		<WasmShellMonoEnvironment Include="MONO_GC_PARAMS" Value="soft-heap-limit=512m,nursery-size=64m,evacuation-threshold=66,major=marksweep" />
-	</ItemGroup>-->
+	</ItemGroup>
 
 	<ItemGroup>
 		<!--
@@ -76,12 +76,12 @@
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Uno.Material" Version="1.0.0-dev.573" />
-		<PackageReference Include="Uno.ShowMeTheXAML" Version="1.0.58" />
+		<PackageReference Include="Uno.Material" Version="1.0.0-dev.578" />
+		<PackageReference Include="Uno.ShowMeTheXAML" Version="1.0.59" />
 		<PackageReference Include="Uno.ShowMeTheXAML.MSBuild" Version="1.0.59" />
-		<PackageReference Include="Uno.UI.Lottie" Version="3.0.0-dev.1535" />
-		<PackageReference Include="Uno.UI.WebAssembly" Version="3.1.0-dev.447" />
-		<PackageReference Include="Uno.UI.RemoteControl" Version="3.0.0-dev.1535" Condition="'$(Configuration)'=='Debug'" />
+		<PackageReference Include="Uno.UI.Lottie" Version="3.2.0" />
+		<PackageReference Include="Uno.UI.WebAssembly" Version="3.2.0" />
+		<PackageReference Include="Uno.UI.RemoteControl" Version="3.2.0" Condition="'$(Configuration)'=='Debug'" />
 		<PackageReference Include="Uno.Wasm.Bootstrap" Version="1.4.0-dev.22" />
 		<PackageReference Include="Uno.Wasm.Bootstrap.DevServer" Version="1.4.0-dev.22" />
 		<PackageReference Include="Microsoft.TypeScript.Compiler" Version="3.1.5">
