@@ -35,7 +35,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="Uno.Core" Version="2.0.0" />
+    <PackageReference Include="Uno.Core" Version="2.1.0" />
     <PackageReference Include="Uno.Material">
       <Version>1.0.0-dev.573</Version>
     </PackageReference>
