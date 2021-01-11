@@ -17,28 +17,15 @@
     packageAuthor: nventive
     summaryFile: '$(Build.ArtifactStagingDirectory)/Canary.md'
 
-- task: UseDotNet@2
-  inputs:
-    packageType: runtime
-    version: 3.1.3
-
-- task: gitversion/setup@0
-  inputs:
-    versionSpec: 5.x
-
-- task: gitversion/execute@0
-  inputs:
-    updateAssemblyInfo: false
-    useConfigFile: true
-    configFilePath: build/gitversion.yml
+- template: templates/gitversion.yml
 
 - task: UseDotNet@2
   inputs:
     packageType: sdk
-    version: 3.1.201
+    version: 5.0.101
 
 - bash: |
-    msbuild /ds /r /p:Configuration=Release "/p:InformationalVersion=%GITVERSION_InformationalVersion%" Uno.Gallery/Uno.Gallery.Wasm/Uno.Gallery.Wasm.csproj
+    dotnet msbuild /ds /m /r /p:Configuration=Release "/p:InformationalVersion=%GITVERSION_InformationalVersion%" Uno.Gallery/Uno.Gallery.Wasm/Uno.Gallery.Wasm.csproj /bl:$(Build.ArtifactStagingDirectory)/wasm.binlog
 
 - task: CopyFiles@2
   displayName: Copy version information
@@ -48,5 +35,6 @@
     FlattenFolders: true
   
 - task: PublishBuildArtifacts@1
+  condition: always()
   inputs:
     ArtifactName: $(ArtifactName)

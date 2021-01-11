@@ -99,7 +99,7 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Uno.Material">
-      <Version>1.0.0-dev.573</Version>
+      <Version>1.0.0-dev.578</Version>
     </PackageReference>
     <PackageReference Include="Uno.ShowMeTheXAML">
       <Version>1.0.59</Version>
@@ -108,12 +108,12 @@
       <Version>1.0.59</Version>
     </PackageReference>
     <PackageReference Include="Uno.UI">
-      <Version>3.1.0-dev.447</Version>
+      <Version>3.5.0-dev.80</Version>
     </PackageReference>
     <PackageReference Include="Uno.UI.Lottie">
-      <Version>3.0.0-dev.1535</Version>
+      <Version>3.5.0-dev.80</Version>
     </PackageReference>
-    <PackageReference Include="Uno.UI.RemoteControl" Version="3.0.0-dev.1535" Condition="'$(Configuration)'=='Debug'" />
+    <PackageReference Include="Uno.UI.RemoteControl" Version="3.5.0-dev.80" Condition="'$(Configuration)'=='Debug'" />
     <PackageReference Include="Uno.UniversalImageLoader" Version="1.9.32" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Filter" Version="1.1.1" />

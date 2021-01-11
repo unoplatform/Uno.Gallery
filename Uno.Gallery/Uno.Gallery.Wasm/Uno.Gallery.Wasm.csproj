@@ -2,13 +2,18 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
-		<TargetFramework>netstandard2.0</TargetFramework>
+		<TargetFramework>net5</TargetFramework>
 		<NoWarn>NU1701</NoWarn>
 		<WasmHead>true</WasmHead>
+		<DefineConstants>__WASM__</DefineConstants>
+		<UnoUIUseRoslynSourceGenerators>false</UnoUIUseRoslynSourceGenerators>
 		<!--<WasmShellGenerateAOTProfile>true</WasmShellGenerateAOTProfile>-->
-		<!--<WasmShellMonoRuntimeExecutionMode>InterpreterAndAOT</WasmShellMonoRuntimeExecutionMode>-->
-		<!--<WasmShellEnableEmccProfiling>true</WasmShellEnableEmccProfiling>-->
-	</PropertyGroup>
+		<WasmShellMonoRuntimeExecutionMode>InterpreterAndAOT</WasmShellMonoRuntimeExecutionMode>
+		<WasmShellEnableEmccProfiling>true</WasmShellEnableEmccProfiling>
+		
+		<UnoSourceGeneratorUnsecureBinLogEnabled>true</UnoSourceGeneratorUnsecureBinLogEnabled>
+	<UnoSourceGeneratorCaptureGenerationHostOutput>true</UnoSourceGeneratorCaptureGenerationHostOutput>
+</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)'=='Debug'">
 		<MonoRuntimeDebuggerEnabled>true</MonoRuntimeDebuggerEnabled>
 		<DefineConstants>$(DefineConstants);TRACE;DEBUG</DefineConstants>
@@ -27,35 +32,39 @@
 			<Link>Views\%(RecursiveDir)%(FileName)%(Extension)</Link>
 		</Compile>
 	</ItemGroup>
+
 	<ItemGroup>
 		<Content Include="Assets\SplashScreen.png" />
 	</ItemGroup>
+
+	<!--
+	<ItemGroup>
+		<WasmShellExtraEmccFlags Include="-fsanitize=address" />
+	</ItemGroup>
+	-->
+
 	<ItemGroup>
 		<EmbeddedResource Include="WasmCSS\*.css" />
 		<EmbeddedResource Include="WasmScripts\*.js" />
 	</ItemGroup>
+
 	<ItemGroup>
 		<LinkerDescriptor Include="LinkerConfig.xml" />
 	</ItemGroup>
-	<!--<ItemGroup>
+
+	<ItemGroup>
 		<WasmShellEnableAotProfile Include="aot.profile" />
-	</ItemGroup>-->
+	</ItemGroup>
 
 	<ItemGroup>
 		<WasmShellMonoEnvironment Include="MONO_GC_PARAMS" Value="soft-heap-limit=512m,nursery-size=64m,evacuation-threshold=66,major=marksweep" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<!--
-    This item group is required by the project template because of the
-    new SDK-Style project, otherwise some files are not added automatically.
-
-    You can safely remove this ItemGroup completely.
-    -->
-		<None Include="Program.cs" />
-		<None Include="LinkerConfig.xml" />
-		<None Include="wwwroot\web.config" />
+		<!-- https://github.com/dotnet/runtime/issues/46746 -->
+		<MonoRuntimeMixedModeExcludedAssembly Include="Uno.UI.Lottie" />
 	</ItemGroup>
+
 	<ItemGroup>
 		<!-- Note that for WebAssembly version 1.1.1 of the console logger required -->
 		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
@@ -76,14 +85,16 @@
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
+		<PackageReference Include="Microsoft.Windows.Compatibility" Version="5.0.0" />
+		<PackageReference Include="Uno.Diagnostics.Eventing" Version="1.0.5-dev.13" />
 		<PackageReference Include="Uno.Material" Version="1.0.0-dev.578" />
 		<PackageReference Include="Uno.ShowMeTheXAML" Version="1.0.59" />
 		<PackageReference Include="Uno.ShowMeTheXAML.MSBuild" Version="1.0.59" />
-		<PackageReference Include="Uno.UI.Lottie" Version="3.2.0" />
-		<PackageReference Include="Uno.UI.WebAssembly" Version="3.2.0" />
-		<PackageReference Include="Uno.UI.RemoteControl" Version="3.2.0" Condition="'$(Configuration)'=='Debug'" />
-		<PackageReference Include="Uno.Wasm.Bootstrap" Version="1.4.0-dev.22" />
-		<PackageReference Include="Uno.Wasm.Bootstrap.DevServer" Version="1.4.0-dev.22" />
+		<PackageReference Include="Uno.UI.Lottie" Version="3.5.0-dev.80" />
+		<PackageReference Include="Uno.UI.WebAssembly" Version="3.5.0-dev.80" />
+		<PackageReference Include="Uno.UI.RemoteControl" Version="3.5.0-dev.80" Condition="'$(Configuration)'=='Debug'" />
+		<PackageReference Include="Uno.Wasm.Bootstrap" Version="2.0.0-dev.137" />
+		<PackageReference Include="Uno.Wasm.Bootstrap.DevServer" Version="2.0.0-dev.137" />
 		<PackageReference Include="Microsoft.TypeScript.Compiler" Version="3.1.5">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
