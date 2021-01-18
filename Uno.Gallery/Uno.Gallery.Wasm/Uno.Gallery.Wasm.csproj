@@ -85,7 +85,7 @@
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Microsoft.Windows.Compatibility" Version="5.0.0" />
+		<PackageReference Include="Microsoft.Windows.Compatibility" Version="5.0.1" />
 		<PackageReference Include="Uno.Diagnostics.Eventing" Version="1.0.5-dev.13" />
 		<PackageReference Include="Uno.Material" Version="1.0.0-dev.578" />
 		<PackageReference Include="Uno.ShowMeTheXAML" Version="1.0.59" />
