@@ -10,10 +10,16 @@ jobs:
   strategy:
     maxParallel: 3
     matrix:
-      Android:
+      Android_Store:
         Project: Uno.Gallery/Uno.Gallery.Droid/Uno.Gallery.Droid.csproj
         ApplicationPlatform: AnyCPU
         ArtifactName: Android
+        BuildForPlayStore: True
+      Android_AppCenter:
+        Project: Uno.Gallery/Uno.Gallery.Droid/Uno.Gallery.Droid.csproj
+        ApplicationPlatform: AnyCPU
+        ArtifactName: Android
+        BuildForPlayStore: False
       SkiaGTK:
         Project: Uno.Gallery/Uno.Gallery.Skia.Gtk/Uno.Gallery.Skia.Gtk.csproj
         ApplicationPlatform: AnyCPU
