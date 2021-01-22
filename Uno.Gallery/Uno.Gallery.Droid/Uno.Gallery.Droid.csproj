@@ -53,8 +53,9 @@
     <EnableLLVM>true</EnableLLVM>
     <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
     <BundleAssemblies>false</BundleAssemblies>
-    <AndroidPackageFormat>aab</AndroidPackageFormat>
-    <AndroidUseAapt2>true</AndroidUseAapt2>
+		<AndroidPackageFormat>apk</AndroidPackageFormat>
+		<AndroidPackageFormat Condition="'$(BuildForPlayStore)'=='True'">aab</AndroidPackageFormat>
+		<AndroidUseAapt2>true</AndroidUseAapt2>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="..\Uno.Gallery.UWP\App.xaml.cs" />
