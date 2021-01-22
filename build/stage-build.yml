@@ -17,6 +17,12 @@ steps:
     packageAuthor: nventive
     summaryFile: '$(Build.ArtifactStagingDirectory)/Canary.md'
 
+- task: DownloadSecureFile@1
+  name: keyStore
+  displayName: "Download keystore from secure files"
+  inputs:
+    secureFile: nventive.jks
+
 - task: UseDotNet@2
   condition: eq(variables['IsCanaryBranch'], true)
   inputs:
@@ -29,7 +35,7 @@ steps:
   displayName: Build project in Release|$(ApplicationPlatform)
   inputs:
     solution: $(Project)
-    msbuildArguments: /ds /m /r /p:Configuration=Release "/p:Platform=$(ApplicationPlatform)" "/p:InformationalVersion=%GITVERSION_InformationalVersion%"
+    msbuildArguments: /ds /m /r /p:Configuration=Release "/p:Platform=$(ApplicationPlatform)" "/p:InformationalVersion=%GITVERSION_InformationalVersion%"  /p:AndroidSigningKeyStore=$(keyStore.secureFilePath) /p:AndroidSigningStorePass=$(AndroidSigningStorePass) /p:AndroidSigningKeyPass=$(AndroidSigningKeyPass) /p:AndroidSigningKeyAlias=$(AndroidSigningKeyAlias) /p:AndroidKeyStore=true
 
 - task: PublishBuildArtifacts@1
   inputs:
