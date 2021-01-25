@@ -15,11 +15,13 @@ jobs:
         ApplicationPlatform: AnyCPU
         ArtifactName: Android
         BuildForPlayStore: True
+        ApplicationBuildNumberOffset: 400050
       Android_AppCenter:
         Project: Uno.Gallery/Uno.Gallery.Droid/Uno.Gallery.Droid.csproj
         ApplicationPlatform: AnyCPU
         ArtifactName: Android
         BuildForPlayStore: False
+        ApplicationBuildNumberOffset: 400050
       SkiaGTK:
         Project: Uno.Gallery/Uno.Gallery.Skia.Gtk/Uno.Gallery.Skia.Gtk.csproj
         ApplicationPlatform: AnyCPU
@@ -28,6 +30,7 @@ jobs:
         Project: Uno.Gallery/Uno.Gallery.UWP/Uno.Gallery.UWP.csproj
         ApplicationPlatform: x64
         ArtifactName: UWP
+        ApplicationBuildNumberOffset: 50
   pool:
     vmImage: windows-2019
     
