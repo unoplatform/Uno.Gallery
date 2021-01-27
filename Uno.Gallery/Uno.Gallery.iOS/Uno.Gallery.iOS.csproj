@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -97,14 +97,14 @@
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' ">
     <AppExtensionDebugBundleId />
   </PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)'=='Debug' or '$(IsUiAutomationMappingEnabled)'=='True'">
-		<IsUiAutomationMappingEnabled>True</IsUiAutomationMappingEnabled>
-		<DefineConstants>$(DefineConstants);USE_UITESTS</DefineConstants>
-	</PropertyGroup>
-	<ItemGroup>
-		<UnoSourceGeneratorAdditionalProperty Include="IsUiAutomationMappingEnabled" />
-	</ItemGroup>
-	<ItemGroup>
+  <PropertyGroup Condition="'$(Configuration)'=='Debug' or '$(IsUiAutomationMappingEnabled)'=='True'">
+    <IsUiAutomationMappingEnabled>True</IsUiAutomationMappingEnabled>
+    <DefineConstants>$(DefineConstants);USE_UITESTS</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <UnoSourceGeneratorAdditionalProperty Include="IsUiAutomationMappingEnabled" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="..\Uno.Gallery.UWP\App.xaml.cs" />
     <ApplicationDefinition Include="..\Uno.Gallery.UWP\App.xaml" Link="App.xaml" Visible="False" />
     <Page Include="..\Uno.Gallery.UWP\Views\**\*.xaml" Visible="False">
@@ -185,7 +185,7 @@
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
-	  <BundleResource Include="Resources\Fonts\uno-fluentui-assets.ttf" />
+    <BundleResource Include="Resources\Fonts\uno-fluentui-assets.ttf" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="nventive.Nimue.Application.Building.Light">
@@ -209,7 +209,7 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Uno.Material">
-      <Version>1.0.0-dev.578</Version>
+      <Version>1.0.0-dev.592</Version>
     </PackageReference>
     <PackageReference Include="Uno.ShowMeTheXAML">
       <Version>1.0.59</Version>
@@ -218,18 +218,18 @@
       <Version>1.0.59</Version>
     </PackageReference>
     <PackageReference Include="Uno.UI">
-      <Version>3.5.0-dev.80</Version>
+      <Version>3.5.0-dev.223</Version>
     </PackageReference>
     <PackageReference Include="Uno.UI.Lottie">
-      <Version>3.5.0-dev.80</Version>
+      <Version>3.5.0-dev.223</Version>
     </PackageReference>
-    <PackageReference Include="Uno.UI.RemoteControl" Version="3.5.0-dev.80" Condition="'$(Configuration)'=='Debug'" />
+    <PackageReference Include="Uno.UI.RemoteControl" Version="3.5.0-dev.223" Condition="'$(Configuration)'=='Debug'" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Filter" Version="1.1.1" />
-		<PackageReference Include="Xamarin.TestCloud.Agent">
-			<Version>0.21.8</Version>
-		</PackageReference>
-	</ItemGroup>
+    <PackageReference Include="Xamarin.TestCloud.Agent">
+      <Version>0.21.8</Version>
+    </PackageReference>
+  </ItemGroup>
   <Import Project="..\Uno.Gallery.Shared\Uno.Gallery.Shared.projitems" Label="Shared" Condition="Exists('..\Uno.Gallery.Shared\Uno.Gallery.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
