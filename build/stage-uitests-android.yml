@@ -1,0 +1,38 @@
+﻿jobs:
+- job: Android_Tests
+  displayName: 'Android UI Tests'
+  variables:
+    CI_Build: true
+    SourceLinkEnabled: false
+    XamarinSDKVersion: 6_12_2
+
+  pool:
+    vmImage: 'macOS-10.15'
+
+  steps:
+  - checkout: self
+    clean: true
+
+  - bash: /bin/bash -c "sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh $(XamarinSDKVersion)"
+    displayName: Select Xamarin Version
+
+  - bash: |
+      chmod +x $(build.sourcesdirectory)/build/scripts/android-uitest-run.sh
+      $(build.sourcesdirectory)/build/scripts/android-uitest-run.sh
+    displayName: Build and Run Android Tests
+    env:
+      BUILD_SOURCESDIRECTORY: "$(build.sourcesdirectory)"
+      BUILD_ARTIFACTSTAGINGDIRECTORY: "$(build.artifactstagingdirectory)"
+  - task: PublishTestResults@2
+    condition: always()
+    inputs:
+      testRunTitle: 'Android Test Run'
+      testResultsFormat: 'NUnit'
+      testResultsFiles: '$(build.sourcesdirectory)/build/TestResult.xml'
+
+  - task: PublishBuildArtifacts@1
+    condition: always()
+    inputs:
+      PathtoPublish: $(build.artifactstagingdirectory)
+      ArtifactName: uno-uitest-tests
+      ArtifactType: Container

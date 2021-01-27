@@ -32,12 +32,15 @@
 						<StackPanel Spacing="8">
 
 							<Button Content="CONTAINED"
+									AutomationProperties.AutomationId="MaterialContainedButton"
 									Style="{StaticResource MaterialContainedButtonStyle}" />
 
 							<Button Content="OUTLINED"
+									AutomationProperties.AutomationId="MaterialOutlinedButton"
 									Style="{StaticResource MaterialOutlinedButtonStyle}" />
 
 							<Button Content="TEXT"
+									AutomationProperties.AutomationId="MaterialTextButton"
 									Style="{StaticResource MaterialTextButtonStyle}" />
 						</StackPanel>
 					</local:OverviewSampleView>
@@ -47,9 +50,11 @@
 						<StackPanel Spacing="8">
 
 							<TextBox PlaceholderText="Filled"
+									 AutomationProperties.AutomationId="MaterialFilledTextBox"
 									 Style="{StaticResource MaterialFilledTextBoxStyle}" />
 
 							<TextBox PlaceholderText="Filled with icon"
+									 AutomationProperties.AutomationId="MaterialFilledIconTextBox"
 									 Style="{StaticResource MaterialFilledTextBoxStyle}">
 								<extensions:ControlExtensions.Icon>
 									<SymbolIcon Symbol="Favorite" />
@@ -57,9 +62,11 @@
 							</TextBox>
 
 							<TextBox PlaceholderText="Outlined"
+									 AutomationProperties.AutomationId="MaterialOutlinedTextBox"
 									 Style="{StaticResource MaterialOutlinedTextBoxStyle}" />
 
 							<TextBox PlaceholderText="Outlined with icon"
+									 AutomationProperties.AutomationId="MaterialOutlinedWithIconTextBox"
 									 Style="{StaticResource MaterialOutlinedTextBoxStyle}">
 								<extensions:ControlExtensions.Icon>
 									<SymbolIcon Symbol="Favorite" />
