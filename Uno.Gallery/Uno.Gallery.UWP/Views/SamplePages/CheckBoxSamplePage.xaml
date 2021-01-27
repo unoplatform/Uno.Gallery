@@ -17,23 +17,29 @@
 						<smtx:XamlDisplay UniqueKey="CheckBoxSamplePage_Fluent"
 										  smtx:XamlDisplayExtensions.Header="Default">
 							<StackPanel>
-								<CheckBox Content="UNCHECKED" />
+								<CheckBox Content="UNCHECKED"
+										  AutomationProperties.AutomationId="Fluent_Unchecked" />
 
 								<CheckBox Content="DISABLED UNCHECKED"
+										  AutomationProperties.AutomationId="Fluent_Disabled_Unchecked"
 										  IsEnabled="False" />
 
 								<CheckBox Content="CHECKED"
+										  AutomationProperties.AutomationId="Fluent_Checked"
 										  IsChecked="True" />
 
 								<CheckBox Content="DISABLED CHECKED"
+										  AutomationProperties.AutomationId="Fluent_Disabled_Checked"
 										  IsChecked="True"
 										  IsEnabled="False" />
 
 								<CheckBox Content="INDETERMINATE"
+										  AutomationProperties.AutomationId="Fluent_Indeterminate"
 										  IsThreeState="True"
 										  IsChecked="{x:Null}" />
 
 								<CheckBox Content="DISABLED INDETERMINATE"
+										  AutomationProperties.AutomationId="Fluent_Disabled_Indeterminate"
 										  IsThreeState="True"
 										  IsChecked="{x:Null}"
 										  IsEnabled="False" />
@@ -52,27 +58,33 @@
 										  smtx:XamlDisplayExtensions.Header="Default">
 							<StackPanel>
 								<CheckBox Style="{StaticResource MaterialCheckBoxStyle}"
+										  AutomationProperties.AutomationId="Material_Unchecked"
 										  Content="UNCHECKED" />
 
 								<CheckBox Style="{StaticResource MaterialCheckBoxStyle}"
+										  AutomationProperties.AutomationId="Material_Disabled_Unchecked"
 										  Content="DISABLED UNCHECKED"
 										  IsEnabled="False" />
 
 								<CheckBox Style="{StaticResource MaterialCheckBoxStyle}"
+										  AutomationProperties.AutomationId="Material_Checked"
 										  Content="CHECKED"
 										  IsChecked="True" />
 
 								<CheckBox Style="{StaticResource MaterialCheckBoxStyle}"
+										  AutomationProperties.AutomationId="Material_Disabled_Checked"
 										  Content="DISABLED CHECKED"
 										  IsChecked="True"
 										  IsEnabled="False" />
 
 								<CheckBox Style="{StaticResource MaterialCheckBoxStyle}"
+										  AutomationProperties.AutomationId="Material_Indeterminate"
 										  Content="INDETERMINATE"
 										  IsThreeState="True"
 										  IsChecked="{x:Null}" />
 
 								<CheckBox Style="{StaticResource MaterialCheckBoxStyle}"
+										  AutomationProperties.AutomationId="Material_Disabled_Indeterminate"
 										  Content="DISABLED INDETERMINATE"
 										  IsThreeState="True"
 										  IsChecked="{x:Null}"

@@ -1,0 +1,42 @@
+﻿jobs:
+- job: Wasm_UITests
+  displayName: 'WebAssembly UI Tests'
+  container: unoplatform/wasm-build:3.0
+
+  pool:
+    vmImage: 'ubuntu-20.04'
+
+  variables:
+    NUGET_PACKAGES: $(build.sourcesdirectory)/.nuget
+
+  steps:
+  - checkout: self
+    clean: true
+
+  - task: UseDotNet@2
+    displayName: 'Use .Net Core runtime 5.0.101'
+    inputs:
+      packageType: sdk
+      version: 5.0.101
+
+  - bash: |
+      chmod +x build/scripts/wasm-uitest-run.sh
+      build/scripts/wasm-uitest-run.sh
+    env:
+      BUILD_SOURCESDIRECTORY: "$(build.sourcesdirectory)"
+      BUILD_ARTIFACTSTAGINGDIRECTORY: "$(build.artifactstagingdirectory)"
+    displayName: 'Running build'
+
+  - task: PublishTestResults@2
+    condition: always()
+    inputs:
+      testRunTitle: 'WebAssembly Test Run'
+      testResultsFormat: 'NUnit'
+      testResultsFiles: '$(build.sourcesdirectory)/build/TestResult.xml'
+
+  - task: PublishBuildArtifacts@1
+    condition: always()
+    inputs:
+      PathtoPublish: $(build.artifactstagingdirectory)
+      ArtifactName: uno-uitest-tests
+      ArtifactType: Container

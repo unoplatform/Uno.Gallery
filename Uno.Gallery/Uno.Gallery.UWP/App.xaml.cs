@@ -9,6 +9,7 @@ using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Automation;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
@@ -44,6 +45,11 @@ namespace Uno.Gallery
 		/// <param name="e">Details about the launch request and process.</param>
 		protected override void OnLaunched(LaunchActivatedEventArgs e)
 		{
+#if __IOS__ && USE_UITESTS
+			// requires Xamarin Test Cloud Agent
+			Xamarin.Calabash.Start();
+#endif
+
 			InitializeMaterialStyles();
 
 #if WINDOWS_UWP
@@ -155,11 +161,14 @@ namespace Uno.Gallery
 
 				foreach (var sample in category)
 				{
-					nv.MenuItems.Add(new NavigationViewItem
+					NavigationViewItem item = new NavigationViewItem
 					{
 						Content = sample.Title,
 						DataContext = sample
-					});
+					};
+					AutomationProperties.SetAutomationId(item, "Section_" + sample.Title);
+
+					nv.MenuItems.Add(item);
 				}
 			}
 		}
