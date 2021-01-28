@@ -8,7 +8,8 @@
 			 xmlns:win="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 			 xmlns:wasm="http://uno.ui/wasm"
 			 xmlns:xamarin="http://uno.ui/xamarin"
-			 mc:Ignorable="wasm xamarin">
+			 xmlns:todo="what should be done"
+			 mc:Ignorable="todo wasm xamarin">
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -25,18 +26,18 @@
 		</wasm:Border>
 
 		<!-- We set CompactModeThresholdWidth to a very high value so that it never happens. We don't want to use the compact mode. -->
-		<NavigationView x:Name="NavigationViewControl"
-						Style="{StaticResource MaterialNoCompactMenuNavigationViewStyle}"
-						OpenPaneLength="220"
-						ExpandedModeThresholdWidth="{StaticResource DesktopAdaptiveThresholdWidth}"
-						IsSettingsVisible="False"
-						IsBackButtonVisible="Collapsed"
-						IsBackEnabled="False"
-						IsTabStop="False"
-						Grid.Row="2">
-			<NavigationView.PaneHeader>
-				<Grid>
 
+		<muxc:NavigationView Grid.Row="2"
+							 x:Name="NavigationViewControl"
+							 OpenPaneLength="220"
+							 ExpandedModeThresholdWidth="{StaticResource DesktopAdaptiveThresholdWidth}"
+							 IsSettingsVisible="False"
+							 IsBackButtonVisible="Collapsed"
+							 IsBackEnabled="False"
+							 IsTabStop="False"
+							 todo:Style="{StaticResource MaterialNoCompactMenuNavigationViewStyle}">
+			<muxc:NavigationView.PaneHeader>
+				<Grid>
 					<!-- Image -->
 					<Image Source="{ThemeResource UnoLogoImageSource}"
 						   Height="101"
@@ -52,8 +53,8 @@
 								  HorizontalAlignment="Right"
 								  VerticalAlignment="Bottom" />
 				</Grid>
-			</NavigationView.PaneHeader>
-		</NavigationView>
+			</muxc:NavigationView.PaneHeader>
+		</muxc:NavigationView>
 
 		<!-- Nested frame for samples that needs to be fullscreen -->
 		<Frame x:Name="NestedSampleFrame"

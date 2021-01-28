@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Automation;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
+using MUXC = Microsoft.UI.Xaml.Controls;
 
 namespace Uno.Gallery
 {
@@ -97,7 +98,7 @@ namespace Uno.Gallery
 			var nv = _shell.NavigationView;
 			if (nv.Content?.GetType() != sample.ViewType)
 			{
-				var selected = nv.MenuItems.OfType<NavigationViewItem>().FirstOrDefault(x => trySynchronizeCurrentItem && (x.DataContext as Sample).ViewType == sample.ViewType);
+				var selected = nv.MenuItems.OfType<MUXC.NavigationViewItem>().FirstOrDefault(x => trySynchronizeCurrentItem && (x.DataContext as Sample).ViewType == sample.ViewType);
 				if (selected != null)
 				{
 					nv.SelectedItem = selected;
@@ -128,15 +129,18 @@ namespace Uno.Gallery
 			return _shell;
 		}
 
-		private void OnNavigationItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs e)
+		private void OnNavigationItemInvoked(MUXC.NavigationView sender, MUXC.NavigationViewItemInvokedEventArgs e)
 		{
 			if (e.InvokedItemContainer.DataContext is Sample sample)
 			{
 				ShellNavigateTo(sample, trySynchronizeCurrentItem: false);
 			}
+
+			// workaround for uno#5039 to force close the nav-view
+			sender.IsPaneOpen = false;
 		}
 
-		private void AddNavigationItems(NavigationView nv)
+		private void AddNavigationItems(MUXC.NavigationView nv)
 		{
 			var categories = Assembly.GetExecutingAssembly().DefinedTypes
 				.Where(x => x.Namespace?.StartsWith("Uno.Gallery") == true)
@@ -152,16 +156,16 @@ namespace Uno.Gallery
 			{
 				if (category.Key != SampleCategory.None)
 				{
-					nv.MenuItems.Add(new NavigationViewItemHeader
+					nv.MenuItems.Add(new MUXC.NavigationViewItemHeader
 					{
 						Content = category.Key.GetDescription() ?? category.Key.ToString(),
-						Style = Application.Current.Resources["DefaultNavigationViewItemHeaderStyle"] as Style
+						//Style = Application.Current.Resources["DefaultNavigationViewItemHeaderStyle"] as Style
 					});
 				}
 
 				foreach (var sample in category)
 				{
-					NavigationViewItem item = new NavigationViewItem
+					var item = new MUXC.NavigationViewItem
 					{
 						Content = sample.Title,
 						DataContext = sample
