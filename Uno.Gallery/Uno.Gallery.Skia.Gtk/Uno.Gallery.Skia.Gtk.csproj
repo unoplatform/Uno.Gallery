@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
 		<OutputType Condition="'$(Configuration)'=='Release'">WinExe</OutputType>
@@ -27,7 +27,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Uno.Material" Version="1.0.0-dev.578" />
+		<PackageReference Include="Uno.Material" Version="1.0.0-dev.592" />
 		<!-- Note that for WebAssembly version 1.1.1 of the console logger required -->
 		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Filter" Version="1.1.1" />
@@ -46,9 +46,9 @@
 		<PackageReference Include="Uno.ShowMeTheXAML" Version="1.0.58" />
 		<PackageReference Include="Uno.ShowMeTheXAML.MSBuild" Version="1.0.59" />
 		<PackageReference Include="Uno.SourceGenerationTasks" Version="3.0.0-dev.21" />
-		<PackageReference Include="Uno.UI.Lottie" Version="3.5.0-dev.80" />
-		<PackageReference Include="Uno.UI.Skia.Gtk" Version="3.5.0-dev.80" />
-		<PackageReference Include="Uno.UI.RemoteControl" Version="3.0.0-dev.1447" Condition="'$(Configuration)'=='Debug'" />
+		<PackageReference Include="Uno.UI.Lottie" Version="3.5.0-dev.223" />
+		<PackageReference Include="Uno.UI.Skia.Gtk" Version="3.5.0-dev.223" />
+		<PackageReference Include="Uno.UI.RemoteControl" Version="3.5.0-dev.223" Condition="'$(Configuration)'=='Debug'" />
 	</ItemGroup>
 	
 	<Import Project="..\Uno.Gallery.Shared\Uno.Gallery.Shared.projitems" Label="Shared" />
