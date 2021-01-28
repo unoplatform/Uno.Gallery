@@ -83,14 +83,14 @@ namespace Uno.Gallery
 
 		public void ShellNavigateTo(Sample sample) => ShellNavigateTo(sample, trySynchronizeCurrentItem: true);
 
-		private void ShellNavigateTo<TPage>() where TPage : Page
+		private void ShellNavigateTo<TPage>(bool trySynchronizeCurrentItem = true) where TPage : Page
 		{
 			var type = typeof(TPage);
 			var attribute = type.GetCustomAttribute<SamplePageAttribute>()
 				?? throw new NotSupportedException($"{type} isn't tagged with [{nameof(SamplePageAttribute)}].");
 			var sample = new Sample(attribute, type);
 
-			ShellNavigateTo(sample, trySynchronizeCurrentItem: true);
+			ShellNavigateTo(sample, trySynchronizeCurrentItem);
 		}
 
 		private void ShellNavigateTo(Sample sample, bool trySynchronizeCurrentItem)
@@ -121,7 +121,12 @@ namespace Uno.Gallery
 			AddNavigationItems(nv);
 
 			// landing navigation
+#if !__WASM__
 			ShellNavigateTo<OverviewPage>();
+#else
+			// workaround for uno#5069: setting NavView.SelectedItem at launch bricks it
+			ShellNavigateTo<OverviewPage>(trySynchronizeCurrentItem: false);
+#endif
 
 			// navigation + setting handler
 			nv.ItemInvoked += OnNavigationItemInvoked;
