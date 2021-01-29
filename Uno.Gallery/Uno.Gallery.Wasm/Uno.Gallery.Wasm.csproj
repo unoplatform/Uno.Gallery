@@ -26,9 +26,6 @@
 		<IsUiAutomationMappingEnabled>True</IsUiAutomationMappingEnabled>
 		<DefineConstants>$(DefineConstants);USE_UITESTS</DefineConstants>
 	</PropertyGroup>
-	<ItemGroup>
-		<UnoSourceGeneratorAdditionalProperty Include="IsUiAutomationMappingEnabled" />
-	</ItemGroup>
 
 	<ItemGroup>
 		<Compile Include="..\Uno.Gallery.UWP\App.xaml.cs" />
