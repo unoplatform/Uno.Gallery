@@ -98,7 +98,11 @@ namespace Uno.Gallery
 			var nv = _shell.NavigationView;
 			if (nv.Content?.GetType() != sample.ViewType)
 			{
-				var selected = nv.MenuItems.OfType<MUXC.NavigationViewItem>().FirstOrDefault(x => trySynchronizeCurrentItem && (x.DataContext as Sample).ViewType == sample.ViewType);
+				var selected = trySynchronizeCurrentItem
+					? nv.MenuItems
+						.OfType<MUXC.NavigationViewItem>()
+						.FirstOrDefault(x => (x.DataContext as Sample)?.ViewType == sample.ViewType)
+					: default;
 				if (selected != null)
 				{
 					nv.SelectedItem = selected;
@@ -139,10 +143,13 @@ namespace Uno.Gallery
 			if (e.InvokedItemContainer.DataContext is Sample sample)
 			{
 				ShellNavigateTo(sample, trySynchronizeCurrentItem: false);
-			}
 
-			// workaround for uno#5039 to force close the nav-view
-			sender.IsPaneOpen = false;
+				//// workaround for uno#5039 to force close the nav-view
+				//if (sender.DisplayMode == MUXC.NavigationViewDisplayMode.Minimal)
+				//{
+				//	sender.IsPaneOpen = false;
+				//}
+			}
 		}
 
 		private void AddNavigationItems(MUXC.NavigationView nv)
@@ -159,13 +166,19 @@ namespace Uno.Gallery
 
 			foreach (var category in categories.OrderBy(x => x.Key))
 			{
+				var tier = 1;
+
+				var parentItem = default(MUXC.NavigationViewItem);
 				if (category.Key != SampleCategory.None)
 				{
-					nv.MenuItems.Add(new MUXC.NavigationViewItemHeader
+					parentItem = new MUXC.NavigationViewItem
 					{
 						Content = category.Key.GetDescription() ?? category.Key.ToString(),
-						//Style = Application.Current.Resources["DefaultNavigationViewItemHeaderStyle"] as Style
-					});
+						Style = (Style)Resources[$"T{tier++}NavigationViewItemStyle"]
+						//Style = (Style)Resources[$"TieredNavigationViewItemStyle"]
+					};
+
+					nv.MenuItems.Add(parentItem);
 				}
 
 				foreach (var sample in category)
@@ -173,11 +186,13 @@ namespace Uno.Gallery
 					var item = new MUXC.NavigationViewItem
 					{
 						Content = sample.Title,
-						DataContext = sample
+						DataContext = sample,
+						Style = (Style)Resources[$"T{tier}NavigationViewItemStyle"]
+						//Style = (Style)Resources[$"TieredNavigationViewItemStyle"]
 					};
 					AutomationProperties.SetAutomationId(item, "Section_" + sample.Title);
 
-					nv.MenuItems.Add(item);
+					(parentItem?.MenuItems ?? nv.MenuItems).Add(item);
 				}
 			}
 		}

@@ -30,12 +30,15 @@
 		<muxc:NavigationView Grid.Row="2"
 							 x:Name="NavigationViewControl"
 							 OpenPaneLength="220"
-							 ExpandedModeThresholdWidth="{StaticResource DesktopAdaptiveThresholdWidth}"
+							 
+							 CompactModeThresholdWidth="99999"
+							 ExpandedModeThresholdWidth="720"
+							 todo:PaneDisplayMode="LeftMinimal"
+							 
 							 IsSettingsVisible="False"
 							 IsBackButtonVisible="Collapsed"
 							 IsBackEnabled="False"
-							 IsTabStop="False"
-							 todo:Style="{StaticResource MaterialNoCompactMenuNavigationViewStyle}">
+							 IsTabStop="False">
 			<muxc:NavigationView.PaneHeader>
 				<Grid>
 					<!-- Image -->
