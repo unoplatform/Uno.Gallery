@@ -30,6 +30,7 @@
 		<muxc:NavigationView Grid.Row="2"
 							 x:Name="NavigationViewControl"
 							 OpenPaneLength="220"
+							 CompactModeThresholdWidth="99999"
 							 ExpandedModeThresholdWidth="{StaticResource DesktopAdaptiveThresholdWidth}"
 							 IsSettingsVisible="False"
 							 IsBackButtonVisible="Collapsed"

@@ -1,8 +1,10 @@
 ﻿using Microsoft.Extensions.Logging;
 using ShowMeTheXAML;
 using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
+using Uno.Extensions;
 using Uno.Gallery.Views.GeneralPages;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
@@ -98,7 +100,11 @@ namespace Uno.Gallery
 			var nv = _shell.NavigationView;
 			if (nv.Content?.GetType() != sample.ViewType)
 			{
-				var selected = nv.MenuItems.OfType<MUXC.NavigationViewItem>().FirstOrDefault(x => trySynchronizeCurrentItem && (x.DataContext as Sample).ViewType == sample.ViewType);
+				var selected = trySynchronizeCurrentItem
+					? nv.MenuItems
+						.OfType<MUXC.NavigationViewItem>()
+						.FirstOrDefault(x => (x.DataContext as Sample)?.ViewType == sample.ViewType)
+					: default;
 				if (selected != null)
 				{
 					nv.SelectedItem = selected;
@@ -121,12 +127,12 @@ namespace Uno.Gallery
 			AddNavigationItems(nv);
 
 			// landing navigation
-#if !__WASM__
-			ShellNavigateTo<OverviewPage>();
-#else
-			// workaround for uno#5069: setting NavView.SelectedItem at launch bricks it
-			ShellNavigateTo<OverviewPage>(trySynchronizeCurrentItem: false);
+			ShellNavigateTo<MaterialPalettePage>(
+#if !WINDOWS_UWP
+				// workaround for uno#5069: setting NavView.SelectedItem at launch bricks it
+				trySynchronizeCurrentItem: false
 #endif
+			);
 
 			// navigation + setting handler
 			nv.ItemInvoked += OnNavigationItemInvoked;
@@ -140,9 +146,6 @@ namespace Uno.Gallery
 			{
 				ShellNavigateTo(sample, trySynchronizeCurrentItem: false);
 			}
-
-			// workaround for uno#5039 to force close the nav-view
-			sender.IsPaneOpen = false;
 		}
 
 		private void AddNavigationItems(MUXC.NavigationView nv)
@@ -159,13 +162,18 @@ namespace Uno.Gallery
 
 			foreach (var category in categories.OrderBy(x => x.Key))
 			{
+				var tier = 1;
+
+				var parentItem = default(MUXC.NavigationViewItem);
 				if (category.Key != SampleCategory.None)
 				{
-					nv.MenuItems.Add(new MUXC.NavigationViewItemHeader
+					parentItem = new MUXC.NavigationViewItem
 					{
 						Content = category.Key.GetDescription() ?? category.Key.ToString(),
-						//Style = Application.Current.Resources["DefaultNavigationViewItemHeaderStyle"] as Style
-					});
+						Style = (Style)Resources[$"T{tier++}NavigationViewItemStyle"]
+					};
+
+					nv.MenuItems.Add(parentItem);
 				}
 
 				foreach (var sample in category)
@@ -173,11 +181,12 @@ namespace Uno.Gallery
 					var item = new MUXC.NavigationViewItem
 					{
 						Content = sample.Title,
-						DataContext = sample
+						DataContext = sample,
+						Style = (Style)Resources[$"T{tier}NavigationViewItemStyle"]
 					};
 					AutomationProperties.SetAutomationId(item, "Section_" + sample.Title);
 
-					nv.MenuItems.Add(item);
+					(parentItem?.MenuItems ?? nv.MenuItems).Add(item);
 				}
 			}
 		}
@@ -193,6 +202,7 @@ namespace Uno.Gallery
 					{
 						{ "Uno", LogLevel.Warning },
 						{ "Windows", LogLevel.Warning },
+						{ "Uno.Gallery", LogLevel.Debug },
 
 						// Debug JS interop
 						// { "Uno.Foundation.WebAssemblyRuntime", LogLevel.Debug },
