@@ -26,9 +26,6 @@
 		<IsUiAutomationMappingEnabled>True</IsUiAutomationMappingEnabled>
 		<DefineConstants>$(DefineConstants);USE_UITESTS</DefineConstants>
 	</PropertyGroup>
-	<ItemGroup>
-		<UnoSourceGeneratorAdditionalProperty Include="IsUiAutomationMappingEnabled" />
-	</ItemGroup>
 
 	<ItemGroup>
 		<Compile Include="..\Uno.Gallery.UWP\App.xaml.cs" />
@@ -100,9 +97,9 @@
 		<PackageReference Include="Uno.Material" Version="1.0.0-dev.592" />
 		<PackageReference Include="Uno.ShowMeTheXAML" Version="1.0.59" />
 		<PackageReference Include="Uno.ShowMeTheXAML.MSBuild" Version="1.0.59" />
-		<PackageReference Include="Uno.UI.Lottie" Version="3.5.0-dev.223" />
-		<PackageReference Include="Uno.UI.WebAssembly" Version="3.5.0-dev.223" />
-		<PackageReference Include="Uno.UI.RemoteControl" Version="3.5.0-dev.223" Condition="'$(Configuration)'=='Debug'" />
+		<PackageReference Include="Uno.UI.Lottie" Version="3.5.0-dev.256" />
+		<PackageReference Include="Uno.UI.WebAssembly" Version="3.5.0-dev.256" />
+		<PackageReference Include="Uno.UI.RemoteControl" Version="3.5.0-dev.256" Condition="'$(Configuration)'=='Debug'" />
 		<PackageReference Include="Uno.Wasm.Bootstrap" Version="2.0.0-dev.150" />
 		<PackageReference Include="Uno.Wasm.Bootstrap.DevServer" Version="2.0.0-dev.150" />
 		<PackageReference Include="Microsoft.TypeScript.Compiler" Version="3.1.5">

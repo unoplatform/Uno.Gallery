@@ -48,10 +48,12 @@ jobs:
         Project: Uno.Gallery/Uno.Gallery.iOS/Uno.Gallery.iOS.csproj
         ApplicationPlatform: iPhone
         ArtifactName: iOS
+        ApplicationBuildNumberOffset: 50
       macOS:
         Project: Uno.Gallery/Uno.Gallery.macOS/Uno.Gallery.macOS.csproj
         ApplicationPlatform: iPhoneSimulator
         ArtifactName: macOS
+        ApplicationBuildNumberOffset: 50
   pool:
     vmImage: macOS-10.15
     

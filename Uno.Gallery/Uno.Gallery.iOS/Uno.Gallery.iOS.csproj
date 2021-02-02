@@ -102,9 +102,6 @@
 		<DefineConstants>$(DefineConstants);USE_UITESTS</DefineConstants>
 	</PropertyGroup>
 	<ItemGroup>
-		<UnoSourceGeneratorAdditionalProperty Include="IsUiAutomationMappingEnabled" />
-	</ItemGroup>
-	<ItemGroup>
     <Compile Include="..\Uno.Gallery.UWP\App.xaml.cs" />
     <ApplicationDefinition Include="..\Uno.Gallery.UWP\App.xaml" Link="App.xaml" Visible="False" />
     <Page Include="..\Uno.Gallery.UWP\Views\**\*.xaml" Visible="False">
@@ -218,16 +215,16 @@
       <Version>1.0.59</Version>
     </PackageReference>
     <PackageReference Include="Uno.UI">
-      <Version>3.5.0-dev.223</Version>
+      <Version>3.5.0-dev.256</Version>
     </PackageReference>
     <PackageReference Include="Uno.UI.Lottie">
-      <Version>3.5.0-dev.223</Version>
+      <Version>3.5.0-dev.256</Version>
     </PackageReference>
-    <PackageReference Include="Uno.UI.RemoteControl" Version="3.5.0-dev.223" Condition="'$(Configuration)'=='Debug'" />
+    <PackageReference Include="Uno.UI.RemoteControl" Version="3.5.0-dev.256" Condition="'$(Configuration)'=='Debug'" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Filter" Version="1.1.1" />
 		<PackageReference Include="Xamarin.TestCloud.Agent">
-			<Version>0.21.8</Version>
+			<Version>0.22.1</Version>
 		</PackageReference>
 	</ItemGroup>
   <Import Project="..\Uno.Gallery.Shared\Uno.Gallery.Shared.projitems" Label="Shared" Condition="Exists('..\Uno.Gallery.Shared\Uno.Gallery.Shared.projitems')" />
