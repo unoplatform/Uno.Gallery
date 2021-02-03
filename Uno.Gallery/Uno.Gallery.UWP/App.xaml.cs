@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using Uno.Extensions;
+using Uno.Gallery.Helpers;
 using Uno.Gallery.Views.GeneralPages;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
@@ -16,6 +17,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
 using MUXC = Microsoft.UI.Xaml.Controls;
+using MUXCP = Microsoft.UI.Xaml.Controls.Primitives;
 
 namespace Uno.Gallery
 {
@@ -170,8 +172,9 @@ namespace Uno.Gallery
 					parentItem = new MUXC.NavigationViewItem
 					{
 						Content = category.Key.GetDescription() ?? category.Key.ToString(),
+						SelectsOnInvoked = false,
 						Style = (Style)Resources[$"T{tier++}NavigationViewItemStyle"]
-					};
+					}.Apply(NavViewItemVisualStateFix);
 					AutomationProperties.SetAutomationId(parentItem, "Section_" + parentItem.Content);
 
 					nv.MenuItems.Add(parentItem);
@@ -184,11 +187,26 @@ namespace Uno.Gallery
 						Content = sample.Title,
 						DataContext = sample,
 						Style = (Style)Resources[$"T{tier}NavigationViewItemStyle"]
-					};
+					}.Apply(NavViewItemVisualStateFix);
 					AutomationProperties.SetAutomationId(item, "Section_" + item.Content);
 
 					(parentItem?.MenuItems ?? nv.MenuItems).Add(item);
 				}
+			}
+
+			void NavViewItemVisualStateFix(MUXC.NavigationViewItem nvi)
+			{
+				// on uwp and uno, deselecting a NVI by selecting another NVI will leave the former in the "Selected" state
+				// to workaround this, we force reset the visual state when IsSelected becomes false
+				nvi.RegisterPropertyChangedCallback(MUXC.NavigationViewItemBase.IsSelectedProperty, (s, e) =>
+				{
+					if (!nvi.IsSelected)
+					{
+						// depending on the DisplayMode, a NVIP may or may not be used.
+						var nvip = VisualTreeHelperEx.GetFirstDescendant<MUXCP.NavigationViewItemPresenter>(nvi, x => x.Name == "NavigationViewItemPresenter");
+						VisualStateManager.GoToState((Control)nvip ?? nvi, "Normal", true);
+					}
+				});
 			}
 		}
 
