@@ -129,7 +129,7 @@ namespace Uno.Gallery
 			AddNavigationItems(nv);
 
 			// landing navigation
-			ShellNavigateTo<MaterialPalettePage>(
+			ShellNavigateTo<OverviewPage>(
 #if !WINDOWS_UWP
 				// workaround for uno#5069: setting NavView.SelectedItem at launch bricks it
 				trySynchronizeCurrentItem: false
