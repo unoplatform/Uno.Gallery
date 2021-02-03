@@ -26,7 +26,6 @@
 		</wasm:Border>
 
 		<!-- We set CompactModeThresholdWidth to a very high value so that it never happens. We don't want to use the compact mode. -->
-
 		<muxc:NavigationView Grid.Row="2"
 							 x:Name="NavigationViewControl"
 							 OpenPaneLength="220"
@@ -35,8 +34,7 @@
 							 IsSettingsVisible="False"
 							 IsBackButtonVisible="Collapsed"
 							 IsBackEnabled="False"
-							 IsTabStop="False"
-							 todo:Style="{StaticResource MaterialNoCompactMenuNavigationViewStyle}">
+							 IsTabStop="False">
 			<muxc:NavigationView.PaneHeader>
 				<Grid>
 					<!-- Image -->
