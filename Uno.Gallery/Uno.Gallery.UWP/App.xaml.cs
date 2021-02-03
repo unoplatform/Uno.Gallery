@@ -172,6 +172,7 @@ namespace Uno.Gallery
 						Content = category.Key.GetDescription() ?? category.Key.ToString(),
 						Style = (Style)Resources[$"T{tier++}NavigationViewItemStyle"]
 					};
+					AutomationProperties.SetAutomationId(parentItem, "Section_" + parentItem.Content);
 
 					nv.MenuItems.Add(parentItem);
 				}
@@ -184,7 +185,7 @@ namespace Uno.Gallery
 						DataContext = sample,
 						Style = (Style)Resources[$"T{tier}NavigationViewItemStyle"]
 					};
-					AutomationProperties.SetAutomationId(item, "Section_" + sample.Title);
+					AutomationProperties.SetAutomationId(item, "Section_" + item.Content);
 
 					(parentItem?.MenuItems ?? nv.MenuItems).Add(item);
 				}

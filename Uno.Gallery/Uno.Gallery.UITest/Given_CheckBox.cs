@@ -20,11 +20,15 @@ namespace Uno.Gallery.UITests
                 Assert.Ignore();
 			}
 
-            Query section = q => q.All().Marked("Section_CheckBox");
+            Query sectionComponents = q => q.All().Marked("Section_Components");
+            Query sectionCheckBox = q => q.All().Marked("Section_CheckBox");
             QueryEx uncheckedBox = new QueryEx(q => q.All().Marked("Material_Unchecked"));
 
-            App.WaitForElement(section);
-            App.Tap(section);
+            App.WaitForElement(sectionComponents);
+            App.Tap(sectionComponents);
+
+            App.WaitForElement(sectionCheckBox);
+            App.Tap(sectionCheckBox);
 
             TakeScreenshot("Opened");
 
