@@ -9,7 +9,8 @@ namespace Uno.Gallery.Droid
 	[Activity(
 			MainLauncher = true,
 			ConfigurationChanges = Uno.UI.ActivityHelper.AllConfigChanges,
-			WindowSoftInputMode = SoftInput.AdjustPan | SoftInput.StateHidden
+			WindowSoftInputMode = SoftInput.AdjustPan | SoftInput.StateHidden,
+			ScreenOrientation = ScreenOrientation.Portrait
 		)]
 	public class MainActivity : Windows.UI.Xaml.ApplicationActivity
 	{
