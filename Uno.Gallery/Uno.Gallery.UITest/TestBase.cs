@@ -51,6 +51,16 @@ namespace Uno.Gallery.UITests
             TakeScreenshot("teardown");
         }
 
+        protected void NavigateToSection(params string[] sections)
+        {
+            if (!(sections?.Length > 0)) throw new ArgumentException("`sections` are null or empty", nameof(sections));
+
+            foreach (var section in sections)
+            {
+                App.WaitThenTap(q => q.All().Marked($"Section_{section}"));
+            }
+        }
+
         public FileInfo TakeScreenshot(string stepName)
         {
             var title = $"{TestContext.CurrentContext.Test.Name}_{stepName}"
