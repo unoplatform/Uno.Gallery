@@ -6,34 +6,28 @@ using System.Threading.Tasks;
 using NUnit.Framework;
 using Uno.UITest.Helpers.Queries;
 using Uno.UITests.Helpers;
-using Query = System.Func<Uno.UITest.IAppQuery, Uno.UITest.IAppQuery>;
 
 namespace Uno.Gallery.UITests
 {
-    public class Given_CheckBox : TestBase
-    {
-        [Test]
-        public void When_ClickMaterial()
-        {
-            if(AppInitializer.GetLocalPlatform() == Platform.Android)
+	public class Given_CheckBox : TestBase
+	{
+		[Test]
+		public void When_ClickMaterial()
+		{
+			if (AppInitializer.GetLocalPlatform() == Platform.Android)
 			{
-                Assert.Ignore();
+				Assert.Ignore();
 			}
 
-            Query section = q => q.All().Marked("Section_CheckBox");
-            QueryEx uncheckedBox = new QueryEx(q => q.All().Marked("Material_Unchecked"));
+			NavigateToSection("Components", "CheckBox");
 
-            App.WaitForElement(section);
-            App.Tap(section);
+			TakeScreenshot("Opened");
 
-            TakeScreenshot("Opened");
+			var uncheckedBox = App.WaitThenTap(q => q.All().Marked("Material_Unchecked")).ToQueryEx();
 
-            App.WaitForElement(uncheckedBox);
-            App.Tap(uncheckedBox);
+			TakeScreenshot("Opened");
 
-            TakeScreenshot("Opened");
-
-            Assert.IsTrue(uncheckedBox.GetDependencyPropertyValue<bool>("IsChecked"));
-        }
-    }
+			Assert.IsTrue(uncheckedBox.GetDependencyPropertyValue<bool>("IsChecked"));
+		}
+	}
 }

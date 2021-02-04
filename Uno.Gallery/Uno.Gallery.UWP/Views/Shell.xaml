@@ -25,18 +25,17 @@
 		</wasm:Border>
 
 		<!-- We set CompactModeThresholdWidth to a very high value so that it never happens. We don't want to use the compact mode. -->
-		<NavigationView x:Name="NavigationViewControl"
-						Style="{StaticResource MaterialNoCompactMenuNavigationViewStyle}"
-						OpenPaneLength="220"
-						ExpandedModeThresholdWidth="{StaticResource DesktopAdaptiveThresholdWidth}"
-						IsSettingsVisible="False"
-						IsBackButtonVisible="Collapsed"
-						IsBackEnabled="False"
-						IsTabStop="False"
-						Grid.Row="2">
-			<NavigationView.PaneHeader>
+		<muxc:NavigationView Grid.Row="2"
+							 x:Name="NavigationViewControl"
+							 OpenPaneLength="220"
+							 CompactModeThresholdWidth="99999"
+							 ExpandedModeThresholdWidth="{StaticResource DesktopAdaptiveThresholdWidth}"
+							 IsSettingsVisible="False"
+							 IsBackButtonVisible="Collapsed"
+							 IsBackEnabled="False"
+							 IsTabStop="False">
+			<muxc:NavigationView.PaneHeader>
 				<Grid>
-
 					<!-- Image -->
 					<Image Source="{ThemeResource UnoLogoImageSource}"
 						   Height="101"
@@ -52,8 +51,8 @@
 								  HorizontalAlignment="Right"
 								  VerticalAlignment="Bottom" />
 				</Grid>
-			</NavigationView.PaneHeader>
-		</NavigationView>
+			</muxc:NavigationView.PaneHeader>
+		</muxc:NavigationView>
 
 		<!-- Nested frame for samples that needs to be fullscreen -->
 		<Frame x:Name="NestedSampleFrame"

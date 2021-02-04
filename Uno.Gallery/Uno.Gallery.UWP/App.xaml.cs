@@ -1,8 +1,11 @@
-﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging;
 using ShowMeTheXAML;
 using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
+using Uno.Extensions;
+using Uno.Gallery.Helpers;
 using Uno.Gallery.Views.GeneralPages;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
@@ -13,6 +16,8 @@ using Windows.UI.Xaml.Automation;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
+using MUXC = Microsoft.UI.Xaml.Controls;
+using MUXCP = Microsoft.UI.Xaml.Controls.Primitives;
 
 namespace Uno.Gallery
 {
@@ -82,14 +87,14 @@ namespace Uno.Gallery
 
 		public void ShellNavigateTo(Sample sample) => ShellNavigateTo(sample, trySynchronizeCurrentItem: true);
 
-		private void ShellNavigateTo<TPage>() where TPage : Page
+		private void ShellNavigateTo<TPage>(bool trySynchronizeCurrentItem = true) where TPage : Page
 		{
 			var type = typeof(TPage);
 			var attribute = type.GetCustomAttribute<SamplePageAttribute>()
 				?? throw new NotSupportedException($"{type} isn't tagged with [{nameof(SamplePageAttribute)}].");
 			var sample = new Sample(attribute, type);
 
-			ShellNavigateTo(sample, trySynchronizeCurrentItem: true);
+			ShellNavigateTo(sample, trySynchronizeCurrentItem);
 		}
 
 		private void ShellNavigateTo(Sample sample, bool trySynchronizeCurrentItem)
@@ -97,7 +102,11 @@ namespace Uno.Gallery
 			var nv = _shell.NavigationView;
 			if (nv.Content?.GetType() != sample.ViewType)
 			{
-				var selected = nv.MenuItems.OfType<NavigationViewItem>().FirstOrDefault(x => trySynchronizeCurrentItem && (x.DataContext as Sample).ViewType == sample.ViewType);
+				var selected = trySynchronizeCurrentItem
+					? nv.MenuItems
+						.OfType<MUXC.NavigationViewItem>()
+						.FirstOrDefault(x => (x.DataContext as Sample)?.ViewType == sample.ViewType)
+					: default;
 				if (selected != null)
 				{
 					nv.SelectedItem = selected;
@@ -120,7 +129,12 @@ namespace Uno.Gallery
 			AddNavigationItems(nv);
 
 			// landing navigation
-			ShellNavigateTo<OverviewPage>();
+			ShellNavigateTo<OverviewPage>(
+#if !WINDOWS_UWP
+				// workaround for uno#5069: setting NavView.SelectedItem at launch bricks it
+				trySynchronizeCurrentItem: false
+#endif
+			);
 
 			// navigation + setting handler
 			nv.ItemInvoked += OnNavigationItemInvoked;
@@ -128,7 +142,7 @@ namespace Uno.Gallery
 			return _shell;
 		}
 
-		private void OnNavigationItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs e)
+		private void OnNavigationItemInvoked(MUXC.NavigationView sender, MUXC.NavigationViewItemInvokedEventArgs e)
 		{
 			if (e.InvokedItemContainer.DataContext is Sample sample)
 			{
@@ -136,7 +150,7 @@ namespace Uno.Gallery
 			}
 		}
 
-		private void AddNavigationItems(NavigationView nv)
+		private void AddNavigationItems(MUXC.NavigationView nv)
 		{
 			var categories = Assembly.GetExecutingAssembly().DefinedTypes
 				.Where(x => x.Namespace?.StartsWith("Uno.Gallery") == true)
@@ -150,26 +164,49 @@ namespace Uno.Gallery
 
 			foreach (var category in categories.OrderBy(x => x.Key))
 			{
+				var tier = 1;
+
+				var parentItem = default(MUXC.NavigationViewItem);
 				if (category.Key != SampleCategory.None)
 				{
-					nv.MenuItems.Add(new NavigationViewItemHeader
+					parentItem = new MUXC.NavigationViewItem
 					{
 						Content = category.Key.GetDescription() ?? category.Key.ToString(),
-						Style = Application.Current.Resources["DefaultNavigationViewItemHeaderStyle"] as Style
-					});
+						SelectsOnInvoked = false,
+						Style = (Style)Resources[$"T{tier++}NavigationViewItemStyle"]
+					}.Apply(NavViewItemVisualStateFix);
+					AutomationProperties.SetAutomationId(parentItem, "Section_" + parentItem.Content);
+
+					nv.MenuItems.Add(parentItem);
 				}
 
 				foreach (var sample in category)
 				{
-					NavigationViewItem item = new NavigationViewItem
+					var item = new MUXC.NavigationViewItem
 					{
 						Content = sample.Title,
-						DataContext = sample
-					};
-					AutomationProperties.SetAutomationId(item, "Section_" + sample.Title);
+						DataContext = sample,
+						Style = (Style)Resources[$"T{tier}NavigationViewItemStyle"]
+					}.Apply(NavViewItemVisualStateFix);
+					AutomationProperties.SetAutomationId(item, "Section_" + item.Content);
 
-					nv.MenuItems.Add(item);
+					(parentItem?.MenuItems ?? nv.MenuItems).Add(item);
 				}
+			}
+
+			void NavViewItemVisualStateFix(MUXC.NavigationViewItem nvi)
+			{
+				// gallery#107: on uwp and uno, deselecting a NVI by selecting another NVI will leave the former in the "Selected" state
+				// to workaround this, we force reset the visual state when IsSelected becomes false
+				nvi.RegisterPropertyChangedCallback(MUXC.NavigationViewItemBase.IsSelectedProperty, (s, e) =>
+				{
+					if (!nvi.IsSelected)
+					{
+						// depending on the DisplayMode, a NVIP may or may not be used.
+						var nvip = VisualTreeHelperEx.GetFirstDescendant<MUXCP.NavigationViewItemPresenter>(nvi, x => x.Name == "NavigationViewItemPresenter");
+						VisualStateManager.GoToState((Control)nvip ?? nvi, "Normal", true);
+					}
+				});
 			}
 		}
 
@@ -184,6 +221,7 @@ namespace Uno.Gallery
 					{
 						{ "Uno", LogLevel.Warning },
 						{ "Windows", LogLevel.Warning },
+						{ "Uno.Gallery", LogLevel.Debug },
 
 						// Debug JS interop
 						// { "Uno.Foundation.WebAssemblyRuntime", LogLevel.Debug },

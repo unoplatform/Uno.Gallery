@@ -18,6 +18,7 @@ using Windows.Foundation.Metadata;
 using Windows.UI;
 using Uno.Gallery.Helpers;
 using Windows.UI.Core;
+using MUXC = Microsoft.UI.Xaml.Controls;
 
 namespace Uno.Gallery
 {
@@ -36,7 +37,7 @@ namespace Uno.Gallery
 
 		public static Shell GetForCurrentView() => (Shell)Windows.UI.Xaml.Window.Current.Content;
 
-		public NavigationView NavigationView => NavigationViewControl;
+		public MUXC.NavigationView NavigationView => NavigationViewControl;
 
 		private void OnLoaded(object sender, RoutedEventArgs e)
 		{
