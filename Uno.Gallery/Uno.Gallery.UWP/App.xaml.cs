@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging;
 using ShowMeTheXAML;
 using System;
 using System.Diagnostics;
@@ -196,7 +196,7 @@ namespace Uno.Gallery
 
 			void NavViewItemVisualStateFix(MUXC.NavigationViewItem nvi)
 			{
-				// on uwp and uno, deselecting a NVI by selecting another NVI will leave the former in the "Selected" state
+				// gallery#107: on uwp and uno, deselecting a NVI by selecting another NVI will leave the former in the "Selected" state
 				// to workaround this, we force reset the visual state when IsSelected becomes false
 				nvi.RegisterPropertyChangedCallback(MUXC.NavigationViewItemBase.IsSelectedProperty, (s, e) =>
 				{

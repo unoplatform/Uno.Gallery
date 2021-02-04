@@ -12,8 +12,7 @@
 					xmlns:contract7Present="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 					xmlns:contract7NotPresent="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractNotPresent(Windows.Foundation.UniversalApiContract,7)"
 					xmlns:primitiveContract7Present="using:Microsoft.UI.Xaml.Controls.Primitives"
-					xmlns:todo="what should be done"
-					mc:Ignorable="todo xamarin contract4NotPresent contract7NotPresent">
+					mc:Ignorable="xamarin contract4NotPresent contract7NotPresent">
 
 	<!--
 		Source taken/modified from: https://github.com/unoplatform/uno/tree/2e4c84310d8f88f24d2cae284cec8f5c93375a22
@@ -1263,7 +1262,7 @@
 							<SplitView x:Name="RootSplitView"
 									   Background="{TemplateBinding Background}"
 									   CompactPaneLength="{TemplateBinding CompactPaneLength}"
-									   DisplayMode="CompactInline"
+									   DisplayMode="Inline"
 									   IsPaneOpen="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsPaneOpen, Mode=TwoWay}"
 									   IsTabStop="False"
 									   OpenPaneLength="{TemplateBinding OpenPaneLength}"
