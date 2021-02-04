@@ -19,6 +19,7 @@ namespace Uno.Gallery
 			Data = CreateData(attribute.DataType);
 			Source = attribute.Source;
 			SortOrder = attribute.SortOrder;
+			IconData = attribute.IconData;
 
 			ViewType = viewType;
 		}
@@ -51,6 +52,8 @@ namespace Uno.Gallery
 		public int? SortOrder { get; }
 
 		public SourceSdk Source { get; }
+
+		public string IconData { get; }
 
 		public Type ViewType { get; }
 	}

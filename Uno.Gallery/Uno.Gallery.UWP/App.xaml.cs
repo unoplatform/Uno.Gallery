@@ -1,10 +1,11 @@
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using ShowMeTheXAML;
 using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using Uno.Extensions;
+using Uno.Gallery.Entities.Data;
 using Uno.Gallery.Helpers;
 using Uno.Gallery.Views.GeneralPages;
 using Windows.ApplicationModel;
@@ -15,6 +16,8 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Automation;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Markup;
+using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using MUXC = Microsoft.UI.Xaml.Controls;
 using MUXCP = Microsoft.UI.Xaml.Controls.Primitives;
@@ -173,6 +176,7 @@ namespace Uno.Gallery
 					{
 						Content = category.Key.GetDescription() ?? category.Key.ToString(),
 						SelectsOnInvoked = false,
+						Icon = ParseIcon(IconData.Folder),
 						Style = (Style)Resources[$"T{tier++}NavigationViewItemStyle"]
 					}.Apply(NavViewItemVisualStateFix);
 					AutomationProperties.SetAutomationId(parentItem, "Section_" + parentItem.Content);
@@ -186,6 +190,7 @@ namespace Uno.Gallery
 					{
 						Content = sample.Title,
 						DataContext = sample,
+						Icon = ParseIcon(sample.IconData ?? IconData.Placeholder),
 						Style = (Style)Resources[$"T{tier}NavigationViewItemStyle"]
 					}.Apply(NavViewItemVisualStateFix);
 					AutomationProperties.SetAutomationId(item, "Section_" + item.Content);
@@ -194,6 +199,7 @@ namespace Uno.Gallery
 				}
 			}
 
+			IconElement ParseIcon(string data) => new PathIcon() { Data = (Geometry)XamlBindingHelper.ConvertValue(typeof(Geometry), data) };
 			void NavViewItemVisualStateFix(MUXC.NavigationViewItem nvi)
 			{
 				// gallery#107: on uwp and uno, deselecting a NVI by selecting another NVI will leave the former in the "Selected" state

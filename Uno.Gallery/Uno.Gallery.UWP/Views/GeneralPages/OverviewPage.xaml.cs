@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Uno.Extensions;
+using Uno.Gallery.Entities.Data;
 using Uno.Logging;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -19,7 +20,7 @@ using static Uno.Gallery.SamplePageLayout;
 
 namespace Uno.Gallery.Views.GeneralPages
 {
-	[SamplePage(SampleCategory.None, "Overview")]
+	[SamplePage(SampleCategory.None, "Overview", IconData = IconData.Home)]
 	public sealed partial class OverviewPage : Page
 	{
 		public OverviewPage()

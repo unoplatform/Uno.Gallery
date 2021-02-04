@@ -35,5 +35,7 @@ namespace Uno.Gallery
 		/// Sort order with the same <see cref="Category"/>.
 		/// </summary>
 		public int SortOrder { get; set; } = int.MaxValue;
+
+		public string IconData { get; set; }
 	}
 }

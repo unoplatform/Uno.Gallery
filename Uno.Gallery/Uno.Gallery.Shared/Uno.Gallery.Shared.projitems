@@ -126,6 +126,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\RandomColorConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Domain\AnalyticsService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Data\DividerItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Data\IconData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Data\Record.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Sample.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\SampleCategory.cs" />
