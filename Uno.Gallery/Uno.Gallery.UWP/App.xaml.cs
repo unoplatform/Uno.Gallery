@@ -274,6 +274,7 @@ namespace Uno.Gallery
 			this.Resources.MergedDictionaries.Add(new Material.MaterialColorPalette());
 			this.Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = new Uri("ms-appx:///Views/Colors.xaml") });
 			this.Resources.MergedDictionaries.Add(new Material.MaterialResources());
+			this.Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = new Uri("ms-appx:///Views/Styles/TextBlock.xaml") });
 		}
 	}
 }
