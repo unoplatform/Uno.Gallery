@@ -159,6 +159,7 @@
     <Content Include="Resources\Assets\Avatar.png" />
     <Content Include="Resources\Assets\FluentIcon_Medium.png" />
     <Content Include="Resources\Assets\FluentIcon_Small.png" />
+    <Content Include="Resources\Assets\ImageSample.png" />
     <Content Include="Resources\Assets\LargeMedia.png" />
     <Content Include="Resources\Assets\MaterialIcon_Medium.png" />
     <Content Include="Resources\Assets\MaterialIcon_Small.png" />
