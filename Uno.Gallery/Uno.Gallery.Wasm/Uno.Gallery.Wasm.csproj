@@ -17,7 +17,10 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='Release'">
+		<!--
+		Disabled for NavigationView PG-AOT issue
 		<WasmShellMonoRuntimeExecutionMode>InterpreterAndAOT</WasmShellMonoRuntimeExecutionMode>
+		-->
 		<WasmShellEnableEmccProfiling>true</WasmShellEnableEmccProfiling>
 		<!--<WasmShellGenerateAOTProfile>true</WasmShellGenerateAOTProfile>-->
 	</PropertyGroup>
@@ -26,6 +29,14 @@
 		<IsUiAutomationMappingEnabled>True</IsUiAutomationMappingEnabled>
 		<DefineConstants>$(DefineConstants);USE_UITESTS</DefineConstants>
 	</PropertyGroup>
+
+	<!--
+	Disabled for NavigationView PG-AOT issue
+	<ItemGroup Condition="'$(Configuration)'=='Release'">
+		<WasmShellEnableAotProfile Include="aot.profile" />
+	</ItemGroup>
+	-->
+
 
 	<ItemGroup>
 		<Compile Include="..\Uno.Gallery.UWP\App.xaml.cs" />
@@ -58,11 +69,6 @@
 	<ItemGroup>
 		<LinkerDescriptor Include="LinkerConfig.xml" />
 	</ItemGroup>
-
-	<ItemGroup Condition="'$(Configuration)'=='Release'">
-		<WasmShellEnableAotProfile Include="aot.profile" />
-	</ItemGroup>
-
 	<ItemGroup>
 		<WasmShellMonoEnvironment Include="MONO_GC_PARAMS" Value="soft-heap-limit=512m,nursery-size=64m,evacuation-threshold=66,major=marksweep" />
 	</ItemGroup>
