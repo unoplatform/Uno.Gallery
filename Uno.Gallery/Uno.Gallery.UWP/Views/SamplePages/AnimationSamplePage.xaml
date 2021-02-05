@@ -133,11 +133,10 @@
 											   Width="40"
 											   Height="40"
 											   Opacity="1"
-											   Grid.Column="1">
+											   Grid.Column="1"
+											   RenderTransformOrigin=".5,.5">
 										<Rectangle.RenderTransform>
-											<RotateTransform x:Name="RotateTransform1"
-															 CenterX="20"
-															 CenterY="20" />
+											<RotateTransform x:Name="RotateTransform1" />
 										</Rectangle.RenderTransform>
 									</Rectangle>
 								</Grid>
@@ -184,11 +183,10 @@
 									<Rectangle Fill="{StaticResource UnoBlueColor}"
 											   Width="40"
 											   Height="40"
-											   Grid.Column="1">
+											   Grid.Column="1"
+											   RenderTransformOrigin=".5,.5">
 										<Rectangle.RenderTransform>
-											<ScaleTransform x:Name="ScaleTransform1"
-															CenterX="20"
-															CenterY="20" />
+											<ScaleTransform x:Name="ScaleTransform1" />
 										</Rectangle.RenderTransform>
 									</Rectangle>
 								</Grid>
