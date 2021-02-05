@@ -318,26 +318,26 @@
 	<!-- NavigationViewItem -->
 	<!--<StaticResource x:Key="NavigationViewItemBackground" ResourceKey="SystemControlTransparentBrush" />-->
 	<SolidColorBrush x:Key="NavigationViewItemBackgroundPointerOver"
-					 Color="{ThemeResource MaterialPrimaryColor}"
+					 Color="Red"
 					 Opacity="{StaticResource NavigationViewItemBackgroundPointerOverOpacity}" />
 	<SolidColorBrush x:Key="NavigationViewItemBackgroundPressed"
-					 Color="{ThemeResource MaterialPrimaryColor}"
+					 Color="Blue"
 					 Opacity="{StaticResource NavigationViewItemBackgroundPressedOpacity}" />
 	<!--<StaticResource x:Key="NavigationViewItemBackgroundDisabled" ResourceKey="SystemControlTransparentBrush" />-->
 	<!--<StaticResource x:Key="NavigationViewItemBackgroundChecked" ResourceKey="SystemControlTransparentBrush" />-->
 	<SolidColorBrush x:Key="NavigationViewItemBackgroundCheckedPointerOver"
-					 Color="{ThemeResource MaterialPrimaryColor}"
+					 Color="Red"
 					 Opacity="{StaticResource NavigationViewItemBackgroundPointerOverOpacity}" />
 	<SolidColorBrush x:Key="NavigationViewItemBackgroundCheckedPressed"
-					 Color="{ThemeResource MaterialPrimaryColor}"
+					 Color="Blue"
 					 Opacity="{StaticResource NavigationViewItemBackgroundPressedOpacity}" />
 	<!--<StaticResource x:Key="NavigationViewItemBackgroundCheckedDisabled" ResourceKey="SystemControlTransparentBrush" />-->
 	<!--<StaticResource x:Key="NavigationViewItemBackgroundSelected" ResourceKey="SystemControlTransparentBrush" />-->
 	<SolidColorBrush x:Key="NavigationViewItemBackgroundSelectedPointerOver"
-					 Color="{ThemeResource MaterialPrimaryColor}"
+					 Color="Red"
 					 Opacity="{StaticResource NavigationViewItemBackgroundPointerOverOpacity}" />
 	<SolidColorBrush x:Key="NavigationViewItemBackgroundSelectedPressed"
-					 Color="{ThemeResource MaterialPrimaryColor}"
+					 Color="Blue"
 					 Opacity="{StaticResource NavigationViewItemBackgroundPressedOpacity}" />
 	<!--<StaticResource x:Key="NavigationViewItemBackgroundSelectedDisabled" ResourceKey="SystemControlTransparentBrush" />-->
 
@@ -354,7 +354,10 @@
 	<StaticResource x:Key="NavigationViewItemForegroundSelectedPressed" ResourceKey="MaterialPrimaryBrush" />
 	<StaticResource x:Key="NavigationViewItemForegroundSelectedDisabled" ResourceKey="MaterialOnSecondaryLowBrush" />
 
-	<StaticResource x:Key="NavigationViewRippleFeedback" ResourceKey="MaterialPrimaryFocusedBrush" />
+	<!--<StaticResource x:Key="NavigationViewRippleFeedback" ResourceKey="MaterialPrimaryFocusedBrush" />-->
+	<SolidColorBrush x:Key="NavigationViewRippleFeedback"
+					 Color="Green"
+					 Opacity="{StaticResource NavigationViewItemBackgroundPressedOpacity}" />
 
 	<Thickness x:Key="NavigationViewItemPadding">8,2</Thickness>
 	<CornerRadius x:Key="NavigationViewItemCornerRadius">4</CornerRadius>
@@ -1541,7 +1544,11 @@
 
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup x:Name="PointerStates">
-								<VisualState x:Name="Normal" />
+								<VisualState x:Name="Normal">
+									<VisualState.Setters>
+										<!--<Setter Target="DebugState.Text" Value="Normal" />-->
+									</VisualState.Setters>
+								</VisualState>
 								<VisualState x:Name="PointerOver">
 									<VisualState.Setters>
 										<contract4Present:Setter Target="LayoutRoot.(media:RevealBrush.State)"
@@ -1550,6 +1557,8 @@
 										<Setter Target="RevealBorder.BorderBrush" Value="{ThemeResource NavigationViewItemBorderBrushPointerOver}" />
 										<Setter Target="Icon.Foreground" Value="{ThemeResource NavigationViewItemForegroundPointerOver}" />
 										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource NavigationViewItemForegroundPointerOver}" />
+										<Setter Target="DebugState.Text" Value="PointerOver" />
+										<Setter Target="DebugPointerOverState.Text" Value="PointerOver" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="Pressed">
@@ -1560,6 +1569,8 @@
 										<Setter Target="RevealBorder.BorderBrush" Value="{ThemeResource NavigationViewItemBorderBrushPressed}" />
 										<Setter Target="Icon.Foreground" Value="{ThemeResource NavigationViewItemForegroundPressed}" />
 										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource NavigationViewItemForegroundPressed}" />
+										<Setter Target="DebugState.Text" Value="Pressed" />
+										<Setter Target="DebugPressedState.Text" Value="Pressed" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="Selected">
@@ -1569,6 +1580,7 @@
 																 Value="{ThemeResource NavigationViewItemBorderBrushSelected}" />
 										<Setter Target="Icon.Foreground" Value="{ThemeResource NavigationViewItemForegroundSelected}" />
 										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource NavigationViewItemForegroundSelected}" />
+										<Setter Target="DebugState.Text" Value="Selected" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="PointerOverSelected">
@@ -1579,6 +1591,8 @@
 										<Setter Target="RevealBorder.BorderBrush" Value="{ThemeResource NavigationViewItemBorderBrushSelectedPointerOver}" />
 										<Setter Target="Icon.Foreground" Value="{ThemeResource NavigationViewItemForegroundSelectedPointerOver}" />
 										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource NavigationViewItemForegroundSelectedPointerOver}" />
+										<Setter Target="DebugState.Text" Value="PointerOverSelected" />
+										<Setter Target="DebugPointerOverState.Text" Value="PointerOverSelected" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="PressedSelected">
@@ -1589,6 +1603,8 @@
 										<Setter Target="RevealBorder.BorderBrush" Value="{ThemeResource NavigationViewItemBorderBrushSelectedPressed}" />
 										<Setter Target="Icon.Foreground" Value="{ThemeResource NavigationViewItemForegroundSelectedPressed}" />
 										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource NavigationViewItemForegroundSelectedPressed}" />
+										<Setter Target="DebugState.Text" Value="PressedSelected" />
+										<Setter Target="DebugPressedState.Text" Value="PressedSelected" />
 									</VisualState.Setters>
 								</VisualState>
 							</VisualStateGroup>
@@ -1690,9 +1706,9 @@
 									<ContentPresenter x:Name="Icon"
 													  Content="{TemplateBinding Icon}" />
 								</Viewbox>
-
-								<ContentPresenter x:Name="ContentPresenter"
-												  Grid.Column="1"
+								
+								<StackPanel Grid.Column="1">
+									<ContentPresenter x:Name="ContentPresenter"
 												  Margin="{ThemeResource NavigationViewItemContentPresenterMargin}"
 												  ContentTransitions="{TemplateBinding ContentTransitions}"
 												  ContentTemplate="{TemplateBinding ContentTemplate}"
@@ -1701,7 +1717,12 @@
 												  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
 												  ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
 												  Padding="{TemplateBinding Padding}"
+												  FontSize="14"
 												  AutomationProperties.AccessibilityView="Raw" />
+									<TextBlock x:Name="DebugState" Text="DefaultState" FontSize="12" />
+									<TextBlock x:Name="DebugPressedState" Text="DefaultPState" FontSize="8" />
+									<TextBlock x:Name="DebugPointerOverState" Text="DefaultPOState" FontSize="8" />
+								</StackPanel>
 
 								<Grid x:Name="ExpandCollapseChevron"
 									  Grid.Column="2"
