@@ -33,6 +33,7 @@
       testRunTitle: 'WebAssembly Test Run'
       testResultsFormat: 'NUnit'
       testResultsFiles: '$(build.sourcesdirectory)/build/TestResult.xml'
+      failTaskOnFailedTests: true
 
   - task: PublishBuildArtifacts@1
     condition: always()
