@@ -28,14 +28,19 @@
 		<muxc:NavigationView Grid.Row="2"
 							 x:Name="NavigationViewControl"
 							 OpenPaneLength="220"
-							 CompactModeThresholdWidth="99999"
-							 ExpandedModeThresholdWidth="{StaticResource DesktopAdaptiveThresholdWidth}"
 							 IsSettingsVisible="False"
+                             IsPaneOpen="True"
+                             IsPaneVisible="True"
+                             IsPaneToggleButtonVisible="False"
 							 IsBackButtonVisible="Collapsed"
+                             DisplayModeChanged="NavigationViewControl_DisplayModeChanged"
+                             SizeChanged="NavigationViewControl_SizeChanged"
+                             PaneDisplayMode="LeftMinimal"
 							 IsBackEnabled="False"
 							 IsTabStop="False">
 			<muxc:NavigationView.PaneHeader>
-				<Grid>
+                <!-- Left padding for overlay toggle button -->
+                <Grid Padding="24,0,0,0">
 					<!-- Image -->
 					<Image Source="{ThemeResource UnoLogoImageSource}"
 						   Height="101"
@@ -59,5 +64,12 @@
 			   Grid.RowSpan="3"
 			   Visibility="Collapsed"
 			   xamarin:Style="{StaticResource NativeDefaultFrame}" />
-	</Grid>
+
+        <!-- Custom pane toggle button -->
+        <Button 
+            Grid.Row="2" 
+            Click="NavViewToggleButton_Click" 
+            HorizontalAlignment="Left" 
+            Style="{StaticResource PaneToggleButtonStyle}" />
+    </Grid>
 </UserControl>
