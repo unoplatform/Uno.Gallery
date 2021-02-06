@@ -27,6 +27,9 @@
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
 	<key>ATSApplicationFontsPath</key>
-	<string>Fonts/uno-fluentui-assets.ttf</string>
+	<array>
+		<string>Fonts/uno-fluentui-assets.ttf</string>
+		<string>Fonts/roboto.ttf</string>
+	</array>
 </dict>
 </plist>
