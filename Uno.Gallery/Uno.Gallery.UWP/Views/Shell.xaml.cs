@@ -144,25 +144,6 @@ namespace Uno.Gallery
             return true;
         }
 
-        private void NavigationViewControl_DisplayModeChanged(MUXC.NavigationView sender, MUXC.NavigationViewDisplayModeChangedEventArgs args)
-        {
-            MUXC.NavigationViewPaneDisplayMode targetMode;
-            if (args.DisplayMode == MUXC.NavigationViewDisplayMode.Minimal)
-            {
-                sender.IsPaneVisible = true;
-                targetMode = MUXC.NavigationViewPaneDisplayMode.LeftMinimal;
-            }
-            else
-            {
-                targetMode = MUXC.NavigationViewPaneDisplayMode.Left;
-                sender.IsPaneOpen = true;
-            }
-            if (sender.PaneDisplayMode != targetMode)
-            {
-                sender.PaneDisplayMode = targetMode;
-            }
-        }
-
         private void NavViewToggleButton_Click(object sender, RoutedEventArgs e)
         {
             if (NavigationViewControl.PaneDisplayMode == MUXC.NavigationViewPaneDisplayMode.LeftMinimal)
@@ -178,13 +159,16 @@ namespace Uno.Gallery
 
         private void NavigationViewControl_SizeChanged(object sender, SizeChangedEventArgs e)
         {
+            // This could be done using VisualState with Adaptive triggers, but an issue prevents this currently - https://github.com/unoplatform/uno/issues/5168
             var desktopWidth = (double)Application.Current.Resources["DesktopAdaptiveThresholdWidth"];
-            if (e.NewSize.Width >= desktopWidth)
+            if (e.NewSize.Width >= desktopWidth && NavigationViewControl.PaneDisplayMode != MUXC.NavigationViewPaneDisplayMode.Left)
             {
                 NavigationViewControl.PaneDisplayMode = MUXC.NavigationViewPaneDisplayMode.Left;
+                NavigationViewControl.IsPaneOpen = true;
             }
-            else
+            else if (e.NewSize.Width < desktopWidth && NavigationViewControl.PaneDisplayMode != MUXC.NavigationViewPaneDisplayMode.LeftMinimal)
             {
+                NavigationViewControl.IsPaneVisible = true;
                 NavigationViewControl.PaneDisplayMode = MUXC.NavigationViewPaneDisplayMode.LeftMinimal;
             }
         }

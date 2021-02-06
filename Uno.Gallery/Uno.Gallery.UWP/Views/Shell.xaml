@@ -33,7 +33,6 @@
                              IsPaneVisible="True"
                              IsPaneToggleButtonVisible="False"
 							 IsBackButtonVisible="Collapsed"
-                             DisplayModeChanged="NavigationViewControl_DisplayModeChanged"
                              SizeChanged="NavigationViewControl_SizeChanged"
                              PaneDisplayMode="LeftMinimal"
 							 IsBackEnabled="False"
