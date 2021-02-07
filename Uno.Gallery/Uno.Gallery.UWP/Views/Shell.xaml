@@ -27,7 +27,7 @@
 		<!-- We set CompactModeThresholdWidth to a very high value so that it never happens. We don't want to use the compact mode. -->
 		<muxc:NavigationView Grid.Row="2"
 							 x:Name="NavigationViewControl"
-							 OpenPaneLength="220"
+							 OpenPaneLength="260"
 							 IsSettingsVisible="False"
                              IsPaneOpen="True"
                              IsPaneVisible="True"
