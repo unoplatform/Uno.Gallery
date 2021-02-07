@@ -57,7 +57,7 @@ namespace Uno.Gallery.UITests
 
             foreach (var section in sections)
             {
-                App.WaitThenTap(q => q.All().Marked($"Section_{section}"));
+                App.WaitThenTap(q => q.All().Marked($"Section_{section}"), TimeSpan.FromSeconds(60));
             }
         }
 
