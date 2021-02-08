@@ -9,17 +9,21 @@
 	  xmlns:smtx="using:ShowMeTheXAML"
 	  mc:Ignorable="d">
 
-	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-		<local:SamplePageLayout>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <local:SamplePageLayout Margin="0,0,0,96">
 
 			<local:SamplePageLayout.MaterialTemplate>
 				<DataTemplate>
-					<Grid VerticalAlignment="Stretch">
-
-						<smtx:XamlPresenter ReferenceKey="ModalStandardBottomSheetSamplePage_Content"
-											HorizontalAlignment="Right"
-											VerticalAlignment="Center"
-											Margin="36" />
+                    <Grid VerticalAlignment="Stretch">
+                        <TextBlock Text="Tap the Open Sheet button below." 
+								   Style="{StaticResource MaterialBody1}"
+								   Foreground="{StaticResource MaterialOnBackgroundBrush}"
+								   Opacity="0.8"
+								   Margin="0,8,0,0" />
+                        <smtx:XamlPresenter ReferenceKey="ModalStandardBottomSheetSamplePage_Content"
+											HorizontalAlignment="Stretch"
+											VerticalAlignment="Center"                                          
+											Margin="0" />
 					</Grid>
 				</DataTemplate>
 			</local:SamplePageLayout.MaterialTemplate>
