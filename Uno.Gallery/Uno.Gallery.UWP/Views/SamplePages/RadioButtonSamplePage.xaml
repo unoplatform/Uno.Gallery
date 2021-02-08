@@ -26,11 +26,11 @@
 											 IsChecked="True" />
 
 								<RadioButton GroupName="RadioButtonDemo_Fluent_1b"
-											 Content="DISABLED CHECKED"
+											 Content="DISABLED UNCHECKED"
 											 IsEnabled="False" />
 
 								<RadioButton GroupName="RadioButtonDemo_Fluent_1b"
-											 Content="UNCHECKED DISABLED"
+											 Content="DISABLED CHECKED"
 											 IsChecked="True"
 											 IsEnabled="False" />
 							</StackPanel>
