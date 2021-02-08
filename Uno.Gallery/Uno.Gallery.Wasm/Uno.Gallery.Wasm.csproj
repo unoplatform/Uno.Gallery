@@ -28,7 +28,13 @@
 	</PropertyGroup>
 
 	<ItemGroup Condition="'$(Configuration)'=='Release'">
-		<WasmShellEnableAotProfile Include="aot.profile" />
+		<WasmShellEnableAotProfile Condition="'$(IsUiAutomationMappingEnabled)'==''" Include="aot.profile" />
+		
+		<!-- 
+		Use smaller profile for UI tests to avoid the browser's memory 
+		use to go higher than the Ci agent's availability
+		-->
+		<WasmShellEnableAotProfile Condition="'$(IsUiAutomationMappingEnabled)'=='True'" Include="aot-uitests.profile" />
 	</ItemGroup>
 
 	<PropertyGroup>
