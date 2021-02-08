@@ -14,6 +14,7 @@
 		<DefineConstants>$(DefineConstants);TRACE;DEBUG</DefineConstants>
 		<DebugType>portable</DebugType>
 		<DebugSymbols>true</DebugSymbols>
+		<WasmShellILLinkerEnabled>false</WasmShellILLinkerEnabled>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='Release'">
@@ -106,11 +107,11 @@
 		<PackageReference Include="Uno.Material" Version="1.0.0-dev.598" />
 		<PackageReference Include="Uno.ShowMeTheXAML" Version="1.0.59" />
 		<PackageReference Include="Uno.ShowMeTheXAML.MSBuild" Version="1.0.59" />
-		<PackageReference Include="Uno.UI.Lottie" Version="3.5.0-dev.415" />
-		<PackageReference Include="Uno.UI.WebAssembly" Version="3.5.0-dev.415" />
-		<PackageReference Include="Uno.UI.RemoteControl" Version="3.5.0-dev.415" Condition="'$(Configuration)'=='Debug'" />
-		<PackageReference Include="Uno.Wasm.Bootstrap" Version="2.0.0-dev.158" />
-		<PackageReference Include="Uno.Wasm.Bootstrap.DevServer" Version="2.0.0-dev.158" />
+		<PackageReference Include="Uno.UI.Lottie" Version="3.5.0-dev.484" />
+		<PackageReference Include="Uno.UI.WebAssembly" Version="3.5.0-dev.484" />
+		<PackageReference Include="Uno.UI.RemoteControl" Version="3.5.0-dev.484" Condition="'$(Configuration)'=='Debug'" />
+		<PackageReference Include="Uno.Wasm.Bootstrap" Version="2.0.0-dev.160" />
+		<PackageReference Include="Uno.Wasm.Bootstrap.DevServer" Version="2.0.0-dev.160" />
 		<PackageReference Include="Microsoft.TypeScript.Compiler" Version="3.1.5">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
