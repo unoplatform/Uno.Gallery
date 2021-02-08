@@ -13,8 +13,7 @@
 			<local:SamplePageLayout.FluentTemplate>
 				<DataTemplate>
 					<smtx:XamlDisplay UniqueKey="ToggleSwitchSamplePage_Fluent"
-									  smtx:XamlDisplayExtensions.Header="Default"
-									  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel\StackPanel">
+									  smtx:XamlDisplayExtensions.Header="Default">
 						<StackPanel Spacing="20">
 							<ToggleSwitch Header="OFF"
 										  Foreground="{StaticResource MaterialOnBackgroundBrush}" />
