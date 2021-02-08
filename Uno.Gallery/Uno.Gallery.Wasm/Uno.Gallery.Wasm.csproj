@@ -17,10 +17,7 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='Release'">
-		<!--
-		Disabled for NavigationView PG-AOT issue
 		<WasmShellMonoRuntimeExecutionMode>InterpreterAndAOT</WasmShellMonoRuntimeExecutionMode>
-		-->
 		<WasmShellEnableEmccProfiling>true</WasmShellEnableEmccProfiling>
 		<!--<WasmShellGenerateAOTProfile>true</WasmShellGenerateAOTProfile>-->
 	</PropertyGroup>
@@ -30,13 +27,24 @@
 		<DefineConstants>$(DefineConstants);USE_UITESTS</DefineConstants>
 	</PropertyGroup>
 
-	<!--
-	Disabled for NavigationView PG-AOT issue
 	<ItemGroup Condition="'$(Configuration)'=='Release'">
-		<WasmShellEnableAotProfile Include="aot.profile" />
+		<WasmShellEnableAotProfile Condition="'$(IsUiAutomationMappingEnabled)'==''" Include="aot.profile" />
+		
+		<!-- 
+		Use smaller profile for UI tests to avoid the browser's memory 
+		use to go higher than the Ci agent's availability
+		-->
+		<WasmShellEnableAotProfile Condition="'$(IsUiAutomationMappingEnabled)'=='True'" Include="aot-uitests.profile" />
 	</ItemGroup>
-	-->
 
+	<PropertyGroup>
+		<WasmShellAOTProfileExcludedMethods>$(WasmShellAOTProfileExcludedMethods);System\.Reflection\.Assembly\.GetExecutingAssembly</WasmShellAOTProfileExcludedMethods>
+		<WasmShellAOTProfileExcludedMethods>$(WasmShellAOTProfileExcludedMethods);Dispose</WasmShellAOTProfileExcludedMethods>
+	</PropertyGroup>
+	
+	<ItemGroup>
+		<MonoRuntimeMixedModeExcludedAssembly Include="System.Console" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<Compile Include="..\Uno.Gallery.UWP\App.xaml.cs" />
@@ -74,11 +82,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<!-- https://github.com/dotnet/runtime/issues/46746 -->
-		<MonoRuntimeMixedModeExcludedAssembly Include="Uno.UI.Lottie" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<!-- Note that for WebAssembly version 1.1.1 of the console logger required -->
 		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Filter" Version="1.1.1" />
@@ -106,8 +109,8 @@
 		<PackageReference Include="Uno.UI.Lottie" Version="3.5.0-dev.415" />
 		<PackageReference Include="Uno.UI.WebAssembly" Version="3.5.0-dev.415" />
 		<PackageReference Include="Uno.UI.RemoteControl" Version="3.5.0-dev.415" Condition="'$(Configuration)'=='Debug'" />
-		<PackageReference Include="Uno.Wasm.Bootstrap" Version="2.0.0-dev.156" />
-		<PackageReference Include="Uno.Wasm.Bootstrap.DevServer" Version="2.0.0-dev.156" />
+		<PackageReference Include="Uno.Wasm.Bootstrap" Version="2.0.0-dev.158" />
+		<PackageReference Include="Uno.Wasm.Bootstrap.DevServer" Version="2.0.0-dev.158" />
 		<PackageReference Include="Microsoft.TypeScript.Compiler" Version="3.1.5">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>

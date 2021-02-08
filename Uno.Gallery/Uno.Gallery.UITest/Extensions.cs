@@ -10,9 +10,9 @@ namespace Uno.Gallery.UITests
 {
 	public static class Extensions
 	{
-		public static Func<IAppQuery, IAppQuery> WaitThenTap(this IApp app, Func<IAppQuery, IAppQuery> query)
+		public static Func<IAppQuery, IAppQuery> WaitThenTap(this IApp app, Func<IAppQuery, IAppQuery> query, TimeSpan? timeout = null)
 		{
-			app.WaitForElement(query);
+			app.WaitForElement(query, timeout: timeout);
 			app.Tap(query);
 
 			return query;
