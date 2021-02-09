@@ -196,7 +196,6 @@
 									  macos:Visibility="{Binding ElementName=RevealButton, Path=IsChecked, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
 									  ios:Visibility="Collapsed"
 									  android:Visibility="Collapsed"
-									  MaxHeight="400"
 									  Grid.Row="1">
 
 							<!-- Xaml -->

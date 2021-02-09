@@ -15,11 +15,14 @@
 			<local:SamplePageLayout.MaterialTemplate>
 				<DataTemplate>
 					<Grid VerticalAlignment="Stretch">
-
-						<smtx:XamlPresenter ReferenceKey="StandardBottomSheetSamplePage_Content"
-											HorizontalAlignment="Right"
-											VerticalAlignment="Center"
-											Margin="36" />
+                        <TextBlock Text="Try out the sheet at the bottom of the window" 
+								   Style="{StaticResource MaterialBody1}"
+								   Foreground="{StaticResource MaterialOnBackgroundBrush}"
+								   Opacity="0.8"
+								   Margin="0,8,0,0" />
+                        <smtx:XamlPresenter ReferenceKey="StandardBottomSheetSamplePage_Content"
+											HorizontalAlignment="Stretch"
+											VerticalAlignment="Center" />
 					</Grid>
 				</DataTemplate>
 			</local:SamplePageLayout.MaterialTemplate>

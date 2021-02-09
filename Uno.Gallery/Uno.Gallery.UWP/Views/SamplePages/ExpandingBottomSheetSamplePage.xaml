@@ -13,10 +13,15 @@
 
 			<local:SamplePageLayout.MaterialTemplate>
 				<DataTemplate>
+                    <TextBlock 
+                        Text="Try out the sheet in the bottom right corner of the window" 
+						Style="{StaticResource MaterialBody1}"
+						Foreground="{StaticResource MaterialOnBackgroundBrush}"
+						Opacity="0.8"
+						Margin="0,8,0,0" />
 					<smtx:XamlPresenter ReferenceKey="ExpandingBottomSheetSamplePage_Content"
-										HorizontalAlignment="Right"
-										VerticalAlignment="Center"
-										Margin="36" />
+										HorizontalAlignment="Stretch"
+										VerticalAlignment="Center" />
 				</DataTemplate>
 			</local:SamplePageLayout.MaterialTemplate>
 		</local:SamplePageLayout>
