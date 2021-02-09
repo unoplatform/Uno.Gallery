@@ -1,23 +1,9 @@
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using Windows.ApplicationModel.Core;
-using Windows.Devices.Input;
-using Windows.Gaming.Input;
-using Windows.System;
-using Windows.System.Profile;
-using Windows.UI.ViewManagement;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Automation;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-using Windows.Foundation.Metadata;
-using Windows.UI;
 using Uno.Gallery.Helpers;
 using Windows.UI.Core;
+using Windows.UI.ViewManagement;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using MUXC = Microsoft.UI.Xaml.Controls;
 
 namespace Uno.Gallery
@@ -87,7 +73,7 @@ namespace Uno.Gallery
 				switch (root.ActualTheme)
 				{
 					case ElementTheme.Default:
-						if(SystemThemeHelper.GetSystemApplicationTheme() == ApplicationTheme.Dark)
+						if (SystemThemeHelper.GetSystemApplicationTheme() == ApplicationTheme.Dark)
 						{
 							root.RequestedTheme = ElementTheme.Light;
 						}
@@ -156,6 +142,35 @@ namespace Uno.Gallery
 			}
 
 			return true;
+		}
+
+		private void NavViewToggleButton_Click(object sender, RoutedEventArgs e)
+		{
+			if (NavigationViewControl.PaneDisplayMode == MUXC.NavigationViewPaneDisplayMode.LeftMinimal)
+			{
+				NavigationViewControl.IsPaneOpen = !NavigationViewControl.IsPaneOpen;
+			}
+			else if (NavigationViewControl.PaneDisplayMode == MUXC.NavigationViewPaneDisplayMode.Left)
+			{
+				NavigationViewControl.IsPaneVisible = !NavigationViewControl.IsPaneVisible;
+				NavigationViewControl.IsPaneOpen = NavigationViewControl.IsPaneVisible;
+			}
+		}
+
+		private void NavigationViewControl_SizeChanged(object sender, SizeChangedEventArgs e)
+		{
+			// This could be done using VisualState with Adaptive triggers, but an issue prevents this currently - https://github.com/unoplatform/uno/issues/5168
+			var desktopWidth = (double)Application.Current.Resources["DesktopAdaptiveThresholdWidth"];
+			if (e.NewSize.Width >= desktopWidth && NavigationViewControl.PaneDisplayMode != MUXC.NavigationViewPaneDisplayMode.Left)
+			{
+				NavigationViewControl.PaneDisplayMode = MUXC.NavigationViewPaneDisplayMode.Left;
+				NavigationViewControl.IsPaneOpen = true;
+			}
+			else if (e.NewSize.Width < desktopWidth && NavigationViewControl.PaneDisplayMode != MUXC.NavigationViewPaneDisplayMode.LeftMinimal)
+			{
+				NavigationViewControl.IsPaneVisible = true;
+				NavigationViewControl.PaneDisplayMode = MUXC.NavigationViewPaneDisplayMode.LeftMinimal;
+			}
 		}
 	}
 }
