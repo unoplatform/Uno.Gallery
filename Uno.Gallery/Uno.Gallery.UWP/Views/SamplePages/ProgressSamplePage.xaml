@@ -18,6 +18,7 @@
 
 						<not_skia:Border>
 						<!-- ProgressRing -->
+						<!-- skia: ProgressRing uses Lottie which isnt supported on skia yet -->
 							<smtx:XamlDisplay UniqueKey="ProgressSamplePage_Fluent"
 											  smtx:XamlDisplayExtensions.Header="ProgressRing">
 
