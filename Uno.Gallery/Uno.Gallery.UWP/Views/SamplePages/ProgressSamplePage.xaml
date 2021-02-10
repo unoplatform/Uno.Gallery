@@ -6,6 +6,7 @@
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	  xmlns:smtx="using:ShowMeTheXAML"
 	  xmlns:winui="using:Microsoft.UI.Xaml.Controls"
+	  xmlns:not_skia="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	  mc:Ignorable="d">
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -15,13 +16,16 @@
 				<DataTemplate>
 					<StackPanel>
 
+						<not_skia:Border>
 						<!-- ProgressRing -->
-						<smtx:XamlDisplay UniqueKey="ProgressSamplePage_Fluent"
-										  smtx:XamlDisplayExtensions.Header="ProgressRing">
+						<!-- skia: ProgressRing uses Lottie which isnt supported on skia yet -->
+							<smtx:XamlDisplay UniqueKey="ProgressSamplePage_Fluent"
+											  smtx:XamlDisplayExtensions.Header="ProgressRing">
 
-							<winui:ProgressRing IsActive="True"
-												HorizontalAlignment="Left" />
-						</smtx:XamlDisplay>
+								<winui:ProgressRing IsActive="True"
+													HorizontalAlignment="Left" />
+							</smtx:XamlDisplay>
+						</not_skia:Border>
 
 						<!-- ProgressBar -->
 						<smtx:XamlDisplay UniqueKey="ProgressSamplePage_Fluent_ProgressBar"
