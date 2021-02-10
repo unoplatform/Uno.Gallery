@@ -307,7 +307,7 @@
 
 	<x:Double x:Key="NavigationViewItemBackgroundPointerOverOpacity">0.12</x:Double>
 	<!-- the Pressed state will have a Ripple to make it more darker, so we are using the same value as PointerOver -->
-	<x:Double x:Key="NavigationViewItemBackgroundPressedOpacity">0.12</x:Double>
+	<x:Double x:Key="NavigationViewItemBackgroundPressedOpacity">0.24</x:Double>
 
 	<!-- NavigationView -->
 	<StaticResource x:Key="NavigationViewDefaultPaneBackground" ResourceKey="MaterialSurfaceBrush" />
@@ -1646,13 +1646,6 @@
 						<Border x:Name="RevealBorder"
 								BorderBrush="{TemplateBinding BorderBrush}"
 								BorderThickness="{TemplateBinding BorderThickness}" />
-						<Border Margin="{TemplateBinding Padding}">
-							<!-- dont apply Margin on Ripple, as it will be applied twice (on the Ripple and on its template root) -->
-							<!-- material#446: skia:Opacity to workaround Ripple opacity issue -->
-							<material:Ripple Feedback="{StaticResource NavigationViewRippleFeedback}"
-											 skia:Opacity="0.12"
-											 CornerRadius="{TemplateBinding CornerRadius}" />
-						</Border>
 
 						<!-- disabled hit-test because we dont want the content or the chevron to block the click event -->
 						<!-- as the ripple above would need it to play its effect -->
