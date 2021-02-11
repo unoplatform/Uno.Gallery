@@ -26,8 +26,6 @@
 													HorizontalAlignment="Left" />
 							</smtx:XamlDisplay>
 
-							<!-- ProgressRing -->
-							<!-- skia: ProgressRing uses Lottie which isnt supported on skia yet -->
 							<smtx:XamlDisplay UniqueKey="ProgressSamplePage_Fluent_ProgressRingDeterminate"
 											  smtx:XamlDisplayExtensions.Header="Determinate ProgressRing"
 											  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
@@ -88,8 +86,6 @@
 													HorizontalAlignment="Left" />
 							</smtx:XamlDisplay>
 
-							<!-- ProgressRing -->
-							<!-- skia: ProgressRing uses Lottie which isnt supported on skia yet -->
 							<smtx:XamlDisplay UniqueKey="ProgressSamplePage_Material_ProgressRingDeterminate"
 											  smtx:XamlDisplayExtensions.Header="Determinate ProgressRing"
 											  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
