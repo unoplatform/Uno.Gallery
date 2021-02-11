@@ -16,16 +16,34 @@
 				<DataTemplate>
 					<StackPanel>
 
-						<not_skia:Border>
-						<!-- ProgressRing -->
-						<!-- skia: ProgressRing uses Lottie which isnt supported on skia yet -->
+						<not_skia:StackPanel>
+							<!-- ProgressRing -->
+							<!-- skia: ProgressRing uses Lottie which isnt supported on skia yet -->
 							<smtx:XamlDisplay UniqueKey="ProgressSamplePage_Fluent"
 											  smtx:XamlDisplayExtensions.Header="ProgressRing">
 
 								<winui:ProgressRing IsActive="True"
 													HorizontalAlignment="Left" />
 							</smtx:XamlDisplay>
-						</not_skia:Border>
+
+							<!-- ProgressRing -->
+							<!-- skia: ProgressRing uses Lottie which isnt supported on skia yet -->
+							<smtx:XamlDisplay UniqueKey="ProgressSamplePage_Fluent_ProgressRingDeterminate"
+											  smtx:XamlDisplayExtensions.Header="Determinate ProgressRing"
+											  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+								<StackPanel Spacing="24">
+									<Slider x:Name="progressRingSlider_Fluent"
+										Value="50"
+										Minimum="0"
+										Maximum="100" />
+
+									<winui:ProgressRing Value="{Binding Value, ElementName=progressRingSlider_Fluent}"
+														Minimum="0"
+														Maximum="100"
+														IsIndeterminate="False"/>
+								</StackPanel>
+							</smtx:XamlDisplay>
+						</not_skia:StackPanel>
 
 						<!-- ProgressBar -->
 						<smtx:XamlDisplay UniqueKey="ProgressSamplePage_Fluent_ProgressBar"
@@ -59,6 +77,38 @@
 				<DataTemplate>
 					<StackPanel>
 
+						<not_skia:StackPanel>
+							<!-- ProgressRing -->
+							<!-- skia: ProgressRing uses Lottie which isnt supported on skia yet -->
+							<smtx:XamlDisplay UniqueKey="ProgressSamplePage_Material_ProgressRingIndeterminate"
+											  smtx:XamlDisplayExtensions.Header="ProgressRing">
+
+								<winui:ProgressRing IsActive="True"
+													Style="{StaticResource MaterialProgressRingStyle}"
+													HorizontalAlignment="Left" />
+							</smtx:XamlDisplay>
+
+							<!-- ProgressRing -->
+							<!-- skia: ProgressRing uses Lottie which isnt supported on skia yet -->
+							<smtx:XamlDisplay UniqueKey="ProgressSamplePage_Material_ProgressRingDeterminate"
+											  smtx:XamlDisplayExtensions.Header="Determinate ProgressRing"
+											  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+								<StackPanel Spacing="24">
+									<Slider x:Name="progressRingSlider_Material"
+										Style="{StaticResource MaterialSliderStyle}"
+										Value="50"
+										Minimum="0"
+										Maximum="100" />
+
+									<winui:ProgressRing Value="{Binding Value, ElementName=progressRingSlider_Material}"
+														Style="{StaticResource MaterialProgressRingStyle}"
+														Minimum="0"
+														Maximum="100"
+														IsIndeterminate="False"/>
+								</StackPanel>
+							</smtx:XamlDisplay>
+							
+						</not_skia:StackPanel>
 						<!-- ProgressBar -->
 						<smtx:XamlDisplay UniqueKey="ProgressSamplePage_Material_ProgressBar"
 										  smtx:XamlDisplayExtensions.Header="ProgressBar"
