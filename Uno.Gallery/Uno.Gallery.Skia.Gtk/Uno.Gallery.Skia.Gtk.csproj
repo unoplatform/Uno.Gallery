@@ -5,6 +5,7 @@
 		<OutputType Condition="'$(Configuration)'=='Debug'">Exe</OutputType>
 		<TargetFramework>netcoreapp3.1</TargetFramework>
 		<NoWarn>$(NoWarn);NU1701</NoWarn>
+	  <DefineConstants>$(DefineConstants);__SKIA__</DefineConstants>
 	</PropertyGroup>
 	
 	<ItemGroup>
