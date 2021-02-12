@@ -5,9 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Uno.Extensions;
 using Uno.Logging;
+using Windows.UI.Xaml.Data;
 
 namespace Uno.Gallery
 {
+	[Bindable]
 	public class Sample
 	{
 		public Sample(SamplePageAttribute attribute, Type viewType)

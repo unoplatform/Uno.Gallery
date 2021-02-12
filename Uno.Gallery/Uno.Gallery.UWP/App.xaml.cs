@@ -222,6 +222,11 @@ namespace Uno.Gallery
 						{ "Uno", LogLevel.Warning },
 						{ "Windows", LogLevel.Warning },
 						{ "Uno.Gallery", LogLevel.Debug },
+#if !DEBUG
+						{ "Windows.UI.Xaml", LogLevel.None },
+						{ "Windows.ApplicationModel.Core.CoreApplicationViewTitleBar", LogLevel.None },
+						{ "Uno.UI.DataBinding.BindingPropertyHelper", LogLevel.None },
+#endif
 
 						// Debug JS interop
 						// { "Uno.Foundation.WebAssemblyRuntime", LogLevel.Debug },
