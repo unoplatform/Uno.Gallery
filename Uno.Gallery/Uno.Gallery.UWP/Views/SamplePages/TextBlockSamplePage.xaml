@@ -107,59 +107,129 @@
 						<smtx:XamlDisplay UniqueKey="TextBlockSamplePage_Fluent_Trimming"
 										  smtx:XamlDisplayExtensions.Header="TextTrimming &amp; MaxLines">
 							
-							<TextBlock Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+							<TextBlock
 									   TextTrimming="CharacterEllipsis"
 									   TextWrapping="Wrap"
-									   MaxLines="2" />
+									   MaxLines="2" >
+<TextBlock.Text>
+Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper 
+commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet. 
+Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi 
+rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius 
+curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales 
+sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida
+turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant.
+</TextBlock.Text>
+							</TextBlock>
 						</smtx:XamlDisplay>
 
 						<smtx:XamlDisplay UniqueKey="TextBlockSamplePage_Fluent_TextAlignment"
 										  smtx:XamlDisplayExtensions.Header="TextAlignment">
 							<StackPanel>
 								
-								<TextBlock Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+								<TextBlock
 										   Width="200"
 										   Margin="0,5"
 										   TextWrapping="Wrap"
 										   TextAlignment="Left"
-										   HorizontalAlignment="Left" />
+										   HorizontalAlignment="Left">
+<TextBlock.Text>
+Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper 
+commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet. 
+Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi 
+rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius 
+curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales 
+sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida
+turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant.
+</TextBlock.Text>
+								</TextBlock>
 								
-								<TextBlock Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+								<TextBlock
 										   Width="200"
 										   Margin="0,5"
 										   TextWrapping="Wrap"
 										   TextAlignment="Center"
-										   HorizontalAlignment="Center" />
+										   HorizontalAlignment="Center">
+<TextBlock.Text>
+Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper 
+commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet. 
+Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi 
+rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius 
+curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales 
+sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida
+turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant.
+</TextBlock.Text>
+								</TextBlock>
 								
-								<TextBlock Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+								<TextBlock
 										   Width="200"
 										   Margin="0,5"
 										   TextWrapping="Wrap"
 										   TextAlignment="Right"
-										   HorizontalAlignment="Right" />
+										   HorizontalAlignment="Right">
+<TextBlock.Text>
+Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper 
+commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet. 
+Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi 
+rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius 
+curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales 
+sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida
+turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant.
+</TextBlock.Text>
+								</TextBlock>
 								
-								<TextBlock Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+								<TextBlock
 										   Margin="0,5"
 										   TextWrapping="Wrap"
 										   TextAlignment="Justify"
-										   HorizontalAlignment="Left" />
+										   HorizontalAlignment="Left">
+<TextBlock.Text>
+Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper 
+commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet. 
+Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi 
+rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius 
+curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales 
+sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida
+turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant.
+</TextBlock.Text>
+								</TextBlock>
 							</StackPanel>
 						</smtx:XamlDisplay>
 
 						<smtx:XamlDisplay UniqueKey="TextBlockSamplePage_Fluent_CharacterSpacing"
 										  smtx:XamlDisplayExtensions.Header="CharacterSpacing">
 							
-							<TextBlock Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+							<TextBlock 
 									   TextWrapping="Wrap"
-									   CharacterSpacing="100" />
+									   CharacterSpacing="100">
+<TextBlock.Text>
+Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper 
+commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet. 
+Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi 
+rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius 
+curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales 
+sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida
+turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant.
+</TextBlock.Text>
+							</TextBlock>
 						</smtx:XamlDisplay>
 
 						<smtx:XamlDisplay UniqueKey="TextBlockSamplePage_Fluent_LineHeight"
 										  smtx:XamlDisplayExtensions.Header="LineHeight">
 							
-							<TextBlock Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+							<TextBlock 
 									   TextWrapping="Wrap"
-									   LineHeight="30" />
+									   LineHeight="30">
+<TextBlock.Text>
+Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper 
+commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet. 
+Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi 
+rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius 
+curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales 
+sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida
+turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant.
+</TextBlock.Text>
+							</TextBlock>
 						</smtx:XamlDisplay>
 					</StackPanel>
 				</DataTemplate>

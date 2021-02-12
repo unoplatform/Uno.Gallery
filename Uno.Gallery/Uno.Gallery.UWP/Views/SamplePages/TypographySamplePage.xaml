@@ -38,11 +38,31 @@
 								<TextBlock Text="Base"
 										   Style="{StaticResource BaseTextBlockStyle}" />
 
-								<TextBlock Text="Body - Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet. Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant."
-										   Style="{StaticResource BodyTextBlockStyle}" />
+								<TextBlock 
+										   Style="{StaticResource BodyTextBlockStyle}">
+<TextBlock.Text>
+Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper 
+commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet. 
+Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi 
+rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius 
+curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales 
+sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida
+turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant.
+</TextBlock.Text>
+									</TextBlock>
 
-								<TextBlock Text="Caption - Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper commodo primis ornare himenaeos"
-										   Style="{StaticResource CaptionTextBlockStyle}" />
+								<TextBlock
+										   Style="{StaticResource CaptionTextBlockStyle}">
+<TextBlock.Text>
+Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper 
+commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet. 
+Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi 
+rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius 
+curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales 
+sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida
+turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant.
+</TextBlock.Text>
+								</TextBlock>
 							</StackPanel>
 						</smtx:XamlDisplay>
 					</StackPanel>
@@ -81,17 +101,47 @@
 							<TextBlock Text="Subtitle 2"
 									   Style="{StaticResource MaterialSubtitle2}" />
 
-							<TextBlock Text="Body 1 - Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet. Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant."
-									   Style="{StaticResource MaterialBody1}" />
+							<TextBlock
+									   Style="{StaticResource MaterialBody1}">
+<TextBlock.Text>
+Body 1 - Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper 
+commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet. 
+Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi 
+rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius 
+curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales 
+sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida
+turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant.
+</TextBlock.Text>
+							</TextBlock>
 
-							<TextBlock Text="Body 2 - Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet. Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant."
-									   Style="{StaticResource MaterialBody2}" />
+							<TextBlock
+									   Style="{StaticResource MaterialBody2}">
+<TextBlock.Text>
+Body 2 - Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper 
+commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet. 
+Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi 
+rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius 
+curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales 
+sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida
+turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant.
+</TextBlock.Text>
+							</TextBlock>
 
 							<TextBlock Text="Button"
 									   Style="{StaticResource MaterialButtonText}" />
 
-							<TextBlock Text="Caption -  Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper commodo primis ornare"
-									   Style="{StaticResource MaterialCaption}" />
+							<TextBlock
+									   Style="{StaticResource MaterialCaption}">
+<TextBlock.Text>
+Caption - Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper 
+commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet. 
+Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi 
+rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius 
+curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales 
+sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida
+turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant.
+</TextBlock.Text>
+							</TextBlock>
 
 							<TextBlock Text="Overline"
 									   Style="{StaticResource MaterialOverline}" />
