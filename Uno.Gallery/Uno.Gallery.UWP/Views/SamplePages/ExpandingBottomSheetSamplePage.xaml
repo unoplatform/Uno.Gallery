@@ -9,20 +9,23 @@
 	  mc:Ignorable="d">
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-		<local:SamplePageLayout>
-
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*" />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+			
+		<local:SamplePageLayout Grid.Row="0">
 			<local:SamplePageLayout.MaterialTemplate>
 				<DataTemplate>
 					<StackPanel>
-						<TextBlock 
-                        Text="Try out the sheet in the bottom right corner of the window" 
-						Style="{StaticResource MaterialBody1}"
-						Foreground="{StaticResource MaterialOnBackgroundBrush}"
-						Opacity="0.8"
-						Margin="0,8,0,0" />
+						<TextBlock Text="Try out the sheet in the bottom right corner of the window"
+								   Style="{StaticResource MaterialBody1}"
+								   Foreground="{StaticResource MaterialOnBackgroundBrush}"
+								   Opacity="0.8"
+								   Margin="0,8,0,0" />
 						<smtx:XamlPresenter ReferenceKey="ExpandingBottomSheetSamplePage_Content"
-										HorizontalAlignment="Stretch"
-										VerticalAlignment="Center" />
+											HorizontalAlignment="Stretch"
+											VerticalAlignment="Center" />
 					</StackPanel>
 				</DataTemplate>
 			</local:SamplePageLayout.MaterialTemplate>
@@ -30,6 +33,7 @@
 
 		<!-- Minimal BottomSheet Toggle -->
 		<ToggleSwitch x:Name="ToggleBottomSheet"
+					  Grid.Row="1"
 					  Header="Toggle Minimal Sheet"
 					  Style="{StaticResource MaterialToggleSwitchStyle}"
 					  HorizontalAlignment="Left"
@@ -37,6 +41,7 @@
 					  Margin="24,4" />
 
 		<smtx:XamlDisplay UniqueKey="ExpandingBottomSheetSamplePage_Content"
+						  Grid.RowSpan="2"
 						  Style="{StaticResource ContentOnlyXamlDisplayStyle}"
 						  Margin="0"
 						  Padding="0">
