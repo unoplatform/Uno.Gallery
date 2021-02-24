@@ -11,21 +11,19 @@ namespace Uno.Gallery.UITests
 {
 	public class Given_CheckBox : TestBase
 	{
+		protected string[] Sections => new[] { "Components", "CheckBox" };
+
 		[Test]
 		public void When_ClickMaterial()
 		{
-			if (AppInitializer.GetLocalPlatform() == Platform.Android)
-			{
-				Assert.Ignore();
-			}
+			NavigateToSection(Sections);
+			ShowMaterialTheme();
 
-			NavigateToSection("Components", "CheckBox");
-
-			TakeScreenshot("Opened");
+			TakeScreenshot("Before Checked");
 
 			var uncheckedBox = App.WaitThenTap(q => q.All().Marked("Material_Unchecked")).ToQueryEx();
-
-			TakeScreenshot("Opened");
+			
+			TakeScreenshot("After Checked");
 
 			Assert.IsTrue(uncheckedBox.GetDependencyPropertyValue<bool>("IsChecked"));
 		}
