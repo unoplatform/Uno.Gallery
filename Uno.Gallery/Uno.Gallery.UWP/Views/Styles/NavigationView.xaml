@@ -1354,8 +1354,7 @@
 												<RowDefinition Height="Auto" />
 												<!-- PaneFooter -->
 												<RowDefinition x:Name="FooterItemsRow"
-															   Height="Auto"
-															   MinHeight="{ThemeResource NavigationViewItemOnLeftMinHeight}" />
+															   Height="0" />
 												<!-- FooterItems -->
 											</Grid.RowDefinitions>
 
@@ -1389,7 +1388,7 @@
 											<muxc:ItemsRepeaterScrollHost Grid.Row="3">
 												<ScrollViewer x:Name="FooterItemsScrollViewer"
 															  contract7Present:VerticalAnchorRatio="1">
-													<muxc:ItemsRepeater x:Name="FooterMenuItemsHost"
+													<muxc:ItemsRepeater x:Name="FooterMenuItemsHost" Height="0"
 																		AutomationProperties.AccessibilityView="Content" />
 												</ScrollViewer>
 											</muxc:ItemsRepeaterScrollHost>
