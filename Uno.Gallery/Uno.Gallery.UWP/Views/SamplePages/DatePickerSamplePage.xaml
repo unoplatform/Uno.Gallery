@@ -6,8 +6,9 @@
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	  xmlns:smtx="using:ShowMeTheXAML"
 	  xmlns:ios="http://uno.ui/ios"
+	  xmlns:xamarin="http://uno.ui/xamarin"
 	  xmlns:android="http://uno.ui/android"
-	  mc:Ignorable="d ios android">
+	  mc:Ignorable="d ios android xamarin">
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 		<local:SamplePageLayout>
@@ -20,13 +21,15 @@
 										  smtx:XamlDisplayExtensions.Header="Default">
 							
 							<DatePicker Header="Set Date" 
+										xamarin:UseNativeStyle="False"
 										Style="{StaticResource MaterialDatePickerStyle}" />
 						</smtx:XamlDisplay>
 						
 						<smtx:XamlDisplay UniqueKey="DatePickerSamplePage_Material_Disabled"
 										  smtx:XamlDisplayExtensions.Header="Disabled">
 							
-							<DatePicker Header="Set Date" 
+							<DatePicker Header="Set Date"
+										xamarin:UseNativeStyle="False"
 										Style="{StaticResource MaterialDatePickerStyle}"
 										IsEnabled="False" />
 						</smtx:XamlDisplay>
@@ -38,23 +41,42 @@
 				<DataTemplate>
 
 					<StackPanel>
-						<ios:TextBlock Text="The DatePicker is composed of two parts: the text button which uses the fluent style, and the flyout picker which is native to the platform."
-									   TextWrapping="Wrap" />
-						<android:TextBlock Text="The DatePicker is composed of two parts: the text button which uses the fluent style, and the flyout picker which is native to the platform."
-										   TextWrapping="Wrap" />
-
 						<smtx:XamlDisplay UniqueKey="DatePickerSamplePage_Fluent_Default"
 										  smtx:XamlDisplayExtensions.Header="Default">
-							<DatePicker />
+							<DatePicker xamarin:UseNativeStyle="False"  />
 						</smtx:XamlDisplay>
 						
 						<smtx:XamlDisplay UniqueKey="DatePickerSamplePage_Fluent_Disabled"
 										  smtx:XamlDisplayExtensions.Header="Disabled">
-							<DatePicker IsEnabled="False" />
+							<DatePicker IsEnabled="False"
+										xamarin:UseNativeStyle="False" />
 						</smtx:XamlDisplay>
 					</StackPanel>
 				</DataTemplate>
 			</local:SamplePageLayout.FluentTemplate>
+
+			<local:SamplePageLayout.NativeTemplate>
+				<DataTemplate>
+
+					<StackPanel>
+						<ios:TextBlock Text="The DatePicker is composed of two parts: the text button which uses the Fluent style, and the Flyout Picker which is native to the platform."
+									   TextWrapping="Wrap" />
+						<android:TextBlock Text="The DatePicker is composed of two parts: the text button which uses the Fluent style, and the Flyout Picker which is native to the platform."
+										   TextWrapping="Wrap" />
+
+						<smtx:XamlDisplay UniqueKey="DatePickerSamplePage_Native_Default"
+										  smtx:XamlDisplayExtensions.Header="Default">
+							<DatePicker xamarin:UseNativeStyle="True"  />
+						</smtx:XamlDisplay>
+
+						<smtx:XamlDisplay UniqueKey="DatePickerSamplePage_Native_Disabled"
+										  smtx:XamlDisplayExtensions.Header="Disabled">
+							<DatePicker IsEnabled="False"
+										xamarin:UseNativeStyle="True" />
+						</smtx:XamlDisplay>
+					</StackPanel>
+				</DataTemplate>
+			</local:SamplePageLayout.NativeTemplate>
 		</local:SamplePageLayout>
 	</Grid>
 </Page>
