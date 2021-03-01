@@ -22,6 +22,7 @@
 							
 							<DatePicker Header="Set Date" 
 										xamarin:UseNativeStyle="False"
+										HorizontalAlignment="Left"
 										Style="{StaticResource MaterialDatePickerStyle}" />
 						</smtx:XamlDisplay>
 						
@@ -30,6 +31,7 @@
 							
 							<DatePicker Header="Set Date"
 										xamarin:UseNativeStyle="False"
+										HorizontalAlignment="Left"
 										Style="{StaticResource MaterialDatePickerStyle}"
 										IsEnabled="False" />
 						</smtx:XamlDisplay>
