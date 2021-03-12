@@ -21,7 +21,7 @@ namespace Uno.Gallery.UITests
 
 			TakeScreenshot("Before Checked");
 
-			var uncheckedBox = App.WaitThenTap(q => q.All().Marked("Material_Unchecked")).ToQueryEx();
+			var uncheckedBox = App.WaitThenTap("Material_Unchecked").ToQueryEx();
 			
 			TakeScreenshot("After Checked");
 
@@ -36,7 +36,7 @@ namespace Uno.Gallery.UITests
 
 			TakeScreenshot("Before Checked");
 
-			var uncheckedBox = App.WaitThenTap(q => q.All().Marked("Fluent_Unchecked")).ToQueryEx();
+			var uncheckedBox = App.WaitThenTap("Fluent_Unchecked").ToQueryEx();
 
 			TakeScreenshot("After Checked");
 

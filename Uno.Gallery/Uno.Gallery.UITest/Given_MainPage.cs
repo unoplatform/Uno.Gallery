@@ -19,7 +19,7 @@ namespace Uno.Gallery.UITests
 
 			TakeScreenshot("Start");
 
-			App.WaitThenTap(q => q.All().Marked("MaterialContainedButton"));
+			App.WaitThenTap("MaterialContainedButton");
 
 			TakeScreenshot("Finish");
 		}
