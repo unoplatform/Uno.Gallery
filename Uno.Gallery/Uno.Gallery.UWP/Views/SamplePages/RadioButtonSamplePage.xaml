@@ -19,18 +19,22 @@
 							<StackPanel Spacing="12">
 								
 								<RadioButton GroupName="RadioButtonDemo_Fluent_1a"
+											 AutomationProperties.AutomationId="Fluent_Unchecked"
 											 Content="UNCHECKED" />
 
 								<RadioButton GroupName="RadioButtonDemo_Fluent_1a"
+											 AutomationProperties.AutomationId="Fluent_Checked"
 											 Content="CHECKED"
 											 IsChecked="True" />
 
 								<RadioButton GroupName="RadioButtonDemo_Fluent_1b"
 											 Content="DISABLED UNCHECKED"
+											 AutomationProperties.AutomationId="Fluent_Disabled_Unchecked"
 											 IsEnabled="False" />
 
 								<RadioButton GroupName="RadioButtonDemo_Fluent_1b"
 											 Content="DISABLED CHECKED"
+											 AutomationProperties.AutomationId="Fluent_Disabled_Checked"
 											 IsChecked="True"
 											 IsEnabled="False" />
 							</StackPanel>
@@ -50,20 +54,24 @@
 								
 								<RadioButton GroupName="RadioButtonDemo_Material_1a"
 											 Content="UNCHECKED"
+											 AutomationProperties.AutomationId="Material_Unchecked"
 											 Style="{StaticResource MaterialRadioButtonStyle}" />
 
 								<RadioButton GroupName="RadioButtonDemo_Material_1a"
 											 Content="CHECKED"
+											 AutomationProperties.AutomationId="Material_Checked"
 											 Style="{StaticResource MaterialRadioButtonStyle}"
 											 IsChecked="True" />
 
 								<RadioButton GroupName="RadioButtonDemo_Material_1b"
 											 Content="DISABLED UNCHECKED"
+											 AutomationProperties.AutomationId="Material_Disabled_Unchecked"
 											 Style="{StaticResource MaterialRadioButtonStyle}"
 											 IsEnabled="False" />
 
 								<RadioButton GroupName="RadioButtonDemo_Material_1b"
 											 Content="DISABLED CHECKED"
+											 AutomationProperties.AutomationId="Material_Disabled_Checked"
 											 Style="{StaticResource MaterialRadioButtonStyle}"
 											 IsChecked="True"
 											 IsEnabled="False" />
@@ -77,20 +85,24 @@
 								
 								<RadioButton GroupName="RadioButtonDemo_Material_2a"
 											 Content="UNCHECKED"
+											 AutomationProperties.AutomationId="Material_Secondary_Unchecked"
 											 Style="{StaticResource MaterialSecondaryRadioButtonStyle}" />
 
 								<RadioButton GroupName="RadioButtonDemo_Material_2a"
 											 Content="CHECKED"
+											 AutomationProperties.AutomationId="Material_Secondary_Checked"
 											 Style="{StaticResource MaterialSecondaryRadioButtonStyle}"
 											 IsChecked="True" />
 
 								<RadioButton GroupName="RadioButtonDemo_Material_2b"
 											 Content="DISABLED UNCHECKED"
+											 AutomationProperties.AutomationId="Material_Secondary_Disabled_Unchecked"
 											 Style="{StaticResource MaterialSecondaryRadioButtonStyle}"
 											 IsEnabled="False" />
 
 								<RadioButton GroupName="RadioButtonDemo_Material_2b"
 											 Content="DISABLED CHECKED"
+											 AutomationProperties.AutomationId="Material_Secondary_Disabled_Checked"
 											 Style="{StaticResource MaterialSecondaryRadioButtonStyle}"
 											 IsChecked="True"
 											 IsEnabled="False" />
