@@ -10,16 +10,14 @@ namespace Uno.Gallery.UITests
 {
 	public class Given_MainPage : TestBase
 	{
-		protected string[] Sections => new[] { "Overview" };
-
 		[Test]
 		public void When_SmokeTest()
 		{
-			NavigateToSection(Sections);
+			NavigateToSample("Overview");
 
 			TakeScreenshot("Start");
 
-			App.WaitThenTap(q => q.All().Marked("MaterialContainedButton"));
+			App.WaitThenTap("MaterialContainedButton");
 
 			TakeScreenshot("Finish");
 		}

@@ -25,6 +25,15 @@ namespace Uno.Gallery
 
 		public MUXC.NavigationView NavigationView => NavigationViewControl;
 
+		public string CurrentSampleBackdoor
+		{
+			get { return (string)GetValue(CurrentSampleBackdoorProperty); }
+			set { SetValue(CurrentSampleBackdoorProperty, value); }
+		}
+
+		public static readonly DependencyProperty CurrentSampleBackdoorProperty =
+			DependencyProperty.Register(nameof(CurrentSampleBackdoor), typeof(string), typeof(Shell), new PropertyMetadata(null));
+
 		private void OnLoaded(object sender, RoutedEventArgs e)
 		{
 			SetDarkLightToggleInitialState();

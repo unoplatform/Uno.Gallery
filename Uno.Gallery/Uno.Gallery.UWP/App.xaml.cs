@@ -1,6 +1,7 @@
 using Microsoft.Extensions.Logging;
 using ShowMeTheXAML;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
@@ -89,10 +90,10 @@ namespace Uno.Gallery
 
 		private void ShellNavigateTo<TPage>(bool trySynchronizeCurrentItem = true) where TPage : Page
 		{
-			var type = typeof(TPage);
-			var attribute = type.GetCustomAttribute<SamplePageAttribute>()
-				?? throw new NotSupportedException($"{type} isn't tagged with [{nameof(SamplePageAttribute)}].");
-			var sample = new Sample(attribute, type);
+			var pageType = typeof(TPage);
+			var attribute = pageType.GetCustomAttribute<SamplePageAttribute>()
+				?? throw new NotSupportedException($"{pageType} isn't tagged with [{nameof(SamplePageAttribute)}].");
+			var sample = new Sample(attribute, pageType);
 
 			ShellNavigateTo(sample, trySynchronizeCurrentItem);
 		}
@@ -125,6 +126,8 @@ namespace Uno.Gallery
 		private Shell BuildShell()
 		{
 			_shell = new Shell();
+			AutomationProperties.SetAutomationId(_shell, "AppShell");
+			_shell.RegisterPropertyChangedCallback(Shell.CurrentSampleBackdoorProperty, OnCurrentSampleBackdoorChanged);
 			var nv = _shell.NavigationView;
 			AddNavigationItems(nv);
 
@@ -142,6 +145,21 @@ namespace Uno.Gallery
 			return _shell;
 		}
 
+		private void OnCurrentSampleBackdoorChanged(DependencyObject sender, DependencyProperty dp)
+		{
+			var sample = GetSamples()
+				.FirstOrDefault(x => string.Equals(x.Title, _shell.CurrentSampleBackdoor, StringComparison.OrdinalIgnoreCase));
+
+			if (sample == null)
+			{
+				this.Log().LogWarning($"No SampleAttribute found with a Title that matches: {_shell.CurrentSampleBackdoor}");
+				return;
+			}
+
+			ShellNavigateTo(sample);
+		}
+
+
 		private void OnNavigationItemInvoked(MUXC.NavigationView sender, MUXC.NavigationViewItemInvokedEventArgs e)
 		{
 			if (e.InvokedItemContainer.DataContext is Sample sample)
@@ -152,11 +170,7 @@ namespace Uno.Gallery
 
 		private void AddNavigationItems(MUXC.NavigationView nv)
 		{
-			var categories = Assembly.GetExecutingAssembly().DefinedTypes
-				.Where(x => x.Namespace?.StartsWith("Uno.Gallery") == true)
-				.Select(x => new { TypeInfo = x, SamplePageAttribute = x.GetCustomAttribute<SamplePageAttribute>() })
-				.Where(x => x.SamplePageAttribute != null)
-				.Select(x => new Sample(x.SamplePageAttribute, x.TypeInfo.AsType()))
+			var categories = GetSamples()
 				.OrderByDescending(x => x.SortOrder.HasValue)
 				.ThenBy(x => x.SortOrder)
 				.ThenBy(x => x.Title)
@@ -273,6 +287,15 @@ namespace Uno.Gallery
 		{
 			XamlDisplay.Init(GetType().Assembly);
 		}
+
+		private static IEnumerable<Sample> GetSamples() 
+			=> Assembly.GetExecutingAssembly()
+				.DefinedTypes
+				.Where(x => x.Namespace?.StartsWith("Uno.Gallery") == true)
+				.Select(x => new { TypeInfo = x, SamplePageAttribute = x.GetCustomAttribute<SamplePageAttribute>() })
+				.Where(x => x.SamplePageAttribute != null)
+				.Select(x => new Sample(x.SamplePageAttribute, x.TypeInfo.AsType()));
+
 
 		private void InitializeMaterialStyles()
 		{
