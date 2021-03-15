@@ -19,7 +19,7 @@ namespace Uno.Gallery.UITests
 		}
 
 		public static Func<IAppQuery, IAppQuery> WaitThenTap(this IApp app, string marked, TimeSpan? timeout = null) 
-			=> WaitThenTap(app, q => q.Marked(marked), timeout);
+			=> WaitThenTap(app, q => q.All().Marked(marked), timeout);
 
 		public static QueryEx ToQueryEx(this Func<IAppQuery, IAppQuery> query) => new QueryEx(query);
 	}

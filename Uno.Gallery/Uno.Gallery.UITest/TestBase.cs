@@ -29,6 +29,8 @@ namespace Uno.Gallery.UITests
 #if DEBUG
             AppInitializer.TestEnvironment.WebAssemblyHeadless = false;
 #endif
+
+            AppInitializer.ColdStartApp();
         }
 
         protected IApp App
@@ -44,7 +46,7 @@ namespace Uno.Gallery.UITests
         [SetUp]
         public void SetUpTest() 
         {
-            AppInitializer.ColdStartApp();
+            
             App = AppInitializer.AttachToApp();
         }
 
@@ -54,21 +56,10 @@ namespace Uno.Gallery.UITests
             TakeScreenshot("teardown");
         }
 
-        protected void NavigateToSection(params string[] sections)
+        protected void NavigateToSample(string sample)
         {
-            if (!(sections?.Length > 0)) throw new ArgumentException("`sections` are null or empty", nameof(sections));
-
-            OpenNavView();
-           
-			foreach (var section in sections)
-            {
-                var sectionResult = App.Query($"Section_{section}");
-                if (!sectionResult.Any())
-				{
-                    App.ScrollDownTo($"Section_{section}", withinMarked: "MenuItemsScrollViewer");
-                }
-                App.WaitThenTap($"Section_{section}");
-            }
+            var shell = App.Marked("AppShell").WaitUntilExists();
+            shell.SetDependencyPropertyValue("CurrentSampleBackdoor", sample);
         }
 
         protected void ShowMaterialTheme()

@@ -11,17 +11,15 @@ namespace Uno.Gallery.UITests
 {
 	public class Given_CheckBox : TestBase
 	{
-		protected string[] Sections => new[] { "Components", "CheckBox" };
-
 		[Test]
 		public void When_ClickMaterial()
 		{
-			NavigateToSection(Sections);
+			NavigateToSample("CheckBox");
 			ShowMaterialTheme();
 
 			TakeScreenshot("Before Checked");
 
-			var uncheckedBox = App.WaitThenTap(q => q.All().Marked("Material_Unchecked")).ToQueryEx();
+			var uncheckedBox = App.WaitThenTap("Material_Unchecked").ToQueryEx();
 			
 			TakeScreenshot("After Checked");
 
