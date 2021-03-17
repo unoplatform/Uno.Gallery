@@ -14,5 +14,6 @@
     <ios:FontFamily x:Key="RobotoFontFamily">Roboto</ios:FontFamily>
     <macos:FontFamily x:Key="RobotoFontFamily">Roboto</macos:FontFamily>
     <android:FontFamily x:Key="RobotoFontFamily">ms-appx:///Assets/Fonts/roboto.ttf#Roboto</android:FontFamily>
+	<FontFamily x:Key="SFProFontFamily">ms-appx:///Assets/Fonts/Cupertino/SF-Pro.ttf#SF Pro</FontFamily>
 
 </ResourceDictionary>

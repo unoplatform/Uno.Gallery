@@ -37,7 +37,7 @@
 											IsEnabled="False" />
 
 								</StackPanel>
-								
+
 								<StackPanel Margin="0,20,0,0">
 
 									<Slider Style="{StaticResource MaterialSliderStyle}"
@@ -81,7 +81,7 @@
 											IsEnabled="False" />
 
 								</StackPanel>
-								
+
 								<StackPanel Margin="0,20,0,0">
 
 									<Slider Style="{StaticResource MaterialSecondarySliderStyle}"
@@ -125,6 +125,61 @@
 					</StackPanel>
 				</DataTemplate>
 			</local:SamplePageLayout.FluentTemplate>
+			<local:SamplePageLayout.CupertinoTemplate>
+				<DataTemplate>
+					<StackPanel>
+						<!-- Primary -->
+						<TextBlock Margin="12,16,12,4"
+								   Style="{StaticResource CupertinoTertiaryTitle}"
+								   Text="Primary" />
+
+						<!-- Slider Vertical -->
+						<smtx:XamlDisplay UniqueKey="Cupertino_SliderSamplePage_Vertical"
+										  smtx:XamlDisplayExtensions.Header="Vertical Slider">
+							<StackPanel Orientation="Horizontal">
+
+								<Slider Height="343"
+										Maximum="100"
+										Minimum="0"
+										Orientation="Vertical"
+										Style="{StaticResource CupertinoSliderStyle}"
+										Value="25" />
+
+								<Slider Height="343"
+										IsEnabled="False"
+										Maximum="100"
+										Minimum="0"
+										Orientation="Vertical"
+										Style="{StaticResource CupertinoSliderStyle}"
+										Value="25" />
+							</StackPanel>
+						</smtx:XamlDisplay>
+
+						<!-- Slider Horizontal -->
+						<smtx:XamlDisplay UniqueKey="Cupertino_SliderSamplePage_Horizontal"
+										  smtx:XamlDisplayExtensions.Header="Horizontal Slider">
+							<StackPanel>
+
+								<Slider Width="343"
+										Maximum="100"
+										Minimum="0"
+										Orientation="Horizontal"
+										Style="{StaticResource CupertinoSliderStyle}"
+										Value="25" />
+
+								<Slider Width="343"
+										IsEnabled="False"
+										Maximum="100"
+										Minimum="0"
+										Orientation="Horizontal"
+										Style="{StaticResource CupertinoSliderStyle}"
+										Value="25" />
+							</StackPanel>
+						</smtx:XamlDisplay>
+
+					</StackPanel>
+				</DataTemplate>
+			</local:SamplePageLayout.CupertinoTemplate>
 		</local:SamplePageLayout>
 	</Grid>
 </Page>

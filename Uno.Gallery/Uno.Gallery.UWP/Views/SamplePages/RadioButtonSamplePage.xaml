@@ -17,7 +17,7 @@
 						<smtx:XamlDisplay UniqueKey="RadioButtonSamplePage_Fluent"
 										  smtx:XamlDisplayExtensions.Header="Default">
 							<StackPanel Spacing="12">
-								
+
 								<RadioButton GroupName="RadioButtonDemo_Fluent_1a"
 											 Content="UNCHECKED" />
 
@@ -47,7 +47,7 @@
 						<smtx:XamlDisplay UniqueKey="RadioButtonSamplePage_Material"
 										  smtx:XamlDisplayExtensions.Header="Default">
 							<StackPanel>
-								
+
 								<RadioButton GroupName="RadioButtonDemo_Material_1a"
 											 Content="UNCHECKED"
 											 Style="{StaticResource MaterialRadioButtonStyle}" />
@@ -74,7 +74,7 @@
 						<smtx:XamlDisplay UniqueKey="RadioButtonSamplePage_Material_Secondary"
 										  smtx:XamlDisplayExtensions.Header="Secondary">
 							<StackPanel>
-								
+
 								<RadioButton GroupName="RadioButtonDemo_Material_2a"
 											 Content="UNCHECKED"
 											 Style="{StaticResource MaterialSecondaryRadioButtonStyle}" />
@@ -99,6 +99,37 @@
 					</StackPanel>
 				</DataTemplate>
 			</local:SamplePageLayout.MaterialTemplate>
+			<local:SamplePageLayout.CupertinoTemplate>
+				<DataTemplate>
+					<StackPanel>
+						<smtx:XamlDisplay UniqueKey="RadioButtonSamplePage_Cupertino"
+										  smtx:XamlDisplayExtensions.Header="Default">
+							<StackPanel>
+
+								<RadioButton GroupName="Cupertino_Primary_a"
+											 Content="UNCHECKED"
+											 Style="{StaticResource CupertinoRadioButtonStyle}" />
+
+								<RadioButton GroupName="Cupertino_Primary_a"
+											 Content="CHECKED"
+											 Style="{StaticResource CupertinoRadioButtonStyle}"
+											 IsChecked="True" />
+
+								<RadioButton GroupName="Cupertino_Primary_b"
+											 Content="DISABLED UNCHECKED"
+											 Style="{StaticResource CupertinoRadioButtonStyle}"
+											 IsEnabled="False" />
+
+								<RadioButton GroupName="Cupertino_Primary_b"
+											 Content="DISABLED CHECKED"
+											 Style="{StaticResource CupertinoRadioButtonStyle}"
+											 IsChecked="True"
+											 IsEnabled="False" />
+							</StackPanel>
+						</smtx:XamlDisplay>
+					</StackPanel>
+				</DataTemplate>
+			</local:SamplePageLayout.CupertinoTemplate>
 		</local:SamplePageLayout>
 	</Grid>
 </Page>

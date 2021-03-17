@@ -31,14 +31,14 @@
 											  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
 								<StackPanel Spacing="24">
 									<Slider x:Name="progressRingSlider_Fluent"
-										Value="50"
-										Minimum="0"
-										Maximum="100" />
+											Value="50"
+											Minimum="0"
+											Maximum="100" />
 
 									<winui:ProgressRing Value="{Binding Value, ElementName=progressRingSlider_Fluent}"
 														Minimum="0"
 														Maximum="100"
-														IsIndeterminate="False"/>
+														IsIndeterminate="False" />
 								</StackPanel>
 							</smtx:XamlDisplay>
 						</not_skia:StackPanel>
@@ -91,19 +91,19 @@
 											  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
 								<StackPanel Spacing="24">
 									<Slider x:Name="progressRingSlider_Material"
-										Style="{StaticResource MaterialSliderStyle}"
-										Value="50"
-										Minimum="0"
-										Maximum="100" />
+											Style="{StaticResource MaterialSliderStyle}"
+											Value="50"
+											Minimum="0"
+											Maximum="100" />
 
 									<winui:ProgressRing Value="{Binding Value, ElementName=progressRingSlider_Material}"
 														Style="{StaticResource MaterialProgressRingStyle}"
 														Minimum="0"
 														Maximum="100"
-														IsIndeterminate="False"/>
+														IsIndeterminate="False" />
 								</StackPanel>
 							</smtx:XamlDisplay>
-							
+
 						</not_skia:StackPanel>
 						<!-- ProgressBar -->
 						<smtx:XamlDisplay UniqueKey="ProgressSamplePage_Material_ProgressBar"
@@ -146,8 +146,68 @@
 					</StackPanel>
 				</DataTemplate>
 			</local:SamplePageLayout.MaterialTemplate>
+			<local:SamplePageLayout.CupertinoTemplate>
+				<DataTemplate>
+					<StackPanel>
+						<not_skia:StackPanel>
+							<!-- ProgressRing -->
+							<!-- skia: ProgressRing uses Lottie which isnt supported on skia yet -->
+							<smtx:XamlDisplay UniqueKey="ProgressSamplePage_Cupertino_ProgressRingIndeterminate"
+											  smtx:XamlDisplayExtensions.Header="ProgressRing">
 
-			<!-- TODO #188598 : Add ProgressRing material samples -->
+								<winui:ProgressRing IsActive="True"
+													Style="{StaticResource CupertinoProgressRingStyle}"
+													HorizontalAlignment="Left" />
+							</smtx:XamlDisplay>
+
+							<smtx:XamlDisplay UniqueKey="ProgressSamplePage_Cupertino_ProgressRingDeterminate"
+											  smtx:XamlDisplayExtensions.Header="Determinate ProgressRing"
+											  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+								<StackPanel Spacing="24">
+									<Slider x:Name="progressRingSlider_Cupertino"
+											Style="{StaticResource CupertinoSliderStyle}"
+											Value="50"
+											Minimum="0"
+											Maximum="100"
+											Width="250"/>
+
+									<winui:ProgressRing Value="{Binding Value, ElementName=progressRingSlider_Cupertino}"
+														Style="{StaticResource CupertinoProgressRingStyle}"
+														Minimum="0"
+														Maximum="100"
+														IsIndeterminate="False" />
+								</StackPanel>
+							</smtx:XamlDisplay>
+
+						</not_skia:StackPanel>
+						<!-- ProgressBar -->
+						<smtx:XamlDisplay UniqueKey="ProgressSamplePage_Cupertino_ProgressBar"
+										  smtx:XamlDisplayExtensions.Header="ProgressBar"
+										  smtx:XamlDisplayExtensions.Description="Move the slider to update the ProgressBar."
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+							<StackPanel>
+								<Slider x:Name="Cupertino_ProgressSlider"
+										Minimum="0"
+										Maximum="100"
+										Value="50"
+										Width="250"
+										Style="{StaticResource CupertinoSliderStyle}"
+										Margin="0,10" />
+
+								<winui:ProgressBar Style="{StaticResource CupertinoProgressBarStyle}"
+												   Value="{Binding Value, ElementName=Cupertino_ProgressSlider}"
+												   Minimum="0"
+												   Maximum="100" />
+							</StackPanel>
+						</smtx:XamlDisplay>
+						<smtx:XamlDisplay UniqueKey="Cupertino_ProgressBarSamplePage_PrimaryIndeterminate"
+										  smtx:XamlDisplayExtensions.Header="Indeterminate ProgressBar">
+							<winui:ProgressBar Style="{StaticResource CupertinoProgressBarStyle}"
+											   IsIndeterminate="True" />
+						</smtx:XamlDisplay>
+					</StackPanel>
+				</DataTemplate>
+			</local:SamplePageLayout.CupertinoTemplate>
 		</local:SamplePageLayout>
 	</Grid>
 </Page>

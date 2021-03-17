@@ -39,8 +39,11 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Uno.Core" Version="2.2.0-dev.3" />
+    <PackageReference Include="Uno.Cupertino">
+      <Version>1.0.0-dev.732</Version>
+    </PackageReference>
     <PackageReference Include="Uno.Material">
-      <Version>1.0.0-dev.637</Version>
+      <Version>1.0.0-dev.732</Version>
     </PackageReference>
     <PackageReference Include="Uno.ShowMeTheXAML">
       <Version>1.0.59</Version>
@@ -49,7 +52,7 @@
       <Version>1.0.59</Version>
     </PackageReference>
     <PackageReference Include="Uno.UI">
-      <Version>3.6.0-dev.275</Version>
+      <Version>3.6.0-dev.509</Version>
     </PackageReference>
   </ItemGroup>
   <PropertyGroup>
@@ -172,6 +175,9 @@
   <ItemGroup>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GeneralPages\CupertinoPalettePage.xaml.cs">
+      <DependentUpon>CupertinoPalettePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\GeneralPages\OverviewPage.xaml.cs">
       <DependentUpon>OverviewPage.xaml</DependentUpon>
@@ -386,6 +392,10 @@
     <Content Include="Properties\Default.rd.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\GeneralPages\CupertinoPalettePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\GeneralPages\OverviewPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -659,7 +669,9 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Assets\Fonts\SF-Pro.ttf" />
+  </ItemGroup>
   <Import Project="..\Uno.Gallery.Shared\Uno.Gallery.Shared.projitems" Label="Shared" Condition="Exists('..\Uno.Gallery.Shared\Uno.Gallery.Shared.projitems')" />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

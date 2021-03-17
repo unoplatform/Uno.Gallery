@@ -6,7 +6,9 @@
 	  xmlns:local="using:Uno.Gallery"
 	  xmlns:extensions="using:Uno.Material.Extensions"
 	  xmlns:smtx="using:ShowMeTheXAML"
-	  mc:Ignorable="d">
+	  xmlns:android="http://uno.ui/android"
+	  xmlns:ios="http://uno.ui/ios"
+	  mc:Ignorable="d android ios">
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 		<local:SamplePageLayout>
@@ -63,6 +65,28 @@
 					</StackPanel>
 				</DataTemplate>
 			</local:SamplePageLayout.MaterialTemplate>
+			<local:SamplePageLayout.CupertinoTemplate>
+				<DataTemplate>
+					<StackPanel>
+						<smtx:XamlDisplay UniqueKey="ComboBoxSamplePage_Cupertino_ComboBox"
+										  smtx:XamlDisplayExtensions.Header="ComboBox"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+							<StackPanel Spacing="16">
+								<ComboBox Style="{StaticResource CupertinoComboBoxStyle}"
+										  Text="Title"
+										  PlaceholderText="Placeholder"
+										  ItemsSource="abcdefghijklmn" />
+								<ComboBox Style="{StaticResource CupertinoComboBoxStyle}"
+										  Text="Title"
+										  PlaceholderText="Disabled ComboBos"
+										  ItemsSource="abcdefghijklmn"
+										  IsEnabled="False" />
+
+							</StackPanel>
+						</smtx:XamlDisplay>
+					</StackPanel>
+				</DataTemplate>
+			</local:SamplePageLayout.CupertinoTemplate>
 		</local:SamplePageLayout>
 	</Grid>
 </Page>

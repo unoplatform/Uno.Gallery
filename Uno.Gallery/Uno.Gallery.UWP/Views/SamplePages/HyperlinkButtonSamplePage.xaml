@@ -38,7 +38,7 @@
 			<local:SamplePageLayout.FluentTemplate>
 				<DataTemplate>
 					<StackPanel>
-						
+
 						<!-- HyperlinkButton Default -->
 						<smtx:XamlDisplay UniqueKey="HyperlinkButtonSamplePage_Fluent_Default"
 										  smtx:XamlDisplayExtensions.Header="Default">
@@ -49,6 +49,33 @@
 					</StackPanel>
 				</DataTemplate>
 			</local:SamplePageLayout.FluentTemplate>
+
+			<local:SamplePageLayout.CupertinoTemplate>
+				<DataTemplate>
+					<StackPanel>
+						<!-- HyperlinkButton -->
+						<smtx:XamlDisplay UniqueKey="Cupertino_HyperlinkButtonSamplePage"
+										  smtx:XamlDisplayExtensions.Header="Default">
+
+							<HyperlinkButton Content="Uno Platform"
+											 NavigateUri="https://platform.uno/"
+											 Style="{StaticResource CupertinoHyperlinkButtonStyle}"
+											 Margin="12,0" />
+						</smtx:XamlDisplay>
+
+						<!-- HyperlinkButton Disabled -->
+						<smtx:XamlDisplay UniqueKey="Cupertino_HyperlinkButtonSamplePage_Disabled"
+										  smtx:XamlDisplayExtensions.Header="Disabled">
+
+							<HyperlinkButton Content="Uno Platform"
+											 IsEnabled="False"
+											 NavigateUri="https://platform.uno/"
+											 Style="{StaticResource CupertinoHyperlinkButtonStyle}"
+											 Margin="12,0" />
+						</smtx:XamlDisplay>
+					</StackPanel>
+				</DataTemplate>
+			</local:SamplePageLayout.CupertinoTemplate>
 		</local:SamplePageLayout>
 	</Grid>
 </Page>
