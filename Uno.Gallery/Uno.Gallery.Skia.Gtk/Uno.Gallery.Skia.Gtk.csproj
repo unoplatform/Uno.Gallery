@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
 		<OutputType Condition="'$(Configuration)'=='Release'">WinExe</OutputType>
@@ -27,7 +27,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Uno.Material" Version="1.0.0-dev.637" />
+		<PackageReference Include="Uno.Cupertino" Version="1.0.0-dev.732" />
+		<PackageReference Include="Uno.Material" Version="1.0.0-dev.732" />
 		<!-- Note that for WebAssembly version 1.1.1 of the console logger required -->
 		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Filter" Version="1.1.1" />
@@ -45,8 +46,8 @@
 		</PackageReference>
 		<PackageReference Include="Uno.ShowMeTheXAML" Version="1.0.59" />
 		<PackageReference Include="Uno.ShowMeTheXAML.MSBuild" Version="1.0.59" />		
-		<PackageReference Include="Uno.UI.Lottie" Version="3.6.0-dev.275" />
-		<PackageReference Include="Uno.UI.Skia.Gtk" Version="3.6.0-dev.275" />
+		<PackageReference Include="Uno.UI.Lottie" Version="3.6.0-dev.509" />
+		<PackageReference Include="Uno.UI.Skia.Gtk" Version="3.6.0-dev.509" />
 		<PackageReference Include="Uno.UI.RemoteControl" Version="3.6.0-dev.275" Condition="'$(Configuration)'=='Debug'" />
 	</ItemGroup>
 	

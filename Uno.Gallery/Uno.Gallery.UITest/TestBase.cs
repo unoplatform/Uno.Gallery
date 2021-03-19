@@ -72,6 +72,11 @@ namespace Uno.Gallery.UITests
             App.WaitThenTap("PART_FluentRadioButton");
         }
 
+        protected void ShowCupertinoTheme()
+        {
+            App.WaitThenTap("PART_CupertinoRadioButton");
+        }
+
         protected void ShowNativeTheme()
         {
             App.WaitThenTap("PART_NativeRadioButton");

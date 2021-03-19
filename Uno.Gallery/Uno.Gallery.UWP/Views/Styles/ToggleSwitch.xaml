@@ -22,6 +22,11 @@
 				Value="{StaticResource MaterialSecondaryVariantLightBrush}" />
 	</wasm:Style>
 
+	<wasm:Style x:Key="CupertinoToggleSwitchStyle"
+				TargetType="ToggleSwitch"
+				BasedOn="{StaticResource DefaultCupertinoToggleSwitchStyle}">
+	</wasm:Style>
+
 	<!-- Native ToggleSwitch colors -->
 	<SolidColorBrush x:Key="NativeOffThumbTint"
 					 Color="#FFECECEC" />

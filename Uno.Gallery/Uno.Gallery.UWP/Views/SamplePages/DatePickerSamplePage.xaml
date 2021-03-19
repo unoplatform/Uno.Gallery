@@ -19,16 +19,16 @@
 
 						<smtx:XamlDisplay UniqueKey="DatePickerSamplePage_Material_Default"
 										  smtx:XamlDisplayExtensions.Header="Default">
-							
-							<DatePicker Header="Set Date" 
+
+							<DatePicker Header="Set Date"
 										xamarin:UseNativeStyle="False"
 										HorizontalAlignment="Left"
 										Style="{StaticResource MaterialDatePickerStyle}" />
 						</smtx:XamlDisplay>
-						
+
 						<smtx:XamlDisplay UniqueKey="DatePickerSamplePage_Material_Disabled"
 										  smtx:XamlDisplayExtensions.Header="Disabled">
-							
+
 							<DatePicker Header="Set Date"
 										xamarin:UseNativeStyle="False"
 										HorizontalAlignment="Left"
@@ -45,9 +45,9 @@
 					<StackPanel>
 						<smtx:XamlDisplay UniqueKey="DatePickerSamplePage_Fluent_Default"
 										  smtx:XamlDisplayExtensions.Header="Default">
-							<DatePicker xamarin:UseNativeStyle="False"  />
+							<DatePicker xamarin:UseNativeStyle="False" />
 						</smtx:XamlDisplay>
-						
+
 						<smtx:XamlDisplay UniqueKey="DatePickerSamplePage_Fluent_Disabled"
 										  smtx:XamlDisplayExtensions.Header="Disabled">
 							<DatePicker IsEnabled="False"
@@ -56,7 +56,22 @@
 					</StackPanel>
 				</DataTemplate>
 			</local:SamplePageLayout.FluentTemplate>
+			<local:SamplePageLayout.CupertinoTemplate>
+				<DataTemplate>
+					<StackPanel>
+						<smtx:XamlDisplay Style="{StaticResource XamlDisplayBelowStyle}"
+										  UniqueKey="DatePickerSamplePage_Cupertino_Default"
+										  smtx:XamlDisplayExtensions.Header="Default">
 
+							<DatePicker x:Name="myDatePicker2"
+										HorizontalAlignment="Left"
+										xamarin:UseNativeStyle="False"
+										Header="Enter Date"
+										Style="{StaticResource CupertinoDatePickerStyle}" />
+						</smtx:XamlDisplay>
+					</StackPanel>
+				</DataTemplate>
+			</local:SamplePageLayout.CupertinoTemplate>
 			<local:SamplePageLayout.NativeTemplate>
 				<DataTemplate>
 
@@ -68,7 +83,7 @@
 
 						<smtx:XamlDisplay UniqueKey="DatePickerSamplePage_Native_Default"
 										  smtx:XamlDisplayExtensions.Header="Default">
-							<DatePicker xamarin:UseNativeStyle="True"  />
+							<DatePicker xamarin:UseNativeStyle="True" />
 						</smtx:XamlDisplay>
 
 						<smtx:XamlDisplay UniqueKey="DatePickerSamplePage_Native_Disabled"

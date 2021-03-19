@@ -175,6 +175,7 @@
     <BundleResource Include="Resources\Default-568h%402x.png" />
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
     <BundleResource Include="Resources\Fonts\roboto.ttf" />
+    <BundleResource Include="Resources\Fonts\SF-Pro.ttf" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -206,8 +207,11 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="Uno.Cupertino">
+      <Version>1.0.0-dev.732</Version>
+    </PackageReference>
     <PackageReference Include="Uno.Material">
-      <Version>1.0.0-dev.637</Version>
+      <Version>1.0.0-dev.732</Version>
     </PackageReference>
     <PackageReference Include="Uno.ShowMeTheXAML">
       <Version>1.0.59</Version>
@@ -216,10 +220,10 @@
       <Version>1.0.59</Version>
     </PackageReference>
     <PackageReference Include="Uno.UI">
-      <Version>3.6.0-dev.275</Version>
+      <Version>3.6.0-dev.509</Version>
     </PackageReference>
     <PackageReference Include="Uno.UI.Lottie">
-      <Version>3.6.0-dev.275</Version>
+      <Version>3.6.0-dev.509</Version>
     </PackageReference>
     <PackageReference Include="Uno.UI.RemoteControl" Version="3.6.0-dev.275" Condition="'$(Configuration)'=='Debug'" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />

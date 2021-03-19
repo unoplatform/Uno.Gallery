@@ -99,6 +99,21 @@ namespace Uno.Gallery
 		}
 
 		#endregion
+		#region Property: CupertinoTemplate
+
+		public static DependencyProperty CupertinoTemplateProperty { get; } = DependencyProperty.Register(
+			nameof(CupertinoTemplate),
+			typeof(DataTemplate),
+			typeof(SamplePageLayout),
+			new PropertyMetadata(default));
+
+		public DataTemplate CupertinoTemplate
+		{
+			get => (DataTemplate)GetValue(CupertinoTemplateProperty);
+			set => SetValue(CupertinoTemplateProperty, value);
+		}
+
+		#endregion
 		#region Property: NativeTemplate
 
 		public static DependencyProperty NativeTemplateProperty { get; } = DependencyProperty.Register(

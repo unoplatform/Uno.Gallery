@@ -127,6 +127,41 @@
 					</StackPanel>
 				</DataTemplate>
 			</local:SamplePageLayout.MaterialTemplate>
+			<local:SamplePageLayout.CupertinoTemplate>
+				<DataTemplate>
+					<smtx:XamlDisplay UniqueKey="CheckBoxSamplePage_Cupertino"
+										  smtx:XamlDisplayExtensions.Header="Default">
+						<StackPanel>
+							<CheckBox Style="{StaticResource CupertinoCheckBoxStyle}"
+										  Content="UNCHECKED" />
+
+							<CheckBox Style="{StaticResource CupertinoCheckBoxStyle}"
+										  Content="DISABLED UNCHECKED"
+										  IsEnabled="False" />
+
+							<CheckBox Style="{StaticResource CupertinoCheckBoxStyle}"
+										  Content="CHECKED"
+										  IsChecked="True" />
+
+							<CheckBox Style="{StaticResource CupertinoCheckBoxStyle}"
+										  Content="DISABLED CHECKED"
+										  IsChecked="True"
+										  IsEnabled="False" />
+
+							<CheckBox Style="{StaticResource CupertinoCheckBoxStyle}"
+										  Content="INDETERMINATE"
+										  IsThreeState="True"
+										  IsChecked="{x:Null}" />
+
+							<CheckBox Style="{StaticResource CupertinoCheckBoxStyle}"
+										  Content="DISABLED INDETERMINATE"
+										  IsThreeState="True"
+										  IsChecked="{x:Null}"
+										  IsEnabled="False" />
+						</StackPanel>
+					</smtx:XamlDisplay>
+				</DataTemplate>
+			</local:SamplePageLayout.CupertinoTemplate>
 		</local:SamplePageLayout>
 	</Grid>
 </Page>

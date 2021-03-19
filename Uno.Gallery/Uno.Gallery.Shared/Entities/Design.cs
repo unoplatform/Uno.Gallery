@@ -8,6 +8,7 @@ namespace Uno.Gallery
 	{
 		Fluent,
 		Material,
+		Cupertino,
 		Native
 	}
 }

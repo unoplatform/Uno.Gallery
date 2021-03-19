@@ -56,7 +56,7 @@ namespace Uno.Gallery
 			Xamarin.Calabash.Start();
 #endif
 
-			InitializeMaterialStyles();
+			InitializeThemes();
 
 #if WINDOWS_UWP
 			ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(320, 568)); // (size of the iPhone SE)
@@ -297,11 +297,10 @@ namespace Uno.Gallery
 				.Select(x => new Sample(x.SamplePageAttribute, x.TypeInfo.AsType()));
 
 
-		private void InitializeMaterialStyles()
+		private void InitializeThemes()
 		{
-			this.Resources.MergedDictionaries.Add(new Material.MaterialColorPalette());
-			this.Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = new Uri("ms-appx:///Views/Colors.xaml") });
-			this.Resources.MergedDictionaries.Add(new Material.MaterialResources());
+			Material.Resources.Init(this, colorPaletteOverride: new ResourceDictionary() { Source = new Uri("ms-appx:///Views/Colors.xaml") });
+			Cupertino.Resources.Init(this, null);
 			this.Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = new Uri("ms-appx:///Views/Styles/TextBlock.xaml") });
 		}
 	}

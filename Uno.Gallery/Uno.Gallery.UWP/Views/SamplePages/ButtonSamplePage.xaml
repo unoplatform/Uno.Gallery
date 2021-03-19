@@ -121,6 +121,40 @@
 					</StackPanel>
 				</DataTemplate>
 			</local:SamplePageLayout.FluentTemplate>
+
+			<local:SamplePageLayout.CupertinoTemplate>
+				<DataTemplate>
+					<StackPanel>
+						<!-- Button Default -->
+						<smtx:XamlDisplay UniqueKey="Cupertino_ButtonSamplePage_Default"
+										  smtx:XamlDisplayExtensions.Header="Default"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+							<StackPanel>
+								<Button Content="DEFAULT"
+										Style="{StaticResource CupertinoButtonStyle}"
+										Margin="5" />
+								<Button Content="DISABLED"
+										IsEnabled="False"
+										Style="{StaticResource CupertinoButtonStyle}"
+										Margin="5" />
+							</StackPanel>
+						</smtx:XamlDisplay>
+						<smtx:XamlDisplay UniqueKey="Cupertino_ButtonSamplePage_Contained"
+										  smtx:XamlDisplayExtensions.Header="Contained"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+							<StackPanel>
+								<Button Content="CONTAINED"
+										Style="{StaticResource CupertinoContainedButtonStyle}"
+										Margin="5" />
+								<Button Content="DISABLED"
+										IsEnabled="False"
+										Style="{StaticResource CupertinoContainedButtonStyle}"
+										Margin="5" />
+							</StackPanel>
+						</smtx:XamlDisplay>
+					</StackPanel>
+				</DataTemplate>
+			</local:SamplePageLayout.CupertinoTemplate>
 		</local:SamplePageLayout>
 	</Grid>
 </Page>

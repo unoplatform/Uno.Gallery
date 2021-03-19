@@ -30,7 +30,7 @@
 				<ColumnDefinition Width="*" />
 			</Grid.ColumnDefinitions>
 			
-			<TextBlock Text="Uno Gallery is a collection of ready-to-use Fluent and Material code snippets to help speed up your multi-platform development."
+			<TextBlock Text="Uno Gallery is a collection of ready-to-use Fluent, Material, and Cupertino code snippets to help speed up your multi-platform development."
 					   TextWrapping="Wrap"
 					   Style="{StaticResource MaterialHeadline5}"
 					   Margin="0,24,0,0"
@@ -41,7 +41,7 @@
 					   Margin="4,16,0,0"
 					   Grid.Row="1"/>
 			
-			<TextBlock Text="Check how Uno.Material's controls and color palette can help you build your app faster."
+			<TextBlock Text="Check how Uno.Material and Uno.Cupertino controls and color palettes can help you build your app faster."
 					   TextWrapping="Wrap"
 					   Style="{StaticResource MaterialHeadline6}"
 					   Margin="4,16,0,0"
@@ -53,7 +53,7 @@
 					   Margin="4,16,0,0"
 					   Grid.Row="2" />
 
-			<TextBlock Text="Compare Fluent and Material design for best fit and reuse with ease."
+			<TextBlock Text="Compare Fluent, Material, and Cupertino design for best fit and reuse with ease."
 					   TextWrapping="Wrap"
 					   Style="{StaticResource MaterialHeadline6}"
 					   Margin="4,16,0,0"

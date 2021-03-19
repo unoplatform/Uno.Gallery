@@ -26,7 +26,7 @@
 		<local:SamplePageLayout.MaterialTemplate>
 			<DataTemplate>
 				<StackPanel>
-					
+
 					<!-- Button -->
 					<local:OverviewSampleView SamplePageType="samples:ButtonSamplePage">
 						<StackPanel Spacing="8">
@@ -97,11 +97,11 @@
 					<!-- RadioButton -->
 					<local:OverviewSampleView SamplePageType="samples:RadioButtonSamplePage">
 						<StackPanel Spacing="8">
-							
+
 							<RadioButton Content="Checked"
 										 Style="{StaticResource MaterialRadioButtonStyle}"
 										 IsChecked="True" />
-							
+
 							<RadioButton Content="Unchecked"
 										 Style="{StaticResource MaterialRadioButtonStyle}" />
 						</StackPanel>
@@ -110,11 +110,11 @@
 					<!-- ToggleSwitch -->
 					<local:OverviewSampleView SamplePageType="samples:ToggleSwitchSamplePage">
 						<StackPanel Spacing="8">
-							
+
 							<ToggleSwitch Header="ToggleSwitch"
 										  IsOn="True"
 										  Style="{StaticResource MaterialToggleSwitchStyle}" />
-							
+
 							<ToggleSwitch Header="Disabled"
 										  IsEnabled="False"
 										  Style="{StaticResource MaterialToggleSwitchStyle}" />
@@ -193,5 +193,88 @@
 				</StackPanel>
 			</DataTemplate>
 		</local:SamplePageLayout.FluentTemplate>
+
+		<local:SamplePageLayout.CupertinoTemplate>
+			<DataTemplate>
+				<StackPanel>
+
+					<!-- Button -->
+					<local:OverviewSampleView SamplePageType="samples:ButtonSamplePage">
+						<StackPanel Spacing="8">
+
+							<Button Content="DEFAULT"
+									AutomationProperties.AutomationId="CupertinoButton"
+									Style="{StaticResource CupertinoButtonStyle}" />
+
+							<Button Content="CONTAINED"
+									AutomationProperties.AutomationId="CupertinoContainedButton"
+									Style="{StaticResource CupertinoContainedButtonStyle}" />
+						</StackPanel>
+					</local:OverviewSampleView>
+
+					<!-- TextBox -->
+					<local:OverviewSampleView SamplePageType="samples:TextBoxSamplePage">
+						<StackPanel Spacing="8">
+
+							<TextBox Style="{StaticResource CupertinoTextBoxStyle}"
+									 PlaceholderText="Placeholder single line" />
+
+							<TextBox Style="{StaticResource CupertinoTextBoxStyle}"
+									 Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent pretium augue ut lectus consequat lobortis. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque suscipit, diam eu aliquet egestas, dolor sem mattis tortor, eu congue augue ipsum et nulla."
+									 VerticalContentAlignment="Top"
+									 TextWrapping="Wrap"
+									 AcceptsReturn="True"
+									 PlaceholderText="Placeholder multi line" />
+						</StackPanel>
+					</local:OverviewSampleView>
+
+					<!-- CheckBox -->
+					<local:OverviewSampleView SamplePageType="samples:CheckBoxSamplePage">
+						<StackPanel Spacing="8">
+
+							<CheckBox Content="Checked"
+									  IsChecked="True"
+									  Style="{StaticResource CupertinoCheckBoxStyle}" />
+
+							<CheckBox Content="Unchecked"
+									  IsChecked="False"
+									  Style="{StaticResource CupertinoCheckBoxStyle}" />
+
+							<CheckBox Content="Indeterminate"
+									  IsChecked="{x:Null}"
+									  IsThreeState="True"
+									  Style="{StaticResource CupertinoCheckBoxStyle}" />
+						</StackPanel>
+					</local:OverviewSampleView>
+
+					<!-- RadioButton -->
+					<local:OverviewSampleView SamplePageType="samples:RadioButtonSamplePage">
+						<StackPanel Spacing="8">
+
+							<RadioButton Content="Checked"
+										 IsChecked="True"
+										 Style="{StaticResource CupertinoRadioButtonStyle}" />
+
+							<RadioButton Content="Unchecked"
+										 Style="{StaticResource CupertinoRadioButtonStyle}" />
+						</StackPanel>
+					</local:OverviewSampleView>
+
+					<!-- ToggleSwitch -->
+					<local:OverviewSampleView SamplePageType="samples:ToggleSwitchSamplePage">
+						<StackPanel Spacing="8">
+
+							<ToggleSwitch Header="ToggleSwitch"
+										  IsOn="True"
+										  Style="{StaticResource CupertinoToggleSwitchStyle}" />
+
+							<ToggleSwitch Header="Disabled"
+										  IsEnabled="False"
+										  Style="{StaticResource CupertinoToggleSwitchStyle}" />
+						</StackPanel>
+					</local:OverviewSampleView>
+				</StackPanel>
+			</DataTemplate>
+		</local:SamplePageLayout.CupertinoTemplate>
 	</local:SamplePageLayout>
 </Page>

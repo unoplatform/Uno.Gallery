@@ -104,8 +104,11 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="Uno.Cupertino">
+      <Version>1.0.0-dev.732</Version>
+    </PackageReference>
     <PackageReference Include="Uno.Material">
-      <Version>1.0.0-dev.637</Version>
+      <Version>1.0.0-dev.732</Version>
     </PackageReference>
     <PackageReference Include="Uno.ShowMeTheXAML">
       <Version>1.0.59</Version>
@@ -114,10 +117,10 @@
       <Version>1.0.59</Version>
     </PackageReference>
     <PackageReference Include="Uno.UI">
-      <Version>3.6.0-dev.275</Version>
+      <Version>3.6.0-dev.509</Version>
     </PackageReference>
     <PackageReference Include="Uno.UI.Lottie">
-      <Version>3.6.0-dev.275</Version>
+      <Version>3.6.0-dev.509</Version>
     </PackageReference>
     <PackageReference Include="Uno.UI.RemoteControl" Version="3.6.0-dev.275" Condition="'$(Configuration)'=='Debug'" />
     <PackageReference Include="Uno.UniversalImageLoader" Version="1.9.33" />
@@ -138,6 +141,7 @@
   <ItemGroup>
     <AndroidAsset Include="Assets\Fonts\uno-fluentui-assets.ttf" />
     <AndroidAsset Include="Assets\Fonts\roboto.ttf" />
+    <AndroidAsset Include="Assets\Fonts\SF-Pro.ttf" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
   </ItemGroup>

@@ -234,6 +234,129 @@ turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo ha
 					</StackPanel>
 				</DataTemplate>
 			</local:SamplePageLayout.FluentTemplate>
+			<local:SamplePageLayout.CupertinoTemplate>
+				<DataTemplate>
+					<StackPanel>
+
+						<!-- Large title -->
+						<smtx:XamlDisplay UniqueKey="Cupertino_TextBlockSamplePage_LargeTitle"
+										  Style="{StaticResource XamlDisplayBelowStyle}">
+							<TextBlock Text="Large title"
+									   Style="{StaticResource CupertinoLargeTitle}" />
+						</smtx:XamlDisplay>
+
+						<!-- Title 1 -->
+						<smtx:XamlDisplay UniqueKey="Cupertino_TextBlockSamplePage_PrimaryTitle"
+										  Style="{StaticResource XamlDisplayBelowStyle}">
+							<TextBlock Text="Title 1"
+									   Style="{StaticResource CupertinoPrimaryTitle}" />
+						</smtx:XamlDisplay>
+
+						<!-- Title 2 -->
+						<smtx:XamlDisplay UniqueKey="Cupertino_TextBlockSamplePage_SecondaryTitle"
+										  Style="{StaticResource XamlDisplayBelowStyle}">
+							<TextBlock Text="Title 2"
+									   Style="{StaticResource CupertinoSecondaryTitle}" />
+						</smtx:XamlDisplay>
+
+						<!-- Title 3 -->
+						<smtx:XamlDisplay UniqueKey="Cupertino_TextBlockSamplePage_TertiaryTitle"
+										  Style="{StaticResource XamlDisplayBelowStyle}">
+							<TextBlock Text="Title 3"
+									   Style="{StaticResource CupertinoTertiaryTitle}" />
+						</smtx:XamlDisplay>
+
+						<!-- Headline -->
+						<smtx:XamlDisplay UniqueKey="Cupertino_TextBlockSamplePage_Headline"
+										  Style="{StaticResource XamlDisplayBelowStyle}">
+							<TextBlock Text="Headline"
+									   Style="{StaticResource CupertinoHeadline}" />
+						</smtx:XamlDisplay>
+
+						<!-- Body -->
+						<smtx:XamlDisplay UniqueKey="Cupertino_TextBlockSamplePage_Body"
+										  Style="{StaticResource XamlDisplayBelowStyle}"
+										  smtx:XamlDisplayExtensions.Header="Body">
+							<TextBlock  Style="{StaticResource CupertinoBody}">
+<TextBlock.Text>
+Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper 
+commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet. 
+Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi 
+rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius 
+curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales 
+sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida
+turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant.
+</TextBlock.Text>
+							</TextBlock>
+						</smtx:XamlDisplay>
+
+						<!-- Callout -->
+						<smtx:XamlDisplay UniqueKey="Cupertino_TextBlockSamplePage_Callout"
+										  Style="{StaticResource XamlDisplayBelowStyle}">
+							<TextBlock Text="Callout"
+									   Style="{StaticResource CupertinoCallout}" />
+						</smtx:XamlDisplay>
+
+						<!-- Subhead -->
+						<smtx:XamlDisplay UniqueKey="Cupertino_TextBlockSamplePage_Subhead"
+										  Style="{StaticResource XamlDisplayBelowStyle}">
+							<TextBlock Text="Subhead"
+									   Style="{StaticResource CupertinoSubhead}" />
+						</smtx:XamlDisplay>
+
+						<!-- Footnote -->
+						<smtx:XamlDisplay UniqueKey="Cupertino_TextBlockSamplePage_Footnote"
+										  Style="{StaticResource XamlDisplayBelowStyle}"
+										  smtx:XamlDisplayExtensions.Header="Footnote">
+							<TextBlock Style="{StaticResource CupertinoFootnote}">
+<TextBlock.Text>
+Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper 
+commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet. 
+Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi 
+rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius 
+curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales 
+sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida
+turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant.
+</TextBlock.Text>
+							</TextBlock>
+						</smtx:XamlDisplay>
+
+						<!-- Caption 1 -->
+						<smtx:XamlDisplay UniqueKey="Cupertino_TextBlockSamplePage_PrimaryCaption"
+										  Style="{StaticResource XamlDisplayBelowStyle}"
+										  smtx:XamlDisplayExtensions.Header="Caption 1">
+							<TextBlock Style="{StaticResource CupertinoPrimaryCaption}">
+<TextBlock.Text>
+Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper 
+commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet. 
+Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi 
+rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius 
+curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales 
+sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida
+turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant.
+</TextBlock.Text>
+						</TextBlock>
+						</smtx:XamlDisplay>
+
+						<!-- Caption 2 -->
+						<smtx:XamlDisplay UniqueKey="Cupertino_TextBlockSamplePage_SecondaryCaption"
+										  Style="{StaticResource XamlDisplayBelowStyle}"
+										  smtx:XamlDisplayExtensions.Header="Caption 2">
+							<TextBlock Style="{StaticResource CupertinoSecondaryCaption}">
+<TextBlock.Text>
+Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper 
+commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet. 
+Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi 
+rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius 
+curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales 
+sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida
+turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant.
+</TextBlock.Text>
+							</TextBlock>
+						</smtx:XamlDisplay>
+					</StackPanel>
+				</DataTemplate>
+			</local:SamplePageLayout.CupertinoTemplate>
 		</local:SamplePageLayout>
 	</Grid>
 </Page>
