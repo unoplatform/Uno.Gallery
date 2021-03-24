@@ -25,6 +25,8 @@
 	<wasm:Style x:Key="CupertinoToggleSwitchStyle"
 				TargetType="ToggleSwitch"
 				BasedOn="{StaticResource DefaultCupertinoToggleSwitchStyle}">
+		<Setter Property="CornerRadius"
+		        Value="14" />
 	</wasm:Style>
 
 	<!-- Native ToggleSwitch colors -->
