@@ -24,6 +24,21 @@ namespace Uno.Gallery.UITests
 			TakeScreenshot("After Checked");
 
 			Assert.IsTrue(uncheckedBox.GetDependencyPropertyValue<bool>("IsChecked"));
+		} 
+
+		[Test]
+		public void When_ClickCheckedMaterial()
+		{
+			NavigateToSample("CheckBox");
+			ShowMaterialTheme();
+
+			TakeScreenshot("Before UnChecked");
+
+			var CheckedBox = App.WaitThenTap("Material_Checked").ToQueryEx();
+
+			TakeScreenshot("After UnChecked");
+
+			Assert.IsFalse(CheckedBox.GetDependencyPropertyValue<bool>("IsChecked"));
 		}
 	}
 }
