@@ -9,11 +9,11 @@ namespace Uno.Gallery.UITests
 {
     public class Constants
     {
-        public readonly static string WebAssemblyDefaultUri = "http://localhost:64555/";
+        public readonly static string WebAssemblyDefaultUri = "http://localhost:56745/";
         public readonly static string iOSAppName = "com.nventive.uno.gallery";
         public readonly static string AndroidAppName = "com.nventive.uno.ui.demo";
         public readonly static string iOSDeviceNameOrId = "iPad Pro (12.9-inch) (4th generation)";
 
-        public readonly static Platform CurrentPlatform = Platform.Browser;
+        public readonly static Platform CurrentPlatform = Platform.Android;
     }
 }

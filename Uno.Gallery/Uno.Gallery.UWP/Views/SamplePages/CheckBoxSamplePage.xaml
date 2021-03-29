@@ -97,27 +97,33 @@
 										  smtx:XamlDisplayExtensions.Header="Secondary">
 							<StackPanel>
 								<CheckBox Style="{StaticResource MaterialSecondaryCheckBoxStyle}"
+                                          AutomationProperties.AutomationId="Material_Secondary_Unchecked"
 										  Content="UNCHECKED" />
 
 								<CheckBox Style="{StaticResource MaterialSecondaryCheckBoxStyle}"
+                                          AutomationProperties.AutomationId="Material_Secondary_Disabled_Unchecked"
 										  Content="DISABLED UNCHECKED"
 										  IsEnabled="False" />
 
 								<CheckBox Style="{StaticResource MaterialSecondaryCheckBoxStyle}"
+                                          AutomationProperties.AutomationId="Material_Secondary_Checked"
 										  Content="CHECKED"
 										  IsChecked="True" />
 
 								<CheckBox Style="{StaticResource MaterialSecondaryCheckBoxStyle}"
+                                          AutomationProperties.AutomationId="Material_Secondary_Disabled_Checked"
 										  Content="DISABLED CHECKED"
 										  IsChecked="True"
 										  IsEnabled="False" />
 
 								<CheckBox Style="{StaticResource MaterialSecondaryCheckBoxStyle}"
+                                          AutomationProperties.AutomationId="Material_Secondary_Indeterminate"
 										  Content="INDETERMINATE"
 										  IsThreeState="True"
 										  IsChecked="{x:Null}" />
 
 								<CheckBox Style="{StaticResource MaterialSecondaryCheckBoxStyle}"
+                                          AutomationProperties.AutomationId="Material_Secondary_Disabled_Indeterminate"
 										  Content="DISABLED INDETERMINATE"
 										  IsThreeState="True"
 										  IsChecked="{x:Null}"
@@ -133,27 +139,33 @@
 										  smtx:XamlDisplayExtensions.Header="Default">
 						<StackPanel>
 							<CheckBox Style="{StaticResource CupertinoCheckBoxStyle}"
+										  AutomationProperties.AutomationId="Cupertino_Unchecked"                                      
 										  Content="UNCHECKED" />
 
 							<CheckBox Style="{StaticResource CupertinoCheckBoxStyle}"
+										  AutomationProperties.AutomationId="Cupertino_Disabled_Unchecked"                                      
 										  Content="DISABLED UNCHECKED"
 										  IsEnabled="False" />
 
 							<CheckBox Style="{StaticResource CupertinoCheckBoxStyle}"
+										  AutomationProperties.AutomationId="Cupertino_Checked"                                      
 										  Content="CHECKED"
 										  IsChecked="True" />
 
 							<CheckBox Style="{StaticResource CupertinoCheckBoxStyle}"
+										  AutomationProperties.AutomationId="Cupertino_Disabled_Checked"                                           
 										  Content="DISABLED CHECKED"
 										  IsChecked="True"
 										  IsEnabled="False" />
 
 							<CheckBox Style="{StaticResource CupertinoCheckBoxStyle}"
+										  AutomationProperties.AutomationId="Cupertino_Indeterminate"                                      
 										  Content="INDETERMINATE"
 										  IsThreeState="True"
 										  IsChecked="{x:Null}" />
 
 							<CheckBox Style="{StaticResource CupertinoCheckBoxStyle}"
+										  AutomationProperties.AutomationId="Cupertino_Disabled_Indeterminate"  
 										  Content="DISABLED INDETERMINATE"
 										  IsThreeState="True"
 										  IsChecked="{x:Null}"
