@@ -9,14 +9,13 @@ using Uno.UITests.Helpers;
 
 namespace Uno.Gallery.UITests
 {
-	public class Given_CheckBox : TestBase
+	public class Given_CheckBox_Material : TestBase
 	{
+		/*     
+		 * This function is to test the Checked option in checkbox for material.    
+		 */
 		[Test]
-		/*
-		 * This function is to test the Material- Checked option on the CheckBox page.
-		 * 
-		 * */
-		public void When_ClickCheckedMaterial()
+		public void When_ClickMaterialChecked()
 		{
 			NavigateToSample("CheckBox");
 			ShowMaterialTheme();
@@ -28,10 +27,12 @@ namespace Uno.Gallery.UITests
 			TakeScreenshot("After UnChecked");
 
 			Assert.IsFalse(checkedBox.GetDependencyPropertyValue<bool>("IsChecked"));
-		} 
-
+		}
+		/*     
+        * This function is to test the Indeterminate for uncheck, recheck and indeterminate option  in checkbox for material, 
+        */
 		[Test]
-		public void When_ClickIndeterminateMaterial()
+		public void When_ClickMaterialIndeterminate()
 		{
 			NavigateToSample("CheckBox");
 			ShowMaterialTheme();
@@ -56,9 +57,11 @@ namespace Uno.Gallery.UITests
 
 			Assert.IsFalse(reUncheckIndeterminateBox.GetDependencyPropertyValue<bool>("IsChecked"));
 		}
-		
+		/*     
+        * This function is to test the Unchecked option  in checkbox for material, 
+        */
 		[Test]
-		public void When_ClickMaterial()
+		public void When_ClickMaterialUnchecked()
 		{
 			NavigateToSample("CheckBox");
 			ShowMaterialTheme();
@@ -71,7 +74,9 @@ namespace Uno.Gallery.UITests
 
 			Assert.IsFalse(uncheckedBox.GetDependencyPropertyValue<bool>("IsChecked"));
 		}
-		
+		/*     
+        * This function is to test the DisabledChecked option  in checkbox for material, 
+        */
 		[Test]
 		public void When_MaterialDisabledChecked()
 		{
@@ -85,6 +90,40 @@ namespace Uno.Gallery.UITests
 			TakeScreenshot("After Checked");
 
 			Assert.IsFalse(materialDisabledCheckedBox.GetDependencyPropertyValue<bool>("IsEnabled"));
+		}
+		/*     
+        * This function is to test the DisabledUnchecked option  in checkbox for material.
+        */
+		[Test]
+		public void When_MaterialDisabledUnchecked()
+		{
+			NavigateToSample("CheckBox");
+			ShowMaterialTheme();
+
+			TakeScreenshot("Before Checked");
+
+			var materialDisabledUncheckedBox = App.WaitThenTap("Material_Disabled_Unchecked").ToQueryEx();
+
+			TakeScreenshot("After Checked");
+
+			Assert.IsFalse(materialDisabledUncheckedBox.GetDependencyPropertyValue<bool>("IsEnabled"));
+		}
+		/*     
+        * This function is to test the DisabledIndeterminate option  in checkbox for material.
+        */
+		[Test]
+		public void When_MaterialDisabledIndeterminate()
+		{
+			NavigateToSample("CheckBox");
+			ShowMaterialTheme();
+
+			TakeScreenshot("Before Checked");
+
+			var materialDisabledIndeterminateBox = App.WaitThenTap("Material_Disabled_Indeterminate").ToQueryEx();
+
+			TakeScreenshot("After Checked");
+
+			Assert.IsFalse(materialDisabledIndeterminateBox.GetDependencyPropertyValue<bool>("IsEnabled"));
 		}
 	}
 }
