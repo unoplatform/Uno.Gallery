@@ -12,6 +12,52 @@ namespace Uno.Gallery.UITests
 	public class Given_CheckBox : TestBase
 	{
 		[Test]
+		/*
+		 * This function is to test the Material- Checked option on the CheckBox page.
+		 * 
+		 * */
+		public void When_ClickCheckedMaterial()
+		{
+			NavigateToSample("CheckBox");
+			ShowMaterialTheme();
+
+			TakeScreenshot("Before UnChecked");
+
+			var checkedBox = App.WaitThenTap("Material_Checked").ToQueryEx();
+
+			TakeScreenshot("After UnChecked");
+
+			Assert.IsFalse(checkedBox.GetDependencyPropertyValue<bool>("IsChecked"));
+		} 
+
+		[Test]
+		public void When_ClickIndeterminateMaterial()
+		{
+			NavigateToSample("CheckBox");
+			ShowMaterialTheme();
+
+			TakeScreenshot("Before UnChecked");
+
+			var checkedIndeterminateBox = App.WaitThenTap("Material_Indeterminate").ToQueryEx();
+
+			TakeScreenshot("After UnChecked");
+
+			Assert.IsFalse(checkedIndeterminateBox.GetDependencyPropertyValue<bool>("IsChecked"));
+
+			var recheckIndeterminateBox = App.WaitThenTap("Material_Indeterminate").ToQueryEx();
+
+			TakeScreenshot("After Checked");
+
+			Assert.IsFalse(recheckIndeterminateBox.GetDependencyPropertyValue<bool>("IsChecked"));
+
+			var reUncheckIndeterminateBox = App.WaitThenTap("Material_Indeterminate").ToQueryEx();
+
+			TakeScreenshot("After Checked");
+
+			Assert.IsFalse(reUncheckIndeterminateBox.GetDependencyPropertyValue<bool>("IsChecked"));
+		}
+		
+		[Test]
 		public void When_ClickMaterial()
 		{
 			NavigateToSample("CheckBox");
@@ -20,25 +66,25 @@ namespace Uno.Gallery.UITests
 			TakeScreenshot("Before Checked");
 
 			var uncheckedBox = App.WaitThenTap("Material_Unchecked").ToQueryEx();
-			
+
 			TakeScreenshot("After Checked");
 
-			Assert.IsTrue(uncheckedBox.GetDependencyPropertyValue<bool>("IsChecked"));
-		} 
-
+			Assert.IsFalse(uncheckedBox.GetDependencyPropertyValue<bool>("IsChecked"));
+		}
+		
 		[Test]
-		public void When_ClickCheckedMaterial()
+		public void When_MaterialDisabledChecked()
 		{
 			NavigateToSample("CheckBox");
 			ShowMaterialTheme();
 
-			TakeScreenshot("Before UnChecked");
+			TakeScreenshot("Before Checked");
 
-			var CheckedBox = App.WaitThenTap("Material_Checked").ToQueryEx();
+			var materialDisabledCheckedBox = App.WaitThenTap("Material_Disabled_Checked").ToQueryEx();
 
-			TakeScreenshot("After UnChecked");
+			TakeScreenshot("After Checked");
 
-			Assert.IsFalse(CheckedBox.GetDependencyPropertyValue<bool>("IsChecked"));
+			Assert.IsFalse(materialDisabledCheckedBox.GetDependencyPropertyValue<bool>("IsEnabled"));
 		}
 	}
 }
