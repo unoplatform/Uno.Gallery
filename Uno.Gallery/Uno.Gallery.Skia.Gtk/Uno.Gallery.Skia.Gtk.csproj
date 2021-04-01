@@ -27,8 +27,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Uno.Cupertino" Version="1.0.0-dev.732" />
-		<PackageReference Include="Uno.Material" Version="1.0.0-dev.732" />
+		<PackageReference Include="Uno.Cupertino" Version="1.0.0-dev.736" />
+		<PackageReference Include="Uno.Material" Version="1.0.0-dev.736" />
 		<!-- Note that for WebAssembly version 1.1.1 of the console logger required -->
 		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Filter" Version="1.1.1" />
@@ -46,9 +46,9 @@
 		</PackageReference>
 		<PackageReference Include="Uno.ShowMeTheXAML" Version="1.0.59" />
 		<PackageReference Include="Uno.ShowMeTheXAML.MSBuild" Version="1.0.59" />		
-		<PackageReference Include="Uno.UI.Lottie" Version="3.7.0-dev.18" />
-		<PackageReference Include="Uno.UI.Skia.Gtk" Version="3.7.0-dev.18" />
-		<PackageReference Include="Uno.UI.RemoteControl" Version="3.7.0-dev.18" Condition="'$(Configuration)'=='Debug'" />
+		<PackageReference Include="Uno.UI.Lottie" Version="3.7.0-dev.92" />
+		<PackageReference Include="Uno.UI.Skia.Gtk" Version="3.7.0-dev.92" />
+		<PackageReference Include="Uno.UI.RemoteControl" Version="3.7.0-dev.92" Condition="'$(Configuration)'=='Debug'" />
 	</ItemGroup>
 	
 	<Import Project="..\Uno.Gallery.Shared\Uno.Gallery.Shared.projitems" Label="Shared" />
