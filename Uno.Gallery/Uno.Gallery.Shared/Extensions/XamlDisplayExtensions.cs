@@ -20,6 +20,8 @@ namespace ShowMeTheXAML
 		 * IgnorePath: [required] ignore everything except descendent(s) of this path; see: PrettyXamlFormatter.IgnorePath
 		 *             ^ made [optional='XamlDisplay'] with default style setter
 		 * PrettyXaml: [reserved] custom formatted xaml based on IgnorePath
+		 * ShowXaml: [reserved] bool driving whether or not to display the formatted xaml
+		 * IsXamlDirty: [reserved] denotes whether the xaml string needs to be re-formatted prior to display
 		 */
 
 		#region Property: Header
@@ -80,6 +82,32 @@ namespace ShowMeTheXAML
 
 		#endregion
 
+		#region Property: ShowXaml
+
+		public static DependencyProperty ShowXamlProperty { get; } = DependencyProperty.RegisterAttached(
+			"ShowXaml",
+			typeof(bool),
+			typeof(XamlDisplayExtensions),
+			new PropertyMetadata(default(bool), (d, e) => d.Maybe<XamlDisplay>(control => OnShowXamlChanged(control, (bool)e.NewValue))));
+
+		public static bool GetShowXaml(XamlDisplay obj) => (bool)obj.GetValue(ShowXamlProperty);
+		public static void SetShowXaml(XamlDisplay obj, bool value) => obj.SetValue(ShowXamlProperty, value);
+
+		#endregion
+
+		#region Property: IsXamlDirty
+
+		public static DependencyProperty IsXamlDirtyProperty { get; } = DependencyProperty.RegisterAttached(
+			"IsXamlDirty",
+			typeof(bool),
+			typeof(XamlDisplayExtensions),
+			new PropertyMetadata(true));
+
+		public static bool GetIsXamlDirty(XamlDisplay obj) => (bool)obj.GetValue(IsXamlDirtyProperty);
+		public static void SetIsXamlDirty(XamlDisplay obj, bool value) => obj.SetValue(IsXamlDirtyProperty, value);
+
+		#endregion
+
 		private static void OnIgnorePathChanged(XamlDisplay sender, DependencyPropertyChangedEventArgs e)
 		{
 			sender.RegisterPropertyChangedCallback(XamlDisplay.XamlProperty, OnXamlChanged);
@@ -89,15 +117,30 @@ namespace ShowMeTheXAML
 			}
 		}
 
-		private static void OnXamlChanged(DependencyObject sender, DependencyProperty dp)
+		private static void OnShowXamlChanged(XamlDisplay sender, bool showXaml)
 		{
-			if (sender is XamlDisplay target)
+			if (showXaml && sender is XamlDisplay target)
 			{
+				if (!GetIsXamlDirty(target))
+				{
+					return;
+				}
+
+				SetIsXamlDirty(target, false); 
 				var ignorePath = GetIgnorePath(target);
 				var formatter = new PrettyXamlFormatter() { IgnorePath = ignorePath };
 				var xaml = formatter.FormatXaml(target.Xaml);
 
 				SetPrettyXaml(target, xaml);
+			}
+		}
+
+
+		private static void OnXamlChanged(DependencyObject sender, DependencyProperty dp)
+		{
+			if (sender is XamlDisplay target)
+			{
+				SetIsXamlDirty(target, true);
 			}
 		}
 
