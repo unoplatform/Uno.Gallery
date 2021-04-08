@@ -174,16 +174,14 @@ turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo ha
 
 						<!-- Default Single Line -->
 						<smtx:XamlDisplay UniqueKey="Cupertino_TextBoxSamplePage_DefaultSingleLine"
-										  smtx:XamlDisplayExtensions.Header="Default"
-										  Style="{StaticResource XamlDisplayBelowStyle}">
+										  smtx:XamlDisplayExtensions.Header="Default">
 							<TextBox Style="{StaticResource CupertinoTextBoxStyle}"
 									 PlaceholderText="Placeholder single line" />
 						</smtx:XamlDisplay>
 
 						<!-- Default Multi Line -->
 						<smtx:XamlDisplay UniqueKey="Cupertino_TextBoxSamplePage_DefaultMultiLine"
-										  smtx:XamlDisplayExtensions.Header="Multiline"
-										  Style="{StaticResource XamlDisplayBelowStyle}">
+										  smtx:XamlDisplayExtensions.Header="Multiline">
 							<TextBox Style="{StaticResource CupertinoTextBoxStyle}"
 									 VerticalContentAlignment="Top"
 									 TextWrapping="Wrap"
@@ -203,8 +201,7 @@ turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo ha
 
 						<!-- Disabled Empty -->
 						<smtx:XamlDisplay UniqueKey="Cupertino_TextBoxSamplePage_DisabledEmpty"
-										  smtx:XamlDisplayExtensions.Header="Disabled (Empty)"
-										  Style="{StaticResource XamlDisplayBelowStyle}">
+										  smtx:XamlDisplayExtensions.Header="Disabled (Empty)">
 							<TextBox Style="{StaticResource CupertinoTextBoxStyle}"
 									 PlaceholderText="Placeholder"
 									 IsEnabled="False" />
@@ -212,8 +209,7 @@ turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo ha
 
 						<!-- Disabled -->
 						<smtx:XamlDisplay UniqueKey="Cupertino_TextBoxSamplePage_Disabled"
-										  smtx:XamlDisplayExtensions.Header="Disabled"
-										  Style="{StaticResource XamlDisplayBelowStyle}">
+										  smtx:XamlDisplayExtensions.Header="Disabled">
 							<TextBox Style="{StaticResource CupertinoTextBoxStyle}"
 									 PlaceholderText="Placeholder"
 									 Text="This is my text"

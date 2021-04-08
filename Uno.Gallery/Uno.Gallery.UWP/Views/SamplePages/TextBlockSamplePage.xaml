@@ -239,43 +239,37 @@ turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo ha
 					<StackPanel>
 
 						<!-- Large title -->
-						<smtx:XamlDisplay UniqueKey="Cupertino_TextBlockSamplePage_LargeTitle"
-										  Style="{StaticResource XamlDisplayBelowStyle}">
+						<smtx:XamlDisplay UniqueKey="Cupertino_TextBlockSamplePage_LargeTitle">
 							<TextBlock Text="Large title"
 									   Style="{StaticResource CupertinoLargeTitle}" />
 						</smtx:XamlDisplay>
 
 						<!-- Title 1 -->
-						<smtx:XamlDisplay UniqueKey="Cupertino_TextBlockSamplePage_PrimaryTitle"
-										  Style="{StaticResource XamlDisplayBelowStyle}">
+						<smtx:XamlDisplay UniqueKey="Cupertino_TextBlockSamplePage_PrimaryTitle">
 							<TextBlock Text="Title 1"
 									   Style="{StaticResource CupertinoPrimaryTitle}" />
 						</smtx:XamlDisplay>
 
 						<!-- Title 2 -->
-						<smtx:XamlDisplay UniqueKey="Cupertino_TextBlockSamplePage_SecondaryTitle"
-										  Style="{StaticResource XamlDisplayBelowStyle}">
+						<smtx:XamlDisplay UniqueKey="Cupertino_TextBlockSamplePage_SecondaryTitle">
 							<TextBlock Text="Title 2"
 									   Style="{StaticResource CupertinoSecondaryTitle}" />
 						</smtx:XamlDisplay>
 
 						<!-- Title 3 -->
-						<smtx:XamlDisplay UniqueKey="Cupertino_TextBlockSamplePage_TertiaryTitle"
-										  Style="{StaticResource XamlDisplayBelowStyle}">
+						<smtx:XamlDisplay UniqueKey="Cupertino_TextBlockSamplePage_TertiaryTitle">
 							<TextBlock Text="Title 3"
 									   Style="{StaticResource CupertinoTertiaryTitle}" />
 						</smtx:XamlDisplay>
 
 						<!-- Headline -->
-						<smtx:XamlDisplay UniqueKey="Cupertino_TextBlockSamplePage_Headline"
-										  Style="{StaticResource XamlDisplayBelowStyle}">
+						<smtx:XamlDisplay UniqueKey="Cupertino_TextBlockSamplePage_Headline">
 							<TextBlock Text="Headline"
 									   Style="{StaticResource CupertinoHeadline}" />
 						</smtx:XamlDisplay>
 
 						<!-- Body -->
 						<smtx:XamlDisplay UniqueKey="Cupertino_TextBlockSamplePage_Body"
-										  Style="{StaticResource XamlDisplayBelowStyle}"
 										  smtx:XamlDisplayExtensions.Header="Body">
 							<TextBlock  Style="{StaticResource CupertinoBody}">
 <TextBlock.Text>
@@ -291,22 +285,19 @@ turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo ha
 						</smtx:XamlDisplay>
 
 						<!-- Callout -->
-						<smtx:XamlDisplay UniqueKey="Cupertino_TextBlockSamplePage_Callout"
-										  Style="{StaticResource XamlDisplayBelowStyle}">
+						<smtx:XamlDisplay UniqueKey="Cupertino_TextBlockSamplePage_Callout">
 							<TextBlock Text="Callout"
 									   Style="{StaticResource CupertinoCallout}" />
 						</smtx:XamlDisplay>
 
 						<!-- Subhead -->
-						<smtx:XamlDisplay UniqueKey="Cupertino_TextBlockSamplePage_Subhead"
-										  Style="{StaticResource XamlDisplayBelowStyle}">
+						<smtx:XamlDisplay UniqueKey="Cupertino_TextBlockSamplePage_Subhead">
 							<TextBlock Text="Subhead"
 									   Style="{StaticResource CupertinoSubhead}" />
 						</smtx:XamlDisplay>
 
 						<!-- Footnote -->
 						<smtx:XamlDisplay UniqueKey="Cupertino_TextBlockSamplePage_Footnote"
-										  Style="{StaticResource XamlDisplayBelowStyle}"
 										  smtx:XamlDisplayExtensions.Header="Footnote">
 							<TextBlock Style="{StaticResource CupertinoFootnote}">
 <TextBlock.Text>
@@ -323,7 +314,6 @@ turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo ha
 
 						<!-- Caption 1 -->
 						<smtx:XamlDisplay UniqueKey="Cupertino_TextBlockSamplePage_PrimaryCaption"
-										  Style="{StaticResource XamlDisplayBelowStyle}"
 										  smtx:XamlDisplayExtensions.Header="Caption 1">
 							<TextBlock Style="{StaticResource CupertinoPrimaryCaption}">
 <TextBlock.Text>
@@ -340,7 +330,6 @@ turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo ha
 
 						<!-- Caption 2 -->
 						<smtx:XamlDisplay UniqueKey="Cupertino_TextBlockSamplePage_SecondaryCaption"
-										  Style="{StaticResource XamlDisplayBelowStyle}"
 										  smtx:XamlDisplayExtensions.Header="Caption 2">
 							<TextBlock Style="{StaticResource CupertinoSecondaryCaption}">
 <TextBlock.Text>
