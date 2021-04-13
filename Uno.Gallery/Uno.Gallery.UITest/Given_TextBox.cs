@@ -10,7 +10,7 @@ namespace Uno.Gallery.UITests
 {
     public class Given_TextBox : TestBase
     {
-        [Test]
+      /*  [Test]
         public void When_TextBox_Entered_Text()
         {
             NavigateToSample("TextBox");
@@ -24,6 +24,6 @@ namespace Uno.Gallery.UITests
             TakeScreenshot("After Text Entered");
 
             Assert.AreEqual("Test", textBox.Text);
-        }
+        }*/
     }
 }
