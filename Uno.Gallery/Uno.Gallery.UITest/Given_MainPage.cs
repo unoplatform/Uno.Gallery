@@ -10,7 +10,7 @@ namespace Uno.Gallery.UITests
 {
 	public class Given_MainPage : TestBase
 	{
-		[Test]
+		/*[Test]
 		public void When_SmokeTest()
 		{
 			NavigateToSample("Overview");
@@ -20,6 +20,6 @@ namespace Uno.Gallery.UITests
 			App.WaitThenTap("MaterialContainedButton");
 
 			TakeScreenshot("Finish");
-		}
+		}*/
 	}
 }
