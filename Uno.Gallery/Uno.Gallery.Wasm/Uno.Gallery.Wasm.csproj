@@ -105,14 +105,14 @@
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 		<PackageReference Include="Microsoft.Windows.Compatibility" Version="5.0.1" />
-		<PackageReference Include="Uno.Cupertino" Version="1.0.0-dev.736" />
+		<PackageReference Include="Uno.Cupertino" Version="1.0.0-dev.742" />
 		<PackageReference Include="Uno.Diagnostics.Eventing" Version="1.0.5-dev.13" />
-		<PackageReference Include="Uno.Material" Version="1.0.0-dev.736" />
+		<PackageReference Include="Uno.Material" Version="1.0.0-dev.742" />
 		<PackageReference Include="Uno.ShowMeTheXAML" Version="1.0.59" />
 		<PackageReference Include="Uno.ShowMeTheXAML.MSBuild" Version="1.0.59" />
-		<PackageReference Include="Uno.UI.Lottie" Version="3.7.0-dev.147" />
-		<PackageReference Include="Uno.UI.WebAssembly" Version="3.7.0-dev.147" />
-		<PackageReference Include="Uno.UI.RemoteControl" Version="3.7.0-dev.92" Condition="'$(Configuration)'=='Debug'" />
+		<PackageReference Include="Uno.UI.Lottie" Version="3.7.0-dev.226" />
+		<PackageReference Include="Uno.UI.WebAssembly" Version="3.7.0-dev.226" />
+		<PackageReference Include="Uno.UI.RemoteControl" Version="3.7.0-dev.226" Condition="'$(Configuration)'=='Debug'" />
 		<PackageReference Include="Uno.Wasm.Bootstrap" Version="2.1.0-dev.45" />
 		<PackageReference Include="Uno.Wasm.Bootstrap.DevServer" Version="2.1.0-dev.45" />
 		<PackageReference Include="Microsoft.TypeScript.Compiler" Version="3.1.5">
