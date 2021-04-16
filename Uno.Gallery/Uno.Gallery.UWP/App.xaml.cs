@@ -41,7 +41,9 @@ namespace Uno.Gallery
 			this.InitializeComponent();
 			this.Suspending += OnSuspending;
 
-			_ = Windows.UI.Xaml.Window.Current.Dispatcher.RunIdleAsync(_ => AnalyticsService.Initialize());
+#if __WASM__
+			_ = Windows.UI.Xaml.Window.Current.Dispatcher?.RunIdleAsync(_ => AnalyticsService.Initialize());
+#endif
 		}
 
 		/// <summary>
@@ -116,7 +118,9 @@ namespace Uno.Gallery
 				var page = (Page)Activator.CreateInstance(sample.ViewType);
 				page.DataContext = sample;
 
+#if __WASM__
 				_ = Windows.UI.Xaml.Window.Current.Dispatcher.RunIdleAsync(_ => AnalyticsService.TrackView(sample?.Title ?? page.GetType().Name));
+#endif
 
 				_shell.NavigationView.Content = page;
 			}
