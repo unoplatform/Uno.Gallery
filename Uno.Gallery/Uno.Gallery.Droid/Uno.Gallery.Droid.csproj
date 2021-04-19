@@ -84,6 +84,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Branch-Xamarin-Linking-SDK">
+      <Version>7.0.7</Version>
+    </PackageReference>
     <PackageReference Include="nventive.Nimue.Application.Building.Light">
       <Version>0.1.0-alpha.58</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -131,6 +134,9 @@
     </PackageReference>
     <PackageReference Include="Xamarin.AndroidX.Lifecycle.LiveData">
       <Version>2.2.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Essentials">
+      <Version>1.6.1</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

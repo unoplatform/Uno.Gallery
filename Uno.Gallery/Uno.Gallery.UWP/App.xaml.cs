@@ -8,6 +8,7 @@ using System.Reflection;
 using Uno.Extensions;
 using Uno.Gallery.Helpers;
 using Uno.Gallery.Views.GeneralPages;
+using Uno.Logging;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
@@ -27,6 +28,7 @@ namespace Uno.Gallery
 	/// </summary>
 	sealed partial class App : Application
 	{
+		private static Sample[] _samples;
 		private Shell _shell;
 
 		/// <summary>
@@ -53,26 +55,46 @@ namespace Uno.Gallery
 		/// <param name="e">Details about the launch request and process.</param>
 		protected override void OnLaunched(LaunchActivatedEventArgs e)
 		{
+			this.Log().Debug("Launched app.");
+			OnLaunchedOrActivated();
+		}
+
+		/// <summary>
+		/// This method is used as the entry point when opening the app from an url.
+		/// </summary>
+		protected override void OnActivated(IActivatedEventArgs args)
+		{
+			this.Log().Debug("Activated app.");
+			base.OnActivated(args);
+		}
+
+		private void OnLaunchedOrActivated()
+		{
+			var window = Windows.UI.Xaml.Window.Current;
+			var isFirstLaunch = !(window.Content is Shell);
+
+			if (isFirstLaunch)
+			{
 #if __IOS__ && USE_UITESTS
-			// requires Xamarin Test Cloud Agent
-			Xamarin.Calabash.Start();
+				// requires Xamarin Test Cloud Agent
+				Xamarin.Calabash.Start();
 #endif
 
-			InitializeThemes();
+				InitializeThemes();
 
 #if WINDOWS_UWP
-			ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(320, 568)); // (size of the iPhone SE)
+				ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(320, 568)); // (size of the iPhone SE)
 #endif
 
-			var window = Windows.UI.Xaml.Window.Current;
-			if (!(window.Content is Shell))
-			{
-				window.Content = _shell = BuildShell();
+				if (!(window.Content is Shell))
+				{
+					window.Content = _shell = BuildShell();
+				}
 			}
 
 			// Ensure the current window is active
 			window.Activate();
-		}
+		}		
 
 		/// <summary>
 		/// Invoked when application execution is being suspended. Application state is saved
@@ -291,13 +313,14 @@ namespace Uno.Gallery
 			XamlDisplay.Init(GetType().Assembly);
 		}
 
-		private static IEnumerable<Sample> GetSamples() 
-			=> Assembly.GetExecutingAssembly()
+		public static IEnumerable<Sample> GetSamples() 
+			=> _samples = _samples ?? Assembly.GetExecutingAssembly()
 				.DefinedTypes
 				.Where(x => x.Namespace?.StartsWith("Uno.Gallery") == true)
 				.Select(x => new { TypeInfo = x, SamplePageAttribute = x.GetCustomAttribute<SamplePageAttribute>() })
 				.Where(x => x.SamplePageAttribute != null)
-				.Select(x => new Sample(x.SamplePageAttribute, x.TypeInfo.AsType()));
+				.Select(x => new Sample(x.SamplePageAttribute, x.TypeInfo.AsType()))
+				.ToArray();
 
 
 		private void InitializeThemes()
