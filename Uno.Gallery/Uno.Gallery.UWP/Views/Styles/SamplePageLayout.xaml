@@ -248,13 +248,14 @@
 														  Visibility="Collapsed" />
 									</Grid>
 
-									<!-- Optional link to documentation -->
-									<StackPanel Visibility="{Binding DocumentationLink, Converter={StaticResource IsNullOrEmptyToCollapsed}}">
+									<StackPanel Visibility="{Binding IsFooterVisible, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}">
 
 										<material:Divider Margin="0,48,0,36"
 														  Style="{StaticResource MaterialDividerStyle}" />
 
-										<TextBlock Margin="0,0,0,16"
+										<!-- Optional link to documentation -->
+										<TextBlock Visibility="{Binding DocumentationLink, Converter={StaticResource IsNullOrEmptyToCollapsed}}"
+												   Margin="0,0,0,32"
 												   Foreground="{StaticResource MaterialOnBackgroundBrush}"
 												   Opacity="0.8"
 												   Style="{StaticResource MaterialBody1}">
@@ -263,6 +264,21 @@
 											<Hyperlink NavigateUri="{Binding DocumentationLink}">
 												<Run Text="official documentation." />
 											</Hyperlink>
+										</TextBlock>
+
+										<!-- Share button -->
+										<TextBlock Visibility="{Binding IsShareVisible, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
+														   Margin="0,0,0,16"
+														   Foreground="{StaticResource MaterialOnBackgroundBrush}"
+														   Opacity="0.8"
+														   Style="{StaticResource MaterialBody1}">
+											<Run Text="You can" />
+
+											<Hyperlink x:Name="PART_ShareHyperlink">
+												<Run Text="share" />
+											</Hyperlink>
+
+											<Run Text="this page." />
 										</TextBlock>
 									</StackPanel>
 								</StackPanel>

@@ -9,7 +9,9 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using BranchXamarinSDK;
 using Com.Nostra13.Universalimageloader.Core;
+using Uno.Gallery.Deeplinking;
 using Windows.UI.Xaml.Media;
 
 namespace Uno.Gallery.Droid
@@ -20,12 +22,21 @@ namespace Uno.Gallery.Droid
 		HardwareAccelerated = true,
 		Theme = "@style/AppTheme"
 	)]
+	[MetaData("io.branch.sdk.auto_link_disable", Value = "false")]
+	[MetaData("io.branch.sdk.TestMode", Value = "false")]
+	[MetaData("io.branch.sdk.BranchKey", Value = BranchService.BranchKey)]
 	public class Application : Windows.UI.Xaml.NativeApplication
 	{
 		public Application(IntPtr javaReference, JniHandleOwnership transfer)
 			: base(() => new App(), javaReference, transfer)
 		{
 			ConfigureUniversalImageLoader();
+		}
+
+		public override void OnCreate()
+		{
+			base.OnCreate();
+			BranchAndroid.GetAutoInstance(this.ApplicationContext);
 		}
 
 		private void ConfigureUniversalImageLoader()
