@@ -44,6 +44,10 @@ namespace Uno.Gallery
 #if __WASM__
 			_ = Windows.UI.Xaml.Window.Current.Dispatcher?.RunIdleAsync(_ => AnalyticsService.Initialize());
 #endif
+
+#if !WINDOWS_UWP
+			Uno.UI.FeatureConfiguration.ApiInformation.NotImplementedLogLevel = LogLevel.Debug; // Raise not implemented usages as Debug messages
+#endif
 		}
 
 		/// <summary>
