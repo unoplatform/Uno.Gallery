@@ -37,6 +37,11 @@ namespace Uno.Gallery
 		/// </summary>
 		public App()
 		{
+
+#if !WINDOWS_UWP
+			Uno.UI.FeatureConfiguration.ApiInformation.NotImplementedLogLevel = LogLevel.Debug; // Raise not implemented usages as Debug messages
+#endif
+
 			ConfigureFilters(global::Uno.Extensions.LogExtensionPoint.AmbientLoggerFactory);
 			ConfigureXamlDisplay();
 
