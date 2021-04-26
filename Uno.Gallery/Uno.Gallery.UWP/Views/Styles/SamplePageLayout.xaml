@@ -286,7 +286,7 @@
 						</ScrollViewer>
 
 						<!-- Separator line that becomes hidden by the sticky tabs when scrolled enough -->
-						<StackPanel Grid.Row="1">
+						<StackPanel Grid.Row="1" VerticalAlignment="Top">
 							<ScrollViewer HorizontalScrollMode="Enabled"
 										  HorizontalScrollBarVisibility="Hidden"
 										  VerticalScrollBarVisibility="Hidden"
