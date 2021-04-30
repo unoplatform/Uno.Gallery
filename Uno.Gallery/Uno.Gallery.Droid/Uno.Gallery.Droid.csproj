@@ -85,7 +85,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Branch-Xamarin-Linking-SDK">
-      <Version>7.0.7</Version>
+      <Version>7.1.1</Version>
     </PackageReference>
     <PackageReference Include="nventive.Nimue.Application.Building.Light">
       <Version>0.1.0-alpha.58</Version>
