@@ -104,7 +104,7 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Microsoft.Windows.Compatibility" Version="5.0.1" />
+		<PackageReference Include="Microsoft.Windows.Compatibility" Version="5.0.2" />
 		<PackageReference Include="Uno.Cupertino" Version="1.0.0-dev.742" />
 		<PackageReference Include="Uno.Diagnostics.Eventing" Version="1.0.5-dev.13" />
 		<PackageReference Include="Uno.Material" Version="1.0.0-dev.742" />
