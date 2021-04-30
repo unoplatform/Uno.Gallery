@@ -224,7 +224,7 @@
       <Version>1.0.59</Version>
     </PackageReference>
     <PackageReference Include="Uno.UI">
-      <Version>3.7.0-dev.318</Version>
+      <Version>3.7.3</Version>
     </PackageReference>
     <PackageReference Include="Uno.UI.Lottie">
       <Version>3.7.0-dev.318</Version>
