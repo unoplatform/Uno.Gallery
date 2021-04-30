@@ -1,0 +1,44 @@
+version: 2
+updates:
+- package-ecosystem: nuget
+  directory: "/"
+  schedule:
+    interval: weekly
+    time: "01:00"
+  open-pull-requests-limit: 10
+  labels:
+  - kind/dependency
+  - do-not-merge/work-in-progress
+  ignore:
+  - dependency-name: Xamarin.UITest
+    versions:
+    - 3.0.14
+    - 3.0.15
+    - 3.0.16
+  - dependency-name: Microsoft.TypeScript.MSBuild
+    versions:
+    - 4.1.2
+    - 4.1.4
+    - 4.2.2
+    - 4.2.3
+  - dependency-name: Xamarin.AndroidX.Lifecycle.LiveData
+    versions:
+    - 2.2.0.4
+    - 2.3.0
+    - 2.3.0.1
+  - dependency-name: Uno.Core
+    versions:
+    - 2.2.0
+  - dependency-name: Microsoft.NET.Test.Sdk
+    versions:
+    - 16.8.3
+    - 16.9.1
+  - dependency-name: Microsoft.Extensions.Logging.Console
+    versions:
+    - 5.0.0
+  - dependency-name: Xamarin.AndroidX.AppCompat.AppCompatResources
+    versions:
+    - 1.2.0.6
+  - dependency-name: Microsoft.NETCore.UniversalWindowsPlatform
+    versions:
+    - 6.2.11
