@@ -110,7 +110,7 @@
 		<PackageReference Include="Uno.Material" Version="1.0.0-dev.742" />
 		<PackageReference Include="Uno.ShowMeTheXAML" Version="1.0.59" />
 		<PackageReference Include="Uno.ShowMeTheXAML.MSBuild" Version="1.0.59" />
-		<PackageReference Include="Uno.UI.Lottie" Version="3.7.0-dev.318" />
+		<PackageReference Include="Uno.UI.Lottie" Version="3.7.3" />
 		<PackageReference Include="Uno.UI.WebAssembly" Version="3.7.0-dev.318" />
 		<PackageReference Include="Uno.UI.RemoteControl" Version="3.7.0-dev.318" Condition="'$(Configuration)'=='Debug'" />
 		<PackageReference Include="Uno.Wasm.Bootstrap" Version="2.1.0-dev.45" />

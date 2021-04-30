@@ -46,7 +46,7 @@
 		</PackageReference>
 		<PackageReference Include="Uno.ShowMeTheXAML" Version="1.0.59" />
 		<PackageReference Include="Uno.ShowMeTheXAML.MSBuild" Version="1.0.59" />		
-		<PackageReference Include="Uno.UI.Lottie" Version="3.7.0-dev.318" />
+		<PackageReference Include="Uno.UI.Lottie" Version="3.7.3" />
 		<PackageReference Include="Uno.UI.Skia.Gtk" Version="3.7.0-dev.318" />
 		<PackageReference Include="Uno.UI.RemoteControl" Version="3.7.0-dev.318" Condition="'$(Configuration)'=='Debug'" />
 	</ItemGroup>
