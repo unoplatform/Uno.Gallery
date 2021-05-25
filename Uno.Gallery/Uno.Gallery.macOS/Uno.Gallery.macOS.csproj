@@ -115,12 +115,12 @@
       <Version>1.0.59</Version>
     </PackageReference>
     <PackageReference Include="Uno.UI">
-      <Version>3.8.0-dev.55</Version>
+      <Version>3.8.0-dev.241</Version>
     </PackageReference>
     <PackageReference Include="Uno.UI.Lottie">
-      <Version>3.8.0-dev.55</Version>
+      <Version>3.8.0-dev.241</Version>
     </PackageReference>
-    <PackageReference Include="Uno.UI.RemoteControl" Version="3.8.0-dev.55" Condition="'$(Configuration)'=='Debug'" />
+    <PackageReference Include="Uno.UI.RemoteControl" Version="3.8.0-dev.241" Condition="'$(Configuration)'=='Debug'" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Filter" Version="1.1.1" />
   </ItemGroup>
