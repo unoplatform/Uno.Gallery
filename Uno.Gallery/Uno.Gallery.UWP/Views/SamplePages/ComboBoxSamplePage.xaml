@@ -76,12 +76,12 @@
 										  Text="Title"
 										  PlaceholderText="Placeholder"
 										  ItemsSource="abcdefghijklmn" />
+								
 								<ComboBox Style="{StaticResource CupertinoComboBoxStyle}"
 										  Text="Title"
-										  PlaceholderText="Disabled ComboBos"
+										  PlaceholderText="Disabled ComboBox"
 										  ItemsSource="abcdefghijklmn"
 										  IsEnabled="False" />
-
 							</StackPanel>
 						</smtx:XamlDisplay>
 					</StackPanel>
