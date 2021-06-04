@@ -99,7 +99,37 @@ namespace Uno.Gallery
 
 			// Ensure the current window is active
 			window.Activate();
-		}		
+		}
+
+		/// <summary>
+		/// This method is invoked from JavaScript within the branch.js file.
+		/// </summary>
+		/// <param name="title"></param>
+		/// <param name="design"></param>
+		public static void TryNavigateToLaunchSample(string title, string design)
+		{
+			const string UndefinedValue = "undefined";
+
+			if (!HasValue(title))
+			{
+				return;
+			}
+
+			var sample = GetSamples().FirstOrDefault(s => s.ViewType.Name.ToLowerInvariant() == title.ToLowerInvariant());
+			if (sample != null)
+			{
+				if (HasValue(design) && Enum.TryParse<Design>(design, out var designType))
+				{
+					SamplePageLayout.SetPreferredDesign(designType);
+				}
+
+				(Application.Current as App)?.ShellNavigateTo(sample);
+			}
+
+			bool HasValue(string val) => 
+				!string.IsNullOrWhiteSpace(val) && !string.Equals(UndefinedValue, val, StringComparison.OrdinalIgnoreCase);
+
+		}
 
 		/// <summary>
 		/// Invoked when application execution is being suspended. Application state is saved
@@ -182,7 +212,7 @@ namespace Uno.Gallery
 
 			if (sample == null)
 			{
-				this.Log().LogWarning($"No SampleAttribute found with a Title that matches: {_shell.CurrentSampleBackdoor}");
+				this.Log().Warn($"No SampleAttribute found with a Title that matches: {_shell.CurrentSampleBackdoor}");
 				return;
 			}
 
