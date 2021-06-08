@@ -40,10 +40,10 @@
     </PackageReference>
     <PackageReference Include="Uno.Core" Version="2.3.0" />
     <PackageReference Include="Uno.Cupertino">
-      <Version>1.0.0-dev.772</Version>
+      <Version>1.0.0-dev.774</Version>
     </PackageReference>
     <PackageReference Include="Uno.Material">
-      <Version>1.0.0-dev.772</Version>
+      <Version>1.0.0-dev.774</Version>
     </PackageReference>
     <PackageReference Include="Uno.ShowMeTheXAML">
       <Version>1.0.59</Version>
@@ -52,7 +52,7 @@
       <Version>1.0.59</Version>
     </PackageReference>
     <PackageReference Include="Uno.UI">
-      <Version>3.8.0-dev.302</Version>
+      <Version>3.8.0-dev.439</Version>
     </PackageReference>
   </ItemGroup>
   <PropertyGroup>
@@ -208,6 +208,9 @@
     </Compile>
     <Compile Include="Views\SamplePages\BottomNavigationBarSamplePage.xaml.cs">
       <DependentUpon>BottomNavigationBarSamplePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SamplePages\CalendarViewSamplePage.xaml.cs">
+      <DependentUpon>CalendarViewSamplePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SamplePages\CardSamplePage.xaml.cs">
       <DependentUpon>CardSamplePage.xaml</DependentUpon>
@@ -436,6 +439,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\SamplePages\CalendarViewSamplePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\SamplePages\CardSamplePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -605,6 +612,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Fonts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Styles\Button.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
