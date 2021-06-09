@@ -85,8 +85,6 @@ namespace Uno.Gallery
 				Xamarin.Calabash.Start();
 #endif
 
-				InitializeThemes();
-
 #if WINDOWS_UWP
 				ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(320, 568)); // (size of the iPhone SE)
 #endif
@@ -356,13 +354,5 @@ namespace Uno.Gallery
 				.Where(x => x.SamplePageAttribute != null)
 				.Select(x => new Sample(x.SamplePageAttribute, x.TypeInfo.AsType()))
 				.ToArray();
-
-
-		private void InitializeThemes()
-		{
-			Material.Resources.Init(this, colorPaletteOverride: new ResourceDictionary() { Source = new Uri("ms-appx:///Views/Colors.xaml") });
-			Cupertino.Resources.Init(this, null);
-			this.Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = new Uri("ms-appx:///Views/Styles/TextBlock.xaml") });
-		}
 	}
 }

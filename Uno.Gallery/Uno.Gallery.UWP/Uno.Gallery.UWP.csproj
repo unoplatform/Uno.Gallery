@@ -40,10 +40,10 @@
     </PackageReference>
     <PackageReference Include="Uno.Core" Version="2.3.0" />
     <PackageReference Include="Uno.Cupertino">
-      <Version>1.0.0-dev.774</Version>
+      <Version>1.0.0-dev.778</Version>
     </PackageReference>
     <PackageReference Include="Uno.Material">
-      <Version>1.0.0-dev.774</Version>
+      <Version>1.0.0-dev.778</Version>
     </PackageReference>
     <PackageReference Include="Uno.ShowMeTheXAML">
       <Version>1.0.59</Version>
@@ -52,7 +52,7 @@
       <Version>1.0.59</Version>
     </PackageReference>
     <PackageReference Include="Uno.UI">
-      <Version>3.8.0-dev.439</Version>
+      <Version>3.8.0-dev.461</Version>
     </PackageReference>
   </ItemGroup>
   <PropertyGroup>
@@ -208,6 +208,9 @@
     </Compile>
     <Compile Include="Views\SamplePages\BottomNavigationBarSamplePage.xaml.cs">
       <DependentUpon>BottomNavigationBarSamplePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SamplePages\CalendarDatePickerSamplePage.xaml.cs">
+      <DependentUpon>CalendarDatePickerSamplePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SamplePages\CalendarViewSamplePage.xaml.cs">
       <DependentUpon>CalendarViewSamplePage.xaml</DependentUpon>
@@ -436,6 +439,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SamplePages\BottomNavigationBarSamplePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SamplePages\CalendarDatePickerSamplePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
