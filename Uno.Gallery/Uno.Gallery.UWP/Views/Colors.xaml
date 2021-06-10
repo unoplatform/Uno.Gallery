@@ -18,8 +18,7 @@
 		<ResourceDictionary x:Key="Dark">
 
 			<!-- Override the default dark Material background and surface colors -->
-			<Color x:Key="MaterialBackgroundColor">#222224</Color>
-			<Color x:Key="MaterialSurfaceColor">#252529</Color>
+	
 
 			<!-- Not a color but we needed 2 different images for light and dark theme -->
 			<x:String x:Key="UnoLogoImageSource">ms-appx:///Assets/UnoGalleryLogo_Dark.png</x:String>
