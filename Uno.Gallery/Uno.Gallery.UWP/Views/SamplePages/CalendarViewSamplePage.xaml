@@ -26,7 +26,7 @@
 								</ComboBox.Items>
 							</ComboBox>
 
-							<CalendarView SelectionMode="{Binding SelectedItem, ElementName=Material_SelectionMode}"
+							<CalendarView SelectionMode="{Binding SelectedValue.Content, ElementName=Material_SelectionMode}"
 										  x:Name="Material_CalendarView"
 										  AutomationProperties.AutomationId="Material_CalendarView"
 										  Style="{StaticResource MaterialCalendarViewStyle}" />
@@ -50,7 +50,7 @@
 								</ComboBox.Items>
 							</ComboBox>
 
-							<CalendarView SelectionMode="{Binding SelectedItem, ElementName=Cupertino_SelectionMode}"
+							<CalendarView SelectionMode="{Binding SelectedValue.Content, ElementName=Cupertino_SelectionMode}"
 										  x:Name="Cupertino_CalendarView"
 										  AutomationProperties.AutomationId="Cupertino_CalendarView"
 										  Style="{StaticResource CupertinoCalendarViewStyle}" />
@@ -73,7 +73,7 @@
 								</ComboBox.Items>
 							</ComboBox>
 
-							<CalendarView SelectionMode="{Binding SelectedItem, ElementName=Fluent_SelectionMode}"
+							<CalendarView SelectionMode="{Binding SelectedValue.Content, ElementName=Fluent_SelectionMode}"
 										  x:Name="Fluent_CalendarView"
 										  AutomationProperties.AutomationId="Fluent_CalendarView" />
 						</StackPanel>
