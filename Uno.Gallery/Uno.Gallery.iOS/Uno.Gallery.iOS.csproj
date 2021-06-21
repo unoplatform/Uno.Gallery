@@ -114,6 +114,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App.xaml.iOS.cs" />
     <Compile Include="Main.cs" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -187,6 +188,9 @@
     <BundleResource Include="Resources\Fonts\uno-fluentui-assets.ttf" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Branch-Xamarin-Linking-SDK">
+      <Version>7.0.7</Version>
+    </PackageReference>
     <PackageReference Include="nventive.Nimue.Application.Building.Light">
       <Version>0.1.0-alpha.58</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -208,10 +212,10 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Uno.Cupertino">
-      <Version>1.0.0-dev.732</Version>
+      <Version>1.0.0-dev.784</Version>
     </PackageReference>
     <PackageReference Include="Uno.Material">
-      <Version>1.0.0-dev.732</Version>
+      <Version>1.0.0-dev.784</Version>
     </PackageReference>
     <PackageReference Include="Uno.ShowMeTheXAML">
       <Version>1.0.59</Version>
@@ -220,16 +224,19 @@
       <Version>1.0.59</Version>
     </PackageReference>
     <PackageReference Include="Uno.UI">
-      <Version>3.6.0-dev.509</Version>
+      <Version>3.9.0-dev.58</Version>
     </PackageReference>
     <PackageReference Include="Uno.UI.Lottie">
-      <Version>3.6.0-dev.509</Version>
+      <Version>3.9.0-dev.58</Version>
     </PackageReference>
-    <PackageReference Include="Uno.UI.RemoteControl" Version="3.6.0-dev.275" Condition="'$(Configuration)'=='Debug'" />
+    <PackageReference Include="Uno.UI.RemoteControl" Version="3.9.0-dev.58" Condition="'$(Configuration)'=='Debug'" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Filter" Version="1.1.1" />
+    <PackageReference Include="Xamarin.Essentials">
+      <Version>1.6.1</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.TestCloud.Agent">
-      <Version>0.22.1</Version>
+      <Version>0.22.2</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="..\Uno.Gallery.Shared\Uno.Gallery.Shared.projitems" Label="Shared" Condition="Exists('..\Uno.Gallery.Shared\Uno.Gallery.Shared.projitems')" />

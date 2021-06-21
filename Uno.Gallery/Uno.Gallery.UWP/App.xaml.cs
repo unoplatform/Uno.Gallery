@@ -8,6 +8,7 @@ using System.Reflection;
 using Uno.Extensions;
 using Uno.Gallery.Helpers;
 using Uno.Gallery.Views.GeneralPages;
+using Uno.Logging;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
@@ -27,6 +28,7 @@ namespace Uno.Gallery
 	/// </summary>
 	sealed partial class App : Application
 	{
+		private static Sample[] _samples;
 		private Shell _shell;
 
 		/// <summary>
@@ -35,13 +37,20 @@ namespace Uno.Gallery
 		/// </summary>
 		public App()
 		{
+
+#if !WINDOWS_UWP
+			Uno.UI.FeatureConfiguration.ApiInformation.NotImplementedLogLevel = LogLevel.Debug; // Raise not implemented usages as Debug messages
+#endif
+
 			ConfigureFilters(global::Uno.Extensions.LogExtensionPoint.AmbientLoggerFactory);
 			ConfigureXamlDisplay();
 
 			this.InitializeComponent();
 			this.Suspending += OnSuspending;
 
-			AnalyticsService.Initialize();
+#if __WASM__
+			_ = Windows.UI.Xaml.Window.Current.Dispatcher?.RunIdleAsync(_ => AnalyticsService.Initialize());
+#endif
 		}
 
 		/// <summary>
@@ -51,25 +60,73 @@ namespace Uno.Gallery
 		/// <param name="e">Details about the launch request and process.</param>
 		protected override void OnLaunched(LaunchActivatedEventArgs e)
 		{
-#if __IOS__ && USE_UITESTS
-			// requires Xamarin Test Cloud Agent
-			Xamarin.Calabash.Start();
-#endif
+			this.Log().Debug("Launched app.");
+			OnLaunchedOrActivated();
+		}
 
-			InitializeThemes();
+		/// <summary>
+		/// This method is used as the entry point when opening the app from an url.
+		/// </summary>
+		protected override void OnActivated(IActivatedEventArgs args)
+		{
+			this.Log().Debug("Activated app.");
+			base.OnActivated(args);
+		}
+
+		private void OnLaunchedOrActivated()
+		{
+			var window = Windows.UI.Xaml.Window.Current;
+			var isFirstLaunch = !(window.Content is Shell);
+
+			if (isFirstLaunch)
+			{
+#if __IOS__ && USE_UITESTS
+				// requires Xamarin Test Cloud Agent
+				Xamarin.Calabash.Start();
+#endif
 
 #if WINDOWS_UWP
-			ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(320, 568)); // (size of the iPhone SE)
+				ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(320, 568)); // (size of the iPhone SE)
 #endif
 
-			var window = Windows.UI.Xaml.Window.Current;
-			if (!(window.Content is Shell))
-			{
-				window.Content = _shell = BuildShell();
+				if (!(window.Content is Shell))
+				{
+					window.Content = _shell = BuildShell();
+				}
 			}
 
 			// Ensure the current window is active
 			window.Activate();
+		}
+
+		/// <summary>
+		/// This method is invoked from JavaScript within the branch.js file.
+		/// </summary>
+		/// <param name="title"></param>
+		/// <param name="design"></param>
+		public static void TryNavigateToLaunchSample(string title, string design)
+		{
+			const string UndefinedValue = "undefined";
+
+			if (!HasValue(title))
+			{
+				return;
+			}
+
+			var sample = GetSamples().FirstOrDefault(s => s.ViewType.Name.ToLowerInvariant() == title.ToLowerInvariant());
+			if (sample != null)
+			{
+				if (HasValue(design) && Enum.TryParse<Design>(design, out var designType))
+				{
+					SamplePageLayout.SetPreferredDesign(designType);
+				}
+
+				(Application.Current as App)?.ShellNavigateTo(sample);
+			}
+
+			bool HasValue(string val) => 
+				!string.IsNullOrWhiteSpace(val) && !string.Equals(UndefinedValue, val, StringComparison.OrdinalIgnoreCase);
+
 		}
 
 		/// <summary>
@@ -116,12 +173,13 @@ namespace Uno.Gallery
 				var page = (Page)Activator.CreateInstance(sample.ViewType);
 				page.DataContext = sample;
 
-				AnalyticsService.TrackView(sample?.Title ?? page.GetType().Name);
+#if __WASM__
+				_ = Windows.UI.Xaml.Window.Current.Dispatcher.RunIdleAsync(_ => AnalyticsService.TrackView(sample?.Title ?? page.GetType().Name));
+#endif
 
 				_shell.NavigationView.Content = page;
 			}
 		}
-
 
 		private Shell BuildShell()
 		{
@@ -152,7 +210,7 @@ namespace Uno.Gallery
 
 			if (sample == null)
 			{
-				this.Log().LogWarning($"No SampleAttribute found with a Title that matches: {_shell.CurrentSampleBackdoor}");
+				this.Log().Warn($"No SampleAttribute found with a Title that matches: {_shell.CurrentSampleBackdoor}");
 				return;
 			}
 
@@ -288,20 +346,13 @@ namespace Uno.Gallery
 			XamlDisplay.Init(GetType().Assembly);
 		}
 
-		private static IEnumerable<Sample> GetSamples() 
-			=> Assembly.GetExecutingAssembly()
+		public static IEnumerable<Sample> GetSamples() 
+			=> _samples = _samples ?? Assembly.GetExecutingAssembly()
 				.DefinedTypes
 				.Where(x => x.Namespace?.StartsWith("Uno.Gallery") == true)
 				.Select(x => new { TypeInfo = x, SamplePageAttribute = x.GetCustomAttribute<SamplePageAttribute>() })
 				.Where(x => x.SamplePageAttribute != null)
-				.Select(x => new Sample(x.SamplePageAttribute, x.TypeInfo.AsType()));
-
-
-		private void InitializeThemes()
-		{
-			Material.Resources.Init(this, colorPaletteOverride: new ResourceDictionary() { Source = new Uri("ms-appx:///Views/Colors.xaml") });
-			Cupertino.Resources.Init(this, null);
-			this.Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = new Uri("ms-appx:///Views/Styles/TextBlock.xaml") });
-		}
+				.Select(x => new Sample(x.SamplePageAttribute, x.TypeInfo.AsType()))
+				.ToArray();
 	}
 }

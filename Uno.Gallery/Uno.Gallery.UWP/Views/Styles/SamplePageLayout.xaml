@@ -109,102 +109,106 @@
 													  Content="{TemplateBinding Content}"
 													  ContentTemplate="{TemplateBinding HeaderTemplate}" />
 
-									<StackPanel x:Name="PART_ScrollingTabs"
-												HorizontalAlignment="Stretch"
-												BorderBrush="{TemplateBinding BorderBrush}"
-												BorderThickness="0,0,0,1"
-												Orientation="Horizontal">
+									<ScrollViewer HorizontalScrollMode="Enabled"
+												  HorizontalScrollBarVisibility="Hidden"
+												  VerticalScrollBarVisibility="Hidden"
+												  VerticalScrollMode="Disabled">
+										<StackPanel x:Name="PART_ScrollingTabs"
+													HorizontalAlignment="Stretch"
+													BorderBrush="{TemplateBinding BorderBrush}"
+													BorderThickness="0,0,0,1"
+													Orientation="Horizontal">
 
-										<!-- Material RadioButton -->
-										<RadioButton x:Name="PART_MaterialRadioButton"
-													 Margin="0,0,16,0"
-													 AutomationProperties.AutomationId="PART_MaterialRadioButton"
-													 Style="{StaticResource SampleLayoutModeRadioButtonStyle}"
-													 Visibility="Collapsed">
-											<StackPanel Orientation="Horizontal">
+											<!-- Material RadioButton -->
+											<RadioButton x:Name="PART_MaterialRadioButton"
+														 Margin="0,0,16,0"
+														 AutomationProperties.AutomationId="PART_MaterialRadioButton"
+														 Style="{StaticResource SampleLayoutModeRadioButtonStyle}"
+														 Visibility="Collapsed">
+												<StackPanel Orientation="Horizontal">
 
-												<!-- Label -->
-												<TextBlock Style="{StaticResource MaterialHeadline6}"
-														   Text="Material" />
+													<!-- Label -->
+													<TextBlock Style="{StaticResource MaterialHeadline6}"
+															   Text="Material" />
 
-												<!-- Icon -->
-												<Image Width="16"
-													   Height="16"
-													   Margin="10,0,0,0"
-													   VerticalAlignment="Center"
-													   Source="ms-appx:///Assets/MaterialIcon_Small.png"
-													   Stretch="UniformToFill" />
-											</StackPanel>
-										</RadioButton>
+													<!-- Icon -->
+													<Image Width="16"
+														   Height="16"
+														   Margin="10,0,0,0"
+														   VerticalAlignment="Center"
+														   Source="ms-appx:///Assets/MaterialIcon_Small.png"
+														   Stretch="UniformToFill" />
+												</StackPanel>
+											</RadioButton>
 
-										<!-- Fluent RadioButton -->
-										<RadioButton x:Name="PART_FluentRadioButton"
-													 Margin="0,0,16,0"
-													 AutomationProperties.AutomationId="PART_FluentRadioButton"
-													 Style="{StaticResource SampleLayoutModeRadioButtonStyle}"
-													 Visibility="Collapsed">
-											<StackPanel Orientation="Horizontal">
+											<!-- Fluent RadioButton -->
+											<RadioButton x:Name="PART_FluentRadioButton"
+														 Margin="0,0,16,0"
+														 AutomationProperties.AutomationId="PART_FluentRadioButton"
+														 Style="{StaticResource SampleLayoutModeRadioButtonStyle}"
+														 Visibility="Collapsed">
+												<StackPanel Orientation="Horizontal">
 
-												<!-- Label -->
-												<TextBlock Style="{StaticResource MaterialHeadline6}"
-														   Text="Fluent" />
+													<!-- Label -->
+													<TextBlock Style="{StaticResource MaterialHeadline6}"
+															   Text="Fluent" />
 
-												<!-- Icon -->
-												<Image Width="16"
-													   Height="16"
-													   Margin="10,0,0,0"
-													   VerticalAlignment="Center"
-													   Source="ms-appx:///Assets/FluentIcon_Small.png"
-													   Stretch="UniformToFill" />
-											</StackPanel>
-										</RadioButton>
+													<!-- Icon -->
+													<Image Width="16"
+														   Height="16"
+														   Margin="10,0,0,0"
+														   VerticalAlignment="Center"
+														   Source="ms-appx:///Assets/FluentIcon_Small.png"
+														   Stretch="UniformToFill" />
+												</StackPanel>
+											</RadioButton>
 
-										<!-- Cupertino RadioButton -->
-										<RadioButton x:Name="PART_CupertinoRadioButton"
-													 Margin="0,0,16,0"
-													 AutomationProperties.AutomationId="PART_CupertinoRadioButton"
-													 Style="{StaticResource SampleLayoutModeRadioButtonStyle}"
-													 Visibility="Collapsed">
-											<StackPanel Orientation="Horizontal">
+											<!-- Cupertino RadioButton -->
+											<RadioButton x:Name="PART_CupertinoRadioButton"
+														 Margin="0,0,16,0"
+														 AutomationProperties.AutomationId="PART_CupertinoRadioButton"
+														 Style="{StaticResource SampleLayoutModeRadioButtonStyle}"
+														 Visibility="Collapsed">
+												<StackPanel Orientation="Horizontal">
 
-												<!-- Label -->
-												<TextBlock Style="{StaticResource MaterialHeadline6}"
-														   Text="Cupertino" />
+													<!-- Label -->
+													<TextBlock Style="{StaticResource MaterialHeadline6}"
+															   Text="Cupertino" />
 
-												<!-- Icon -->
-												<Image Width="16"
-													   Height="16"
-													   Margin="10,0,0,0"
-													   VerticalAlignment="Center"
-													   Source="ms-appx:///Assets/AppleIcon_Small.png"
-													   Stretch="UniformToFill" />
-											</StackPanel>
-										</RadioButton>
+													<!-- Icon -->
+													<Image Width="16"
+														   Height="16"
+														   Margin="10,0,0,0"
+														   VerticalAlignment="Center"
+														   Source="ms-appx:///Assets/AppleIcon_Small.png"
+														   Stretch="UniformToFill" />
+												</StackPanel>
+											</RadioButton>
 
-										<!-- Native RadioButton -->
-										<RadioButton x:Name="PART_NativeRadioButton"
-													 Margin="0,0,16,0"
-													 AutomationProperties.AutomationId="PART_NativeRadioButton"
-													 Style="{StaticResource SampleLayoutModeRadioButtonStyle}"
-													 Visibility="Collapsed">
-											<StackPanel Orientation="Horizontal">
+											<!-- Native RadioButton -->
+											<RadioButton x:Name="PART_NativeRadioButton"
+														 Margin="0,0,16,0"
+														 AutomationProperties.AutomationId="PART_NativeRadioButton"
+														 Style="{StaticResource SampleLayoutModeRadioButtonStyle}"
+														 Visibility="Collapsed">
+												<StackPanel Orientation="Horizontal">
 
-												<!-- Label -->
-												<TextBlock Style="{StaticResource MaterialHeadline6}"
-														   Text="Native" />
+													<!-- Label -->
+													<TextBlock Style="{StaticResource MaterialHeadline6}"
+															   Text="Native" />
 
-												<!-- Icon -->
-												<Image Width="16"
-													   Height="16"
-													   Margin="10,0,0,0"
-													   VerticalAlignment="Center"
-													   android:Source="ms-appx:///Assets/AndroidIcon_Small.png"
-													   not_android:Source="ms-appx:///Assets/AppleIcon_Small.png"
-													   Stretch="UniformToFill" />
-											</StackPanel>
-										</RadioButton>
-									</StackPanel>
-
+													<!-- Icon -->
+													<Image Width="16"
+														   Height="16"
+														   Margin="10,0,0,0"
+														   VerticalAlignment="Center"
+														   android:Source="ms-appx:///Assets/AndroidIcon_Small.png"
+														   not_android:Source="ms-appx:///Assets/AppleIcon_Small.png"
+														   Stretch="UniformToFill" />
+												</StackPanel>
+											</RadioButton>
+										</StackPanel>
+									</ScrollViewer>
 									<Grid>
 
 										<!-- Material Content -->
@@ -244,13 +248,14 @@
 														  Visibility="Collapsed" />
 									</Grid>
 
-									<!-- Optional link to documentation -->
-									<StackPanel Visibility="{Binding DocumentationLink, Converter={StaticResource IsNullOrEmptyToCollapsed}}">
+									<StackPanel Visibility="{Binding IsFooterVisible, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}">
 
 										<material:Divider Margin="0,48,0,36"
 														  Style="{StaticResource MaterialDividerStyle}" />
 
-										<TextBlock Margin="0,0,0,16"
+										<!-- Optional link to documentation -->
+										<TextBlock Visibility="{Binding DocumentationLink, Converter={StaticResource IsNullOrEmptyToCollapsed}}"
+												   Margin="0,0,0,32"
 												   Foreground="{StaticResource MaterialOnBackgroundBrush}"
 												   Opacity="0.8"
 												   Style="{StaticResource MaterialBody1}">
@@ -260,118 +265,136 @@
 												<Run Text="official documentation." />
 											</Hyperlink>
 										</TextBlock>
+
+										<!-- Share button -->
+										<TextBlock Visibility="{Binding IsShareVisible, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
+														   Margin="0,0,0,16"
+														   Foreground="{StaticResource MaterialOnBackgroundBrush}"
+														   Opacity="0.8"
+														   Style="{StaticResource MaterialBody1}">
+											<Run Text="You can" />
+
+											<Hyperlink x:Name="PART_ShareHyperlink">
+												<Run Text="share" />
+											</Hyperlink>
+
+											<Run Text="this page." />
+										</TextBlock>
 									</StackPanel>
 								</StackPanel>
 							</Grid>
 						</ScrollViewer>
 
 						<!-- Separator line that becomes hidden by the sticky tabs when scrolled enough -->
-						<Rectangle x:Name="MobileTopBarSeparator"
-								   Grid.Row="1"
-								   Height="1"
-								   HorizontalAlignment="Stretch"
-								   VerticalAlignment="Top"
-								   Fill="{StaticResource DividerBrush}"
-								   Visibility="Collapsed" />
+						<StackPanel Grid.Row="1" VerticalAlignment="Top">
+							<ScrollViewer HorizontalScrollMode="Enabled"
+										  HorizontalScrollBarVisibility="Hidden"
+										  VerticalScrollBarVisibility="Hidden"
+										  VerticalScrollMode="Disabled">
+								<!-- This is the sticky tabs that appear when we scroll enough. -->
+								<StackPanel x:Name="PART_StickyTabs"
+											Margin="48,0"
+											HorizontalAlignment="Stretch"
+											VerticalAlignment="Top"
+											Background="{StaticResource MaterialBackgroundBrush}"
+											BorderBrush="{TemplateBinding BorderBrush}"
+											BorderThickness="0,0,0,1"
+											Orientation="Horizontal"
+											Visibility="Collapsed">
 
-						<!-- This is the sticky tabs that appear when we scroll enough. -->
-						<StackPanel x:Name="PART_StickyTabs"
-									Grid.Row="1"
-									Margin="48,0"
-									HorizontalAlignment="Stretch"
-									VerticalAlignment="Top"
-									Background="{StaticResource MaterialBackgroundBrush}"
-									BorderBrush="{TemplateBinding BorderBrush}"
-									BorderThickness="0,0,0,1"
-									Orientation="Horizontal"
-									Visibility="Collapsed">
+									<!-- Material RadioButton -->
+									<RadioButton x:Name="PART_StickyMaterialRadioButton"
+												 Margin="0,0,16,0"
+												 Style="{StaticResource SampleLayoutModeRadioButtonStyle}"
+												 Visibility="Collapsed">
+										<StackPanel Orientation="Horizontal">
 
-							<!-- Material RadioButton -->
-							<RadioButton x:Name="PART_StickyMaterialRadioButton"
-										 Margin="0,0,16,0"
-										 Style="{StaticResource SampleLayoutModeRadioButtonStyle}"
-										 Visibility="Collapsed">
-								<StackPanel Orientation="Horizontal">
+											<!-- Label -->
+											<TextBlock Style="{StaticResource MaterialHeadline6}"
+													   Text="Material" />
 
-									<!-- Label -->
-									<TextBlock Style="{StaticResource MaterialHeadline6}"
-											   Text="Material" />
+											<!-- Icon -->
+											<Image Width="16"
+												   Height="16"
+												   Margin="10,0,0,0"
+												   VerticalAlignment="Center"
+												   Source="ms-appx:///Assets/MaterialIcon_Small.png"
+												   Stretch="UniformToFill" />
+										</StackPanel>
+									</RadioButton>
 
-									<!-- Icon -->
-									<Image Width="16"
-										   Height="16"
-										   Margin="10,0,0,0"
-										   VerticalAlignment="Center"
-										   Source="ms-appx:///Assets/MaterialIcon_Small.png"
-										   Stretch="UniformToFill" />
+									<!-- Fluent RadioButton -->
+									<RadioButton x:Name="PART_StickyFluentRadioButton"
+												 Margin="0,0,16,0"
+												 Style="{StaticResource SampleLayoutModeRadioButtonStyle}"
+												 Visibility="Collapsed">
+										<StackPanel Orientation="Horizontal">
+
+											<!-- Label -->
+											<TextBlock Style="{StaticResource MaterialHeadline6}"
+													   Text="Fluent" />
+
+											<!-- Icon -->
+											<Image Width="16"
+												   Height="16"
+												   Margin="10,0,0,0"
+												   VerticalAlignment="Center"
+												   Source="ms-appx:///Assets/FluentIcon_Small.png"
+												   Stretch="UniformToFill" />
+										</StackPanel>
+									</RadioButton>
+
+									<!-- Cupertino RadioButton -->
+									<RadioButton x:Name="PART_StickyCupertinoRadioButton"
+												 Margin="0,0,16,0"
+												 Style="{StaticResource SampleLayoutModeRadioButtonStyle}"
+												 Visibility="Collapsed">
+										<StackPanel Orientation="Horizontal">
+
+											<!-- Label -->
+											<TextBlock Style="{StaticResource MaterialHeadline6}"
+													   Text="Cupertino" />
+
+											<!-- Icon -->
+											<Image Width="16"
+												   Height="16"
+												   Margin="10,0,0,0"
+												   VerticalAlignment="Center"
+												   Source="ms-appx:///Assets/AppleIcon_Small.png"
+												   Stretch="UniformToFill" />
+										</StackPanel>
+									</RadioButton>
+
+									<!-- Native RadioButton -->
+									<RadioButton x:Name="PART_StickyNativeRadioButton"
+												 Margin="0,0,16,0"
+												 Style="{StaticResource SampleLayoutModeRadioButtonStyle}"
+												 Visibility="Collapsed">
+										<StackPanel Orientation="Horizontal">
+
+											<!-- Label -->
+											<TextBlock Style="{StaticResource MaterialHeadline6}"
+													   Text="Native" />
+
+											<!-- Icon -->
+											<Image Width="16"
+												   Height="16"
+												   Margin="10,0,0,0"
+												   VerticalAlignment="Center"
+												   android:Source="ms-appx:///Assets/AndroidIcon_Small.png"
+												   not_android:Source="ms-appx:///Assets/AppleIcon_Small.png"
+												   Stretch="UniformToFill" />
+										</StackPanel>
+									</RadioButton>
 								</StackPanel>
-							</RadioButton>
-
-							<!-- Fluent RadioButton -->
-							<RadioButton x:Name="PART_StickyFluentRadioButton"
-										 Margin="0,0,16,0"
-										 Style="{StaticResource SampleLayoutModeRadioButtonStyle}"
-										 Visibility="Collapsed">
-								<StackPanel Orientation="Horizontal">
-
-									<!-- Label -->
-									<TextBlock Style="{StaticResource MaterialHeadline6}"
-											   Text="Fluent" />
-
-									<!-- Icon -->
-									<Image Width="16"
-										   Height="16"
-										   Margin="10,0,0,0"
-										   VerticalAlignment="Center"
-										   Source="ms-appx:///Assets/FluentIcon_Small.png"
-										   Stretch="UniformToFill" />
-								</StackPanel>
-							</RadioButton>
-
-							<!-- Cupertino RadioButton -->
-							<RadioButton x:Name="PART_StickyCupertinoRadioButton"
-										 Margin="0,0,16,0"
-										 Style="{StaticResource SampleLayoutModeRadioButtonStyle}"
-										 Visibility="Collapsed">
-								<StackPanel Orientation="Horizontal">
-
-									<!-- Label -->
-									<TextBlock Style="{StaticResource MaterialHeadline6}"
-											   Text="Cupertino" />
-
-									<!-- Icon -->
-									<Image Width="16"
-										   Height="16"
-										   Margin="10,0,0,0"
-										   VerticalAlignment="Center"
-										   Source="ms-appx:///Assets/AppleIcon_Small.png"
-										   Stretch="UniformToFill" />
-								</StackPanel>
-							</RadioButton>
-
-							<!-- Native RadioButton -->
-							<RadioButton x:Name="PART_StickyNativeRadioButton"
-										 Margin="0,0,16,0"
-										 Style="{StaticResource SampleLayoutModeRadioButtonStyle}"
-										 Visibility="Collapsed">
-								<StackPanel Orientation="Horizontal">
-
-									<!-- Label -->
-									<TextBlock Style="{StaticResource MaterialHeadline6}"
-											   Text="Native" />
-
-									<!-- Icon -->
-									<Image Width="16"
-										   Height="16"
-										   Margin="10,0,0,0"
-										   VerticalAlignment="Center"
-										   android:Source="ms-appx:///Assets/AndroidIcon_Small.png"
-										   not_android:Source="ms-appx:///Assets/AppleIcon_Small.png"
-										   Stretch="UniformToFill" />
-								</StackPanel>
-							</RadioButton>
+							</ScrollViewer>
+							<Rectangle x:Name="MobileTopBarSeparator"
+									   Height="1"
+									   HorizontalAlignment="Stretch"
+									   VerticalAlignment="Top"
+									   Fill="{StaticResource DividerBrush}"
+									   Visibility="Collapsed" />
 						</StackPanel>
-
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup x:Name="FormFactors">
 								<VisualState x:Name="Desktop">

@@ -59,8 +59,7 @@
 			<local:SamplePageLayout.CupertinoTemplate>
 				<DataTemplate>
 					<StackPanel>
-						<smtx:XamlDisplay Style="{StaticResource XamlDisplayBelowStyle}"
-										  UniqueKey="DatePickerSamplePage_Cupertino_Default"
+						<smtx:XamlDisplay UniqueKey="DatePickerSamplePage_Cupertino_Default"
 										  smtx:XamlDisplayExtensions.Header="Default">
 
 							<DatePicker x:Name="myDatePicker2"

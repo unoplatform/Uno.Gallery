@@ -121,7 +121,8 @@ namespace Uno.Gallery.UITests
 			Assert.IsTrue(checkedIndeterminateBox.GetDependencyPropertyValue<bool>("IsChecked"));
 			checkedIndeterminateBox.Tap();
 			TakeScreenshot("After Checked");
-			Assert.IsNull(checkedIndeterminateBox.GetDependencyPropertyValue("IsChecked")); 
+			var isChecked = checkedIndeterminateBox.GetDependencyPropertyValue("IsChecked");
+			Assert.IsTrue(isChecked == null || string.IsNullOrWhiteSpace(isChecked as string)); 
 
 			/*TakeScreenshot("Before UnChecked");
 			var checkedIndeterminateBox = new QueryEx(x => x.Marked("Material_Indeterminate"));
@@ -168,8 +169,9 @@ namespace Uno.Gallery.UITests
 
 			TakeScreenshot("After Checked");
 
-			//Assert.IsFalse(materialDisabledIndeterminateBox.GetDependencyPropertyValue<bool>("IsEnabled"));
-			Assert.IsTrue(materialDisabledIndeterminateBox.GetDependencyPropertyValue<bool>("IsEnabled"));
+			Assert.IsFalse(materialDisabledIndeterminateBox.GetDependencyPropertyValue<bool>("IsEnabled"));
+			var isChecked = materialDisabledIndeterminateBox.GetDependencyPropertyValue("IsChecked");
+			Assert.IsTrue(isChecked == null || string.IsNullOrWhiteSpace(isChecked as string));
 		}
 	}
 }

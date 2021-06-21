@@ -144,5 +144,27 @@ namespace Uno.Gallery
 		public static readonly DependencyProperty HeaderTemplateProperty =
 			DependencyProperty.Register("HeaderTemplate", typeof(DataTemplate), typeof(SamplePageLayout), new PropertyMetadata(null));
 		#endregion
+
+		#region Property: IsFooterVisible
+		public bool IsFooterVisible
+		{
+			get { return (bool)GetValue(IsFooterVisibleProperty); }
+			set { SetValue(IsFooterVisibleProperty, value); }
+		}
+
+		public static readonly DependencyProperty IsFooterVisibleProperty =
+			DependencyProperty.Register("IsFooterVisible", typeof(bool), typeof(SamplePageLayout), new PropertyMetadata(false));
+		#endregion
+
+		#region IsShareVisible
+		public bool IsShareVisible
+		{
+			get { return (bool)GetValue(IsShareVisibleProperty); }
+			set { SetValue(IsShareVisibleProperty, value); }
+		}
+
+		public static readonly DependencyProperty IsShareVisibleProperty =
+			DependencyProperty.Register("IsShareVisible", typeof(bool), typeof(SamplePageLayout), new PropertyMetadata(false));
+		#endregion
 	}
 }

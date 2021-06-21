@@ -1,0 +1,85 @@
+﻿<Page x:Class="Uno.Gallery.Views.SamplePages.CalendarViewSamplePage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:local="using:Uno.Gallery"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  xmlns:smtx="using:ShowMeTheXAML"
+	  mc:Ignorable="d"
+	  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<local:SamplePageLayout>
+			<local:SamplePageLayout.MaterialTemplate>
+				<DataTemplate>
+					<smtx:XamlDisplay UniqueKey="CalendarViewSamplePage_Material_CalendarView"
+									  smtx:XamlDisplayExtensions.Header="CalendarView"
+									  Style="{StaticResource XamlDisplayBelowStyle}">
+						<StackPanel Spacing="20">
+							<TextBlock Text="Selection Mode:"
+									   Style="{StaticResource MaterialBody1}" />
+							<ComboBox Style="{StaticResource MaterialComboBoxStyle}"
+									  x:Name="Material_SelectionMode">
+								<ComboBox.Items>
+									<ComboBoxItem IsSelected="True">Single</ComboBoxItem>
+									<ComboBoxItem>Multiple</ComboBoxItem>
+								</ComboBox.Items>
+							</ComboBox>
+
+							<CalendarView SelectionMode="{Binding SelectedValue.Content, ElementName=Material_SelectionMode}"
+										  x:Name="Material_CalendarView"
+										  AutomationProperties.AutomationId="Material_CalendarView"
+										  Style="{StaticResource MaterialCalendarViewStyle}" />
+						</StackPanel>
+					</smtx:XamlDisplay>
+				</DataTemplate>
+			</local:SamplePageLayout.MaterialTemplate>
+			<local:SamplePageLayout.CupertinoTemplate>
+				<DataTemplate>
+					<smtx:XamlDisplay UniqueKey="CalendarViewSamplePage_Cupertino_CalendarView"
+									  smtx:XamlDisplayExtensions.Header="CalendarView"
+									  Style="{StaticResource XamlDisplayBelowStyle}">
+						<StackPanel Spacing="20">
+							<TextBlock Text="Selection Mode:"
+									   Style="{StaticResource CupertinoBody}" />
+							<ComboBox Style="{StaticResource CupertinoComboBoxStyle}"
+									  x:Name="Cupertino_SelectionMode">
+								<ComboBox.Items>
+									<ComboBoxItem IsSelected="True">Single</ComboBoxItem>
+									<ComboBoxItem>Multiple</ComboBoxItem>
+								</ComboBox.Items>
+							</ComboBox>
+
+							<CalendarView SelectionMode="{Binding SelectedValue.Content, ElementName=Cupertino_SelectionMode}"
+										  x:Name="Cupertino_CalendarView"
+										  AutomationProperties.AutomationId="Cupertino_CalendarView"
+										  Style="{StaticResource CupertinoCalendarViewStyle}" />
+						</StackPanel>
+					</smtx:XamlDisplay>
+				</DataTemplate>
+			</local:SamplePageLayout.CupertinoTemplate>
+			<local:SamplePageLayout.FluentTemplate>
+				<DataTemplate>
+					<smtx:XamlDisplay UniqueKey="CalendarViewSamplePage_Fluent_CalendarView"
+									  smtx:XamlDisplayExtensions.Header="CalendarView"
+									  Style="{StaticResource XamlDisplayBelowStyle}">
+						<StackPanel Spacing="20">
+							<TextBlock Text="Selection Mode:"
+									   Style="{StaticResource BodyTextBlockStyle}" />
+							<ComboBox x:Name="Fluent_SelectionMode">
+								<ComboBox.Items>
+									<ComboBoxItem IsSelected="True">Single</ComboBoxItem>
+									<ComboBoxItem>Multiple</ComboBoxItem>
+								</ComboBox.Items>
+							</ComboBox>
+
+							<CalendarView SelectionMode="{Binding SelectedValue.Content, ElementName=Fluent_SelectionMode}"
+										  x:Name="Fluent_CalendarView"
+										  AutomationProperties.AutomationId="Fluent_CalendarView" />
+						</StackPanel>
+					</smtx:XamlDisplay>
+				</DataTemplate>
+			</local:SamplePageLayout.FluentTemplate>
+		</local:SamplePageLayout>
+	</Grid>
+</Page>

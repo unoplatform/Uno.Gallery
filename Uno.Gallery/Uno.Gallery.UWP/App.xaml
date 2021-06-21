@@ -11,10 +11,18 @@
 				<!-- Load WinUI resources -->
 				<XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls"/>
 
+				<MaterialColors xmlns="using:Uno.Material"
+								ColorPaletteOverrideSource="ms-appx:///Views/Colors.xaml" />
+				<MaterialResources xmlns="using:Uno.Material" />
+
+				<CupertinoColors xmlns="using:Uno.Cupertino"  />
+				<CupertinoResources xmlns="using:Uno.Cupertino" />
+
 				<ResourceDictionary Source="Views/Converters.xaml" />
 				<ResourceDictionary Source="Views/Fonts.xaml" />
-                
+
 				<ResourceDictionary Source="Views/Styles/Banner.xaml" />
+				<ResourceDictionary Source="Views/Styles/Button.xaml" />
 				<ResourceDictionary Source="Views/Styles/ColorPaletteView.xaml" />
 				<ResourceDictionary Source="Views/Styles/ContentPageLayout.xaml" />
 				<ResourceDictionary Source="Views/Styles/FluentPaletteView.xaml" />
@@ -25,6 +33,7 @@
 				<ResourceDictionary Source="Views/Styles/RadioButton.xaml" />
 				<ResourceDictionary Source="Views/Styles/SamplePageLayout.xaml" />
 				<ResourceDictionary Source="Views/Styles/ThreeColorPaletteView.xaml" />
+				<ResourceDictionary Source="Views/Styles/TextBlock.xaml" />
 				<ResourceDictionary Source="Views/Styles/ToggleButton.xaml" />
 				<ResourceDictionary Source="Views/Styles/ToggleSwitch.xaml" />
 				<ResourceDictionary Source="Views/Styles/XamlDisplay.xaml" />

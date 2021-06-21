@@ -9,6 +9,7 @@ using Windows.Foundation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
+using Windows.UI.Xaml.Documents;
 using Windows.UI.Xaml.Media;
 
 namespace Uno.Gallery
@@ -35,6 +36,7 @@ namespace Uno.Gallery
 		private const string StickyTabsPartName = "PART_StickyTabs";
 		private const string ScrollViewerPartName = "PART_ScrollViewer";
 		private const string TopPartName = "PART_MobileTopBar";
+		private const string ShareHyperlinkPartName = "PART_ShareHyperlink";
 
 		private static Design _design = Design.Material;
 
@@ -79,6 +81,14 @@ namespace Uno.Gallery
 					Description = sample.Description;
 					DocumentationLink = sample.DocumentationLink;
 					Source = sample.Source;
+
+#if __IOS__ || __ANDROID__
+					IsFooterVisible = true;
+					IsShareVisible = true;
+#else
+					IsFooterVisible = !string.IsNullOrWhiteSpace(sample.DocumentationLink);
+					IsShareVisible = false;
+#endif
 				}
 			}
 		}
@@ -99,6 +109,7 @@ namespace Uno.Gallery
 			_stickyTabs = (FrameworkElement)GetTemplateChild(StickyTabsPartName);
 			_scrollViewer = (ScrollViewer)GetTemplateChild(ScrollViewerPartName);
 			_top = (FrameworkElement)GetTemplateChild(TopPartName);
+			var shareHyperlink = (Hyperlink)GetTemplateChild(ShareHyperlinkPartName);
 
 			// ensure previous subscriptions is removed before adding new ones, in case OnApplyTemplate is called multiple times
 			var disposables = new CompositeDisposable();
@@ -108,6 +119,14 @@ namespace Uno.Gallery
 			Disposable
 				.Create(() => _scrollViewer.ViewChanged -= OnScrolled)
 				.DisposeWith(disposables);
+
+			if (shareHyperlink != null) // This feature is not available on all platforms.
+			{
+				shareHyperlink.Click += OnShareClicked;
+				Disposable
+					.Create(() => shareHyperlink.Click -= OnShareClicked)
+					.DisposeWith(disposables);
+			}
 
 			BindOnClick(_materialRadioButton);
 			BindOnClick(_fluentRadioButton);
@@ -140,6 +159,24 @@ namespace Uno.Gallery
 					_stickyTabs.Visibility = Visibility.Collapsed;
 				}
 			}
+		}
+
+		private void OnShareClicked(Hyperlink sender, HyperlinkClickEventArgs args)
+		{
+#if __IOS__ || __ANDROID__
+			var sample = DataContext as Sample;
+			_ = Deeplinking.BranchService.Instance.ShareSample(sample, _design);
+#endif
+		}
+
+		/// <summary>
+		/// Changes the preferred design.
+		/// This doesn't change the current UI. It only affects the next created sample.
+		/// </summary>
+		/// <param name="design">The desired design.</param>
+		public static void SetPreferredDesign(Design design)
+		{
+			_design = design;
 		}
 
 		private void RegisterEvent(RoutedEventHandler click)

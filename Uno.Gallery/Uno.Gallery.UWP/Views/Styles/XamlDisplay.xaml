@@ -21,6 +21,8 @@
 				Value="{StaticResource DividerBrush}" />
 		<Setter Property="BorderThickness"
 				Value="1" />
+		<Setter Property="Formatter"
+				Value="{x:Null}" />
 
 		<Setter Property="Template">
 			<Setter.Value>
@@ -94,7 +96,7 @@
 								<!-- Reveal Button -->
 								<ToggleButton x:Name="RevealButton"
 											  Style="{StaticResource XamlDisplayExpandToggleButtonStyle}"
-											  IsChecked="False"
+											  IsChecked="{Binding Path=(smtx:XamlDisplayExtensions.ShowXaml), RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
 											  HorizontalAlignment="Right"
 											  VerticalAlignment="Top"
 											  android:Visibility="Collapsed"
@@ -105,9 +107,9 @@
 							<ScrollViewer Background="{StaticResource SampleSecondBackgroundBrush}"
 										  HorizontalScrollBarVisibility="Auto"
 										  VerticalScrollBarVisibility="Disabled"
-										  win:Visibility="{Binding ElementName=RevealButton, Path=IsChecked, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
-										  netstdref:Visibility="{Binding ElementName=RevealButton, Path=IsChecked, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
-										  macos:Visibility="{Binding ElementName=RevealButton, Path=IsChecked, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
+										  win:Visibility="{Binding Path=(smtx:XamlDisplayExtensions.ShowXaml), RelativeSource={RelativeSource TemplatedParent}}"
+										  netstdref:Visibility="{Binding Path=(smtx:XamlDisplayExtensions.ShowXaml), RelativeSource={RelativeSource TemplatedParent}}"
+										  macos:Visibility="{Binding Path=(smtx:XamlDisplayExtensions.ShowXaml), RelativeSource={RelativeSource TemplatedParent}}"
 										  ios:Visibility="Collapsed"
 										  android:Visibility="Collapsed"
 										  Grid.Row="1">
@@ -235,6 +237,41 @@
 		</Setter>
 	</Style>
 
+	<Style x:Key="BaseXamlDisplayStyle"
+		   TargetType="smtx:XamlDisplay">
+		<Setter Property="Margin" Value="0,10,0,0" />
+		<Setter Property="Formatter" Value="{StaticResource NiceFormatter}" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="smtx:XamlDisplay">
+					<StackPanel Orientation="Horizontal">
+						<ContentPresenter Content="{TemplateBinding Content}" />
+						<Button Content="{TemplateBinding Xaml}"
+								Style="{StaticResource SeeXamlFlyoutButtonStyle}" />
+					</StackPanel>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style x:Key="XamlDisplayBelowStyle"
+		   BasedOn="{StaticResource BaseXamlDisplayStyle}"
+		   TargetType="smtx:XamlDisplay">
+		<Setter Property="Padding" Value="0,5,0,0" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="smtx:XamlDisplay">
+					<StackPanel Orientation="Vertical">
+						<ContentPresenter Content="{TemplateBinding Content}" />
+						<Button Content="{TemplateBinding Xaml}"
+								Margin="{TemplateBinding Padding}"
+								Style="{StaticResource SeeXamlFlyoutButtonStyle}" />
+					</StackPanel>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	
 	<Style TargetType="smtx:XamlDisplay"
 		   BasedOn="{StaticResource ExpanderXamlDisplayStyle}" />
 

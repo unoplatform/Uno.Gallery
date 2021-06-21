@@ -1,5 +1,7 @@
 using System;
+using Uno.Extensions;
 using Uno.Gallery.Helpers;
+using Uno.Logging;
 using Windows.UI.Core;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
@@ -37,6 +39,11 @@ namespace Uno.Gallery
 		private void OnLoaded(object sender, RoutedEventArgs e)
 		{
 			SetDarkLightToggleInitialState();
+
+#if __IOS__ || __ANDROID__
+			this.Log().Debug("Loaded Shell.");
+			Uno.Gallery.Deeplinking.BranchService.Instance.SetIsAppReady();
+#endif
 		}
 
 		private void SetDarkLightToggleInitialState()

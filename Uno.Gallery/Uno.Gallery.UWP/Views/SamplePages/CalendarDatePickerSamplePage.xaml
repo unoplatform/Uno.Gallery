@@ -1,0 +1,79 @@
+﻿<Page x:Class="Uno.Gallery.Views.SamplePages.CalendarDatePickerSamplePage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:local="using:Uno.Gallery"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  mc:Ignorable="d"
+	  xmlns:smtx="using:ShowMeTheXAML"
+	  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<local:SamplePageLayout>
+			<local:SamplePageLayout.MaterialTemplate>
+				<DataTemplate>
+					<StackPanel Spacing="20">
+						<smtx:XamlDisplay UniqueKey="CalendarViewSamplePage_Material_CalendarDatePicker"
+										  smtx:XamlDisplayExtensions.Header="Default">
+							<CalendarDatePicker Header="Date"
+												x:Name="Material_CalendarDatePicker"
+												AutomationProperties.AutomationId="Material_CalendarDatePicker"
+												Style="{StaticResource MaterialCalendarDatePickerStyle}" />
+						</smtx:XamlDisplay>
+						<smtx:XamlDisplay UniqueKey="CalendarViewSamplePage_Material_CalendarDatePicker_Disabled"
+										  smtx:XamlDisplayExtensions.Header="Disabled">
+							<CalendarDatePicker Header="Date"
+												IsEnabled="False"
+												x:Name="Material_CalendarDatePicker_Disabled"
+												AutomationProperties.AutomationId="Material_CalendarDatePicker_Disabled"
+												Style="{StaticResource MaterialCalendarDatePickerStyle}" />
+						</smtx:XamlDisplay>
+					</StackPanel>
+				</DataTemplate>
+			</local:SamplePageLayout.MaterialTemplate>
+			<local:SamplePageLayout.CupertinoTemplate>
+				<DataTemplate>
+
+					<StackPanel Spacing="20">
+						<smtx:XamlDisplay UniqueKey="CalendarViewSamplePage_Cupertino_CalendarDatePicker"
+										  smtx:XamlDisplayExtensions.Header="Default">
+							<CalendarDatePicker Header="Date"
+												x:Name="Cupertino_CalendarDatePicker"
+												AutomationProperties.AutomationId="Cupertino_CalendarDatePicker"
+												Style="{StaticResource CupertinoCalendarDatePickerStyle}" />
+						</smtx:XamlDisplay>
+						<smtx:XamlDisplay UniqueKey="CalendarViewSamplePage_Cupertino_CalendarDatePicker_Disabled"
+										  smtx:XamlDisplayExtensions.Header="Disabled">
+							<CalendarDatePicker Header="Date"
+												IsEnabled="False"
+												x:Name="Cupertino_CalendarDatePicker_Disabled"
+												AutomationProperties.AutomationId="Cupertino_CalendarDatePicker_Disabled"
+												Style="{StaticResource CupertinoCalendarDatePickerStyle}" />
+						</smtx:XamlDisplay>
+					</StackPanel>
+
+				</DataTemplate>
+			</local:SamplePageLayout.CupertinoTemplate>
+			<local:SamplePageLayout.FluentTemplate>
+				<DataTemplate>
+					<StackPanel Spacing="20">
+
+						<smtx:XamlDisplay UniqueKey="CalendarViewSamplePage_Fluent_CalendarDatePicker"
+										  smtx:XamlDisplayExtensions.Header="Default">
+							<CalendarDatePicker Header="Date"
+												x:Name="Fluent_CalendarDatePicker"
+												AutomationProperties.AutomationId="Fluent_CalendarDatePicker" />
+						</smtx:XamlDisplay>
+						<smtx:XamlDisplay UniqueKey="CalendarViewSamplePage_Fluent_CalendarDatePicker_Disabled"
+										  smtx:XamlDisplayExtensions.Header="Disabled">
+							<CalendarDatePicker Header="Date"
+												IsEnabled="False"
+												x:Name="Fluent_CalendarDatePicker_Disabled"
+												AutomationProperties.AutomationId="Fluent_CalendarDatePicker_Disabled" />
+						</smtx:XamlDisplay>
+					</StackPanel>
+				</DataTemplate>
+			</local:SamplePageLayout.FluentTemplate>
+		</local:SamplePageLayout>
+	</Grid>
+</Page>
