@@ -36,16 +36,6 @@ namespace Uno.Gallery
 		public static readonly DependencyProperty CurrentSampleBackdoorProperty =
 			DependencyProperty.Register(nameof(CurrentSampleBackdoor), typeof(string), typeof(Shell), new PropertyMetadata(null));
 
-		public string CurrentThemeBackdoor
-		{
-			get { return (string)GetValue(CurrentThemeBackdoorProperty); }
-			set { SetValue(CurrentThemeBackdoorProperty, value); }
-		}
-
-		public static readonly DependencyProperty CurrentThemeBackdoorProperty =
-			DependencyProperty.Register(nameof(CurrentThemeBackdoor), typeof(string), typeof(Shell), new PropertyMetadata(null));
-
-
 		private void OnLoaded(object sender, RoutedEventArgs e)
 		{
 			SetDarkLightToggleInitialState();

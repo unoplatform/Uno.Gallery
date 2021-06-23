@@ -185,7 +185,6 @@ namespace Uno.Gallery
 		{
 			_shell = new Shell();
 			AutomationProperties.SetAutomationId(_shell, "AppShell");
-			_shell.RegisterPropertyChangedCallback(Shell.CurrentThemeBackdoorProperty, OnCurrentThemeBackdoorChanged);
 			_shell.RegisterPropertyChangedCallback(Shell.CurrentSampleBackdoorProperty, OnCurrentSampleBackdoorChanged);
 			var nv = _shell.NavigationView;
 			AddNavigationItems(nv);
@@ -202,11 +201,6 @@ namespace Uno.Gallery
 			nv.ItemInvoked += OnNavigationItemInvoked;
 
 			return _shell;
-		}
-
-		private void OnCurrentThemeBackdoorChanged(DependencyObject sender, DependencyProperty dp)
-		{
-			//throw new NotImplementedException();
 		}
 
 		private void OnCurrentSampleBackdoorChanged(DependencyObject sender, DependencyProperty dp)
