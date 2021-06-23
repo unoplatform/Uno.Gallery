@@ -58,7 +58,7 @@ namespace Uno.Gallery.UITests
 
         protected void NavigateToSample(string sample, string design = null)
         {
-            var backdoorPropVal = string.Join("/", sample, design);
+            var backdoorPropVal = string.Join("-", sample, design);
 
             var shell = App.Marked("AppShell").WaitUntilExists();
             shell.SetDependencyPropertyValue("CurrentSampleBackdoor", backdoorPropVal);

@@ -185,6 +185,7 @@ namespace Uno.Gallery
 		{
 			_shell = new Shell();
 			AutomationProperties.SetAutomationId(_shell, "AppShell");
+			_shell.RegisterPropertyChangedCallback(Shell.CurrentThemeBackdoorProperty, OnCurrentThemeBackdoorChanged);
 			_shell.RegisterPropertyChangedCallback(Shell.CurrentSampleBackdoorProperty, OnCurrentSampleBackdoorChanged);
 			var nv = _shell.NavigationView;
 			AddNavigationItems(nv);
@@ -203,15 +204,19 @@ namespace Uno.Gallery
 			return _shell;
 		}
 
+		private void OnCurrentThemeBackdoorChanged(DependencyObject sender, DependencyProperty dp)
+		{
+			//throw new NotImplementedException();
+		}
+
 		private void OnCurrentSampleBackdoorChanged(DependencyObject sender, DependencyProperty dp)
 		{
-			Console.WriteLine("IN BACKDOOR CHANGED");
-			var backdoorParts = _shell.CurrentSampleBackdoor.Split("/");
+			var backdoorParts = _shell.CurrentSampleBackdoor.Split("-");
 			var title = backdoorParts.FirstOrDefault();
 			var designName = backdoorParts.Length > 1 ? backdoorParts[1] : string.Empty;
 
 			var sample = GetSamples()
-				.FirstOrDefault(x => string.Equals(x.Title, _shell.CurrentSampleBackdoor, StringComparison.OrdinalIgnoreCase));
+				.FirstOrDefault(x => string.Equals(x.Title, title, StringComparison.OrdinalIgnoreCase));
 
 			if (sample == null)
 			{
@@ -224,6 +229,7 @@ namespace Uno.Gallery
 				SamplePageLayout.SetPreferredDesign(design);
 			}
 
+			ShellNavigateTo<OverviewPage>();
 			ShellNavigateTo(sample);
 		}
 
