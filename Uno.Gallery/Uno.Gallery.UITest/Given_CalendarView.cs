@@ -12,7 +12,7 @@ namespace Uno.Gallery.UITests
 {
 	public class Given_CalendarView : TestBase
 	{
-		[Test]
+		/*[Test]
 		public void When_CalendarViewMaterial()
 		{
 			NavigateToSample("CalendarView");
@@ -43,6 +43,6 @@ namespace Uno.Gallery.UITests
 			TakeScreenshot("Fluent CalendarView");
 
 			App.WaitForElement(q => q.All().Marked("Fluent_CalendarView"));
-		}
+		}*/
 	}
 }
