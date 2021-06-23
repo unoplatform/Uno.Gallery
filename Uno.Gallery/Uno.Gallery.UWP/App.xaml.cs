@@ -205,6 +205,10 @@ namespace Uno.Gallery
 
 		private void OnCurrentSampleBackdoorChanged(DependencyObject sender, DependencyProperty dp)
 		{
+			var backdoorParts = _shell.CurrentSampleBackdoor.Split(";");
+			var title = backdoorParts.FirstOrDefault();
+			var designName = backdoorParts.Length > 1 ? backdoorParts[1] : string.Empty;
+
 			var sample = GetSamples()
 				.FirstOrDefault(x => string.Equals(x.Title, _shell.CurrentSampleBackdoor, StringComparison.OrdinalIgnoreCase));
 
@@ -212,6 +216,11 @@ namespace Uno.Gallery
 			{
 				this.Log().Warn($"No SampleAttribute found with a Title that matches: {_shell.CurrentSampleBackdoor}");
 				return;
+			}
+
+			if (Enum.TryParse<Design>(designName, out var design))
+			{
+				SamplePageLayout.SetPreferredDesign(design);
 			}
 
 			ShellNavigateTo(sample);

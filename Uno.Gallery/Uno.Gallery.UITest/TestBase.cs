@@ -56,10 +56,12 @@ namespace Uno.Gallery.UITests
             TakeScreenshot("teardown");
         }
 
-        protected void NavigateToSample(string sample)
+        protected void NavigateToSample(string sample, string design = null)
         {
+            var backdoorPropVal = string.Join(";", sample, design);
+
             var shell = App.Marked("AppShell").WaitUntilExists();
-            shell.SetDependencyPropertyValue("CurrentSampleBackdoor", sample);
+            shell.SetDependencyPropertyValue("CurrentSampleBackdoor", backdoorPropVal);
         }
 
         protected void ShowMaterialTheme()
