@@ -20,14 +20,16 @@ namespace Uno.Gallery.UITests
 			NavigateToSample("CheckBox");
 			ShowFluentTheme();
 
-			TakeScreenshot("Before Checked");
-
-			var FluentUncheckedBox = App.WaitThenTap("Fluent_Unchecked").ToQueryEx();
-
+			TakeScreenshot("Before Checked");			
+			var FluentUncheckedBox = new QueryEx(x => x.Marked("Fluent_Unchecked"));
+			FluentUncheckedBox.Tap();
 			TakeScreenshot("After Checked");
-
-			//Assert.IsFalse(FluentUncheckedBox.GetDependencyPropertyValue<bool>("IsChecked"));
 			Assert.IsTrue(FluentUncheckedBox.GetDependencyPropertyValue<bool>("IsChecked"));
+
+			/*var FluentUncheckedBox = App.WaitThenTap("Fluent_Unchecked").ToQueryEx();
+			TakeScreenshot("After Checked");
+			//Assert.IsFalse(FluentUncheckedBox.GetDependencyPropertyValue<bool>("IsChecked"));
+			Assert.IsTrue(FluentUncheckedBox.GetDependencyPropertyValue<bool>("IsChecked"));*/
 		}
 
 		/*     
@@ -39,14 +41,17 @@ namespace Uno.Gallery.UITests
 			NavigateToSample("CheckBox");
 			ShowFluentTheme();
 
-			TakeScreenshot("Before Checked");
-
-			var fluentDisabledUncheckedBox = App.WaitThenTap("Fluent_Disabled_Unchecked").ToQueryEx();
-
+			TakeScreenshot("Before Checked");			
+			var fluentDisabledUncheckedBox = new QueryEx(x => x.All().Marked("Fluent_Disabled_Unchecked"));			
+			fluentDisabledUncheckedBox.Tap();
 			TakeScreenshot("After Checked");
+			Assert.IsFalse(fluentDisabledUncheckedBox.GetDependencyPropertyValue<bool>("IsEnabled"));
+			Assert.IsFalse(fluentDisabledUncheckedBox.GetDependencyPropertyValue<bool>("IsChecked"));
 
+			/*var fluentDisabledUncheckedBox = App.WaitThenTap("Fluent_Disabled_Unchecked").ToQueryEx();
+			TakeScreenshot("After Checked");
 			//Assert.IsFalse(fluentDisabledUncheckedBox.GetDependencyPropertyValue<bool>("IsEnabled"));
-			Assert.IsTrue(fluentDisabledUncheckedBox.GetDependencyPropertyValue<bool>("IsEnabled"));
+			Assert.IsTrue(fluentDisabledUncheckedBox.GetDependencyPropertyValue<bool>("IsEnabled"));*/
 		}
 
 		/*     
