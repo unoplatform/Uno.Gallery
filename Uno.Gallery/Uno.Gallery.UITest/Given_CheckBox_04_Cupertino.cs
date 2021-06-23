@@ -17,8 +17,7 @@ namespace Uno.Gallery.UITests
 		[Test]
 		public void WhenCupertinoClick_01_Unchecked()
 		{
-			NavigateToSample("CheckBox");
-			ShowCupertinoTheme();
+			NavigateToSample("CheckBox", "Cupertino");
 
 			TakeScreenshot("Before Checked");
 
@@ -35,8 +34,8 @@ namespace Uno.Gallery.UITests
 		[Test]
 		public void WhenCupertinoClick_02_DisabledChecked()
 		{
-			NavigateToSample("CheckBox");
-			ShowCupertinoTheme();
+			NavigateToSample("CheckBox", "Cupertino");
+
 
 			TakeScreenshot("Before Checked");
 
@@ -53,8 +52,8 @@ namespace Uno.Gallery.UITests
 		[Test]
 		public void WhenCupertinoClick_03_Checked()
 		{
-			NavigateToSample("CheckBox");
-			ShowCupertinoTheme();
+			NavigateToSample("CheckBox", "Cupertino");
+
 
 			TakeScreenshot("Before UnChecked");
 
@@ -72,8 +71,8 @@ namespace Uno.Gallery.UITests
 		[Test]
 		public void WhenCupertinoClick_04_DisabledUnchecked()
 		{
-			NavigateToSample("CheckBox");
-			ShowCupertinoTheme();
+			NavigateToSample("CheckBox", "Cupertino");
+
 
 			TakeScreenshot("Before Checked");
 
@@ -92,8 +91,8 @@ namespace Uno.Gallery.UITests
 		[Test]
 		public void WhenCupertinoClick_05_Indeterminate()
 		{
-			NavigateToSample("CheckBox");
-			ShowCupertinoTheme();
+			NavigateToSample("CheckBox", "Cupertino");
+
 
 			TakeScreenshot("Before UnChecked");
 
@@ -124,8 +123,8 @@ namespace Uno.Gallery.UITests
 		[Test]
 		public void WhenCupertinoClick_06_DisabledIndeterminate()
 		{
-			NavigateToSample("CheckBox");
-			ShowCupertinoTheme();
+			NavigateToSample("CheckBox", "Cupertino");
+
 
 			TakeScreenshot("Before Checked");
 

@@ -17,8 +17,7 @@ namespace Uno.Gallery.UITests
 		[Test]
 		public void WhenFluentClick_01_Unchecked()
 		{
-			NavigateToSample("CheckBox");
-			ShowFluentTheme();
+			NavigateToSample("CheckBox", "Fluent");
 
 			TakeScreenshot("Before Checked");			
 			var FluentUncheckedBox = new QueryEx(x => x.Marked("Fluent_Unchecked"));
@@ -38,8 +37,7 @@ namespace Uno.Gallery.UITests
 		[Test]
 		public void WhenFluentClick_02_DisabledUnchecked()
 		{
-			NavigateToSample("CheckBox");
-			ShowFluentTheme();
+			NavigateToSample("CheckBox", "Fluent");
 
 			TakeScreenshot("Before Checked");			
 			var fluentDisabledUncheckedBox = new QueryEx(x => x.All().Marked("Fluent_Disabled_Unchecked"));			
@@ -60,8 +58,7 @@ namespace Uno.Gallery.UITests
 		[Test]
 		public void WhenFluentClick_03_Checked()
 		{
-			NavigateToSample("CheckBox");
-			ShowFluentTheme();
+			NavigateToSample("CheckBox", "Fluent");
 
 			TakeScreenshot("Before UnChecked");
 
@@ -79,8 +76,7 @@ namespace Uno.Gallery.UITests
 		[Test]
 		public void WhenFluentClick_04_DisabledChecked()
 		{
-			NavigateToSample("CheckBox");
-			ShowFluentTheme();
+			NavigateToSample("CheckBox", "Fluent");
 
 			TakeScreenshot("Before Checked");
 
@@ -99,8 +95,7 @@ namespace Uno.Gallery.UITests
 		[Test]
 		public void WhenFluentClick_05_Indeterminate()
 		{
-			NavigateToSample("CheckBox");
-			ShowFluentTheme();
+			NavigateToSample("CheckBox", "Fluent");
 
 			TakeScreenshot("Before UnChecked");
 
@@ -132,8 +127,7 @@ namespace Uno.Gallery.UITests
 		[Test]
 		public void WhenFluentClick_06_DisabledIndeterminate()
 		{
-			NavigateToSample("CheckBox");
-			ShowFluentTheme();
+			NavigateToSample("CheckBox", "Fluent");
 
 			TakeScreenshot("Before Checked");
 

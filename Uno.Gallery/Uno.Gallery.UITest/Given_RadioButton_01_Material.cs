@@ -17,8 +17,7 @@ namespace Uno.Gallery.UITests
 		[Test]
 		public void WhenRadioButtonMaterialClick_01_Unchecked()
 		{
-			NavigateToSample("RadioButton");
-			ShowMaterialTheme();
+			NavigateToSample("RadioButton", "Material");
 
 			TakeScreenshot("Before Checked");
 
@@ -36,8 +35,7 @@ namespace Uno.Gallery.UITests
 		[Test]
 		public void WhenRadioButtonMaterialClick_03_DisabledUnchecked()
 		{
-			NavigateToSample("RadioButton");
-			ShowMaterialTheme();
+			NavigateToSample("RadioButton", "Material");
 
 			TakeScreenshot("Before Checked");
 
@@ -55,8 +53,7 @@ namespace Uno.Gallery.UITests
 		[Test]
 		public void WhenRadioButtonMaterialClick_02_Checked()
 		{
-			NavigateToSample("RadioButton");
-			ShowMaterialTheme();
+			NavigateToSample("RadioButton", "Material");
 
 			TakeScreenshot("Before UnChecked");
 
@@ -74,8 +71,7 @@ namespace Uno.Gallery.UITests
 		[Test]
 		public void WhenRadioButtonMaterialClick_04_DisabledChecked()
 		{
-			NavigateToSample("RadioButton");
-			ShowMaterialTheme();
+			NavigateToSample("RadioButton", "Material");
 
 			TakeScreenshot("Before Checked");
 

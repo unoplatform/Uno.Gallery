@@ -205,7 +205,8 @@ namespace Uno.Gallery
 
 		private void OnCurrentSampleBackdoorChanged(DependencyObject sender, DependencyProperty dp)
 		{
-			var backdoorParts = _shell.CurrentSampleBackdoor.Split(";");
+			Console.WriteLine("IN BACKDOOR CHANGED");
+			var backdoorParts = _shell.CurrentSampleBackdoor.Split("/");
 			var title = backdoorParts.FirstOrDefault();
 			var designName = backdoorParts.Length > 1 ? backdoorParts[1] : string.Empty;
 

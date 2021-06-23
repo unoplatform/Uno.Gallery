@@ -13,8 +13,7 @@ namespace Uno.Gallery.UITests
       /*  [Test]
         public void When_TextBox_Entered_Text()
         {
-            NavigateToSample("TextBox");
-            ShowMaterialTheme();
+            NavigateToSample("TextBox", "Material");
 
             TakeScreenshot("Before Text Entered");
 

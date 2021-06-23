@@ -17,8 +17,7 @@ namespace Uno.Gallery.UITests
 		[Test]
 		public void WhenMaterialClickSecondary_01_Unchecked()
 		{
-			NavigateToSample("CheckBox");
-			ShowMaterialTheme();
+			NavigateToSample("CheckBox", "Material");
 
 			TakeScreenshot("Before Checked");
 			var materialSecondaryUncheckedBox = new QueryEx(x => x.All().Marked("Material_Secondary_Unchecked"));
@@ -38,8 +37,7 @@ namespace Uno.Gallery.UITests
 		[Test]
 		public void WhenMaterialClickSecondary_02_DisabledUnchecked()
 		{
-			NavigateToSample("CheckBox");
-			ShowMaterialTheme();
+			NavigateToSample("CheckBox", "Material");
 
 			TakeScreenshot("Before Checked");
 			var materialSecondaryDisabledUncheckedBox = new QueryEx(x => x.All().Marked("Material_Secondary_Disabled_Unchecked"));
@@ -60,8 +58,7 @@ namespace Uno.Gallery.UITests
 		[Test]
 		public void WhenMaterialClickSecondary_03_Checked()
 		{
-			NavigateToSample("CheckBox");
-			ShowMaterialTheme();
+			NavigateToSample("CheckBox", "Material");
 
 			TakeScreenshot("Before UnChecked");			
 			var materialSecondaryCheckedBox = new QueryEx(x => x.All().Marked("Material_Secondary_Checked"));
@@ -82,8 +79,7 @@ namespace Uno.Gallery.UITests
 		[Test]
 		public void WhenMaterialClickSecondary_04_DisabledChecked()
 		{
-			NavigateToSample("CheckBox");
-			ShowMaterialTheme();
+			NavigateToSample("CheckBox", "Material");
 
 			TakeScreenshot("Before Checked");
 			var materialSecondaryDisabledCheckedBox = new QueryEx(x => x.All().Marked("Material_Disabled_Checked"));
@@ -106,8 +102,7 @@ namespace Uno.Gallery.UITests
 		[Test]
 		public void WhenMaterialClickSecondary_05_Indeterminate()
 		{
-			NavigateToSample("CheckBox");
-			ShowMaterialTheme();
+			NavigateToSample("CheckBox", "Material");
 
 			TakeScreenshot("Before UnChecked");			
 			var materialSecondaryCheckedIndeterminateBox = new QueryEx(x => x.All().Marked("Material_Secondary_Indeterminate"));
@@ -143,8 +138,7 @@ namespace Uno.Gallery.UITests
 		[Test]
 		public void WhenMaterialClickSecondary_06_DisabledIndeterminate()
 		{
-			NavigateToSample("CheckBox");
-			ShowMaterialTheme();
+			NavigateToSample("CheckBox", "Material");
 
 			TakeScreenshot("Before Checked");
 			var materialSecondaryDisabledIndeterminateBox = App.WaitThenTap("Material_Secondary_Disabled_Indeterminate").ToQueryEx();

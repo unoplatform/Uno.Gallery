@@ -17,8 +17,7 @@ namespace Uno.Gallery.UITests
 		[Test]
 		public void WhenMaterialClick_01_Unchecked()
 		{
-			NavigateToSample("CheckBox");
-			ShowMaterialTheme();
+			NavigateToSample("CheckBox", "Material");
 
 			TakeScreenshot("Before Checked");
 			var uncheckedBox = new QueryEx(x => x.Marked("Material_Unchecked"));
@@ -31,8 +30,7 @@ namespace Uno.Gallery.UITests
 		[Test]
 		public void WhenMaterialClick_02_DisabledUnchecked()
 		{
-			NavigateToSample("CheckBox");
-			ShowMaterialTheme();
+			NavigateToSample("CheckBox", "Material");
 
 			TakeScreenshot("Before Checked");
 			var materialDisabledUncheckedBox = new QueryEx(x => x.Marked("Material_Disabled_Unchecked"));
@@ -46,8 +44,7 @@ namespace Uno.Gallery.UITests
 		[Test]
 		public void WhenMaterialClick_03_Checked()
 		{
-			NavigateToSample("CheckBox");
-			ShowMaterialTheme();
+			NavigateToSample("CheckBox", "Material");
 
 			TakeScreenshot("Before UnChecked");
 			var checkedBox = new QueryEx(x => x.Marked("Material_Checked"));
@@ -60,8 +57,7 @@ namespace Uno.Gallery.UITests
 		[Test]
 		public void WhenMaterialClick_04_DisabledChecked()
 		{
-			NavigateToSample("CheckBox");
-			ShowMaterialTheme();
+			NavigateToSample("CheckBox", "Material");
 
 			TakeScreenshot("Before UnChecked");
 			var materialDisabledCheckedBox = new QueryEx(x => x.Marked("Material_Disabled_Checked"));
@@ -75,8 +71,7 @@ namespace Uno.Gallery.UITests
 		[Test]
 		public void WhenMaterialClick_05_Indeterminate()
 		{
-			NavigateToSample("CheckBox");
-			ShowMaterialTheme();
+			NavigateToSample("CheckBox", "Material");
 
 			TakeScreenshot("Before UnChecked");
 			var checkedIndeterminateBox = new QueryEx(x => x.Marked("Material_Indeterminate"));
@@ -100,8 +95,7 @@ namespace Uno.Gallery.UITests
 		[Test]
 		public void WhenMaterialClick_06_DisabledIndeterminate()
 		{
-			NavigateToSample("CheckBox");
-			ShowMaterialTheme();
+			NavigateToSample("CheckBox", "Material");
 
 			TakeScreenshot("Before Checked");
 			var materialDisabledIndeterminateBox = App.WaitThenTap("Material_Disabled_Indeterminate").ToQueryEx();
