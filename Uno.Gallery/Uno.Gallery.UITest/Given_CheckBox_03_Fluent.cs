@@ -11,15 +11,12 @@ namespace Uno.Gallery.UITests
 {
 	public class Given_CheckBox_03_Fluent : TestBase
 	{
-		/*     
-        * This function is to test the Unchecked option  in checkbox for material, 
-        */
+		     
+        /* This function is to test the Unchecked option  in checkbox for Fluent. */         
 		[Test]
 		public void WhenFluentClick_01_Unchecked()
 		{
-			NavigateToSample("CheckBox", "Fluent");
-			//App.ScrollTo("Fluent_Unchecked");
-			
+			NavigateToSample("CheckBox", "Fluent");			
 
 			TakeScreenshot("Before Checked");			
 			var FluentUncheckedBox = new QueryEx(x => x.All().Marked("Fluent_Unchecked"));
@@ -29,14 +26,12 @@ namespace Uno.Gallery.UITests
 			Assert.IsTrue(FluentUncheckedBox.GetDependencyPropertyValue<bool>("IsChecked"));			
 		}
 
-		/*     
-        * This function is to test the DisabledUnchecked option  in checkbox for material.
-        */
+		     
+        /* This function is to test the DisabledUnchecked option  in checkbox for Fluent. */        
 		[Test]
 		public void WhenFluentClick_02_DisabledUnchecked()
 		{
 			NavigateToSample("CheckBox", "Fluent");
-
 
 			TakeScreenshot("Before Checked");			
 			var fluentDisabledUncheckedBox = new QueryEx(x => x.All().Marked("Fluent_Disabled_Unchecked"));			
@@ -46,31 +41,25 @@ namespace Uno.Gallery.UITests
 			Assert.IsFalse(fluentDisabledUncheckedBox.GetDependencyPropertyValue<bool>("IsChecked"));			
 		}
 
-		/*     
-		 * This function is to test the Checked option in checkbox for material.    
-		 */
+		     
+		 /* This function is to test the Checked option in checkbox for Fluent. */	 
 		[Test]
 		public void WhenFluentClick_03_Checked()
 		{
 			NavigateToSample("CheckBox", "Fluent");
-
 
 			TakeScreenshot("Before UnChecked");			
 			var fluentCheckedBox = new QueryEx(x => x.All().Marked("Fluent_Checked"));
 			fluentCheckedBox.Tap();
 			TakeScreenshot("After UnChecked");
 			Assert.IsFalse(fluentCheckedBox.GetDependencyPropertyValue<bool>("IsChecked"));			
-		}
-		
-		/*     
-        * This function is to test the DisabledChecked option  in checkbox for material, 
-        */
+		}		
+		     
+        /* This function is to test the DisabledChecked option  in checkbox for Fluent. */        
 		[Test]
 		public void WhenFluentClick_04_DisabledChecked()
 		{
 			NavigateToSample("CheckBox", "Fluent");
-
-
 
 			TakeScreenshot("Before Checked");
 			var fluentDisabledCheckedBox = new QueryEx(x => x.All().Marked("Fluent_Disabled_Checked"));
@@ -80,14 +69,12 @@ namespace Uno.Gallery.UITests
 			Assert.IsTrue(fluentDisabledCheckedBox.GetDependencyPropertyValue<bool>("IsChecked"));			
 		}
 
-		/*     
-        * This function is to test the Indeterminate for uncheck, recheck and indeterminate option  in checkbox for material, 
-        */
+		     
+        /* This function is to test the Indeterminate for uncheck, recheck and indeterminate option  in checkbox for Fluent. */        
 		[Test]
 		public void WhenFluentClick_05_Indeterminate()
 		{
 			NavigateToSample("CheckBox", "Fluent");
-
 
 			TakeScreenshot("Before UnChecked");
 			var fluentCheckedIndeterminateBox = new QueryEx(x => x.All().Marked("Fluent_Indeterminate"));
@@ -105,14 +92,12 @@ namespace Uno.Gallery.UITests
 			Assert.IsTrue(isChecked == null || string.IsNullOrWhiteSpace(isChecked as string));			
 		}	
 		
-		/*     
-        * This function is to test the DisabledIndeterminate option  in checkbox for material.
-        */
+		     
+        /* This function is to test the DisabledIndeterminate option  in checkbox for Fluent. */        
 		[Test]
 		public void WhenFluentClick_06_DisabledIndeterminate()
 		{
 			NavigateToSample("CheckBox", "Fluent");
-
 
 			TakeScreenshot("Before Checked");
 			var fluentDisabledIndeterminateBox = App.WaitThenTap("Fluent_Disabled_Indeterminate").ToQueryEx();			

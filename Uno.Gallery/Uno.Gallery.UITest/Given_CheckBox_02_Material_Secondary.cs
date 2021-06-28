@@ -10,10 +10,8 @@ using Uno.UITests.Helpers;
 namespace Uno.Gallery.UITests
 {
 	public class Given_CheckBox_02_Material_Secondary : TestBase
-	{
-		/*     
-        * This function is to test the Unchecked option  in checkbox for material, 
-        */
+	{		    
+        /*This function is to test the Unchecked option  in checkbox for material Secondary. */        
 		[Test]
 		public void WhenMaterialClickSecondary_01_Unchecked()
 		{
@@ -27,9 +25,7 @@ namespace Uno.Gallery.UITests
 			Assert.IsTrue(materialSecondaryUncheckedBox.GetDependencyPropertyValue<bool>("IsChecked"));			
 		}
 
-		/*     
-        * This function is to test the DisabledUnchecked option  in checkbox for material.*/
-        
+		/* This function is to test the DisabledUnchecked option  in checkbox for material Secondary.*/
 		[Test]
 		public void WhenMaterialClickSecondary_02_DisabledUnchecked()
 		{
@@ -44,9 +40,7 @@ namespace Uno.Gallery.UITests
 			Assert.IsFalse(materialSecondaryDisabledUncheckedBox.GetDependencyPropertyValue<bool>("IsChecked"));			
 		}
 
-		/*     
-		 * This function is to test the Checked option in checkbox for material.    */
-		 
+		/* This function is to test the Checked option in checkbox for material Secondary. */
 		[Test]
 		public void WhenMaterialClickSecondary_03_Checked()
 		{
@@ -60,9 +54,7 @@ namespace Uno.Gallery.UITests
 			Assert.IsFalse(materialSecondaryCheckedBox.GetDependencyPropertyValue<bool>("IsChecked"));		
 		}
 
-		/*     
-        * This function is to test the DisabledChecked option  in checkbox for material, */
-        
+		/* This function is to test the DisabledChecked option  in checkbox for material Secondary. */
 		[Test]
 		public void WhenMaterialClickSecondary_04_DisabledChecked()
 		{
@@ -77,9 +69,7 @@ namespace Uno.Gallery.UITests
 			Assert.IsTrue(materialSecondaryDisabledCheckedBox.GetDependencyPropertyValue<bool>("IsChecked"));			
 		}
 
-		/*     
-        * This function is to test the Indeterminate for uncheck, recheck and indeterminate option  in checkbox for material, */
-        
+		/* This function is to test the Indeterminate for uncheck, recheck and indeterminate option  in checkbox for material Secondary.*/
 		[Test]
 		public void WhenMaterialClickSecondary_05_Indeterminate()
 		{
@@ -101,10 +91,8 @@ namespace Uno.Gallery.UITests
 			var isChecked = materialSecondaryCheckedIndeterminateBox.GetDependencyPropertyValue("IsChecked");
 			Assert.IsTrue(isChecked == null || string.IsNullOrWhiteSpace(isChecked as string));			
 		}
-		
-		/*     
-        * This function is to test the DisabledIndeterminate option  in checkbox for material.*/
-        
+
+		/* This function is to test the DisabledIndeterminate option  in checkbox for material Secondary */
 		[Test]
 		public void WhenMaterialClickSecondary_06_DisabledIndeterminate()
 		{

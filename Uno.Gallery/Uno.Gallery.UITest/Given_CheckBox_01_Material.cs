@@ -11,9 +11,8 @@ namespace Uno.Gallery.UITests
 {
 	public class Given_CheckBox_01_Material : TestBase
 	{
-		/*     
-		* This function is to test the Unchecked option  in checkbox for material, 
-		*/
+		    
+		/*This function is to test the Unchecked option  in checkbox for material */ 		
 		[Test]
 		public void WhenMaterialClick_01_Unchecked()
 		{
@@ -67,7 +66,7 @@ namespace Uno.Gallery.UITests
 			Assert.IsTrue(materialDisabledCheckedBox.GetDependencyPropertyValue<bool>("IsChecked"));			
 		}
 		     
-        /*This function is to test the Indeterminate for uncheck, recheck and indeterminate option  in checkbox for material   */     
+        /* This function is to test the Indeterminate for uncheck, recheck and indeterminate option in checkbox for material   */     
 		[Test]
 		public void WhenMaterialClick_05_Indeterminate()
 		{
@@ -89,8 +88,8 @@ namespace Uno.Gallery.UITests
 			Assert.IsTrue(isChecked == null || string.IsNullOrWhiteSpace(isChecked as string));			
 		}
 
-		/*     
-        * This function is to test the DisabledIndeterminate option  in checkbox for material.*/
+		     
+        /* This function is to test the DisabledIndeterminate option  in checkbox for material.*/
         
 		[Test]
 		public void WhenMaterialClick_06_DisabledIndeterminate()

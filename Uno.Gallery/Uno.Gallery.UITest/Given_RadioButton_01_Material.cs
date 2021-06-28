@@ -31,7 +31,7 @@ namespace Uno.Gallery.UITests
 
 		/*     
 		* This function is to test the DisabledUnchecked option  in checkbox for material.
-		*/
+		
 		[Test]
 		public void WhenRadioButtonMaterialClick_03_DisabledUnchecked()
 		{
@@ -49,7 +49,7 @@ namespace Uno.Gallery.UITests
 
 		/*     
 		 * This function is to test the Checked option in checkbox for material.    
-		 */
+		 
 		[Test]
 		public void WhenRadioButtonMaterialClick_02_Checked()
 		{
@@ -67,7 +67,7 @@ namespace Uno.Gallery.UITests
 
 		/*     
         * This function is to test the DisabledChecked option  in checkbox for material, 
-        */
+        
 		[Test]
 		public void WhenRadioButtonMaterialClick_04_DisabledChecked()
 		{
@@ -81,7 +81,7 @@ namespace Uno.Gallery.UITests
 
 			Assert.IsTrue(materialDisabledCheckedRadioButton.GetDependencyPropertyValue<bool>("IsEnabled"));
 			Assert.IsTrue(materialDisabledCheckedRadioButton.GetDependencyPropertyValue<bool>("IsChecked"));
-		}
+		}*/
 
 		
 		

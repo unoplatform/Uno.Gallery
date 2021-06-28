@@ -1,0 +1,4 @@
+﻿Build started...
+1>------ Build started: Project: Uno.Gallery.UITest, Configuration: Debug Any CPU ------
+1>Uno.Gallery.UITest -> C:\Users\sakshi.shukla\source\repos\Uno.Gallery\Uno.Gallery\Uno.Gallery.UITest\bin\Debug\net47\Uno.Gallery.UITest.dll
+========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========
