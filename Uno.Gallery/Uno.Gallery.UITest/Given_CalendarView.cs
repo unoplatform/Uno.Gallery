@@ -15,8 +15,7 @@ namespace Uno.Gallery.UITests
 		[Test]
 		public void When_CalendarViewMaterial()
 		{
-			NavigateToSample("CalendarView");
-			ShowMaterialTheme();
+			NavigateToSample("CalendarView", "Material");
 
 			TakeScreenshot("Material CalendarView");
 
@@ -26,8 +25,7 @@ namespace Uno.Gallery.UITests
 		[Test]
 		public void When_CalendarViewCupertino()
 		{
-			NavigateToSample("CalendarView");
-			ShowCupertinoTheme();
+			NavigateToSample("CalendarView", "Cupertino");
 
 			TakeScreenshot("Cupertino CalendarView");
 
@@ -37,8 +35,7 @@ namespace Uno.Gallery.UITests
 		[Test]
 		public void When_CalendarViewFluent()
 		{
-			NavigateToSample("CalendarView");
-			ShowFluentTheme();
+			NavigateToSample("CalendarView", "Fluent");
 
 			TakeScreenshot("Fluent CalendarView");
 

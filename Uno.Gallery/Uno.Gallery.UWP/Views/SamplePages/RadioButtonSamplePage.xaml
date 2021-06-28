@@ -19,17 +19,21 @@
 							<StackPanel Spacing="12">
 
 								<RadioButton GroupName="RadioButtonDemo_Fluent_1a"
+                                             AutomationProperties.AutomationId="RadioButton_Fluent_Unchecked"
 											 Content="UNCHECKED" />
 
 								<RadioButton GroupName="RadioButtonDemo_Fluent_1a"
+                                             AutomationProperties.AutomationId="RadioButton_Fluent_Checked"
 											 Content="CHECKED"
 											 IsChecked="True" />
 
 								<RadioButton GroupName="RadioButtonDemo_Fluent_1b"
+                                             AutomationProperties.AutomationId="RadioButton_Fluent_Disabled_Unchecked"
 											 Content="DISABLED UNCHECKED"
 											 IsEnabled="False" />
 
 								<RadioButton GroupName="RadioButtonDemo_Fluent_1b"
+                                             AutomationProperties.AutomationId="RadioButton_Material_Disabled_Checked"
 											 Content="DISABLED CHECKED"
 											 IsChecked="True"
 											 IsEnabled="False" />
@@ -49,20 +53,24 @@
 							<StackPanel>
 
 								<RadioButton GroupName="RadioButtonDemo_Material_1a"
+                                             AutomationProperties.AutomationId="RadioButton_Material_Unchecked"
 											 Content="UNCHECKED"
 											 Style="{StaticResource MaterialRadioButtonStyle}" />
 
 								<RadioButton GroupName="RadioButtonDemo_Material_1a"
+                                             AutomationProperties.AutomationId="RadioButton_Material_Checked"
 											 Content="CHECKED"
 											 Style="{StaticResource MaterialRadioButtonStyle}"
 											 IsChecked="True" />
 
 								<RadioButton GroupName="RadioButtonDemo_Material_1b"
+                                             AutomationProperties.AutomationId="RadioButton_Material_Disabled_Unchecked"
 											 Content="DISABLED UNCHECKED"
 											 Style="{StaticResource MaterialRadioButtonStyle}"
 											 IsEnabled="False" />
 
 								<RadioButton GroupName="RadioButtonDemo_Material_1b"
+                                             AutomationProperties.AutomationId="RadioButton_Material_Disabled_Checked"
 											 Content="DISABLED CHECKED"
 											 Style="{StaticResource MaterialRadioButtonStyle}"
 											 IsChecked="True"
@@ -76,20 +84,24 @@
 							<StackPanel>
 
 								<RadioButton GroupName="RadioButtonDemo_Material_2a"
+                                             AutomationProperties.AutomationId="RadioButton_Material_Secondary_Unchecked"
 											 Content="UNCHECKED"
 											 Style="{StaticResource MaterialSecondaryRadioButtonStyle}" />
 
 								<RadioButton GroupName="RadioButtonDemo_Material_2a"
+                                             AutomationProperties.AutomationId="RadioButton_Material_Secondary_Checked"
 											 Content="CHECKED"
 											 Style="{StaticResource MaterialSecondaryRadioButtonStyle}"
 											 IsChecked="True" />
 
 								<RadioButton GroupName="RadioButtonDemo_Material_2b"
+                                             AutomationProperties.AutomationId="RadioButton_Material_Secondary_Disabled_Unchecked"
 											 Content="DISABLED UNCHECKED"
 											 Style="{StaticResource MaterialSecondaryRadioButtonStyle}"
 											 IsEnabled="False" />
 
 								<RadioButton GroupName="RadioButtonDemo_Material_2b"
+                                             AutomationProperties.AutomationId="RadioButton_Material_Secondary_Disabled_Checked"
 											 Content="DISABLED CHECKED"
 											 Style="{StaticResource MaterialSecondaryRadioButtonStyle}"
 											 IsChecked="True"
@@ -107,20 +119,24 @@
 							<StackPanel>
 
 								<RadioButton GroupName="Cupertino_Primary_a"
+                                             AutomationProperties.AutomationId="RadioButton_Cupertino_Unchecked"
 											 Content="UNCHECKED"
 											 Style="{StaticResource CupertinoRadioButtonStyle}" />
 
 								<RadioButton GroupName="Cupertino_Primary_a"
+                                             AutomationProperties.AutomationId="RadioButton_Cupertino_Checked"
 											 Content="CHECKED"
 											 Style="{StaticResource CupertinoRadioButtonStyle}"
 											 IsChecked="True" />
 
 								<RadioButton GroupName="Cupertino_Primary_b"
+                                             AutomationProperties.AutomationId="RadioButton_Cupertino_Disabled_Unchecked"
 											 Content="DISABLED UNCHECKED"
 											 Style="{StaticResource CupertinoRadioButtonStyle}"
 											 IsEnabled="False" />
 
 								<RadioButton GroupName="Cupertino_Primary_b"
+                                             AutomationProperties.AutomationId="RadioButton_Cupertino_Disabled_Checked"
 											 Content="DISABLED CHECKED"
 											 Style="{StaticResource CupertinoRadioButtonStyle}"
 											 IsChecked="True"
