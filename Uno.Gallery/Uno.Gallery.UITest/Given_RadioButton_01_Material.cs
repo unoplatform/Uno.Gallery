@@ -20,9 +20,8 @@ namespace Uno.Gallery.UITests
 			NavigateToSample("RadioButton", "Material");
 
 			TakeScreenshot("Before Checked");
-
+			App.ScrollDownTo("RadioButton_Material_Unchecked");
 			var uncheckedRadioButton = App.WaitThenTap("RadioButton_Material_Unchecked").ToQueryEx();
-			
 			TakeScreenshot("After Checked");
 
 			//Assert.IsFalse(uncheckedBox.GetDependencyPropertyValue<bool>("IsChecked"));
