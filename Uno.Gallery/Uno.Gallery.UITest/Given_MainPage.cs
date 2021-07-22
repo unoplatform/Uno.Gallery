@@ -13,7 +13,7 @@ namespace Uno.Gallery.UITests
 		[Test]
 		public void When_SmokeTest()
 		{
-			NavigateToSample("Overview");
+			NavigateToSample("Overview", "Material");
 
 			TakeScreenshot("Start");
 
