@@ -230,7 +230,7 @@
       <Version>3.10.0-dev.110</Version>
     </PackageReference>
     <PackageReference Include="Uno.UI.RemoteControl" Version="3.10.0-dev.110" Condition="'$(Configuration)'=='Debug'" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="3.1.18" />
     <PackageReference Include="Microsoft.Extensions.Logging.Filter" Version="1.1.1" />
     <PackageReference Include="Xamarin.Essentials">
       <Version>1.6.1</Version>
