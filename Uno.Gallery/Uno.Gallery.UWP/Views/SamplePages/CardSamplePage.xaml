@@ -21,6 +21,7 @@
 							
 							<material:Card HeaderContent="Outlined card"
 										   SubHeaderContent="With title and subtitle only"
+                                           AutomationProperties.AutomationId="Outlined_Card"
 										   Style="{StaticResource MaterialOutlinedCardStyle}">
 								
 								<material:Card.HeaderContentTemplate>
@@ -48,6 +49,7 @@
 							<material:Card HeaderContent="Elevated card"
 										   SubHeaderContent="With supporting content"
 										   SupportingContent="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor."
+                                           AutomationProperties.AutomationId="Elevated_Card"
 										   Style="{StaticResource MaterialElevatedCardStyle}">
 								
 								<material:Card.HeaderContentTemplate>
@@ -83,6 +85,7 @@
 							<material:Card HeaderContent="Outlined card"
 										   SubHeaderContent="With media content"
 										   MediaContent="ms-appx:///Assets/LargeMedia.png"
+                                           AutomationProperties.AutomationId="Outlined_Card_Media_Content"
 										   Style="{StaticResource MaterialOutlinedCardStyle}">
 								<material:Card.HeaderContentTemplate>
 									<DataTemplate>
@@ -118,6 +121,7 @@
 										   SubHeaderContent="With media and supporting content"
 										   MediaContent="ms-appx:///Assets/LargeMedia.png"
 										   SupportingContent="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor."
+                                           AutomationProperties.AutomationId="Elevated_Card_Media_Content"
 										   Style="{StaticResource MaterialElevatedCardStyle}">
 								
 								<material:Card.HeaderContentTemplate>
@@ -162,6 +166,7 @@
 										   SubHeaderContent="With media, supporting content and supplemental action button"
 										   SupportingContent="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor."
 										   MediaContent="ms-appx:///Assets/LargeMedia.png"
+                                           AutomationProperties.AutomationId="Outlined_Card_Supplemental_Action_Button"
 										   Style="{StaticResource MaterialOutlinedCardStyle}">
 								
 								<material:Card.HeaderContentTemplate>
@@ -193,12 +198,14 @@
 												<Button Content="ACTION 1"
 														Margin="6"
 														Padding="10,2"
-														Style="{StaticResource MaterialTextButtonStyle}" />
+														Style="{StaticResource MaterialTextButtonStyle}" 
+                                                        AutomationProperties.AutomationId="Action_1_Button"/>
 												
 												<Button Content="ACTION 2"
 														Margin="6"
 														Padding="10,2"
-														Style="{StaticResource MaterialTextButtonStyle}" />
+														Style="{StaticResource MaterialTextButtonStyle}"
+                                                        AutomationProperties.AutomationId="Action_2_Button"/>
 											</StackPanel>
 										</StackPanel>
 									</DataTemplate>
@@ -242,6 +249,7 @@
 										   SubHeaderContent="With small media and supporting content"
 										   MediaContent="ms-appx:///Assets/SmallMedia.png"
 										   SupportingContent="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor."
+                                           AutomationProperties.AutomationId="Elevated_Card_Small_Media_Supporting_Content"
 										   Style="{StaticResource MaterialSmallMediaElevatedCardStyle}">
 								
 								<material:Card.HeaderContentTemplate>
@@ -294,6 +302,7 @@
 										   SupportingContent="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor."
 										   MediaContent="ms-appx:///Assets/LargeMedia.png"
 										   Style="{StaticResource MaterialAvatarElevatedCardStyle}"
+                                           AutomationProperties.AutomationId="Disabled_Outlined_Card"
 										   IsEnabled="False">
 								
 								<material:Card.HeaderContentTemplate>

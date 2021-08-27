@@ -25,9 +25,9 @@
 								<material:BottomNavigationBar.Items>
 
 									<material:BottomNavigationBarItem>
-										<material:BottomNavigationBarItem.Icon>
-											<SymbolIcon Symbol="Favorite" />
-										</material:BottomNavigationBarItem.Icon>
+										<material:BottomNavigationBarItem.Icon>                                            
+											<SymbolIcon Symbol="Favorite" />                                             
+										</material:BottomNavigationBarItem.Icon>                                        
 									</material:BottomNavigationBarItem>
 
 									<material:BottomNavigationBarItem>

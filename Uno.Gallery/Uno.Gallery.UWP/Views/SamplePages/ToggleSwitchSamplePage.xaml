@@ -16,13 +16,17 @@
 									  smtx:XamlDisplayExtensions.Header="Default">
 						<StackPanel Spacing="20">
 							<ToggleSwitch Header="OFF"
+                                          AutomationProperties.AutomationId="ToggleSwitch_Fluent_Off"
 										  Foreground="{StaticResource MaterialOnBackgroundBrush}" />
 							<ToggleSwitch Header="ON"
+                                          AutomationProperties.AutomationId="ToggleSwitch_Fluent_On"
 										  Foreground="{StaticResource MaterialOnBackgroundBrush}"
 										  IsOn="True" />
 							<ToggleSwitch Header="DISABLED OFF"
+                                          AutomationProperties.AutomationId="ToggleSwitch_Fluent_Disabled_Off"
 										  IsEnabled="False" />
 							<ToggleSwitch Header="DISABLED ON"
+                                          AutomationProperties.AutomationId="ToggleSwitch_Fluent_Disabled_On"
 										  IsEnabled="False"
 										  IsOn="True" />
 						</StackPanel>
@@ -39,18 +43,22 @@
 							<StackPanel Spacing="20">
 
 								<ToggleSwitch Header="OFF"
+                                              AutomationProperties.AutomationId="ToggleSwitch_Material_Off"
 											  Style="{StaticResource MaterialToggleSwitchStyle}" />
 
 								<ToggleSwitch Header="ON"
 											  Style="{StaticResource MaterialToggleSwitchStyle}"
+                                              AutomationProperties.AutomationId="ToggleSwitch_Material_On"
 											  IsOn="True" />
 
 								<ToggleSwitch Header="DISABLED OFF"
 											  Style="{StaticResource MaterialToggleSwitchStyle}"
+                                              AutomationProperties.AutomationId="ToggleSwitch_Material_Disabled_Off"
 											  IsEnabled="False" />
 
 								<ToggleSwitch Header="DISABLED ON"
 											  Style="{StaticResource MaterialToggleSwitchStyle}"
+                                              AutomationProperties.AutomationId="ToggleSwitch_Material_Disabled_On"
 											  IsEnabled="False"
 											  IsOn="True" />
 							</StackPanel>
@@ -61,17 +69,21 @@
 							<StackPanel Spacing="20">
 
 								<ToggleSwitch Header="OFF"
+                                              AutomationProperties.AutomationId="ToggleSwitch_Material_Secondary_Off"
 											  Style="{StaticResource MaterialSecondaryToggleSwitchStyle}" />
 
 								<ToggleSwitch Header="ON"
+                                              AutomationProperties.AutomationId="ToggleSwitch_Material_Secondary_On"
 											  Style="{StaticResource MaterialSecondaryToggleSwitchStyle}"
 											  IsOn="True" />
 
 								<ToggleSwitch Header="DISABLED OFF"
+                                              AutomationProperties.AutomationId="ToggleSwitch_Material_Secondary_Disabled_Off"
 											  Style="{StaticResource MaterialSecondaryToggleSwitchStyle}"
 											  IsEnabled="False" />
 
 								<ToggleSwitch Header="DISABLED ON"
+                                              AutomationProperties.AutomationId="ToggleSwitch_Material_Secondary_Disabled_On"
 											  Style="{StaticResource MaterialSecondaryToggleSwitchStyle}"
 											  IsEnabled="False"
 											  IsOn="True" />
@@ -88,17 +100,21 @@
 							<StackPanel Spacing="20">
 
 								<ToggleSwitch Header="OFF"
+                                              AutomationProperties.AutomationId="ToggleSwitch_Cupertino_Off"
 											  Style="{StaticResource CupertinoToggleSwitchStyle}" />
 
 								<ToggleSwitch Header="ON"
+                                              AutomationProperties.AutomationId="ToggleSwitch_Cupertino_On"
 											  Style="{StaticResource CupertinoToggleSwitchStyle}"
 											  IsOn="True" />
 
 								<ToggleSwitch Header="DISABLED OFF"
+                                              AutomationProperties.AutomationId="ToggleSwitch_Cupertino_Disabled_Off"
 											  Style="{StaticResource CupertinoToggleSwitchStyle}"
 											  IsEnabled="False" />
 
 								<ToggleSwitch Header="DISABLED ON"
+                                              AutomationProperties.AutomationId="ToggleSwitch_Cupertino_Disabled_On"
 											  Style="{StaticResource CupertinoToggleSwitchStyle}"
 											  IsEnabled="False"
 											  IsOn="True" />
@@ -117,17 +133,21 @@
 
 								<TextBlock Text="Enabled" />
 
-								<ToggleSwitch Style="{StaticResource NativeDefaultToggleSwitch}" />
+								<ToggleSwitch Style="{StaticResource NativeDefaultToggleSwitch}"
+                                              AutomationProperties.AutomationId="ToggleSwitch_Native_Off"/>
 
 								<ToggleSwitch Style="{StaticResource NativeDefaultToggleSwitch}"
+                                              AutomationProperties.AutomationId="ToggleSwitch_Native_On"                                              
 											  IsOn="True" />
 
 								<TextBlock Text="Disabled" />
 
 								<ToggleSwitch Style="{StaticResource NativeDefaultToggleSwitch}"
+                                              AutomationProperties.AutomationId="ToggleSwitch_Native_Disabled_Off"
 											  IsEnabled="False" />
 
 								<ToggleSwitch Style="{StaticResource NativeDefaultToggleSwitch}"
+                                              AutomationProperties.AutomationId="ToggleSwitch_Native_Disabled_On"
 											  IsEnabled="False"
 											  IsOn="True" />
 							</StackPanel>

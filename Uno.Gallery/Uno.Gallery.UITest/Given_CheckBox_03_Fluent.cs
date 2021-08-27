@@ -23,7 +23,9 @@ namespace Uno.Gallery.UITests
 			App.ScrollDownTo("Fluent_Unchecked");			
 			FluentUncheckedBox.Tap();
 			TakeScreenshot("After Checked");
-			Assert.IsTrue(FluentUncheckedBox.GetDependencyPropertyValue<bool>("IsChecked"));			
+			Assert.AreEqual("UNCHECKED", FluentUncheckedBox.GetDependencyPropertyValue("Content"));
+			Assert.IsTrue(FluentUncheckedBox.GetDependencyPropertyValue<bool>("IsChecked"));
+			Assert.IsTrue(FluentUncheckedBox.GetDependencyPropertyValue<bool>("IsEnabled"));
 		}
 
 		     
@@ -38,6 +40,7 @@ namespace Uno.Gallery.UITests
 			App.ScrollDownTo("Fluent_Disabled_Unchecked");
 			fluentDisabledUncheckedBox.Tap();
 			TakeScreenshot("After Checked");
+			Assert.AreEqual("DISABLED UNCHECKED", fluentDisabledUncheckedBox.GetDependencyPropertyValue("Content"));
 			Assert.IsFalse(fluentDisabledUncheckedBox.GetDependencyPropertyValue<bool>("IsEnabled"));
 			Assert.IsFalse(fluentDisabledUncheckedBox.GetDependencyPropertyValue<bool>("IsChecked"));			
 		}
@@ -54,7 +57,9 @@ namespace Uno.Gallery.UITests
 			App.ScrollDownTo("Fluent_Checked");
 			fluentCheckedBox.Tap();
 			TakeScreenshot("After UnChecked");
-			Assert.IsFalse(fluentCheckedBox.GetDependencyPropertyValue<bool>("IsChecked"));			
+			Assert.AreEqual("CHECKED", fluentCheckedBox.GetDependencyPropertyValue("Content"));
+			Assert.IsFalse(fluentCheckedBox.GetDependencyPropertyValue<bool>("IsChecked"));
+			Assert.IsTrue(fluentCheckedBox.GetDependencyPropertyValue<bool>("IsEnabled"));
 		}		
 		     
         /* This function is to test the DisabledChecked option  in checkbox for Fluent. */        
@@ -68,8 +73,9 @@ namespace Uno.Gallery.UITests
 			App.ScrollDownTo("Fluent_Disabled_Checked");
 			fluentDisabledCheckedBox.Tap();
 			TakeScreenshot("After UnChecked");
+			Assert.AreEqual("DISABLED CHECKED", fluentDisabledCheckedBox.GetDependencyPropertyValue("Content"));			
+			Assert.IsTrue(fluentDisabledCheckedBox.GetDependencyPropertyValue<bool>("IsChecked"));
 			Assert.IsFalse(fluentDisabledCheckedBox.GetDependencyPropertyValue<bool>("IsEnabled"));
-			Assert.IsTrue(fluentDisabledCheckedBox.GetDependencyPropertyValue<bool>("IsChecked"));			
 		}
 
 		     
@@ -84,7 +90,9 @@ namespace Uno.Gallery.UITests
 			App.ScrollDownTo("Fluent_Indeterminate");
 			fluentCheckedIndeterminateBox.Tap();
 			TakeScreenshot("After UnChecked");
+			Assert.AreEqual("INDETERMINATE", fluentCheckedIndeterminateBox.GetDependencyPropertyValue("Content"));
 			Assert.IsFalse(fluentCheckedIndeterminateBox.GetDependencyPropertyValue<bool>("IsChecked"));
+			Assert.IsTrue(fluentCheckedIndeterminateBox.GetDependencyPropertyValue<bool>("IsEnabled"));
 
 			fluentCheckedIndeterminateBox.Tap();
 			TakeScreenshot("After Checked");
@@ -112,7 +120,8 @@ namespace Uno.Gallery.UITests
 			TakeScreenshot("After Checked");
 			Assert.IsFalse(fluentDisabledIndeterminateBox.GetDependencyPropertyValue<bool>("IsEnabled"));
 			var isChecked = fluentDisabledIndeterminateBox.GetDependencyPropertyValue("IsChecked");
-			Assert.IsTrue(isChecked == null || string.IsNullOrWhiteSpace(isChecked as string));			
+			Assert.IsTrue(isChecked == null || string.IsNullOrWhiteSpace(isChecked as string));
+			Assert.AreEqual("DISABLED INDETERMINATE", fluentDisabledIndeterminateBox.GetDependencyPropertyValue("Content"));
 		}
 	}
 }
