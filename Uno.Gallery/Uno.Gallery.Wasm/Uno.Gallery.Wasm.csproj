@@ -24,6 +24,11 @@
 		<!--<WasmShellGenerateAOTProfile>true</WasmShellGenerateAOTProfile>-->
 	</PropertyGroup>
 
+	<ItemGroup>
+		<MonoRuntimeMixedModeExcludedAssembly Include="Uno.UI.FluentTheme" />
+		<MonoRuntimeMixedModeExcludedAssembly Include="System.Private.Xml" />
+	</ItemGroup>
+
 	<PropertyGroup Condition="'$(Configuration)'=='Debug' or '$(IsUiAutomationMappingEnabled)'=='True'">
 		<IsUiAutomationMappingEnabled>True</IsUiAutomationMappingEnabled>
 		<DefineConstants>$(DefineConstants);USE_UITESTS</DefineConstants>
