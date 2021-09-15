@@ -80,6 +80,7 @@ jobs:
   - template: build/stage-build.yml
 
 - job: Linux
+  timeoutInMinutes: 90
   pool:
     vmImage: ubuntu-18.04
   
