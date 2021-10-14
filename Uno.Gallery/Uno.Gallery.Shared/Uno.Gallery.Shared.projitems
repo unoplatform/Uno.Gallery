@@ -35,6 +35,7 @@
     <Content Include="$(MSBuildThisFileDirectory)Assets\Avatar.scale-300.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Avatar.scale-400.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\BackButton.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\DotnetBot.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\FluentIcon_Medium.scale-100.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\FluentIcon_Medium.scale-150.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\FluentIcon_Medium.scale-200.png" />
@@ -125,6 +126,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Controls\ThreeColorPaletteView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\FromColorBrushToHexConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\RandomColorConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\SecretConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Deeplinking\BranchService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Domain\AnalyticsService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Data\DividerItem.cs" />
