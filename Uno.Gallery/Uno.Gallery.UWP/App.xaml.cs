@@ -39,7 +39,7 @@ namespace Uno.Gallery
 		{
 
 #if !WINDOWS_UWP
-			Uno.UI.FeatureConfiguration.ApiInformation.NotImplementedLogLevel = LogLevel.Debug; // Raise not implemented usages as Debug messages
+			Uno.UI.FeatureConfiguration.ApiInformation.NotImplementedLogLevel = Foundation.Logging.LogLevel.Debug; // Raise not implemented usages as Debug messages
 #endif
 
 			ConfigureFilters(global::Uno.Extensions.LogExtensionPoint.AmbientLoggerFactory);
@@ -348,6 +348,10 @@ namespace Uno.Gallery
 				.AddConsole(LogLevel.Debug);
 #else
 				.AddConsole(LogLevel.Information);
+#endif
+
+#if HAS_UNO
+			Uno.UI.Adapter.Microsoft.Extensions.Logging.LoggingAdapter.Initialize();
 #endif
 		}
 
