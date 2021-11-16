@@ -12,11 +12,13 @@
 				<XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls"/>
 
 				<MaterialColors xmlns="using:Uno.Material"
-								ColorPaletteOverrideSource="ms-appx:///Views/Colors.xaml" />
+								OverrideSource="ms-appx:///Views/Colors.xaml" />
 				<MaterialResources xmlns="using:Uno.Material" />
 
 				<CupertinoColors xmlns="using:Uno.Cupertino"  />
 				<CupertinoResources xmlns="using:Uno.Cupertino" />
+				
+				<MaterialToolkitResources xmlns="using:Uno.Toolkit.UI.Material"/>
 
 				<ResourceDictionary Source="Views/Converters.xaml" />
 				<ResourceDictionary Source="Views/Fonts.xaml" />

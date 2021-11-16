@@ -52,10 +52,10 @@
       <Version>1.0.59</Version>
     </PackageReference>
     <PackageReference Include="Uno.Toolkit.UI.Material">
-      <Version>0.1.0-dev.108</Version>
+      <Version>0.1.0-dev.116</Version>
     </PackageReference>
     <PackageReference Include="Uno.UI">
-      <Version>4.0.0-dev.5594</Version>
+      <Version>4.0.0-dev.5596</Version>
     </PackageReference>
   </ItemGroup>
   <PropertyGroup>
