@@ -103,10 +103,10 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Uno.Cupertino">
-      <Version>1.0.0-dev.832</Version>
+      <Version>1.1.0-dev.13</Version>
     </PackageReference>
     <PackageReference Include="Uno.Material">
-      <Version>1.0.0-dev.832</Version>
+      <Version>1.1.0-dev.13</Version>
     </PackageReference>
     <PackageReference Include="Uno.ShowMeTheXAML">
       <Version>1.0.59</Version>
@@ -114,15 +114,21 @@
     <PackageReference Include="Uno.ShowMeTheXAML.MSBuild">
       <Version>1.0.59</Version>
     </PackageReference>
+    <PackageReference Include="Uno.Toolkit.UI.Material">
+      <Version>0.1.0-dev.116</Version>
+    </PackageReference>
     <PackageReference Include="Uno.UI">
-      <Version>3.11.0-dev.341</Version>
+      <Version>4.0.0-dev.5596</Version>
     </PackageReference>
     <PackageReference Include="Uno.UI.Lottie">
-      <Version>3.11.0-dev.341</Version>
+      <Version>4.0.0-dev.5596</Version>
     </PackageReference>
-    <PackageReference Include="Uno.UI.RemoteControl" Version="3.11.0-dev.341" Condition="'$(Configuration)'=='Debug'" />
+    <PackageReference Include="Uno.UI.RemoteControl" Version="4.0.0-dev.5596" Condition="'$(Configuration)'=='Debug'" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Filter" Version="1.1.1" />
+    <PackageReference Include="Uno.UI.Adapter.Microsoft.Extensions.Logging" Version="4.0.0-dev.5596" />
+    <PackageReference Include="Uno.Core.Extensions.Disposables" Version="4.0.0-dev.7" />
+    <PackageReference Include="Uno.Core.Extensions.Compatibility" Version="4.0.0-dev.7" />
   </ItemGroup>
   <Import Project="..\Uno.Gallery.Shared\Uno.Gallery.Shared.projitems" Label="Shared" Condition="Exists('..\Uno.Gallery.Shared\Uno.Gallery.Shared.projitems')" />
   <ItemGroup>
