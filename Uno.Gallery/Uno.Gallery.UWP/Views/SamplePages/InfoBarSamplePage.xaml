@@ -99,6 +99,83 @@
 					</StackPanel>
 				</DataTemplate>
 			</sample:SamplePageLayout.MaterialTemplate>
-		</sample:SamplePageLayout>
+            <sample:SamplePageLayout.FluentTemplate>
+                <DataTemplate>
+                    <StackPanel Spacing="20"
+								Margin="0,20,0,0">
+                        <smtx:XamlDisplay UniqueKey="Fluent_InfoBarSamplePage_Error_SingleButton"
+										  Style="{StaticResource XamlDisplayBelowStyle}">
+                            <winui:InfoBar x:Name="firstInfo"
+										   Title="Title"
+										   IsOpen="True"
+										   Message="Essential app message for your users to be informed of, acknowledge, or take action on."
+										   IsIconVisible="True"
+										   Severity="Error">
+                                <winui:InfoBar.Content>
+                                    <Button Margin="8" Content="Dismiss" />
+                                </winui:InfoBar.Content>
+                                <winui:InfoBar.IconSource>
+                                    <winui:BitmapIconSource ShowAsMonochrome="False" UriSource="/Assets/FluentIcon_Small.png" />
+                                </winui:InfoBar.IconSource>
+                            </winui:InfoBar>
+                        </smtx:XamlDisplay>
+
+                        <smtx:XamlDisplay UniqueKey="Fluent_InfoBarSamplePage_Warning_DoubleButton"
+										  Style="{StaticResource XamlDisplayBelowStyle}">
+                            <winui:InfoBar x:Name="secondInfo"
+										   Title="Title"
+										   IsOpen="True"
+										   Message="Essential app message for your users to be informed of, acknowledge, or take action on."
+										   IsIconVisible="True"
+										   Severity="Warning">
+                                <winui:InfoBar.Content>
+                                    <StackPanel Margin="8" 
+                                                Orientation="Horizontal"
+												Spacing="8">
+                                        <Button Content="Dismiss" />
+                                        <Button Content="Action" />
+                                    </StackPanel>
+                                </winui:InfoBar.Content>
+                                <winui:InfoBar.IconSource>
+                                    <winui:BitmapIconSource ShowAsMonochrome="False" UriSource="/Assets/FluentIcon_Small.png" />
+                                </winui:InfoBar.IconSource>
+                            </winui:InfoBar>
+                        </smtx:XamlDisplay>
+
+                        <smtx:XamlDisplay UniqueKey="Fluent_InfoBarSamplePage_Success_SingleButton"
+										  Style="{StaticResource XamlDisplayBelowStyle}">
+                            <winui:InfoBar x:Name="thirdInfo"
+										   Title="Title"
+										   IsOpen="True"
+										   Message="Essential app message for your users to be informed of, acknowledge, or take action on."
+										   Severity="Success"
+										   IsIconVisible="False">
+                                <winui:InfoBar.Content>
+                                    <Button Margin="8" Content="Dismiss" />
+                                </winui:InfoBar.Content>
+                            </winui:InfoBar>
+                        </smtx:XamlDisplay>
+
+                        <smtx:XamlDisplay UniqueKey="Fluent_InfoBarSamplePage_Information_SingleButton"
+										  Style="{StaticResource XamlDisplayBelowStyle}">
+                            <winui:InfoBar x:Name="fourthInfo"
+										   Title="Title"
+										   IsOpen="True"
+										   Message="Single line essential app message."
+										   Severity="Informational"
+										   MinHeight="54"
+										   IsIconVisible="True">
+                                <winui:InfoBar.ActionButton>
+                                    <Button Content="Dismiss" />
+                                </winui:InfoBar.ActionButton>
+                                <winui:InfoBar.IconSource>
+                                    <winui:BitmapIconSource ShowAsMonochrome="False" UriSource="/Assets/FluentIcon_Small.png" />
+                                </winui:InfoBar.IconSource>
+                            </winui:InfoBar>
+                        </smtx:XamlDisplay>
+                    </StackPanel>
+                </DataTemplate>
+            </sample:SamplePageLayout.FluentTemplate>
+        </sample:SamplePageLayout>
 	</Grid>
 </Page>
