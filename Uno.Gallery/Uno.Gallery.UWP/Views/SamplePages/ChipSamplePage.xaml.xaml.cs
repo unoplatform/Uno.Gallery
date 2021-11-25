@@ -17,7 +17,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Uno.Gallery.Views.SamplePages
 {
-	[SamplePage(SampleCategory.Components, "Chip",
+	[SamplePage(SampleCategory.Toolkit, "Chip",
 		SourceSdk.UnoToolkit,
 		Description = "Chips are compact elements that represent an input, attribute, or action.",
 		DocumentationLink = "https://material.io/components/chips",

@@ -112,6 +112,10 @@ namespace Uno.Gallery
 		{
 			var isInsideNestedSample = NestedSampleFrame.Content != null;
 
+			NavViewToggleButton.Visibility = isInsideNestedSample
+				? Visibility.Collapsed
+				: Visibility.Visible;
+
 			// prevent empty frame from blocking the content (nav-view) behind it
 			NestedSampleFrame.Visibility = isInsideNestedSample
 				? Visibility.Visible

@@ -35,6 +35,8 @@
     <Content Include="$(MSBuildThisFileDirectory)Assets\Avatar.scale-300.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Avatar.scale-400.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\BackButton.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Close.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Bell.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\DotnetBot.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\FluentIcon_Medium.scale-100.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\FluentIcon_Medium.scale-150.png" />
@@ -68,6 +70,8 @@
     <Content Include="$(MSBuildThisFileDirectory)Assets\MaterialIcon_Small.scale-200.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\MaterialIcon_Small.scale-300.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\MaterialIcon_Small.scale-400.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Search.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Share.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\SharedAssets.md" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\SmallMedia.scale-100.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\SmallMedia.scale-150.png" />

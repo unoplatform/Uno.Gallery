@@ -62,11 +62,10 @@
 		<!-- Nested frame for samples that needs to be fullscreen -->
 		<Frame x:Name="NestedSampleFrame"
 			   Grid.RowSpan="3"
-			   Visibility="Collapsed"
-			   xamarin:Style="{StaticResource NativeDefaultFrame}" />
+			   Visibility="Collapsed" />
 
         <!-- Custom pane toggle button -->
-        <Button 
+        <Button x:Name="NavViewToggleButton"
             Grid.Row="2" 
             Click="NavViewToggleButton_Click" 
             HorizontalAlignment="Left" 

@@ -15,6 +15,6 @@ namespace Uno.Gallery
 		Theme,
 		Components,
 		Features,
-
+		Toolkit,
 	}
 }

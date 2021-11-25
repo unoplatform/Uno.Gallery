@@ -51,11 +51,14 @@
     <PackageReference Include="Uno.ShowMeTheXAML.MSBuild">
       <Version>1.0.59</Version>
     </PackageReference>
+    <PackageReference Include="Uno.Toolkit.UI">
+      <Version>0.1.0-dev.179</Version>
+    </PackageReference>
     <PackageReference Include="Uno.Toolkit.UI.Material">
-      <Version>0.1.0-dev.169</Version>
+      <Version>0.1.0-dev.179</Version>
     </PackageReference>
     <PackageReference Include="Uno.UI">
-      <Version>4.0.0-dev.5676</Version>
+      <Version>4.0.0-dev.5726</Version>
     </PackageReference>
   </ItemGroup>
   <PropertyGroup>
@@ -194,6 +197,12 @@
     <Compile Include="Views\NestedPages\CommandBarSample_NestedMaterialPage2.xaml.cs">
       <DependentUpon>CommandBarSample_NestedMaterialPage2.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\NestedPages\NavigationBarSample_NestedPage1.xaml.cs">
+      <DependentUpon>NavigationBarSample_NestedPage1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NestedPages\NavigationBarSample_NestedPage2.xaml.cs">
+      <DependentUpon>NavigationBarSample_NestedPage2.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SamplePages\AcrylicSamplePage.xaml.cs">
       <DependentUpon>AcrylicSamplePage.xaml</DependentUpon>
     </Compile>
@@ -265,6 +274,9 @@
     </Compile>
     <Compile Include="Views\SamplePages\MessageDialogSamplePage.xaml.cs">
       <DependentUpon>MessageDialogSamplePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SamplePages\NavigationBarSamplePage.xaml.cs">
+      <DependentUpon>NavigationBarSamplePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SamplePages\PanelSamplePage.xaml.cs">
       <DependentUpon>PanelSamplePage.xaml</DependentUpon>
@@ -423,6 +435,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\NestedPages\NavigationBarSample_NestedPage1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NestedPages\NavigationBarSample_NestedPage2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\SamplePages\AcrylicSamplePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -516,6 +536,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SamplePages\MessageDialogSamplePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SamplePages\NavigationBarSamplePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
