@@ -40,10 +40,10 @@
     </PackageReference>
     <PackageReference Include="Uno.Core" Version="4.0.0-dev.7" />
     <PackageReference Include="Uno.Cupertino">
-      <Version>1.1.0-dev.13</Version>
+      <Version>1.1.0-dev.55</Version>
     </PackageReference>
     <PackageReference Include="Uno.Material">
-      <Version>1.1.0-dev.13</Version>
+      <Version>1.1.0-dev.55</Version>
     </PackageReference>
     <PackageReference Include="Uno.ShowMeTheXAML">
       <Version>1.0.59</Version>
@@ -52,10 +52,10 @@
       <Version>1.0.59</Version>
     </PackageReference>
     <PackageReference Include="Uno.Toolkit.UI.Material">
-      <Version>0.1.0-dev.116</Version>
+      <Version>0.1.0-dev.161</Version>
     </PackageReference>
     <PackageReference Include="Uno.UI">
-      <Version>4.0.0-dev.5596</Version>
+      <Version>4.0.0-dev.5676</Version>
     </PackageReference>
   </ItemGroup>
   <PropertyGroup>
@@ -209,9 +209,6 @@
     <Compile Include="Views\GeneralPages\FluentPalettePage.xaml.cs">
       <DependentUpon>FluentPalettePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\SamplePages\BottomNavigationBarSamplePage.xaml.cs">
-      <DependentUpon>BottomNavigationBarSamplePage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\SamplePages\CalendarDatePickerSamplePage.xaml.cs">
       <DependentUpon>CalendarDatePickerSamplePage.xaml</DependentUpon>
     </Compile>
@@ -220,6 +217,9 @@
     </Compile>
     <Compile Include="Views\SamplePages\CardSamplePage.xaml.cs">
       <DependentUpon>CardSamplePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SamplePages\ChipSamplePage.xaml.xaml.cs">
+      <DependentUpon>ChipSamplePage.xaml.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SamplePages\ComboBoxSamplePage.xaml.cs">
       <DependentUpon>ComboBoxSamplePage.xaml</DependentUpon>
@@ -235,9 +235,6 @@
     </Compile>
     <Compile Include="Views\SamplePages\ElevatedViewSamplePage.xaml.cs">
       <DependentUpon>ElevatedViewSamplePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\SamplePages\ExpandingBottomSheetSamplePage.xaml.cs">
-      <DependentUpon>ExpandingBottomSheetSamplePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SamplePages\FlipViewSamplePage.xaml.cs">
       <DependentUpon>FlipViewSamplePage.xaml</DependentUpon>
@@ -269,9 +266,6 @@
     <Compile Include="Views\SamplePages\MessageDialogSamplePage.xaml.cs">
       <DependentUpon>MessageDialogSamplePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\SamplePages\ModalStandardBottomSheetSamplePage.xaml.cs">
-      <DependentUpon>ModalStandardBottomSheetSamplePage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\SamplePages\PanelSamplePage.xaml.cs">
       <DependentUpon>PanelSamplePage.xaml</DependentUpon>
     </Compile>
@@ -298,9 +292,6 @@
     </Compile>
     <Compile Include="Views\SamplePages\SliderSamplePage.xaml.cs">
       <DependentUpon>SliderSamplePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\SamplePages\StandardBottomSheetSamplePage.xaml.cs">
-      <DependentUpon>StandardBottomSheetSamplePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SamplePages\TimePickerSamplePage.xaml.cs">
       <DependentUpon>TimePickerSamplePage.xaml</DependentUpon>
@@ -444,10 +435,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\SamplePages\BottomNavigationBarSamplePage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\SamplePages\CalendarDatePickerSamplePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -459,6 +446,10 @@
     <Page Include="Views\SamplePages\CardSamplePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SamplePages\ChipSamplePage.xaml.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SamplePages\ComboBoxSamplePage.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -477,10 +468,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SamplePages\ElevatedViewSamplePage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\SamplePages\ExpandingBottomSheetSamplePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -524,10 +511,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\SamplePages\ModalStandardBottomSheetSamplePage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\SamplePages\PanelSamplePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -561,10 +544,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SamplePages\SliderSamplePage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\SamplePages\StandardBottomSheetSamplePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
