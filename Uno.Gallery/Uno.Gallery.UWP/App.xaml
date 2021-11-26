@@ -33,7 +33,10 @@
 				<MaterialToolkitColors xmlns="using:Uno.Toolkit.UI.Material" />
 				<MaterialToolkitResources xmlns="using:Uno.Toolkit.UI.Material" />
 
-				<ResourceDictionary Source="Views/Converters.xaml" />
+                <!-- Load Cupertino Toolkit resources -->
+                <CupertinoToolkitResources xmlns="using:Uno.Toolkit.UI.Cupertino" />
+
+                <ResourceDictionary Source="Views/Converters.xaml" />
 				<ResourceDictionary Source="Views/Fonts.xaml" />
 
 				<!--  Application's custom styles  -->
