@@ -1,0 +1,60 @@
+﻿<Page
+    x:Class="Uno.Gallery.Views.SamplePages.SegmentedControlSamplePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:sample="using:Uno.Gallery"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:utu="using:Uno.Toolkit.UI.Controls"
+	xmlns:smtx="using:ShowMeTheXAML"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <sample:SamplePageLayout>
+            <sample:SamplePageLayout.CupertinoTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+						<smtx:XamlDisplay UniqueKey="SegmentedControlSamplePage_Cupertino">
+							<utu:TabBar Style="{StaticResource CupertinoSegmentedStyle}"
+									Margin="10"
+									SelectedIndex="0"
+									x:Name="segControl">
+								<utu:TabBar.Items>
+									<utu:TabBarItem Content="ORANGE" />
+									<utu:TabBarItem Content="PURPLE" />
+									<utu:TabBarItem Content="BLUE" />
+								</utu:TabBar.Items>
+							</utu:TabBar>
+						</smtx:XamlDisplay>
+
+						<smtx:XamlDisplay UniqueKey="SlidingSegmentedControlSamplePage_Cupertino" Grid.Row="1">
+							<utu:TabBar x:Name="slidingSegControl"
+									
+									Margin="10"
+									SelectedIndex="{Binding SelectedIndex, ElementName=segControl, Mode=TwoWay}"
+									Style="{StaticResource CupertinoSlidingSegmentedStyle}">
+								<utu:TabBar.Items>
+									<utu:TabBarItem Content="ORANGE" />
+									<utu:TabBarItem Content="PURPLE" />
+									<utu:TabBarItem Content="BLUE" />
+								</utu:TabBar.Items>
+							</utu:TabBar>
+						</smtx:XamlDisplay>
+						<TextBlock HorizontalAlignment="Center"
+								   VerticalAlignment="Center"
+								   Margin="40"
+								   Grid.Row="2"
+								   Text="{Binding SelectedItem.Content, ElementName=segControl}" />
+                    </Grid>
+                </DataTemplate>
+            </sample:SamplePageLayout.CupertinoTemplate>
+        </sample:SamplePageLayout>
+    </Grid>
+</Page>
