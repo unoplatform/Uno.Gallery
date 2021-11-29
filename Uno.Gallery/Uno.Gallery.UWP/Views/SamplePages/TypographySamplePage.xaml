@@ -127,7 +127,7 @@ turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo ha
 </TextBlock.Text>
 							</TextBlock>
 
-							<TextBlock Text="Button"
+							<TextBlock Text="BUTTON"
 									   Style="{StaticResource MaterialButtonText}" />
 
 							<TextBlock
@@ -143,7 +143,7 @@ turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo ha
 </TextBlock.Text>
 							</TextBlock>
 
-							<TextBlock Text="Overline"
+							<TextBlock Text="OVERLINE"
 									   Style="{StaticResource MaterialOverline}" />
 						</StackPanel>
 					</smtx:XamlDisplay>

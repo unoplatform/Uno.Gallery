@@ -9,20 +9,28 @@
 			<ResourceDictionary.MergedDictionaries>
 
 				<!-- Load WinUI resources -->
-				<XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls"/>
+				<XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
 
+				<!-- Load Material resources -->
 				<MaterialColors xmlns="using:Uno.Material"
 								OverrideSource="ms-appx:///Views/Colors.xaml" />
+				<MaterialFonts xmlns="using:Uno.Material"
+							   OverrideSource="ms-appx:///Views/MaterialFontsOverride.xaml" />
 				<MaterialResources xmlns="using:Uno.Material" />
 
-				<CupertinoColors xmlns="using:Uno.Cupertino"  />
+				<!-- Load Cupertino resources -->
+				<CupertinoColors xmlns="using:Uno.Cupertino" />
+				<CupertinoFonts xmlns="using:Uno.Cupertino"
+								OverrideSource="ms-appx:///Views/CupertinoFontsOverride.xaml" />
 				<CupertinoResources xmlns="using:Uno.Cupertino" />
-				
-				<MaterialToolkitResources xmlns="using:Uno.Toolkit.UI.Material"/>
+
+				<!-- Load Material Toolkit resources -->
+				<MaterialToolkitResources xmlns="using:Uno.Toolkit.UI.Material" />
 
 				<ResourceDictionary Source="Views/Converters.xaml" />
 				<ResourceDictionary Source="Views/Fonts.xaml" />
 
+				<!-- Application's custom styles -->
 				<ResourceDictionary Source="Views/Styles/Banner.xaml" />
 				<ResourceDictionary Source="Views/Styles/Button.xaml" />
 				<ResourceDictionary Source="Views/Styles/ColorPaletteView.xaml" />
@@ -39,7 +47,7 @@
 				<ResourceDictionary Source="Views/Styles/ToggleButton.xaml" />
 				<ResourceDictionary Source="Views/Styles/ToggleSwitch.xaml" />
 				<ResourceDictionary Source="Views/Styles/XamlDisplay.xaml" />
-                <ResourceDictionary>
+				<ResourceDictionary>
 					<x:Double x:Key="DesktopAdaptiveThresholdWidth">720</x:Double>
 				</ResourceDictionary>
 			</ResourceDictionary.MergedDictionaries>

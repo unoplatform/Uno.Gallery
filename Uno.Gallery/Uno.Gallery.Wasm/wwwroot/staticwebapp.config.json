@@ -13,8 +13,13 @@
       "headers": {
         "cache-control": "public, immutable, max-age=31536000"
       }
-    }
-    ,
+    },
+    {
+      "route": "/*.ttf",
+      "headers": {
+        "cache-control": "public, immutable, max-age=31536000"
+      }
+    },
     {
       "route": "/*",
       "headers": {
