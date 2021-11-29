@@ -214,7 +214,7 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Uno.Cupertino">
-      <Version>1.1.0-dev.64</Version>
+      <Version>1.1.0-dev.9</Version>
     </PackageReference>
     <PackageReference Include="Uno.Material">
       <Version>1.1.0-dev.64</Version>
