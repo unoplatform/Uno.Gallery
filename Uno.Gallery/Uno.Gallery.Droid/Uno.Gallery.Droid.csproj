@@ -108,10 +108,10 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Uno.Cupertino">
-      <Version>1.1.0-dev.55</Version>
+      <Version>1.1.0-dev.57</Version>
     </PackageReference>
     <PackageReference Include="Uno.Material">
-      <Version>1.1.0-dev.55</Version>
+      <Version>1.1.0-dev.57</Version>
     </PackageReference>
     <PackageReference Include="Uno.ShowMeTheXAML">
       <Version>1.0.59</Version>
@@ -120,7 +120,7 @@
       <Version>1.0.59</Version>
     </PackageReference>
     <PackageReference Include="Uno.Toolkit.UI.Material">
-      <Version>0.1.0-dev.161</Version>
+      <Version>0.1.0-dev.169</Version>
     </PackageReference>
     <PackageReference Include="Uno.UI">
       <Version>4.0.0-dev.5676</Version>
@@ -152,8 +152,10 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\Fonts\uno-fluentui-assets.ttf" />
-    <AndroidAsset Include="Assets\Fonts\roboto.ttf" />
-    <AndroidAsset Include="Assets\Fonts\SF-Pro.ttf" />
+    <AndroidAsset Include="Assets\Fonts\Cupertino\SF-Pro.ttf" />
+    <AndroidAsset Include="Assets\Fonts\Material\Roboto-Light.ttf" />
+    <AndroidAsset Include="Assets\Fonts\Material\Roboto-Medium.ttf" />
+    <AndroidAsset Include="Assets\Fonts\Material\Roboto-Regular.ttf" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
   </ItemGroup>

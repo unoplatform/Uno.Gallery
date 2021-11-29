@@ -5,15 +5,8 @@
 					xmlns:win="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 					xmlns:android="http://nventive.com/android"
 					xmlns:ios="http://nventive.com/ios"
-                    xmlns:wasm="http://nventive.com/wasm"
-                    xmlns:macos="http://nventive.com/macos"
+					xmlns:wasm="http://nventive.com/wasm"
+					xmlns:macos="http://nventive.com/macos"
 					mc:Ignorable="d android ios macos wasm">
-
-    <win:FontFamily x:Key="RobotoFontFamily">Roboto</win:FontFamily>
-    <wasm:FontFamily x:Key="RobotoFontFamily">Roboto</wasm:FontFamily>
-    <ios:FontFamily x:Key="RobotoFontFamily">Roboto</ios:FontFamily>
-    <macos:FontFamily x:Key="RobotoFontFamily">Roboto</macos:FontFamily>
-    <android:FontFamily x:Key="RobotoFontFamily">ms-appx:///Assets/Fonts/roboto.ttf#Roboto</android:FontFamily>
-	<FontFamily x:Key="SFProFontFamily">ms-appx:///Assets/Fonts/Cupertino/SF-Pro.ttf#SF Pro</FontFamily>
 
 </ResourceDictionary>

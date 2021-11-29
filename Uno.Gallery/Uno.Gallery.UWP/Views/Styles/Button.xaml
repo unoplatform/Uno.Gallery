@@ -46,7 +46,7 @@
 												  VerticalScrollBarVisibility="Visible">
 
 										<TextBlock Text="{TemplateBinding Content}"
-												   FontFamily="{StaticResource RobotoFontFamily}"
+												   FontFamily="{StaticResource MaterialRegularFontFamily}"
 												   IsTextSelectionEnabled="True"
 												   Margin="16" />
 									</ScrollViewer>

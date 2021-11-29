@@ -40,10 +40,10 @@
     </PackageReference>
     <PackageReference Include="Uno.Core" Version="4.0.0-dev.7" />
     <PackageReference Include="Uno.Cupertino">
-      <Version>1.1.0-dev.55</Version>
+      <Version>1.1.0-dev.57</Version>
     </PackageReference>
     <PackageReference Include="Uno.Material">
-      <Version>1.1.0-dev.55</Version>
+      <Version>1.1.0-dev.57</Version>
     </PackageReference>
     <PackageReference Include="Uno.ShowMeTheXAML">
       <Version>1.0.59</Version>
@@ -52,7 +52,7 @@
       <Version>1.0.59</Version>
     </PackageReference>
     <PackageReference Include="Uno.Toolkit.UI.Material">
-      <Version>0.1.0-dev.161</Version>
+      <Version>0.1.0-dev.169</Version>
     </PackageReference>
     <PackageReference Include="Uno.UI">
       <Version>4.0.0-dev.5676</Version>
@@ -395,6 +395,10 @@
     <Content Include="Properties\Default.rd.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\CupertinoFontsOverride.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\GeneralPages\CupertinoPalettePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -406,6 +410,10 @@
     <Page Include="Views\GeneralPages\OverviewPageHeader.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MaterialFontsOverride.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\NestedPages\CommandBarSample_NestedMaterialPage1.xaml">
       <SubType>Designer</SubType>
@@ -677,7 +685,16 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\Fonts\SF-Pro.ttf" />
+    <Content Include="Assets\Fonts\Cupertino\SF-Pro.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Fonts\Material\Roboto-Light.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Fonts\Material\Roboto-Medium.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Fonts\Material\Roboto-Regular.ttf" />
   </ItemGroup>
   <Import Project="..\Uno.Gallery.Shared\Uno.Gallery.Shared.projitems" Label="Shared" Condition="Exists('..\Uno.Gallery.Shared\Uno.Gallery.Shared.projitems')" />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
