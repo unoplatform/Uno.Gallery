@@ -6,29 +6,6 @@
 					xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 					mc:Ignorable="d android wasm">
 
-	<!--Workaround for #192132 wasm: prefix issue-->
-	<wasm:Style x:Key="MaterialToggleSwitchStyle"
-				TargetType="ToggleSwitch"
-				BasedOn="{StaticResource DefaultMaterialToggleSwitchStyle}">
-	</wasm:Style>
-
-	<wasm:Style x:Key="MaterialSecondaryToggleSwitchStyle"
-				TargetType="ToggleSwitch"
-				BasedOn="{StaticResource DefaultMaterialToggleSwitchStyle}">
-
-		<Setter Property="Foreground"
-				Value="{StaticResource MaterialSecondaryVariantDarkBrush}" />
-		<Setter Property="Background"
-				Value="{StaticResource MaterialSecondaryVariantLightBrush}" />
-	</wasm:Style>
-
-	<wasm:Style x:Key="CupertinoToggleSwitchStyle"
-				TargetType="ToggleSwitch"
-				BasedOn="{StaticResource DefaultCupertinoToggleSwitchStyle}">
-		<Setter Property="CornerRadius"
-		        Value="14" />
-	</wasm:Style>
-
 	<!-- Native ToggleSwitch colors -->
 	<SolidColorBrush x:Key="NativeOffThumbTint"
 					 Color="#FFECECEC" />

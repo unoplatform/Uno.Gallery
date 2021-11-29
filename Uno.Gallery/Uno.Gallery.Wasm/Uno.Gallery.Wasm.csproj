@@ -111,9 +111,9 @@
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 		<PackageReference Include="Microsoft.Windows.Compatibility" Version="5.0.1" />
-		<PackageReference Include="Uno.Cupertino" Version="1.1.0-dev.57" />
+		<PackageReference Include="Uno.Cupertino" Version="1.1.0-dev.64" />
 		<PackageReference Include="Uno.Diagnostics.Eventing" Version="2.0.0-dev.22" />
-		<PackageReference Include="Uno.Material" Version="1.1.0-dev.57" />
+		<PackageReference Include="Uno.Material" Version="1.1.0-dev.64" />
 		<PackageReference Include="Uno.ShowMeTheXAML" Version="1.0.59" />
 		<PackageReference Include="Uno.ShowMeTheXAML.MSBuild" Version="1.0.59" />
 		<PackageReference Include="Uno.Toolkit.UI.Material" Version="0.1.0-dev.169" />
