@@ -29,27 +29,5 @@ namespace Uno.Gallery.Views.SamplePages
 			this.InitializeComponent();
 		}
 
-
-		private void RemoveChipItem(object sender, ChipItemEventArgs e)
-		{
-			if (DataContext is Sample sample)
-			{
-				if (sample.Data is TestCollections test)
-				{
-					test.RemoveChipItem(e.Item as TestCollections.SelectableData);
-				}
-			}
-		}
-
-		private void ResetChipItems(object sender, RoutedEventArgs e)
-		{
-			if (DataContext is Sample sample)
-			{
-				if (sample.Data is TestCollections test)
-				{
-					test.ResetChipItems();
-				}
-			}
-		}
 	}
 }

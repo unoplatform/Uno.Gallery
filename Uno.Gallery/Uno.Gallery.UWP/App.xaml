@@ -45,14 +45,15 @@
 				<ResourceDictionary Source="Views/Styles/ColorPaletteView.xaml" />
 				<ResourceDictionary Source="Views/Styles/ContentPageLayout.xaml" />
 				<ResourceDictionary Source="Views/Styles/FluentPaletteView.xaml" />
-				<ResourceDictionary Source="Views/Styles/OverviewSampleView.xaml" />
 				<ResourceDictionary Source="Views/Styles/NavigationView.xaml" />
 				<ResourceDictionary Source="Views/Styles/NavigationViewItemHeader.xaml" />
+				<ResourceDictionary Source="Views/Styles/OverviewSampleView.xaml" />
 				<ResourceDictionary Source="Views/Styles/Path.xaml" />
 				<ResourceDictionary Source="Views/Styles/RadioButton.xaml" />
 				<ResourceDictionary Source="Views/Styles/SamplePageLayout.xaml" />
-				<ResourceDictionary Source="Views/Styles/ThreeColorPaletteView.xaml" />
+				<ResourceDictionary Source="Views/Styles/ScrollViewer.xaml" />
 				<ResourceDictionary Source="Views/Styles/TextBlock.xaml" />
+				<ResourceDictionary Source="Views/Styles/ThreeColorPaletteView.xaml" />
 				<ResourceDictionary Source="Views/Styles/ToggleButton.xaml" />
 				<ResourceDictionary Source="Views/Styles/ToggleSwitch.xaml" />
 				<ResourceDictionary Source="Views/Styles/XamlDisplay.xaml" />

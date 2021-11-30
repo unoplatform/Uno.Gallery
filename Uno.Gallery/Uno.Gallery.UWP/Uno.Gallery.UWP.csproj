@@ -239,6 +239,9 @@
     <Compile Include="Views\SamplePages\CardSamplePage.xaml.cs">
       <DependentUpon>CardSamplePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SamplePages\ChipGroupSamplePage.xaml.cs">
+      <DependentUpon>ChipGroupSamplePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SamplePages\ChipSamplePage.xaml.xaml.cs">
       <DependentUpon>ChipSamplePage.xaml.xaml</DependentUpon>
     </Compile>
@@ -502,6 +505,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\SamplePages\ChipGroupSamplePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\SamplePages\ChipSamplePage.xaml.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -675,6 +682,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Styles\Button.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Styles\ScrollViewer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
