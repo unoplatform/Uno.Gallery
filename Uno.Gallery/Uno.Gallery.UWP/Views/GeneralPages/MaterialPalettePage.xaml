@@ -5,7 +5,7 @@
 	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	  xmlns:toolkit="using:Uno.UI.Toolkit"
-	  xmlns:utuc="using:Uno.Toolkit.UI.Controls"
+	  xmlns:utu="using:Uno.Toolkit.UI"
 	  xmlns:material="using:Uno.Material.Controls"
 	  mc:Ignorable="d">
 
@@ -131,7 +131,7 @@
 											 ThirdColorForeground="Black" />
 
 				<!-- Divider -->
-				<utuc:Divider Style="{StaticResource MaterialDividerStyle}"
+				<utu:Divider Style="{StaticResource MaterialDividerStyle}"
 								  Margin="0,48,0,36" />
 
 				<!-- Secondary colors section -->
@@ -148,7 +148,7 @@
 											 ThirdColorForeground="{StaticResource MaterialOnSecondaryBrush}" />
 
 				<!-- Divider -->
-				<utuc:Divider Style="{StaticResource MaterialDividerStyle}"
+				<utu:Divider Style="{StaticResource MaterialDividerStyle}"
 								  Margin="0,48,0,36" />
 
 				<!-- Elements section -->
@@ -190,7 +190,7 @@
 										Margin="0,48,0,0" />
 
 				<!-- Divider -->
-				<utuc:Divider Style="{StaticResource MaterialDividerStyle}"
+				<utu:Divider Style="{StaticResource MaterialDividerStyle}"
 								  Margin="0,48,0,36" />
 
 				<!-- On colors section -->
@@ -319,7 +319,7 @@
 										Margin="0,48,0,0" />
 
 				<!-- Divider -->
-				<utuc:Divider Style="{StaticResource MaterialDividerStyle}"
+				<utu:Divider Style="{StaticResource MaterialDividerStyle}"
 								  Margin="0,48,0,36" />
 
 				<TextBlock Style="{StaticResource MaterialBody1}"

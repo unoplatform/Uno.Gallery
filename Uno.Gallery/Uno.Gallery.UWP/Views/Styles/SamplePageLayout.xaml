@@ -4,7 +4,7 @@
 					xmlns:ios="http://uno.ui/ios"
 					xmlns:local="using:Uno.Gallery"
 					xmlns:material="using:Uno.Material.Controls"
-					xmlns:utuc="using:Uno.Toolkit.UI.Controls"
+					xmlns:utu="using:Uno.Toolkit.UI"
 					xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 					xmlns:not_android="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 					xmlns:wasm="http://uno.ui/wasm"
@@ -251,7 +251,7 @@
 
 									<StackPanel Visibility="{Binding IsFooterVisible, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}">
 
-										<utuc:Divider Margin="0,48,0,36"
+										<utu:Divider Margin="0,48,0,36"
 														  Style="{StaticResource MaterialDividerStyle}" />
 
 										<!-- Optional link to documentation -->
