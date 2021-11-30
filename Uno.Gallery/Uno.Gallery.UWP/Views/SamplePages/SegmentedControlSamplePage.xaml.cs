@@ -19,7 +19,7 @@ namespace Uno.Gallery.Views.SamplePages
 {
     [SamplePage(SampleCategory.Toolkit, "SegmentedControl",
         SourceSdk.UnoToolkit,
-        Description = "A segmented control is a, Cupertino-only, linear set of two or more segments, each of which functions as a mutually exclusive button.")]
+        Description = "A segmented control is a Cupertino-only linear set of two or more segments, each of which functions as a mutually exclusive button.")]
     public sealed partial class SegmentedControlSamplePage : Page
     {
         public SegmentedControlSamplePage()
