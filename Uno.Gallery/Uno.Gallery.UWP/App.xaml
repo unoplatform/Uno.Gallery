@@ -27,9 +27,6 @@
 				<CupertinoResources xmlns="using:Uno.Cupertino" />
 
 				<!--  Load Material Toolkit resources  -->
-				<MaterialToolkitResources xmlns="using:Uno.Toolkit.UI.Material" />
-
-
 				<MaterialToolkitColors xmlns="using:Uno.Toolkit.UI.Material" />
 				<MaterialToolkitResources xmlns="using:Uno.Toolkit.UI.Material" />
 

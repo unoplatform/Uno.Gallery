@@ -314,6 +314,9 @@
     <Compile Include="Views\SamplePages\FabSamplePage.xaml.cs">
       <DependentUpon>FabSamplePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SamplePages\SegmentedControlSamplePage.xaml.cs">
+      <DependentUpon>SegmentedControlSamplePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SamplePages\ShapeSamplePage.xaml.cs">
       <DependentUpon>ShapeSamplePage.xaml</DependentUpon>
     </Compile>
@@ -604,6 +607,10 @@
     <Page Include="Views\SamplePages\FabSamplePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SamplePages\SegmentedControlSamplePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SamplePages\ShapeSamplePage.xaml">
       <SubType>Designer</SubType>
