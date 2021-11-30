@@ -5,10 +5,7 @@
       xmlns:ios="http://uno.ui/ios"
       xmlns:local="using:Uno.Gallery.Views.NestedPages"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:toolkit="using:Uno.UI.Toolkit"
-      xmlns:toolkitB="using:Uno.Toolkit.UI.Behaviors"
-      xmlns:toolkitE="using:Uno.Material.Extensions"
-      xmlns:utu="using:Uno.Toolkit.UI.Controls"
+      xmlns:utu="using:Uno.Toolkit.UI"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
       mc:Ignorable="d ios">
 
@@ -34,7 +31,7 @@
 		</utu:NavigationBar>
 
 		<utu:TabBar Grid.Row="1"
-		            toolkitB:TabBarSelectorBehavior.Selector="{Binding ElementName=SlideFlipView}"
+		            utu:TabBarSelectorBehavior.Selector="{Binding ElementName=SlideFlipView}"
 		            SelectedIndex="1"
 		            Style="{StaticResource MaterialTopTabBarStyle}">
 			<utu:TabBar.Items>

@@ -5,7 +5,7 @@
       xmlns:local="using:Uno.Gallery.Views.NestedPages"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:toolkit="using:Uno.UI.Toolkit"
-      xmlns:utu="using:Uno.Toolkit.UI.Controls"
+      xmlns:utu="using:Uno.Toolkit.UI"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
       mc:Ignorable="d">
 
