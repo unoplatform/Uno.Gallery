@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Uno.Toolkit.UI;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -25,6 +26,21 @@ namespace Uno.Gallery.Views.NestedPages
         public MaterialTopBarSampleNestedPage()
         {
             this.InitializeComponent();
+        }
+
+        private void OnSelectionChanged(TabBar sender, TabBarSelectionChangedEventArgs args)
+        {
+            if (args.NewItem is TabBarItem tabBarItem)
+            {
+                foreach (var page in PageContainer.Children)
+                {
+                    var pageGrid = page as Grid;
+                    if (pageGrid != null)
+                    {
+                        pageGrid.Visibility = pageGrid.Name == (string)tabBarItem.Tag ? Visibility.Visible : Visibility.Collapsed;
+                    }
+                }
+            }
         }
 
         private void NavigateBack(object sender, RoutedEventArgs e)
