@@ -47,6 +47,7 @@
 		<PackageReference Include="Uno.ShowMeTheXAML" Version="1.0.59" />
 		<PackageReference Include="Uno.ShowMeTheXAML.MSBuild" Version="1.0.59" />
 		<PackageReference Include="Uno.Toolkit.UI" Version="0.1.0-dev.179" />
+		<PackageReference Include="Uno.Toolkit.UI.Cupertino" Version="0.1.0-dev.179" />
 		<PackageReference Include="Uno.Toolkit.UI.Material" Version="0.1.0-dev.179" />		
 		<PackageReference Include="Uno.UI.Lottie" Version="4.0.0-dev.5726" />
 		<PackageReference Include="Uno.UI.Skia.Gtk" Version="4.0.0-dev.5726" />

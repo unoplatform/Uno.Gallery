@@ -148,6 +148,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\EnumHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\SystemThemeHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\VisualTreeHelperEx.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Command.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ViewModelBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="$(MSBuildThisFileDirectory)Assets\Animations\*.json" />

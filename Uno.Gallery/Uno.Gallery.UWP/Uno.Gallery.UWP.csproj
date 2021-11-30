@@ -54,6 +54,9 @@
     <PackageReference Include="Uno.Toolkit.UI">
       <Version>0.1.0-dev.179</Version>
     </PackageReference>
+    <PackageReference Include="Uno.Toolkit.UI.Cupertino">
+      <Version>0.1.0-dev.179</Version>
+    </PackageReference>
     <PackageReference Include="Uno.Toolkit.UI.Material">
       <Version>0.1.0-dev.179</Version>
     </PackageReference>
@@ -197,6 +200,15 @@
     <Compile Include="Views\NestedPages\CommandBarSample_NestedMaterialPage2.xaml.cs">
       <DependentUpon>CommandBarSample_NestedMaterialPage2.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\NestedPages\CupertinoBottomBarSampleNestedPage.xaml.cs">
+      <DependentUpon>CupertinoBottomBarSampleNestedPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NestedPages\MaterialBottomBarSampleNestedPage.xaml.cs">
+      <DependentUpon>MaterialBottomBarSampleNestedPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NestedPages\MaterialTopBarSampleNestedPage.xaml.cs">
+      <DependentUpon>MaterialTopBarSampleNestedPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\NestedPages\NavigationBarSample_NestedPage1.xaml.cs">
       <DependentUpon>NavigationBarSample_NestedPage1.xaml</DependentUpon>
     </Compile>
@@ -304,6 +316,9 @@
     </Compile>
     <Compile Include="Views\SamplePages\SliderSamplePage.xaml.cs">
       <DependentUpon>SliderSamplePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SamplePages\TabBarSamplePage.xaml.cs">
+      <DependentUpon>TabBarSamplePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SamplePages\TimePickerSamplePage.xaml.cs">
       <DependentUpon>TimePickerSamplePage.xaml</DependentUpon>
@@ -432,6 +447,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\NestedPages\CommandBarSample_NestedMaterialPage2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NestedPages\CupertinoBottomBarSampleNestedPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NestedPages\MaterialBottomBarSampleNestedPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NestedPages\MaterialTopBarSampleNestedPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -576,6 +603,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SamplePages\SliderSamplePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SamplePages\TabBarSamplePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

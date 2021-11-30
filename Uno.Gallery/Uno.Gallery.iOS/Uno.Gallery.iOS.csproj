@@ -228,6 +228,9 @@
     <PackageReference Include="Uno.Toolkit.UI">
       <Version>0.1.0-dev.179</Version>
     </PackageReference>
+    <PackageReference Include="Uno.Toolkit.UI.Cupertino">
+      <Version>0.1.0-dev.179</Version>
+    </PackageReference>
     <PackageReference Include="Uno.Toolkit.UI.Material">
       <Version>0.1.0-dev.179</Version>
     </PackageReference>
