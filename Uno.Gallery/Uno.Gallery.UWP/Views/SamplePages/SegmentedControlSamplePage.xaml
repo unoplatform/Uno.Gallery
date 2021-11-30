@@ -5,7 +5,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:sample="using:Uno.Gallery"
       xmlns:smtx="using:ShowMeTheXAML"
-      xmlns:utu="using:Uno.Toolkit.UI.Controls"
+      xmlns:utu="using:Uno.Toolkit.UI"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
       mc:Ignorable="d">
 
