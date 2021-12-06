@@ -3,7 +3,6 @@
 					xmlns:android="http://uno.ui/android"
 					xmlns:ios="http://uno.ui/ios"
 					xmlns:local="using:Uno.Gallery"
-					xmlns:material="using:Uno.Material.Controls"
 					xmlns:utu="using:Uno.Toolkit.UI"
 					xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 					xmlns:not_android="http://schemas.microsoft.com/winfx/2006/xaml/presentation"

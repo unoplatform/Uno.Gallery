@@ -108,10 +108,10 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Uno.Cupertino">
-      <Version>1.1.0-dev.64</Version>
+      <Version>1.1.0-dev.70</Version>
     </PackageReference>
     <PackageReference Include="Uno.Material">
-      <Version>1.1.0-dev.64</Version>
+      <Version>1.1.0-dev.70</Version>
     </PackageReference>
     <PackageReference Include="Uno.ShowMeTheXAML">
       <Version>1.0.59</Version>
@@ -120,21 +120,21 @@
       <Version>1.0.59</Version>
     </PackageReference>
     <PackageReference Include="Uno.Toolkit.UI">
-      <Version>0.1.0-dev.183</Version>
+      <Version>1.1.0-dev.3</Version>
     </PackageReference>
     <PackageReference Include="Uno.Toolkit.UI.Cupertino">
-      <Version>0.1.0-dev.183</Version>
+      <Version>1.1.0-dev.3</Version>
     </PackageReference>
     <PackageReference Include="Uno.Toolkit.UI.Material">
-      <Version>0.1.0-dev.183</Version>
+      <Version>1.1.0-dev.3</Version>
     </PackageReference>
     <PackageReference Include="Uno.UI">
-      <Version>4.0.0-dev.5726</Version>
+      <Version>4.0.9</Version>
     </PackageReference>
     <PackageReference Include="Uno.UI.Lottie">
-      <Version>4.0.0-dev.5726</Version>
+      <Version>4.0.9</Version>
     </PackageReference>
-    <PackageReference Include="Uno.UI.RemoteControl" Version="4.0.0-dev.5726" Condition="'$(Configuration)'=='Debug'" />
+    <PackageReference Include="Uno.UI.RemoteControl" Version="4.0.9" Condition="'$(Configuration)'=='Debug'" />
     <PackageReference Include="Uno.UniversalImageLoader" Version="1.9.35" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Filter" Version="1.1.1" />
@@ -147,9 +147,9 @@
     <PackageReference Include="Xamarin.Essentials">
       <Version>1.6.1</Version>
     </PackageReference>
-    <PackageReference Include="Uno.UI.Adapter.Microsoft.Extensions.Logging" Version="4.0.0-dev.5726" />
-    <PackageReference Include="Uno.Core.Extensions.Disposables" Version="4.0.0-dev.7" />
-    <PackageReference Include="Uno.Core.Extensions.Compatibility" Version="4.0.0-dev.7" />
+    <PackageReference Include="Uno.UI.Adapter.Microsoft.Extensions.Logging" Version="4.0.9" />
+    <PackageReference Include="Uno.Core.Extensions.Disposables" Version="4.0.1" />
+    <PackageReference Include="Uno.Core.Extensions.Compatibility" Version="4.0.1" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />

@@ -4,7 +4,6 @@
 					xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 					xmlns:win="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 					xmlns:xamarin="http://uno.ui/xamarin"
-					xmlns:material="using:Uno.Material.Controls"
 					xmlns:utu="using:Uno.Toolkit.UI"
 					mc:Ignorable="xamarin">
 

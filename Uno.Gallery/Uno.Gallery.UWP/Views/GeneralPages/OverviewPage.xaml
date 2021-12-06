@@ -7,7 +7,7 @@
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	  xmlns:android="http:/uno.ui/android"
 	  xmlns:converters="using:Uno.Gallery.Converters"
-	  xmlns:extensions="using:Uno.Material.Extensions"
+	  xmlns:um="using:Uno.Material"
 	  xmlns:local="using:Uno.Gallery"
 	  xmlns:ios="http:/uno.ui/ios"
 	  xmlns:wasm="http:/uno.ui/wasm"
@@ -56,9 +56,9 @@
 							<TextBox PlaceholderText="Filled with icon"
 									 AutomationProperties.AutomationId="MaterialFilledIconTextBox"
 									 Style="{StaticResource MaterialFilledTextBoxStyle}">
-								<extensions:ControlExtensions.Icon>
+								<um:ControlExtensions.Icon>
 									<SymbolIcon Symbol="Favorite" />
-								</extensions:ControlExtensions.Icon>
+								</um:ControlExtensions.Icon>
 							</TextBox>
 
 							<TextBox PlaceholderText="Outlined"
@@ -68,9 +68,9 @@
 							<TextBox PlaceholderText="Outlined with icon"
 									 AutomationProperties.AutomationId="MaterialOutlinedWithIconTextBox"
 									 Style="{StaticResource MaterialOutlinedTextBoxStyle}">
-								<extensions:ControlExtensions.Icon>
+								<um:ControlExtensions.Icon>
 									<SymbolIcon Symbol="Favorite" />
-								</extensions:ControlExtensions.Icon>
+								</um:ControlExtensions.Icon>
 							</TextBox>
 						</StackPanel>
 					</local:OverviewSampleView>

@@ -111,19 +111,19 @@
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 		<PackageReference Include="Microsoft.Windows.Compatibility" Version="5.0.1" />
-		<PackageReference Include="Uno.Cupertino" Version="1.1.0-dev.64" />
+		<PackageReference Include="Uno.Cupertino" Version="1.1.0-dev.70" />
 		<PackageReference Include="Uno.Diagnostics.Eventing" Version="2.1.0-dev.1" />
-		<PackageReference Include="Uno.Material" Version="1.1.0-dev.64" />
+		<PackageReference Include="Uno.Material" Version="1.1.0-dev.70" />
 		<PackageReference Include="Uno.ShowMeTheXAML" Version="1.0.59" />
 		<PackageReference Include="Uno.ShowMeTheXAML.MSBuild" Version="1.0.59" />
-		<PackageReference Include="Uno.Toolkit.UI" Version="0.1.0-dev.183" />
-		<PackageReference Include="Uno.Toolkit.UI.Cupertino" Version="0.1.0-dev.183" />
-		<PackageReference Include="Uno.Toolkit.UI.Material" Version="0.1.0-dev.183" />
-		<PackageReference Include="Uno.UI.Lottie" Version="4.0.0-dev.5726" />
-		<PackageReference Include="Uno.UI.WebAssembly" Version="4.0.0-dev.5726" />
-		<PackageReference Include="Uno.UI.RemoteControl" Version="4.0.0-dev.5726" Condition="'$(Configuration)'=='Debug'" />
-		<PackageReference Include="Uno.Wasm.Bootstrap" Version="3.0.0-dev.142" />
-		<PackageReference Include="Uno.Wasm.Bootstrap.DevServer" Version="3.0.0-dev.142" />
+		<PackageReference Include="Uno.Toolkit.UI" Version="1.1.0-dev.3" />
+		<PackageReference Include="Uno.Toolkit.UI.Cupertino" Version="1.1.0-dev.3" />
+		<PackageReference Include="Uno.Toolkit.UI.Material" Version="1.1.0-dev.3" />
+		<PackageReference Include="Uno.UI.Lottie" Version="4.0.9" />
+		<PackageReference Include="Uno.UI.WebAssembly" Version="4.0.9" />
+		<PackageReference Include="Uno.UI.RemoteControl" Version="4.0.9" Condition="'$(Configuration)'=='Debug'" />
+		<PackageReference Include="Uno.Wasm.Bootstrap" Version="3.1.2" />
+		<PackageReference Include="Uno.Wasm.Bootstrap.DevServer" Version="3.1.2" />
 		<PackageReference Include="Microsoft.TypeScript.Compiler" Version="3.1.5">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
@@ -132,9 +132,9 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Uno.UI.Adapter.Microsoft.Extensions.Logging" Version="4.0.0-dev.5726" />
-		<PackageReference Include="Uno.Core.Extensions.Disposables" Version="4.0.0-dev.7" />
-		<PackageReference Include="Uno.Core.Extensions.Compatibility" Version="4.0.0-dev.7" />
+		<PackageReference Include="Uno.UI.Adapter.Microsoft.Extensions.Logging" Version="4.0.9" />
+		<PackageReference Include="Uno.Core.Extensions.Disposables" Version="4.0.1" />
+		<PackageReference Include="Uno.Core.Extensions.Compatibility" Version="4.0.1" />
 	</ItemGroup>
 	<ItemGroup>
 		<TypeScriptCompile Include="ts\GoogleAnalytics.ts" />

@@ -1,7 +1,7 @@
 ﻿<Page x:Class="Uno.Gallery.Views.Samples.FabSamplePage"
 	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	  xmlns:extensions="using:Uno.Material.Extensions"
+	  xmlns:um="using:Uno.Material"
 	  xmlns:gallery="using:Uno.Gallery"
 	  xmlns:local="using:Uno.Gallery"
 	  xmlns:smtx="using:ShowMeTheXAML"
@@ -22,22 +22,22 @@
 							<StackPanel Spacing="20">
 
 								<Button Style="{StaticResource MaterialFabStyle}">
-									<extensions:ControlExtensions.Icon>
+									<um:ControlExtensions.Icon>
 										<SymbolIcon Symbol="Add" />
-									</extensions:ControlExtensions.Icon>
+									</um:ControlExtensions.Icon>
 								</Button>
 
 								<Button Style="{StaticResource MaterialSecondaryFabStyle}">
-									<extensions:ControlExtensions.Icon>
+									<um:ControlExtensions.Icon>
 										<SymbolIcon Symbol="Add" />
-									</extensions:ControlExtensions.Icon>
+									</um:ControlExtensions.Icon>
 								</Button>
 
 								<Button Style="{StaticResource MaterialFabStyle}"
 										IsEnabled="False">
-									<extensions:ControlExtensions.Icon>
+									<um:ControlExtensions.Icon>
 										<SymbolIcon Symbol="Add" />
-									</extensions:ControlExtensions.Icon>
+									</um:ControlExtensions.Icon>
 								</Button>
 							</StackPanel>
 						</smtx:XamlDisplay>
@@ -64,24 +64,24 @@
 
 								<Button Content="DEFAULT"
 										Style="{StaticResource MaterialFabStyle}">
-									<extensions:ControlExtensions.Icon>
+									<um:ControlExtensions.Icon>
 										<SymbolIcon Symbol="Add" />
-									</extensions:ControlExtensions.Icon>
+									</um:ControlExtensions.Icon>
 								</Button>
 
 								<Button Content="SECONDARY"
 										Style="{StaticResource MaterialSecondaryFabStyle}">
-									<extensions:ControlExtensions.Icon>
+									<um:ControlExtensions.Icon>
 										<SymbolIcon Symbol="Add" />
-									</extensions:ControlExtensions.Icon>
+									</um:ControlExtensions.Icon>
 								</Button>
 
 								<Button Content="DISABLED"
 										Style="{StaticResource MaterialFabStyle}"
 										IsEnabled="False">
-									<extensions:ControlExtensions.Icon>
+									<um:ControlExtensions.Icon>
 										<SymbolIcon Symbol="Add" />
-									</extensions:ControlExtensions.Icon>
+									</um:ControlExtensions.Icon>
 								</Button>
 							</StackPanel>
 						</smtx:XamlDisplay>

@@ -4,7 +4,7 @@
 	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	  xmlns:local="using:Uno.Gallery"
-	  xmlns:extensions="using:Uno.Material.Extensions"
+	  xmlns:um="using:Uno.Material"
 	  xmlns:smtx="using:ShowMeTheXAML"
 	  mc:Ignorable="d"
 	  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -47,33 +47,31 @@
 										  smtx:XamlDisplayExtensions.Header="Multiline">
 							<StackPanel Spacing="20">
 
-								<TextBox 
-										 TextWrapping="Wrap"
+								<TextBox TextWrapping="Wrap"
 										 AcceptsReturn="True">
-<TextBox.Text>
-Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper 
+									<TextBox.Text>
+										Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper 
 commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet. 
 Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi 
 rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius 
 curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales 
 sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida
 turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant.
-</TextBox.Text>
+									</TextBox.Text>
 								</TextBox>
 
-								<TextBox
-										 TextWrapping="Wrap"
+								<TextBox TextWrapping="Wrap"
 										 AcceptsReturn="True"
-										 IsEnabled="False" >
-<TextBox.Text>
-Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper 
+										 IsEnabled="False">
+									<TextBox.Text>
+										Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper 
 commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet. 
 Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi 
 rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius 
 curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales 
 sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida
 turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant.
-</TextBox.Text>
+									</TextBox.Text>
 								</TextBox>
 							</StackPanel>
 						</smtx:XamlDisplay>
@@ -96,9 +94,9 @@ turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo ha
 
 								<TextBox PlaceholderText="With Icon"
 										 Style="{StaticResource MaterialFilledTextBoxStyle}">
-									<extensions:ControlExtensions.Icon>
+									<um:ControlExtensions.Icon>
 										<SymbolIcon Symbol="Favorite" />
-									</extensions:ControlExtensions.Icon>
+									</um:ControlExtensions.Icon>
 								</TextBox>
 
 								<TextBox PlaceholderText="Disabled"
@@ -118,9 +116,9 @@ turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo ha
 
 								<TextBox PlaceholderText="With Icon"
 										 Style="{StaticResource MaterialOutlinedTextBoxStyle}">
-									<extensions:ControlExtensions.Icon>
+									<um:ControlExtensions.Icon>
 										<SymbolIcon Symbol="Favorite" />
-									</extensions:ControlExtensions.Icon>
+									</um:ControlExtensions.Icon>
 								</TextBox>
 
 								<TextBox PlaceholderText="Outline Disabled"
@@ -136,32 +134,32 @@ turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo ha
 							<StackPanel Spacing="20">
 
 								<TextBox TextWrapping="Wrap"
-								         AcceptsReturn="True"
-								         Style="{StaticResource MaterialFilledTextBoxStyle}">
-<TextBox.Text>
-Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper 
+										 AcceptsReturn="True"
+										 Style="{StaticResource MaterialFilledTextBoxStyle}">
+									<TextBox.Text>
+										Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper 
 commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet. 
 Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi 
 rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius 
 curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales 
 sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida
 turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant.
-</TextBox.Text>
+									</TextBox.Text>
 								</TextBox>
 
 								<TextBox TextWrapping="Wrap"
-								         AcceptsReturn="True"
-								         IsEnabled="False"
-								         Style="{StaticResource MaterialFilledTextBoxStyle}">
-<TextBox.Text>
-Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper 
+										 AcceptsReturn="True"
+										 IsEnabled="False"
+										 Style="{StaticResource MaterialFilledTextBoxStyle}">
+									<TextBox.Text>
+										Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper 
 commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet. 
 Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi 
 rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius 
 curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales 
 sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida
 turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant.
-</TextBox.Text>
+									</TextBox.Text>
 								</TextBox>
 							</StackPanel>
 						</smtx:XamlDisplay>
@@ -187,15 +185,15 @@ turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo ha
 									 TextWrapping="Wrap"
 									 AcceptsReturn="True"
 									 PlaceholderText="Placeholder multi line">
-<TextBox.Text>
-Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper 
+								<TextBox.Text>
+									Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper 
 commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet. 
 Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi 
 rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius 
 curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales 
 sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida
 turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant.
-</TextBox.Text>
+								</TextBox.Text>
 							</TextBox>
 						</smtx:XamlDisplay>
 
