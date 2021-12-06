@@ -4,7 +4,6 @@
 	  xmlns:local="using:Uno.Gallery"
 	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	  xmlns:material="using:Uno.Material.Controls"
 	  xmlns:utu="using:Uno.Toolkit.UI"
 	  xmlns:smtx="using:ShowMeTheXAML"
 	  mc:Ignorable="d">

@@ -4,20 +4,20 @@
 	  xmlns:local="using:Uno.Gallery.Views.SamplePages"
 	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	  xmlns:converters="using:Uno.Cupertino.Converters"
+	  xmlns:uc="using:Uno.Cupertino"
 	  xmlns:utu="using:Uno.Toolkit.UI"
 	  xmlns:smtx="using:ShowMeTheXAML"
 	  xmlns:sample="using:Uno.Gallery"
 	  mc:Ignorable="d">
 
 	<Page.Resources>
-		<converters:FromNullToValueConverter x:Key="SingleSelectionToValueConverter"
-											 NotNullValue="Selected Item: #"
-											 NullValue="No selection" />
+		<uc:FromNullToValueConverter x:Key="SingleSelectionToValueConverter"
+									 NotNullValue="Selected Item: #"
+									 NullValue="No selection" />
 
-		<converters:FromNullToValueConverter x:Key="MultipleSelectionToValueConverter"
-											 NotNullValue="Selected Items:"
-											 NullValue="No selection" />
+		<uc:FromNullToValueConverter x:Key="MultipleSelectionToValueConverter"
+									 NotNullValue="Selected Items:"
+									 NullValue="No selection" />
 	</Page.Resources>
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">

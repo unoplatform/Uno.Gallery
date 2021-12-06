@@ -6,7 +6,6 @@
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	  xmlns:toolkit="using:Uno.UI.Toolkit"
 	  xmlns:utu="using:Uno.Toolkit.UI"
-	  xmlns:material="using:Uno.Material.Controls"
 	  mc:Ignorable="d">
 
 	<Page.Resources>
