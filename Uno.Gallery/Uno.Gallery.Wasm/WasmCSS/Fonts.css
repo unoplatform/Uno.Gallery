@@ -51,32 +51,12 @@ body::after {
 	background: transparent;
 	content: "";
 	opacity: 0;
-	font-weight: 300;
+	font-weight: 300 400 500;
 	pointer-events: none;
 	position: absolute;
 }
 
 #uno-body::before {
-	font-family: 'Roboto';
-	background: transparent;
-	content: "";
-	opacity: 0;
-	font-weight: 400;
-	pointer-events: none;
-	position: absolute;
-}
-
-#uno-body::after {
-	font-family: 'Roboto';
-	background: transparent;
-	content: "";
-	opacity: 0;
-	font-weight: 500;
-	pointer-events: none;
-	position: absolute;
-}
-
-body::before {
 	font-family: 'SF Pro';
 	background: transparent;
 	content: "";
