@@ -23,11 +23,16 @@
 	</ItemGroup>
 	
 	<ItemGroup>
+	  <Content Include="Assets\Fonts\Cupertino\SF-Pro.ttf" />
+	  <Content Include="Assets\Fonts\Material\Roboto-Light.ttf" />
+	  <Content Include="Assets\Fonts\Material\Roboto-Medium.ttf" />
+	  <Content Include="Assets\Fonts\Material\Roboto-Regular.ttf" />
+	  <Content Include="Assets\Fonts\uno-fluentui-assets.ttf" />
 	  <Content Include="Assets\StoreLogo.png" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Uno.Cupertino" Version="1.1.0-dev.70" />
+		<PackageReference Include="Uno.Cupertino" Version="1.2.0" />
 		<PackageReference Include="Uno.Material" Version="1.1.0-dev.70" />
 		<!-- Note that for WebAssembly version 1.1.1 of the console logger required -->
 		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
@@ -58,5 +63,13 @@
 	</ItemGroup>
 	
 	<Import Project="..\Uno.Gallery.Shared\Uno.Gallery.Shared.projitems" Label="Shared" />
+	
+	<ItemGroup>
+	  <None Remove="Assets\Fonts\Cupertino\SF-Pro.ttf" />
+	  <None Remove="Assets\Fonts\Material\Roboto-Light.ttf" />
+	  <None Remove="Assets\Fonts\Material\Roboto-Medium.ttf" />
+	  <None Remove="Assets\Fonts\Material\Roboto-Regular.ttf" />
+	  <None Remove="Assets\Fonts\uno-fluentui-assets.ttf" />
+	</ItemGroup>
 
 </Project>
