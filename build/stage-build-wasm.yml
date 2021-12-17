@@ -20,12 +20,14 @@
 - template: templates/gitversion.yml
 
 - task: UseDotNet@2
+  retryCountOnTaskFailure: 3
   inputs:
     packageType: sdk
     version: 5.0.101
 
 - bash: |
     dotnet msbuild /ds /m /r /p:Configuration=Release "/p:InformationalVersion=%GITVERSION_InformationalVersion%" Uno.Gallery/Uno.Gallery.Wasm/Uno.Gallery.Wasm.csproj /bl:$(Build.ArtifactStagingDirectory)/wasm.binlog
+  retryCountOnTaskFailure: 3
 
 - task: CopyFiles@2
   displayName: Copy version information
@@ -36,5 +38,6 @@
   
 - task: PublishBuildArtifacts@1
   condition: always()
+  retryCountOnTaskFailure: 3
   inputs:
     ArtifactName: $(ArtifactName)
