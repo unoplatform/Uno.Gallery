@@ -20,12 +20,14 @@
       chmod +x $(build.sourcesdirectory)/build/scripts/android-uitest-run.sh
       $(build.sourcesdirectory)/build/scripts/android-uitest-run.sh
     displayName: Build and Run Android Tests
+    retryCountOnTaskFailure: 3
     env:
       BUILD_SOURCESDIRECTORY: "$(build.sourcesdirectory)"
       BUILD_ARTIFACTSTAGINGDIRECTORY: "$(build.artifactstagingdirectory)"
 
   - task: PublishTestResults@2
     condition: always()
+    retryCountOnTaskFailure: 3
     inputs:
       testRunTitle: 'Android Test Run'
       testResultsFormat: 'NUnit'
@@ -34,6 +36,7 @@
 
   - task: PublishBuildArtifacts@1
     condition: always()
+    retryCountOnTaskFailure: 3
     inputs:
       PathtoPublish: $(build.artifactstagingdirectory)
       ArtifactName: uno-uitest-tests

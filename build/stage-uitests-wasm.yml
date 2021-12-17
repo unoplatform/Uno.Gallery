@@ -15,6 +15,7 @@
 
   - task: UseDotNet@2
     displayName: 'Use .Net Core runtime 5.0.101'
+    retryCountOnTaskFailure: 3
     inputs:
       packageType: sdk
       version: 5.0.101
@@ -25,10 +26,12 @@
     env:
       BUILD_SOURCESDIRECTORY: "$(build.sourcesdirectory)"
       BUILD_ARTIFACTSTAGINGDIRECTORY: "$(build.artifactstagingdirectory)"
+    retryCountOnTaskFailure: 3
     displayName: 'Running build'
 
   - task: PublishTestResults@2
     condition: always()
+    retryCountOnTaskFailure: 3
     inputs:
       testRunTitle: 'WebAssembly Test Run'
       testResultsFormat: 'NUnit'
@@ -36,6 +39,7 @@
       failTaskOnFailedTests: true
 
   - task: PublishBuildArtifacts@1
+    retryCountOnTaskFailure: 3
     condition: always()
     inputs:
       PathtoPublish: $(build.artifactstagingdirectory)
