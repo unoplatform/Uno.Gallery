@@ -22,7 +22,7 @@
 							<Button Content="Flyout"
 									Style="{StaticResource MaterialContainedButtonStyle}">
 								<Button.Flyout>
-									<Flyout FlyoutPresenterStyle="{StaticResource MaterialFlyoutPresenterStyle}">
+									<Flyout FlyoutPresenterStyle="{StaticResource MaterialContentFlyoutPresenterStyle}">
 										<TextBlock
 												   Style="{StaticResource MaterialBody2}" >
 <TextBlock.Text>
