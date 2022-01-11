@@ -14,7 +14,7 @@
 				<DataTemplate>
 					<smtx:XamlDisplay UniqueKey="CalendarViewSamplePage_Material_CalendarView"
 									  smtx:XamlDisplayExtensions.Header="CalendarView"
-									  Style="{StaticResource XamlDisplayBelowStyle}">
+									  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
 						<StackPanel Spacing="20">
 							<TextBlock Text="Selection Mode:"
 									   Style="{StaticResource MaterialBody1}" />
@@ -38,7 +38,7 @@
 				<DataTemplate>
 					<smtx:XamlDisplay UniqueKey="CalendarViewSamplePage_Cupertino_CalendarView"
 									  smtx:XamlDisplayExtensions.Header="CalendarView"
-									  Style="{StaticResource XamlDisplayBelowStyle}">
+									  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
 						<StackPanel Spacing="20">
 							<TextBlock Text="Selection Mode:"
 									   Style="{StaticResource CupertinoBody}" />
@@ -62,7 +62,7 @@
 				<DataTemplate>
 					<smtx:XamlDisplay UniqueKey="CalendarViewSamplePage_Fluent_CalendarView"
 									  smtx:XamlDisplayExtensions.Header="CalendarView"
-									  Style="{StaticResource XamlDisplayBelowStyle}">
+									  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
 						<StackPanel Spacing="20">
 							<TextBlock Text="Selection Mode:"
 									   Style="{StaticResource BodyTextBlockStyle}" />
