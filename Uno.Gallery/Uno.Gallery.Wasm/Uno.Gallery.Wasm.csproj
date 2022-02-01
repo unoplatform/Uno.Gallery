@@ -7,6 +7,7 @@
 		<WasmHead>true</WasmHead>
 		<DefineConstants>__WASM__</DefineConstants>
 		<UnoUIUseRoslynSourceGenerators>false</UnoUIUseRoslynSourceGenerators>
+		<UnoXamlResourcesTrimming>true</UnoXamlResourcesTrimming>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='Debug'">
@@ -25,8 +26,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<MonoRuntimeMixedModeExcludedAssembly Include="Uno.UI.FluentTheme" />
 		<MonoRuntimeMixedModeExcludedAssembly Include="System.Private.Xml" />
+		<MonoRuntimeMixedModeExcludedAssembly Include="System.Linq.Expressions" />
 	</ItemGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='Debug' or '$(IsUiAutomationMappingEnabled)'=='True'">
@@ -34,14 +35,13 @@
 		<DefineConstants>$(DefineConstants);USE_UITESTS</DefineConstants>
 	</PropertyGroup>
 
-	<!--
+	
 	<ItemGroup Condition="'$(Configuration)'=='Release' and '$(WasmShellMonoRuntimeExecutionMode)'=='InterpreterAndAOT'">
 		<WasmShellEnableAotProfile Condition="'$(IsUiAutomationMappingEnabled)'==''" Include="aot.profile" />
+
+		<!--Use smaller profile for UI tests to avoid the browser's memory 
+		use to go higher than the Ci agent's availability-->
 		
-		--><!-- 
-		Use smaller profile for UI tests to avoid the browser's memory 
-		use to go higher than the Ci agent's availability
-		--><!--
 		<WasmShellEnableAotProfile Condition="'$(IsUiAutomationMappingEnabled)'=='True'" Include="aot-uitests.profile" />
 	</ItemGroup>
 
@@ -49,7 +49,7 @@
 		<WasmShellAOTProfileExcludedMethods>$(WasmShellAOTProfileExcludedMethods);System\.Reflection\.Assembly\.GetExecutingAssembly</WasmShellAOTProfileExcludedMethods>
 		<WasmShellAOTProfileExcludedMethods>$(WasmShellAOTProfileExcludedMethods);Dispose</WasmShellAOTProfileExcludedMethods>
 	</PropertyGroup>
-	-->
+	
 	
 	<ItemGroup>
 		<MonoRuntimeMixedModeExcludedAssembly Include="System.Console" />
