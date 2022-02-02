@@ -298,17 +298,16 @@ namespace Uno.Gallery
 		/// <param name="factory"></param>
 		static void ConfigureFilters(ILoggerFactory factory)
 		{
+#if !DEBUG
 			factory
 				.WithFilter(new FilterLoggerSettings
 					{
 						{ "Uno", LogLevel.Warning },
 						{ "Windows", LogLevel.Warning },
 						{ "Uno.Gallery", LogLevel.Debug },
-#if !DEBUG
 						{ "Windows.UI.Xaml", LogLevel.None },
 						{ "Windows.ApplicationModel.Core.CoreApplicationViewTitleBar", LogLevel.None },
 						{ "Uno.UI.DataBinding.BindingPropertyHelper", LogLevel.None },
-#endif
 
 						// Debug JS interop
 						// { "Uno.Foundation.WebAssemblyRuntime", LogLevel.Debug },
@@ -353,6 +352,7 @@ namespace Uno.Gallery
 #if HAS_UNO
 			Uno.UI.Adapter.Microsoft.Extensions.Logging.LoggingAdapter.Initialize();
 #endif
+#endif
 		}
 
 		private void ConfigureXamlDisplay()
@@ -360,13 +360,13 @@ namespace Uno.Gallery
 			XamlDisplay.Init(GetType().Assembly);
 		}
 
-		public static IEnumerable<Sample> GetSamples() 
+		public static IEnumerable<Sample> GetSamples()
 			=> _samples = _samples ?? Assembly.GetExecutingAssembly()
-				.DefinedTypes
-				.Where(x => x.Namespace?.StartsWith("Uno.Gallery") == true)
-				.Select(x => new { TypeInfo = x, SamplePageAttribute = x.GetCustomAttribute<SamplePageAttribute>() })
-				.Where(x => x.SamplePageAttribute != null)
-				.Select(x => new Sample(x.SamplePageAttribute, x.TypeInfo.AsType()))
-				.ToArray();
+				  .DefinedTypes
+				  .Where(x => x.Namespace?.StartsWith("Uno.Gallery") == true)
+				  .Select(x => new { TypeInfo = x, SamplePageAttribute = x.GetCustomAttribute<SamplePageAttribute>() })
+				  .Where(x => x.SamplePageAttribute != null)
+				  .Select(x => new Sample(x.SamplePageAttribute, x.TypeInfo.AsType()))
+				  .ToArray();
 	}
 }
