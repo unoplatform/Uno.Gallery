@@ -2549,54 +2549,6 @@
 								<muxc:StackLayout Orientation="Vertical" />
 							</muxc:ItemsRepeater.Layout>
 						</muxc:ItemsRepeater>
-						<FlyoutBase.AttachedFlyout>
-							<Flyout x:Name="ChildrenFlyout"
-									contract7NotPresent:Placement="Right"
-									contract7Present:Placement="RightEdgeAlignedTop">
-								<Flyout.FlyoutPresenterStyle>
-									<Style TargetType="FlyoutPresenter">
-										<Setter Property="Padding" Value="{ThemeResource NavigationViewItemChildrenMenuFlyoutPadding}" />
-										<!--  Set negative top margin to make the flyout align exactly with the button  -->
-										<Setter Property="Margin" Value="0,-4,0,0" />
-										<Setter Property="ScrollViewer.HorizontalScrollMode" Value="Auto" />
-										<Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
-										<Setter Property="ScrollViewer.VerticalScrollMode" Value="Auto" />
-										<Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
-										<Setter Property="ScrollViewer.ZoomMode" Value="Disabled" />
-										<contract7Present:Setter Property="CornerRadius" Value="{ThemeResource OverlayCornerRadius}" />
-										<Setter Property="Template">
-											<Setter.Value>
-												<ControlTemplate TargetType="FlyoutPresenter">
-													<ScrollViewer x:Name="ScrollViewer"
-																  AutomationProperties.AccessibilityView="Raw"
-																  HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
-																  HorizontalScrollMode="{TemplateBinding ScrollViewer.HorizontalScrollMode}"
-																  VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}"
-																  VerticalScrollMode="{TemplateBinding ScrollViewer.VerticalScrollMode}"
-																  ZoomMode="{TemplateBinding ScrollViewer.ZoomMode}">
-														<ContentPresenter x:Name="ContentPresenter"
-																		  Padding="{TemplateBinding Padding}"
-																		  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-																		  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-																		  contract7NotPresent:CornerRadius="{ThemeResource OverlayCornerRadius}"
-																		  contract7Present:CornerRadius="{TemplateBinding CornerRadius}"
-																		  Background="{TemplateBinding Background}"
-																		  BorderBrush="{TemplateBinding BorderBrush}"
-																		  BorderThickness="{TemplateBinding BorderThickness}"
-																		  Content="{TemplateBinding Content}"
-																		  ContentTemplate="{TemplateBinding ContentTemplate}"
-																		  ContentTransitions="{TemplateBinding ContentTransitions}" />
-													</ScrollViewer>
-												</ControlTemplate>
-											</Setter.Value>
-										</Setter>
-									</Style>
-								</Flyout.FlyoutPresenterStyle>
-								<Grid x:Name="FlyoutRootGrid">
-									<Grid x:Name="FlyoutContentGrid" />
-								</Grid>
-							</Flyout>
-						</FlyoutBase.AttachedFlyout>
 
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup x:Name="ItemOnNavigationViewListPositionStates">
