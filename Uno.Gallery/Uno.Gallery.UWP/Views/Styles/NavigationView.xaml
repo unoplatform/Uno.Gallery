@@ -2549,8 +2549,18 @@
 								<muxc:StackLayout Orientation="Vertical" />
 							</muxc:ItemsRepeater.Layout>
 						</muxc:ItemsRepeater>
-
-						<VisualStateManager.VisualStateGroups>
+                        <FlyoutBase.AttachedFlyout>
+                            <Flyout x:Name="ChildrenFlyout"
+                                    contract7NotPresent:Placement="Right"
+                                    contract7Present:Placement="RightEdgeAlignedTop">
+                                <!-- FlyoutPresenterStyle removed here to help the performance as the flyout is not used for now -->
+                                <!-- Uno code behind still rely on FlyoutContentGrid so we can't remove the flyout completely -->
+                                <Grid x:Name="FlyoutRootGrid">
+                                    <Grid x:Name="FlyoutContentGrid" />
+                                </Grid>
+                            </Flyout>
+                        </FlyoutBase.AttachedFlyout>
+                        <VisualStateManager.VisualStateGroups>
 							<VisualStateGroup x:Name="ItemOnNavigationViewListPositionStates">
 								<VisualState x:Name="OnLeftNavigation">
 									<VisualState.Setters>
