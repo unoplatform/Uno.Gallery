@@ -32,7 +32,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Uno.Cupertino" Version="1.3.0-dev.19" />
+		<PackageReference Include="Uno.Cupertino" Version="1.3.0-dev.4" />
 		<PackageReference Include="Uno.Material" Version="1.3.0-dev.19" />
 		<!-- Note that for WebAssembly version 1.1.1 of the console logger required -->
 		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
