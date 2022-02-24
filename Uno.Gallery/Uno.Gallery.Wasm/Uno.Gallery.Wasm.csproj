@@ -7,7 +7,6 @@
 		<WasmHead>true</WasmHead>
 		<DefineConstants>__WASM__</DefineConstants>
 		<UnoUIUseRoslynSourceGenerators>false</UnoUIUseRoslynSourceGenerators>
-		<UnoXamlResourcesTrimming>true</UnoXamlResourcesTrimming>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='Debug'">
