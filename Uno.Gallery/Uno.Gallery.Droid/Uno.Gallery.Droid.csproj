@@ -255,6 +255,10 @@
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
+	<ItemGroup>
+		<IncludeXamlNamespaces Include="mobile" />
+		<ExcludeXamlNamespaces Include="not_mobile" />
+	</ItemGroup>
   <Import Project="..\Uno.Gallery.Shared\Uno.Gallery.Shared.projitems" Label="Shared" Condition="Exists('..\Uno.Gallery.Shared\Uno.Gallery.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

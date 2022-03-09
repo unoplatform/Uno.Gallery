@@ -89,6 +89,10 @@
 	<ItemGroup>
 		<WasmShellMonoEnvironment Include="MONO_GC_PARAMS" Value="soft-heap-limit=512m,nursery-size=64m,evacuation-threshold=66,major=marksweep" />
 	</ItemGroup>
+	<ItemGroup>
+		<IncludeXamlNamespaces Include="not_mobile" />
+		<ExcludeXamlNamespaces Include="mobile" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<!-- Note that for WebAssembly version 1.1.1 of the console logger required -->
