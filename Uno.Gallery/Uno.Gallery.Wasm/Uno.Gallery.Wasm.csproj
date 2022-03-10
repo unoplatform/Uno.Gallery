@@ -36,11 +36,11 @@
 	</PropertyGroup>
 
 	
-	<!--<ItemGroup Condition="'$(Configuration)'=='Release' and '$(WasmShellMonoRuntimeExecutionMode)'=='InterpreterAndAOT'">
+	<ItemGroup Condition="'$(Configuration)'=='Release' and '$(WasmShellMonoRuntimeExecutionMode)'=='InterpreterAndAOT'">
 		<WasmShellEnableAotProfile Condition="'$(IsUiAutomationMappingEnabled)'==''" Include="aot.profile" />
 		
 		<WasmShellEnableAotProfile Condition="'$(IsUiAutomationMappingEnabled)'=='True'" Include="aot-uitests.profile" />
-	</ItemGroup>-->
+	</ItemGroup>
 
 	<PropertyGroup>
 		<WasmShellAOTProfileExcludedMethods>$(WasmShellAOTProfileExcludedMethods);System\.Reflection\.Assembly\.GetExecutingAssembly</WasmShellAOTProfileExcludedMethods>
@@ -119,8 +119,8 @@
 		<PackageReference Include="Uno.UI.Lottie" Version="4.1.8" />
 		<PackageReference Include="Uno.UI.WebAssembly" Version="4.1.8" />
 		<PackageReference Include="Uno.UI.RemoteControl" Version="4.1.8" Condition="'$(Configuration)'=='Debug'" />
-		<PackageReference Include="Uno.Wasm.Bootstrap" Version="4.0.0-dev.77" />
-		<PackageReference Include="Uno.Wasm.Bootstrap.DevServer" Version="4.0.0-dev.77" />
+		<PackageReference Include="Uno.Wasm.Bootstrap" Version="4.0.0-dev.83" />
+		<PackageReference Include="Uno.Wasm.Bootstrap.DevServer" Version="4.0.0-dev.83" />
 		<PackageReference Include="Microsoft.TypeScript.Compiler" Version="3.1.5">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
