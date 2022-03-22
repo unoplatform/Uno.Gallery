@@ -26,7 +26,7 @@ nohup $ANDROID_HOME/emulator/emulator -avd xamarin_android_emulator -no-snapshot
 
 # build the sample, while the emulator is starting
 msbuild /r /p:Configuration=Release $UNO_UITEST_PROJECT
-msbuild /r /p:Configuration=Release /p:IsUiAutomationMappingEnabled=True $UNO_UITEST_ANDROID_PROJECT
+msbuild /r /p:Configuration=Release /p:IsUiAutomationMappingEnabled=True /p:AotAssemblies=false $UNO_UITEST_ANDROID_PROJECT
 
 # Wait for the emulator to finish booting
 $ANDROID_HOME/platform-tools/adb wait-for-device shell 'while [[ -z $(getprop sys.boot_completed | tr -d '\r') ]]; do sleep 1; done; input keyevent 82'
@@ -45,3 +45,5 @@ mkdir -p $UNO_UITEST_SCREENSHOT_PATH
 mono $BUILD_SOURCESDIRECTORY/build/NUnit.ConsoleRunner.$UNO_UITEST_NUNIT_VERSION/tools/nunit3-console.exe \
 	$UNO_UITEST_BINARY \
 	--timeout=2700000
+
+killall -HUP emulator
