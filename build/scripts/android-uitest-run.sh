@@ -43,4 +43,5 @@ mono nuget.exe install NUnit.ConsoleRunner -Version $UNO_UITEST_NUNIT_VERSION
 mkdir -p $UNO_UITEST_SCREENSHOT_PATH
 
 mono $BUILD_SOURCESDIRECTORY/build/NUnit.ConsoleRunner.$UNO_UITEST_NUNIT_VERSION/tools/nunit3-console.exe \
-	$UNO_UITEST_BINARY
+	$UNO_UITEST_BINARY \
+	--timeout=2700000

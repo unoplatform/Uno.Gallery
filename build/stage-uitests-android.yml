@@ -1,6 +1,7 @@
 ﻿jobs:
 - job: Android_Tests
   displayName: 'Android UI Tests'
+  timeout: 120
   variables:
     CI_Build: true
     SourceLinkEnabled: false
@@ -20,7 +21,7 @@
       chmod +x $(build.sourcesdirectory)/build/scripts/android-uitest-run.sh
       $(build.sourcesdirectory)/build/scripts/android-uitest-run.sh
     displayName: Build and Run Android Tests
-    retryCountOnTaskFailure: 3
+    retryCountOnTaskFailure: 4
     env:
       BUILD_SOURCESDIRECTORY: "$(build.sourcesdirectory)"
       BUILD_ARTIFACTSTAGINGDIRECTORY: "$(build.artifactstagingdirectory)"
