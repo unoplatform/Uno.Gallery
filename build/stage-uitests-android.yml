@@ -1,7 +1,7 @@
 ﻿jobs:
 - job: Android_Tests
   displayName: 'Android UI Tests'
-  timeout: 120
+  timeoutInMinutes: 120
   variables:
     CI_Build: true
     SourceLinkEnabled: false
