@@ -175,6 +175,10 @@
     <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
   </PropertyGroup>
   <ItemGroup>
+		<IncludeXamlNamespaces Include="not_mobile" />
+		<ExcludeXamlNamespaces Include="mobile" />
+	</ItemGroup>
+  <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>

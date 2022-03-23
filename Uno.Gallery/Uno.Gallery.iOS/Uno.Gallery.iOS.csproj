@@ -12,6 +12,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <ResourcesDirectory>..\Uno.Gallery.Shared\Strings</ResourcesDirectory>
+    <ProvisioningType>manual</ProvisioningType>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
@@ -252,6 +253,10 @@
     <PackageReference Include="Uno.Core.Extensions.Disposables" Version="4.1.0-dev.4" />
     <PackageReference Include="Uno.Core.Extensions.Compatibility" Version="4.1.0-dev.4" />
   </ItemGroup>
+  <ItemGroup>
+		<IncludeXamlNamespaces Include="mobile" />
+		<ExcludeXamlNamespaces Include="not_mobile" />
+	</ItemGroup>
   <Import Project="..\Uno.Gallery.Shared\Uno.Gallery.Shared.projitems" Label="Shared" Condition="Exists('..\Uno.Gallery.Shared\Uno.Gallery.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

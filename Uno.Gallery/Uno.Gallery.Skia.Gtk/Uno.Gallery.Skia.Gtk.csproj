@@ -72,4 +72,8 @@
 	  <None Remove="Assets\Fonts\uno-fluentui-assets.ttf" />
 	</ItemGroup>
 
+	<ItemGroup>
+		<IncludeXamlNamespaces Include="not_mobile" />
+		<ExcludeXamlNamespaces Include="mobile" />
+	</ItemGroup>
 </Project>

@@ -216,4 +216,8 @@
     </ItemGroup>
     <Copy SourceFiles="@(_packages)" DestinationFolder="$(PackageOutputPath)\" />
   </Target>
+  <ItemGroup>
+		<IncludeXamlNamespaces Include="not_mobile" />
+		<ExcludeXamlNamespaces Include="mobile" />
+	</ItemGroup>
 </Project>
