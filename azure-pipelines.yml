@@ -126,7 +126,7 @@ jobs:
     displayName: 'Install Apple Provisioning Profile'
     inputs:
       provisioningProfileLocation: 'secureFiles'
-      provProfileSecureFile: Uno_Gallery_Canary_iOS.provisionprofile
+      provProfileSecureFile: Uno_Gallery_Canary_iOS.mobileprovision
 
   - template: build/stage-build-mobile.yml
 
