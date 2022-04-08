@@ -194,7 +194,7 @@
       <Version>7.0.7</Version>
     </PackageReference>
     <PackageReference Include="nventive.Nimue.Application.Building.Light">
-      <Version>0.1.0-alpha.58</Version>
+      <Version>0.1.0-alpha.89</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
