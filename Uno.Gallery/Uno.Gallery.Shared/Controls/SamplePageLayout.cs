@@ -163,7 +163,7 @@ namespace Uno.Gallery
 
 		private void OnShareClicked(Hyperlink sender, HyperlinkClickEventArgs args)
 		{
-#if __IOS__ || __ANDROID__
+#if (__IOS__ || __ANDROID__) && !NET6_0_OR_GREATER
 			var sample = DataContext as Sample;
 			_ = Deeplinking.BranchService.Instance.ShareSample(sample, _design);
 #endif
