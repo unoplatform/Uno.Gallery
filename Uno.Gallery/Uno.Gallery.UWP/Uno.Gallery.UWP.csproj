@@ -40,10 +40,10 @@
     </PackageReference>
     <PackageReference Include="Uno.Core" Version="4.1.0-dev.4" />
     <PackageReference Include="Uno.Cupertino">
-      <Version>1.4.0-dev.17</Version>
+      <Version>1.4.0-dev.30</Version>
     </PackageReference>
     <PackageReference Include="Uno.Material">
-      <Version>1.4.0-dev.17</Version>
+      <Version>1.4.0-dev.30</Version>
     </PackageReference>
     <PackageReference Include="Uno.ShowMeTheXAML">
       <Version>1.0.59</Version>
@@ -52,16 +52,16 @@
       <Version>1.0.59</Version>
     </PackageReference>
     <PackageReference Include="Uno.Toolkit.UI">
-      <Version>1.3.0</Version>
+      <Version>1.4.0-dev.4</Version>
     </PackageReference>
     <PackageReference Include="Uno.Toolkit.UI.Cupertino">
-      <Version>1.3.0</Version>
+      <Version>1.4.0-dev.4</Version>
     </PackageReference>
     <PackageReference Include="Uno.Toolkit.UI.Material">
-      <Version>1.3.0</Version>
+      <Version>1.4.0-dev.4</Version>
     </PackageReference>
     <PackageReference Include="Uno.UI">
-      <Version>4.2.0-dev.494</Version>
+      <Version>4.2.0-dev.515</Version>
     </PackageReference>
   </ItemGroup>
   <PropertyGroup>
