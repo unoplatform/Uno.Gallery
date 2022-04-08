@@ -214,10 +214,10 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Uno.Cupertino">
-      <Version>1.4.0-dev.17</Version>
+      <Version>1.4.0-dev.30</Version>
     </PackageReference>
     <PackageReference Include="Uno.Material">
-      <Version>1.4.0-dev.17</Version>
+      <Version>1.4.0-dev.30</Version>
     </PackageReference>
     <PackageReference Include="Uno.ShowMeTheXAML">
       <Version>1.0.59</Version>
@@ -226,21 +226,21 @@
       <Version>1.0.59</Version>
     </PackageReference>
     <PackageReference Include="Uno.Toolkit.UI">
-      <Version>1.3.0</Version>
+      <Version>1.4.0-dev.4</Version>
     </PackageReference>
     <PackageReference Include="Uno.Toolkit.UI.Cupertino">
-      <Version>1.3.0</Version>
+      <Version>1.4.0-dev.4</Version>
     </PackageReference>
     <PackageReference Include="Uno.Toolkit.UI.Material">
-      <Version>1.3.0</Version>
+      <Version>1.4.0-dev.4</Version>
     </PackageReference>
     <PackageReference Include="Uno.UI">
-      <Version>4.2.0-dev.494</Version>
+      <Version>4.2.0-dev.515</Version>
     </PackageReference>
     <PackageReference Include="Uno.UI.Lottie">
-      <Version>4.2.0-dev.494</Version>
+      <Version>4.2.0-dev.515</Version>
     </PackageReference>
-    <PackageReference Include="Uno.UI.RemoteControl" Version="4.2.0-dev.494" Condition="'$(Configuration)'=='Debug'" />
+    <PackageReference Include="Uno.UI.RemoteControl" Version="4.2.0-dev.515" Condition="'$(Configuration)'=='Debug'" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Filter" Version="1.1.1" />
     <PackageReference Include="Xamarin.Essentials">
@@ -249,7 +249,7 @@
     <PackageReference Include="Xamarin.TestCloud.Agent">
       <Version>0.22.2</Version>
     </PackageReference>
-    <PackageReference Include="Uno.UI.Adapter.Microsoft.Extensions.Logging" Version="4.2.0-dev.494" />
+    <PackageReference Include="Uno.UI.Adapter.Microsoft.Extensions.Logging" Version="4.2.0-dev.515" />
     <PackageReference Include="Uno.Core.Extensions.Disposables" Version="4.1.0-dev.4" />
     <PackageReference Include="Uno.Core.Extensions.Compatibility" Version="4.1.0-dev.4" />
   </ItemGroup>
