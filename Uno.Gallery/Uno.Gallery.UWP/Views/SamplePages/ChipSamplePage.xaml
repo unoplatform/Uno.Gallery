@@ -17,7 +17,8 @@
 						<!-- MaterialFilledInputChipStyle -->
 						<TextBlock Text="Input - Filled"
 								   Margin="0,20,0,0"
-								   Style="{StaticResource MaterialSubtitle1}" />
+								   Style="{StaticResource MaterialSubtitle1}" 
+                                   AutomationProperties.AutomationId="InputFilledLabel"/>
 						<ScrollViewer Style="{StaticResource HorizontalScrollViewerStyle}">
 							<StackPanel Orientation="Horizontal"
 										Spacing="8">
@@ -27,7 +28,8 @@
 											  Style="{StaticResource MaterialFilledInputChipStyle}"
 											  AutomationProperties.AutomationId="ChipFilledInput_Enabled">
 										<utu:Chip.Icon>
-											<Image Source="ms-appx:///Assets/Avatar.png" />
+											<Image Source="ms-appx:///Assets/Avatar.png"
+                                                  AutomationProperties.AutomationId="ChipFilledInputEnabled_Image" />
 										</utu:Chip.Icon>
 									</utu:Chip>
 								</smtx:XamlDisplay>
@@ -56,7 +58,8 @@
 
 						<!-- MaterialOutlinedInputChipStyle -->
 						<TextBlock Text="Input - Outlined"
-								   Style="{StaticResource MaterialSubtitle1}" />
+								   Style="{StaticResource MaterialSubtitle1}" 
+                                   AutomationProperties.AutomationId="InputOutlinedLabel"/>
 						<ScrollViewer Style="{StaticResource HorizontalScrollViewerStyle}">
 							<StackPanel Orientation="Horizontal"
 										Spacing="8">
@@ -96,7 +99,8 @@
 
 						<!-- MaterialFilledChoiceChipStyle -->
 						<TextBlock Text="Choice - Filled"
-								   Style="{StaticResource MaterialSubtitle1}" />
+								   Style="{StaticResource MaterialSubtitle1}" 
+                                   AutomationProperties.AutomationId="ChoiceFilledLabel"/>
 						<ScrollViewer Style="{StaticResource HorizontalScrollViewerStyle}">
 							<StackPanel Orientation="Horizontal"
 										Spacing="8">
@@ -127,7 +131,8 @@
 
 						<!-- MaterialOutlinedChoiceChipStyle -->
 						<TextBlock Text="Choice - Outlined"
-								   Style="{StaticResource MaterialSubtitle1}" />
+								   Style="{StaticResource MaterialSubtitle1}" 
+                                   AutomationProperties.AutomationId="ChoiceOutlinedLabel"/>
 						<ScrollViewer Style="{StaticResource HorizontalScrollViewerStyle}">
 							<StackPanel Orientation="Horizontal"
 										Spacing="8">
@@ -170,7 +175,8 @@
 
 						<!-- MaterialFilledFilterChipStyle -->
 						<TextBlock Text="Filter - Filled"
-								   Style="{StaticResource MaterialSubtitle1}" />
+								   Style="{StaticResource MaterialSubtitle1}" 
+                                   AutomationProperties.AutomationId="FilterFilledLabel"/>
 						<ScrollViewer Style="{StaticResource HorizontalScrollViewerStyle}">
 							<StackPanel Orientation="Horizontal"
 										Spacing="8">
@@ -209,7 +215,8 @@
 
 						<!-- MaterialOutlinedFilterChipStyle -->
 						<TextBlock Text="Filter - Outlined"
-								   Style="{StaticResource MaterialSubtitle1}" />
+								   Style="{StaticResource MaterialSubtitle1}" 
+                                   AutomationProperties.AutomationId="FilterOutlinedLabel"/>
 						<ScrollViewer Style="{StaticResource HorizontalScrollViewerStyle}">
 							<StackPanel Orientation="Horizontal"
 										Spacing="8">
@@ -249,7 +256,8 @@
 
 						<!-- MaterialFilledActionChipStyle -->
 						<TextBlock Text="Action - Filled"
-								   Style="{StaticResource MaterialSubtitle1}" />
+								   Style="{StaticResource MaterialSubtitle1}" 
+                                   AutomationProperties.AutomationId="ActionFilledLabel"/>
 						<ScrollViewer Style="{StaticResource HorizontalScrollViewerStyle}">
 							<StackPanel Orientation="Horizontal"
 										Spacing="8">
@@ -280,7 +288,8 @@
 
 						<!-- MaterialOutlinedActionChipStyle -->
 						<TextBlock Text="Action - Outlined"
-								   Style="{StaticResource MaterialSubtitle1}" />
+								   Style="{StaticResource MaterialSubtitle1}" 
+                                   AutomationProperties.AutomationId="ActionOutlinedLabel"/>
 						<ScrollViewer Style="{StaticResource HorizontalScrollViewerStyle}">
 							<StackPanel Orientation="Horizontal"
 										Spacing="8">

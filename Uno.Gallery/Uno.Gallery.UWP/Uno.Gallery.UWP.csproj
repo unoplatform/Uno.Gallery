@@ -246,8 +246,8 @@
     <Compile Include="Views\SamplePages\ChipGroupSamplePage.xaml.cs">
       <DependentUpon>ChipGroupSamplePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\SamplePages\ChipSamplePage.xaml.xaml.cs">
-      <DependentUpon>ChipSamplePage.xaml.xaml</DependentUpon>
+    <Compile Include="Views\SamplePages\ChipSamplePage.xaml.cs">
+      <DependentUpon>ChipSamplePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SamplePages\ComboBoxSamplePage.xaml.cs">
       <DependentUpon>ComboBoxSamplePage.xaml</DependentUpon>
@@ -516,7 +516,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\SamplePages\ChipSamplePage.xaml.xaml">
+    <Page Include="Views\SamplePages\ChipSamplePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
