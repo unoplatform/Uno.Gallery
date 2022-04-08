@@ -5,18 +5,7 @@
     packageType: runtime
     version: 2.2.x
 
-- task: nventiveCanaryUpdater@5
-  condition: eq(variables['IsCanaryBranch'], true)
-  inputs:
-    solution: Uno.Gallery.sln
-    useNuGetOrg: true
-    usePrivateFeed: false
-    mergeBranch: true
-    branchToMerge: master
-    nugetUpdaterVersion: 2.1.1
-    packageAuthor: nventive
-    summaryFile: '$(Build.ArtifactStagingDirectory)/Canary.md'
-
+- template: templates/canary-updater.yml
 - template: templates/gitversion.yml
 
 - task: UseDotNet@2

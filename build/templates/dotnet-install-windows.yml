@@ -1,0 +1,34 @@
+parameters:
+  DotNetVersion: '6.0.300-preview.22179.2'
+  UnoCheck_Version: '1.1.0-dev.22'
+  UnoCheck_Manifest: 'https://raw.githubusercontent.com/unoplatform/uno.check/991e83786e57f44f5ef6c11a4efbc5f939256852/manifests/uno.ui-preview.manifest.json'
+
+steps:
+
+  # Required until .NET 6 installs properly on Windows using UseDotnet
+  # using preview builds
+  - powershell: |
+      $ProgressPreference = 'SilentlyContinue'
+      Invoke-WebRequest -Uri "https://dot.net/v1/dotnet-install.ps1" -OutFile dotnet-install.ps1
+      & .\dotnet-install.ps1 -Version ${{ parameters.DotNetVersion }} -InstallDir "$env:ProgramFiles\dotnet\" -Verbose
+      & dotnet --list-sdks
+    displayName: Install .NET ${{ parameters.DotNetVersion }}
+    errorActionPreference: stop
+    retryCountOnTaskFailure: 3
+    condition: eq(variables['Agent.OS'], 'Windows_NT')
+  #- task: UseDotNet@2
+  #  displayName: 'Use .NET Core SDK ${{ parameters.DotNetVersion }}'
+  #  retryCountOnTaskFailure: 3
+  #  inputs:
+  #    packageType: sdk
+  #    version: ${{ parameters.DotNetVersion }}
+  #    includePreviewVersions: true
+
+  - powershell: |
+      & dotnet tool update --global uno.check --version ${{ parameters.UnoCheck_Version }} --add-source https://api.nuget.org/v3/index.json
+      & uno-check -v --ci --non-interactive --fix --skip xcode --skip gtk3 --skip vswin --skip androidemulator --skip androidsdk --skip vsmac --manifest ${{ parameters.UnoCheck_Manifest }}
+    displayName: Install .NET Workloads
+    errorActionPreference: continue
+    ignoreLASTEXITCODE: true
+    retryCountOnTaskFailure: 3
+    condition: eq(variables['Agent.OS'], 'Windows_NT')

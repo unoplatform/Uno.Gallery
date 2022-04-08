@@ -79,6 +79,57 @@ jobs:
 
   - template: build/stage-build.yml
 
+- job: macOS_net6
+  strategy:
+    maxParallel: 2
+    matrix:
+      iOS:
+        BuildTargetFramework: net6.0-ios
+        ArtifactName: iOS-mobile
+        ApplicationBuildNumberOffset: 50
+      Catalyst:
+        BuildTargetFramework: net6.0-maccatalyst
+        ArtifactName: Catalyst
+        ApplicationBuildNumberOffset: 50
+  pool:
+    vmImage: macOS-11
+    
+  variables:
+  - name: SkipUnknownFrameworks
+    value: true # Used by TargetFrameworks.Filtering package
+  - group: unoplatform.apple.ios.appstore.distribution
+
+  steps:
+  - task: InstallAppleCertificate@2
+    displayName: Install Certificate
+    inputs:
+      certSecureFile: UnoPlatform-Apple-Distribution.p12
+      certPwd: $(appleappstorecertificatepassword)
+      keychain: temp
+      deleteCert: true
+
+  - task: InstallAppleCertificate@2
+    displayName: Install Certificate
+    inputs:
+      certSecureFile: UnoPlatform-MacInstaller.p12
+      certPwd: $(appleappstorecertificatepassword)
+      keychain: temp
+      deleteCert: true
+
+  - task: InstallAppleProvisioningProfile@1
+    displayName: 'Install Apple Provisioning Profile'
+    inputs:
+      provisioningProfileLocation: 'secureFiles'
+      provProfileSecureFile: Uno_Gallery_Catalyst_Canary.provisionprofile
+
+  - task: InstallAppleProvisioningProfile@1
+    displayName: 'Install Apple Provisioning Profile'
+    inputs:
+      provisioningProfileLocation: 'secureFiles'
+      provProfileSecureFile: Uno_Gallery_iOS_Canary.provisionprofile
+
+  - template: build/stage-build-mobile.yml
+
 - job: Linux
   timeoutInMinutes: 90
   pool:
