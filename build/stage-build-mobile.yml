@@ -1,6 +1,5 @@
 steps:
 - template: templates/canary-updater.yml
-- template: templates/canary-updater.yml
 
 - task: DownloadSecureFile@1
   name: keyStore
