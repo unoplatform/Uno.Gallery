@@ -130,9 +130,9 @@
       <Version>4.2.0-dev.515</Version>
     </PackageReference>
     <PackageReference Include="Uno.UI.RemoteControl" Version="4.2.0-dev.515" Condition="'$(Configuration)'=='Debug'" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Filter" Version="1.1.1" />
-    <PackageReference Include="Uno.UI.Adapter.Microsoft.Extensions.Logging" Version="4.2.0-dev.515" />
+	  <PackageReference Include="Microsoft.Extensions.Logging" Version="5.0.0" />
+	  <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="5.0.0" />
+	  <PackageReference Include="Uno.UI.Adapter.Microsoft.Extensions.Logging" Version="4.2.0-dev.515" />
     <PackageReference Include="Uno.Core.Extensions.Disposables" Version="4.1.0-dev.4" />
     <PackageReference Include="Uno.Core.Extensions.Compatibility" Version="4.1.0-dev.4" />
   </ItemGroup>
@@ -198,26 +198,26 @@
 				We remove the Reference added by the nuget targets so that ResolveAssemblyReferences
 				is properly adding the local System.Memory to the Reference item group.
 		-->
-    <ItemGroup>
-      <_ReferenceToRemove Include="@(Reference)" Condition="'%(Reference.Identity)'=='System.Memory'" />
-      <Reference Remove="@(_ReferenceToRemove)" />
-      <Reference Include="System.Memory" />
-    </ItemGroup>
-  </Target>
-  <Target Name="VS16_RemoveSystemMemory" BeforeTargets="FindReferenceAssembliesForReferences">
-    <ItemGroup>
-      <_ReferencePathToRemove Include="@(ReferencePath)" Condition="'%(ReferencePath.NuGetPackageId)'=='System.Memory'" />
-      <ReferencePath Remove="@(_ReferencePathToRemove)" />
-    </ItemGroup>
-  </Target>
-  <Target Name="_PackageCopyToOutput" BeforeTargets="Build">
-    <ItemGroup>
-      <_packages Include="$(TargetDir)\*.pkg" />
-    </ItemGroup>
-    <Copy SourceFiles="@(_packages)" DestinationFolder="$(PackageOutputPath)\" />
-  </Target>
-  <ItemGroup>
-    <IncludeXamlNamespaces Include="not_mobile" />
-    <ExcludeXamlNamespaces Include="mobile" />
-  </ItemGroup>
+		<ItemGroup>
+			<_ReferenceToRemove Include="@(Reference)" Condition="'%(Reference.Identity)'=='System.Memory'" />
+			<Reference Remove="@(_ReferenceToRemove)" />
+			<Reference Include="System.Memory" />
+		</ItemGroup>
+	</Target>
+	<Target Name="VS16_RemoveSystemMemory" BeforeTargets="FindReferenceAssembliesForReferences">
+		<ItemGroup>
+			<_ReferencePathToRemove Include="@(ReferencePath)" Condition="'%(ReferencePath.NuGetPackageId)'=='System.Memory'" />
+			<ReferencePath Remove="@(_ReferencePathToRemove)" />
+		</ItemGroup>
+	</Target>
+	<Target Name="_PackageCopyToOutput" BeforeTargets="Build">
+		<ItemGroup>
+			<_packages Include="$(TargetDir)\*.pkg" />
+		</ItemGroup>
+		<Copy SourceFiles="@(_packages)" DestinationFolder="$(PackageOutputPath)\" />
+	</Target>
+	<ItemGroup>
+		<IncludeXamlNamespaces Include="not_mobile" />
+		<ExcludeXamlNamespaces Include="mobile" />
+	</ItemGroup>
 </Project>

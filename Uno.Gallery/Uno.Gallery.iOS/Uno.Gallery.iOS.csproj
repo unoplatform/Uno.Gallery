@@ -193,26 +193,6 @@
     <PackageReference Include="Branch-Xamarin-Linking-SDK">
       <Version>7.0.7</Version>
     </PackageReference>
-    <PackageReference Include="nventive.Nimue.Application.Building.Light">
-      <Version>0.1.0-alpha.58</Version>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
-    <PackageReference Include="nventive.Nimue.Application.Packaging">
-      <Version>0.1.0-alpha.58</Version>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
-    <PackageReference Include="nventive.Nimue.Application.Versioning">
-      <Version>0.1.0-alpha.58</Version>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
-    <PackageReference Include="nventive.Nimue.TargetFrameworks.Filtering">
-      <Version>0.1.0-alpha.58</Version>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
     <PackageReference Include="Uno.Cupertino">
       <Version>1.4.0-dev.30</Version>
     </PackageReference>
@@ -241,9 +221,9 @@
       <Version>4.2.0-dev.515</Version>
     </PackageReference>
     <PackageReference Include="Uno.UI.RemoteControl" Version="4.2.0-dev.515" Condition="'$(Configuration)'=='Debug'" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Filter" Version="1.1.1" />
-    <PackageReference Include="Xamarin.Essentials">
+	  <PackageReference Include="Microsoft.Extensions.Logging" Version="5.0.0" />
+	  <PackageReference Include="Uno.Extensions.Logging.OSLog " Version="1.0.1" />
+	  <PackageReference Include="Xamarin.Essentials">
       <Version>1.6.1</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.TestCloud.Agent">

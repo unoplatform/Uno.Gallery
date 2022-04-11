@@ -1,12 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
+	<PropertyGroup>
 		<OutputType Condition="'$(Configuration)'=='Release'">WinExe</OutputType>
 		<OutputType Condition="'$(Configuration)'=='Debug'">Exe</OutputType>
 		<TargetFramework>netcoreapp3.1</TargetFramework>
 		<NoWarn>$(NoWarn);NU1701</NoWarn>
 	</PropertyGroup>
-	
+
 	<ItemGroup>
 		<Compile Include="..\Uno.Gallery.UWP\App.xaml.cs" />
 		<Content Include="..\Uno.Gallery.Shared\Assets\**" Link="Assets\%(RecursiveDir)%(FileName)%(Extension)" CopyToOutputDirectory="Always" />
@@ -21,22 +21,22 @@
 			<Link>Views\%(RecursiveDir)%(FileName)%(Extension)</Link>
 		</Compile>
 	</ItemGroup>
-	
+
 	<ItemGroup>
-	  <Content Include="Assets\Fonts\Cupertino\SF-Pro.ttf" />
-	  <Content Include="Assets\Fonts\Material\Roboto-Light.ttf" />
-	  <Content Include="Assets\Fonts\Material\Roboto-Medium.ttf" />
-	  <Content Include="Assets\Fonts\Material\Roboto-Regular.ttf" />
-	  <Content Include="Assets\Fonts\uno-fluentui-assets.ttf" />
-	  <Content Include="Assets\StoreLogo.png" />
+		<Content Include="Assets\Fonts\Cupertino\SF-Pro.ttf" />
+		<Content Include="Assets\Fonts\Material\Roboto-Light.ttf" />
+		<Content Include="Assets\Fonts\Material\Roboto-Medium.ttf" />
+		<Content Include="Assets\Fonts\Material\Roboto-Regular.ttf" />
+		<Content Include="Assets\Fonts\uno-fluentui-assets.ttf" />
+		<Content Include="Assets\StoreLogo.png" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Uno.Cupertino" Version="1.4.0-dev.30" />
 		<PackageReference Include="Uno.Material" Version="1.4.0-dev.30" />
 		<!-- Note that for WebAssembly version 1.1.1 of the console logger required -->
-		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Filter" Version="1.1.1" />
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="5.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="5.0.0" />
 		<PackageReference Include="nventive.Nimue.Application.Building.Light" Version="0.1.0-alpha.55">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -61,15 +61,15 @@
 		<PackageReference Include="Uno.Core.Extensions.Disposables" Version="4.1.0-dev.4" />
 		<PackageReference Include="Uno.Core.Extensions.Compatibility" Version="4.1.0-dev.4" />
 	</ItemGroup>
-	
+
 	<Import Project="..\Uno.Gallery.Shared\Uno.Gallery.Shared.projitems" Label="Shared" />
-	
+
 	<ItemGroup>
-	  <None Remove="Assets\Fonts\Cupertino\SF-Pro.ttf" />
-	  <None Remove="Assets\Fonts\Material\Roboto-Light.ttf" />
-	  <None Remove="Assets\Fonts\Material\Roboto-Medium.ttf" />
-	  <None Remove="Assets\Fonts\Material\Roboto-Regular.ttf" />
-	  <None Remove="Assets\Fonts\uno-fluentui-assets.ttf" />
+		<None Remove="Assets\Fonts\Cupertino\SF-Pro.ttf" />
+		<None Remove="Assets\Fonts\Material\Roboto-Light.ttf" />
+		<None Remove="Assets\Fonts\Material\Roboto-Medium.ttf" />
+		<None Remove="Assets\Fonts\Material\Roboto-Regular.ttf" />
+		<None Remove="Assets\Fonts\uno-fluentui-assets.ttf" />
 	</ItemGroup>
 
 	<ItemGroup>
