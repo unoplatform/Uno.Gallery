@@ -16,6 +16,7 @@
 		<SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net6.0-maccatalyst'">14.0</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net6.0-android'">21.0</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="'$(TargetFramework)'=='net6.0-macos'">10.14</SupportedOSPlatformVersion>
+		<NoWarn>CA1416;Uno0001</NoWarn>
 	</PropertyGroup>
 	
 	<ItemGroup>
@@ -49,12 +50,64 @@
 		<PackageReference Include="Uno.Core.Extensions.Disposables" Version="4.1.0-dev.4" />
 		<PackageReference Include="Uno.Core.Extensions.Compatibility" Version="4.1.0-dev.4" />
 	</ItemGroup>
-	<ItemGroup Condition="'$(TargetFramework)'=='net6.0-android'">
-		<PackageReference Include="Xamarin.Google.Android.Material" Version="1.4.0.4" />
-		<PackageReference Include="Uno.UniversalImageLoader" Version="1.9.35" />
-	</ItemGroup>
-	<ItemGroup Condition="'$(TargetFramework)'=='net6.0-ios' or '$(TargetFramework)'=='net6.0-maccatalyst'">
-		<PackageReference Include="Uno.Extensions.Logging.OSLog" Version="1.2.0-dev.2" />
-	</ItemGroup>
+	
+	<Choose>
+		<When Condition="'$(TargetFramework)'=='net6.0-android'">
+			<PropertyGroup Condition="'$(Configuration)'=='Release'">
+				<AndroidKeyStore>true</AndroidKeyStore>
+				<AndroidSigningKeyStore>..\Gallery.Droid\calc-prod.keystore</AndroidSigningKeyStore>
+				<AndroidSigningKeyAlias>gallery-prod</AndroidSigningKeyAlias>
+			</PropertyGroup>
+
+			<ItemGroup>
+				<PackageReference Include="Xamarin.Google.Android.Material" Version="1.4.0.4" />
+				<PackageReference Include="Uno.UniversalImageLoader" Version="1.9.35" />
+			</ItemGroup>
+
+			<!--
+			<ItemGroup Condition="'$(Configuration)'=='Release'">
+				<AndroidAotProfile Include="Android/custom.aprof" />
+			</ItemGroup>
+			-->
+
+			<PropertyGroup Condition="'$(Configuration)'=='Release'">
+				<RunAOTCompilation>true</RunAOTCompilation>
+			</PropertyGroup>
+		</When>
+		<When Condition="'$(TargetFramework)'=='net6.0-ios'">
+			<ItemGroup>
+				<PackageReference Include="Uno.Extensions.Logging.OSLog" Version="1.3.0-dev.3" />
+			</ItemGroup>
+			<PropertyGroup>
+				<MtouchExtraArgs>--registrar:static --dsym=true</MtouchExtraArgs>
+				<InvariantGlobalization>false</InvariantGlobalization>
+			</PropertyGroup>
+			<PropertyGroup Condition="'$(Configuration)'=='Release'">
+				<CodesignKey>iPhone Distribution</CodesignKey>
+				<RuntimeIdentifier>ios-arm64</RuntimeIdentifier>
+			</PropertyGroup>
+		</When>
+		<When Condition="'$(TargetFramework)'=='net6.0-maccatalyst'">
+			<ItemGroup>
+				<PackageReference Include="Uno.Extensions.Logging.OSLog" Version="1.3.0-dev.3" />
+			</ItemGroup>
+			<PropertyGroup>
+				<MtouchExtraArgs>--registrar:static --dsym=true</MtouchExtraArgs>
+				<InvariantGlobalization>false</InvariantGlobalization>
+			</PropertyGroup>
+			<PropertyGroup Condition="'$(Configuration)'=='Release'">
+				<MtouchUseLlvm>true</MtouchUseLlvm>
+				<_RunAotCompiler>True</_RunAotCompiler>
+				<CodeSigningKey>Apple Distribution: Uno Platform Inc. (PD74CHS9Z5)</CodeSigningKey>
+				<PackageSigningKey>3rd Party Mac Developer Installer</PackageSigningKey>
+				<CreatePackage>true</CreatePackage>
+				<EnablePackageSigning>true</EnablePackageSigning>
+				<EnableCodeSigning>true</EnableCodeSigning>
+				<CodeSignEntitlements>MacCatalyst\Entitlements.plist</CodeSignEntitlements>
+				<CodesignProvision>Uno Gallery Canary (Catalyst)</CodesignProvision>
+			</PropertyGroup>
+		</When>
+	</Choose>
+	
 	<Import Project="..\Uno.Gallery.Shared\Uno.Gallery.Shared.projitems" Label="Shared" />
 </Project>
