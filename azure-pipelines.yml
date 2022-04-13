@@ -66,16 +66,30 @@ jobs:
   - task: InstallAppleCertificate@2
     displayName: Install Certificate
     inputs:
-      certSecureFile: apple.appstore.distribution.p12
+      certSecureFile: UnoPlatform-Apple-Distribution.p12
+      certPwd: $(appleappstorecertificatepassword)
+      keychain: temp
+      deleteCert: true
+
+  - task: InstallAppleCertificate@2
+    displayName: Install Certificate
+    inputs:
+      certSecureFile: UnoPlatform-MacInstaller.p12
       certPwd: $(appleappstorecertificatepassword)
       keychain: temp
       deleteCert: true
 
   - task: InstallAppleProvisioningProfile@1
-    displayName: Install Provisioning Profile
+    displayName: 'Install Apple Provisioning Profile'
     inputs:
-      provisioningProfileLocation: secureFiles
-      provProfileSecureFile: UnoGallery.mobileprovision
+      provisioningProfileLocation: 'secureFiles'
+      provProfileSecureFile: Uno_Gallery_Canary_Catalyst.provisionprofile
+
+  - task: InstallAppleProvisioningProfile@1
+    displayName: 'Install Apple Provisioning Profile'
+    inputs:
+      provisioningProfileLocation: 'secureFiles'
+      provProfileSecureFile: Uno_Gallery_Canary_iOS.mobileprovision
 
   - template: build/stage-build.yml
 
