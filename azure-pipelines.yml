@@ -60,7 +60,7 @@ jobs:
   variables:
   - name: SkipUnknownFrameworks
     value: true # Used by TargetFrameworks.Filtering package
-  - group: apple.appstore.distribution # Variables for certificate
+  - group: unoplatform.apple.ios.appstore.distribution
 
   steps:
   - task: InstallAppleCertificate@2
