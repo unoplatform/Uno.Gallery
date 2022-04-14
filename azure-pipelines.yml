@@ -101,10 +101,12 @@ jobs:
         BuildTargetFramework: net6.0-ios
         ArtifactName: iOS-mobile
         ApplicationBuildNumberOffset: 50
+        BuildCommand: publish
       Catalyst:
         BuildTargetFramework: net6.0-maccatalyst
         ArtifactName: Catalyst
         ApplicationBuildNumberOffset: 50
+        BuildCommand: build
   pool:
     vmImage: macOS-11
     
