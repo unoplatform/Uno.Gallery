@@ -20,7 +20,7 @@ steps:
 
 - bash: |
     cd $(build.sourcesdirectory)/Uno.Gallery/Uno.Gallery.Mobile
-    dotnet build -f $(BuildTargetFramework) -c Release /bl:$(build.artifactstagingdirectory)/build-$(BuildTargetFramework).binlog "/p:InformationalVersion=$GITVERSION_INFORMATIONALVERSION" 
+    dotnet publish -f $(BuildTargetFramework) -c Release /p:ArchiveOnBuild=true /bl:$(build.artifactstagingdirectory)/build-$(BuildTargetFramework).binlog "/p:InformationalVersion=$GITVERSION_INFORMATIONALVERSION" 
   displayName: Build project for Release - $(BuildTargetFramework)
 
 - task: CopyFiles@2
