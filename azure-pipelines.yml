@@ -11,26 +11,25 @@ jobs:
     maxParallel: 3
     matrix:
       Android_Store:
-        Project: Uno.Gallery/Uno.Gallery.Droid/Uno.Gallery.Droid.csproj
         ApplicationPlatform: AnyCPU
         ArtifactName: Android
-        BuildForPlayStore: True
-        ApplicationBuildNumberOffset: 400050
+        TemplatePath: build/stage-build-android-xamarin.yml
       Android_AppCenter:
-        Project: Uno.Gallery/Uno.Gallery.Droid/Uno.Gallery.Droid.csproj
         ApplicationPlatform: AnyCPU
         ArtifactName: Android
         BuildForPlayStore: False
-        ApplicationBuildNumberOffset: 400050
+        VersionCodeOffset: 400050
+        TemplatePath: build/stage-build-android-xamarin.yml
       SkiaGTK:
-        Project: Uno.Gallery/Uno.Gallery.Skia.Gtk/Uno.Gallery.Skia.Gtk.csproj
         ApplicationPlatform: AnyCPU
         ArtifactName: SkiaGTK
+        TemplatePath: build/stage-build-skia-gtk.yml
       UWP:
-        Project: Uno.Gallery/Uno.Gallery.UWP/Uno.Gallery.UWP.csproj
         ApplicationPlatform: x64
         ArtifactName: UWP
-        ApplicationBuildNumberOffset: 50
+        VersionCodeOffset: 50
+        TemplatePath: build/stage-build-uwp.yml
+
   pool:
     vmImage: windows-2019
     
@@ -38,22 +37,22 @@ jobs:
   - group: 'UADO Keystore' # Import all variables for the signing from the library in azure devops
 
   steps:
-    - template: build/stage-build.yml
+    - template: $(TemplatePath)
 
 - job: macOS
   strategy:
     maxParallel: 2
     matrix:
       iOS:
-        Project: Uno.Gallery/Uno.Gallery.iOS/Uno.Gallery.iOS.csproj
         ApplicationPlatform: iPhone
         ArtifactName: iOS
-        ApplicationBuildNumberOffset: 50
+        VersionCodeOffset: 50
+        TemplatePath: build/stage-build-ios-xamarin.yml
       macOS:
-        Project: Uno.Gallery/Uno.Gallery.macOS/Uno.Gallery.macOS.csproj
         ApplicationPlatform: iPhoneSimulator
         ArtifactName: macOS
-        ApplicationBuildNumberOffset: 50
+        VersionCodeOffset: 50
+        TemplatePath: build/stage-build-macOS-xamarin.yml
   pool:
     vmImage: macOS-10.15
     
@@ -91,7 +90,8 @@ jobs:
       provisioningProfileLocation: 'secureFiles'
       provProfileSecureFile: Uno_Gallery_Canary_iOS.mobileprovision
 
-  - template: build/stage-build.yml
+  - template: build/templates/set-app-versions.yml
+  - template: $(TemplatePath)
 
 - job: macOS_net6
   strategy:
@@ -144,6 +144,7 @@ jobs:
       provisioningProfileLocation: 'secureFiles'
       provProfileSecureFile: Uno_Gallery_Canary_iOS.mobileprovision
 
+  - template: build/templates/set-app-versions.yml
   - template: build/stage-build-mobile.yml
 
 - job: Linux
@@ -158,6 +159,7 @@ jobs:
     SkipUnknownFrameworks: true
 
   steps:
+    - template: build/templates/set-app-versions.yml
     - template: build/stage-build-wasm.yml
 
 - template: build/stage-uitests-wasm.yml

@@ -1,0 +1,6 @@
+steps:
+
+  - task: MSBuild@1
+    inputs:
+      solution: '$(build.sourcesdirectory)/build/build.csproj'
+      msbuildArguments: /r /bl:$(build.artifactstagingdirectory)/set-version-build.binlog 

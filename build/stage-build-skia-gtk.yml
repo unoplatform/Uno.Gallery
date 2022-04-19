@@ -1,0 +1,23 @@
+steps:
+- template: templates/canary-updater.yml
+
+- task: UseDotNet@2
+  condition: eq(variables['IsCanaryBranch'], true)
+  retryCountOnTaskFailure: 3
+  inputs:
+    packageType: runtime
+    version: 3.1.3
+
+- template: templates/gitversion.yml
+
+- task: MSBuild@1
+  displayName: Build project in Release|$(ApplicationPlatform)
+  retryCountOnTaskFailure: 3
+  inputs:
+    solution: Uno.Gallery\Uno.Gallery.Skia.Gtk\Uno.Gallery.Skia.Gtk.csproj
+    msbuildArguments: /ds /m /r /p:Configuration=Release "/p:InformationalVersion=%GITVERSION_InformationalVersion%"
+
+- task: PublishBuildArtifacts@1
+  retryCountOnTaskFailure: 3
+  inputs:
+    ArtifactName: $(ArtifactName)

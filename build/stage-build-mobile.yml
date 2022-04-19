@@ -28,6 +28,7 @@ steps:
   inputs:
     SourceFolder: $(build.sourcesdirectory)/Uno.Gallery/Uno.Gallery.Mobile/bin/Release/
     Contents:  |
+      **/*.apk
       **/*.ipa
       **/*.dSym/**
       **/*.pkg

@@ -17,11 +17,11 @@ steps:
 - template: templates/gitversion.yml
 
 - task: MSBuild@1
-  displayName: Build project in Release|$(ApplicationPlatform)
+  displayName: Build project
   retryCountOnTaskFailure: 3
   inputs:
-    solution: $(Project)
-    msbuildArguments: /ds /m /r /p:Configuration=Release "/p:Platform=$(ApplicationPlatform)" "/p:InformationalVersion=%GITVERSION_InformationalVersion%"  /p:AndroidSigningKeyStore=$(keyStore.secureFilePath) /p:AndroidSigningStorePass=$(AndroidSigningStorePass) /p:AndroidSigningKeyPass=$(AndroidSigningKeyPass) /p:AndroidSigningKeyAlias=$(AndroidSigningKeyAlias) /p:AndroidKeyStore=true
+    solution: Uno.Gallery\Uno.Gallery.Droid\Uno.Gallery.Droid.csproj
+    msbuildArguments: /ds /m /r /p:Configuration=Release "/p:InformationalVersion=%GITVERSION_InformationalVersion%" /p:AndroidSigningKeyStore=$(keyStore.secureFilePath) /p:AndroidSigningStorePass=$(AndroidSigningStorePass) /p:AndroidSigningKeyPass=$(AndroidSigningKeyPass) /p:AndroidSigningKeyAlias=$(AndroidSigningKeyAlias) /p:AndroidKeyStore=true
 
 - task: PublishBuildArtifacts@1
   retryCountOnTaskFailure: 3
