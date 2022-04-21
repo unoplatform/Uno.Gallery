@@ -21,9 +21,9 @@ steps:
   retryCountOnTaskFailure: 3
   inputs:
     solution: Uno.Gallery\Uno.Gallery.Droid\Uno.Gallery.Droid.csproj
-    msbuildArguments: /ds /m /r /p:Configuration=Release "/p:InformationalVersion=%GITVERSION_InformationalVersion%" /p:AndroidSigningKeyStore=$(keyStore.secureFilePath) /p:AndroidSigningStorePass=$(AndroidSigningStorePass) /p:AndroidSigningKeyPass=$(AndroidSigningKeyPass) /p:AndroidSigningKeyAlias=$(AndroidSigningKeyAlias) /p:AndroidKeyStore=true
+    msbuildArguments: /ds /m /r /p:Configuration=Release "/p:InformationalVersion=%GITVERSION_InformationalVersion%" /p:AndroidSigningKeyStore=$(keyStore.secureFilePath) /p:AndroidSigningStorePass=$(AndroidSigningStorePass) /p:AndroidSigningKeyPass=$(AndroidSigningKeyPass) /p:AndroidSigningKeyAlias=$(AndroidSigningKeyAlias) /p:AndroidKeyStore=true  /bl:$(build.artifactstagingdirectory)/build-$(BuildForPlayStore).binlog 
 
 - task: PublishBuildArtifacts@1
   retryCountOnTaskFailure: 3
   inputs:
-    ArtifactName: $(ArtifactName)
+    ArtifactName: android-xamarin

@@ -1,6 +1,7 @@
 steps:
 
   - task: MSBuild@1
+    displayName: Update app versions
     inputs:
       solution: '$(build.sourcesdirectory)/build/build.csproj'
-      msbuildArguments: /r /bl:$(build.artifactstagingdirectory)/set-version-build.binlog 
+      msbuildArguments: /r /t:BuildVersion /bl:$(build.artifactstagingdirectory)/set-version-build.binlog 

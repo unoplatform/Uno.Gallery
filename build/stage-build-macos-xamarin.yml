@@ -11,13 +11,13 @@ steps:
 - template: templates/gitversion.yml
 
 - task: MSBuild@1
-  displayName: Build project in Release|$(ApplicationPlatform)
+  displayName: Build project
   retryCountOnTaskFailure: 3
   inputs:
-    solution: Uno.Gallery\Uno.Gallery.macOS\Uno.Gallery.macOS.csproj
-    msbuildArguments: /ds /m /r /p:Configuration=Release "/p:InformationalVersion=%GITVERSION_InformationalVersion%"
+    solution: Uno.Gallery/Uno.Gallery.macOS/Uno.Gallery.macOS.csproj
+    msbuildArguments: /ds /m /r /p:Configuration=Release "/p:InformationalVersion=%GITVERSION_InformationalVersion%" /bl:$(build.artifactstagingdirectory)/build.binlog
 
 - task: PublishBuildArtifacts@1
   retryCountOnTaskFailure: 3
   inputs:
-    ArtifactName: $(ArtifactName)
+    ArtifactName: macos-xamarin

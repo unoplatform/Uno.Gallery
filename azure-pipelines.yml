@@ -6,29 +6,18 @@ variables:
   AndroidNdkDirectory: C:\Microsoft\AndroidNDK64\android-ndk-r16b
   
 jobs:
-- job: Windows
+- job: Windows_Android
   strategy:
     maxParallel: 3
     matrix:
       Android_Store:
         ApplicationPlatform: AnyCPU
         ArtifactName: Android
-        TemplatePath: build/stage-build-android-xamarin.yml
       Android_AppCenter:
         ApplicationPlatform: AnyCPU
         ArtifactName: Android
         BuildForPlayStore: False
         VersionCodeOffset: 400050
-        TemplatePath: build/stage-build-android-xamarin.yml
-      SkiaGTK:
-        ApplicationPlatform: AnyCPU
-        ArtifactName: SkiaGTK
-        TemplatePath: build/stage-build-skia-gtk.yml
-      UWP:
-        ApplicationPlatform: x64
-        ArtifactName: UWP
-        VersionCodeOffset: 50
-        TemplatePath: build/stage-build-uwp.yml
 
   pool:
     vmImage: windows-2019
@@ -37,22 +26,35 @@ jobs:
   - group: 'UADO Keystore' # Import all variables for the signing from the library in azure devops
 
   steps:
-    - template: $(TemplatePath)
+  - template: build/stage-build-android-xamarin.yml
 
-- job: macOS
-  strategy:
-    maxParallel: 2
-    matrix:
-      iOS:
-        ApplicationPlatform: iPhone
-        ArtifactName: iOS
-        VersionCodeOffset: 50
-        TemplatePath: build/stage-build-ios-xamarin.yml
-      macOS:
-        ApplicationPlatform: iPhoneSimulator
-        ArtifactName: macOS
-        VersionCodeOffset: 50
-        TemplatePath: build/stage-build-macOS-xamarin.yml
+- job: Windows_UWP
+  pool:
+    vmImage: windows-2019
+    
+  variables:
+  - group: 'UADO Keystore' # Import all variables for the signing from the library in azure devops
+  - name: ApplicationPlatform
+    value: x64
+  - name: ArtifactName
+    value: UWP
+  - name: VersionCodeOffset
+    value: 50
+
+  steps:
+  - template: build/stage-build-uwp.yml
+
+- job: Windows_SkiaGtk
+  pool:
+    vmImage: windows-2019
+    
+  variables:
+  - group: 'UADO Keystore' # Import all variables for the signing from the library in azure devops
+
+  steps:
+  - template: build/stage-build-skia-gtk.yml
+
+- job: macOS_Xamarin
   pool:
     vmImage: macOS-10.15
     
@@ -60,6 +62,12 @@ jobs:
   - name: SkipUnknownFrameworks
     value: true # Used by TargetFrameworks.Filtering package
   - group: unoplatform.apple.ios.appstore.distribution
+  - name: ApplicationPlatform
+    value: iPhoneSimulator
+  - name: ArtifactName
+    value: macOS
+  - name: VersionCodeOffset
+    value: 50
 
   steps:
   - task: InstallAppleCertificate@2
@@ -84,14 +92,39 @@ jobs:
       provisioningProfileLocation: 'secureFiles'
       provProfileSecureFile: Uno_Gallery_Canary_Catalyst.provisionprofile
 
+  - template: build/stage-build-macos-xamarin.yml
+
+- job: iOS_Xamarin
+  pool:
+    vmImage: macOS-10.15
+    
+  variables:
+  - name: SkipUnknownFrameworks
+    value: true # Used by TargetFrameworks.Filtering package
+  - group: unoplatform.apple.ios.appstore.distribution
+  - name: ApplicationPlatform
+    value: iPhone
+  - name: ArtifactName
+    value: iOS
+  - name: VersionCodeOffset
+    value: 50
+
+  steps:
+  - task: InstallAppleCertificate@2
+    displayName: Install Certificate
+    inputs:
+      certSecureFile: UnoPlatform-Apple-Distribution.p12
+      certPwd: $(appleappstorecertificatepassword)
+      keychain: temp
+      deleteCert: true
+
   - task: InstallAppleProvisioningProfile@1
     displayName: 'Install Apple Provisioning Profile'
     inputs:
       provisioningProfileLocation: 'secureFiles'
       provProfileSecureFile: Uno_Gallery_Canary_iOS.mobileprovision
 
-  - template: build/templates/set-app-versions.yml
-  - template: $(TemplatePath)
+  - template: build/stage-build-ios-xamarin.yml
 
 - job: macOS_net6
   strategy:
@@ -144,7 +177,6 @@ jobs:
       provisioningProfileLocation: 'secureFiles'
       provProfileSecureFile: Uno_Gallery_Canary_iOS.mobileprovision
 
-  - template: build/templates/set-app-versions.yml
   - template: build/stage-build-mobile.yml
 
 - job: Linux
@@ -159,7 +191,6 @@ jobs:
     SkipUnknownFrameworks: true
 
   steps:
-    - template: build/templates/set-app-versions.yml
     - template: build/stage-build-wasm.yml
 
 - template: build/stage-uitests-wasm.yml
