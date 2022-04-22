@@ -60,6 +60,7 @@
 			<_AppxManifestPath>$(_SourceBasePath).UWP/Package.appxmanifest</_AppxManifestPath>
 			
 			<_mobileSourceBasePath>../$(AppName)/$(AppName).Mobile</_mobileSourceBasePath>
+			<_MobileAndroidManifestPath>$(_mobileSourceBasePath)/Android/Properties/AndroidManifest.xml</_MobileAndroidManifestPath>
 			<_catalystPlistFilePath>$(_mobileSourceBasePath)/MacCatalyst/Info.plist</_catalystPlistFilePath>
 			<_MobileiOSPlistFilePath>$(_mobileSourceBasePath)/iOS/Info.plist</_MobileiOSPlistFilePath>
 
@@ -83,6 +84,19 @@
 
 		<XmlPoke Condition="Exists('$(_ManifestPath)')"
                      XmlInputPath="$(_ManifestPath)"
+                     Query="/manifest/@android:versionCode"
+                     Value="$(_VersionCode)"
+                     Namespaces="$(_AndroidNamespace)" />
+
+		<!-- Android net6 -->
+		<XmlPoke Condition="Exists('$(_MobileAndroidManifestPath)')"
+                     XmlInputPath="$(_MobileAndroidManifestPath)"
+                     Query="/manifest/@android:versionName"
+                     Value="$(_AppVersion)"
+                     Namespaces="$(_AndroidNamespace)" />
+
+		<XmlPoke Condition="Exists('$(_MobileAndroidManifestPath)')"
+                     XmlInputPath="$(_MobileAndroidManifestPath)"
                      Query="/manifest/@android:versionCode"
                      Value="$(_VersionCode)"
                      Namespaces="$(_AndroidNamespace)" />
