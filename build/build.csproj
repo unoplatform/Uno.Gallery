@@ -60,7 +60,7 @@
 			<_AppxManifestPath>$(_SourceBasePath).UWP/Package.appxmanifest</_AppxManifestPath>
 			
 			<_mobileSourceBasePath>../$(AppName)/$(AppName).Mobile</_mobileSourceBasePath>
-			<_MobileAndroidManifestPath>$(_mobileSourceBasePath)/Android/Properties/AndroidManifest.xml</_MobileAndroidManifestPath>
+			<_MobileAndroidManifestPath>$(_mobileSourceBasePath)/Android/AndroidManifest.xml</_MobileAndroidManifestPath>
 			<_catalystPlistFilePath>$(_mobileSourceBasePath)/MacCatalyst/Info.plist</_catalystPlistFilePath>
 			<_MobileiOSPlistFilePath>$(_mobileSourceBasePath)/iOS/Info.plist</_MobileiOSPlistFilePath>
 
