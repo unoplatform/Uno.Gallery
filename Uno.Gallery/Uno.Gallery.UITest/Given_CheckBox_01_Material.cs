@@ -12,19 +12,26 @@ namespace Uno.Gallery.UITests
 	public class Given_CheckBox_01_Material : TestBase
 	{
 		    
-		/*This function is to test the Unchecked option  in checkbox for material */ 		
+		/*This function is to test the Unchecked option in checkbox for material */ 		
 		[Test]
 		public void WhenMaterialClick_01_Unchecked()
 		{
+			//Navigation to Checkbox control
 			NavigateToSample("CheckBox", "Material");
 
-			TakeScreenshot("Before Checked");
-			
+			//Scrolling to Unchecked option
+			App.ScrollDownTo("Material_Unchecked");
+
+			//Initial Validation
+			TakeScreenshot("Before Checked");			
 			var uncheckedBox = new QueryEx(x => x.All().Marked("Material_Unchecked"));
-			App.ScrollDownTo("Material_Unchecked");			
+			Assert.AreEqual("UNCHECKED", uncheckedBox.GetDependencyPropertyValue("Content"));
+			Assert.IsFalse(uncheckedBox.GetDependencyPropertyValue<bool>("IsChecked"));
+			Assert.IsTrue(uncheckedBox.GetDependencyPropertyValue<bool>("IsEnabled"));
+
 			uncheckedBox.Tap();
 			TakeScreenshot("After Checked");
-			Assert.AreEqual("UNCHECKED", uncheckedBox.GetDependencyPropertyValue("Content"));
+			
 			Assert.IsTrue(uncheckedBox.GetDependencyPropertyValue<bool>("IsChecked"));
 			Assert.IsTrue(uncheckedBox.GetDependencyPropertyValue<bool>("IsEnabled"));
 
