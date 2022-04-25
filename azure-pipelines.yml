@@ -13,6 +13,7 @@ jobs:
       Android_Store:
         ApplicationPlatform: AnyCPU
         ArtifactName: Android
+        BuildForPlayStore: True
       Android_AppCenter:
         ApplicationPlatform: AnyCPU
         ArtifactName: Android
@@ -27,6 +28,26 @@ jobs:
 
   steps:
   - template: build/stage-build-android-xamarin.yml
+
+- job: Windows_Android_Mobile
+  strategy:
+    maxParallel: 3
+    matrix:
+      Android_Store:
+        ApplicationPlatform: AnyCPU
+        ArtifactName: Android
+        BuildForPlayStore: True
+      Android_AppCenter:
+        ApplicationPlatform: AnyCPU
+        ArtifactName: Android
+        BuildForPlayStore: False
+        VersionCodeOffset: 400050
+
+  pool:
+    vmImage: windows-2022
+
+  steps:
+  - template: build/stage-build-android-mobile.yml
 
 - job: Windows_UWP
   pool:
