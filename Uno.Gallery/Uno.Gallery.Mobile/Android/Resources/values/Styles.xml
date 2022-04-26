@@ -20,6 +20,11 @@
 		<item name="android:timePickerDialogTheme">@style/AppCompatDialogStyle</item>
 	</style>
 
+	<style name="Theme.AppCompat.Translucent">
+		<item name="android:windowIsTranslucent">true</item>
+		<item name="android:windowAnimationStyle">@android:style/Animation</item>
+	</style>
+
 	<style name="AppCompatDialogStyle" parent="Theme.AppCompat.Light.Dialog">
 		<item name="colorAccent">@color/MaterialPrimaryColor</item>
 	</style>
