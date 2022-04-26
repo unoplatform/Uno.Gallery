@@ -18,7 +18,7 @@ jobs:
         ApplicationPlatform: AnyCPU
         ArtifactName: Android
         BuildForPlayStore: False
-        VersionCodeOffset: 400050
+        VersionCodeOffset: 1
 
   pool:
     vmImage: windows-2019
@@ -41,7 +41,7 @@ jobs:
         ApplicationPlatform: AnyCPU
         ArtifactName: Android
         BuildForPlayStore: False
-        VersionCodeOffset: 400050
+        VersionCodeOffset: 1
 
   pool:
     vmImage: windows-2022

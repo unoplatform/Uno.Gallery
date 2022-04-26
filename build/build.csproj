@@ -18,7 +18,8 @@
 		<PropertyGroup>
 			<_VersionCode>$(_BuildNumber)</_VersionCode>
 			<_BuildNumber Condition="$(BuildNumberOffset) != ''">$([MSBuild]::Add($(_BuildNumber), $(BuildNumberOffset)))</_BuildNumber>
-			<_VersionCode Condition="$(VersionCodeOffset) != ''">$([System.DateTime]::Now.ToString(`yyMMddHHmm`))$([MSBuild]::Add($(_BuildNumber), $(VersionCodeOffset)))</_VersionCode>
+			<_VersionCode Condition="$(VersionCodeOffset) != ''">$([MSBuild]::Add($(_BuildNumber), $(VersionCodeOffset)))</_VersionCode>
+			<_VersionCode Condition="$(VersionCodeOffset) != ''">$([MSBuild]::Add($(_VersionCode), $([System.DateTime]::Now.ToString(`yyMMddHHmm`))))</_VersionCode>
 			<_AppleBuildNumber Condition="$(_AppleBuildNumber) == ''">$([System.DateTime]::Now.ToString(`yyMMddHHmm`)).$(_BuildNumber)</_AppleBuildNumber>
 			<_InformationalVersion>$(PackageInformationalVersion)</_InformationalVersion>
 			<_InformationalVersion Condition="'$(_InformationalVersion)' == ''">$(GITVERSION_InformationalVersion)</_InformationalVersion>
