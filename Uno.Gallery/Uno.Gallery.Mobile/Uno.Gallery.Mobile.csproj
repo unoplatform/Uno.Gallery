@@ -33,6 +33,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<IncludeXamlNamespaces Include="mobile" />
+		<ExcludeXamlNamespaces Include="not_mobile" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Uno.UI" Version="4.2.0-dev.603" />
 		<PackageReference Include="Uno.UI.RemoteControl" Version="4.2.0-dev.603" Condition="'$(Configuration)'=='Debug'" />
 		<PackageReference Include="Uno.UI.Adapter.Microsoft.Extensions.Logging" Version="4.2.0-dev.603" />
