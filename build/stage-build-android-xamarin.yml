@@ -25,5 +25,6 @@ steps:
 
 - task: PublishBuildArtifacts@1
   retryCountOnTaskFailure: 3
+  condition: always()
   inputs:
     ArtifactName: android-xamarin
