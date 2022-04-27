@@ -7,7 +7,7 @@ Available on:
 - Android
 - Windows
 - WebAssembly
-- MacOS
+- macOS
 - Linux (experimental)
 
 ![Screenshot](./images/Screenshot1.png)
