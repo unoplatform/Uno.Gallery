@@ -96,6 +96,7 @@
 								<!-- Reveal Button -->
 								<ToggleButton x:Name="RevealButton"
 											  Style="{StaticResource XamlDisplayExpandToggleButtonStyle}"
+                                              AutomationProperties.AutomationId="RevealButton"
 											  IsChecked="{Binding Path=(smtx:XamlDisplayExtensions.ShowXaml), RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
 											  HorizontalAlignment="Right"
 											  VerticalAlignment="Top"
@@ -183,7 +184,7 @@
 
 						<!-- Reveal Button -->
 						<ToggleButton x:Name="RevealButton"
-									  Style="{StaticResource XamlDisplayExpandToggleButtonStyle}"
+									  Style="{StaticResource XamlDisplayExpandToggleButtonStyle}"                                      
 									  IsChecked="False"
 									  HorizontalAlignment="Right"
 									  VerticalAlignment="Top"

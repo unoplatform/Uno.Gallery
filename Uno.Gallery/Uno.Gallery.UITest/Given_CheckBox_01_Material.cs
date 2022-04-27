@@ -19,6 +19,14 @@ namespace Uno.Gallery.UITests
 			//Navigation to Checkbox control
 			NavigateToSample("CheckBox", "Material");
 
+			//TakeScreenshot("Before Checked");
+			var revealbutton = new QueryEx(x => x.All().Marked("RevealButton"));		
+			
+			Assert.IsTrue(revealbutton.GetDependencyPropertyValue<bool>("IsEnabled"));
+			//App.ScrollTo("RevealButton");
+			//revealbutton.Tap();
+			//TakeScreenshot("After Checked");
+
 			//Scrolling to Unchecked option
 			App.ScrollDownTo("Material_Unchecked");
 
@@ -29,9 +37,11 @@ namespace Uno.Gallery.UITests
 			Assert.IsFalse(uncheckedBox.GetDependencyPropertyValue<bool>("IsChecked"));
 			Assert.IsTrue(uncheckedBox.GetDependencyPropertyValue<bool>("IsEnabled"));
 
+			//Tap/Click on Unchecked Box and taking screenshot
 			uncheckedBox.Tap();
 			TakeScreenshot("After Checked");
-			
+
+			//validation after clicking Uncheckbox 
 			Assert.IsTrue(uncheckedBox.GetDependencyPropertyValue<bool>("IsChecked"));
 			Assert.IsTrue(uncheckedBox.GetDependencyPropertyValue<bool>("IsEnabled"));
 
