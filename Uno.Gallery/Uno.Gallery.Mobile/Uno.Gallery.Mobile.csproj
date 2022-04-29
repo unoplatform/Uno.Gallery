@@ -84,7 +84,11 @@
 				<PackageReference Include="Uno.Extensions.Logging.OSLog" Version="1.3.0-dev.3" />
 			</ItemGroup>
 			<PropertyGroup>
-				<MtouchExtraArgs>--registrar:static --dsym=true</MtouchExtraArgs>
+				<MtouchExtraArgs>$(MtouchExtraArgs) --registrar:static --dsym=true</MtouchExtraArgs>
+
+				<!-- https://github.com/xamarin/xamarin-macios/issues/14812 -->
+				<MtouchExtraArgs>$(MtouchExtraArgs) --marshal-objectivec-exceptions:disable</MtouchExtraArgs>
+				
 				<InvariantGlobalization>false</InvariantGlobalization>
 			</PropertyGroup>
 			<PropertyGroup Condition="'$(Configuration)'=='Release'">
@@ -97,7 +101,11 @@
 				<PackageReference Include="Uno.Extensions.Logging.OSLog" Version="1.3.0-dev.3" />
 			</ItemGroup>
 			<PropertyGroup>
-				<MtouchExtraArgs>--registrar:static --dsym=true</MtouchExtraArgs>
+				<MtouchExtraArgs>$(MtouchExtraArgs) --registrar:static --dsym=true</MtouchExtraArgs>
+
+				<!-- https://github.com/xamarin/xamarin-macios/issues/14812 -->
+				<MtouchExtraArgs>$(MtouchExtraArgs) --marshal-objectivec-exceptions:disable</MtouchExtraArgs>
+				
 				<InvariantGlobalization>false</InvariantGlobalization>
 			</PropertyGroup>
 			<PropertyGroup Condition="'$(Configuration)'=='Release'">
@@ -110,6 +118,10 @@
 				<EnableCodeSigning>true</EnableCodeSigning>
 				<CodeSignEntitlements>MacCatalyst\Entitlements.plist</CodeSignEntitlements>
 				<CodesignProvision>Uno Gallery Canary (Catalyst)</CodesignProvision>
+
+				<!-- https://github.com/xamarin/xamarin-macios/issues/14686 -->
+				<_LibMonoLinkMode>Static</_LibMonoLinkMode>
+				<_LibXamarinLinkMode>Static</_LibXamarinLinkMode>
 			</PropertyGroup>
 		</When>
 	</Choose>
