@@ -297,7 +297,7 @@ namespace Uno.Gallery
 		/// </summary>
 		private static void InitializeLogging()
 		{
-#if DEBUG
+#if DEBUG || __IOS__
 			// Logging is disabled by default for release builds, as it incurs a significant
 			// initialization cost from Microsoft.Extensions.Logging setup. If startup performance
 			// is a concern for your application, keep this disabled. If you're running on web or 
