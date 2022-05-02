@@ -74,6 +74,8 @@ namespace Uno.Gallery
 
             ApplicationView.GetForCurrentView().VisibleBoundsChanged += (s, e) => Adjust();
 
+			Adjust();
+
 			void Adjust()
 			{
 				var bounds = ApplicationView.GetForCurrentView().VisibleBounds;
@@ -85,11 +87,6 @@ namespace Uno.Gallery
 				}
 			}
 		}
-
-        private void Shell_VisibleBoundsChanged(ApplicationView sender, object args)
-        {
-            throw new NotImplementedException();
-        }
 
         private void ToggleButton_Click(object sender, RoutedEventArgs e)
 		{
