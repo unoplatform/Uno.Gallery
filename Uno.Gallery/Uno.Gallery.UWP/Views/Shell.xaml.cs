@@ -71,17 +71,27 @@ namespace Uno.Gallery
 		private void InitializeSafeArea()
 		{
 			var full = Windows.UI.Xaml.Window.Current.Bounds;
-			var bounds = ApplicationView.GetForCurrentView().VisibleBounds;
 
-			var topPadding = Math.Abs(full.Top - bounds.Top);
+            ApplicationView.GetForCurrentView().VisibleBoundsChanged += (s, e) => Adjust();
 
-			if (topPadding > 0)
+			void Adjust()
 			{
-				TopPaddingRow.Height = new GridLength(topPadding);
+				var bounds = ApplicationView.GetForCurrentView().VisibleBounds;
+				var topPadding = Math.Abs(full.Top - bounds.Top);
+
+				if (topPadding > 0)
+				{
+					TopPaddingRow.Height = new GridLength(topPadding);
+				}
 			}
 		}
 
-		private void ToggleButton_Click(object sender, RoutedEventArgs e)
+        private void Shell_VisibleBoundsChanged(ApplicationView sender, object args)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void ToggleButton_Click(object sender, RoutedEventArgs e)
 		{
 			// Set theme for window root.
 			if (global::Windows.UI.Xaml.Window.Current.Content is FrameworkElement root)
