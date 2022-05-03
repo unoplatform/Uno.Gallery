@@ -88,6 +88,9 @@
 
 				<!-- https://github.com/xamarin/xamarin-macios/issues/14812 -->
 				<MtouchExtraArgs>$(MtouchExtraArgs) --marshal-objectivec-exceptions:disable</MtouchExtraArgs>
+
+				<!-- Keep the dynamic registrar for ObjCRuntime.RuntimeException: Can't register the class XXX when the dynamic registrar has been linked away.  -->
+				<MtouchExtraArgs>$(MtouchExtraArgs) --optimize=-remove-dynamic-registrar</MtouchExtraArgs>
 				
 				<InvariantGlobalization>false</InvariantGlobalization>
 			</PropertyGroup>
@@ -102,6 +105,9 @@
 			</ItemGroup>
 			<PropertyGroup>
 				<MtouchExtraArgs>$(MtouchExtraArgs) --registrar:static --dsym=true</MtouchExtraArgs>
+
+				<!-- Keep the dynamic registrar for ObjCRuntime.RuntimeException: Can't register the class XXX when the dynamic registrar has been linked away.  -->
+				<MtouchExtraArgs>$(MtouchExtraArgs) --optimize=-remove-dynamic-registrar</MtouchExtraArgs>
 
 				<!-- https://github.com/xamarin/xamarin-macios/issues/14812 -->
 				<MtouchExtraArgs>$(MtouchExtraArgs) --marshal-objectivec-exceptions:disable</MtouchExtraArgs>
