@@ -20,11 +20,11 @@ namespace Uno.Gallery.UITests
 			NavigateToSample("CheckBox", "Material");
 
 			//TakeScreenshot("Before Checked");
-			var revealbutton = new QueryEx(x => x.All().Marked("RevealButton"));		
-			
-			Assert.IsTrue(revealbutton.GetDependencyPropertyValue<bool>("IsEnabled"));
-			//App.ScrollTo("RevealButton");
-			//revealbutton.Tap();
+			 var revealbutton = App.Query(q => q.Marked("CheckBoxSamplePage_Material").Descendant("RevealButton"));
+			//revealbutton.
+			//Assert.IsTrue(revealbutton.GetDependencyPropertyValue<bool>("IsEnabled"));
+
+
 			//TakeScreenshot("After Checked");
 
 			//Scrolling to Unchecked option
