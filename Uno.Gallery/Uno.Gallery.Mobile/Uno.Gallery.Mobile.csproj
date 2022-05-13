@@ -64,6 +64,9 @@
 				<AndroidKeyStore>true</AndroidKeyStore>
 				<AndroidSigningKeyStore>..\Gallery.Droid\calc-prod.keystore</AndroidSigningKeyStore>
 				<AndroidSigningKeyAlias>gallery-prod</AndroidSigningKeyAlias>
+				
+				<!-- issue TBD -->
+				<AndroidAotEnableLazyLoad>false</AndroidAotEnableLazyLoad>
 			</PropertyGroup>
 
 			<ItemGroup>
