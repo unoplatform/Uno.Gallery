@@ -79,9 +79,7 @@
 			-->
 
 			<PropertyGroup Condition="'$(Configuration)'=='Release'">
-				<!-- issue https://github.com/xamarin/xamarin-android/issues/7000 -->
-				<AndroidAotEnableLazyLoad>false</AndroidAotEnableLazyLoad>
-				<RunAOTCompilation>false</RunAOTCompilation>
+				<RunAOTCompilation>true</RunAOTCompilation>
 			</PropertyGroup>
 		</When>
 		<When Condition="'$(TargetFramework)'=='net6.0-ios'">
