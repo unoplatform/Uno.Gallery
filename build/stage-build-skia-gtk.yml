@@ -17,6 +17,13 @@ steps:
     solution: Uno.Gallery\Uno.Gallery.Skia.Gtk\Uno.Gallery.Skia.Gtk.csproj
     msbuildArguments: /ds /m /r /p:Configuration=Release "/p:InformationalVersion=%GITVERSION_InformationalVersion%" /bl:$(build.artifactstagingdirectory)/build.binlog 
 
+- task: CopyFiles@2
+  displayName: Copy Wasm output
+  inputs:
+    Contents: Uno.Gallery/Uno.Gallery.Skia.Gtk/Release/netcoreapp3.1
+    TargetFolder: $(Build.ArtifactStagingDirectory)/bin
+    FlattenFolders: true
+
 - task: PublishBuildArtifacts@1
   retryCountOnTaskFailure: 3
   inputs:
