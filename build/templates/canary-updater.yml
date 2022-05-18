@@ -27,6 +27,9 @@ steps:
       packageAuthor: nventive
       summaryFile: '$(Build.ArtifactStagingDirectory)/Canary.md'
 
+  - powershell: |
+      dotnet tool uninstall nventive.nuget.updater.tool --tool-path $(Agent.TempDirectory)
+
   - task: nventiveCanaryUpdater@5
     condition: eq(variables['IsCanaryBranch'], true)
     inputs:
@@ -39,6 +42,9 @@ steps:
       packageAuthor: unoplatform
       summaryFile: '$(Build.ArtifactStagingDirectory)/Canary.md'
 
+  - powershell: |
+      dotnet tool uninstall nventive.nuget.updater.tool --tool-path $(Agent.TempDirectory)
+      
   - pwsh: |
       gci -r -include "info.plist" |
       foreach-object {
