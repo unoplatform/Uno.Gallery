@@ -27,6 +27,18 @@ steps:
       packageAuthor: nventive
       summaryFile: '$(Build.ArtifactStagingDirectory)/Canary.md'
 
+  - task: nventiveCanaryUpdater@5
+    condition: eq(variables['IsCanaryBranch'], true)
+    inputs:
+      solution: Uno.Gallery.sln
+      useNuGetOrg: true
+      usePrivateFeed: false
+      mergeBranch: true
+      branchToMerge: master
+      nugetUpdaterVersion: 2.1.1
+      packageAuthor: unoplatform
+      summaryFile: '$(Build.ArtifactStagingDirectory)/Canary.md'
+
   - pwsh: |
       gci -r -include "info.plist" |
       foreach-object {
