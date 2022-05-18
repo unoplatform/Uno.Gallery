@@ -13,11 +13,11 @@
 				<ToolkitResources xmlns="using:Uno.Toolkit.UI" />
 
 				<!--  Load Material resources  -->
-				<MaterialColors xmlns="using:Uno.Material"
+				<MaterialColorsV1 xmlns="using:Uno.Material"
 				                OverrideSource="ms-appx:///Views/Colors.xaml" />
-				<MaterialFonts xmlns="using:Uno.Material"
+				<MaterialFontsV1 xmlns="using:Uno.Material"
 				               OverrideSource="ms-appx:///Views/MaterialFontsOverride.xaml" />
-				<MaterialResources xmlns="using:Uno.Material" />
+				<MaterialResourcesV1 xmlns="using:Uno.Material" />
 
 				<!--  Load Cupertino resources  -->
 				<CupertinoColors xmlns="using:Uno.Cupertino" />
@@ -26,7 +26,7 @@
 				<CupertinoResources xmlns="using:Uno.Cupertino" />
 
 				<!--  Load Material Toolkit resources  -->
-				<MaterialToolkitResources xmlns="using:Uno.Toolkit.UI.Material" />
+				<MaterialToolkitResourcesV1 xmlns="using:Uno.Toolkit.UI.Material" />
 
                 <!-- Load Cupertino Toolkit resources -->
                 <CupertinoToolkitResources xmlns="using:Uno.Toolkit.UI.Cupertino" />
