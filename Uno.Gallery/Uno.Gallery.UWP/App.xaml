@@ -15,7 +15,7 @@
 				<!--  Load Material resources  -->
 				<MaterialColorsV1 xmlns="using:Uno.Material"
 				                OverrideSource="ms-appx:///Views/Colors.xaml" />
-				<MaterialFontsV1 xmlns="using:Uno.Material"
+				<MaterialFonts xmlns="using:Uno.Material"
 				               OverrideSource="ms-appx:///Views/MaterialFontsOverride.xaml" />
 				<MaterialResourcesV1 xmlns="using:Uno.Material" />
 
