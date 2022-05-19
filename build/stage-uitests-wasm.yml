@@ -34,7 +34,8 @@
   - task: CopyFiles@2
     displayName: Copy Wasm output
     inputs:
-      Contents: Uno.Gallery/Uno.Gallery.Wasm/bin/Release/net5/dist/**
+      SourceFolder: Uno.Gallery/Uno.Gallery.Wasm/bin/Release/net5/dist
+      Contents: '**/*.*'
       TargetFolder: $(Build.ArtifactStagingDirectory)/bin
 
   - task: PublishTestResults@2
