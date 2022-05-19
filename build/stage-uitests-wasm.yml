@@ -29,6 +29,12 @@
     retryCountOnTaskFailure: 3
     displayName: 'Running build'
 
+  - task: CopyFiles@2
+    displayName: Copy Wasm output
+    inputs:
+      Contents: Uno.Gallery/Uno.Gallery.Wasm/bin/Release/net5/dist/**
+      TargetFolder: $(Build.ArtifactStagingDirectory)/bin
+
   - task: PublishTestResults@2
     condition: always()
     retryCountOnTaskFailure: 3
