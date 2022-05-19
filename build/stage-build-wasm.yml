@@ -21,7 +21,7 @@
 - task: CopyFiles@2
   displayName: Copy Wasm output
   inputs:
-    Contents: Uno.Gallery/Uno.Gallery.Wasm/Release/net5/dist
+    Contents: Uno.Gallery/Uno.Gallery.Wasm/bin/Release/net5/dist
     TargetFolder: $(Build.ArtifactStagingDirectory)
     FlattenFolders: true
 

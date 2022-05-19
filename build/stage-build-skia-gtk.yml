@@ -20,7 +20,7 @@ steps:
 - task: CopyFiles@2
   displayName: Copy Wasm output
   inputs:
-    Contents: Uno.Gallery/Uno.Gallery.Skia.Gtk/Release/netcoreapp3.1
+    Contents: Uno.Gallery/Uno.Gallery.Skia.Gtk/bin/Release/netcoreapp3.1
     TargetFolder: $(Build.ArtifactStagingDirectory)/bin
     FlattenFolders: true
 
