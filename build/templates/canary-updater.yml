@@ -44,6 +44,21 @@ steps:
 
   - powershell: |
       dotnet tool uninstall nventive.nuget.updater.tool --tool-path $(Agent.TempDirectory)
+
+  - task: nventiveCanaryUpdater@5
+    condition: eq(variables['IsCanaryBranch'], true)
+    inputs:
+      solution: Uno.Gallery.sln
+      useNuGetOrg: true
+      usePrivateFeed: false
+      mergeBranch: true
+      branchToMerge: master
+      nugetUpdaterVersion: 2.1.1
+      packageAuthor: 'Uno Platform'
+      summaryFile: '$(Build.ArtifactStagingDirectory)/Canary.md'
+
+  - powershell: |
+      dotnet tool uninstall nventive.nuget.updater.tool --tool-path $(Agent.TempDirectory)
       
   - pwsh: |
       gci -r -include "info.plist" |
