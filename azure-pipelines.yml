@@ -22,7 +22,7 @@ jobs:
         VersionCodeOffset: 1
 
   pool:
-    vmImage: windows-2019
+    vmImage: windows-2022
     
   variables:
   - group: 'UADO Keystore' # Import all variables for the signing from the library in azure devops
@@ -122,7 +122,7 @@ jobs:
 
 - job: iOS_Xamarin
   pool:
-    vmImage: macOS-10.15
+    vmImage: macOS-12
     
   variables:
   - name: SkipUnknownFrameworks
