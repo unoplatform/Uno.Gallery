@@ -13,6 +13,8 @@
   - checkout: self
     clean: true
 
+  - template: templates/canary-updater.yml
+
   - task: UseDotNet@2
     displayName: 'Use .Net Core runtime 6.0.x'
     retryCountOnTaskFailure: 3
@@ -28,6 +30,13 @@
       BUILD_ARTIFACTSTAGINGDIRECTORY: "$(build.artifactstagingdirectory)"
     retryCountOnTaskFailure: 3
     displayName: 'Running build'
+
+  - task: CopyFiles@2
+    displayName: Copy Wasm output
+    inputs:
+      SourceFolder: Uno.Gallery/Uno.Gallery.Wasm/bin/Release/net5/dist
+      Contents: '**/*.*'
+      TargetFolder: $(Build.ArtifactStagingDirectory)/bin
 
   - task: PublishTestResults@2
     condition: always()
