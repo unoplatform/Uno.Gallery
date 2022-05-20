@@ -116,6 +116,12 @@ jobs:
     displayName: 'Install Apple Provisioning Profile'
     inputs:
       provisioningProfileLocation: 'secureFiles'
+      provProfileSecureFile: Uno_Gallery_Catalyst.provisionprofile
+
+  - task: InstallAppleProvisioningProfile@1
+    displayName: 'Install Apple Provisioning Profile'
+    inputs:
+      provisioningProfileLocation: 'secureFiles'
       provProfileSecureFile: Uno_Gallery_Canary_Catalyst.provisionprofile
 
   - template: build/stage-build-macos-xamarin.yml
@@ -149,6 +155,12 @@ jobs:
     inputs:
       provisioningProfileLocation: 'secureFiles'
       provProfileSecureFile: Uno_Gallery_Canary_iOS.mobileprovision
+
+  - task: InstallAppleProvisioningProfile@1
+    displayName: 'Install Apple Provisioning Profile'
+    inputs:
+      provisioningProfileLocation: 'secureFiles'
+      provProfileSecureFile: Uno_Gallery_iOS.mobileprovision
 
   - template: build/stage-build-ios-xamarin.yml
 
@@ -190,6 +202,12 @@ jobs:
       certPwd: $(appleappstorecertificatepassword)
       keychain: temp
       deleteCert: true
+
+  - task: InstallAppleProvisioningProfile@1
+    displayName: 'Install Apple Provisioning Profile'
+    inputs:
+      provisioningProfileLocation: 'secureFiles'
+      provProfileSecureFile: Uno_Gallery_Catalyst.provisionprofile
 
   - task: InstallAppleProvisioningProfile@1
     displayName: 'Install Apple Provisioning Profile'
