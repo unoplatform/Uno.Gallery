@@ -29,6 +29,7 @@ steps:
 
   - powershell: |
       dotnet tool uninstall nventive.nuget.updater.tool --tool-path $(Agent.TempDirectory)
+    condition: eq(variables['IsCanaryBranch'], true)
 
   - task: nventiveCanaryUpdater@5
     condition: eq(variables['IsCanaryBranch'], true)
@@ -44,6 +45,7 @@ steps:
 
   - powershell: |
       dotnet tool uninstall nventive.nuget.updater.tool --tool-path $(Agent.TempDirectory)
+    condition: eq(variables['IsCanaryBranch'], true)
 
   - task: nventiveCanaryUpdater@5
     condition: eq(variables['IsCanaryBranch'], true)
@@ -59,6 +61,7 @@ steps:
 
   - powershell: |
       dotnet tool uninstall nventive.nuget.updater.tool --tool-path $(Agent.TempDirectory)
+    condition: eq(variables['IsCanaryBranch'], true)
       
   - pwsh: |
       gci -r -include "info.plist" |
