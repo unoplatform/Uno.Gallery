@@ -20,28 +20,28 @@
     </PackageReference>
     <PackageReference Include="Uno.Core" Version="4.1.0-dev.4" />
     <PackageReference Include="Uno.Cupertino">
-		<Version>1.4.0-dev.30</Version>
-	</PackageReference>
-	<PackageReference Include="Uno.Material">
-		<Version>1.4.0-dev.30</Version>
-	</PackageReference>
-	<PackageReference Include="Uno.ShowMeTheXAML">
+      <Version>2.0.0-dev.210</Version>
+    </PackageReference>
+    <PackageReference Include="Uno.Material">
+      <Version>2.0.0-dev.210</Version>
+    </PackageReference>
+    <PackageReference Include="Uno.ShowMeTheXAML">
       <Version>1.1.0-dev0004</Version>
     </PackageReference>
     <PackageReference Include="Uno.ShowMeTheXAML.MSBuild">
       <Version>1.1.0-dev0004</Version>
     </PackageReference>
     <PackageReference Include="Uno.Toolkit.UI">
-      <Version>1.4.0-dev.4</Version>
+      <Version>1.4.0-dev.31</Version>
     </PackageReference>
     <PackageReference Include="Uno.Toolkit.UI.Cupertino">
-      <Version>1.4.0-dev.4</Version>
+      <Version>1.4.0-dev.31</Version>
     </PackageReference>
     <PackageReference Include="Uno.Toolkit.UI.Material">
-      <Version>1.4.0-dev.4</Version>
+      <Version>1.4.0-dev.31</Version>
     </PackageReference>
     <PackageReference Include="Uno.UI">
-      <Version>4.2.0-dev.515</Version>
+      <Version>4.3.0-dev.357</Version>
     </PackageReference>
   </ItemGroup>
   <PropertyGroup>
