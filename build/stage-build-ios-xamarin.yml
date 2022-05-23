@@ -17,6 +17,18 @@ steps:
     solution: Uno.Gallery/Uno.Gallery.iOS/Uno.Gallery.iOS.csproj
     msbuildArguments: /ds /m /r /p:Configuration=Release /p:Platform=iPhone "/p:InformationalVersion=%GITVERSION_InformationalVersion%" /bl:$(build.artifactstagingdirectory)/build.binlog 
 
+- task: CopyFiles@2
+  displayName: 'Publish Android net6 Binaries'
+  retryCountOnTaskFailure: 3
+  inputs:
+    SourceFolder: $(build.sourcesdirectory)/Uno.Gallery/Uno.Gallery.iOS/bin/iPhone/Release
+    Contents: |
+      **/*.ipa
+    TargetFolder: $(build.artifactstagingdirectory)
+    CleanTargetFolder: false
+    OverWrite: false
+    flattenFolders: false
+
 - task: PublishBuildArtifacts@1
   retryCountOnTaskFailure: 3
   condition: always()
