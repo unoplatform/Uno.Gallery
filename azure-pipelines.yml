@@ -39,11 +39,6 @@ jobs:
         ArtifactName: Android
         BuildForPlayStore: True
         VersionCodeOffset: 1
-      Android_AppCenter:
-        ApplicationPlatform: AnyCPU
-        ArtifactName: Android
-        BuildForPlayStore: False
-        VersionCodeOffset: 1
 
   pool:
     vmImage: windows-2022
