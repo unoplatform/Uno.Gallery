@@ -21,7 +21,7 @@ steps:
   displayName: 'Publish Android net6 Binaries'
   retryCountOnTaskFailure: 3
   inputs:
-    SourceFolder: $(build.sourcesdirectory)/Uno.Gallery/Uno.Gallery.iOS/bin/Release
+    SourceFolder: $(build.sourcesdirectory)/Uno.Gallery/Uno.Gallery.iOS/bin/iPhone/Release
     Contents: |
       **/*.ipa
     TargetFolder: $(build.artifactstagingdirectory)
