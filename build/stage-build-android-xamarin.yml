@@ -21,7 +21,7 @@ steps:
   retryCountOnTaskFailure: 3
   inputs:
     solution: Uno.Gallery\Uno.Gallery.Droid\Uno.Gallery.Droid.csproj
-    msbuildArguments: /ds /m /r /p:Configuration=Release "/p:InformationalVersion=%GITVERSION_InformationalVersion%" /p:AndroidSigningKeyStore=$(keyStore.secureFilePath) /p:AndroidSigningStorePass=$(AndroidSigningStorePass) /p:AndroidSigningKeyPass=$(AndroidSigningKeyPass) /p:AndroidSigningKeyAlias=$(AndroidSigningKeyAlias) /p:AndroidKeyStore=true  /bl:$(build.artifactstagingdirectory)/build-$(BuildForPlayStore).binlog 
+    msbuildArguments: /ds /m /r /p:Configuration=Release /t:SignAndroidPackage "/p:InformationalVersion=%GITVERSION_InformationalVersion%" /p:AndroidSigningKeyStore=$(keyStore.secureFilePath) /p:AndroidSigningStorePass=$(AndroidSigningStorePass) /p:AndroidSigningKeyPass=$(AndroidSigningKeyPass) /p:AndroidSigningKeyAlias=$(AndroidSigningKeyAlias) /p:AndroidKeyStore=true  /bl:$(build.artifactstagingdirectory)/build-$(BuildForPlayStore).binlog 
 
 - task: CopyFiles@2
   displayName: 'Publish Android net6 Binaries'
