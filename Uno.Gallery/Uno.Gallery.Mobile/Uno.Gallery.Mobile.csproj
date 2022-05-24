@@ -120,6 +120,9 @@
 				<EnableCodeSigning>true</EnableCodeSigning>
 				<CodeSignEntitlements>MacCatalyst\Entitlements.plist</CodeSignEntitlements>
 
+				<CodesignProvision>Uno Gallery (Catalyst)</CodesignProvision>
+				<CodesignProvision Condition="$(BUILD_SOURCEBRANCH.StartsWith('refs/heads/canaries'))">Uno Gallery Canary (Catalyst)</CodesignProvision>
+
 				<!-- https://github.com/xamarin/xamarin-macios/issues/14686 -->
 				<_LibMonoLinkMode>Static</_LibMonoLinkMode>
 				<_LibXamarinLinkMode>Static</_LibXamarinLinkMode>
