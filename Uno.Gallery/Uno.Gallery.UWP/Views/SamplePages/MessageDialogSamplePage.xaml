@@ -20,7 +20,7 @@
 
 							<Button Content="Content only"
 									Click="Button_Click"
-									Style="{StaticResource MaterialContainedButtonStyle}" />
+									Style="{StaticResource FilledButtonStyle}" />
 							<!-- with the following C# code
 private void Button_Click(object sender, RoutedEventArgs e)
 {
@@ -35,7 +35,7 @@ private void Button_Click(object sender, RoutedEventArgs e)
 
 							<Button Content="Content and Title"
 									Click="Button_Click2"
-									Style="{StaticResource MaterialContainedButtonStyle}" />
+									Style="{StaticResource FilledButtonStyle}" />
 							<!-- with the following C# code
 private void Button_Click2(object sender, RoutedEventArgs e)
 {
@@ -50,7 +50,7 @@ private void Button_Click2(object sender, RoutedEventArgs e)
 											  smtx:XamlDisplayExtensions.Header="MessageDialog with Prompt">
 								<Button Content="Confirmation prompt"
 										Click="Button_Click3"
-										Style="{StaticResource MaterialContainedButtonStyle}" />
+										Style="{StaticResource FilledButtonStyle}" />
 								<!-- with the following C# code
 private void Button_Click3(object sender, RoutedEventArgs e)
 {
@@ -74,7 +74,7 @@ private void Button_Click3(object sender, RoutedEventArgs e)
 
 								<Button Content="Destructive prompt"
 										Click="Button_Click4"
-										Style="{StaticResource MaterialContainedButtonStyle}" />
+										Style="{StaticResource FilledButtonStyle}" />
 								<!-- with the following C# code
 private void Button_Click4(object sender, RoutedEventArgs e)
 {

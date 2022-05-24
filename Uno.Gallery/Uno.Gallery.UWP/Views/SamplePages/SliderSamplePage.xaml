@@ -5,12 +5,13 @@
 	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	  xmlns:smtx="using:ShowMeTheXAML"
-	  mc:Ignorable="d">
+	  xmlns:todo="what should be done"
+	  mc:Ignorable="d todo">
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 		<local:SamplePageLayout>
 
-			<local:SamplePageLayout.MaterialTemplate>
+			<todo:SamplePageLayout.MaterialTemplate>
 				<DataTemplate>
 					<StackPanel>
 
@@ -103,7 +104,7 @@
 						</smtx:XamlDisplay>
 					</StackPanel>
 				</DataTemplate>
-			</local:SamplePageLayout.MaterialTemplate>
+			</todo:SamplePageLayout.MaterialTemplate>
 
 			<local:SamplePageLayout.FluentTemplate>
 				<DataTemplate>

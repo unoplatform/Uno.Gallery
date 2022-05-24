@@ -4,41 +4,22 @@
 	  xmlns:local="using:Uno.Gallery"
 	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	  mc:Ignorable="d"
-	  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+	  mc:Ignorable="d">
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 		<local:SamplePageLayout>
-
-			<local:SamplePageLayout.FluentTemplate>
-				<DataTemplate>
-					<StackPanel Margin="0,16,0,0">
-
-						<!-- NavigationView Text -->
-						<TextBlock Text="The NavigationView control is the expandable and collapsible menu that you see in the top-left of your screen."
-								   Style="{StaticResource MaterialBody1}" />
-
-						<TextBlock Text="The style you see in this application comes from the Uno.Material library. Check Microsoft's documentation for more details on the fluent style."
-								   Style="{StaticResource MaterialBody1}"
-								   Margin="0,16" />
-					</StackPanel>
-				</DataTemplate>
-			</local:SamplePageLayout.FluentTemplate>
-
 			<local:SamplePageLayout.MaterialTemplate>
 				<DataTemplate>
-					<StackPanel Margin="0,16,0,0">
+					<StackPanel Margin="0,16,0,0" Spacing="16">
 
 						<!-- NavigationView Text -->
 						<TextBlock Text="The NavigationView control is the expandable and collapsible menu that you see in the top-left of your screen."
-								   Style="{StaticResource MaterialBody1}" />
-
+								   Style="{StaticResource BodyMedium}" />
 						<TextBlock Text="The NavigationView that you see in this application uses a material style that comes from the Uno.Material library. It also supports swipe gestures on iOS and Android."
-								   Style="{StaticResource MaterialBody1}"
-								   Margin="0,16" />
-
+								   Style="{StaticResource BodyMedium}"/>
 						<TextBlock Text="Check how it adjusts itself for mobile form factors!"
-								   Style="{StaticResource MaterialBody1}" />
+								   Style="{StaticResource BodyMedium}" />
+						
 					</StackPanel>
 				</DataTemplate>
 			</local:SamplePageLayout.MaterialTemplate>

@@ -16,15 +16,12 @@
 			<local:SamplePageLayout.FluentTemplate>
 				<DataTemplate>
 					<StackPanel>
-
-						<!-- ComboBox -->
 						<smtx:XamlDisplay UniqueKey="ComboBoxSamplePage_Fluent_ComboBox"
 										  smtx:XamlDisplayExtensions.Header="ComboBox"
 										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
 							<StackPanel Spacing="16">
 
-								<ComboBox PlaceholderText="Placeholder"
-										  ItemsSource="abcdefg" />
+								<ComboBox PlaceholderText="Placeholder" ItemsSource="abcdefg" />
 								<ComboBox PlaceholderText="Disabled"
 										  ItemsSource="abcdefg"
 										  IsEnabled="False" />
@@ -34,28 +31,25 @@
 					</StackPanel>
 				</DataTemplate>
 			</local:SamplePageLayout.FluentTemplate>
-
 			<local:SamplePageLayout.MaterialTemplate>
 				<DataTemplate>
 					<StackPanel>
-
-						<!-- ComboBox -->
 						<smtx:XamlDisplay UniqueKey="ComboBoxSamplePage_Material_ComboBox"
 										  smtx:XamlDisplayExtensions.Header="ComboBox"
 										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
 							<StackPanel Spacing="16">
 
-								<ComboBox Style="{StaticResource MaterialComboBoxStyle}"
+								<ComboBox Style="{StaticResource ComboBoxStyle}"
 										  PlaceholderText="Placeholder"
 										  ItemsSource="abcdefg" />
-								<ComboBox Style="{StaticResource MaterialComboBoxStyle}"
+								<ComboBox Style="{StaticResource ComboBoxStyle}"
 										  PlaceholderText="ComboBox + Icon"
 										  ItemsSource="abcdefg">
 									<um:ControlExtensions.Icon>
 										<SymbolIcon Symbol="Favorite" />
 									</um:ControlExtensions.Icon>
 								</ComboBox>
-								<ComboBox Style="{StaticResource MaterialComboBoxStyle}"
+								<ComboBox Style="{StaticResource ComboBoxStyle}"
 										  PlaceholderText="Disabled ComboBox"
 										  ItemsSource="abcdefg"
 										  IsEnabled="False" />
@@ -87,6 +81,7 @@
 					</StackPanel>
 				</DataTemplate>
 			</local:SamplePageLayout.CupertinoTemplate>
+
 		</local:SamplePageLayout>
 	</Grid>
 </Page>

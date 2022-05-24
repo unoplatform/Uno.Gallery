@@ -27,7 +27,7 @@
 									<DataTemplate>
 										<TextBlock Text="{Binding}"
 												   Margin="16,14,16,0"
-												   Style="{ThemeResource MaterialHeadline6}" />
+												   Style="{ThemeResource TitleLarge}" />
 									</DataTemplate>
 								</utu:Card.HeaderContentTemplate>
 								
@@ -35,7 +35,7 @@
 									<DataTemplate>
 										<TextBlock Text="{Binding}"
 												   Margin="16,0,16,14"
-												   Style="{ThemeResource MaterialBody2}" />
+												   Style="{ThemeResource BodySmall}" />
 									</DataTemplate>
 								</utu:Card.SubHeaderContentTemplate>
 							</utu:Card>
@@ -54,7 +54,7 @@
 									<DataTemplate>
 										<TextBlock Text="{Binding}"
 												   Margin="16,14,16,0"
-												   Style="{ThemeResource MaterialHeadline6}" />
+												   Style="{ThemeResource TitleLarge}" />
 									</DataTemplate>
 								</utu:Card.HeaderContentTemplate>
 								
@@ -62,7 +62,7 @@
 									<DataTemplate>
 										<TextBlock Text="{Binding}"
 												   Margin="16,0,16,14"
-												   Style="{ThemeResource MaterialBody2}" />
+												   Style="{ThemeResource BodySmall}" />
 									</DataTemplate>
 								</utu:Card.SubHeaderContentTemplate>
 								
@@ -70,7 +70,7 @@
 									<DataTemplate>
 										<TextBlock Text="{Binding}"
 												   Margin="16,0,16,14"
-												   Style="{ThemeResource MaterialBody2}" />
+												   Style="{ThemeResource BodySmall}" />
 									</DataTemplate>
 								</utu:Card.SupportingContentTemplate>
 							</utu:Card>
@@ -88,7 +88,7 @@
 									<DataTemplate>
 										<TextBlock Text="{Binding}"
 												   Margin="16,14,16,0"
-												   Style="{ThemeResource MaterialHeadline6}" />
+												   Style="{ThemeResource TitleLarge}" />
 									</DataTemplate>
 								</utu:Card.HeaderContentTemplate>
 								
@@ -96,7 +96,7 @@
 									<DataTemplate>
 										<TextBlock Text="{Binding}"
 												   Margin="16,0,16,14"
-												   Style="{ThemeResource MaterialBody2}" />
+												   Style="{ThemeResource BodySmall}" />
 									</DataTemplate>
 								</utu:Card.SubHeaderContentTemplate>
 								
@@ -124,7 +124,7 @@
 									<DataTemplate>
 										<TextBlock Text="{Binding}"
 												   Margin="16,14,16,0"
-												   Style="{ThemeResource MaterialHeadline6}" />
+												   Style="{ThemeResource TitleLarge}" />
 									</DataTemplate>
 								</utu:Card.HeaderContentTemplate>
 								
@@ -132,7 +132,7 @@
 									<DataTemplate>
 										<TextBlock Text="{Binding}"
 												   Margin="16,0,16,14"
-												   Style="{ThemeResource MaterialBody2}" />
+												   Style="{ThemeResource BodySmall}" />
 									</DataTemplate>
 								</utu:Card.SubHeaderContentTemplate>
 								
@@ -140,7 +140,7 @@
 									<DataTemplate>
 										<TextBlock Text="{Binding}"
 												   Margin="16,0,16,14"
-												   Style="{ThemeResource MaterialBody2}" />
+												   Style="{ThemeResource BodySmall}" />
 									</DataTemplate>
 								</utu:Card.SupportingContentTemplate>
 								
@@ -168,7 +168,7 @@
 									<DataTemplate>
 										<TextBlock Text="{Binding}"
 												   Margin="16,14,16,0"
-												   Style="{ThemeResource MaterialHeadline6}" />
+												   Style="{ThemeResource TitleLarge}" />
 									</DataTemplate>
 								</utu:Card.HeaderContentTemplate>
 								
@@ -176,7 +176,7 @@
 									<DataTemplate>
 										<TextBlock Text="{Binding}"
 												   Margin="16,0,16,14"
-												   Style="{ThemeResource MaterialBody2}" />
+												   Style="{ThemeResource BodySmall}" />
 									</DataTemplate>
 								</utu:Card.SubHeaderContentTemplate>
 								
@@ -186,19 +186,19 @@
 											
 											<TextBlock Text="{Binding}"
 													   Margin="16,4,16,0"
-													   Style="{ThemeResource MaterialBody2}" />
+													   Style="{ThemeResource BodySmall}" />
 											
 											<StackPanel Orientation="Horizontal">
 												
 												<Button Content="ACTION 1"
 														Margin="6"
 														Padding="10,2"
-														Style="{StaticResource MaterialTextButtonStyle}" />
+														Style="{StaticResource TextButtonStyle}" />
 												
 												<Button Content="ACTION 2"
 														Margin="6"
 														Padding="10,2"
-														Style="{StaticResource MaterialTextButtonStyle}" />
+														Style="{StaticResource TextButtonStyle}" />
 											</StackPanel>
 										</StackPanel>
 									</DataTemplate>
@@ -220,11 +220,11 @@
 												VerticalAlignment="Bottom"
 												HorizontalAlignment="Right"
 												HorizontalContentAlignment="Center"
-												Style="{StaticResource MaterialTextButtonStyle}">
+												Style="{StaticResource TextButtonStyle}">
 											<Button.ContentTemplate>
 												<DataTemplate>
 													<!-- Material share icon -->
-													<Path Fill="{StaticResource MaterialOnSurfaceBrush}"
+													<Path Fill="{StaticResource OnSurfaceBrush}"
 														  Data="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z" />
 												</DataTemplate>
 											</Button.ContentTemplate>
@@ -249,7 +249,7 @@
 										<TextBlock Text="{Binding}"
 												   MaxLines="1"
 												   Margin="16,14,16,0"
-												   Style="{ThemeResource MaterialHeadline6}" />
+												   Style="{ThemeResource TitleLarge}" />
 									</DataTemplate>
 								</utu:Card.HeaderContentTemplate>
 								
@@ -258,17 +258,17 @@
 										<TextBlock Text="{Binding}"
 												   MaxLines="2"
 												   Margin="16,0,16,14"
-												   Style="{ThemeResource MaterialBody2}" />
+												   Style="{ThemeResource BodySmall}" />
 									</DataTemplate>
 								</utu:Card.SubHeaderContentTemplate>
 								
 								<utu:Card.SupportingContentTemplate>
 									<DataTemplate>
 										<Border BorderThickness="0,1,0,0"
-												BorderBrush="{StaticResource MaterialOnSurfaceFocusedBrush}">
+												BorderBrush="{StaticResource OnSurfaceFocusedBrush}">
 											<TextBlock Text="{Binding}"
 													   Margin="16,12,16,14"
-													   Style="{ThemeResource MaterialBody2}" />
+													   Style="{ThemeResource BodySmall}" />
 										</Border>
 									</DataTemplate>
 								</utu:Card.SupportingContentTemplate>
@@ -301,7 +301,7 @@
 										<TextBlock Text="{Binding}"
 												   MaxLines="1"
 												   Margin="16,14,16,0"
-												   Style="{ThemeResource MaterialHeadline6}" />
+												   Style="{ThemeResource TitleLarge}" />
 									</DataTemplate>
 								</utu:Card.HeaderContentTemplate>
 								
@@ -310,7 +310,7 @@
 										<TextBlock Text="{Binding}"
 												   MaxLines="2"
 												   Margin="16,0,16,14"
-												   Style="{ThemeResource MaterialBody2}" />
+												   Style="{ThemeResource BodySmall}" />
 									</DataTemplate>
 								</utu:Card.SubHeaderContentTemplate>
 								
@@ -326,7 +326,7 @@
 									<DataTemplate>
 										<TextBlock Text="{Binding}"
 												   Margin="16,12,16,14"
-												   Style="{ThemeResource MaterialBody2}" />
+												   Style="{ThemeResource BodySmall}" />
 									</DataTemplate>
 								</utu:Card.SupportingContentTemplate>
 								
@@ -344,11 +344,11 @@
 												Margin="6"
 												Padding="8,12"
 												HorizontalContentAlignment="Center"
-												Style="{StaticResource MaterialTextButtonStyle}">
+												Style="{StaticResource TextButtonStyle}">
 											<Button.ContentTemplate>
 												<DataTemplate>
 													<!-- Material more icon -->
-													<Path Fill="{StaticResource MaterialOnSurfaceBrush}"
+													<Path Fill="{StaticResource OnSurfaceBrush}"
 														  Data="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" />
 												</DataTemplate>
 											</Button.ContentTemplate>

@@ -15,7 +15,7 @@
 					<Grid x:Name="Root">
 						<Button Content="{TemplateBinding Tag}"
 								FontSize="10"
-								Style="{StaticResource MaterialTextButtonStyle}">
+								Style="{StaticResource TextButtonStyle}">
 							<Button.Flyout>
 								<Flyout Placement="LeftEdgeAlignedBottom">
 									<Flyout.FlyoutPresenterStyle>

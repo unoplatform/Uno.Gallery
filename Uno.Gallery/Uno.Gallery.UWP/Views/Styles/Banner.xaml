@@ -44,43 +44,43 @@
 							<Button x:Name="PART_HowItWorkButton"
 									Content="HOW IT WORKS"
 									FontWeight="Medium"
-									Foreground="{StaticResource MaterialOnSurfaceBrush}"
-									Style="{StaticResource MaterialTextButtonStyle}" />
+									Foreground="{StaticResource OnSurfaceBrush}"
+									Style="{StaticResource TextButtonStyle}" />
 
 							<Button x:Name="PART_CodeSampleButton"
 									Content="CODE SAMPLES"
 									FontWeight="Medium"
-									Foreground="{StaticResource MaterialOnSurfaceBrush}"
-									Style="{StaticResource MaterialTextButtonStyle}" />
+									Foreground="{StaticResource OnSurfaceBrush}"
+									Style="{StaticResource TextButtonStyle}" />
 
 							<Button x:Name="PART_ShowCasesButton"
 									Content="SHOWCASES"
 									FontWeight="Medium"
-									Foreground="{StaticResource MaterialOnSurfaceBrush}"
-									Style="{StaticResource MaterialTextButtonStyle}" />
+									Foreground="{StaticResource OnSurfaceBrush}"
+									Style="{StaticResource TextButtonStyle}" />
 
 							<Button x:Name="PART_DocsButton"
 									Content="DOCS"
 									FontWeight="Medium"
-									Foreground="{StaticResource MaterialOnSurfaceBrush}"
-									Style="{StaticResource MaterialTextButtonStyle}" />
+									Foreground="{StaticResource OnSurfaceBrush}"
+									Style="{StaticResource TextButtonStyle}" />
 
 							<Button x:Name="PART_BlogButton"
 									Content="BLOG"
 									FontWeight="Medium"
-									Foreground="{StaticResource MaterialOnSurfaceBrush}"
-									Style="{StaticResource MaterialTextButtonStyle}" />
+									Foreground="{StaticResource OnSurfaceBrush}"
+									Style="{StaticResource TextButtonStyle}" />
 
 							<Button x:Name="PART_ContactButton"
 									Content="CONTACT"
 									FontWeight="Medium"
-									Foreground="{StaticResource MaterialOnSurfaceBrush}"
-									Style="{StaticResource MaterialTextButtonStyle}" />
+									Foreground="{StaticResource OnSurfaceBrush}"
+									Style="{StaticResource TextButtonStyle}" />
 
 							<Button x:Name="PART_GetStartedButton"
 									Content="Get Started"
 									FontWeight="Bold"
-									Style="{StaticResource MaterialContainedButtonStyle}"
+									Style="{StaticResource ContainedButtonStyle}"
 									Margin="32,12" />
 						</StackPanel>
 					</Grid>

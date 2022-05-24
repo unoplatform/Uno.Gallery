@@ -124,7 +124,7 @@ namespace Uno.Gallery
 				(Application.Current as App)?.ShellNavigateTo(sample);
 			}
 
-			bool HasValue(string val) => 
+			bool HasValue(string val) =>
 				!string.IsNullOrWhiteSpace(val) && !string.Equals(UndefinedValue, val, StringComparison.OrdinalIgnoreCase);
 
 		}
@@ -367,12 +367,46 @@ namespace Uno.Gallery
 		}
 
 		public static IEnumerable<Sample> GetSamples()
-			=> _samples = _samples ?? Assembly.GetExecutingAssembly()
-				  .DefinedTypes
-				  .Where(x => x.Namespace?.StartsWith("Uno.Gallery") == true)
-				  .Select(x => new { TypeInfo = x, SamplePageAttribute = x.GetCustomAttribute<SamplePageAttribute>() })
-				  .Where(x => x.SamplePageAttribute != null)
-				  .Select(x => new Sample(x.SamplePageAttribute, x.TypeInfo.AsType()))
-				  .ToArray();
+		{
+			return _samples = _samples ??
+				Assembly.GetExecutingAssembly().DefinedTypes
+					.Where(x => x.Namespace?.StartsWith("Uno.Gallery") == true)
+					.Select(x => new
+					{
+						TypeInfo = x,
+						Attribute = x.GetCustomAttribute<SamplePageAttribute>(),
+						Conditional = x.GetCustomAttribute<SampleConditionalAttribute>(),
+					})
+					.Where(x => x.Attribute != null)
+					.Where(x => x.Conditional == null || ShouldBeDisplayed(x.Conditional.Conditionals))
+					.Select(x => new Sample(x.Attribute, x.TypeInfo.AsType()))
+					.ToArray();
+
+			bool ShouldBeDisplayed(SampleConditionals conditionals)
+			{
+				if (conditionals.HasFlag(SampleConditionals.Disabled)) return false;
+
+				var context = SampleConditionals
+#if WINDOWS_UWP
+					.Windows;
+#elif __MACOS__
+					.macOS;
+#elif __IOS__
+					.iOS;
+#elif __ANDROID__
+					.Droid;
+#elif __WASM__
+					.Wasm;
+#elif HAS_UNO_SKIA_GTK
+					.SkiaGtk;
+#else
+					.Always;
+#endif
+
+				var result = conditionals.HasFlag(context);
+
+				return result;
+			}
+		}
 	}
 }

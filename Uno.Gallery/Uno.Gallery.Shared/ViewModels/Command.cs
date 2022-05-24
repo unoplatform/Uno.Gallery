@@ -31,6 +31,16 @@ namespace Uno.Gallery.ViewModels
 		private object _isExecuting = null;
 		private static object _isExecutingNull = new object(); // this represent a null parameter when something is executing
 
+		public Command(Action action, Func<bool> canExecute = null)
+		{
+			_action = action != null
+				? (Action<object>)(_ => action())
+				: throw new ArgumentNullException(nameof(action));
+			_canExecute = canExecute != null
+				? (Func<object, bool>)(_ => canExecute())
+				: null;
+		}
+
 		public Command(Action<object> action, Func<object, bool> canExecute = null)
 		{
 			_action = action ?? throw new ArgumentNullException(nameof(action));

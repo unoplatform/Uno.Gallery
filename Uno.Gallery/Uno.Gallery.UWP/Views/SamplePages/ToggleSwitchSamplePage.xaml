@@ -16,9 +16,9 @@
 									  smtx:XamlDisplayExtensions.Header="Default">
 						<StackPanel Spacing="20">
 							<ToggleSwitch Header="OFF"
-										  Foreground="{StaticResource MaterialOnBackgroundBrush}" />
+										  Foreground="{StaticResource OnBackgroundBrush}" />
 							<ToggleSwitch Header="ON"
-										  Foreground="{StaticResource MaterialOnBackgroundBrush}"
+										  Foreground="{StaticResource OnBackgroundBrush}"
 										  IsOn="True" />
 							<ToggleSwitch Header="DISABLED OFF"
 										  IsEnabled="False" />
