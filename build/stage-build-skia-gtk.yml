@@ -18,9 +18,10 @@ steps:
     msbuildArguments: /ds /m /r /p:Configuration=Release "/p:InformationalVersion=%GITVERSION_InformationalVersion%" /bl:$(build.artifactstagingdirectory)/build.binlog 
 
 - task: CopyFiles@2
-  displayName: Copy Wasm output
+  displayName: Copy Skia output
   inputs:
-    Contents: Uno.Gallery/Uno.Gallery.Skia.Gtk/bin/Release/netcoreapp3.1
+    SourceFolder: Uno.Gallery\Uno.Gallery.Skia.Gtk\bin\Release\netcoreapp3.1
+    Contents: '**/*.*'
     TargetFolder: $(Build.ArtifactStagingDirectory)/bin
     FlattenFolders: true
 
