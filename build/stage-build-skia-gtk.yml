@@ -23,7 +23,6 @@ steps:
     SourceFolder: Uno.Gallery\Uno.Gallery.Skia.Gtk\bin\Release\netcoreapp3.1
     Contents: '**/*.*'
     TargetFolder: $(Build.ArtifactStagingDirectory)/bin
-    FlattenFolders: true
 
 - task: PublishBuildArtifacts@1
   retryCountOnTaskFailure: 3
