@@ -16,7 +16,6 @@ using Windows.UI.Xaml.Navigation;
 namespace Uno.Gallery.Views.SamplePages
 {
 	[SamplePage(SampleCategory.Components, "Card", Description = "This control is used to display content and actions about a single item.", DocumentationLink = "https://material.io/components/cards")]
-	[SampleConditional(SampleConditionals.Disabled, Reason = "todo: styles not merged")]
 	public sealed partial class CardSamplePage : Page
 	{
 		public CardSamplePage()

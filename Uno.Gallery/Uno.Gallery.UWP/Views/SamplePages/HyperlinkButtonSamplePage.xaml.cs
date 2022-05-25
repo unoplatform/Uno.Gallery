@@ -16,7 +16,6 @@ using Windows.UI.Xaml.Navigation;
 namespace Uno.Gallery.Views.Samples
 {
 	[SamplePage(SampleCategory.Components, "HyperlinkButton", Description = "Represents a button control that functions as a hyperlink.", DocumentationLink = "https://docs.microsoft.com/en-us/uwp/api/windows.ui.xaml.controls.hyperlinkbutton")]
-	[SampleConditional(SampleConditionals.Disabled, Reason = "todo: styles not implemented")]
 	public sealed partial class HyperlinkButtonSamplePage : Page
 	{
 		public HyperlinkButtonSamplePage()

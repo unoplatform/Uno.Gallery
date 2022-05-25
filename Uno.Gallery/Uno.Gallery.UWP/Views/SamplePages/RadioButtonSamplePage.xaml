@@ -77,23 +77,24 @@
 								<RadioButton GroupName="RadioButtonDemo_Material_2a"
 											 AutomationProperties.AutomationId="RadioButton_Material_Secondary_Unchecked"
 											 Content="UNCHECKED"
-											 Style="{StaticResource M3MaterialSecondaryRadioButtonStyle}" />
+											 Style="{StaticResource SecondaryRadioButtonStyle}" />
 								<RadioButton GroupName="RadioButtonDemo_Material_2a"
 											 AutomationProperties.AutomationId="RadioButton_Material_Secondary_Checked"
 											 Content="CHECKED"
 											 IsChecked="True"
-											 Style="{StaticResource M3MaterialSecondaryRadioButtonStyle}" />
+											 Style="{StaticResource SecondaryRadioButtonStyle}" />
 								<RadioButton GroupName="RadioButtonDemo_Material_2b"
 											 AutomationProperties.AutomationId="RadioButton_Material_Secondary_Disabled_Unchecked"
 											 Content="DISABLED UNCHECKED"
 											 IsEnabled="False"
-											 Style="{StaticResource M3MaterialSecondaryRadioButtonStyle}" />
+											 Style="{StaticResource SecondaryRadioButtonStyle}" />
 								<RadioButton GroupName="RadioButtonDemo_Material_2b"
 											 AutomationProperties.AutomationId="RadioButton_Material_Secondary_Disabled_Checked"
 											 Content="DISABLED CHECKED"
 											 IsChecked="True"
 											 IsEnabled="False"
-											 Style="{StaticResource M3MaterialSecondaryRadioButtonStyle}" />
+											 Style="{StaticResource SecondaryRadioButtonStyle}" />
+
 							</StackPanel>
 						</smtx:XamlDisplay>
 
