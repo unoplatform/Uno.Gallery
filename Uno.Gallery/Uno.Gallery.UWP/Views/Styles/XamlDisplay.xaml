@@ -16,7 +16,7 @@
 				Value="XamlDisplay" />
 
 		<Setter Property="Margin"
-				Value="0,24,0,0" />
+				Value="0,16,0,0" />
 		<Setter Property="BorderBrush"
 				Value="{StaticResource DividerBrush}" />
 		<Setter Property="BorderThickness"
@@ -60,21 +60,21 @@
 
 						<!-- Header -->
 						<TextBlock Text="{Binding Path=(smtx:XamlDisplayExtensions.Header), RelativeSource={RelativeSource TemplatedParent}}"
-								   Style="{StaticResource MaterialHeadline6}"
-								   Foreground="{StaticResource MaterialOnBackgroundBrush}"
+								   Style="{StaticResource TitleLarge}"
+								   Foreground="{StaticResource OnBackgroundBrush}"
 								   Visibility="{Binding Path=(smtx:XamlDisplayExtensions.Header), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource IsNullOrEmptyToCollapsed}, FallbackValue=Collapsed}" />
 
 						<!-- Description -->
 						<TextBlock Text="{Binding Path=(smtx:XamlDisplayExtensions.Description), RelativeSource={RelativeSource TemplatedParent}}"
-								   Style="{StaticResource MaterialBody1}"
-								   Foreground="{StaticResource MaterialOnBackgroundBrush}"
+								   Style="{StaticResource BodyMedium}"
+								   Foreground="{StaticResource OnBackgroundBrush}"
 								   Opacity="0.8"
 								   Visibility="{Binding Path=(smtx:XamlDisplayExtensions.Description), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource IsNullOrEmptyToCollapsed}, FallbackValue=Collapsed}"
 								   Margin="0,16,0,0" />
 
 						<Grid BorderBrush="{TemplateBinding BorderBrush}"
 							  BorderThickness="{TemplateBinding BorderThickness}"
-							  Margin="0,30,0,0">
+							  Margin="0,16,0,0">
 
 							<Grid.RowDefinitions>
 								<RowDefinition Height="Auto" />
@@ -94,14 +94,15 @@
 												  Content="{TemplateBinding Content}" />
 
 								<!-- Reveal Button -->
-								<ToggleButton x:Name="RevealButton"
-											  Style="{StaticResource XamlDisplayExpandToggleButtonStyle}"
+								<ToggleButton Grid.Column="1"
+											  x:Name="RevealButton"
+											  ToolTipService.ToolTip="Show XAML"
 											  IsChecked="{Binding Path=(smtx:XamlDisplayExtensions.ShowXaml), RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
 											  HorizontalAlignment="Right"
 											  VerticalAlignment="Top"
 											  android:Visibility="Collapsed"
 											  ios:Visibility="Collapsed"
-											  Grid.Column="1" />
+											  Style="{StaticResource XamlDisplayExpandToggleButtonStyle}" />
 							</Grid>
 
 							<ScrollViewer Background="{StaticResource SampleSecondBackgroundBrush}"
@@ -118,12 +119,13 @@
 								<TextBlock Text="{Binding Path=(smtx:XamlDisplayExtensions.PrettyXaml), RelativeSource={RelativeSource TemplatedParent}}"
 										   IsTextSelectionEnabled="True"
 										   FontFamily="Consolas"
-										   Foreground="{StaticResource MaterialOnSurfaceBrush}"
+										   Foreground="{StaticResource OnSurfaceBrush}"
 										   Margin="30,20,60,20" />
 							</ScrollViewer>
 
 							<!-- Copy Button -->
-							<Button Style="{StaticResource MaterialTextButtonStyle}"
+							<Button Grid.Row="1"
+									ToolTipService.ToolTip="Copy XAML"
 									local:ClipboardExtensions.CopyTrigger="ButtonClicked"
 									local:ClipboardExtensions.CopyContent="{Binding Path=(smtx:XamlDisplayExtensions.PrettyXaml), RelativeSource={RelativeSource TemplatedParent}}"
 									Padding="0"
@@ -134,11 +136,11 @@
 									macos:Visibility="{Binding ElementName=RevealButton, Path=IsChecked, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
 									ios:Visibility="Collapsed"
 									android:Visibility="Collapsed"
-									Grid.Row="1">
+									Style="{StaticResource TextButtonStyle}">
 
 								<!-- Icon -->
 								<Path Data="{StaticResource CopyToClipboardPathStyle}"
-									  Fill="{StaticResource MaterialOnSurfaceMediumBrush}"
+									  Fill="{StaticResource OnSurfaceMediumBrush}"
 									  Height="22"
 									  Width="19"
 									  Stretch="Uniform"
@@ -183,12 +185,13 @@
 
 						<!-- Reveal Button -->
 						<ToggleButton x:Name="RevealButton"
-									  Style="{StaticResource XamlDisplayExpandToggleButtonStyle}"
+									  ToolTipService.ToolTip="Show XAML"
 									  IsChecked="False"
 									  HorizontalAlignment="Right"
 									  VerticalAlignment="Top"
 									  android:Visibility="Collapsed"
-									  ios:Visibility="Collapsed" />
+									  ios:Visibility="Collapsed"
+									  Style="{StaticResource XamlDisplayExpandToggleButtonStyle}" />
 
 						<ScrollViewer Background="{StaticResource SampleSecondBackgroundBrush}"
 									  HorizontalScrollBarVisibility="Auto"
@@ -204,12 +207,13 @@
 							<TextBlock Text="{TemplateBinding Xaml}"
 									   IsTextSelectionEnabled="True"
 									   FontFamily="Consolas"
-									   Foreground="{StaticResource MaterialOnSurfaceBrush}"
+									   Foreground="{StaticResource OnSurfaceBrush}"
 									   Margin="30,20,60,20" />
 						</ScrollViewer>
 
 
-						<Button Style="{StaticResource MaterialTextButtonStyle}"
+						<Button Grid.Row="1"
+								ToolTipService.ToolTip="Copy XAML"
 								local:ClipboardExtensions.CopyTrigger="ButtonClicked"
 								local:ClipboardExtensions.CopyContent="{TemplateBinding Xaml}"
 								Padding="0"
@@ -220,10 +224,10 @@
 								macos:Visibility="{Binding ElementName=RevealButton, Path=IsChecked, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
 								ios:Visibility="Collapsed"
 								android:Visibility="Collapsed"
-								Grid.Row="1">
+								Style="{StaticResource TextButtonStyle}">
 
 							<Path Data="{StaticResource CopyToClipboardPathStyle}"
-								  Fill="{StaticResource MaterialOnSurfaceMediumBrush}"
+								  Fill="{StaticResource OnSurfaceMediumBrush}"
 								  Height="22"
 								  Width="19"
 								  Stretch="Uniform"

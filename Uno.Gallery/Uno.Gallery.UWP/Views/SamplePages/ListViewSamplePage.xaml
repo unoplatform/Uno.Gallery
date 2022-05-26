@@ -50,11 +50,11 @@ public List<Record> Data { get; } = new List<Record>
 
 												<!-- Composition Name -->
 												<TextBlock Text="{Binding CompositionName}"
-														   Style="{StaticResource MaterialSubtitle2}" />
+														   Style="{StaticResource TitleMedium}" />
 
 												<!-- Artist Name -->
 												<TextBlock Text="{Binding ArtistName}"
-														   Style="{ThemeResource MaterialBody2}" />
+														   Style="{ThemeResource BodySmall}" />
 											</StackPanel>
 										</Grid>
 									</DataTemplate>
@@ -64,7 +64,7 @@ public List<Record> Data { get; } = new List<Record>
 
 						<!-- Note -->
 						<TextBlock Text="Side Note: If the template is used anywhere else in your app consider making the template a resource."
-								   Style="{StaticResource MaterialCaption}"
+								   Style="{StaticResource BodySmall}"
 								   Margin="0,16,0,0" />
 
 						<smtx:XamlDisplay UniqueKey="ListViewSamplePage_Selection"

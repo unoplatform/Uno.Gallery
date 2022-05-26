@@ -42,17 +42,17 @@ public class BindingSamplePageViewModel : INotifyPropertyChanged
 
 							<!-- Instruction -->
 							<TextBlock Text="Enter some text:"
-									   Style="{StaticResource MaterialBody1}"
+									   Style="{StaticResource BodyMedium}"
 									   Margin="0,0,0,4" />
 
 							<!-- myTextBox -->
 							<TextBox x:Name="myTextBox"
 									 PlaceholderText="myTextBox"
-									 Style="{StaticResource MaterialFilledTextBoxStyle}"
+									 Style="{StaticResource FilledTextBoxStyle}"
 									 Text="{Binding Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
 							<!-- Text Value -->
-							<TextBlock Style="{StaticResource MaterialBody1}"
+							<TextBlock Style="{StaticResource BodyMedium}"
 									   Margin="0,8,0,0">
 									<Run Text="The text of" />
 									<Run Text="{Binding Name, ElementName=myTextBox}"
@@ -62,7 +62,7 @@ public class BindingSamplePageViewModel : INotifyPropertyChanged
 							</TextBlock>
 
 							<!-- Length Value -->
-							<TextBlock Style="{StaticResource MaterialBody1}">
+							<TextBlock Style="{StaticResource BodyMedium}">
 									<Run Text="The length is:" />
 									<Run Text="{Binding TextLength}" />
 							</TextBlock>

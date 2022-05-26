@@ -18,24 +18,24 @@
 						<!-- Outlined card -->
 						<smtx:XamlDisplay UniqueKey="CardSamplePage_MaterialOutlinedCard"
 										  smtx:XamlDisplayExtensions.Header="Outlined card">
-							
+
 							<utu:Card HeaderContent="Outlined card"
-										   SubHeaderContent="With title and subtitle only"
-										   Style="{StaticResource MaterialOutlinedCardStyle}">
-								
+									  SubHeaderContent="With title and subtitle only"
+									  Style="{StaticResource OutlinedCardStyle}">
+
 								<utu:Card.HeaderContentTemplate>
 									<DataTemplate>
 										<TextBlock Text="{Binding}"
 												   Margin="16,14,16,0"
-												   Style="{ThemeResource MaterialHeadline6}" />
+												   Style="{ThemeResource TitleLarge}" />
 									</DataTemplate>
 								</utu:Card.HeaderContentTemplate>
-								
+
 								<utu:Card.SubHeaderContentTemplate>
 									<DataTemplate>
 										<TextBlock Text="{Binding}"
 												   Margin="16,0,16,14"
-												   Style="{ThemeResource MaterialBody2}" />
+												   Style="{ThemeResource BodySmall}" />
 									</DataTemplate>
 								</utu:Card.SubHeaderContentTemplate>
 							</utu:Card>
@@ -44,33 +44,33 @@
 						<!-- Elevated card with supporting content -->
 						<smtx:XamlDisplay UniqueKey="CardSamplePage_MaterialElevatedCardWithSupportingContent"
 										  smtx:XamlDisplayExtensions.Header="Elevated card with supporting content">
-							
+
 							<utu:Card HeaderContent="Elevated card"
-										   SubHeaderContent="With supporting content"
-										   SupportingContent="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor."
-										   Style="{StaticResource MaterialElevatedCardStyle}">
-								
+									  SubHeaderContent="With supporting content"
+									  SupportingContent="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor."
+									  Style="{StaticResource ElevatedCardStyle}">
+
 								<utu:Card.HeaderContentTemplate>
 									<DataTemplate>
 										<TextBlock Text="{Binding}"
 												   Margin="16,14,16,0"
-												   Style="{ThemeResource MaterialHeadline6}" />
+												   Style="{ThemeResource TitleLarge}" />
 									</DataTemplate>
 								</utu:Card.HeaderContentTemplate>
-								
+
 								<utu:Card.SubHeaderContentTemplate>
 									<DataTemplate>
 										<TextBlock Text="{Binding}"
 												   Margin="16,0,16,14"
-												   Style="{ThemeResource MaterialBody2}" />
+												   Style="{ThemeResource BodySmall}" />
 									</DataTemplate>
 								</utu:Card.SubHeaderContentTemplate>
-								
+
 								<utu:Card.SupportingContentTemplate>
 									<DataTemplate>
 										<TextBlock Text="{Binding}"
 												   Margin="16,0,16,14"
-												   Style="{ThemeResource MaterialBody2}" />
+												   Style="{ThemeResource BodySmall}" />
 									</DataTemplate>
 								</utu:Card.SupportingContentTemplate>
 							</utu:Card>
@@ -79,27 +79,27 @@
 						<!-- Outlined card with media content -->
 						<smtx:XamlDisplay UniqueKey="CardSamplePage_MaterialOutlinedCardWithMediaContent"
 										  smtx:XamlDisplayExtensions.Header="Outlined card with media content">
-							
+
 							<utu:Card HeaderContent="Outlined card"
-										   SubHeaderContent="With media content"
-										   MediaContent="ms-appx:///Assets/LargeMedia.png"
-										   Style="{StaticResource MaterialOutlinedCardStyle}">
+									  SubHeaderContent="With media content"
+									  MediaContent="ms-appx:///Assets/LargeMedia.png"
+									  Style="{StaticResource OutlinedCardStyle}">
 								<utu:Card.HeaderContentTemplate>
 									<DataTemplate>
 										<TextBlock Text="{Binding}"
 												   Margin="16,14,16,0"
-												   Style="{ThemeResource MaterialHeadline6}" />
+												   Style="{ThemeResource TitleLarge}" />
 									</DataTemplate>
 								</utu:Card.HeaderContentTemplate>
-								
+
 								<utu:Card.SubHeaderContentTemplate>
 									<DataTemplate>
 										<TextBlock Text="{Binding}"
 												   Margin="16,0,16,14"
-												   Style="{ThemeResource MaterialBody2}" />
+												   Style="{ThemeResource BodySmall}" />
 									</DataTemplate>
 								</utu:Card.SubHeaderContentTemplate>
-								
+
 								<utu:Card.MediaContentTemplate>
 									<DataTemplate>
 										<Image Source="{Binding}"
@@ -113,37 +113,37 @@
 						<!-- Elevated card with media and supporting content -->
 						<smtx:XamlDisplay UniqueKey="CardSamplePage_MaterialElevatedCardWithMediaAndSupportingContent"
 										  smtx:XamlDisplayExtensions.Header="Elevated card with media and supporting content">
-							
+
 							<utu:Card HeaderContent="Elevated card"
-										   SubHeaderContent="With media and supporting content"
-										   MediaContent="ms-appx:///Assets/LargeMedia.png"
-										   SupportingContent="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor."
-										   Style="{StaticResource MaterialElevatedCardStyle}">
-								
+									  SubHeaderContent="With media and supporting content"
+									  MediaContent="ms-appx:///Assets/LargeMedia.png"
+									  SupportingContent="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor."
+									  Style="{StaticResource ElevatedCardStyle}">
+
 								<utu:Card.HeaderContentTemplate>
 									<DataTemplate>
 										<TextBlock Text="{Binding}"
 												   Margin="16,14,16,0"
-												   Style="{ThemeResource MaterialHeadline6}" />
+												   Style="{ThemeResource TitleLarge}" />
 									</DataTemplate>
 								</utu:Card.HeaderContentTemplate>
-								
+
 								<utu:Card.SubHeaderContentTemplate>
 									<DataTemplate>
 										<TextBlock Text="{Binding}"
 												   Margin="16,0,16,14"
-												   Style="{ThemeResource MaterialBody2}" />
+												   Style="{ThemeResource BodySmall}" />
 									</DataTemplate>
 								</utu:Card.SubHeaderContentTemplate>
-								
+
 								<utu:Card.SupportingContentTemplate>
 									<DataTemplate>
 										<TextBlock Text="{Binding}"
 												   Margin="16,0,16,14"
-												   Style="{ThemeResource MaterialBody2}" />
+												   Style="{ThemeResource BodySmall}" />
 									</DataTemplate>
 								</utu:Card.SupportingContentTemplate>
-								
+
 								<utu:Card.MediaContentTemplate>
 									<DataTemplate>
 										<Image Source="{Binding}"
@@ -157,53 +157,53 @@
 						<!-- Outlined card with media content, supporting content and supplemental action buttons -->
 						<smtx:XamlDisplay UniqueKey="CardSamplePage_MaterialOutlinedCardWithSupplementalActionButton"
 										  smtx:XamlDisplayExtensions.Header="Outlined card with media content, supporting content and supplemental action button">
-							
+
 							<utu:Card HeaderContent="Outlined card"
-										   SubHeaderContent="With media, supporting content and supplemental action button"
-										   SupportingContent="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor."
-										   MediaContent="ms-appx:///Assets/LargeMedia.png"
-										   Style="{StaticResource MaterialOutlinedCardStyle}">
-								
+									  SubHeaderContent="With media, supporting content and supplemental action button"
+									  SupportingContent="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor."
+									  MediaContent="ms-appx:///Assets/LargeMedia.png"
+									  Style="{StaticResource OutlinedCardStyle}">
+
 								<utu:Card.HeaderContentTemplate>
 									<DataTemplate>
 										<TextBlock Text="{Binding}"
 												   Margin="16,14,16,0"
-												   Style="{ThemeResource MaterialHeadline6}" />
+												   Style="{ThemeResource TitleLarge}" />
 									</DataTemplate>
 								</utu:Card.HeaderContentTemplate>
-								
+
 								<utu:Card.SubHeaderContentTemplate>
 									<DataTemplate>
 										<TextBlock Text="{Binding}"
 												   Margin="16,0,16,14"
-												   Style="{ThemeResource MaterialBody2}" />
+												   Style="{ThemeResource BodySmall}" />
 									</DataTemplate>
 								</utu:Card.SubHeaderContentTemplate>
-								
+
 								<utu:Card.SupportingContentTemplate>
 									<DataTemplate>
 										<StackPanel>
-											
+
 											<TextBlock Text="{Binding}"
 													   Margin="16,4,16,0"
-													   Style="{ThemeResource MaterialBody2}" />
-											
+													   Style="{ThemeResource BodySmall}" />
+
 											<StackPanel Orientation="Horizontal">
-												
+
 												<Button Content="ACTION 1"
 														Margin="6"
 														Padding="10,2"
-														Style="{StaticResource MaterialTextButtonStyle}" />
-												
+														Style="{StaticResource TextButtonStyle}" />
+
 												<Button Content="ACTION 2"
 														Margin="6"
 														Padding="10,2"
-														Style="{StaticResource MaterialTextButtonStyle}" />
+														Style="{StaticResource TextButtonStyle}" />
 											</StackPanel>
 										</StackPanel>
 									</DataTemplate>
 								</utu:Card.SupportingContentTemplate>
-								
+
 								<utu:Card.MediaContentTemplate>
 									<DataTemplate>
 										<Image Source="{Binding}"
@@ -211,7 +211,7 @@
 											   MaxHeight="194" />
 									</DataTemplate>
 								</utu:Card.MediaContentTemplate>
-								
+
 								<utu:Card.IconsContentTemplate>
 									<DataTemplate>
 										<Button Content="{Binding}"
@@ -220,12 +220,11 @@
 												VerticalAlignment="Bottom"
 												HorizontalAlignment="Right"
 												HorizontalContentAlignment="Center"
-												Style="{StaticResource MaterialTextButtonStyle}">
+												Style="{StaticResource TextButtonStyle}">
 											<Button.ContentTemplate>
 												<DataTemplate>
 													<!-- Material share icon -->
-													<Path Fill="{StaticResource MaterialOnSurfaceBrush}"
-														  Data="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z" />
+													<Path Fill="{StaticResource OnSurfaceBrush}" Data="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z" />
 												</DataTemplate>
 											</Button.ContentTemplate>
 										</Button>
@@ -237,42 +236,41 @@
 						<!-- Elevated card with small media and supporting content -->
 						<smtx:XamlDisplay UniqueKey="CardSamplePage_MaterialElevatedCardWithSmallMediaAndSupportingContent"
 										  smtx:XamlDisplayExtensions.Header="Elevated card with small media and supporting content">
-							
+
 							<utu:Card HeaderContent="Elevated card"
-										   SubHeaderContent="With small media and supporting content"
-										   MediaContent="ms-appx:///Assets/SmallMedia.png"
-										   SupportingContent="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor."
-										   Style="{StaticResource MaterialSmallMediaElevatedCardStyle}">
-								
+									  SubHeaderContent="With small media and supporting content"
+									  MediaContent="ms-appx:///Assets/SmallMedia.png"
+									  SupportingContent="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor."
+									  Style="{StaticResource SmallMediaElevatedCardStyle}">
+
 								<utu:Card.HeaderContentTemplate>
 									<DataTemplate>
 										<TextBlock Text="{Binding}"
 												   MaxLines="1"
 												   Margin="16,14,16,0"
-												   Style="{ThemeResource MaterialHeadline6}" />
+												   Style="{ThemeResource TitleLarge}" />
 									</DataTemplate>
 								</utu:Card.HeaderContentTemplate>
-								
+
 								<utu:Card.SubHeaderContentTemplate>
 									<DataTemplate>
 										<TextBlock Text="{Binding}"
 												   MaxLines="2"
 												   Margin="16,0,16,14"
-												   Style="{ThemeResource MaterialBody2}" />
+												   Style="{ThemeResource BodySmall}" />
 									</DataTemplate>
 								</utu:Card.SubHeaderContentTemplate>
-								
+
 								<utu:Card.SupportingContentTemplate>
 									<DataTemplate>
-										<Border BorderThickness="0,1,0,0"
-												BorderBrush="{StaticResource MaterialOnSurfaceFocusedBrush}">
+										<Border BorderThickness="0,1,0,0" BorderBrush="{StaticResource OnSurfaceFocusedBrush}">
 											<TextBlock Text="{Binding}"
 													   Margin="16,12,16,14"
-													   Style="{ThemeResource MaterialBody2}" />
+													   Style="{ThemeResource BodySmall}" />
 										</Border>
 									</DataTemplate>
 								</utu:Card.SupportingContentTemplate>
-								
+
 								<utu:Card.MediaContentTemplate>
 									<DataTemplate>
 										<Image Source="{Binding}"
@@ -287,33 +285,33 @@
 						<!-- Disabled outlined card with avatar and other content -->
 						<smtx:XamlDisplay UniqueKey="CardSamplePage_MaterialOutlinedCardWithAvatar"
 										  smtx:XamlDisplayExtensions.Header="Disabled outlined card with avatar and other content">
-							
+
 							<utu:Card HeaderContent="Disabled outlined card"
-										   SubHeaderContent="With avatar and other content"
-										   AvatarContent="ms-appx:///Assets/Avatar.png"
-										   SupportingContent="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor."
-										   MediaContent="ms-appx:///Assets/LargeMedia.png"
-										   Style="{StaticResource MaterialAvatarElevatedCardStyle}"
-										   IsEnabled="False">
-								
+									  SubHeaderContent="With avatar and other content"
+									  AvatarContent="ms-appx:///Assets/Avatar.png"
+									  SupportingContent="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor."
+									  MediaContent="ms-appx:///Assets/LargeMedia.png"
+									  Style="{StaticResource AvatarElevatedCardStyle}"
+									  IsEnabled="False">
+
 								<utu:Card.HeaderContentTemplate>
 									<DataTemplate>
 										<TextBlock Text="{Binding}"
 												   MaxLines="1"
 												   Margin="16,14,16,0"
-												   Style="{ThemeResource MaterialHeadline6}" />
+												   Style="{ThemeResource TitleLarge}" />
 									</DataTemplate>
 								</utu:Card.HeaderContentTemplate>
-								
+
 								<utu:Card.SubHeaderContentTemplate>
 									<DataTemplate>
 										<TextBlock Text="{Binding}"
 												   MaxLines="2"
 												   Margin="16,0,16,14"
-												   Style="{ThemeResource MaterialBody2}" />
+												   Style="{ThemeResource BodySmall}" />
 									</DataTemplate>
 								</utu:Card.SubHeaderContentTemplate>
-								
+
 								<utu:Card.AvatarContentTemplate>
 									<DataTemplate>
 										<Image Source="{Binding}"
@@ -321,15 +319,15 @@
 											   MaxHeight="40" />
 									</DataTemplate>
 								</utu:Card.AvatarContentTemplate>
-								
+
 								<utu:Card.SupportingContentTemplate>
 									<DataTemplate>
 										<TextBlock Text="{Binding}"
 												   Margin="16,12,16,14"
-												   Style="{ThemeResource MaterialBody2}" />
+												   Style="{ThemeResource BodySmall}" />
 									</DataTemplate>
 								</utu:Card.SupportingContentTemplate>
-								
+
 								<utu:Card.MediaContentTemplate>
 									<DataTemplate>
 										<Image Source="{Binding}"
@@ -337,19 +335,18 @@
 											   MaxHeight="194" />
 									</DataTemplate>
 								</utu:Card.MediaContentTemplate>
-								
+
 								<utu:Card.IconsContentTemplate>
 									<DataTemplate>
 										<Button Content="{Binding}"
 												Margin="6"
 												Padding="8,12"
 												HorizontalContentAlignment="Center"
-												Style="{StaticResource MaterialTextButtonStyle}">
+												Style="{StaticResource TextButtonStyle}">
 											<Button.ContentTemplate>
 												<DataTemplate>
 													<!-- Material more icon -->
-													<Path Fill="{StaticResource MaterialOnSurfaceBrush}"
-														  Data="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" />
+													<Path Fill="{StaticResource OnSurfaceBrush}" Data="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" />
 												</DataTemplate>
 											</Button.ContentTemplate>
 										</Button>
@@ -357,6 +354,7 @@
 								</utu:Card.IconsContentTemplate>
 							</utu:Card>
 						</smtx:XamlDisplay>
+
 					</StackPanel>
 				</DataTemplate>
 			</local:SamplePageLayout.MaterialTemplate>

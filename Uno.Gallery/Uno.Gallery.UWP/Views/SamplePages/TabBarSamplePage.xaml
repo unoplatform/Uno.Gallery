@@ -1,287 +1,196 @@
 ﻿<Page x:Class="Uno.Gallery.Views.SamplePages.TabBarSamplePage"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:sample="using:Uno.Gallery"
-      xmlns:smtx="using:ShowMeTheXAML"
-      xmlns:utu="using:Uno.Toolkit.UI"
-      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-      mc:Ignorable="d">
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  xmlns:sample="using:Uno.Gallery"
+	  xmlns:smtx="using:ShowMeTheXAML"
+	  xmlns:utu="using:Uno.Toolkit.UI"
+	  xmlns:todo="what should be done"
+	  mc:Ignorable="d todo">
 
-    <sample:SamplePageLayout>
-        <sample:SamplePageLayout.MaterialTemplate>
-            <DataTemplate>
-                <StackPanel Padding="0,20"
-                            Spacing="20">
-                    <!--  Standard TabBar Style  -->
-                    <TextBlock Style="{StaticResource MaterialHeadline6}"
-                               Text="Standard TabBar Style" />
+	<sample:SamplePageLayout Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<sample:SamplePageLayout.MaterialTemplate>
+			<DataTemplate>
+				<StackPanel Padding="0,20" Spacing="20">
 
-                    <Button Click="ShowMaterialTopBarSampleInNestedFrame"
-                            Content="Show Top TabBar Sample"
-                            Style="{StaticResource MaterialOutlinedButtonStyle}" />
+					<smtx:XamlDisplay UniqueKey="TabBarSamplePage_TopTabBar" smtx:XamlDisplayExtensions.Header="TopTabBarStyle">
+						<utu:TabBar SelectedIndex="1" Style="{StaticResource TopTabBarStyle}">
+							<utu:TabBar.Items>
+								<utu:TabBarItem Content="HOME">
+									<utu:TabBarItem.Icon>
+										<FontIcon Glyph="&#xE80F;" />
+									</utu:TabBarItem.Icon>
+								</utu:TabBarItem>
+								<utu:TabBarItem Content="SUPPORT">
+									<utu:TabBarItem.Icon>
+										<FontIcon Glyph="&#xE8F2;" />
+									</utu:TabBarItem.Icon>
+								</utu:TabBarItem>
+								<utu:TabBarItem Content="ABOUT">
+									<utu:TabBarItem.Icon>
+										<FontIcon Glyph="&#xE946;" />
+									</utu:TabBarItem.Icon>
+								</utu:TabBarItem>
 
-                    <smtx:XamlDisplay UniqueKey="TabBarSamplePage_TopDefaultMaterial">
-                        <utu:TabBar SelectedIndex="1"
-                                    Style="{StaticResource MaterialTopTabBarStyle}">
-                            <utu:TabBar.Items>
-                                <utu:TabBarItem Content="HOME">
-                                    <utu:TabBarItem.Icon>
-                                        <FontIcon Glyph="&#xE80F;" />
-                                    </utu:TabBarItem.Icon>
-                                </utu:TabBarItem>
-                                <utu:TabBarItem Content="SUPPORT">
-                                    <utu:TabBarItem.Icon>
-                                        <FontIcon Glyph="&#xE8F2;" />
-                                    </utu:TabBarItem.Icon>
-                                </utu:TabBarItem>
-                                <utu:TabBarItem Content="ABOUT">
-                                    <utu:TabBarItem.Icon>
-                                        <FontIcon Glyph="&#xE946;" />
-                                    </utu:TabBarItem.Icon>
-                                </utu:TabBarItem>
+							</utu:TabBar.Items>
+						</utu:TabBar>
+					</smtx:XamlDisplay>
+					<Button Content="Show Fullscreen Sample"
+							Click="ShowMaterialTopBarSampleInNestedFrame"
+							Style="{StaticResource OutlinedButtonStyle}" />
+					<smtx:XamlDisplay UniqueKey="TabBarSamplePage_ColoredTopTabBar" smtx:XamlDisplayExtensions.Header="ColoredTopTabBarStyle">
+						<utu:TabBar SelectedIndex="1" Style="{StaticResource ColoredTopTabBarStyle}">
+							<utu:TabBar.Items>
+								<utu:TabBarItem Content="HOME">
+									<utu:TabBarItem.Icon>
+										<FontIcon Glyph="&#xE80F;" />
+									</utu:TabBarItem.Icon>
+								</utu:TabBarItem>
+								<utu:TabBarItem Content="SUPPORT">
+									<utu:TabBarItem.Icon>
+										<FontIcon Glyph="&#xE8F2;" />
+									</utu:TabBarItem.Icon>
+								</utu:TabBarItem>
+								<utu:TabBarItem Content="ABOUT">
+									<utu:TabBarItem.Icon>
+										<FontIcon Glyph="&#xE946;" />
+									</utu:TabBarItem.Icon>
+								</utu:TabBarItem>
 
-                            </utu:TabBar.Items>
-                        </utu:TabBar>
-                    </smtx:XamlDisplay>
+							</utu:TabBar.Items>
+						</utu:TabBar>
+					</smtx:XamlDisplay>
+					<smtx:XamlDisplay UniqueKey="TabBarSamplePage_TopDirectContentMaterial" smtx:XamlDisplayExtensions.Description="Adding Items as TabBarItems directly">
+						<utu:TabBar SelectedIndex="2" Style="{StaticResource TopTabBarStyle}">
+							<utu:TabBar.Items>
+								<utu:TabBarItem Content="Tab with Icon" Icon="Accept" />
+								<utu:TabBarItem Icon="Accept" />
+								<utu:TabBarItem Content="Content only" />
+							</utu:TabBar.Items>
+						</utu:TabBar>
+					</smtx:XamlDisplay>
+					<smtx:XamlDisplay UniqueKey="TabBarSamplePage_TopItemsSourceMaterial" smtx:XamlDisplayExtensions.Description="Using ItemsSource">
+						<utu:TabBar ItemsSource="{Binding Data.Items}"
+									SelectedIndex="3"
+									Style="{StaticResource TopTabBarStyle}" />
+					</smtx:XamlDisplay>
+					<smtx:XamlDisplay UniqueKey="TabBarSamplePage_TopCommandMaterial" smtx:XamlDisplayExtensions.Description="Using TabBarItem Command">
+						<utu:TabBar Style="{StaticResource TopTabBarStyle}">
+							<utu:TabBar.Items>
+								<utu:TabBarItem Content="Tab 1"
+												Command="{Binding Data.IncrementCounterCommand}"
+												CommandParameter="1" />
+								<utu:TabBarItem Content="Tab 2"
+												Command="{Binding Data.IncrementCounterCommand}"
+												CommandParameter="2" />
+								<utu:TabBarItem Content="Tab 3"
+												Command="{Binding Data.IncrementCounterCommand}"
+												CommandParameter="3" />
+							</utu:TabBar.Items>
+						</utu:TabBar>
+					</smtx:XamlDisplay>
+					<StackPanel HorizontalAlignment="Center">
+						<TextBlock Text="Click count" Style="{StaticResource BodySmall}" />
+						<TextBlock Style="{StaticResource BodySmall}">
+							<Run Text="Tab 1:" />
+							<Run Text="{Binding Data.HitCounter1}" />
+						</TextBlock>
+						<TextBlock Style="{StaticResource BodySmall}">
+							<Run Text="Tab 2:" />
+							<Run Text="{Binding Data.HitCounter2}" />
+						</TextBlock>
+						<TextBlock Style="{StaticResource BodySmall}">
+							<Run Text="Tab 3:" />
+							<Run Text="{Binding Data.HitCounter3}" />
+						</TextBlock>
+					</StackPanel>
+					<Button Content="Reset all counters"
+							HorizontalAlignment="Center"
+							Style="{StaticResource OutlinedButtonStyle}" />
 
-                    <smtx:XamlDisplay smtx:XamlDisplayExtensions.Header="Adding Items as TabBarItems directly"
-                                      UniqueKey="TabBarSamplePage_TopDirectContentMaterial">
-                        <utu:TabBar SelectedIndex="2"
-                                    Style="{StaticResource MaterialTopTabBarStyle}">
-                            <utu:TabBar.Items>
-                                <utu:TabBarItem Content="Tab with Icon"
-                                                Icon="Accept" />
-                                <utu:TabBarItem Icon="Accept" />
-                                <utu:TabBarItem Content="Content only" />
-                            </utu:TabBar.Items>
-                        </utu:TabBar>
-                    </smtx:XamlDisplay>
+				</StackPanel>
+			</DataTemplate>
+		</sample:SamplePageLayout.MaterialTemplate>
+		<sample:SamplePageLayout.CupertinoTemplate>
+			<DataTemplate>
+				<StackPanel Padding="0,20" Spacing="20">
 
-                    <smtx:XamlDisplay smtx:XamlDisplayExtensions.Header="Using ItemsSource"
-                                      UniqueKey="TabBarSamplePage_TopItemsSourceMaterial">
-                        <utu:TabBar ItemsSource="{Binding Data.Items}"
-                                    SelectedIndex="3"
-                                    Style="{StaticResource MaterialTopTabBarStyle}" />
-                    </smtx:XamlDisplay>
+					<smtx:XamlDisplay UniqueKey="TabBarSamplePage_BottomDefaultCupertino" smtx:XamlDisplayExtensions.Header="Default style">
+						<utu:TabBar SelectedIndex="1" Style="{StaticResource CupertinoBottomTabBarStyle}">
+							<utu:TabBar.Items>
+								<utu:TabBarItem Content="Home">
+									<utu:TabBarItem.Icon>
+										<FontIcon Glyph="&#xE80F;" />
+									</utu:TabBarItem.Icon>
+								</utu:TabBarItem>
+								<utu:TabBarItem Content="Support">
+									<utu:TabBarItem.Icon>
+										<FontIcon Glyph="&#xE8F2;" />
+									</utu:TabBarItem.Icon>
+								</utu:TabBarItem>
+								<utu:TabBarItem Content="About">
+									<utu:TabBarItem.Icon>
+										<FontIcon Glyph="&#xE946;" />
+									</utu:TabBarItem.Icon>
+								</utu:TabBarItem>
+							</utu:TabBar.Items>
+						</utu:TabBar>
+					</smtx:XamlDisplay>
+					<Button Content="Show Fullscreen Sample"
+							Click="ShowCupertinoBottomBarSampleInNestedFrame"
+							Style="{StaticResource CupertinoContainedButtonStyle}" />
+					<smtx:XamlDisplay smtx:XamlDisplayExtensions.Description="Adding Items as TabBarItems directly" UniqueKey="TabBarSamplePage_BottomContentCupertino">
+						<utu:TabBar SelectedIndex="2" Style="{StaticResource CupertinoBottomTabBarStyle}">
+							<utu:TabBar.Items>
+								<utu:TabBarItem Content="Tab with Icon" Icon="Accept" />
+								<utu:TabBarItem Icon="Accept" />
+								<utu:TabBarItem Content="Content only" />
+							</utu:TabBar.Items>
+						</utu:TabBar>
+					</smtx:XamlDisplay>
+					<smtx:XamlDisplay smtx:XamlDisplayExtensions.Description="Using ItemsSource" UniqueKey="TabBarSamplePage_BottomItemsSourceCupertino">
+						<utu:TabBar ItemsSource="{Binding Data.Items}"
+									SelectedIndex="3"
+									Style="{StaticResource CupertinoBottomTabBarStyle}" />
+					</smtx:XamlDisplay>
+					<smtx:XamlDisplay smtx:XamlDisplayExtensions.Description="Using TabBarItem Command" UniqueKey="TabBarSamplePage_BottomCommandCupertino">
+						<utu:TabBar Style="{StaticResource CupertinoBottomTabBarStyle}">
+							<utu:TabBar.Items>
+								<utu:TabBarItem Content="Tab 1"
+												Command="{Binding Data.IncrementCounterCommand}"
+												CommandParameter="1" />
+								<utu:TabBarItem Content="Tab 2"
+												Command="{Binding Data.IncrementCounterCommand}"
+												CommandParameter="2" />
+								<utu:TabBarItem Content="Tab 3"
+												Command="{Binding Data.IncrementCounterCommand}"
+												CommandParameter="3" />
+							</utu:TabBar.Items>
+						</utu:TabBar>
+					</smtx:XamlDisplay>
+					<StackPanel HorizontalAlignment="Center">
+						<TextBlock Text="Click count" Style="{StaticResource BodySmall}" />
+						<TextBlock Style="{StaticResource BodySmall}">
+							<Run Text="Tab 1:" />
+							<Run Text="{Binding Data.HitCounter1}" />
+						</TextBlock>
+						<TextBlock Style="{StaticResource BodySmall}">
+							<Run Text="Tab 2:" />
+							<Run Text="{Binding Data.HitCounter2}" />
+						</TextBlock>
+						<TextBlock Style="{StaticResource BodySmall}">
+							<Run Text="Tab 3:" />
+							<Run Text="{Binding Data.HitCounter3}" />
+						</TextBlock>
+					</StackPanel>
+					<Button Content="Reset all counters"
+							Command="{Binding Data.ResetAllCounterCommand}"
+							HorizontalAlignment="Center"
+							Style="{StaticResource OutlinedButtonStyle}" />
 
-                    <smtx:XamlDisplay smtx:XamlDisplayExtensions.Header="TabBarItem Command"
-                                      UniqueKey="TabBarSamplePage_TopCommandMaterial">
-                        <utu:TabBar Style="{StaticResource MaterialTopTabBarStyle}">
-                            <utu:TabBar.Items>
-                                <utu:TabBarItem x:Name="TabBarWithCommand_Tab1"
-                                                AutomationProperties.AutomationId="TabBarWithCommand_Tab1"
-                                                Command="{Binding Data.Tab1CountCommand}"
-                                                Content="Tab 1" />
-                                <utu:TabBarItem x:Name="TabBarWithCommand_Tab2"
-                                                AutomationProperties.AutomationId="TabBarWithCommand_Tab2"
-                                                Command="{Binding Data.Tab2CountCommand}"
-                                                Content="Tab 2" />
-                                <utu:TabBarItem x:Name="TabBarWithCommand_Tab3"
-                                                AutomationProperties.AutomationId="TabBarWithCommand_Tab3"
-                                                Command="{Binding Data.Tab3CountCommand}"
-                                                Content="Tab 3" />
-                            </utu:TabBar.Items>
-                        </utu:TabBar>
-                    </smtx:XamlDisplay>
-                    <TextBlock HorizontalAlignment="Center"
-                               Style="{StaticResource MaterialCaption}">
-                        <Run Text="Tab 1 clicked count:" />
-                        <Run x:Name="Tab1_Count"
-                             AutomationProperties.AutomationId="Tab1_Count"
-                             Text="{Binding Data.Tab1Count}" />
-                        <Run Text="/ Tab 2 clicked count:" />
-                        <Run x:Name="Tab2_Count"
-                             AutomationProperties.AutomationId="Tab2_Count"
-                             Text="{Binding Data.Tab2Count}" />
-                        <Run Text="/ Tab 3 clicked count:" />
-                        <Run x:Name="Tab3_Count"
-                             AutomationProperties.AutomationId="Tab3_Count"
-                             Text="{Binding Data.Tab3Count}" />
-                    </TextBlock>
-
-
-                    <!--  Bottom TabBar Style  -->
-                    <TextBlock Style="{StaticResource MaterialHeadline6}"
-                               Text="Bottom TabBar Style" />
-
-                    <Button Click="ShowMaterialBottomBarSampleInNestedFrame"
-                            Content="Show Bottom TabBar Sample"
-                            Style="{StaticResource MaterialOutlinedButtonStyle}" />
-
-                    <smtx:XamlDisplay UniqueKey="TabBarSamplePage_BottomDefaultMaterial">
-                        <utu:TabBar Style="{StaticResource MaterialBottomTabBarStyle}">
-                            <utu:TabBar.Items>
-                                <utu:TabBarItem Content="Home">
-                                    <utu:TabBarItem.Icon>
-                                        <FontIcon Glyph="&#xE80F;" />
-                                    </utu:TabBarItem.Icon>
-                                </utu:TabBarItem>
-                                <utu:TabBarItem Content="Support">
-                                    <utu:TabBarItem.Icon>
-                                        <FontIcon Glyph="&#xE8F2;" />
-                                    </utu:TabBarItem.Icon>
-                                </utu:TabBarItem>
-                                <utu:TabBarItem Content="About">
-                                    <utu:TabBarItem.Icon>
-                                        <FontIcon Glyph="&#xE946;" />
-                                    </utu:TabBarItem.Icon>
-                                </utu:TabBarItem>
-
-                            </utu:TabBar.Items>
-                        </utu:TabBar>
-                    </smtx:XamlDisplay>
-
-                    <smtx:XamlDisplay smtx:XamlDisplayExtensions.Header="Adding Items as TabBarItems directly"
-                                      UniqueKey="TabBarSamplePage_BottomContentMaterial">
-                        <utu:TabBar SelectedIndex="1"
-                                    Style="{StaticResource MaterialBottomTabBarStyle}">
-                            <utu:TabBar.Items>
-                                <utu:TabBarItem Content="Tab with Icon"
-                                                Icon="Accept" />
-                                <utu:TabBarItem Icon="Accept" />
-                                <utu:TabBarItem Content="Content only" />
-                            </utu:TabBar.Items>
-                        </utu:TabBar>
-                    </smtx:XamlDisplay>
-
-                    <smtx:XamlDisplay smtx:XamlDisplayExtensions.Header="Using ItemsSource"
-                                      UniqueKey="TabBarSamplePage_BottomItemsSourceMaterial">
-                        <utu:TabBar ItemsSource="{Binding Data.Items}"
-                                    Style="{StaticResource MaterialBottomTabBarStyle}" />
-                    </smtx:XamlDisplay>
-
-                    <smtx:XamlDisplay smtx:XamlDisplayExtensions.Header="TabBarItem Command"
-                                      UniqueKey="TabBarSamplePage_BottomCommandMaterial">
-                        <utu:TabBar Style="{StaticResource MaterialBottomTabBarStyle}">
-                            <utu:TabBar.Items>
-                                <utu:TabBarItem x:Name="MaterialBottomTabBarWithCommand_Tab1"
-                                                AutomationProperties.AutomationId="MaterialBottomTabBarWithCommand_Tab1"
-                                                Command="{Binding Data.MaterialBottomTab1CountCommand}"
-                                                Content="Tab 1" />
-                                <utu:TabBarItem x:Name="MaterialBottomTabBarWithCommand_Tab2"
-                                                AutomationProperties.AutomationId="MaterialBottomTabBarWithCommand_Tab2"
-                                                Command="{Binding Data.MaterialBottomTab2CountCommand}"
-                                                Content="Tab 2" />
-                                <utu:TabBarItem x:Name="MaterialBottomTabBarWithCommand_Tab3"
-                                                AutomationProperties.AutomationId="MaterialBottomTabBarWithCommand_Tab3"
-                                                Command="{Binding Data.MaterialBottomTab3CountCommand}"
-                                                Content="Tab 3" />
-                            </utu:TabBar.Items>
-                        </utu:TabBar>
-                    </smtx:XamlDisplay>
-
-                    <TextBlock HorizontalAlignment="Center"
-                               Style="{StaticResource MaterialCaption}">
-                        <Run Text="Tab 1 clicked count:" />
-                        <Run x:Name="MaterialBottomTab1_Count"
-                             AutomationProperties.AutomationId="MaterialBottomTab1_Count"
-                             Text="{Binding Data.MaterialBottomTab1Count}" />
-                        <Run Text="/ Tab 2 clicked count:" />
-                        <Run x:Name="MaterialBottomTab2_Count"
-                             AutomationProperties.AutomationId="MaterialBottomTab2_Count"
-                             Text="{Binding Data.MaterialBottomTab2Count}" />
-                        <Run Text="/ Tab 3 clicked count:" />
-                        <Run x:Name="MaterialBottomTab3_Count"
-                             AutomationProperties.AutomationId="MaterialBottomTab3_Count"
-                             Text="{Binding Data.MaterialBottomTab3Count}" />
-                    </TextBlock>
-                </StackPanel>
-            </DataTemplate>
-        </sample:SamplePageLayout.MaterialTemplate>
-        <sample:SamplePageLayout.CupertinoTemplate>
-            <DataTemplate>
-                <StackPanel Padding="0,20"
-                            Spacing="20">
-                    <!--  Bottom TabBar Style  -->
-                    <TextBlock Style="{StaticResource CupertinoHeadline}"
-                               Text="Bottom TabBar Style" />
-
-                    <Button Click="ShowCupertinoBottomBarSampleInNestedFrame"
-                            Content="Show Bottom TabBar Sample"
-                            Style="{StaticResource CupertinoContainedButtonStyle}" />
-
-                    <smtx:XamlDisplay UniqueKey="TabBarSamplePage_BottomDefaultCupertino">
-                        <utu:TabBar SelectedIndex="1"
-                                    Style="{StaticResource CupertinoBottomTabBarStyle}">
-                            <utu:TabBar.Items>
-                                <utu:TabBarItem Content="Home">
-                                    <utu:TabBarItem.Icon>
-                                        <FontIcon Glyph="&#xE80F;" />
-                                    </utu:TabBarItem.Icon>
-                                </utu:TabBarItem>
-                                <utu:TabBarItem Content="Support">
-                                    <utu:TabBarItem.Icon>
-                                        <FontIcon Glyph="&#xE8F2;" />
-                                    </utu:TabBarItem.Icon>
-                                </utu:TabBarItem>
-                                <utu:TabBarItem Content="About">
-                                    <utu:TabBarItem.Icon>
-                                        <FontIcon Glyph="&#xE946;" />
-                                    </utu:TabBarItem.Icon>
-                                </utu:TabBarItem>
-                            </utu:TabBar.Items>
-                        </utu:TabBar>
-                    </smtx:XamlDisplay>
-
-                    <smtx:XamlDisplay smtx:XamlDisplayExtensions.Header="Adding Items as TabBarItems directly"
-                                      UniqueKey="TabBarSamplePage_BottomContentCupertino">
-                        <utu:TabBar SelectedIndex="2"
-                                    Style="{StaticResource CupertinoBottomTabBarStyle}">
-                            <utu:TabBar.Items>
-                                <utu:TabBarItem Content="Tab with Icon"
-                                                Icon="Accept" />
-                                <utu:TabBarItem Icon="Accept" />
-                                <utu:TabBarItem Content="Content only" />
-                            </utu:TabBar.Items>
-                        </utu:TabBar>
-                    </smtx:XamlDisplay>
-
-                    <smtx:XamlDisplay smtx:XamlDisplayExtensions.Header="Using ItemsSource"
-                                      UniqueKey="TabBarSamplePage_BottomItemsSourceCupertino">
-                        <utu:TabBar ItemsSource="{Binding Data.Items}"
-                                    SelectedIndex="3"
-                                    Style="{StaticResource CupertinoBottomTabBarStyle}" />
-                    </smtx:XamlDisplay>
-
-                    <smtx:XamlDisplay smtx:XamlDisplayExtensions.Header="TabBarItem Command"
-                                      UniqueKey="TabBarSamplePage_BottomCommandCupertino">
-                        <utu:TabBar Style="{StaticResource CupertinoBottomTabBarStyle}">
-                            <utu:TabBar.Items>
-                                <utu:TabBarItem x:Name="CupertinoBottomTabBarWithCommand_Tab1"
-                                                AutomationProperties.AutomationId="CupertinoBottomTabBarWithCommand_Tab1"
-                                                Command="{Binding Data.CupertinoBottomTab1CountCommand}"
-                                                Content="Tab 1" />
-                                <utu:TabBarItem x:Name="CupertinoBottomTabBarWithCommand_Tab2"
-                                                AutomationProperties.AutomationId="CupertinoBottomTabBarWithCommand_Tab2"
-                                                Command="{Binding Data.CupertinoBottomTab2CountCommand}"
-                                                Content="Tab 2" />
-                                <utu:TabBarItem x:Name="CupertinoBottomTabBarWithCommand_Tab3"
-                                                AutomationProperties.AutomationId="CupertinoBottomTabBarWithCommand_Tab3"
-                                                Command="{Binding Data.CupertinoBottomTab3CountCommand}"
-                                                Content="Tab 3" />
-                            </utu:TabBar.Items>
-                        </utu:TabBar>
-                    </smtx:XamlDisplay>
-
-                    <TextBlock HorizontalAlignment="Center"
-                               Style="{StaticResource MaterialCaption}">
-                        <Run Text="Tab 1 clicked count:" />
-                        <Run x:Name="CupertinoBottomTab1_Count"
-                             AutomationProperties.AutomationId="CupertinoBottomTab1_Count"
-                             Text="{Binding Data.CupertinoBottomTab1Count}" />
-                        <Run Text="/ Tab 2 clicked count:" />
-                        <Run x:Name="CupertinoBottomTab2_Count"
-                             AutomationProperties.AutomationId="CupertinoBottomTab2_Count"
-                             Text="{Binding Data.CupertinoBottomTab2Count}" />
-                        <Run Text="/ Tab 3 clicked count:" />
-                        <Run x:Name="CupertinoBottomTab3_Count"
-                             AutomationProperties.AutomationId="CupertinoBottomTab3_Count"
-                             Text="{Binding Data.CupertinoBottomTab3Count}" />
-                    </TextBlock>
-                </StackPanel>
-            </DataTemplate>
-        </sample:SamplePageLayout.CupertinoTemplate>
-    </sample:SamplePageLayout>
+				</StackPanel>
+			</DataTemplate>
+		</sample:SamplePageLayout.CupertinoTemplate>
+	</sample:SamplePageLayout>
 </Page>

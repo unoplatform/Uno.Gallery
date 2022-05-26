@@ -20,64 +20,75 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Uno.Gallery.Views.SamplePages
 {
-    [SamplePage(SampleCategory.Toolkit, "TabBar",
-        SourceSdk.UnoToolkit,
-        Description = "A control to display a set of TabBarItems horizontally with the ability to display a custom view to denote selected state",
-        DataType = typeof(TabBarViewModel))]
-    public sealed partial class TabBarSamplePage : Page
-    {
-        public TabBarSamplePage()
-        {
-            this.InitializeComponent();
-        }
+	[SamplePage(SampleCategory.Toolkit, "TabBar",
+		SourceSdk.UnoToolkit,
+		Description = "A control to display a set of TabBarItems horizontally with the ability to display a custom view to denote selected state",
+		DataType = typeof(TabBarViewModel))]
+	public sealed partial class TabBarSamplePage : Page
+	{
+		public TabBarSamplePage()
+		{
+			this.InitializeComponent();
+		}
 
-        private void ShowMaterialTopBarSampleInNestedFrame(object sender, RoutedEventArgs e)
-        {
-            Shell.GetForCurrentView()?.ShowNestedSample<MaterialTopBarSampleNestedPage>(clearStack: true);
-        }
+		private void ShowMaterialTopBarSampleInNestedFrame(object sender, RoutedEventArgs e)
+		{
+			Shell.GetForCurrentView()?.ShowNestedSample<MaterialTopBarSampleNestedPage>(clearStack: true);
+		}
 
-        private void ShowMaterialBottomBarSampleInNestedFrame(object sender, RoutedEventArgs e)
-        {
-            Shell.GetForCurrentView()?.ShowNestedSample<MaterialBottomBarSampleNestedPage>(clearStack: true);
-        }
+		//private void ShowMaterialBottomBarSampleInNestedFrame(object sender, RoutedEventArgs e)
+		//{
+		//	Shell.GetForCurrentView()?.ShowNestedSample<MaterialBottomBarSampleNestedPage>(clearStack: true);
+		//}
 
-        private void ShowCupertinoBottomBarSampleInNestedFrame(object sender, RoutedEventArgs e)
-        {
-            Shell.GetForCurrentView()?.ShowNestedSample<CupertinoBottomBarSampleNestedPage>(clearStack: true);
-        }
-    }
+		private void ShowCupertinoBottomBarSampleInNestedFrame(object sender, RoutedEventArgs e)
+		{
+			Shell.GetForCurrentView()?.ShowNestedSample<CupertinoBottomBarSampleNestedPage>(clearStack: true);
+		}
+	}
 
-    public class TabBarViewModel : ViewModelBase
-    {
-        public int Tab1Count { get => GetProperty<int>(); set => SetProperty(value); }
-        public int Tab2Count { get => GetProperty<int>(); set => SetProperty(value); }
-        public int Tab3Count { get => GetProperty<int>(); set => SetProperty(value); }
+	public class TabBarViewModel : ViewModelBase
+	{
+		public List<string> Items { get; }
 
-        public int MaterialBottomTab1Count { get => GetProperty<int>(); set => SetProperty(value); }
-        public int MaterialBottomTab2Count { get => GetProperty<int>(); set => SetProperty(value); }
-        public int MaterialBottomTab3Count { get => GetProperty<int>(); set => SetProperty(value); }
+		public int HitCounter1 { get => GetProperty<int>(); set => SetProperty(value); }
+		public int HitCounter2 { get => GetProperty<int>(); set => SetProperty(value); }
+		public int HitCounter3 { get => GetProperty<int>(); set => SetProperty(value); }
 
-        public int CupertinoBottomTab1Count { get => GetProperty<int>(); set => SetProperty(value); }
-        public int CupertinoBottomTab2Count { get => GetProperty<int>(); set => SetProperty(value); }
-        public int CupertinoBottomTab3Count { get => GetProperty<int>(); set => SetProperty(value); }
+		public ICommand IncrementCounterCommand => new Command(IncrementCounter);
+		public ICommand ResetAllCounterCommand => new Command(ResetAllCounter);
 
-        public List<string> Items { get => GetProperty<List<string>>(); set => SetProperty(value); }
+		public TabBarViewModel()
+		{
+			Items = Enumerable.Range(1, 3)
+				.Select(x => $"Item #{x}")
+				.ToList();
+		}
 
-        public ICommand Tab1CountCommand => new Command(_ => Tab1Count++);
-        public ICommand Tab2CountCommand => new Command(_ => Tab2Count++);
-        public ICommand Tab3CountCommand => new Command(_ => Tab3Count++);
+		private void IncrementCounter(object parameter)
+		{
+			if (parameter is string p && int.TryParse(p, out var index))
+			{
+				switch (index)
+				{
+					case 1: HitCounter1++; return;
+					case 2: HitCounter2++; return;
+					case 3: HitCounter3++; return;
 
-        public ICommand MaterialBottomTab1CountCommand => new Command(_ => MaterialBottomTab1Count++);
-        public ICommand MaterialBottomTab2CountCommand => new Command(_ => MaterialBottomTab2Count++);
-        public ICommand MaterialBottomTab3CountCommand => new Command(_ => MaterialBottomTab3Count++);
+					default: break;
+				}
+			}
 
-        public ICommand CupertinoBottomTab1CountCommand => new Command(_ => CupertinoBottomTab1Count++);
-        public ICommand CupertinoBottomTab2CountCommand => new Command(_ => CupertinoBottomTab2Count++);
-        public ICommand CupertinoBottomTab3CountCommand => new Command(_ => CupertinoBottomTab3Count++);
+#if DEBUG
+			throw new ArgumentOutOfRangeException("CommandParameter", parameter, "Invalid parameter");
+#endif
+		}
 
-        public TabBarViewModel()
-        {
-            Items = new List<string> { "Tab 1", "Tab 2", "Tab 3" };
-        }
-    }
+		private void ResetAllCounter()
+		{
+			HitCounter1 =
+			HitCounter2 =
+			HitCounter3 = 0;
+		}
+	}
 }

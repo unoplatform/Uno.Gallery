@@ -126,7 +126,7 @@
 -->
 									<Button Content="Start"
 											Click="Button_Click_1"
-											Style="{StaticResource MaterialContainedButtonStyle}" />
+											Style="{StaticResource FilledButtonStyle}" />
 
 									<Rectangle x:Name="Rectangle1"
 											   Fill="{StaticResource UnoGreenColor}"
@@ -178,7 +178,7 @@
 -->
 									<Button Content="Start"
 											Click="Button_Click_2"
-											Style="{StaticResource MaterialContainedButtonStyle}" />
+											Style="{StaticResource FilledButtonStyle}" />
 
 									<Rectangle Fill="{StaticResource UnoBlueColor}"
 											   Width="40"
@@ -218,7 +218,7 @@
 -->
 									<Button Content="Start"
 											Click="Button_Click_3"
-											Style="{StaticResource MaterialContainedButtonStyle}" />
+											Style="{StaticResource FilledButtonStyle}" />
 
 									<Rectangle Fill="{StaticResource UnoPurpleColor}"
 											   Width="40"
@@ -257,7 +257,7 @@
 -->
 									<Button Content="Start"
 											Click="Button_Click_4"
-											Style="{StaticResource MaterialContainedButtonStyle}" />
+											Style="{StaticResource FilledButtonStyle}" />
 
 									<Rectangle Fill="{StaticResource UnoRedColor}"
 											   Width="40"

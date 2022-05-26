@@ -14,30 +14,24 @@
 					<StackPanel>
 
 						<!-- CheckBox -->
-						<smtx:XamlDisplay UniqueKey="CheckBoxSamplePage_Fluent"
-										  smtx:XamlDisplayExtensions.Header="Default">
+						<smtx:XamlDisplay UniqueKey="CheckBoxSamplePage_Fluent" smtx:XamlDisplayExtensions.Header="Default">
 							<StackPanel>
-								<CheckBox Content="UNCHECKED"
-										  AutomationProperties.AutomationId="Fluent_Unchecked" />
 
+								<CheckBox Content="UNCHECKED" AutomationProperties.AutomationId="Fluent_Unchecked" />
 								<CheckBox Content="DISABLED UNCHECKED"
 										  AutomationProperties.AutomationId="Fluent_Disabled_Unchecked"
 										  IsEnabled="False" />
-
 								<CheckBox Content="CHECKED"
 										  AutomationProperties.AutomationId="Fluent_Checked"
 										  IsChecked="True" />
-
 								<CheckBox Content="DISABLED CHECKED"
 										  AutomationProperties.AutomationId="Fluent_Disabled_Checked"
 										  IsChecked="True"
 										  IsEnabled="False" />
-
 								<CheckBox Content="INDETERMINATE"
 										  AutomationProperties.AutomationId="Fluent_Indeterminate"
 										  IsThreeState="True"
 										  IsChecked="{x:Null}" />
-
 								<CheckBox Content="DISABLED INDETERMINATE"
 										  AutomationProperties.AutomationId="Fluent_Disabled_Indeterminate"
 										  IsThreeState="True"
@@ -45,131 +39,90 @@
 										  IsEnabled="False" />
 							</StackPanel>
 						</smtx:XamlDisplay>
+
 					</StackPanel>
 				</DataTemplate>
 			</local:SamplePageLayout.FluentTemplate>
-
 			<local:SamplePageLayout.MaterialTemplate>
 				<DataTemplate>
 					<StackPanel>
-
-						<!-- CheckBox -->
-						<smtx:XamlDisplay UniqueKey="CheckBoxSamplePage_Material"
-										  smtx:XamlDisplayExtensions.Header="Default">
+						
+						<smtx:XamlDisplay UniqueKey="CheckBoxSamplePage_Material" smtx:XamlDisplayExtensions.Header="Default">
 							<StackPanel>
-								<CheckBox Style="{StaticResource MaterialCheckBoxStyle}"
+
+								<CheckBox Content="UNCHECKED"
 										  AutomationProperties.AutomationId="Material_Unchecked"
-										  Content="UNCHECKED" />
-
-								<CheckBox Style="{StaticResource MaterialCheckBoxStyle}"
+										  Style="{StaticResource CheckBoxStyle}" />
+								<CheckBox Content="DISABLED UNCHECKED"
 										  AutomationProperties.AutomationId="Material_Disabled_Unchecked"
-										  Content="DISABLED UNCHECKED"
-										  IsEnabled="False" />
-
-								<CheckBox Style="{StaticResource MaterialCheckBoxStyle}"
+										  IsEnabled="False"
+										  Style="{StaticResource CheckBoxStyle}" />
+								<CheckBox Content="CHECKED"
 										  AutomationProperties.AutomationId="Material_Checked"
-										  Content="CHECKED"
-										  IsChecked="True" />
-
-								<CheckBox Style="{StaticResource MaterialCheckBoxStyle}"
+										  IsChecked="True"
+										  Style="{StaticResource CheckBoxStyle}" />
+								<CheckBox Content="DISABLED CHECKED"
 										  AutomationProperties.AutomationId="Material_Disabled_Checked"
-										  Content="DISABLED CHECKED"
 										  IsChecked="True"
-										  IsEnabled="False" />
-
-								<CheckBox Style="{StaticResource MaterialCheckBoxStyle}"
+										  IsEnabled="False"
+										  Style="{StaticResource CheckBoxStyle}" />
+								<CheckBox Content="INDETERMINATE"
 										  AutomationProperties.AutomationId="Material_Indeterminate"
-										  Content="INDETERMINATE"
 										  IsThreeState="True"
-										  IsChecked="{x:Null}" />
-
-								<CheckBox Style="{StaticResource MaterialCheckBoxStyle}"
+										  IsChecked="{x:Null}"
+										  Style="{StaticResource CheckBoxStyle}" />
+								<CheckBox Content="DISABLED INDETERMINATE"
 										  AutomationProperties.AutomationId="Material_Disabled_Indeterminate"
-										  Content="DISABLED INDETERMINATE"
 										  IsThreeState="True"
 										  IsChecked="{x:Null}"
-										  IsEnabled="False" />
+										  IsEnabled="False"
+										  Style="{StaticResource CheckBoxStyle}" />
+
 							</StackPanel>
 						</smtx:XamlDisplay>
-
-						<!-- CheckBox -->
-						<smtx:XamlDisplay UniqueKey="CheckBoxSamplePage_Material_Secondary"
-										  smtx:XamlDisplayExtensions.Header="Secondary">
-							<StackPanel>
-								<CheckBox Style="{StaticResource MaterialSecondaryCheckBoxStyle}"
-                                          AutomationProperties.AutomationId="Material_Secondary_Unchecked"
-										  Content="UNCHECKED" />
-
-								<CheckBox Style="{StaticResource MaterialSecondaryCheckBoxStyle}"
-                                          AutomationProperties.AutomationId="Material_Secondary_Disabled_Unchecked"
-										  Content="DISABLED UNCHECKED"
-										  IsEnabled="False" />
-
-								<CheckBox Style="{StaticResource MaterialSecondaryCheckBoxStyle}"
-                                          AutomationProperties.AutomationId="Material_Secondary_Checked"
-										  Content="CHECKED"
-										  IsChecked="True" />
-
-								<CheckBox Style="{StaticResource MaterialSecondaryCheckBoxStyle}"
-                                          AutomationProperties.AutomationId="Material_Secondary_Disabled_Checked"
-										  Content="DISABLED CHECKED"
-										  IsChecked="True"
-										  IsEnabled="False" />
-
-								<CheckBox Style="{StaticResource MaterialSecondaryCheckBoxStyle}"
-                                          AutomationProperties.AutomationId="Material_Secondary_Indeterminate"
-										  Content="INDETERMINATE"
-										  IsThreeState="True"
-										  IsChecked="{x:Null}" />
-
-								<CheckBox Style="{StaticResource MaterialSecondaryCheckBoxStyle}"
-                                          AutomationProperties.AutomationId="Material_Secondary_Disabled_Indeterminate"
-										  Content="DISABLED INDETERMINATE"
-										  IsThreeState="True"
-										  IsChecked="{x:Null}"
-										  IsEnabled="False" />
-							</StackPanel>
-						</smtx:XamlDisplay>
+						<!-- todo: secondary styles (style implemented, alias not exposed) -->
+						
 					</StackPanel>
 				</DataTemplate>
 			</local:SamplePageLayout.MaterialTemplate>
 			<local:SamplePageLayout.CupertinoTemplate>
 				<DataTemplate>
-					<smtx:XamlDisplay UniqueKey="CheckBoxSamplePage_Cupertino"
-										  smtx:XamlDisplayExtensions.Header="Default">
+					<smtx:XamlDisplay UniqueKey="CheckBoxSamplePage_Cupertino" smtx:XamlDisplayExtensions.Header="Default">
 						<StackPanel>
-							<CheckBox Style="{StaticResource CupertinoCheckBoxStyle}"
-										  AutomationProperties.AutomationId="Cupertino_Unchecked"                                      
-										  Content="UNCHECKED" />
 
 							<CheckBox Style="{StaticResource CupertinoCheckBoxStyle}"
-										  AutomationProperties.AutomationId="Cupertino_Disabled_Unchecked"                                      
-										  Content="DISABLED UNCHECKED"
-										  IsEnabled="False" />
+									  AutomationProperties.AutomationId="Cupertino_Unchecked"
+									  Content="UNCHECKED" />
 
 							<CheckBox Style="{StaticResource CupertinoCheckBoxStyle}"
-										  AutomationProperties.AutomationId="Cupertino_Checked"                                      
-										  Content="CHECKED"
-										  IsChecked="True" />
+									  AutomationProperties.AutomationId="Cupertino_Disabled_Unchecked"
+									  Content="DISABLED UNCHECKED"
+									  IsEnabled="False" />
 
 							<CheckBox Style="{StaticResource CupertinoCheckBoxStyle}"
-										  AutomationProperties.AutomationId="Cupertino_Disabled_Checked"                                           
-										  Content="DISABLED CHECKED"
-										  IsChecked="True"
-										  IsEnabled="False" />
+									  AutomationProperties.AutomationId="Cupertino_Checked"
+									  Content="CHECKED"
+									  IsChecked="True" />
 
 							<CheckBox Style="{StaticResource CupertinoCheckBoxStyle}"
-										  AutomationProperties.AutomationId="Cupertino_Indeterminate"                                      
-										  Content="INDETERMINATE"
-										  IsThreeState="True"
-										  IsChecked="{x:Null}" />
+									  AutomationProperties.AutomationId="Cupertino_Disabled_Checked"
+									  Content="DISABLED CHECKED"
+									  IsChecked="True"
+									  IsEnabled="False" />
 
 							<CheckBox Style="{StaticResource CupertinoCheckBoxStyle}"
-										  AutomationProperties.AutomationId="Cupertino_Disabled_Indeterminate"  
-										  Content="DISABLED INDETERMINATE"
-										  IsThreeState="True"
-										  IsChecked="{x:Null}"
-										  IsEnabled="False" />
+									  AutomationProperties.AutomationId="Cupertino_Indeterminate"
+									  Content="INDETERMINATE"
+									  IsThreeState="True"
+									  IsChecked="{x:Null}" />
+
+							<CheckBox Style="{StaticResource CupertinoCheckBoxStyle}"
+									  AutomationProperties.AutomationId="Cupertino_Disabled_Indeterminate"
+									  Content="DISABLED INDETERMINATE"
+									  IsThreeState="True"
+									  IsChecked="{x:Null}"
+									  IsEnabled="False" />
+
 						</StackPanel>
 					</smtx:XamlDisplay>
 				</DataTemplate>

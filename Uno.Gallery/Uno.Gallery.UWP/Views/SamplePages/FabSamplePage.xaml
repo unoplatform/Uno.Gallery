@@ -7,84 +7,160 @@
 	  xmlns:smtx="using:ShowMeTheXAML"
 	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	  mc:Ignorable="d"
-	  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+	  mc:Ignorable="d">
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 		<local:SamplePageLayout>
-
 			<local:SamplePageLayout.MaterialTemplate>
 				<DataTemplate>
 					<StackPanel>
 
-						<smtx:XamlDisplay UniqueKey="FabSamplePage_Material_WithIcon"
-										  smtx:XamlDisplayExtensions.Header="With Icon">
+						<smtx:XamlDisplay UniqueKey="FabSamplePage_Material_FAB"
+										  smtx:XamlDisplayExtensions.Header="Floating action buttons (FAB)"
+										  smtx:XamlDisplayExtensions.Description="The FAB is typically displayed in a rounded square container. The product color scheme determines the FAB container color, which should contrast with the area behind the FAB."
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\Grid">
+							<Grid ColumnSpacing="10" RowSpacing="10">
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="Auto" />
+									<ColumnDefinition Width="Auto" />
+									<ColumnDefinition Width="Auto" />
+									<ColumnDefinition Width="Auto" />
+								</Grid.ColumnDefinitions>
+								<Grid.RowDefinitions>
+									<RowDefinition Height="Auto" />
+									<RowDefinition Height="Auto" />
+								</Grid.RowDefinitions>
+
+								<Button Grid.Row="0"
+										Grid.Column="0"
+										ToolTipService.ToolTip="Create"
+										Style="{StaticResource FabStyle}">
+									<um:ControlExtensions.Icon>
+										<SymbolIcon Symbol="Add" />
+									</um:ControlExtensions.Icon>
+								</Button>
+								<Button Grid.Row="0"
+										Grid.Column="1"
+										ToolTipService.ToolTip="Favorite"
+										Style="{StaticResource SecondaryFabStyle}">
+									<um:ControlExtensions.Icon>
+										<SymbolIcon Symbol="SolidStar" />
+									</um:ControlExtensions.Icon>
+								</Button>
+								<Button Grid.Row="0"
+										Grid.Column="2"
+										ToolTipService.ToolTip="Like"
+										Style="{StaticResource TertiaryFabStyle}">
+									<um:ControlExtensions.Icon>
+										<SymbolIcon Symbol="Like" />
+									</um:ControlExtensions.Icon>
+								</Button>
+								<Button Grid.Row="0"
+										Grid.Column="3"
+										ToolTipService.ToolTip="Refresh"
+										Style="{StaticResource SurfaceFabStyle}">
+									<um:ControlExtensions.Icon>
+										<SymbolIcon Symbol="Refresh" />
+									</um:ControlExtensions.Icon>
+								</Button>
+								<Button Grid.Row="1"
+										Grid.Column="0"
+										IsEnabled="False"
+										ToolTipService.ToolTip="Confirm"
+										Style="{StaticResource FabStyle}">
+									<um:ControlExtensions.Icon>
+										<SymbolIcon Symbol="Accept" />
+									</um:ControlExtensions.Icon>
+								</Button>
+								<Button Grid.Row="1"
+										Grid.Column="1"
+										IsEnabled="False"
+										ToolTipService.ToolTip="Save"
+										Style="{StaticResource SecondaryFabStyle}">
+									<um:ControlExtensions.Icon>
+										<SymbolIcon Symbol="Save" />
+									</um:ControlExtensions.Icon>
+								</Button>
+								<Button Grid.Row="1"
+										Grid.Column="2"
+										IsEnabled="False"
+										ToolTipService.ToolTip="Profile"
+										Style="{StaticResource TertiaryFabStyle}">
+									<um:ControlExtensions.Icon>
+										<SymbolIcon Symbol="Contact" />
+									</um:ControlExtensions.Icon>
+								</Button>
+								<Button Grid.Row="1"
+										Grid.Column="3"
+										IsEnabled="False"
+										ToolTipService.ToolTip="Pin"
+										Style="{StaticResource SurfaceFabStyle}">
+									<um:ControlExtensions.Icon>
+										<SymbolIcon Symbol="Pin" />
+									</um:ControlExtensions.Icon>
+								</Button>
+							</Grid>
+						</smtx:XamlDisplay>
+
+						<smtx:XamlDisplay UniqueKey="FabSamplePage_Material_SmallFab"
+										  smtx:XamlDisplayExtensions.Header="Small FAB"
+										  smtx:XamlDisplayExtensions.Description="A small FAB is used for a secondary, supporting action, or in place of a default FAB on smaller screens. One or more small FABs can be paired with a default FAB or extended FAB."
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
 							<StackPanel Spacing="20">
 
-								<Button Style="{StaticResource MaterialFabStyle}">
+								<Button Content="Navigate" Style="{StaticResource SmallFabStyle}">
 									<um:ControlExtensions.Icon>
-										<SymbolIcon Symbol="Add" />
+										<PathIcon Data="M12 7.3L16.3 17.7L12.8 16.2L12 15.8L11.2 16.2L7.7 17.7L12 7.3M12 2L4.5 20.3L5.2 21L12 18L18.8 21L19.5 20.3L12 2Z" />
+									</um:ControlExtensions.Icon>
+								</Button>
+								<Button Content="Navigate" Style="{StaticResource SecondarySmallFabStyle}">
+									<um:ControlExtensions.Icon>
+										<PathIcon Data="M12 7.3L16.3 17.7L12.8 16.2L12 15.8L11.2 16.2L7.7 17.7L12 7.3M12 2L4.5 20.3L5.2 21L12 18L18.8 21L19.5 20.3L12 2Z" />
+									</um:ControlExtensions.Icon>
+								</Button>
+								<Button Content="Navigate" Style="{StaticResource TertiarySmallFabStyle}">
+									<um:ControlExtensions.Icon>
+										<PathIcon Data="M12 7.3L16.3 17.7L12.8 16.2L12 15.8L11.2 16.2L7.7 17.7L12 7.3M12 2L4.5 20.3L5.2 21L12 18L18.8 21L19.5 20.3L12 2Z" />
+									</um:ControlExtensions.Icon>
+								</Button>
+								<Button Content="Navigate" Style="{StaticResource SurfaceSmallFabStyle}">
+									<um:ControlExtensions.Icon>
+										<PathIcon Data="M12 7.3L16.3 17.7L12.8 16.2L12 15.8L11.2 16.2L7.7 17.7L12 7.3M12 2L4.5 20.3L5.2 21L12 18L18.8 21L19.5 20.3L12 2Z" />
 									</um:ControlExtensions.Icon>
 								</Button>
 
-								<Button Style="{StaticResource MaterialSecondaryFabStyle}">
+							</StackPanel>
+						</smtx:XamlDisplay>
+						<smtx:XamlDisplay UniqueKey="FabSamplePage_Material_LargeFab"
+										  smtx:XamlDisplayExtensions.Header="Large FAB"
+										  smtx:XamlDisplayExtensions.Description="A large FAB is useful when the layout calls for a clear and prominent primary action, and where a larger footprint would help the user engage. For example, when appearing on taller and larger device screens."
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+							<StackPanel Spacing="20">
+
+								<Button ToolTipService.ToolTip="Locate Me" Style="{StaticResource LargeFabStyle}">
 									<um:ControlExtensions.Icon>
-										<SymbolIcon Symbol="Add" />
+										<PathIcon Data="M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8M3.05,13H1V11H3.05C3.5,6.83 6.83,3.5 11,3.05V1H13V3.05C17.17,3.5 20.5,6.83 20.95,11H23V13H20.95C20.5,17.17 17.17,20.5 13,20.95V23H11V20.95C6.83,20.5 3.5,17.17 3.05,13M12,5A7,7 0 0,0 5,12A7,7 0 0,0 12,19A7,7 0 0,0 19,12A7,7 0 0,0 12,5Z" />
+									</um:ControlExtensions.Icon>
+								</Button>
+								<Button ToolTipService.ToolTip="Locate Me" Style="{StaticResource SecondaryLargeFabStyle}">
+									<um:ControlExtensions.Icon>
+										<PathIcon Data="M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8M3.05,13H1V11H3.05C3.5,6.83 6.83,3.5 11,3.05V1H13V3.05C17.17,3.5 20.5,6.83 20.95,11H23V13H20.95C20.5,17.17 17.17,20.5 13,20.95V23H11V20.95C6.83,20.5 3.5,17.17 3.05,13M12,5A7,7 0 0,0 5,12A7,7 0 0,0 12,19A7,7 0 0,0 19,12A7,7 0 0,0 12,5Z" />
+									</um:ControlExtensions.Icon>
+								</Button>
+								<Button ToolTipService.ToolTip="Locate Me" Style="{StaticResource TertiaryLargeFabStyle}">
+									<um:ControlExtensions.Icon>
+										<PathIcon Data="M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8M3.05,13H1V11H3.05C3.5,6.83 6.83,3.5 11,3.05V1H13V3.05C17.17,3.5 20.5,6.83 20.95,11H23V13H20.95C20.5,17.17 17.17,20.5 13,20.95V23H11V20.95C6.83,20.5 3.5,17.17 3.05,13M12,5A7,7 0 0,0 5,12A7,7 0 0,0 12,19A7,7 0 0,0 19,12A7,7 0 0,0 12,5Z" />
+									</um:ControlExtensions.Icon>
+								</Button>
+								<Button ToolTipService.ToolTip="Locate Me" Style="{StaticResource SurfaceLargeFabStyle}">
+									<um:ControlExtensions.Icon>
+										<PathIcon Data="M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8M3.05,13H1V11H3.05C3.5,6.83 6.83,3.5 11,3.05V1H13V3.05C17.17,3.5 20.5,6.83 20.95,11H23V13H20.95C20.5,17.17 17.17,20.5 13,20.95V23H11V20.95C6.83,20.5 3.5,17.17 3.05,13M12,5A7,7 0 0,0 5,12A7,7 0 0,0 12,19A7,7 0 0,0 19,12A7,7 0 0,0 12,5Z" />
 									</um:ControlExtensions.Icon>
 								</Button>
 
-								<Button Style="{StaticResource MaterialFabStyle}"
-										IsEnabled="False">
-									<um:ControlExtensions.Icon>
-										<SymbolIcon Symbol="Add" />
-									</um:ControlExtensions.Icon>
-								</Button>
 							</StackPanel>
 						</smtx:XamlDisplay>
 
-						<smtx:XamlDisplay UniqueKey="FabSamplePage_Material_WithLabel"
-										  smtx:XamlDisplayExtensions.Header="With Label">
-							<StackPanel Spacing="20">
-
-								<Button Content="DEFAULT"
-										Style="{StaticResource MaterialFabStyle}" />
-
-								<Button Content="SECONDARY"
-										Style="{StaticResource MaterialSecondaryFabStyle}" />
-
-								<Button Content="DISABLED"
-										Style="{StaticResource MaterialFabStyle}"
-										IsEnabled="False" />
-							</StackPanel>
-						</smtx:XamlDisplay>
-
-						<smtx:XamlDisplay UniqueKey="FabSamplePage_Material_WithIconAndLabel"
-										  smtx:XamlDisplayExtensions.Header="With Icon and Label">
-							<StackPanel Spacing="20">
-
-								<Button Content="DEFAULT"
-										Style="{StaticResource MaterialFabStyle}">
-									<um:ControlExtensions.Icon>
-										<SymbolIcon Symbol="Add" />
-									</um:ControlExtensions.Icon>
-								</Button>
-
-								<Button Content="SECONDARY"
-										Style="{StaticResource MaterialSecondaryFabStyle}">
-									<um:ControlExtensions.Icon>
-										<SymbolIcon Symbol="Add" />
-									</um:ControlExtensions.Icon>
-								</Button>
-
-								<Button Content="DISABLED"
-										Style="{StaticResource MaterialFabStyle}"
-										IsEnabled="False">
-									<um:ControlExtensions.Icon>
-										<SymbolIcon Symbol="Add" />
-									</um:ControlExtensions.Icon>
-								</Button>
-							</StackPanel>
-						</smtx:XamlDisplay>
 					</StackPanel>
 				</DataTemplate>
 			</local:SamplePageLayout.MaterialTemplate>

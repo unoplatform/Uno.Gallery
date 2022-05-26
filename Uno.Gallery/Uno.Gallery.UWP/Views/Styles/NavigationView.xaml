@@ -310,9 +310,11 @@
 	<x:Double x:Key="NavigationViewItemBackgroundPressedOpacity">0.12</x:Double>
 
 	<!--  NavigationView  -->
-	<StaticResource x:Key="NavigationViewDefaultPaneBackground" ResourceKey="MaterialSurfaceBrush" />
-	<StaticResource x:Key="NavigationViewSelectionIndicatorForeground" ResourceKey="MaterialPrimaryBrush" />
-	<StaticResource x:Key="NavigationViewPaneBorderBrush" ResourceKey="MaterialOnSurfaceLowVariantBrush" />
+	<StaticResource x:Key="NavigationViewDefaultPaneBackground" ResourceKey="SurfaceBrush" />
+	<StaticResource x:Key="NavigationViewSelectionIndicatorForeground" ResourceKey="PrimaryBrush" />
+	<SolidColorBrush x:Key="NavigationViewPaneBorderBrush"
+					 Color="{ThemeResource OnSurfaceColor}"
+					 Opacity="0.20" />
 	<Thickness x:Key="NavigationViewPaneBorderThickness">0,0,1,0</Thickness>
 
 	<!--  NavigationViewItem  -->
@@ -320,47 +322,47 @@
 	<SolidColorBrush
 		x:Key="NavigationViewItemBackgroundPointerOver"
 		Opacity="{StaticResource NavigationViewItemBackgroundPointerOverOpacity}"
-		Color="{ThemeResource MaterialPrimaryColor}" />
+		Color="{ThemeResource PrimaryColor}" />
 	<SolidColorBrush
 		x:Key="NavigationViewItemBackgroundPressed"
 		Opacity="{StaticResource NavigationViewItemBackgroundPressedOpacity}"
-		Color="{ThemeResource MaterialPrimaryColor}" />
+		Color="{ThemeResource PrimaryColor}" />
 	<!--<StaticResource x:Key="NavigationViewItemBackgroundDisabled" ResourceKey="SystemControlTransparentBrush" />-->
 	<!--<StaticResource x:Key="NavigationViewItemBackgroundChecked" ResourceKey="SystemControlTransparentBrush" />-->
 	<SolidColorBrush
 		x:Key="NavigationViewItemBackgroundCheckedPointerOver"
 		Opacity="{StaticResource NavigationViewItemBackgroundPointerOverOpacity}"
-		Color="{ThemeResource MaterialPrimaryColor}" />
+		Color="{ThemeResource PrimaryColor}" />
 	<SolidColorBrush
 		x:Key="NavigationViewItemBackgroundCheckedPressed"
 		Opacity="{StaticResource NavigationViewItemBackgroundPressedOpacity}"
-		Color="{ThemeResource MaterialPrimaryColor}" />
+		Color="{ThemeResource PrimaryColor}" />
 	<!--<StaticResource x:Key="NavigationViewItemBackgroundCheckedDisabled" ResourceKey="SystemControlTransparentBrush" />-->
 	<!--<StaticResource x:Key="NavigationViewItemBackgroundSelected" ResourceKey="SystemControlTransparentBrush" />-->
 	<SolidColorBrush
 		x:Key="NavigationViewItemBackgroundSelectedPointerOver"
 		Opacity="{StaticResource NavigationViewItemBackgroundPointerOverOpacity}"
-		Color="{ThemeResource MaterialPrimaryColor}" />
+		Color="{ThemeResource PrimaryColor}" />
 	<SolidColorBrush
 		x:Key="NavigationViewItemBackgroundSelectedPressed"
 		Opacity="{StaticResource NavigationViewItemBackgroundPressedOpacity}"
-		Color="{ThemeResource MaterialPrimaryColor}" />
+		Color="{ThemeResource PrimaryColor}" />
 	<!--<StaticResource x:Key="NavigationViewItemBackgroundSelectedDisabled" ResourceKey="SystemControlTransparentBrush" />-->
 
-	<StaticResource x:Key="NavigationViewItemForeground" ResourceKey="MaterialOnSurfaceMediumBrush" />
-	<StaticResource x:Key="NavigationViewItemForegroundPointerOver" ResourceKey="MaterialPrimaryBrush" />
-	<StaticResource x:Key="NavigationViewItemForegroundPressed" ResourceKey="MaterialPrimaryBrush" />
-	<StaticResource x:Key="NavigationViewItemForegroundDisabled" ResourceKey="MaterialOnSurfaceLowBrush" />
-	<StaticResource x:Key="NavigationViewItemForegroundChecked" ResourceKey="MaterialPrimaryBrush" />
-	<StaticResource x:Key="NavigationViewItemForegroundCheckedPointerOver" ResourceKey="MaterialPrimaryBrush" />
-	<StaticResource x:Key="NavigationViewItemForegroundCheckedPressed" ResourceKey="MaterialPrimaryBrush" />
-	<StaticResource x:Key="NavigationViewItemForegroundCheckedDisabled" ResourceKey="MaterialOnSecondaryLowBrush" />
-	<StaticResource x:Key="NavigationViewItemForegroundSelected" ResourceKey="MaterialPrimaryBrush" />
-	<StaticResource x:Key="NavigationViewItemForegroundSelectedPointerOver" ResourceKey="MaterialPrimaryBrush" />
-	<StaticResource x:Key="NavigationViewItemForegroundSelectedPressed" ResourceKey="MaterialPrimaryBrush" />
-	<StaticResource x:Key="NavigationViewItemForegroundSelectedDisabled" ResourceKey="MaterialOnSecondaryLowBrush" />
+	<StaticResource x:Key="NavigationViewItemForeground" ResourceKey="OnSurfaceMediumBrush" />
+	<StaticResource x:Key="NavigationViewItemForegroundPointerOver" ResourceKey="PrimaryBrush" />
+	<StaticResource x:Key="NavigationViewItemForegroundPressed" ResourceKey="PrimaryBrush" />
+	<StaticResource x:Key="NavigationViewItemForegroundDisabled" ResourceKey="OnSurfaceLowBrush" />
+	<StaticResource x:Key="NavigationViewItemForegroundChecked" ResourceKey="PrimaryBrush" />
+	<StaticResource x:Key="NavigationViewItemForegroundCheckedPointerOver" ResourceKey="PrimaryBrush" />
+	<StaticResource x:Key="NavigationViewItemForegroundCheckedPressed" ResourceKey="PrimaryBrush" />
+	<StaticResource x:Key="NavigationViewItemForegroundCheckedDisabled" ResourceKey="OnSecondaryLowBrush" />
+	<StaticResource x:Key="NavigationViewItemForegroundSelected" ResourceKey="PrimaryBrush" />
+	<StaticResource x:Key="NavigationViewItemForegroundSelectedPointerOver" ResourceKey="PrimaryBrush" />
+	<StaticResource x:Key="NavigationViewItemForegroundSelectedPressed" ResourceKey="PrimaryBrush" />
+	<StaticResource x:Key="NavigationViewItemForegroundSelectedDisabled" ResourceKey="OnSecondaryLowBrush" />
 
-	<StaticResource x:Key="NavigationViewRippleFeedback" ResourceKey="MaterialPrimaryFocusedBrush" />
+	<StaticResource x:Key="NavigationViewRippleFeedback" ResourceKey="PrimaryFocusedBrush" />
 
 	<Thickness x:Key="NavigationViewItemPadding">8,2</Thickness>
 	<CornerRadius x:Key="NavigationViewItemCornerRadius">4</CornerRadius>
@@ -2604,7 +2606,7 @@
 	<Style x:Key="T1NavigationViewItemStyle"
 		   BasedOn="{StaticResource DefaultNavigationViewItemStyle}"
 		   TargetType="muxc:NavigationViewItem">
-		<Setter Property="Foreground" Value="{StaticResource MaterialOnSurfaceLowBrush}" />
+		<Setter Property="Foreground" Value="{StaticResource OnSurfaceLowBrush}" />
 		<Setter Property="FontSize" Value="16" />
 	</Style>
 	
