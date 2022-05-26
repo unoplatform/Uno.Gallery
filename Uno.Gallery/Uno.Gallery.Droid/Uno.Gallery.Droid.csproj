@@ -236,8 +236,8 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <IncludeXamlNamespaces Include="mobile" />
-    <ExcludeXamlNamespaces Include="not_mobile" />
+    <IncludeXamlNamespaces Include="mobile" Visible="False" />
+    <ExcludeXamlNamespaces Include="not_mobile" Visible="False" />
   </ItemGroup>
   <Import Project="..\Uno.Gallery.Shared\Uno.Gallery.Shared.projitems" Label="Shared" Condition="Exists('..\Uno.Gallery.Shared\Uno.Gallery.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

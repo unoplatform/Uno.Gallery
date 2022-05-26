@@ -35,8 +35,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<IncludeXamlNamespaces Include="mobile" />
-		<ExcludeXamlNamespaces Include="not_mobile" />
+		<IncludeXamlNamespaces Include="mobile" Visible="False" />
+		<ExcludeXamlNamespaces Include="not_mobile" Visible="False" />
 	</ItemGroup>
 
 	<ItemGroup>
