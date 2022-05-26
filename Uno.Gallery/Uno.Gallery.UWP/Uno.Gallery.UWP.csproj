@@ -155,8 +155,8 @@
     <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
   </PropertyGroup>
   <ItemGroup>
-    <IncludeXamlNamespaces Include="not_mobile" />
-    <ExcludeXamlNamespaces Include="mobile" />
+    <IncludeXamlNamespaces Include="not_mobile" Visible="False" />
+    <ExcludeXamlNamespaces Include="mobile" Visible="False" />
   </ItemGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->

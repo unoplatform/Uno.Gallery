@@ -61,7 +61,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<IncludeXamlNamespaces Include="not_mobile" />
-		<ExcludeXamlNamespaces Include="mobile" />
+		<IncludeXamlNamespaces Include="not_mobile" Visible="False" />
+		<ExcludeXamlNamespaces Include="mobile" Visible="False" />
 	</ItemGroup>
 </Project>
