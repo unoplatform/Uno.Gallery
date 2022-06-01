@@ -8,10 +8,6 @@
 	<Application.Resources>
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
-
-				<!-- Load WinUI resources -->
-				<XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
-
 				<!-- Load Uno.Themes\Material resources -->
 				<MaterialColors xmlns="using:Uno.Material" />
 				<MaterialFonts xmlns="using:Uno.Material" OverrideSource="ms-appx:///Views/MaterialFontsOverride.xaml" />
@@ -27,6 +23,10 @@
 				<MaterialToolkitResources xmlns="using:Uno.Toolkit.UI.Material" />
 				<CupertinoToolkitResources xmlns="using:Uno.Toolkit.UI.Cupertino" />
 
+				<!-- Load WinUI resources -->
+				<!-- Load these resources after the Material/Cupertino resources. This ensures that the default Fluent styles will be used as the implicit styles. -->
+				<XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
+				
 				<!-- Application's custom styles -->
 				<ResourceDictionary Source="Views/Colors.xaml" todo:note="define some colors\brushes, and images resources; not for color overriding" />
 				<ResourceDictionary Source="Views/Converters.xaml" />
