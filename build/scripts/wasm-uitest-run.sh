@@ -27,7 +27,7 @@ dotnet run --project $UNO_UITEST_WASM_PROJECT -c Release --no-build &
 cd $BUILD_SOURCESDIRECTORY/build
 
 npm i chromedriver@100.0.0
-npm i puppeteer@14.0.0
+npm i puppeteer@14.1.0
 wget $UNO_UITEST_NUGET_URL
 mono nuget.exe install NUnit.ConsoleRunner -Version $UNO_UITEST_NUNIT_VERSION
 
