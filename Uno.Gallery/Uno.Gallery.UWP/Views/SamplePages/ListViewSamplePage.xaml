@@ -82,6 +82,7 @@ public List<Record> Data { get; } = new List<Record>
 								<!-- Selection-->
 								<ListView x:Name="ColorPicker"
 										  IsItemClickEnabled="True"
+										  SelectionMode="Single"
 										  SelectedIndex="0"
 										  Margin="0,16,0,0">
 
