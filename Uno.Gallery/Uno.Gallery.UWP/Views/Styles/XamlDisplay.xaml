@@ -81,7 +81,7 @@
 								<RowDefinition Height="Auto" />
 							</Grid.RowDefinitions>
 
-							<Grid>
+                            <Grid Background="{TemplateBinding Background}">
 								<Grid.ColumnDefinitions>
 									<ColumnDefinition Width="*" />
 									<ColumnDefinition Width="Auto"
