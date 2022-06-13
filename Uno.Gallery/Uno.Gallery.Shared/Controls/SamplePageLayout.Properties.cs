@@ -42,13 +42,13 @@ namespace Uno.Gallery
 
 		public static DependencyProperty DocumentationLinkProperty { get; } = DependencyProperty.Register(
 			nameof(DocumentationLink),
-			typeof(string),
+			typeof(Uri),
 			typeof(SamplePageLayout),
 			new PropertyMetadata(default));
 
-		public string DocumentationLink
+		public Uri DocumentationLink
 		{
-			get => (string)GetValue(DocumentationLinkProperty);
+			get => (Uri)GetValue(DocumentationLinkProperty);
 			set => SetValue(DocumentationLinkProperty, value);
 		}
 
