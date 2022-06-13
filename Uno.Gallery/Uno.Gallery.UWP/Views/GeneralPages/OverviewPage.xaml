@@ -116,8 +116,7 @@
 						</StackPanel>
 					</local:OverviewSampleView>
 
-					<!-- todo: ToggleSwitch (not supported yet for m3) -->
-					<todo:OverviewSampleView SamplePageType="samples:ToggleSwitchSamplePage">
+					<local:OverviewSampleView SamplePageType="samples:ToggleSwitchSamplePage">
 						<StackPanel Spacing="8">
 
 							<ToggleSwitch Header="ToggleSwitch"
@@ -128,7 +127,7 @@
 										  Style="{StaticResource MaterialToggleSwitchStyle}" />
 
 						</StackPanel>
-					</todo:OverviewSampleView>
+					</local:OverviewSampleView>
 
 				</StackPanel>
 			</DataTemplate>
