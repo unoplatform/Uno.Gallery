@@ -38,11 +38,9 @@
                             <Button Content="FILLED"
                                     AutomationProperties.AutomationId="Material_FilledButton"
                                     Style="{StaticResource FilledButtonStyle}" />
-                            <!-- too much clutter
-							<Button Content="FILLED TONAL"
-									AutomationProperties.AutomationId="Material_FilledTonalButton"
-									Style="{StaticResource FilledTonalButtonStyle}" />
-							-->
+                            <Button Content="TONAL"
+                                    AutomationProperties.AutomationId="Material_FilledTonalButton"
+                                    Style="{StaticResource FilledTonalButtonStyle}" />
                             <Button Content="OUTLINED"
                                     AutomationProperties.AutomationId="Material_OutlinedButton"
                                     Style="{StaticResource OutlinedButtonStyle}" />
