@@ -121,10 +121,12 @@
 
 							<ToggleSwitch Header="ToggleSwitch"
 										  IsOn="True"
-										  Style="{StaticResource MaterialToggleSwitchStyle}" />
+                                          MinWidth="200"
+										  Style="{StaticResource ToggleSwitchStyle}" />
 							<ToggleSwitch Header="Disabled"
 										  IsEnabled="False"
-										  Style="{StaticResource MaterialToggleSwitchStyle}" />
+                                          MinWidth="200"
+										  Style="{StaticResource ToggleSwitchStyle}" />
 
 						</StackPanel>
 					</local:OverviewSampleView>

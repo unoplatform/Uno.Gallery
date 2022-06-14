@@ -86,7 +86,7 @@ namespace Uno.Gallery
 					IsFooterVisible = true;
 					IsShareVisible = true;
 #else
-					IsFooterVisible = !string.IsNullOrWhiteSpace(sample.DocumentationLink);
+					IsFooterVisible = sample.DocumentationLink != null;
 					IsShareVisible = false;
 #endif
 				}

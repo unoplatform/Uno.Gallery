@@ -106,6 +106,7 @@
 						</TextBlock>
 					</StackPanel>
 					<Button Content="Reset all counters"
+                            Command="{Binding Data.ResetAllCounterCommand}"
 							HorizontalAlignment="Center"
 							Style="{StaticResource OutlinedButtonStyle}" />
 

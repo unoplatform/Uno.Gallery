@@ -23,8 +23,10 @@
 				Value="1" />
 		<Setter Property="Formatter"
 				Value="{x:Null}" />
+        <Setter Property="Background"
+                Value="{StaticResource SampleSecondBackgroundBrush}" />
 
-		<Setter Property="Template">
+        <Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="smtx:XamlDisplay">
 					<StackPanel>
@@ -105,7 +107,7 @@
 											  Style="{StaticResource XamlDisplayExpandToggleButtonStyle}" />
 							</Grid>
 
-							<ScrollViewer Background="{StaticResource SampleSecondBackgroundBrush}"
+                            <ScrollViewer Background="{StaticResource SampleThirdBackgroundBrush}"
 										  HorizontalScrollBarVisibility="Auto"
 										  VerticalScrollBarVisibility="Disabled"
 										  win:Visibility="{Binding Path=(smtx:XamlDisplayExtensions.ShowXaml), RelativeSource={RelativeSource TemplatedParent}}"
@@ -168,9 +170,9 @@
 
 	<Style x:Key="DefaultXamlPresenterStyle"
 		   TargetType="smtx:XamlPresenter">
-		<Setter Property="Formatter"
-				Value="{StaticResource NiceFormatter}" />
-		<Setter Property="Template">
+        <Setter Property="Formatter"
+                Value="{StaticResource NiceFormatter}" />
+        <Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="smtx:XamlPresenter">
 					<Grid>
@@ -180,6 +182,7 @@
 						</Grid.RowDefinitions>
 
 						<ContentControl Content="{Binding Tag, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                        VerticalContentAlignment="Center"
 										android:Visibility="Collapsed"
 										ios:Visibility="Collapsed" />
 
@@ -193,7 +196,7 @@
 									  ios:Visibility="Collapsed"
 									  Style="{StaticResource XamlDisplayExpandToggleButtonStyle}" />
 
-						<ScrollViewer Background="{StaticResource SampleSecondBackgroundBrush}"
+						<ScrollViewer Background="{StaticResource SampleThirdBackgroundBrush}"
 									  HorizontalScrollBarVisibility="Auto"
 									  VerticalScrollBarVisibility="Disabled"
 									  win:Visibility="{Binding ElementName=RevealButton, Path=IsChecked, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
