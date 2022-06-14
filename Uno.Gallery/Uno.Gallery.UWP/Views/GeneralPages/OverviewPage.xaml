@@ -35,25 +35,25 @@
 							<Button Content="ELEVATED"
 									AutomationProperties.AutomationId="Material_ElevatedButton"
 									Style="{StaticResource ElevatedButtonStyle}" />
-							<Button Content="FILLED"
-									AutomationProperties.AutomationId="Material_FilledButton"
-									Style="{StaticResource FilledButtonStyle}" />
-							<!-- too much clutter
+                            <Button Content="FILLED"
+                                    AutomationProperties.AutomationId="Material_FilledButton"
+                                    Style="{StaticResource FilledButtonStyle}" />
+                            <!-- too much clutter
 							<Button Content="FILLED TONAL"
 									AutomationProperties.AutomationId="Material_FilledTonalButton"
 									Style="{StaticResource FilledTonalButtonStyle}" />
 							-->
-							<Button Content="OUTLINED"
-									AutomationProperties.AutomationId="Material_OutlinedButton"
-									Style="{StaticResource OutlinedButtonStyle}" />
-							<Button Content="TEXT"
-									AutomationProperties.AutomationId="Material_TextButton"
-									Style="{StaticResource TextButtonStyle}" />
+                            <Button Content="OUTLINED"
+                                    AutomationProperties.AutomationId="Material_OutlinedButton"
+                                    Style="{StaticResource OutlinedButtonStyle}" />
+                            <Button Content="TEXT"
+                                    AutomationProperties.AutomationId="Material_TextButton"
+                                    Style="{StaticResource TextButtonStyle}" />
 							<Button AutomationProperties.AutomationId="Material_IconButton" Style="{StaticResource IconButtonStyle}">
-								<SymbolIcon Symbol="Favorite" />
-							</Button>
+                                <SymbolIcon Symbol="Favorite" />
+                            </Button>
 
-						</StackPanel>
+                        </StackPanel>
 					</local:OverviewSampleView>
 
 					<!-- TextBox -->
@@ -201,7 +201,8 @@
 
 					<!-- Button -->
 					<local:OverviewSampleView SamplePageType="samples:ButtonSamplePage">
-						<StackPanel Spacing="8">
+						<StackPanel Spacing="8"
+                                    Padding="11,0">
 
 							<Button Content="DEFAULT"
 									AutomationProperties.AutomationId="CupertinoButton"
@@ -215,7 +216,8 @@
 
 					<!-- TextBox -->
 					<local:OverviewSampleView SamplePageType="samples:TextBoxSamplePage">
-						<StackPanel Spacing="8">
+						<StackPanel Spacing="8"
+                                    Padding="11,0">
 
 							<TextBox Style="{StaticResource CupertinoTextBoxStyle}" PlaceholderText="Placeholder single line" />
 							<TextBox Style="{StaticResource CupertinoTextBoxStyle}"
@@ -248,7 +250,8 @@
 
 					<!-- RadioButton -->
 					<local:OverviewSampleView SamplePageType="samples:RadioButtonSamplePage">
-						<StackPanel Spacing="8">
+						<StackPanel Spacing="8"
+                                    Padding="11,0">
 
 							<RadioButton Content="Checked"
 										 IsChecked="True"
@@ -260,7 +263,8 @@
 
 					<!-- ToggleSwitch -->
 					<local:OverviewSampleView SamplePageType="samples:ToggleSwitchSamplePage">
-						<StackPanel Spacing="8">
+						<StackPanel Spacing="8"
+                                    Padding="11,0">
 
 							<ToggleSwitch Header="ToggleSwitch"
 										  IsOn="True"
