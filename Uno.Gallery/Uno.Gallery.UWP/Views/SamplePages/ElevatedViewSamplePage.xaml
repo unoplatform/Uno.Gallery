@@ -18,7 +18,7 @@
 		</Style>
 	</Page.Resources>
 
-	<Grid Background="{StaticResource BackgroundBrush}">
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
 		<local:SamplePageLayout>
 			<local:SamplePageLayout.MaterialTemplate>
 				<DataTemplate>

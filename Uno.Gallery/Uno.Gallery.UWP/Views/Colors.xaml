@@ -19,13 +19,13 @@
 					 Color="{ThemeResource OnSurfaceColor}"
 					 Opacity="0.13" />
 	<SolidColorBrush x:Key="SampleSecondBackgroundBrush"
-					 Color="{ThemeResource OnSurfaceColor}"
-					 Opacity="0.05" />
+					 Color="{ThemeResource OnTertiaryContainerColor}"
+					 Opacity="0.1" />
     <SolidColorBrush x:Key="SampleThirdBackgroundBrush"
                      Color="{ThemeResource OnSurfaceColor}"
                      Opacity="0.02" />
     <SolidColorBrush x:Key="ApplicationPageBackgroundThemeBrush"
-					 Color="{ThemeResource BackgroundColor}" />
+					 Color="{ThemeResource SurfaceColor}" />
 
 	<Color x:Key="UnoBlueColor">#FF229DFC</Color>
 	<Color x:Key="UnoPurpleColor">#FF7A69F5</Color>

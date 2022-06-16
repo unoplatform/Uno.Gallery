@@ -6,14 +6,15 @@
 		   TargetType="local:Banner">
 
 		<Setter Property="HorizontalAlignment"
-				Value="Right" />
+				Value="Stretch" />
 		<Setter Property="HorizontalContentAlignment"
 				Value="Right" />
 
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="local:Banner">
-					<Grid HorizontalAlignment="{TemplateBinding HorizontalAlignment}">
+					<Grid x:Name="RootGrid" 
+                          HorizontalAlignment="{TemplateBinding HorizontalAlignment}">
 
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup>
@@ -21,23 +22,27 @@
 									<VisualState.StateTriggers>
 										<AdaptiveTrigger MinWindowWidth="1000" />
 									</VisualState.StateTriggers>
-									<VisualState.Setters>
-									</VisualState.Setters>
-								</VisualState>
+                                    <VisualState.Setters>
+                                        <Setter Target="RootGrid.BorderThickness"
+                                                Value="0,0,0,1" />
+                                        <Setter Target="RootGrid.BorderBrush"
+                                                Value="{StaticResource DividerBrush}" />
+                                    </VisualState.Setters>
+                                </VisualState>
 
-								<VisualState x:Name="Mobile">
-									<VisualState.StateTriggers>
-										<AdaptiveTrigger MinWindowWidth="0" />
-									</VisualState.StateTriggers>
-									<VisualState.Setters>
-										<Setter Target="BannerButtons.Visibility"
-												Value="Collapsed" />
-									</VisualState.Setters>
-								</VisualState>
-							</VisualStateGroup>
-						</VisualStateManager.VisualStateGroups>
+                                <VisualState x:Name="Mobile">
+                                    <VisualState.StateTriggers>
+                                        <AdaptiveTrigger MinWindowWidth="0" />
+                                    </VisualState.StateTriggers>
+                                    <VisualState.Setters>
+                                        <Setter Target="BannerButtons.Visibility"
+                                                Value="Collapsed" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
 
-						<StackPanel x:Name="BannerButtons"
+                        <StackPanel x:Name="BannerButtons"
 									Orientation="Horizontal"
 									HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}">
 							
