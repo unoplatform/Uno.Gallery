@@ -62,7 +62,7 @@
 
 						<!-- Title (visible on desktop) -->
 						<TextBlock x:Name="StickyTitle"
-								   Margin="48,0"
+								   Margin="48,24"
 								   MaxLines="1"
 								   Style="{StaticResource HeadlineLarge}"
 								   Text="{TemplateBinding Title}"
@@ -296,7 +296,7 @@
 											Margin="48,0"
 											HorizontalAlignment="Stretch"
 											VerticalAlignment="Top"
-											Background="{StaticResource BackgroundBrush}"
+											Background="{StaticResource SurfaceBrush}"
 											BorderBrush="{TemplateBinding BorderBrush}"
 											BorderThickness="0,0,0,1"
 											Orientation="Horizontal"

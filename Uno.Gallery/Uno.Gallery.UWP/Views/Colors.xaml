@@ -25,7 +25,7 @@
                      Color="{ThemeResource OnSurfaceColor}"
                      Opacity="0.02" />
     <SolidColorBrush x:Key="ApplicationPageBackgroundThemeBrush"
-					 Color="{ThemeResource BackgroundColor}" />
+					 Color="{ThemeResource SurfaceColor}" />
 
 	<Color x:Key="UnoBlueColor">#FF229DFC</Color>
 	<Color x:Key="UnoPurpleColor">#FF7A69F5</Color>
