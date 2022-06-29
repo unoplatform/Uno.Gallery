@@ -80,7 +80,7 @@
 							<smtx:XamlDisplay UniqueKey="ProgressSamplePage_Material_ProgressRingIndeterminate" smtx:XamlDisplayExtensions.Header="ProgressRing">
 
 								<muxc:ProgressRing IsActive="True"
-												   Style="{StaticResource M3MaterialProgressRingStyle}"
+												   Style="{StaticResource MaterialProgressRingStyle}"
 												   HorizontalAlignment="Left" />
 
 							</smtx:XamlDisplay>
@@ -95,7 +95,7 @@
 											Minimum="0"
 											Maximum="100" />
 									<muxc:ProgressRing Value="{Binding Value, ElementName=progressRingSlider_Material}"
-													   Style="{StaticResource M3MaterialProgressRingStyle}"
+													   Style="{StaticResource MaterialProgressRingStyle}"
 													   Minimum="0"
 													   Maximum="100"
 													   IsIndeterminate="False" />
@@ -119,7 +119,7 @@
 								<muxc:ProgressBar Value="{Binding Value, ElementName=progressSlider_Material}"
 												  Minimum="0"
 												  Maximum="100"
-												  Style="{StaticResource M3MaterialProgressBarStyle}" />
+												  Style="{StaticResource MaterialProgressBarStyle}" />
 
 							</StackPanel>
 						</smtx:XamlDisplay>
@@ -129,7 +129,7 @@
 										  smtx:XamlDisplayExtensions.Header="Indeterminate ProgressBar"
 										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
 
-							<muxc:ProgressBar IsIndeterminate="True" Style="{StaticResource M3MaterialProgressBarStyle}" />
+							<muxc:ProgressBar IsIndeterminate="True" Style="{StaticResource MaterialProgressBarStyle}" />
 
 						</smtx:XamlDisplay>
 						
