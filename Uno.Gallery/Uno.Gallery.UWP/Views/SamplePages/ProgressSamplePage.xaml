@@ -12,35 +12,33 @@
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 		<local:SamplePageLayout>
 
-			<d:SamplePageLayout.FluentTemplate>
+			<local:SamplePageLayout.FluentTemplate>
 				<DataTemplate>
 					<StackPanel>
 
 						<!-- ProgressRing -->
-						<!-- skia: ProgressRing uses Lottie which isnt supported on skia yet -->
-						<not_skia:StackPanel>
-							<smtx:XamlDisplay UniqueKey="ProgressSamplePage_Fluent" smtx:XamlDisplayExtensions.Header="ProgressRing">
+						<smtx:XamlDisplay UniqueKey="ProgressSamplePage_Fluent" smtx:XamlDisplayExtensions.Header="ProgressRing">
 
-								<muxc:ProgressRing IsActive="True" HorizontalAlignment="Left" />
+							<muxc:ProgressRing IsActive="True" HorizontalAlignment="Left" />
 
-							</smtx:XamlDisplay>
-							<smtx:XamlDisplay UniqueKey="ProgressSamplePage_Fluent_ProgressRingDeterminate"
+						</smtx:XamlDisplay>
+						
+						<smtx:XamlDisplay UniqueKey="ProgressSamplePage_Fluent_ProgressRingDeterminate"
 											  smtx:XamlDisplayExtensions.Header="Determinate ProgressRing"
 											  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
-								<StackPanel Spacing="24">
+							<StackPanel Spacing="24">
 
-									<Slider x:Name="progressRingSlider_Fluent"
+								<Slider x:Name="progressRingSlider_Fluent"
 											Value="50"
 											Minimum="0"
 											Maximum="100" />
-									<muxc:ProgressRing Value="{Binding Value, ElementName=progressRingSlider_Fluent}"
+								<muxc:ProgressRing Value="{Binding Value, ElementName=progressRingSlider_Fluent}"
 													   Minimum="0"
 													   Maximum="100"
 													   IsIndeterminate="False" />
 
-								</StackPanel>
-							</smtx:XamlDisplay>
-						</not_skia:StackPanel>
+							</StackPanel>
+						</smtx:XamlDisplay>
 
 						<!-- ProgressBar -->
 						<smtx:XamlDisplay UniqueKey="ProgressSamplePage_Fluent_ProgressBar"
@@ -69,7 +67,7 @@
 						
 					</StackPanel>
 				</DataTemplate>
-			</d:SamplePageLayout.FluentTemplate>
+			</local:SamplePageLayout.FluentTemplate>
 			<local:SamplePageLayout.MaterialTemplate>
 				<DataTemplate>
 					<StackPanel>
@@ -80,7 +78,7 @@
 							<smtx:XamlDisplay UniqueKey="ProgressSamplePage_Material_ProgressRingIndeterminate" smtx:XamlDisplayExtensions.Header="ProgressRing">
 
 								<muxc:ProgressRing IsActive="True"
-												   Style="{StaticResource M3MaterialProgressRingStyle}"
+												   Style="{StaticResource MaterialProgressRingStyle}"
 												   HorizontalAlignment="Left" />
 
 							</smtx:XamlDisplay>
@@ -95,7 +93,7 @@
 											Minimum="0"
 											Maximum="100" />
 									<muxc:ProgressRing Value="{Binding Value, ElementName=progressRingSlider_Material}"
-													   Style="{StaticResource M3MaterialProgressRingStyle}"
+													   Style="{StaticResource MaterialProgressRingStyle}"
 													   Minimum="0"
 													   Maximum="100"
 													   IsIndeterminate="False" />
@@ -119,7 +117,7 @@
 								<muxc:ProgressBar Value="{Binding Value, ElementName=progressSlider_Material}"
 												  Minimum="0"
 												  Maximum="100"
-												  Style="{StaticResource M3MaterialProgressBarStyle}" />
+												  Style="{StaticResource MaterialProgressBarStyle}" />
 
 							</StackPanel>
 						</smtx:XamlDisplay>
@@ -129,7 +127,7 @@
 										  smtx:XamlDisplayExtensions.Header="Indeterminate ProgressBar"
 										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
 
-							<muxc:ProgressBar IsIndeterminate="True" Style="{StaticResource M3MaterialProgressBarStyle}" />
+							<muxc:ProgressBar IsIndeterminate="True" Style="{StaticResource MaterialProgressBarStyle}" />
 
 						</smtx:XamlDisplay>
 						
