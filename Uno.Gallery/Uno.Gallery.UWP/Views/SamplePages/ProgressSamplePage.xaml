@@ -18,7 +18,7 @@
 
 						<!-- ProgressRing -->
 						<!-- skia: ProgressRing uses Lottie which isnt supported on skia yet -->
-						<not_skia:StackPanel>
+						<StackPanel>
 							<smtx:XamlDisplay UniqueKey="ProgressSamplePage_Fluent" smtx:XamlDisplayExtensions.Header="ProgressRing">
 
 								<muxc:ProgressRing IsActive="True" HorizontalAlignment="Left" />
@@ -40,7 +40,7 @@
 
 								</StackPanel>
 							</smtx:XamlDisplay>
-						</not_skia:StackPanel>
+						</StackPanel>
 
 						<!-- ProgressBar -->
 						<smtx:XamlDisplay UniqueKey="ProgressSamplePage_Fluent_ProgressBar"
@@ -76,7 +76,7 @@
 
 						<!-- ProgressRing -->
 						<!-- skia: ProgressRing uses Lottie which isnt supported on skia yet -->
-						<not_skia:StackPanel>
+						<StackPanel>
 							<smtx:XamlDisplay UniqueKey="ProgressSamplePage_Material_ProgressRingIndeterminate" smtx:XamlDisplayExtensions.Header="ProgressRing">
 
 								<muxc:ProgressRing IsActive="True"
@@ -102,7 +102,7 @@
 
 								</StackPanel>
 							</smtx:XamlDisplay>
-						</not_skia:StackPanel>
+						</StackPanel>
 
 						<!-- ProgressBar -->
 						<smtx:XamlDisplay UniqueKey="ProgressSamplePage_Material_ProgressBar"
@@ -142,7 +142,7 @@
 
 						<!-- ProgressRing -->
 						<!-- skia: ProgressRing uses Lottie which isnt supported on skia yet -->
-						<not_skia:StackPanel>
+						<StackPanel>
 							<smtx:XamlDisplay UniqueKey="ProgressSamplePage_Cupertino_ProgressRingIndeterminate" smtx:XamlDisplayExtensions.Header="ProgressRing">
 
 								<muxc:ProgressRing IsActive="True"
@@ -169,7 +169,7 @@
 
 								</StackPanel>
 							</smtx:XamlDisplay>
-						</not_skia:StackPanel>
+						</StackPanel>
 
 						<!-- ProgressBar -->
 						<smtx:XamlDisplay UniqueKey="ProgressSamplePage_Cupertino_ProgressBar"
