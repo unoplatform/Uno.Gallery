@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using Android.App;
@@ -22,6 +23,7 @@ namespace Uno.Gallery.Droid
 	)]
 	public class Application : Windows.UI.Xaml.NativeApplication
 	{
+		[DynamicDependency(DynamicallyAccessedMemberTypes.All, "Android.Text.ITextWatcherInvoker", "Mono.Android")] // xamarin/xamarin-android#7097
 		public Application(IntPtr javaReference, JniHandleOwnership transfer)
 			: base(() => new App(), javaReference, transfer)
 		{
