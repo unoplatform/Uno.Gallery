@@ -18,6 +18,7 @@ using Windows.UI.Xaml.Automation;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
+using Uno.Gallery.Views.Samples;
 using MUXC = Microsoft.UI.Xaml.Controls;
 using MUXCP = Microsoft.UI.Xaml.Controls.Primitives;
 
@@ -190,7 +191,7 @@ namespace Uno.Gallery
 			AddNavigationItems(nv);
 
 			// landing navigation
-			ShellNavigateTo<OverviewPage>(
+			ShellNavigateTo<LottieSamplePage>(
 #if !WINDOWS_UWP
 				// workaround for uno#5069: setting NavView.SelectedItem at launch bricks it
 				trySynchronizeCurrentItem: false
