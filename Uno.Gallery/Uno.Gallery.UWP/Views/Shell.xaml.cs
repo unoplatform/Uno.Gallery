@@ -40,7 +40,7 @@ namespace Uno.Gallery
 		{
 			SetDarkLightToggleInitialState();
 
-#if __IOS__ || __ANDROID__
+#if (__IOS__ || __ANDROID__) && !NET6_0_OR_GREATER
 			this.Log().Debug("Loaded Shell.");
 			Uno.Gallery.Deeplinking.BranchService.Instance.SetIsAppReady();
 #endif
@@ -71,17 +71,24 @@ namespace Uno.Gallery
 		private void InitializeSafeArea()
 		{
 			var full = Windows.UI.Xaml.Window.Current.Bounds;
-			var bounds = ApplicationView.GetForCurrentView().VisibleBounds;
 
-			var topPadding = Math.Abs(full.Top - bounds.Top);
+            ApplicationView.GetForCurrentView().VisibleBoundsChanged += (s, e) => Adjust();
 
-			if (topPadding > 0)
+			Adjust();
+
+			void Adjust()
 			{
-				TopPaddingRow.Height = new GridLength(topPadding);
+				var bounds = ApplicationView.GetForCurrentView().VisibleBounds;
+				var topPadding = Math.Abs(full.Top - bounds.Top);
+
+				if (topPadding > 0)
+				{
+					TopPaddingRow.Height = new GridLength(topPadding);
+				}
 			}
 		}
 
-		private void ToggleButton_Click(object sender, RoutedEventArgs e)
+        private void ToggleButton_Click(object sender, RoutedEventArgs e)
 		{
 			// Set theme for window root.
 			if (global::Windows.UI.Xaml.Window.Current.Content is FrameworkElement root)

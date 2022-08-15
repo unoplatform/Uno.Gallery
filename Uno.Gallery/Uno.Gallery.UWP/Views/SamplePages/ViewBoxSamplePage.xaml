@@ -5,7 +5,8 @@
 	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	  xmlns:smtx="using:ShowMeTheXAML"
-	  mc:Ignorable="d">
+	  xmlns:todo="what should be done"
+	  mc:Ignorable="d todo">
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 		<local:SamplePageLayout>
@@ -19,12 +20,12 @@
 
 								<!-- Size Slider -->
 								<Slider x:Name="SizeSlider"
-										Style="{StaticResource MaterialSliderStyle}"
 										HorizontalAlignment="Center"
 										Width="200"
 										Maximum="400"
 										Minimum="20"
-										Value="200" />
+										Value="200"
+										todo:Style="{StaticResource MaterialSliderStyle}" />
 
 								<!-- ViewBox -->
 								<Viewbox Height="{Binding Value, ElementName=SizeSlider, Mode=OneWay}"
@@ -33,7 +34,7 @@
 										 VerticalAlignment="Top"
 										 Margin="0,12,0,0">
 
-									<StackPanel Background="{StaticResource MaterialOnBackgroundBrush}">
+									<StackPanel Background="{StaticResource OnBackgroundBrush}">
 										<StackPanel Orientation="Horizontal">
 
 											<Rectangle Fill="{StaticResource UnoGreenColor}"
@@ -55,8 +56,8 @@
 
 										<!-- Text -->
 										<TextBlock Text="Some text"
-												   Style="{StaticResource MaterialSubtitle1}"
-												   Foreground="{StaticResource MaterialBackgroundBrush}" 
+												   Style="{StaticResource TitleLarge}"
+												   Foreground="{StaticResource BackgroundBrush}" 
 												   HorizontalAlignment="Center"
 												   Margin="0,0,0,4"/>
 									</StackPanel>

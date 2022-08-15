@@ -5,18 +5,7 @@
     packageType: runtime
     version: 2.2.x
 
-- task: nventiveCanaryUpdater@5
-  condition: eq(variables['IsCanaryBranch'], true)
-  inputs:
-    solution: Uno.Gallery.sln
-    useNuGetOrg: true
-    usePrivateFeed: false
-    mergeBranch: true
-    branchToMerge: master
-    nugetUpdaterVersion: 2.1.1
-    packageAuthor: nventive
-    summaryFile: '$(Build.ArtifactStagingDirectory)/Canary.md'
-
+- template: templates/canary-updater.yml
 - template: templates/gitversion.yml
 
 - task: UseDotNet@2
@@ -28,6 +17,13 @@
 - bash: |
     dotnet msbuild /ds /m /r /p:Configuration=Release "/p:InformationalVersion=%GITVERSION_InformationalVersion%" Uno.Gallery/Uno.Gallery.Wasm/Uno.Gallery.Wasm.csproj /bl:$(Build.ArtifactStagingDirectory)/wasm.binlog
   retryCountOnTaskFailure: 3
+
+- task: CopyFiles@2
+  displayName: Copy Wasm output
+  inputs:      
+    SourceFolder: Uno.Gallery/Uno.Gallery.Wasm/bin/Release/net5/dist
+    Contents: '**/*.*'
+    TargetFolder: $(Build.ArtifactStagingDirectory)
 
 - task: CopyFiles@2
   displayName: Copy version information

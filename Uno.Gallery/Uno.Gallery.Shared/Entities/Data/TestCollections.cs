@@ -47,6 +47,8 @@ namespace Uno.Gallery.Entities.Data
 			public int Index { get => GetProperty<int>(); set => SetProperty(value); }
 
 			public Uri Image { get => GetProperty<Uri>(); set => SetProperty(value); }
+
+			public override string ToString() => $"Item #{Index}";
 		}
 
 		public class InpcObject : INotifyPropertyChanged

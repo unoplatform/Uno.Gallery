@@ -15,111 +15,85 @@
 					<StackPanel Padding="0,8">
 
 						<smtx:XamlDisplay UniqueKey="Divider_Default"
-										  smtx:XamlDisplayExtensions.Header="Divider">
-							<StackPanel Background="{StaticResource MaterialSurfaceBrush}"
-										Margin="8">
-								<TextBlock Text="Item"
-										   Foreground="{StaticResource MaterialOnBackgroundBrush}" />
+										  smtx:XamlDisplayExtensions.Header="Middle divider"
+										  smtx:XamlDisplayExtensions.Description="Middle dividers space related content and are centered in a layout or list."
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+							<StackPanel Background="{StaticResource SurfaceBrush}" Spacing="16">
 
-								<utu:Divider Style="{StaticResource MaterialDividerStyle}" />
+								<TextBlock Text="Item" Foreground="{StaticResource OnBackgroundBrush}" />
+								<utu:Divider Style="{StaticResource DividerStyle}" />
+								<TextBlock Text="Item" Foreground="{StaticResource OnBackgroundBrush}" />
 
-								<TextBlock Text="Item"
-										   Foreground="{StaticResource MaterialOnBackgroundBrush}" />
 							</StackPanel>
 						</smtx:XamlDisplay>
-
-
 						<smtx:XamlDisplay UniqueKey="Divider_DefaultWithSubHeader"
-										  smtx:XamlDisplayExtensions.Header="Divider with subheader">
-							<StackPanel Background="{StaticResource MaterialSurfaceBrush}"
-										Margin="8">
+										  smtx:XamlDisplayExtensions.Header="Divider with subheader"
+										  smtx:XamlDisplayExtensions.Description="Dividers can be paired with subheaders to help define content groupings."
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+							<StackPanel Background="{StaticResource SurfaceBrush}" Spacing="16">
 
-								<TextBlock Text="Item"
-										   Foreground="{StaticResource MaterialOnBackgroundBrush}" />
+								<TextBlock Text="Item" Foreground="{StaticResource OnBackgroundBrush}" />
+								<utu:Divider SubHeader="SubHeader" Style="{StaticResource DividerStyle}" />
+								<TextBlock Text="Item" Foreground="{StaticResource OnBackgroundBrush}" />
 
-								<utu:Divider Style="{StaticResource MaterialDividerStyle}"
-												  SubHeader="SubHeader" />
-
-								<TextBlock Text="Item"
-										   Foreground="{StaticResource MaterialOnBackgroundBrush}" />
 							</StackPanel>
 						</smtx:XamlDisplay>
-
-						<smtx:XamlDisplay UniqueKey="Divider_Custom"
-										  smtx:XamlDisplayExtensions.Header="Divder on primary color">
-							<StackPanel Background="{StaticResource MaterialPrimaryBrush}"
-										Margin="8">
-
-								<TextBlock Text="Item"
-										   Foreground="{StaticResource MaterialOnPrimaryBrush}" />
-
-								<utu:Divider Style="{StaticResource MaterialDividerStyle}"
-												  Foreground="{StaticResource MaterialOnPrimaryLowBrush}" />
-
-								<TextBlock Text="Item"
-										   Foreground="{StaticResource MaterialOnPrimaryBrush}" />
-							</StackPanel>
-						</smtx:XamlDisplay>
-
-
-						<smtx:XamlDisplay UniqueKey="Divider_CustomWithSubHeader"
-										  smtx:XamlDisplayExtensions.Header="Divder with subheader on primary color">
-							<StackPanel Background="{StaticResource MaterialPrimaryBrush}"
-										Margin="8">
-
-								<TextBlock Text="Item"
-										   Foreground="{StaticResource MaterialOnPrimaryBrush}" />
-
-								<utu:Divider Style="{StaticResource MaterialDividerStyle}"
-												  SubHeader="SubHeader"
-												  Foreground="{StaticResource MaterialOnPrimaryLowBrush}"
-												  SubHeaderForeground="{StaticResource MaterialOnPrimaryBrush}" />
-
-								<TextBlock Text="Item"
-										   Foreground="{StaticResource MaterialOnPrimaryBrush}" />
-							</StackPanel>
-						</smtx:XamlDisplay>
-
 						<smtx:XamlDisplay UniqueKey="Divider_ListView"
-										  smtx:XamlDisplayExtensions.Header="Divider inside a ListView">
+										  smtx:XamlDisplayExtensions.Header="Divider inside a ListView"
+										  smtx:XamlDisplayExtensions.Description="Dividers can be paired with subheaders to help define content groupings."
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
+							
 							<ListView ItemsSource="{Binding Data}"
-									  SelectionMode="None">
+									  SelectionMode="None"
+									  MaxHeight="500"
+									  HorizontalContentAlignment="Stretch">
+								<ListView.ItemContainerStyle>
+									<Style TargetType="ListViewItem">
+										<Setter Property="HorizontalContentAlignment" Value="Stretch" />
+									</Style>
+								</ListView.ItemContainerStyle>
 								<ListView.ItemTemplate>
 									<DataTemplate>
-										<Grid Width="200">
+										<Grid>
 											<Grid.RowDefinitions>
 												<RowDefinition Height="Auto" />
 												<RowDefinition Height="*" />
 											</Grid.RowDefinitions>
 
-											<ItemsControl ItemsSource="{Binding SubItems}">
+											<utu:Divider Grid.Row="0"
+														 SubHeader="Subheader"
+														 Style="{StaticResource DividerStyle}" />
+											<ItemsControl Grid.Row="1" ItemsSource="{Binding SubItems}">
 												<ItemsControl.ItemTemplate>
 													<DataTemplate>
-														<Grid Width="200"
-															  Padding="8">
+														<Grid ColumnSpacing="8" Padding="8">
 															<Grid.ColumnDefinitions>
+																<ColumnDefinition Width="Auto" />
 																<ColumnDefinition Width="*" />
 																<ColumnDefinition Width="Auto" />
 															</Grid.ColumnDefinitions>
 
-															<TextBlock Text="{Binding}"
-																	   Foreground="{StaticResource MaterialOnBackgroundBrush}" />
-
-															<SymbolIcon Symbol="Add"
-																		Foreground="{StaticResource MaterialOnBackgroundBrush}"
-																		Grid.Column="1" />
+															<PersonPicture Grid.Column="0"
+																		   Height="40"
+																		   Width="40" />
+															<StackPanel Grid.Column="1" Orientation="Vertical">
+																<TextBlock Text="Title" Style="{StaticResource TitleMedium}" />
+																<TextBlock Text="Subtitle" Style="{StaticResource LabelSmall}" />
+															</StackPanel>
+															<Button Grid.Column="2" Style="{StaticResource IconButtonStyle}">
+																<PathIcon Data="M13,9H11V7H13M13,17H11V11H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" Foreground="{StaticResource OnBackgroundLowBrush}" />
+															</Button>
 														</Grid>
 													</DataTemplate>
 												</ItemsControl.ItemTemplate>
 											</ItemsControl>
-
-											<utu:Divider Style="{StaticResource MaterialDividerStyle}"
-															  Grid.Row="1" />
 										</Grid>
 									</DataTemplate>
 								</ListView.ItemTemplate>
 							</ListView>
+							
 						</smtx:XamlDisplay>
+
 					</StackPanel>
 				</DataTemplate>
 			</local:SamplePageLayout.MaterialTemplate>

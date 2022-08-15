@@ -18,7 +18,7 @@
 							<CalendarDatePicker Header="Date"
 												x:Name="Material_CalendarDatePicker"
 												AutomationProperties.AutomationId="Material_CalendarDatePicker"
-												Style="{StaticResource MaterialCalendarDatePickerStyle}" />
+												Style="{StaticResource CalendarDatePickerStyle}" />
 						</smtx:XamlDisplay>
 						<smtx:XamlDisplay UniqueKey="CalendarViewSamplePage_Material_CalendarDatePicker_Disabled"
 										  smtx:XamlDisplayExtensions.Header="Disabled">
@@ -26,7 +26,7 @@
 												IsEnabled="False"
 												x:Name="Material_CalendarDatePicker_Disabled"
 												AutomationProperties.AutomationId="Material_CalendarDatePicker_Disabled"
-												Style="{StaticResource MaterialCalendarDatePickerStyle}" />
+												Style="{StaticResource CalendarDatePickerStyle}" />
 						</smtx:XamlDisplay>
 					</StackPanel>
 				</DataTemplate>

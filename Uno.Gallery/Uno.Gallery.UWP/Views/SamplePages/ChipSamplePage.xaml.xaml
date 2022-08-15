@@ -9,305 +9,191 @@
 	  xmlns:sample="using:Uno.Gallery"
 	  mc:Ignorable="d">
 
+	<Page.Resources>
+		<Style x:Key="HorizontalScrollViewerStyle" TargetType="ScrollViewer">
+			<Setter Property="HorizontalScrollMode" Value="Auto" />
+			<Setter Property="HorizontalScrollBarVisibility" Value="Auto" />
+			<Setter Property="VerticalScrollMode" Value="Disabled" />
+			<Setter Property="VerticalScrollBarVisibility" Value="Hidden" />
+			<Setter Property="Margin" Value="0,10" />
+		</Style>
+	</Page.Resources>
+
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 		<sample:SamplePageLayout>
 			<sample:SamplePageLayout.MaterialTemplate>
 				<DataTemplate>
 					<StackPanel>
-						<!-- MaterialFilledInputChipStyle -->
-						<TextBlock Text="Input - Filled"
-								   Margin="0,20,0,0"
-								   Style="{StaticResource MaterialSubtitle1}" />
-						<ScrollViewer Style="{StaticResource HorizontalScrollViewerStyle}">
-							<StackPanel Orientation="Horizontal"
-										Spacing="8">
-								<smtx:XamlDisplay UniqueKey="ChipSamplePage_ChipFilledInput_Enabled"
-												  Style="{StaticResource XamlDisplayBelowStyle}">
-									<utu:Chip Content="Enabled"
-											  Style="{StaticResource MaterialFilledInputChipStyle}"
-											  AutomationProperties.AutomationId="ChipFilledInput_Enabled">
+
+						<smtx:XamlDisplay UniqueKey="ChipSamplePage_Assist"
+										  smtx:XamlDisplayExtensions.Header="Assist"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\ScrollViewer\StackPanel">
+							<ScrollViewer Style="{StaticResource HorizontalScrollViewerStyle}">
+								<StackPanel Orientation="Horizontal" Spacing="8">
+
+									<utu:Chip Content="Default" Style="{StaticResource AssistChipStyle}">
 										<utu:Chip.Icon>
 											<Image Source="ms-appx:///Assets/Avatar.png" />
 										</utu:Chip.Icon>
 									</utu:Chip>
-								</smtx:XamlDisplay>
-
-								<smtx:XamlDisplay UniqueKey="ChipSamplePage_ChipFilledInput_Disabled"
-												  Style="{StaticResource XamlDisplayBelowStyle}">
 									<utu:Chip Content="Disabled"
-											  Style="{StaticResource MaterialFilledInputChipStyle}"
-											  AutomationProperties.AutomationId="ChipFilledInput_Disabled"
-											  IsEnabled="False">
+											  IsEnabled="False"
+											  Style="{StaticResource AssistChipStyle}">
 										<utu:Chip.Icon>
 											<Image Source="ms-appx:///Assets/Avatar.png" />
 										</utu:Chip.Icon>
 									</utu:Chip>
-								</smtx:XamlDisplay>
 
-								<smtx:XamlDisplay UniqueKey="ChipSamplePage_ChipFilledInput_Selected"
-												  Style="{StaticResource XamlDisplayBelowStyle}">
+								</StackPanel>
+							</ScrollViewer>
+						</smtx:XamlDisplay>
+						<smtx:XamlDisplay UniqueKey="ChipSamplePage_ElevatedAssist"
+										  smtx:XamlDisplayExtensions.Header="Elevated Assist"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\ScrollViewer\StackPanel">
+							<ScrollViewer Style="{StaticResource HorizontalScrollViewerStyle}">
+								<StackPanel Orientation="Horizontal" Spacing="8">
+
+									<utu:Chip Content="Default" Style="{StaticResource ElevatedAssistChipStyle}">
+										<utu:Chip.Icon>
+											<Image Source="ms-appx:///Assets/Avatar.png" />
+										</utu:Chip.Icon>
+									</utu:Chip>
+									<utu:Chip Content="Disabled"
+											  IsEnabled="False"
+											  Style="{StaticResource ElevatedAssistChipStyle}">
+										<utu:Chip.Icon>
+											<Image Source="ms-appx:///Assets/Avatar.png" />
+										</utu:Chip.Icon>
+									</utu:Chip>
+
+								</StackPanel>
+							</ScrollViewer>
+						</smtx:XamlDisplay>
+						<smtx:XamlDisplay UniqueKey="ChipSamplePage_Input"
+										  smtx:XamlDisplayExtensions.Header="Input"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\ScrollViewer\StackPanel">
+							<ScrollViewer Style="{StaticResource HorizontalScrollViewerStyle}">
+								<StackPanel Orientation="Horizontal" Spacing="8">
+
+									<utu:Chip Content="Default" Style="{StaticResource InputChipStyle}">
+										<utu:Chip.Icon>
+											<Image Source="ms-appx:///Assets/Avatar.png" />
+										</utu:Chip.Icon>
+									</utu:Chip>
 									<utu:Chip Content="Selected"
 											  IsChecked="True"
-											  Style="{StaticResource MaterialFilledInputChipStyle}"
-											  AutomationProperties.AutomationId="ChipFilledInput_Selected" />
-								</smtx:XamlDisplay>
-							</StackPanel>
-						</ScrollViewer>
-
-						<!-- MaterialOutlinedInputChipStyle -->
-						<TextBlock Text="Input - Outlined"
-								   Style="{StaticResource MaterialSubtitle1}" />
-						<ScrollViewer Style="{StaticResource HorizontalScrollViewerStyle}">
-							<StackPanel Orientation="Horizontal"
-										Spacing="8">
-								<smtx:XamlDisplay UniqueKey="ChipSamplePage_ChipOutlinedInput_Enabled"
-												  Style="{StaticResource XamlDisplayBelowStyle}">
-									<utu:Chip Content="Enabled"
-											  Style="{StaticResource MaterialOutlinedInputChipStyle}"
-											  AutomationProperties.AutomationId="ChipOutlinedInput_Enabled">
-										<utu:Chip.Icon>
-											<Image Source="ms-appx:///Assets/Avatar.png" />
-										</utu:Chip.Icon>
-									</utu:Chip>
-								</smtx:XamlDisplay>
-
-								<smtx:XamlDisplay UniqueKey="ChipSamplePage_ChipOutlinedInput_Disabled"
-												  Style="{StaticResource XamlDisplayBelowStyle}">
+											  Style="{StaticResource InputChipStyle}" />
 									<utu:Chip Content="Disabled"
-											  Style="{StaticResource MaterialOutlinedInputChipStyle}"
-											  AutomationProperties.AutomationId="ChipOutlinedInput_Disabled"
-											  IsEnabled="False">
+											  IsEnabled="False"
+											  Style="{StaticResource InputChipStyle}">
 										<utu:Chip.Icon>
 											<Image Source="ms-appx:///Assets/Avatar.png" />
 										</utu:Chip.Icon>
 									</utu:Chip>
-								</smtx:XamlDisplay>
 
-								<smtx:XamlDisplay UniqueKey="ChipSamplePage_ChipOutlinedInput_Selected"
-												  Style="{StaticResource XamlDisplayBelowStyle}">
+								</StackPanel>
+							</ScrollViewer>
+						</smtx:XamlDisplay>
+						<smtx:XamlDisplay UniqueKey="ChipSamplePage_Filter"
+										  smtx:XamlDisplayExtensions.Header="Filter"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\ScrollViewer\StackPanel">
+							<ScrollViewer Style="{StaticResource HorizontalScrollViewerStyle}">
+								<StackPanel Orientation="Horizontal" Spacing="8">
+
+									<utu:Chip Content="Default" Style="{StaticResource FilterChipStyle}">
+										<utu:Chip.Icon>
+											<Image Source="ms-appx:///Assets/Avatar.png" />
+										</utu:Chip.Icon>
+									</utu:Chip>
 									<utu:Chip Content="Selected"
 											  IsChecked="True"
-											  Style="{StaticResource MaterialOutlinedInputChipStyle}"
-											  AutomationProperties.AutomationId="ChipOutlinedInput_Selected" />
-								</smtx:XamlDisplay>
-							</StackPanel>
-						</ScrollViewer>
-
-
-						<!-- MaterialFilledChoiceChipStyle -->
-						<TextBlock Text="Choice - Filled"
-								   Style="{StaticResource MaterialSubtitle1}" />
-						<ScrollViewer Style="{StaticResource HorizontalScrollViewerStyle}">
-							<StackPanel Orientation="Horizontal"
-										Spacing="8">
-								<smtx:XamlDisplay UniqueKey="ChipSamplePage_ChipFilledChoice_Enabled"
-												  Style="{StaticResource XamlDisplayBelowStyle}">
-									<utu:Chip Content="Enabled"
-											  Style="{StaticResource MaterialFilledChoiceChipStyle}"
-											  AutomationProperties.AutomationId="ChipFilledChoice_Enabled" />
-								</smtx:XamlDisplay>
-
-								<smtx:XamlDisplay UniqueKey="ChipSamplePage_ChipFilledChoice_Disabled"
-												  Style="{StaticResource XamlDisplayBelowStyle}">
+											  Style="{StaticResource FilterChipStyle}" />
 									<utu:Chip Content="Disabled"
-											  Style="{StaticResource MaterialFilledChoiceChipStyle}"
-											  AutomationProperties.AutomationId="ChipFilledChoice_Disabled"
-											  IsEnabled="False" />
-								</smtx:XamlDisplay>
+											  IsEnabled="False"
+											  Style="{StaticResource FilterChipStyle}">
+										<utu:Chip.Icon>
+											<Image Source="ms-appx:///Assets/Avatar.png" />
+										</utu:Chip.Icon>
+									</utu:Chip>
 
-								<smtx:XamlDisplay UniqueKey="ChipSamplePage_ChipFilledChoice_Selected"
-												  Style="{StaticResource XamlDisplayBelowStyle}">
+								</StackPanel>
+							</ScrollViewer>
+						</smtx:XamlDisplay>
+						<smtx:XamlDisplay UniqueKey="ChipSamplePage_ElevatedFilter"
+										  smtx:XamlDisplayExtensions.Header="Elevated Filter"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\ScrollViewer\StackPanel">
+							<ScrollViewer Style="{StaticResource HorizontalScrollViewerStyle}">
+								<StackPanel Orientation="Horizontal" Spacing="8">
+
+									<utu:Chip Content="Default" Style="{StaticResource ElevatedFilterChipStyle}">
+										<utu:Chip.Icon>
+											<Image Source="ms-appx:///Assets/Avatar.png" />
+										</utu:Chip.Icon>
+									</utu:Chip>
 									<utu:Chip Content="Selected"
 											  IsChecked="True"
-											  Style="{StaticResource MaterialFilledChoiceChipStyle}"
-											  AutomationProperties.AutomationId="ChipFilledChoice_Selected" />
-								</smtx:XamlDisplay>
-							</StackPanel>
-						</ScrollViewer>
-
-						<!-- MaterialOutlinedChoiceChipStyle -->
-						<TextBlock Text="Choice - Outlined"
-								   Style="{StaticResource MaterialSubtitle1}" />
-						<ScrollViewer Style="{StaticResource HorizontalScrollViewerStyle}">
-							<StackPanel Orientation="Horizontal"
-										Spacing="8">
-								<smtx:XamlDisplay UniqueKey="ChipSamplePage_ChipOutlinedChoice_Enabled"
-												  Style="{StaticResource XamlDisplayBelowStyle}">
-									<utu:Chip Content="Enabled"
-											  Style="{StaticResource MaterialOutlinedChoiceChipStyle}"
-											  AutomationProperties.AutomationId="ChipOutlinedChoice_Enabled">
-										<utu:Chip.Icon>
-											<Image Source="ms-appx:///Assets/Avatar.png" />
-										</utu:Chip.Icon>
-									</utu:Chip>
-								</smtx:XamlDisplay>
-
-								<smtx:XamlDisplay UniqueKey="ChipSamplePage_ChipOutlinedChoice_Disabled"
-												  Style="{StaticResource XamlDisplayBelowStyle}">
+											  Style="{StaticResource ElevatedFilterChipStyle}" />
 									<utu:Chip Content="Disabled"
-											  Style="{StaticResource MaterialOutlinedChoiceChipStyle}"
-											  AutomationProperties.AutomationId="ChipOutlinedChoice_Disabled"
-											  IsEnabled="False">
+											  IsEnabled="False"
+											  Style="{StaticResource ElevatedFilterChipStyle}">
 										<utu:Chip.Icon>
 											<Image Source="ms-appx:///Assets/Avatar.png" />
 										</utu:Chip.Icon>
 									</utu:Chip>
-								</smtx:XamlDisplay>
 
-								<smtx:XamlDisplay UniqueKey="ChipSamplePage_ChipOutlinedChoice_Selected"
-												  Style="{StaticResource XamlDisplayBelowStyle}">
+								</StackPanel>
+							</ScrollViewer>
+						</smtx:XamlDisplay>
+						<smtx:XamlDisplay UniqueKey="ChipSamplePage_Suggestion"
+										  smtx:XamlDisplayExtensions.Header="Suggestion"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\ScrollViewer\StackPanel">
+							<ScrollViewer Style="{StaticResource HorizontalScrollViewerStyle}">
+								<StackPanel Orientation="Horizontal" Spacing="8">
+
+									<utu:Chip Content="Default" Style="{StaticResource SuggestionChipStyle}">
+										<utu:Chip.Icon>
+											<Image Source="ms-appx:///Assets/Avatar.png" />
+										</utu:Chip.Icon>
+									</utu:Chip>
 									<utu:Chip Content="Selected"
 											  IsChecked="True"
-											  Style="{StaticResource MaterialOutlinedChoiceChipStyle}"
-											  AutomationProperties.AutomationId="ChipOutlinedChoice_Selected">
-										<utu:Chip.Icon>
-											<Image Source="ms-appx:///Assets/Avatar.png" />
-										</utu:Chip.Icon>
-									</utu:Chip>
-								</smtx:XamlDisplay>
-							</StackPanel>
-						</ScrollViewer>
-
-						<!-- MaterialFilledFilterChipStyle -->
-						<TextBlock Text="Filter - Filled"
-								   Style="{StaticResource MaterialSubtitle1}" />
-						<ScrollViewer Style="{StaticResource HorizontalScrollViewerStyle}">
-							<StackPanel Orientation="Horizontal"
-										Spacing="8">
-								<smtx:XamlDisplay UniqueKey="ChipSamplePage_ChipFilledFilter_Enabled"
-												  Style="{StaticResource XamlDisplayBelowStyle}">
-									<utu:Chip Content="Enabled"
-											  Style="{StaticResource MaterialFilledFilterChipStyle}"
-											  AutomationProperties.AutomationId="ChipFilledFilter_Enabled">
-										<utu:Chip.Icon>
-											<Image Source="ms-appx:///Assets/Avatar.png" />
-										</utu:Chip.Icon>
-									</utu:Chip>
-								</smtx:XamlDisplay>
-
-								<smtx:XamlDisplay UniqueKey="ChipSamplePage_ChipFilledFilter_Disabled"
-												  Style="{StaticResource XamlDisplayBelowStyle}">
+											  Style="{StaticResource SuggestionChipStyle}" />
 									<utu:Chip Content="Disabled"
-											  Style="{StaticResource MaterialFilledFilterChipStyle}"
-											  AutomationProperties.AutomationId="ChipFilledFilter_Disabled"
-											  IsEnabled="False">
+											  IsEnabled="False"
+											  Style="{StaticResource SuggestionChipStyle}">
 										<utu:Chip.Icon>
 											<Image Source="ms-appx:///Assets/Avatar.png" />
 										</utu:Chip.Icon>
 									</utu:Chip>
-								</smtx:XamlDisplay>
 
-								<smtx:XamlDisplay UniqueKey="ChipSamplePage_ChipFilledFilter_Selected"
-												  Style="{StaticResource XamlDisplayBelowStyle}">
+								</StackPanel>
+							</ScrollViewer>
+						</smtx:XamlDisplay>
+						<smtx:XamlDisplay UniqueKey="ChipSamplePage_ElevatedSuggestion"
+										  smtx:XamlDisplayExtensions.Header="Elevated Suggestion"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\ScrollViewer\StackPanel">
+							<ScrollViewer Style="{StaticResource HorizontalScrollViewerStyle}">
+								<StackPanel Orientation="Horizontal" Spacing="8">
+
+									<utu:Chip Content="Default" Style="{StaticResource ElevatedSuggestionChipStyle}">
+										<utu:Chip.Icon>
+											<Image Source="ms-appx:///Assets/Avatar.png" />
+										</utu:Chip.Icon>
+									</utu:Chip>
 									<utu:Chip Content="Selected"
 											  IsChecked="True"
-											  Style="{StaticResource MaterialFilledFilterChipStyle}"
-											  AutomationProperties.AutomationId="ChipFilledFilter_Selected" />
-								</smtx:XamlDisplay>
-							</StackPanel>
-						</ScrollViewer>
-
-						<!-- MaterialOutlinedFilterChipStyle -->
-						<TextBlock Text="Filter - Outlined"
-								   Style="{StaticResource MaterialSubtitle1}" />
-						<ScrollViewer Style="{StaticResource HorizontalScrollViewerStyle}">
-							<StackPanel Orientation="Horizontal"
-										Spacing="8">
-								<smtx:XamlDisplay UniqueKey="ChipSamplePage_ChipOutlinedFilter_Enabled"
-												  Style="{StaticResource XamlDisplayBelowStyle}">
-									<utu:Chip Content="Enabled"
-											  Style="{StaticResource MaterialOutlinedFilterChipStyle}"
-											  AutomationProperties.AutomationId="ChipOutlinedFilter_Enabled">
-										<utu:Chip.Icon>
-											<Image Source="ms-appx:///Assets/Avatar.png" />
-										</utu:Chip.Icon>
-									</utu:Chip>
-								</smtx:XamlDisplay>
-
-								<smtx:XamlDisplay UniqueKey="ChipSamplePage_ChipOutlinedFilter_Disabled"
-												  Style="{StaticResource XamlDisplayBelowStyle}">
+											  Style="{StaticResource ElevatedSuggestionChipStyle}" />
 									<utu:Chip Content="Disabled"
-											  Style="{StaticResource MaterialOutlinedFilterChipStyle}"
-											  AutomationProperties.AutomationId="ChipOutlinedFilter_Disabled"
-											  IsEnabled="False">
+											  IsEnabled="False"
+											  Style="{StaticResource ElevatedSuggestionChipStyle}">
 										<utu:Chip.Icon>
 											<Image Source="ms-appx:///Assets/Avatar.png" />
 										</utu:Chip.Icon>
 									</utu:Chip>
-								</smtx:XamlDisplay>
 
-								<smtx:XamlDisplay UniqueKey="ChipSamplePage_ChipOutlinedFilter_Selected"
-												  Style="{StaticResource XamlDisplayBelowStyle}">
-									<utu:Chip Content="Selected"
-											  IsChecked="True"
-											  Style="{StaticResource MaterialOutlinedFilterChipStyle}"
-											  AutomationProperties.AutomationId="ChipOutlinedFilter_Selected" />
-								</smtx:XamlDisplay>
-							</StackPanel>
-						</ScrollViewer>
-
-
-						<!-- MaterialFilledActionChipStyle -->
-						<TextBlock Text="Action - Filled"
-								   Style="{StaticResource MaterialSubtitle1}" />
-						<ScrollViewer Style="{StaticResource HorizontalScrollViewerStyle}">
-							<StackPanel Orientation="Horizontal"
-										Spacing="8">
-								<smtx:XamlDisplay UniqueKey="ChipSamplePage_ChipFilledAction_Enabled"
-												  Style="{StaticResource XamlDisplayBelowStyle}">
-									<utu:Chip Content="Enabled"
-											  Style="{StaticResource MaterialFilledActionChipStyle}"
-											  AutomationProperties.AutomationId="ChipFilledAction_Enabled">
-										<utu:Chip.Icon>
-											<Image Source="ms-appx:///Assets/Avatar.png" />
-										</utu:Chip.Icon>
-									</utu:Chip>
-								</smtx:XamlDisplay>
-
-								<smtx:XamlDisplay UniqueKey="ChipSamplePage_ChipFilledAction_Disabled"
-												  Style="{StaticResource XamlDisplayBelowStyle}">
-									<utu:Chip Content="Disabled"
-											  Style="{StaticResource MaterialFilledActionChipStyle}"
-											  AutomationProperties.AutomationId="ChipFilledAction_Disabled"
-											  IsEnabled="False">
-										<utu:Chip.Icon>
-											<Image Source="ms-appx:///Assets/Avatar.png" />
-										</utu:Chip.Icon>
-									</utu:Chip>
-								</smtx:XamlDisplay>
-							</StackPanel>
-						</ScrollViewer>
-
-						<!-- MaterialOutlinedActionChipStyle -->
-						<TextBlock Text="Action - Outlined"
-								   Style="{StaticResource MaterialSubtitle1}" />
-						<ScrollViewer Style="{StaticResource HorizontalScrollViewerStyle}">
-							<StackPanel Orientation="Horizontal"
-										Spacing="8">
-								<smtx:XamlDisplay UniqueKey="ChipSamplePage_ChipOutlinedAction_Enabled"
-												  Style="{StaticResource XamlDisplayBelowStyle}">
-									<utu:Chip Content="Enabled"
-											  Style="{StaticResource MaterialOutlinedActionChipStyle}"
-											  AutomationProperties.AutomationId="ChipOutlinedAction_Enabled">
-										<utu:Chip.Icon>
-											<Image Source="ms-appx:///Assets/Avatar.png" />
-										</utu:Chip.Icon>
-									</utu:Chip>
-								</smtx:XamlDisplay>
-
-								<smtx:XamlDisplay UniqueKey="ChipSamplePage_ChipOutlinedAction_Disabled"
-												  Style="{StaticResource XamlDisplayBelowStyle}">
-									<utu:Chip Content="Disabled"
-											  Style="{StaticResource MaterialOutlinedActionChipStyle}"
-											  AutomationProperties.AutomationId="ChipOutlinedAction_Disabled"
-											  IsEnabled="False">
-										<utu:Chip.Icon>
-											<Image Source="ms-appx:///Assets/Avatar.png" />
-										</utu:Chip.Icon>
-									</utu:Chip>
-								</smtx:XamlDisplay>
-							</StackPanel>
-						</ScrollViewer>
+								</StackPanel>
+							</ScrollViewer>
+						</smtx:XamlDisplay>
 
 					</StackPanel>
 				</DataTemplate>

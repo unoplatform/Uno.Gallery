@@ -24,12 +24,12 @@
 										   TrueValue="Collapsed"
 										   FalseValue="Visible" />
 
-	<converters:EnumDescriptionConverter x:Name="EnumToDescription" />
+	<converters:EnumDescriptionConverter x:Key="EnumToDescription" />
 
-	<converters:RandomColorConverter x:Name="RandomColorBrush"
+	<converters:RandomColorConverter x:Key="RandomColorBrush"
 									 Provider="Random" />
-	
-	<converters:RandomColorConverter x:Name="HashCodeToRandomColorBrush"
+
+	<converters:RandomColorConverter x:Key="HashCodeToRandomColorBrush"
 									 Provider="HashCode" />
 
 	<converters:DebugConverter x:Key="debug" />

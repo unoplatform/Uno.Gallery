@@ -32,3 +32,12 @@ mkdir -p $UNO_UITEST_SCREENSHOT_PATH
 mono $BUILD_SOURCESDIRECTORY/build/NUnit.ConsoleRunner.$UNO_UITEST_NUNIT_VERSION/tools/nunit3-console.exe \
    --inprocess --agents=1 --workers=1 \
    $UNO_UITEST_BINARY
+
+# export the simulator logs
+export LOG_FILEPATH=$UNO_UITEST_SCREENSHOT_PATH/_logs
+export TMP_LOG_FILEPATH=/tmp/DeviceLog-`date +"%Y%m%d%H%M%S"`.logarchive
+export LOG_FILEPATH_FULL=$LOG_FILEPATH/DeviceLog-`date +"%Y%m%d%H%M%S"`.txt
+
+mkdir -p $LOG_FILEPATH
+xcrun simctl spawn booted log collect --output $TMP_LOG_FILEPATH
+log show --style syslog $TMP_LOG_FILEPATH > $LOG_FILEPATH_FULL

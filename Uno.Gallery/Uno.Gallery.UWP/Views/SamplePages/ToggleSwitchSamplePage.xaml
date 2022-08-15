@@ -13,15 +13,16 @@
 			<local:SamplePageLayout.FluentTemplate>
 				<DataTemplate>
 					<smtx:XamlDisplay UniqueKey="ToggleSwitchSamplePage_Fluent"
-									  smtx:XamlDisplayExtensions.Header="Default">
+									  smtx:XamlDisplayExtensions.Header="Default"
+									  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
 						<StackPanel Spacing="20">
-							<ToggleSwitch Header="OFF"
-										  Foreground="{StaticResource MaterialOnBackgroundBrush}" />
+
+							<ToggleSwitch Header="OFF" Foreground="{StaticResource OnBackgroundBrush}" />
 							<ToggleSwitch Header="ON"
-										  Foreground="{StaticResource MaterialOnBackgroundBrush}"
+										  Foreground="{StaticResource OnBackgroundBrush}"
 										  IsOn="True" />
-							<ToggleSwitch Header="DISABLED OFF"
-										  IsEnabled="False" />
+
+							<ToggleSwitch Header="DISABLED OFF" IsEnabled="False" />
 							<ToggleSwitch Header="DISABLED ON"
 										  IsEnabled="False"
 										  IsOn="True" />
@@ -29,112 +30,76 @@
 					</smtx:XamlDisplay>
 				</DataTemplate>
 			</local:SamplePageLayout.FluentTemplate>
-
 			<local:SamplePageLayout.MaterialTemplate>
 				<DataTemplate>
-					<StackPanel>
 
-						<smtx:XamlDisplay UniqueKey="ToggleSwitchSamplePage_Material"
-										  smtx:XamlDisplayExtensions.Header="Default">
-							<StackPanel Spacing="20">
+					<smtx:XamlDisplay UniqueKey="ToggleSwitchSamplePage_Material"
+									  smtx:XamlDisplayExtensions.Header="Default"
+									  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+						<StackPanel Spacing="20">
 
-								<ToggleSwitch Header="OFF"
-											  Style="{StaticResource MaterialToggleSwitchStyle}" />
+							<ToggleSwitch Header="OFF" Style="{StaticResource ToggleSwitchStyle}" />
+							<ToggleSwitch Header="ON"
+										  IsOn="True"
+										  Style="{StaticResource ToggleSwitchStyle}" />
+							<ToggleSwitch Header="DISABLED OFF"
+										  IsEnabled="False"
+										  Style="{StaticResource ToggleSwitchStyle}" />
+							<ToggleSwitch Header="DISABLED ON"
+										  IsOn="True"
+										  IsEnabled="False"
+										  Style="{StaticResource ToggleSwitchStyle}" />
 
-								<ToggleSwitch Header="ON"
-											  Style="{StaticResource MaterialToggleSwitchStyle}"
-											  IsOn="True" />
-
-								<ToggleSwitch Header="DISABLED OFF"
-											  Style="{StaticResource MaterialToggleSwitchStyle}"
-											  IsEnabled="False" />
-
-								<ToggleSwitch Header="DISABLED ON"
-											  Style="{StaticResource MaterialToggleSwitchStyle}"
-											  IsEnabled="False"
-											  IsOn="True" />
-							</StackPanel>
-						</smtx:XamlDisplay>
-
-						<smtx:XamlDisplay UniqueKey="ToggleSwitchSamplePage_Material_Secondary"
-										  smtx:XamlDisplayExtensions.Header="Secondary">
-							<StackPanel Spacing="20">
-
-								<ToggleSwitch Header="OFF"
-											  Style="{StaticResource MaterialSecondaryToggleSwitchStyle}" />
-
-								<ToggleSwitch Header="ON"
-											  Style="{StaticResource MaterialSecondaryToggleSwitchStyle}"
-											  IsOn="True" />
-
-								<ToggleSwitch Header="DISABLED OFF"
-											  Style="{StaticResource MaterialSecondaryToggleSwitchStyle}"
-											  IsEnabled="False" />
-
-								<ToggleSwitch Header="DISABLED ON"
-											  Style="{StaticResource MaterialSecondaryToggleSwitchStyle}"
-											  IsEnabled="False"
-											  IsOn="True" />
-							</StackPanel>
-						</smtx:XamlDisplay>
-					</StackPanel>
+						</StackPanel>
+					</smtx:XamlDisplay>
 				</DataTemplate>
 			</local:SamplePageLayout.MaterialTemplate>
 			<local:SamplePageLayout.CupertinoTemplate>
 				<DataTemplate>
-					<StackPanel>
-						<smtx:XamlDisplay UniqueKey="ToggleSwitchSamplePage_Cupertino"
-										  smtx:XamlDisplayExtensions.Header="Secondary">
-							<StackPanel Spacing="20">
+					<smtx:XamlDisplay UniqueKey="ToggleSwitchSamplePage_Cupertino"
+									  smtx:XamlDisplayExtensions.Header="Secondary"
+									  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+						<StackPanel Spacing="20">
 
-								<ToggleSwitch Header="OFF"
-											  Style="{StaticResource CupertinoToggleSwitchStyle}" />
+							<ToggleSwitch Header="OFF" Style="{StaticResource CupertinoToggleSwitchStyle}" />
+							<ToggleSwitch Header="ON"
+										  IsOn="True"
+										  Style="{StaticResource CupertinoToggleSwitchStyle}" />
+							<ToggleSwitch Header="DISABLED OFF"
+										  IsEnabled="False"
+										  Style="{StaticResource CupertinoToggleSwitchStyle}" />
+							<ToggleSwitch Header="DISABLED ON"
+										  IsOn="True"
+										  IsEnabled="False"
+										  Style="{StaticResource CupertinoToggleSwitchStyle}" />
 
-								<ToggleSwitch Header="ON"
-											  Style="{StaticResource CupertinoToggleSwitchStyle}"
-											  IsOn="True" />
-
-								<ToggleSwitch Header="DISABLED OFF"
-											  Style="{StaticResource CupertinoToggleSwitchStyle}"
-											  IsEnabled="False" />
-
-								<ToggleSwitch Header="DISABLED ON"
-											  Style="{StaticResource CupertinoToggleSwitchStyle}"
-											  IsEnabled="False"
-											  IsOn="True" />
-							</StackPanel>
-						</smtx:XamlDisplay>
-					</StackPanel>
+						</StackPanel>
+					</smtx:XamlDisplay>
 				</DataTemplate>
 			</local:SamplePageLayout.CupertinoTemplate>
 			<local:SamplePageLayout.NativeTemplate>
 				<DataTemplate>
-					<StackPanel>
 
-						<smtx:XamlDisplay UniqueKey="ToggleSwitchSamplePage_Native"
-										  smtx:XamlDisplayExtensions.Header="Default">
-							<StackPanel Spacing="20">
+					<smtx:XamlDisplay UniqueKey="ToggleSwitchSamplePage_Native"
+									  smtx:XamlDisplayExtensions.Header="Default"
+									  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+						<StackPanel Spacing="20">
 
-								<TextBlock Text="Enabled" />
+							<TextBlock Text="Enabled" />
+							<ToggleSwitch Style="{StaticResource NativeDefaultToggleSwitch}" />
+							<ToggleSwitch IsOn="True" Style="{StaticResource NativeDefaultToggleSwitch}" />
 
-								<ToggleSwitch Style="{StaticResource NativeDefaultToggleSwitch}" />
+							<TextBlock Text="Disabled" />
+							<ToggleSwitch IsEnabled="False" Style="{StaticResource NativeDefaultToggleSwitch}" />
+							<ToggleSwitch IsOn="True"
+										  IsEnabled="False"
+										  Style="{StaticResource NativeDefaultToggleSwitch}" />
 
-								<ToggleSwitch Style="{StaticResource NativeDefaultToggleSwitch}"
-											  IsOn="True" />
-
-								<TextBlock Text="Disabled" />
-
-								<ToggleSwitch Style="{StaticResource NativeDefaultToggleSwitch}"
-											  IsEnabled="False" />
-
-								<ToggleSwitch Style="{StaticResource NativeDefaultToggleSwitch}"
-											  IsEnabled="False"
-											  IsOn="True" />
-							</StackPanel>
-						</smtx:XamlDisplay>
-					</StackPanel>
+						</StackPanel>
+					</smtx:XamlDisplay>
 				</DataTemplate>
 			</local:SamplePageLayout.NativeTemplate>
+
 		</local:SamplePageLayout>
 	</Grid>
 </Page>
