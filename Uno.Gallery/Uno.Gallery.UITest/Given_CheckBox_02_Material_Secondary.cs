@@ -23,7 +23,9 @@ namespace Uno.Gallery.UITests
 			App.ScrollDownTo("Material_Secondary_Unchecked");
 			materialSecondaryUncheckedBox.Tap();
 			TakeScreenshot("After Checked");
-			Assert.IsTrue(materialSecondaryUncheckedBox.GetDependencyPropertyValue<bool>("IsChecked"));			
+			Assert.AreEqual("UNCHECKED", materialSecondaryUncheckedBox.GetDependencyPropertyValue("Content"));
+			Assert.IsTrue(materialSecondaryUncheckedBox.GetDependencyPropertyValue<bool>("IsChecked"));
+			Assert.IsTrue(materialSecondaryUncheckedBox.GetDependencyPropertyValue<bool>("IsEnabled"));
 		}
 
 		/* This function is to test the DisabledUnchecked option  in checkbox for material Secondary.*/
@@ -37,8 +39,9 @@ namespace Uno.Gallery.UITests
 			App.ScrollDownTo("Material_Secondary_Disabled_Unchecked");
 			materialSecondaryDisabledUncheckedBox.Tap();
 			TakeScreenshot("After Checked");
+			Assert.AreEqual("DISABLED UNCHECKED", materialSecondaryDisabledUncheckedBox.GetDependencyPropertyValue("Content"));			
+			Assert.IsFalse(materialSecondaryDisabledUncheckedBox.GetDependencyPropertyValue<bool>("IsChecked"));
 			Assert.IsFalse(materialSecondaryDisabledUncheckedBox.GetDependencyPropertyValue<bool>("IsEnabled"));
-			Assert.IsFalse(materialSecondaryDisabledUncheckedBox.GetDependencyPropertyValue<bool>("IsChecked"));			
 		}
 
 		/* This function is to test the Checked option in checkbox for material Secondary. */
@@ -52,7 +55,9 @@ namespace Uno.Gallery.UITests
 			App.ScrollDownTo("Material_Secondary_Checked");
 			materialSecondaryCheckedBox.Tap();
 			TakeScreenshot("After UnChecked");
-			Assert.IsFalse(materialSecondaryCheckedBox.GetDependencyPropertyValue<bool>("IsChecked"));		
+			Assert.AreEqual("CHECKED", materialSecondaryCheckedBox.GetDependencyPropertyValue("Content"));
+			Assert.IsFalse(materialSecondaryCheckedBox.GetDependencyPropertyValue<bool>("IsChecked"));
+			Assert.IsTrue(materialSecondaryCheckedBox.GetDependencyPropertyValue<bool>("IsEnabled"));
 		}
 
 		/* This function is to test the DisabledChecked option  in checkbox for material Secondary. */
@@ -66,8 +71,10 @@ namespace Uno.Gallery.UITests
 			App.ScrollDownTo("Material_Secondary_Disabled_Checked");
 			materialSecondaryDisabledCheckedBox.Tap();
 			TakeScreenshot("After UnChecked");
+			Assert.AreEqual("DISABLED CHECKED", materialSecondaryDisabledCheckedBox.GetDependencyPropertyValue("Content"));
+			Assert.IsTrue(materialSecondaryDisabledCheckedBox.GetDependencyPropertyValue<bool>("IsChecked"));
 			Assert.IsFalse(materialSecondaryDisabledCheckedBox.GetDependencyPropertyValue<bool>("IsEnabled"));
-			Assert.IsTrue(materialSecondaryDisabledCheckedBox.GetDependencyPropertyValue<bool>("IsChecked"));			
+						
 		}
 
 		/* This function is to test the Indeterminate for uncheck, recheck and indeterminate option  in checkbox for material Secondary.*/
@@ -81,7 +88,9 @@ namespace Uno.Gallery.UITests
 			App.ScrollDownTo("Material_Secondary_Indeterminate");
 			materialSecondaryCheckedIndeterminateBox.Tap();
 			TakeScreenshot("After UnChecked");
+			Assert.AreEqual("INDETERMINATE", materialSecondaryCheckedIndeterminateBox.GetDependencyPropertyValue("Content"));
 			Assert.IsFalse(materialSecondaryCheckedIndeterminateBox.GetDependencyPropertyValue<bool>("IsChecked"));
+			Assert.IsTrue(materialSecondaryCheckedIndeterminateBox.GetDependencyPropertyValue<bool>("IsEnabled"));
 
 			materialSecondaryCheckedIndeterminateBox.Tap();
 			TakeScreenshot("After Checked");
@@ -105,7 +114,8 @@ namespace Uno.Gallery.UITests
 			TakeScreenshot("After Checked");
 			Assert.IsFalse(materialSecondaryDisabledIndeterminateBox.GetDependencyPropertyValue<bool>("IsEnabled"));
 			var isChecked = materialSecondaryDisabledIndeterminateBox.GetDependencyPropertyValue("IsChecked");
-			Assert.IsTrue(isChecked == null || string.IsNullOrWhiteSpace(isChecked as string));		
+			Assert.IsTrue(isChecked == null || string.IsNullOrWhiteSpace(isChecked as string));
+			Assert.AreEqual("DISABLED INDETERMINATE", materialSecondaryDisabledIndeterminateBox.GetDependencyPropertyValue("Content"));
 		}
 	}
 }

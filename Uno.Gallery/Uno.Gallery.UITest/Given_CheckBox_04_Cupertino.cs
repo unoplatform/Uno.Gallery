@@ -9,7 +9,7 @@ using Uno.UITests.Helpers;
 
 namespace Uno.Gallery.UITests
 {
-	[Ignore("WIP: M3 Migration")]
+	//[Ignore("WIP: M3 Migration")]
 	public class Given_CheckBox_04_Cupertino : TestBase
 	{
 		     
@@ -24,7 +24,9 @@ namespace Uno.Gallery.UITests
 			App.ScrollDownTo("Cupertino_Unchecked");
 			cupertinoUncheckedBox.Tap();
 			TakeScreenshot("After Checked");
-			Assert.IsTrue(cupertinoUncheckedBox.GetDependencyPropertyValue<bool>("IsChecked"));			
+			Assert.AreEqual("UNCHECKED", cupertinoUncheckedBox.GetDependencyPropertyValue("Content"));
+			Assert.IsTrue(cupertinoUncheckedBox.GetDependencyPropertyValue<bool>("IsChecked"));
+			Assert.IsTrue(cupertinoUncheckedBox.GetDependencyPropertyValue<bool>("IsEnabled"));
 		}
 		     
         /* This function is to test the DisabledChecked option  in checkbox for Cupertino. */        
@@ -38,8 +40,9 @@ namespace Uno.Gallery.UITests
 			App.ScrollDownTo("Cupertino_Disabled_Unchecked");
 			cupertinoDisabledUncheckedBox.Tap();
 			TakeScreenshot("After Checked");
+			Assert.AreEqual("DISABLED UNCHECKED", cupertinoDisabledUncheckedBox.GetDependencyPropertyValue("Content"));			
+			Assert.IsFalse(cupertinoDisabledUncheckedBox.GetDependencyPropertyValue<bool>("IsChecked"));
 			Assert.IsFalse(cupertinoDisabledUncheckedBox.GetDependencyPropertyValue<bool>("IsEnabled"));
-			Assert.IsFalse(cupertinoDisabledUncheckedBox.GetDependencyPropertyValue<bool>("IsChecked"));			
 		}
 		     
 		 /* This function is to test the Checked option in checkbox for Cupertino.*/		 
@@ -54,7 +57,9 @@ namespace Uno.Gallery.UITests
 			App.ScrollDownTo("Cupertino_Checked");
 			cupertinoCheckedBox.Tap();
 			TakeScreenshot("After UnChecked");
-			Assert.IsFalse(cupertinoCheckedBox.GetDependencyPropertyValue<bool>("IsChecked"));			
+			Assert.AreEqual("CHECKED", cupertinoCheckedBox.GetDependencyPropertyValue("Content"));
+			Assert.IsFalse(cupertinoCheckedBox.GetDependencyPropertyValue<bool>("IsChecked"));
+			Assert.IsTrue(cupertinoCheckedBox.GetDependencyPropertyValue<bool>("IsEnabled"));
 		}
 
 		     
@@ -69,8 +74,9 @@ namespace Uno.Gallery.UITests
 			App.ScrollDownTo("Cupertino_Disabled_Checked");
 			cupertinoDisabledCheckedBox.Tap();
 			TakeScreenshot("After UnChecked");
+			Assert.AreEqual("DISABLED CHECKED", cupertinoDisabledCheckedBox.GetDependencyPropertyValue("Content"));			
+			Assert.IsTrue(cupertinoDisabledCheckedBox.GetDependencyPropertyValue<bool>("IsChecked"));
 			Assert.IsFalse(cupertinoDisabledCheckedBox.GetDependencyPropertyValue<bool>("IsEnabled"));
-			Assert.IsTrue(cupertinoDisabledCheckedBox.GetDependencyPropertyValue<bool>("IsChecked"));			
 		}
 
 		     
@@ -86,7 +92,9 @@ namespace Uno.Gallery.UITests
 			App.ScrollDownTo("Cupertino_Indeterminate");
 			cupertinoCheckedIndeterminateBox.Tap();
 			TakeScreenshot("After UnChecked");
+			Assert.AreEqual("INDETERMINATE", cupertinoCheckedIndeterminateBox.GetDependencyPropertyValue("Content"));
 			Assert.IsFalse(cupertinoCheckedIndeterminateBox.GetDependencyPropertyValue<bool>("IsChecked"));
+			Assert.IsTrue(cupertinoCheckedIndeterminateBox.GetDependencyPropertyValue<bool>("IsEnabled"));
 
 			cupertinoCheckedIndeterminateBox.Tap();
 			TakeScreenshot("After Checked");
@@ -112,7 +120,8 @@ namespace Uno.Gallery.UITests
 			TakeScreenshot("After Checked");
 			Assert.IsFalse(cupertinoDisabledIndeterminateBox.GetDependencyPropertyValue<bool>("IsEnabled"));
 			var isChecked = cupertinoDisabledIndeterminateBox.GetDependencyPropertyValue("IsChecked");
-			Assert.IsTrue(isChecked == null || string.IsNullOrWhiteSpace(isChecked as string));			
+			Assert.IsTrue(isChecked == null || string.IsNullOrWhiteSpace(isChecked as string));
+			Assert.AreEqual("DISABLED INDETERMINATE", cupertinoDisabledIndeterminateBox.GetDependencyPropertyValue("Content"));
 		}
 	}
 }
