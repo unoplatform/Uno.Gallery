@@ -28,7 +28,7 @@
 										 Content="DISABLED UNCHECKED"
 										 IsEnabled="False" />
 							<RadioButton GroupName="RadioButtonDemo_Fluent_1b"
-										 AutomationProperties.AutomationId="RadioButton_Material_Disabled_Checked"
+										 AutomationProperties.AutomationId="RadioButton_Fluent_Disabled_Checked"
 										 Content="DISABLED CHECKED"
 										 IsChecked="True"
 										 IsEnabled="False" />

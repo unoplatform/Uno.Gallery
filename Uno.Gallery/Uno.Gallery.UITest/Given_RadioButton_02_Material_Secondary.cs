@@ -10,11 +10,10 @@ using Query = System.Func<Uno.UITest.IAppQuery, Uno.UITest.IAppQuery>;
 
 namespace Uno.Gallery.UITests
 {
-	public class Given_RadioButton_02_Material_Secondary : TestBase
-	{
-		    
-		/* This function is to test the UncheckedRadioButton option  in Radiobutton for material Secondary*/
+  public class Given_RadioButton_02_Material_Secondary : TestBase
+  {
 		
+		/* This function is to test the UncheckedRadioButton option  in Radiobutton for material Secondary*/		
 		[Test]
 		public void WhenRadioButtonMaterialSecondaryClick_01_Unchecked()
 		{

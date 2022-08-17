@@ -10,7 +10,7 @@ using Query = System.Func<Uno.UITest.IAppQuery, Uno.UITest.IAppQuery>;
 
 namespace Uno.Gallery.UITests
 {
-	[Ignore("WIP: M3 Migration")]
+	//[Ignore("WIP: M3 Migration")]
 	public class Given_RadioButton_01_Material : TestBase
 	{
 		    
