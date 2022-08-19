@@ -9,7 +9,7 @@ using Uno.UITests.Helpers;
 
 namespace Uno.Gallery.UITests
 {
-	[Ignore("WIP: M3 Migration")]
+	//[Ignore("WIP: M3 Migration")]
 	public class Given_CheckBox_02_Material_Secondary : TestBase
 	{		    
         /*This function is to test the Unchecked option  in checkbox for material Secondary. */        
