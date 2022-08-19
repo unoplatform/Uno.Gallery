@@ -14,10 +14,13 @@
 					<StackPanel>
 
 						<!-- CheckBox -->
-						<smtx:XamlDisplay UniqueKey="CheckBoxSamplePage_Fluent" smtx:XamlDisplayExtensions.Header="Default">
+						<smtx:XamlDisplay UniqueKey="CheckBoxSamplePage_Fluent" 
+                                           AutomationProperties.AutomationId="CheckBoxSamplePage_Fluent"
+                                          smtx:XamlDisplayExtensions.Header="Default">
 							<StackPanel>
 
-								<CheckBox Content="UNCHECKED" AutomationProperties.AutomationId="Fluent_Unchecked" />
+								<CheckBox Content="UNCHECKED" 
+                                          AutomationProperties.AutomationId="Fluent_Unchecked" />
 								<CheckBox Content="DISABLED UNCHECKED"
 										  AutomationProperties.AutomationId="Fluent_Disabled_Unchecked"
 										  IsEnabled="False" />
@@ -47,7 +50,9 @@
 				<DataTemplate>
 					<StackPanel>
 						
-						<smtx:XamlDisplay UniqueKey="CheckBoxSamplePage_Material" smtx:XamlDisplayExtensions.Header="Default">
+						<smtx:XamlDisplay UniqueKey="CheckBoxSamplePage_Material" 
+                                          AutomationProperties.AutomationId="CheckBoxSamplePage_Material"
+                                          smtx:XamlDisplayExtensions.Header="Default">
 							<StackPanel>
 
 								<CheckBox Content="UNCHECKED"
@@ -87,7 +92,9 @@
 			</local:SamplePageLayout.MaterialTemplate>
 			<local:SamplePageLayout.CupertinoTemplate>
 				<DataTemplate>
-					<smtx:XamlDisplay UniqueKey="CheckBoxSamplePage_Cupertino" smtx:XamlDisplayExtensions.Header="Default">
+					<smtx:XamlDisplay UniqueKey="CheckBoxSamplePage_Cupertino" 
+                                      AutomationProperties.AutomationId="CheckBoxSamplePage_Cupertino"
+                                      smtx:XamlDisplayExtensions.Header="Default">
 						<StackPanel>
 
 							<CheckBox Style="{StaticResource CupertinoCheckBoxStyle}"
