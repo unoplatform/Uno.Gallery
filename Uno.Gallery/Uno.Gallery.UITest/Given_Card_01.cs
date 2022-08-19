@@ -45,7 +45,7 @@ namespace Uno.Gallery.UITests
 			NavigateToSample("Card", "Material");
 
 			// Scrolling to Elevated card
-			App.ScrollDownTo("Elevated_Card");
+			App.ScrollDownTo(x => x.All().Marked("Elevated_Card"));
 
 			//Initial Validation
 			TakeScreenshot("Before Click");
@@ -71,7 +71,7 @@ namespace Uno.Gallery.UITests
 			NavigateToSample("Card", "Material");
 
 			// Scrolling to Outlined card media content 
-			App.ScrollDownTo("Outlined_Card_Media_Content");
+			App.ScrollDownTo(x => x.All().Marked("Outlined_Card_Media_Content"));
 
 			//Initial Validation
 			TakeScreenshot("Before Click");
@@ -97,7 +97,7 @@ namespace Uno.Gallery.UITests
 			NavigateToSample("Card", "Material");
 
 			// Scrolling to Elevated card with media content 
-			App.ScrollDownTo("Elevated_Card_Media_Content");
+			App.ScrollDownTo(x => x.All().Marked("Elevated_Card_Media_Content"));
 
 			//Initial Validation
 			TakeScreenshot("Before Click");
@@ -125,7 +125,7 @@ namespace Uno.Gallery.UITests
 			NavigateToSample("Card", "Material");
 
 			// Scrolling to Outlined Card supporting content
-			App.ScrollDownTo("Outlined_Card_Supplemental_Action_Button");
+			App.ScrollDownTo(x => x.All().Marked("Outlined_Card_Supplemental_Action_Button"));
 
 			//Initial Validation
 			TakeScreenshot("Before Click");
@@ -174,7 +174,7 @@ namespace Uno.Gallery.UITests
 			NavigateToSample("Card", "Material");
 
 			// Scrolling to Elevated card small media content
-			App.ScrollDownTo("Elevated_Card_Small_Media_Supporting_Content");
+			App.ScrollDownTo(x => x.All().Marked("Elevated_Card_Small_Media_Supporting_Content"));
 
 			//Initial Validation
 			TakeScreenshot("Before Click");
@@ -201,7 +201,7 @@ namespace Uno.Gallery.UITests
 			NavigateToSample("Card", "Material");
 
 			// Scrolling to Disabled Outlined card 
-			App.ScrollDownTo("Disabled_Outlined_Card");
+			App.ScrollDownTo(x => x.All().Marked("Disabled_Outlined_Card"));
 
 			//Initial Validation
 			TakeScreenshot("Before Click");
