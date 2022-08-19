@@ -14,6 +14,6 @@ namespace Uno.Gallery.UITests
         public readonly static string AndroidAppName = "com.nventive.uno.ui.demo";
         public readonly static string iOSDeviceNameOrId = "iPad Pro (12.9-inch) (4th generation)";
 
-        public readonly static Platform CurrentPlatform = Platform.Android;
+        public readonly static Platform CurrentPlatform = Platform.Browser;
     }
 }
