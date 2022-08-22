@@ -20,7 +20,7 @@ namespace Uno.Gallery.UITests
 			NavigateToSample("CheckBox", "Material");
 
 			//Scrolling to Secondary Unchecked option
-			App.ScrollDownTo("Material_Secondary_Unchecked");
+			App.ScrollDownTo(x => x.All().Marked("Material_Secondary_Unchecked"));
 
 			//Initial Validation
 			TakeScreenshot("Before Checked");
@@ -46,7 +46,7 @@ namespace Uno.Gallery.UITests
 			NavigateToSample("CheckBox", "Material");
 
 			//Scrolling to Secondary Disabled Unchecked option
-			App.ScrollDownTo("Material_Secondary_Disabled_Unchecked");
+			App.ScrollDownTo(x => x.All().Marked("Material_Secondary_Disabled_Unchecked"));
 
 			//Initial Validation
 			TakeScreenshot("Before Checked");
@@ -72,7 +72,7 @@ namespace Uno.Gallery.UITests
 			NavigateToSample("CheckBox", "Material");
 
 			//Scrolling to Secondary Checked option
-			App.ScrollDownTo("Material_Secondary_Checked");
+			App.ScrollDownTo(x => x.All().Marked("Material_Secondary_Checked"));
 
 			//Initial Validation
 			TakeScreenshot("Before UnChecked");
@@ -98,7 +98,7 @@ namespace Uno.Gallery.UITests
 			NavigateToSample("CheckBox", "Material");
 
 			//Scrolling to Disabled Checked option
-			App.ScrollDownTo("Material_Secondary_Disabled_Checked");
+			App.ScrollDownTo(x => x.All().Marked("Material_Secondary_Disabled_Checked"));
 
 			//Initial Validation
 			TakeScreenshot("Before Checked");
@@ -125,7 +125,7 @@ namespace Uno.Gallery.UITests
 			NavigateToSample("CheckBox", "Material");
 
 			//Scrolling to Secondary Indeterminate option
-			App.ScrollDownTo("Material_Secondary_Indeterminate");
+			App.ScrollDownTo(x => x.All().Marked("Material_Secondary_Indeterminate"));
 
 			//Initial Validation
 			TakeScreenshot("Before UnChecked");
@@ -165,7 +165,7 @@ namespace Uno.Gallery.UITests
 			NavigateToSample("CheckBox", "Material");
 
 			//Scrolling to Secondary Disabled Indeterminate option
-			App.ScrollDownTo("Material_Secondary_Disabled_Indeterminate");
+			App.ScrollDownTo(x => x.All().Marked("Material_Secondary_Disabled_Indeterminate"));
 
 			//Taking screenshot before clicking disabled Indeterminate checkbox.
 			TakeScreenshot("Before Checked");

@@ -21,7 +21,7 @@ namespace Uno.Gallery.UITests
 			NavigateToSample("CheckBox", "Fluent");
 
 			//Scrolling to Unchecked option
-			App.ScrollDownTo("Fluent_Unchecked");
+			App.ScrollDownTo(x => x.All().Marked("Fluent_Unchecked"));
 
 			//Initial Validation
 			TakeScreenshot("Before Checked");
@@ -48,7 +48,7 @@ namespace Uno.Gallery.UITests
 			NavigateToSample("CheckBox", "Fluent");
 
 			//Scrolling to Disabled Unchecked option
-			App.ScrollDownTo("Fluent_Disabled_Unchecked");
+			App.ScrollDownTo(x => x.All().Marked("Fluent_Disabled_Unchecked"));
 
 			//Initial Validation
 			TakeScreenshot("Before Checked");
@@ -75,7 +75,7 @@ namespace Uno.Gallery.UITests
 			NavigateToSample("CheckBox", "Fluent");
 
 			//Scrolling to Checked option
-			App.ScrollDownTo("Fluent_Checked");
+			App.ScrollDownTo(x => x.All().Marked("Fluent_Checked"));
 
 			//Initial Validation
 			TakeScreenshot("Before UnChecked");
@@ -101,7 +101,7 @@ namespace Uno.Gallery.UITests
 			NavigateToSample("CheckBox", "Fluent");
 
 			//Scrolling to Disabled Checked option
-			App.ScrollDownTo("Fluent_Disabled_Checked");
+			App.ScrollDownTo(x => x.All().Marked("Fluent_Disabled_Checked"));
 
 			//Initial Validation
 			TakeScreenshot("Before Checked");
@@ -128,7 +128,7 @@ namespace Uno.Gallery.UITests
 			NavigateToSample("CheckBox", "Fluent");
 
 			//Scrolling to Indeterminate option
-			App.ScrollDownTo("Fluent_Indeterminate");
+			App.ScrollDownTo(x => x.All().Marked("Fluent_Indeterminate"));
 
 			//Initial Validation
 			TakeScreenshot("Before UnChecked");
@@ -169,7 +169,7 @@ namespace Uno.Gallery.UITests
 			NavigateToSample("CheckBox", "Fluent");
 
 			//Scrolling to Disabled Indeterminate option
-			App.ScrollDownTo("Fluent_Disabled_Indeterminate");
+			App.ScrollDownTo(x => x.All().Marked("Fluent_Disabled_Indeterminate"));
 
 			//Initial Validation
 			TakeScreenshot("Before Checked");

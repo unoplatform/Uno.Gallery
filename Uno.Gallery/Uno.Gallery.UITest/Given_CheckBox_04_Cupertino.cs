@@ -21,7 +21,7 @@ namespace Uno.Gallery.UITests
 			NavigateToSample("CheckBox", "Cupertino");
 
 			//Scrolling to Unchecked option
-			App.ScrollDownTo("Cupertino_Unchecked");
+			App.ScrollDownTo(x => x.All().Marked("Cupertino_Unchecked"));
 
 			//Initial Validation
 			TakeScreenshot("Before Checked");
@@ -47,7 +47,7 @@ namespace Uno.Gallery.UITests
 			NavigateToSample("CheckBox", "Cupertino");
 
 			//Scrolling to Disabled Unchecked option
-			App.ScrollDownTo("Cupertino_Disabled_Unchecked");
+			App.ScrollDownTo(x => x.All().Marked("Cupertino_Disabled_Unchecked"));
 
 			//Initial Validation
 			TakeScreenshot("Before Checked");
@@ -73,7 +73,7 @@ namespace Uno.Gallery.UITests
 			NavigateToSample("CheckBox", "Cupertino");
 
 			//Scrolling to Checked option
-			App.ScrollDownTo("Cupertino_Checked");
+			App.ScrollDownTo(x => x.All().Marked("Cupertino_Checked"));
 
 			//Initial Validation	
 			TakeScreenshot("Before UnChecked");
@@ -100,7 +100,7 @@ namespace Uno.Gallery.UITests
 			NavigateToSample("CheckBox", "Cupertino");
 
 			//Scrolling to Disabled Checked option
-			App.ScrollDownTo("Cupertino_Disabled_Checked");
+			App.ScrollDownTo(x => x.All().Marked("Cupertino_Disabled_Checked"));
 
 			//Initial Validation
 			TakeScreenshot("Before UnChecked");
@@ -127,7 +127,7 @@ namespace Uno.Gallery.UITests
 			NavigateToSample("CheckBox", "Cupertino");
 
 			//Scrolling to Indeterminate option
-			App.ScrollDownTo("Cupertino_Indeterminate");
+			App.ScrollDownTo(x => x.All().Marked("Cupertino_Indeterminate"));
 
 			//Initial Validation
 			TakeScreenshot("Before UnChecked");
@@ -168,7 +168,7 @@ namespace Uno.Gallery.UITests
 			NavigateToSample("CheckBox", "Cupertino");
 
 			//Scrolling to Disabled Indeterminate option
-			App.ScrollDownTo("Cupertino_Disabled_Indeterminate");
+			App.ScrollDownTo(x => x.All().Marked("Cupertino_Disabled_Indeterminate"));
 
 			//Initial Validation
 			TakeScreenshot("Before Checked");

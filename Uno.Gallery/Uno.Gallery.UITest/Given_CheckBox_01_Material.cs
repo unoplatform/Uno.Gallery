@@ -21,7 +21,7 @@ namespace Uno.Gallery.UITests
 			NavigateToSample("CheckBox", "Material");
 
 			//Scrolling to Unchecked option
-			App.ScrollDownTo("Material_Unchecked");
+			App.ScrollDownTo(x => x.All().Marked("Material_Unchecked"));
 
 			//Initial Validation
 			TakeScreenshot("Before Checked");
@@ -48,7 +48,7 @@ namespace Uno.Gallery.UITests
 			NavigateToSample("CheckBox", "Material");
 
 			//Scrolling to Disabled Unchecked option
-			App.ScrollDownTo("Material_Disabled_Unchecked");
+			App.ScrollDownTo(x => x.All().Marked("Material_Disabled_Unchecked"));
 
 			//Initial Validation
 			TakeScreenshot("Before Checked");
@@ -74,7 +74,7 @@ namespace Uno.Gallery.UITests
 			NavigateToSample("CheckBox", "Material");
 
 			//Scrolling to Checked option
-			App.ScrollDownTo("Material_Checked");
+			App.ScrollDownTo(x => x.All().Marked("Material_Checked"));
 
 			//Initial Validation
 			TakeScreenshot("Before UnChecked");
@@ -100,7 +100,7 @@ namespace Uno.Gallery.UITests
 			NavigateToSample("CheckBox", "Material");
 
 			//Scrolling to Disabled Checked option
-			App.ScrollDownTo("Material_Disabled_Checked");
+			App.ScrollDownTo(x => x.All().Marked("Material_Disabled_Checked"));
 
 			//Initial Validation
 			TakeScreenshot("Before UnChecked");
@@ -126,7 +126,7 @@ namespace Uno.Gallery.UITests
 			NavigateToSample("CheckBox", "Material");
 
 			//Scrolling to Indeterminate option
-			App.ScrollDownTo("Material_Indeterminate");
+			App.ScrollDownTo(x => x.All().Marked("Material_Indeterminate"));
 
 			//Initial Validation
 			TakeScreenshot("Before UnChecked");
@@ -167,7 +167,7 @@ namespace Uno.Gallery.UITests
 			NavigateToSample("CheckBox", "Material");
 
 			//Scrolling to Disabled Indeterminate option
-			App.ScrollDownTo("Material_Disabled_Indeterminate");
+			App.ScrollDownTo(x => x.All().Marked("Material_Disabled_Indeterminate"));
 
 			//Initial Validation
 			TakeScreenshot("Before Checked");
