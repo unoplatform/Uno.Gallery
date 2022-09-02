@@ -5,7 +5,7 @@
   variables:
     CI_Build: true
     SourceLinkEnabled: false
-    XamarinSDKVersion: 6_12_2
+    XamarinSDKVersion: 6_12_16
 
   pool:
     vmImage: 'macos-12'
