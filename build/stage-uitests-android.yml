@@ -8,7 +8,7 @@
     XamarinSDKVersion: 6_12_2
 
   pool:
-    vmImage: 'macOS-10.15'
+    vmImage: 'macOS-11'
 
   steps:
   - checkout: self

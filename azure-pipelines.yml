@@ -77,7 +77,7 @@ jobs:
 
 - job: macOS_Xamarin
   pool:
-    vmImage: macOS-10.15
+    vmImage: macOS-11
     
   variables:
   - name: SkipUnknownFrameworks
