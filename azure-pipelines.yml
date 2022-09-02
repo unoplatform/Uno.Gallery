@@ -77,7 +77,7 @@ jobs:
 
 - job: macOS_Xamarin
   pool:
-    vmImage: macOS-11
+    vmImage: macos-12
     
   variables:
   - name: SkipUnknownFrameworks
@@ -174,7 +174,7 @@ jobs:
         ApplicationBuildNumberOffset: 50
         BuildCommand: build
   pool:
-    vmImage: macOS-11
+    vmImage: macos-12
     
   variables:
   - name: SkipUnknownFrameworks

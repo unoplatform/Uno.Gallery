@@ -4,11 +4,11 @@
   variables:
     CI_Build: true
     SourceLinkEnabled: false
-    XCODE_ROOT: '/Applications/Xcode_13.2.1.app'
+    XCODE_ROOT: '/Applications/Xcode_13.4.1.app'
     XamarinSDKVersion: 6_12_16
 
   pool:
-    vmImage: 'macOS-11'
+    vmImage: 'macos-12'
 
   steps:
   - checkout: self
