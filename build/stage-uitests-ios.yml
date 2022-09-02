@@ -4,7 +4,7 @@
   variables:
     CI_Build: true
     SourceLinkEnabled: false
-    XCODE_ROOT: '/Applications/Xcode_12.2.app'
+    XCODE_ROOT: '/Applications/Xcode_13.2.1.app'
     XamarinSDKVersion: 6_12_2
 
   pool:
