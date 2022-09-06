@@ -19,7 +19,7 @@ export UNO_UITEST_NUGET_URL=https://dist.nuget.org/win-x86-commandline/v5.7.0/nu
 cd $BUILD_SOURCESDIRECTORY
 
 msbuild /r /p:Configuration=Release $UNO_UITEST_PROJECT
-dotnet build /r /p:Configuration=Release $UNO_UITEST_WASM_PROJECT /p:IsUiAutomationMappingEnabled=True
+dotnet build /r /p:Configuration=Release $UNO_UITEST_WASM_PROJECT /p:IsUiAutomationMappingEnabled=True /bl:$UNO_UITEST_SCREENSHOT_PATH/msbuild.binlog
 
 # Start the server
 dotnet run --project $UNO_UITEST_WASM_PROJECT -c Release --no-build &
