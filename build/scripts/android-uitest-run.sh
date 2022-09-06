@@ -32,7 +32,7 @@ fi
 
 # build the sample, while the emulator is starting
 msbuild /r /p:Configuration=Release $UNO_UITEST_PROJECT
-msbuild /r /p:Configuration=Release /p:IsUiAutomationMappingEnabled=True /p:AotAssemblies=false /t:SignAndroidPackage $UNO_UITEST_ANDROID_PROJECT
+msbuild /r /p:Configuration=Release /p:IsUiAutomationMappingEnabled=True /p:AndroidUseSharedRuntime=false /p:AotAssemblies=false /t:SignAndroidPackage $UNO_UITEST_ANDROID_PROJECT
 
 # Wait for the emulator to finish booting
 $ANDROID_HOME/platform-tools/adb wait-for-device shell 'while [[ -z $(getprop sys.boot_completed | tr -d '\r') ]]; do sleep 1; done; input keyevent 82'

@@ -5,10 +5,10 @@
   variables:
     CI_Build: true
     SourceLinkEnabled: false
-    XamarinSDKVersion: 6_12_2
+    XamarinSDKVersion: 6_12_16
 
   pool:
-    vmImage: 'macOS-10.15'
+    vmImage: 'macos-12'
 
   steps:
   - checkout: self
@@ -23,7 +23,7 @@
       chmod +x $(build.sourcesdirectory)/build/scripts/android-uitest-run.sh
       $(build.sourcesdirectory)/build/scripts/android-uitest-run.sh
     displayName: Build and Run Android Tests
-    retryCountOnTaskFailure: 4
+    # retryCountOnTaskFailure: 4
     env:
       BUILD_SOURCESDIRECTORY: "$(build.sourcesdirectory)"
       BUILD_ARTIFACTSTAGINGDIRECTORY: "$(build.artifactstagingdirectory)"
