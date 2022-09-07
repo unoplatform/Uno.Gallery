@@ -4,6 +4,7 @@
     "exclude": [
       "*.{css,js}",
       "*.{png}",
+      "*.{ttf,woff}",
       "*.{c,h,wasm,clr,pdb,dat,txt}"
     ]
   },

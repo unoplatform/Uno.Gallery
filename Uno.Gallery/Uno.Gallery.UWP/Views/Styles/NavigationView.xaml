@@ -366,8 +366,8 @@
 
 	<Thickness x:Key="NavigationViewItemPadding">8,2</Thickness>
 	<CornerRadius x:Key="NavigationViewItemCornerRadius">4</CornerRadius>
-	<!--<StaticResource x:Key="NavigationViewItemFontFamily" ResourceKey="ContentControlThemeFontFamily" />-->
-	<FontFamily x:Key="NavigationViewItemFontFamily">Roboto</FontFamily>
+    <StaticResource x:Key="NavigationViewItemFontFamily"
+                    ResourceKey="MaterialRegularFontFamily" />
 
 	<!--#endregion-->
 
