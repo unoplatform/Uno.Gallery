@@ -7,6 +7,8 @@ variables:
   
 jobs:
 - job: Windows_Android
+  timeoutInMinutes: 90
+  
   strategy:
     maxParallel: 3
     matrix:
