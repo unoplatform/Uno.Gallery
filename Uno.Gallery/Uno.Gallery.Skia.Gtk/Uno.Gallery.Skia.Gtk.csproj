@@ -39,7 +39,7 @@
 		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="6.0.0" />
 		<PackageReference Include="Uno.ShowMeTheXAML" Version="1.1.0" />
 		<PackageReference Include="Uno.ShowMeTheXAML.MSBuild" Version="1.1.0" />
-		<PackageReference Include="Uno.Toolkit.UI" Version="2.3.0-dev.14" />
+		<PackageReference Include="Uno.Toolkit.UI" Version="2.3.0" />
 		<PackageReference Include="Uno.Toolkit.UI.Cupertino" Version="2.3.0-dev.14" />
 		<PackageReference Include="Uno.Toolkit.UI.Material" Version="2.3.0-dev.14" />		
 		<PackageReference Include="Uno.UI.Lottie" Version="4.6.0-dev.97" />
