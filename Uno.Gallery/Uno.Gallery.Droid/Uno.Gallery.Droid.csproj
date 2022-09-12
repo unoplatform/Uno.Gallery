@@ -90,7 +90,7 @@
       <Version>2.3.0-dev.12</Version>
     </PackageReference>
     <PackageReference Include="Uno.Material">
-      <Version>2.3.0-dev.12</Version>
+      <Version>2.3.0-dev.20</Version>
     </PackageReference>
     <PackageReference Include="Uno.ShowMeTheXAML">
       <Version>1.1.0</Version>
