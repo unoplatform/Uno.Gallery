@@ -51,7 +51,7 @@
 		<PackageReference Include="Uno.Material" Version="2.3.0-dev.12" />
 		<PackageReference Include="Uno.ShowMeTheXAML" Version="1.1.0" />
 		<PackageReference Include="Uno.ShowMeTheXAML.MSBuild" Version="1.1.0" />
-		<PackageReference Include="Uno.Toolkit.UI" Version="2.3.0-dev.14" />
+		<PackageReference Include="Uno.Toolkit.UI" Version="2.3.0-dev.20" />
 		<PackageReference Include="Uno.Toolkit.UI.Cupertino" Version="2.3.0-dev.14" />
 		<PackageReference Include="Uno.Toolkit.UI.Material" Version="2.3.0-dev.14" />
 		<PackageReference Include="Uno.UI.Lottie" Version="4.5.0-dev.861" />
