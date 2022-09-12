@@ -105,7 +105,7 @@
       <Version>2.3.0-dev.14</Version>
     </PackageReference>
     <PackageReference Include="Uno.Toolkit.UI.Material">
-      <Version>2.3.0-dev.14</Version>
+      <Version>2.3.0-dev.20</Version>
     </PackageReference>
     <PackageReference Include="Uno.UI">
       <Version>4.5.0-dev.861</Version>
