@@ -129,7 +129,7 @@
     <PackageReference Include="Uno.UI.Lottie">
       <Version>4.6.0-dev.97</Version>
     </PackageReference>
-    <PackageReference Include="Uno.UI.RemoteControl" Version="4.5.0-dev.737" Condition="'$(Configuration)'=='Debug'" />
+    <PackageReference Include="Uno.UI.RemoteControl" Version="4.6.0-dev.116" Condition="'$(Configuration)'=='Debug'" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="6.0.0" />
     <PackageReference Include="Uno.UI.Adapter.Microsoft.Extensions.Logging" Version="4.6.0-dev.97" />
