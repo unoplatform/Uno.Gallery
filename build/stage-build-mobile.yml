@@ -23,6 +23,14 @@ steps:
     echo "BUILD_SOURCEBRANCH: $BUILD_SOURCEBRANCH"
     dotnet $(BuildCommand) -f $(BuildTargetFramework) -c Release /p:ArchiveOnBuild=true /bl:$(build.artifactstagingdirectory)/build-$(BuildTargetFramework).binlog "/p:InformationalVersion=$GITVERSION_INFORMATIONALVERSION" 
   displayName: Build project for Release - $(BuildTargetFramework)
+  condition: eq(variables['System.PullRequest.IsFork'],'False')
+
+- bash: |
+    cd $(build.sourcesdirectory)/Uno.Gallery/Uno.Gallery.Mobile
+    echo "BUILD_SOURCEBRANCH: $BUILD_SOURCEBRANCH"
+    dotnet build -f $(BuildTargetFramework) -c Release /bl:$(build.artifactstagingdirectory)/build-$(BuildTargetFramework).binlog "/p:InformationalVersion=$GITVERSION_INFORMATIONALVERSION" 
+  displayName: Build project for Release - $(BuildTargetFramework)
+  condition: eq(variables['System.PullRequest.IsFork'],'True')
 
 - task: CopyFiles@2
   displayName: 'Publish Binaries'

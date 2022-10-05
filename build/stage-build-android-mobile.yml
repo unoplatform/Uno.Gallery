@@ -21,6 +21,13 @@ steps:
     cd $(build.sourcesdirectory)/Uno.Gallery/Uno.Gallery.Mobile
     dotnet publish -f:net6.0-android -c:Release "/p:InformationalVersion=%GITVERSION_InformationalVersion%" /p:AndroidSigningKeyStore=$(keyStore.secureFilePath) /p:AndroidSigningStorePass=$(AndroidSigningStorePass) /p:AndroidSigningKeyPass=$(AndroidSigningKeyPass) /p:AndroidSigningKeyAlias=$(AndroidSigningKeyAlias) /p:AndroidKeyStore=true /bl:$(build.artifactstagingdirectory)/build-$(BuildForPlayStore).binlog 
   displayName: 'Build Android Package (net6)'
+  condition: eq(variables['System.PullRequest.IsFork'],'False')
+
+- script: |
+    cd $(build.sourcesdirectory)/Uno.Gallery/Uno.Gallery.Mobile
+    dotnet publish -f:net6.0-android -c:Release "/p:InformationalVersion=%GITVERSION_InformationalVersion%" /bl:$(build.artifactstagingdirectory)/build-$(BuildForPlayStore).binlog 
+  displayName: 'Build Android Package (Fork - net6)'
+  condition: eq(variables['System.PullRequest.IsFork'],'True')
 
 - task: CopyFiles@2
   displayName: 'Publish Android net6 Binaries'
