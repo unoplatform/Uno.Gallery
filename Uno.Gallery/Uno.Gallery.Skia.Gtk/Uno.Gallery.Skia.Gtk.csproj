@@ -49,7 +49,7 @@
 		<PackageReference Include="Uno.Core.Extensions.Disposables" Version="4.0.1" />
 		<PackageReference Include="Uno.Core.Extensions.Compatibility" Version="4.0.1" />
 		<PackageReference Include="SkiaSharp.Views.Uno" Version="2.88.1-preview.79" />
-		<PackageReference Include="SkiaSharp.Skottie" Version="2.88.1-preview.79" />
+		<PackageReference Include="SkiaSharp.Skottie" Version="2.88.3" />
 	</ItemGroup>
 
 	<Import Project="..\Uno.Gallery.Shared\Uno.Gallery.Shared.projitems" Label="Shared" />
