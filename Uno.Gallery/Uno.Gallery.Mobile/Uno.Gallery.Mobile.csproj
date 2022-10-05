@@ -61,7 +61,7 @@
 	
 	<Choose>
 		<When Condition="'$(TargetFramework)'=='net6.0-android'">
-			<PropertyGroup Condition="'$(Configuration)'=='Release'">
+			<PropertyGroup Condition="'$(Configuration)'=='Release' and '$(System_PullRequest_IsFork)'!='True'">
 				<AndroidKeyStore>true</AndroidKeyStore>
 				<AndroidSigningKeyStore>..\Gallery.Droid\calc-prod.keystore</AndroidSigningKeyStore>
 				<AndroidSigningKeyAlias>gallery-prod</AndroidSigningKeyAlias>
@@ -95,7 +95,7 @@
 				
 				<InvariantGlobalization>false</InvariantGlobalization>
 			</PropertyGroup>
-			<PropertyGroup Condition="'$(Configuration)'=='Release'">
+			<PropertyGroup Condition="'$(Configuration)'=='Release' and '$(System_PullRequest_IsFork)'!='True'">
 				<CodesignKey>iPhone Distribution</CodesignKey>
 				<RuntimeIdentifier>ios-arm64</RuntimeIdentifier>
 			</PropertyGroup>
@@ -112,7 +112,7 @@
 				
 				<InvariantGlobalization>false</InvariantGlobalization>
 			</PropertyGroup>
-			<PropertyGroup Condition="'$(Configuration)'=='Release'">
+			<PropertyGroup Condition="'$(Configuration)'=='Release' and '$(System_PullRequest_IsFork)'!='True'">
 				<MtouchUseLlvm>true</MtouchUseLlvm>
 				<CodeSigningKey>Apple Distribution: Uno Platform Inc. (PD74CHS9Z5)</CodeSigningKey>
 				<PackageSigningKey>3rd Party Mac Developer Installer</PackageSigningKey>

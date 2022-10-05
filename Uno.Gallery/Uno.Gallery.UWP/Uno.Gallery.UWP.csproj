@@ -202,6 +202,9 @@
     <Compile Include="Views\SamplePages\AcrylicSamplePage.xaml.cs">
       <DependentUpon>AcrylicSamplePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SamplePages\ClipboardSamplePage.xaml.cs">
+      <DependentUpon>ClipboardSamplePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SamplePages\RefreshContainerPage.xaml.cs">
       <DependentUpon>RefreshContainerPage.xaml</DependentUpon>
     </Compile>    
@@ -464,6 +467,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SamplePages\AcrylicSamplePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SamplePages\ClipboardSamplePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
