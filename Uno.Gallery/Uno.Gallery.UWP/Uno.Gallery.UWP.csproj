@@ -205,6 +205,9 @@
     <Compile Include="Views\SamplePages\FileFolderPickerSamplePage.xaml.cs">
       <DependentUpon>FileFolderPickerSamplePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SamplePages\ClipboardSamplePage.xaml.cs">
+      <DependentUpon>ClipboardSamplePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SamplePages\RefreshContainerPage.xaml.cs">
       <DependentUpon>RefreshContainerPage.xaml</DependentUpon>
     </Compile>    
@@ -471,6 +474,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SamplePages\FileFolderPickerSamplePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SamplePages\ClipboardSamplePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
