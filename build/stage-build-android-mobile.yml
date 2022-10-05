@@ -25,7 +25,7 @@ steps:
 
 - script: |
     cd $(build.sourcesdirectory)/Uno.Gallery/Uno.Gallery.Mobile
-    dotnet publish -f:net6.0-android -c:Release "/p:InformationalVersion=%GITVERSION_InformationalVersion%" /bl:$(build.artifactstagingdirectory)/build-$(BuildForPlayStore).binlog 
+    dotnet publish -f:net6.0-android -c:Release "/p:InformationalVersion=%GITVERSION_InformationalVersion%" /p:AndroidKeyStore=False /bl:$(build.artifactstagingdirectory)/build-$(BuildForPlayStore).binlog 
   displayName: 'Build Android Package (Fork - net6)'
   condition: eq(variables['System.PullRequest.IsFork'],'True')
 
