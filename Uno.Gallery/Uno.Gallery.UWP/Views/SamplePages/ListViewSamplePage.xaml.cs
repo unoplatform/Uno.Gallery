@@ -20,7 +20,7 @@ using Windows.UI.Xaml.Navigation;
 namespace Uno.Gallery.Views.Samples
 {
 
-	[SamplePage(SampleCategory.Components, "ListView",
+	[SamplePage(SampleCategory.UIComponents, "ListView",
 		Description = "Represents a control that displays data items in a vertical stack.",
 		DocumentationLink = "https://docs.microsoft.com/en-us/uwp/api/windows.ui.xaml.controls.listview",
 		DataType = typeof(RecordCollection)

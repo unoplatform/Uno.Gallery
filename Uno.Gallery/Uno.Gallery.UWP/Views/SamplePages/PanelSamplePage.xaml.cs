@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Uno.Gallery.Views.Samples
 {
-	[SamplePage(SampleCategory.Components, "Panel", Description = "Panels are used for layout. They are not templatable.", DocumentationLink = "https://docs.microsoft.com/en-us/uwp/api/windows.ui.xaml.controls.panel")]
+	[SamplePage(SampleCategory.UIComponents, "Panel", Description = "Panels are used for layout. They are not templatable.", DocumentationLink = "https://docs.microsoft.com/en-us/uwp/api/windows.ui.xaml.controls.panel")]
 	public sealed partial class PanelSamplePage : Page
 	{
 		public PanelSamplePage()

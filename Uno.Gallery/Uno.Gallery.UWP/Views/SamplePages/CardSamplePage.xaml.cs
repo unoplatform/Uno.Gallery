@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Uno.Gallery.Views.SamplePages
 {
-	[SamplePage(SampleCategory.Components, "Card", Description = "This control is used to display content and actions about a single item.", DocumentationLink = "https://material.io/components/cards")]
+	[SamplePage(SampleCategory.UIComponents, "Card", Description = "This control is used to display content and actions about a single item.", DocumentationLink = "https://material.io/components/cards")]
 	public sealed partial class CardSamplePage : Page
 	{
 		public CardSamplePage()
