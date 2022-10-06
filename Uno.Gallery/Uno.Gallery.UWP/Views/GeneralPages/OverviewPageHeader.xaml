@@ -23,8 +23,9 @@
 				<RowDefinition Height="Auto" />
 				<RowDefinition Height="Auto" />
 				<RowDefinition Height="Auto" />
-				<RowDefinition Height="Auto" />
-			</Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="Auto" />
 				<ColumnDefinition Width="*" />
@@ -32,52 +33,65 @@
 			
 			<TextBlock Text="Uno Gallery is a collection of ready-to-use Fluent, Material, and Cupertino code snippets to help speed up your multi-platform development."
 					   TextWrapping="Wrap"
-					   Style="{StaticResource HeadlineMedium}"
-					   Margin="0,24,0,0"
+					   Style="{StaticResource TitleLarge}"
+					   Margin="0,12,0,0"
 					   Grid.ColumnSpan="2"/>
 
 			<TextBlock Text="•"
-					   Style="{StaticResource TitleLarge}"
+					   Style="{StaticResource TitleMedium}"
 					   Margin="4,16,0,0"
 					   Grid.Row="1"/>
 			
 			<TextBlock Text="Check how Uno.Material and Uno.Cupertino controls and color palettes can help you build your app faster."
 					   TextWrapping="Wrap"
-					   Style="{StaticResource TitleLarge}"
+					   Style="{StaticResource TitleMedium}"
 					   Margin="4,16,0,0"
 					   Grid.Column="1"
 					   Grid.Row="1"/>
 
 			<TextBlock Text="•"
-					   Style="{StaticResource TitleLarge}"
+					   Style="{StaticResource TitleMedium}"
 					   Margin="4,16,0,0"
 					   Grid.Row="2" />
 
 			<TextBlock Text="Compare Fluent, Material, and Cupertino design for best fit and reuse with ease."
 					   TextWrapping="Wrap"
-					   Style="{StaticResource TitleLarge}"
+					   Style="{StaticResource TitleMedium}"
 					   Margin="4,16,0,0"
 					   Grid.Column="1"
 					   Grid.Row="2" />
 
-			<TextBlock Text="•"
-					   Style="{StaticResource TitleLarge}"
+            <TextBlock Text="•"
+					   Style="{StaticResource TitleMedium}"
 					   Margin="4,16,0,0"
 					   Grid.Row="3" />
 
-			<TextBlock Text="Try Uno Gallery on Web, Desktop and Mobile to experience how the same code works everywhere."
+            <TextBlock Text="Explore other features of Uno Platform including non-UI APIs."
 					   TextWrapping="Wrap"
-					   Style="{StaticResource TitleLarge}"
-					   Margin="4,16,0,16"
+					   Style="{StaticResource TitleMedium}"
+					   Margin="4,16,0,0"
 					   Grid.Column="1"
 					   Grid.Row="3" />
-		</Grid>
+
+            <TextBlock Text="•"
+					   Style="{StaticResource TitleMedium}"
+					   Margin="4,16,0,0"
+					   Grid.Row="4" />
+
+			<TextBlock Text="Try Uno Gallery on Web, Desktop and Mobile to experience how the same code works everywhere."
+					   TextWrapping="Wrap"
+					   Style="{StaticResource TitleMedium}"
+					   Margin="4,16,0,16"
+					   Grid.Column="1"
+					   Grid.Row="4" />
+
+        </Grid>
 		
 		<!-- Image -->
 		<Image x:Name="ImagePart"
 			   Source="{ThemeResource OverviewImageSource}"
 			   HorizontalAlignment="Right"
-			   MaxHeight="500"
+			   MaxHeight="440"
 			   android:MinHeight="310"
 			   Margin="0,0,-48,0"
 			   Grid.Column="1" />

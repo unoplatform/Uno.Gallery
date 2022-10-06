@@ -9,10 +9,11 @@ namespace Uno.Gallery
 	[AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = false)]
 	public sealed class SamplePageAttribute : Attribute
 	{
-		public SamplePageAttribute(SampleCategory category, string title, SourceSdk source = SourceSdk.WinUI)
+		public SamplePageAttribute(SampleCategory category, string title, SourceSdk source = SourceSdk.WinUI, string glyph = "")
 		{
 			Category = category;
 			Title = title;
+			Glyph = glyph;
 			Source = source;
 		}
 
@@ -25,7 +26,9 @@ namespace Uno.Gallery
 
 		public string Description { get; set; }
 
-		public string DocumentationLink { get; set; }
+        public string Glyph { get; }
+
+        public string DocumentationLink { get; set; }
 
 		public Type DataType { get; set; }
 

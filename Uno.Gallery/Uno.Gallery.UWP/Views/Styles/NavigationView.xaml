@@ -2606,15 +2606,16 @@
 	<Style x:Key="T1NavigationViewItemStyle"
 		   BasedOn="{StaticResource DefaultNavigationViewItemStyle}"
 		   TargetType="muxc:NavigationViewItem">
-		<Setter Property="Foreground" Value="{StaticResource OnSurfaceLowBrush}" />
+        <Setter Property="Foreground" Value="{ThemeResource TextFillColorPrimaryBrush}" />
 		<Setter Property="FontSize" Value="16" />
 	</Style>
 	
 	<Style x:Key="T2NavigationViewItemStyle"
 		   BasedOn="{StaticResource DefaultNavigationViewItemStyle}"
 		   TargetType="muxc:NavigationViewItem">
-		<Setter Property="FontSize" Value="14" />
-	</Style>
+        <Setter Property="Foreground" Value="{ThemeResource TextFillColorSecondaryBrush}" />
+        <Setter Property="FontSize" Value="14" />
+    </Style>
 
 	<!--#endregion-->
 

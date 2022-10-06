@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Uno.Gallery.Views.Samples
 {
-	[SamplePage(SampleCategory.Features, "GridView", Description = "Represents a control that displays data items in rows and columns.", DocumentationLink = "https://docs.microsoft.com/en-us/uwp/api/windows.ui.xaml.controls.gridview?view=winrt-19041")]
+	[SamplePage(SampleCategory.Components, "GridView", Description = "Represents a control that displays data items in rows and columns.", DocumentationLink = "https://docs.microsoft.com/en-us/uwp/api/windows.ui.xaml.controls.gridview?view=winrt-19041")]
 	public sealed partial class GridViewSamplePage : Page
 	{
 		public GridViewSamplePage()

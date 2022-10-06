@@ -12,7 +12,7 @@ using Windows.UI.Xaml.Media.Imaging;
 
 namespace Uno.Gallery.Views.Samples
 {
-	[SamplePage(SampleCategory.Features, "Clipboard", Description = "The clipboard enables copy and paste support in Uno applications.", DocumentationLink = "https://learn.microsoft.com/en-us/windows/uwp/app-to-app/copy-and-paste")]
+	[SamplePage(SampleCategory.NonUI, "Clipboard", Description = "The clipboard enables copy and paste support in Uno applications.", DocumentationLink = "https://learn.microsoft.com/en-us/windows/uwp/app-to-app/copy-and-paste")]
 	public sealed partial class ClipboardSamplePage : Page
 	{
 		private static readonly Uri _sampleBitmapUri = new Uri("ms-appx:///Assets/UnoLogo.png");
