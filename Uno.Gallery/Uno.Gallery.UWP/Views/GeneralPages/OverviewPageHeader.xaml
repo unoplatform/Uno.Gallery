@@ -48,7 +48,7 @@
 				<ColumnDefinition Width="*" />
 			</Grid.ColumnDefinitions>
 			
-			<TextBlock Text="Uno Gallery is a collection of ready-to-use Fluent, Material, and Cupertino code snippets to help speed up your multi-platform development."
+			<TextBlock Text="Uno Gallery is a collection of ready-to-use Uno Platform code snippets to help speed up your multi-platform development."
 					   TextWrapping="Wrap"
 					   Style="{StaticResource TitleLarge}"
                        FontWeight="Bold"
