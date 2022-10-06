@@ -5,7 +5,8 @@ using Windows.UI.Xaml.Controls;
 namespace Uno.Gallery.Views.Samples
 {
 	[SamplePage(SampleCategory.Features, "PasswordVault", Description = "The PasswordVault-API enables storing and retrieving of secret data in Uno applications.", DocumentationLink = "https://platform.uno/docs/articles/features/PasswordVault.html")]
-	public sealed partial class PasswordVaultSamplePage : Page
+    [SampleConditional(SampleConditionals.Wasm, Reason = "API is not yet supported")]
+    public sealed partial class PasswordVaultSamplePage : Page
 	{
 		private const string _resource = "MyResourceName";
 		private const string _userName = "MyUsername";
