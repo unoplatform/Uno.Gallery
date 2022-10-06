@@ -119,7 +119,7 @@
 								Value="2" />
 						<Setter Target="ImagePart.(Grid.Column)"
 								Value="0" />
-						<Setter Target="ImagePart.Margin"
+                        <Setter Target="ImagePart.Margin"
 								Value="0,0,-16,0" />
 					</VisualState.Setters>
 				</VisualState>

@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using Uno.Extensions;
+using Uno.Gallery.Entities;
 using Uno.Gallery.Helpers;
 using Uno.Gallery.Views.GeneralPages;
 using Uno.Logging;
@@ -251,29 +252,32 @@ namespace Uno.Gallery
 				var parentItem = default(MUXC.NavigationViewItem);
 				if (category.Key != SampleCategory.None)
 				{
-					parentItem = new MUXC.NavigationViewItem
-					{
-						Content = category.Key.GetDescription() ?? category.Key.ToString(),
-						SelectsOnInvoked = false,
-						Style = (Style)Resources[$"T{tier++}NavigationViewItemStyle"]
-					}.Apply(NavViewItemVisualStateFix);
-					AutomationProperties.SetAutomationId(parentItem, "Section_" + parentItem.Content);
+                    var categoryInfo = category.Key.GetAttribute<SampleCategoryInfoAttribute>();
+                    parentItem = new MUXC.NavigationViewItem
+                    {
+                        Icon = categoryInfo != null ? new FontIcon() { Glyph = categoryInfo.Glyph } : null,
+                        Content = categoryInfo != null ? categoryInfo.Caption : category.Key.ToString(),
+                        SelectsOnInvoked = false,
+                        Style = (Style)Resources[$"T{tier++}NavigationViewItemStyle"]
+                    }.Apply(NavViewItemVisualStateFix);
+                    AutomationProperties.SetAutomationId(parentItem, "Section_" + parentItem.Content);
 
-					nv.MenuItems.Add(parentItem);
-				}
+                    nv.MenuItems.Add(parentItem);
+                }
 
-				foreach (var sample in category)
-				{
-					var item = new MUXC.NavigationViewItem
-					{
-						Content = sample.Title,
-						DataContext = sample,
-						Style = (Style)Resources[$"T{tier}NavigationViewItemStyle"]
-					}.Apply(NavViewItemVisualStateFix);
-					AutomationProperties.SetAutomationId(item, "Section_" + item.Content);
+                foreach (var sample in category)
+                {
+                    var item = new MUXC.NavigationViewItem
+                    {
+                        Content = sample.Title,
+                        Icon = !string.IsNullOrEmpty(sample.Glyph) ? new FontIcon() { Glyph = sample.Glyph } : null,
+                        DataContext = sample,
+                        Style = (Style)Resources[$"T{tier}NavigationViewItemStyle"]
+                    }.Apply(NavViewItemVisualStateFix);
+                    AutomationProperties.SetAutomationId(item, "Section_" + item.Content);
 
-					(parentItem?.MenuItems ?? nv.MenuItems).Add(item);
-				}
+                    (parentItem?.MenuItems ?? nv.MenuItems).Add(item);
+                }
 			}
 
 			void NavViewItemVisualStateFix(MUXC.NavigationViewItem nvi)
