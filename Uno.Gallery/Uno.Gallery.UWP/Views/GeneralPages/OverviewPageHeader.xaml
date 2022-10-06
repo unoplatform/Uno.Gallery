@@ -7,6 +7,22 @@
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 mc:Ignorable="d android ">
 
+    <UserControl.Resources>
+        <Style TargetType="TextBlock" x:Key="BulletPointTextStyle" BasedOn="{StaticResource TitleLarge}">
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="Opacity" Value="0.8" />
+            <Setter Property="FontWeight" Value="Normal" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style TargetType="FontIcon" x:Key="BulletPointIconStyle">
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="FontWeight" Value="Normal" />
+            <Setter Property="Opacity" Value="0.8" />
+            <Setter Property="Glyph" Value="&#xECCC;" />
+            <Setter Property="Margin" Value="0,0,16,0" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+    </UserControl.Resources>
 	<Grid>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="*" />
@@ -18,10 +34,11 @@
 		</Grid.RowDefinitions>
 		
 		<!-- Text -->
-		<Grid x:Name="TextPart">
+		<Grid x:Name="TextPart" RowSpacing="8">
 			<Grid.RowDefinitions>
-				<RowDefinition Height="Auto" />
-				<RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
 				<RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -34,56 +51,43 @@
 			<TextBlock Text="Uno Gallery is a collection of ready-to-use Fluent, Material, and Cupertino code snippets to help speed up your multi-platform development."
 					   TextWrapping="Wrap"
 					   Style="{StaticResource TitleLarge}"
-					   Margin="0,12,0,0"
+                       FontWeight="Bold"
+					   Margin="0,8,0,0"
 					   Grid.ColumnSpan="2"/>
 
-			<TextBlock Text="•"
-					   Style="{StaticResource TitleMedium}"
-					   Margin="4,16,0,0"
-					   Grid.Row="1"/>
-			
-			<TextBlock Text="Check how Uno.Material and Uno.Cupertino controls and color palettes can help you build your app faster."
-					   TextWrapping="Wrap"
-					   Style="{StaticResource TitleMedium}"
-					   Margin="4,16,0,0"
-					   Grid.Column="1"
-					   Grid.Row="1"/>
+            <Rectangle Margin="0,8,0,8" Opacity="0.8" Height="1" Grid.Row="1" HorizontalAlignment="Stretch" Fill="{ThemeResource TextFillColorPrimaryBrush}" VerticalAlignment="Top" Grid.ColumnSpan="2" />
 
-			<TextBlock Text="•"
-					   Style="{StaticResource TitleMedium}"
-					   Margin="4,16,0,0"
-					   Grid.Row="2" />
+            <FontIcon Style="{StaticResource BulletPointIconStyle}" Grid.Row="2" />
+
+            <TextBlock Text="Check how Uno.Material and Uno.Cupertino controls and color palettes can help you build your app faster."
+					   TextWrapping="Wrap"
+					   Style="{StaticResource BulletPointTextStyle}"
+					   Grid.Column="1"
+					   Grid.Row="2"/>
+
+            <FontIcon Style="{StaticResource BulletPointIconStyle}" Grid.Row="3" />
 
 			<TextBlock Text="Compare Fluent, Material, and Cupertino design for best fit and reuse with ease."
 					   TextWrapping="Wrap"
-					   Style="{StaticResource TitleMedium}"
-					   Margin="4,16,0,0"
+					   Style="{StaticResource BulletPointTextStyle}"
 					   Grid.Column="1"
-					   Grid.Row="2" />
-
-            <TextBlock Text="•"
-					   Style="{StaticResource TitleMedium}"
-					   Margin="4,16,0,0"
 					   Grid.Row="3" />
+
+            <FontIcon Style="{StaticResource BulletPointIconStyle}" Grid.Row="4" />
 
             <TextBlock Text="Explore other features of Uno Platform including non-UI APIs."
 					   TextWrapping="Wrap"
-					   Style="{StaticResource TitleMedium}"
-					   Margin="4,16,0,0"
+					   Style="{StaticResource BulletPointTextStyle}"
 					   Grid.Column="1"
-					   Grid.Row="3" />
-
-            <TextBlock Text="•"
-					   Style="{StaticResource TitleMedium}"
-					   Margin="4,16,0,0"
 					   Grid.Row="4" />
 
-			<TextBlock Text="Try Uno Gallery on Web, Desktop and Mobile to experience how the same code works everywhere."
+            <FontIcon Style="{StaticResource BulletPointIconStyle}" Grid.Row="5" />
+
+            <TextBlock Text="Try Uno Gallery on Web, Desktop and Mobile to experience how the same code works everywhere."
 					   TextWrapping="Wrap"
-					   Style="{StaticResource TitleMedium}"
-					   Margin="4,16,0,16"
+					   Style="{StaticResource BulletPointTextStyle}"
 					   Grid.Column="1"
-					   Grid.Row="4" />
+					   Grid.Row="5" />
 
         </Grid>
 		
