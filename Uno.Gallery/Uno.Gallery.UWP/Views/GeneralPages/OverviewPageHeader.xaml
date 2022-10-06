@@ -15,10 +15,10 @@
             <Setter Property="VerticalAlignment" Value="Center" />
         </Style>
         <Style TargetType="FontIcon" x:Key="BulletPointIconStyle">
-            <Setter Property="FontSize" Value="12" />
+            <Setter Property="FontSize" Value="8" />
             <Setter Property="FontWeight" Value="Normal" />
             <Setter Property="Opacity" Value="0.8" />
-            <Setter Property="Glyph" Value="&#xECCC;" />
+            <Setter Property="Glyph" Value="&#xE91F;" />
             <Setter Property="Margin" Value="0,0,16,0" />
             <Setter Property="VerticalAlignment" Value="Center" />
         </Style>
@@ -34,7 +34,7 @@
 		</Grid.RowDefinitions>
 		
 		<!-- Text -->
-		<Grid x:Name="TextPart" RowSpacing="8">
+		<Grid x:Name="TextPart" RowSpacing="8" Padding="0,0,0,16">
 			<Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
