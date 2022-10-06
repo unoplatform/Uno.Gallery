@@ -70,15 +70,14 @@ namespace Uno.Gallery
 		/// </summary>
 		private void InitializeSafeArea()
 		{
-			var full = Windows.UI.Xaml.Window.Current.Bounds;
-
-            ApplicationView.GetForCurrentView().VisibleBoundsChanged += (s, e) => Adjust();
+			ApplicationView.GetForCurrentView().VisibleBoundsChanged += (s, e) => Adjust();
 
 			Adjust();
 
 			void Adjust()
 			{
-				var bounds = ApplicationView.GetForCurrentView().VisibleBounds;
+                var full = Windows.UI.Xaml.Window.Current.Bounds;
+                var bounds = ApplicationView.GetForCurrentView().VisibleBounds;
 				var topPadding = Math.Abs(full.Top - bounds.Top);
 
 				if (topPadding > 0)
