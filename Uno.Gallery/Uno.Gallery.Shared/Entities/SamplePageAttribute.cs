@@ -26,9 +26,9 @@ namespace Uno.Gallery
 
 		public string Description { get; set; }
 
-        public string Glyph { get; }
+		public string Glyph { get; }
 
-        public string DocumentationLink { get; set; }
+		public string DocumentationLink { get; set; }
 
 		public Type DataType { get; set; }
 

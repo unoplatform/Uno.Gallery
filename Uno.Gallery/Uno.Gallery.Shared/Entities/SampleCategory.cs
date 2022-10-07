@@ -10,18 +10,18 @@ namespace Uno.Gallery
 		None,
 
 		[SampleCategoryInfo("\uE790", "Theming")]
-        Theming,
-        
+		Theming,
+
 		[SampleCategoryInfo("\uE81E", "UI components")]
 		UIComponents,
-        
-        [SampleCategoryInfo("\uE8AE", "UI features")]
-        UIFeatures,
 
-        [SampleCategoryInfo("\uE950", "Non-UI features")]
-        NonUIFeatures,
-        
-        [SampleCategoryInfo("\uF0B4", "Toolkit")]
+		[SampleCategoryInfo("\uE8AE", "UI features")]
+		UIFeatures,
+
+		[SampleCategoryInfo("\uE950", "Non-UI features")]
+		NonUIFeatures,
+
+		[SampleCategoryInfo("\uF0B4", "Toolkit")]
 		Toolkit,
-    }
+	}
 }

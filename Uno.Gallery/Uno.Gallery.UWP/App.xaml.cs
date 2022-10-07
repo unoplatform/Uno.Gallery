@@ -252,32 +252,32 @@ namespace Uno.Gallery
 				var parentItem = default(MUXC.NavigationViewItem);
 				if (category.Key != SampleCategory.None)
 				{
-                    var categoryInfo = category.Key.GetAttribute<SampleCategoryInfoAttribute>();
-                    parentItem = new MUXC.NavigationViewItem
-                    {
-                        Icon = categoryInfo != null ? new FontIcon() { Glyph = categoryInfo.Glyph } : null,
-                        Content = categoryInfo != null ? categoryInfo.Caption : category.Key.ToString(),
-                        SelectsOnInvoked = false,
-                        Style = (Style)Resources[$"T{tier++}NavigationViewItemStyle"]
-                    }.Apply(NavViewItemVisualStateFix);
-                    AutomationProperties.SetAutomationId(parentItem, "Section_" + parentItem.Content);
+					var categoryInfo = category.Key.GetAttribute<SampleCategoryInfoAttribute>();
+					parentItem = new MUXC.NavigationViewItem
+					{
+						Icon = categoryInfo != null ? new FontIcon() { Glyph = categoryInfo.Glyph } : null,
+						Content = categoryInfo != null ? categoryInfo.Caption : category.Key.ToString(),
+						SelectsOnInvoked = false,
+						Style = (Style)Resources[$"T{tier++}NavigationViewItemStyle"]
+					}.Apply(NavViewItemVisualStateFix);
+					AutomationProperties.SetAutomationId(parentItem, "Section_" + parentItem.Content);
 
-                    nv.MenuItems.Add(parentItem);
-                }
+					nv.MenuItems.Add(parentItem);
+				}
 
-                foreach (var sample in category)
-                {
-                    var item = new MUXC.NavigationViewItem
-                    {
-                        Content = sample.Title,
-                        Icon = !string.IsNullOrEmpty(sample.Glyph) ? new FontIcon() { Glyph = sample.Glyph } : null,
-                        DataContext = sample,
-                        Style = (Style)Resources[$"T{tier}NavigationViewItemStyle"]
-                    }.Apply(NavViewItemVisualStateFix);
-                    AutomationProperties.SetAutomationId(item, "Section_" + item.Content);
+				foreach (var sample in category)
+				{
+					var item = new MUXC.NavigationViewItem
+					{
+						Content = sample.Title,
+						Icon = !string.IsNullOrEmpty(sample.Glyph) ? new FontIcon() { Glyph = sample.Glyph } : null,
+						DataContext = sample,
+						Style = (Style)Resources[$"T{tier}NavigationViewItemStyle"]
+					}.Apply(NavViewItemVisualStateFix);
+					AutomationProperties.SetAutomationId(item, "Section_" + item.Content);
 
-                    (parentItem?.MenuItems ?? nv.MenuItems).Add(item);
-                }
+					(parentItem?.MenuItems ?? nv.MenuItems).Add(item);
+				}
 			}
 
 			void NavViewItemVisualStateFix(MUXC.NavigationViewItem nvi)
@@ -312,13 +312,13 @@ namespace Uno.Gallery
 			var factory = LoggerFactory.Create(builder =>
 			{
 #if __WASM__
-                builder.AddProvider(new global::Uno.Extensions.Logging.WebAssembly.WebAssemblyConsoleLoggerProvider());
+				builder.AddProvider(new global::Uno.Extensions.Logging.WebAssembly.WebAssemblyConsoleLoggerProvider());
 #elif __IOS__
-                builder.AddProvider(new global::Uno.Extensions.Logging.OSLogLoggerProvider());
+				builder.AddProvider(new global::Uno.Extensions.Logging.OSLogLoggerProvider());
 #elif NETFX_CORE
 				builder.AddDebug();
 #else
-                builder.AddConsole();
+				builder.AddConsole();
 #endif
 
 				// Exclude logs below this level
