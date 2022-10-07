@@ -205,6 +205,9 @@
     <Compile Include="Views\SamplePages\AcrylicSamplePage.xaml.cs">
       <DependentUpon>AcrylicSamplePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SamplePages\LocalSettingsSamplePage.xaml.cs">
+      <DependentUpon>LocalSettingsSamplePage.xaml</DependentUpon>
+    </Compile>    
     <Compile Include="Views\SamplePages\PasswordVaultSamplePage.xaml.cs">
       <DependentUpon>PasswordVaultSamplePage.xaml</DependentUpon>
     </Compile>
@@ -482,6 +485,10 @@
     <Page Include="Views\SamplePages\AcrylicSamplePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SamplePages\LocalSettingsSamplePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\SamplePages\PasswordVaultSamplePage.xaml">
       <Generator>MSBuild:Compile</Generator>
