@@ -9,7 +9,7 @@ using Windows.UI.Xaml.Media.Imaging;
 
 namespace Uno.Gallery.Views.Samples
 {
-	[SamplePage(SampleCategory.Features, "File and Folder Pickers", Description = "A file picker displays information to orient users and provide a consistent experience when opening or saving files.", DocumentationLink = "https://learn.microsoft.com/en-us/windows/uwp/files/quickstart-using-file-and-folder-pickers")]
+	[SamplePage(SampleCategory.NonUIFeatures, "File and Folder Pickers", Description = "A file picker displays information to orient users and provide a consistent experience when opening or saving files.", DocumentationLink = "https://learn.microsoft.com/en-us/windows/uwp/files/quickstart-using-file-and-folder-pickers")]
 	public sealed partial class FileFolderPickerSamplePage : Page
 	{
 		public FileFolderPickerSamplePage()

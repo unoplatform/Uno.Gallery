@@ -18,7 +18,7 @@ namespace Uno.Gallery.Views.Samples
 {
 
     [SamplePage(
-        SampleCategory.Components,
+        SampleCategory.UIComponents,
         "RefreshContainer",
         Description = "RefreshContainer is a control that enables pull to refresh experiences on mobile platforms.",
         DocumentationLink = "https://docs.microsoft.com/en-us/windows/winui/api/microsoft.ui.xaml.controls.refreshcontainer")]

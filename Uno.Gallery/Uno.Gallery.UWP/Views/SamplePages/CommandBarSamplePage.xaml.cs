@@ -16,7 +16,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Uno.Gallery.Views.SamplePages
 {
-	[SamplePage(SampleCategory.Components, nameof(CommandBar),
+	[SamplePage(SampleCategory.UIComponents, nameof(CommandBar),
 		Description = "This control provides navigation and related actions for the current page.",
 		DocumentationLink = "https://docs.microsoft.com/en-us/uwp/api/windows.ui.xaml.controls.commandbar")]
 	public sealed partial class CommandBarSamplePage : Page

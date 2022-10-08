@@ -17,6 +17,7 @@ namespace Uno.Gallery
 			Category = attribute.Category;
 			Title = attribute.Title;
 			Description = attribute.Description;
+			Glyph = attribute.Glyph;
 			if (attribute.DocumentationLink != null)
 			{
 				DocumentationLink = new Uri(attribute.DocumentationLink);
@@ -48,6 +49,8 @@ namespace Uno.Gallery
 		public string Title { get; }
 
 		public string Description { get; }
+
+		public string Glyph { get; }
 
 		public Uri DocumentationLink { get; }
 

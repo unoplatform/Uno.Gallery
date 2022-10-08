@@ -17,7 +17,7 @@ using Windows.UI.Xaml.Navigation;
 namespace Uno.Gallery.Views.Samples
 {
 #if !__WASM__ && !__MACOS__
-	[SamplePage(SampleCategory.Components, "TimePicker", Description = "This control allows users to pick a time value.", DocumentationLink = "https://docs.microsoft.com/en-us/uwp/api/windows.ui.xaml.controls.timepicker")]
+	[SamplePage(SampleCategory.UIComponents, "TimePicker", Description = "This control allows users to pick a time value.", DocumentationLink = "https://docs.microsoft.com/en-us/uwp/api/windows.ui.xaml.controls.timepicker")]
 #endif
 	[SampleConditional(SampleConditionals.Disabled, Reason = "todo: styles not implemented")]
 	public sealed partial class TimePickerSamplePage : Page

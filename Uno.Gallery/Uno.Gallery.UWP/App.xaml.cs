@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using Uno.Extensions;
+using Uno.Gallery.Entities;
 using Uno.Gallery.Helpers;
 using Uno.Gallery.Views.GeneralPages;
 using Uno.Logging;
@@ -251,9 +252,11 @@ namespace Uno.Gallery
 				var parentItem = default(MUXC.NavigationViewItem);
 				if (category.Key != SampleCategory.None)
 				{
+					var categoryInfo = category.Key.GetAttribute<SampleCategoryInfoAttribute>();
 					parentItem = new MUXC.NavigationViewItem
 					{
-						Content = category.Key.GetDescription() ?? category.Key.ToString(),
+						Icon = categoryInfo != null ? new FontIcon() { Glyph = categoryInfo.Glyph } : null,
+						Content = categoryInfo != null ? categoryInfo.Caption : category.Key.ToString(),
 						SelectsOnInvoked = false,
 						Style = (Style)Resources[$"T{tier++}NavigationViewItemStyle"]
 					}.Apply(NavViewItemVisualStateFix);
@@ -267,6 +270,7 @@ namespace Uno.Gallery
 					var item = new MUXC.NavigationViewItem
 					{
 						Content = sample.Title,
+						Icon = !string.IsNullOrEmpty(sample.Glyph) ? new FontIcon() { Glyph = sample.Glyph } : null,
 						DataContext = sample,
 						Style = (Style)Resources[$"T{tier}NavigationViewItemStyle"]
 					}.Apply(NavViewItemVisualStateFix);
@@ -308,13 +312,13 @@ namespace Uno.Gallery
 			var factory = LoggerFactory.Create(builder =>
 			{
 #if __WASM__
-                builder.AddProvider(new global::Uno.Extensions.Logging.WebAssembly.WebAssemblyConsoleLoggerProvider());
+				builder.AddProvider(new global::Uno.Extensions.Logging.WebAssembly.WebAssemblyConsoleLoggerProvider());
 #elif __IOS__
-                builder.AddProvider(new global::Uno.Extensions.Logging.OSLogLoggerProvider());
+				builder.AddProvider(new global::Uno.Extensions.Logging.OSLogLoggerProvider());
 #elif NETFX_CORE
 				builder.AddDebug();
 #else
-                builder.AddConsole();
+				builder.AddConsole();
 #endif
 
 				// Exclude logs below this level

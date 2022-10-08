@@ -6,7 +6,7 @@ using Windows.UI.Xaml.Controls;
 
 namespace Uno.Gallery.Views.Samples
 {
-	[SamplePage(SampleCategory.Features, "Accelerometer", Description = "Represents an accelerometer sensor. This sensor returns G-force values with respect to the x, y, and z axes.", DocumentationLink = "https://learn.microsoft.com/en-us/windows/uwp/devices-sensors/use-the-accelerometer")]
+	[SamplePage(SampleCategory.NonUIFeatures, "Accelerometer", Description = "Represents an accelerometer sensor. This sensor returns G-force values with respect to the x, y, and z axes.", DocumentationLink = "https://learn.microsoft.com/en-us/windows/uwp/devices-sensors/use-the-accelerometer")]
 	public sealed partial class AccelerometerSamplePage : Page
 	{
 		public AccelerometerSamplePage()

@@ -366,8 +366,8 @@
 
 	<Thickness x:Key="NavigationViewItemPadding">8,2</Thickness>
 	<CornerRadius x:Key="NavigationViewItemCornerRadius">4</CornerRadius>
-    <StaticResource x:Key="NavigationViewItemFontFamily"
-                    ResourceKey="MaterialRegularFontFamily" />
+	<StaticResource x:Key="NavigationViewItemFontFamily"
+					ResourceKey="MaterialRegularFontFamily" />
 
 	<!--#endregion-->
 
@@ -1715,7 +1715,7 @@
 			</Setter.Value>
 		</Setter>
 	</Style>
-	
+
 	<Style x:Key="MUX_NavigationViewItemPresenterStyleWhenOnLeftPaneWithRevealFocus" TargetType="primitives:NavigationViewItemPresenter">
 		<Setter Property="Foreground" Value="{ThemeResource NavigationViewItemForeground}" />
 		<Setter Property="Background" Value="{ThemeResource NavigationViewItemBackground}" />
@@ -2174,7 +2174,7 @@
 			</Setter.Value>
 		</Setter>
 	</Style>
-	
+
 	<Style x:Key="MUX_NavigationViewItemPresenterStyleWhenOnTopPaneWithRevealFocus" TargetType="primitives:NavigationViewItemPresenter">
 		<Setter Property="Foreground" Value="{ThemeResource TopNavigationViewItemForeground}" />
 		<Setter Property="Template">
@@ -2324,7 +2324,7 @@
 			</Setter.Value>
 		</Setter>
 	</Style>
-	
+
 	<Style x:Key="MUX_NavigationViewItemPresenterStyleWhenOnTopPaneOverflow" TargetType="primitives:NavigationViewItemPresenter">
 		<Setter Property="Foreground" Value="{ThemeResource TopNavigationViewItemForeground}" />
 		<Setter Property="Template">
@@ -2551,18 +2551,18 @@
 								<muxc:StackLayout Orientation="Vertical" />
 							</muxc:ItemsRepeater.Layout>
 						</muxc:ItemsRepeater>
-                        <FlyoutBase.AttachedFlyout>
-                            <Flyout x:Name="ChildrenFlyout"
-                                    contract7NotPresent:Placement="Right"
-                                    contract7Present:Placement="RightEdgeAlignedTop">
-                                <!-- FlyoutPresenterStyle removed here to help the performance as the flyout is not used for now -->
-                                <!-- Uno code behind still rely on FlyoutContentGrid so we can't remove the flyout completely -->
-                                <Grid x:Name="FlyoutRootGrid">
-                                    <Grid x:Name="FlyoutContentGrid" />
-                                </Grid>
-                            </Flyout>
-                        </FlyoutBase.AttachedFlyout>
-                        <VisualStateManager.VisualStateGroups>
+						<FlyoutBase.AttachedFlyout>
+							<Flyout x:Name="ChildrenFlyout"
+									contract7NotPresent:Placement="Right"
+									contract7Present:Placement="RightEdgeAlignedTop">
+								<!-- FlyoutPresenterStyle removed here to help the performance as the flyout is not used for now -->
+								<!-- Uno code behind still rely on FlyoutContentGrid so we can't remove the flyout completely -->
+								<Grid x:Name="FlyoutRootGrid">
+									<Grid x:Name="FlyoutContentGrid" />
+								</Grid>
+							</Flyout>
+						</FlyoutBase.AttachedFlyout>
+						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup x:Name="ItemOnNavigationViewListPositionStates">
 								<VisualState x:Name="OnLeftNavigation">
 									<VisualState.Setters>
@@ -2602,17 +2602,18 @@
 			</Setter.Value>
 		</Setter>
 	</Style>
-	
+
 	<Style x:Key="T1NavigationViewItemStyle"
 		   BasedOn="{StaticResource DefaultNavigationViewItemStyle}"
 		   TargetType="muxc:NavigationViewItem">
-		<Setter Property="Foreground" Value="{StaticResource OnSurfaceLowBrush}" />
+		<Setter Property="Foreground" Value="{ThemeResource TextFillColorPrimaryBrush}" />
 		<Setter Property="FontSize" Value="16" />
 	</Style>
-	
+
 	<Style x:Key="T2NavigationViewItemStyle"
 		   BasedOn="{StaticResource DefaultNavigationViewItemStyle}"
 		   TargetType="muxc:NavigationViewItem">
+		<Setter Property="Foreground" Value="{ThemeResource TextFillColorSecondaryBrush}" />
 		<Setter Property="FontSize" Value="14" />
 	</Style>
 

@@ -156,6 +156,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\SecretConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Deeplinking\BranchService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Domain\AnalyticsService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\SampleCategoryInfoAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\SampleConditionalAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Data\DividerItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Data\Record.cs" />

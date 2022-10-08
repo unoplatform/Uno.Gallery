@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
+﻿using Uno.Gallery.Entities;
 
 namespace Uno.Gallery
 {
@@ -12,9 +9,19 @@ namespace Uno.Gallery
 		/// </summary>
 		None,
 
-		Theme,
-		Components,
-		Features,
+		[SampleCategoryInfo("\uE790", "Theming")]
+		Theming,
+
+		[SampleCategoryInfo("\uE81E", "UI components")]
+		UIComponents,
+
+		[SampleCategoryInfo("\uE8AE", "UI features")]
+		UIFeatures,
+
+		[SampleCategoryInfo("\uE950", "Non-UI features")]
+		NonUIFeatures,
+
+		[SampleCategoryInfo("\uF0B4", "Toolkit")]
 		Toolkit,
 	}
 }

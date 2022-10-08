@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Uno.Gallery.Views.Samples
 {
-	[SamplePage(SampleCategory.Components, "Slider", Description = "This control allows users to input a value within a specified range.", DocumentationLink = "https://docs.microsoft.com/en-us/uwp/api/windows.ui.xaml.controls.slider")]
+	[SamplePage(SampleCategory.UIComponents, "Slider", Description = "This control allows users to input a value within a specified range.", DocumentationLink = "https://docs.microsoft.com/en-us/uwp/api/windows.ui.xaml.controls.slider")]
 	[SampleConditional(SampleConditionals.Disabled, Reason = "todo: styles not implemented")]
 	public sealed partial class SliderSamplePage : Page
 	{

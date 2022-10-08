@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Uno.Gallery.Views.Samples
 {
-	[SamplePage(SampleCategory.Components, "ElevatedView", Description = Description, DocumentationLink = "https://platform.uno/docs/articles/features/ElevatedView.html")]
+	[SamplePage(SampleCategory.UIComponents, "ElevatedView", Description = Description, DocumentationLink = "https://platform.uno/docs/articles/features/ElevatedView.html")]
 	public sealed partial class ElevatedViewSamplePage : Page
 	{
 		private const string Description = "ElevatedView component allow to highlight the different levels of layout";
