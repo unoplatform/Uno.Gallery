@@ -7,9 +7,6 @@ using Windows.UI.Xaml.Controls;
 namespace Uno.Gallery.Views.Samples
 {
 	[SamplePage(SampleCategory.NonUIFeatures, "Sharing", Description = "Programmatically initiates an exchange of content with other apps.", DocumentationLink = "https://learn.microsoft.com/en-us/uwp/api/windows.applicationmodel.datatransfer.datatransfermanager")]
-#if __WASM__
-	[SampleConditional(SampleConditionals.Disabled, Reason = "API is not yet supported")]
-#endif
     public sealed partial class SharingSamplePage : Page
 	{
         public SharingSamplePage()
