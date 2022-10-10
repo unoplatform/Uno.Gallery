@@ -23,7 +23,7 @@
 						<smtx:XamlDisplay UniqueKey="LocalSettingsSamplePage_Local"
 										  smtx:XamlDisplayExtensions.Header="Local Settings"
 											  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
-								<StackPanel Spacing="20">
+							<StackPanel Spacing="8">
 								<TextBlock Text="This sample will store the current time to the local settings." TextWrapping="Wrap" />
 								<Button Content="Write value to settings" Click="Save_Click"/>
 								<Button Content="Retrieve value from settings" Click="Retrieve_Click"/>
