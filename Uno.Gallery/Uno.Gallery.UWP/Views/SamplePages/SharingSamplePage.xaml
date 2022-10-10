@@ -78,6 +78,35 @@
 -->
 							</StackPanel>
 						</smtx:XamlDisplay>
+						<smtx:XamlDisplay UniqueKey="SharingSamplePage_Async"
+										  smtx:XamlDisplayExtensions.Header="Async preparation"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+							<StackPanel Spacing="8">
+								<TextBlock Text="This sample will share a text with asynchronous data preparation (with an explicit delay of 3 seconds)." TextWrapping="Wrap" />
+								<Button Content="Share async" Click="ShareAsync_Click"/>
+								<!--
+	private void ShareURI_Click(object sender, RoutedEventArgs args)
+	{
+		if (DataTransferManager.IsSupported())
+		{
+			var dataTransferManager = DataTransferManager.GetForCurrentView();
+			dataTransferManager.DataRequested += DataRequested_URI;
+			DataTransferManager.ShowShareUI();
+		}
+	}
+
+	private void DataRequested_URI(DataTransferManager sender, DataRequestedEventArgs args)
+	{
+		args.Request.Data.Properties.Title = "A title";
+		args.Request.Data.Properties.Description = "A description";
+
+		args.Request.Data.SetWebLink(new Uri("https://platform.uno"));
+
+		sender.DataRequested -= DataRequested_URI;
+	}
+-->
+							</StackPanel>
+						</smtx:XamlDisplay>
 					</StackPanel>
 				</DataTemplate>
 			</local:SamplePageLayout.FluentTemplate>

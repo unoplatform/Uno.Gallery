@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -54,6 +55,32 @@ namespace Uno.Gallery.Views.Samples
 			args.Request.Data.SetWebLink(new Uri("https://platform.uno"));
 
 			sender.DataRequested -= DataRequested_URI;
+		}
+
+		private void ShareAsync_Click(object sender, RoutedEventArgs args)
+		{
+			if (DataTransferManager.IsSupported())
+			{
+				var dataTransferManager = DataTransferManager.GetForCurrentView();
+				dataTransferManager.DataRequested += DataRequested_Async;
+				DataTransferManager.ShowShareUI();
+			}
+		}
+
+		private async void DataRequested_Async(DataTransferManager sender, DataRequestedEventArgs args)
+		{
+			var deferral = args.Request.GetDeferral();
+
+			await Task.Delay(3000);
+
+			args.Request.Data.Properties.Title = "Uno Gallery - Share-Sample Title";
+			args.Request.Data.Properties.Description = "You've waited so long, here it is:";
+
+			args.Request.Data.SetText("This text was delayed for 3 second.");
+
+			sender.DataRequested -= DataRequested_URI;
+
+			deferral.Complete();
 		}
 	}
 }
