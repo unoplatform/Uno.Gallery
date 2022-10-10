@@ -15,12 +15,6 @@
 	  mc:Ignorable="d android ios macos skia wasm"
 	  x:Name="page">
 
-	<Page.Resources>
-		<ResourceDictionary>
-            <samples:ClipboardSamplePageViewModel x:Key="LocalSettingsSamplePageViewModel"/>
-		</ResourceDictionary>
-	</Page.Resources>
-
 	<Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
 		<local:SamplePageLayout>
 			<local:SamplePageLayout.FluentTemplate>
