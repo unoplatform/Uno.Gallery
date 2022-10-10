@@ -27,10 +27,24 @@
                                 <TextBlock Text="This sample will share a string." TextWrapping="Wrap" />
 								<Button Content="Share a text" Click="ShareText_Click"/>
 								<!--
-	private void Store_Click(object sender, RoutedEventArgs args)
+	private void ShareText_Click(object sender, RoutedEventArgs args)
 	{
-		var vault = new Windows.Security.Credentials.PasswordVault();
-        vault.Add(new Windows.Security.Credentials.PasswordCredential(_resource, _userName, _password));
+		if (DataTransferManager.IsSupported())
+		{
+			var dataTransferManager = DataTransferManager.GetForCurrentView();
+			dataTransferManager.DataRequested += DataRequested_Text;
+			DataTransferManager.ShowShareUI();
+		}
+	}
+
+	private void DataRequested_Text(DataTransferManager sender, DataRequestedEventArgs args)
+	{
+		args.Request.Data.Properties.Title = "A title";
+		args.Request.Data.Properties.Description = "A description";
+
+		args.Request.Data.SetText("The text to share");
+
+		sender.DataRequested -= DataRequested_Text;
 	}
 -->
                             </StackPanel>
@@ -42,10 +56,24 @@
 								<TextBlock Text="This sample will share a URI." TextWrapping="Wrap" />
 								<Button Content="Share a URI" Click="ShareURI_Click"/>
 								<!--
-	private void Store_Click(object sender, RoutedEventArgs args)
+	private void ShareURI_Click(object sender, RoutedEventArgs args)
 	{
-		var vault = new Windows.Security.Credentials.PasswordVault();
-        vault.Add(new Windows.Security.Credentials.PasswordCredential(_resource, _userName, _password));
+		if (DataTransferManager.IsSupported())
+		{
+			var dataTransferManager = DataTransferManager.GetForCurrentView();
+			dataTransferManager.DataRequested += DataRequested_URI;
+			DataTransferManager.ShowShareUI();
+		}
+	}
+
+	private void DataRequested_URI(DataTransferManager sender, DataRequestedEventArgs args)
+	{
+		args.Request.Data.Properties.Title = "A title";
+		args.Request.Data.Properties.Description = "A description";
+
+		args.Request.Data.SetWebLink(new Uri("https://platform.uno"));
+
+		sender.DataRequested -= DataRequested_URI;
 	}
 -->
 							</StackPanel>
