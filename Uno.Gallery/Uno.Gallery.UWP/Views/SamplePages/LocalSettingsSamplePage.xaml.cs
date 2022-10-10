@@ -16,16 +16,16 @@ namespace Uno.Gallery.Views.Samples
 
 		private void Save_Click(object sender, RoutedEventArgs args)
 		{
-            Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
-            localSettings.Values[_settingsKey] = DateTime.Now.ToShortDateString() + " - " + DateTime.Now.ToShortTimeString();
-        }
+			Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+			localSettings.Values[_settingsKey] = DateTime.Now.ToShortDateString() + " - " + DateTime.Now.ToShortTimeString();
+		}
 
 		private async void Retrieve_Click(object sender, RoutedEventArgs args)
 		{
-            Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
-            var localValue = localSettings.Values[_settingsKey] as string;
-
-            if (!string.IsNullOrEmpty(localValue))
+			Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+			var localValue = localSettings.Values[_settingsKey] as string;
+			
+			if (!string.IsNullOrEmpty(localValue))
 			{
 				var dialog = new ContentDialog()
 				{
