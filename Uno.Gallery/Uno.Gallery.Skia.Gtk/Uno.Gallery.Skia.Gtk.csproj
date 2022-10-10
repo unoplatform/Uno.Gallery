@@ -44,7 +44,7 @@
 		<PackageReference Include="Uno.Toolkit.UI.Material" Version="2.3.0" />		
 		<PackageReference Include="Uno.UI.Lottie" Version="4.6.0-dev.116" />
 		<PackageReference Include="Uno.UI.Skia.Gtk" Version="4.6.0-dev.116" />
-		<PackageReference Include="Uno.UI.RemoteControl" Version="4.6.0-dev.116" Condition="'$(Configuration)'=='Debug'" />
+		<PackageReference Include="Uno.UI.RemoteControl" Version="4.6.0-dev.583" Condition="'$(Configuration)'=='Debug'" />
 		<PackageReference Include="Uno.UI.Adapter.Microsoft.Extensions.Logging" Version="4.6.0-dev.116" />
 		<PackageReference Include="Uno.Core.Extensions.Disposables" Version="4.0.1" />
 		<PackageReference Include="Uno.Core.Extensions.Compatibility" Version="4.0.1" />
