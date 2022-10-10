@@ -85,24 +85,30 @@
 								<TextBlock Text="This sample will share a text with asynchronous data preparation (with an explicit delay of 3 seconds)." TextWrapping="Wrap" />
 								<Button Content="Share async" Click="ShareAsync_Click"/>
 								<!--
-	private void ShareURI_Click(object sender, RoutedEventArgs args)
+	private void ShareAsync_Click(object sender, RoutedEventArgs args)
 	{
 		if (DataTransferManager.IsSupported())
 		{
 			var dataTransferManager = DataTransferManager.GetForCurrentView();
-			dataTransferManager.DataRequested += DataRequested_URI;
+			dataTransferManager.DataRequested += DataRequested_Async;
 			DataTransferManager.ShowShareUI();
 		}
 	}
 
-	private void DataRequested_URI(DataTransferManager sender, DataRequestedEventArgs args)
+	private async void DataRequested_Async(DataTransferManager sender, DataRequestedEventArgs args)
 	{
-		args.Request.Data.Properties.Title = "A title";
-		args.Request.Data.Properties.Description = "A description";
+		var deferral = args.Request.GetDeferral();
 
-		args.Request.Data.SetWebLink(new Uri("https://platform.uno"));
+		await Task.Delay(3000);
+
+		args.Request.Data.Properties.Title = "Uno Gallery - Share-Sample Title";
+		args.Request.Data.Properties.Description = "You've waited so long, here it is:";
+
+		args.Request.Data.SetText("This text was delayed for 3 second.");
 
 		sender.DataRequested -= DataRequested_URI;
+
+		deferral.Complete();
 	}
 -->
 							</StackPanel>
