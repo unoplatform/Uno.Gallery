@@ -1,14 +1,6 @@
 ﻿using System;
-using System.ComponentModel;
-using System.IO;
-using System.Linq;
-using Windows.ApplicationModel;
-using Windows.ApplicationModel.DataTransfer;
-using Windows.Storage;
-using Windows.Storage.Streams;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media.Imaging;
 
 namespace Uno.Gallery.Views.Samples
 {
@@ -24,13 +16,13 @@ namespace Uno.Gallery.Views.Samples
 
 		private void Save_Click(object sender, RoutedEventArgs args)
 		{
-            ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
             localSettings.Values[_settingsKey] = DateTime.Now.ToShortDateString() + " - " + DateTime.Now.ToShortTimeString();
         }
 
 		private async void Retrieve_Click(object sender, RoutedEventArgs args)
 		{
-            ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
             var localValue = localSettings.Values[_settingsKey] as string;
 
             if (!string.IsNullOrEmpty(localValue))
