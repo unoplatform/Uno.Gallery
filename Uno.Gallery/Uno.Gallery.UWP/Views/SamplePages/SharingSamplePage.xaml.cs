@@ -6,7 +6,7 @@ using Windows.UI.Xaml.Controls;
 
 namespace Uno.Gallery.Views.Samples
 {
-	[SamplePage(SampleCategory.NonUIFeatures, "Sharing", Description = "Represents a Credential Locker of credentials. Lockers are specific to a user.", DocumentationLink = "https://learn.microsoft.com/en-us/uwp/api/windows.security.credentials.passwordvault")]
+	[SamplePage(SampleCategory.NonUIFeatures, "Sharing", Description = "Programmatically initiates an exchange of content with other apps.", DocumentationLink = "https://learn.microsoft.com/en-us/uwp/api/windows.applicationmodel.datatransfer.datatransfermanager")]
 #if __WASM__
 	[SampleConditional(SampleConditionals.Disabled, Reason = "API is not yet supported")]
 #endif
