@@ -14,13 +14,22 @@ namespace Uno.Gallery.Views.Samples
 			this.InitializeComponent();
 		}
 
-		private void ShareText_Click(object sender, RoutedEventArgs args)
+		private async void ShareText_Click(object sender, RoutedEventArgs args)
 		{
 			if (DataTransferManager.IsSupported())
 			{
 				var dataTransferManager = DataTransferManager.GetForCurrentView();
 				dataTransferManager.DataRequested += DataRequested_Text;
 				DataTransferManager.ShowShareUI();
+			}
+			else
+			{
+				var dialog = new ContentDialog()
+				{
+					Title = "Sharing is not supported on this device.",
+					PrimaryButtonText = "OK"
+				};
+				await dialog.ShowAsync();
 			}
 		}
 
@@ -78,6 +87,46 @@ namespace Uno.Gallery.Views.Samples
 			sender.DataRequested -= DataRequested_URI;
 
 			deferral.Complete();
+		}
+
+		private void ShareTextDark_Click(object sender, RoutedEventArgs args)
+		{
+			if (DataTransferManager.IsSupported())
+			{
+				var dataTransferManager = DataTransferManager.GetForCurrentView();
+				dataTransferManager.DataRequested += DataRequested_TextDark;
+				DataTransferManager.ShowShareUI(new ShareUIOptions { Theme = ShareUITheme.Dark });
+			}
+		}
+
+		private void DataRequested_TextDark(DataTransferManager sender, DataRequestedEventArgs args)
+		{
+			args.Request.Data.Properties.Title = "Uno Gallery - Share-Sample Title";
+			args.Request.Data.Properties.Description = "See this awesome shared dark theme text:";
+
+			args.Request.Data.SetText("This dark theme text was created on " + DateTime.Now.ToShortDateString() + " - " + DateTime.Now.ToShortTimeString());
+
+			sender.DataRequested -= DataRequested_TextDark;
+		}
+
+		private void ShareTextLight_Click(object sender, RoutedEventArgs args)
+		{
+			if (DataTransferManager.IsSupported())
+			{
+				var dataTransferManager = DataTransferManager.GetForCurrentView();
+				dataTransferManager.DataRequested += DataRequested_TextLight;
+				DataTransferManager.ShowShareUI(new ShareUIOptions { Theme = ShareUITheme.Light });
+			}
+		}
+
+		private void DataRequested_TextLight(DataTransferManager sender, DataRequestedEventArgs args)
+		{
+			args.Request.Data.Properties.Title = "Uno Gallery - Share-Sample Title";
+			args.Request.Data.Properties.Description = "See this awesome shared light theme text:";
+
+			args.Request.Data.SetText("This light theme text was created on " + DateTime.Now.ToShortDateString() + " - " + DateTime.Now.ToShortTimeString());
+
+			sender.DataRequested -= DataRequested_TextLight;
 		}
 	}
 }
