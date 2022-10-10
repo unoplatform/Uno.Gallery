@@ -4,7 +4,7 @@ using Windows.UI.Xaml.Controls;
 
 namespace Uno.Gallery.Views.Samples
 {
-	[SamplePage(SampleCategory.Features, "Local Settings", Description = "Use settings to remember the user-customizable aspects of your app. For example, a news reader could use app settings to save which news sources to display and what font to use for reading articles.", DocumentationLink = "https://learn.microsoft.com/en-us/windows/uwp/get-started/settings-learning-track")]
+	[SamplePage(SampleCategory.NonUIFeatures, "Local Settings", Description = "Use settings to remember the user-customizable aspects of your app. For example, a news reader could use app settings to save which news sources to display and what font to use for reading articles.", DocumentationLink = "https://learn.microsoft.com/en-us/windows/uwp/get-started/settings-learning-track")]
 	public sealed partial class LocalSettingsSamplePage : Page
 	{
 		private const string _settingsKey = "MySettingName";
