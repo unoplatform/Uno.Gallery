@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using Uno.Gallery.ViewModels;
 using Windows.Devices.Sensors;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -30,71 +31,34 @@ namespace Uno.Gallery.Views.Samples
 		}
 	}
 
-	public class LightSensorSamplePageViewModel : INotifyPropertyChanged
+	public class LightSensorSamplePageViewModel : ViewModelBase
 	{
 		private const string _startObservingContent = "Start observing light sensor reading changes";
 		private const string _stopObservingContent = "Stop observing light sensor reading changes";
+		private const string _sensorNotAvailable = "Light sensor is not available on this device/platform";
 
 		private readonly LightSensor _lightSensor;
-		private DateTimeOffset? _lastReadTimestamp;
-		private string _buttonContent = "Light sensor is not available on this device/platform";
-		private bool _observingReadingChange = false;
-		private double _illuminanceInLux;
-
-		public event PropertyChangedEventHandler PropertyChanged;
 
 		public uint? ReportInterval
 		{
-			get => _lightSensor?.ReportInterval;
+			get => GetProperty<uint?>();
 			set
 			{
 				if (_lightSensor != null && value != null)
 				{
 					_lightSensor.ReportInterval = (uint)value;
-					PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ReportInterval)));
+					SetProperty(value);
 				}
 			}
 		}
 		
-		public DateTimeOffset? LastReadTimestamp
-		{
-			get => _lastReadTimestamp;
-			set
-			{
-				_lastReadTimestamp = value;
-				PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(LastReadTimestamp)));
-			}
-		}
+		public DateTimeOffset? LastReadTimestamp { get => GetProperty<DateTimeOffset?>(); set => SetProperty(value); }
 
-		public string ButtonContent
-		{
-			get => _buttonContent;
-			set
-			{
-				_buttonContent = value;
-				PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ButtonContent)));
-			}
-		}
+		public string ButtonContent { get => GetProperty<string>(); set => SetProperty(value); }
 
-		public bool ObservingReadingChange
-		{
-			get => _observingReadingChange;
-			set
-			{
-				_observingReadingChange = value;
-				PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ObservingReadingChange)));
-			}
-		}
+		public bool ObservingReadingChange { get => GetProperty<bool>(); set => SetProperty(value); }
 
-		public double IlluminanceInLux
-		{
-			get => _illuminanceInLux;
-			set
-			{
-				_illuminanceInLux = value;
-				PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IlluminanceInLux)));
-			}
-		}
+		public double IlluminanceInLux { get => GetProperty<double>(); set => SetProperty(value); }
 
 
 		public bool LightSensorAvailable => _lightSensor != null;
@@ -106,6 +70,10 @@ namespace Uno.Gallery.Views.Samples
 			if (_lightSensor != null)
 			{
 				ButtonContent = _startObservingContent;
+			}
+			else
+			{
+				ButtonContent = _sensorNotAvailable;
 			}
 		}
 
