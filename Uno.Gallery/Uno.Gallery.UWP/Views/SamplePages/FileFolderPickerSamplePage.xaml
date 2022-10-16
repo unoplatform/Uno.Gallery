@@ -8,9 +8,9 @@
 	  mc:Ignorable="d">
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-		<local:SamplePageLayout>
+		<local:SamplePageLayout IsDesignAgnostic="True">
 
-			<local:SamplePageLayout.FluentTemplate>
+			<local:SamplePageLayout.DesignAgnosticTemplate>
 				<DataTemplate>
 					<StackPanel>
 						<smtx:XamlDisplay UniqueKey="FileFolderPickerSamplePage_PickFile"
@@ -192,7 +192,7 @@ private async void SaveMultipleFilesButton_Click(object sender, RoutedEventArgs 
 						</smtx:XamlDisplay>
 					</StackPanel>
 				</DataTemplate>
-			</local:SamplePageLayout.FluentTemplate>
+			</local:SamplePageLayout.DesignAgnosticTemplate>
 		</local:SamplePageLayout>
 	</Grid>
 
