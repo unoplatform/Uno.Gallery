@@ -10,9 +10,9 @@
 	  mc:Ignorable="d">
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-		<local:SamplePageLayout>
+		<local:SamplePageLayout IsDesignAgnostic="True">
 
-			<local:SamplePageLayout.FluentTemplate>
+			<local:SamplePageLayout.DesignAgnosticTemplate>
 				<DataTemplate>
 					<StackPanel>
 						<smtx:XamlDisplay UniqueKey="LottieSamplePage_Default"
@@ -26,7 +26,7 @@
 						</smtx:XamlDisplay>
 					</StackPanel>
 				</DataTemplate>
-			</local:SamplePageLayout.FluentTemplate>
+			</local:SamplePageLayout.DesignAgnosticTemplate>
 		</local:SamplePageLayout>
 	</Grid>
 </Page>

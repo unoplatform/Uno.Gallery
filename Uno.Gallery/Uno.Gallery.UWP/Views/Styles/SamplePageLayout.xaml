@@ -246,6 +246,15 @@
 														  Content="{TemplateBinding Content}"
 														  ContentTemplate="{TemplateBinding NativeTemplate}"
 														  Visibility="Collapsed" />
+
+										<!-- Agnostic Content -->
+										<ContentPresenter x:Name="AgnosticContentPresenter"
+														  Content="{TemplateBinding Content}"
+														  ContentTemplate="{TemplateBinding DesignAgnosticTemplate}"
+														  VerticalAlignment="Stretch"
+														  HorizontalAlignment="Stretch"
+														  Padding="{StaticResource SampleContentPadding}"
+														  Visibility="Collapsed" />
 									</Grid>
 
 									<StackPanel Visibility="{Binding IsFooterVisible, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}">
@@ -453,6 +462,12 @@
 								<VisualState x:Name="Native">
 									<VisualState.Setters>
 										<Setter Target="NativeContentPresenter.Visibility"
+												Value="Visible" />
+									</VisualState.Setters>
+								</VisualState>
+								<VisualState x:Name="Agnostic">
+									<VisualState.Setters>
+										<Setter Target="AgnosticContentPresenter.Visibility"
 												Value="Visible" />
 									</VisualState.Setters>
 								</VisualState>
