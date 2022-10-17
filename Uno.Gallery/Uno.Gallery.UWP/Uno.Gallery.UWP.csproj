@@ -214,6 +214,9 @@
     <Compile Include="Views\SamplePages\ClipboardSamplePage.xaml.cs">
       <DependentUpon>ClipboardSamplePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SamplePages\GeolocatorSamplePage.xaml.cs">
+      <DependentUpon>GeolocatorSamplePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SamplePages\RefreshContainerPage.xaml.cs">
       <DependentUpon>RefreshContainerPage.xaml</DependentUpon>
     </Compile>
@@ -492,6 +495,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SamplePages\ClipboardSamplePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SamplePages\GeolocatorSamplePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

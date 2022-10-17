@@ -61,5 +61,9 @@
 	<string>Media.xcassets/AppIcons.appiconset</string>
 	<key>XSLaunchImageAssets</key>
 	<string>Media.xcassets/LaunchImages.launchimage</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>The location access is required to test the location functionality</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>The location access is required to test the location functionality</string>
 </dict>
 </plist>
