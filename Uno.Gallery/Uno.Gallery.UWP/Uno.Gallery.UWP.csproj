@@ -199,6 +199,9 @@
     <Compile Include="Views\NestedPages\NavigationBarSample_NestedPage2.xaml.cs">
       <DependentUpon>NavigationBarSample_NestedPage2.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SamplePages\NetworkInformationSamplePage.xaml.cs">
+      <DependentUpon>NetworkInformationSamplePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SamplePages\AccelerometerSamplePage.xaml.cs">
       <DependentUpon>AccelerometerSamplePage.xaml</DependentUpon>
     </Compile>
@@ -483,6 +486,10 @@
     <Page Include="Views\NestedPages\NavigationBarSample_NestedPage2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SamplePages\NetworkInformationSamplePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\SamplePages\AccelerometerSamplePage.xaml">
       <SubType>Designer</SubType>
