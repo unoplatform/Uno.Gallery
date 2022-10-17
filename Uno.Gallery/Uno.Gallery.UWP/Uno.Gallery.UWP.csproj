@@ -208,6 +208,9 @@
     <Compile Include="Views\SamplePages\VibrationDeviceSamplePage.xaml.cs">
       <DependentUpon>VibrationDeviceSamplePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SamplePages\SimpleOrientationSamplePage.xaml.cs">
+      <DependentUpon>SimpleOrientationSamplePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SamplePages\PasswordVaultSamplePage.xaml.cs">
       <DependentUpon>PasswordVaultSamplePage.xaml</DependentUpon>
     </Compile>
@@ -216,6 +219,9 @@
     </Compile>
     <Compile Include="Views\SamplePages\ClipboardSamplePage.xaml.cs">
       <DependentUpon>ClipboardSamplePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SamplePages\GeolocatorSamplePage.xaml.cs">
+      <DependentUpon>GeolocatorSamplePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SamplePages\RefreshContainerPage.xaml.cs">
       <DependentUpon>RefreshContainerPage.xaml</DependentUpon>
@@ -490,6 +496,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\SamplePages\SimpleOrientationSamplePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\SamplePages\PasswordVaultSamplePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -499,6 +509,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SamplePages\ClipboardSamplePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SamplePages\GeolocatorSamplePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
