@@ -23,7 +23,7 @@ namespace Uno.Gallery.Views.Samples
 			var vibrationDevice = VibrationDevice.GetDefault();
 			if (vibrationDevice != null)
 			{
-				vibrationDevice.Vibrate(TimeSpan.FromMilliseconds(1000));
+				vibrationDevice.Vibrate(TimeSpan.FromMilliseconds(100));
 			}
 #endif
 		}
