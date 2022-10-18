@@ -68,6 +68,21 @@ namespace Uno.Gallery
 		}
 
 		#endregion
+		#region Property: IsDesignAgnostic
+
+		public static DependencyProperty IsDesignAgnosticProperty { get; } = DependencyProperty.Register(
+			nameof(IsDesignAgnostic),
+			typeof(bool),
+			typeof(SamplePageLayout),
+			new PropertyMetadata(default(bool)));
+
+		public bool IsDesignAgnostic
+		{
+			get => (bool)GetValue(IsDesignAgnosticProperty);
+			set => SetValue(IsDesignAgnosticProperty, value);
+		}
+
+		#endregion
 
 		#region Property: FluentTemplate
 
@@ -126,6 +141,21 @@ namespace Uno.Gallery
 		{
 			get => (DataTemplate)GetValue(NativeTemplateProperty);
 			set => SetValue(NativeTemplateProperty, value);
+		}
+
+		#endregion
+		#region Property: DesignAgnosticTemplate
+
+		public static DependencyProperty DesignAgnosticTemplateProperty { get; } = DependencyProperty.Register(
+			nameof(DesignAgnosticTemplate),
+			typeof(DataTemplate),
+			typeof(SamplePageLayout),
+			new PropertyMetadata(default(DataTemplate)));
+
+		public DataTemplate DesignAgnosticTemplate
+		{
+			get => (DataTemplate)GetValue(DesignAgnosticTemplateProperty);
+			set => SetValue(DesignAgnosticTemplateProperty, value);
 		}
 
 		#endregion

@@ -202,11 +202,20 @@
     <Compile Include="Views\SamplePages\LightSensorSamplePage.xaml.cs">
       <DependentUpon>LightSensorSamplePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SamplePages\NetworkInformationSamplePage.xaml.cs">
+      <DependentUpon>NetworkInformationSamplePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SamplePages\AccelerometerSamplePage.xaml.cs">
       <DependentUpon>AccelerometerSamplePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SamplePages\AcrylicSamplePage.xaml.cs">
       <DependentUpon>AcrylicSamplePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SamplePages\SharingSamplePage.xaml.cs">
+      <DependentUpon>SharingSamplePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SamplePages\SimpleOrientationSamplePage.xaml.cs">
+      <DependentUpon>SimpleOrientationSamplePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SamplePages\PasswordVaultSamplePage.xaml.cs">
       <DependentUpon>PasswordVaultSamplePage.xaml</DependentUpon>
@@ -216,6 +225,9 @@
     </Compile>
     <Compile Include="Views\SamplePages\ClipboardSamplePage.xaml.cs">
       <DependentUpon>ClipboardSamplePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SamplePages\GeolocatorSamplePage.xaml.cs">
+      <DependentUpon>GeolocatorSamplePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SamplePages\RefreshContainerPage.xaml.cs">
       <DependentUpon>RefreshContainerPage.xaml</DependentUpon>
@@ -482,6 +494,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\SamplePages\NetworkInformationSamplePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\SamplePages\AccelerometerSamplePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -489,6 +505,14 @@
     <Page Include="Views\SamplePages\AcrylicSamplePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SamplePages\SharingSamplePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SamplePages\SimpleOrientationSamplePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\SamplePages\PasswordVaultSamplePage.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -499,6 +523,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SamplePages\ClipboardSamplePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SamplePages\GeolocatorSamplePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
