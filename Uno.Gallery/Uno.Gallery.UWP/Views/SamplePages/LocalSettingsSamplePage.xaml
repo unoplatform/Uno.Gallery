@@ -16,8 +16,8 @@
 		x:Name="page">
 
 	<Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
-		<local:SamplePageLayout>
-			<local:SamplePageLayout.FluentTemplate>
+		<local:SamplePageLayout IsDesignAgnostic="True">
+			<local:SamplePageLayout.DesignAgnosticTemplate>
 				<DataTemplate>
 					<StackPanel>
 						<smtx:XamlDisplay UniqueKey="LocalSettingsSamplePage_Local"
@@ -44,7 +44,7 @@
 						</smtx:XamlDisplay>
 					</StackPanel>
 				</DataTemplate>
-			</local:SamplePageLayout.FluentTemplate>
+			</local:SamplePageLayout.DesignAgnosticTemplate>
 		</local:SamplePageLayout>
 	</Grid>
 </Page>
