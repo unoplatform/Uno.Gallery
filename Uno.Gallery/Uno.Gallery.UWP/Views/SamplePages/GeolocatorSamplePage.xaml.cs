@@ -157,7 +157,7 @@ namespace Uno.Gallery.Views.Samples
         {
             await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                UpdateGeolocation(args.Position);
+                UpdateGeolocation(args?.Position);
             });
         }
 
@@ -173,10 +173,10 @@ namespace Uno.Gallery.Views.Samples
 
         private void UpdateGeolocation(Geoposition position)
         {
-            GeolocatedAccuracy = position.Coordinate.Accuracy;
-            GeolocatedAltitude = position.Coordinate.Point.Position.Altitude;
-            GeolocatedLatitude = position.Coordinate.Point.Position.Latitude;
-            GeolocatedLongitude = position.Coordinate.Point.Position.Longitude;
+            GeolocatedAccuracy = position?.Coordinate?.Accuracy;
+            GeolocatedAltitude = position?.Coordinate?.Point?.Position.Altitude;
+            GeolocatedLatitude = position?.Coordinate?.Point?.Position.Latitude;
+            GeolocatedLongitude = position?.Coordinate?.Point?.Position.Longitude;
             GeolocatedTimestamp = DateTime.Now;
         }
     }
