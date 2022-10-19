@@ -226,6 +226,9 @@
     <Compile Include="Views\SamplePages\SimpleOrientationSamplePage.xaml.cs">
       <DependentUpon>SimpleOrientationSamplePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SamplePages\MenuBarSamplePage.xaml.cs">
+      <DependentUpon>MenuBarSamplePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SamplePages\PasswordVaultSamplePage.xaml.cs">
       <DependentUpon>PasswordVaultSamplePage.xaml</DependentUpon>
     </Compile>
@@ -532,6 +535,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\SamplePages\SimpleOrientationSamplePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SamplePages\MenuBarSamplePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
