@@ -210,7 +210,10 @@
     </Compile>
     <Compile Include="Views\SamplePages\LocalSettingsSamplePage.xaml.cs">
       <DependentUpon>LocalSettingsSamplePage.xaml</DependentUpon>
-    </Compile>    
+    </Compile>
+    <Compile Include="Views\SamplePages\DisplayRequestSamplePage.xaml.cs">
+      <DependentUpon>DisplayRequestSamplePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SamplePages\SharingSamplePage.xaml.cs">
       <DependentUpon>SharingSamplePage.xaml</DependentUpon>
     </Compile>
@@ -503,6 +506,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SamplePages\LocalSettingsSamplePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SamplePages\DisplayRequestSamplePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
