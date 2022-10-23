@@ -47,7 +47,7 @@
     <AndroidCreatePackagePerAbi>false</AndroidCreatePackagePerAbi>
     <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
     <AotAssemblies>true</AotAssemblies>
-	<AndroidEnableProfiledAot>true</AndroidEnableProfiledAot>
+    <AndroidEnableProfiledAot>true</AndroidEnableProfiledAot>
     <AndroidUseDefaultAotProfile>false</AndroidUseDefaultAotProfile>
     <EnableLLVM>false</EnableLLVM>
     <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
@@ -109,6 +109,9 @@
     </PackageReference>
     <PackageReference Include="Uno.UI">
       <Version>4.6.0-dev.116</Version>
+    </PackageReference>
+    <PackageReference Include="Uno.UI.Foldable">
+      <Version>4.5.14</Version>
     </PackageReference>
     <PackageReference Include="Uno.UI.Lottie">
       <Version>4.6.0-dev.116</Version>
