@@ -42,6 +42,9 @@ namespace Uno.Gallery.Views.Samples
 
 	public class PhoneCallManagerSamplePageViewModel : ViewModelBase
 	{
+		public bool IsSettingsUISupported { get; set; }
+		public bool IsCallStateSupported { get; set; }
+
 		public bool IsMonitoring { get; set; }
 
 		public bool IsCallActive
@@ -60,6 +63,17 @@ namespace Uno.Gallery.Views.Samples
 			{
 				SetProperty<bool>(value);
 			}
+		}
+
+		public PhoneCallManagerSamplePageViewModel()
+		{
+#if __ANDROID__
+IsSettingsUISupported = true;
+IsCallStateSupported = true;
+#endif
+#if __IOS__
+IsCallStateSupported = true;
+#endif
 		}
 
 		public void StartMonitoring()

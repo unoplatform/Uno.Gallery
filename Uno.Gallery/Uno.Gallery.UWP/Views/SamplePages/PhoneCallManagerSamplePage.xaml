@@ -16,6 +16,9 @@
 			<local:SamplePageLayout.DesignAgnosticTemplate>
 				<DataTemplate>
 					<StackPanel>
+						<StackPanel.DataContext>
+							<samples:PhoneCallManagerSamplePageViewModel />
+						</StackPanel.DataContext>
 						<smtx:XamlDisplay
                             smtx:XamlDisplayExtensions.Header="Show phone call UI"
                             UniqueKey="PhoneCallManagerSamplePage_ShowPhoneCallUI">
@@ -27,8 +30,11 @@
     }
 -->
 						</smtx:XamlDisplay>
+
 						<smtx:XamlDisplay
+							Visibility="{Binding IsSettingsUISupported, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
                             smtx:XamlDisplayExtensions.Header="Show phone call settings UI"
+							x:Name="test"
                             UniqueKey="PhoneCallManagerSamplePage_ShowPhoneCallSettingsUI">
 							<Button Click="ShowPhoneCallSettingsUI_Click" Content="Show phone call settings UI" />
 							<!--
@@ -38,14 +44,13 @@ private async void ShowPhoneCallSettingsUI_Click(object sender, RoutedEventArgs 
 }
 -->
 						</smtx:XamlDisplay>
+
 						<smtx:XamlDisplay
+							Visibility="{Binding IsCallStateSupported, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
                             smtx:XamlDisplayExtensions.Header="Observe phone call state"
                             UniqueKey="PhoneCallManagerSamplePage_ObservePhoneCallState">
 
 							<StackPanel>
-								<StackPanel.DataContext>
-									<samples:PhoneCallManagerSamplePageViewModel />
-								</StackPanel.DataContext>
 								<Button Click="ObservePhoneCallState_Click" Content="Toggle observing" />
 								<!--
 		public void StartMonitoring()
