@@ -9,9 +9,9 @@
 	  mc:Ignorable="d">
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-		<local:SamplePageLayout>
+		<local:SamplePageLayout IsDesignAgnostic="True">
 
-			<local:SamplePageLayout.FluentTemplate>
+			<local:SamplePageLayout.DesignAgnosticTemplate>
 				<DataTemplate>
 					<!-- Binding -->
 					<smtx:XamlDisplay UniqueKey="BindingSamplePage_Binding"
@@ -69,7 +69,7 @@ public class BindingSamplePageViewModel : INotifyPropertyChanged
 						</StackPanel>
 					</smtx:XamlDisplay>
 				</DataTemplate>
-			</local:SamplePageLayout.FluentTemplate>
+			</local:SamplePageLayout.DesignAgnosticTemplate>
 		</local:SamplePageLayout>
 	</Grid>
 </Page>

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Uno.Disposables;
+using Uno.Extensions;
 using Uno.Gallery.Helpers;
 using Windows.Foundation;
 using Windows.UI.Xaml;
@@ -23,6 +24,7 @@ namespace Uno.Gallery
 		private const string VisualStateFluent = nameof(Design.Fluent);
 		private const string VisualStateCupertino = nameof(Design.Cupertino);
 		private const string VisualStateNative = nameof(Design.Native);
+		private const string VisualStateAgnostic = nameof(Design.Agnostic);
 
 		private const string MaterialRadioButtonPartName = "PART_MaterialRadioButton";
 		private const string FluentRadioButtonPartName = "PART_FluentRadioButton";
@@ -42,15 +44,16 @@ namespace Uno.Gallery
 
 		private IReadOnlyCollection<LayoutModeMapping> LayoutModeMappings => new List<LayoutModeMapping>
 		{
-			new LayoutModeMapping(Design.Material, _materialRadioButton, _stickyMaterialRadioButton, VisualStateMaterial, MaterialTemplate),
-			new LayoutModeMapping(Design.Fluent, _fluentRadioButton, _stickyFluentRadioButton, VisualStateFluent, FluentTemplate),
-			new LayoutModeMapping(Design.Cupertino, _cupertinoRadioButton, _stickyCupertinoRadioButton, VisualStateCupertino, CupertinoTemplate),
+			new LayoutModeMapping(Design.Material, () => !IsDesignAgnostic, _materialRadioButton, _stickyMaterialRadioButton, VisualStateMaterial, MaterialTemplate),
+			new LayoutModeMapping(Design.Fluent, () => !IsDesignAgnostic, _fluentRadioButton, _stickyFluentRadioButton, VisualStateFluent, FluentTemplate),
+			new LayoutModeMapping(Design.Cupertino, () => !IsDesignAgnostic, _cupertinoRadioButton, _stickyCupertinoRadioButton, VisualStateCupertino, CupertinoTemplate),
+			new LayoutModeMapping(Design.Agnostic, () => IsDesignAgnostic, null, null, VisualStateAgnostic, DesignAgnosticTemplate),
 #if __IOS__ || __MACOS__ || __ANDROID__
 			// native tab is only shown when applicable
-			new LayoutModeMapping(Design.Native, _nativeRadioButton, _stickyNativeRadioButton, VisualStateNative, NativeTemplate),
+			new LayoutModeMapping(Design.Native, () => !IsDesignAgnostic, _nativeRadioButton, _stickyNativeRadioButton, VisualStateNative, NativeTemplate),
 #else
 			// undefined template are not selectable and wont be selected by default
-			new LayoutModeMapping(Design.Native, _nativeRadioButton, _stickyNativeRadioButton, VisualStateNative, default),
+			new LayoutModeMapping(Design.Native, () => !IsDesignAgnostic, _nativeRadioButton, _stickyNativeRadioButton, VisualStateNative, default),
 #endif
 		};
 
@@ -189,12 +192,16 @@ namespace Uno.Gallery
 			var mappings = LayoutModeMappings;
 			var previouslySelected = default(LayoutModeMapping);
 
+			bool IsAvailable(LayoutModeMapping mapping) => mapping.Predicate() && mapping.Template != null;
+
 			foreach (var mapping in mappings)
 			{
-				var visibility = mapping.Template != null ? Visibility.Visible : Visibility.Collapsed;
-				mapping.RadioButton.Visibility = visibility;
-				mapping.StickyRadioButton.Visibility = visibility;
-				if (mapping.Template != null && mapping.Design == _design)
+				var available = IsAvailable(mapping);
+				var visibility = available ? Visibility.Visible : Visibility.Collapsed;
+				mapping.RadioButton?.Apply(x => x.Visibility = visibility);
+				mapping.StickyRadioButton?.Apply(x => x.Visibility = visibility);
+
+				if (mapping.Design == _design && available)
 				{
 					previouslySelected = mapping;
 				}
@@ -224,8 +231,8 @@ namespace Uno.Gallery
 			var current = LayoutModeMappings.FirstOrDefault(x => x.Design == design);
 			if (current != null)
 			{
-				current.RadioButton.IsChecked = true;
-				current.StickyRadioButton.IsChecked = true;
+				current.RadioButton?.Apply(x => x.IsChecked = true);
+				current.StickyRadioButton?.Apply(x => x.IsChecked = true);
 
 				VisualStateManager.GoToState(this, current.VisualStateName, useTransitions: true);
 			}
@@ -267,14 +274,22 @@ namespace Uno.Gallery
 		private class LayoutModeMapping
 		{
 			public Design Design { get; set; }
+			public Func<bool> Predicate { get; set; }
 			public RadioButton RadioButton { get; set; }
 			public RadioButton StickyRadioButton { get; set; }
 			public string VisualStateName { get; set; }
 			public DataTemplate Template { get; set; }
 
-			public LayoutModeMapping(Design design, RadioButton radioButton, RadioButton stickyRadioButton, string visualStateName, DataTemplate template)
+			public LayoutModeMapping(
+				Design design,
+				Func<bool> predicate,
+				RadioButton radioButton,
+				RadioButton stickyRadioButton,
+				string visualStateName,
+				DataTemplate template)
 			{
 				Design = design;
+				Predicate = predicate;
 				RadioButton = radioButton;
 				StickyRadioButton = stickyRadioButton;
 				VisualStateName = visualStateName;

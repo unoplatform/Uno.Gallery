@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using Windows.Storage;
 using Windows.Storage.Pickers;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
@@ -158,8 +159,8 @@ namespace Uno.Gallery.Views.Samples
 			var storageFolder = await folderPicker.PickSingleFolderAsync();
 			if (storageFolder != null)
 			{
-				var storageFile1 = await storageFolder.CreateFileAsync("file1.txt");
-				var storageFile2 = await storageFolder.CreateFileAsync("file2.txt");
+				var storageFile1 = await storageFolder.CreateFileAsync("file1.txt", CreationCollisionOption.ReplaceExisting);
+				var storageFile2 = await storageFolder.CreateFileAsync("file2.txt", CreationCollisionOption.ReplaceExisting);
 
 				var textBox1 = ((sender as Button).Parent as StackPanel)
 					.FindName("ContentTextBox1") as TextBox;

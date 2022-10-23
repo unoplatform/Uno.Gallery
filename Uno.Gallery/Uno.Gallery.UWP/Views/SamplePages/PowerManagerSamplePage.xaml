@@ -1,0 +1,101 @@
+﻿<Page x:Class="Uno.Gallery.Views.Samples.PowerManagerSamplePage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:local="using:Uno.Gallery"
+	  xmlns:samples="using:Uno.Gallery.Views.Samples"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  xmlns:win="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:smtx="using:ShowMeTheXAML"
+	  mc:Ignorable="d">
+
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<local:SamplePageLayout IsDesignAgnostic="True">
+
+			<local:SamplePageLayout.DesignAgnosticTemplate>
+				<DataTemplate>
+					<StackPanel>
+						<StackPanel.DataContext>
+							<samples:PowerManagerSamplePageViewModel />
+						</StackPanel.DataContext>
+
+						<smtx:XamlDisplay UniqueKey="PowerManagerSamplePage_BatteryStatus"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel"
+										  smtx:XamlDisplayExtensions.Header="Battery Status">
+							<StackPanel Spacing="20">
+								<!-- C# code
+public PowerManagerSamplePageViewModel()
+{
+	BatteryStatusText = PowerManager.BatteryStatus.ToString();
+	EnergySaverStatusText = PowerManager.EnergySaverStatus.ToString();
+	PowerSupplyStatusText = PowerManager.PowerSupplyStatus.ToString();
+	RemainingChargePercentStatusText = $"{PowerManager.RemainingChargePercent}%";
+#if WINDOWS_UWP
+	// Not implemented in Uno
+	RemainingDischargeTimeStatusText = PowerManager.RemainingDischargeTime.ToString();
+#endif
+}
+
+public void StartMonitorPowerStatus()
+{
+	PowerManager.BatteryStatusChanged += PowerManager_BatteryStatusChanged;
+	PowerManager.EnergySaverStatusChanged += PowerManager_EnergySaverStatusChanged;
+	PowerManager.PowerSupplyStatusChanged += PowerManager_PowerSupplyStatusChanged;
+	PowerManager.RemainingChargePercentChanged += PowerManager_RemainingChargePercentChanged;
+#if WINDOWS_UWP
+	PowerManager.RemainingDischargeTimeChanged += PowerManager_RemainingDischargeTimeChanged;
+#endif
+}
+
+private void PowerManager_BatteryStatusChanged(object sender, object e)
+{
+	BatteryStatusText = PowerManager.BatteryStatus.ToString();
+}
+
+private void PowerManager_EnergySaverStatusChanged(object sender, object e)
+{
+	EnergySaverStatusText = PowerManager.EnergySaverStatus.ToString();
+}
+
+private void PowerManager_PowerSupplyStatusChanged(object sender, object e)
+{
+	PowerSupplyStatusText = PowerManager.PowerSupplyStatus.ToString();
+}
+
+private void PowerManager_RemainingChargePercentChanged(object sender, object e)
+{
+	RemainingChargePercentStatusText = $"{PowerManager.RemainingChargePercent}%";
+}
+
+private void PowerManager_RemainingDischargeTimeChanged(object sender, object e)
+{
+	RemainingDischargeTimeStatusText = PowerManager.RemainingDischargeTime.ToString();
+}
+-->
+								<TextBlock>
+									<LineBreak />
+									<Span FontWeight="Bold">Battery Status: </Span>
+									<Run Text="{Binding BatteryStatusText}" />
+									<LineBreak />
+									<Span FontWeight="Bold">Energy Saver Status: </Span>
+									<Run Text="{Binding EnergySaverStatusText}" />
+									<LineBreak />
+									<Span FontWeight="Bold">Power Supply Status: </Span>
+									<Run Text="{Binding PowerSupplyStatusText}" />
+									<LineBreak />
+									<Span FontWeight="Bold">Remaining Charge Percent: </Span>
+									<Run Text="{Binding RemainingChargePercentStatusText}" />
+									<LineBreak />
+									<win:Span FontWeight="Bold">Remaining Discharge Time: </win:Span>
+									<win:Run Text="{Binding RemainingDischargeTimeStatusText}" />
+								</TextBlock>
+								<Button Content="{Binding MonitorButtonLabel}" Click="MonitorButton_Click"/>
+							</StackPanel>
+						</smtx:XamlDisplay>
+					</StackPanel>
+				</DataTemplate>
+			</local:SamplePageLayout.DesignAgnosticTemplate>
+		</local:SamplePageLayout>
+	</Grid>
+
+</Page>
