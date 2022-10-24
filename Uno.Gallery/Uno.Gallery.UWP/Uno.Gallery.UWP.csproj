@@ -214,6 +214,9 @@
     <Compile Include="Views\SamplePages\EmailManagerSamplePage.xaml.cs">
       <DependentUpon>EmailManagerSamplePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SamplePages\PhoneCallManagerSamplePage.xaml.cs">
+      <DependentUpon>PhoneCallManagerSamplePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SamplePages\VibrationDeviceSamplePage.xaml.cs">
       <DependentUpon>VibrationDeviceSamplePage.xaml</DependentUpon>
     </Compile>
@@ -525,6 +528,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SamplePages\EmailManagerSamplePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SamplePages\PhoneCallManagerSamplePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
