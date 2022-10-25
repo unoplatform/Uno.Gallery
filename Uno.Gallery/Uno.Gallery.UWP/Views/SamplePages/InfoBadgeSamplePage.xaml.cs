@@ -9,7 +9,7 @@ using Windows.UI.Xaml.Controls;
 
 namespace Uno.Gallery.Views.Samples
 {
-	[SamplePage(SampleCategory.Toolkit, "InfoBadge",
+	[SamplePage(SampleCategory.UIComponents, "InfoBadge",
 		Description = "Represents a control for indicating notifications, alerts, new content, or to attract focus to an area within an app.",
 		DocumentationLink = "https://learn.microsoft.com/es-es/windows/windows-app-sdk/api/winrt/microsoft.ui.xaml.controls.infobadge",
 		DataType = typeof(InfoBadgeSamplePageViewModel))]
