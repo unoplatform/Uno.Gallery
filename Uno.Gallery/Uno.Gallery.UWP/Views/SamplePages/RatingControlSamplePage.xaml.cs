@@ -9,7 +9,7 @@ using Windows.UI.Xaml.Controls;
 
 namespace Uno.Gallery.Views.Samples
 {
-	[SamplePage(SampleCategory.Toolkit, "RatingControl",
+	[SamplePage(SampleCategory.UIComponents, "RatingControl",
 		Description = "A control to display rating points with stars.",
 		DocumentationLink = "https://platform.uno/docs/articles/external/figma-docs/components/rating-control.html",
 		DataType = typeof(RatingControlSamplePageViewModel))]
