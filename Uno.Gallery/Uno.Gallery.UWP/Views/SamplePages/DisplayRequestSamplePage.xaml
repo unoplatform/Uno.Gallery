@@ -1,4 +1,4 @@
-﻿<Page x:Class="Uno.Gallery.Views.Samples.PasswordVaultSamplePage"
+﻿<Page x:Class="Uno.Gallery.Views.Samples.DisplayRequestSamplePage"
 	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	  xmlns:local="using:Uno.Gallery"
@@ -20,34 +20,28 @@
 			<local:SamplePageLayout.DesignAgnosticTemplate>
 				<DataTemplate>
 					<StackPanel>
-                        <smtx:XamlDisplay UniqueKey="PasswordVaultSamplePage_Text"
-										  smtx:XamlDisplayExtensions.Header="Username / Password"
+						<smtx:XamlDisplay UniqueKey="DisplayRequestSamplePage_Text"
+										  smtx:XamlDisplayExtensions.Header="Display Request"
 										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
                             <StackPanel Spacing="8">
-                                <TextBlock Text="This sample will store the current time into the vault." TextWrapping="Wrap" />
-                                <Button Content="Store secret to vault" Click="Store_Click"/>
-                                <Button Content="Read secret from vault" Click="Retrieve_Click"/>
+                                <TextBlock Text="Toggling the switch will keep the screen even if the device is idle." TextWrapping="Wrap" />
+                                <CheckBox Content="Keep screen on" Click="CheckBox_Click"/>
                                 <!--
-	private void Store_Click(object sender, RoutedEventArgs args)
-	{
-		var vault = new Windows.Security.Credentials.PasswordVault();
-        vault.Add(new Windows.Security.Credentials.PasswordCredential(_resource, _userName, _password));
-	}
+private DisplayRequest _displayRequest;
+								
+private void CheckBox_Click(object sender, RoutedEventArgs e)
+{
+	var checkBox = sender as CheckBox;
 
-	private async void Retrieve_Click(object sender, RoutedEventArgs args)
+	if (checkBox.IsChecked == true)
 	{
-		var vault = new Windows.Security.Credentials.PasswordVault();
-		try
-		{
-			var credential = vault.Retrieve(_resource, _userName);
-			credential.RetrievePassword();
-			var password = credential.Password;
-        }
-        catch
-		{
-            //No data in Password Vault
-        }
+		_displayRequest.RequestActive();
 	}
+	else
+	{
+		_displayRequest.RequestRelease();
+	}
+}	
 -->
                             </StackPanel>
                         </smtx:XamlDisplay>
