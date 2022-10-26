@@ -169,8 +169,8 @@ private async void SaveMultipleFilesButton_Click(object sender, RoutedEventArgs 
 	var storageFolder = await folderPicker.PickSingleFolderAsync();
 	if (storageFolder != null)
 	{
-		var storageFile1 = await storageFolder.CreateFileAsync("file1.txt");
-		var storageFile2 = await storageFolder.CreateFileAsync("file2.txt");
+		var storageFile1 = await storageFolder.CreateFileAsync("file1.txt", CreationCollisionOption.ReplaceExisting);
+		var storageFile2 = await storageFolder.CreateFileAsync("file2.txt", CreationCollisionOption.ReplaceExisting);
 
 		using (var stream = await storageFile1.OpenStreamForWriteAsync())
 		{

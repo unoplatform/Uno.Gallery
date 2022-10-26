@@ -1,0 +1,83 @@
+﻿<Page
+    x:Class="Uno.Gallery.Views.Samples.PhoneCallManagerSamplePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:Uno.Gallery"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    xmlns:samples="using:Uno.Gallery.Views.Samples"
+    xmlns:smtx="using:ShowMeTheXAML"
+    mc:Ignorable="d">
+
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<local:SamplePageLayout IsDesignAgnostic="True">
+
+			<local:SamplePageLayout.DesignAgnosticTemplate>
+				<DataTemplate>
+					<StackPanel>
+						<StackPanel.DataContext>
+							<samples:PhoneCallManagerSamplePageViewModel />
+						</StackPanel.DataContext>
+						<smtx:XamlDisplay
+                            smtx:XamlDisplayExtensions.Header="Show phone call UI"
+                            UniqueKey="PhoneCallManagerSamplePage_ShowPhoneCallUI">
+							<Button Click="ShowPhoneCallUI_Click" Content="Show phone call UI" />
+							<!--
+    private async void ShowPhoneCallUI_Click(object sender, RoutedEventArgs e)
+    {
+		PhoneCallManager.ShowPhoneCallUI("123456789", "Jon Doe");
+    }
+-->
+						</smtx:XamlDisplay>
+
+						<smtx:XamlDisplay
+							Visibility="{Binding IsSettingsUISupported, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
+                            smtx:XamlDisplayExtensions.Header="Show phone call settings UI"
+							x:Name="test"
+                            UniqueKey="PhoneCallManagerSamplePage_ShowPhoneCallSettingsUI">
+							<Button Click="ShowPhoneCallSettingsUI_Click" Content="Show phone call settings UI" />
+							<!--
+private async void ShowPhoneCallSettingsUI_Click(object sender, RoutedEventArgs e)
+{
+	PhoneCallManager.ShowPhoneCallSettingsUI();
+}
+-->
+						</smtx:XamlDisplay>
+
+						<smtx:XamlDisplay
+							Visibility="{Binding IsCallStateSupported, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
+                            smtx:XamlDisplayExtensions.Header="Observe phone call state"
+                            UniqueKey="PhoneCallManagerSamplePage_ObservePhoneCallState">
+
+							<StackPanel>
+								<Button Click="ObservePhoneCallState_Click" Content="Toggle observing" />
+								<!--
+		public void StartMonitoring()
+		{
+			PhoneCallManager.CallStateChanged += PhoneCallManager_CallStateChanged;
+			IsMonitoring = true;
+		}
+
+		private void PhoneCallManager_CallStateChanged(object sender, object e)
+		{
+			IsCallActive = PhoneCallManager.IsCallActive;
+			IsCallIncoming = PhoneCallManager.IsCallIncoming;
+		}
+-->
+								<TextBlock>
+									<LineBreak />
+									<Span FontWeight="Bold">Is phone call incoming: </Span>
+									<Run Text="{Binding IsCallIncoming}" />
+									<LineBreak />
+									<Span FontWeight="Bold">Is call active: </Span>
+									<Run Text="{Binding IsCallActive}" />
+								</TextBlock>
+							</StackPanel>
+						</smtx:XamlDisplay>
+					</StackPanel>
+				</DataTemplate>
+			</local:SamplePageLayout.DesignAgnosticTemplate>
+		</local:SamplePageLayout>
+	</Grid>
+</Page>
