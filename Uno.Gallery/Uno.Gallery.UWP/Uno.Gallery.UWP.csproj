@@ -202,6 +202,9 @@
     <Compile Include="Views\SamplePages\InfoBadgeSamplePage.xaml.cs">
       <DependentUpon>InfoBadgeSamplePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SamplePages\RatingControlSamplePage.xaml.cs">
+      <DependentUpon>RatingControlSamplePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SamplePages\LightSensorSamplePage.xaml.cs">
       <DependentUpon>LightSensorSamplePage.xaml</DependentUpon>
     </Compile>
@@ -213,6 +216,9 @@
     </Compile>
     <Compile Include="Views\SamplePages\AcrylicSamplePage.xaml.cs">
       <DependentUpon>AcrylicSamplePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SamplePages\EmailManagerSamplePage.xaml.cs">
+      <DependentUpon>EmailManagerSamplePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SamplePages\PhoneCallManagerSamplePage.xaml.cs">
       <DependentUpon>PhoneCallManagerSamplePage.xaml</DependentUpon>
@@ -515,6 +521,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\SamplePages\RatingControlSamplePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\SamplePages\LightSensorSamplePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -530,6 +540,10 @@
     <Page Include="Views\SamplePages\AcrylicSamplePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SamplePages\EmailManagerSamplePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\SamplePages\PhoneCallManagerSamplePage.xaml">
       <Generator>MSBuild:Compile</Generator>
