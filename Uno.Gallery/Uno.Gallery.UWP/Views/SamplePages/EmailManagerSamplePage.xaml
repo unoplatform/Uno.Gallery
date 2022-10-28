@@ -1,0 +1,76 @@
+﻿<Page x:Class="Uno.Gallery.Views.Samples.EmailManagerSamplePage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:local="using:Uno.Gallery"
+	  xmlns:samples="using:Uno.Gallery.Views.Samples"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  xmlns:smtx="using:ShowMeTheXAML"
+	  mc:Ignorable="d">
+
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<local:SamplePageLayout>
+
+			<local:SamplePageLayout.FluentTemplate>
+				<DataTemplate>
+					<!-- Binding -->
+					<smtx:XamlDisplay UniqueKey="EmailManagerSamplePage_Sample"
+									  smtx:XamlDisplayExtensions.Header="Email Manager">
+						<StackPanel>
+							<TextBox Header="To" Text="{Binding Data.To, Mode=TwoWay}" PlaceholderText="Add addresses separated by commas" />
+							<TextBox Header="CC" Text="{Binding Data.CC, Mode=TwoWay}" PlaceholderText="Add addresses separated by commas" />
+							<TextBox Header="BCC" Text="{Binding Data.BCC, Mode=TwoWay}" PlaceholderText="Add addresses separated by commas" />
+							<TextBox Header="Subject" Text="{Binding Data.Subject, Mode=TwoWay}" />
+							<TextBox Header="Body" Text="{Binding Data.Body, Mode=TwoWay}" AcceptsReturn="True" TextWrapping="Wrap" MaxHeight="160" ScrollViewer.VerticalScrollBarVisibility="Auto" />
+							<Button Content="Compose" Command="{Binding Data.ComposeCommand}" Margin="0,20,0,0" />
+							<!-- C# Code
+		private async void Compose()
+		{
+			try
+			{
+				// Subject and Body null/empty checked here in order to show a controlled message instead of generic "Value cannot be null" error.
+				if (string.IsNullOrWhiteSpace(Subject)) throw new Exception("The subject cannot be empty.");
+				if (string.IsNullOrWhiteSpace(Body)) throw new Exception("The body cannot be empty.");
+
+				var email = new EmailMessage
+				{
+					Subject = Subject,
+					Body = Body
+				};
+				AddCSVToEmailRecipients(To, email.To);
+				AddCSVToEmailRecipients(CC, email.CC);
+				AddCSVToEmailRecipients(BCC, email.Bcc);
+
+				await EmailManager.ShowComposeNewEmailAsync(email);
+			}
+			catch(Exception ex)
+			{
+				ContentDialog errorDialog = new ContentDialog
+				{
+					Title = "Error",
+					Content = "Error trying to fire show compose new email: " + Environment.NewLine + ex.Message,
+					CloseButtonText = "OK"
+				};
+				await errorDialog.ShowAsync();
+			}
+		}
+
+		private void AddCSVToEmailRecipients(string csvAddresses, IList<EmailRecipient> target)
+		{
+			// Not all platforms in all the projects supports the StringSplitOptions.TrimEntries, so we trim each item afterwards and filter to ensure not empty addresses
+			var addresses = csvAddresses?.Split(",", StringSplitOptions.RemoveEmptyEntries).Select(address => address.Trim()).Where(address => !string.IsNullOrWhiteSpace(address)).ToList();
+			// Add each address to target list
+			addresses?.ForEach(address =>
+			{
+				target.Add(new EmailRecipient(address));
+			});
+		}
+-->
+						</StackPanel>
+					</smtx:XamlDisplay>
+				</DataTemplate>
+			</local:SamplePageLayout.FluentTemplate>
+		</local:SamplePageLayout>
+	</Grid>
+</Page>
+
