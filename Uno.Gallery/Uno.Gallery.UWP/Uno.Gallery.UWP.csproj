@@ -202,6 +202,18 @@
     <Compile Include="Views\SamplePages\MagnetometerSamplePage.xaml.cs">
       <DependentUpon>MagnetometerSamplePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SamplePages\LampSamplePage.xaml.cs">
+      <DependentUpon>LampSamplePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SamplePages\HingeAngleSensorPage.xaml.cs">
+      <DependentUpon>HingeAngleSensorPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SamplePages\InfoBadgeSamplePage.xaml.cs">
+      <DependentUpon>InfoBadgeSamplePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SamplePages\NumberBoxSamplePage.xaml.cs">
+      <DependentUpon>NumberBoxSamplePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SamplePages\RatingControlSamplePage.xaml.cs">
       <DependentUpon>RatingControlSamplePage.xaml</DependentUpon>
     </Compile>
@@ -521,6 +533,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\SamplePages\LampSamplePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SamplePages\HingeAngleSensorPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SamplePages\InfoBadgeSamplePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SamplePages\NumberBoxSamplePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\SamplePages\RatingControlSamplePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -808,6 +836,10 @@
     <Page Include="Views\Styles\ScrollViewer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Styles\InfoBadge.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Styles\TextBlock.xaml">
       <Generator>MSBuild:Compile</Generator>
