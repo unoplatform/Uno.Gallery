@@ -205,6 +205,9 @@
     <Compile Include="Views\SamplePages\InfoBadgeSamplePage.xaml.cs">
       <DependentUpon>InfoBadgeSamplePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SamplePages\NumberBoxSamplePage.xaml.cs">
+      <DependentUpon>NumberBoxSamplePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SamplePages\RatingControlSamplePage.xaml.cs">
       <DependentUpon>RatingControlSamplePage.xaml</DependentUpon>
     </Compile>
@@ -525,6 +528,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\SamplePages\InfoBadgeSamplePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SamplePages\NumberBoxSamplePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
