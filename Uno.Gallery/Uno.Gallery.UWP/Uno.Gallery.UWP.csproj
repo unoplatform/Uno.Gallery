@@ -199,6 +199,9 @@
     <Compile Include="Views\NestedPages\NavigationBarSample_NestedPage2.xaml.cs">
       <DependentUpon>NavigationBarSample_NestedPage2.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SamplePages\LampSamplePage.xaml.cs">
+      <DependentUpon>LampSamplePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SamplePages\HingeAngleSensorPage.xaml.cs">
       <DependentUpon>HingeAngleSensorPage.xaml</DependentUpon>
     </Compile>
@@ -522,6 +525,10 @@
     <Page Include="Views\NestedPages\NavigationBarSample_NestedPage2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SamplePages\LampSamplePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\SamplePages\HingeAngleSensorPage.xaml">
       <Generator>MSBuild:Compile</Generator>
