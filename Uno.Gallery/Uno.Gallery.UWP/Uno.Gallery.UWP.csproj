@@ -241,6 +241,9 @@
     <Compile Include="Views\SamplePages\PhoneCallManagerSamplePage.xaml.cs">
       <DependentUpon>PhoneCallManagerSamplePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SamplePages\StackPanelSamplePage.xaml.cs">
+      <DependentUpon>StackPanelSamplePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SamplePages\VibrationDeviceSamplePage.xaml.cs">
       <DependentUpon>VibrationDeviceSamplePage.xaml</DependentUpon>
     </Compile>
@@ -588,6 +591,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\SamplePages\PhoneCallManagerSamplePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SamplePages\StackPanelSamplePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

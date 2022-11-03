@@ -1,0 +1,74 @@
+﻿<Page x:Class="Uno.Gallery.Views.Samples.StackPanelSamplePage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:local="using:Uno.Gallery"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  xmlns:smtx="using:ShowMeTheXAML"
+	  mc:Ignorable="d">
+
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<local:SamplePageLayout>
+			<local:SamplePageLayout.FluentTemplate>
+				<DataTemplate>
+					<StackPanel>
+						<smtx:XamlDisplay UniqueKey="StackPanelSamplePage_Fluent_Horizontal"
+										  smtx:XamlDisplayExtensions.Header="A StackPanel with horizontal orientation">
+							<StackPanel Orientation="Horizontal">
+
+								<Rectangle Width="50" Height="50" Fill="{ThemeResource UnoBlueColor}"/>
+								<Rectangle Width="50" Height="50" Fill="{ThemeResource UnoGreenColor}"/>
+								<Rectangle Width="50" Height="50" Fill="{ThemeResource UnoRedColor}"/>
+								<Rectangle Width="50" Height="50" Fill="{ThemeResource UnoPurpleColor}"/>
+
+							</StackPanel>
+						</smtx:XamlDisplay>
+
+						<smtx:XamlDisplay UniqueKey="StackPanelSamplePage_Fluent_Vertical"
+										  smtx:XamlDisplayExtensions.Header="A StackPanel with vertical orientation">
+							<StackPanel Orientation="Vertical"
+										HorizontalAlignment="Left">
+
+								<Rectangle Width="50" Height="50" Fill="{ThemeResource UnoBlueColor}"/>
+								<Rectangle Width="50" Height="50" Fill="{ThemeResource UnoGreenColor}"/>
+								<Rectangle Width="50" Height="50" Fill="{ThemeResource UnoRedColor}"/>
+								<Rectangle Width="50" Height="50" Fill="{ThemeResource UnoPurpleColor}"/>
+
+							</StackPanel>
+						</smtx:XamlDisplay>
+
+						<smtx:XamlDisplay UniqueKey="StackPanelSamplePage_Fluent_Spacing"
+										  smtx:XamlDisplayExtensions.Header="A StackPanel with spacing">
+							<StackPanel Orientation="Horizontal"
+										Spacing="10"
+										Padding="10">
+
+								<Rectangle Width="50" Height="50" Fill="{ThemeResource UnoBlueColor}"/>
+								<Rectangle Width="50" Height="50" Fill="{ThemeResource UnoGreenColor}"/>
+								<Rectangle Width="50" Height="50" Fill="{ThemeResource UnoRedColor}"/>
+								<Rectangle Width="50" Height="50" Fill="{ThemeResource UnoPurpleColor}"/>
+
+							</StackPanel>
+						</smtx:XamlDisplay>
+
+						<smtx:XamlDisplay UniqueKey="StackPanelSamplePage_Fluent_Border"
+										  smtx:XamlDisplayExtensions.Header="A StackPanel with a border">
+							<StackPanel Orientation="Horizontal"
+										BorderBrush="Gray"
+										BorderThickness="5"
+										CornerRadius="10"
+										Padding="10">
+
+								<Rectangle Width="50" Height="50" Fill="{ThemeResource UnoBlueColor}"/>
+								<Rectangle Width="50" Height="50" Fill="{ThemeResource UnoGreenColor}"/>
+								<Rectangle Width="50" Height="50" Fill="{ThemeResource UnoRedColor}"/>
+								<Rectangle Width="50" Height="50" Fill="{ThemeResource UnoPurpleColor}"/>
+
+							</StackPanel>
+						</smtx:XamlDisplay>
+					</StackPanel>
+				</DataTemplate>
+			</local:SamplePageLayout.FluentTemplate>
+		</local:SamplePageLayout>
+	</Grid>
+</Page>
