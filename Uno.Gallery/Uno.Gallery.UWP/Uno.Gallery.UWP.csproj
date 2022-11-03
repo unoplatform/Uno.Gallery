@@ -211,6 +211,9 @@
     <Compile Include="Views\SamplePages\TwoPaneViewSamplePage.xaml.cs">
       <DependentUpon>TwoPaneViewSamplePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SamplePages\GridSamplePage.xaml.cs">
+      <DependentUpon>GridSamplePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SamplePages\NumberBoxSamplePage.xaml.cs">
       <DependentUpon>NumberBoxSamplePage.xaml</DependentUpon>
     </Compile>
@@ -542,6 +545,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\SamplePages\TwoPaneViewSamplePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SamplePages\GridSamplePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
