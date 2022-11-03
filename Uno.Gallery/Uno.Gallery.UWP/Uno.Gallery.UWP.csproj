@@ -199,6 +199,9 @@
     <Compile Include="Views\NestedPages\NavigationBarSample_NestedPage2.xaml.cs">
       <DependentUpon>NavigationBarSample_NestedPage2.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SamplePages\MagnetometerSamplePage.xaml.cs">
+      <DependentUpon>MagnetometerSamplePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SamplePages\LampSamplePage.xaml.cs">
       <DependentUpon>LampSamplePage.xaml</DependentUpon>
     </Compile>
@@ -210,6 +213,9 @@
     </Compile>
     <Compile Include="Views\SamplePages\PipsPagerSamplePage.xaml.cs">
       <DependentUpon>PipsPagerSamplePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SamplePages\TwoPaneViewSamplePage.xaml.cs">
+      <DependentUpon>TwoPaneViewSamplePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SamplePages\GridSamplePage.xaml.cs">
       <DependentUpon>GridSamplePage.xaml</DependentUpon>
@@ -237,6 +243,9 @@
     </Compile>
     <Compile Include="Views\SamplePages\PhoneCallManagerSamplePage.xaml.cs">
       <DependentUpon>PhoneCallManagerSamplePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SamplePages\StackPanelSamplePage.xaml.cs">
+      <DependentUpon>StackPanelSamplePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SamplePages\VibrationDeviceSamplePage.xaml.cs">
       <DependentUpon>VibrationDeviceSamplePage.xaml</DependentUpon>
@@ -532,6 +541,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\SamplePages\MagnetometerSamplePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\SamplePages\LampSamplePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -545,6 +558,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\SamplePages\PipsPagerSamplePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SamplePages\TwoPaneViewSamplePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -581,6 +598,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\SamplePages\PhoneCallManagerSamplePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SamplePages\StackPanelSamplePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
