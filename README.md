@@ -4,10 +4,10 @@ A collection of ready-to-use Fluent and Material code snippets to help speed up 
 
 Available on:
 
-- iOS
-- Android
+- [The Web with WebAssembly](https://gallery.platform.uno/)
+- [iOS](https://apps.apple.com/us/app/uno-gallery/id1380984680)
+- [Android](https://play.google.com/store/apps/details?id=com.nventive.uno.ui.demo)
 - Windows
-- WebAssembly
 - macOS
 - Linux (experimental)
 
