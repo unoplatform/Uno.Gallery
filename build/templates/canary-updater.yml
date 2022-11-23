@@ -1,62 +1,16 @@
 
 steps:
 
-  - task: UseDotNet@2
-    displayName: 'Use .NET 5.0.406'
-    retryCountOnTaskFailure: 3
-    inputs:
-      packageType: runtime
-      version: 5.0.15
-
-  - task: UseDotNet@2
-    displayName: 'Use .NET runtime 2.2.x'
-    retryCountOnTaskFailure: 3
-    inputs:
-      packageType: runtime
-      version: 2.2.x
-
   - task: nventiveCanaryUpdater@5
     condition: eq(variables['IsCanaryBranch'], true)
     inputs:
-      solution: Uno.Gallery.sln
+      solution: '$(build.sourcesdirectory)'
       useNuGetOrg: true
       usePrivateFeed: false
       mergeBranch: true
       branchToMerge: master
-      nugetUpdaterVersion: 2.1.1
-      packageAuthor: nventive
-      summaryFile: '$(Build.ArtifactStagingDirectory)/Canary.md'
-
-  - powershell: |
-      dotnet tool uninstall nventive.nuget.updater.tool --tool-path $(Agent.TempDirectory)
-    condition: eq(variables['IsCanaryBranch'], true)
-
-  - task: nventiveCanaryUpdater@5
-    condition: eq(variables['IsCanaryBranch'], true)
-    inputs:
-      solution: Uno.Gallery.sln
-      useNuGetOrg: true
-      usePrivateFeed: false
-      mergeBranch: true
-      branchToMerge: master
-      nugetUpdaterVersion: 2.1.1
-      packageAuthor: unoplatform
-      summaryFile: '$(Build.ArtifactStagingDirectory)/Canary.md'
-
-  - powershell: |
-      dotnet tool uninstall nventive.nuget.updater.tool --tool-path $(Agent.TempDirectory)
-    condition: eq(variables['IsCanaryBranch'], true)
-
-  - task: nventiveCanaryUpdater@5
-    condition: eq(variables['IsCanaryBranch'], true)
-    inputs:
-      solution: Uno.Gallery.sln
-      useNuGetOrg: true
-      usePrivateFeed: false
-      mergeBranch: true
-      branchToMerge: master
-      nugetUpdaterVersion: 2.1.1
-      packageAuthor: 'Uno Platform'
+      nugetUpdaterVersion: 2.3.0-alpha.35
+      packageAuthor: nventive,unoplatform
       summaryFile: '$(Build.ArtifactStagingDirectory)/Canary.md'
 
   - powershell: |
