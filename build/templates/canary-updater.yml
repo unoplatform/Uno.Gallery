@@ -1,6 +1,12 @@
 
 steps:
-
+  - task: UseDotNet@2
+    displayName: 'Use .NET runtime 7.0.100'
+    retryCountOnTaskFailure: 3
+    inputs:
+      packageType: runtime
+      version: 7.0.0
+      
   - task: nventiveCanaryUpdater@5
     condition: eq(variables['IsCanaryBranch'], true)
     inputs:
