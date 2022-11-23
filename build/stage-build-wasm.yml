@@ -5,7 +5,6 @@
     packageType: runtime
     version: 2.2.x
 
-- template: templates/canary-updater.yml
 - template: templates/gitversion.yml
 
 - task: UseDotNet@2
@@ -13,6 +12,8 @@
   inputs:
     packageType: sdk
     version: 6.0.200
+    
+- template: templates/canary-updater.yml
 
 - bash: |
     dotnet msbuild /ds /m /r /p:Configuration=Release "/p:InformationalVersion=%GITVERSION_InformationalVersion%" Uno.Gallery/Uno.Gallery.Wasm/Uno.Gallery.Wasm.csproj /bl:$(Build.ArtifactStagingDirectory)/wasm.binlog

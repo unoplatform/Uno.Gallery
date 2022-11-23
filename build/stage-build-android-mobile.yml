@@ -1,6 +1,6 @@
 steps:
-- template: templates/canary-updater.yml
 - template: templates/dotnet-install-windows.yml
+- template: templates/canary-updater.yml
 
 - task: DownloadSecureFile@1
   name: keyStore

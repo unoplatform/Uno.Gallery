@@ -14,10 +14,10 @@
   - checkout: self
     clean: true
 
-  - template: templates/canary-updater.yml
-
   - bash: /bin/bash -c "sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh $(XamarinSDKVersion)"
     displayName: Select Xamarin Version
+
+  - template: templates/canary-updater.yml
 
   - bash: |
       chmod +x $(build.sourcesdirectory)/build/scripts/android-uitest-run.sh
