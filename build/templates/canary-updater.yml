@@ -16,7 +16,7 @@ steps:
       mergeBranch: true
       branchToMerge: master
       nugetUpdaterVersion: 2.3.0-alpha.35
-      packageAuthor: nventive,unoplatform
+      packageAuthor: 'nventive,uno platform'
       summaryFile: '$(Build.ArtifactStagingDirectory)/Canary.md'
 
   - powershell: |
