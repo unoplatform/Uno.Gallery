@@ -1,9 +1,6 @@
 variables:
   IsLightBuild: $[eq(variables['Build.Reason'], 'PullRequest')]
   IsCanaryBranch: $[startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries/')]
-  ANDROID_NDK_HOME: C:\Microsoft\AndroidNDK64\android-ndk-r16b
-  ANDROID_NDK_PATH: C:\Microsoft\AndroidNDK64\android-ndk-r16b
-  AndroidNdkDirectory: C:\Microsoft\AndroidNDK64\android-ndk-r16b
   
 jobs:
 - job: Windows_Android
