@@ -18,9 +18,8 @@
 						<smtx:XamlDisplay UniqueKey="ContentDialogSamplePage_Fluent_Default"
 										  smtx:XamlDisplayExtensions.Header="Default ContentDialog">
 
-							<Button Content="Content only"
-									Click="Button_Click"
-									Style="{StaticResource FilledButtonStyle}" />
+							<Button Content="Open dialog"
+									Click="Button_Click" />
 							<!-- with the following C# code
 private async void Button_Click(object sender, RoutedEventArgs e)
 {
@@ -38,9 +37,8 @@ private async void Button_Click(object sender, RoutedEventArgs e)
 						<smtx:XamlDisplay UniqueKey="ContentDialogSamplePage_Fluent_Title"
 										  smtx:XamlDisplayExtensions.Header="ContentDialog with Title">
 
-							<Button Content="Content and Title"
-									Click="Button_Click2"
-									Style="{StaticResource FilledButtonStyle}" />
+							<Button Content="Open dialog"
+									Click="Button_Click2" />
 							<!-- with the following C# code
 private async void Button_Click2(object sender, RoutedEventArgs e)
 {
@@ -58,9 +56,8 @@ private async void Button_Click2(object sender, RoutedEventArgs e)
 
 						<smtx:XamlDisplay UniqueKey="ContentDialogSamplePage_Fluent_Prompt"
 											  smtx:XamlDisplayExtensions.Header="ContentDialog with Prompt">
-							<Button Content="Confirmation prompt"
-										Click="Button_Click3"
-										Style="{StaticResource FilledButtonStyle}" />
+							<Button Content="Open dialog"
+										Click="Button_Click3" />
 							<!-- with the following C# code
 private async void Button_Click3(object sender, RoutedEventArgs e)
 {
