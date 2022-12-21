@@ -181,6 +181,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\VisualTreeHelperEx.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Command.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ViewModelBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\FolderSavePickerExtension.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="$(MSBuildThisFileDirectory)Assets\Animations\*.json" />

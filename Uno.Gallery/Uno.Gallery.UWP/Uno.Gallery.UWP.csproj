@@ -461,6 +461,7 @@
       <DependentUpon>TextBoxSamplePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\Extensions\FolderSavePickerDialog.xaml.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -1003,6 +1004,12 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\Extensions\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Views\Extensions\FolderSavePickerDialog.xaml" />
   </ItemGroup>
   <Import Project="..\Uno.Gallery.Shared\Uno.Gallery.Shared.projitems" Label="Shared" Condition="Exists('..\Uno.Gallery.Shared\Uno.Gallery.Shared.projitems')" />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

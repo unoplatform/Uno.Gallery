@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using Uno.Extensions;
 using Uno.Gallery.Entities;
+using Uno.Gallery.Extensions;
 using Uno.Gallery.Helpers;
 using Uno.Gallery.Views.GeneralPages;
 using Uno.Logging;
@@ -16,6 +17,9 @@ using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Automation;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Navigation;
+using Uno.Foundation.Extensibility;
 using MUXC = Microsoft.UI.Xaml.Controls;
 using MUXCP = Microsoft.UI.Xaml.Controls.Primitives;
 
@@ -38,6 +42,11 @@ namespace Uno.Gallery
 
 #if !WINDOWS_UWP
 			Uno.UI.FeatureConfiguration.ApiInformation.NotImplementedLogLevel = Foundation.Logging.LogLevel.Debug; // Raise not implemented usages as Debug messages
+#endif
+
+		// Register the IFileSavePickerExtension for iOS.
+#if __IOS__
+            ApiExtensibility.Register(typeof(Uno.Extensions.Storage.Pickers.IFileSavePickerExtension), (picker) => new FolderSavePickerExtension(picker));
 #endif
 
 			InitializeLogging();
