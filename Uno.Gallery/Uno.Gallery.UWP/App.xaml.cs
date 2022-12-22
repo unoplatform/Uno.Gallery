@@ -6,7 +6,6 @@ using System.Linq;
 using System.Reflection;
 using Uno.Extensions;
 using Uno.Gallery.Entities;
-using Uno.Gallery.Extensions;
 using Uno.Gallery.Helpers;
 using Uno.Gallery.Views.GeneralPages;
 using Uno.Logging;
@@ -44,9 +43,9 @@ namespace Uno.Gallery
 			Uno.UI.FeatureConfiguration.ApiInformation.NotImplementedLogLevel = Foundation.Logging.LogLevel.Debug; // Raise not implemented usages as Debug messages
 #endif
 
-		// Register the IFileSavePickerExtension for iOS.
+			// Register the IFileSavePickerExtension for iOS.
 #if __IOS__
-            ApiExtensibility.Register(typeof(Uno.Extensions.Storage.Pickers.IFileSavePickerExtension), (picker) => new FolderSavePickerExtension(picker));
+            ApiExtensibility.Register(typeof(Uno.Extensions.Storage.Pickers.IFileSavePickerExtension), (picker) => new Uno.Gallery.Extensions.FolderSavePickerExtension(picker));
 #endif
 
 			InitializeLogging();
