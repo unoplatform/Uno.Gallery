@@ -18,9 +18,12 @@ using Windows.UI.Xaml.Automation;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
-using Uno.Foundation.Extensibility;
 using MUXC = Microsoft.UI.Xaml.Controls;
 using MUXCP = Microsoft.UI.Xaml.Controls.Primitives;
+
+#if HAS_UNO
+using Uno.Foundation.Extensibility;
+#endif
 
 namespace Uno.Gallery
 {
