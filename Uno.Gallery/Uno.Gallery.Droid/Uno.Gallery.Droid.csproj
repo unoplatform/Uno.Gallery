@@ -111,7 +111,7 @@
       <Version>4.6.0-dev.116</Version>
     </PackageReference>
     <PackageReference Include="Uno.UI.Foldable">
-      <Version>4.5.14</Version>
+      <Version>4.6.39</Version>
     </PackageReference>
     <PackageReference Include="Uno.UI.Lottie">
       <Version>4.6.0-dev.116</Version>
