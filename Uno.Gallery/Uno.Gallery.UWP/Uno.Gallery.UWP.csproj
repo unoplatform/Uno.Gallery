@@ -391,6 +391,9 @@
     <Compile Include="Views\SamplePages\TabBarSamplePage.xaml.cs">
       <DependentUpon>TabBarSamplePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SamplePages\SwipeControlSamplePage.xaml.cs">
+      <DependentUpon>SwipeControlSamplePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SamplePages\TimePickerSamplePage.xaml.cs">
       <DependentUpon>TimePickerSamplePage.xaml</DependentUpon>
     </Compile>
@@ -794,6 +797,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SamplePages\TabBarSamplePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SamplePages\SwipeControlSamplePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
