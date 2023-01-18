@@ -16,7 +16,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Uno.Gallery.Views.Samples
 {
-	[SamplePage(SampleCategory.Components, "SwipeControl", Description = Description, DocumentationLink = "https://docs.microsoft.com/en-us/uwp/api/windows.ui.xaml.controls.swipecontrol")]
+	[SamplePage(SampleCategory.UIComponents, "SwipeControl", Description = Description, DocumentationLink = "https://docs.microsoft.com/en-us/uwp/api/windows.ui.xaml.controls.swipecontrol")]
 	public sealed partial class SwipeControlSamplePage : Page
 	{
 		private bool isArchived, isFlagged, isAccepted = false;

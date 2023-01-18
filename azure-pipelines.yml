@@ -1,9 +1,6 @@
 variables:
   IsLightBuild: $[eq(variables['Build.Reason'], 'PullRequest')]
   IsCanaryBranch: $[startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries/')]
-  ANDROID_NDK_HOME: C:\Microsoft\AndroidNDK64\android-ndk-r16b
-  ANDROID_NDK_PATH: C:\Microsoft\AndroidNDK64\android-ndk-r16b
-  AndroidNdkDirectory: C:\Microsoft\AndroidNDK64\android-ndk-r16b
   
 jobs:
 - job: Windows_Android
@@ -99,7 +96,8 @@ jobs:
       certSecureFile: UnoPlatform-Apple-Distribution.p12
       certPwd: $(appleappstorecertificatepassword)
       keychain: temp
-      deleteCert: true
+      # disabled because of azure devops failing to uninstall as of 2022-11-16
+      # deleteCert: true
 
   - task: InstallAppleCertificate@2
     displayName: Install Certificate
@@ -107,7 +105,8 @@ jobs:
       certSecureFile: UnoPlatform-MacInstaller.p12
       certPwd: $(appleappstorecertificatepassword)
       keychain: temp
-      deleteCert: true
+      # disabled because of azure devops failing to uninstall as of 2022-11-16
+      # deleteCert: true
 
   - task: InstallAppleProvisioningProfile@1
     displayName: 'Install Apple Provisioning Profile'
@@ -190,7 +189,8 @@ jobs:
       certSecureFile: UnoPlatform-Apple-Distribution.p12
       certPwd: $(appleappstorecertificatepassword)
       keychain: temp
-      deleteCert: true
+      # disabled because of azure devops failing to uninstall as of 2022-11-16
+      # deleteCert: true
 
   - task: InstallAppleCertificate@2
     displayName: Install Certificate
@@ -198,7 +198,8 @@ jobs:
       certSecureFile: UnoPlatform-MacInstaller.p12
       certPwd: $(appleappstorecertificatepassword)
       keychain: temp
-      deleteCert: true
+      # disabled because of azure devops failing to uninstall as of 2022-11-16
+      # deleteCert: true
 
   - task: InstallAppleProvisioningProfile@1
     displayName: 'Install Apple Provisioning Profile'
