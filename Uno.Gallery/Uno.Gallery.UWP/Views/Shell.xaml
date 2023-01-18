@@ -67,7 +67,7 @@
             Grid.Row="2" 
             Click="NavViewToggleButton_Click" 
             HorizontalAlignment="Left" 
-			AutomationProperties.AutomationId="NavToggle"
+			AutomationProperties.AutomationId="NavViewToggleButton"
             Style="{StaticResource PaneToggleButtonStyle}" />
     </Grid>
 </UserControl>
