@@ -14,7 +14,7 @@ on:
 jobs:
   build_and_deploy_job:
     env:
-      DIST_PATH: Uno.Gallery/Uno.Gallery.Wasm/bin/Release/net6.0/dist
+      DIST_PATH: Uno.Gallery/Uno.Gallery.Wasm/bin/Release/net7.0/dist
 
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
@@ -38,10 +38,10 @@ jobs:
           useConfigFile: true
           configFilePath: build/gitversion.yml
 
-      - name: Setup dotnet 6.0.x
+      - name: Setup .NET SDK
         uses: actions/setup-dotnet@v1.7.2
         with:
-          dotnet-version: '6.0.x'
+          dotnet-version: '7.0.102'
 
       - run: |
           cd Uno.Gallery/Uno.Gallery.Wasm
