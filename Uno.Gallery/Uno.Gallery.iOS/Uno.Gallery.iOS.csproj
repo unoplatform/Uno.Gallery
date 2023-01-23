@@ -191,7 +191,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Branch-Xamarin-Linking-SDK">
-      <Version>7.0.7</Version>
+      <Version>8.1.2</Version>
     </PackageReference>
     <PackageReference Include="Uno.Cupertino">
       <Version>2.3.0</Version>
