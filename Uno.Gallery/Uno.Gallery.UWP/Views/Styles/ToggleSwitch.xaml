@@ -101,7 +101,7 @@
 						<ContentPresenter x:Name="ContentPresenter"
 										  Content="{TemplateBinding Header}"
 										  ContentTemplate="{TemplateBinding HeaderTemplate}"
-										  Foreground="{StaticResource OnBackgroundBrush}"
+										  Foreground="{ThemeResource OnBackgroundBrush}"
 										  VerticalAlignment="Stretch"
 										  VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
 										  Grid.ColumnSpan="3" />

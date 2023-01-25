@@ -10,13 +10,8 @@
 
 	<!-- Samples adapted from Microsoft XAML Controls Gallery: -->
 	<!-- https://github.com/microsoft/Xaml-Controls-Gallery -->
-	<Grid Background="{StaticResource MaterialBackgroundBrush}">
+	<Grid Background="{ThemeResource BackgroundBrush}">
 		<local:SamplePageLayout>
-			<local:SamplePageLayout.MaterialTemplate>
-				<DataTemplate>
-				</DataTemplate>
-			</local:SamplePageLayout.MaterialTemplate>
-
 			<local:SamplePageLayout.FluentTemplate>
 				<DataTemplate>
 					<StackPanel>
@@ -30,7 +25,7 @@
 													Glyph="&#xE10B;"/>
 									<FontIconSource x:Key="FlagIcon" 
 													Glyph="&#xE129;"/>
-									
+
 									<SwipeItems x:Key="leftItems" 
 												Mode="Reveal">
 										<SwipeItem Text="Accept" 
@@ -153,13 +148,13 @@
 										<GradientStop Color="#ff5c1df4" 
 													  Offset="1.0"/>
 									</LinearGradientBrush>
-										<SwipeItems x:Key="right" 
+									<SwipeItems x:Key="right" 
 													Mode="Execute">
-											<SwipeItem Text="Lock" 
+										<SwipeItem Text="Lock" 
 													   Background="{StaticResource PurpleGradient}"
 													   BehaviorOnInvoked="Close" 
 													   IconSource="{StaticResource LockIcon}"/>
-										</SwipeItems>
+									</SwipeItems>
 								</Border.Resources>
 								<SwipeControl BorderThickness="1" 
 											  BorderBrush="{ThemeResource ButtonBackground}"
@@ -176,11 +171,6 @@
 					</StackPanel>
 				</DataTemplate>
 			</local:SamplePageLayout.FluentTemplate>
-
-			<local:SamplePageLayout.CupertinoTemplate>
-				<DataTemplate>
-				</DataTemplate>
-			</local:SamplePageLayout.CupertinoTemplate>
 		</local:SamplePageLayout>
 	</Grid>
 </Page>

@@ -30,7 +30,7 @@
 								</winui:InfoBar.Content>
 								<winui:InfoBar.IconSource>
 									<winui:BitmapIconSource UriSource="/Assets/MaterialIcon_Medium.png"
-															Foreground="{StaticResource PrimaryBrush}" />
+															Foreground="{ThemeResource PrimaryBrush}" />
 								</winui:InfoBar.IconSource>
 							</winui:InfoBar>
 						</smtx:XamlDisplay>
@@ -55,7 +55,7 @@
 								</winui:InfoBar.Content>
 								<winui:InfoBar.IconSource>
 									<winui:BitmapIconSource UriSource="/Assets/MaterialIcon_Medium.png"
-															Foreground="{StaticResource PrimaryBrush}" />
+															Foreground="{ThemeResource PrimaryBrush}" />
 								</winui:InfoBar.IconSource>
 							</winui:InfoBar>
 						</smtx:XamlDisplay>
@@ -92,7 +92,7 @@
 								</winui:InfoBar.ActionButton>
 								<winui:InfoBar.IconSource>
 									<winui:BitmapIconSource UriSource="/Assets/MaterialIcon_Medium.png"
-															Foreground="{StaticResource PrimaryBrush}" />
+															Foreground="{ThemeResource PrimaryBrush}" />
 								</winui:InfoBar.IconSource>
 							</winui:InfoBar>
 						</smtx:XamlDisplay>
