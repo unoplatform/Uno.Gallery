@@ -78,7 +78,7 @@
 								<!-- Icon -->
 								<Path x:Name="Icon"
 									  Data="{StaticResource CodeSnippetPathStyle}"
-									  Fill="{StaticResource OnSurfaceMediumBrush}"
+									  Fill="{ThemeResource OnSurfaceMediumBrush}"
 									  Height="12"
 									  Width="20"
 									  Stretch="Uniform"
@@ -147,7 +147,7 @@
 						<Border x:Name="LightBackground"
 								HorizontalAlignment="Stretch"
 								VerticalAlignment="Stretch"
-								Background="{StaticResource PrimaryVariantLightBrush}" />
+								Background="{ThemeResource PrimaryVariantLightBrush}" />
 
 						<Border x:Name="DarkBackground"
 								HorizontalAlignment="Stretch"

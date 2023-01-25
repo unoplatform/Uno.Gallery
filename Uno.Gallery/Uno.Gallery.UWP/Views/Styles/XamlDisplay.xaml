@@ -18,13 +18,13 @@
 		<Setter Property="Margin"
 				Value="0,16,0,0" />
 		<Setter Property="BorderBrush"
-				Value="{StaticResource DividerBrush}" />
+				Value="{ThemeResource DividerBrush}" />
 		<Setter Property="BorderThickness"
 				Value="1" />
 		<Setter Property="Formatter"
 				Value="{x:Null}" />
         <Setter Property="Background"
-                Value="{StaticResource SampleSecondBackgroundBrush}" />
+                Value="{ThemeResource SampleSecondBackgroundBrush}" />
 
         <Setter Property="Template">
 			<Setter.Value>
@@ -63,13 +63,13 @@
 						<!-- Header -->
 						<TextBlock Text="{Binding Path=(smtx:XamlDisplayExtensions.Header), RelativeSource={RelativeSource TemplatedParent}}"
 								   Style="{StaticResource TitleLarge}"
-								   Foreground="{StaticResource OnBackgroundBrush}"
+								   Foreground="{ThemeResource OnBackgroundBrush}"
 								   Visibility="{Binding Path=(smtx:XamlDisplayExtensions.Header), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource IsNullOrEmptyToCollapsed}, FallbackValue=Collapsed}" />
 
 						<!-- Description -->
 						<TextBlock Text="{Binding Path=(smtx:XamlDisplayExtensions.Description), RelativeSource={RelativeSource TemplatedParent}}"
 								   Style="{StaticResource BodyMedium}"
-								   Foreground="{StaticResource OnBackgroundBrush}"
+								   Foreground="{ThemeResource OnBackgroundBrush}"
 								   Opacity="0.8"
 								   Visibility="{Binding Path=(smtx:XamlDisplayExtensions.Description), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource IsNullOrEmptyToCollapsed}, FallbackValue=Collapsed}"
 								   Margin="0,16,0,0" />
@@ -107,7 +107,7 @@
 											  Style="{StaticResource XamlDisplayExpandToggleButtonStyle}" />
 							</Grid>
 
-                            <ScrollViewer Background="{StaticResource SampleThirdBackgroundBrush}"
+                            <ScrollViewer Background="{ThemeResource SampleThirdBackgroundBrush}"
 										  HorizontalScrollBarVisibility="Auto"
 										  VerticalScrollBarVisibility="Disabled"
 										  win:Visibility="{Binding Path=(smtx:XamlDisplayExtensions.ShowXaml), RelativeSource={RelativeSource TemplatedParent}}"
@@ -121,7 +121,7 @@
 								<TextBlock Text="{Binding Path=(smtx:XamlDisplayExtensions.PrettyXaml), RelativeSource={RelativeSource TemplatedParent}}"
 										   IsTextSelectionEnabled="True"
 										   FontFamily="Consolas"
-										   Foreground="{StaticResource OnSurfaceBrush}"
+										   Foreground="{ThemeResource OnSurfaceBrush}"
 										   Margin="30,20,60,20" />
 							</ScrollViewer>
 
@@ -142,7 +142,7 @@
 
 								<!-- Icon -->
 								<Path Data="{StaticResource CopyToClipboardPathStyle}"
-									  Fill="{StaticResource OnSurfaceMediumBrush}"
+									  Fill="{ThemeResource OnSurfaceMediumBrush}"
 									  Height="22"
 									  Width="19"
 									  Stretch="Uniform"
@@ -196,7 +196,7 @@
 									  ios:Visibility="Collapsed"
 									  Style="{StaticResource XamlDisplayExpandToggleButtonStyle}" />
 
-						<ScrollViewer Background="{StaticResource SampleThirdBackgroundBrush}"
+						<ScrollViewer Background="{ThemeResource SampleThirdBackgroundBrush}"
 									  HorizontalScrollBarVisibility="Auto"
 									  VerticalScrollBarVisibility="Disabled"
 									  win:Visibility="{Binding ElementName=RevealButton, Path=IsChecked, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
@@ -210,7 +210,7 @@
 							<TextBlock Text="{TemplateBinding Xaml}"
 									   IsTextSelectionEnabled="True"
 									   FontFamily="Consolas"
-									   Foreground="{StaticResource OnSurfaceBrush}"
+									   Foreground="{ThemeResource OnSurfaceBrush}"
 									   Margin="30,20,60,20" />
 						</ScrollViewer>
 
@@ -230,7 +230,7 @@
 								Style="{StaticResource TextButtonStyle}">
 
 							<Path Data="{StaticResource CopyToClipboardPathStyle}"
-								  Fill="{StaticResource OnSurfaceMediumBrush}"
+								  Fill="{ThemeResource OnSurfaceMediumBrush}"
 								  Height="22"
 								  Width="19"
 								  Stretch="Uniform"

@@ -20,7 +20,7 @@
 		<StackPanel>
 			<!-- Description -->
 			<TextBlock Margin="0,16,0,0"
-					   Foreground="{StaticResource OnBackgroundBrush}"
+					   Foreground="{ThemeResource OnBackgroundBrush}"
 					   Opacity="0.8"
 					   Style="{StaticResource TitleLarge}"
 					   Text="{Binding Description}"
@@ -28,14 +28,14 @@
 
 			<!-- Source label -->
 			<TextBlock Margin="0,30,0,0"
-					   Foreground="{StaticResource OnBackgroundBrush}"
+					   Foreground="{ThemeResource OnBackgroundBrush}"
 					   Opacity="0.45"
 					   Style="{StaticResource BodySmall}"
 					   Text="SOURCE" />
 
 			<!-- Source value -->
 			<TextBlock Margin="0,0,0,16"
-					   Foreground="{StaticResource OnBackgroundBrush}"
+					   Foreground="{ThemeResource OnBackgroundBrush}"
 					   Opacity="0.8"
 					   Style="{StaticResource BodyMedium}"
 					   Text="{Binding Source, Converter={StaticResource EnumToDescription}}" />
@@ -49,7 +49,7 @@
 				Value="{StaticResource DefaultSamplePageLayoutHeaderTemplate}" />
 
 		<Setter Property="BorderBrush"
-				Value="{StaticResource DividerBrush}" />
+				Value="{ThemeResource DividerBrush}" />
 
 		<Setter Property="Template">
 			<Setter.Value>
@@ -96,7 +96,7 @@
 									<!-- Title (visible on mobile) -->
 									<TextBlock x:Name="ScrollingTitle"
 											   Margin="0,32,0,0"
-											   Foreground="{StaticResource OnBackgroundBrush}"
+											   Foreground="{ThemeResource OnBackgroundBrush}"
 											   MaxLines="1"
 											   Style="{StaticResource HeadlineLarge}"
 											   Text="{TemplateBinding Title}"
@@ -265,7 +265,7 @@
 										<!-- Optional link to documentation -->
 										<TextBlock Visibility="{Binding DocumentationLink, Converter={StaticResource IsNullOrEmptyToCollapsed}}"
 												   Margin="0,0,0,32"
-												   Foreground="{StaticResource OnBackgroundBrush}"
+												   Foreground="{ThemeResource OnBackgroundBrush}"
 												   Opacity="0.8"
 												   Style="{StaticResource BodyMedium}">
 											<Run Text="For more information refer to the " />
@@ -278,7 +278,7 @@
 										<!-- Share button -->
 										<TextBlock Visibility="{Binding IsShareVisible, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
 														   Margin="0,0,0,16"
-														   Foreground="{StaticResource OnBackgroundBrush}"
+														   Foreground="{ThemeResource OnBackgroundBrush}"
 														   Opacity="0.8"
 														   Style="{StaticResource BodyMedium}">
 											<Run Text="You can" />
@@ -305,7 +305,7 @@
 											Margin="48,0"
 											HorizontalAlignment="Stretch"
 											VerticalAlignment="Top"
-											Background="{StaticResource SurfaceBrush}"
+											Background="{ThemeResource SurfaceBrush}"
 											BorderBrush="{TemplateBinding BorderBrush}"
 											BorderThickness="0,0,0,1"
 											Orientation="Horizontal"
@@ -401,7 +401,7 @@
 									   Height="1"
 									   HorizontalAlignment="Stretch"
 									   VerticalAlignment="Top"
-									   Fill="{StaticResource DividerBrush}"
+									   Fill="{ThemeResource DividerBrush}"
 									   Visibility="Collapsed" />
 						</StackPanel>
 						<VisualStateManager.VisualStateGroups>

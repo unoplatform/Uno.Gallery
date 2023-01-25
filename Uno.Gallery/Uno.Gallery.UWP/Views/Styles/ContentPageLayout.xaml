@@ -32,7 +32,7 @@
 						<!-- Top bar with Uno logo (visible on mobile) -->
 						<Grid x:Name="MobileTopBar"
 							  Height="48"
-							  BorderBrush="{StaticResource DividerBrush}"
+							  BorderBrush="{ThemeResource DividerBrush}"
 							  BorderThickness="0,0,0,1"
 							  Visibility="Collapsed">
 							<Image Source="ms-appx:///Assets/UnoLogo_Medium.png"
@@ -61,14 +61,14 @@
 											   MaxLines="1"
 											   TextTrimming="CharacterEllipsis"
 											   Style="{StaticResource HeadlineLarge}"
-											   Foreground="{StaticResource OnBackgroundBrush}"
+											   Foreground="{ThemeResource OnBackgroundBrush}"
 											   Visibility="Collapsed"
 											   Margin="0,16,0,0" />
 
 									<!-- Description (optional) -->
 									<TextBlock Text="{TemplateBinding Description}"
 											   Style="{StaticResource TitleMedium}"
-											   Foreground="{StaticResource OnBackgroundBrush}"
+											   Foreground="{ThemeResource OnBackgroundBrush}"
 											   Opacity="0.8"
 											   TextWrapping="Wrap"
 											   Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Description, Converter={StaticResource IsNullOrEmptyToCollapsed}, FallbackValue=Collapsed}"
