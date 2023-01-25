@@ -159,17 +159,17 @@ jobs:
 
   - template: build/stage-build-ios-xamarin.yml
 
-- job: macOS_net7
+- job: macOS_netcore
   strategy:
     maxParallel: 2
     matrix:
       iOS:
-        BuildTargetFramework: net7.0-ios
+        BuildTargetFramework: net6.0-ios
         ArtifactName: iOS-mobile
         ApplicationBuildNumberOffset: 50
         BuildCommand: publish
       Catalyst:
-        BuildTargetFramework: net7.0-maccatalyst
+        BuildTargetFramework: net6.0-maccatalyst
         ArtifactName: Catalyst
         ApplicationBuildNumberOffset: 50
         BuildCommand: build
