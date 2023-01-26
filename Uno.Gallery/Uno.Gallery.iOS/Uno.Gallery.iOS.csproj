@@ -194,7 +194,7 @@
       <Version>7.0.7</Version>
     </PackageReference>
     <PackageReference Include="Uno.Cupertino">
-      <Version>2.3.0</Version>
+      <Version>2.4.1</Version>
     </PackageReference>
     <PackageReference Include="Uno.Material">
       <Version>2.3.0</Version>
