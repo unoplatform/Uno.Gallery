@@ -10,7 +10,7 @@
 			-->
       <Version>6.2.10</Version>
     </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="7.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="5.0.0" />
     <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Lottie">
       <Version>6.1.0</Version>
