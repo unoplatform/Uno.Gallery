@@ -211,6 +211,9 @@
     <Compile Include="Views\SamplePages\InfoBadgeSamplePage.xaml.cs">
       <DependentUpon>InfoBadgeSamplePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SamplePages\ContentDialogSamplePage.xaml.cs">
+      <DependentUpon>ContentDialogSamplePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SamplePages\PipsPagerSamplePage.xaml.cs">
       <DependentUpon>PipsPagerSamplePage.xaml</DependentUpon>
     </Compile>
@@ -351,9 +354,6 @@
     </Compile>
     <Compile Include="Views\SamplePages\LottieSamplePage.xaml.cs">
       <DependentUpon>LottieSamplePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\SamplePages\MessageDialogSamplePage.xaml.cs">
-      <DependentUpon>MessageDialogSamplePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SamplePages\NavigationBarSamplePage.xaml.cs">
       <DependentUpon>NavigationBarSamplePage.xaml</DependentUpon>
@@ -560,6 +560,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\SamplePages\ContentDialogSamplePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\SamplePages\PipsPagerSamplePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -745,10 +749,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SamplePages\LottieSamplePage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\SamplePages\MessageDialogSamplePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
