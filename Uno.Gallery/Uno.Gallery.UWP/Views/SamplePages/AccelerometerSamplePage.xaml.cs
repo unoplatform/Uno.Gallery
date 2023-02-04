@@ -177,7 +177,7 @@ namespace Uno.Gallery.Views.Samples
 
 		private async void Accelerometer_ReadingChanged(Accelerometer sender, AccelerometerReadingChangedEventArgs args)
 		{
-			await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => {
+			_ = CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => {
 				LastReadTimestamp = args.Reading.Timestamp;
 				AccelerationX = args.Reading.AccelerationX;
 				AccelerationY = args.Reading.AccelerationY;
