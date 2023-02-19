@@ -51,7 +51,7 @@ private void OnGamepadReadingUpdate(object sender, object e)
 	foreach(var gamepad in AvailableGamepads)
 	{
 		gamepad.Update();
-		gamepad.Position = AvailableGamepads.IndexOf(gamepad);
+		gamepad.Position = AvailableGamepads.IndexOf(gamepad)+1;
 	}
 }
 

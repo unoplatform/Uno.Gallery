@@ -88,7 +88,7 @@ namespace Uno.Gallery.Views.Samples
 			foreach(var gamepad in AvailableGamepads)
 			{
 				gamepad.Update();
-				gamepad.Position = AvailableGamepads.IndexOf(gamepad);
+				gamepad.Position = AvailableGamepads.IndexOf(gamepad)+1;
 			}
 		}
 
