@@ -214,6 +214,9 @@
     <Compile Include="Views\SamplePages\ContentDialogSamplePage.xaml.cs">
       <DependentUpon>ContentDialogSamplePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SamplePages\GamepadSamplePage.xaml.cs">
+      <DependentUpon>GamepadSamplePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SamplePages\PipsPagerSamplePage.xaml.cs">
       <DependentUpon>PipsPagerSamplePage.xaml</DependentUpon>
     </Compile>
@@ -561,6 +564,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\SamplePages\ContentDialogSamplePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SamplePages\GamepadSamplePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
