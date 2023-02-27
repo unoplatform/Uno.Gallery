@@ -110,7 +110,7 @@
 		<PackageReference Include="Uno.Toolkit.UI.Material" Version="2.3.0" />
 		<PackageReference Include="Uno.UI.Lottie" Version="4.8.0-dev.458" />
 		<PackageReference Include="Uno.UI.WebAssembly" Version="4.8.0-dev.458" />
-		<PackageReference Include="Uno.UI.RemoteControl" Version="4.8.0-dev.458" Condition="'$(Configuration)'=='Debug'" />
+		<PackageReference Include="Uno.UI.RemoteControl" Version="4.8.0-dev.568" Condition="'$(Configuration)'=='Debug'" />
 		<PackageReference Include="Uno.Wasm.Bootstrap" Version="7.0.11" />
 		<PackageReference Include="Uno.Wasm.Bootstrap.DevServer" Version="7.0.11" />
 		<PackageReference Include="Microsoft.TypeScript.Compiler" Version="3.1.5">
