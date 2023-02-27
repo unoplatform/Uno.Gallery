@@ -121,7 +121,7 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
     <PackageReference Include="Xamarin.AndroidX.AppCompat.AppCompatResources">
-      <Version>1.1.0.1</Version>
+      <Version>1.6.0.1</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.AndroidX.Lifecycle.LiveData">
       <Version>2.5.1.1</Version>
