@@ -37,9 +37,11 @@ namespace Uno.Gallery.Views.Samples
 		public bool IsAlphaTextInputVisible { get => GetProperty<bool>(); set => SetProperty(value); }
 		public Microsoft.UI.Xaml.Controls.ColorSpectrumShape ColorSpectrumShape { get => GetProperty<Microsoft.UI.Xaml.Controls.ColorSpectrumShape>(); set => SetProperty(value); }
 
-		public Color CurrentColor {
+		public Color CurrentColor 
+		{
 			get => GetProperty<Color>();
-			set => SetProperty(value); }
+			set => SetProperty(value); 
+	    }
 
 		public ColorPickerSamplePageViewModel()
 		{
