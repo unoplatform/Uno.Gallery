@@ -418,6 +418,9 @@
     <Compile Include="Views\SamplePages\TypographySamplePage.xaml.cs">
       <DependentUpon>TypographySamplePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SamplePages\ColorPickerSamplePage.xaml.cs">
+      <DependentUpon>ColorPickerSamplePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SamplePages\ViewBoxSamplePage.xaml.cs">
       <DependentUpon>ViewBoxSamplePage.xaml</DependentUpon>
     </Compile>
@@ -834,6 +837,10 @@
     <Page Include="Views\SamplePages\TransformsSamplePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SamplePages\ColorPickerSamplePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\SamplePages\ViewBoxSamplePage.xaml">
       <SubType>Designer</SubType>
