@@ -24,6 +24,10 @@
 										   TrueValue="Collapsed"
 										   FalseValue="Visible" />
 
+	<converters:FromBoolToValueConverter x:Key="TrueToFilled"
+										 TrueValue="#A1A1A1"
+										 FalseValue="Transparent" />
+
 	<converters:EnumDescriptionConverter x:Key="EnumToDescription" />
 
 	<converters:RandomColorConverter x:Key="RandomColorBrush"
