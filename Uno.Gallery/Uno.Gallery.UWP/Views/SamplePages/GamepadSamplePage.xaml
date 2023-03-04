@@ -8,6 +8,10 @@
 	  xmlns:samples="using:Uno.Gallery.Views.Samples"
 	  mc:Ignorable="d">
 
+	<Page.Resources>
+		<SolidColorBrush x:Key="ShapesStrokeColor">#A1A1A1</SolidColorBrush>
+	</Page.Resources>
+
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 		<local:SamplePageLayout IsDesignAgnostic="True">
 			<local:SamplePageLayout.DesignAgnosticTemplate>
@@ -189,7 +193,7 @@ public class GamepadViewModel : ViewModelBase
 										<DataTemplate x:DataType="samples:GamepadViewModel"
 													  x:DefaultBindMode="OneWay">
 											<UserControl>
-												<Grid>
+												<Grid Margin="0,20">
 													<Grid.ColumnDefinitions>
 														<ColumnDefinition Width="*" />
 														<ColumnDefinition Width="auto" />
@@ -289,74 +293,74 @@ public class GamepadViewModel : ViewModelBase
 															   Canvas.Left="41" />
 
 														<!--Thumbsticks-->
-														<Ellipse Stroke="#A1A1A1"
+														<Ellipse Stroke="{StaticResource ShapesStrokeColor}"
 																 StrokeThickness="2"
 																 Width="20"
 																 Height="20"
 																 Fill="{Binding ButtonLeftThumbstick, Converter={StaticResource TrueToFilled}, FallbackValue=Transparent}"
 																 Canvas.Left="{Binding LeftThumbstickXImage}"
 																 Canvas.Top="{Binding LeftThumbstickYImage}" />
-														<Ellipse Stroke="#A1A1A1"
-																 StrokeThickness="2"
-																 Width="20"
-																 Height="20"
-																 Fill="{Binding ButtonRightThumbstick, Converter={StaticResource TrueToFilled}, FallbackValue=Transparent}"
-																 Canvas.Left="{Binding RightThumbstickXImage}"
-																 Canvas.Top="{Binding RightThumbstickYImage}" />
+														<Ellipse Stroke="{StaticResource ShapesStrokeColor}"
+														         StrokeThickness="2"
+														         Width="20"
+														         Height="20"
+														         Fill="{Binding ButtonRightThumbstick, Converter={StaticResource TrueToFilled}, FallbackValue=Transparent}"
+														         Canvas.Left="{Binding RightThumbstickXImage}"
+														         Canvas.Top="{Binding RightThumbstickYImage}" />
 
 														<!--AXYB Buttons-->
-														<Ellipse Stroke="#A1A1A1"
-																 StrokeThickness="2"
-																 Width="11"
-																 Height="11"
-																 Fill="{Binding ButtonA, Converter={StaticResource TrueToFilled}, FallbackValue=Transparent}"
-																 Canvas.Left="166.5"
-																 Canvas.Top="63" />
-														<Ellipse Stroke="#A1A1A1"
-																 StrokeThickness="2"
-																 Width="11"
-																 Height="11"
-																 Fill="{Binding ButtonX, Converter={StaticResource TrueToFilled}, FallbackValue=Transparent}"
-																 Canvas.Left="157"
-																 Canvas.Top="53" />
-														<Ellipse Stroke="#A1A1A1"
-																 StrokeThickness="2"
-																 Width="11"
-																 Height="11"
-																 Fill="{Binding ButtonY, Converter={StaticResource TrueToFilled}, FallbackValue=Transparent}"
-																 Canvas.Left="166.5"
-																 Canvas.Top="43" />
-														<Ellipse Stroke="#A1A1A1"
-																 StrokeThickness="2"
-																 Width="11"
-																 Height="11"
-																 Fill="{Binding ButtonB, Converter={StaticResource TrueToFilled}, FallbackValue=Transparent}"
-																 Canvas.Left="176"
-																 Canvas.Top="53" />
+														<Ellipse Stroke="{StaticResource ShapesStrokeColor}"
+														         StrokeThickness="2"
+														         Width="11"
+														         Height="11"
+														         Fill="{Binding ButtonA, Converter={StaticResource TrueToFilled}, FallbackValue=Transparent}"
+														         Canvas.Left="166.5"
+														         Canvas.Top="63" />
+														<Ellipse Stroke="{StaticResource ShapesStrokeColor}"
+														         StrokeThickness="2"
+														         Width="11"
+														         Height="11"
+														         Fill="{Binding ButtonX, Converter={StaticResource TrueToFilled}, FallbackValue=Transparent}"
+														         Canvas.Left="157"
+														         Canvas.Top="53" />
+														<Ellipse Stroke="{StaticResource ShapesStrokeColor}"
+														         StrokeThickness="2"
+														         Width="11"
+														         Height="11"
+														         Fill="{Binding ButtonY, Converter={StaticResource TrueToFilled}, FallbackValue=Transparent}"
+														         Canvas.Left="166.5"
+														         Canvas.Top="43" />
+														<Ellipse Stroke="{StaticResource ShapesStrokeColor}"
+														         StrokeThickness="2"
+														         Width="11"
+														         Height="11"
+														         Fill="{Binding ButtonB, Converter={StaticResource TrueToFilled}, FallbackValue=Transparent}"
+														         Canvas.Left="177"
+														         Canvas.Top="53" />
 
 														<!--DPad-->
-														<Ellipse Stroke="#A1A1A1"
-																 StrokeThickness="2"
-																 Width="11"
-																 Height="11"
-																 Fill="{Binding DPadDown, Converter={StaticResource TrueToFilled}, FallbackValue=Transparent}"
-																 Canvas.Left="100"
-																 Canvas.Top="93" />
-														<Ellipse Stroke="#A1A1A1"
+														<Ellipse Stroke="{StaticResource ShapesStrokeColor}"
+														         StrokeThickness="2"
+														         Width="11"
+														         Height="11"
+														         Fill="{Binding DPadDown, Converter={StaticResource TrueToFilled}, FallbackValue=Transparent}"
+														         Canvas.Left="100"
+														         Canvas.Top="93" />
+														<Ellipse Stroke="{StaticResource ShapesStrokeColor}"
 																 StrokeThickness="2"
 																 Width="11"
 																 Height="11"
 																 Fill="{Binding DPadLeft, Converter={StaticResource TrueToFilled}, FallbackValue=Transparent}"
 																 Canvas.Left="90"
 																 Canvas.Top="83" />
-														<Ellipse Stroke="#A1A1A1"
+														<Ellipse Stroke="{StaticResource ShapesStrokeColor}"
 																 StrokeThickness="2"
 																 Width="11"
 																 Height="11"
 																 Fill="{Binding DPadUp, Converter={StaticResource TrueToFilled}, FallbackValue=Transparent}"
 																 Canvas.Left="100"
 																 Canvas.Top="73" />
-														<Ellipse Stroke="#A1A1A1"
+														<Ellipse Stroke="{StaticResource ShapesStrokeColor}"
 																 StrokeThickness="2"
 																 Width="11"
 																 Height="11"
@@ -365,14 +369,14 @@ public class GamepadViewModel : ViewModelBase
 																 Canvas.Top="83" />
 
 														<!--View and Menu-->
-														<Ellipse Stroke="#A1A1A1"
+														<Ellipse Stroke="{StaticResource ShapesStrokeColor}"
 																 StrokeThickness="2"
 																 Width="10"
 																 Height="10"
 																 Fill="{Binding ButtonView, Converter={StaticResource TrueToFilled}, FallbackValue=Transparent}"
 																 Canvas.Left="110"
 																 Canvas.Top="55" />
-														<Ellipse Stroke="#A1A1A1"
+														<Ellipse Stroke="{StaticResource ShapesStrokeColor}"
 																 StrokeThickness="2"
 																 Width="10"
 																 Height="10"
@@ -381,7 +385,7 @@ public class GamepadViewModel : ViewModelBase
 																 Canvas.Top="55" />
 
 														<!--Paddles-->
-														<Rectangle Stroke="#A1A1A1"
+														<Rectangle Stroke="{StaticResource ShapesStrokeColor}"
 																   StrokeThickness="2"
 																   RadiusX="3"
 																   RadiusY="3"
@@ -390,7 +394,7 @@ public class GamepadViewModel : ViewModelBase
 																   Fill="{Binding ButtonPaddle1, Converter={StaticResource TrueToFilled}, FallbackValue=Transparent}"
 																   Canvas.Left="93"
 																   Canvas.Top="128" />
-														<Rectangle Stroke="#A1A1A1"
+														<Rectangle Stroke="{StaticResource ShapesStrokeColor}"
 																   StrokeThickness="2"
 																   RadiusX="3"
 																   RadiusY="3"
@@ -399,7 +403,7 @@ public class GamepadViewModel : ViewModelBase
 																   Fill="{Binding ButtonPaddle2, Converter={StaticResource TrueToFilled}, FallbackValue=Transparent}"
 																   Canvas.Left="93"
 																   Canvas.Top="142" />
-														<Rectangle Stroke="#A1A1A1"
+														<Rectangle Stroke="{StaticResource ShapesStrokeColor}"
 																   StrokeThickness="2"
 																   RadiusX="3"
 																   RadiusY="3"
@@ -408,7 +412,7 @@ public class GamepadViewModel : ViewModelBase
 																   Fill="{Binding ButtonPaddle3, Converter={StaticResource TrueToFilled}, FallbackValue=Transparent}"
 																   Canvas.Left="139"
 																   Canvas.Top="128" />
-														<Rectangle Stroke="#A1A1A1"
+														<Rectangle Stroke="{StaticResource ShapesStrokeColor}"
 																   StrokeThickness="2"
 																   RadiusX="3"
 																   RadiusY="3"
@@ -419,7 +423,7 @@ public class GamepadViewModel : ViewModelBase
 																   Canvas.Top="142" />
 
 														<!--Shoulder Buttons-->
-														<Rectangle Stroke="#A1A1A1"
+														<Rectangle Stroke="{StaticResource ShapesStrokeColor}"
 																   StrokeThickness="2"
 																   RadiusX="3"
 																   RadiusY="3"
@@ -428,7 +432,7 @@ public class GamepadViewModel : ViewModelBase
 																   Fill="{Binding ButtonLeftShoulder, Converter={StaticResource TrueToFilled}, FallbackValue=Transparent}"
 																   Canvas.Left="77"
 																   Canvas.Top="19" />
-														<Rectangle Stroke="#A1A1A1"
+														<Rectangle Stroke="{StaticResource ShapesStrokeColor}"
 																   StrokeThickness="2"
 																   RadiusX="3"
 																   RadiusY="3"
@@ -439,7 +443,7 @@ public class GamepadViewModel : ViewModelBase
 																   Canvas.Top="19" />
 
 														<!--Triggers-->
-														<Rectangle Stroke="#A1A1A1"
+														<Rectangle Stroke="{StaticResource ShapesStrokeColor}"
 																   StrokeThickness="2"
 																   Width="13"
 																   Height="17"
@@ -452,7 +456,7 @@ public class GamepadViewModel : ViewModelBase
 
 															</Rectangle.Fill>
 														</Rectangle>
-														<Rectangle Stroke="#A1A1A1"
+														<Rectangle Stroke="{StaticResource ShapesStrokeColor}"
 																   StrokeThickness="2"
 																   Width="13"
 																   Height="17"
