@@ -58,6 +58,18 @@
 									   Stretch="None" />
 							</Border>
 						</smtx:XamlDisplay>
+
+						<smtx:XamlDisplay UniqueKey="ImageSamplePage_Svg"
+										  smtx:XamlDisplayExtensions.Header="SVG Image">
+							<Border Width="160"
+									Height="160"
+									HorizontalAlignment="Center">
+
+								<Image Source="ms-appx:///Assets/UnoLogo.svg"
+									   Height="80"
+									   Width="80" />
+							</Border>
+						</smtx:XamlDisplay>
 					</StackPanel>
 				</DataTemplate>
 			</local:SamplePageLayout.FluentTemplate>
