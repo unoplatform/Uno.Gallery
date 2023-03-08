@@ -1,0 +1,52 @@
+﻿<Page x:Class="Uno.Gallery.Views.Samples.LauncherSamplePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+      xmlns:smtx="using:ShowMeTheXAML"
+      xmlns:local="using:Uno.Gallery"
+      mc:Ignorable="d">
+
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<local:SamplePageLayout IsDesignAgnostic="True">
+
+			<local:SamplePageLayout.DesignAgnosticTemplate>
+				<DataTemplate>
+					<StackPanel>
+						<smtx:XamlDisplay smtx:XamlDisplayExtensions.Header="Open Sound Settings"
+										  UniqueKey="LauncherSamplePage_LaunchSoundSetting">
+							<StackPanel Spacing="8">
+<!--
+private void LaunchSettingsButton_Click(object sender, RoutedEventArgs e)
+{
+	Launcher.LaunchUriAsync(new Uri("ms-settings:sound"));
+}
+-->
+								<Button Click="LaunchSettingsButton_Click"
+										Content="{Binding Data.SettingsButtonContent}" />
+
+								<muxc:InfoBar IsOpen="{Binding Data.IsInfoBarOpen}"
+								              Severity="Error"
+								              Title="Houston, we have a problem! It appears that the launch may have been aborted." />
+							</StackPanel>
+
+						</smtx:XamlDisplay>
+
+						<smtx:XamlDisplay smtx:XamlDisplayExtensions.Header="Open our website"
+										  UniqueKey="LauncherSamplePage_LaunchBrowser">
+<!--
+private void LaunchWebsiteButton_Click(object sender, RoutedEventArgs e)
+{
+	Launcher.LaunchUriAsync(new Uri("https://platform.uno/"));
+}
+-->
+							<Button Click="LaunchWebsiteButton_Click"
+									Content="Open our website" />
+						</smtx:XamlDisplay>
+					</StackPanel>
+				</DataTemplate>
+			</local:SamplePageLayout.DesignAgnosticTemplate>
+		</local:SamplePageLayout>
+	</Grid>
+</Page>
