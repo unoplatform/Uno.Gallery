@@ -5,13 +5,12 @@ using System.Linq;
 using Uno.Gallery.ViewModels;
 using Windows.ApplicationModel.Core;
 using Windows.Gaming.Input;
-using Windows.Networking.Connectivity;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 namespace Uno.Gallery.Views.Samples
 {
-	[SamplePage(SampleCategory.NonUIFeatures, "Gamepad", Description = "Represents information about the connected gamepads.", DocumentationLink = "https://learn.microsoft.com/en-us/uwp/api/windows.gaming.input.gamepad")]
+	[SamplePage(SampleCategory.NonUIFeatures, "Gamepad", Description = "Represents information about the connected gamepads.", DocumentationLink = "https://learn.microsoft.com/en-us/uwp/api/windows.gaming.input.gamepad", DataType = typeof(GamepadSamplePageViewModel))]
 	public sealed partial class GamepadSamplePage : Page
 	{
 		public GamepadSamplePage()
@@ -21,7 +20,7 @@ namespace Uno.Gallery.Views.Samples
 
 		private void CheckChangeObservation_Click(object sender, RoutedEventArgs e)
 		{
-			if((sender as Button)?.DataContext is GamepadSamplePageViewModel viewModel)
+			if(((Sample)DataContext).Data is GamepadSamplePageViewModel viewModel)
 			{
 				if(viewModel.ObservingChanges)
 				{
@@ -88,7 +87,7 @@ namespace Uno.Gallery.Views.Samples
 			foreach(var gamepad in AvailableGamepads)
 			{
 				gamepad.Update();
-				gamepad.Position = AvailableGamepads.IndexOf(gamepad)+1;
+				gamepad.Position = AvailableGamepads.IndexOf(gamepad) + 1;
 			}
 		}
 
@@ -138,10 +137,39 @@ namespace Uno.Gallery.Views.Samples
 
 			Buttons = reading.Buttons.ToString("g");
 
-			RightThumbstickX = reading.RightThumbstickX.ToString("0.00");
-			RightThumbstickY = reading.RightThumbstickY.ToString("0.00");
 			LeftThumbstickX = reading.LeftThumbstickX.ToString("0.00");
 			LeftThumbstickY = reading.LeftThumbstickY.ToString("0.00");
+			RightThumbstickX = reading.RightThumbstickX.ToString("0.00");
+			RightThumbstickY = reading.RightThumbstickY.ToString("0.00");
+
+			ButtonA = Buttons.Contains("A");
+			ButtonX = Buttons.Contains("X");
+			ButtonY = Buttons.Contains("Y");
+			ButtonB = Buttons.Contains("B");
+
+			DPadDown = Buttons.Contains("DPadDown");
+			DPadLeft = Buttons.Contains("DPadLeft");
+			DPadUp = Buttons.Contains("DPadUp");
+			DPadRight = Buttons.Contains("DPadRight");
+
+			ButtonView = Buttons.Contains("View");
+			ButtonMenu = Buttons.Contains("Menu");
+
+			ButtonPaddle1 = Buttons.Contains("Paddle1");
+			ButtonPaddle2 = Buttons.Contains("Paddle2");
+			ButtonPaddle3 = Buttons.Contains("Paddle3");
+			ButtonPaddle4 = Buttons.Contains("Paddle4");
+
+			ButtonLeftShoulder = Buttons.Contains("LeftShoulder");
+			ButtonRightShoulder = Buttons.Contains("RightShoulder");
+
+			ButtonLeftThumbstick = Buttons.Contains("LeftThumbstick");
+			ButtonRightThumbstick = Buttons.Contains("RightThumbstick");
+
+			LeftThumbstickXImage = reading.LeftThumbstickX * 6 + 75;
+			LeftThumbstickYImage = reading.LeftThumbstickY * (-6) + 49;
+			RightThumbstickXImage = reading.RightThumbstickX * 6 + 141;
+			RightThumbstickYImage = reading.RightThumbstickY * (-6) + 80;
 
 			LeftTrigger = reading.LeftTrigger.ToString("0.00");
 			RightTrigger = reading.RightTrigger.ToString("0.00");
@@ -149,16 +177,41 @@ namespace Uno.Gallery.Views.Samples
 
 		public string Buttons { get => GetProperty<string>(); private set => SetProperty(value); }
 
+		public string LeftThumbstickX { get => GetProperty<string>(); private set => SetProperty(value); }
+		public string LeftThumbstickY { get => GetProperty<string>(); private set => SetProperty(value); }
 		public string RightThumbstickX { get => GetProperty<string>(); private set => SetProperty(value); }
-
 		public string RightThumbstickY { get => GetProperty<string>(); private set => SetProperty(value); }
 
-		public string LeftThumbstickX { get => GetProperty<string>(); private set => SetProperty(value); }
-
-		public string LeftThumbstickY { get => GetProperty<string>(); private set => SetProperty(value); }
-
 		public string LeftTrigger { get => GetProperty<string>(); private set => SetProperty(value); }
-
 		public string RightTrigger { get => GetProperty<string>(); private set => SetProperty(value); }
+
+		public bool ButtonLeftThumbstick { get => GetProperty<bool>(); private set => SetProperty(value); }
+		public bool ButtonRightThumbstick { get => GetProperty<bool>(); private set => SetProperty(value); }
+
+		public double LeftThumbstickXImage { get => GetProperty<double>(); private set => SetProperty(value); }
+		public double LeftThumbstickYImage { get => GetProperty<double>(); private set => SetProperty(value); }
+		public double RightThumbstickXImage { get => GetProperty<double>(); private set => SetProperty(value); }
+		public double RightThumbstickYImage { get => GetProperty<double>(); private set => SetProperty(value); }
+
+		public bool ButtonA { get => GetProperty<bool>(); private set => SetProperty(value); }
+		public bool ButtonX { get => GetProperty<bool>(); private set => SetProperty(value); }
+		public bool ButtonY { get => GetProperty<bool>(); private set => SetProperty(value); }
+		public bool ButtonB { get => GetProperty<bool>(); private set => SetProperty(value); }
+
+		public bool DPadDown { get => GetProperty<bool>(); private set => SetProperty(value); }
+		public bool DPadLeft { get => GetProperty<bool>(); private set => SetProperty(value); }
+		public bool DPadUp { get => GetProperty<bool>(); private set => SetProperty(value); }
+		public bool DPadRight { get => GetProperty<bool>(); private set => SetProperty(value); }
+
+		public bool ButtonView { get => GetProperty<bool>(); private set => SetProperty(value); }
+		public bool ButtonMenu { get => GetProperty<bool>(); private set => SetProperty(value); }
+
+		public bool ButtonPaddle1 { get => GetProperty<bool>(); private set => SetProperty(value); }
+		public bool ButtonPaddle2 { get => GetProperty<bool>(); private set => SetProperty(value); }
+		public bool ButtonPaddle3 { get => GetProperty<bool>(); private set => SetProperty(value); }
+		public bool ButtonPaddle4 { get => GetProperty<bool>(); private set => SetProperty(value); }
+
+		public bool ButtonLeftShoulder { get => GetProperty<bool>(); private set => SetProperty(value); }
+		public bool ButtonRightShoulder { get => GetProperty<bool>(); private set => SetProperty(value); }
 	}
 }

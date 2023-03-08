@@ -102,6 +102,9 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="SkiaSharp.Views.Uno">
+      <Version>2.88.3</Version>
+    </PackageReference>
     <PackageReference Include="Uno.Cupertino">
       <Version>2.3.0</Version>
     </PackageReference>
@@ -135,6 +138,9 @@
     <PackageReference Include="Uno.UI.Adapter.Microsoft.Extensions.Logging" Version="4.8.0-dev.458" />
     <PackageReference Include="Uno.Core.Extensions.Disposables" Version="4.0.1" />
     <PackageReference Include="Uno.Core.Extensions.Compatibility" Version="4.0.1" />
+    <PackageReference Include="Uno.UI.Svg">
+      <Version>4.7.44</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="..\Uno.Gallery.Shared\Uno.Gallery.Shared.projitems" Label="Shared" Condition="Exists('..\Uno.Gallery.Shared\Uno.Gallery.Shared.projitems')" />
   <ItemGroup>
