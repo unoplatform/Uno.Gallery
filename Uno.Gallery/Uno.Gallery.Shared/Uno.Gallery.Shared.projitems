@@ -182,4 +182,7 @@
     <Content Include="$(MSBuildThisFileDirectory)Assets\Animations\*.json" />
     <AndroidAsset Include="$(MSBuildThisFileDirectory)Assets\Animations\*.json" Link="Assets\Assets\Animations\%(FileName)%(Extension)" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\UnoLogo.svg" />
+  </ItemGroup>
 </Project>
