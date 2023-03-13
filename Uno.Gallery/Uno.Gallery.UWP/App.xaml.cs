@@ -2,7 +2,6 @@ using Microsoft.Extensions.Logging;
 using ShowMeTheXAML;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using Uno.Extensions;
@@ -17,8 +16,6 @@ using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Automation;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Navigation;
 using MUXC = Microsoft.UI.Xaml.Controls;
 using MUXCP = Microsoft.UI.Xaml.Controls.Primitives;
 
@@ -180,6 +177,51 @@ namespace Uno.Gallery
 
 				_shell.NavigationView.Content = page;
 			}
+		}
+
+		public void SearchShellNavigateTo(Sample sample)
+		{
+			var nv = _shell.NavigationView;
+			if(nv.Content?.GetType() == sample.ViewType)
+			{
+				return;
+			}
+
+			MUXC.NavigationViewItem selectedItem = null;
+			MUXC.NavigationViewItem selectedCategory = null;
+
+			foreach(MUXC.NavigationViewItem category in nv.MenuItems)
+			{
+				selectedItem = category.MenuItems.OfType<MUXC.NavigationViewItem>()
+					.FirstOrDefault(item => item.DataContext is Sample s && s.ViewType == sample.ViewType);
+
+				if (selectedItem != null)
+				{
+					selectedCategory = category;
+					break;
+				}
+			}
+
+			if(selectedItem is null)
+			{
+				nv.SelectedItem = nv.MenuItems[0];
+			}
+			else
+			{
+				selectedCategory.IsExpanded = true;
+				nv.UpdateLayout();
+
+				nv.SelectedItem = selectedItem;
+			}
+
+			var page = (Page)Activator.CreateInstance(sample.ViewType);
+			page.DataContext = sample;
+
+#if __WASM__
+			_ = Windows.UI.Xaml.Window.Current.Dispatcher.RunIdleAsync(_ => AnalyticsService.TrackView(sample?.Title ?? page.GetType().Name));
+#endif
+
+			_shell.NavigationView.Content = page;
 		}
 
 		private Shell BuildShell()

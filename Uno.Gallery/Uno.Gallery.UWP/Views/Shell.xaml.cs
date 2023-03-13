@@ -1,11 +1,14 @@
 using System;
+using System.Linq;
 using Uno.Extensions;
+using Uno.Extensions.Specialized;
 using Uno.Gallery.Helpers;
 using Uno.Logging;
 using Windows.UI.Core;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
 using MUXC = Microsoft.UI.Xaml.Controls;
 
 namespace Uno.Gallery
@@ -158,8 +161,8 @@ namespace Uno.Gallery
 				NestedSampleFrame.Content = null;
 
 #if __IOS__
-				// This will force reset the UINavigationController, to prevent the back button from appearing when the stack is supposely empty.
-				// note: Merely setting the Frame.Content to null, doesnt fully reset the stack.
+				// This will force reset the UINavigationController, to prevent the back button from appearing when the stack is supposedly empty.
+				// note: Merely setting the Frame.Content to null, doesn't fully reset the stack.
 				// When revisiting the page1 again, the previous page1 is still in the UINavigationController stack
 				// causing a back button to appear that takes us back to the previous page1
 				NestedSampleFrame.BackStack.Add(default);
@@ -197,6 +200,43 @@ namespace Uno.Gallery
 				NavigationViewControl.IsPaneVisible = true;
 				NavigationViewControl.PaneDisplayMode = MUXC.NavigationViewPaneDisplayMode.LeftMinimal;
 			}
+		}
+
+		private void SamplesSearchBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+		{
+			//This check can be removed when https://github.com/unoplatform/uno/issues/11635 is fixed
+#if !__ANDROID__ && !__IOS__
+			if(args.Reason != AutoSuggestionBoxTextChangeReason.UserInput)
+			{
+				return;
+			}
+#endif
+
+			if (string.IsNullOrEmpty(sender.Text))
+			{
+				sender.ItemsSource = null;
+				return;
+			}
+
+			var splitText = sender.Text.ToLower().ToLower().Split(" ");
+
+			var samples = App.GetSamples()
+				.OrderByDescending(x => x.SortOrder.HasValue)
+				.ThenBy(x => x.SortOrder)
+				.ThenBy(x => x.Title)
+				.Where(cat => splitText.All(key => cat.Title.IndexOf(key, StringComparison.OrdinalIgnoreCase) >= 0));
+
+			sender.ItemsSource = samples;
+		}
+
+		private void SamplesSearchBox_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
+		{
+			(Application.Current as App)?.SearchShellNavigateTo(args.SelectedItem as Sample);
+		}
+
+		private void CtrlF_Invoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
+		{
+			SamplesSearchBox.Focus(FocusState.Programmatic);
 		}
 	}
 }
