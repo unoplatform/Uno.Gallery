@@ -22,7 +22,8 @@ namespace Uno.Gallery.Views.Samples
 		public int NumericValue { get => GetProperty<int>(); set => SetProperty(value); }
 		public string SelectedStyle
 		{
-			get => GetProperty<string>(); set
+			get => GetProperty<string>();
+			set
 			{
 				SetProperty(value);
 				BadgeStyle = Application.Current.Resources["InfoBadgeStyle_" + SelectedStyle] as Style;
