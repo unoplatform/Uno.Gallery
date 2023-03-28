@@ -1,8 +1,8 @@
 ﻿using System;
+using Uno.Gallery.ViewModels;
 using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Uno.Gallery.ViewModels;
 
 namespace Uno.Gallery.Views.Samples
 {
@@ -18,34 +18,66 @@ namespace Uno.Gallery.Views.Samples
 		{
 			var result = await Launcher.LaunchUriAsync(new Uri("ms-settings:sound"));
 
-			if(!result && ((Sample)DataContext).Data is LauncherSamplePageViewModel viewModel)
+			if (!result && ((Sample)DataContext).Data is LauncherSamplePageViewModel viewModel)
 			{
-				viewModel.IsInfoBarOpen = true;
+				viewModel.IsSettingsInfoBarOpen = true;
 			}
 		}
 
-		private void LaunchWebsiteButton_Click(object sender, RoutedEventArgs e)
+		private void LaunchWebsiteButtonAsync_Click(object sender, RoutedEventArgs e)
 		{
-			Launcher.LaunchUriAsync(new Uri("https://platform.uno/"));
+			if (((Sample)DataContext).Data is LauncherSamplePageViewModel viewModel)
+			{
+				viewModel.LaunchUri();
+			}
 		}
 	}
 
 	public class LauncherSamplePageViewModel : ViewModelBase
 	{
-		private const string _iosSettingsTextContent = "Open Settings";
-		private const string _settingsContent = "Open Sound Settings";
+		public string SettingsButtonContent { get => GetProperty<string>(); set => SetProperty(value); }
+		public string LaunchUriText { get => GetProperty<string>(); set => SetProperty(value); }
+		public bool IsWebsiteInfoBarOpen { get => GetProperty<bool>(); set => SetProperty(value); }
+		public string WebsiteInfoBarText { get => GetProperty<string>(); set => SetProperty(value); }
+		public bool IsSettingsInfoBarOpen { get => GetProperty<bool>(); set => SetProperty(value); }
 
 		public LauncherSamplePageViewModel()
 		{
 #if __IOS__
-			SettingsButtonContent = _iosSettingsTextContent;
+			//In case of iOS, any special URI opens the main page of system settings (there is no settings deep-linking available on iOS)
+			SettingsButtonContent = "Open Settings";
 #else
-			SettingsButtonContent = _settingsContent;
+			SettingsButtonContent = "Open Sound Settings";
 #endif
+			LaunchUriText = "https://platform.uno/";
 		}
 
-		public string SettingsButtonContent { get => GetProperty<string>(); set => SetProperty(value); }
+		public async void LaunchUri()
+		{
+			if (!Uri.TryCreate(LaunchUriText, UriKind.Absolute, out var uri))
+			{
+				WebsiteInfoBarText = "Houston, we have a problem! The launch was aborted, it appears that this is not a correct URI.";
+				IsWebsiteInfoBarOpen = true;
 
-		public bool IsInfoBarOpen { get => GetProperty<bool>(); set => SetProperty(value); }
+				return;
+			}
+
+#if __WASM__
+if(true)
+#else
+			var supportStatus = await Launcher.QueryUriSupportAsync(uri, LaunchQuerySupportType.Uri);
+
+			if (supportStatus == LaunchQuerySupportStatus.Available)
+#endif
+			{
+				Launcher.LaunchUriAsync(uri);
+				IsWebsiteInfoBarOpen = false;
+			}
+			else
+			{
+				WebsiteInfoBarText = "This special URI is not supported on the current device/platform.";
+				IsWebsiteInfoBarOpen = true;
+			}
+		}
 	}
 }
