@@ -62,12 +62,11 @@ namespace Uno.Gallery.Views.Samples
 				return;
 			}
 
-#if __WASM__
-if(true)
-#else
+#if !__WASM__
 			var supportStatus = await Launcher.QueryUriSupportAsync(uri, LaunchQuerySupportType.Uri);
-
 			if (supportStatus == LaunchQuerySupportStatus.Available)
+#else
+			if (true)
 #endif
 			{
 				Launcher.LaunchUriAsync(uri);
