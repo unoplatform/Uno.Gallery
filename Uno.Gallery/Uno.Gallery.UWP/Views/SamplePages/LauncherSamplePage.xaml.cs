@@ -71,6 +71,10 @@ namespace Uno.Gallery.Views.Samples
 			{
 				Launcher.LaunchUriAsync(uri);
 				IsWebsiteInfoBarOpen = false;
+
+#if __WASM__
+				await Task.CompletedTask;
+#endif
 			}
 			else
 			{
