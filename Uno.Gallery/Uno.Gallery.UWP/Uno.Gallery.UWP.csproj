@@ -220,6 +220,9 @@
     <Compile Include="Views\SamplePages\PipsPagerSamplePage.xaml.cs">
       <DependentUpon>PipsPagerSamplePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SamplePages\AutoSuggestBoxSamplePage.xaml.cs">
+      <DependentUpon>AutoSuggestBoxSamplePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SamplePages\TwoPaneViewSamplePage.xaml.cs">
       <DependentUpon>TwoPaneViewSamplePage.xaml</DependentUpon>
     </Compile>
@@ -575,6 +578,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\SamplePages\PipsPagerSamplePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SamplePages\AutoSuggestBoxSamplePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

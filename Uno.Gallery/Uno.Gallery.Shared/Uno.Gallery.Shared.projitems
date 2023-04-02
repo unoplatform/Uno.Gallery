@@ -145,6 +145,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\DebugConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\EnumDescriptionConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\EnumDesignConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\FromObjectToValueConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\FromBoolToValueConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\EnumConverterBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\FromNullToValueConverter.cs" />
