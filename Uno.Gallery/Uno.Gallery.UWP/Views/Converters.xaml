@@ -24,6 +24,10 @@
 										   TrueValue="Collapsed"
 										   FalseValue="Visible" />
 
+	<converters:FromObjectToValueConverter x:Key="NullToCollapsed"
+	                                     NullValue="Collapsed"
+	                                     NotNullValue="Visible" />
+
 	<converters:FromBoolToValueConverter x:Key="TrueToFilled"
 										 TrueValue="#A1A1A1"
 										 FalseValue="Transparent" />
