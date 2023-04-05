@@ -229,7 +229,7 @@ jobs:
 - job: Linux
   timeoutInMinutes: 90
   pool:
-    vmImage: ubuntu-18.04
+    vmImage: ubuntu-22.04
   
   container: unoplatform/wasm-build:3.0
 
