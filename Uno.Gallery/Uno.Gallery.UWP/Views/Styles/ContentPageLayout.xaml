@@ -27,7 +27,7 @@
 								   MaxLines="1"
 								   TextTrimming="CharacterEllipsis"
 								   Style="{StaticResource HeadlineLarge}"
-								   Margin="48,0" />
+								   Margin="48,24,0,6" />
 
 						<!-- Top bar with Uno logo (visible on mobile) -->
 						<Grid x:Name="MobileTopBar"
