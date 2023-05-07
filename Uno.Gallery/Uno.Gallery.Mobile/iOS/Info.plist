@@ -59,5 +59,7 @@
 		<string>Media.xcassets/AppIcons.appiconset</string>
 		<key>ITSAppUsesNonExemptEncryption</key>
 		<false/>
+		<key>NSMotionUsageDescription</key>
+		<string>This app requires motion tracking for the Pedometer sample to work.</string>
 	</dict>
 </plist>
