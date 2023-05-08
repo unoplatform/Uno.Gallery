@@ -59,5 +59,12 @@
 		<string>Media.xcassets/AppIcons.appiconset</string>
 		<key>ITSAppUsesNonExemptEncryption</key>
 		<false/>
+		<key>LSApplicationQueriesSchemes</key>
+		<array>
+			<string>tel</string>
+			<string>sms</string>
+			<string>mailto</string>
+			<string>https</string>
+		</array>
 	</dict>
 </plist>
