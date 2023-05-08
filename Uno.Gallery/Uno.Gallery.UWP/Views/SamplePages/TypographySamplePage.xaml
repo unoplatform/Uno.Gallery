@@ -9,76 +9,448 @@
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 		<local:SamplePageLayout>
-
 			<local:SamplePageLayout.FluentTemplate>
 				<DataTemplate>
+
 					<smtx:XamlDisplay UniqueKey="TypographySamplePage_Fluent"
-									  smtx:XamlDisplayExtensions.Header="Typography"
-									  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
-						<StackPanel Spacing="12">
+									  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\XX">
 
-							<!-- https://docs.microsoft.com/en-us/windows/apps/design/style/xaml-theme-resources#the-xaml-type-ramp -->
-							<TextBlock Text="Header" Style="{StaticResource HeaderTextBlockStyle}" />
-							<TextBlock Text="SubHeader" Style="{StaticResource SubheaderTextBlockStyle}" />
-							<TextBlock Text="Title" Style="{StaticResource TitleTextBlockStyle}" />
-							<TextBlock Text="Subtitle" Style="{StaticResource SubtitleTextBlockStyle}" />
-							<TextBlock Text="Base" Style="{StaticResource BaseTextBlockStyle}" />
-							<TextBlock Text="Body" Style="{StaticResource BodyTextBlockStyle}" />
-							<TextBlock Text="Caption" Style="{StaticResource CaptionTextBlockStyle}" />
+						<UserControl>
+							<VisualStateManager.VisualStateGroups>
+								<VisualStateGroup>
+									<VisualState x:Name="WideState">
+										<VisualState.StateTriggers>
+											<AdaptiveTrigger MinWindowWidth="1200" />
+										</VisualState.StateTriggers>
+										<VisualState.Setters>
+											<Setter Target="fluentHeader.Visibility"
+													Value="Visible" />
+										</VisualState.Setters>
+									</VisualState>
+									<VisualState x:Name="NarrowState">
+										<VisualState.StateTriggers>
+											<AdaptiveTrigger MinWindowWidth="0" />
+										</VisualState.StateTriggers>
+										<VisualState.Setters>
+											<Setter Target="fluentHeader.Visibility"
+													Value="Collapsed" />
+										</VisualState.Setters>
+									</VisualState>
+								</VisualStateGroup>
+							</VisualStateManager.VisualStateGroups>
 
-						</StackPanel>
+							<StackPanel>
+<!-- https://learn.microsoft.com/en-us/windows/apps/design/style/xaml-theme-resources#the-xaml-type-ramp
+								
+<TextBlock Text="Display"
+		   Style="{StaticResource DisplayTextBlockStyle}" />
+								
+<TextBlock Text="Title Large"
+		   Style="{StaticResource TitleLargeTextBlockStyle}" />
+								
+<TextBlock Text="Title"
+		   Style="{StaticResource TitleTextBlockStyle}" />
+								
+<TextBlock Text="Subtitle"
+		   Style="{StaticResource SubtitleTextBlockStyle}" />
+								
+<TextBlock Text="Body Strong"
+		   Style="{StaticResource BodyStrongTextBlockStyle}" />
+								
+<TextBlock Text="Body"
+		   Style="{StaticResource BodyTextBlockStyle}" />
+								
+<TextBlock Text="Caption"
+		   Style="{StaticResource CaptionTextBlockStyle}" />-->
+
+								<local:TypographyControl x:Name="fluentHeader"
+														 ExampleColText="Example"
+														 VariableFontColText="Variable Font"
+														 FontSizeColText="Size / Line height"
+														 StyleColText="Style"
+														 IsCopyEnabled="False" />
+
+								<local:TypographyControl ExampleColText="Display"
+														 VariableFontColText="Display, SemiBold"
+														 FontSizeColText="68/92 epx"
+														 StyleColText="DisplayTextBlockStyle"
+														 TypographyStyle="{StaticResource DisplayTextBlockStyle}"
+														 Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" />
+
+								<local:TypographyControl ExampleColText="Title Large"
+														 VariableFontColText="Display, SemiBold"
+														 FontSizeColText="40/52 epx"
+														 StyleColText="TitleLargeTextBlockStyle"
+														 TypographyStyle="{StaticResource TitleLargeTextBlockStyle}" />
+
+								<local:TypographyControl ExampleColText="Title"
+														 VariableFontColText="Display, SemiBold"
+														 FontSizeColText="28/36 epx"
+														 StyleColText="TitleTextBlockStyle"
+														 TypographyStyle="{StaticResource TitleTextBlockStyle}"
+														 Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" />
+
+								<local:TypographyControl ExampleColText="Subtitle"
+														 VariableFontColText="Display, SemiBold"
+														 FontSizeColText="20/28 epx"
+														 StyleColText="SubtitleTextBlockStyle"
+														 TypographyStyle="{StaticResource SubtitleTextBlockStyle}" />
+
+								<local:TypographyControl ExampleColText="Body Strong"
+														 VariableFontColText="Text, SemiBold"
+														 FontSizeColText="14/20 epx"
+														 StyleColText="BodyStrongTextBlockStyle"
+														 TypographyStyle="{StaticResource BodyStrongTextBlockStyle}"
+														 Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" />
+
+								<local:TypographyControl ExampleColText="Body"
+														 VariableFontColText="Text, Regular"
+														 FontSizeColText="14/20 epx"
+														 StyleColText="BodyTextBlockStyle"
+														 TypographyStyle="{StaticResource BodyTextBlockStyle}" />
+
+								<local:TypographyControl ExampleColText="Caption"
+														 VariableFontColText="Small, Regular"
+														 FontSizeColText="12/16 epx"
+														 StyleColText="CaptionTextBlockStyle"
+														 TypographyStyle="{StaticResource CaptionTextBlockStyle}"
+														 Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" />
+							</StackPanel>
+						</UserControl>
 					</smtx:XamlDisplay>
 				</DataTemplate>
 			</local:SamplePageLayout.FluentTemplate>
 			<local:SamplePageLayout.MaterialTemplate>
 				<DataTemplate>
+
 					<smtx:XamlDisplay UniqueKey="TypographySamplePage_Material"
-									  smtx:XamlDisplayExtensions.Header="Typography"
-									  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
-						<StackPanel Spacing="12">
+									  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\XX">
+						<UserControl>
+							<VisualStateManager.VisualStateGroups>
+								<VisualStateGroup>
+									<VisualState x:Name="WideState">
+										<VisualState.StateTriggers>
+											<AdaptiveTrigger MinWindowWidth="1200" />
+										</VisualState.StateTriggers>
+										<VisualState.Setters>
+											<Setter Target="materialHeader.Visibility"
+													Value="Visible" />
+										</VisualState.Setters>
+									</VisualState>
+									<VisualState x:Name="NarrowState">
+										<VisualState.StateTriggers>
+											<AdaptiveTrigger MinWindowWidth="0" />
+										</VisualState.StateTriggers>
+										<VisualState.Setters>
+											<Setter Target="materialHeader.Visibility"
+													Value="Collapsed" />
+										</VisualState.Setters>
+									</VisualState>
+								</VisualStateGroup>
+							</VisualStateManager.VisualStateGroups>
 
-							<!-- https://m3.material.io/styles/typography/type-scale-tokens -->
-							<TextBlock Text="Display Large" Style="{StaticResource DisplayLarge}" />
-							<TextBlock Text="Display Medium" Style="{StaticResource DisplayMedium}" />
-							<TextBlock Text="Display Small" Style="{StaticResource DisplaySmall}" />
-							<TextBlock Text="Headline Large" Style="{StaticResource HeadlineLarge}" />
-							<TextBlock Text="Headline Medium" Style="{StaticResource HeadlineMedium}" />
-							<TextBlock Text="Headline Small" Style="{StaticResource HeadlineSmall}" />
-							<TextBlock Text="Title Large" Style="{StaticResource TitleLarge}" />
-							<TextBlock Text="Title Medium" Style="{StaticResource TitleMedium}" />
-							<TextBlock Text="Title Small" Style="{StaticResource TitleSmall}" />
-							<TextBlock Text="Label Large" Style="{StaticResource LabelLarge}" />
-							<TextBlock Text="Label Medium" Style="{StaticResource LabelMedium}" />
-							<TextBlock Text="Label Small" Style="{StaticResource LabelSmall}" />
-							<TextBlock Text="Body Large" Style="{StaticResource BodyLarge}" />
-							<TextBlock Text="Body Medium" Style="{StaticResource BodyMedium}" />
-							<TextBlock Text="Body Small" Style="{StaticResource BodySmall}" />
+							<StackPanel Spacing="12">
+<!-- https://m3.material.io/styles/typography/type-scale-tokens
 
-						</StackPanel>
+<TextBlock Text="Display Large"
+		   Style="{StaticResource DisplayLarge}" />
+
+<TextBlock Text="Display Medium"
+		   Style="{StaticResource DisplayMedium}" />
+
+<TextBlock Text="Display Small"
+		   Style="{StaticResource DisplaySmall}" />
+
+<TextBlock Text="Headline Large"
+		   Style="{StaticResource HeadlineLarge}" />
+
+<TextBlock Text="Headline Medium"
+		   Style="{StaticResource HeadlineMedium}" />
+
+<TextBlock Text="Headline Small"
+		   Style="{StaticResource HeadlineSmall}" />
+
+<TextBlock Text="Title Large"
+		   Style="{StaticResource TitleLarge}" />
+
+<TextBlock Text="Title Medium"
+		   Style="{StaticResource TitleMedium}" />
+
+<TextBlock Text="Title Small"
+		   Style="{StaticResource TitleSmall}" />
+
+<TextBlock Text="Label Large"
+		   Style="{StaticResource LabelLarge}" />
+
+<TextBlock Text="Label Medium"
+		   Style="{StaticResource LabelMedium}" />
+
+<TextBlock Text="Label Small"
+		   Style="{StaticResource LabelSmall}" />
+
+<TextBlock Text="Body Large"
+		   Style="{StaticResource BodyLarge}" />
+
+<TextBlock Text="Body Medium"
+		   Style="{StaticResource BodyMedium}" />
+
+<TextBlock Text="Body Small"
+		   Style="{StaticResource BodySmall}" /> -->
+
+								<local:TypographyControl x:Name="materialHeader"
+														 ExampleColText="Example"
+														 VariableFontColText="Weight"
+														 FontSizeColText="Size / Line height"
+														 StyleColText="Style"
+														 IsCopyEnabled="False" />
+
+								<local:TypographyControl ExampleColText="Display Large"
+														 VariableFontColText="Regular"
+														 FontSizeColText="57/64 px"
+														 StyleColText="DisplayLarge"
+														 TypographyStyle="{StaticResource DisplayLarge}"
+														 Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" />
+
+								<local:TypographyControl ExampleColText="Display Medium"
+														 VariableFontColText="Regular"
+														 FontSizeColText="45/52 px"
+														 StyleColText="DisplayMedium"
+														 TypographyStyle="{StaticResource DisplayMedium}" />
+
+								<local:TypographyControl ExampleColText="Display Small"
+														 VariableFontColText="Regular"
+														 FontSizeColText="36/44 px"
+														 StyleColText="DisplaySmall"
+														 TypographyStyle="{StaticResource DisplaySmall}"
+														 Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" />
+
+								<local:TypographyControl ExampleColText="Headline Large"
+														 VariableFontColText="Regular"
+														 FontSizeColText="32/40 px"
+														 StyleColText="HeadlineLarge"
+														 TypographyStyle="{StaticResource HeadlineLarge}" />
+
+								<local:TypographyControl ExampleColText="Headline Medium"
+														 VariableFontColText="Regular"
+														 FontSizeColText="28/36 px"
+														 StyleColText="HeadlineMedium"
+														 TypographyStyle="{StaticResource HeadlineMedium}"
+														 Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" />
+
+								<local:TypographyControl ExampleColText="Headline Small"
+														 VariableFontColText="Regular"
+														 FontSizeColText="24/32 px"
+														 StyleColText="HeadlineSmall"
+														 TypographyStyle="{StaticResource HeadlineSmall}" />
+
+								<local:TypographyControl ExampleColText="Title Large"
+														 VariableFontColText="Regular"
+														 FontSizeColText="22/28 px"
+														 StyleColText="TitleLarge"
+														 TypographyStyle="{StaticResource TitleLarge}"
+														 Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" />
+
+								<local:TypographyControl ExampleColText="Title Medium"
+														 VariableFontColText="Medium"
+														 FontSizeColText="16/24 px"
+														 StyleColText="TitleMedium"
+														 TypographyStyle="{StaticResource TitleMedium}" />
+
+								<local:TypographyControl ExampleColText="Title Small"
+														 VariableFontColText="Medium"
+														 FontSizeColText="14/20 px"
+														 StyleColText="TitleSmall"
+														 TypographyStyle="{StaticResource TitleSmall}"
+														 Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" />
+
+								<local:TypographyControl ExampleColText="Label Large"
+														 VariableFontColText="Medium"
+														 FontSizeColText="14/20 px"
+														 StyleColText="LabelLarge"
+														 TypographyStyle="{StaticResource LabelLarge}" />
+
+								<local:TypographyControl ExampleColText="Label Medium"
+														 VariableFontColText="Medium"
+														 FontSizeColText="12/16 px"
+														 StyleColText="LabelMedium"
+														 TypographyStyle="{StaticResource LabelMedium}"
+														 Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" />
+
+								<local:TypographyControl ExampleColText="Label Small"
+														 VariableFontColText="Medium"
+														 FontSizeColText="11/16 px"
+														 StyleColText="LabelSmall"
+														 TypographyStyle="{StaticResource LabelSmall}" />
+
+								<local:TypographyControl ExampleColText="Body Large"
+														 VariableFontColText="Medium"
+														 FontSizeColText="16/24 px"
+														 StyleColText="BodyLarge"
+														 TypographyStyle="{StaticResource BodyLarge}"
+														 Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" />
+
+								<local:TypographyControl ExampleColText="Body Medium"
+														 VariableFontColText="Regular"
+														 FontSizeColText="14/20 px"
+														 StyleColText="BodyMedium"
+														 TypographyStyle="{StaticResource BodyMedium}" />
+
+								<local:TypographyControl ExampleColText="Body Small"
+														 VariableFontColText="Regular"
+														 FontSizeColText="12/16 px"
+														 StyleColText="BodySmall"
+														 TypographyStyle="{StaticResource BodySmall}"
+														 Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" />
+							</StackPanel>
+						</UserControl>
 					</smtx:XamlDisplay>
 				</DataTemplate>
 			</local:SamplePageLayout.MaterialTemplate>
 			<local:SamplePageLayout.CupertinoTemplate>
 				<DataTemplate>
 					<smtx:XamlDisplay UniqueKey="TypographySamplePage_Cupertino"
-									  smtx:XamlDisplayExtensions.Header="Typography"
-									  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
-						<StackPanel>
+									  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\XX">
+						<UserControl>
+							<VisualStateManager.VisualStateGroups>
+								<VisualStateGroup>
+									<VisualState x:Name="WideState">
+										<VisualState.StateTriggers>
+											<AdaptiveTrigger MinWindowWidth="1200" />
+										</VisualState.StateTriggers>
+										<VisualState.Setters>
+											<Setter Target="cupertinoHeader.Visibility"
+													Value="Visible" />
+										</VisualState.Setters>
+									</VisualState>
+									<VisualState x:Name="NarrowState">
+										<VisualState.StateTriggers>
+											<AdaptiveTrigger MinWindowWidth="0" />
+										</VisualState.StateTriggers>
+										<VisualState.Setters>
+											<Setter Target="cupertinoHeader.Visibility"
+													Value="Collapsed" />
+										</VisualState.Setters>
+									</VisualState>
+								</VisualStateGroup>
+							</VisualStateManager.VisualStateGroups>
 
-							<!-- https://developer.apple.com/design/human-interface-guidelines/ios/visual-design/typography/ -->
-							<TextBlock Text="Cupertino Large Title" Style="{StaticResource CupertinoLargeTitle}" />
-							<TextBlock Text="Cupertino Primary Title" Style="{StaticResource CupertinoPrimaryTitle}" />
-							<TextBlock Text="Cupertino Secondary Title" Style="{StaticResource CupertinoSecondaryTitle}" />
-							<TextBlock Text="Cupertino Tertiary Title" Style="{StaticResource CupertinoTertiaryTitle}" />
-							<TextBlock Text="Cupertino Headline" Style="{StaticResource CupertinoHeadline}" />
-							<TextBlock Text="Cupertino Body" Style="{StaticResource CupertinoBody}" />
-							<TextBlock Text="Cupertino Callout" Style="{StaticResource CupertinoCallout}" />
-							<TextBlock Text="Cupertino Subhead" Style="{StaticResource CupertinoSubhead}" />
-							<TextBlock Text="Cupertino Footnote" Style="{StaticResource CupertinoFootnote}" />
-							<TextBlock Text="Cupertino Primary Caption" Style="{StaticResource CupertinoPrimaryCaption}" />
-							<TextBlock Text="Cupertino Secondary Caption" Style="{StaticResource CupertinoSecondaryCaption}" />
+							<StackPanel>
 
-						</StackPanel>
+<!-- https://developer.apple.com/design/human-interface-guidelines/foundations/typography/
+
+<TextBlock Text="Large Title"
+		   Style="{StaticResource CupertinoLargeTitle}" />
+
+<TextBlock Text="Primary Title"
+		   Style="{StaticResource CupertinoPrimaryTitle}" />
+
+<TextBlock Text="Secondary Title"
+		   Style="{StaticResource CupertinoSecondaryTitle}" />
+
+<TextBlock Text="Tertiary Title"
+		   Style="{StaticResource CupertinoTertiaryTitle}" />
+
+<TextBlock Text="Headline"
+		   Style="{StaticResource CupertinoHeadline}" />
+
+<TextBlock Text="Body"
+		   Style="{StaticResource CupertinoBody}" />
+
+<TextBlock Text="Callout"
+		   Style="{StaticResource CupertinoCallout}" />
+
+<TextBlock Text="Subhead"
+		   Style="{StaticResource CupertinoSubhead}" />
+
+<TextBlock Text="Footnote"
+		   Style="{StaticResource CupertinoFootnote}" />
+
+<TextBlock Text="Primary Caption"
+		   Style="{StaticResource CupertinoPrimaryCaption}" />
+
+<TextBlock Text="Secondary Caption"
+		   Style="{StaticResource CupertinoSecondaryCaption}" />-->
+
+								<local:TypographyControl x:Name="cupertinoHeader"
+														 ExampleColText="Example"
+														 VariableFontColText="Weight"
+														 FontSizeColText="Size / Line height"
+														 StyleColText="Style"
+														 IsCopyEnabled="False" />
+
+								<local:TypographyControl ExampleColText="Large Title"
+														 VariableFontColText="Regular"
+														 FontSizeColText="34/41 px"
+														 StyleColText="CupertinoLargeTitle"
+														 TypographyStyle="{StaticResource CupertinoLargeTitle}"
+														 Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" />
+
+								<local:TypographyControl ExampleColText="Primary Title"
+														 VariableFontColText="Regular"
+														 FontSizeColText="28/34 px"
+														 StyleColText="CupertinoPrimaryTitle"
+														 TypographyStyle="{StaticResource CupertinoPrimaryTitle}" />
+
+								<local:TypographyControl ExampleColText="Secondary Title"
+														 VariableFontColText="Regular"
+														 FontSizeColText="22/28 px"
+														 StyleColText="CupertinoSecondaryTitle"
+														 TypographyStyle="{StaticResource CupertinoSecondaryTitle}"
+														 Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" />
+
+								<local:TypographyControl ExampleColText="Tertiary Title"
+														 VariableFontColText="Regular"
+														 FontSizeColText="20/25 px"
+														 StyleColText="CupertinoTertiaryTitle"
+														 TypographyStyle="{StaticResource CupertinoTertiaryTitle}" />
+
+								<local:TypographyControl ExampleColText="Headline"
+														 VariableFontColText="SemiBold"
+														 FontSizeColText="17/22 px"
+														 StyleColText="CupertinoHeadline"
+														 TypographyStyle="{StaticResource CupertinoHeadline}"
+														 Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" />
+
+								<local:TypographyControl ExampleColText="Body"
+														 VariableFontColText="Regular"
+														 FontSizeColText="17/22 px"
+														 StyleColText="CupertinoBody"
+														 TypographyStyle="{StaticResource CupertinoBody}" />
+
+								<local:TypographyControl ExampleColText="Callout"
+														 VariableFontColText="Regular"
+														 FontSizeColText="16/21 px"
+														 StyleColText="CupertinoCallout"
+														 TypographyStyle="{StaticResource CupertinoCallout}"
+														 Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" />
+
+								<local:TypographyControl ExampleColText="Subhead"
+														 VariableFontColText="Regular"
+														 FontSizeColText="15/20 px"
+														 StyleColText="CupertinoSubhead"
+														 TypographyStyle="{StaticResource CupertinoSubhead}" />
+
+								<local:TypographyControl ExampleColText="Footnote"
+														 VariableFontColText="Regular"
+														 FontSizeColText="13/18 px"
+														 StyleColText="CupertinoFootnote"
+														 TypographyStyle="{StaticResource CupertinoFootnote}"
+														 Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" />
+
+								<local:TypographyControl ExampleColText="Primary Caption"
+														 VariableFontColText="Regular"
+														 FontSizeColText="13/16 px"
+														 StyleColText="CupertinoPrimaryCaption"
+														 TypographyStyle="{StaticResource CupertinoPrimaryCaption}" />
+
+								<local:TypographyControl ExampleColText="Secondary Caption"
+														 VariableFontColText="Regular"
+														 FontSizeColText="11/13 px"
+														 StyleColText="CupertinoSecondaryCaption"
+														 TypographyStyle="{StaticResource CupertinoSecondaryCaption}"
+														 Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" />
+							</StackPanel>
+						</UserControl>
 					</smtx:XamlDisplay>
 				</DataTemplate>
 			</local:SamplePageLayout.CupertinoTemplate>
