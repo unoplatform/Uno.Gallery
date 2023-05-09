@@ -103,6 +103,7 @@
 		<PackageReference Include="Uno.Cupertino" Version="2.3.0" />
 		<PackageReference Include="Uno.Diagnostics.Eventing" Version="2.1.0-dev.1" />
 		<PackageReference Include="Uno.Material" Version="2.3.0" />
+		<PackageReference Include="Uno.Microsoft.Toolkit.Uwp.UI.Controls.DataGrid" Version="7.1.11" />
 		<PackageReference Include="Uno.ShowMeTheXAML" Version="1.1.0" />
 		<PackageReference Include="Uno.ShowMeTheXAML.MSBuild" Version="1.1.0" />
 		<PackageReference Include="Uno.Toolkit.UI" Version="2.3.0" />

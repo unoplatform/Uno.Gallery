@@ -24,6 +24,8 @@
 										   TrueValue="Collapsed"
 										   FalseValue="Visible" />
 
+	<converters:FromValueToStringConverter x:Key="ColorNameToString"/>
+
 	<converters:FromObjectToValueConverter x:Key="NullToCollapsed"
 	                                     NullValue="Collapsed"
 	                                     NotNullValue="Visible" />
@@ -31,6 +33,8 @@
 	<converters:FromBoolToValueConverter x:Key="TrueToFilled"
 										 TrueValue="#A1A1A1"
 										 FalseValue="Transparent" />
+
+	<converters:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffset" />
 
 	<converters:EnumDescriptionConverter x:Key="EnumToDescription" />
 

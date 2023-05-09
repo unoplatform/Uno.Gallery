@@ -145,10 +145,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\DebugConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\EnumDescriptionConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\EnumDesignConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\DateTimeToDateTimeOffsetConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\FromObjectToValueConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\FromBoolToValueConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\EnumConverterBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\FromNullToValueConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\FromValueToStringConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\FromStringToValueConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\ColorPaletteView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\FluentColorAccentView.cs" />
@@ -158,6 +160,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\SecretConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Deeplinking\BranchService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Domain\AnalyticsService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Data\Plant.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\SampleCategoryInfoAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\SampleConditionalAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Data\DividerItem.cs" />

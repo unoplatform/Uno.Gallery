@@ -48,6 +48,7 @@
 				<ResourceDictionary Source="Views/Styles/ToggleButton.xaml" />
 				<ResourceDictionary Source="Views/Styles/ToggleSwitch.xaml" />
 				<ResourceDictionary Source="Views/Styles/XamlDisplay.xaml" />
+				<ResourceDictionary Source="Views/Styles/DataGrid.xaml" />
 				<ResourceDictionary>
 					<x:Double x:Key="DesktopAdaptiveThresholdWidth">720</x:Double>
 				</ResourceDictionary>
