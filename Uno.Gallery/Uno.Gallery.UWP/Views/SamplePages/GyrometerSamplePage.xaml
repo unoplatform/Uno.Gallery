@@ -14,7 +14,6 @@
 				<DataTemplate>
 					<StackPanel>
 						<smtx:XamlDisplay UniqueKey="GyrometerSamplePage_Sample"
-										  smtx:XamlDisplayExtensions.IgnorePath="XX"
 										  smtx:XamlDisplayExtensions.Header="Gyrometer">
 							<Grid>
 								<Grid.RowDefinitions>
