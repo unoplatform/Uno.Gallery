@@ -67,5 +67,12 @@
 	<string>The location access is required to test the location functionality</string>
 	<key>NSMotionUsageDescription</key>
 	<string>This app requires motion tracking for the Pedometer sample to work.</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>tel</string>
+		<string>sms</string>
+		<string>mailto</string>
+		<string>https</string>
+	</array>
 </dict>
 </plist>

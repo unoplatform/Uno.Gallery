@@ -47,6 +47,7 @@
 				<ResourceDictionary Source="Views/Styles/ThreeColorPaletteView.xaml" />
 				<ResourceDictionary Source="Views/Styles/ToggleButton.xaml" />
 				<ResourceDictionary Source="Views/Styles/ToggleSwitch.xaml" />
+				<ResourceDictionary Source="Views/Styles/TypographyControl.xaml" />
 				<ResourceDictionary Source="Views/Styles/XamlDisplay.xaml" />
 				<ResourceDictionary>
 					<x:Double x:Key="DesktopAdaptiveThresholdWidth">720</x:Double>
