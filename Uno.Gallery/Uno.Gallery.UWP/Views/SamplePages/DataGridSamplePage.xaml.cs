@@ -95,15 +95,17 @@ namespace Uno.Gallery.Views.Samples
 			if (!(((Sample)DataContext).Data is DataGridSamplePageViewModel viewModel))
 				return;
 
-			switch ((sender as Control).Tag)
+			var tag = (sender as Control).Tag;
+
+			switch (tag)
 			{
 				case "FruitOrVegetable":
-					viewModel.RowGroupHeader = "FruitOrVegetable";
+					viewModel.RowGroupHeader = tag.ToString();
 
 					viewModel.GroupByDataGrid(p => p.FruitOrVegetable);
 					break;
 				case "IsWatered":
-					viewModel.RowGroupHeader = "IsWatered";
+					viewModel.RowGroupHeader = tag.ToString();
 
 					viewModel.GroupByDataGrid(p => p.IsWatered);
 					break;
@@ -121,6 +123,7 @@ namespace Uno.Gallery.Views.Samples
 			var group = e.RowGroupHeader.CollectionViewGroup;
 			var item = group.GroupItems[0] as Plant;
 
+			(sender as DataGrid).RowGroupHeaderPropertyNameAlternative = viewModel.RowGroupHeader;
 			if (viewModel.RowGroupHeader == "IsWatered")
 			{
 				e.RowGroupHeader.PropertyValue = (item?.IsWatered ?? false) ? "Yes" : "No";
@@ -137,7 +140,7 @@ namespace Uno.Gallery.Views.Samples
 			{
 				calendar.IsCalendarOpen = true;
 			}
-
+			else
 			if (e.EditingElement is ComboBox comboBox)
 			{
 				comboBox.IsDropDownOpen = true;
@@ -160,21 +163,20 @@ namespace Uno.Gallery.Views.Samples
 		public SolidColorBrush AlternatingRowBackground { get => GetProperty<SolidColorBrush>(); set => SetProperty(value); }
 		public DataGridGridLinesVisibility GridLinesVisibility { get => GetProperty<DataGridGridLinesVisibility>(); set => SetProperty(value); }
 		public DataGridHeadersVisibility HeadersVisibility { get => GetProperty<DataGridHeadersVisibility>(); set => SetProperty(value); }
-		public DataGridRowDetailsVisibilityMode RowDetailsVisibilityMode { get => GetProperty<DataGridRowDetailsVisibilityMode>(); set => SetProperty(value); }
 		public DataGridSelectionMode SelectionMode { get => GetProperty<DataGridSelectionMode>(); set => SetProperty(value); }
-
 		public List<SolidColorBrush> AvailableColors { get => GetProperty<List<SolidColorBrush>>(); set => SetProperty(value); }
 		public List<DataGridGridLinesVisibility> GridLinesVisibilityOptions { get => GetProperty<List<DataGridGridLinesVisibility>>(); set => SetProperty(value); }
 		public List<DataGridHeadersVisibility> HeadersVisibilityOptions { get => GetProperty<List<DataGridHeadersVisibility>>(); set => SetProperty(value); }
-
-		// This is currently causes bug on WASM, removed until fixed
-		//public List<DataGridRowDetailsVisibilityMode> RowDetailsVisibilityModeOptions { get => GetProperty<List<DataGridRowDetailsVisibilityMode>>(); set => SetProperty(value); }
 		public List<DataGridSelectionMode> SelectionModeOptions { get => GetProperty<List<DataGridSelectionMode>>(); set => SetProperty(value); }
 
 		public string RowGroupHeader { get => GetProperty<string>(); set => SetProperty(value); }
 
 		public IEnumerable DataGridItems { get => GetProperty<IEnumerable>(); set => SetProperty(value); }
 		public FruitOrVegetableEnum[] FruitOrVegetableEnumValues;
+
+		// This is currently causes bug on WASM, removed until fixed
+		//public DataGridRowDetailsVisibilityMode RowDetailsVisibilityMode { get => GetProperty<DataGridRowDetailsVisibilityMode>(); set => SetProperty(value); }
+		//public List<DataGridRowDetailsVisibilityMode> RowDetailsVisibilityModeOptions { get => GetProperty<List<DataGridRowDetailsVisibilityMode>>(); set => SetProperty(value); }
 
 		public DataGridSamplePageViewModel()
 		{

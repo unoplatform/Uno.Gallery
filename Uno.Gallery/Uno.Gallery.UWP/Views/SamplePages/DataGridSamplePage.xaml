@@ -46,7 +46,7 @@
 															Value="0" />
 													<Setter Target="sideBar.(Grid.Column)"
 															Value="1" />
-													<Setter Target="sideBar.(Grid.Row"
+													<Setter Target="sideBar.(Grid.Row)"
 															Value="0" />
 													<Setter Target="dataGrid.(Grid.Row)"
 															Value="0" />
@@ -74,7 +74,8 @@
 										</VisualStateGroup>
 									</VisualStateManager.VisualStateGroups>
 
-									<wct:DataGrid ItemsSource="{Binding Data.DataGridItems, Mode=TwoWay}"
+									<wct:DataGrid x:Name="dataGrid"
+												  ItemsSource="{Binding Data.DataGridItems, Mode=TwoWay}"
 												  ColumnHeaderHeight="{Binding Data.ColumnHeaderHeight, Mode=OneWay}"
 												  MaxColumnWidth="{Binding Data.MaxColumnWidth, Mode=OneWay}"
 												  MinColumnWidth="{Binding Data.MinColumnWidth, Mode=OneWay}"
@@ -89,9 +90,10 @@
 												  GridLinesVisibility="{Binding Data.GridLinesVisibility, Mode=OneWay}"
 												  HeadersVisibility="{Binding Data.HeadersVisibility, Mode=OneWay}"
 												  SelectionMode="{Binding Data.SelectionMode, Mode=OneWay}"
-												  RowGroupHeaderPropertyNameAlternative="{Binding Data.RowGroupHeader, Mode=OneWay}"
 												  RowDetailsVisibilityMode="Collapsed"
 												  AutoGenerateColumns="False"
+												  PreparingCellForEdit="DataGrid_PreparingCellForEdit"
+												  LoadingRowGroup="DataGrid_LoadingRowGroup"
 												  Sorting="DataGrid_Sorting">
 										<wct:DataGrid.Columns>
 											<wct:DataGridTextColumn Header="Plant Name"
