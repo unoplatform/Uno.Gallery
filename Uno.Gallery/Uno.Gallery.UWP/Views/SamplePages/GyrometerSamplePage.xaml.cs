@@ -1,7 +1,8 @@
 ﻿using System;
-using System.ComponentModel;
 using Uno.Gallery.ViewModels;
+using Windows.ApplicationModel.Core;
 using Windows.Devices.Sensors;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -93,12 +94,15 @@ namespace Uno.Gallery.Views.Samples
 			ObservingReadingChange = false;
 		}
 
-		private void Gyrometer_ReadingChanged(Gyrometer sender, GyrometerReadingChangedEventArgs args)
+		private async void Gyrometer_ReadingChanged(Gyrometer sender, GyrometerReadingChangedEventArgs args)
 		{
-			AngularVelocityX = args.Reading.AngularVelocityX;
-			AngularVelocityY = args.Reading.AngularVelocityY;
-			AngularVelocityZ = args.Reading.AngularVelocityZ;
-			LastReadTimestamp = args.Reading.Timestamp;
+			await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+			{
+				AngularVelocityX = args.Reading.AngularVelocityX;
+				AngularVelocityY = args.Reading.AngularVelocityY;
+				AngularVelocityZ = args.Reading.AngularVelocityZ;
+				LastReadTimestamp = args.Reading.Timestamp;
+			});
 		}
 	}
 }
