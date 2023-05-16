@@ -15,8 +15,7 @@
 				<DataTemplate>
 					<StackPanel Spacing="20"
 								Margin="0,20,0,0">
-						<smtx:XamlDisplay UniqueKey="Material_InfoBarSamplePage_Error_SingleButton"
-										  Style="{StaticResource XamlDisplayBelowStyle}">
+						<smtx:XamlDisplay UniqueKey="Material_InfoBarSamplePage_Error_SingleButton">
 							<winui:InfoBar x:Name="firstInfo"
 										   Title="Title"
 										   IsOpen="True"
@@ -35,8 +34,7 @@
 							</winui:InfoBar>
 						</smtx:XamlDisplay>
 
-						<smtx:XamlDisplay UniqueKey="Material_InfoBarSamplePage_Warning_DoubleButton"
-										  Style="{StaticResource XamlDisplayBelowStyle}">
+						<smtx:XamlDisplay UniqueKey="Material_InfoBarSamplePage_Warning_DoubleButton">
 							<winui:InfoBar x:Name="secondInfo"
 										   Title="Title"
 										   IsOpen="True"
@@ -60,8 +58,7 @@
 							</winui:InfoBar>
 						</smtx:XamlDisplay>
 
-						<smtx:XamlDisplay UniqueKey="Material_InfoBarSamplePage_Success_SingleButton"
-										  Style="{StaticResource XamlDisplayBelowStyle}">
+						<smtx:XamlDisplay UniqueKey="Material_InfoBarSamplePage_Success_SingleButton">
 							<winui:InfoBar x:Name="thirdInfo"
 										   Title="Title"
 										   IsOpen="True"
@@ -76,8 +73,7 @@
 							</winui:InfoBar>
 						</smtx:XamlDisplay>
 
-						<smtx:XamlDisplay UniqueKey="Material_InfoBarSamplePage_Information_SingleButton"
-										  Style="{StaticResource XamlDisplayBelowStyle}">
+						<smtx:XamlDisplay UniqueKey="Material_InfoBarSamplePage_Information_SingleButton">
 							<winui:InfoBar x:Name="fourthInfo"
 										   Title="Title"
 										   IsOpen="True"

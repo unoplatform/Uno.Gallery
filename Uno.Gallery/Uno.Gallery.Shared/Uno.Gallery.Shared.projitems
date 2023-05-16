@@ -133,6 +133,8 @@
     <Content Include="$(MSBuildThisFileDirectory)Assets\UnoLogo_Small.scale-200.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\UnoLogo_Small.scale-300.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\UnoLogo_Small.scale-400.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Videos\Getting_Started_with_Uno_Platform_for_Figma.mp4" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Thumbnails\Getting_Started_with_Uno_Platform_for_Figma.png" />
   </ItemGroup>
   <ItemGroup>
     <PRIResource Include="$(MSBuildThisFileDirectory)Strings\en\Resources.resw" />
@@ -186,5 +188,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="$(MSBuildThisFileDirectory)Assets\UnoLogo.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Assets\Thumbnails\" />
   </ItemGroup>
 </Project>
