@@ -1,6 +1,8 @@
 ﻿using System;
 using Uno.Gallery.ViewModels;
+using Windows.ApplicationModel.Core;
 using Windows.Devices.Sensors;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -84,11 +86,14 @@ namespace Uno.Gallery.Views.Samples
 			ObservingReadingChange = false;
 		}
 
-		private void Pedometer_ReadingChanged(Pedometer sender, PedometerReadingChangedEventArgs args)
+		private async void Pedometer_ReadingChanged(Pedometer sender, PedometerReadingChangedEventArgs args)
 		{
-			Steps = args.Reading.CumulativeSteps;
-			Duration = args.Reading.CumulativeStepsDuration;
-			LastReadTimestamp = args.Reading.Timestamp;
+			await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+			{
+				Steps = args.Reading.CumulativeSteps;
+				Duration = args.Reading.CumulativeStepsDuration;
+				LastReadTimestamp = args.Reading.Timestamp;
+			});
 		}
 	}
 }
