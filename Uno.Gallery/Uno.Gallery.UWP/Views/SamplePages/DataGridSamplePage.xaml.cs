@@ -174,7 +174,7 @@ namespace Uno.Gallery.Views.Samples
 		public IEnumerable DataGridItems { get => GetProperty<IEnumerable>(); set => SetProperty(value); }
 		public FruitOrVegetableEnum[] FruitOrVegetableEnumValues;
 
-		// This is currently causes bug on WASM, removed until fixed
+		// This currently causes a bug on WASM, removed until fixed https://github.com/unoplatform/uno/issues/11184
 		//public DataGridRowDetailsVisibilityMode RowDetailsVisibilityMode { get => GetProperty<DataGridRowDetailsVisibilityMode>(); set => SetProperty(value); }
 		//public List<DataGridRowDetailsVisibilityMode> RowDetailsVisibilityModeOptions { get => GetProperty<List<DataGridRowDetailsVisibilityMode>>(); set => SetProperty(value); }
 
