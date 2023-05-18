@@ -10,7 +10,7 @@
 
 	<!-- Samples adapted from Microsoft XAML Controls Gallery: -->
 	<!-- https://github.com/microsoft/Xaml-Controls-Gallery -->
-	<Grid Background="{ThemeResource BackgroundBrush}">
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 		<local:SamplePageLayout>
 			<local:SamplePageLayout.FluentTemplate>
 				<DataTemplate>
