@@ -214,6 +214,9 @@
     <Compile Include="Views\SamplePages\BreadcrumbBarSamplePage.xaml.cs">
       <DependentUpon>BreadcrumbBarSamplePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SamplePages\GyrometerSamplePage.xaml.cs">
+      <DependentUpon>GyrometerSamplePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SamplePages\MagnetometerSamplePage.xaml.cs">
       <DependentUpon>MagnetometerSamplePage.xaml</DependentUpon>
     </Compile>
@@ -232,6 +235,9 @@
     <Compile Include="Views\SamplePages\GamepadSamplePage.xaml.cs">
       <DependentUpon>GamepadSamplePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SamplePages\PedometerSamplePage.xaml.cs">
+      <DependentUpon>PedometerSamplePage.xaml</DependentUpon>
+	</Compile>
     <Compile Include="Views\SamplePages\LauncherSamplePage.xaml.cs">
       <DependentUpon>LauncherSamplePage.xaml</DependentUpon>
     </Compile>
@@ -594,6 +600,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\SamplePages\GyrometerSamplePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\SamplePages\MagnetometerSamplePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -618,6 +628,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+	<Page Include="Views\SamplePages\PedometerSamplePage.xaml">
+	  <SubType>Designer</SubType>
+	  <Generator>MSBuild:Compile</Generator>
+	</Page>
     <Page Include="Views\SamplePages\LauncherSamplePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
