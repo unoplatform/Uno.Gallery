@@ -23,7 +23,14 @@
 		<WasmShellEmccLinkOptimization>false</WasmShellEmccLinkOptimization>
 		<WasmShellEnableEmccProfiling>true</WasmShellEnableEmccProfiling>
 		<UnoXamlResourcesTrimming>true</UnoXamlResourcesTrimming>
-		<!--<WasmShellGenerateAOTProfile>true</WasmShellGenerateAOTProfile>-->
+		<WasmShellEnableJiterpreter>true</WasmShellEnableJiterpreter>
+
+		<!--
+		Uncomment this block to generate a profile
+		<WasmShellGenerateAOTProfile>true</WasmShellGenerateAOTProfile>
+		<WasmShellILLinkerEnabled>false</WasmShellILLinkerEnabled>
+		<UnoXamlResourcesTrimming>false</UnoXamlResourcesTrimming>
+		-->
 	</PropertyGroup>
 
 	<ItemGroup>
