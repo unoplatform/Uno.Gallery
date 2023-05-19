@@ -229,6 +229,9 @@
     <Compile Include="Views\SamplePages\GamepadSamplePage.xaml.cs">
       <DependentUpon>GamepadSamplePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SamplePages\PedometerSamplePage.xaml.cs">
+      <DependentUpon>PedometerSamplePage.xaml</DependentUpon>
+	</Compile>
     <Compile Include="Views\SamplePages\LauncherSamplePage.xaml.cs">
       <DependentUpon>LauncherSamplePage.xaml</DependentUpon>
     </Compile>
@@ -611,6 +614,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+	<Page Include="Views\SamplePages\PedometerSamplePage.xaml">
+	  <SubType>Designer</SubType>
+	  <Generator>MSBuild:Compile</Generator>
+	</Page>
     <Page Include="Views\SamplePages\LauncherSamplePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
