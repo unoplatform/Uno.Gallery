@@ -5,7 +5,7 @@ using System.Text;
 namespace Uno.Gallery
 {
 	[Flags]
-	public enum SampleConditionals
+	public enum SampleConditionals : uint
 	{
 		Windows = 1 << 0,
 		Wasm = 1 << 1,
@@ -18,7 +18,7 @@ namespace Uno.Gallery
 		Mobile = Droid | iOS,
 		SkiaBased = Wasm | SkiaGtk,
 		
-		Disabled = 1 << 31,
-		Always = int.MaxValue ^ Disabled,
+		Disabled = 1U << 31,
+		Always = uint.MaxValue ^ Disabled,
 	}
 }

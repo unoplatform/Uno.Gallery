@@ -62,7 +62,7 @@
 
 						<!-- Title (visible on desktop) -->
 						<TextBlock x:Name="StickyTitle"
-								   Margin="48,24"
+								   Margin="48,24,0,6"
 								   MaxLines="1"
 								   Style="{StaticResource HeadlineLarge}"
 								   Text="{TemplateBinding Title}"

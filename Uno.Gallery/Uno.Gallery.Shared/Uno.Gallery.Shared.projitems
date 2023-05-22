@@ -133,6 +133,8 @@
     <Content Include="$(MSBuildThisFileDirectory)Assets\UnoLogo_Small.scale-200.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\UnoLogo_Small.scale-300.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\UnoLogo_Small.scale-400.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Videos\Getting_Started_with_Uno_Platform_for_Figma.mp4" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Thumbnails\Getting_Started_with_Uno_Platform_for_Figma.png" />
   </ItemGroup>
   <ItemGroup>
     <PRIResource Include="$(MSBuildThisFileDirectory)Strings\en\Resources.resw" />
@@ -162,6 +164,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Deeplinking\BranchService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Domain\AnalyticsService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Data\Plant.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Data\Folder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\SampleCategoryInfoAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\SampleConditionalAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Data\DividerItem.cs" />
@@ -189,5 +192,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="$(MSBuildThisFileDirectory)Assets\UnoLogo.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Assets\Thumbnails\" />
   </ItemGroup>
 </Project>

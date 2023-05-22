@@ -6,8 +6,7 @@
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	  xmlns:utu="using:Uno.Toolkit.UI"
 	  xmlns:smtx="using:ShowMeTheXAML"
-	  mc:Ignorable="d"
-	  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+	  mc:Ignorable="d">
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 		<local:SamplePageLayout>

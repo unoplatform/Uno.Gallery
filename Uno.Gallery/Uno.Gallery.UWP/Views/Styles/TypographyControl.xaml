@@ -26,14 +26,21 @@
 						</Grid.ColumnDefinitions>
 						<Grid.RowDefinitions>
 							<RowDefinition Height="*" />
-							<RowDefinition Height="auto" />
+							<RowDefinition x:Name="row2"
+										   Height="0" />
+							<RowDefinition x:Name="row3"
+										   Height="0" />
+							<RowDefinition x:Name="row4"
+										   Height="0" />
+							<RowDefinition x:Name="row5"
+										   Height="0" />
 						</Grid.RowDefinitions>
 
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup>
 								<VisualState x:Name="WideState">
 									<VisualState.StateTriggers>
-										<AdaptiveTrigger MinWindowWidth="1200" />
+										<AdaptiveTrigger MinWindowWidth="1300" />
 									</VisualState.StateTriggers>
 									<VisualState.Setters>
 										<Setter Target="variableFontColText.Visibility"
@@ -46,9 +53,9 @@
 												Value="Collapsed" />
 									</VisualState.Setters>
 								</VisualState>
-								<VisualState x:Name="NarrowState">
+								<VisualState x:Name="MediumState">
 									<VisualState.StateTriggers>
-										<AdaptiveTrigger MinWindowWidth="0" />
+										<AdaptiveTrigger MinWindowWidth="540" />
 									</VisualState.StateTriggers>
 									<VisualState.Setters>
 										<Setter Target="variableFontColText.Visibility"
@@ -59,6 +66,51 @@
 												Value="Collapsed" />
 										<Setter Target="mobileDetailsText.Visibility"
 												Value="Visible" />
+										<Setter Target="row2.Height"
+												Value="auto" />
+										<Setter Target="col1.Width"
+												Value="0" />
+										<Setter Target="col2.Width"
+												Value="0" />
+										<Setter Target="col3.Width"
+												Value="0" />
+									</VisualState.Setters>
+								</VisualState>
+								<VisualState x:Name="NarrowState">
+									<VisualState.StateTriggers>
+										<AdaptiveTrigger MinWindowWidth="0" />
+									</VisualState.StateTriggers>
+									<VisualState.Setters>
+										<Setter Target="variableFontColText.Visibility"
+												Value="Visible" />
+										<Setter Target="fontSizeColText.Visibility"
+												Value="Visible" />
+										<Setter Target="styleColText.Visibility"
+												Value="Visible" />
+										<Setter Target="variableFontColText.(Grid.Row)"
+												Value="1" />
+										<Setter Target="fontSizeColText.(Grid.Row)"
+												Value="2" />
+										<Setter Target="styleColText.(Grid.Row)"
+												Value="3" />
+										<Setter Target="grid.RowSpacing"
+												Value="4" />
+										<Setter Target="row2.Height"
+												Value="auto" />
+										<Setter Target="row3.Height"
+												Value="auto" />
+										<Setter Target="row4.Height"
+												Value="auto" />
+										<Setter Target="row5.Height"
+												Value="8" />
+										<Setter Target="variableFontColText.(Grid.Column)"
+												Value="0" />
+										<Setter Target="fontSizeColText.(Grid.Column)"
+												Value="0" />
+										<Setter Target="styleColText.(Grid.Column)"
+												Value="0" />
+										<Setter Target="mobileDetailsText.Visibility"
+												Value="Collapsed" />
 										<Setter Target="col1.Width"
 												Value="0" />
 										<Setter Target="col2.Width"
