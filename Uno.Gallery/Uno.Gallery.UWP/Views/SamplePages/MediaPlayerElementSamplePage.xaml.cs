@@ -30,5 +30,10 @@ namespace Uno.Gallery.Views.Samples
 		{
 			Shell.GetForCurrentView().ShowNestedSample<MediaPlayerElementSample_NestedPage4>(clearStack: true);
 		}
+
+		private void LaunchMediaPlayerElementSample5(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+		{
+			Shell.GetForCurrentView().ShowNestedSample<MediaPlayerElementSample_NestedPage5>(clearStack: true);
+		}
 	}
 }
