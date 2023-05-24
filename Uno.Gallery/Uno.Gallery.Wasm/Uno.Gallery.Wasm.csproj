@@ -23,7 +23,11 @@
 		<WasmShellEmccLinkOptimization>false</WasmShellEmccLinkOptimization>
 		<WasmShellEnableEmccProfiling>true</WasmShellEnableEmccProfiling>
 		<UnoXamlResourcesTrimming>true</UnoXamlResourcesTrimming>
+
+		<!--
+		Disabled because of https://github.com/dotnet/runtime/issues/86710 
 		<WasmShellEnableJiterpreter>true</WasmShellEnableJiterpreter>
+		-->
 
 		<!--
 		Uncomment this block to generate a profile
