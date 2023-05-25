@@ -112,7 +112,7 @@
       <Version>2.2.2</Version>
     </PackageReference>
     <PackageReference Include="Uno.Material">
-      <Version>2.3.0</Version>
+      <Version>2.5.3</Version>
     </PackageReference>
     <PackageReference Include="Uno.ShowMeTheXAML">
       <Version>1.1.0</Version>
@@ -167,9 +167,6 @@
     <None Include="Info.plist" />
     <None Include="Entitlements.plist" />
     <BundleResource Include="Resources\Fonts\SF-Pro.ttf" />
-    <BundleResource Include="Resources\Fonts\Roboto-Light.ttf" />
-    <BundleResource Include="Resources\Fonts\Roboto-Medium.ttf" />
-    <BundleResource Include="Resources\Fonts\Roboto-Regular.ttf" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />

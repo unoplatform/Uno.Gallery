@@ -10,7 +10,7 @@
 			<ResourceDictionary.MergedDictionaries>
 				<!-- Load Uno.Themes\Material resources -->
 				<MaterialColors xmlns="using:Uno.Material" />
-				<MaterialFonts xmlns="using:Uno.Material" OverrideSource="ms-appx:///Views/MaterialFontsOverride.xaml" />
+				<MaterialFonts xmlns="using:Uno.Material" />
 				<MaterialResources xmlns="using:Uno.Material" />
 
 				<!-- Load Uno.Themes\Cupertino resources -->

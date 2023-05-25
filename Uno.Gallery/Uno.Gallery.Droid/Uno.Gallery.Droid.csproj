@@ -96,7 +96,7 @@
       <Version>2.2.2</Version>
     </PackageReference>
     <PackageReference Include="Uno.Material">
-      <Version>2.3.0</Version>
+      <Version>2.5.3</Version>
     </PackageReference>
     <PackageReference Include="Uno.ShowMeTheXAML">
       <Version>1.1.0</Version>
@@ -149,9 +149,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\Fonts\Cupertino\SF-Pro.ttf" />
-    <AndroidAsset Include="Assets\Fonts\Material\Roboto-Light.ttf" />
-    <AndroidAsset Include="Assets\Fonts\Material\Roboto-Medium.ttf" />
-    <AndroidAsset Include="Assets\Fonts\Material\Roboto-Regular.ttf" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
   </ItemGroup>
