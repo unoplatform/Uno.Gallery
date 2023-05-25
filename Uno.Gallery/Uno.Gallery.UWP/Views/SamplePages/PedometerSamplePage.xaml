@@ -15,50 +15,44 @@
 						<smtx:XamlDisplay UniqueKey="PedometerSamplePage_Sample"
 										  smtx:XamlDisplayExtensions.IgnorePath="XX"
 										  smtx:XamlDisplayExtensions.Header="Pedometer">
-							<Grid>
-								<Grid.RowDefinitions>
-									<RowDefinition Height="auto" />
-									<RowDefinition Height="auto" />
-								</Grid.RowDefinitions>
-								<!-- C# code
+							<StackPanel Spacing="16">
+<!-- C# code
 var pedometer = await Pedometer.GetDefaultAsync();
 pedometer.ReportInterval = 10000;
 pedometer.ReadingChanged += Pedometer_ReadingChanged;
 
 private async void Pedometer_ReadingChanged(Pedometer sender, PedometerReadingChangedEventArgs args)
 {
-    // If you want to update the UI in some way, ensure the Dispatcher is used,
-    // as the ReadingChanged event handler does not run on the UI thread.
-    await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-    {
-        CumulativeSteps = args.Reading.CumulativeSteps;
-        CumulativeStepsDurationInSeconds = args.Reading.CumulativeStepsDuration.TotalSeconds;
-        Timestamp = args.Reading.Timestamp.ToString("R");
-    });
+	// If you want to update the UI in some way, ensure the Dispatcher is used,
+	// as the ReadingChanged event handler does not run on the UI thread.
+	await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+	{
+		CumulativeSteps = args.Reading.CumulativeSteps;
+		CumulativeStepsDurationInSeconds = args.Reading.CumulativeStepsDuration.TotalSeconds;
+		Timestamp = args.Reading.Timestamp.ToString("R");
+	});
 }
 -->
-
-								<TextBlock Visibility="{Binding Data.PedometerAvailable}"
-										   Margin="0,0,0,20">
-									<LineBreak />
-									<Span FontWeight="Bold">Steps: </Span>
+								<TextBlock Visibility="{Binding Data.PedometerAvailable}">
+									<Span FontWeight="Bold">Steps:</Span>
 									<Run Text="{Binding Data.Steps}" />
 									<LineBreak />
-									<Span FontWeight="Bold">Duration: </Span>
+
+									<Span FontWeight="Bold">Duration:</Span>
 									<Run Text="{Binding Data.Duration}" />
 									<LineBreak />
-									<Span FontWeight="Bold">Last read timestamp: </Span>
+
+									<Span FontWeight="Bold">Last read timestamp:</Span>
 									<Run Text="{Binding Data.LastReadTimestamp}" />
 								</TextBlock>
-
 								<Button IsEnabled="{Binding Data.PedometerAvailable}"
-										Grid.Row="1"
 										Click="ObserveReadingChangeButton_Click">
 									<TextBlock Text="{Binding Data.ButtonContent}"
 											   VerticalAlignment="Stretch"
 											   TextAlignment="Center" />
 								</Button>
-							</Grid>
+								<TextBlock Text="{Binding Data.ErrorMessage}" />
+							</StackPanel>
 						</smtx:XamlDisplay>
 					</StackPanel>
 				</DataTemplate>
