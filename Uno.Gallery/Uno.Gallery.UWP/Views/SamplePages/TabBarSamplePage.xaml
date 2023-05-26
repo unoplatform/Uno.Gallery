@@ -9,6 +9,12 @@
 	  xmlns:todo="what should be done"
 	  mc:Ignorable="d todo">
 
+	<Page.Resources>
+		<x:String x:Key="HomeIcon">&#xE10F;</x:String>
+		<x:String x:Key="SupportIcon">&#xE8F2;</x:String>
+		<x:String x:Key="AboutIcon">&#xE946;</x:String>
+	</Page.Resources>
+	
 	<sample:SamplePageLayout Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 		<sample:SamplePageLayout.MaterialTemplate>
 			<DataTemplate>
@@ -19,17 +25,17 @@
 							<utu:TabBar.Items>
 								<utu:TabBarItem Content="HOME">
 									<utu:TabBarItem.Icon>
-										<FontIcon Glyph="&#xE80F;" />
+										<FontIcon Glyph="{StaticResource HomeIcon}" />
 									</utu:TabBarItem.Icon>
 								</utu:TabBarItem>
 								<utu:TabBarItem Content="SUPPORT">
 									<utu:TabBarItem.Icon>
-										<FontIcon Glyph="&#xE8F2;" />
+										<FontIcon Glyph="{StaticResource SupportIcon}" />
 									</utu:TabBarItem.Icon>
 								</utu:TabBarItem>
 								<utu:TabBarItem Content="ABOUT">
 									<utu:TabBarItem.Icon>
-										<FontIcon Glyph="&#xE946;" />
+										<FontIcon Glyph="{StaticResource AboutIcon}" />
 									</utu:TabBarItem.Icon>
 								</utu:TabBarItem>
 
@@ -44,17 +50,17 @@
 							<utu:TabBar.Items>
 								<utu:TabBarItem Content="HOME">
 									<utu:TabBarItem.Icon>
-										<FontIcon Glyph="&#xE80F;" />
+										<FontIcon Glyph="{StaticResource HomeIcon}" />
 									</utu:TabBarItem.Icon>
 								</utu:TabBarItem>
 								<utu:TabBarItem Content="SUPPORT">
 									<utu:TabBarItem.Icon>
-										<FontIcon Glyph="&#xE8F2;" />
+										<FontIcon Glyph="{StaticResource SupportIcon}" />
 									</utu:TabBarItem.Icon>
 								</utu:TabBarItem>
 								<utu:TabBarItem Content="ABOUT">
 									<utu:TabBarItem.Icon>
-										<FontIcon Glyph="&#xE946;" />
+										<FontIcon Glyph="{StaticResource AboutIcon}" />
 									</utu:TabBarItem.Icon>
 								</utu:TabBarItem>
 
@@ -122,17 +128,17 @@
 							<utu:TabBar.Items>
 								<utu:TabBarItem Content="Home">
 									<utu:TabBarItem.Icon>
-										<FontIcon Glyph="&#xE80F;" />
+										<FontIcon Glyph="{StaticResource HomeIcon}" />
 									</utu:TabBarItem.Icon>
 								</utu:TabBarItem>
 								<utu:TabBarItem Content="Support">
 									<utu:TabBarItem.Icon>
-										<FontIcon Glyph="&#xE8F2;" />
+										<FontIcon Glyph="{StaticResource SupportIcon}" />
 									</utu:TabBarItem.Icon>
 								</utu:TabBarItem>
 								<utu:TabBarItem Content="About">
 									<utu:TabBarItem.Icon>
-										<FontIcon Glyph="&#xE946;" />
+										<FontIcon Glyph="{StaticResource AboutIcon}" />
 									</utu:TabBarItem.Icon>
 								</utu:TabBarItem>
 							</utu:TabBar.Items>
