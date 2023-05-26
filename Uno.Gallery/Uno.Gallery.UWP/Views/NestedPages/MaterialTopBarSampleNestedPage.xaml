@@ -7,6 +7,13 @@
 	  mc:Ignorable="d"
 	  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+	<Page.Resources>
+		<x:String x:Key="HomeIcon">&#xE10F;</x:String>
+		<x:String x:Key="SearchIcon">&#xE721;</x:String>
+		<x:String x:Key="SupportIcon">&#xE8F2;</x:String>
+		<x:String x:Key="AboutIcon">&#xE946;</x:String>
+	</Page.Resources>
+	
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto" />
@@ -42,7 +49,7 @@
 			<Grid x:Name="Home" Visibility="Collapsed">
 				<Border Background="LightGray">
 					<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-						<FontIcon Glyph="&#xE80F;" />
+						<FontIcon Glyph="{StaticResource HomeIcon}" />
 						<TextBlock Text="Home" TextAlignment="Center" />
 					</StackPanel>
 				</Border>
@@ -50,7 +57,7 @@
 			<Grid x:Name="Search" Visibility="Collapsed">
 				<Border Background="LightGray">
 					<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-						<FontIcon Glyph="&#xe721;" />
+						<FontIcon Glyph="{StaticResource SearchIcon}" />
 						<TextBlock Text="Search" TextAlignment="Center" />
 					</StackPanel>
 				</Border>
@@ -58,7 +65,7 @@
 			<Grid x:Name="Support" Visibility="Collapsed">
 				<Border Background="LightGray">
 					<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-						<FontIcon Glyph="&#xE8F2;" />
+						<FontIcon Glyph="{StaticResource SupportIcon}" />
 						<TextBlock Text="Support" TextAlignment="Center" />
 					</StackPanel>
 				</Border>
@@ -66,7 +73,7 @@
 			<Grid x:Name="About" Visibility="Collapsed">
 				<Border Background="LightGray">
 					<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-						<FontIcon Glyph="&#xE946;" />
+						<FontIcon Glyph="{StaticResource AboutIcon}" />
 						<TextBlock Text="About" TextAlignment="Center" />
 					</StackPanel>
 				</Border>
