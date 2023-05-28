@@ -45,7 +45,7 @@ jobs:
 
       - run: |
           cd Uno.Gallery/Uno.Gallery.Wasm
-          dotnet msbuild -m:1 -r -p:Configuration=Release "-p:PackageVersion=${{ steps.gitversion.outputs.fullSemVer }}"
+          dotnet build -c Release "/p:PackageVersion=${{ steps.gitversion.outputs.fullSemVer }}"
       - uses: actions/upload-artifact@v2
         with:
           name: wasm-site

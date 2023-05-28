@@ -112,7 +112,7 @@
       <Version>2.2.2</Version>
     </PackageReference>
     <PackageReference Include="Uno.Material">
-      <Version>2.5.3</Version>
+      <Version>2.6.0-dev.25</Version>
     </PackageReference>
     <PackageReference Include="Uno.ShowMeTheXAML">
       <Version>1.1.0</Version>
