@@ -100,15 +100,12 @@
 		<PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
 		<PackageReference Include="Uno.Extensions.Logging.WebAssembly.Console" Version="1.4.0" />
 		<PackageReference Include="Microsoft.Windows.Compatibility" Version="6.0.0" />
-		<PackageReference Include="Uno.Cupertino" Version="2.3.0" />
 		<PackageReference Include="Uno.Diagnostics.Eventing" Version="2.1.0-dev.1" />
 		<PackageReference Include="Uno.Fonts.Fluent" Version="2.2.2" />
-		<PackageReference Include="Uno.Material" Version="2.6.0-dev.25" />
 		<PackageReference Include="Uno.ShowMeTheXAML" Version="1.1.0" />
 		<PackageReference Include="Uno.ShowMeTheXAML.MSBuild" Version="1.1.0" />
-		<PackageReference Include="Uno.Toolkit.UI" Version="2.3.0" />
-		<PackageReference Include="Uno.Toolkit.UI.Cupertino" Version="2.3.0" />
-		<PackageReference Include="Uno.Toolkit.UI.Material" Version="2.3.0" />
+		<PackageReference Include="Uno.Toolkit.UI.Cupertino" Version="2.6.0-dev.68" />
+		<PackageReference Include="Uno.Toolkit.UI.Material" Version="2.6.0-dev.68" />
 		<PackageReference Include="Uno.UI.Lottie" Version="4.9.0-dev.1113" />
 		<PackageReference Include="Uno.UI.MediaPlayer.WebAssembly" Version="4.9.0-dev.1113" />
 		<PackageReference Include="Uno.UI.WebAssembly" Version="4.9.0-dev.1113" />
