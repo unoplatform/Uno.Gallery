@@ -39,6 +39,13 @@
 						<Button Content="Show sample"
 								Click="LaunchMediaPlayerElementSample4"
 								Style="{StaticResource FilledButtonStyle}" />
+
+						<TextBlock Text="MediaPlayerElement sample using a Playlist"
+								   Style="{StaticResource TitleLarge}"
+								   Margin="0,16" />
+						<Button Content="Show sample"
+								Click="LaunchMediaPlayerElementSample5"
+								Style="{StaticResource FilledButtonStyle}" />
 					</StackPanel>
 				</DataTemplate>
 			</local:SamplePageLayout.FluentTemplate>
