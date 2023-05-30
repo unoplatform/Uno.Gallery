@@ -7,6 +7,7 @@
 		<WasmHead>true</WasmHead>
 		<DefineConstants>__WASM__</DefineConstants>
 		<UnoUIUseRoslynSourceGenerators>false</UnoUIUseRoslynSourceGenerators>
+  		<WasmShellWebAppBasePath>/</WasmShellWebAppBasePath>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='Debug'">
