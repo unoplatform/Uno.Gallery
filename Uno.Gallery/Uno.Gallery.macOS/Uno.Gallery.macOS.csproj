@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -157,7 +157,7 @@
   <ItemGroup>
     <None Include="Info.plist" />
     <None Include="Entitlements.plist" />
-    <BundleResource Include="Resources\Fonts\SF-Pro.ttf" />
+    <BundleResource Include="Resources\Fonts\SF-Pro-Text-Regular.otf" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
