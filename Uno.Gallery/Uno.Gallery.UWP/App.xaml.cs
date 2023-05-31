@@ -16,8 +16,14 @@ using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Automation;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Navigation;
 using MUXC = Microsoft.UI.Xaml.Controls;
 using MUXCP = Microsoft.UI.Xaml.Controls.Primitives;
+
+#if HAS_UNO
+using Uno.Foundation.Extensibility;
+#endif
 
 namespace Uno.Gallery
 {
@@ -38,6 +44,11 @@ namespace Uno.Gallery
 
 #if !WINDOWS_UWP
 			Uno.UI.FeatureConfiguration.ApiInformation.NotImplementedLogLevel = Foundation.Logging.LogLevel.Debug; // Raise not implemented usages as Debug messages
+#endif
+
+			// Register the IFileSavePickerExtension for iOS.
+#if __IOS__
+            ApiExtensibility.Register(typeof(Uno.Extensions.Storage.Pickers.IFileSavePickerExtension), (picker) => new Uno.Gallery.Extensions.FolderSavePickerExtension(picker));
 #endif
 
 			InitializeLogging();
