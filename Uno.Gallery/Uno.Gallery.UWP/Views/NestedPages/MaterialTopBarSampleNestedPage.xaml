@@ -20,7 +20,7 @@
 			<utu:NavigationBar.MainCommand>
 				<AppBarButton Click="NavigateBack" Style="{StaticResource AppBarButtonStyle}">
 					<AppBarButton.Icon>
-						<BitmapIcon ShowAsMonochrome="False" UriSource="ms-appx:///Assets/Close.png" />
+						<BitmapIcon UriSource="ms-appx:///Assets/Close.png" />
 					</AppBarButton.Icon>
 				</AppBarButton>
 			</utu:NavigationBar.MainCommand>
