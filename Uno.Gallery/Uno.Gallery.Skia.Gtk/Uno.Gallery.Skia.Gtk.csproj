@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<OutputType Condition="'$(Configuration)'=='Release'">WinExe</OutputType>
@@ -23,7 +23,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Content Include="Assets\Fonts\Cupertino\SF-Pro.ttf" />
+		<Content Include="Assets\Fonts\Cupertino\SF-Pro-Text-Regular.otf" />
 		<Content Include="Assets\StoreLogo.png" />
 	</ItemGroup>
 
@@ -51,7 +51,7 @@
 	<Import Project="..\Uno.Gallery.Shared\Uno.Gallery.Shared.projitems" Label="Shared" />
 
 	<ItemGroup>
-		<None Remove="Assets\Fonts\Cupertino\SF-Pro.ttf" />
+		<None Remove="Assets\Fonts\Cupertino\SF-Pro-Text-Regular.otf" />
 	</ItemGroup>
 
 	<ItemGroup>

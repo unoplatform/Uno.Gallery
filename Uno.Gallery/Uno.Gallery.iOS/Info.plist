@@ -43,7 +43,7 @@
 	</array>
 	<key>UIAppFonts</key>
 	<array>
-		<string>Fonts/SF-Pro.ttf</string>
+		<string>Fonts/SF-Pro-Text-Regular.otf</string>
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
