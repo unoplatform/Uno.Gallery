@@ -7,8 +7,9 @@
 			 xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
 			 xmlns:win="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 			 xmlns:wasm="http://uno.ui/wasm"
+			 xmlns:mobile="http://uno.ui/mobile"
 			 xmlns:xamarin="http://uno.ui/xamarin"
-			 mc:Ignorable="wasm xamarin">
+			 mc:Ignorable="wasm xamarin mobile">
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -79,6 +80,11 @@
 
 		<!-- Nested frame for samples that needs to be fullscreen -->
 		<Frame x:Name="NestedSampleFrame"
+			   Grid.RowSpan="3"
+			   Visibility="Collapsed" />
+
+		<Frame x:Name="UnoNestedSampleFrame"
+			   mobile:Style="{StaticResource UnoNativeFramePresenterStyle}"
 			   Grid.RowSpan="3"
 			   Visibility="Collapsed" />
 

@@ -35,9 +35,16 @@ namespace Uno.Gallery
 		/// </summary>
 		public App()
 		{
+#if HAS_UNO
+			Uno.UI.FeatureConfiguration.Style.ConfigureNativeFrameNavigation();
+#endif
 
 #if !WINDOWS_UWP
 			Uno.UI.FeatureConfiguration.ApiInformation.NotImplementedLogLevel = Foundation.Logging.LogLevel.Debug; // Raise not implemented usages as Debug messages
+#endif
+
+#if __ANDROID__
+			Uno.UI.FeatureConfiguration.AppBarButton.EnableBitmapIconTint = true;
 #endif
 
 			InitializeLogging();

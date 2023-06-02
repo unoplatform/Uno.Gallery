@@ -3,7 +3,9 @@
 			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 xmlns:todo="what should be done"
-			 mc:Ignorable="todo">
+			 xmlns:uc="using:Uno.UI.Controls"
+			 xmlns:mobile="http://uno.ui/mobile"
+			 mc:Ignorable="todo mobile">
 
 	<Application.Resources>
 		<ResourceDictionary>
@@ -26,7 +28,7 @@
 				<!-- Load WinUI resources -->
 				<!-- Load these resources after the Material/Cupertino resources. This ensures that the default Fluent styles will be used as the implicit styles. -->
 				<XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
-				
+
 				<!-- Application's custom styles -->
 				<ResourceDictionary Source="Views/Colors.xaml" todo:note="define some colors\brushes, and images resources; not for color overriding" />
 				<ResourceDictionary Source="Views/Converters.xaml" />
@@ -54,6 +56,18 @@
 				</ResourceDictionary>
 
 			</ResourceDictionary.MergedDictionaries>
+
+			<mobile:Style x:Key="UnoNativeFramePresenterStyle"
+						  TargetType="Frame"
+						  IsNativeStyle="True">
+				<Setter Property="Template">
+					<Setter.Value>
+						<ControlTemplate TargetType="Frame">
+							<uc:NativeFramePresenter />
+						</ControlTemplate>
+					</Setter.Value>
+				</Setter>
+			</mobile:Style>
 		</ResourceDictionary>
 	</Application.Resources>
 </Application>

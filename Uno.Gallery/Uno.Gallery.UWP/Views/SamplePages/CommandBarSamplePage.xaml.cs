@@ -28,7 +28,11 @@ namespace Uno.Gallery.Views.SamplePages
 
 		private void LaunchFullScreenSample(object sender, RoutedEventArgs e)
 		{
-			Shell.GetForCurrentView().ShowNestedSample<CommandBarSample_NestedMaterialPage1>(clearStack: true);
+			Shell.GetForCurrentView().ShowNestedSample<CommandBarSample_NestedMaterialPage1>(
+#if __ANDROID__ || __IOS__ || __MACCATALYST__
+				useNativeUnoFrame: true,
+#endif
+				clearStack: true);
 		}
 	}
 }
