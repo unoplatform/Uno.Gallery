@@ -60,6 +60,8 @@ jobs:
     value: UWP
   - name: VersionCodeOffset
     value: 50
+  - name: PackageOutputPath
+    value: $(Build.ArtifactStagingDirectory)
 
   steps:
   - template: build/stage-build-uwp.yml

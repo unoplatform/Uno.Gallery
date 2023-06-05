@@ -14,7 +14,8 @@ steps:
   displayName: Build project
   retryCountOnTaskFailure: 3
   inputs:
-    solution: Uno.Gallery\Uno.Gallery.UWP\Uno.Gallery.UWP.csproj 
+    solution: Uno.Gallery\Uno.Gallery.UWP\Uno.Gallery.UWP.csproj
+    platform: $(ApplicationPlatform)
     msbuildArguments: /ds /m /r /p:Configuration=Release "/p:InformationalVersion=%GITVERSION_InformationalVersion%" /bl:$(build.artifactstagingdirectory)/build.binlog 
 
 - task: PublishBuildArtifacts@1
