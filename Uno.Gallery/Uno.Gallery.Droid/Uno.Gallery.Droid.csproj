@@ -113,7 +113,7 @@
     <PackageReference Include="Uno.UI.Lottie">
       <Version>4.9.0-dev.1113</Version>
     </PackageReference>
-    <PackageReference Include="Uno.UI.RemoteControl" Version="4.9.0-dev.1113" Condition="'$(Configuration)'=='Debug'" />
+    <PackageReference Include="Uno.UI.RemoteControl" Version="4.9.17" Condition="'$(Configuration)'=='Debug'" />
     <PackageReference Include="Uno.UI.Svg">
       <Version>4.9.0-dev.1113</Version>
     </PackageReference>
