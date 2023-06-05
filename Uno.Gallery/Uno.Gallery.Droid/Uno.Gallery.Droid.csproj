@@ -108,7 +108,7 @@
       <Version>4.9.0-dev.1113</Version>
     </PackageReference>
     <PackageReference Include="Uno.UI.Foldable">
-      <Version>4.9.0-dev.1113</Version>
+      <Version>4.9.17</Version>
     </PackageReference>
     <PackageReference Include="Uno.UI.Lottie">
       <Version>4.9.0-dev.1113</Version>
