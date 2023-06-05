@@ -18,6 +18,11 @@
     <PackageReference Include="Microsoft.UI.Xaml">
       <Version>2.7.1</Version>
     </PackageReference>
+	<PackageReference Include="nventive.Nimue.Application.Packaging">
+      <Version>0.1.0-alpha.58</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
     <PackageReference Include="Uno.Core" Version="4.1.0-dev.4" />
     <PackageReference Include="Uno.ShowMeTheXAML">
       <Version>1.1.0</Version>
