@@ -38,12 +38,14 @@ private void Accelerometer_Shaken(Accelerometer sender, AccelerometerShakenEvent
 	++ShakeCount;
 }
 
-private void Accelerometer_ReadingChanged(Accelerometer sender, AccelerometerReadingChangedEventArgs args)
+private async void Accelerometer_ReadingChanged(Accelerometer sender, AccelerometerReadingChangedEventArgs args)
 {
-	LastReadTimestamp = args.Reading.Timestamp;
-	AccelerationX = args.Reading.AccelerationX;
-	AccelerationY = args.Reading.AccelerationY;
-	AccelerationZ = args.Reading.AccelerationZ;
+	await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => {
+		LastReadTimestamp = args.Reading.Timestamp;
+		AccelerationX = args.Reading.AccelerationX;
+		AccelerationY = args.Reading.AccelerationY;
+		AccelerationZ = args.Reading.AccelerationZ;
+	});
 }
 -->
 								
