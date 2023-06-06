@@ -53,7 +53,8 @@ jobs:
     vmImage: windows-2019
     
   variables:
-  - group: 'UADO Keystore' # Import all variables for the signing from the library in azure devops
+  - group: 'UADO Keystore' # Import all variables for the Android signing from the library in azure devops
+  - group: 'Uno Platform authenticode signing' # Import all variables for the signing from the library in azure devops
   - name: ApplicationPlatform
     value: x64
   - name: ArtifactName
