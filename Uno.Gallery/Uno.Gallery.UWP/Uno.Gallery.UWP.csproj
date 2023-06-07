@@ -214,6 +214,9 @@
     <Compile Include="Views\NestedPages\NavigationBarSample_NestedPage2.xaml.cs">
       <DependentUpon>NavigationBarSample_NestedPage2.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SamplePages\TreeViewSamplePage.xaml.cs">
+      <DependentUpon>TreeViewSamplePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SamplePages\BreadcrumbBarSamplePage.xaml.cs">
       <DependentUpon>BreadcrumbBarSamplePage.xaml</DependentUpon>
     </Compile>
@@ -240,7 +243,7 @@
     </Compile>
     <Compile Include="Views\SamplePages\PedometerSamplePage.xaml.cs">
       <DependentUpon>PedometerSamplePage.xaml</DependentUpon>
-	</Compile>
+    </Compile>
     <Compile Include="Views\SamplePages\LauncherSamplePage.xaml.cs">
       <DependentUpon>LauncherSamplePage.xaml</DependentUpon>
     </Compile>
@@ -603,6 +606,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\SamplePages\TreeViewSamplePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\SamplePages\BreadcrumbBarSamplePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -635,10 +642,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-	<Page Include="Views\SamplePages\PedometerSamplePage.xaml">
-	  <SubType>Designer</SubType>
-	  <Generator>MSBuild:Compile</Generator>
-	</Page>
+    <Page Include="Views\SamplePages\PedometerSamplePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\SamplePages\LauncherSamplePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
