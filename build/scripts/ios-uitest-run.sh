@@ -18,7 +18,7 @@ xcrun simctl list devices --json
 cd $BUILD_SOURCESDIRECTORY
 
 cd $UNO_UITEST_IOS_PROJECT 
-dotnet build -f net7.0-ios -r iossimulator-x64 -c Release -p:IsUiAutomationMappingEnabled=True
+dotnet build -f net7.0-ios -r iossimulator-x64 -c Release -p:IsUiAutomationMappingEnabled=True -bl:$BUILD_ARTIFACTSTAGINGDIRECTORY/ios-app.binlog
 
 mkdir -p $UNO_UITEST_SCREENSHOT_PATH
 
