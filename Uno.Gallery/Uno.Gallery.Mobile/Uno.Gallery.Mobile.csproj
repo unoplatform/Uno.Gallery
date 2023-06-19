@@ -52,7 +52,7 @@
 		<PackageReference Include="Uno.ShowMeTheXAML.MSBuild" Version="1.1.0" />
 		<PackageReference Include="Uno.Toolkit.UI.Cupertino" Version="3.0.4" />
 		<PackageReference Include="Uno.Toolkit.UI.Material" Version="3.0.4" />
-		<PackageReference Include="Uno.UI.Lottie" Version="4.10.0-dev.146" />
+		<PackageReference Include="Uno.UI.Lottie" Version="4.10.0-dev.337" />
 		<PackageReference Include="Uno.Core.Extensions.Disposables" Version="4.0.1" />
 		<PackageReference Include="Uno.Core.Extensions.Compatibility" Version="4.0.1" />
 	</ItemGroup>
