@@ -1,8 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net47</TargetFramework>
-		<LangVersion>8.0</LangVersion>
+		<TargetFramework>net7.0</TargetFramework>
 		<RootNamespace>Uno.Gallery.UITests</RootNamespace>
 	</PropertyGroup>
 
@@ -13,6 +12,7 @@
 		<PackageReference Include="NUnit3TestAdapter" Version="4.2.1" />
 		<PackageReference Include="Uno.UITest.Helpers" Version="1.1.0-dev.34" />
 		<PackageReference Include="Xamarin.UITest" Version="3.2.9" />
+		<PackageReference Include="NunitXml.TestLogger" Version="3.0.131" />
 	</ItemGroup>
 
 </Project>
