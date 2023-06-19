@@ -97,6 +97,16 @@
 				<CodesignKey>iPhone Distribution</CodesignKey>
 				<RuntimeIdentifier>ios-arm64</RuntimeIdentifier>
 			</PropertyGroup>
+			
+			<PropertyGroup Condition="'$(Configuration)'=='Debug' or '$(IsUiAutomationMappingEnabled)'=='True'">
+				<IsUiAutomationMappingEnabled>True</IsUiAutomationMappingEnabled>
+				<DefineConstants>$(DefineConstants);USE_UITESTS</DefineConstants>
+			</PropertyGroup>
+
+			<ItemGroup Condition="'$(Configuration)'=='Debug' or '$(IsUiAutomationMappingEnabled)'=='True'">
+				<PackageReference Include="Xamarin.TestCloud.Agent" Version="0.23.2" />
+			</ItemGroup>
+
 		</When>
 		<When Condition="'$(TargetFramework)'=='net7.0-maccatalyst'">
 			<ItemGroup>
