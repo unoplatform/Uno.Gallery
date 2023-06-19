@@ -56,12 +56,12 @@ jobs:
     maxParallel: 2
     matrix:
       iOS:
-        BuildTargetFramework: net6.0-ios
+        BuildTargetFramework: net7.0-ios
         ArtifactName: iOS-mobile
         ApplicationBuildNumberOffset: 50
         BuildCommand: publish
       Catalyst:
-        BuildTargetFramework: net6.0-maccatalyst
+        BuildTargetFramework: net7.0-maccatalyst
         ArtifactName: Catalyst
         ApplicationBuildNumberOffset: 50
         BuildCommand: build
