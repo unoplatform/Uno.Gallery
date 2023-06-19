@@ -2,6 +2,9 @@
 set -euo pipefail
 IFS=$'\n\t'
 
+# echo commands
+set -x
+
 export UNO_UITEST_SCREENSHOT_PATH=$BUILD_ARTIFACTSTAGINGDIRECTORY/screenshots/android
 export UNO_UITEST_PLATFORM=Android
 export UNO_UITEST_ANDROIDAPK_PATH=$BUILD_SOURCESDIRECTORY/Uno.Gallery/Uno.Gallery.Droid/bin/Release/net7.0-android/android-x64/com.nventive.uno.ui.demo-Signed.apk
@@ -11,6 +14,17 @@ export UNO_UITEST_BINARY=$BUILD_SOURCESDIRECTORY/Uno.Gallery/Uno.Gallery.UITest/
 export UNO_EMULATOR_INSTALLED=$BUILD_SOURCESDIRECTORY/build/.emulator_started
 export UITEST_TEST_TIMEOUT=60m
 
+# Override Android SDK tooling
+export ANDROID_HOME=$BUILD_SOURCESDIRECTORY/build/android-sdk
+export ANDROID_SDK_ROOT=$BUILD_SOURCESDIRECTORY/build/android-sdk
+export CMDLINETOOLS=commandlinetools-mac-8512546_latest.zip
+mkdir -p $ANDROID_HOME
+wget https://dl.google.com/android/repository/$CMDLINETOOLS
+unzip $CMDLINETOOLS -d $ANDROID_HOME/cmdline-tools
+rm $CMDLINETOOLS
+mv $ANDROID_SDK_ROOT/cmdline-tools/cmdline-tools $ANDROID_SDK_ROOT/cmdline-tools/latest
+
+# Install Android SDK emulators and SDKs
 if [ ! -f "$UNO_EMULATOR_INSTALLED" ];
 then
 	# Install AVD files
