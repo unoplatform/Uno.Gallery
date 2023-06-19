@@ -60,7 +60,7 @@
 	
 	<Choose>
 		<When Condition="'$(TargetFramework)'=='net7.0-android'">
-			<PropertyGroup Condition="'$(Configuration)'=='Release' and '$(System_PullRequest_IsFork)'!='True'">
+			<PropertyGroup Condition="'$(Configuration)'=='Release' and '$(System_PullRequest_IsFork)'!='True' and '$(IsUiAutomationMappingEnabled)'==''">
 				<AndroidKeyStore>true</AndroidKeyStore>
 				<AndroidSigningKeyStore>..\Gallery.Droid\calc-prod.keystore</AndroidSigningKeyStore>
 				<AndroidSigningKeyAlias>gallery-prod</AndroidSigningKeyAlias>
