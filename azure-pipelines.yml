@@ -3,32 +3,6 @@ variables:
   IsCanaryBranch: $[startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries/')]
   
 jobs:
-- job: Windows_Android
-  timeoutInMinutes: 90
-  
-  strategy:
-    maxParallel: 3
-    matrix:
-      Android_Store:
-        ApplicationPlatform: AnyCPU
-        ArtifactName: Android
-        BuildForPlayStore: True
-        VersionCodeOffset: 1
-      Android_AppCenter:
-        ApplicationPlatform: AnyCPU
-        ArtifactName: Android
-        BuildForPlayStore: False
-        VersionCodeOffset: 1
-
-  pool:
-    vmImage: windows-2022
-    
-  variables:
-  - group: 'UADO Keystore' # Import all variables for the signing from the library in azure devops
-
-  steps:
-  - template: build/stage-build-android-xamarin.yml
-
 - job: Windows_Android_Mobile
   strategy:
     maxParallel: 3
