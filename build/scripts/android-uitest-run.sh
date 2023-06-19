@@ -58,7 +58,7 @@ fi
 
 # Build the sample, while the emulator is starting
 cd $UNO_UITEST_ANDROID_PROJECT
-dotnet publish -f net7.0-android -c Release -p:RuntimeIdentifier=android-x64 /p:IsUiAutomationMappingEnabled=True /p:AndroidUseSharedRuntime=false /p:AotAssemblies=false
+dotnet publish -f net7.0-android -c Release -p:RuntimeIdentifier=android-x64 /p:IsUiAutomationMappingEnabled=True /p:AndroidUseSharedRuntime=false /p:AotAssemblies=false  -bl:$BUILD_ARTIFACTSTAGINGDIRECTORY/android-app.binlog
 
 mkdir -p $UNO_UITEST_SCREENSHOT_PATH
 

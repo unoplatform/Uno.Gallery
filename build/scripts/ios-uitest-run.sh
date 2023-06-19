@@ -3,7 +3,7 @@ set -euo pipefail
 IFS=$'\n\t'
 
 export UNO_UITEST_PLATFORM=iOS
-export UNO_UITEST_IOSBUNDLE_PATH=$BUILD_SOURCESDIRECTORY/Uno.Gallery/Uno.Gallery.Mobile/bin/Release/net7.0-maccatalyst/iossimulator-x64/Uno.Gallery.Mobile.app
+export UNO_UITEST_IOSBUNDLE_PATH=$BUILD_SOURCESDIRECTORY/Uno.Gallery/Uno.Gallery.Mobile/bin/Release/net7.0-ios/iossimulator-x64/Uno.Gallery.Mobile.app
 export UNO_UITEST_SCREENSHOT_PATH=$BUILD_ARTIFACTSTAGINGDIRECTORY/screenshots/ios
 export UNO_UITEST_PROJECT=$BUILD_SOURCESDIRECTORY/Uno.Gallery/Uno.Gallery.UITest
 export UNO_UITEST_LOGFILE=$BUILD_ARTIFACTSTAGINGDIRECTORY/screenshots/ios/nunit-log.txt
