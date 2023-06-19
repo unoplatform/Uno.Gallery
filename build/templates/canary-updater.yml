@@ -4,7 +4,7 @@ steps:
     displayName: 'Use .NET'
     inputs:
       packageType: 'sdk'
-      version: '7.0.102'
+      version: '7.0.302'
 
   - task: nventiveCanaryUpdater@5
     displayName: 'Canary Update (dev)'
