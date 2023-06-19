@@ -19,7 +19,7 @@ steps:
 - task: CopyFiles@2
   displayName: Copy Skia output
   inputs:
-    SourceFolder: Uno.Gallery\Uno.Gallery.Skia.Gtk\bin\Release\netcoreapp3.1
+    SourceFolder: Uno.Gallery\Uno.Gallery.Skia.Gtk\bin\Release\net7.0
     Contents: '**/*.*'
     TargetFolder: $(Build.ArtifactStagingDirectory)/bin
 
