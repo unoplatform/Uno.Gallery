@@ -23,7 +23,7 @@ steps:
     displayName: 'Canary Update (5x)'
     condition: startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries/5x')
     inputs:
-      solution: src/Calculator.sln
+      solution: '$(build.sourcesdirectory)'
       usePrivateFeed: false
       useNuGetOrg: true
       mergeBranch: true
