@@ -24,6 +24,12 @@ unzip $CMDLINETOOLS -d $ANDROID_HOME/cmdline-tools
 rm $CMDLINETOOLS
 mv $ANDROID_SDK_ROOT/cmdline-tools/cmdline-tools $ANDROID_SDK_ROOT/cmdline-tools/latest
 
+if [[ -f $ANDROID_HOME/platform-tools/platform-tools/adb ]]
+then
+	# It appears that the platform-tools 29.0.6 are extracting into an incorrect path
+	mv $ANDROID_HOME/platform-tools/platform-tools/* $ANDROID_HOME/platform-tools
+fi
+
 # Install Android SDK emulators and SDKs
 if [ ! -f "$UNO_EMULATOR_INSTALLED" ];
 then
