@@ -26,7 +26,6 @@
       chmod +x $(build.sourcesdirectory)/build/scripts/ios-uitest-run.sh
       $(build.sourcesdirectory)/build/scripts/ios-uitest-run.sh
     displayName: Build and Run iOS Test
-    retryCountOnTaskFailure: 3
     env:
       BUILD_SOURCESDIRECTORY: "$(build.sourcesdirectory)"
       BUILD_ARTIFACTSTAGINGDIRECTORY: "$(build.artifactstagingdirectory)"

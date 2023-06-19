@@ -12,7 +12,6 @@ steps:
 
 - task: MSBuild@1
   displayName: Build project
-  retryCountOnTaskFailure: 3
   inputs:
     solution: Uno.Gallery\Uno.Gallery.Skia.Gtk\Uno.Gallery.Skia.Gtk.csproj
     msbuildArguments: /ds /m /r /p:Configuration=Release "/p:InformationalVersion=%GITVERSION_InformationalVersion%" /bl:$(build.artifactstagingdirectory)/build.binlog 

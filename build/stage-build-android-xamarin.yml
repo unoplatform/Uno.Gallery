@@ -18,7 +18,6 @@ steps:
 
 - task: MSBuild@1
   displayName: Build project
-  retryCountOnTaskFailure: 3
   condition: eq(variables['System.PullRequest.IsFork'],'False')
   inputs:
     solution: Uno.Gallery\Uno.Gallery.Droid\Uno.Gallery.Droid.csproj
@@ -26,7 +25,6 @@ steps:
 
 - task: MSBuild@1
   displayName: Build project
-  retryCountOnTaskFailure: 3
   condition: eq(variables['System.PullRequest.IsFork'],'True')
   inputs:
     solution: Uno.Gallery\Uno.Gallery.Droid\Uno.Gallery.Droid.csproj

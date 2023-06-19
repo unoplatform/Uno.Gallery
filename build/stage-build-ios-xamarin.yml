@@ -13,7 +13,6 @@ steps:
 - task: MSBuild@1
   displayName: Build project
   condition: eq(variables['System.PullRequest.IsFork'],'False')
-  retryCountOnTaskFailure: 3
   inputs:
     solution: Uno.Gallery/Uno.Gallery.iOS/Uno.Gallery.iOS.csproj
     msbuildArguments: /ds /m /r /p:Configuration=Release /p:Platform=iPhone "/p:InformationalVersion=%GITVERSION_InformationalVersion%" /bl:$(build.artifactstagingdirectory)/build.binlog 
@@ -21,7 +20,6 @@ steps:
 - task: MSBuild@1
   displayName: Build project (Forks only)
   condition: eq(variables['System.PullRequest.IsFork'],'True')
-  retryCountOnTaskFailure: 3
   inputs:
     solution: Uno.Gallery/Uno.Gallery.iOS/Uno.Gallery.iOS.csproj
     msbuildArguments: /ds /m /r /p:Configuration=Release /p:Platform=iPhoneSimulator "/p:InformationalVersion=%GITVERSION_InformationalVersion%" /bl:$(build.artifactstagingdirectory)/build.binlog 
