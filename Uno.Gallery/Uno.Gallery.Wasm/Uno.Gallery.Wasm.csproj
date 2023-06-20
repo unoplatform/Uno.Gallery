@@ -31,6 +31,7 @@
 		<WasmShellGenerateAOTProfile>true</WasmShellGenerateAOTProfile>
 		<WasmShellILLinkerEnabled>false</WasmShellILLinkerEnabled>
 		<UnoXamlResourcesTrimming>false</UnoXamlResourcesTrimming>
+		<WasmShellEnableJiterpreter>false</WasmShellEnableJiterpreter>
 		-->
 	</PropertyGroup>
 
