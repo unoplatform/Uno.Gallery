@@ -24,7 +24,8 @@
 		<WasmShellEnableEmccProfiling>true</WasmShellEnableEmccProfiling>
 		<UnoXamlResourcesTrimming>true</UnoXamlResourcesTrimming>
 
-		<WasmShellEnableJiterpreter>true</WasmShellEnableJiterpreter>
+		<!-- -->
+		<WasmShellEnableJiterpreter>false</WasmShellEnableJiterpreter>
 
 		<!--
 		Uncomment this block to generate a profile
