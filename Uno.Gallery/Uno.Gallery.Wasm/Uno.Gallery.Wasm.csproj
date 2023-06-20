@@ -24,10 +24,6 @@
 		<WasmShellEnableEmccProfiling>true</WasmShellEnableEmccProfiling>
 		<UnoXamlResourcesTrimming>true</UnoXamlResourcesTrimming>
 
-		<!-- Fix for invalid ThreadPool_BackgroundJobHandler  -->
-		<WasmShellEnableJiterpreter>false</WasmShellEnableJiterpreter>
-		<WasmShellEnableAOTDeduplication>false</WasmShellEnableAOTDeduplication>
-		
 		<!--
 		Uncomment this block to generate a profile
 		<WasmShellGenerateAOTProfile>true</WasmShellGenerateAOTProfile>
@@ -123,8 +119,8 @@
 		<PackageReference Include="Uno.UI.MediaPlayer.WebAssembly" Version="4.10.0-dev.146" />
 		<PackageReference Include="Uno.UI.WebAssembly" Version="4.10.0-dev.146" />
 		<PackageReference Include="Uno.UI.RemoteControl" Version="4.10.0-dev.146" Condition="'$(Configuration)'=='Debug'" />
-		<PackageReference Include="Uno.Wasm.Bootstrap" Version="7.0.24" />
-		<PackageReference Include="Uno.Wasm.Bootstrap.DevServer" Version="7.0.24" />
+		<PackageReference Include="Uno.Wasm.Bootstrap" Version="8.0.0-dev.214" />
+		<PackageReference Include="Uno.Wasm.Bootstrap.DevServer" Version="8.0.0-dev.214" />
 		<PackageReference Include="Microsoft.TypeScript.Compiler" Version="3.1.5">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
