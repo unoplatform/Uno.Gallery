@@ -6,6 +6,8 @@
 		<NoWarn>NU1701</NoWarn>
 		<WasmHead>true</WasmHead>
 		<DefineConstants>__WASM__</DefineConstants>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		
 		<UnoUIUseRoslynSourceGenerators>false</UnoUIUseRoslynSourceGenerators>
   		<WasmShellWebAppBasePath>/</WasmShellWebAppBasePath>
 	</PropertyGroup>
