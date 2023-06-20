@@ -24,9 +24,10 @@
 		<WasmShellEnableEmccProfiling>true</WasmShellEnableEmccProfiling>
 		<UnoXamlResourcesTrimming>true</UnoXamlResourcesTrimming>
 
-		<!-- -->
+		<!-- Fix for invalid ThreadPool_BackgroundJobHandler  -->
 		<WasmShellEnableJiterpreter>false</WasmShellEnableJiterpreter>
-
+		<WasmShellEnableAOTDeduplication>false</WasmShellEnableAOTDeduplication>
+		
 		<!--
 		Uncomment this block to generate a profile
 		<WasmShellGenerateAOTProfile>true</WasmShellGenerateAOTProfile>
