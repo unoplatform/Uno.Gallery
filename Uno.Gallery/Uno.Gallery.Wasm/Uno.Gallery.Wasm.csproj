@@ -22,8 +22,10 @@
 		<WasmShellMonoRuntimeExecutionMode>InterpreterAndAOT</WasmShellMonoRuntimeExecutionMode>
 		<WasmShellEmccLinkOptimization>false</WasmShellEmccLinkOptimization>
 		<WasmShellEnableEmccProfiling>true</WasmShellEnableEmccProfiling>
-		<UnoXamlResourcesTrimming>true</UnoXamlResourcesTrimming>
 
+		<!-- Causing issues in some styles ? -->
+		<!--<UnoXamlResourcesTrimming>true</UnoXamlResourcesTrimming>-->
+		
 		<!--
 		Uncomment this block to generate a profile
 		<WasmShellGenerateAOTProfile>true</WasmShellGenerateAOTProfile>
