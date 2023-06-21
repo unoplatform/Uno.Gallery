@@ -25,9 +25,6 @@
 		<WasmShellEmccLinkOptimization>false</WasmShellEmccLinkOptimization>
 		<WasmShellEnableEmccProfiling>true</WasmShellEnableEmccProfiling>
 		<UnoXamlResourcesTrimming>true</UnoXamlResourcesTrimming>
-
-		<!-- Disable dedup in wasm bootstrap for task issues ? -->
-		<WasmShellEnableAOTDeduplication>false</WasmShellEnableAOTDeduplication>
 		
 		<!--
 		Uncomment this block to generate a profile
@@ -36,6 +33,10 @@
 		<UnoXamlResourcesTrimming>false</UnoXamlResourcesTrimming>
 		<WasmShellEnableJiterpreter>false</WasmShellEnableJiterpreter>
 		-->
+	</PropertyGroup>
+	
+	<PropertyGroup>
+		<WasmShellAOTProfileExcludedMethods>System\.IO;AsyncTaskMethodBuilder;AsyncValueTaskMethodBuilder</WasmShellAOTProfileExcludedMethods>
 	</PropertyGroup>
 
 	<ItemGroup>
