@@ -1,0 +1,10 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+	<x:String x:Key="HomeIcon">&#xE10F;</x:String>
+	<x:String x:Key="SearchIcon">&#xE721;</x:String>
+	<x:String x:Key="SupportIcon">&#xE8F2;</x:String>
+	<x:String x:Key="AboutIcon">&#xE946;</x:String>
+
+</ResourceDictionary>
