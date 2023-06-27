@@ -29,16 +29,17 @@
 			</utu:NavigationBar.MainCommand>
 		</utu:NavigationBar>
 
-		<smtx:XamlDisplay Grid.Row="1"
-						  Margin="16"
-						  smtx:XamlDisplayExtensions.Header="Using PosterSource, TransportControls, and a local file with mp4 format"
-						  UniqueKey="MediaPlayerElementSample_NestedPage2_TransportControlsEnabledLocalFileMp4Format">
-			<MediaPlayerElement x:Name="MediaPlayerElementSample2"
-								Source="ms-appx:///Assets/Videos/Getting_Started_with_Uno_Platform_for_Figma.mp4"
-								PosterSource="ms-appx:///Assets/Thumbnails/Getting_Started_with_Uno_Platform_for_Figma.png"
-								AreTransportControlsEnabled="True"
-								AutoPlay="False"
-								MaxWidth="720" />
-		</smtx:XamlDisplay>
+		<ScrollViewer Grid.Row="1"
+					  Padding="16">
+			<smtx:XamlDisplay smtx:XamlDisplayExtensions.Header="Using PosterSource, TransportControls, and a local file with mp4 format"
+							  UniqueKey="MediaPlayerElementSample_NestedPage2_TransportControlsEnabledLocalFileMp4Format">
+				<MediaPlayerElement x:Name="MediaPlayerElementSample2"
+									Source="ms-appx:///Assets/Videos/Getting_Started_with_Uno_Platform_for_Figma.mp4"
+									PosterSource="ms-appx:///Assets/Thumbnails/Getting_Started_with_Uno_Platform_for_Figma.png"
+									AreTransportControlsEnabled="True"
+									AutoPlay="False"
+									MaxWidth="720" />
+			</smtx:XamlDisplay>
+		</ScrollViewer>
 	</Grid>
 </Page>

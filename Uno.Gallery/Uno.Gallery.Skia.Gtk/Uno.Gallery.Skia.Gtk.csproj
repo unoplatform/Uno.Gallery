@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<OutputType Condition="'$(Configuration)'=='Release'">WinExe</OutputType>
@@ -23,44 +23,36 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Content Include="Assets\Fonts\Cupertino\SF-Pro.ttf" />
-		<Content Include="Assets\Fonts\Material\Roboto-Light.ttf" />
-		<Content Include="Assets\Fonts\Material\Roboto-Medium.ttf" />
-		<Content Include="Assets\Fonts\Material\Roboto-Regular.ttf" />
+		<Content Include="Assets\Fonts\Cupertino\SF-Pro-Text-Regular.otf" />
 		<Content Include="Assets\StoreLogo.png" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Svg.Skia" Version="0.5.18" />
-		<PackageReference Include="Uno.Cupertino" Version="2.4.0-dev.33" />
+		<PackageReference Include="Uno.Microsoft.Toolkit.Uwp.UI.Controls" Version="7.1.11" />
 		<PackageReference Include="Uno.Fonts.Fluent" Version="2.2.2" />
-		<PackageReference Include="Uno.Material" Version="2.4.0-dev.33" />
 		<!-- Note that for WebAssembly version 1.1.1 of the console logger required -->
 		<PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="6.0.0" />
 		<PackageReference Include="Uno.ShowMeTheXAML" Version="1.1.0" />
 		<PackageReference Include="Uno.ShowMeTheXAML.MSBuild" Version="1.1.0" />
-		<PackageReference Include="Uno.Toolkit.UI" Version="2.4.0-dev.80" />
-		<PackageReference Include="Uno.Toolkit.UI.Cupertino" Version="2.4.0-dev.80" />
-		<PackageReference Include="Uno.Toolkit.UI.Material" Version="2.4.0-dev.80" />		
-		<PackageReference Include="Uno.UI.Lottie" Version="4.9.0-dev.1113" />
-		<PackageReference Include="Uno.UI.Skia.Gtk" Version="4.9.0-dev.1113" />
-		<PackageReference Include="Uno.UI.RemoteControl" Version="4.9.0-dev.1113" Condition="'$(Configuration)'=='Debug'" />
-		<PackageReference Include="Uno.UI.Adapter.Microsoft.Extensions.Logging" Version="4.9.0-dev.1113" />
+		<PackageReference Include="Uno.Toolkit.UI.Cupertino" Version="3.0.4" />
+		<PackageReference Include="Uno.Toolkit.UI.Material" Version="3.0.4" />		
+		<PackageReference Include="Uno.UI.Lottie" Version="4.10.0-dev.146" />
+		<PackageReference Include="Uno.UI.Skia.Gtk" Version="4.10.0-dev.146" />
+		<PackageReference Include="Uno.UI.RemoteControl" Version="4.10.0-dev.146" Condition="'$(Configuration)'=='Debug'" />
+		<PackageReference Include="Uno.UI.Adapter.Microsoft.Extensions.Logging" Version="4.10.0-dev.146" />
 		<PackageReference Include="Uno.Core.Extensions.Disposables" Version="4.0.1" />
 		<PackageReference Include="Uno.Core.Extensions.Compatibility" Version="4.0.1" />
 		<PackageReference Include="SkiaSharp.Skottie" Version="2.88.3" />
 		<PackageReference Include="SkiaSharp.Views.Uno" Version="2.88.3" />
-		<PackageReference Include="Uno.UI.Svg" Version="4.9.0-dev.1113" />
+		<PackageReference Include="Uno.UI.Svg" Version="4.10.0-dev.146" />
 	</ItemGroup>
 
 	<Import Project="..\Uno.Gallery.Shared\Uno.Gallery.Shared.projitems" Label="Shared" />
 
 	<ItemGroup>
-		<None Remove="Assets\Fonts\Cupertino\SF-Pro.ttf" />
-		<None Remove="Assets\Fonts\Material\Roboto-Light.ttf" />
-		<None Remove="Assets\Fonts\Material\Roboto-Medium.ttf" />
-		<None Remove="Assets\Fonts\Material\Roboto-Regular.ttf" />
+		<None Remove="Assets\Fonts\Cupertino\SF-Pro-Text-Regular.otf" />
 	</ItemGroup>
 
 	<ItemGroup>

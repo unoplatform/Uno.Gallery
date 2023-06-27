@@ -1,6 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
+using Windows.ApplicationModel.Core;
 using Windows.Devices.Sensors;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -173,12 +175,14 @@ namespace Uno.Gallery.Views.Samples
 			++ShakeCount;
 		}
 
-		private void Accelerometer_ReadingChanged(Accelerometer sender, AccelerometerReadingChangedEventArgs args)
+		private async void Accelerometer_ReadingChanged(Accelerometer sender, AccelerometerReadingChangedEventArgs args)
 		{
-			LastReadTimestamp = args.Reading.Timestamp;
-			AccelerationX = args.Reading.AccelerationX;
-			AccelerationY = args.Reading.AccelerationY;
-			AccelerationZ = args.Reading.AccelerationZ;
+			_ = CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => {
+				LastReadTimestamp = args.Reading.Timestamp;
+				AccelerationX = args.Reading.AccelerationX;
+				AccelerationY = args.Reading.AccelerationY;
+				AccelerationZ = args.Reading.AccelerationZ;
+			});
 		}
 	}
 }
