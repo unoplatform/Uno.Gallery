@@ -9,12 +9,6 @@
 	  xmlns:todo="what should be done"
 	  mc:Ignorable="d todo">
 
-	<Page.Resources>
-		<x:String x:Key="HomeIcon">&#xE10F;</x:String>
-		<x:String x:Key="SupportIcon">&#xE8F2;</x:String>
-		<x:String x:Key="AboutIcon">&#xE946;</x:String>
-	</Page.Resources>
-	
 	<sample:SamplePageLayout Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 		<sample:SamplePageLayout.MaterialTemplate>
 			<DataTemplate>

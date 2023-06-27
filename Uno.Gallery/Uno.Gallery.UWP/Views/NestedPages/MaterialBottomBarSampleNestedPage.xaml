@@ -9,13 +9,6 @@
 	  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
 	  mc:Ignorable="d">
 
-	<Page.Resources>
-		<x:String x:Key="HomeIcon">&#xE10F;</x:String>
-		<x:String x:Key="SearchIcon">&#xE721;</x:String>
-		<x:String x:Key="SupportIcon">&#xE8F2;</x:String>
-		<x:String x:Key="AboutIcon">&#xE946;</x:String>
-	</Page.Resources>
-
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto" />
