@@ -33,7 +33,7 @@
 		<PackageReference Include="Uno.Fonts.Fluent" Version="2.2.2" />
 		<!-- Note that for WebAssembly version 1.1.1 of the console logger required -->
 		<PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="6.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="7.0.0" />
 		<PackageReference Include="Uno.ShowMeTheXAML" Version="1.1.0" />
 		<PackageReference Include="Uno.ShowMeTheXAML.MSBuild" Version="1.1.0" />
 		<PackageReference Include="Uno.Toolkit.UI.Cupertino" Version="3.1.0-dev.24" />
