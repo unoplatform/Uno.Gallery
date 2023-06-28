@@ -33,25 +33,25 @@
 			  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 			<Grid x:Name="Home" Visibility="Collapsed">
 				<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-					<FontIcon Glyph="&#xE80F;" />
+					<FontIcon Glyph="{StaticResource HomeIcon}" />
 					<TextBlock Text="Home" TextAlignment="Center" />
 				</StackPanel>
 			</Grid>
 			<Grid x:Name="Search" Visibility="Collapsed">
 				<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-					<FontIcon Glyph="&#xe721;" />
+					<FontIcon Glyph="{StaticResource SearchIcon}" />
 					<TextBlock Text="Search" TextAlignment="Center" />
 				</StackPanel>
 			</Grid>
 			<Grid x:Name="Support" Visibility="Collapsed">
 				<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-					<FontIcon Glyph="&#xE8F2;" />
+					<FontIcon Glyph="{StaticResource SupportIcon}" />
 					<TextBlock Text="Support" TextAlignment="Center" />
 				</StackPanel>
 			</Grid>
 			<Grid x:Name="About" Visibility="Collapsed">
 				<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-					<FontIcon Glyph="&#xE946;" />
+					<FontIcon Glyph="{StaticResource AboutIcon}" />
 					<TextBlock Text="About" TextAlignment="Center" />
 				</StackPanel>
 			</Grid>
@@ -64,12 +64,12 @@
 			<utu:TabBar.Items>
 				<utu:TabBarItem Content="Home" Tag="Home">
 					<utu:TabBarItem.Icon>
-						<FontIcon Glyph="&#xE80F;" />
+						<FontIcon Glyph="{StaticResource HomeIcon}" />
 					</utu:TabBarItem.Icon>
 				</utu:TabBarItem>
 				<utu:TabBarItem Content="Search" Tag="Search">
 					<utu:TabBarItem.Icon>
-						<FontIcon Glyph="&#xe721;" />
+						<FontIcon Glyph="{StaticResource SearchIcon}" />
 					</utu:TabBarItem.Icon>
 				</utu:TabBarItem>
 				<d:TabBarItem Style="{StaticResource MaterialBottomTabBarItemFabStyle}">
@@ -95,12 +95,12 @@
 				</d:TabBarItem>
 				<utu:TabBarItem Content="Support" Tag="Support">
 					<utu:TabBarItem.Icon>
-						<FontIcon Glyph="&#xE8F2;" />
+						<FontIcon Glyph="{StaticResource SupportIcon}" />
 					</utu:TabBarItem.Icon>
 				</utu:TabBarItem>
 				<utu:TabBarItem Content="About" Tag="About">
 					<utu:TabBarItem.Icon>
-						<FontIcon Glyph="&#xE946;" />
+						<FontIcon Glyph="{StaticResource AboutIcon}" />
 					</utu:TabBarItem.Icon>
 				</utu:TabBarItem>
 			</utu:TabBar.Items>

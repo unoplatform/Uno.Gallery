@@ -89,6 +89,9 @@
     <PackageReference Include="SkiaSharp.Views.Uno">
       <Version>2.88.3</Version>
     </PackageReference>
+    <PackageReference Include="Uno.Microsoft.Toolkit.Uwp.UI.Controls">
+      <Version>7.1.11</Version>
+    </PackageReference>
     <PackageReference Include="Uno.Fonts.Fluent">
       <Version>2.2.2</Version>
     </PackageReference>

@@ -1,4 +1,5 @@
-﻿using Uno.Gallery.ViewModels;
+﻿using System;
+using Uno.Gallery.ViewModels;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -29,7 +30,7 @@ namespace Uno.Gallery.Views.Samples
 				BadgeStyle = Application.Current.Resources["InfoBadgeStyle_" + SelectedStyle] as Style;
 			}
 		}
-		public double Opacity { get => GetProperty<double>(); set => SetProperty(value); }
+		public double Opacity { get => GetProperty<double>(); set => SetProperty(Math.Round(value, 1)); }
 		public Style BadgeStyle { get => GetProperty<Style>(); set => SetProperty(value); }
 
 		public InfoBadgeSamplePageViewModel()

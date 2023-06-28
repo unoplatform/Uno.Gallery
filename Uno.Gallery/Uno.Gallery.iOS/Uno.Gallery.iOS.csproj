@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -190,6 +190,9 @@
     </PackageReference>
     <PackageReference Include="SkiaSharp.Views.Uno">
       <Version>2.88.3</Version>
+    </PackageReference>
+    <PackageReference Include="Uno.Microsoft.Toolkit.Uwp.UI.Controls">
+      <Version>7.1.11</Version>
     </PackageReference>
     <PackageReference Include="Uno.Fonts.Fluent">
       <Version>2.2.2</Version>

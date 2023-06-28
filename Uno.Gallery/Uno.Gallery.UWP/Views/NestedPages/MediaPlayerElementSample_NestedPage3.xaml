@@ -29,16 +29,17 @@
 			</utu:NavigationBar.MainCommand>
 		</utu:NavigationBar>
 
-		<smtx:XamlDisplay Grid.Row="1"
-						  Margin="16"
-						  smtx:XamlDisplayExtensions.Header="Using PosterSource, TransportControls, and a URL link with mp3 format (audio only)"
-						  UniqueKey="MediaPlayerElementSample_NestedPage3_PosterSourceTransportControlsEnabledUrlLinkMp3Format">
-			<MediaPlayerElement x:Name="MediaPlayerElementSample3"
-								Source="https://uno-assets.platform.uno/tests/audio/Getting_Started_with_Uno_Platform_and_Visual_Studio_Code.mp3"
-								PosterSource="https://uno-assets.platform.uno/tests/thumbnails/Getting_Started_with_Uno_Platform_and_Visual_Studio_Code.png"
-								AreTransportControlsEnabled="True"
-								AutoPlay="False"
-								MaxWidth="720" />
-		</smtx:XamlDisplay>
+		<ScrollViewer Grid.Row="1"
+					  Padding="16">
+			<smtx:XamlDisplay smtx:XamlDisplayExtensions.Header="Using PosterSource, TransportControls, and a URL link with mp3 format (audio only)"
+							  UniqueKey="MediaPlayerElementSample_NestedPage3_PosterSourceTransportControlsEnabledUrlLinkMp3Format">
+				<MediaPlayerElement x:Name="MediaPlayerElementSample3"
+									Source="https://uno-assets.platform.uno/tests/audio/Getting_Started_with_Uno_Platform_and_Visual_Studio_Code.mp3"
+									PosterSource="https://uno-assets.platform.uno/tests/thumbnails/Getting_Started_with_Uno_Platform_and_Visual_Studio_Code.png"
+									AreTransportControlsEnabled="True"
+									AutoPlay="False"
+									MaxWidth="720" />
+			</smtx:XamlDisplay>
+		</ScrollViewer>
 	</Grid>
 </Page>

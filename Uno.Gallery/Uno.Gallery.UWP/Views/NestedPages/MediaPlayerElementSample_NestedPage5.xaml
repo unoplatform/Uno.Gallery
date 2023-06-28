@@ -38,7 +38,7 @@
 
 					<TextBlock Text="- Mobile Development in Visual Studio Code with Uno Platform or DotNetMAUI (.mp4)" />
 
-					<TextBlock Text="- Getting Started with Uno Platform and Visual Studio Code (.mp3 [Audio only])"/>
+					<TextBlock Text="- Getting Started with Uno Platform and Visual Studio Code (.mp3 [Audio only])" />
 
 					<TextBlock Text="- Getting Started with Uno Platform and Visual Studio Code (.mp4)"
 							   Margin="0,0,0,10" />
@@ -64,7 +64,7 @@
 							</MediaPlayerElement.TransportControls>
 						</MediaPlayerElement>
 
-<!--
+						<!--
 						
 With the following C# code:
 						
