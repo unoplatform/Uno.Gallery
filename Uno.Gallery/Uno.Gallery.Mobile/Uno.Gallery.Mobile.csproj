@@ -107,6 +107,10 @@
 				<PackageReference Include="Xamarin.TestCloud.Agent" Version="0.23.2" />
 			</ItemGroup>
 
+			<ItemGroup>
+				<!-- https://github.com/xamarin/xamarin-macios/issues/18388#issuecomment-1574486065 -->
+				<TrimmableAssembly Include="Microsoft.Toolkit.Uwp.UI" />
+			</ItemGroup>
 		</When>
 		<When Condition="'$(TargetFramework)'=='net7.0-maccatalyst'">
 			<ItemGroup>
