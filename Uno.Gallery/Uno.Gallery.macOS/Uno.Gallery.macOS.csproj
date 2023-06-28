@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -127,7 +127,7 @@
       <Version>4.10.0-dev.146</Version>
     </PackageReference>
     <PackageReference Include="Uno.UI.Lottie">
-      <Version>4.10.0-dev.146</Version>
+      <Version>4.10.0-dev.395</Version>
     </PackageReference>
     <PackageReference Include="Uno.UI.RemoteControl" Version="4.10.0-dev.146" Condition="'$(Configuration)'=='Debug'" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />

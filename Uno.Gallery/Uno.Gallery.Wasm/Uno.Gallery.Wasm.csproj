@@ -108,7 +108,7 @@
 		<PackageReference Include="Uno.ShowMeTheXAML.MSBuild" Version="1.1.0" />
 		<PackageReference Include="Uno.Toolkit.UI.Cupertino" Version="3.0.4" />
 		<PackageReference Include="Uno.Toolkit.UI.Material" Version="3.0.4" />
-		<PackageReference Include="Uno.UI.Lottie" Version="4.10.0-dev.146" />
+		<PackageReference Include="Uno.UI.Lottie" Version="4.10.0-dev.395" />
 		<PackageReference Include="Uno.UI.MediaPlayer.WebAssembly" Version="4.10.0-dev.146" />
 		<PackageReference Include="Uno.UI.WebAssembly" Version="4.10.0-dev.146" />
 		<PackageReference Include="Uno.UI.RemoteControl" Version="4.10.0-dev.146" Condition="'$(Configuration)'=='Debug'" />
