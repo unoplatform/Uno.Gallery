@@ -72,7 +72,7 @@ namespace Uno.Gallery.Helpers
 				}
 			}
 #elif __WASM__
-			var serializedTheme = Foundation.WebAssemblyRuntime.InvokeJS("Windows.UI.Xaml.Application.getDefaultSystemTheme()");
+			var serializedTheme = Interop.GetDefaultSystemTheme();
 
 			if (serializedTheme != null)
 			{
@@ -98,4 +98,12 @@ namespace Uno.Gallery.Helpers
 #endif
 		}
 	}
+
+#if __WASM__
+	static partial class Interop
+	{
+		[System.Runtime.InteropServices.JavaScript.JSImport("globalThis.Windows.UI.Xaml.Application.getDefaultSystemTheme")]
+		internal static partial string GetDefaultSystemTheme();
+	}
+#endif
 }

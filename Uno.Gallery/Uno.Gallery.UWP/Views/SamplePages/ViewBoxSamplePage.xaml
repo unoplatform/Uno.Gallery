@@ -34,7 +34,7 @@
 										 VerticalAlignment="Top"
 										 Margin="0,12,0,0">
 
-									<StackPanel Background="{StaticResource OnBackgroundBrush}">
+									<StackPanel Background="{ThemeResource OnBackgroundBrush}">
 										<StackPanel Orientation="Horizontal">
 
 											<Rectangle Fill="{StaticResource UnoGreenColor}"
@@ -57,7 +57,7 @@
 										<!-- Text -->
 										<TextBlock Text="Some text"
 												   Style="{StaticResource TitleLarge}"
-												   Foreground="{StaticResource BackgroundBrush}" 
+												   Foreground="{ThemeResource BackgroundBrush}" 
 												   HorizontalAlignment="Center"
 												   Margin="0,0,0,4"/>
 									</StackPanel>

@@ -26,11 +26,7 @@
 		<string>Media.xcassets/AppIcons.appiconset</string>
 		<key>UIAppFonts</key>
 		<array>
-			<string>Fonts/uno-fluentui-assets.ttf</string>
-			<string>Fonts/Roboto-Light.ttf</string>
-			<string>Fonts/Roboto-Medium.ttf</string>
-			<string>Fonts/Roboto-Regular.ttf</string>
-			<string>Fonts/SF-Pro.ttf</string>
+			<string>Fonts/SF-Pro-Text-Regular.otf</string>
 		</array>
 		<key>ITSAppUsesNonExemptEncryption</key>
 		<false/>

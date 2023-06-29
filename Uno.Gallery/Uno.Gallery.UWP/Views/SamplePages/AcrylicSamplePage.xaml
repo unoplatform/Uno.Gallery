@@ -25,7 +25,7 @@
 									Height="250"
 									HorizontalAlignment="Center"
 									VerticalAlignment="Center"
-									BorderBrush="{StaticResource PrimaryBrush}"
+									BorderBrush="{ThemeResource PrimaryBrush}"
 									BorderThickness="1">
 									<Border.Background>
 										<media:AcrylicBrush TintOpacity="0.2"
@@ -46,7 +46,7 @@
 									Height="250"
 									HorizontalAlignment="Center"
 									VerticalAlignment="Center"
-									BorderBrush="{StaticResource PrimaryBrush}"
+									BorderBrush="{ThemeResource PrimaryBrush}"
 									BorderThickness="1">
 										<Border.Background>
 											<media:AcrylicBrush TintOpacity="0.2"
@@ -68,7 +68,7 @@
 											Height="250"
 											HorizontalAlignment="Center"
 											VerticalAlignment="Center"
-											BorderBrush="{StaticResource PrimaryBrush}"
+											BorderBrush="{ThemeResource PrimaryBrush}"
 											BorderThickness="1">
 										<Border.Background>
 											<media:AcrylicBrush TintOpacity="0.2"

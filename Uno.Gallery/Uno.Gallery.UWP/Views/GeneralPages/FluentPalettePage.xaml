@@ -24,7 +24,7 @@
 			<StackPanel Spacing="16">
 
 				<!-- Overview -->
-				<TextBlock Foreground="{StaticResource OnBackgroundBrush}" Opacity="0.8">
+				<TextBlock Foreground="{ThemeResource OnBackgroundBrush}" Opacity="0.8">
 					<Run Text="Here's an overview of the Fluent Design color palette." />
 					<LineBreak /><Run Text="WinUI has a large set of StaticResources and ThemeResources for Fluent Design's Color System." />
 					<LineBreak /><Run Text="You can visualize, edit and export your color palette with the" />
@@ -39,7 +39,7 @@
 
 				<!-- Accent, Base and Alt Colors -->
 				<TextBlock Text="Accent, Base and Alt Colors" Style="{StaticResource SubtitleTextBlockStyle}" />
-				<TextBlock Foreground="{StaticResource OnBackgroundBrush}" Opacity="0.8">
+				<TextBlock Foreground="{ThemeResource OnBackgroundBrush}" Opacity="0.8">
 					<Run Text="Accent color is commonly used to reflect your brand and is commonly used to highlight state information" />
 					<LineBreak /><Run Text="Base colors can be used for text. Intensity can be High/Medium/Low." />
 					<LineBreak /><Run Text="Alt is the opposite of Base. Intensity can be High/Medium/Low." />
@@ -204,7 +204,7 @@
 				<!-- Chrome & Error Colors -->
 				<utu:Divider Style="{StaticResource DividerStyle}" />
 				<TextBlock Text="Chrome and Error Text Colors" Style="{StaticResource SubtitleTextBlockStyle}" />
-				<TextBlock Foreground="{StaticResource OnBackgroundBrush}" Opacity="0.8">
+				<TextBlock Foreground="{ThemeResource OnBackgroundBrush}" Opacity="0.8">
 					<Run Text="Chrome colors are for top-level elements such as navigation panes and command bars." />
 					<LineBreak /><Run Text="Error color for inputs in an error state." />
 				</TextBlock>
@@ -244,7 +244,7 @@
 
 				<!-- For more info... -->
 				<utu:Divider Margin="0,36,0,0" Style="{StaticResource DividerStyle}" />
-				<TextBlock Foreground="{StaticResource OnBackgroundBrush}" Opacity="0.8">
+				<TextBlock Foreground="{ThemeResource OnBackgroundBrush}" Opacity="0.8">
 					<Run Text="For more information refer to" />
 					<Hyperlink NavigateUri="https://docs.microsoft.com/en-us/windows/uwp/design/style/color#accent-color-palette">
 						<Run Text="Fluent Design Color System." />

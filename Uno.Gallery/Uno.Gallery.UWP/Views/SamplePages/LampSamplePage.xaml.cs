@@ -7,7 +7,10 @@ using Windows.UI.Xaml.Controls;
 
 namespace Uno.Gallery.Views.Samples
 {
-	[SamplePage(SampleCategory.NonUIFeatures, "Lamp", Description = "Represents a lamp device. Allows you to turn the phone's camera flashlight on and off.", DocumentationLink = "https://learn.microsoft.com/en-us/uwp/api/Windows.Devices.Lights.Lamp")]
+	[SamplePage(SampleCategory.NonUIFeatures, "Lamp", Description = "Represents a lamp device. Allows you to turn the phone's camera flashlight on and off.", DocumentationLink = "https://learn.microsoft.com/en-us/uwp/api/Windows.Devices.Lights.Lamp", DataType = typeof(LampSamplePageViewModel))]
+#if !WINDOWS_UWP && !IS_WINUI && !__ANDROID__ && !__IOS__
+	[SampleConditional(SampleConditionals.Always, Reason = "API is not supported")]
+#endif
 	public sealed partial class LampSamplePage : Page
 	{
 		public LampSamplePage()
@@ -86,7 +89,7 @@ IsBrightnessSupported = true;
 			});
 		}
 
-		public async void Enable()
+		public void Enable()
 		{
 			if (_lamp != null)
 			{

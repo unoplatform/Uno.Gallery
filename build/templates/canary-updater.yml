@@ -1,68 +1,51 @@
 
 steps:
-
   - task: UseDotNet@2
-    displayName: 'Use .NET 5.0.406'
-    retryCountOnTaskFailure: 3
+    displayName: 'Use .NET'
     inputs:
-      packageType: runtime
-      version: 5.0.15
-
-  - task: UseDotNet@2
-    displayName: 'Use .NET runtime 2.2.x'
-    retryCountOnTaskFailure: 3
-    inputs:
-      packageType: runtime
-      version: 2.2.x
+      packageType: 'sdk'
+      version: '7.0.302'
 
   - task: nventiveCanaryUpdater@5
-    condition: eq(variables['IsCanaryBranch'], true)
+    displayName: 'Canary Update (dev)'
+    condition: startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries/dev')
     inputs:
-      solution: Uno.Gallery.sln
+      solution: '$(build.sourcesdirectory)'
       useNuGetOrg: true
       usePrivateFeed: false
       mergeBranch: true
       branchToMerge: master
-      nugetUpdaterVersion: 2.1.1
-      packageAuthor: nventive
+      nugetUpdaterVersion: '2.3.0-alpha.46'
+      packageAuthor: 'nventive,uno platform'
       summaryFile: '$(Build.ArtifactStagingDirectory)/Canary.md'
-
-  - powershell: |
-      dotnet tool uninstall nventive.nuget.updater.tool --tool-path $(Agent.TempDirectory)
-    condition: eq(variables['IsCanaryBranch'], true)
 
   - task: nventiveCanaryUpdater@5
-    condition: eq(variables['IsCanaryBranch'], true)
+    displayName: 'Canary Update (5x)'
+    condition: startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries/5x')
     inputs:
-      solution: Uno.Gallery.sln
-      useNuGetOrg: true
+      solution: '$(build.sourcesdirectory)'
       usePrivateFeed: false
+      useNuGetOrg: true
       mergeBranch: true
       branchToMerge: master
-      nugetUpdaterVersion: 2.1.1
-      packageAuthor: unoplatform
-      summaryFile: '$(Build.ArtifactStagingDirectory)/Canary.md'
+      nugetUpdaterVersion: '2.3.0-alpha.46'
+      nugetVersion: feature.5x,dev
+      packageAuthor: 'nventive,unoplatform,uno platform'
+      summaryFile: '$(Build.ArtifactStagingDirectory)/Summary.md'
+      resultFile: '$(Build.ArtifactStagingDirectory)/Results.json'
+      additionalPublicSources: 'https://pkgs.dev.azure.com/uno-platform/1dd81cbd-cb35-41de-a570-b0df3571a196/_packaging/dev-uno5/nuget/v3/index.json'
+
+  - pwsh: |
+      cd $(build.sourcesdirectory)
+      dotnet nuget add source https://pkgs.dev.azure.com/uno-platform/1dd81cbd-cb35-41de-a570-b0df3571a196/_packaging/dev-uno5/nuget/v3/index.json -n unodev5x
+    condition: startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries/5x')
+    displayName: 'Use uno dev 5x source'
+
 
   - powershell: |
       dotnet tool uninstall nventive.nuget.updater.tool --tool-path $(Agent.TempDirectory)
-    condition: eq(variables['IsCanaryBranch'], true)
+    condition: startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries')
 
-  - task: nventiveCanaryUpdater@5
-    condition: eq(variables['IsCanaryBranch'], true)
-    inputs:
-      solution: Uno.Gallery.sln
-      useNuGetOrg: true
-      usePrivateFeed: false
-      mergeBranch: true
-      branchToMerge: master
-      nugetUpdaterVersion: 2.1.1
-      packageAuthor: 'Uno Platform'
-      summaryFile: '$(Build.ArtifactStagingDirectory)/Canary.md'
-
-  - powershell: |
-      dotnet tool uninstall nventive.nuget.updater.tool --tool-path $(Agent.TempDirectory)
-    condition: eq(variables['IsCanaryBranch'], true)
-      
   - pwsh: |
       gci -r -include "info.plist" |
       foreach-object {

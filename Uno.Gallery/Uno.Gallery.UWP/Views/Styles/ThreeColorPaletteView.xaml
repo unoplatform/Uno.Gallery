@@ -52,12 +52,12 @@
 						<TextBlock Grid.Row="0"
 								   Grid.ColumnSpan="2"
 								   Text="{TemplateBinding Title}"
-								   Foreground="{StaticResource OnBackgroundBrush}"
+								   Foreground="{ThemeResource OnBackgroundBrush}"
 								   Style="{StaticResource TitleLarge}" />
 						<TextBlock Grid.Row="1"
 								   Grid.ColumnSpan="2"
 								   Text="{TemplateBinding Description}"
-								   Foreground="{StaticResource OnBackgroundBrush}"
+								   Foreground="{ThemeResource OnBackgroundBrush}"
 								   Margin="0,4,0,16"
 								   Opacity="0.8"
 								   Style="{StaticResource BodyMedium}" />

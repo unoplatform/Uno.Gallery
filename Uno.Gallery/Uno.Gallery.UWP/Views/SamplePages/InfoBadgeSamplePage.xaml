@@ -1,14 +1,12 @@
-﻿<Page
-	x:Class="Uno.Gallery.Views.Samples.InfoBadgeSamplePage"
-	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	xmlns:local="using:Uno.Gallery"
-	xmlns:samples="using:Uno.Gallery.Views.Samples"
-	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
-	xmlns:smtx="using:ShowMeTheXAML"
-	mc:Ignorable="d">
+﻿<Page x:Class="Uno.Gallery.Views.Samples.InfoBadgeSamplePage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+	  xmlns:smtx="using:ShowMeTheXAML"
+	  xmlns:local="using:Uno.Gallery"
+	  mc:Ignorable="d">
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 		<local:SamplePageLayout IsDesignAgnostic="True">
@@ -16,125 +14,245 @@
 				<DataTemplate>
 					<StackPanel>
 						<smtx:XamlDisplay UniqueKey="InfoBadgeSamplePage_Sample_Styles"
-										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\UserControl\Grid\ListView"
 										  smtx:XamlDisplayExtensions.Header="InfoBadge in ListViewItem">
-							<StackPanel>
-								<ListView>
-									<ListViewItem>
-										<StackPanel Orientation="Horizontal">
-											<TextBlock Text="Numeric badge" />
-											<muxc:InfoBadge Value="{Binding Data.NumericValue, Mode=OneWay}"
-															Style="{Binding Data.BadgeStyle, Mode=OneWay}" />
+							<UserControl>
+								<Grid HorizontalAlignment="Stretch"
+									  ColumnSpacing="20"
+									  RowSpacing="20">
+									<Grid.RowDefinitions>
+										<RowDefinition Height="Auto" />
+										<RowDefinition Height="Auto" />
+									</Grid.RowDefinitions>
+
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="*" />
+										<ColumnDefinition Width="*" />
+									</Grid.ColumnDefinitions>
+
+									<VisualStateManager.VisualStateGroups>
+										<VisualStateGroup>
+											<VisualState x:Name="WideState">
+												<VisualState.StateTriggers>
+													<AdaptiveTrigger MinWindowWidth="860" />
+												</VisualState.StateTriggers>
+												<VisualState.Setters>
+													<Setter Target="infoBadges.(Grid.Column)"
+															Value="0" />
+													<Setter Target="sideBar.(Grid.Column)"
+															Value="1" />
+													<Setter Target="sideBar.(Grid.RowSpan)"
+															Value="2" />
+													<Setter Target="infoBadges.(Grid.RowSpan)"
+															Value="2" />
+													<Setter Target="sideBar.HorizontalAlignment"
+															Value="Right" />
+												</VisualState.Setters>
+											</VisualState>
+											<VisualState x:Name="NarrowState">
+												<VisualState.StateTriggers>
+													<AdaptiveTrigger MinWindowWidth="0" />
+												</VisualState.StateTriggers>
+												<VisualState.Setters>
+													<Setter Target="infoBadges.(Grid.Row)"
+															Value="0" />
+													<Setter Target="sideBar.(Grid.Row)"
+															Value="1" />
+													<Setter Target="sideBar.(Grid.Column)"
+															Value="0" />
+													<Setter Target="sideBar.(Grid.ColumnSpan)"
+															Value="2" />
+													<Setter Target="infoBadges.(Grid.ColumnSpan)"
+															Value="2" />
+													<Setter Target="sideBar.HorizontalAlignment"
+															Value="Stretch" />
+												</VisualState.Setters>
+											</VisualState>
+										</VisualStateGroup>
+									</VisualStateManager.VisualStateGroups>
+
+									<ListView x:Name="infoBadges">
+										<ListViewItem>
+											<StackPanel Orientation="Horizontal">
+												<TextBlock Text="Numeric badge" />
+												<muxc:InfoBadge VerticalAlignment="Center"
+																Value="{Binding Data.NumericValue, Mode=OneWay}"
+																Opacity="{Binding Data.Opacity, Mode=OneWay}"
+																Style="{Binding Data.BadgeStyle, Mode=OneWay}" />
+											</StackPanel>
+										</ListViewItem>
+										<ListViewItem>
+											<StackPanel Orientation="Horizontal">
+												<TextBlock Text="Icon badge" />
+												<muxc:InfoBadge Style="{Binding Data.BadgeStyle, Mode=OneWay}"
+																Padding="2"
+																Opacity="{Binding Data.Opacity, Mode=OneWay}">
+													<muxc:InfoBadge.IconSource>
+														<muxc:FontIconSource FontFamily="{ThemeResource SymbolThemeFontFamily}"
+																			 Glyph="&#xE117;" />
+													</muxc:InfoBadge.IconSource>
+												</muxc:InfoBadge>
+											</StackPanel>
+										</ListViewItem>
+										<ListViewItem>
+											<StackPanel Orientation="Horizontal">
+												<TextBlock Text="Image badge" />
+												<muxc:InfoBadge Style="{StaticResource InfoBadgeStyle_Image}"
+																Width="18"
+																Height="18"
+																Opacity="{Binding Data.Opacity, Mode=OneWay}" />
+											</StackPanel>
+										</ListViewItem>
+										<ListViewItem>
+											<StackPanel Orientation="Horizontal">
+												<TextBlock Text="Dot badge" />
+												<muxc:InfoBadge Style="{Binding Data.BadgeStyle, Mode=OneWay}"
+																Width="4"
+																Height="4"
+																Opacity="{Binding Data.Opacity, Mode=OneWay}" />
+											</StackPanel>
+										</ListViewItem>
+									</ListView>
+
+									<Border x:Name="sideBar"
+											Grid.Column="1"
+											HorizontalAlignment="Right"
+											CornerRadius="8"
+											Padding="16"
+											MinWidth="200"
+											Background="{ThemeResource CardBackgroundFillColorDefaultBrush}">
+										<StackPanel Spacing="8">
+											<muxc:NumberBox Minimum="-1"
+															Maximum="999"
+															Value="{Binding Data.NumericValue, Mode=TwoWay}">
+												<muxc:NumberBox.Header>
+													<TextBlock>
+														<Run Text="Numeric value: " />
+														<Run Text="{Binding Data.NumericValue, Mode=OneWay}" />
+													</TextBlock>
+												</muxc:NumberBox.Header>
+											</muxc:NumberBox>
+
+											<ComboBox SelectedItem="{Binding Data.SelectedStyle, Mode=TwoWay}"
+													  Header="Style"
+													  PlaceholderText="Select the style">
+												<x:String>None</x:String>
+												<x:String>Success</x:String>
+												<x:String>Attention</x:String>
+												<x:String>Critical</x:String>
+											</ComboBox>
+
+											<Slider Minimum="0"
+													Maximum="1"
+													Value="{Binding Data.Opacity, Mode=TwoWay}"
+													StepFrequency="0.1">
+												<Slider.Header>
+													<TextBlock>
+														<Run Text="Opacity: " />
+														<Run Text="{Binding Data.Opacity, Mode=OneWay}" />
+													</TextBlock>
+												</Slider.Header>
+											</Slider>
 										</StackPanel>
-									</ListViewItem>
-									<ListViewItem>
-										<StackPanel Orientation="Horizontal">
-											<TextBlock Text="Icon badge" />
+									</Border>
+								</Grid>
+							</UserControl>
+						</smtx:XamlDisplay>
+
+						<!--GridView can be used instead of the nested StackPanels, but an issue prevents using binding on most platforms https://github.com/unoplatform/uno/issues/11738-->
+						<smtx:XamlDisplay UniqueKey="InfoBadeSamplePage_Sample_Button"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel"
+										  smtx:XamlDisplayExtensions.Header="InfoBadge inside Button">
+							<StackPanel Spacing="4"
+										Orientation="Horizontal">
+								<StackPanel Spacing="4">
+									<Button Padding="0"
+											Width="120"
+											Height="70"
+											HorizontalContentAlignment="Stretch"
+											VerticalContentAlignment="Stretch">
+
+										<Grid HorizontalAlignment="Stretch"
+											  VerticalAlignment="Stretch"
+											  Width="Auto"
+											  Height="Auto">
+											<SymbolIcon Symbol="Upload"
+														HorizontalAlignment="Center" />
+											<muxc:InfoBadge Value="{Binding Data.NumericValue, Mode=OneWay}"
+															Style="{Binding Data.BadgeStyle, Mode=OneWay}"
+															HorizontalAlignment="Right"
+															VerticalAlignment="Top"
+															Margin="5"
+															Opacity="{Binding Data.Opacity, Mode=OneWay}" />
+										</Grid>
+									</Button>
+
+									<Button Padding="0"
+											Width="120"
+											Height="70"
+											HorizontalContentAlignment="Stretch"
+											VerticalContentAlignment="Stretch">
+										<Grid HorizontalAlignment="Stretch"
+											  VerticalAlignment="Stretch"
+											  Width="Auto"
+											  Height="Auto">
+											<SymbolIcon Symbol="Download"
+														HorizontalAlignment="Center" />
 											<muxc:InfoBadge Style="{Binding Data.BadgeStyle, Mode=OneWay}"
+															HorizontalAlignment="Right"
+															VerticalAlignment="Top"
+															Margin="5"
 															Padding="2"
-															Opacity="{Binding Data.Opacity, Mode=OneWay}" >
+															Opacity="{Binding Data.Opacity, Mode=OneWay}">
 												<muxc:InfoBadge.IconSource>
-													<muxc:FontIconSource FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE117;" />
+													<muxc:FontIconSource FontFamily="{ThemeResource SymbolThemeFontFamily}"
+																		 Glyph="&#xE117;" />
 												</muxc:InfoBadge.IconSource>
 											</muxc:InfoBadge>
-										</StackPanel>
-									</ListViewItem>
-									<ListViewItem>
-										<StackPanel Orientation="Horizontal">
-											<TextBlock Text="Image badge" />
+										</Grid>
+									</Button>
+								</StackPanel>
+
+								<StackPanel Spacing="4">
+									<Button Padding="0"
+											Width="120"
+											Height="70"
+											HorizontalContentAlignment="Stretch"
+											VerticalContentAlignment="Stretch">
+										<Grid HorizontalAlignment="Stretch"
+											  VerticalAlignment="Stretch"
+											  Width="Auto"
+											  Height="Auto">
+											<SymbolIcon Symbol="Upload"
+														HorizontalAlignment="Center" />
 											<muxc:InfoBadge Style="{StaticResource InfoBadgeStyle_Image}"
+															HorizontalAlignment="Right"
+															VerticalAlignment="Top"
+															Margin="5"
 															Opacity="{Binding Data.Opacity, Mode=OneWay}" />
-										</StackPanel>
-									</ListViewItem>
-									<ListViewItem>
-										<StackPanel Orientation="Horizontal">
-											<TextBlock Text="Dot badge" />
+										</Grid>
+									</Button>
+
+									<Button Width="120"
+											Height="70"
+											HorizontalContentAlignment="Stretch"
+											VerticalContentAlignment="Stretch">
+										<Grid HorizontalAlignment="Stretch"
+											  VerticalAlignment="Stretch"
+											  Width="Auto"
+											  Height="Auto">
+											<SymbolIcon Symbol="Upload"
+														HorizontalAlignment="Center" />
 											<muxc:InfoBadge Style="{Binding Data.BadgeStyle, Mode=OneWay}"
+															HorizontalAlignment="Right"
+															VerticalAlignment="Top"
+															Margin="5"
 															Width="4"
 															Height="4"
 															Opacity="{Binding Data.Opacity, Mode=OneWay}" />
-										</StackPanel>
-									</ListViewItem>
-								</ListView>
-							</StackPanel>
-						</smtx:XamlDisplay>
-
-						<smtx:XamlDisplay UniqueKey="InfoBadeSamplePage_Sample_Button"
-										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\ScrollViewer\StackPanel"
-										  smtx:XamlDisplayExtensions.Header="InfoBadge inside button">
-							<Grid>
-								<Grid.ColumnDefinitions>
-									<ColumnDefinition Width="*" />
-									<ColumnDefinition Width="*" />
-								</Grid.ColumnDefinitions>
-								<Grid.RowDefinitions>
-									<RowDefinition Height="*" />
-									<RowDefinition Height="*" />
-								</Grid.RowDefinitions>
-								<Button Grid.Column="0" Grid.Row="0" Padding="0" Width="100" Height="60" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
-									<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" Height="Auto">
-										<SymbolIcon Symbol="Upload" HorizontalAlignment="Center"/>
-										<muxc:InfoBadge Value="{Binding Data.NumericValue, Mode=OneWay}"
-														Style="{Binding Data.BadgeStyle, Mode=OneWay}"
-														HorizontalAlignment="Right" VerticalAlignment="Top"
-														Margin="5"
-														Opacity="{Binding Data.Opacity, Mode=OneWay}" />
-									</Grid>
-								</Button>
-								<Button Grid.Column="1" Grid.Row="0" Padding="0" Width="100" Height="60" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
-									<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" Height="Auto">
-										<SymbolIcon Symbol="Download" HorizontalAlignment="Center"/>
-										<muxc:InfoBadge Style="{Binding Data.BadgeStyle, Mode=OneWay}"
-														HorizontalAlignment="Right" VerticalAlignment="Top"
-														Margin="5" Padding="2"
-														Opacity="{Binding Data.Opacity, Mode=OneWay}">
-											<muxc:InfoBadge.IconSource>
-												<muxc:FontIconSource FontFamily="{ThemeResource SymbolThemeFontFamily}"
-																	 Glyph="&#xE117;" />
-											</muxc:InfoBadge.IconSource>
-										</muxc:InfoBadge>
-									</Grid>
-								</Button>
-								<Button Grid.Column="0" Grid.Row="1" Padding="0" Width="100" Height="60" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
-									<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" Height="Auto">
-										<SymbolIcon Symbol="Upload" HorizontalAlignment="Center"/>
-										<muxc:InfoBadge Style="{StaticResource InfoBadgeStyle_Image}"
-														HorizontalAlignment="Right" VerticalAlignment="Top"
-														Margin="5"
-														Opacity="{Binding Data.Opacity, Mode=OneWay}" />
-									</Grid>
-								</Button>
-								<Button Grid.Column="1" Grid.Row="1" Padding="0" Width="100" Height="60" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
-									<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" Height="Auto">
-										<SymbolIcon Symbol="Upload" HorizontalAlignment="Center"/>
-										<muxc:InfoBadge Style="{Binding Data.BadgeStyle, Mode=OneWay}"
-														HorizontalAlignment="Right" VerticalAlignment="Top"
-														Margin="5" Width="4" Height="4"
-														Opacity="{Binding Data.Opacity, Mode=OneWay}" />
-									</Grid>
-								</Button>
-							</Grid>
-						</smtx:XamlDisplay>
-						
-						<smtx:XamlDisplay UniqueKey="InfobadgeSamplePage_Sample_Parameters"
-										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay"
-										  smtx:XamlDisplayExtensions.Header="Parameters">
-							<StackPanel>
-								<TextBlock>
-									<Run Text="Numeric value: " />
-									<Run Text="{Binding Data.NumericValue, Mode=OneWay}" />
-								</TextBlock>
-								<Slider Minimum="-1" Maximum="10" Value="{Binding Data.NumericValue, Mode=TwoWay}" />
-								<ComboBox SelectedItem="{Binding Data.SelectedStyle, Mode=TwoWay}" Header="Style" PlaceholderText="Select the style">
-									<x:String>Attention</x:String>
-									<x:String>Critical</x:String>
-									<x:String>Success</x:String>
-								</ComboBox>
-								<TextBlock>
-									<Run Text="Opacity: " />
-									<Run Text="{Binding Data.Opacity, Mode=OneWay}" />
-								</TextBlock>
-								<Slider Minimum="0" Maximum="1" Value="{Binding Data.Opacity, Mode=TwoWay}" StepFrequency="0.1" />
+										</Grid>
+									</Button>
+								</StackPanel>
 							</StackPanel>
 						</smtx:XamlDisplay>
 					</StackPanel>

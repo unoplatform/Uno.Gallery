@@ -26,7 +26,7 @@
                                         <Setter Target="RootGrid.BorderThickness"
                                                 Value="0,0,0,1" />
                                         <Setter Target="RootGrid.BorderBrush"
-                                                Value="{StaticResource DividerBrush}" />
+                                                Value="{ThemeResource DividerBrush}" />
                                     </VisualState.Setters>
                                 </VisualState>
 
@@ -49,37 +49,37 @@
 							<Button x:Name="PART_HowItWorkButton"
 									Content="HOW IT WORKS"
 									FontWeight="Medium"
-									Foreground="{StaticResource OnSurfaceBrush}"
+									Foreground="{ThemeResource OnSurfaceBrush}"
 									Style="{StaticResource TextButtonStyle}" />
 
 							<Button x:Name="PART_CodeSampleButton"
 									Content="CODE SAMPLES"
 									FontWeight="Medium"
-									Foreground="{StaticResource OnSurfaceBrush}"
+									Foreground="{ThemeResource OnSurfaceBrush}"
 									Style="{StaticResource TextButtonStyle}" />
 
 							<Button x:Name="PART_ShowCasesButton"
 									Content="SHOWCASES"
 									FontWeight="Medium"
-									Foreground="{StaticResource OnSurfaceBrush}"
+									Foreground="{ThemeResource OnSurfaceBrush}"
 									Style="{StaticResource TextButtonStyle}" />
 
 							<Button x:Name="PART_DocsButton"
 									Content="DOCS"
 									FontWeight="Medium"
-									Foreground="{StaticResource OnSurfaceBrush}"
+									Foreground="{ThemeResource OnSurfaceBrush}"
 									Style="{StaticResource TextButtonStyle}" />
 
 							<Button x:Name="PART_BlogButton"
 									Content="BLOG"
 									FontWeight="Medium"
-									Foreground="{StaticResource OnSurfaceBrush}"
+									Foreground="{ThemeResource OnSurfaceBrush}"
 									Style="{StaticResource TextButtonStyle}" />
 
 							<Button x:Name="PART_ContactButton"
 									Content="CONTACT"
 									FontWeight="Medium"
-									Foreground="{StaticResource OnSurfaceBrush}"
+									Foreground="{ThemeResource OnSurfaceBrush}"
 									Style="{StaticResource TextButtonStyle}" />
 
 							<Button x:Name="PART_GetStartedButton"

@@ -4,7 +4,7 @@
   container: unoplatform/wasm-build:3.0
 
   pool:
-    vmImage: 'ubuntu-20.04'
+    vmImage: 'ubuntu-latest'
 
   variables:
     NUGET_PACKAGES: $(build.sourcesdirectory)/.nuget
@@ -13,14 +13,14 @@
   - checkout: self
     clean: true
 
-  - template: templates/canary-updater.yml
-
   - task: UseDotNet@2
-    displayName: 'Use .Net Core runtime 6.0.x'
+    displayName: 'Use .NET SDK'
     retryCountOnTaskFailure: 3
     inputs:
       packageType: sdk
-      version: 6.0.200
+      version: 7.0.102
+
+  - template: templates/canary-updater.yml
 
   - bash: |
       chmod +x build/scripts/wasm-uitest-run.sh
@@ -28,13 +28,12 @@
     env:
       BUILD_SOURCESDIRECTORY: "$(build.sourcesdirectory)"
       BUILD_ARTIFACTSTAGINGDIRECTORY: "$(build.artifactstagingdirectory)"
-    retryCountOnTaskFailure: 3
     displayName: 'Running build'
 
   - task: CopyFiles@2
     displayName: Copy Wasm output
     inputs:
-      SourceFolder: Uno.Gallery/Uno.Gallery.Wasm/bin/Release/net6.0/dist
+      SourceFolder: Uno.Gallery/Uno.Gallery.Wasm/bin/Release/net7.0/dist
       Contents: '**/*.*'
       TargetFolder: $(Build.ArtifactStagingDirectory)/bin
 

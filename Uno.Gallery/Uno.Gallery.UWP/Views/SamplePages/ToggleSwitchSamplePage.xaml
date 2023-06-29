@@ -17,9 +17,9 @@
 									  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
 						<StackPanel Spacing="20">
 
-							<ToggleSwitch Header="OFF" Foreground="{StaticResource OnBackgroundBrush}" />
+							<ToggleSwitch Header="OFF" Foreground="{ThemeResource OnBackgroundBrush}" />
 							<ToggleSwitch Header="ON"
-										  Foreground="{StaticResource OnBackgroundBrush}"
+										  Foreground="{ThemeResource OnBackgroundBrush}"
 										  IsOn="True" />
 
 							<ToggleSwitch Header="DISABLED OFF" IsEnabled="False" />

@@ -25,47 +25,47 @@
 					<smtx:XamlDisplay UniqueKey="ElevatedViewSamplePage_MaterialContained" smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
 						<StackPanel Spacing="20">
 
-							<toolkit:ElevatedView Elevation="1" Background="{StaticResource SurfaceBrush}">
+							<toolkit:ElevatedView Elevation="1" Background="{ThemeResource SurfaceBrush}">
 								<Grid Height="50">
 									<TextBlock Text="01 dp" Style="{StaticResource DescriptionTextStyle}" />
 								</Grid>
 							</toolkit:ElevatedView>
-							<toolkit:ElevatedView Elevation="2" Background="{StaticResource SurfaceBrush}">
+							<toolkit:ElevatedView Elevation="2" Background="{ThemeResource SurfaceBrush}">
 								<Grid Height="50">
 									<TextBlock Text="02 dp" Style="{StaticResource DescriptionTextStyle}" />
 								</Grid>
 							</toolkit:ElevatedView>
-							<toolkit:ElevatedView Elevation="3" Background="{StaticResource SurfaceBrush}">
+							<toolkit:ElevatedView Elevation="3" Background="{ThemeResource SurfaceBrush}">
 								<Grid Height="50">
 									<TextBlock Text="03 dp" Style="{StaticResource DescriptionTextStyle}" />
 								</Grid>
 							</toolkit:ElevatedView>
-							<toolkit:ElevatedView Elevation="4" Background="{StaticResource SurfaceBrush}">
+							<toolkit:ElevatedView Elevation="4" Background="{ThemeResource SurfaceBrush}">
 								<Grid Height="50">
 									<TextBlock Text="04 dp" Style="{StaticResource DescriptionTextStyle}" />
 								</Grid>
 							</toolkit:ElevatedView>
-							<toolkit:ElevatedView Elevation="6" Background="{StaticResource SurfaceBrush}">
+							<toolkit:ElevatedView Elevation="6" Background="{ThemeResource SurfaceBrush}">
 								<Grid Height="50">
 									<TextBlock Text="06 dp" Style="{StaticResource DescriptionTextStyle}" />
 								</Grid>
 							</toolkit:ElevatedView>
-							<toolkit:ElevatedView Elevation="8" Background="{StaticResource SurfaceBrush}">
+							<toolkit:ElevatedView Elevation="8" Background="{ThemeResource SurfaceBrush}">
 								<Grid Height="50">
 									<TextBlock Text="08 dp" Style="{StaticResource DescriptionTextStyle}" />
 								</Grid>
 							</toolkit:ElevatedView>
-							<toolkit:ElevatedView Elevation="9" Background="{StaticResource SurfaceBrush}">
+							<toolkit:ElevatedView Elevation="9" Background="{ThemeResource SurfaceBrush}">
 								<Grid Height="50">
 									<TextBlock Text="09 dp" Style="{StaticResource DescriptionTextStyle}" />
 								</Grid>
 							</toolkit:ElevatedView>
-							<toolkit:ElevatedView Elevation="12" Background="{StaticResource SurfaceBrush}">
+							<toolkit:ElevatedView Elevation="12" Background="{ThemeResource SurfaceBrush}">
 								<Grid Height="50">
 									<TextBlock Text="12 dp" Style="{StaticResource DescriptionTextStyle}" />
 								</Grid>
 							</toolkit:ElevatedView>
-							<toolkit:ElevatedView Elevation="16" Background="{StaticResource SurfaceBrush}">
+							<toolkit:ElevatedView Elevation="16" Background="{ThemeResource SurfaceBrush}">
 								<Grid Height="50">
 									<TextBlock Text="16 dp" Style="{StaticResource DescriptionTextStyle}" />
 								</Grid>

@@ -11,8 +11,8 @@
 			<Setter.Value>
 				<ControlTemplate TargetType="local:OverviewSampleView">
 					<Grid CornerRadius="4"
-						  Background="{StaticResource SurfaceBrush}"
-						  BorderBrush="{StaticResource DividerBrush}"
+						  Background="{ThemeResource SurfaceBrush}"
+						  BorderBrush="{ThemeResource DividerBrush}"
 						  BorderThickness="1"
 						  Margin="0,24,0,0">
 						<Grid.ColumnDefinitions>
@@ -42,7 +42,6 @@
 
 							<Button x:Name="PART_ViewButton"
 									Content="View component"
-									Click="OverviewPage_Click"
 									Margin="8,8"
 									Padding="8,8"
 									Style="{StaticResource TextButtonStyle}" />
@@ -51,7 +50,7 @@
 						<!-- Sample -->
 						<Border x:Name="SamplePart"
 								Grid.Column="1"
-								Background="{StaticResource SampleSecondBackgroundBrush}"
+								Background="{ThemeResource SampleSecondBackgroundBrush}"
 								Padding="16">
 							<ContentControl Content="{TemplateBinding Content}"
 											ContentTemplate="{TemplateBinding ContentTemplate}"

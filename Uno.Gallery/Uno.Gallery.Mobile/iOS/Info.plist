@@ -39,11 +39,7 @@
 		</array>
 		<key>UIAppFonts</key>
 		<array>
-			<string>Fonts/uno-fluentui-assets.ttf</string>
-			<string>Fonts/Roboto-Light.ttf</string>
-			<string>Fonts/Roboto-Medium.ttf</string>
-			<string>Fonts/Roboto-Regular.ttf</string>
-			<string>Fonts/SF-Pro.ttf</string>
+			<string>Fonts/SF-Pro-Text-Regular.otf</string>
 		</array>
 		<key>UIViewControllerBasedStatusBarAppearance</key>
 		<false/>
@@ -59,5 +55,14 @@
 		<string>Media.xcassets/AppIcons.appiconset</string>
 		<key>ITSAppUsesNonExemptEncryption</key>
 		<false/>
+		<key>NSMotionUsageDescription</key>
+		<string>This app requires motion tracking for the Pedometer sample to work.</string>
+		<key>LSApplicationQueriesSchemes</key>
+		<array>
+			<string>tel</string>
+			<string>sms</string>
+			<string>mailto</string>
+			<string>https</string>
+		</array>
 	</dict>
 </plist>

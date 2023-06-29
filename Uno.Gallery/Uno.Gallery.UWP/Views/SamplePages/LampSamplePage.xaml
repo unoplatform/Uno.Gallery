@@ -1,14 +1,11 @@
-﻿<Page
-	x:Class="Uno.Gallery.Views.Samples.LampSamplePage"
-	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	xmlns:local="using:Uno.Gallery"
-	xmlns:samples="using:Uno.Gallery.Views.Samples"
-	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
-	xmlns:smtx="using:ShowMeTheXAML"
-	mc:Ignorable="d">
+﻿<Page x:Class="Uno.Gallery.Views.Samples.LampSamplePage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  xmlns:smtx="using:ShowMeTheXAML"
+	  xmlns:local="using:Uno.Gallery"
+	  mc:Ignorable="d">
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 		<local:SamplePageLayout IsDesignAgnostic="True">
@@ -18,7 +15,7 @@
 						<smtx:XamlDisplay UniqueKey="LampSamplePage_Sample"
 										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel"
 										  smtx:XamlDisplayExtensions.Header="Lamp control">
-							<StackPanel Spacing="20">
+							<StackPanel>
 								<!-- C# code
 if (await Lamp.GetDefaultAsync() is Lamp lamp)
 {
@@ -32,16 +29,22 @@ if (await Lamp.GetDefaultAsync() is Lamp lamp)
 }
 -->
 
-								<StackPanel.DataContext>
-									<samples:LampSamplePageViewModel />
-								</StackPanel.DataContext>
+								<Slider Header="Brightness"
+										Visibility="{Binding Data.IsBrightnessSupported, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
+										Maximum="1"
+										Minimum="0"
+										Value="{Binding Data.BrightnessLevel, Mode=TwoWay}"
+										StepFrequency="0.1"
+										TickFrequency="0.1"
+										TickPlacement="Outside"
+										IsThumbToolTipEnabled="True"
+										Margin="0,0,0,20" />
 
-								<Slider Header="Brightness" Visibility="{Binding IsBrightnessSupported, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}" Maximum="1"
-										Minimum="0" Value="{Binding BrightnessLevel, Mode=TwoWay}" StepFrequency="0.1"
-										TickFrequency="0.1" TickPlacement="Outside" IsThumbToolTipEnabled="True" />
-
-								<Button Click="ChangeLampState_Click" IsEnabled="{Binding IsAvailable}">
-									<TextBlock Text="{Binding ButtonContent}" VerticalAlignment="Stretch" TextAlignment="Center" />
+								<Button Click="ChangeLampState_Click"
+										IsEnabled="{Binding Data.IsAvailable}">
+									<TextBlock Text="{Binding Data.ButtonContent}"
+											   VerticalAlignment="Stretch"
+											   TextAlignment="Center" />
 								</Button>
 							</StackPanel>
 						</smtx:XamlDisplay>

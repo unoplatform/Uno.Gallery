@@ -1,23 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Globalization;
-using System.IO;
 using System.Linq;
-using System.Net.Mail;
-using System.Runtime.InteropServices.WindowsRuntime;
 using System.Windows.Input;
 using Uno.Gallery.ViewModels;
 using Windows.ApplicationModel.Email;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 
 namespace Uno.Gallery.Views.Samples
 {
@@ -35,7 +22,7 @@ namespace Uno.Gallery.Views.Samples
 
 	public class EmailManagerSamplePageViewModel : ViewModelBase
 	{
-		// EmailManager only supports the ShowComposeNewEmailInternalAsync, with the properties: To (only addresses, whitout names), CC (only addresses, whitout names), BCC (only addresses, whitout names), Subject, Body
+		// EmailManager only supports the ShowComposeNewEmailInternalAsync, with the properties: To (only addresses, without names), CC (only addresses, without names), BCC (only addresses, without names), Subject, Body
 		public string To { get => GetProperty<string>(); set => SetProperty(value); }
 		public string CC { get => GetProperty<string>(); set => SetProperty(value); }
 		public string BCC { get => GetProperty<string>(); set => SetProperty(value); }

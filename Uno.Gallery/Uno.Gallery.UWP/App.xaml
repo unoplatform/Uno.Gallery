@@ -10,7 +10,7 @@
 			<ResourceDictionary.MergedDictionaries>
 				<!-- Load Uno.Themes\Material resources -->
 				<MaterialColors xmlns="using:Uno.Material" />
-				<MaterialFonts xmlns="using:Uno.Material" OverrideSource="ms-appx:///Views/MaterialFontsOverride.xaml" />
+				<MaterialFonts xmlns="using:Uno.Material" />
 				<MaterialResources xmlns="using:Uno.Material" />
 
 				<!-- Load Uno.Themes\Cupertino resources -->
@@ -35,6 +35,7 @@
 				<ResourceDictionary Source="Views/Styles/ColorPaletteView.xaml" />
 				<ResourceDictionary Source="Views/Styles/ContentPageLayout.xaml" />
 				<ResourceDictionary Source="Views/Styles/FluentPaletteView.xaml" />
+				<ResourceDictionary Source="Views/Styles/FontIcons.xaml" />
 				<ResourceDictionary Source="Views/Styles/InfoBadge.xaml" />
 				<ResourceDictionary Source="Views/Styles/NavigationView.xaml" />
 				<ResourceDictionary Source="Views/Styles/NavigationViewItemHeader.xaml" />
@@ -47,6 +48,7 @@
 				<ResourceDictionary Source="Views/Styles/ThreeColorPaletteView.xaml" />
 				<ResourceDictionary Source="Views/Styles/ToggleButton.xaml" />
 				<ResourceDictionary Source="Views/Styles/ToggleSwitch.xaml" />
+				<ResourceDictionary Source="Views/Styles/TypographyControl.xaml" />
 				<ResourceDictionary Source="Views/Styles/XamlDisplay.xaml" />
 				<ResourceDictionary>
 					<x:Double x:Key="DesktopAdaptiveThresholdWidth">720</x:Double>

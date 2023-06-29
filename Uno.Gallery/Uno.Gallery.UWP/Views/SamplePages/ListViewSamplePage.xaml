@@ -73,7 +73,7 @@ public List<Record> Data { get; } = new List<Record>
 							<StackPanel>
 
 								<!-- Chosen Color -->
-                                <TextBlock Foreground="{Binding SelectedItem.Foreground, ElementName=ColorPicker, TargetNullValue={StaticResource OnSurfaceBrush}, FallbackValue={StaticResource OnSurfaceBrush}}"
+                                <TextBlock Foreground="{Binding SelectedItem.Foreground, ElementName=ColorPicker, TargetNullValue={ThemeResource OnSurfaceBrush}, FallbackValue={ThemeResource OnSurfaceBrush}}"
                                            Style="{StaticResource BodyLarge}">
 									<Run Text="Foreground color:" />
 									<Run Text="{Binding SelectedItem.Content, ElementName=ColorPicker}" />

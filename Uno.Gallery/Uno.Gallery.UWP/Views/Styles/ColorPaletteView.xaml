@@ -89,11 +89,11 @@
 
 						<TextBlock Text="{TemplateBinding Title}"
 								   Style="{StaticResource TitleLarge}"
-								   Foreground="{StaticResource OnBackgroundBrush}" />
+								   Foreground="{ThemeResource OnBackgroundBrush}" />
 
 						<TextBlock Text="{TemplateBinding Description}"
 								   Style="{StaticResource BodyMedium}"
-								   Foreground="{StaticResource OnBackgroundBrush}"
+								   Foreground="{ThemeResource OnBackgroundBrush}"
 								   Opacity="0.8"
 								   Margin="0,16,0,0"
 								   Grid.Row="1" />
@@ -258,7 +258,7 @@
 
 						<TextBlock Text="{TemplateBinding Description}"
 								   Style="{StaticResource BodySmall}"
-								   Foreground="{StaticResource OnBackgroundBrush}"
+								   Foreground="{ThemeResource OnBackgroundBrush}"
 								   Opacity="0.45"
 								   Margin="0,16,0,0" />
 					</StackPanel>

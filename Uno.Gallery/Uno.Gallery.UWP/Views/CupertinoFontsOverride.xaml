@@ -1,6 +1,6 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 	
-	<FontFamily x:Key="CupertinoFontFamily">ms-appx:///Assets/Fonts/Cupertino/SF-Pro.ttf#SF Pro</FontFamily>
+	<FontFamily x:Key="CupertinoFontFamily">ms-appx:///Assets/Fonts/Cupertino/SF-Pro-Text-Regular.otf#SF Pro</FontFamily>
 	
 </ResourceDictionary>
