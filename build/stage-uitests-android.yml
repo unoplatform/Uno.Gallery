@@ -5,17 +5,16 @@
   variables:
     CI_Build: true
     SourceLinkEnabled: false
-    XamarinSDKVersion: 6_12_16
 
   pool:
-    vmImage: 'macos-12'
+    vmImage: 'macos-13'
 
   steps:
   - checkout: self
     clean: true
 
-  - bash: /bin/bash -c "sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh $(XamarinSDKVersion)"
-    displayName: Select Xamarin Version
+  - template: templates/dotnet-install-mac.yml
+  - template: templates/dotnet-install-windows.yml
 
   - template: templates/canary-updater.yml
 
@@ -23,7 +22,6 @@
       chmod +x $(build.sourcesdirectory)/build/scripts/android-uitest-run.sh
       $(build.sourcesdirectory)/build/scripts/android-uitest-run.sh
     displayName: Build and Run Android Tests
-    retryCountOnTaskFailure: 4
     env:
       BUILD_SOURCESDIRECTORY: "$(build.sourcesdirectory)"
       BUILD_ARTIFACTSTAGINGDIRECTORY: "$(build.artifactstagingdirectory)"
