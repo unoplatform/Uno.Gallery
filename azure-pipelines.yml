@@ -119,7 +119,7 @@ jobs:
   - template: build/stage-build-mobile.yml
 
 - job: Linux
-  timeoutInMinutes: 90
+  timeoutInMinutes: 30
   pool:
     vmImage: ubuntu-latest
   
