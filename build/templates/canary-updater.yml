@@ -15,6 +15,7 @@ steps:
       mergeBranch: true
       branchToMerge: legacy/4x
       nugetUpdaterVersion: 2.3.0-alpha.35
+      nugetVersion: feature.5x,dev
       versionOverridesFile: 'build/4x-overrides.json'
       packageAuthor: 'nventive,uno platform'
       summaryFile: '$(Build.ArtifactStagingDirectory)/Canary.md'
