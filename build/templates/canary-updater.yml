@@ -1,4 +1,3 @@
-
 steps:
   - task: UseDotNet@2
     displayName: 'Use .NET'
@@ -14,8 +13,9 @@ steps:
       useNuGetOrg: true
       usePrivateFeed: false
       mergeBranch: true
-      branchToMerge: master
-      nugetUpdaterVersion: '2.3.0-alpha.46'
+      branchToMerge: legacy/4x
+      nugetUpdaterVersion: 2.3.0-alpha.35
+      versionOverridesFile: 'build/4x-overrides.json'
       packageAuthor: 'nventive,uno platform'
       summaryFile: '$(Build.ArtifactStagingDirectory)/Canary.md'
 
