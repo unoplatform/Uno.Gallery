@@ -93,6 +93,91 @@ jobs:
   steps:
   - template: build/stage-build-skia-gtk.yml
 
+- job: macOS_Xamarin
+  pool:
+    vmImage: macos-12
+    
+  variables:
+  - name: SkipUnknownFrameworks
+    value: true # Used by TargetFrameworks.Filtering package
+  - group: unoplatform.apple.ios.appstore.distribution
+  - name: ApplicationPlatform
+    value: iPhoneSimulator
+  - name: ArtifactName
+    value: macOS
+  - name: VersionCodeOffset
+    value: 50
+
+  steps:
+  - task: InstallAppleCertificate@2
+    displayName: Install Certificate
+    inputs:
+      certSecureFile: UnoPlatform-Apple-Distribution.p12
+      certPwd: $(appleappstorecertificatepassword)
+      keychain: temp
+      # disabled because of azure devops failing to uninstall as of 2022-11-16
+      # deleteCert: true
+
+  - task: InstallAppleCertificate@2
+    displayName: Install Certificate
+    inputs:
+      certSecureFile: UnoPlatform-MacInstaller.p12
+      certPwd: $(appleappstorecertificatepassword)
+      keychain: temp
+      # disabled because of azure devops failing to uninstall as of 2022-11-16
+      # deleteCert: true
+
+  - task: InstallAppleProvisioningProfile@1
+    displayName: 'Install Apple Provisioning Profile'
+    inputs:
+      provisioningProfileLocation: 'secureFiles'
+      provProfileSecureFile: Uno_Gallery_Catalyst.provisionprofile
+
+  - task: InstallAppleProvisioningProfile@1
+    displayName: 'Install Apple Provisioning Profile'
+    inputs:
+      provisioningProfileLocation: 'secureFiles'
+      provProfileSecureFile: Uno_Gallery_Canary_Catalyst.provisionprofile
+
+#  - template: build/stage-build-macos-xamarin.yml
+
+- job: iOS_Xamarin
+  pool:
+    vmImage: macOS-12
+    
+  variables:
+  - name: SkipUnknownFrameworks
+    value: true # Used by TargetFrameworks.Filtering package
+  - group: unoplatform.apple.ios.appstore.distribution
+  - name: ApplicationPlatform
+    value: iPhone
+  - name: ArtifactName
+    value: iOS
+  - name: VersionCodeOffset
+    value: 50
+
+  steps:
+  - task: InstallAppleCertificate@2
+    displayName: Install Certificate
+    inputs:
+      certSecureFile: UnoPlatform-Apple-Distribution.p12
+      certPwd: $(appleappstorecertificatepassword)
+      keychain: temp
+
+  - task: InstallAppleProvisioningProfile@1
+    displayName: 'Install Apple Provisioning Profile'
+    inputs:
+      provisioningProfileLocation: 'secureFiles'
+      provProfileSecureFile: Uno_Gallery_Canary_iOS.mobileprovision
+
+  - task: InstallAppleProvisioningProfile@1
+    displayName: 'Install Apple Provisioning Profile'
+    inputs:
+      provisioningProfileLocation: 'secureFiles'
+      provProfileSecureFile: Uno_Gallery_iOS.mobileprovision
+
+  - template: build/stage-build-ios-xamarin.yml
+
 - job: macOS_netcore
   strategy:
     maxParallel: 2
