@@ -16,6 +16,10 @@
 	"UpdatedVersion": "(,4.99.0-dev.999]"
   },
   {
+	"PackageId": "Uno.UI.Foldable",
+	"UpdatedVersion": "(,4.99.0-dev.999]"
+  },
+  {
 	"PackageId": "Uno.UI.MediaPlayer.WebAssembly",
 	"UpdatedVersion": "(,4.99.0-dev.999]"
   },
