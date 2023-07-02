@@ -54,11 +54,77 @@
 								<RowDefinition Height="Auto" />
 							</Grid.RowDefinitions>
 
-							<!-- Content -->
-							<ContentPresenter x:Name="MainContent"
-											  Padding="16"
-											  Content="{TemplateBinding Content}"
-											  Background="{TemplateBinding Background}" />
+							<UserControl>
+								<VisualStateManager.VisualStateGroups>
+									<VisualStateGroup>
+										<VisualState x:Name="WideState">
+											<VisualState.StateTriggers>
+												<AdaptiveTrigger MinWindowWidth="860" />
+											</VisualState.StateTriggers>
+											<VisualState.Setters>
+												<Setter Target="MainContent.(Grid.Column)"
+														Value="0" />
+												<Setter Target="Options.(Grid.Column)"
+														Value="1" />
+												<Setter Target="Options.(Grid.RowSpan)"
+														Value="2" />
+												<Setter Target="MainContent.(Grid.RowSpan)"
+														Value="2" />
+												<Setter Target="Options.HorizontalAlignment"
+														Value="Right" />
+											</VisualState.Setters>
+										</VisualState>
+										<VisualState x:Name="NarrowState">
+											<VisualState.StateTriggers>
+												<AdaptiveTrigger MinWindowWidth="0" />
+											</VisualState.StateTriggers>
+											<VisualState.Setters>
+												<Setter Target="MainContent.(Grid.Row)"
+														Value="0" />
+												<Setter Target="Options.(Grid.Row)"
+														Value="1" />
+												<Setter Target="Options.(Grid.Column)"
+														Value="0" />
+												<Setter Target="Options.(Grid.ColumnSpan)"
+														Value="2" />
+												<Setter Target="MainContent.(Grid.ColumnSpan)"
+														Value="2" />
+												<Setter Target="Options.HorizontalAlignment"
+														Value="Stretch" />
+											</VisualState.Setters>
+										</VisualState>
+									</VisualStateGroup>
+								</VisualStateManager.VisualStateGroups>
+
+								<Grid Background="{TemplateBinding Background}">
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="*" />
+										<ColumnDefinition Width="auto" />
+									</Grid.ColumnDefinitions>
+									<Grid.RowDefinitions>
+										<RowDefinition Height="*" />
+										<RowDefinition Height="auto" />
+									</Grid.RowDefinitions>
+
+									<!-- Content -->
+									<ContentPresenter x:Name="MainContent"
+													  Padding="16"
+													  Content="{TemplateBinding Content}" />
+
+									<!-- Options -->
+									<Border x:Name="Options"
+											Grid.Column="2"
+											CornerRadius="8"
+											Margin="8"
+											Padding="16"
+											Visibility="{Binding Path=(smtx:XamlDisplayExtensions.Options), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource NullToCollapsed}, FallbackValue=Collapsed}"
+											Background="{ThemeResource CardBackgroundFillColorDefaultBrush}">
+										<ContentPresenter Width="220"
+														  HorizontalAlignment="Left"
+														  Content="{Binding Path=(smtx:XamlDisplayExtensions.Options), RelativeSource={RelativeSource TemplatedParent}}" />
+									</Border>
+								</Grid>
+							</UserControl>
 
 							<Grid Grid.Row="1"
 								  Padding="16,0,0,0"

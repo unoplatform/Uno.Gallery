@@ -22,6 +22,7 @@ namespace ShowMeTheXAML
 		 * PrettyXaml: [reserved] custom formatted xaml based on IgnorePath
 		 * ShowXaml: [reserved] bool driving whether or not to display the formatted xaml
 		 * IsXamlDirty: [reserved] denotes whether the xaml string needs to be re-formatted prior to display
+		 * Options: [optional] displays a options panel next to the control example
 		 */
 
 		#region Property: Header
@@ -108,6 +109,17 @@ namespace ShowMeTheXAML
 
 		#endregion
 
+		#region Property: Options
+		public static DependencyProperty OptionsProperty { get; } = DependencyProperty.Register(
+			"Options",
+			typeof(object),
+			typeof(XamlDisplayExtensions),
+			new PropertyMetadata(null));
+
+		public static object GetOptions(XamlDisplay obj) => (object)obj.GetValue(OptionsProperty);
+		public static void SetOptions(XamlDisplay obj, object value) => obj.SetValue(OptionsProperty, value);
+		#endregion
+
 		private static void OnIgnorePathChanged(XamlDisplay sender, DependencyPropertyChangedEventArgs e)
 		{
 			sender.RegisterPropertyChangedCallback(XamlDisplay.XamlProperty, OnXamlChanged);
@@ -126,7 +138,7 @@ namespace ShowMeTheXAML
 					return;
 				}
 
-				SetIsXamlDirty(target, false); 
+				SetIsXamlDirty(target, false);
 				var ignorePath = GetIgnorePath(target);
 				var formatter = new PrettyXamlFormatter() { IgnorePath = ignorePath };
 				var xaml = formatter.FormatXaml(target.Xaml);
@@ -235,7 +247,8 @@ namespace ShowMeTheXAML
 
 			public override void WriteStartAttribute(string prefix, string localName, string ns)
 			{
-				if (NoopInnerCall) return;
+				if (NoopInnerCall)
+					return;
 				if (_wroteFirstElementAttribute)
 				{
 					// flush xml buffer, so we can write with _textWrite at appropriate location
@@ -257,7 +270,8 @@ namespace ShowMeTheXAML
 			}
 			public override void WriteEndAttribute()
 			{
-				if (NoopInnerCall) return;
+				if (NoopInnerCall)
+					return;
 
 				base.WriteEndAttribute();
 
@@ -266,7 +280,8 @@ namespace ShowMeTheXAML
 			public override void WriteStartElement(string prefix, string localName, string ns)
 			{
 				_elements.Push((prefix, localName, ns));
-				if (NoopInnerCall) return;
+				if (NoopInnerCall)
+					return;
 
 				base.WriteStartElement(prefix, localName, ns);
 
@@ -303,7 +318,8 @@ namespace ShowMeTheXAML
 		{
 			public virtual string FormatXaml(string xaml)
 			{
-				if (string.IsNullOrWhiteSpace(xaml)) return string.Empty;
+				if (string.IsNullOrWhiteSpace(xaml))
+					return string.Empty;
 				try
 				{
 					xaml = PreprocessXaml(xaml);
