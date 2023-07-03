@@ -113,7 +113,12 @@ namespace ShowMeTheXAML
 		public static DependencyProperty OptionsProperty { get; } = DependencyProperty.Register(
 			"Options",
 			typeof(object),
+#if NETFX_CORE
 			typeof(XamlDisplayExtensions),
+#else
+			//Causes System.InvalidOperationException: The Dependency Property [Options] is owned by [ShowMeTheXAML.XamlDisplayExtensions] and cannot be used... on Uno targets
+			typeof(XamlDisplay),
+#endif
 			new PropertyMetadata(null));
 
 		public static object GetOptions(XamlDisplay obj) => (object)obj.GetValue(OptionsProperty);
