@@ -2,13 +2,7 @@
 					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 					xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 					xmlns:smtx="using:ShowMeTheXAML"
-					xmlns:android="http://uno.ui/android"
-					xmlns:local="using:Uno.Gallery"
-					xmlns:ios="http://uno.ui/ios"
-					xmlns:netstdref="http://uno.ui/netstdref"
-					xmlns:macos="http://uno.ui/macos"
-					xmlns:win="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-					mc:Ignorable="android ios netstdref macos">
+					xmlns:local="using:Uno.Gallery">
 
 	<Style x:Key="ExpanderXamlDisplayStyle"
 		   TargetType="smtx:XamlDisplay">
@@ -59,7 +53,7 @@
 									<VisualStateGroup>
 										<VisualState x:Name="WideState">
 											<VisualState.StateTriggers>
-												<AdaptiveTrigger MinWindowWidth="860" />
+												<AdaptiveTrigger MinWindowWidth="970" />
 											</VisualState.StateTriggers>
 											<VisualState.Setters>
 												<Setter Target="MainContent.(Grid.Column)"
@@ -72,25 +66,12 @@
 														Value="2" />
 												<Setter Target="Options.HorizontalAlignment"
 														Value="Right" />
-											</VisualState.Setters>
-										</VisualState>
-										<VisualState x:Name="NarrowState">
-											<VisualState.StateTriggers>
-												<AdaptiveTrigger MinWindowWidth="0" />
-											</VisualState.StateTriggers>
-											<VisualState.Setters>
-												<Setter Target="MainContent.(Grid.Row)"
-														Value="0" />
-												<Setter Target="Options.(Grid.Row)"
-														Value="1" />
-												<Setter Target="Options.(Grid.Column)"
-														Value="0" />
-												<Setter Target="Options.(Grid.ColumnSpan)"
-														Value="2" />
-												<Setter Target="MainContent.(Grid.ColumnSpan)"
-														Value="2" />
-												<Setter Target="Options.HorizontalAlignment"
+												<Setter Target="OptionsPresenter.HorizontalAlignment"
 														Value="Stretch" />
+												<Setter Target="OptionsPresenter.(Grid.ColumnSpan)"
+														Value="1" />
+												<Setter Target="OptionsPresenter.(Grid.ColumnSpan)"
+														Value="1" />
 											</VisualState.Setters>
 										</VisualState>
 									</VisualStateGroup>
@@ -108,19 +89,24 @@
 
 									<!-- Content -->
 									<ContentPresenter x:Name="MainContent"
+													  Grid.ColumnSpan="2"
 													  Padding="16"
 													  Content="{TemplateBinding Content}" />
 
 									<!-- Options -->
 									<Border x:Name="Options"
-											Grid.Column="2"
+											Grid.Row="1"
+											Grid.Column="0"
+											Grid.ColumnSpan="2"
 											CornerRadius="8"
+											HorizontalAlignment="Stretch"
 											Margin="8"
 											Padding="16"
 											Visibility="{Binding Path=(smtx:XamlDisplayExtensions.Options), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource NullToCollapsed}, FallbackValue=Collapsed}"
 											Background="{ThemeResource CardBackgroundFillColorDefaultBrush}">
-										<ContentPresenter Width="220"
+										<ContentPresenter x:Name="OptionsPresenter"
 														  HorizontalAlignment="Left"
+														  MinWidth="220"
 														  Content="{Binding Path=(smtx:XamlDisplayExtensions.Options), RelativeSource={RelativeSource TemplatedParent}}" />
 									</Border>
 								</Grid>
