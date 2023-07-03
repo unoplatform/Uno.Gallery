@@ -213,6 +213,9 @@
     <Compile Include="Views\NestedPages\NavigationBarSample_NestedPage2.xaml.cs">
       <DependentUpon>NavigationBarSample_NestedPage2.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SamplePages\VariableSizedWrapGridSamplePage.xaml.cs">
+      <DependentUpon>VariableSizedWrapGridSamplePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SamplePages\BreadcrumbBarSamplePage.xaml.cs">
       <DependentUpon>BreadcrumbBarSamplePage.xaml</DependentUpon>
     </Compile>
@@ -597,6 +600,10 @@
     <Page Include="Views\NestedPages\NavigationBarSample_NestedPage2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SamplePages\VariableSizedWrapGridSamplePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\SamplePages\BreadcrumbBarSamplePage.xaml">
       <Generator>MSBuild:Compile</Generator>
