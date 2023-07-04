@@ -1,14 +1,12 @@
-﻿<Page
-	x:Class="Uno.Gallery.Views.Samples.RatingControlSamplePage"
-	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	xmlns:local="using:Uno.Gallery"
-	xmlns:samples="using:Uno.Gallery.Views.Samples"
-	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
-	xmlns:smtx="using:ShowMeTheXAML"
-	mc:Ignorable="d">
+﻿<Page x:Class="Uno.Gallery.Views.Samples.RatingControlSamplePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+      xmlns:smtx="using:ShowMeTheXAML"
+      xmlns:local="using:Uno.Gallery"
+      mc:Ignorable="d">
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 		<local:SamplePageLayout>
@@ -17,43 +15,70 @@
 				<DataTemplate>
 					<StackPanel>
 						<smtx:XamlDisplay UniqueKey="RatingControlSamplePage_Sample"
-										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\Grid"
 										  smtx:XamlDisplayExtensions.Header="Rating Control">
-							<StackPanel Spacing="20">
-								<muxc:RatingControl Value="{Binding Data.RatingControlValue, Mode=TwoWay}"
-											   MaxRating="{Binding Data.MaxRating}"
-											   IsReadOnly="{Binding Data.IsReadOnly}"
-											   IsClearEnabled="{Binding Data.IsClearEnabled}"
-											   Caption="{Binding Data.Caption}"
-											   CanDrag="{Binding Data.CanDrag}"/>
 
-								<utu:Divider SubHeader="Test the RatingControl parameters"
-									Style="{StaticResource DividerStyle}"
-									xmlns:utu="using:Uno.Toolkit.UI" />
-								<StackPanel Orientation="Horizontal">
+							<VisualStateManager.VisualStateGroups>
+								<VisualStateGroup>
+									<VisualState x:Name="WideState">
+										<VisualState.StateTriggers>
+											<AdaptiveTrigger MinWindowWidth="950" />
+										</VisualState.StateTriggers>
+										<VisualState.Setters>
+											<Setter Target="ratingHolder.HorizontalAlignment"
+													Value="Left" />
+										</VisualState.Setters>
+									</VisualState>
+								</VisualStateGroup>
+							</VisualStateManager.VisualStateGroups>
+
+							<Grid x:Name="ratingHolder"
+								  HorizontalAlignment="Stretch">
+								<muxc:RatingControl Value="{Binding Data.RatingControlValue, Mode=TwoWay}"
+													MaxRating="{Binding Data.MaxRating}"
+													IsReadOnly="{Binding Data.IsReadOnly}"
+													IsClearEnabled="{Binding Data.IsClearEnabled}"
+													Caption="{Binding Data.Caption}"
+													CanDrag="{Binding Data.CanDrag}" />
+							</Grid>
+
+							<smtx:XamlDisplayExtensions.Options>
+								<StackPanel Spacing="8">
 									<TextBlock>
-										<Run Text="Current value: " />
+										<Run Text="Value: " />
 										<Run Text="{Binding Data.RatingControlValue}" />
 									</TextBlock>
-									<Button Content="-1" Command="{Binding Data.Minus1Command}" Margin="10,0,0,0" />
-									<Button Content="Clear" Command="{Binding Data.ClearCommand}" Margin="10,0,0,0" />
-									<Button Content="+1" Command="{Binding Data.Plus1Command}" Margin="10,0,0,0" />
-								</StackPanel>
+									<StackPanel Spacing="4"
+												Orientation="Horizontal">
+										<Button Content="-1"
+												Command="{Binding Data.Minus1Command}" />
+										<Button Content="Clear"
+												Command="{Binding Data.ClearCommand}" />
+										<Button Content="+1"
+												Command="{Binding Data.Plus1Command}" />
+									</StackPanel>
 
-								<TextBlock>
-									<Run Text="Max Rating: " />
+									<TextBlock>
+									<Run Text="MaxRating: " />
 									<Run Text="{Binding Data.MaxRating}" />
-								</TextBlock>
-								<Slider Value="{Binding Data.MaxRating, Mode=TwoWay}" Minimum="1" Maximum="15" />
+									</TextBlock>
+									<Slider Value="{Binding Data.MaxRating, Mode=TwoWay}"
+											Minimum="1"
+											Maximum="15" />
 
-								<CheckBox Content="Is read only" IsChecked="{Binding Data.IsReadOnly, Mode=TwoWay}" />
+									<CheckBox Content="IsReadOnly"
+											  IsChecked="{Binding Data.IsReadOnly, Mode=TwoWay}" />
 
-								<CheckBox Content="Is clear enabled" IsChecked="{Binding Data.IsClearEnabled, Mode=TwoWay}" />
+									<CheckBox Content="IsClearEnabled"
+											  IsChecked="{Binding Data.IsClearEnabled, Mode=TwoWay}" />
 
-								<TextBox Header="Caption" Text="{Binding Data.Caption, Mode=TwoWay}" />
+									<TextBox Header="Caption"
+											 Text="{Binding Data.Caption, Mode=TwoWay}" />
 
-								<CheckBox Content="Can drag" IsChecked="{Binding Data.CanDrag, Mode=TwoWay}" />
-							</StackPanel>
+									<CheckBox Content="CanDrag"
+											  IsChecked="{Binding Data.CanDrag, Mode=TwoWay}" />
+								</StackPanel>
+							</smtx:XamlDisplayExtensions.Options>
 						</smtx:XamlDisplay>
 					</StackPanel>
 				</DataTemplate>

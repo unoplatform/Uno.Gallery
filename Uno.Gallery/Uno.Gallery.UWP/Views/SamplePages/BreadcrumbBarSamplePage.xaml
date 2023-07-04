@@ -23,7 +23,7 @@ Items = new string[] { "Home", "Documents", "Design", "Northwind", "Images", "Fo
 						</smtx:XamlDisplay>
 
 						<smtx:XamlDisplay UniqueKey="BreadcrumbBarSamplePage_CustomDataTemplateSample"
-										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\UserControl\Grid\StackPanel"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel"
 										  smtx:XamlDisplayExtensions.Header="BreadcrumbBar with Custom DataTemplate">
 							<!--
 public class Folder
@@ -37,102 +37,42 @@ public ObservableCollection<Folder> Folders { get => GetProperty<ObservableColle
 public Folder DisplayItem { get => GetProperty<Folder>(); set => SetProperty(value); }
 -->
 
-							<UserControl>
-								<Grid HorizontalAlignment="Stretch"
-									  RowSpacing="8">
-									<Grid.RowDefinitions>
-										<RowDefinition Height="auto" />
-										<RowDefinition Height="auto" />
-									</Grid.RowDefinitions>
+							<StackPanel Spacing="8">
+								<muxc:BreadcrumbBar x:Name="breadcrumb"
+													ItemsSource="{Binding Data.Folders, Mode=OneWay}"
+													ItemClicked="OnBreadcrumb_ItemClicked">
+									<muxc:BreadcrumbBar.ItemTemplate>
+										<DataTemplate x:DataType="data:Folder">
+											<muxc:BreadcrumbBarItem Content="{Binding}">
+												<muxc:BreadcrumbBarItem.ContentTemplate>
+													<DataTemplate>
+														<TextBlock Text="{Binding Name}" />
+													</DataTemplate>
+												</muxc:BreadcrumbBarItem.ContentTemplate>
+											</muxc:BreadcrumbBarItem>
+										</DataTemplate>
+									</muxc:BreadcrumbBar.ItemTemplate>
+								</muxc:BreadcrumbBar>
+								<TextBlock TextWrapping="WrapWholeWords">
+									<LineBreak />
+									<Span FontWeight="Bold">Name: </Span>
+									<Run Text="{Binding Data.DisplayItem.Name, Mode=OneWay}" />
+									<LineBreak />
+									<Span FontWeight="Bold">Items: </Span>
+									<Run Text="{Binding Data.DisplayItem.ItemCount, Mode=OneWay}" />
+									<LineBreak />
+									<Span FontWeight="Bold">Description: </Span>
+									<Run Text="{Binding Data.DisplayItem.Description, Mode=OneWay}" />
+								</TextBlock>
+							</StackPanel>
 
-									<Grid.ColumnDefinitions>
-										<ColumnDefinition Width="*" />
-										<ColumnDefinition Width="auto" />
-									</Grid.ColumnDefinitions>
-
-									<VisualStateManager.VisualStateGroups>
-										<VisualStateGroup>
-											<VisualState x:Name="WideState">
-												<VisualState.StateTriggers>
-													<AdaptiveTrigger MinWindowWidth="1060" />
-												</VisualState.StateTriggers>
-												<VisualState.Setters>
-													<Setter Target="breadcrumb.(Grid.Column)"
-															Value="0" />
-													<Setter Target="sideBar.(Grid.Column)"
-															Value="1" />
-													<Setter Target="sideBar.(Grid.RowSpan)"
-															Value="2" />
-													<Setter Target="breadcrumb.(Grid.RowSpan)"
-															Value="2" />
-													<Setter Target="sideBar.HorizontalAlignment"
-															Value="Right" />
-												</VisualState.Setters>
-											</VisualState>
-											<VisualState x:Name="NarrowState">
-												<VisualState.StateTriggers>
-													<AdaptiveTrigger MinWindowWidth="0" />
-												</VisualState.StateTriggers>
-												<VisualState.Setters>
-													<Setter Target="breadcrumb.(Grid.Row)"
-															Value="0" />
-													<Setter Target="sideBar.(Grid.Row)"
-															Value="1" />
-													<Setter Target="sideBar.(Grid.ColumnSpan)"
-															Value="2" />
-													<Setter Target="breadcrumb.(Grid.ColumnSpan)"
-															Value="2" />
-													<Setter Target="sideBar.HorizontalAlignment"
-															Value="Stretch" />
-												</VisualState.Setters>
-											</VisualState>
-										</VisualStateGroup>
-									</VisualStateManager.VisualStateGroups>
-
-									<StackPanel Spacing="8">
-										<muxc:BreadcrumbBar x:Name="breadcrumb"
-															ItemsSource="{Binding Data.Folders, Mode=OneWay}"
-															ItemClicked="OnBreadcrumb_ItemClicked">
-											<muxc:BreadcrumbBar.ItemTemplate>
-												<DataTemplate x:DataType="data:Folder">
-													<muxc:BreadcrumbBarItem Content="{Binding}">
-														<muxc:BreadcrumbBarItem.ContentTemplate>
-															<DataTemplate>
-																<TextBlock Text="{Binding Name}" />
-															</DataTemplate>
-														</muxc:BreadcrumbBarItem.ContentTemplate>
-													</muxc:BreadcrumbBarItem>
-												</DataTemplate>
-											</muxc:BreadcrumbBar.ItemTemplate>
-										</muxc:BreadcrumbBar>
-										<TextBlock TextWrapping="WrapWholeWords">
-											<LineBreak />
-											<Span FontWeight="Bold">Name: </Span>
-											<Run Text="{Binding Data.DisplayItem.Name, Mode=OneWay}" />
-											<LineBreak />
-											<Span FontWeight="Bold">Items: </Span>
-											<Run Text="{Binding Data.DisplayItem.ItemCount, Mode=OneWay}" />
-											<LineBreak />
-											<Span FontWeight="Bold">Description: </Span>
-											<Run Text="{Binding Data.DisplayItem.Description, Mode=OneWay}" />
-										</TextBlock>
-									</StackPanel>
-
-									<Border x:Name="sideBar"
-											HorizontalAlignment="Right"
-											CornerRadius="8"
-											Padding="16"
-											MinWidth="180"
-											Background="{ThemeResource CardBackgroundFillColorDefaultBrush}">
-
-										<StackPanel Spacing="4">
-											<Button Content="Reset items"
-													HorizontalAlignment="Stretch"
-													Click="OnResetItems_Click" />
-										</StackPanel>
-									</Border>
-								</Grid>
-							</UserControl>
+							<smtx:XamlDisplayExtensions.Options>
+								<StackPanel Spacing="4">
+									<Button Content="Reset items"
+											HorizontalAlignment="Stretch"
+											Click="OnResetItems_Click" />
+								</StackPanel>
+							</smtx:XamlDisplayExtensions.Options>
 						</smtx:XamlDisplay>
 					</StackPanel>
 				</DataTemplate>

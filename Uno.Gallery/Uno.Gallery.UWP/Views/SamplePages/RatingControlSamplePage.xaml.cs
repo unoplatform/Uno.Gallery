@@ -1,10 +1,5 @@
-﻿using System;
-using System.ComponentModel;
-using System.Data;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using Uno.Gallery.ViewModels;
-using Windows.Devices.Sensors;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 namespace Uno.Gallery.Views.Samples
