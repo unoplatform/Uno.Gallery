@@ -216,6 +216,9 @@
     <Compile Include="Views\SamplePages\TreeViewSamplePage.xaml.cs">
       <DependentUpon>TreeViewSamplePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SamplePages\VariableSizedWrapGridSamplePage.xaml.cs">
+      <DependentUpon>VariableSizedWrapGridSamplePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SamplePages\BreadcrumbBarSamplePage.xaml.cs">
       <DependentUpon>BreadcrumbBarSamplePage.xaml</DependentUpon>
     </Compile>
@@ -602,6 +605,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SamplePages\TreeViewSamplePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SamplePages\VariableSizedWrapGridSamplePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
