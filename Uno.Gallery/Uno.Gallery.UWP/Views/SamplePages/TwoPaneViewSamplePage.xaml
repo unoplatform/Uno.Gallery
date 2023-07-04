@@ -4,67 +4,68 @@
 	  xmlns:local="using:Uno.Gallery"
 	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
 	  xmlns:smtx="using:ShowMeTheXAML"
 	  mc:Ignorable="d">
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 		<local:SamplePageLayout>
-			<local:SamplePageLayout.FluentTemplate>
+			<local:SamplePageLayout.DesignAgnosticTemplate>
 				<DataTemplate>
 					<StackPanel>
 
-						<smtx:XamlDisplay UniqueKey="TwoPaneViewSamplePage_Fluent_Default"
-										  smtx:XamlDisplayExtensions.Header="Sample with standard size adjustment">
-							<TwoPaneView Pane2Length="*">
-								<TwoPaneView.Pane1>
+						<smtx:XamlDisplay UniqueKey="TwoPaneViewSamplePage_Default"
+										  smtx:XamlDisplayExtensions.Header="TwoPaneView with standard size adjustment">
+							<muxc:TwoPaneView Pane2Length="*">
+								<muxc:TwoPaneView.Pane1>
 									<Border Background="{StaticResource SampleSecondBackgroundBrush}">
 										<TextBlock FontSize="24" Padding="15">Pane 1</TextBlock>
 									</Border>
-								</TwoPaneView.Pane1>
+								</muxc:TwoPaneView.Pane1>
 
-								<TwoPaneView.Pane2>
+								<muxc:TwoPaneView.Pane2>
 									<Border Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
 										<TextBlock FontSize="24" Padding="15">Pane 2</TextBlock>
 									</Border>
-								</TwoPaneView.Pane2>
-							</TwoPaneView>
+								</muxc:TwoPaneView.Pane2>
+							</muxc:TwoPaneView>
 						</smtx:XamlDisplay>
 
-						<smtx:XamlDisplay UniqueKey="TwoPaneViewSamplePage_Fluent_RelativeSizing"
-										  smtx:XamlDisplayExtensions.Header="Sample with relative sizing">
-							<TwoPaneView Pane1Length="2*"
+						<smtx:XamlDisplay UniqueKey="TwoPaneViewSamplePage_RelativeSizing"
+										  smtx:XamlDisplayExtensions.Header="TwoPaneView with relative sizing">
+							<muxc:TwoPaneView Pane1Length="2*"
 										 Pane2Length="*">
-								<TwoPaneView.Pane1>
+								<muxc:TwoPaneView.Pane1>
 									<Border Background="{StaticResource SampleSecondBackgroundBrush}">
 										<TextBlock FontSize="24" Padding="15">Pane 1</TextBlock>
 									</Border>
-								</TwoPaneView.Pane1>
+								</muxc:TwoPaneView.Pane1>
 
-								<TwoPaneView.Pane2>
+								<muxc:TwoPaneView.Pane2>
 									<Border Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
 										<TextBlock FontSize="24" Padding="15">Pane 2</TextBlock>
 									</Border>
-								</TwoPaneView.Pane2>
-							</TwoPaneView>
+								</muxc:TwoPaneView.Pane2>
+							</muxc:TwoPaneView>
 						</smtx:XamlDisplay>
 
-						<smtx:XamlDisplay UniqueKey="TwoPaneViewSamplePage_Fluent_Width"
-										  smtx:XamlDisplayExtensions.Header="Sample with fixed width">
-							<TwoPaneView Pane1Length="200"
+						<smtx:XamlDisplay UniqueKey="TwoPaneViewSamplePage_Width"
+										  smtx:XamlDisplayExtensions.Header="TwoPaneView with fixed width">
+							<muxc:TwoPaneView Pane1Length="200"
 										 Background="{StaticResource SampleSecondBackgroundBrush}">
-								<TwoPaneView.Pane1>
+								<muxc:TwoPaneView.Pane1>
 									<Image Source="ms-appx:///Assets/ImageSample.png" />
-								</TwoPaneView.Pane1>
+								</muxc:TwoPaneView.Pane1>
 
-								<TwoPaneView.Pane2>
+								<muxc:TwoPaneView.Pane2>
 									<TextBlock TextWrapping="Wrap" Padding="15" FontSize="18">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</TextBlock>
-								</TwoPaneView.Pane2>
-							</TwoPaneView>
+								</muxc:TwoPaneView.Pane2>
+							</muxc:TwoPaneView>
 						</smtx:XamlDisplay>
 
 					</StackPanel>
 				</DataTemplate>
-			</local:SamplePageLayout.FluentTemplate>
+			</local:SamplePageLayout.DesignAgnosticTemplate>
 		</local:SamplePageLayout>
 	</Grid>
 </Page>
