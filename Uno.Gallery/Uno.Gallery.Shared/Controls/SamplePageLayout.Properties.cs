@@ -42,13 +42,13 @@ namespace Uno.Gallery
 
 		public static DependencyProperty DocumentationLinkProperty { get; } = DependencyProperty.Register(
 			nameof(DocumentationLink),
-			typeof(string),
+			typeof(Uri),
 			typeof(SamplePageLayout),
 			new PropertyMetadata(default));
 
-		public string DocumentationLink
+		public Uri DocumentationLink
 		{
-			get => (string)GetValue(DocumentationLinkProperty);
+			get => (Uri)GetValue(DocumentationLinkProperty);
 			set => SetValue(DocumentationLinkProperty, value);
 		}
 
@@ -65,6 +65,21 @@ namespace Uno.Gallery
 		{
 			get => (SourceSdk?)GetValue(SourceProperty);
 			set => SetValue(SourceProperty, value);
+		}
+
+		#endregion
+		#region Property: IsDesignAgnostic
+
+		public static DependencyProperty IsDesignAgnosticProperty { get; } = DependencyProperty.Register(
+			nameof(IsDesignAgnostic),
+			typeof(bool),
+			typeof(SamplePageLayout),
+			new PropertyMetadata(default(bool)));
+
+		public bool IsDesignAgnostic
+		{
+			get => (bool)GetValue(IsDesignAgnosticProperty);
+			set => SetValue(IsDesignAgnosticProperty, value);
 		}
 
 		#endregion
@@ -126,6 +141,21 @@ namespace Uno.Gallery
 		{
 			get => (DataTemplate)GetValue(NativeTemplateProperty);
 			set => SetValue(NativeTemplateProperty, value);
+		}
+
+		#endregion
+		#region Property: DesignAgnosticTemplate
+
+		public static DependencyProperty DesignAgnosticTemplateProperty { get; } = DependencyProperty.Register(
+			nameof(DesignAgnosticTemplate),
+			typeof(DataTemplate),
+			typeof(SamplePageLayout),
+			new PropertyMetadata(default(DataTemplate)));
+
+		public DataTemplate DesignAgnosticTemplate
+		{
+			get => (DataTemplate)GetValue(DesignAgnosticTemplateProperty);
+			set => SetValue(DesignAgnosticTemplateProperty, value);
 		}
 
 		#endregion

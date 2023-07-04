@@ -9,7 +9,7 @@
 	  xmlns:converters="using:Uno.Gallery.Converters"
 	  mc:Ignorable="d xamarin">
 
-	<Grid>
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 		<local:SamplePageLayout>
 
 			<local:SamplePageLayout.FluentTemplate>
@@ -43,7 +43,7 @@
 											  Margin="5">
 											
 											<!-- Some Text -->
-											<TextBlock Style="{StaticResource MaterialHeadline4}"
+											<TextBlock Style="{StaticResource HeadlineLarge}"
 													   Foreground="White"
 													   HorizontalAlignment="Center"
 													   VerticalAlignment="Center"

@@ -4,10 +4,21 @@
 	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	  xmlns:local="using:Uno.Gallery"
-	  xmlns:extensions="using:Uno.Material.Extensions"
+	  xmlns:um="using:Uno.Material"
 	  xmlns:smtx="using:ShowMeTheXAML"
-	  mc:Ignorable="d"
-	  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+	  mc:Ignorable="d">
+
+	<Page.Resources>
+		<x:String x:Key="LongLongText">
+			Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper
+			commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet.
+			Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi
+			rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius
+			curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales
+			sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida
+			turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant.
+		</x:String>
+	</Page.Resources>
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 		<local:SamplePageLayout>
@@ -16,155 +27,102 @@
 				<DataTemplate>
 					<StackPanel>
 
-						<!-- Default -->
 						<smtx:XamlDisplay UniqueKey="TextBoxSamplePage_Fluent_Default"
-										  smtx:XamlDisplayExtensions.Header="Default">
+										  smtx:XamlDisplayExtensions.Header="Default"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
 							<StackPanel Spacing="20">
 
 								<TextBox PlaceholderText="Default" />
+								<TextBox PlaceholderText="Disabled" IsEnabled="False" />
 
-								<TextBox PlaceholderText="Disabled"
-										 IsEnabled="False" />
 							</StackPanel>
 						</smtx:XamlDisplay>
-
-						<!-- TexBox Header -->
 						<smtx:XamlDisplay UniqueKey="TextBoxSamplePage_Fluent_Header"
-										  smtx:XamlDisplayExtensions.Header="Header">
+										  smtx:XamlDisplayExtensions.Header="Header"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
 							<StackPanel Spacing="20">
 
-								<TextBox PlaceholderText="Text"
-										 Header="Header" />
-
+								<TextBox PlaceholderText="Text" Header="Header" />
 								<TextBox PlaceholderText="Disabled"
 										 Header="Header"
 										 IsEnabled="False" />
+
 							</StackPanel>
 						</smtx:XamlDisplay>
-
-						<!-- TexBox MultiLine -->
 						<smtx:XamlDisplay UniqueKey="TextBoxSamplePage_Fluent_Multiline"
-										  smtx:XamlDisplayExtensions.Header="Multiline">
+										  smtx:XamlDisplayExtensions.Header="Multiline"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
 							<StackPanel Spacing="20">
 
-								<TextBox 
+								<TextBox Text="{StaticResource LongLongText}"
 										 TextWrapping="Wrap"
-										 AcceptsReturn="True">
-<TextBox.Text>
-Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper 
-commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet. 
-Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi 
-rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius 
-curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales 
-sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida
-turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant.
-</TextBox.Text>
-								</TextBox>
-
-								<TextBox
+										 AcceptsReturn="True" />
+								<TextBox Text="{StaticResource LongLongText}"
 										 TextWrapping="Wrap"
 										 AcceptsReturn="True"
-										 IsEnabled="False" >
-<TextBox.Text>
-Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper 
-commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet. 
-Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi 
-rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius 
-curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales 
-sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida
-turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant.
-</TextBox.Text>
-								</TextBox>
+										 IsEnabled="False" />
+
 							</StackPanel>
 						</smtx:XamlDisplay>
 					</StackPanel>
 				</DataTemplate>
 			</local:SamplePageLayout.FluentTemplate>
-
 			<local:SamplePageLayout.MaterialTemplate>
 				<DataTemplate>
 					<StackPanel>
 
-						<!-- Default -->
 						<smtx:XamlDisplay UniqueKey="TextBoxSamplePage_Material_Default"
 										  smtx:XamlDisplayExtensions.Header="Default"
 										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
 							<StackPanel Spacing="20">
 
-								<TextBox PlaceholderText="Default"
-										 Style="{StaticResource MaterialFilledTextBoxStyle}" />
-
-								<TextBox PlaceholderText="With Icon"
-										 Style="{StaticResource MaterialFilledTextBoxStyle}">
-									<extensions:ControlExtensions.Icon>
+								<TextBox PlaceholderText="Default" Style="{StaticResource FilledTextBoxStyle}" />
+								<TextBox PlaceholderText="With Icon" Style="{StaticResource FilledTextBoxStyle}">
+									<um:ControlExtensions.Icon>
 										<SymbolIcon Symbol="Favorite" />
-									</extensions:ControlExtensions.Icon>
+									</um:ControlExtensions.Icon>
 								</TextBox>
-
 								<TextBox PlaceholderText="Disabled"
 										 IsEnabled="False"
-										 Style="{StaticResource MaterialFilledTextBoxStyle}" />
+										 Style="{StaticResource FilledTextBoxStyle}" />
+
 							</StackPanel>
 						</smtx:XamlDisplay>
-
-						<!-- TexBox Outline -->
 						<smtx:XamlDisplay UniqueKey="TextBoxSamplePage_Material_Outline"
 										  smtx:XamlDisplayExtensions.Header="Outline"
 										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
 							<StackPanel Spacing="20">
 
-								<TextBox PlaceholderText="Outline"
-										 Style="{StaticResource MaterialOutlinedTextBoxStyle}" />
-
-								<TextBox PlaceholderText="With Icon"
-										 Style="{StaticResource MaterialOutlinedTextBoxStyle}">
-									<extensions:ControlExtensions.Icon>
+								<TextBox PlaceholderText="Outline" Style="{StaticResource OutlinedTextBoxStyle}" />
+								<TextBox PlaceholderText="With Icon" Style="{StaticResource OutlinedTextBoxStyle}">
+									<um:ControlExtensions.Icon>
 										<SymbolIcon Symbol="Favorite" />
-									</extensions:ControlExtensions.Icon>
+									</um:ControlExtensions.Icon>
 								</TextBox>
-
 								<TextBox PlaceholderText="Outline Disabled"
 										 IsEnabled="False"
-										 Style="{StaticResource MaterialOutlinedTextBoxStyle}" />
+										 Style="{StaticResource OutlinedTextBoxStyle}" />
+
 							</StackPanel>
 						</smtx:XamlDisplay>
-
-						<!-- TextBox MultiLine -->
 						<smtx:XamlDisplay UniqueKey="TextBoxSamplePage_Material_Multiline"
 										  smtx:XamlDisplayExtensions.Header="Multiline"
-										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay">
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
 							<StackPanel Spacing="20">
 
-								<TextBox TextWrapping="Wrap"
-								         AcceptsReturn="True"
-								         Style="{StaticResource MaterialFilledTextBoxStyle}">
-<TextBox.Text>
-Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper 
-commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet. 
-Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi 
-rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius 
-curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales 
-sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida
-turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant.
-</TextBox.Text>
-								</TextBox>
+								<TextBox Text="{StaticResource LongLongText}"
+										 TextWrapping="Wrap"
+										 AcceptsReturn="True"
+										 Style="{StaticResource FilledTextBoxStyle}" />
+								<TextBox Text="{StaticResource LongLongText}"
+										 TextWrapping="Wrap"
+										 AcceptsReturn="True"
+										 IsEnabled="False"
+										 Style="{StaticResource FilledTextBoxStyle}" />
 
-								<TextBox TextWrapping="Wrap"
-								         AcceptsReturn="True"
-								         IsEnabled="False"
-								         Style="{StaticResource MaterialFilledTextBoxStyle}">
-<TextBox.Text>
-Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper 
-commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet. 
-Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi 
-rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius 
-curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales 
-sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida
-turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant.
-</TextBox.Text>
-								</TextBox>
 							</StackPanel>
 						</smtx:XamlDisplay>
+
 					</StackPanel>
 				</DataTemplate>
 			</local:SamplePageLayout.MaterialTemplate>
@@ -173,51 +131,39 @@ turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo ha
 					<StackPanel>
 
 						<!-- Default Single Line -->
-						<smtx:XamlDisplay UniqueKey="Cupertino_TextBoxSamplePage_DefaultSingleLine"
-										  smtx:XamlDisplayExtensions.Header="Default">
-							<TextBox Style="{StaticResource CupertinoTextBoxStyle}"
-									 PlaceholderText="Placeholder single line" />
+						<smtx:XamlDisplay UniqueKey="Cupertino_TextBoxSamplePage_DefaultSingleLine" smtx:XamlDisplayExtensions.Header="Default">
+							<TextBox PlaceholderText="Placeholder single line" Style="{StaticResource CupertinoTextBoxStyle}" />
 						</smtx:XamlDisplay>
 
 						<!-- Default Multi Line -->
-						<smtx:XamlDisplay UniqueKey="Cupertino_TextBoxSamplePage_DefaultMultiLine"
-										  smtx:XamlDisplayExtensions.Header="Multiline">
-							<TextBox Style="{StaticResource CupertinoTextBoxStyle}"
-									 VerticalContentAlignment="Top"
+						<smtx:XamlDisplay UniqueKey="Cupertino_TextBoxSamplePage_DefaultMultiLine" smtx:XamlDisplayExtensions.Header="Multiline">
+							<TextBox Text="{StaticResource LongLongText}"
+									 PlaceholderText="Placeholder multi line"
 									 TextWrapping="Wrap"
 									 AcceptsReturn="True"
-									 PlaceholderText="Placeholder multi line">
-<TextBox.Text>
-Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper 
-commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet. 
-Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi 
-rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius 
-curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales 
-sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida
-turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant.
-</TextBox.Text>
-							</TextBox>
+									 VerticalContentAlignment="Top"
+									 Style="{StaticResource CupertinoTextBoxStyle}" />
 						</smtx:XamlDisplay>
 
 						<!-- Disabled Empty -->
-						<smtx:XamlDisplay UniqueKey="Cupertino_TextBoxSamplePage_DisabledEmpty"
-										  smtx:XamlDisplayExtensions.Header="Disabled (Empty)">
-							<TextBox Style="{StaticResource CupertinoTextBoxStyle}"
-									 PlaceholderText="Placeholder"
-									 IsEnabled="False" />
+						<smtx:XamlDisplay UniqueKey="Cupertino_TextBoxSamplePage_DisabledEmpty" smtx:XamlDisplayExtensions.Header="Disabled (Empty)">
+							<TextBox PlaceholderText="Placeholder"
+									 IsEnabled="False"
+									 Style="{StaticResource CupertinoTextBoxStyle}" />
 						</smtx:XamlDisplay>
 
 						<!-- Disabled -->
-						<smtx:XamlDisplay UniqueKey="Cupertino_TextBoxSamplePage_Disabled"
-										  smtx:XamlDisplayExtensions.Header="Disabled">
-							<TextBox Style="{StaticResource CupertinoTextBoxStyle}"
+						<smtx:XamlDisplay UniqueKey="Cupertino_TextBoxSamplePage_Disabled" smtx:XamlDisplayExtensions.Header="Disabled">
+							<TextBox Text="This is my text"
 									 PlaceholderText="Placeholder"
-									 Text="This is my text"
-									 IsEnabled="False" />
+									 IsEnabled="False"
+									 Style="{StaticResource CupertinoTextBoxStyle}" />
 						</smtx:XamlDisplay>
+
 					</StackPanel>
 				</DataTemplate>
 			</local:SamplePageLayout.CupertinoTemplate>
+
 		</local:SamplePageLayout>
 	</Grid>
 </Page>

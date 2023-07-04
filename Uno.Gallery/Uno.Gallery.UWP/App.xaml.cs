@@ -2,10 +2,10 @@ using Microsoft.Extensions.Logging;
 using ShowMeTheXAML;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using Uno.Extensions;
+using Uno.Gallery.Entities;
 using Uno.Gallery.Helpers;
 using Uno.Gallery.Views.GeneralPages;
 using Uno.Logging;
@@ -16,8 +16,6 @@ using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Automation;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Navigation;
 using MUXC = Microsoft.UI.Xaml.Controls;
 using MUXCP = Microsoft.UI.Xaml.Controls.Primitives;
 
@@ -39,10 +37,10 @@ namespace Uno.Gallery
 		{
 
 #if !WINDOWS_UWP
-			Uno.UI.FeatureConfiguration.ApiInformation.NotImplementedLogLevel = LogLevel.Debug; // Raise not implemented usages as Debug messages
+			Uno.UI.FeatureConfiguration.ApiInformation.NotImplementedLogLevel = Foundation.Logging.LogLevel.Debug; // Raise not implemented usages as Debug messages
 #endif
 
-			ConfigureFilters(global::Uno.Extensions.LogExtensionPoint.AmbientLoggerFactory);
+			InitializeLogging();
 			ConfigureXamlDisplay();
 
 			this.InitializeComponent();
@@ -124,7 +122,7 @@ namespace Uno.Gallery
 				(Application.Current as App)?.ShellNavigateTo(sample);
 			}
 
-			bool HasValue(string val) => 
+			bool HasValue(string val) =>
 				!string.IsNullOrWhiteSpace(val) && !string.Equals(UndefinedValue, val, StringComparison.OrdinalIgnoreCase);
 
 		}
@@ -179,6 +177,51 @@ namespace Uno.Gallery
 
 				_shell.NavigationView.Content = page;
 			}
+		}
+
+		public void SearchShellNavigateTo(Sample sample)
+		{
+			var nv = _shell.NavigationView;
+			if(nv.Content?.GetType() == sample.ViewType)
+			{
+				return;
+			}
+
+			MUXC.NavigationViewItem selectedItem = null;
+			MUXC.NavigationViewItem selectedCategory = null;
+
+			foreach(MUXC.NavigationViewItem category in nv.MenuItems)
+			{
+				selectedItem = category.MenuItems.OfType<MUXC.NavigationViewItem>()
+					.FirstOrDefault(item => item.DataContext is Sample s && s.ViewType == sample.ViewType);
+
+				if (selectedItem != null)
+				{
+					selectedCategory = category;
+					break;
+				}
+			}
+
+			if(selectedItem is null)
+			{
+				nv.SelectedItem = nv.MenuItems[0];
+			}
+			else
+			{
+				selectedCategory.IsExpanded = true;
+				nv.UpdateLayout();
+
+				nv.SelectedItem = selectedItem;
+			}
+
+			var page = (Page)Activator.CreateInstance(sample.ViewType);
+			page.DataContext = sample;
+
+#if __WASM__
+			_ = Windows.UI.Xaml.Window.Current.Dispatcher.RunIdleAsync(_ => AnalyticsService.TrackView(sample?.Title ?? page.GetType().Name));
+#endif
+
+			_shell.NavigationView.Content = page;
 		}
 
 		private Shell BuildShell()
@@ -251,9 +294,11 @@ namespace Uno.Gallery
 				var parentItem = default(MUXC.NavigationViewItem);
 				if (category.Key != SampleCategory.None)
 				{
+					var categoryInfo = category.Key.GetAttribute<SampleCategoryInfoAttribute>();
 					parentItem = new MUXC.NavigationViewItem
 					{
-						Content = category.Key.GetDescription() ?? category.Key.ToString(),
+						Icon = categoryInfo != null ? new FontIcon() { Glyph = categoryInfo.Glyph } : null,
+						Content = categoryInfo != null ? categoryInfo.Caption : category.Key.ToString(),
 						SelectsOnInvoked = false,
 						Style = (Style)Resources[$"T{tier++}NavigationViewItemStyle"]
 					}.Apply(NavViewItemVisualStateFix);
@@ -267,6 +312,7 @@ namespace Uno.Gallery
 					var item = new MUXC.NavigationViewItem
 					{
 						Content = sample.Title,
+						Icon = !string.IsNullOrEmpty(sample.Glyph) ? new FontIcon() { Glyph = sample.Glyph } : null,
 						DataContext = sample,
 						Style = (Style)Resources[$"T{tier}NavigationViewItemStyle"]
 					}.Apply(NavViewItemVisualStateFix);
@@ -293,61 +339,71 @@ namespace Uno.Gallery
 		}
 
 		/// <summary>
-		/// Configures global logging
+		/// Configures global Uno Platform logging
 		/// </summary>
-		/// <param name="factory"></param>
-		static void ConfigureFilters(ILoggerFactory factory)
+		private static void InitializeLogging()
 		{
-			factory
-				.WithFilter(new FilterLoggerSettings
-					{
-						{ "Uno", LogLevel.Warning },
-						{ "Windows", LogLevel.Warning },
-						{ "Uno.Gallery", LogLevel.Debug },
-#if !DEBUG
-						{ "Windows.UI.Xaml", LogLevel.None },
-						{ "Windows.ApplicationModel.Core.CoreApplicationViewTitleBar", LogLevel.None },
-						{ "Uno.UI.DataBinding.BindingPropertyHelper", LogLevel.None },
+#if true // Force enable logging for debugging CI // DEBUG || __IOS__
+			// Logging is disabled by default for release builds, as it incurs a significant
+			// initialization cost from Microsoft.Extensions.Logging setup. If startup performance
+			// is a concern for your application, keep this disabled. If you're running on web or 
+			// desktop targets, you can use url or command line parameters to enable it.
+			//
+			// For more performance documentation: https://platform.uno/docs/articles/Uno-UI-Performance.html
+
+			var factory = LoggerFactory.Create(builder =>
+			{
+#if __WASM__
+				builder.AddProvider(new global::Uno.Extensions.Logging.WebAssembly.WebAssemblyConsoleLoggerProvider());
+#elif __IOS__
+				builder.AddProvider(new global::Uno.Extensions.Logging.OSLogLoggerProvider());
+#elif NETFX_CORE
+				builder.AddDebug();
+#else
+				builder.AddConsole();
 #endif
 
-						// Debug JS interop
-						// { "Uno.Foundation.WebAssemblyRuntime", LogLevel.Debug },
+				// Exclude logs below this level
+				builder.SetMinimumLevel(LogLevel.Information);
 
-						// Generic Xaml events
-						// { "Windows.UI.Xaml", LogLevel.Debug },
-						// { "Windows.UI.Xaml.VisualStateGroup", LogLevel.Debug },
-						// { "Windows.UI.Xaml.StateTriggerBase", LogLevel.Debug },
-						// { "Windows.UI.Xaml.UIElement", LogLevel.Debug },
+				// Default filters for Uno Platform namespaces
+				builder.AddFilter("Uno", LogLevel.Warning);
+				builder.AddFilter("Windows", LogLevel.Warning);
+				builder.AddFilter("Microsoft", LogLevel.Warning);
 
-						// Layouter specific messages
-						// { "Windows.UI.Xaml.Controls", LogLevel.Debug },
-						// { "Windows.UI.Xaml.Controls.Layouter", LogLevel.Debug },
-						// { "Windows.UI.Xaml.Controls.Panel", LogLevel.Debug },
-						// { "Windows.Storage", LogLevel.Debug },
+				// Generic Xaml events
+				// builder.AddFilter("Windows.UI.Xaml", LogLevel.Debug );
+				// builder.AddFilter("Windows.UI.Xaml.VisualStateGroup", LogLevel.Debug );
+				// builder.AddFilter("Windows.UI.Xaml.StateTriggerBase", LogLevel.Debug );
+				// builder.AddFilter("Windows.UI.Xaml.UIElement", LogLevel.Debug );
+				// builder.AddFilter("Windows.UI.Xaml.FrameworkElement", LogLevel.Trace );
 
-						// Binding related messages
-						// { "Windows.UI.Xaml.Data", LogLevel.Debug },
+				// Layouter specific messages
+				// builder.AddFilter("Windows.UI.Xaml.Controls", LogLevel.Debug );
+				// builder.AddFilter("Windows.UI.Xaml.Controls.Layouter", LogLevel.Debug );
+				// builder.AddFilter("Windows.UI.Xaml.Controls.Panel", LogLevel.Debug );
 
-						// DependencyObject memory references tracking
-						// { "ReferenceHolder", LogLevel.Debug },
+				// builder.AddFilter("Windows.Storage", LogLevel.Debug );
 
-						// ListView-related messages
-						// { "Windows.UI.Xaml.Controls.ListViewBase", LogLevel.Debug },
-						// { "Windows.UI.Xaml.Controls.ListView", LogLevel.Debug },
-						// { "Windows.UI.Xaml.Controls.GridView", LogLevel.Debug },
-						// { "Windows.UI.Xaml.Controls.VirtualizingPanelLayout", LogLevel.Debug },
-						// { "Windows.UI.Xaml.Controls.NativeListViewBase", LogLevel.Debug },
-						// { "Windows.UI.Xaml.Controls.ListViewBaseSource", LogLevel.Debug }, //iOS
-						// { "Windows.UI.Xaml.Controls.ListViewBaseInternalContainer", LogLevel.Debug }, //iOS
-						// { "Windows.UI.Xaml.Controls.NativeListViewBaseAdapter", LogLevel.Debug }, //Android
-						// { "Windows.UI.Xaml.Controls.BufferViewCache", LogLevel.Debug }, //Android
-						// { "Windows.UI.Xaml.Controls.VirtualizingPanelGenerator", LogLevel.Debug }, //WASM
-					}
-				)
-#if DEBUG
-				.AddConsole(LogLevel.Debug);
-#else
-				.AddConsole(LogLevel.Information);
+				// Binding related messages
+				// builder.AddFilter("Windows.UI.Xaml.Data", LogLevel.Debug );
+				// builder.AddFilter("Windows.UI.Xaml.Data", LogLevel.Debug );
+
+				// Binder memory references tracking
+				// builder.AddFilter("Uno.UI.DataBinding.BinderReferenceHolder", LogLevel.Debug );
+
+				// RemoteControl and HotReload related
+				// builder.AddFilter("Uno.UI.RemoteControl", LogLevel.Information);
+
+				// Debug JS interop
+				// builder.AddFilter("Uno.Foundation.WebAssemblyRuntime", LogLevel.Debug );
+			});
+
+			global::Uno.Extensions.LogExtensionPoint.AmbientLoggerFactory = factory;
+
+#if HAS_UNO
+			global::Uno.UI.Adapter.Microsoft.Extensions.Logging.LoggingAdapter.Initialize();
+#endif
 #endif
 		}
 
@@ -356,13 +412,47 @@ namespace Uno.Gallery
 			XamlDisplay.Init(GetType().Assembly);
 		}
 
-		public static IEnumerable<Sample> GetSamples() 
-			=> _samples = _samples ?? Assembly.GetExecutingAssembly()
-				.DefinedTypes
-				.Where(x => x.Namespace?.StartsWith("Uno.Gallery") == true)
-				.Select(x => new { TypeInfo = x, SamplePageAttribute = x.GetCustomAttribute<SamplePageAttribute>() })
-				.Where(x => x.SamplePageAttribute != null)
-				.Select(x => new Sample(x.SamplePageAttribute, x.TypeInfo.AsType()))
-				.ToArray();
+		public static IEnumerable<Sample> GetSamples()
+		{
+			return _samples = _samples ??
+				Assembly.GetExecutingAssembly().DefinedTypes
+					.Where(x => x.Namespace?.StartsWith("Uno.Gallery") == true)
+					.Select(x => new
+					{
+						TypeInfo = x,
+						Attribute = x.GetCustomAttribute<SamplePageAttribute>(),
+						Conditional = x.GetCustomAttribute<SampleConditionalAttribute>(),
+					})
+					.Where(x => x.Attribute != null)
+					.Where(x => x.Conditional == null || ShouldBeDisplayed(x.Conditional.Conditionals))
+					.Select(x => new Sample(x.Attribute, x.TypeInfo.AsType()))
+					.ToArray();
+
+			bool ShouldBeDisplayed(SampleConditionals conditionals)
+			{
+				if (conditionals.HasFlag(SampleConditionals.Disabled)) return false;
+
+				var context = SampleConditionals
+#if WINDOWS_UWP
+					.Windows;
+#elif __MACOS__
+					.macOS;
+#elif __IOS__
+					.iOS;
+#elif __ANDROID__
+					.Droid;
+#elif __WASM__
+					.Wasm;
+#elif HAS_UNO_SKIA_GTK
+					.SkiaGtk;
+#else
+					.Always;
+#endif
+
+				var result = conditionals.HasFlag(context);
+
+				return result;
+			}
+		}
 	}
 }

@@ -16,7 +16,8 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Uno.Gallery.Views.SamplePages
 {
-	[SamplePage(SampleCategory.Components, "InfoBar", Description = "This control is an inline notification for essential app-wide messages.", DocumentationLink = "https://docs.microsoft.com/en-us/windows/winui/api/microsoft.ui.xaml.controls.infobar?view=winui-2.5")]
+	[SamplePage(SampleCategory.UIComponents, "InfoBar", Description = "This control is an inline notification for essential app-wide messages.", DocumentationLink = "https://docs.microsoft.com/en-us/windows/winui/api/microsoft.ui.xaml.controls.infobar?view=winui-2.5")]
+	[SampleConditional(SampleConditionals.Disabled, Reason = "todo: styles not implemented")]
 	public sealed partial class InfoBarSamplePage : Page
 	{
 		public InfoBarSamplePage()

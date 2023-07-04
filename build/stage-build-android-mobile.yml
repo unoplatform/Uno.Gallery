@@ -1,0 +1,43 @@
+steps:
+- template: templates/dotnet-install-windows.yml
+- template: templates/canary-updater.yml
+
+- task: DownloadSecureFile@1
+  name: keyStore
+  displayName: "Download keystore from secure files"
+  inputs:
+    secureFile: nventive.jks
+
+- template: templates/gitversion.yml
+
+- script: |
+    cd $(build.sourcesdirectory)/Uno.Gallery/Uno.Gallery.Mobile
+    dotnet publish -f:net7.0-android -c:Release "/p:InformationalVersion=%GITVERSION_InformationalVersion%" /p:AndroidSigningKeyStore=$(keyStore.secureFilePath) /p:AndroidSigningStorePass=$(AndroidSigningStorePass) /p:AndroidSigningKeyPass=$(AndroidSigningKeyPass) /p:AndroidSigningKeyAlias=$(AndroidSigningKeyAlias) /p:AndroidKeyStore=true /bl:$(build.artifactstagingdirectory)/build-$(BuildForPlayStore).binlog 
+  displayName: 'Build Android Package'
+  condition: eq(variables['System.PullRequest.IsFork'],'False')
+
+- script: |
+    cd $(build.sourcesdirectory)/Uno.Gallery/Uno.Gallery.Mobile
+    dotnet publish -f:net7.0-android -c:Release "/p:InformationalVersion=%GITVERSION_InformationalVersion%" /p:AndroidKeyStore=False /bl:$(build.artifactstagingdirectory)/build-$(BuildForPlayStore).binlog 
+  displayName: 'Build Android Package (Fork)'
+  condition: eq(variables['System.PullRequest.IsFork'],'True')
+
+- task: CopyFiles@2
+  displayName: 'Publish Android netcore Binaries'
+  retryCountOnTaskFailure: 3
+  inputs:
+    SourceFolder: $(build.sourcesdirectory)/Uno.Gallery/Uno.Gallery.Mobile/bin/Release/net7.0-android
+    Contents: |
+      **/*.aab
+      **/*.apk
+    TargetFolder: $(build.artifactstagingdirectory)
+    CleanTargetFolder: false
+    OverWrite: false
+    flattenFolders: false
+
+
+- task: PublishBuildArtifacts@1
+  retryCountOnTaskFailure: 3
+  condition: always()
+  inputs:
+    ArtifactName: android-mobile

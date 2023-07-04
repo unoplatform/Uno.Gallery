@@ -8,8 +8,7 @@
 	  mc:Ignorable="d"
 	  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-		  toolkit:VisibleBoundsPadding.PaddingMask="Top">
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" toolkit:VisibleBoundsPadding.PaddingMask="Top">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="*" />
@@ -18,13 +17,11 @@
 		<smtx:XamlDisplay Grid.Row="0"
 						  UniqueKey="CommandBarSample_NestedMaterialPage1_CommandBar"
 						  Style="{StaticResource ContentOnlyXamlDisplayStyle}">
-			<CommandBar Content="Material Page 1"
-						Style="{StaticResource MaterialCommandBarStyle}">
+			<CommandBar Content="Material Page 1" Style="{StaticResource CommandBarStyle}">
 				<toolkit:CommandBarExtensions.NavigationCommand>
-					<AppBarButton Click="NavigateBack"
-								  Style="{StaticResource MaterialAppBarButton}">
+					<AppBarButton Click="NavigateBack" Style="{StaticResource AppBarButtonStyle}">
 						<AppBarButton.Icon>
-							<BitmapIcon UriSource="ms-appx:///Assets/BackButton.png" />
+							<BitmapIcon UriSource="ms-appx:///Assets/Close.png" />
 						</AppBarButton.Icon>
 					</AppBarButton>
 				</toolkit:CommandBarExtensions.NavigationCommand>
@@ -34,22 +31,23 @@
 		<StackPanel Grid.Row="1"
 					Spacing="8"
 					Padding="16,0">
-			<TextBlock Style="{StaticResource MaterialBody1}">
-				You can use the back button located on the left side of the CommandBar
+			<TextBlock Style="{StaticResource BodyMedium}">
+				You can use the close button located on the left side of the CommandBar
 				to exit this sample.
 			</TextBlock>
 
-			<Button Content="Exit sample"
-					Click="NavigateBack"
-					HorizontalAlignment="Stretch"
-					Style="{StaticResource MaterialContainedButtonStyle}" />
 			<Button Content="Navigate to next page"
 					Click="NavigateToNextPage"
 					HorizontalAlignment="Stretch"
-					Style="{StaticResource MaterialContainedButtonStyle}" />
+					Style="{StaticResource FilledButtonStyle}" />
+			<Button Content="Exit sample"
+					Click="NavigateBack"
+					HorizontalAlignment="Stretch"
+					Style="{StaticResource FilledButtonStyle}" />
 
-			<smtx:XamlPresenter ReferenceKey="CommandBarSample_NestedMaterialPage1_CommandBar"
-								smtx:XamlPresenter.Tag="CommandBar Xaml:" />
+			<smtx:XamlPresenter Tag="CommandBar Xaml:"
+								ReferenceKey="CommandBarSample_NestedMaterialPage1_CommandBar"
+								Margin="0,16,0,0" />
 
 		</StackPanel>
 	</Grid>

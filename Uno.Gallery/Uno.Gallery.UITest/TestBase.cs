@@ -122,8 +122,13 @@ namespace Uno.Gallery.UITests
             var fileNameWithoutExt = Path.GetFileNameWithoutExtension(fileInfo.Name);
             if (fileNameWithoutExt != title)
             {
+                var screenShotPath = Environment.GetEnvironmentVariable("UNO_UITEST_SCREENSHOT_PATH") is { } path && path.Length > 0 
+                    ? path 
+                    : Path.GetDirectoryName(fileInfo.FullName);
+
+
                 var destFileName = Path
-                    .Combine(Path.GetDirectoryName(fileInfo.FullName), title + Path.GetExtension(fileInfo.Name));
+                    .Combine(screenShotPath, title + Path.GetExtension(fileInfo.Name));
 
                 if (File.Exists(destFileName))
                 {

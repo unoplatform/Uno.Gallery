@@ -2,150 +2,158 @@
 					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 					xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 					xmlns:smtx="using:ShowMeTheXAML"
-					xmlns:android="http://uno.ui/android"
-					xmlns:local="using:Uno.Gallery"
-					xmlns:ios="http://uno.ui/ios"
-					xmlns:netstdref="http://uno.ui/netstdref"
-					xmlns:macos="http://uno.ui/macos"
-					xmlns:win="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-					mc:Ignorable="android ios netstdref macos">
+					xmlns:local="using:Uno.Gallery">
 
 	<Style x:Key="ExpanderXamlDisplayStyle"
 		   TargetType="smtx:XamlDisplay">
+
 		<Setter Property="smtx:XamlDisplayExtensions.IgnorePath"
 				Value="XamlDisplay" />
-
 		<Setter Property="Margin"
-				Value="0,24,0,0" />
+				Value="0,16,0,0" />
 		<Setter Property="BorderBrush"
-				Value="{StaticResource DividerBrush}" />
+				Value="{ThemeResource DividerBrush}" />
 		<Setter Property="BorderThickness"
 				Value="1" />
 		<Setter Property="Formatter"
 				Value="{x:Null}" />
+		<Setter Property="Background"
+				Value="{ThemeResource SampleSecondBackgroundBrush}" />
 
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="smtx:XamlDisplay">
 					<StackPanel>
-						<VisualStateManager.VisualStateGroups>
-							<VisualStateGroup x:Name="FormFactors">
-								<VisualState x:Name="Desktop">
-									<VisualState.StateTriggers>
-										<AdaptiveTrigger MinWindowWidth="{StaticResource DesktopAdaptiveThresholdWidth}" />
-									</VisualState.StateTriggers>
-									<VisualState.Setters>
-										<Setter Target="MainContent.Padding"
-												Value="30,30,0,30" />
-									</VisualState.Setters>
-								</VisualState>
-
-								<VisualState x:Name="Mobile">
-									<VisualState.StateTriggers>
-										<AdaptiveTrigger MinWindowWidth="0" />
-									</VisualState.StateTriggers>
-									<VisualState.Setters>
-										<win:Setter Target="MainContent.Padding"
-													Value="16,16,0,16" />
-										<netstdref:Setter Target="MainContent.Padding"
-														  Value="16,16,0,16" />
-										<ios:Setter Target="MainContent.Padding"
-													Value="16" />
-										<android:Setter Target="MainContent.Padding"
-														Value="16" />
-									</VisualState.Setters>
-								</VisualState>
-							</VisualStateGroup>
-						</VisualStateManager.VisualStateGroups>
-
 						<!-- Header -->
 						<TextBlock Text="{Binding Path=(smtx:XamlDisplayExtensions.Header), RelativeSource={RelativeSource TemplatedParent}}"
-								   Style="{StaticResource MaterialHeadline6}"
-								   Foreground="{StaticResource MaterialOnBackgroundBrush}"
+								   Style="{StaticResource TitleLarge}"
+								   Foreground="{ThemeResource OnBackgroundBrush}"
 								   Visibility="{Binding Path=(smtx:XamlDisplayExtensions.Header), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource IsNullOrEmptyToCollapsed}, FallbackValue=Collapsed}" />
 
 						<!-- Description -->
 						<TextBlock Text="{Binding Path=(smtx:XamlDisplayExtensions.Description), RelativeSource={RelativeSource TemplatedParent}}"
-								   Style="{StaticResource MaterialBody1}"
-								   Foreground="{StaticResource MaterialOnBackgroundBrush}"
+								   Style="{StaticResource BodyMedium}"
+								   Foreground="{ThemeResource OnBackgroundBrush}"
 								   Opacity="0.8"
 								   Visibility="{Binding Path=(smtx:XamlDisplayExtensions.Description), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource IsNullOrEmptyToCollapsed}, FallbackValue=Collapsed}"
 								   Margin="0,16,0,0" />
 
 						<Grid BorderBrush="{TemplateBinding BorderBrush}"
 							  BorderThickness="{TemplateBinding BorderThickness}"
-							  Margin="0,30,0,0">
+							  Margin="0,16,0,0">
 
 							<Grid.RowDefinitions>
 								<RowDefinition Height="Auto" />
 								<RowDefinition Height="Auto" />
+								<RowDefinition Height="Auto" />
 							</Grid.RowDefinitions>
 
-							<Grid>
+							<UserControl>
+								<VisualStateManager.VisualStateGroups>
+									<VisualStateGroup>
+										<VisualState x:Name="WideState">
+											<VisualState.StateTriggers>
+												<AdaptiveTrigger MinWindowWidth="970" />
+											</VisualState.StateTriggers>
+											<VisualState.Setters>
+												<Setter Target="MainContent.(Grid.Column)"
+														Value="0" />
+												<Setter Target="Options.(Grid.Column)"
+														Value="1" />
+												<Setter Target="Options.(Grid.RowSpan)"
+														Value="2" />
+												<Setter Target="MainContent.(Grid.RowSpan)"
+														Value="2" />
+												<Setter Target="Options.HorizontalAlignment"
+														Value="Right" />
+												<Setter Target="OptionsPresenter.HorizontalAlignment"
+														Value="Stretch" />
+												<Setter Target="OptionsPresenter.(Grid.ColumnSpan)"
+														Value="1" />
+												<Setter Target="OptionsPresenter.(Grid.ColumnSpan)"
+														Value="1" />
+											</VisualState.Setters>
+										</VisualState>
+									</VisualStateGroup>
+								</VisualStateManager.VisualStateGroups>
+
+								<Grid Background="{TemplateBinding Background}">
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="*" />
+										<ColumnDefinition Width="auto" />
+									</Grid.ColumnDefinitions>
+									<Grid.RowDefinitions>
+										<RowDefinition Height="*" />
+										<RowDefinition Height="auto" />
+									</Grid.RowDefinitions>
+
+									<!-- Content -->
+									<ContentPresenter x:Name="MainContent"
+													  Grid.ColumnSpan="2"
+													  Padding="16"
+													  Content="{TemplateBinding Content}" />
+
+									<!-- Options -->
+									<Border x:Name="Options"
+											Grid.Row="1"
+											Grid.Column="0"
+											Grid.ColumnSpan="2"
+											CornerRadius="8"
+											HorizontalAlignment="Stretch"
+											Margin="8"
+											Padding="16"
+											Visibility="{Binding Path=(smtx:XamlDisplayExtensions.Options), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource NullToCollapsed}, FallbackValue=Collapsed}"
+											Background="{ThemeResource CardBackgroundFillColorDefaultBrush}">
+										<ContentPresenter x:Name="OptionsPresenter"
+														  HorizontalAlignment="Left"
+														  MinWidth="220"
+														  Content="{Binding Path=(smtx:XamlDisplayExtensions.Options), RelativeSource={RelativeSource TemplatedParent}}" />
+									</Border>
+								</Grid>
+							</UserControl>
+
+							<Grid Grid.Row="1"
+								  Padding="16,0,0,0"
+								  Background="{ThemeResource SampleFourthBackgroundBrush}">
 								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="Auto" />
 									<ColumnDefinition Width="*" />
-									<ColumnDefinition Width="Auto"
-													  win:MinWidth="30"
-													  netstdref:MinWidth="30" />
+									<ColumnDefinition Width="Auto" />
+									<ColumnDefinition Width="Auto" />
 								</Grid.ColumnDefinitions>
 
-								<!-- Content -->
-								<ContentPresenter x:Name="MainContent"
-												  Content="{TemplateBinding Content}" />
+								<TextBlock Text="XAML"
+										   VerticalAlignment="Center"
+										   Foreground="{ThemeResource OnSurfaceMediumBrush}"
+										   Style="{StaticResource BodyMedium}" />
+
+								<!-- Copy Button -->
+								<Button Grid.Column="2"
+										ToolTipService.ToolTip="Copy XAML"
+										local:ClipboardExtensions.CopyTrigger="ButtonClicked"
+										local:ClipboardExtensions.CopyContent="{Binding Path=(smtx:XamlDisplayExtensions.PrettyXaml), RelativeSource={RelativeSource TemplatedParent}}"
+										Style="{StaticResource XamlDisplayCopyButtonStyle}" />
 
 								<!-- Reveal Button -->
-								<ToggleButton x:Name="RevealButton"
-											  Style="{StaticResource XamlDisplayExpandToggleButtonStyle}"
+								<ToggleButton Grid.Column="3"
+											  x:Name="RevealButton"
+											  ToolTipService.ToolTip="Show XAML"
 											  IsChecked="{Binding Path=(smtx:XamlDisplayExtensions.ShowXaml), RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
-											  HorizontalAlignment="Right"
-											  VerticalAlignment="Top"
-											  android:Visibility="Collapsed"
-											  ios:Visibility="Collapsed"
-											  Grid.Column="1" />
+											  Style="{StaticResource XamlDisplayExpandToggleButtonStyle}" />
 							</Grid>
 
-							<ScrollViewer Background="{StaticResource SampleSecondBackgroundBrush}"
+							<ScrollViewer Grid.Row="2"
+										  Background="{ThemeResource SampleThirdBackgroundBrush}"
 										  HorizontalScrollBarVisibility="Auto"
 										  VerticalScrollBarVisibility="Disabled"
-										  win:Visibility="{Binding Path=(smtx:XamlDisplayExtensions.ShowXaml), RelativeSource={RelativeSource TemplatedParent}}"
-										  netstdref:Visibility="{Binding Path=(smtx:XamlDisplayExtensions.ShowXaml), RelativeSource={RelativeSource TemplatedParent}}"
-										  macos:Visibility="{Binding Path=(smtx:XamlDisplayExtensions.ShowXaml), RelativeSource={RelativeSource TemplatedParent}}"
-										  ios:Visibility="Collapsed"
-										  android:Visibility="Collapsed"
-										  Grid.Row="1">
-
+										  Visibility="{Binding Path=(smtx:XamlDisplayExtensions.ShowXaml), RelativeSource={RelativeSource TemplatedParent}}">
 								<!-- Xaml -->
 								<TextBlock Text="{Binding Path=(smtx:XamlDisplayExtensions.PrettyXaml), RelativeSource={RelativeSource TemplatedParent}}"
 										   IsTextSelectionEnabled="True"
 										   FontFamily="Consolas"
-										   Foreground="{StaticResource MaterialOnSurfaceBrush}"
-										   Margin="30,20,60,20" />
+										   Foreground="{ThemeResource OnSurfaceBrush}"
+										   Margin="16" />
 							</ScrollViewer>
-
-							<!-- Copy Button -->
-							<Button Style="{StaticResource MaterialTextButtonStyle}"
-									local:ClipboardExtensions.CopyTrigger="ButtonClicked"
-									local:ClipboardExtensions.CopyContent="{Binding Path=(smtx:XamlDisplayExtensions.PrettyXaml), RelativeSource={RelativeSource TemplatedParent}}"
-									Padding="0"
-									HorizontalAlignment="Right"
-									VerticalAlignment="Top"
-									win:Visibility="{Binding ElementName=RevealButton, Path=IsChecked, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
-									netstdref:Visibility="{Binding ElementName=RevealButton, Path=IsChecked, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
-									macos:Visibility="{Binding ElementName=RevealButton, Path=IsChecked, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
-									ios:Visibility="Collapsed"
-									android:Visibility="Collapsed"
-									Grid.Row="1">
-
-								<!-- Icon -->
-								<Path Data="{StaticResource CopyToClipboardPathStyle}"
-									  Fill="{StaticResource MaterialOnSurfaceMediumBrush}"
-									  Height="22"
-									  Width="19"
-									  Stretch="Uniform"
-									  VerticalAlignment="Center"
-									  HorizontalAlignment="Center"
-									  Margin="20" />
-							</Button>
 						</Grid>
 					</StackPanel>
 				</ControlTemplate>
@@ -174,104 +182,61 @@
 					<Grid>
 						<Grid.RowDefinitions>
 							<RowDefinition Height="Auto" />
-							<RowDefinition Height="*" />
+							<RowDefinition Height="Auto" />
+							<RowDefinition Height="Auto" />
 						</Grid.RowDefinitions>
 
 						<ContentControl Content="{Binding Tag, RelativeSource={RelativeSource Mode=TemplatedParent}}"
-										android:Visibility="Collapsed"
-										ios:Visibility="Collapsed" />
+										VerticalContentAlignment="Center" />
 
-						<!-- Reveal Button -->
-						<ToggleButton x:Name="RevealButton"
-									  Style="{StaticResource XamlDisplayExpandToggleButtonStyle}"
-									  IsChecked="False"
-									  HorizontalAlignment="Right"
-									  VerticalAlignment="Top"
-									  android:Visibility="Collapsed"
-									  ios:Visibility="Collapsed" />
+						<Grid Grid.Row="1"
+							  Padding="16,0,0,0"
+							  Background="{ThemeResource SampleFourthBackgroundBrush}">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="Auto" />
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="Auto" />
+								<ColumnDefinition Width="Auto" />
+							</Grid.ColumnDefinitions>
 
-						<ScrollViewer Background="{StaticResource SampleSecondBackgroundBrush}"
+							<TextBlock Text="XAML"
+									   VerticalAlignment="Center"
+									   Foreground="{ThemeResource OnSurfaceMediumBrush}"
+									   Style="{StaticResource BodyMedium}" />
+
+							<!-- Copy Button -->
+							<Button Grid.Column="2"
+									ToolTipService.ToolTip="Copy XAML"
+									local:ClipboardExtensions.CopyTrigger="ButtonClicked"
+									local:ClipboardExtensions.CopyContent="{TemplateBinding Xaml}"
+									Style="{StaticResource XamlDisplayCopyButtonStyle}" />
+
+							<!-- Reveal Button -->
+							<ToggleButton Grid.Column="3"
+										  x:Name="RevealButton"
+										  ToolTipService.ToolTip="Show XAML"
+										  IsChecked="False"
+										  Style="{StaticResource XamlDisplayExpandToggleButtonStyle}" />
+						</Grid>
+
+						<ScrollViewer Grid.Row="2"
+									  Background="{ThemeResource SampleThirdBackgroundBrush}"
 									  HorizontalScrollBarVisibility="Auto"
 									  VerticalScrollBarVisibility="Disabled"
-									  win:Visibility="{Binding ElementName=RevealButton, Path=IsChecked, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
-									  netstdref:Visibility="{Binding ElementName=RevealButton, Path=IsChecked, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
-									  macos:Visibility="{Binding ElementName=RevealButton, Path=IsChecked, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
-									  ios:Visibility="Collapsed"
-									  android:Visibility="Collapsed"
-									  Grid.Row="1">
-
+									  Visibility="{Binding ElementName=RevealButton, Path=IsChecked, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}">
 							<!-- Xaml -->
 							<TextBlock Text="{TemplateBinding Xaml}"
 									   IsTextSelectionEnabled="True"
 									   FontFamily="Consolas"
-									   Foreground="{StaticResource MaterialOnSurfaceBrush}"
-									   Margin="30,20,60,20" />
+									   Foreground="{ThemeResource OnSurfaceBrush}"
+									   Margin="16" />
 						</ScrollViewer>
-
-
-						<Button Style="{StaticResource MaterialTextButtonStyle}"
-								local:ClipboardExtensions.CopyTrigger="ButtonClicked"
-								local:ClipboardExtensions.CopyContent="{TemplateBinding Xaml}"
-								Padding="0"
-								HorizontalAlignment="Right"
-								VerticalAlignment="Top"
-								win:Visibility="{Binding ElementName=RevealButton, Path=IsChecked, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
-								netstdref:Visibility="{Binding ElementName=RevealButton, Path=IsChecked, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
-								macos:Visibility="{Binding ElementName=RevealButton, Path=IsChecked, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
-								ios:Visibility="Collapsed"
-								android:Visibility="Collapsed"
-								Grid.Row="1">
-
-							<Path Data="{StaticResource CopyToClipboardPathStyle}"
-								  Fill="{StaticResource MaterialOnSurfaceMediumBrush}"
-								  Height="22"
-								  Width="19"
-								  Stretch="Uniform"
-								  VerticalAlignment="Center"
-								  HorizontalAlignment="Center"
-								  Margin="20" />
-						</Button>
 					</Grid>
 				</ControlTemplate>
 			</Setter.Value>
 		</Setter>
 	</Style>
 
-	<Style x:Key="BaseXamlDisplayStyle"
-		   TargetType="smtx:XamlDisplay">
-		<Setter Property="Margin" Value="0,10,0,0" />
-		<Setter Property="Formatter" Value="{StaticResource NiceFormatter}" />
-		<Setter Property="Template">
-			<Setter.Value>
-				<ControlTemplate TargetType="smtx:XamlDisplay">
-					<StackPanel Orientation="Horizontal">
-						<ContentPresenter Content="{TemplateBinding Content}" />
-						<Button Content="{TemplateBinding Xaml}"
-								Style="{StaticResource SeeXamlFlyoutButtonStyle}" />
-					</StackPanel>
-				</ControlTemplate>
-			</Setter.Value>
-		</Setter>
-	</Style>
-
-	<Style x:Key="XamlDisplayBelowStyle"
-		   BasedOn="{StaticResource BaseXamlDisplayStyle}"
-		   TargetType="smtx:XamlDisplay">
-		<Setter Property="Padding" Value="0,5,0,0" />
-		<Setter Property="Template">
-			<Setter.Value>
-				<ControlTemplate TargetType="smtx:XamlDisplay">
-					<StackPanel Orientation="Vertical">
-						<ContentPresenter Content="{TemplateBinding Content}" />
-						<Button Content="{TemplateBinding Xaml}"
-								Margin="{TemplateBinding Padding}"
-								Style="{StaticResource SeeXamlFlyoutButtonStyle}" />
-					</StackPanel>
-				</ControlTemplate>
-			</Setter.Value>
-		</Setter>
-	</Style>
-	
 	<Style TargetType="smtx:XamlDisplay"
 		   BasedOn="{StaticResource ExpanderXamlDisplayStyle}" />
 

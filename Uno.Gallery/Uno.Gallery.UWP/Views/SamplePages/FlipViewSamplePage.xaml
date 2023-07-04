@@ -24,12 +24,12 @@
 										<StackPanel VerticalAlignment="Center">
 
 											<TextBlock Text="Item 1"
-													   Style="{StaticResource MaterialHeadline4}"
+													   Style="{StaticResource HeadlineLarge}"
 													   Foreground="White"
 													   HorizontalAlignment="Center" />
 
 											<TextBlock Text="&#x2190; Swipe"
-													   Style="{StaticResource MaterialHeadline4}"
+													   Style="{StaticResource HeadlineLarge}"
 													   Foreground="White"
 													   HorizontalAlignment="Center"
 													   Margin="0,0,46,0" />
@@ -42,12 +42,12 @@
 										<StackPanel VerticalAlignment="Center">
 
 											<TextBlock Text="Item 2"
-													   Style="{StaticResource MaterialHeadline4}"
+													   Style="{StaticResource HeadlineLarge}"
 													   Foreground="White"
 													   HorizontalAlignment="Center" />
 
 											<TextBlock Text="&#x2190; Swipe &#x2192;"
-													   Style="{StaticResource MaterialHeadline4}"
+													   Style="{StaticResource HeadlineLarge}"
 													   Foreground="White"
 													   HorizontalAlignment="Center" />
 										</StackPanel>
@@ -59,12 +59,12 @@
 										<StackPanel VerticalAlignment="Center">
 
 											<TextBlock Text="Item 3"
-													   Style="{StaticResource MaterialHeadline4}"
+													   Style="{StaticResource HeadlineLarge}"
 													   Foreground="White"
 													   HorizontalAlignment="Center" />
 
 											<TextBlock Text="&#x2190; Swipe &#x2192;"
-													   Style="{StaticResource MaterialHeadline4}"
+													   Style="{StaticResource HeadlineLarge}"
 													   Foreground="White"
 													   HorizontalAlignment="Center" />
 										</StackPanel>
@@ -76,12 +76,12 @@
 										<StackPanel VerticalAlignment="Center">
 
 											<TextBlock Text="Item 4"
-													   Style="{StaticResource MaterialHeadline4}"
+													   Style="{StaticResource HeadlineLarge}"
 													   Foreground="White"
 													   HorizontalAlignment="Center" />
 
 											<TextBlock Text="Swipe &#x2192;"
-													   Style="{StaticResource MaterialHeadline4}"
+													   Style="{StaticResource HeadlineLarge}"
 													   Foreground="White"
 													   HorizontalAlignment="Center"
 													   Margin="44,0,0,0" />

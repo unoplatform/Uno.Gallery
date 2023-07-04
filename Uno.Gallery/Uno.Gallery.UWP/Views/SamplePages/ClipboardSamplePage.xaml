@@ -1,0 +1,221 @@
+﻿<Page x:Class="Uno.Gallery.Views.Samples.ClipboardSamplePage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:local="using:Uno.Gallery"
+	  xmlns:samples="using:Uno.Gallery.Views.Samples"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  xmlns:smtx="using:ShowMeTheXAML"
+	  xmlns:android="http://uno.ui/android"
+	  xmlns:ios="http://uno.ui/ios"
+	  xmlns:macos="http://uno.ui/macos"
+	  xmlns:skia="http://uno.ui/skia"
+	  xmlns:wasm="http://uno.ui/wasm"
+	  xmlns:win="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  mc:Ignorable="d android ios macos skia wasm"
+	  x:Name="page">
+
+	<Page.Resources>
+		<ResourceDictionary>
+			<samples:ClipboardSamplePageViewModel x:Key="ClipboardSamplePageViewModel"/>
+		</ResourceDictionary>
+	</Page.Resources>
+
+	<Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+		<local:SamplePageLayout IsDesignAgnostic="True">
+			<local:SamplePageLayout.DesignAgnosticTemplate>
+				<DataTemplate>
+					<StackPanel>
+						<smtx:XamlDisplay UniqueKey="ClipboardSamplePage_Text"
+										  smtx:XamlDisplayExtensions.Header="Text"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+							<StackPanel Spacing="20">
+								<Button Content="Copy Text to Clipboard" Click="CopyText_Click"/>
+								<Button Content="Paste Text from Clipboard" Click="PasteText_Click"/>
+								<!--
+	private void CopyText_Click(object sender, RoutedEventArgs args)
+	{
+		var package = new DataPackage();
+		package.SetText("Hello World!");
+		Clipboard.SetContent(package);
+	}
+
+	private async void PasteText_Click(object sender, RoutedEventArgs args)
+	{
+		var package = Clipboard.GetContent();
+		if (package.Contains(StandardDataFormats.Text))
+		{
+			var text = await package.GetTextAsync();
+		}
+	}
+-->
+							</StackPanel>
+						</smtx:XamlDisplay>
+						<smtx:XamlDisplay UniqueKey="ClipboardSamplePage_Bitmap"
+										  smtx:XamlDisplayExtensions.Header="Bitmap"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+							<StackPanel Spacing="20">
+								<Button Content="Copy Bitmap to Clipboard" Click="CopyBitmap_Click"/>
+								<Button Content="Paste Bitmap from Clipboard" Click="PasteBitmap_Click"/>
+								<!--
+	private async void CopyBitmap_Click(object sender, RoutedEventArgs args)
+	{
+		var package = new DataPackage();
+        var sFile = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///Assets/UnoLogo.png"));
+        package.SetBitmap(RandomAccessStreamReference.CreateFromFile(sFile));
+		Clipboard.SetContent(package);
+	}
+
+	private async void PasteBitmap_Click(object sender, RoutedEventArgs args)
+	{
+		var package = Clipboard.GetContent();
+		if (package.Contains(StandardDataFormats.Bitmap))
+		{
+			var src = new BitmapImage();
+			var streamRef = await package.GetBitmapAsync();
+			src.SetSource(await streamRef.OpenReadAsync());
+		}
+	}
+-->
+							</StackPanel>
+						</smtx:XamlDisplay>
+						<smtx:XamlDisplay UniqueKey="ClipboardSamplePage_Html"
+										  smtx:XamlDisplayExtensions.Header="HTML"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+							<StackPanel Spacing="20">
+								<Button Content="Copy HTML to Clipboard" Click="CopyHtml_Click"/>
+								<Button Content="Paste HTML from Clipboard" Click="PasteHtml_Click"/>
+								<!--
+	private void CopyHtml_Click(object sender, RoutedEventArgs args)
+	{
+		var package = new DataPackage();
+		package.SetHtmlFormat("<!DOCTYPE html><html><body><p>Hello World!</p></body></html>");
+		Clipboard.SetContent(package);
+	}
+
+	private async void PasteHtml_Click(object sender, RoutedEventArgs args)
+	{
+		var package = Clipboard.GetContent();
+		if (package.Contains(StandardDataFormats.Html))
+		{
+			var html = await package.GetHtmlFormatAsync();
+		}
+	}
+-->
+							</StackPanel>
+						</smtx:XamlDisplay>
+						<smtx:XamlDisplay UniqueKey="ClipboardSamplePage_Rtf"
+										  smtx:XamlDisplayExtensions.Header="RTF"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+							<StackPanel Spacing="20">
+								<Button Content="Copy RTF to Clipboard" Click="CopyRtf_Click"/>
+								<Button Content="Paste RTF from Clipboard" Click="PasteRtf_Click"/>
+								<!--
+	private void CopyRtf_Click(object sender, RoutedEventArgs args)
+	{
+		var _sampleRtf = "";
+		var package = new DataPackage();
+		package.SetRtf(_sampleRtf);
+		Clipboard.SetContent(package);
+	}
+
+	private async void PasteRtf_Click(object sender, RoutedEventArgs args)
+	{
+		var package = Clipboard.GetContent();
+		if (package.Contains(StandardDataFormats.Rtf))
+		{
+			var rtf = await package.GetRtfAsync();
+		}
+	}
+-->
+							</StackPanel>
+						</smtx:XamlDisplay>
+						<smtx:XamlDisplay UniqueKey="ClipboardSamplePage_File"
+										  smtx:XamlDisplayExtensions.Header="File"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+							<StackPanel Spacing="20">
+								<Button Content="Copy File to Clipboard" Click="CopyFile_Click"
+										win:IsEnabled="True" skia:IsEnabled="True" macos:IsEnabled="True"
+										android:IsEnabled="False" ios:IsEnabled="False" wasm:IsEnabled="False" />
+								<Button Content="Paste File from Clipboard" Click="PasteFile_Click"
+										win:IsEnabled="True" skia:IsEnabled="True" macos:IsEnabled="True"
+										android:IsEnabled="False" ios:IsEnabled="False" wasm:IsEnabled="False" />
+								<!--
+	private async void CopyFile_Click(object sender, RoutedEventArgs args)
+	{
+        var sFile = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///Assets/UnoLogo.png"));
+		var package = new DataPackage();
+		package.SetStorageItems(new IStorageItem[] { sFile });
+		Clipboard.SetContent(package);
+	}
+
+	private async void PasteFile_Click(object sender, RoutedEventArgs args)
+	{
+		var package = Clipboard.GetContent();
+		if (package.Contains(StandardDataFormats.StorageItems))
+		{
+			var files = await package.GetStorageItemsAsync();
+		}
+	}
+-->
+							</StackPanel>
+						</smtx:XamlDisplay>
+						<smtx:XamlDisplay UniqueKey="ClipboardSamplePage_MultipleContent"
+										  smtx:XamlDisplayExtensions.Header="Multiple Content">
+							<Button Content="Copy Text, HTML and RTF to Clipboard" Click="CopyTextHtmlRtf_Click" />
+							<!--
+	private void CopyTextHtmlRtf_Click(object sender, RoutedEventArgs args)
+	{
+		var _sampleHtml = "";
+		var _sampleRtf = "";
+		var package = new DataPackage();
+		package.SetText("Hello World!");
+		package.SetHtmlFormat(_sampleHtml);
+		package.SetRtf(_sampleRtf);
+		Clipboard.SetContent(package);
+	}
+-->
+						</smtx:XamlDisplay>
+						<smtx:XamlDisplay UniqueKey="ClipboardSamplePage_Management"
+										  smtx:XamlDisplayExtensions.Header="Clipboard Management"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+							<StackPanel Spacing="20" DataContext="{StaticResource ClipboardSamplePageViewModel}">
+								<Button Content="Flush Clipboard" Click="Flush_Click" />
+								<Button Content="Clear Clipboard" Click="Clear_Click" />
+								<Button Content="{Binding Path=ListenButtonContent}" Click="Listen_Click" />
+								<TextBlock Text="{Binding Path=Message}" />
+								<!--
+	private void Flush_Click(object sender, RoutedEventArgs args)
+	{
+		Clipboard.Flush();
+	}
+
+	private void Clear_Click(object sender, RoutedEventArgs args)
+	{
+		Clipboard.Clear();
+	}
+
+	private void Listen_Click(object sender, RoutedEventArgs args)
+	{
+		if ((sender as Button)?.DataContext is ClipboardSamplePageViewModel viewModel)
+		{
+			if (viewModel.Listening)
+			{
+				Clipboard.ContentChanged -= viewModel.Clipboard_ContentChanged;
+			}
+			else
+			{
+				Clipboard.ContentChanged += viewModel.Clipboard_ContentChanged;
+			}
+			viewModel.Listening = !viewModel.Listening;
+		}
+	}
+-->
+							</StackPanel>
+						</smtx:XamlDisplay>
+					</StackPanel>
+				</DataTemplate>
+			</local:SamplePageLayout.DesignAgnosticTemplate>
+		</local:SamplePageLayout>
+	</Grid>
+</Page>

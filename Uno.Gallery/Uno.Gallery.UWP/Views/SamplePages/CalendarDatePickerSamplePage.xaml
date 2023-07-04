@@ -5,8 +5,7 @@
 	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	  mc:Ignorable="d"
-	  xmlns:smtx="using:ShowMeTheXAML"
-	  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+	  xmlns:smtx="using:ShowMeTheXAML">
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 		<local:SamplePageLayout>
@@ -18,7 +17,7 @@
 							<CalendarDatePicker Header="Date"
 												x:Name="Material_CalendarDatePicker"
 												AutomationProperties.AutomationId="Material_CalendarDatePicker"
-												Style="{StaticResource MaterialCalendarDatePickerStyle}" />
+												Style="{StaticResource CalendarDatePickerStyle}" />
 						</smtx:XamlDisplay>
 						<smtx:XamlDisplay UniqueKey="CalendarViewSamplePage_Material_CalendarDatePicker_Disabled"
 										  smtx:XamlDisplayExtensions.Header="Disabled">
@@ -26,7 +25,7 @@
 												IsEnabled="False"
 												x:Name="Material_CalendarDatePicker_Disabled"
 												AutomationProperties.AutomationId="Material_CalendarDatePicker_Disabled"
-												Style="{StaticResource MaterialCalendarDatePickerStyle}" />
+												Style="{StaticResource CalendarDatePickerStyle}" />
 						</smtx:XamlDisplay>
 					</StackPanel>
 				</DataTemplate>

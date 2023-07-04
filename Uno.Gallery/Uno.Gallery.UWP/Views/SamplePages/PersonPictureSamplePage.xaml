@@ -9,32 +9,21 @@
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 		<local:SamplePageLayout>
-
 			<local:SamplePageLayout.FluentTemplate>
 				<DataTemplate>
-					<StackPanel>
+					<smtx:XamlDisplay UniqueKey="PersonPictureSamplePage"
+									  smtx:XamlDisplayExtensions.Header="Default"
+									  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+						<StackPanel Spacing="20">
 
-						<smtx:XamlDisplay UniqueKey="PersonPictureSamplePage"
-										  smtx:XamlDisplayExtensions.Header="Default">
-							<StackPanel Spacing="10">
-								
-								<PersonPicture Width="75"
-											   DisplayName="John Doe" />
-								
-								<PersonPicture Width="75"
-											   DisplayName="Thomas Jefferson" />
-								
-								<PersonPicture Width="75"
-											   BadgeNumber="42" />
-							
-								<PersonPicture Width="75"
-											   ProfilePicture="ms-appx:///Assets/ImageSample.png" />
-								
-								<PersonPicture Width="75"
-											   IsGroup="True" />
-							</StackPanel>
-						</smtx:XamlDisplay>
-					</StackPanel>
+							<PersonPicture Width="75" DisplayName="John Doe" />
+							<PersonPicture Width="75" DisplayName="Thomas Jefferson" />
+							<PersonPicture Width="75" BadgeNumber="42" />
+							<PersonPicture Width="75" ProfilePicture="ms-appx:///Assets/ImageSample.png" />
+							<PersonPicture Width="75" IsGroup="True" />
+
+						</StackPanel>
+					</smtx:XamlDisplay>
 				</DataTemplate>
 			</local:SamplePageLayout.FluentTemplate>
 		</local:SamplePageLayout>

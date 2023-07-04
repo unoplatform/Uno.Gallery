@@ -29,48 +29,65 @@
 							 x:Name="NavigationViewControl"
 							 OpenPaneLength="260"
 							 IsSettingsVisible="False"
-                             IsPaneOpen="True"
-                             IsPaneVisible="True"
-                             IsPaneToggleButtonVisible="False"
+							 IsPaneOpen="True"
+							 IsPaneVisible="True"
+							 IsPaneToggleButtonVisible="False"
 							 IsBackButtonVisible="Collapsed"
-                             SizeChanged="NavigationViewControl_SizeChanged"
-                             PaneDisplayMode="LeftMinimal"
+							 SizeChanged="NavigationViewControl_SizeChanged"
+							 PaneDisplayMode="LeftMinimal"
 							 AutomationProperties.AutomationId="NavigationViewControl"
 							 IsBackEnabled="False"
 							 IsTabStop="False">
 			<muxc:NavigationView.PaneHeader>
-                <!-- Left padding for overlay toggle button -->
-                <Grid Padding="24,0,0,0">
-					<!-- Image -->
-					<Image Source="{ThemeResource UnoLogoImageSource}"
-						   Height="101"
-						   Width="75"
-						   HorizontalAlignment="Left"
-						   Margin="16,8,0,12" />
 
-					<ToggleButton x:Name="DarkLightModeToggle"
-								  Content="Light and Dark"
-								  Style="{StaticResource DarkLightToggleTheme}"
-								  Click="ToggleButton_Click"
-								  Margin="0,0,20,16"
-								  HorizontalAlignment="Right"
-								  VerticalAlignment="Bottom" />
-				</Grid>
+				<StackPanel Spacing="16"
+							Padding="8">
+					<!-- Left padding for overlay toggle button -->
+					<Grid Padding="48,0,0,0">
+
+						<!-- Image -->
+						<Image Source="{ThemeResource UnoLogoImageSource}"
+							   Height="100"
+							   HorizontalAlignment="Left" />
+
+						<!-- Dark/Light Toggle -->
+							<ToggleButton x:Name="DarkLightModeToggle"
+									  Content="Light and Dark"
+									  Style="{StaticResource DarkLightToggleTheme}"
+									  Click="ToggleButton_Click"
+									  HorizontalAlignment="Right"
+									  VerticalAlignment="Bottom" />
+					</Grid>
+
+					<!-- Samples Search Box -->
+					<AutoSuggestBox x:Name="SamplesSearchBox"
+									DisplayMemberPath="Title"
+									TextMemberPath="Title"
+									PlaceholderText="Search"
+									QueryIcon="Find"
+									TextChanged="SamplesSearchBox_TextChanged"
+									SuggestionChosen="SamplesSearchBox_SuggestionChosen">
+						<AutoSuggestBox.KeyboardAccelerators>
+							<KeyboardAccelerator Key="F"
+												 Invoked="CtrlF_Invoked"
+												 Modifiers="Control" />
+						</AutoSuggestBox.KeyboardAccelerators>
+					</AutoSuggestBox>
+				</StackPanel>
 			</muxc:NavigationView.PaneHeader>
 		</muxc:NavigationView>
 
 		<!-- Nested frame for samples that needs to be fullscreen -->
 		<Frame x:Name="NestedSampleFrame"
 			   Grid.RowSpan="3"
-			   Visibility="Collapsed"
-			   xamarin:Style="{StaticResource NativeDefaultFrame}" />
+			   Visibility="Collapsed" />
 
-        <!-- Custom pane toggle button -->
-        <Button 
-            Grid.Row="2" 
-            Click="NavViewToggleButton_Click" 
-            HorizontalAlignment="Left" 
-			AutomationProperties.AutomationId="NavToggle"
-            Style="{StaticResource PaneToggleButtonStyle}" />
-    </Grid>
+		<!-- Custom pane toggle button -->
+		<Button x:Name="NavViewToggleButton"
+				Grid.Row="2"
+				Click="NavViewToggleButton_Click"
+				HorizontalAlignment="Left"
+				AutomationProperties.AutomationId="NavToggle"
+				Style="{StaticResource PaneToggleButtonStyle}" />
+	</Grid>
 </UserControl>

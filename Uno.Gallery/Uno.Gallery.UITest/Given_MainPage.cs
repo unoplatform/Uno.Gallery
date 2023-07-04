@@ -17,7 +17,7 @@ namespace Uno.Gallery.UITests
 
 			TakeScreenshot("Start");
 
-			App.WaitThenTap("MaterialContainedButton");
+			App.WaitThenTap("Material_FilledButton");
 
 			TakeScreenshot("Finish");
 		}

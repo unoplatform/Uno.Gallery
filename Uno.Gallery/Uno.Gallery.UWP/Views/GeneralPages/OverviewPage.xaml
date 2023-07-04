@@ -7,16 +7,17 @@
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	  xmlns:android="http:/uno.ui/android"
 	  xmlns:converters="using:Uno.Gallery.Converters"
-	  xmlns:extensions="using:Uno.Material.Extensions"
+	  xmlns:um="using:Uno.Material"
 	  xmlns:local="using:Uno.Gallery"
 	  xmlns:ios="http:/uno.ui/ios"
 	  xmlns:wasm="http:/uno.ui/wasm"
 	  xmlns:win="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	  xmlns:xamarin="http:/uno.ui/xamarin"
-	  mc:Ignorable="d android ios wasm xamarin"
+	  xmlns:todo="what should be done"
+	  mc:Ignorable="d todo android ios wasm xamarin"
 	  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
 	<local:SamplePageLayout>
+
 		<local:SamplePageLayout.HeaderTemplate>
 			<DataTemplate>
 				<gallery:OverviewPageHeader />
@@ -31,18 +32,26 @@
 					<local:OverviewSampleView SamplePageType="samples:ButtonSamplePage">
 						<StackPanel Spacing="8">
 
-							<Button Content="CONTAINED"
-									AutomationProperties.AutomationId="MaterialContainedButton"
-									Style="{StaticResource MaterialContainedButtonStyle}" />
+							<Button Content="ELEVATED"
+									AutomationProperties.AutomationId="Material_ElevatedButton"
+									Style="{StaticResource ElevatedButtonStyle}" />
+                            <Button Content="FILLED"
+                                    AutomationProperties.AutomationId="Material_FilledButton"
+                                    Style="{StaticResource FilledButtonStyle}" />
+                            <Button Content="TONAL"
+                                    AutomationProperties.AutomationId="Material_FilledTonalButton"
+                                    Style="{StaticResource FilledTonalButtonStyle}" />
+                            <Button Content="OUTLINED"
+                                    AutomationProperties.AutomationId="Material_OutlinedButton"
+                                    Style="{StaticResource OutlinedButtonStyle}" />
+                            <Button Content="TEXT"
+                                    AutomationProperties.AutomationId="Material_TextButton"
+                                    Style="{StaticResource TextButtonStyle}" />
+							<Button AutomationProperties.AutomationId="Material_IconButton" Style="{StaticResource IconButtonStyle}">
+                                <SymbolIcon Symbol="Favorite" />
+                            </Button>
 
-							<Button Content="OUTLINED"
-									AutomationProperties.AutomationId="MaterialOutlinedButton"
-									Style="{StaticResource MaterialOutlinedButtonStyle}" />
-
-							<Button Content="TEXT"
-									AutomationProperties.AutomationId="MaterialTextButton"
-									Style="{StaticResource MaterialTextButtonStyle}" />
-						</StackPanel>
+                        </StackPanel>
 					</local:OverviewSampleView>
 
 					<!-- TextBox -->
@@ -50,28 +59,26 @@
 						<StackPanel Spacing="8">
 
 							<TextBox PlaceholderText="Filled"
-									 AutomationProperties.AutomationId="MaterialFilledTextBox"
-									 Style="{StaticResource MaterialFilledTextBoxStyle}" />
-
+									 AutomationProperties.AutomationId="Material_FilledTextBox"
+									 Style="{StaticResource FilledTextBoxStyle}" />
 							<TextBox PlaceholderText="Filled with icon"
-									 AutomationProperties.AutomationId="MaterialFilledIconTextBox"
-									 Style="{StaticResource MaterialFilledTextBoxStyle}">
-								<extensions:ControlExtensions.Icon>
+									 AutomationProperties.AutomationId="Material_FilledIconTextBox"
+									 Style="{StaticResource FilledTextBoxStyle}">
+								<um:ControlExtensions.Icon>
 									<SymbolIcon Symbol="Favorite" />
-								</extensions:ControlExtensions.Icon>
+								</um:ControlExtensions.Icon>
 							</TextBox>
-
 							<TextBox PlaceholderText="Outlined"
-									 AutomationProperties.AutomationId="MaterialOutlinedTextBox"
-									 Style="{StaticResource MaterialOutlinedTextBoxStyle}" />
-
+									 AutomationProperties.AutomationId="Material_OutlinedTextBox"
+									 Style="{StaticResource OutlinedTextBoxStyle}" />
 							<TextBox PlaceholderText="Outlined with icon"
-									 AutomationProperties.AutomationId="MaterialOutlinedWithIconTextBox"
-									 Style="{StaticResource MaterialOutlinedTextBoxStyle}">
-								<extensions:ControlExtensions.Icon>
+									 AutomationProperties.AutomationId="Material_OutlinedWithIconTextBox"
+									 Style="{StaticResource OutlinedTextBoxStyle}">
+								<um:ControlExtensions.Icon>
 									<SymbolIcon Symbol="Favorite" />
-								</extensions:ControlExtensions.Icon>
+								</um:ControlExtensions.Icon>
 							</TextBox>
+
 						</StackPanel>
 					</local:OverviewSampleView>
 
@@ -81,169 +88,15 @@
 
 							<CheckBox Content="Checked"
 									  IsChecked="True"
-									  Style="{StaticResource MaterialCheckBoxStyle}" />
-
+									  Style="{StaticResource CheckBoxStyle}" />
 							<CheckBox Content="Unchecked"
 									  IsChecked="False"
-									  Style="{StaticResource MaterialCheckBoxStyle}" />
-
+									  Style="{StaticResource CheckBoxStyle}" />
 							<CheckBox Content="Indeterminate"
 									  IsChecked="{x:Null}"
 									  IsThreeState="True"
-									  Style="{StaticResource MaterialCheckBoxStyle}" />
-						</StackPanel>
-					</local:OverviewSampleView>
+									  Style="{StaticResource CheckBoxStyle}" />
 
-					<!-- RadioButton -->
-					<local:OverviewSampleView SamplePageType="samples:RadioButtonSamplePage">
-						<StackPanel Spacing="8">
-
-							<RadioButton Content="Checked"
-										 Style="{StaticResource MaterialRadioButtonStyle}"
-										 IsChecked="True" />
-
-							<RadioButton Content="Unchecked"
-										 Style="{StaticResource MaterialRadioButtonStyle}" />
-						</StackPanel>
-					</local:OverviewSampleView>
-
-					<!-- ToggleSwitch -->
-					<local:OverviewSampleView SamplePageType="samples:ToggleSwitchSamplePage">
-						<StackPanel Spacing="8">
-
-							<ToggleSwitch Header="ToggleSwitch"
-										  IsOn="True"
-										  Style="{StaticResource MaterialToggleSwitchStyle}" />
-
-							<ToggleSwitch Header="Disabled"
-										  IsEnabled="False"
-										  Style="{StaticResource MaterialToggleSwitchStyle}" />
-						</StackPanel>
-					</local:OverviewSampleView>
-				</StackPanel>
-			</DataTemplate>
-		</local:SamplePageLayout.MaterialTemplate>
-
-		<local:SamplePageLayout.FluentTemplate>
-			<DataTemplate>
-				<StackPanel>
-
-					<!-- Button -->
-					<local:OverviewSampleView SamplePageType="samples:ButtonSamplePage">
-						<StackPanel Spacing="8">
-
-							<Button Content="Button" />
-
-							<Button Content="Text Button"
-									Style="{StaticResource TextBlockButtonStyle}" />
-
-							<Button Style="{StaticResource NavigationBackButtonNormalStyle}" />
-						</StackPanel>
-					</local:OverviewSampleView>
-
-					<!-- TextBox -->
-					<local:OverviewSampleView SamplePageType="samples:TextBoxSamplePage">
-						<StackPanel Spacing="8">
-
-							<TextBox PlaceholderText="TextBox" />
-
-							<TextBox PlaceholderText="Disabled"
-									 IsEnabled="False" />
-						</StackPanel>
-					</local:OverviewSampleView>
-
-					<!-- CheckBox -->
-					<local:OverviewSampleView SamplePageType="samples:CheckBoxSamplePage">
-						<StackPanel Spacing="8">
-
-							<CheckBox Content="Checked"
-									  IsChecked="True" />
-
-							<CheckBox Content="Unchecked"
-									  IsChecked="False" />
-
-							<CheckBox Content="Indeterminate"
-									  IsChecked="{x:Null}"
-									  IsThreeState="True" />
-						</StackPanel>
-					</local:OverviewSampleView>
-
-					<!-- RadioButton -->
-					<local:OverviewSampleView SamplePageType="samples:RadioButtonSamplePage">
-						<StackPanel Spacing="8">
-
-							<RadioButton Content="Checked"
-										 IsChecked="True" />
-
-							<RadioButton Content="Unchecked" />
-						</StackPanel>
-					</local:OverviewSampleView>
-
-					<!-- ToggleSwitch -->
-					<local:OverviewSampleView SamplePageType="samples:ToggleSwitchSamplePage">
-						<StackPanel Spacing="8">
-
-							<ToggleSwitch Header="ToggleSwitch"
-										  IsOn="True" />
-
-							<ToggleSwitch Header="Disabled"
-										  IsEnabled="False" />
-						</StackPanel>
-					</local:OverviewSampleView>
-				</StackPanel>
-			</DataTemplate>
-		</local:SamplePageLayout.FluentTemplate>
-
-		<local:SamplePageLayout.CupertinoTemplate>
-			<DataTemplate>
-				<StackPanel>
-
-					<!-- Button -->
-					<local:OverviewSampleView SamplePageType="samples:ButtonSamplePage">
-						<StackPanel Spacing="8">
-
-							<Button Content="DEFAULT"
-									AutomationProperties.AutomationId="CupertinoButton"
-									Style="{StaticResource CupertinoButtonStyle}" />
-
-							<Button Content="CONTAINED"
-									AutomationProperties.AutomationId="CupertinoContainedButton"
-									Style="{StaticResource CupertinoContainedButtonStyle}" />
-						</StackPanel>
-					</local:OverviewSampleView>
-
-					<!-- TextBox -->
-					<local:OverviewSampleView SamplePageType="samples:TextBoxSamplePage">
-						<StackPanel Spacing="8">
-
-							<TextBox Style="{StaticResource CupertinoTextBoxStyle}"
-									 PlaceholderText="Placeholder single line" />
-
-							<TextBox Style="{StaticResource CupertinoTextBoxStyle}"
-									 Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent pretium augue ut lectus consequat lobortis. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque suscipit, diam eu aliquet egestas, dolor sem mattis tortor, eu congue augue ipsum et nulla."
-									 VerticalContentAlignment="Top"
-									 TextWrapping="Wrap"
-									 AcceptsReturn="True"
-									 PlaceholderText="Placeholder multi line" />
-						</StackPanel>
-					</local:OverviewSampleView>
-
-					<!-- CheckBox -->
-					<local:OverviewSampleView SamplePageType="samples:CheckBoxSamplePage">
-						<StackPanel Spacing="8">
-
-							<CheckBox Content="Checked"
-									  IsChecked="True"
-									  Style="{StaticResource CupertinoCheckBoxStyle}" />
-
-							<CheckBox Content="Unchecked"
-									  IsChecked="False"
-									  Style="{StaticResource CupertinoCheckBoxStyle}" />
-
-							<CheckBox Content="Indeterminate"
-									  IsChecked="{x:Null}"
-									  IsThreeState="True"
-									  Style="{StaticResource CupertinoCheckBoxStyle}" />
 						</StackPanel>
 					</local:OverviewSampleView>
 
@@ -253,10 +106,77 @@
 
 							<RadioButton Content="Checked"
 										 IsChecked="True"
-										 Style="{StaticResource CupertinoRadioButtonStyle}" />
-
+										 Style="{StaticResource RadioButtonStyle}" />
 							<RadioButton Content="Unchecked"
-										 Style="{StaticResource CupertinoRadioButtonStyle}" />
+										 IsChecked="False"
+										 Style="{StaticResource RadioButtonStyle}" />
+
+						</StackPanel>
+					</local:OverviewSampleView>
+
+					<local:OverviewSampleView SamplePageType="samples:ToggleSwitchSamplePage">
+						<StackPanel Spacing="8">
+
+							<ToggleSwitch Header="ToggleSwitch"
+										  IsOn="True"
+                                          MinWidth="200"
+										  Style="{StaticResource ToggleSwitchStyle}" />
+							<ToggleSwitch Header="Disabled"
+										  IsEnabled="False"
+                                          MinWidth="200"
+										  Style="{StaticResource ToggleSwitchStyle}" />
+
+						</StackPanel>
+					</local:OverviewSampleView>
+
+				</StackPanel>
+			</DataTemplate>
+		</local:SamplePageLayout.MaterialTemplate>
+		<local:SamplePageLayout.FluentTemplate>
+			<DataTemplate>
+				<StackPanel>
+
+					<!-- Button -->
+					<local:OverviewSampleView SamplePageType="samples:ButtonSamplePage">
+						<StackPanel Spacing="8">
+
+							<Button Content="Button" />
+							<Button Content="Text Button" Style="{StaticResource TextBlockButtonStyle}" />
+							<Button Style="{StaticResource NavigationBackButtonNormalStyle}" />
+
+						</StackPanel>
+					</local:OverviewSampleView>
+
+					<!-- TextBox -->
+					<local:OverviewSampleView SamplePageType="samples:TextBoxSamplePage">
+						<StackPanel Spacing="8">
+
+							<TextBox PlaceholderText="TextBox" />
+							<TextBox PlaceholderText="Disabled" IsEnabled="False" />
+
+						</StackPanel>
+					</local:OverviewSampleView>
+
+					<!-- CheckBox -->
+					<local:OverviewSampleView SamplePageType="samples:CheckBoxSamplePage">
+						<StackPanel Spacing="8">
+
+							<CheckBox Content="Checked" IsChecked="True" />
+							<CheckBox Content="Unchecked" IsChecked="False" />
+							<CheckBox Content="Indeterminate"
+									  IsChecked="{x:Null}"
+									  IsThreeState="True" />
+
+						</StackPanel>
+					</local:OverviewSampleView>
+
+					<!-- RadioButton -->
+					<local:OverviewSampleView SamplePageType="samples:RadioButtonSamplePage">
+						<StackPanel Spacing="8">
+
+							<RadioButton Content="Checked" IsChecked="True" />
+							<RadioButton Content="Unchecked" />
+
 						</StackPanel>
 					</local:OverviewSampleView>
 
@@ -264,17 +184,99 @@
 					<local:OverviewSampleView SamplePageType="samples:ToggleSwitchSamplePage">
 						<StackPanel Spacing="8">
 
+							<ToggleSwitch Header="ToggleSwitch" IsOn="True" />
+							<ToggleSwitch Header="Disabled" IsEnabled="False" />
+
+						</StackPanel>
+					</local:OverviewSampleView>
+
+				</StackPanel>
+			</DataTemplate>
+		</local:SamplePageLayout.FluentTemplate>
+		<local:SamplePageLayout.CupertinoTemplate>
+			<DataTemplate>
+				<StackPanel>
+
+					<!-- Button -->
+					<local:OverviewSampleView SamplePageType="samples:ButtonSamplePage">
+						<StackPanel Spacing="8"
+                                    Padding="11,0">
+
+							<Button Content="DEFAULT"
+									AutomationProperties.AutomationId="CupertinoButton"
+									Style="{StaticResource CupertinoButtonStyle}" />
+							<Button Content="CONTAINED"
+									AutomationProperties.AutomationId="CupertinoContainedButton"
+									Style="{StaticResource CupertinoContainedButtonStyle}" />
+
+						</StackPanel>
+					</local:OverviewSampleView>
+
+					<!-- TextBox -->
+					<local:OverviewSampleView SamplePageType="samples:TextBoxSamplePage">
+						<StackPanel Spacing="8"
+                                    Padding="11,0">
+
+							<TextBox Style="{StaticResource CupertinoTextBoxStyle}" PlaceholderText="Placeholder single line" />
+							<TextBox Style="{StaticResource CupertinoTextBoxStyle}"
+									 Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent pretium augue ut lectus consequat lobortis. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque suscipit, diam eu aliquet egestas, dolor sem mattis tortor, eu congue augue ipsum et nulla."
+									 VerticalContentAlignment="Top"
+									 TextWrapping="Wrap"
+									 AcceptsReturn="True"
+									 PlaceholderText="Placeholder multi line" />
+
+						</StackPanel>
+					</local:OverviewSampleView>
+
+					<!-- CheckBox -->
+					<local:OverviewSampleView SamplePageType="samples:CheckBoxSamplePage">
+						<StackPanel Spacing="8">
+
+							<CheckBox Content="Checked"
+									  IsChecked="True"
+									  Style="{StaticResource CupertinoCheckBoxStyle}" />
+							<CheckBox Content="Unchecked"
+									  IsChecked="False"
+									  Style="{StaticResource CupertinoCheckBoxStyle}" />
+							<CheckBox Content="Indeterminate"
+									  IsChecked="{x:Null}"
+									  IsThreeState="True"
+									  Style="{StaticResource CupertinoCheckBoxStyle}" />
+
+						</StackPanel>
+					</local:OverviewSampleView>
+
+					<!-- RadioButton -->
+					<local:OverviewSampleView SamplePageType="samples:RadioButtonSamplePage">
+						<StackPanel Spacing="8"
+                                    Padding="11,0">
+
+							<RadioButton Content="Checked"
+										 IsChecked="True"
+										 Style="{StaticResource CupertinoRadioButtonStyle}" />
+							<RadioButton Content="Unchecked" Style="{StaticResource CupertinoRadioButtonStyle}" />
+
+						</StackPanel>
+					</local:OverviewSampleView>
+
+					<!-- ToggleSwitch -->
+					<local:OverviewSampleView SamplePageType="samples:ToggleSwitchSamplePage">
+						<StackPanel Spacing="8"
+                                    Padding="11,0">
+
 							<ToggleSwitch Header="ToggleSwitch"
 										  IsOn="True"
 										  Style="{StaticResource CupertinoToggleSwitchStyle}" />
-
 							<ToggleSwitch Header="Disabled"
 										  IsEnabled="False"
 										  Style="{StaticResource CupertinoToggleSwitchStyle}" />
+
 						</StackPanel>
 					</local:OverviewSampleView>
+
 				</StackPanel>
 			</DataTemplate>
 		</local:SamplePageLayout.CupertinoTemplate>
+
 	</local:SamplePageLayout>
 </Page>

@@ -1,4 +1,4 @@
-﻿#if __IOS__ || __ANDROID__
+﻿#if (__IOS__ || __ANDROID__) && !NET6_0_OR_GREATER
 using BranchXamarinSDK;
 using System;
 using System.Collections.Generic;

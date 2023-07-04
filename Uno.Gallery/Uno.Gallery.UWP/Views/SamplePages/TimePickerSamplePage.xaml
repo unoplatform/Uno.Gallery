@@ -3,67 +3,89 @@
 	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	  xmlns:local="using:Uno.Gallery"
 	  xmlns:smtx="using:ShowMeTheXAML"
+      xmlns:mobile="http://uno.ui/mobile" 
+      xmlns:not_mobile="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	  xmlns:ios="http://uno.ui/ios"
 	  xmlns:android="http://uno.ui/android"
-	  mc:Ignorable="d ios android">
+	  mc:Ignorable="d ios android mobile">
 
-	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-		<local:SamplePageLayout>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <local:SamplePageLayout>
 
-			<local:SamplePageLayout.MaterialTemplate>
-				<DataTemplate>
-					<StackPanel>
+            <local:SamplePageLayout.MaterialTemplate>
+                <not_mobile:DataTemplate>
+                    <StackPanel>
 
-						<smtx:XamlDisplay UniqueKey="TimePickerSamplePage_Material_Default"
+                        <smtx:XamlDisplay UniqueKey="TimePickerSamplePage_Material_Default"
 										  smtx:XamlDisplayExtensions.Header="Default">
 
-							<TimePicker Header="Set Time"
+                            <TimePicker Header="Set Time"
 										Style="{StaticResource MaterialTimePickerStyle}" />
-						</smtx:XamlDisplay>
+                        </smtx:XamlDisplay>
 
-						<smtx:XamlDisplay UniqueKey="TimePickerSamplePage_Material_Disabled"
+                        <smtx:XamlDisplay UniqueKey="TimePickerSamplePage_Material_Disabled"
 										  smtx:XamlDisplayExtensions.Header="Disabled">
-							
-							<TimePicker Header="Set Time"
+
+                            <TimePicker Header="Set Time"
 										Style="{StaticResource MaterialTimePickerStyle}"
 										IsEnabled="False" />
-						</smtx:XamlDisplay>
-					</StackPanel>
-				</DataTemplate>
-			</local:SamplePageLayout.MaterialTemplate>
+                        </smtx:XamlDisplay>
+                    </StackPanel>
+                </not_mobile:DataTemplate>
+            </local:SamplePageLayout.MaterialTemplate>
 
-			<local:SamplePageLayout.FluentTemplate>
-				<DataTemplate>
-					<StackPanel>
+            <local:SamplePageLayout.FluentTemplate>
+                <not_mobile:DataTemplate>
+                    <StackPanel>
 
-						<ios:TextBlock Text="The TimePicker is composed of two parts: the text button which uses the fluent style, and the flyout picker which is native to the platform."
+                        <ios:TextBlock Text="The TimePicker is composed of two parts: the text button which uses the fluent style, and the flyout picker which is native to the platform."
 									   TextWrapping="Wrap" />
 
-						<android:TextBlock Text="The TimePicker is composed of two parts: the text button which uses the fluent style, and the flyout picker which is native to the platform."
+                        <android:TextBlock Text="The TimePicker is composed of two parts: the text button which uses the fluent style, and the flyout picker which is native to the platform."
 										   TextWrapping="Wrap" />
 
-						<smtx:XamlDisplay UniqueKey="TimePickerSamplePage_Fluent_Default"
+                        <smtx:XamlDisplay UniqueKey="TimePickerSamplePage_Fluent_Default"
 										  smtx:XamlDisplayExtensions.Header="Default">
-							
-							<TimePicker />
-						</smtx:XamlDisplay>
 
-						<smtx:XamlDisplay UniqueKey="TimePickerSamplePage_Fluent_Clock"
+                            <TimePicker />
+                        </smtx:XamlDisplay>
+
+                        <smtx:XamlDisplay UniqueKey="TimePickerSamplePage_Fluent_Clock"
 										  smtx:XamlDisplayExtensions.Header="TimePicker with 24h Clock">
-							
-							<TimePicker ClockIdentifier="24HourClock" />
-						</smtx:XamlDisplay>
 
-						<smtx:XamlDisplay UniqueKey="TimePickerSamplePage_Fluent_Disabled"
+                            <TimePicker ClockIdentifier="24HourClock" />
+                        </smtx:XamlDisplay>
+
+                        <smtx:XamlDisplay UniqueKey="TimePickerSamplePage_Fluent_Disabled"
 										  smtx:XamlDisplayExtensions.Header="Disabled">
-							
-							<TimePicker IsEnabled="False" />
-						</smtx:XamlDisplay>
-					</StackPanel>
-				</DataTemplate>
-			</local:SamplePageLayout.FluentTemplate>
-		</local:SamplePageLayout>
-	</Grid>
+
+                            <TimePicker IsEnabled="False" />
+                        </smtx:XamlDisplay>
+                    </StackPanel>
+                </not_mobile:DataTemplate>
+            </local:SamplePageLayout.FluentTemplate>
+
+            <local:SamplePageLayout.NativeTemplate>
+                <mobile:DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="The TimePicker is composed of two parts: the text button which uses the Fluent style, and the Flyout Picker which is native to the platform." />
+                        <smtx:XamlDisplay UniqueKey="TimePickerSamplePage_Native_Default"
+										  smtx:XamlDisplayExtensions.Header="Default">
+
+                            <TimePicker Header="Set Time" />
+                        </smtx:XamlDisplay>
+
+                        <smtx:XamlDisplay UniqueKey="TimePickerSamplePage_Native_Disabled"
+										  smtx:XamlDisplayExtensions.Header="Disabled">
+
+                            <TimePicker Header="Set Time"
+										IsEnabled="False" />
+                        </smtx:XamlDisplay>
+                    </StackPanel>
+                </mobile:DataTemplate>
+            </local:SamplePageLayout.NativeTemplate>
+        </local:SamplePageLayout>
+    </Grid>
 </Page>

@@ -17,10 +17,12 @@
 						<!-- WebView -->
 						<smtx:XamlDisplay UniqueKey="WebViewSamplePage_WebView"
 										  smtx:XamlDisplayExtensions.Header="WebView">
-							
+
 							<WebView Source="https://platform.uno/"
 									 Height="400" />
+
 						</smtx:XamlDisplay>
+
 					</StackPanel>
 				</DataTemplate>
 			</local:SamplePageLayout.FluentTemplate>

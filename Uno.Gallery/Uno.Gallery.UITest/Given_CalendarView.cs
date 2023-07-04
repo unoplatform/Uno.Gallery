@@ -10,6 +10,7 @@ using Uno.UITests.Helpers;
 
 namespace Uno.Gallery.UITests
 {
+	[Ignore("Removing CalendarView/Picker samples for mobile until it becomes more stable")]
 	public class Given_CalendarView : TestBase
 	{
 		[Test]

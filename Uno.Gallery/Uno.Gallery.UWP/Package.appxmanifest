@@ -45,5 +45,7 @@
 
   <Capabilities>
     <Capability Name="internetClient" />
+	<DeviceCapability Name="activity" />
+    <DeviceCapability Name="location"/>
   </Capabilities>
 </Package>

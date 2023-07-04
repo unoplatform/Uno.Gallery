@@ -17,7 +17,11 @@ namespace Uno.Gallery
 			Category = attribute.Category;
 			Title = attribute.Title;
 			Description = attribute.Description;
-			DocumentationLink = attribute.DocumentationLink;
+			Glyph = attribute.Glyph;
+			if (attribute.DocumentationLink != null)
+			{
+				DocumentationLink = new Uri(attribute.DocumentationLink);
+			}
 			Data = CreateData(attribute.DataType);
 			Source = attribute.Source;
 			SortOrder = attribute.SortOrder;
@@ -46,7 +50,9 @@ namespace Uno.Gallery
 
 		public string Description { get; }
 
-		public string DocumentationLink { get; }
+		public string Glyph { get; }
+
+		public Uri DocumentationLink { get; }
 
 		public object Data { get; }
 

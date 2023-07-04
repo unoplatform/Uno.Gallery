@@ -63,7 +63,7 @@
 							<TextBlock x:Name="HeaderText"
 									   VerticalAlignment="Center"
 									   Margin="16,8"
-									   Opacity="{StaticResource MaterialLowOpacity}"
+									   Opacity="{StaticResource LowOpacity}"
 									   FontSize="16"
 									   LineHeight="23"
 									   Text="{TemplateBinding Content}"

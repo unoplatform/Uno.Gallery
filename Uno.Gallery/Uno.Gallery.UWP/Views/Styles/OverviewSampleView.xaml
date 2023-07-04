@@ -11,8 +11,8 @@
 			<Setter.Value>
 				<ControlTemplate TargetType="local:OverviewSampleView">
 					<Grid CornerRadius="4"
-						  Background="{StaticResource MaterialSurfaceBrush}"
-						  BorderBrush="{StaticResource DividerBrush}"
+						  Background="{ThemeResource SurfaceBrush}"
+						  BorderBrush="{ThemeResource DividerBrush}"
 						  BorderThickness="1"
 						  Margin="0,24,0,0">
 						<Grid.ColumnDefinitions>
@@ -31,27 +31,26 @@
 
 							<TextBlock Text="{Binding Sample.Title, RelativeSource={RelativeSource TemplatedParent}}"
 									   TextWrapping="Wrap"
-									   Style="{StaticResource MaterialHeadline6}"
+									   Style="{StaticResource TitleLarge}"
 									   Margin="16,16,16,0" />
 
 							<TextBlock Text="{Binding Sample.Description, RelativeSource={RelativeSource TemplatedParent}}"
 									   Visibility="{Binding Sample.Description, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource IsNullOrEmptyToCollapsed}, FallbackValue=Collapsed}"
 									   TextWrapping="Wrap"
-									   Style="{StaticResource MaterialBody2}"
+									   Style="{StaticResource BodySmall}"
 									   Margin="16,16,16,0" />
 
 							<Button x:Name="PART_ViewButton"
 									Content="View component"
-									Click="OverviewPage_Click"
 									Margin="8,8"
 									Padding="8,8"
-									Style="{StaticResource MaterialTextButtonStyle}" />
+									Style="{StaticResource TextButtonStyle}" />
 						</StackPanel>
 
 						<!-- Sample -->
 						<Border x:Name="SamplePart"
 								Grid.Column="1"
-								Background="{StaticResource SampleSecondBackgroundBrush}"
+								Background="{ThemeResource SampleSecondBackgroundBrush}"
 								Padding="16">
 							<ContentControl Content="{TemplateBinding Content}"
 											ContentTemplate="{TemplateBinding ContentTemplate}"

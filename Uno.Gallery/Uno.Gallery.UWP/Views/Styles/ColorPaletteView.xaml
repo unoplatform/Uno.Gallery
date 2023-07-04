@@ -6,13 +6,10 @@
 
 	<converters:FromColorBrushToHexConverter x:Key="BrushToHex" />
 
-	<Style x:Key="SimpleColorPaletteViewStyle"
-		   TargetType="local:ColorPaletteView">
+	<Style x:Key="SimpleColorPaletteViewStyle" TargetType="local:ColorPaletteView">
 
-		<Setter Property="Padding"
-				Value="20,12" />
-		<Setter Property="Height"
-				Value="64" />
+		<Setter Property="Padding" Value="20,12" />
+		<Setter Property="Height" Value="64" />
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="local:ColorPaletteView">
@@ -26,12 +23,12 @@
 						</Grid.RowDefinitions>
 
 						<TextBlock Text="{TemplateBinding ColorName}"
-								   Style="{StaticResource MaterialSubtitle2}"
+								   Style="{StaticResource TitleMedium}"
 								   Foreground="{TemplateBinding OnColorBrush}"
 								   VerticalAlignment="Bottom" />
 
 						<TextBlock Text="{TemplateBinding ColorHex}"
-								   Style="{StaticResource MaterialSubtitle2}"
+								   Style="{StaticResource TitleMedium}"
 								   Foreground="{TemplateBinding OnColorBrush}"
 								   VerticalAlignment="Top"
 								   Grid.Row="1" />
@@ -45,8 +42,7 @@
 		   TargetType="local:ColorPaletteView"
 		   BasedOn="{StaticResource SimpleColorPaletteViewStyle}">
 
-		<Setter Property="Height"
-				Value="88" />
+		<Setter Property="Height" Value="88" />
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="local:ColorPaletteView">
@@ -60,12 +56,12 @@
 						</Grid.RowDefinitions>
 
 						<TextBlock Text="{TemplateBinding ColorName}"
-								   Style="{StaticResource MaterialHeadline6}"
+								   Style="{StaticResource TitleLarge}"
 								   Foreground="{TemplateBinding OnColorBrush}"
 								   VerticalAlignment="Bottom" />
 
 						<TextBlock Text="{TemplateBinding ColorHex}"
-								   Style="{StaticResource MaterialSubtitle2}"
+								   Style="{StaticResource TitleMedium}"
 								   Foreground="{TemplateBinding OnColorBrush}"
 								   VerticalAlignment="Top"
 								   Margin="0,4,0,0"
@@ -77,13 +73,10 @@
 	</Style>
 
 	<!-- Displays the OnColor hex code. -->
-	<Style x:Key="InvertedColorPaletteViewStyle"
-		   TargetType="local:ColorPaletteView">
+	<Style x:Key="InvertedColorPaletteViewStyle" TargetType="local:ColorPaletteView">
 
-		<Setter Property="Padding"
-				Value="20,12" />
-		<Setter Property="ColorHeight"
-				Value="88" />
+		<Setter Property="Padding" Value="20,12" />
+		<Setter Property="ColorHeight" Value="88" />
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="local:ColorPaletteView">
@@ -95,12 +88,12 @@
 						</Grid.RowDefinitions>
 
 						<TextBlock Text="{TemplateBinding Title}"
-								   Style="{StaticResource MaterialHeadline6}"
-								   Foreground="{StaticResource MaterialOnBackgroundBrush}" />
+								   Style="{StaticResource TitleLarge}"
+								   Foreground="{ThemeResource OnBackgroundBrush}" />
 
 						<TextBlock Text="{TemplateBinding Description}"
-								   Style="{StaticResource MaterialBody1}"
-								   Foreground="{StaticResource MaterialOnBackgroundBrush}"
+								   Style="{StaticResource BodyMedium}"
+								   Foreground="{ThemeResource OnBackgroundBrush}"
 								   Opacity="0.8"
 								   Margin="0,16,0,0"
 								   Grid.Row="1" />
@@ -125,7 +118,7 @@
 
 							<TextBlock x:Name="ColorNameText"
 									   Text="{TemplateBinding ColorName}"
-									   Style="{StaticResource MaterialHeadline6}"
+									   Style="{StaticResource TitleLarge}"
 									   Foreground="{TemplateBinding OnColorBrush}" />
 
 							<Rectangle Height="12"
@@ -138,7 +131,7 @@
 
 							<TextBlock x:Name="ColorHexText"
 									   Text="{TemplateBinding OnColorHex}"
-									   Style="{StaticResource MaterialSubtitle2}"
+									   Style="{StaticResource TitleMedium}"
 									   Foreground="{TemplateBinding OnColorBrush}"
 									   Margin="16,0,0,0"
 									   Grid.Row="1" />
@@ -150,13 +143,10 @@
 	</Style>
 
 	<!-- Displays the OnColor hex code. -->
-	<Style x:Key="SimpleInvertedColorPaletteViewStyle"
-		   TargetType="local:ColorPaletteView">
+	<Style x:Key="SimpleInvertedColorPaletteViewStyle" TargetType="local:ColorPaletteView">
 
-		<Setter Property="Padding"
-				Value="20,12" />
-		<Setter Property="Height"
-				Value="64" />
+		<Setter Property="Padding" Value="20,12" />
+		<Setter Property="Height" Value="64" />
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="local:ColorPaletteView">
@@ -170,7 +160,7 @@
 						</Grid.RowDefinitions>
 
 						<TextBlock Text="{TemplateBinding ColorName}"
-								   Style="{StaticResource MaterialSubtitle2}"
+								   Style="{StaticResource TitleMedium}"
 								   Foreground="{TemplateBinding OnColorBrush}"
 								   VerticalAlignment="Bottom" />
 
@@ -183,7 +173,7 @@
 								   Grid.Row="1" />
 
 						<TextBlock Text="{TemplateBinding OnColorHex}"
-								   Style="{StaticResource MaterialSubtitle2}"
+								   Style="{StaticResource TitleMedium}"
 								   Foreground="{TemplateBinding OnColorBrush}"
 								   VerticalAlignment="Top"
 								   Margin="16,0,0,0"
@@ -199,8 +189,7 @@
 		   TargetType="local:ColorPaletteView"
 		   BasedOn="{StaticResource SimpleColorPaletteViewStyle}">
 
-		<Setter Property="Height"
-				Value="88" />
+		<Setter Property="Height" Value="88" />
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="local:ColorPaletteView">
@@ -214,7 +203,7 @@
 						</Grid.RowDefinitions>
 
 						<TextBlock Text="{TemplateBinding ColorName}"
-								   Style="{StaticResource MaterialHeadline6}"
+								   Style="{StaticResource TitleLarge}"
 								   Foreground="{TemplateBinding OnColorBrush}" />
 
 						<Rectangle Height="12"
@@ -226,7 +215,7 @@
 								   Grid.Row="1" />
 
 						<TextBlock Text="{TemplateBinding OnColorHex}"
-								   Style="{StaticResource MaterialSubtitle2}"
+								   Style="{StaticResource TitleMedium}"
 								   Foreground="{TemplateBinding OnColorBrush}"
 								   VerticalAlignment="Top"
 								   Margin="16,0,0,0"
@@ -237,13 +226,10 @@
 		</Setter>
 	</Style>
 
-	<Style x:Key="ColorPaletteWithBottomDescriptionViewStyle"
-		   TargetType="local:ColorPaletteView">
+	<Style x:Key="ColorPaletteWithBottomDescriptionViewStyle" TargetType="local:ColorPaletteView">
 
-		<Setter Property="Padding"
-				Value="20,16" />
-		<Setter Property="ColorHeight"
-				Value="88" />
+		<Setter Property="Padding" Value="20,16" />
+		<Setter Property="ColorHeight" Value="88" />
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="local:ColorPaletteView">
@@ -260,19 +246,19 @@
 							</Grid.RowDefinitions>
 
 							<TextBlock Text="{TemplateBinding ColorName}"
-									   Style="{StaticResource MaterialHeadline6}"
+									   Style="{StaticResource TitleLarge}"
 									   Foreground="{TemplateBinding OnColorBrush}" />
 
 							<TextBlock Text="{TemplateBinding ColorHex}"
-									   Style="{StaticResource MaterialSubtitle2}"
+									   Style="{StaticResource TitleMedium}"
 									   Foreground="{TemplateBinding OnColorBrush}"
 									   Margin="0,4,0,0"
 									   Grid.Row="1" />
 						</Grid>
 
 						<TextBlock Text="{TemplateBinding Description}"
-								   Style="{StaticResource MaterialCaption}"
-								   Foreground="{StaticResource MaterialOnBackgroundBrush}"
+								   Style="{StaticResource BodySmall}"
+								   Foreground="{ThemeResource OnBackgroundBrush}"
 								   Opacity="0.45"
 								   Margin="0,16,0,0" />
 					</StackPanel>
@@ -281,6 +267,26 @@
 		</Setter>
 	</Style>
 
-	<Style TargetType="local:ColorPaletteView"
-		   BasedOn="{StaticResource SimpleColorPaletteViewStyle}" />
+	<Style x:Key="MaterialColorPaletteViewStyle" TargetType="local:ColorPaletteView">
+		<Setter Property="Padding" Value="20,12" />
+
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="local:ColorPaletteView">
+					<StackPanel Background="{TemplateBinding ColorBrush}" Padding="{TemplateBinding Padding}">
+						
+						<TextBlock Text="{TemplateBinding ColorName}"
+								   Foreground="{TemplateBinding OnColorBrush}"
+								   Style="{StaticResource LabelMedium}" />
+						<TextBlock Text="{TemplateBinding ColorHex}"
+								   Foreground="{TemplateBinding OnColorBrush}"
+								   Style="{StaticResource LabelMedium}" />
+						
+					</StackPanel>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style TargetType="local:ColorPaletteView" BasedOn="{StaticResource SimpleColorPaletteViewStyle}" />
 </ResourceDictionary>

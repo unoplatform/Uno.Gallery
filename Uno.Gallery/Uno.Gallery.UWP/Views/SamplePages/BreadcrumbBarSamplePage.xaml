@@ -1,0 +1,83 @@
+﻿<Page x:Class="Uno.Gallery.Views.Samples.BreadcrumbBarSamplePage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+	  xmlns:smtx="using:ShowMeTheXAML"
+	  xmlns:local="using:Uno.Gallery"
+	  xmlns:data="using:Uno.Gallery.Entities.Data"
+	  mc:Ignorable="d">
+
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<local:SamplePageLayout IsDesignAgnostic="True">
+			<local:SamplePageLayout.DesignAgnosticTemplate>
+				<DataTemplate>
+					<StackPanel>
+						<smtx:XamlDisplay UniqueKey="BreadcrumbBarSamplePage_DefaultSample"
+										  smtx:XamlDisplayExtensions.Header="Default">
+							<!--
+Items = new string[] { "Home", "Documents", "Design", "Northwind", "Images", "Folder1", "Folder2", "Folder3" };
+-->
+							<muxc:BreadcrumbBar ItemsSource="{Binding Data.Items}" />
+						</smtx:XamlDisplay>
+
+						<smtx:XamlDisplay UniqueKey="BreadcrumbBarSamplePage_CustomDataTemplateSample"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel"
+										  smtx:XamlDisplayExtensions.Header="BreadcrumbBar with Custom DataTemplate">
+							<!--
+public class Folder
+{
+	public string Name { get; }
+	public int ItemCount { get; }
+	public string Description { get; }
+}
+
+public ObservableCollection<Folder> Folders { get => GetProperty<ObservableCollection<Folder>>(); set => SetProperty(value); }
+public Folder DisplayItem { get => GetProperty<Folder>(); set => SetProperty(value); }
+-->
+
+							<StackPanel Spacing="8">
+								<muxc:BreadcrumbBar x:Name="breadcrumb"
+													ItemsSource="{Binding Data.Folders, Mode=OneWay}"
+													ItemClicked="OnBreadcrumb_ItemClicked">
+									<muxc:BreadcrumbBar.ItemTemplate>
+										<DataTemplate x:DataType="data:Folder">
+											<muxc:BreadcrumbBarItem Content="{Binding}">
+												<muxc:BreadcrumbBarItem.ContentTemplate>
+													<DataTemplate>
+														<TextBlock Text="{Binding Name}" />
+													</DataTemplate>
+												</muxc:BreadcrumbBarItem.ContentTemplate>
+											</muxc:BreadcrumbBarItem>
+										</DataTemplate>
+									</muxc:BreadcrumbBar.ItemTemplate>
+								</muxc:BreadcrumbBar>
+								<TextBlock TextWrapping="WrapWholeWords">
+									<LineBreak />
+									<Span FontWeight="Bold">Name: </Span>
+									<Run Text="{Binding Data.DisplayItem.Name, Mode=OneWay}" />
+									<LineBreak />
+									<Span FontWeight="Bold">Items: </Span>
+									<Run Text="{Binding Data.DisplayItem.ItemCount, Mode=OneWay}" />
+									<LineBreak />
+									<Span FontWeight="Bold">Description: </Span>
+									<Run Text="{Binding Data.DisplayItem.Description, Mode=OneWay}" />
+								</TextBlock>
+							</StackPanel>
+
+							<smtx:XamlDisplayExtensions.Options>
+								<StackPanel Spacing="4">
+									<Button Content="Reset items"
+											HorizontalAlignment="Stretch"
+											Click="OnResetItems_Click" />
+								</StackPanel>
+							</smtx:XamlDisplayExtensions.Options>
+						</smtx:XamlDisplay>
+					</StackPanel>
+				</DataTemplate>
+			</local:SamplePageLayout.DesignAgnosticTemplate>
+
+		</local:SamplePageLayout>
+	</Grid>
+</Page>

@@ -6,7 +6,8 @@
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	  xmlns:smtx="using:ShowMeTheXAML"
 	  xmlns:win="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-	  mc:Ignorable="d">
+	  xmlns:todo="what should be done"
+	  mc:Ignorable="d todo">
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 		<local:SamplePageLayout>
@@ -15,49 +16,40 @@
 				<DataTemplate>
 					<StackPanel>
 
-						<!-- Material FlyoutPresenter -->
-						<smtx:XamlDisplay UniqueKey="FlyoutSamplePage_Material_FlyoutPresenter"
-										  smtx:XamlDisplayExtensions.Header="FlyoutPresenter">
-
-							<Button Content="Flyout"
-									Style="{StaticResource MaterialContainedButtonStyle}">
+						<todo:XamlDisplay UniqueKey="FlyoutSamplePage_Material_FlyoutPresenter"
+										  smtx:XamlDisplayExtensions.Header="FlyoutPresenter"
+										  todo:Note="Hidden because the style is completly broken">
+							<Button Content="Flyout" Style="{StaticResource FilledButtonStyle}">
 								<Button.Flyout>
-									<Flyout FlyoutPresenterStyle="{StaticResource MaterialFlyoutPresenterStyle}">
-										<TextBlock
-												   Style="{StaticResource MaterialBody2}" >
-<TextBlock.Text>
-Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper 
-commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet. 
-Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi 
-rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius 
-curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales 
-sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida
-turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant.
-</TextBlock.Text>
+									<Flyout FlyoutPresenterStyle="{StaticResource FlyoutPresenterStyle}">
+										<TextBlock TextWrapping="Wrap"
+												   MaxWidth="300"
+												   Style="{StaticResource BodySmall}">
+											<TextBlock.Text>
+												Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper
+												commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet.
+												Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi
+												rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius
+												curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales
+												sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida
+												turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant.
+											</TextBlock.Text>
 										</TextBlock>
 									</Flyout>
 								</Button.Flyout>
 							</Button>
-						</smtx:XamlDisplay>
-
-						<!-- Material MenuFlyout + Icon -->
-						<smtx:XamlDisplay UniqueKey="FlyoutSamplePage_Material_MenuFlyout_Icon"
-										  smtx:XamlDisplayExtensions.Header="MenuFlyout &amp; Icons">
-
-							<Button Content="Open"
-									Style="{StaticResource MaterialContainedButtonStyle}">
+						</todo:XamlDisplay>
+						<smtx:XamlDisplay UniqueKey="FlyoutSamplePage_Material_MenuFlyout_Icon" smtx:XamlDisplayExtensions.Header="MenuFlyout &amp; Icons">
+							<Button Content="Open" Style="{StaticResource FilledButtonStyle}">
 								<Button.Flyout>
-									<MenuFlyout MenuFlyoutPresenterStyle="{StaticResource MaterialMenuFlyoutPresenterStyle}">
+									<MenuFlyout MenuFlyoutPresenterStyle="{StaticResource MenuFlyoutPresenterStyle}">
 
-										<MenuFlyoutItem Text="Like"
-														Style="{StaticResource MaterialMenuFlyoutItemStyle}">
+										<MenuFlyoutItem Text="Like" Style="{StaticResource MaterialMenuFlyoutItemStyle}">
 											<MenuFlyoutItem.Icon>
 												<SymbolIcon Symbol="Like" />
 											</MenuFlyoutItem.Icon>
 										</MenuFlyoutItem>
-
-										<MenuFlyoutItem Text="Dislike"
-														Style="{StaticResource MaterialMenuFlyoutItemStyle}">
+										<MenuFlyoutItem Text="Dislike" Style="{StaticResource MaterialMenuFlyoutItemStyle}">
 											<MenuFlyoutItem.Icon>
 												<SymbolIcon Symbol="Dislike" />
 											</MenuFlyoutItem.Icon>
@@ -68,12 +60,10 @@ turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo ha
 										<MenuFlyoutItem Text="Calculator"
 														Icon="Calculator"
 														Style="{StaticResource MaterialMenuFlyoutItemStyle}" />
-
 										<MenuFlyoutItem Text="Camera"
 														Icon="Camera"
 														KeyboardAcceleratorTextOverride="Ctrl+C"
 														Style="{StaticResource MaterialMenuFlyoutItemStyle}" />
-
 										<MenuFlyoutItem Text="Calendar"
 														Icon="Calendar"
 														IsEnabled="False"
@@ -83,15 +73,11 @@ turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo ha
 								</Button.Flyout>
 							</Button>
 						</smtx:XamlDisplay>
+						<smtx:XamlDisplay UniqueKey="FlyoutSamplePage_Material_MenuFlyout_Toggles" smtx:XamlDisplayExtensions.Header="MenuFlyout &amp; Toggles">
 
-						<!-- Material MenuFLyout + ToggleMenuFlyoutItem -->
-						<smtx:XamlDisplay UniqueKey="FlyoutSamplePage_Material_MenuFlyout_Toggles"
-										  smtx:XamlDisplayExtensions.Header="MenuFlyout &amp; Toggles">
-
-							<Button Content="Options"
-									Style="{StaticResource MaterialContainedButtonStyle}">
+							<Button Content="Options" Style="{StaticResource FilledButtonStyle}">
 								<Button.Flyout>
-									<MenuFlyout MenuFlyoutPresenterStyle="{StaticResource MaterialMenuFlyoutPresenterStyle}">
+									<MenuFlyout MenuFlyoutPresenterStyle="{StaticResource MenuFlyoutPresenterStyle}">
 
 										<MenuFlyoutItem Text="Clear History"
 														KeyboardAcceleratorTextOverride="Ctrl+Shift+C"
@@ -102,77 +88,54 @@ turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo ha
 										<ToggleMenuFlyoutItem Text="Incognito Mode"
 															  IsChecked="True"
 															  Style="{StaticResource MaterialToggleMenuFlyoutItemStyle}" />
-
 										<ToggleMenuFlyoutItem Text="Dark Mode"
 															  IsChecked="True"
 															  KeyboardAcceleratorTextOverride="Ctrl+D"
 															  Style="{StaticResource MaterialToggleMenuFlyoutItemStyle}" />
-
 										<ToggleMenuFlyoutItem Text="High Contrast Mode"
 															  IsChecked="True"
 															  IsEnabled="False"
 															  Style="{StaticResource MaterialToggleMenuFlyoutItemStyle}" />
+
 									</MenuFlyout>
 								</Button.Flyout>
 							</Button>
 						</smtx:XamlDisplay>
+						<smtx:XamlDisplay UniqueKey="FlyoutSamplePage_Material_Flyout" smtx:XamlDisplayExtensions.Header="Nested MenuFlyout">
 
-						<!-- Material MenuFlyout + MenuFlyoutSubItem -->
-						<smtx:XamlDisplay UniqueKey="FlyoutSamplePage_Material_Flyout"
-										  smtx:XamlDisplayExtensions.Header="Nested MenuFlyout">
-
-							<Button Content="Help"
-									Style="{StaticResource MaterialContainedButtonStyle}">
+							<Button Content="Help" Style="{StaticResource FilledButtonStyle}">
 								<Button.Flyout>
-									<MenuFlyout MenuFlyoutPresenterStyle="{StaticResource MaterialMenuFlyoutPresenterStyle}">
+									<MenuFlyout MenuFlyoutPresenterStyle="{StaticResource MenuFlyoutPresenterStyle}">
 
-										<MenuFlyoutItem Text="View Help"
-														Style="{StaticResource MaterialMenuFlyoutItemStyle}" />
-
+										<MenuFlyoutItem Text="View Help" Style="{StaticResource MaterialMenuFlyoutItemStyle}" />
 										<MenuFlyoutSubItem Text="Disabled"
 														   Style="{StaticResource MaterialMenuFlyoutSubItemStyle}"
 														   IsEnabled="False">
-
-											<MenuFlyoutItem Text="Can't be seen"
-															Style="{StaticResource MaterialMenuFlyoutItemStyle}" />
+											<MenuFlyoutItem Text="Can't be seen" Style="{StaticResource MaterialMenuFlyoutItemStyle}" />
 										</MenuFlyoutSubItem>
-
-										<MenuFlyoutSubItem Text="Send Feedback"
-														   Style="{StaticResource MaterialMenuFlyoutSubItemStyle}">
-
-											<MenuFlyoutItem Text="Report Problem"
-															Style="{StaticResource MaterialMenuFlyoutItemStyle}" />
-
-											<MenuFlyoutItem Text="Suggest Feature"
-															Style="{StaticResource MaterialMenuFlyoutItemStyle}" />
-
-											<MenuFlyoutSubItem Text="Settings"
-															   Style="{StaticResource MaterialMenuFlyoutSubItemStyle}">
-
-												<MenuFlyoutItem Text="Auto Save"
-																Style="{StaticResource MaterialMenuFlyoutItemStyle}" />
-
-												<MenuFlyoutItem Text="Start Up"
-																Style="{StaticResource MaterialMenuFlyoutItemStyle}" />
-
-												<MenuFlyoutItem Text="Font and Colors"
-																Style="{StaticResource MaterialMenuFlyoutItemStyle}" />
+										<MenuFlyoutSubItem Text="Send Feedback" Style="{StaticResource MaterialMenuFlyoutSubItemStyle}">
+											<MenuFlyoutItem Text="Report Problem" Style="{StaticResource MaterialMenuFlyoutItemStyle}" />
+											<MenuFlyoutItem Text="Suggest Feature" Style="{StaticResource MaterialMenuFlyoutItemStyle}" />
+											<MenuFlyoutSubItem Text="Settings" Style="{StaticResource MaterialMenuFlyoutSubItemStyle}">
+												<MenuFlyoutItem Text="Auto Save" Style="{StaticResource MaterialMenuFlyoutItemStyle}" />
+												<MenuFlyoutItem Text="Start Up" Style="{StaticResource MaterialMenuFlyoutItemStyle}" />
+												<MenuFlyoutItem Text="Font and Colors" Style="{StaticResource MaterialMenuFlyoutItemStyle}" />
 											</MenuFlyoutSubItem>
 										</MenuFlyoutSubItem>
+
 									</MenuFlyout>
 								</Button.Flyout>
 							</Button>
 						</smtx:XamlDisplay>
+
 					</StackPanel>
 				</DataTemplate>
 			</local:SamplePageLayout.MaterialTemplate>
-
 			<local:SamplePageLayout.FluentTemplate>
 				<DataTemplate>
 					<StackPanel>
 
-						<smtx:XamlDisplay UniqueKey="FlyoutSamplePage_Fluent_Flyout"
-										  smtx:XamlDisplayExtensions.Header="FlyoutPresenter">
+						<smtx:XamlDisplay UniqueKey="FlyoutSamplePage_Fluent_Flyout" smtx:XamlDisplayExtensions.Header="FlyoutPresenter">
 
 							<Button Content="Flyout">
 								<Button.Flyout>
@@ -180,35 +143,28 @@ turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo ha
 										<Flyout.FlyoutPresenterStyle>
 											<Style TargetType="FlyoutPresenter">
 
-												<Setter Property="ScrollViewer.HorizontalScrollMode"
-														Value="Disabled" />
-												<Setter Property="ScrollViewer.HorizontalScrollBarVisibility"
-														Value="Disabled" />
-												<Setter Property="Margin"
-														Value="16" />
+												<Setter Property="ScrollViewer.HorizontalScrollMode" Value="Disabled" />
+												<Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
+												<Setter Property="Margin" Value="16" />
 											</Style>
 										</Flyout.FlyoutPresenterStyle>
 
-										<TextBlock  
-												   Style="{StaticResource MaterialBody1}">
-<TextBlock.Text>
-Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper 
-commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet. 
-Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi 
-rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius 
-curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales 
-sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida
-turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant.
-</TextBlock.Text>
+										<TextBlock Style="{StaticResource BodyMedium}">
+											<TextBlock.Text>
+												Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper
+												commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet.
+												Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi
+												rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius
+												curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales
+												sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida
+												turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant.
+											</TextBlock.Text>
 										</TextBlock>
 									</Flyout>
 								</Button.Flyout>
 							</Button>
 						</smtx:XamlDisplay>
-
-						<smtx:XamlDisplay UniqueKey="FlyoutSamplePage_Fluent_Flyout_Icons"
-										  smtx:XamlDisplayExtensions.Header="MenuFlyout &amp; Icons">
-
+						<smtx:XamlDisplay UniqueKey="FlyoutSamplePage_Fluent_Flyout_Icons" smtx:XamlDisplayExtensions.Header="MenuFlyout &amp; Icons">
 							<Button Content="Open">
 								<Button.Flyout>
 									<MenuFlyout>
@@ -218,7 +174,6 @@ turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo ha
 												<SymbolIcon Symbol="Like" />
 											</MenuFlyoutItem.Icon>
 										</MenuFlyoutItem>
-
 										<MenuFlyoutItem Text="Dislike">
 											<MenuFlyoutItem.Icon>
 												<SymbolIcon Symbol="Dislike" />
@@ -227,13 +182,10 @@ turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo ha
 
 										<MenuFlyoutSeparator />
 
-										<MenuFlyoutItem Text="Calculator"
-														Icon="Calculator" />
-
+										<MenuFlyoutItem Text="Calculator" Icon="Calculator" />
 										<MenuFlyoutItem Text="Camera"
 														Icon="Camera"
 														win:KeyboardAcceleratorTextOverride="Ctrl+C" />
-
 										<MenuFlyoutItem Text="Calendar"
 														Icon="Calendar"
 														IsEnabled="False"
@@ -242,26 +194,19 @@ turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo ha
 								</Button.Flyout>
 							</Button>
 						</smtx:XamlDisplay>
-
-						<smtx:XamlDisplay UniqueKey="FlyoutSamplePage_Fluent_MenuFlyout_Toggles"
-										  smtx:XamlDisplayExtensions.Header="MenuFlyout &amp; Toggles">
-
+						<smtx:XamlDisplay UniqueKey="FlyoutSamplePage_Fluent_MenuFlyout_Toggles" smtx:XamlDisplayExtensions.Header="MenuFlyout &amp; Toggles">
 							<Button Content="Options">
 								<Button.Flyout>
 									<MenuFlyout>
 
-										<MenuFlyoutItem Text="Clear History"
-														win:KeyboardAcceleratorTextOverride="Ctrl+Shift+C" />
+										<MenuFlyoutItem Text="Clear History" win:KeyboardAcceleratorTextOverride="Ctrl+Shift+C" />
 
 										<MenuFlyoutSeparator />
 
-										<ToggleMenuFlyoutItem Text="Incognito Mode"
-															  IsChecked="True" />
-
+										<ToggleMenuFlyoutItem Text="Incognito Mode" IsChecked="True" />
 										<ToggleMenuFlyoutItem Text="Dark Mode"
 															  IsChecked="True"
 															  win:KeyboardAcceleratorTextOverride="Ctrl+D" />
-
 										<ToggleMenuFlyoutItem Text="High Contrast Mode"
 															  IsChecked="True"
 															  IsEnabled="False" />
@@ -269,41 +214,30 @@ turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo ha
 								</Button.Flyout>
 							</Button>
 						</smtx:XamlDisplay>
-
-						<smtx:XamlDisplay UniqueKey="FlyoutSamplePage_Fluent_Nested_MenuFlyout"
-										  smtx:XamlDisplayExtensions.Header="Nested MenuFlyout">
-
+						<smtx:XamlDisplay UniqueKey="FlyoutSamplePage_Fluent_Nested_MenuFlyout" smtx:XamlDisplayExtensions.Header="Nested MenuFlyout">
 							<Button Content="Help">
 								<Button.Flyout>
 									<MenuFlyout>
 
 										<MenuFlyoutItem Text="View Help" />
-
-										<MenuFlyoutSubItem Text="Disabled"
-														   IsEnabled="False">
-
+										<MenuFlyoutSubItem Text="Disabled" IsEnabled="False">
 											<MenuFlyoutItem Text="Can't be seen" />
 										</MenuFlyoutSubItem>
-
 										<MenuFlyoutSubItem Text="Send Feedback">
-
 											<MenuFlyoutItem Text="Report Problem" />
-
 											<MenuFlyoutItem Text="Suggest Feature" />
-
 											<MenuFlyoutSubItem Text="Settings">
-
 												<MenuFlyoutItem Text="Auto Save" />
-
 												<MenuFlyoutItem Text="Start Up" />
-
 												<MenuFlyoutItem Text="Font and Colors" />
 											</MenuFlyoutSubItem>
 										</MenuFlyoutSubItem>
+
 									</MenuFlyout>
 								</Button.Flyout>
 							</Button>
 						</smtx:XamlDisplay>
+
 					</StackPanel>
 				</DataTemplate>
 			</local:SamplePageLayout.FluentTemplate>

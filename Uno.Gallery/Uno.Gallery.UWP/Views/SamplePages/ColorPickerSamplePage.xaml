@@ -1,0 +1,90 @@
+﻿<Page x:Class="Uno.Gallery.Views.Samples.ColorPickerSamplePage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+	  xmlns:smtx="using:ShowMeTheXAML"
+	  xmlns:local="using:Uno.Gallery"
+	  mc:Ignorable="d">
+
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<local:SamplePageLayout>
+			<local:SamplePageLayout.FluentTemplate>
+				<DataTemplate>
+					<StackPanel>
+
+						<smtx:XamlDisplay UniqueKey="ColorPickerSamplePage_Default"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\ColorPicker"
+										  smtx:XamlDisplayExtensions.Header="ColorPicker">
+							<!--
+<ColorPicker
+    IsColorSliderVisible="True"
+    IsColorChannelTextInputVisible="True"
+    IsHexInputVisible="True"
+    IsMoreButtonVisible="False"
+    ColorSpectrumShape="Box"	
+    IsAlphaEnabled="False"
+    IsAlphaSliderVisible="True"
+    IsAlphaTextInputVisible="True" />
+-->
+
+							<muxc:ColorPicker x:Name="colorPicker"
+											  HorizontalAlignment="Left"
+											  IsColorSliderVisible="{Binding Data.IsColorSliderVisible, Mode=OneWay}"
+											  IsColorChannelTextInputVisible="{Binding Data.IsColorChannelTextInputVisible, Mode=OneWay}"
+											  IsHexInputVisible="{Binding Data.IsHexInputVisible, Mode=OneWay}"
+											  IsMoreButtonVisible="{Binding Data.IsMoreButtonVisible, Mode=OneWay}"
+											  IsAlphaEnabled="{Binding Data.AlphaEnabled, Mode=OneWay}"
+											  IsAlphaSliderVisible="{Binding Data.IsAlphaSliderVisible, Mode=OneWay}"
+											  IsAlphaTextInputVisible="{Binding Data.IsAlphaTextInputVisible, Mode=OneWay}"
+											  ColorSpectrumShape="{Binding Data.ColorSpectrumShape, Mode=OneWay}"
+											  Color="{Binding Data.CurrentColor, Mode=TwoWay}" />
+
+							<smtx:XamlDisplayExtensions.Options>
+								<StackPanel Spacing="4">
+									<CheckBox IsChecked="{Binding Data.IsColorSliderVisible, Mode=TwoWay}"
+											  Content="IsColorSliderVisible" />
+									<CheckBox IsChecked="{Binding Data.IsColorChannelTextInputVisible, Mode=TwoWay}"
+											  Content="IsColorChannelTextInputVisible" />
+									<CheckBox IsChecked="{Binding Data.IsHexInputVisible, Mode=TwoWay}"
+											  Content="IsHexInputVisible" />
+									<CheckBox IsChecked="{Binding Data.IsMoreButtonVisible, Mode=TwoWay}"
+											  Content="IsMoreButtonVisible" />
+									<CheckBox IsChecked="{Binding Data.AlphaEnabled, Mode=TwoWay}"
+											  Content="Alpha Enabled" />
+									<CheckBox IsChecked="{Binding Data.IsAlphaSliderVisible, Mode=TwoWay}"
+											  IsEnabled="{Binding Data.AlphaEnabled, Mode=OneWay}"
+											  Content="IsAlphaSliderVisible"
+											  Margin="8,0" />
+									<CheckBox IsChecked="{Binding Data.IsAlphaTextInputVisible, Mode=TwoWay}"
+											  IsEnabled="{Binding Data.AlphaEnabled, Mode=OneWay}"
+											  Content="IsAlphaTextInputVisible"
+											  Margin="8,0" />
+
+									<muxc:RadioButtons Header="ColorSpectrumShape">
+										<RadioButton Content="Box"
+													 IsChecked="True"
+													 Checked="ColorSpectrumShapeRadio_Checked" />
+										<RadioButton Content="Ring"
+													 Checked="ColorSpectrumShapeRadio_Checked" />
+									</muxc:RadioButtons>
+
+									<TextBlock Text="Color applied to Rectangle" />
+									<Rectangle RadiusY="6"
+											   RadiusX="6"
+											   Stroke="Gray"
+											   Height="120">
+										<Rectangle.Fill>
+											<SolidColorBrush Color="{Binding Data.CurrentColor, Mode=OneWay}" />
+										</Rectangle.Fill>
+									</Rectangle>
+								</StackPanel>
+							</smtx:XamlDisplayExtensions.Options>
+						</smtx:XamlDisplay>
+					</StackPanel>
+				</DataTemplate>
+			</local:SamplePageLayout.FluentTemplate>
+		</local:SamplePageLayout>
+	</Grid>
+</Page>

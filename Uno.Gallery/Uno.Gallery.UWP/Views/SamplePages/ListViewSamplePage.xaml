@@ -50,11 +50,11 @@ public List<Record> Data { get; } = new List<Record>
 
 												<!-- Composition Name -->
 												<TextBlock Text="{Binding CompositionName}"
-														   Style="{StaticResource MaterialSubtitle2}" />
+														   Style="{StaticResource TitleMedium}" />
 
 												<!-- Artist Name -->
 												<TextBlock Text="{Binding ArtistName}"
-														   Style="{ThemeResource MaterialBody2}" />
+														   Style="{ThemeResource BodySmall}" />
 											</StackPanel>
 										</Grid>
 									</DataTemplate>
@@ -64,7 +64,7 @@ public List<Record> Data { get; } = new List<Record>
 
 						<!-- Note -->
 						<TextBlock Text="Side Note: If the template is used anywhere else in your app consider making the template a resource."
-								   Style="{StaticResource MaterialCaption}"
+								   Style="{StaticResource BodySmall}"
 								   Margin="0,16,0,0" />
 
 						<smtx:XamlDisplay UniqueKey="ListViewSamplePage_Selection"
@@ -73,8 +73,8 @@ public List<Record> Data { get; } = new List<Record>
 							<StackPanel>
 
 								<!-- Chosen Color -->
-								<TextBlock Foreground="{Binding SelectedItem.Foreground, ElementName=ColorPicker}"
-										   Height="20">
+                                <TextBlock Foreground="{Binding SelectedItem.Foreground, ElementName=ColorPicker, TargetNullValue={ThemeResource OnSurfaceBrush}, FallbackValue={ThemeResource OnSurfaceBrush}}"
+                                           Style="{StaticResource BodyLarge}">
 									<Run Text="Foreground color:" />
 									<Run Text="{Binding SelectedItem.Content, ElementName=ColorPicker}" />
 								</TextBlock>
@@ -82,6 +82,7 @@ public List<Record> Data { get; } = new List<Record>
 								<!-- Selection-->
 								<ListView x:Name="ColorPicker"
 										  IsItemClickEnabled="True"
+										  SelectionMode="Single"
 										  SelectedIndex="0"
 										  Margin="0,16,0,0">
 

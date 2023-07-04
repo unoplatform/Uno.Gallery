@@ -3,7 +3,7 @@
 					xmlns:android="http://uno.ui/android"
 					xmlns:ios="http://uno.ui/ios"
 					xmlns:local="using:Uno.Gallery"
-					xmlns:material="using:Uno.Material.Controls"
+					xmlns:utu="using:Uno.Toolkit.UI"
 					xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 					xmlns:not_android="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 					xmlns:wasm="http://uno.ui/wasm"
@@ -20,24 +20,24 @@
 		<StackPanel>
 			<!-- Description -->
 			<TextBlock Margin="0,16,0,0"
-					   Foreground="{StaticResource MaterialOnBackgroundBrush}"
+					   Foreground="{ThemeResource OnBackgroundBrush}"
 					   Opacity="0.8"
-					   Style="{StaticResource MaterialSubtitle1}"
+					   Style="{StaticResource TitleLarge}"
 					   Text="{Binding Description}"
 					   Visibility="{Binding Description, Converter={StaticResource IsNullOrEmptyToCollapsed}, FallbackValue=Collapsed}" />
 
 			<!-- Source label -->
 			<TextBlock Margin="0,30,0,0"
-					   Foreground="{StaticResource MaterialOnBackgroundBrush}"
+					   Foreground="{ThemeResource OnBackgroundBrush}"
 					   Opacity="0.45"
-					   Style="{StaticResource MaterialOverline}"
+					   Style="{StaticResource BodySmall}"
 					   Text="SOURCE" />
 
 			<!-- Source value -->
 			<TextBlock Margin="0,0,0,16"
-					   Foreground="{StaticResource MaterialOnBackgroundBrush}"
+					   Foreground="{ThemeResource OnBackgroundBrush}"
 					   Opacity="0.8"
-					   Style="{StaticResource MaterialBody1}"
+					   Style="{StaticResource BodyMedium}"
 					   Text="{Binding Source, Converter={StaticResource EnumToDescription}}" />
 		</StackPanel>
 	</DataTemplate>
@@ -49,7 +49,7 @@
 				Value="{StaticResource DefaultSamplePageLayoutHeaderTemplate}" />
 
 		<Setter Property="BorderBrush"
-				Value="{StaticResource DividerBrush}" />
+				Value="{ThemeResource DividerBrush}" />
 
 		<Setter Property="Template">
 			<Setter.Value>
@@ -62,9 +62,9 @@
 
 						<!-- Title (visible on desktop) -->
 						<TextBlock x:Name="StickyTitle"
-								   Margin="48,0"
+								   Margin="48,24,0,6"
 								   MaxLines="1"
-								   Style="{StaticResource MaterialHeadline4}"
+								   Style="{StaticResource HeadlineLarge}"
 								   Text="{TemplateBinding Title}"
 								   TextTrimming="CharacterEllipsis" />
 
@@ -81,7 +81,7 @@
 
 						<ScrollViewer x:Name="PART_ScrollViewer"
 									  Grid.Row="1">
-							<Grid Margin="0,0,0,24">
+							<Grid Padding="0,0,0,24">
 								<Grid.RowDefinitions>
 									<RowDefinition Height="*" />
 									<RowDefinition Height="Auto" />
@@ -96,9 +96,9 @@
 									<!-- Title (visible on mobile) -->
 									<TextBlock x:Name="ScrollingTitle"
 											   Margin="0,32,0,0"
-											   Foreground="{StaticResource MaterialOnBackgroundBrush}"
+											   Foreground="{ThemeResource OnBackgroundBrush}"
 											   MaxLines="1"
-											   Style="{StaticResource MaterialHeadline4}"
+											   Style="{StaticResource HeadlineLarge}"
 											   Text="{TemplateBinding Title}"
 											   TextTrimming="CharacterEllipsis"
 											   Visibility="Collapsed" />
@@ -128,7 +128,7 @@
 												<StackPanel Orientation="Horizontal">
 
 													<!-- Label -->
-													<TextBlock Style="{StaticResource MaterialHeadline6}"
+													<TextBlock Style="{StaticResource TitleLarge}"
 															   Text="Material" />
 
 													<!-- Icon -->
@@ -150,7 +150,7 @@
 												<StackPanel Orientation="Horizontal">
 
 													<!-- Label -->
-													<TextBlock Style="{StaticResource MaterialHeadline6}"
+													<TextBlock Style="{StaticResource TitleLarge}"
 															   Text="Fluent" />
 
 													<!-- Icon -->
@@ -172,7 +172,7 @@
 												<StackPanel Orientation="Horizontal">
 
 													<!-- Label -->
-													<TextBlock Style="{StaticResource MaterialHeadline6}"
+													<TextBlock Style="{StaticResource TitleLarge}"
 															   Text="Cupertino" />
 
 													<!-- Icon -->
@@ -194,7 +194,7 @@
 												<StackPanel Orientation="Horizontal">
 
 													<!-- Label -->
-													<TextBlock Style="{StaticResource MaterialHeadline6}"
+													<TextBlock Style="{StaticResource TitleLarge}"
 															   Text="Native" />
 
 													<!-- Icon -->
@@ -246,19 +246,28 @@
 														  Content="{TemplateBinding Content}"
 														  ContentTemplate="{TemplateBinding NativeTemplate}"
 														  Visibility="Collapsed" />
+
+										<!-- Agnostic Content -->
+										<ContentPresenter x:Name="AgnosticContentPresenter"
+														  Content="{TemplateBinding Content}"
+														  ContentTemplate="{TemplateBinding DesignAgnosticTemplate}"
+														  VerticalAlignment="Stretch"
+														  HorizontalAlignment="Stretch"
+														  Padding="{StaticResource SampleContentPadding}"
+														  Visibility="Collapsed" />
 									</Grid>
 
 									<StackPanel Visibility="{Binding IsFooterVisible, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}">
 
-										<material:Divider Margin="0,48,0,36"
-														  Style="{StaticResource MaterialDividerStyle}" />
+										<utu:Divider Margin="0,48,0,36"
+														  Style="{StaticResource DividerStyle}" />
 
 										<!-- Optional link to documentation -->
 										<TextBlock Visibility="{Binding DocumentationLink, Converter={StaticResource IsNullOrEmptyToCollapsed}}"
 												   Margin="0,0,0,32"
-												   Foreground="{StaticResource MaterialOnBackgroundBrush}"
+												   Foreground="{ThemeResource OnBackgroundBrush}"
 												   Opacity="0.8"
-												   Style="{StaticResource MaterialBody1}">
+												   Style="{StaticResource BodyMedium}">
 											<Run Text="For more information refer to the " />
 
 											<Hyperlink NavigateUri="{Binding DocumentationLink}">
@@ -269,9 +278,9 @@
 										<!-- Share button -->
 										<TextBlock Visibility="{Binding IsShareVisible, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
 														   Margin="0,0,0,16"
-														   Foreground="{StaticResource MaterialOnBackgroundBrush}"
+														   Foreground="{ThemeResource OnBackgroundBrush}"
 														   Opacity="0.8"
-														   Style="{StaticResource MaterialBody1}">
+														   Style="{StaticResource BodyMedium}">
 											<Run Text="You can" />
 
 											<Hyperlink x:Name="PART_ShareHyperlink">
@@ -296,7 +305,7 @@
 											Margin="48,0"
 											HorizontalAlignment="Stretch"
 											VerticalAlignment="Top"
-											Background="{StaticResource MaterialBackgroundBrush}"
+											Background="{ThemeResource SurfaceBrush}"
 											BorderBrush="{TemplateBinding BorderBrush}"
 											BorderThickness="0,0,0,1"
 											Orientation="Horizontal"
@@ -310,7 +319,7 @@
 										<StackPanel Orientation="Horizontal">
 
 											<!-- Label -->
-											<TextBlock Style="{StaticResource MaterialHeadline6}"
+											<TextBlock Style="{StaticResource TitleLarge}"
 													   Text="Material" />
 
 											<!-- Icon -->
@@ -331,7 +340,7 @@
 										<StackPanel Orientation="Horizontal">
 
 											<!-- Label -->
-											<TextBlock Style="{StaticResource MaterialHeadline6}"
+											<TextBlock Style="{StaticResource TitleLarge}"
 													   Text="Fluent" />
 
 											<!-- Icon -->
@@ -352,7 +361,7 @@
 										<StackPanel Orientation="Horizontal">
 
 											<!-- Label -->
-											<TextBlock Style="{StaticResource MaterialHeadline6}"
+											<TextBlock Style="{StaticResource TitleLarge}"
 													   Text="Cupertino" />
 
 											<!-- Icon -->
@@ -373,7 +382,7 @@
 										<StackPanel Orientation="Horizontal">
 
 											<!-- Label -->
-											<TextBlock Style="{StaticResource MaterialHeadline6}"
+											<TextBlock Style="{StaticResource TitleLarge}"
 													   Text="Native" />
 
 											<!-- Icon -->
@@ -392,7 +401,7 @@
 									   Height="1"
 									   HorizontalAlignment="Stretch"
 									   VerticalAlignment="Top"
-									   Fill="{StaticResource DividerBrush}"
+									   Fill="{ThemeResource DividerBrush}"
 									   Visibility="Collapsed" />
 						</StackPanel>
 						<VisualStateManager.VisualStateGroups>
@@ -453,6 +462,12 @@
 								<VisualState x:Name="Native">
 									<VisualState.Setters>
 										<Setter Target="NativeContentPresenter.Visibility"
+												Value="Visible" />
+									</VisualState.Setters>
+								</VisualState>
+								<VisualState x:Name="Agnostic">
+									<VisualState.Setters>
+										<Setter Target="AgnosticContentPresenter.Visibility"
 												Value="Visible" />
 									</VisualState.Setters>
 								</VisualState>

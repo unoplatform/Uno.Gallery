@@ -4,8 +4,7 @@
 	  xmlns:local="using:Uno.Gallery"
 	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	  mc:Ignorable="d"
-	  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+	  mc:Ignorable="d">
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 		<local:SamplePageLayout x:Name="SamplePageLayout">
@@ -14,7 +13,8 @@
 
 					<Button Content="Show Sample"
 							Click="LaunchFullScreenSample"
-							Style="{StaticResource MaterialContainedButtonStyle}" />
+							Margin="0,48,0,0"
+							Style="{StaticResource FilledButtonStyle}" />
 
 				</DataTemplate>
 			</local:SamplePageLayout.MaterialTemplate>

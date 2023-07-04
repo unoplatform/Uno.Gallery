@@ -4,36 +4,29 @@
 	  xmlns:local="using:Uno.Gallery"
 	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	  xmlns:material="using:Uno.Material.Controls"
+	  xmlns:utu="using:Uno.Toolkit.UI"
 	  mc:Ignorable="d">
 
 	<Page.Resources>
 		<!-- Labels inside the Fluent Palette. So using styles from WinUI -->
-		<Style TargetType="TextBlock"
-			   x:Key="AccentColorCaption"
-			   BasedOn="{StaticResource CaptionTextBlockStyle}">
+		<Style x:Key="AccentColorCaption"
+			   TargetType="TextBlock"
+			   BasedOn="{StaticResource BodyTextBlockStyle}">
 			<Style.Setters>
-				<Setter Property="VerticalAlignment"
-						Value="Center" />
-				<Setter Property="HorizontalAlignment"
-						Value="Left" />
+				<Setter Property="VerticalAlignment" Value="Center" />
+				<Setter Property="HorizontalAlignment" Value="Left" />
 			</Style.Setters>
 		</Style>
 	</Page.Resources>
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
 		<local:ContentPageLayout Title="Fluent Palette">
+			<StackPanel Spacing="16">
 
-			<StackPanel>
-				<TextBlock Style="{StaticResource MaterialSubtitle1}"
-						   Foreground="{StaticResource MaterialOnBackgroundBrush}"
-						   Opacity="0.8"
-						   Margin="0,0,0,32">
+				<!-- Overview -->
+				<TextBlock Foreground="{ThemeResource OnBackgroundBrush}" Opacity="0.8">
 					<Run Text="Here's an overview of the Fluent Design color palette." />
-					<LineBreak />
 					<LineBreak /><Run Text="WinUI has a large set of StaticResources and ThemeResources for Fluent Design's Color System." />
-					<LineBreak />
 					<LineBreak /><Run Text="You can visualize, edit and export your color palette with the" />
 					<Hyperlink NavigateUri="https://www.microsoft.com/store/apps/9N2XD3Q8X57C">
 						<Run Text="Microsoft Fluent XAML Theme Editor" />
@@ -44,278 +37,220 @@
 					</Hyperlink>
 				</TextBlock>
 
-				<TextBlock Text="Accent, Base and Alt Colors"
-						   Style="{StaticResource MaterialHeadline6}" />
-
-				<TextBlock Style="{StaticResource MaterialSubtitle1}"
-						   Foreground="{StaticResource MaterialOnBackgroundBrush}"
-						   Opacity="0.8"
-						   Margin="0,16,0,32">
+				<!-- Accent, Base and Alt Colors -->
+				<TextBlock Text="Accent, Base and Alt Colors" Style="{StaticResource SubtitleTextBlockStyle}" />
+				<TextBlock Foreground="{ThemeResource OnBackgroundBrush}" Opacity="0.8">
 					<Run Text="Accent color is commonly used to reflect your brand and is commonly used to highlight state information" />
-					<LineBreak />
 					<LineBreak /><Run Text="Base colors can be used for text. Intensity can be High/Medium/Low." />
-					<LineBreak />
 					<LineBreak /><Run Text="Alt is the opposite of Base. Intensity can be High/Medium/Low." />
 				</TextBlock>
+				<StackPanel>
+					<local:FluentColorAccentView ColorName="SystemAccentColorLight3"
+												 Background="{ThemeResource SystemAccentColorLight3}"
+												 Foreground="{ThemeResource SystemBaseHighColor}">
+						<DataTemplate>
+							<StackPanel>
+								<TextBlock Text="Basic text color is dark - SystemBaseHighColor"
+										   Foreground="{ThemeResource SystemBaseHighColor}"
+										   Style="{ThemeResource AccentColorCaption}" />
+								<TextBlock Text="Colored text is SystemAccentColor"
+										   Foreground="{ThemeResource SystemAccentColor}"
+										   Style="{ThemeResource AccentColorCaption}" />
+							</StackPanel>
+						</DataTemplate>
+					</local:FluentColorAccentView>
+					<local:FluentColorAccentView ColorName="SystemAccentColorLight2"
+												 Background="{ThemeResource SystemAccentColorLight2}"
+												 Foreground="{ThemeResource SystemBaseHighColor}">
+						<DataTemplate>
+							<StackPanel>
+								<TextBlock Text="Basic text color is dark - SystemBaseHighColor"
+										   Foreground="{ThemeResource SystemBaseHighColor}"
+										   Style="{ThemeResource AccentColorCaption}" />
+								<TextBlock Text="Colored text is SystemAccentColorDark1"
+										   Foreground="{ThemeResource SystemAccentColorDark1}"
+										   Style="{ThemeResource AccentColorCaption}" />
+							</StackPanel>
+						</DataTemplate>
+					</local:FluentColorAccentView>
+					<local:FluentColorAccentView ColorName="SystemAccentColorLight1"
+												 Background="{ThemeResource SystemAccentColorLight1}"
+												 Foreground="{ThemeResource SystemBaseHighColor}">
+						<DataTemplate>
+							<StackPanel>
+								<TextBlock Text="Basic text color is dark - SystemBaseHighColor"
+										   Foreground="{ThemeResource SystemBaseHighColor}"
+										   Style="{ThemeResource AccentColorCaption}" />
+								<TextBlock Text="Colored text is SystemAccentColorDark2"
+										   Foreground="{ThemeResource SystemAccentColorDark2}"
+										   Style="{ThemeResource AccentColorCaption}" />
+							</StackPanel>
+						</DataTemplate>
+					</local:FluentColorAccentView>
+					<local:FluentColorAccentView ColorName="SystemAccentColor"
+												 Background="{ThemeResource SystemAccentColor}"
+												 Foreground="{ThemeResource SystemAltHighColor}">
+						<DataTemplate>
+							<StackPanel>
 
-				<local:FluentColorAccentView Background="{ThemeResource SystemAccentColorLight3}"
-											 Foreground="{ThemeResource SystemBaseHighColor}"
-											 ColorName="SystemAccentColorLight3">
-					<DataTemplate>
-						<StackPanel>
+								<TextBlock Text="Basic text color can be dark"
+										   Foreground="{ThemeResource SystemBaseHighColor}"
+										   Style="{ThemeResource AccentColorCaption}" />
 
-							<TextBlock Text="Basic text color is dark - SystemBaseHighColor"
-									   Foreground="{ThemeResource SystemBaseHighColor}"
-									   Style="{ThemeResource AccentColorCaption}" />
+								<TextBlock Text="Basic text color can be light"
+										   Foreground="{ThemeResource SystemAltHighColor}"
+										   Style="{ThemeResource AccentColorCaption}" />
 
-							<TextBlock Text="Colored text is SystemAccentColor"
-									   Foreground="{ThemeResource SystemAccentColor}"
-									   Style="{ThemeResource AccentColorCaption}" />
-						</StackPanel>
-					</DataTemplate>
-				</local:FluentColorAccentView>
+								<TextBlock Text="Colored text can be SystemAccentColorDark2"
+										   Foreground="{ThemeResource SystemAccentColorDark2}"
+										   Style="{ThemeResource AccentColorCaption}" />
 
-				<local:FluentColorAccentView Background="{ThemeResource SystemAccentColorLight2}"
-											 Foreground="{ThemeResource SystemBaseHighColor}"
-											 ColorName="SystemAccentColorLight2">
-					<DataTemplate>
-						<StackPanel>
+								<TextBlock Text="Colored text can be SystemAccentColorLight2"
+										   Foreground="{ThemeResource SystemAccentColorLight2}"
+										   Style="{ThemeResource AccentColorCaption}" />
+							</StackPanel>
+						</DataTemplate>
+					</local:FluentColorAccentView>
+					<local:FluentColorAccentView ColorName="SystemAccentColorDark1"
+												 Background="{ThemeResource SystemAccentColorDark1}"
+												 Foreground="{ThemeResource SystemAltHighColor}">
+						<DataTemplate>
+							<StackPanel>
+								<TextBlock Text="Basic text color is light - SystemAltHighColor"
+										   Foreground="{ThemeResource SystemAltHighColor}"
+										   Style="{ThemeResource AccentColorCaption}" />
+								<TextBlock Text="Colored text is SystemAccentColorLight2"
+										   Foreground="{ThemeResource SystemAccentColorLight2}"
+										   Style="{ThemeResource AccentColorCaption}" />
+							</StackPanel>
+						</DataTemplate>
+					</local:FluentColorAccentView>
+					<local:FluentColorAccentView ColorName="SystemAccentColorDark2"
+												 Background="{ThemeResource SystemAccentColorDark2}"
+												 Foreground="{ThemeResource SystemAltHighColor}">
+						<DataTemplate>
+							<StackPanel>
+								<TextBlock Text="Basic text color is light - SystemAltHighColor"
+										   Foreground="{ThemeResource SystemAltHighColor}"
+										   Style="{ThemeResource AccentColorCaption}" />
+								<TextBlock Text="Colored text is SystemAccentColorLight1"
+										   Foreground="{ThemeResource SystemAccentColorLight1}"
+										   Style="{ThemeResource AccentColorCaption}" />
+							</StackPanel>
+						</DataTemplate>
+					</local:FluentColorAccentView>
+					<local:FluentColorAccentView ColorName="SystemAccentColorDark3"
+												 Background="{StaticResource SystemAccentColorDark3}"
+												 Foreground="{ThemeResource SystemAltHighColor}">
+						<DataTemplate>
+							<StackPanel>
+								<TextBlock Text="Basic text color is light - SystemAltHighColor"
+										   Foreground="{ThemeResource SystemAltHighColor}"
+										   Style="{ThemeResource AccentColorCaption}" />
+								<TextBlock Text="Colored text is SystemAccentColor"
+										   Foreground="{ThemeResource SystemAccentColor}"
+										   Style="{ThemeResource AccentColorCaption}" />
+							</StackPanel>
+						</DataTemplate>
+					</local:FluentColorAccentView>
+				</StackPanel>
+				<StackPanel>
+					<local:FluentColorAccentView ColorName="Base Colors"
+												 Background="{ThemeResource SystemChromeLowColor}"
+												 Foreground="{ThemeResource SystemBaseHighColor}">
+						<DataTemplate>
+							<StackPanel>
 
-							<TextBlock Text="Basic text color is dark - SystemBaseHighColor"
-									   Foreground="{ThemeResource SystemBaseHighColor}"
-									   Style="{ThemeResource AccentColorCaption}" />
+								<TextBlock Text="Intensity can be High/Medium/Low."
+										   Foreground="{ThemeResource SystemBaseHighColor}"
+										   Style="{ThemeResource AccentColorCaption}" />
 
-							<TextBlock Text="Colored text is SystemAccentColorDark1"
-									   Foreground="{ThemeResource SystemAccentColorDark1}"
-									   Style="{ThemeResource AccentColorCaption}" />
-						</StackPanel>
-					</DataTemplate>
-				</local:FluentColorAccentView>
+								<TextBlock Text="SystemBaseHighColor"
+										   Foreground="{ThemeResource SystemBaseHighColor}"
+										   Style="{ThemeResource AccentColorCaption}" />
 
-				<local:FluentColorAccentView Background="{ThemeResource SystemAccentColorLight1}"
-											 Foreground="{ThemeResource SystemBaseHighColor}"
-											 ColorName="SystemAccentColorLight1">
-					<DataTemplate>
-						<StackPanel>
+								<TextBlock Text="SystemBaseMediumColor"
+										   Foreground="{ThemeResource SystemBaseMediumColor}"
+										   Style="{ThemeResource AccentColorCaption}" />
 
-							<TextBlock Text="Basic text color is dark - SystemBaseHighColor"
-									   Foreground="{ThemeResource SystemBaseHighColor}"
-									   Style="{ThemeResource AccentColorCaption}" />
+								<TextBlock Text="SystemBaseLowColor"
+										   Foreground="{ThemeResource SystemBaseLowColor}"
+										   Style="{ThemeResource AccentColorCaption}" />
+							</StackPanel>
+						</DataTemplate>
+					</local:FluentColorAccentView>
+					<local:FluentColorAccentView ColorName="Alt Colors"
+												 Background="{ThemeResource SystemBaseHighColor}"
+												 Foreground="{ThemeResource SystemAltHighColor}">
+						<DataTemplate>
+							<StackPanel>
+								<TextBlock Text="Intensity can be High/Medium/Low."
+										   Foreground="{ThemeResource SystemAltHighColor}"
+										   Style="{ThemeResource AccentColorCaption}" />
+								<TextBlock Text="SystemAltHighColor"
+										   Foreground="{ThemeResource SystemAltHighColor}"
+										   Style="{ThemeResource AccentColorCaption}" />
+								<TextBlock Text="SystemAltMediumColor"
+										   Foreground="{ThemeResource SystemAltMediumColor}"
+										   Style="{ThemeResource AccentColorCaption}" />
+								<TextBlock Text="SystemAltLowColor"
+										   Foreground="{ThemeResource SystemAltLowColor}"
+										   Style="{ThemeResource AccentColorCaption}" />
+							</StackPanel>
+						</DataTemplate>
+					</local:FluentColorAccentView>
+				</StackPanel>
 
-							<TextBlock Text="Colored text is SystemAccentColorDark2"
-									   Foreground="{ThemeResource SystemAccentColorDark2}"
-									   Style="{ThemeResource AccentColorCaption}" />
-						</StackPanel>
-					</DataTemplate>
-				</local:FluentColorAccentView>
-
-				<local:FluentColorAccentView Background="{ThemeResource SystemAccentColor}"
-											 Foreground="{ThemeResource SystemAltHighColor}"
-											 ColorName="SystemAccentColor">
-					<DataTemplate>
-						<StackPanel>
-
-							<TextBlock Text="Basic text color can be dark"
-									   Foreground="{ThemeResource SystemBaseHighColor}"
-									   Style="{ThemeResource AccentColorCaption}" />
-
-							<TextBlock Text="Basic text color can be light"
-									   Foreground="{ThemeResource SystemAltHighColor}"
-									   Style="{ThemeResource AccentColorCaption}" />
-
-							<TextBlock Text="Colored text can be SystemAccentColorDark2"
-									   Foreground="{ThemeResource SystemAccentColorDark2}"
-									   Style="{ThemeResource AccentColorCaption}" />
-
-							<TextBlock Text="Colored text can be SystemAccentColorLight2"
-									   Foreground="{ThemeResource SystemAccentColorLight2}"
-									   Style="{ThemeResource AccentColorCaption}" />
-						</StackPanel>
-					</DataTemplate>
-				</local:FluentColorAccentView>
-
-				<local:FluentColorAccentView Background="{ThemeResource SystemAccentColorDark1}"
-											 Foreground="{ThemeResource SystemAltHighColor}"
-											 ColorName="SystemAccentColorDark1">
-					<DataTemplate>
-						<StackPanel>
-
-							<TextBlock Text="Basic text color is light - SystemAltHighColor"
-									   Foreground="{ThemeResource SystemAltHighColor}"
-									   Style="{ThemeResource AccentColorCaption}" />
-
-							<TextBlock Text="Colored text is SystemAccentColorLight2"
-									   Foreground="{ThemeResource SystemAccentColorLight2}"
-									   Style="{ThemeResource AccentColorCaption}" />
-						</StackPanel>
-					</DataTemplate>
-				</local:FluentColorAccentView>
-
-				<local:FluentColorAccentView Background="{ThemeResource SystemAccentColorDark2}"
-											 Foreground="{ThemeResource SystemAltHighColor}"
-											 ColorName="SystemAccentColorDark2">
-					<DataTemplate>
-						<StackPanel>
-
-							<TextBlock Text="Basic text color is light - SystemAltHighColor"
-									   Foreground="{ThemeResource SystemAltHighColor}"
-									   Style="{ThemeResource AccentColorCaption}" />
-
-							<TextBlock Text="Colored text is SystemAccentColorLight1"
-									   Foreground="{ThemeResource SystemAccentColorLight1}"
-									   Style="{ThemeResource AccentColorCaption}" />
-						</StackPanel>
-					</DataTemplate>
-				</local:FluentColorAccentView>
-
-				<local:FluentColorAccentView Background="{StaticResource SystemAccentColorDark3}"
-											 Foreground="{ThemeResource SystemAltHighColor}"
-											 ColorName="SystemAccentColorDark3">
-					<DataTemplate>
-						<StackPanel>
-
-							<TextBlock Text="Basic text color is light - SystemAltHighColor"
-									   Foreground="{ThemeResource SystemAltHighColor}"
-									   Style="{ThemeResource AccentColorCaption}" />
-
-							<TextBlock Text="Colored text is SystemAccentColor"
-									   Foreground="{ThemeResource SystemAccentColor}"
-									   Style="{ThemeResource AccentColorCaption}" />
-						</StackPanel>
-					</DataTemplate>
-				</local:FluentColorAccentView>
-
-				<!-- base colors section -->
-				<local:FluentColorAccentView Background="{ThemeResource SystemChromeLowColor}"
-											 Foreground="{ThemeResource SystemBaseHighColor}"
-											 ColorName="Base Colors"
-											 Margin="0,16,0,0">
-					<DataTemplate>
-						<StackPanel>
-
-							<TextBlock Text="Intensity can be High/Medium/Low."
-									   Foreground="{ThemeResource SystemBaseHighColor}"
-									   Style="{ThemeResource AccentColorCaption}" />
-
-							<TextBlock Text="SystemBaseHighColor"
-									   Foreground="{ThemeResource SystemBaseHighColor}"
-									   Style="{ThemeResource AccentColorCaption}"
-									   Margin="0,2,0,0" />
-
-							<TextBlock Text="SystemBaseMediumColor"
-									   Foreground="{ThemeResource SystemBaseMediumColor}"
-									   Style="{ThemeResource AccentColorCaption}" />
-
-							<TextBlock Text="SystemBaseLowColor"
-									   Foreground="{ThemeResource SystemBaseLowColor}"
-									   Style="{ThemeResource AccentColorCaption}" />
-						</StackPanel>
-					</DataTemplate>
-				</local:FluentColorAccentView>
-
-				<!-- alt colors section -->
-				<local:FluentColorAccentView Background="{ThemeResource SystemBaseHighColor}"
-											 Foreground="{ThemeResource SystemAltHighColor}"
-											 ColorName="Alt Colors"
-											 Margin="0,1,0,0">
-					<DataTemplate>
-						<StackPanel>
-
-							<TextBlock Text="Intensity can be High/Medium/Low."
-									   Foreground="{ThemeResource SystemAltHighColor}"
-									   Style="{ThemeResource AccentColorCaption}" />
-
-							<TextBlock Text="SystemAltHighColor"
-									   Foreground="{ThemeResource SystemAltHighColor}"
-									   Style="{ThemeResource AccentColorCaption}"
-									   Margin="0,2,0,0" />
-
-							<TextBlock Text="SystemAltMediumColor"
-									   Foreground="{ThemeResource SystemAltMediumColor}"
-									   Style="{ThemeResource AccentColorCaption}" />
-
-							<TextBlock Text="SystemAltLowColor"
-									   Foreground="{ThemeResource SystemAltLowColor}"
-									   Style="{ThemeResource AccentColorCaption}" />
-						</StackPanel>
-					</DataTemplate>
-				</local:FluentColorAccentView>
-
-				<!-- Divider -->
-				<material:Divider Style="{StaticResource MaterialDividerStyle}"
-								  Margin="0,48,0,36" />
-
-				<!-- Label -->
-				<TextBlock Text="Chrome and Error Text Colors"
-						   Style="{StaticResource MaterialHeadline6}" />
-
-				<!-- Description -->
-				<TextBlock Style="{StaticResource MaterialSubtitle1}"
-						   Foreground="{StaticResource MaterialOnBackgroundBrush}"
-						   Opacity="0.8"
-						   Margin="0,16,0,32">
+				<!-- Chrome & Error Colors -->
+				<utu:Divider Style="{StaticResource DividerStyle}" />
+				<TextBlock Text="Chrome and Error Text Colors" Style="{StaticResource SubtitleTextBlockStyle}" />
+				<TextBlock Foreground="{ThemeResource OnBackgroundBrush}" Opacity="0.8">
 					<Run Text="Chrome colors are for top-level elements such as navigation panes and command bars." />
-					<LineBreak />
 					<LineBreak /><Run Text="Error color for inputs in an error state." />
 				</TextBlock>
+				<StackPanel>
+					<local:FluentColorAccentView ColorName="Chrome Colors"
+												 Background="{ThemeResource SystemBaseHighColor}"
+												 Foreground="{ThemeResource SystemAltHighColor}">
+						<DataTemplate>
+							<StackPanel>
+								<TextBlock Text="Intensity can be High/Medium/Low."
+										   Foreground="{ThemeResource SystemAltHighColor}"
+										   Style="{ThemeResource AccentColorCaption}" />
+								<TextBlock Text="SystemChromeHighColor"
+										   Foreground="{ThemeResource SystemChromeHighColor}"
+										   Style="{ThemeResource AccentColorCaption}" />
+								<TextBlock Text="SystemChromeMediumColor"
+										   Foreground="{ThemeResource SystemChromeMediumColor}"
+										   Style="{ThemeResource AccentColorCaption}" />
+								<TextBlock Text="SystemChromeLowColor"
+										   Foreground="{ThemeResource SystemChromeLowColor}"
+										   Style="{ThemeResource AccentColorCaption}" />
+							</StackPanel>
+						</DataTemplate>
+					</local:FluentColorAccentView>
+					<local:FluentColorAccentView ColorName="Error Text Color"
+												 Background="Black"
+												 Foreground="White">
+						<DataTemplate>
+							<StackPanel>
+								<TextBlock Text="Colored text is SystemErrorTextColor"
+										   Foreground="{ThemeResource SystemErrorTextColor}"
+										   Style="{ThemeResource AccentColorCaption}" />
+							</StackPanel>
+						</DataTemplate>
+					</local:FluentColorAccentView>
+				</StackPanel>
 
-
-				<!-- Chrome -->
-				<local:FluentColorAccentView Background="{ThemeResource SystemBaseHighColor}"
-											 Foreground="{ThemeResource SystemAltHighColor}"
-											 ColorName="Chrome Colors">
-					<DataTemplate>
-						<StackPanel>
-
-							<TextBlock Text="Intensity can be High/Medium/Low."
-									   Foreground="{ThemeResource SystemAltHighColor}"
-									   Style="{ThemeResource AccentColorCaption}" />
-
-							<TextBlock Text="SystemChromeHighColor"
-									   Foreground="{ThemeResource SystemChromeHighColor}"
-									   Style="{ThemeResource AccentColorCaption}"
-									   Margin="0,2,0,0" />
-
-							<TextBlock Text="SystemChromeMediumColor"
-									   Foreground="{ThemeResource SystemChromeMediumColor}"
-									   Style="{ThemeResource AccentColorCaption}" />
-
-							<TextBlock Text="SystemChromeLowColor"
-									   Foreground="{ThemeResource SystemChromeLowColor}"
-									   Style="{ThemeResource AccentColorCaption}" />
-						</StackPanel>
-					</DataTemplate>
-				</local:FluentColorAccentView>
-
-				<!-- Error -->
-				<local:FluentColorAccentView Background="Black"
-											 Foreground="White"
-											 ColorName="Error Text Color"
-											 Margin="0,1,0,0">
-					<DataTemplate>
-						<StackPanel>
-
-							<TextBlock Text="Colored text is SystemErrorTextColor"
-									   Foreground="{ThemeResource SystemErrorTextColor}"
-									   Style="{ThemeResource AccentColorCaption}" />
-						</StackPanel>
-					</DataTemplate>
-				</local:FluentColorAccentView>
-
-				<!-- Divider -->
-				<material:Divider Style="{StaticResource MaterialDividerStyle}"
-								  Margin="0,48,0,36" />
-
-				<TextBlock Style="{StaticResource MaterialBody1}"
-						   Foreground="{StaticResource MaterialOnBackgroundBrush}"
-						   Opacity="0.8"
-						   Margin="0,0,0,16">
+				<!-- For more info... -->
+				<utu:Divider Margin="0,36,0,0" Style="{StaticResource DividerStyle}" />
+				<TextBlock Foreground="{ThemeResource OnBackgroundBrush}" Opacity="0.8">
 					<Run Text="For more information refer to" />
-					
 					<Hyperlink NavigateUri="https://docs.microsoft.com/en-us/windows/uwp/design/style/color#accent-color-palette">
 						<Run Text="Fluent Design Color System." />
 					</Hyperlink>
 				</TextBlock>
+
 			</StackPanel>
 		</local:ContentPageLayout>
 	</Grid>

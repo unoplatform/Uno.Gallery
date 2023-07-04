@@ -1,11 +1,14 @@
 using System;
+using System.Linq;
 using Uno.Extensions;
+using Uno.Extensions.Specialized;
 using Uno.Gallery.Helpers;
 using Uno.Logging;
 using Windows.UI.Core;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
 using MUXC = Microsoft.UI.Xaml.Controls;
 
 namespace Uno.Gallery
@@ -40,7 +43,7 @@ namespace Uno.Gallery
 		{
 			SetDarkLightToggleInitialState();
 
-#if __IOS__ || __ANDROID__
+#if (__IOS__ || __ANDROID__) && !NET6_0_OR_GREATER
 			this.Log().Debug("Loaded Shell.");
 			Uno.Gallery.Deeplinking.BranchService.Instance.SetIsAppReady();
 #endif
@@ -70,18 +73,24 @@ namespace Uno.Gallery
 		/// </summary>
 		private void InitializeSafeArea()
 		{
-			var full = Windows.UI.Xaml.Window.Current.Bounds;
-			var bounds = ApplicationView.GetForCurrentView().VisibleBounds;
+			ApplicationView.GetForCurrentView().VisibleBoundsChanged += (s, e) => Adjust();
 
-			var topPadding = Math.Abs(full.Top - bounds.Top);
+			Adjust();
 
-			if (topPadding > 0)
+			void Adjust()
 			{
-				TopPaddingRow.Height = new GridLength(topPadding);
+                var full = Windows.UI.Xaml.Window.Current.Bounds;
+                var bounds = ApplicationView.GetForCurrentView().VisibleBounds;
+				var topPadding = Math.Abs(full.Top - bounds.Top);
+
+				if (topPadding > 0)
+				{
+					TopPaddingRow.Height = new GridLength(topPadding);
+				}
 			}
 		}
 
-		private void ToggleButton_Click(object sender, RoutedEventArgs e)
+        private void ToggleButton_Click(object sender, RoutedEventArgs e)
 		{
 			// Set theme for window root.
 			if (global::Windows.UI.Xaml.Window.Current.Content is FrameworkElement root)
@@ -111,6 +120,10 @@ namespace Uno.Gallery
 		private void OnNestedSampleFrameChanged(DependencyObject sender, DependencyProperty dp)
 		{
 			var isInsideNestedSample = NestedSampleFrame.Content != null;
+
+			NavViewToggleButton.Visibility = isInsideNestedSample
+				? Visibility.Collapsed
+				: Visibility.Visible;
 
 			// prevent empty frame from blocking the content (nav-view) behind it
 			NestedSampleFrame.Visibility = isInsideNestedSample
@@ -148,8 +161,8 @@ namespace Uno.Gallery
 				NestedSampleFrame.Content = null;
 
 #if __IOS__
-				// This will force reset the UINavigationController, to prevent the back button from appearing when the stack is supposely empty.
-				// note: Merely setting the Frame.Content to null, doesnt fully reset the stack.
+				// This will force reset the UINavigationController, to prevent the back button from appearing when the stack is supposedly empty.
+				// note: Merely setting the Frame.Content to null, doesn't fully reset the stack.
 				// When revisiting the page1 again, the previous page1 is still in the UINavigationController stack
 				// causing a back button to appear that takes us back to the previous page1
 				NestedSampleFrame.BackStack.Add(default);
@@ -187,6 +200,43 @@ namespace Uno.Gallery
 				NavigationViewControl.IsPaneVisible = true;
 				NavigationViewControl.PaneDisplayMode = MUXC.NavigationViewPaneDisplayMode.LeftMinimal;
 			}
+		}
+
+		private void SamplesSearchBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+		{
+			//This check can be removed when https://github.com/unoplatform/uno/issues/11635 is fixed
+#if !__ANDROID__ && !__IOS__
+			if(args.Reason != AutoSuggestionBoxTextChangeReason.UserInput)
+			{
+				return;
+			}
+#endif
+
+			if (string.IsNullOrEmpty(sender.Text))
+			{
+				sender.ItemsSource = null;
+				return;
+			}
+
+			var splitText = sender.Text.ToLower().ToLower().Split(" ");
+
+			var samples = App.GetSamples()
+				.OrderByDescending(x => x.SortOrder.HasValue)
+				.ThenBy(x => x.SortOrder)
+				.ThenBy(x => x.Title)
+				.Where(cat => splitText.All(key => cat.Title.IndexOf(key, StringComparison.OrdinalIgnoreCase) >= 0));
+
+			sender.ItemsSource = samples;
+		}
+
+		private void SamplesSearchBox_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
+		{
+			(Application.Current as App)?.SearchShellNavigateTo(args.SelectedItem as Sample);
+		}
+
+		private void CtrlF_Invoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
+		{
+			SamplesSearchBox.Focus(FocusState.Programmatic);
 		}
 	}
 }

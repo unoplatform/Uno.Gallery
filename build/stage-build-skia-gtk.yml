@@ -1,0 +1,22 @@
+steps:
+
+- template: templates/gitversion.yml
+- template: templates/canary-updater.yml
+
+- task: MSBuild@1
+  displayName: Build project
+  inputs:
+    solution: Uno.Gallery\Uno.Gallery.Skia.Gtk\Uno.Gallery.Skia.Gtk.csproj
+    msbuildArguments: /ds /m /r /p:Configuration=Release "/p:InformationalVersion=%GITVERSION_InformationalVersion%" /bl:$(build.artifactstagingdirectory)/build.binlog 
+
+- task: CopyFiles@2
+  displayName: Copy Skia output
+  inputs:
+    SourceFolder: Uno.Gallery\Uno.Gallery.Skia.Gtk\bin\Release\net7.0
+    Contents: '**/*.*'
+    TargetFolder: $(Build.ArtifactStagingDirectory)/bin
+
+- task: PublishBuildArtifacts@1
+  retryCountOnTaskFailure: 3
+  inputs:
+    ArtifactName: skia-gtk

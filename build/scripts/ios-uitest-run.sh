@@ -3,14 +3,12 @@ set -euo pipefail
 IFS=$'\n\t'
 
 export UNO_UITEST_PLATFORM=iOS
-export UNO_UITEST_IOSBUNDLE_PATH=$BUILD_SOURCESDIRECTORY/Uno.Gallery/Uno.Gallery.iOS/bin/iPhoneSimulator/Release/Uno.Gallery.app
+export UNO_UITEST_IOSBUNDLE_PATH=$BUILD_SOURCESDIRECTORY/Uno.Gallery/Uno.Gallery.Mobile/bin/Release/net7.0-ios/iossimulator-x64/Uno.Gallery.Mobile.app
 export UNO_UITEST_SCREENSHOT_PATH=$BUILD_ARTIFACTSTAGINGDIRECTORY/screenshots/ios
-export UNO_UITEST_PROJECT=$BUILD_SOURCESDIRECTORY/Uno.Gallery/Uno.Gallery.UITest/Uno.Gallery.UITest.csproj
-export UNO_UITEST_BINARY=$BUILD_SOURCESDIRECTORY/Uno.Gallery/Uno.Gallery.UITest/bin/Release/net47/Uno.Gallery.UITest.dll
+export UNO_UITEST_PROJECT=$BUILD_SOURCESDIRECTORY/Uno.Gallery/Uno.Gallery.UITest
 export UNO_UITEST_LOGFILE=$BUILD_ARTIFACTSTAGINGDIRECTORY/screenshots/ios/nunit-log.txt
-export UNO_UITEST_IOS_PROJECT=$BUILD_SOURCESDIRECTORY/Uno.Gallery/Uno.Gallery.iOS/Uno.Gallery.iOS.csproj
-export UNO_UITEST_NUNIT_VERSION=3.11.1
-export UNO_UITEST_NUGET_URL=https://dist.nuget.org/win-x86-commandline/v5.7.0/nuget.exe
+export UNO_UITEST_IOS_PROJECT=$BUILD_SOURCESDIRECTORY/Uno.Gallery/Uno.Gallery.Mobile
+export UITEST_TEST_TIMEOUT=60m
 
 echo "Lising iOS simulators"
 xcrun simctl list devices --json
@@ -19,16 +17,26 @@ xcrun simctl list devices --json
 
 cd $BUILD_SOURCESDIRECTORY
 
-msbuild /r /p:Configuration=Release $UNO_UITEST_PROJECT
-msbuild /r /p:Configuration=Release /p:Platform=iPhoneSimulator /p:IsUiAutomationMappingEnabled=True $UNO_UITEST_IOS_PROJECT 
-
-cd $BUILD_SOURCESDIRECTORY/build
-
-wget $UNO_UITEST_NUGET_URL
-mono nuget.exe install NUnit.ConsoleRunner -Version $UNO_UITEST_NUNIT_VERSION
+cd $UNO_UITEST_IOS_PROJECT 
+dotnet build -f net7.0-ios -r iossimulator-x64 -c Release -p:IsUiAutomationMappingEnabled=True -bl:$BUILD_ARTIFACTSTAGINGDIRECTORY/ios-app.binlog
 
 mkdir -p $UNO_UITEST_SCREENSHOT_PATH
 
-mono $BUILD_SOURCESDIRECTORY/build/NUnit.ConsoleRunner.$UNO_UITEST_NUNIT_VERSION/tools/nunit3-console.exe \
-   --inprocess --agents=1 --workers=1 \
-   $UNO_UITEST_BINARY
+cd $UNO_UITEST_PROJECT
+
+dotnet test \
+	-c Release \
+	-l:"console;verbosity=normal" \
+	--logger "nunit;LogFileName=$BUILD_SOURCESDIRECTORY/build/TestResult.xml" \
+	--blame-hang-timeout $UITEST_TEST_TIMEOUT \
+	-v m \
+	|| true
+
+# export the simulator logs
+export LOG_FILEPATH=$UNO_UITEST_SCREENSHOT_PATH/_logs
+export TMP_LOG_FILEPATH=/tmp/DeviceLog-`date +"%Y%m%d%H%M%S"`.logarchive
+export LOG_FILEPATH_FULL=$LOG_FILEPATH/DeviceLog-`date +"%Y%m%d%H%M%S"`.txt
+
+mkdir -p $LOG_FILEPATH
+xcrun simctl spawn booted log collect --output $TMP_LOG_FILEPATH
+log show --style syslog $TMP_LOG_FILEPATH > $LOG_FILEPATH_FULL

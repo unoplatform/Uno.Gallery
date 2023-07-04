@@ -4,6 +4,7 @@
     "exclude": [
       "*.{css,js}",
       "*.{png}",
+      "*.{ttf,woff}",
       "*.{c,h,wasm,clr,pdb,dat,txt}"
     ]
   },
@@ -13,8 +14,13 @@
       "headers": {
         "cache-control": "public, immutable, max-age=31536000"
       }
-    }
-    ,
+    },
+    {
+      "route": "/*.ttf",
+      "headers": {
+        "cache-control": "public, immutable, max-age=31536000"
+      }
+    },
     {
       "route": "/*",
       "headers": {

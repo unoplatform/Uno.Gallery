@@ -17,9 +17,9 @@ using Windows.UI.Xaml.Navigation;
 namespace Uno.Gallery.Views.Samples
 {
 	[SamplePage(
-		category: SampleCategory.Components,
+		category: SampleCategory.Toolkit,
 		title: "Divider",
-		Description = "This control is a thin line than can be used to divide layouts or groups content inside of lists.",
+		Description = "A divider is a thin line that groups content in lists and layouts.",
 		DocumentationLink = "https://material.io/components/dividers",
 		DataType = typeof(DividerItems)
 	)]
