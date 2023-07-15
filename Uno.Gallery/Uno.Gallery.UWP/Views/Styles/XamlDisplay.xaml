@@ -56,22 +56,12 @@
 												<AdaptiveTrigger MinWindowWidth="970" />
 											</VisualState.StateTriggers>
 											<VisualState.Setters>
-												<Setter Target="MainContent.(Grid.Column)"
-														Value="0" />
 												<Setter Target="Options.(Grid.Column)"
 														Value="1" />
-												<Setter Target="Options.(Grid.RowSpan)"
-														Value="2" />
-												<Setter Target="MainContent.(Grid.RowSpan)"
-														Value="2" />
+												<Setter Target="Options.(Grid.Row)"
+														Value="0" />
 												<Setter Target="Options.HorizontalAlignment"
 														Value="Right" />
-												<Setter Target="OptionsPresenter.HorizontalAlignment"
-														Value="Stretch" />
-												<Setter Target="OptionsPresenter.(Grid.ColumnSpan)"
-														Value="1" />
-												<Setter Target="OptionsPresenter.(Grid.ColumnSpan)"
-														Value="1" />
 											</VisualState.Setters>
 										</VisualState>
 									</VisualStateGroup>
@@ -89,7 +79,6 @@
 
 									<!-- Content -->
 									<ContentPresenter x:Name="MainContent"
-													  Grid.ColumnSpan="2"
 													  Padding="16"
 													  Content="{TemplateBinding Content}" />
 
@@ -97,15 +86,15 @@
 									<Border x:Name="Options"
 											Grid.Row="1"
 											Grid.Column="0"
-											Grid.ColumnSpan="2"
 											CornerRadius="8"
 											HorizontalAlignment="Stretch"
+											VerticalAlignment="Top"
 											Margin="8"
 											Padding="16"
 											Visibility="{Binding Path=(smtx:XamlDisplayExtensions.Options), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource NullToCollapsed}, FallbackValue=Collapsed}"
 											Background="{ThemeResource CardBackgroundFillColorDefaultBrush}">
 										<ContentPresenter x:Name="OptionsPresenter"
-														  HorizontalAlignment="Left"
+														  HorizontalAlignment="Stretch"
 														  MinWidth="220"
 														  Content="{Binding Path=(smtx:XamlDisplayExtensions.Options), RelativeSource={RelativeSource TemplatedParent}}" />
 									</Border>
