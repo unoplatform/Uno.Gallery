@@ -382,6 +382,8 @@ namespace ShowMeTheXAML
 			{
 				xaml = RemoveXmlns(xaml);
 
+				xaml = RemoveOptions(xaml);
+
 				return xaml;
 			}
 
@@ -398,6 +400,22 @@ namespace ShowMeTheXAML
 						? null
 						: m.Value;
 				});
+			}
+
+			private static string RemoveOptions(string xaml)
+			{
+				string startString = "<smtx:XamlDisplayExtensions.Options";
+				string endString = "</smtx:XamlDisplayExtensions.Options>";
+
+				int startIndex = xaml.IndexOf(startString);
+				int endIndex = xaml.IndexOf(endString);
+
+				if (startIndex == -1 || endIndex == -1)
+				{
+					return xaml;
+				}
+
+				return xaml.Substring(0, startIndex) + xaml.Substring(endIndex + endString.Length);
 			}
 
 			private class PrettyXmlWriter : NiceXmlWriter
