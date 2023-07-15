@@ -11,91 +11,71 @@
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 		<sample:SamplePageLayout>
-			<sample:SamplePageLayout.MaterialTemplate>
+			<sample:SamplePageLayout.FluentTemplate>
 				<DataTemplate>
 					<StackPanel Spacing="20"
 								Margin="0,20,0,0">
-						<smtx:XamlDisplay UniqueKey="Material_InfoBarSamplePage_Error_SingleButton">
-							<winui:InfoBar x:Name="firstInfo"
-										   Title="Title"
-										   IsOpen="True"
-										   Message="Essential app message for your users to be informed of, acknowledge, or take action on."
-										   IsIconVisible="True"
-										   Severity="Error"
-										   Style="{StaticResource MaterialInfoBarStyle}">
-								<winui:InfoBar.Content>
-									<Button Style="{StaticResource TextButtonStyle}"
-											Content="DISMISS" />
-								</winui:InfoBar.Content>
-								<winui:InfoBar.IconSource>
-									<winui:BitmapIconSource UriSource="/Assets/MaterialIcon_Medium.png"
-															Foreground="{ThemeResource PrimaryBrush}" />
-								</winui:InfoBar.IconSource>
+						<smtx:XamlDisplay UniqueKey="Fluent_InfoBar_Default"
+										  smtx:XamlDisplayExtensions.Header="Default">
+							<winui:InfoBar Title="Title"
+										   IsOpen="{Binding Data.IsOpen, Mode=TwoWay}"
+										   Severity="{Binding Data.Severity, Mode=OneWay}"
+										   Message="This is just a random short InfoBar Message.">
 							</winui:InfoBar>
+
+							<smtx:XamlDisplayExtensions.Options>
+								<StackPanel Spacing="8">
+									<ToggleSwitch Header="IsOpen"
+												  IsOn="{Binding Data.IsOpen, Mode=TwoWay}" />
+									<ComboBox SelectedItem="{Binding Data.Severity, Mode=TwoWay}"
+											  Header="Severity"
+											  PlaceholderText="Select the Severity">
+										<x:String>Success</x:String>
+										<x:String>Informational</x:String>
+										<x:String>Warning</x:String>
+										<x:String>Error</x:String>
+									</ComboBox>
+								</StackPanel>
+							</smtx:XamlDisplayExtensions.Options>
 						</smtx:XamlDisplay>
 
-						<smtx:XamlDisplay UniqueKey="Material_InfoBarSamplePage_Warning_DoubleButton">
-							<winui:InfoBar x:Name="secondInfo"
-										   Title="Title"
+						<smtx:XamlDisplay UniqueKey="Fluent_InfoBar_Button"
+										  smtx:XamlDisplayExtensions.Header="InfoBar with Action Button">
+							<winui:InfoBar Title="Title"
 										   IsOpen="True"
-										   Message="Essential app message for your users to be informed of, acknowledge, or take action on."
-										   IsIconVisible="True"
-										   Severity="Warning"
-										   Style="{StaticResource MaterialInfoBarStyle}">
-								<winui:InfoBar.Content>
-									<StackPanel Orientation="Horizontal"
-												Spacing="8">
-										<Button Style="{StaticResource TextButtonStyle}"
-												Content="DISMISS" />
-										<Button Style="{StaticResource TextButtonStyle}"
-												Content="ACTION" />
-									</StackPanel>
-								</winui:InfoBar.Content>
-								<winui:InfoBar.IconSource>
-									<winui:BitmapIconSource UriSource="/Assets/MaterialIcon_Medium.png"
-															Foreground="{ThemeResource PrimaryBrush}" />
-								</winui:InfoBar.IconSource>
-							</winui:InfoBar>
-						</smtx:XamlDisplay>
+										   IsClosable="False"
+										   Message="Essential app message for your users to be informed of, acknowledge, or take action on.">
 
-						<smtx:XamlDisplay UniqueKey="Material_InfoBarSamplePage_Success_SingleButton">
-							<winui:InfoBar x:Name="thirdInfo"
-										   Title="Title"
-										   IsOpen="True"
-										   Message="Essential app message for your users to be informed of, acknowledge, or take action on."
-										   Severity="Success"
-										   IsIconVisible="False"
-										   Style="{StaticResource MaterialInfoBarStyle}">
-								<winui:InfoBar.Content>
-									<Button Style="{StaticResource TextButtonStyle}"
-											Content="DISMISS" />
-								</winui:InfoBar.Content>
-							</winui:InfoBar>
-						</smtx:XamlDisplay>
-
-						<smtx:XamlDisplay UniqueKey="Material_InfoBarSamplePage_Information_SingleButton">
-							<winui:InfoBar x:Name="fourthInfo"
-										   Title="Title"
-										   IsOpen="True"
-										   Message="Single line essential app message."
-										   Severity="Informational"
-										   MinHeight="54"
-										   IsIconVisible="True"
-										   Style="{StaticResource MaterialInfoBarStyle}">
 								<winui:InfoBar.ActionButton>
-									<Button Style="{StaticResource TextButtonStyle}"
-											Content="DISMISS" />
+									<Button Content="Button" />
 								</winui:InfoBar.ActionButton>
-								<winui:InfoBar.IconSource>
-									<winui:BitmapIconSource UriSource="/Assets/MaterialIcon_Medium.png"
-															Foreground="{ThemeResource PrimaryBrush}" />
-								</winui:InfoBar.IconSource>
 							</winui:InfoBar>
+						</smtx:XamlDisplay>
+
+						<smtx:XamlDisplay UniqueKey="Fluent_InfoBar_LongText"
+										  smtx:XamlDisplayExtensions.Header="InfoBar with Long Text">
+							<winui:InfoBar Title="Uno Platform"
+										   IsOpen="{Binding Data.LongIsOpen, Mode=OneWay}"
+										   IsIconVisible="{Binding Data.IsIconVisible, Mode=OneWay}"
+										   IsClosable="{Binding Data.IsClosable, Mode=OneWay}"
+										   Message="The 4.9 release continues enhancing cross-platform development experiences and productivity. This release brings two highly anticipated features alongside over 100 other improvements.">
+							</winui:InfoBar>
+
+							<smtx:XamlDisplayExtensions.Options>
+								<StackPanel Spacing="8">
+									<ToggleSwitch Header="IsOpen"
+												  IsOn="{Binding Data.LongIsOpen, Mode=TwoWay}" />
+									<ToggleSwitch Header="IsIconVisible"
+												  IsOn="{Binding Data.IsIconVisible, Mode=TwoWay}" />
+									<ToggleSwitch Header="IsClosable"
+												  IsOn="{Binding Data.IsClosable, Mode=TwoWay}" />
+								</StackPanel>
+							</smtx:XamlDisplayExtensions.Options>
 						</smtx:XamlDisplay>
 					</StackPanel>
 				</DataTemplate>
-			</sample:SamplePageLayout.MaterialTemplate>
-            <sample:SamplePageLayout.FluentTemplate>
+			</sample:SamplePageLayout.FluentTemplate>
+			<!--<sample:SamplePageLayout.MaterialTemplate>
                 <DataTemplate>
                     <StackPanel Spacing="20"
 								Margin="0,20,0,0">
@@ -171,7 +151,7 @@
                         </smtx:XamlDisplay>
                     </StackPanel>
                 </DataTemplate>
-            </sample:SamplePageLayout.FluentTemplate>
-        </sample:SamplePageLayout>
+            </sample:SamplePageLayout.MaterialTemplate>-->
+		</sample:SamplePageLayout>
 	</Grid>
 </Page>
