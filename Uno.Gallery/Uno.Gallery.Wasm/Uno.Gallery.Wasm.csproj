@@ -123,7 +123,7 @@
 		<PackageReference Include="Uno.Toolkit.UI.Material" Version="3.1.0-dev.24" />
 		<PackageReference Include="Uno.UI.Lottie" Version="5.0.0-dev.1148" />
 		<PackageReference Include="Uno.UI.MediaPlayer.WebAssembly" Version="5.0.0-dev.1148" />
-		<PackageReference Include="Uno.UI.WebAssembly" Version="5.0.0-dev.1148" />
+		<PackageReference Include="Uno.UI.WebAssembly" Version="5.0.0-dev.1409" />
 		<PackageReference Include="Uno.UI.RemoteControl" Version="5.0.0-dev.1148" Condition="'$(Configuration)'=='Debug'" />
 		<PackageReference Include="Uno.Wasm.Bootstrap" Version="8.0.0-dev.218" />
 		<PackageReference Include="Uno.Wasm.Bootstrap.DevServer" Version="8.0.0-dev.218" />
