@@ -1,0 +1,59 @@
+﻿<Page x:Class="Uno.Gallery.Views.SamplePages.LightweightStylingSamplePage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:local="using:Uno.Gallery"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  xmlns:um="using:Uno.Material"
+	  xmlns:smtx="using:ShowMeTheXAML"
+	  xmlns:todo="what should be done"
+	  mc:Ignorable="d todo"
+	  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+	<Grid>
+		<local:SamplePageLayout>
+			<local:SamplePageLayout.MaterialTemplate>
+				<DataTemplate>
+					<StackPanel>
+						<!-- Button -->
+
+						<!-- TextBox -->
+
+						<smtx:XamlDisplay UniqueKey="LightWeightSamplePage_TextBox"
+										  smtx:XamlDisplayExtensions.Header="TextBox"
+										  smtx:XamlDisplayExtensions.Description="It is possible to change the properties of various texbox using lightweight styling, you can try"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+							<StackPanel Orientation="Horizontal"
+										Spacing="40">
+								<TextBox PlaceholderText="MaterialDefaultTextBoxStyle"
+									 Style="{StaticResource MaterialOutlinedTextBoxStyle}" />
+
+								<TextBox PlaceholderText="MaterialDefaultTextBoxStyle"
+									 Style="{StaticResource MaterialOutlinedTextBoxStyle}">
+
+									<TextBox.Resources>
+										<SolidColorBrush x:Key="OutlinedTextBoxBorderBrush"
+												 Color="Red" />
+										<SolidColorBrush x:Key="OutlinedTextBoxBorderBrushPointerOver"
+												 Color="Green" />
+									</TextBox.Resources>
+								</TextBox>
+
+							</StackPanel>
+						</smtx:XamlDisplay>
+
+						<!-- CheckBox -->
+
+						<!-- RadioButton -->
+
+					</StackPanel>
+				</DataTemplate>
+			</local:SamplePageLayout.MaterialTemplate>
+			<local:SamplePageLayout.FluentTemplate>
+				<DataTemplate>
+					<StackPanel />
+				</DataTemplate>
+			</local:SamplePageLayout.FluentTemplate>
+		</local:SamplePageLayout>
+	</Grid>
+</Page>
