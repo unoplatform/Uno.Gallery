@@ -82,81 +82,96 @@
 
 
 						<!-- TextBox -->
-						<smtx:XamlDisplay UniqueKey="LightWeightSamplePage_TextBox"
-										  smtx:XamlDisplayExtensions.Header="TextBox"
-										  smtx:XamlDisplayExtensions.Description="Compare the two TextBoxes: the left one displays our default style, while the right one showcases a customized look achieved through lightweight styling, demonstrating how individual control appearance can be selectively adjusted."
+						<smtx:XamlDisplay UniqueKey="LightWeightSamplePage_MaterialTextBox"
+										  smtx:XamlDisplayExtensions.Description="The example below contrasts a default Textbox style with a customized one, where the properties of placeholder foreground, foreground and border colors are overridden for different states (normal, pointer over, and focused)."
 										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
-							<StackPanel Orientation="Horizontal"
-										Spacing="24">
-								<TextBox PlaceholderText="MaterialDefaultTextBoxStyle"
+							<StackPanel Spacing="24">
+								<TextBox PlaceholderText="Default TextBox Style"
 										 Style="{StaticResource MaterialOutlinedTextBoxStyle}" />
 
-								<TextBox PlaceholderText="MaterialDefaultTextBoxStyle"
+								<TextBox PlaceholderText="Overriden TextBox Style"
 										 Style="{StaticResource MaterialOutlinedTextBoxStyle}">
 
 									<TextBox.Resources>
+										<!-- Normal State -->
 										<SolidColorBrush x:Key="OutlinedTextBoxBorderBrush"
 														 Color="Red" />
-										<StaticResource x:Key="OutlinedTextBoxBorderBrushPointerOver" ResourceKey="SecondaryBrush" />
-										<SolidColorBrush x:Key="OutlinedTextBoxBorderBrushFocused"
-														 Color="Yellow" />
 										<SolidColorBrush x:Key="OutlinedTextBoxPlaceholderForeground"
-														 Color="Cyan" />
-										<SolidColorBrush x:Key="OutlinedTextBoxPlaceholderForegroundPointerOver"
-														 Color="Gold" />
+														 Color="Green" />
+										<SolidColorBrush x:Key="OutlinedTextBoxForeground"
+														 Color="Orange" />
+
+										<!-- Focused state -->
+										<SolidColorBrush x:Key="OutlinedTextBoxBorderBrushFocused"
+														 Color="Lime" />
+										<SolidColorBrush x:Key="OutlinedTextBoxPlaceholderForegroundFocused"
+														 Color="Navy" />
 										<SolidColorBrush x:Key="OutlinedTextBoxForegroundFocused"
 														 Color="Pink" />
+
+										<!-- Pointer over state -->
+										<StaticResource x:Key="OutlinedTextBoxPlaceholderForegroundPointerOver" ResourceKey="SecondaryLowBrush" />
+										<StaticResource x:Key="OutlinedTextBoxBorderBrushPointerOver" ResourceKey="SecondaryLowBrush" />
+										<StaticResource x:Key="OutlinedTextBoxForegroundPointerOver" ResourceKey="PrimaryBrush" />
 									</TextBox.Resources>
 								</TextBox>
-
 							</StackPanel>
 						</smtx:XamlDisplay>
 
 						<!-- CheckBox -->
-						<Grid>
-							<Grid.ColumnDefinitions>
-								<ColumnDefinition Width="*" />
-								<ColumnDefinition Width="*" />
-							</Grid.ColumnDefinitions>
-							<smtx:XamlDisplay UniqueKey="LightWeightSamplePage_CheckBox"
-											  Margin="0,0,12,0"
-											  smtx:XamlDisplayExtensions.Header="CheckBox"
-											  smtx:XamlDisplayExtensions.Description="It is possible to change the properties of various texbox using lightweight styling, you can try"
-											  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\Grid">
-								<Grid>
-									<CheckBox Content="Default checkbox"
-											  Style="{StaticResource MaterialCheckBoxStyle}" />
+						<smtx:XamlDisplay UniqueKey="LightWeightSamplePage_MaterialCheckBox"
+										  smtx:XamlDisplayExtensions.Description="The example below contrasts a default checkbox style with a customized one, where the glyph foreground, the background and border colors are overridden for different states (normal, pointer over, and pressed) when checked or unchecked."
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\Grid">
+							<StackPanel Spacing="24">
+								<CheckBox Content="Default checkbox style"
+										  Style="{StaticResource MaterialCheckBoxStyle}" />
+								<CheckBox Content="Overridden checkbox style"
+										  Style="{StaticResource MaterialCheckBoxStyle}">
+									<CheckBox.Resources>
+										<!-- Checked state -->
+										<SolidColorBrush x:Key="CheckBoxGlyphForegroundChecked"
+														 Color="Red" />
+										<SolidColorBrush x:Key="CheckBoxBorderBrushChecked"
+														 Color="Green" />
+										<SolidColorBrush x:Key="CheckBoxBackgroundChecked"
+														 Color="White" />
 
-								</Grid>
-							</smtx:XamlDisplay>
-							<smtx:XamlDisplay UniqueKey="LightWeightSamplePage_CheckBoxOverriden"
-											  Margin="12,0,0,0"
-											  smtx:XamlDisplayExtensions.Header="CheckBox"
-											  smtx:XamlDisplayExtensions.Description="It is possible to change the properties of various texbox using lightweight styling, you can try"
-											  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\Grid"
-											  Grid.Column="1">
-								<Grid>
-									<CheckBox Content="Overridden checkbox"
-											  Style="{StaticResource MaterialCheckBoxStyle}">
-										<CheckBox.Resources>
-											<SolidColorBrush x:Key="CheckBoxGlyphForegroundChecked"
-															 Color="Red" />
-											<StaticResource x:Key="CheckBoxGlyphForegroundUnchecked" ResourceKey="SecondaryBrush" />
-											<StaticResource x:Key="CheckBoxBorderBrushUnchecked" ResourceKey="SecondaryBrush" />
-											<SolidColorBrush x:Key="CheckBoxBorderBrushChecked"
-															 Color="Gold" />
-											<SolidColorBrush x:Key="CheckBoxGlyphForegroundCheckedPointerOver"
-															 Color="Yellow" />
-											<SolidColorBrush x:Key="CheckBoxBorderBrushCheckedPressed"
-															 Color="Cyan" />
-											<SolidColorBrush x:Key="CheckBoxBackgroundUncheckedPointerOver"
-															 Color="Pink" />
-										</CheckBox.Resources>
-									</CheckBox>
+										<!-- Checked and pointer over state -->
+										<SolidColorBrush x:Key="CheckBoxGlyphForegroundCheckedPointerOver"
+														 Color="Blue" />
+										<SolidColorBrush x:Key="CheckBoxBorderBrushCheckedPointerOver"
+														 Color="Yellow" />
+										<SolidColorBrush x:Key="CheckBoxBackgroundCheckedPointerOver"
+														 Color="Black" />
 
-								</Grid>
-							</smtx:XamlDisplay>
-						</Grid>
+										<!-- Checked and pressed state -->
+										<SolidColorBrush x:Key="CheckBoxGlyphForegroundPressed"
+														 Color="Purple" />
+										<SolidColorBrush x:Key="CheckBoxBorderBrushCheckedPressed"
+														 Color="Silver" />
+										<SolidColorBrush x:Key="CheckBoxBackgroundCheckedPressed"
+														 Color="Cyan" />
+
+										<!-- Unchecked state -->
+										<StaticResource x:Key="CheckBoxBorderBrushUnchecked" ResourceKey="SecondaryBrush" />
+										<StaticResource x:Key="CheckBoxBackgroundUnchecked" ResourceKey="PrimaryLowBrush" />
+
+										<!-- Unchecked and pressed state -->
+										<SolidColorBrush x:Key="CheckBoxBorderBrushUncheckedPressed"
+														 Color="Lime" />
+										<SolidColorBrush x:Key="CheckBoxBackgroundUncheckedPressed"
+														 Color="Navy" />
+
+										<!-- Unchecked and pointer over state -->
+										<SolidColorBrush x:Key="CheckBoxBorderBrushUncheckedPointerOver"
+														 Color="Maroon" />
+										<SolidColorBrush x:Key="CheckBoxBackgroundUncheckedPointerOver"
+														 Color="Olive" />
+									</CheckBox.Resources>
+								</CheckBox>
+
+							</StackPanel>
+						</smtx:XamlDisplay>
 
 						<!-- RadioButton -->
 						<smtx:XamlDisplay UniqueKey="LightweightSamplePage_RadioButton_Material"
@@ -280,89 +295,101 @@
 			</local:SamplePageLayout.MaterialTemplate>
 			<local:SamplePageLayout.FluentTemplate>
 				<DataTemplate>
-					<StackPanel>
-						<!-- TextBox -->
-						<smtx:XamlDisplay UniqueKey="LightWeightSamplePage_TextBoxFluent"
-										  smtx:XamlDisplayExtensions.Header="TextBox"
-										  smtx:XamlDisplayExtensions.Description="Compare the two TextBoxes: the left one displays our default style, while the right one showcases a customized look achieved through lightweight styling, demonstrating how individual control appearance can be selectively adjusted."
-										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\Grid">
-							<Grid>
-								<Grid.ColumnDefinitions>
-									<ColumnDefinition Width="*" />
-									<ColumnDefinition Width="*" />
-								</Grid.ColumnDefinitions>
-								<TextBox PlaceholderText="MaterialDefaultTextBoxStyle"
-										 Style="{StaticResource MaterialOutlinedTextBoxStyle}"
-										 Margin="16" />
+					<StackPanel Spacing="20">
+						<smtx:XamlDisplay UniqueKey="LightWeightSamplePage_FluentTextBox"
+										  smtx:XamlDisplayExtensions.Description="The example below compares a default Textbox style with a customized one, where the properties of Foreground, and background colors are overridden for different states (normal, pointer over, and focused).."
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+							<StackPanel Spacing="24">
+								<TextBox PlaceholderText="Default TextBox Style" />
 
-								<TextBox PlaceholderText="MaterialDefaultTextBoxStyle"
-										 Style="{StaticResource MaterialOutlinedTextBoxStyle}"
-										 Grid.Column="1"
-										 Margin="16">
+								<TextBox PlaceholderText="Overriden TextBox Style">
 
 									<TextBox.Resources>
-										<SolidColorBrush x:Key="OutlinedTextBoxBorderBrush"
+										<!-- Default State -->
+										<SolidColorBrush x:Key="TextControlForeground"
 														 Color="Red" />
-										<StaticResource x:Key="OutlinedTextBoxBorderBrushPointerOver" ResourceKey="SecondaryBrush" />
-										<SolidColorBrush x:Key="OutlinedTextBoxBorderBrushFocused"
-														 Color="Yellow" />
-										<SolidColorBrush x:Key="OutlinedTextBoxPlaceholderForeground"
+										<SolidColorBrush x:Key="TextControlBackground"
 														 Color="Cyan" />
-										<SolidColorBrush x:Key="OutlinedTextBoxPlaceholderForegroundPointerOver"
-														 Color="Gold" />
-										<SolidColorBrush x:Key="OutlinedTextBoxForegroundFocused"
-														 Color="Pink" />
+
+										<!-- Pointer Over State -->
+										<SolidColorBrush x:Key="TextControlButtonBackgroundPointerOver"
+														 Color="Orange" />
+										<SolidColorBrush x:Key="TextControlBackgroundPointerOver"
+														 Color="Navy" />
+										<SolidColorBrush x:Key="TextControlForegroundPointerOver"
+														 Color="Gray" />
+
+										<!-- Focused State -->
+										<SolidColorBrush x:Key="TextControlForegroundFocused"
+														 Color="Yellow" />
+										<SolidColorBrush x:Key="TextControlBackgroundFocused"
+														 Color="RosyBrown" />
 									</TextBox.Resources>
 								</TextBox>
-
-							</Grid>
+							</StackPanel>
 						</smtx:XamlDisplay>
 
 						<!-- CheckBox -->
-						<Grid>
-							<Grid.ColumnDefinitions>
-								<ColumnDefinition Width="*" />
-								<ColumnDefinition Width="*" />
-							</Grid.ColumnDefinitions>
-							<smtx:XamlDisplay UniqueKey="LightWeightSamplePage_CheckBoxFluent"
-											  Margin="0,0,12,0"
-											  smtx:XamlDisplayExtensions.Header="CheckBox"
-											  smtx:XamlDisplayExtensions.Description="It is possible to change the properties of various texbox using lightweight styling, you can try"
-											  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\Grid">
-								<Grid>
-									<CheckBox Content="Default checkbox"
-											  Style="{StaticResource MaterialCheckBoxStyle}" />
+						<smtx:XamlDisplay UniqueKey="LightWeightSamplePage_FluentCheckBox"
+										  smtx:XamlDisplayExtensions.Description="The example below contrasts a default checkbox style with a customized one, where the glyph foreground, the background and border colors are overridden for different states (normal, pointer over, and pressed) when checked or unchecked."
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\Grid">
+							<StackPanel Spacing="24">
+								<CheckBox Content="Default checkbox style"
+										  BorderThickness="2" />
+								<CheckBox Content="Overridden checkbox style"
+										  BorderThickness="2">
+									<CheckBox.Resources>
+										<!-- Checked state -->
+										<SolidColorBrush x:Key="CheckBoxCheckGlyphForegroundChecked"
+														 Color="Teal" />
+										<SolidColorBrush x:Key="CheckBoxBorderBrushChecked"
+														 Color="Navy" />
+										<SolidColorBrush x:Key="CheckBoxBackgroundChecked"
+														 Color="Maroon" />
 
-								</Grid>
-							</smtx:XamlDisplay>
-							<smtx:XamlDisplay UniqueKey="LightWeightSamplePage_CheckBoxOverridenFluent"
-											  Margin="12,0,0,0"
-											  smtx:XamlDisplayExtensions.Header="CheckBox"
-											  smtx:XamlDisplayExtensions.Description="It is possible to change the properties of various texbox using lightweight styling, you can try"
-											  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\Grid"
-											  Grid.Column="1">
-								<Grid>
-									<CheckBox Content="Overridden checkbox"
-											  Style="{StaticResource MaterialCheckBoxStyle}">
-										<CheckBox.Resources>
-											<SolidColorBrush x:Key="CheckBoxGlyphForegroundChecked"
-															 Color="Red" />
-											<StaticResource x:Key="CheckBoxGlyphForegroundUnchecked" ResourceKey="SecondaryBrush" />
-											<StaticResource x:Key="CheckBoxBorderBrushUnchecked" ResourceKey="SecondaryBrush" />
-											<SolidColorBrush x:Key="CheckBoxBorderBrushChecked"
-															 Color="Gold" />
-											<SolidColorBrush x:Key="CheckBoxGlyphForegroundCheckedPointerOver"
-															 Color="Yellow" />
-											<SolidColorBrush x:Key="CheckBoxBorderBrushCheckedPressed"
-															 Color="Cyan" />
-											<SolidColorBrush x:Key="CheckBoxBackgroundUncheckedPointerOver"
-															 Color="Pink" />
-										</CheckBox.Resources>
-									</CheckBox>
+										<!-- Checked and pointer over state -->
+										<SolidColorBrush x:Key="CheckBoxCheckGlyphForegroundCheckedPointerOver"
+														 Color="Lime" />
+										<SolidColorBrush x:Key="CheckBoxBorderBrushCheckedPointerOver"
+														 Color="Olive" />
+										<SolidColorBrush x:Key="CheckBoxBackgroundCheckedPointerOver"
+														 Color="Silver" />
 
-								</Grid>
-							</smtx:XamlDisplay>
-						</Grid>
+										<!-- Checked and pressed state -->
+										<SolidColorBrush x:Key="CheckBoxCheckGlyphForegroundCheckedPressed"
+														 Color="Purple" />
+										<SolidColorBrush x:Key="CheckBoxBorderBrushCheckedPressed"
+														 Color="Aqua" />
+										<SolidColorBrush x:Key="CheckBoxBackgroundCheckedPressed"
+														 Color="Yellow" />
+
+										<!-- Unchecked state -->
+										<SolidColorBrush x:Key="CheckBoxCheckGlyphForegroundUnchecked"
+														 Color="Black" />
+										<SolidColorBrush x:Key="CheckBoxBorderBrushUnchecked"
+														 Color="White" />
+										<SolidColorBrush x:Key="CheckBoxBackgroundUnchecked"
+														 Color="Gray" />
+
+										<!-- Unchecked and pointer over state -->
+										<SolidColorBrush x:Key="CheckBoxCheckGlyphForegroundUncheckedPointerOver"
+														 Color="Blue" />
+										<SolidColorBrush x:Key="CheckBoxBorderBrushUncheckedPointerOver"
+														 Color="Orange" />
+										<SolidColorBrush x:Key="CheckBoxBackgroundUncheckedPointerOver"
+														 Color="Green" />
+
+										<!-- Unchecked and pressed state -->
+										<SolidColorBrush x:Key="CheckBoxCheckGlyphForegroundUncheckedPressed"
+														 Color="Red" />
+										<SolidColorBrush x:Key="CheckBoxBorderBrushUncheckedPressed"
+														 Color="Cyan" />
+										<SolidColorBrush x:Key="CheckBoxBackgroundUncheckedPressed"
+														 Color="Pink" />
+									</CheckBox.Resources>
+								</CheckBox>
+							</StackPanel>
+						</smtx:XamlDisplay>
 					</StackPanel>
 				</DataTemplate>
 			</local:SamplePageLayout.FluentTemplate>
