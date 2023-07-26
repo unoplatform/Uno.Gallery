@@ -121,7 +121,7 @@
 						<!-- CheckBox -->
 						<smtx:XamlDisplay UniqueKey="LightWeightSamplePage_MaterialCheckBox"
 										  smtx:XamlDisplayExtensions.Description="The example below contrasts a default checkbox style with a customized one, where the glyph foreground, the background and border colors are overridden for different states (normal, pointer over, and pressed) when checked or unchecked."
-										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\Grid">
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
 							<StackPanel Spacing="24">
 								<CheckBox Content="Default checkbox style"
 										  Style="{StaticResource MaterialCheckBoxStyle}" />
@@ -296,6 +296,59 @@
 			<local:SamplePageLayout.FluentTemplate>
 				<DataTemplate>
 					<StackPanel Spacing="20">
+						<!-- Button -->
+						<smtx:XamlDisplay UniqueKey="LightweightSamplePage_Button_Fluent"
+										  smtx:XamlDisplayExtensions.Description="The example below contrasts a default button style with a customized one, where the standard properties of foreground, background and border colors are overridden for different states (normal, pointer over, pressed and disabled)."
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+							<StackPanel Spacing="40">
+								<Button Content="Default Button Style" />
+
+								<Button Content="Overridden Button Style"
+										BorderThickness="2">
+
+									<Button.Resources>
+										<SolidColorBrush x:Key="ButtonForeground"
+														 Color="DarkGreen" />
+										<SolidColorBrush x:Key="ButtonBackground"
+														 Color="LightGreen" />
+										<SolidColorBrush x:Key="ButtonBorderBrush"
+														 Color="DarkGreen" />
+
+										<SolidColorBrush x:Key="ButtonForegroundPointerOver"
+														 Color="DarkRed" />
+										<SolidColorBrush x:Key="ButtonBackgroundPointerOver"
+														 Color="LightPink" />
+										<SolidColorBrush x:Key="ButtonBorderBrushPointerOver"
+														 Color="DarkRed" />
+
+										<SolidColorBrush x:Key="ButtonForegroundPressed"
+														 Color="DarkBlue" />
+										<SolidColorBrush x:Key="ButtonBackgroundPressed"
+														 Color="LightSteelBlue" />
+										<SolidColorBrush x:Key="ButtonBorderBrushPressed"
+														 Color="DarkBlue" />
+									</Button.Resources>
+								</Button>
+
+								<Button Content="Default Button Style - Disabled"
+										IsEnabled="False" />
+
+								<Button Content="Overridden Button Style - Disabled"
+										BorderThickness="2"
+										IsEnabled="False">
+
+									<Button.Resources>
+										<SolidColorBrush x:Key="ButtonForegroundDisabled"
+														 Color="LightSlateGray" />
+										<SolidColorBrush x:Key="ButtonBackgroundDisabled"
+														 Color="DarkGray" />
+										<SolidColorBrush x:Key="ButtonBorderBrushDisabled"
+														 Color="LightSlateGray" />
+									</Button.Resources>
+								</Button>
+
+							</StackPanel>
+						</smtx:XamlDisplay>
 						<smtx:XamlDisplay UniqueKey="LightWeightSamplePage_FluentTextBox"
 										  smtx:XamlDisplayExtensions.Description="The example below compares a default Textbox style with a customized one, where the properties of Foreground, and background colors are overridden for different states (normal, pointer over, and focused).."
 										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
@@ -332,7 +385,7 @@
 						<!-- CheckBox -->
 						<smtx:XamlDisplay UniqueKey="LightWeightSamplePage_FluentCheckBox"
 										  smtx:XamlDisplayExtensions.Description="The example below contrasts a default checkbox style with a customized one, where the glyph foreground, the background and border colors are overridden for different states (normal, pointer over, and pressed) when checked or unchecked."
-										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\Grid">
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
 							<StackPanel Spacing="24">
 								<CheckBox Content="Default checkbox style"
 										  BorderThickness="2" />
@@ -388,6 +441,118 @@
 														 Color="Pink" />
 									</CheckBox.Resources>
 								</CheckBox>
+							</StackPanel>
+						</smtx:XamlDisplay>
+
+						<!-- RadioButton -->
+						<smtx:XamlDisplay UniqueKey="LightweightSamplePage_RadioButton_Fluent"
+										  smtx:XamlDisplayExtensions.Description="The example below contrasts a default radio button style with a customized one, where the standard properties of foreground, ellipse and ellipse fill colors are overridden for different states (normal, pointer over, pressed and disabled)."
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+							<StackPanel Spacing="40">
+								<RadioButton GroupName="RadioButton_Material_A"
+											 Content="Default Radio Button Style - Unchecked" />
+
+								<RadioButton GroupName="RadioButton_Material_A"
+											 IsChecked="True"
+											 Content="Default Radio Button Style - Checked" />
+
+								<RadioButton GroupName="RadioButton_Material_A"
+											 Content="Default Radio Button Style - Disabled"
+											 IsEnabled="False" />
+
+								<RadioButton GroupName="RadioButton_Material_B"
+											 Content="Overridden Radio Button Style - Unchecked">
+									<RadioButton.Resources>
+										<SolidColorBrush x:Key="RadioButtonForeground"
+														 Color="DarkGreen" />
+										<SolidColorBrush x:Key="RadioButtonOuterEllipseStroke"
+														 Color="LightGreen" />
+										<SolidColorBrush x:Key="RadioButtonOuterEllipseCheckedStroke"
+														 Color="DarkGreen" />
+										<SolidColorBrush x:Key="RadioButtonOuterEllipseFill"
+														 Color="LightGreen" />
+										<SolidColorBrush x:Key="RadioButtonOuterEllipseCheckedFill"
+														 Color="DarkGreen" />
+
+										<SolidColorBrush x:Key="RadioButtonForegroundPointerOver"
+														 Color="DarkRed" />
+										<SolidColorBrush x:Key="RadioButtonOuterEllipseStrokePointerOver"
+														 Color="LightPink" />
+										<SolidColorBrush x:Key="RadioButtonOuterEllipseCheckedStrokePointerOver"
+														 Color="DarkRed" />
+										<SolidColorBrush x:Key="RadioButtonOuterEllipseFillPointerOver"
+														 Color="LightPink" />
+										<SolidColorBrush x:Key="RadioButtonOuterEllipseCheckedFillPointerOver"
+														 Color="DarkRed" />
+
+										<SolidColorBrush x:Key="RadioButtonForegroundPressed"
+														 Color="DarkBlue" />
+										<SolidColorBrush x:Key="RadioButtonOuterEllipseStrokePressed"
+														 Color="LightSteelBlue" />
+										<SolidColorBrush x:Key="RadioButtonOuterEllipseCheckedStrokePressed"
+														 Color="DarkBlue" />
+										<SolidColorBrush x:Key="RadioButtonOuterEllipseFillPressed"
+														 Color="LightSteelBlue" />
+										<SolidColorBrush x:Key="RadioButtonOuterEllipseCheckedFillPressed"
+														 Color="DarkBlue" />
+									</RadioButton.Resources>
+								</RadioButton>
+
+								<RadioButton GroupName="RadioButton_Material_B"
+											 IsChecked="True"
+											 Content="Overridden Radio Button Style - Checked">
+									<RadioButton.Resources>
+										<SolidColorBrush x:Key="RadioButtonForeground"
+														 Color="DarkGreen" />
+										<SolidColorBrush x:Key="RadioButtonOuterEllipseStroke"
+														 Color="LightGreen" />
+										<SolidColorBrush x:Key="RadioButtonOuterEllipseCheckedStroke"
+														 Color="DarkGreen" />
+										<SolidColorBrush x:Key="RadioButtonOuterEllipseFill"
+														 Color="LightGreen" />
+										<SolidColorBrush x:Key="RadioButtonOuterEllipseCheckedFill"
+														 Color="DarkGreen" />
+
+										<SolidColorBrush x:Key="RadioButtonForegroundPointerOver"
+														 Color="DarkRed" />
+										<SolidColorBrush x:Key="RadioButtonOuterEllipseStrokePointerOver"
+														 Color="LightPink" />
+										<SolidColorBrush x:Key="RadioButtonOuterEllipseCheckedStrokePointerOver"
+														 Color="DarkRed" />
+										<SolidColorBrush x:Key="RadioButtonOuterEllipseFillPointerOver"
+														 Color="LightPink" />
+										<SolidColorBrush x:Key="RadioButtonOuterEllipseCheckedFillPointerOver"
+														 Color="DarkRed" />
+
+										<SolidColorBrush x:Key="RadioButtonForegroundPressed"
+														 Color="DarkBlue" />
+										<SolidColorBrush x:Key="RadioButtonOuterEllipseStrokePressed"
+														 Color="LightSteelBlue" />
+										<SolidColorBrush x:Key="RadioButtonOuterEllipseCheckedStrokePressed"
+														 Color="DarkBlue" />
+										<SolidColorBrush x:Key="RadioButtonOuterEllipseFillPressed"
+														 Color="LightSteelBlue" />
+										<SolidColorBrush x:Key="RadioButtonOuterEllipseCheckedFillPressed"
+														 Color="DarkBlue" />
+									</RadioButton.Resources>
+								</RadioButton>
+
+								<RadioButton GroupName="RadioButton_Material_B"
+											 Content="Overridden Radio Button Style - Disabled"
+											 IsEnabled="False">
+									<RadioButton.Resources>
+										<SolidColorBrush x:Key="RadioButtonForegroundDisabled"
+														 Color="LightSlateGray" />
+										<SolidColorBrush x:Key="RadioButtonOuterEllipseStrokeDisabled"
+														 Color="DarkGray" />
+										<SolidColorBrush x:Key="RadioButtonOuterEllipseCheckedStrokeDisabled"
+														 Color="LightSlateGray" />
+										<SolidColorBrush x:Key="RadioButtonOuterEllipseFillDisabled"
+														 Color="DarkGray" />
+										<SolidColorBrush x:Key="RadioButtonOuterEllipseCheckedFillDisabled"
+														 Color="LightSlateGray" />
+									</RadioButton.Resources>
+								</RadioButton>
 							</StackPanel>
 						</smtx:XamlDisplay>
 					</StackPanel>
