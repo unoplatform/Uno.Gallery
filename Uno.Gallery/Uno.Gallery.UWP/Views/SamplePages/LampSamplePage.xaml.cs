@@ -77,8 +77,8 @@ namespace Uno.Gallery.Views.Samples
 			IsAvailable = true;
 			IsBrightnessSupported = false;
 			BrightnessLevel = 1;
-#if __IOS__
-IsBrightnessSupported = true;
+#if __ANDROID__ || __IOS__
+			IsBrightnessSupported = true;
 #endif
 			Task.Run(async () =>
 			{
