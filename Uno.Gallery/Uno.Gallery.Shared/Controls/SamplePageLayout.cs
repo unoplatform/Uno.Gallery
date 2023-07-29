@@ -7,11 +7,11 @@ using Uno.Disposables;
 using Uno.Extensions;
 using Uno.Gallery.Helpers;
 using Windows.Foundation;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Documents;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Data;
+using Microsoft.UI.Xaml.Documents;
+using Microsoft.UI.Xaml.Media;
 
 namespace Uno.Gallery
 {
@@ -240,7 +240,7 @@ namespace Uno.Gallery
 
 		private double GetRelativeOffset()
 		{
-#if NETFX_CORE
+#if WINDOWS
 			// On UWP we can count on finding a ScrollContentPresenter. 
 			var scp = VisualTreeHelperEx.GetFirstDescendant<ScrollContentPresenter>(_scrollViewer);
 			var content = scp?.Content as FrameworkElement;

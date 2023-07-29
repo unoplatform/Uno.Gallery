@@ -10,7 +10,7 @@ using System.Xml.Linq;
 using ShowMeTheXAML;
 using Uno.Extensions;
 using Uno.Gallery;
-using Windows.UI.Xaml;
+using Microsoft.UI.Xaml;
 
 namespace ShowMeTheXAML
 {
@@ -110,15 +110,10 @@ namespace ShowMeTheXAML
 		#endregion
 
 		#region Property: Options
-		public static DependencyProperty OptionsProperty { get; } = DependencyProperty.Register(
+		public static DependencyProperty OptionsProperty { get; } = DependencyProperty.RegisterAttached(
 			"Options",
 			typeof(object),
-#if NETFX_CORE
 			typeof(XamlDisplayExtensions),
-#else
-			//Causes System.InvalidOperationException: The Dependency Property [Options] is owned by [ShowMeTheXAML.XamlDisplayExtensions] and cannot be used... on Uno targets
-			typeof(XamlDisplay),
-#endif
 			new PropertyMetadata(null));
 
 		public static object GetOptions(XamlDisplay obj) => (object)obj.GetValue(OptionsProperty);
