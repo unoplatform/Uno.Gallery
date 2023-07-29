@@ -6,11 +6,7 @@ using System.Windows.Input;
 
 namespace Uno.Gallery.ViewModels
 {
-#if IS_WINUI
-		[Microsoft.UI.Xaml.Data.Bindable]
-#else
-	[Windows.UI.Xaml.Data.Bindable]
-#endif
+	[Microsoft.UI.Xaml.Data.Bindable]
 	public class Command : ICommand
 	{
 		private readonly Action<object> _action;

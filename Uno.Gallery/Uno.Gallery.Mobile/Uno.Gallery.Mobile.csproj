@@ -22,24 +22,12 @@
 	</PropertyGroup>
 	
 	<ItemGroup>
-		<Compile Include="..\Uno.Gallery.UWP\App.xaml.cs" />
-		<ApplicationDefinition Include="..\Uno.Gallery.UWP\App.xaml" Link="App.xaml" Visible="False" />
-		<Page Include="..\Uno.Gallery.UWP\Views\**\*.xaml" Visible="False">
-			<Link>Views\%(RecursiveDir)%(FileName)%(Extension)</Link>
-			<SubType>Designer</SubType>
-			<Generator>MSBuild:Compile</Generator>
-		</Page>
-		<Compile Include="..\Uno.Gallery.UWP\Views\**\*.cs" Visible="False">
-			<Link>Views\%(RecursiveDir)%(FileName)%(Extension)</Link>
-		</Compile>
-	</ItemGroup>
-
-	<ItemGroup>
 		<IncludeXamlNamespaces Include="mobile" Visible="False" />
 		<ExcludeXamlNamespaces Include="not_mobile" Visible="False" />
 	</ItemGroup>
 
 	<ItemGroup>
+<<<<<<< HEAD
 		<PackageReference Include="Uno.Microsoft.Toolkit.Uwp.UI.Controls" Version="7.1.11" />
 		<PackageReference Include="Uno.Extensions.Logging.OSLog" Version="1.4.0" />
 		<PackageReference Include="Uno.Fonts.Fluent" Version="2.2.2" />
@@ -54,6 +42,23 @@
 		<PackageReference Include="Uno.Toolkit.UI.Cupertino" Version="3.0.4" />
 		<PackageReference Include="Uno.Toolkit.UI.Material" Version="3.0.4" />
 		<PackageReference Include="Uno.UI.Lottie" Version="4.10.0-dev.146" />
+=======
+		<PackageReference Include="Uno.CommunityToolkit.WinUI.UI.Controls" Version="7.1.200-dev.6.gf657bb2e91" />
+		<PackageReference Include="Uno.Extensions.Logging.OSLog" Version="1.4.0" />
+		<PackageReference Include="Uno.Fonts.Fluent" Version="2.3.0-dev.6" />
+		<PackageReference Include="Uno.ShowMeTheXAML" Version="2.0.0-dev0012" />
+		<PackageReference Include="Uno.ShowMeTheXAML.MSBuild" Version="2.0.0-dev0012" />
+		<PackageReference Include="Uno.WinUI" Version="5.0.0-dev.1728" />
+		<PackageReference Include="Uno.WinUI.RemoteControl" Version="5.0.0-dev.1728" Condition="'$(Configuration)'=='Debug'" />
+		<PackageReference Include="Uno.UI.Adapter.Microsoft.Extensions.Logging" Version="5.0.0-dev.1728" />
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="6.0.0" />
+		<PackageReference Include="Uno.Diagnostics.Eventing" Version="2.1.0-dev.1" />
+
+		<PackageReference Include="Uno.Toolkit.WinUI.Cupertino" Version="4.0.0-dev.58" />
+		<PackageReference Include="Uno.Toolkit.WinUI.Material" Version="4.0.0-dev.58" />
+		<PackageReference Include="Uno.WinUI.Lottie" Version="5.0.0-dev.1728" />
+>>>>>>> daa59c9 (chore: move to WinUI/WinAppSDK)
 		<PackageReference Include="Uno.Core.Extensions.Disposables" Version="4.0.1" />
 		<PackageReference Include="Uno.Core.Extensions.Compatibility" Version="4.0.1" />
 	</ItemGroup>
@@ -85,6 +90,9 @@
 			<ItemGroup>
 				<PackageReference Include="Uno.Extensions.Logging.OSLog" Version="1.4.0" />
 			</ItemGroup>
+			<ItemGroup Condition="'$(Configuration)'=='Release'">
+				<TrimmableAssembly Include="CommunityToolkit.WinUI.UI" />
+			</ItemGroup>
 			<PropertyGroup>
 				<MtouchExtraArgs>$(MtouchExtraArgs) --registrar:static --dsym=true</MtouchExtraArgs>
 
@@ -97,6 +105,23 @@
 				<CodesignKey>iPhone Distribution</CodesignKey>
 				<RuntimeIdentifier>ios-arm64</RuntimeIdentifier>
 			</PropertyGroup>
+<<<<<<< HEAD
+=======
+			
+			<PropertyGroup Condition="'$(Configuration)'=='Debug' or '$(IsUiAutomationMappingEnabled)'=='True'">
+				<IsUiAutomationMappingEnabled>True</IsUiAutomationMappingEnabled>
+				<DefineConstants>$(DefineConstants);USE_UITESTS</DefineConstants>
+			</PropertyGroup>
+
+			<ItemGroup Condition="'$(Configuration)'=='Debug' or '$(IsUiAutomationMappingEnabled)'=='True'">
+				<PackageReference Include="Xamarin.TestCloud.Agent" Version="0.23.2" />
+			</ItemGroup>
+
+			<ItemGroup>
+				<!-- https://github.com/xamarin/xamarin-macios/issues/18388#issuecomment-1574486065 -->
+				<TrimmableAssembly Include="Microsoft.Toolkit.Uwp.UI" />
+			</ItemGroup>
+>>>>>>> daa59c9 (chore: move to WinUI/WinAppSDK)
 		</When>
 		<When Condition="'$(TargetFramework)'=='net6.0-maccatalyst'">
 			<ItemGroup>

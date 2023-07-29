@@ -48,24 +48,26 @@ jobs:
   steps:
   - template: build/stage-build-android-mobile.yml
 
-- job: Windows_UWP
+- job: Windows_WinAppSDK
   pool:
-    vmImage: windows-2019
+    vmImage: windows-2022
     
   variables:
   - group: 'UADO Keystore' # Import all variables for the Android signing from the library in azure devops
   - group: 'Uno Platform authenticode signing' # Import all variables for the signing from the library in azure devops
   - name: ApplicationPlatform
-    value: x64
+    value: x86 # switch back to x64 once CommunityToolkit.WinUI.UI supports x64 (https://github.com/CommunityToolkit/Lottie-Windows/issues/515#issuecomment-1662305826)
+  - name: BuildTargetFramework
+    value: net7.0-windows10.0.19041
   - name: ArtifactName
-    value: UWP
+    value: Windows
   - name: VersionCodeOffset
     value: 50
   - name: PackageOutputPath
     value: $(Build.ArtifactStagingDirectory)
 
   steps:
-  - template: build/stage-build-uwp.yml
+  - template: build/stage-build-windows.yml
 
 - job: Windows_SkiaGtk
   pool:

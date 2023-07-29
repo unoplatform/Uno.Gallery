@@ -4,9 +4,15 @@ steps:
     displayName: 'Use .NET runtime 7.0.100'
     retryCountOnTaskFailure: 3
     inputs:
+<<<<<<< HEAD
       packageType: runtime
       version: 7.0.0
       
+=======
+      packageType: 'sdk'
+      version: '7.0.306'
+
+>>>>>>> daa59c9 (chore: move to WinUI/WinAppSDK)
   - task: nventiveCanaryUpdater@5
     condition: eq(variables['IsCanaryBranch'], true)
     inputs:

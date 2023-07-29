@@ -8,27 +8,14 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Compile Include="..\Uno.Gallery.UWP\App.xaml.cs" />
-		<Content Include="..\Uno.Gallery.Shared\Assets\**" Link="Assets\%(RecursiveDir)%(FileName)%(Extension)" CopyToOutputDirectory="Always" />
-		<EmbeddedResource Include="..\Uno.Gallery.UWP\Package.appxmanifest" LogicalName="Package.appxmanifest" />
-		<ApplicationDefinition Include="..\Uno.Gallery.UWP\App.xaml" Link="App.xaml" Visible="False" />
-		<Page Include="..\Uno.Gallery.UWP\Views\**\*.xaml" Visible="False">
-			<Link>Views\%(RecursiveDir)%(FileName)%(Extension)</Link>
-			<SubType>Designer</SubType>
-			<Generator>MSBuild:Compile</Generator>
-		</Page>
-		<Compile Include="..\Uno.Gallery.UWP\Views\**\*.cs" Visible="False">
-			<Link>Views\%(RecursiveDir)%(FileName)%(Extension)</Link>
-		</Compile>
-	</ItemGroup>
-
-	<ItemGroup>
 		<Content Include="Assets\Fonts\Cupertino\SF-Pro-Text-Regular.otf" />
 		<Content Include="Assets\StoreLogo.png" />
+		<EmbeddedResource Include="..\Uno.Gallery.Windows\Package.appxmanifest" LogicalName="Package.appxmanifest" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Svg.Skia" Version="0.5.18" />
+<<<<<<< HEAD
 		<PackageReference Include="Uno.Microsoft.Toolkit.Uwp.UI.Controls" Version="7.1.11" />
 		<PackageReference Include="Uno.Fonts.Fluent" Version="2.2.2" />
 		<!-- Note that for WebAssembly version 1.1.1 of the console logger required -->
@@ -47,6 +34,26 @@
 		<PackageReference Include="SkiaSharp.Skottie" Version="2.88.3" />
 		<PackageReference Include="SkiaSharp.Views.Uno" Version="2.88.3" />
 		<PackageReference Include="Uno.UI.Svg" Version="4.10.0-dev.146" />
+=======
+		<PackageReference Include="Uno.CommunityToolkit.WinUI.UI.Controls" Version="7.1.200-dev.6.gf657bb2e91" />
+		<PackageReference Include="Uno.Fonts.Fluent" Version="2.3.0-dev.6" />
+		<!-- Note that for WebAssembly version 1.1.1 of the console logger required -->
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="6.0.0" />
+		<PackageReference Include="Uno.ShowMeTheXAML" Version="2.0.0-dev0012" />
+		<PackageReference Include="Uno.ShowMeTheXAML.MSBuild" Version="2.0.0-dev0012" />
+		<PackageReference Include="Uno.Toolkit.WinUI.Cupertino" Version="4.0.0-dev.58" />
+		<PackageReference Include="Uno.Toolkit.WinUI.Material" Version="4.0.0-dev.58" />		
+		<PackageReference Include="Uno.WinUI.Lottie" Version="5.0.0-dev.1728" />
+		<PackageReference Include="Uno.WinUI.Skia.Gtk" Version="5.0.0-dev.1728" />
+		<PackageReference Include="Uno.WinUI.RemoteControl" Version="5.0.0-dev.1728" Condition="'$(Configuration)'=='Debug'" />
+		<PackageReference Include="Uno.UI.Adapter.Microsoft.Extensions.Logging" Version="5.0.0-dev.1728" />
+		<PackageReference Include="Uno.Core.Extensions.Disposables" Version="4.0.1" />
+		<PackageReference Include="Uno.Core.Extensions.Compatibility" Version="4.0.1" />
+		<PackageReference Include="SkiaSharp.Skottie" Version="2.88.3" />
+		<PackageReference Include="SkiaSharp.Views.Uno.WinUI" Version="2.88.3" />
+		<PackageReference Include="Uno.WinUI.Svg" Version="5.0.0-dev.1728" />
+>>>>>>> daa59c9 (chore: move to WinUI/WinAppSDK)
 	</ItemGroup>
 
 	<Import Project="..\Uno.Gallery.Shared\Uno.Gallery.Shared.projitems" Label="Shared" />

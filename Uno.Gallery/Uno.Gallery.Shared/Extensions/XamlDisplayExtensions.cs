@@ -10,7 +10,7 @@ using System.Xml.Linq;
 using ShowMeTheXAML;
 using Uno.Extensions;
 using Uno.Gallery;
-using Windows.UI.Xaml;
+using Microsoft.UI.Xaml;
 
 namespace ShowMeTheXAML
 {
@@ -108,6 +108,20 @@ namespace ShowMeTheXAML
 
 		#endregion
 
+<<<<<<< HEAD
+=======
+		#region Property: Options
+		public static DependencyProperty OptionsProperty { get; } = DependencyProperty.RegisterAttached(
+			"Options",
+			typeof(object),
+			typeof(XamlDisplayExtensions),
+			new PropertyMetadata(null));
+
+		public static object GetOptions(XamlDisplay obj) => (object)obj.GetValue(OptionsProperty);
+		public static void SetOptions(XamlDisplay obj, object value) => obj.SetValue(OptionsProperty, value);
+		#endregion
+
+>>>>>>> daa59c9 (chore: move to WinUI/WinAppSDK)
 		private static void OnIgnorePathChanged(XamlDisplay sender, DependencyPropertyChangedEventArgs e)
 		{
 			sender.RegisterPropertyChangedCallback(XamlDisplay.XamlProperty, OnXamlChanged);

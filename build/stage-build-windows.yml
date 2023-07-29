@@ -1,0 +1,52 @@
+steps:
+
+- task: UseDotNet@2
+  condition: eq(variables['IsCanaryBranch'], true)
+  retryCountOnTaskFailure: 3
+  inputs:
+    packageType: runtime
+    version: 3.1.3
+
+- template: templates/gitversion.yml
+- template: templates/canary-updater.yml
+
+<<<<<<< HEAD:build/stage-build-uwp.yml
+- task: MSBuild@1
+  displayName: Build project
+  retryCountOnTaskFailure: 3
+=======
+- task: UseDotNet@2
+  displayName: 'Use .NET'
+>>>>>>> daa59c9 (chore: move to WinUI/WinAppSDK):build/stage-build-windows.yml
+  inputs:
+    packageType: 'sdk'
+    version: '7.0.306'
+
+- script: |
+    cd $(build.sourcesdirectory)/Uno.Gallery/Uno.Gallery.Windows
+    dotnet publish -c Release /p:Platform=$(ApplicationPlatform) /p:AppxPackageDir="Packages/" /p:AppxBundle=Never /p:UapAppxPackageBuildMode=SideloadOnly /p:GenerateAppxPackageOnBuild=true /bl:$(build.artifactstagingdirectory)/build.binlog "/p:InformationalVersion=$GITVERSION_INFORMATIONALVERSION" 
+  displayName: Build project for Release
+
+- task: CopyFiles@2
+  displayName: Copy Windows output
+  inputs:
+    SourceFolder: $(build.sourcesdirectory)/Uno.Gallery/Uno.Gallery.Windows/Packages
+    Contents: '**/*.*'
+    TargetFolder: $(Build.ArtifactStagingDirectory)/
+
+- task: PowerShell@2
+  displayName: Authenticode Sign Packages
+  inputs:
+    filePath: build/Sign-Package.ps1
+  env:
+    SignClientUser: $(SignClientUser)
+    SignClientSecret: $(SignClientSecret)
+    SignPackageName: "Uno Platform Gallery"
+    SignPackageDescription: "The Uno Platform"
+    ArtifactDirectory: $(build.artifactstagingdirectory)
+  condition: and(succeeded(), not(eq(variables['build.reason'], 'PullRequest')), not(eq(variables['SignClientSecret'], '')), not(eq(variables['SignClientUser'], '')))
+
+- task: PublishBuildArtifacts@1
+  retryCountOnTaskFailure: 3
+  inputs:
+    ArtifactName: windows
