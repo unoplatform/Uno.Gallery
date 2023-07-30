@@ -1,28 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
+﻿using Uno.Gallery.ViewModels;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 
 
 namespace Uno.Gallery.Views.SamplePages
 {
-	[SamplePage(SampleCategory.UIComponents, "InfoBar", Description = "This control is an inline notification for essential app-wide messages.", DocumentationLink = "https://docs.microsoft.com/en-us/windows/winui/api/microsoft.ui.xaml.controls.infobar?view=winui-2.5")]
-	[SampleConditional(SampleConditionals.Disabled, Reason = "todo: styles not implemented")]
+	[SamplePage(SampleCategory.UIComponents, "InfoBar",
+		Description = "This control is an inline notification for essential app-wide messages.",
+		DocumentationLink = "https://learn.microsoft.com/en-us/windows/winui/api/microsoft.ui.xaml.controls.infobar",
+		DataType = typeof(InfoBarSamplePageViewModel))]
 	public sealed partial class InfoBarSamplePage : Page
 	{
 		public InfoBarSamplePage()
 		{
 			this.InitializeComponent();
+		}
+	}
+
+	public class InfoBarSamplePageViewModel : ViewModelBase
+	{
+		public bool IsOpen { get => GetProperty<bool>(); set => SetProperty(value); }
+		public string Severity { get => GetProperty<string>(); set => SetProperty(value); }
+		public bool IsIconVisible { get => GetProperty<bool>(); set => SetProperty(value); }
+		public bool IsClosable { get => GetProperty<bool>(); set => SetProperty(value); }
+		public bool LongIsOpen { get => GetProperty<bool>(); set => SetProperty(value); }
+
+		public InfoBarSamplePageViewModel()
+		{
+			IsOpen = true;
+			Severity = "Informational";
+			IsIconVisible = true;
+			IsClosable = true;
+			LongIsOpen = true;
 		}
 	}
 }
