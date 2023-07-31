@@ -1,128 +1,17 @@
 ﻿<Page x:Class="Uno.Gallery.Views.Samples.PipsPagerSamplePage"
 	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	  xmlns:local="using:Uno.Gallery"
 	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	  xmlns:smtx="using:ShowMeTheXAML"
-	  xmlns:muxc="using:Microsoft.UI.Xaml.Controls" xmlns:s="using:Uno.Gallery.Views.Samples"
+	  xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
 	  mc:Ignorable="d">
 
-	<Page.Resources>
-		<s:FlipViewItemCollection x:Name="items">
-			<FlipViewItem>
-				<Border Background="{StaticResource UnoRedColor}">
-					<TextBlock Style="{StaticResource HeadlineLarge}" HorizontalAlignment="Center" VerticalAlignment="Center">1</TextBlock>
-				</Border>
-			</FlipViewItem>
-			<FlipViewItem>
-				<Border Background="{StaticResource UnoBlueColor}">
-					<TextBlock Style="{StaticResource HeadlineLarge}" HorizontalAlignment="Center" VerticalAlignment="Center">2</TextBlock>
-				</Border>
-			</FlipViewItem>
-			<FlipViewItem>
-				<Border Background="{StaticResource UnoGreenColor}">
-					<TextBlock Style="{StaticResource HeadlineLarge}" HorizontalAlignment="Center" VerticalAlignment="Center">3</TextBlock>
-				</Border>
-			</FlipViewItem>
-			<FlipViewItem>
-				<Border Background="{StaticResource UnoPurpleColor}">
-					<TextBlock Style="{StaticResource HeadlineLarge}" HorizontalAlignment="Center" VerticalAlignment="Center">4</TextBlock>
-				</Border>
-			</FlipViewItem>
-			<FlipViewItem>
-				<Border Background="{StaticResource UnoRedColor}">
-					<TextBlock Style="{StaticResource HeadlineLarge}" HorizontalAlignment="Center" VerticalAlignment="Center">5</TextBlock>
-				</Border>
-			</FlipViewItem>
-			<FlipViewItem>
-				<Border Background="{StaticResource UnoBlueColor}">
-					<TextBlock Style="{StaticResource HeadlineLarge}" HorizontalAlignment="Center" VerticalAlignment="Center">6</TextBlock>
-				</Border>
-			</FlipViewItem>
-			<FlipViewItem>
-				<Border Background="{StaticResource UnoGreenColor}">
-					<TextBlock Style="{StaticResource HeadlineLarge}" HorizontalAlignment="Center" VerticalAlignment="Center">7</TextBlock>
-				</Border>
-			</FlipViewItem>
-			<FlipViewItem>
-				<Border Background="{StaticResource UnoPurpleColor}">
-					<TextBlock Style="{StaticResource HeadlineLarge}" HorizontalAlignment="Center" VerticalAlignment="Center">8</TextBlock>
-				</Border>
-			</FlipViewItem>
-		</s:FlipViewItemCollection>
-	</Page.Resources>
+	<StackPanel HorizontalAlignment="Center"
+				VerticalAlignment="Center">
 
-	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-		<local:SamplePageLayout>
-			<local:SamplePageLayout.FluentTemplate>
-				<DataTemplate>
-					<StackPanel>
+		<TextBlock Text="Test PipsPager" />
 
-						<smtx:XamlDisplay UniqueKey="PipsPagerSamplePage_Fluent_HorizontalOrientation"
-										  smtx:XamlDisplayExtensions.Header="PipsPager with horizontal orientation">
+		<muxc:PipsPager />
 
-							<muxc:PipsPager NumberOfPages="15"
-											Orientation="Horizontal"/>
-
-						</smtx:XamlDisplay>
-
-						<smtx:XamlDisplay UniqueKey="PipsPagerSamplePage_Fluent_VerticalOrientation"
-										  smtx:XamlDisplayExtensions.Header="PipsPager with vertical orientation">
-
-							<muxc:PipsPager NumberOfPages="15"
-											Orientation="Vertical"/>
-
-						</smtx:XamlDisplay>
-
-						<smtx:XamlDisplay UniqueKey="PipsPagerSamplePage_Fluent_MaxPips"
-										  smtx:XamlDisplayExtensions.Header="PipsPager with 10 visible glyphs">
-
-							<muxc:PipsPager NumberOfPages="15"
-											MaxVisiblePips="10"/>
-
-						</smtx:XamlDisplay>
-
-						<smtx:XamlDisplay UniqueKey="PipsPagerSamplePage_Fluent_Visibility"
-										  smtx:XamlDisplayExtensions.Header="PipsPager with navigation buttons">
-
-							<muxc:PipsPager NumberOfPages="15"
-											SelectedPageIndex="2"
-											NextButtonVisibility="Visible"
-											PreviousButtonVisibility="Visible"/>
-
-						</smtx:XamlDisplay>
-
-						<smtx:XamlDisplay UniqueKey="PipsPagerSamplePage_Fluent_Visibility_OnPointerOver"
-										  smtx:XamlDisplayExtensions.Header="PipsPager with navigation buttons on hover">
-
-							<muxc:PipsPager NumberOfPages="15"
-											SelectedPageIndex="2"
-											NextButtonVisibility="VisibleOnPointerOver"
-											PreviousButtonVisibility="VisibleOnPointerOver"/>
-
-						</smtx:XamlDisplay>
-
-						<smtx:XamlDisplay UniqueKey="PipsPagerSamplePage_Fluent_CollectionControl"
-										  smtx:XamlDisplayExtensions.Header="PipsPager integrated with a FlipView">
-
-							<StackPanel>
-								<FlipView x:Name="Gallery"
-										  MaxWidth="400"
-										  Height="270"
-										  ItemsSource="{StaticResource items}" />
-
-								<muxc:PipsPager x:Name="FlipViewPipsPager"
-												HorizontalAlignment="Center"
-												Margin="0, 12, 0, 0"
-												NumberOfPages="{Binding Count, Source={StaticResource items}}"
-												SelectedPageIndex="{Binding SelectedIndex, ElementName=Gallery, Mode=TwoWay}"/>
-							</StackPanel>
-						</smtx:XamlDisplay>
-
-					</StackPanel>
-				</DataTemplate>
-			</local:SamplePageLayout.FluentTemplate>
-		</local:SamplePageLayout>
-	</Grid>
+	</StackPanel>
 </Page>

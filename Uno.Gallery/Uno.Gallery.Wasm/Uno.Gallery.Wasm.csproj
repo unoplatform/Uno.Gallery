@@ -119,14 +119,14 @@
 		<PackageReference Include="Uno.Fonts.Fluent" Version="2.3.0-dev.6" />
 		<PackageReference Include="Uno.ShowMeTheXAML" Version="1.1.0" />
 		<PackageReference Include="Uno.ShowMeTheXAML.MSBuild" Version="1.1.0" />
-		<PackageReference Include="Uno.Toolkit.UI.Cupertino" Version="3.1.0-dev.24" />
-		<PackageReference Include="Uno.Toolkit.UI.Material" Version="3.1.0-dev.24" />
-		<PackageReference Include="Uno.UI.Lottie" Version="5.0.0-dev.1728" />
-		<PackageReference Include="Uno.UI.MediaPlayer.WebAssembly" Version="5.0.0-dev.1728" />
-		<PackageReference Include="Uno.UI.WebAssembly" Version="5.0.0-dev.1728" />
-		<PackageReference Include="Uno.UI.RemoteControl" Version="5.0.0-dev.1728" Condition="'$(Configuration)'=='Debug'" />
-		<PackageReference Include="Uno.Wasm.Bootstrap" Version="8.0.0-dev.218" />
-		<PackageReference Include="Uno.Wasm.Bootstrap.DevServer" Version="8.0.0-dev.218" />
+		<PackageReference Include="Uno.Toolkit.UI.Cupertino" Version="4.0.0-dev.58" />
+		<PackageReference Include="Uno.Toolkit.UI.Material" Version="4.0.0-dev.58" />
+		<PackageReference Include="Uno.UI.Lottie" Version="5.0.0-dev.1732" />
+		<PackageReference Include="Uno.UI.MediaPlayer.WebAssembly" Version="5.0.0-dev.1732" />
+		<PackageReference Include="Uno.UI.WebAssembly" Version="5.0.0-dev.1732" />
+		<PackageReference Include="Uno.UI.RemoteControl" Version="5.0.0-dev.1732" Condition="'$(Configuration)'=='Debug'" />
+		<PackageReference Include="Uno.Wasm.Bootstrap" Version="8.0.0-dev.230" />
+		<PackageReference Include="Uno.Wasm.Bootstrap.DevServer" Version="8.0.0-dev.230" />
 		<PackageReference Include="Microsoft.TypeScript.Compiler" Version="3.1.5">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
@@ -135,7 +135,7 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Uno.UI.Adapter.Microsoft.Extensions.Logging" Version="5.0.0-dev.1728" />
+		<PackageReference Include="Uno.UI.Adapter.Microsoft.Extensions.Logging" Version="5.0.0-dev.1732" />
 		<PackageReference Include="Uno.Core.Extensions.Disposables" Version="4.0.1" />
 		<PackageReference Include="Uno.Core.Extensions.Compatibility" Version="4.0.1" />
 
