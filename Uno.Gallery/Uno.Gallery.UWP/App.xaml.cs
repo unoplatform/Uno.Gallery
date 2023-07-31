@@ -300,7 +300,6 @@ namespace Uno.Gallery
 						Icon = categoryInfo != null ? new FontIcon() { Glyph = categoryInfo.Glyph } : null,
 						Content = categoryInfo != null ? categoryInfo.Caption : category.Key.ToString(),
 						SelectsOnInvoked = false,
-						Style = (Style)Resources[$"T{tier++}NavigationViewItemStyle"]
 					}.Apply(NavViewItemVisualStateFix);
 					AutomationProperties.SetAutomationId(parentItem, "Section_" + parentItem.Content);
 
@@ -314,7 +313,6 @@ namespace Uno.Gallery
 						Content = sample.Title,
 						Icon = !string.IsNullOrEmpty(sample.Glyph) ? new FontIcon() { Glyph = sample.Glyph } : null,
 						DataContext = sample,
-						Style = (Style)Resources[$"T{tier}NavigationViewItemStyle"]
 					}.Apply(NavViewItemVisualStateFix);
 					AutomationProperties.SetAutomationId(item, "Section_" + item.Content);
 
