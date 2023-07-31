@@ -51,7 +51,7 @@
 		<PackageReference Include="Uno.Diagnostics.Eventing" Version="2.1.0-dev.1" />
 		<PackageReference Include="Uno.ShowMeTheXAML" Version="1.1.0" />
 		<PackageReference Include="Uno.ShowMeTheXAML.MSBuild" Version="1.1.0" />
-		<PackageReference Include="Uno.Toolkit.UI.Cupertino" Version="3.1.0-dev.24" />
+		<PackageReference Include="Uno.Toolkit.UI.Cupertino" Version="3.1.0-dev.31" />
 		<PackageReference Include="Uno.Toolkit.UI.Material" Version="3.1.0-dev.24" />
 		<PackageReference Include="Uno.UI.Lottie" Version="5.0.0-dev.1728" />
 		<PackageReference Include="Uno.Core.Extensions.Disposables" Version="4.0.1" />
