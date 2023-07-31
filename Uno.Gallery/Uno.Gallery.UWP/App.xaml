@@ -37,7 +37,6 @@
 				<ResourceDictionary Source="Views/Styles/FluentPaletteView.xaml" />
 				<ResourceDictionary Source="Views/Styles/FontIcons.xaml" />
 				<ResourceDictionary Source="Views/Styles/InfoBadge.xaml" />
-				<ResourceDictionary Source="Views/Styles/NavigationView.xaml" />
 				<ResourceDictionary Source="Views/Styles/NavigationViewItemHeader.xaml" />
 				<ResourceDictionary Source="Views/Styles/OverviewSampleView.xaml" />
 				<ResourceDictionary Source="Views/Styles/Path.xaml" />
