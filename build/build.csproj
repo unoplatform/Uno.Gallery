@@ -59,7 +59,7 @@
 			<_ManifestPath>$(_SourceBasePath).Droid/Properties/AndroidManifest.xml</_ManifestPath>
 			<_PlistFilePath>$(_SourceBasePath).iOS/Info.plist</_PlistFilePath>
 			<_macPlistFilePath>$(_SourceBasePath).macOS/Info.plist</_macPlistFilePath>
-			<_AppxManifestPath>$(_SourceBasePath).UWP/Package.appxmanifest</_AppxManifestPath>
+			<_AppxManifestPath>$(_SourceBasePath).Windows/Package.appxmanifest</_AppxManifestPath>
 			
 			<_mobileSourceBasePath>../$(AppName)/$(AppName).Mobile</_mobileSourceBasePath>
 			<_MobileAndroidManifestPath>$(_mobileSourceBasePath)/Android/AndroidManifest.xml</_MobileAndroidManifestPath>
@@ -151,23 +151,23 @@
                             XPath="//plist/dict/key[text() = 'CFBundleVersion']/following-sibling::string[1]"
                             Value="$(_AppleBuildNumber)" />
 
-		<!-- UWP -->
+		<!-- Windows -->
 		<ItemGroup>
 			<_Major Include="$(_AppVersion.Split('.')[0])" />
 			<_Minor Include="$(_AppVersion.Split('.')[1])" />
 			<_Revision Include="$(_AppVersion.Split('.')[2])" />
 		</ItemGroup>
 
-		<!-- Forcing the inclusion of the build number in UWP as the standard format is Major.Minor.Build.Revision -->
+		<!-- Forcing the inclusion of the build number in Windows as the standard format is Major.Minor.Build.Revision -->
 		<!-- Not doing this makes it impossible to update a package unless the version is updated -->
 		<PropertyGroup>
-			<_UWPVersion>@(_Major).@(_Minor).$(_BuildNumber).@(_Revision)</_UWPVersion>
+			<_WindowsVersion>@(_Major).@(_Minor).$(_BuildNumber).@(_Revision)</_WindowsVersion>
 		</PropertyGroup>
 
 		<XmlPoke Condition="Exists('$(_AppxManifestPath)')"
                      XmlInputPath="$(_AppxManifestPath)"
                      Query="/x:Package/x:Identity/@Version"
-                     Value="$(_UWPVersion)"
+                     Value="$(_WindowsVersion)"
                      Namespaces="$(_WindowsNamespace)" />
 	</Target>
 

@@ -12,7 +12,7 @@ namespace Uno.Gallery.Wasm
 			// Ask the browser to preload these fonts to avoid relayouting content
 			FontFamilyHelper.PreloadAsync("Symbols");
 
-            Windows.UI.Xaml.Application.Start(_ => _app = new App());
+            Microsoft.UI.Xaml.Application.Start(_ => _app = new App());
 
 			return 0;
 		}
