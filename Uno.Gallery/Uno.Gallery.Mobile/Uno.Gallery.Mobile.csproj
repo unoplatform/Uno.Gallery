@@ -31,7 +31,7 @@
 		<PackageReference Include="Uno.Cupertino.WinUI" Version="3.0.0-dev.322" />
 		<PackageReference Include="Uno.Extensions.Logging.OSLog" Version="1.4.0" />
 		<PackageReference Include="Uno.Fonts.Fluent" Version="2.3.0-dev.6" />
-		<PackageReference Include="Uno.Material.WinUI" Version="3.0.0-dev.322" />
+		<PackageReference Include="Uno.Material.WinUI" Version="3.0.0-dev.325" />
 		<PackageReference Include="Uno.ShowMeTheXAML" Version="2.0.0-dev0012" />
 		<PackageReference Include="Uno.ShowMeTheXAML.MSBuild" Version="2.0.0-dev0012" />
 		<PackageReference Include="Uno.WinUI" Version="5.0.0-dev.1728" />

@@ -21,7 +21,7 @@
 		<!-- Note that for WebAssembly version 1.1.1 of the console logger required -->
 		<PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="6.0.0" />
-		<PackageReference Include="Uno.Material.WinUI" Version="3.0.0-dev.322" />
+		<PackageReference Include="Uno.Material.WinUI" Version="3.0.0-dev.325" />
 		<PackageReference Include="Uno.ShowMeTheXAML" Version="2.0.0-dev0012" />
 		<PackageReference Include="Uno.ShowMeTheXAML.MSBuild" Version="2.0.0-dev0012" />
 		<PackageReference Include="Uno.Toolkit.WinUI.Cupertino" Version="4.0.0-dev.58" />
