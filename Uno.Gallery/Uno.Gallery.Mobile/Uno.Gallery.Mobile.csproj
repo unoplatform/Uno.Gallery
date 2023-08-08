@@ -29,6 +29,7 @@
 	<ItemGroup>
 		<PackageReference Include="Uno.CommunityToolkit.WinUI.UI.Controls" Version="7.1.100" />
 		<PackageReference Include="Uno.Extensions.Logging.OSLog" Version="1.4.0" />
+<<<<<<< HEAD
 		<PackageReference Include="Uno.Fonts.Fluent" Version="2.2.2" />
 		<PackageReference Include="Uno.ShowMeTheXAML" Version="2.0.0-dev0015" />
 		<PackageReference Include="Uno.ShowMeTheXAML.MSBuild" Version="2.0.0-dev0015" />
@@ -38,6 +39,15 @@
 		<PackageReference Include="Uno.UI.Adapter.Microsoft.Extensions.Logging" Version="4.9.45" />
 		<PackageReference Include="Uno.Toolkit.WinUI.Cupertino" Version="3.0.5" />
 		<PackageReference Include="Uno.Toolkit.WinUI.Material" Version="3.0.5" />
+=======
+		<PackageReference Include="Uno.Fonts.Fluent" Version="2.3.0-dev.6" />
+		<PackageReference Include="Uno.Material.WinUI" Version="3.0.0-dev.325" />
+		<PackageReference Include="Uno.ShowMeTheXAML" Version="2.0.0-dev0012" />
+		<PackageReference Include="Uno.ShowMeTheXAML.MSBuild" Version="2.0.0-dev0012" />
+		<PackageReference Include="Uno.WinUI" Version="5.0.0-dev.1728" />
+		<PackageReference Include="Uno.WinUI.RemoteControl" Version="5.0.0-dev.1728" Condition="'$(Configuration)'=='Debug'" />
+		<PackageReference Include="Uno.UI.Adapter.Microsoft.Extensions.Logging" Version="5.0.0-dev.1728" />
+>>>>>>> 5e7ca32 (build: update material)
 		<PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="6.0.0" />
 		<PackageReference Include="Uno.Diagnostics.Eventing" Version="2.1.0-dev.1" />
