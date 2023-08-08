@@ -2,7 +2,6 @@
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml;
 using Windows.Foundation.Metadata;
-using Windows.UI.Xaml.Controls;
 
 namespace Uno.Gallery.Views.Samples
 {
@@ -15,7 +14,7 @@ namespace Uno.Gallery.Views.Samples
 			Loaded += MediaPlayerElementSamplePage_Loaded;
 		}
 
-		private void MediaPlayerElementSamplePage_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+		private void MediaPlayerElementSamplePage_Loaded(object sender, RoutedEventArgs e)
 		{
 			if (!ApiInformation.IsPropertyPresent("Windows.Media.Playback.MediaPlaybackList", "Items"))
 			{
@@ -23,8 +22,8 @@ namespace Uno.Gallery.Views.Samples
 				TextBlock textBlockSampleButton5 = (TextBlock)LocalSamplePageLayout.FindName("LaunchMediaPlayerElementSampleTextBlock5");
 				if (buttonSampleButton5 != null && textBlockSampleButton5 != null)
 				{
-					buttonSampleButton5.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
-					textBlockSampleButton5.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+					buttonSampleButton5.Visibility = Visibility.Collapsed;
+					textBlockSampleButton5.Visibility = Visibility.Collapsed;
 				}
 			}
 
