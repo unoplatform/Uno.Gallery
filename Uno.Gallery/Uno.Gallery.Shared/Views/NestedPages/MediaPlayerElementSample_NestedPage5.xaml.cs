@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MediaPlayerLocal = Windows.Media.Playback.MediaPlayer;
+using System;
 using System.Collections.Generic;
 using Windows.Foundation.Metadata;
 using Windows.Media.Core;
@@ -36,7 +37,7 @@ namespace Uno.Gallery.Views.NestedPages
 			{
 				if (MediaPlayerElementSample5.MediaPlayer == null)
 				{
-					MediaPlayerElementSample5.SetMediaPlayer(new Windows.Media.Playback.MediaPlayer());
+					MediaPlayerElementSample5.SetMediaPlayer(new MediaPlayerLocal());
 				}
 				MediaPlayerElementSample5.Source = MediaSource.CreateFromUri(new Uri("https://uno-assets.platform.uno/tests/videos/Mobile_Development_in_VS_Code_with_Uno_Platform_orDotNetMAUI.mp4"));
 			}

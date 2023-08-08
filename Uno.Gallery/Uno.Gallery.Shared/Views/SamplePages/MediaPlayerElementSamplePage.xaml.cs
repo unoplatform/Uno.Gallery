@@ -14,7 +14,7 @@ namespace Uno.Gallery.Views.Samples
 			Loaded += MediaPlayerElementSamplePage_Loaded;
 		}
 
-		private void MediaPlayerElementSamplePage_Loaded(object sender, RoutedEventArgs e)
+		private void MediaPlayerElementSamplePage_Loaded(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
 		{
 			if (!ApiInformation.IsPropertyPresent("Windows.Media.Playback.MediaPlaybackList", "Items"))
 			{
