@@ -47,6 +47,11 @@
 		<PackageReference Include="Uno.Core.Extensions.Disposables" Version="4.0.1" />
 		<PackageReference Include="Uno.Core.Extensions.Compatibility" Version="4.0.1" />
 	</ItemGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='Debug' or '$(IsUiAutomationMappingEnabled)'=='True'">
+		<IsUiAutomationMappingEnabled>True</IsUiAutomationMappingEnabled>
+		<DefineConstants>$(DefineConstants);USE_UITESTS</DefineConstants>
+	</PropertyGroup>
 	
 	<Choose>
 		<When Condition="'$(TargetFramework)'=='net7.0-android'">
@@ -89,11 +94,6 @@
 			<PropertyGroup Condition="'$(Configuration)'=='Release' and '$(System_PullRequest_IsFork)'!='True'">
 				<CodesignKey>iPhone Distribution</CodesignKey>
 				<RuntimeIdentifier>ios-arm64</RuntimeIdentifier>
-			</PropertyGroup>
-			
-			<PropertyGroup Condition="'$(Configuration)'=='Debug' or '$(IsUiAutomationMappingEnabled)'=='True'">
-				<IsUiAutomationMappingEnabled>True</IsUiAutomationMappingEnabled>
-				<DefineConstants>$(DefineConstants);USE_UITESTS</DefineConstants>
 			</PropertyGroup>
 
 			<ItemGroup Condition="'$(Configuration)'=='Debug' or '$(IsUiAutomationMappingEnabled)'=='True'">
