@@ -8,32 +8,25 @@ steps:
   inputs:
     secureFile: nventive.jks
 
-- task: UseDotNet@2
-  condition: eq(variables['IsCanaryBranch'], true)
-  retryCountOnTaskFailure: 3
-  inputs:
-    packageType: runtime
-    version: 3.1.3
-
 - template: templates/gitversion.yml
 
 - script: |
     cd $(build.sourcesdirectory)/Uno.Gallery/Uno.Gallery.Mobile
-    dotnet publish -f:net6.0-android -c:Release "/p:InformationalVersion=%GITVERSION_InformationalVersion%" /p:AndroidSigningKeyStore=$(keyStore.secureFilePath) /p:AndroidSigningStorePass=$(AndroidSigningStorePass) /p:AndroidSigningKeyPass=$(AndroidSigningKeyPass) /p:AndroidSigningKeyAlias=$(AndroidSigningKeyAlias) /p:AndroidKeyStore=true /bl:$(build.artifactstagingdirectory)/build-$(BuildForPlayStore).binlog 
-  displayName: 'Build Android Package (net6)'
+    dotnet publish -f:net7.0-android -c:Release "/p:InformationalVersion=%GITVERSION_InformationalVersion%" /p:AndroidSigningKeyStore=$(keyStore.secureFilePath) /p:AndroidSigningStorePass=$(AndroidSigningStorePass) /p:AndroidSigningKeyPass=$(AndroidSigningKeyPass) /p:AndroidSigningKeyAlias=$(AndroidSigningKeyAlias) /p:AndroidKeyStore=true /bl:$(build.artifactstagingdirectory)/build-$(BuildForPlayStore).binlog 
+  displayName: 'Build Android Package'
   condition: eq(variables['System.PullRequest.IsFork'],'False')
 
 - script: |
     cd $(build.sourcesdirectory)/Uno.Gallery/Uno.Gallery.Mobile
-    dotnet publish -f:net6.0-android -c:Release "/p:InformationalVersion=%GITVERSION_InformationalVersion%" /p:AndroidKeyStore=False /bl:$(build.artifactstagingdirectory)/build-$(BuildForPlayStore).binlog 
-  displayName: 'Build Android Package (Fork - net6)'
+    dotnet publish -f:net7.0-android -c:Release "/p:InformationalVersion=%GITVERSION_InformationalVersion%" /p:AndroidKeyStore=False /bl:$(build.artifactstagingdirectory)/build-$(BuildForPlayStore).binlog 
+  displayName: 'Build Android Package (Fork)'
   condition: eq(variables['System.PullRequest.IsFork'],'True')
 
 - task: CopyFiles@2
-  displayName: 'Publish Android net6 Binaries'
+  displayName: 'Publish Android netcore Binaries'
   retryCountOnTaskFailure: 3
   inputs:
-    SourceFolder: $(build.sourcesdirectory)/Uno.Gallery/Uno.Gallery.Mobile/bin/Release/net6.0-android
+    SourceFolder: $(build.sourcesdirectory)/Uno.Gallery/Uno.Gallery.Mobile/bin/Release/net7.0-android
     Contents: |
       **/*.aab
       **/*.apk

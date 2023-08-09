@@ -12,12 +12,10 @@ export UNO_UITEST_PROJECT=$BUILD_SOURCESDIRECTORY/Uno.Gallery/Uno.Gallery.UITest
 export UNO_UITEST_LOGFILE=$BUILD_ARTIFACTSTAGINGDIRECTORY/screenshots/wasm/nunit-log.txt
 export UNO_UITEST_WASM_PROJECT=$BUILD_SOURCESDIRECTORY/Uno.Gallery/Uno.Gallery.Wasm/Uno.Gallery.Wasm.csproj
 export UNO_UITEST_WASM_OUTPUT_PATH=$BUILD_SOURCESDIRECTORY/Uno.Gallery/Uno.Gallery.Wasm/bin/Release/net7.0/dist/
-export UNO_UITEST_NUNIT_VERSION=3.11.1
-export UNO_UITEST_NUGET_URL=https://dist.nuget.org/win-x86-commandline/v5.7.0/nuget.exe
+export UITEST_TEST_TIMEOUT=60m
 
 cd $BUILD_SOURCESDIRECTORY
 
-msbuild /r /p:Configuration=Release $UNO_UITEST_PROJECT
 dotnet build /r /p:Configuration=Release $UNO_UITEST_WASM_PROJECT /p:IsUiAutomationMappingEnabled=True /bl:$UNO_UITEST_SCREENSHOT_PATH/msbuild.binlog
 
 cd $BUILD_SOURCESDIRECTORY/build
@@ -25,8 +23,6 @@ mkdir -p tools
 
 npm i chromedriver@102.0.0
 npm i puppeteer@14.1.0
-wget $UNO_UITEST_NUGET_URL
-mono nuget.exe install NUnit.ConsoleRunner -Version $UNO_UITEST_NUNIT_VERSION
 
 # install dotnet serve / Remove as needed
 dotnet tool uninstall dotnet-serve -g || true

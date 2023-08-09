@@ -18,7 +18,7 @@ steps:
 
 - script: |
     cd $(build.sourcesdirectory)/Uno.Gallery/Uno.Gallery.Windows
-    dotnet publish -c Release /p:Platform=$(ApplicationPlatform) /p:AppxPackageDir="Packages/" /p:AppxBundle=Never /p:UapAppxPackageBuildMode=SideloadOnly /p:GenerateAppxPackageOnBuild=true /bl:$(build.artifactstagingdirectory)/build.binlog "/p:InformationalVersion=$GITVERSION_INFORMATIONALVERSION"
+    dotnet publish -c Release /p:Platform=$(ApplicationPlatform) /p:AppxPackageDir="Packages/" /p:AppxBundle=Never /p:UapAppxPackageBuildMode=SideloadOnly /p:GenerateAppxPackageOnBuild=true /bl:$(build.artifactstagingdirectory)/build.binlog "/p:InformationalVersion=$GITVERSION_INFORMATIONALVERSION" 
   displayName: Build project for Release
 
 - task: CopyFiles@2

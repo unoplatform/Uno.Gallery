@@ -1,22 +1,8 @@
 parameters:
   DotNetVersion: '7.0.306'
-  UnoCheck_Version: '1.11.0-dev.2'
-  UnoCheck_Manifest: 'https://raw.githubusercontent.com/unoplatform/uno.check/146b0b4b23d866bef455494a12ad7ffd2f6f2d20/manifests/uno.ui.manifest.json'
+  UnoCheck_Version: '1.13.0'
+  UnoCheck_Manifest: 'https://raw.githubusercontent.com/unoplatform/uno.check/c3b289d7bb16a2a2df7f7f7f848d76fe1e74036d/manifests/uno.ui.manifest.json'
 steps:
-  - task: UseDotNet@2
-    displayName: install .NET 5
-    retryCountOnTaskFailure: 3
-    inputs:
-      version: 5.x
-      installationPath: ${{ parameters.Dotnet_Root }}
-
-  - task: UseDotNet@2
-    displayName: install .NET 3.1
-    retryCountOnTaskFailure: 3
-    inputs:
-      version: 3.1.x
-      installationPath: ${{ parameters.Dotnet_Root }}
-
   # Required until .NET 6 installs properly using UseDotnet
   # using preview builds
   #- bash: |
@@ -43,5 +29,4 @@ steps:
       dotnet tool update --global uno.check --version ${{ parameters.UnoCheck_Version }} --add-source https://api.nuget.org/v3/index.json
       uno-check --ci --non-interactive --fix --skip androidsdk --skip gtk3 --skip xcode --skip vswin --skip vsmac --manifest ${{ parameters.UnoCheck_Manifest }}
     displayName: Install .NET Workloads
-    retryCountOnTaskFailure: 3
     condition: eq(variables['Agent.OS'], 'Darwin')
