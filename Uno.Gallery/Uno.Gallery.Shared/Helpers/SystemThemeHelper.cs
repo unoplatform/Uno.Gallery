@@ -98,8 +98,6 @@ namespace Uno.Gallery.Helpers
 #endif
 		}
 	}
-<<<<<<< HEAD
-=======
 
 #if __WASM__
 	static partial class Interop
@@ -108,5 +106,4 @@ namespace Uno.Gallery.Helpers
 		internal static partial string GetDefaultSystemTheme();
 	}
 #endif
->>>>>>> daa59c9 (chore: move to WinUI/WinAppSDK)
 }

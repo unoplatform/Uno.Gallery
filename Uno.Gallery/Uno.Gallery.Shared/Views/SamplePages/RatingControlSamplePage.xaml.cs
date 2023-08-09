@@ -3,13 +3,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Windows.Input;
 using Uno.Gallery.ViewModels;
-<<<<<<< HEAD:Uno.Gallery/Uno.Gallery.UWP/Views/SamplePages/RatingControlSamplePage.xaml.cs
-using Windows.Devices.Sensors;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-=======
 using Microsoft.UI.Xaml.Controls;
->>>>>>> daa59c9 (chore: move to WinUI/WinAppSDK):Uno.Gallery/Uno.Gallery.Shared/Views/SamplePages/RatingControlSamplePage.xaml.cs
 
 namespace Uno.Gallery.Views.Samples
 {

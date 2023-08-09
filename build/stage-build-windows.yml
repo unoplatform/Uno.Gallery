@@ -10,21 +10,15 @@ steps:
 - template: templates/gitversion.yml
 - template: templates/canary-updater.yml
 
-<<<<<<< HEAD:build/stage-build-uwp.yml
-- task: MSBuild@1
-  displayName: Build project
-  retryCountOnTaskFailure: 3
-=======
 - task: UseDotNet@2
   displayName: 'Use .NET'
->>>>>>> daa59c9 (chore: move to WinUI/WinAppSDK):build/stage-build-windows.yml
   inputs:
     packageType: 'sdk'
     version: '7.0.306'
 
 - script: |
     cd $(build.sourcesdirectory)/Uno.Gallery/Uno.Gallery.Windows
-    dotnet publish -c Release /p:Platform=$(ApplicationPlatform) /p:AppxPackageDir="Packages/" /p:AppxBundle=Never /p:UapAppxPackageBuildMode=SideloadOnly /p:GenerateAppxPackageOnBuild=true /bl:$(build.artifactstagingdirectory)/build.binlog "/p:InformationalVersion=$GITVERSION_INFORMATIONALVERSION" 
+    dotnet publish -c Release /p:Platform=$(ApplicationPlatform) /p:AppxPackageDir="Packages/" /p:AppxBundle=Never /p:UapAppxPackageBuildMode=SideloadOnly /p:GenerateAppxPackageOnBuild=true /bl:$(build.artifactstagingdirectory)/build.binlog "/p:InformationalVersion=$GITVERSION_INFORMATIONALVERSION"
   displayName: Build project for Release
 
 - task: CopyFiles@2

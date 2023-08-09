@@ -108,8 +108,6 @@ namespace ShowMeTheXAML
 
 		#endregion
 
-<<<<<<< HEAD
-=======
 		#region Property: Options
 		public static DependencyProperty OptionsProperty { get; } = DependencyProperty.RegisterAttached(
 			"Options",
@@ -121,7 +119,6 @@ namespace ShowMeTheXAML
 		public static void SetOptions(XamlDisplay obj, object value) => obj.SetValue(OptionsProperty, value);
 		#endregion
 
->>>>>>> daa59c9 (chore: move to WinUI/WinAppSDK)
 		private static void OnIgnorePathChanged(XamlDisplay sender, DependencyPropertyChangedEventArgs e)
 		{
 			sender.RegisterPropertyChangedCallback(XamlDisplay.XamlProperty, OnXamlChanged);
@@ -140,7 +137,7 @@ namespace ShowMeTheXAML
 					return;
 				}
 
-				SetIsXamlDirty(target, false); 
+				SetIsXamlDirty(target, false);
 				var ignorePath = GetIgnorePath(target);
 				var formatter = new PrettyXamlFormatter() { IgnorePath = ignorePath };
 				var xaml = formatter.FormatXaml(target.Xaml);

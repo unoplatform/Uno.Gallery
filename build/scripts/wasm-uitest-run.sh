@@ -7,14 +7,8 @@ export UNO_UITEST_DRIVERPATH_CHROME=$BUILD_SOURCESDIRECTORY/build/node_modules/c
 export UNO_UITEST_CHROME_BINARY_PATH=$BUILD_SOURCESDIRECTORY/build/node_modules/puppeteer/.local-chromium/linux-991974/chrome-linux/chrome
 export UNO_UITEST_SCREENSHOT_PATH=$BUILD_ARTIFACTSTAGINGDIRECTORY/screenshots/wasm
 export UNO_UITEST_PLATFORM=Browser
-<<<<<<< HEAD
-export UNO_UITEST_CHROME_CONTAINER_MODE=true
-export UNO_UITEST_PROJECT=$BUILD_SOURCESDIRECTORY/Uno.Gallery/Uno.Gallery.UITest/Uno.Gallery.UITest.csproj
-export UNO_UITEST_BINARY=$BUILD_SOURCESDIRECTORY/Uno.Gallery/Uno.Gallery.UITest/bin/Release/net47/Uno.Gallery.UITest.dll
-=======
 # export UNO_UITEST_CHROME_CONTAINER_MODE=true
 export UNO_UITEST_PROJECT=$BUILD_SOURCESDIRECTORY/Uno.Gallery/Uno.Gallery.UITest
->>>>>>> daa59c9 (chore: move to WinUI/WinAppSDK)
 export UNO_UITEST_LOGFILE=$BUILD_ARTIFACTSTAGINGDIRECTORY/screenshots/wasm/nunit-log.txt
 export UNO_UITEST_WASM_PROJECT=$BUILD_SOURCESDIRECTORY/Uno.Gallery/Uno.Gallery.Wasm/Uno.Gallery.Wasm.csproj
 export UNO_UITEST_WASM_OUTPUT_PATH=$BUILD_SOURCESDIRECTORY/Uno.Gallery/Uno.Gallery.Wasm/bin/Release/net7.0/dist/
@@ -42,11 +36,6 @@ export PATH="$PATH:$BUILD_SOURCESDIRECTORY/build/tools"
 
 mkdir -p $UNO_UITEST_SCREENSHOT_PATH
 
-<<<<<<< HEAD
-mono $BUILD_SOURCESDIRECTORY/build/NUnit.ConsoleRunner.$UNO_UITEST_NUNIT_VERSION/tools/nunit3-console.exe \
-  --trace=Verbose --inprocess --agents=1 --workers=1 \
-  $UNO_UITEST_BINARY || true
-=======
 # Start the server
 dotnet-serve -p 5000 -d "$UNO_UITEST_WASM_OUTPUT_PATH" &
 #dotnet run --project $UNO_UITEST_WASM_PROJECT -c Release --no-build &
@@ -66,4 +55,3 @@ dotnet test \
 	|| true
 
 kill %%
->>>>>>> daa59c9 (chore: move to WinUI/WinAppSDK)

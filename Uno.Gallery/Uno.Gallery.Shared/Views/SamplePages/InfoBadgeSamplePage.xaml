@@ -13,24 +13,11 @@
 			<local:SamplePageLayout.DesignAgnosticTemplate>
 				<DataTemplate>
 					<StackPanel>
-						<smtx:XamlDisplay UniqueKey="InfoBadgeSamplePage_Sample_Styles"
-										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\UserControl\Grid\ListView"
-										  smtx:XamlDisplayExtensions.Header="InfoBadge in ListViewItem">
-							<UserControl>
-								<Grid HorizontalAlignment="Stretch"
-									  ColumnSpacing="20"
-									  RowSpacing="20">
-									<Grid.RowDefinitions>
-										<RowDefinition Height="Auto" />
-										<RowDefinition Height="Auto" />
-									</Grid.RowDefinitions>
 
-<<<<<<< HEAD:Uno.Gallery/Uno.Gallery.UWP/Views/SamplePages/InfoBadgeSamplePage.xaml
-									<Grid.ColumnDefinitions>
-										<ColumnDefinition Width="*" />
-										<ColumnDefinition Width="*" />
-									</Grid.ColumnDefinitions>
-=======
+						<smtx:XamlDisplay UniqueKey="InfoBadgeSamplePage_Sample_Styles"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\Grid"
+										  smtx:XamlDisplayExtensions.Header="InfoBadge in ListViewItem">
+
 							<Grid>
 								<ListView>
 									<ListViewItem>
@@ -75,135 +62,42 @@
 									</ListViewItem>
 								</ListView>
 							</Grid>
->>>>>>> daa59c9 (chore: move to WinUI/WinAppSDK):Uno.Gallery/Uno.Gallery.Shared/Views/SamplePages/InfoBadgeSamplePage.xaml
 
-									<VisualStateManager.VisualStateGroups>
-										<VisualStateGroup>
-											<VisualState x:Name="WideState">
-												<VisualState.StateTriggers>
-													<AdaptiveTrigger MinWindowWidth="860" />
-												</VisualState.StateTriggers>
-												<VisualState.Setters>
-													<Setter Target="infoBadges.(Grid.Column)"
-															Value="0" />
-													<Setter Target="sideBar.(Grid.Column)"
-															Value="1" />
-													<Setter Target="sideBar.(Grid.RowSpan)"
-															Value="2" />
-													<Setter Target="infoBadges.(Grid.RowSpan)"
-															Value="2" />
-													<Setter Target="sideBar.HorizontalAlignment"
-															Value="Right" />
-												</VisualState.Setters>
-											</VisualState>
-											<VisualState x:Name="NarrowState">
-												<VisualState.StateTriggers>
-													<AdaptiveTrigger MinWindowWidth="0" />
-												</VisualState.StateTriggers>
-												<VisualState.Setters>
-													<Setter Target="infoBadges.(Grid.Row)"
-															Value="0" />
-													<Setter Target="sideBar.(Grid.Row)"
-															Value="1" />
-													<Setter Target="sideBar.(Grid.Column)"
-															Value="0" />
-													<Setter Target="sideBar.(Grid.ColumnSpan)"
-															Value="2" />
-													<Setter Target="infoBadges.(Grid.ColumnSpan)"
-															Value="2" />
-													<Setter Target="sideBar.HorizontalAlignment"
-															Value="Stretch" />
-												</VisualState.Setters>
-											</VisualState>
-										</VisualStateGroup>
-									</VisualStateManager.VisualStateGroups>
+							<smtx:XamlDisplayExtensions.Options>
+								<StackPanel Spacing="8">
+									<muxc:NumberBox Minimum="-1"
+													Maximum="999"
+													Value="{Binding Data.NumericValue, Mode=TwoWay}">
+										<muxc:NumberBox.Header>
+											<TextBlock>
+												<Run Text="Numeric value: " />
+												<Run Text="{Binding Data.NumericValue, Mode=OneWay}" />
+											</TextBlock>
+										</muxc:NumberBox.Header>
+									</muxc:NumberBox>
 
-									<ListView x:Name="infoBadges">
-										<ListViewItem>
-											<StackPanel Orientation="Horizontal">
-												<TextBlock Text="Numeric badge" />
-												<muxc:InfoBadge VerticalAlignment="Center"
-																Value="{Binding Data.NumericValue, Mode=OneWay}"
-																Opacity="{Binding Data.Opacity, Mode=OneWay}"
-																Style="{Binding Data.BadgeStyle, Mode=OneWay}" />
-											</StackPanel>
-										</ListViewItem>
-										<ListViewItem>
-											<StackPanel Orientation="Horizontal">
-												<TextBlock Text="Icon badge" />
-												<muxc:InfoBadge Style="{Binding Data.BadgeStyle, Mode=OneWay}"
-																Padding="2"
-																Opacity="{Binding Data.Opacity, Mode=OneWay}">
-													<muxc:InfoBadge.IconSource>
-														<muxc:FontIconSource FontFamily="{ThemeResource SymbolThemeFontFamily}"
-																			 Glyph="&#xE117;" />
-													</muxc:InfoBadge.IconSource>
-												</muxc:InfoBadge>
-											</StackPanel>
-										</ListViewItem>
-										<ListViewItem>
-											<StackPanel Orientation="Horizontal">
-												<TextBlock Text="Image badge" />
-												<muxc:InfoBadge Style="{StaticResource InfoBadgeStyle_Image}"
-																Width="18"
-																Height="18"
-																Opacity="{Binding Data.Opacity, Mode=OneWay}" />
-											</StackPanel>
-										</ListViewItem>
-										<ListViewItem>
-											<StackPanel Orientation="Horizontal">
-												<TextBlock Text="Dot badge" />
-												<muxc:InfoBadge Style="{Binding Data.BadgeStyle, Mode=OneWay}"
-																Width="4"
-																Height="4"
-																Opacity="{Binding Data.Opacity, Mode=OneWay}" />
-											</StackPanel>
-										</ListViewItem>
-									</ListView>
+									<ComboBox SelectedItem="{Binding Data.SelectedStyle, Mode=TwoWay}"
+											  Header="Style"
+											  PlaceholderText="Select the style">
+										<x:String>None</x:String>
+										<x:String>Success</x:String>
+										<x:String>Attention</x:String>
+										<x:String>Critical</x:String>
+									</ComboBox>
 
-									<Border x:Name="sideBar"
-											Grid.Column="1"
-											HorizontalAlignment="Right"
-											CornerRadius="8"
-											Padding="16"
-											MinWidth="200"
-											Background="{ThemeResource CardBackgroundFillColorDefaultBrush}">
-										<StackPanel Spacing="8">
-											<muxc:NumberBox Minimum="-1"
-															Maximum="999"
-															Value="{Binding Data.NumericValue, Mode=TwoWay}">
-												<muxc:NumberBox.Header>
-													<TextBlock>
-														<Run Text="Numeric value: " />
-														<Run Text="{Binding Data.NumericValue, Mode=OneWay}" />
-													</TextBlock>
-												</muxc:NumberBox.Header>
-											</muxc:NumberBox>
-
-											<ComboBox SelectedItem="{Binding Data.SelectedStyle, Mode=TwoWay}"
-													  Header="Style"
-													  PlaceholderText="Select the style">
-												<x:String>None</x:String>
-												<x:String>Success</x:String>
-												<x:String>Attention</x:String>
-												<x:String>Critical</x:String>
-											</ComboBox>
-
-											<Slider Minimum="0"
-													Maximum="1"
-													Value="{Binding Data.Opacity, Mode=TwoWay}"
-													StepFrequency="0.1">
-												<Slider.Header>
-													<TextBlock>
-														<Run Text="Opacity: " />
-														<Run Text="{Binding Data.Opacity, Mode=OneWay}" />
-													</TextBlock>
-												</Slider.Header>
-											</Slider>
-										</StackPanel>
-									</Border>
-								</Grid>
-							</UserControl>
+									<Slider Minimum="0"
+											Maximum="1"
+											Value="{Binding Data.Opacity, Mode=TwoWay}"
+											StepFrequency="0.1">
+										<Slider.Header>
+											<TextBlock>
+												<Run Text="Opacity: " />
+												<Run Text="{Binding Data.Opacity, Mode=OneWay}" />
+											</TextBlock>
+										</Slider.Header>
+									</Slider>
+								</StackPanel>
+							</smtx:XamlDisplayExtensions.Options>
 						</smtx:XamlDisplay>
 
 						<!--GridView can be used instead of the nested StackPanels, but an issue prevents using binding on most platforms https://github.com/unoplatform/uno/issues/11738-->
