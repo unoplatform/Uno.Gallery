@@ -159,6 +159,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Deeplinking\BranchService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Domain\AnalyticsService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Data\Folder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Data\TreeItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\SampleCategoryInfoAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\SampleConditionalAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Data\DividerItem.cs" />
