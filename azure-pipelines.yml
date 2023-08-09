@@ -1,3 +1,43 @@
+trigger:
+  branches:
+    include:
+      - master
+      - beta
+      - release/beta/*
+      - stable
+      - release/stable/*
+      - legacy/*
+
+  paths:
+    include:
+    - '/'
+    exclude:
+    - .dependabot/
+    - .github/
+    # don't trigger the CI if only docs files are changed
+    - doc/*
+    - '**/*.md'
+
+pr: 
+  branches:
+    include:
+      - master
+      - beta
+      - release/beta/*
+      - stable
+      - release/stable/*
+      - legacy/*
+
+  paths:
+    include:
+    - '/'
+    exclude:
+    - .dependabot/
+    - .github/
+    # don't trigger the CI if only docs files are changed
+    - doc/*
+    - '**/*.md'
+
 variables:
   IsLightBuild: $[eq(variables['Build.Reason'], 'PullRequest')]
   IsCanaryBranch: $[startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries/')]
