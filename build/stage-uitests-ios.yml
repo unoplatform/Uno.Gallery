@@ -14,8 +14,7 @@
     clean: true
 
   - template: templates/dotnet-install-mac.yml
-  - template: templates/dotnet-install-windows.yml
-    
+
   - bash: /bin/bash -c "echo '##vso[task.setvariable variable=MD_APPLE_SDK_ROOT;]'${XCODE_ROOT};sudo xcode-select --switch ${XCODE_ROOT}/Contents/Developer"
     displayName: Select Xcode
     

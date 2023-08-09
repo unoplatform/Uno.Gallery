@@ -14,8 +14,6 @@
     clean: true
 
   - template: templates/dotnet-install-mac.yml
-  - template: templates/dotnet-install-windows.yml
-
   - template: templates/canary-updater.yml
 
   - bash: |
