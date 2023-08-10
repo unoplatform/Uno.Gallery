@@ -10,7 +10,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Com.Nostra13.Universalimageloader.Core;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media;
 
 namespace Uno.Gallery.Droid
 {
@@ -21,7 +21,7 @@ namespace Uno.Gallery.Droid
 		HardwareAccelerated = true,
 		Theme = "@style/AppTheme"
 	)]
-	public class Application : Windows.UI.Xaml.NativeApplication
+	public class Application : Microsoft.UI.Xaml.NativeApplication
 	{
 		[DynamicDependency(DynamicallyAccessedMemberTypes.All, "Android.Text.ITextWatcherInvoker", "Mono.Android")] // xamarin/xamarin-android#7097
 		public Application(IntPtr javaReference, JniHandleOwnership transfer)

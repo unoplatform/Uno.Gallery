@@ -4,7 +4,7 @@
   container: unoplatform/wasm-build:3.0
 
   pool:
-    vmImage: 'ubuntu-20.04'
+    vmImage: 'ubuntu-latest'
 
   variables:
     NUGET_PACKAGES: $(build.sourcesdirectory)/.nuget
@@ -28,7 +28,6 @@
     env:
       BUILD_SOURCESDIRECTORY: "$(build.sourcesdirectory)"
       BUILD_ARTIFACTSTAGINGDIRECTORY: "$(build.artifactstagingdirectory)"
-    retryCountOnTaskFailure: 3
     displayName: 'Running build'
 
   - task: CopyFiles@2

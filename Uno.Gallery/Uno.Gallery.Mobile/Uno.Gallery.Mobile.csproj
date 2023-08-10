@@ -1,38 +1,25 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>net6.0-android;net6.0-ios;net6.0-maccatalyst;net6.0-macos</TargetFrameworks>
+		<TargetFrameworks>net7.0-android;net7.0-ios;net7.0-maccatalyst;net7.0-macos</TargetFrameworks>
 		<SingleProject>true</SingleProject>
 		<OutputType>Exe</OutputType>
-		<RuntimeIdentifier Condition="'$(TargetFramework)' == 'net6.0-ios'">iossimulator-x64</RuntimeIdentifier>
-		<RuntimeIdentifier Condition="'$(TargetFramework)' == 'net6.0-maccatalyst'">maccatalyst-x64</RuntimeIdentifier>
-		<RuntimeIdentifier Condition="'$(TargetFramework)' == 'net6.0-macos'">osx-x64</RuntimeIdentifier>
-		<InvariantGlobalization Condition="'$(TargetFramework)' == 'net6.0-maccatalyst'">true</InvariantGlobalization>
+		<RuntimeIdentifier Condition="'$(TargetFramework)' == 'net7.0-ios'">iossimulator-x64</RuntimeIdentifier>
+		<RuntimeIdentifier Condition="'$(TargetFramework)' == 'net7.0-maccatalyst'">maccatalyst-x64</RuntimeIdentifier>
+		<RuntimeIdentifier Condition="'$(TargetFramework)' == 'net7.0-macos'">osx-x64</RuntimeIdentifier>
+		<InvariantGlobalization Condition="'$(TargetFramework)' == 'net7.0-maccatalyst'">true</InvariantGlobalization>
 		<!-- Debugger workaround https://github.com/dotnet/maui-samples/blob/8aa6b8780b12e97b157514c3bdc54bb4a13001cd/HelloMacCatalyst/HelloMacCatalyst.csproj#L7 -->
-		<!-- <MtouchExtraArgs Condition="'$(TargetFramework)' == 'net6.0-maccatalyst'">$(MtouchExtraArgs) -setenv:MONO_THREADS_SUSPEND=preemptive</MtouchExtraArgs> -->
+		<!-- <MtouchExtraArgs Condition="'$(TargetFramework)' == 'net7.0-maccatalyst'">$(MtouchExtraArgs) -setenv:MONO_THREADS_SUSPEND=preemptive</MtouchExtraArgs> -->
 		<!-- Required for C# Hot Reload -->
-		
+
 		<!-- https://github.com/dotnet/runtime/issues/68808 -->
 		<!--<UseInterpreter Condition="'$(Configuration)' == 'Debug'">True</UseInterpreter>-->
 		<IsUnoHead>true</IsUnoHead>
-		<SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net6.0-ios'">14.2</SupportedOSPlatformVersion>
-		<SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net6.0-maccatalyst'">14.0</SupportedOSPlatformVersion>
-		<SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net6.0-android'">21.0</SupportedOSPlatformVersion>
-		<SupportedOSPlatformVersion Condition="'$(TargetFramework)'=='net6.0-macos'">10.14</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net7.0-ios'">14.2</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net7.0-maccatalyst'">14.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net7.0-android'">21.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="'$(TargetFramework)'=='net7.0-macos'">10.14</SupportedOSPlatformVersion>
 		<NoWarn>CA1416;Uno0001</NoWarn>
 	</PropertyGroup>
-	
-	<ItemGroup>
-		<Compile Include="..\Uno.Gallery.UWP\App.xaml.cs" />
-		<ApplicationDefinition Include="..\Uno.Gallery.UWP\App.xaml" Link="App.xaml" Visible="False" />
-		<Page Include="..\Uno.Gallery.UWP\Views\**\*.xaml" Visible="False">
-			<Link>Views\%(RecursiveDir)%(FileName)%(Extension)</Link>
-			<SubType>Designer</SubType>
-			<Generator>MSBuild:Compile</Generator>
-		</Page>
-		<Compile Include="..\Uno.Gallery.UWP\Views\**\*.cs" Visible="False">
-			<Link>Views\%(RecursiveDir)%(FileName)%(Extension)</Link>
-		</Compile>
-	</ItemGroup>
 
 	<ItemGroup>
 		<IncludeXamlNamespaces Include="mobile" Visible="False" />
@@ -40,27 +27,32 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Uno.Microsoft.Toolkit.Uwp.UI.Controls" Version="7.1.11" />
+		<PackageReference Include="Uno.CommunityToolkit.WinUI.UI.Controls" Version="7.1.100" />
 		<PackageReference Include="Uno.Extensions.Logging.OSLog" Version="1.4.0" />
 		<PackageReference Include="Uno.Fonts.Fluent" Version="2.2.2" />
-		<PackageReference Include="Uno.UI" Version="4.10.0-dev.146" />
-		<PackageReference Include="Uno.UI.RemoteControl" Version="4.10.0-dev.146" Condition="'$(Configuration)'=='Debug'" />
-		<PackageReference Include="Uno.UI.Adapter.Microsoft.Extensions.Logging" Version="4.10.0-dev.146" />
+		<PackageReference Include="Uno.ShowMeTheXAML" Version="2.0.0-dev0015" />
+		<PackageReference Include="Uno.ShowMeTheXAML.MSBuild" Version="2.0.0-dev0015" />
+		<PackageReference Include="Uno.WinUI" Version="4.9.45" />
+		<PackageReference Include="Uno.WinUI.Lottie" Version="4.9.45" />
+		<PackageReference Include="Uno.WinUI.RemoteControl" Version="4.9.45" Condition="'$(Configuration)'=='Debug'" />
+		<PackageReference Include="Uno.UI.Adapter.Microsoft.Extensions.Logging" Version="4.9.45" />
+		<PackageReference Include="Uno.Toolkit.WinUI.Cupertino" Version="3.0.5" />
+		<PackageReference Include="Uno.Toolkit.WinUI.Material" Version="3.0.5" />
 		<PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="6.0.0" />
 		<PackageReference Include="Uno.Diagnostics.Eventing" Version="2.1.0-dev.1" />
-		<PackageReference Include="Uno.ShowMeTheXAML" Version="1.1.0" />
-		<PackageReference Include="Uno.ShowMeTheXAML.MSBuild" Version="1.1.0" />
-		<PackageReference Include="Uno.Toolkit.UI.Cupertino" Version="3.0.4" />
-		<PackageReference Include="Uno.Toolkit.UI.Material" Version="3.0.4" />
-		<PackageReference Include="Uno.UI.Lottie" Version="4.10.0-dev.146" />
 		<PackageReference Include="Uno.Core.Extensions.Disposables" Version="4.0.1" />
 		<PackageReference Include="Uno.Core.Extensions.Compatibility" Version="4.0.1" />
 	</ItemGroup>
-	
+
+	<PropertyGroup Condition="'$(Configuration)'=='Debug' or '$(IsUiAutomationMappingEnabled)'=='True'">
+		<IsUiAutomationMappingEnabled>True</IsUiAutomationMappingEnabled>
+		<DefineConstants>$(DefineConstants);USE_UITESTS</DefineConstants>
+	</PropertyGroup>
+
 	<Choose>
-		<When Condition="'$(TargetFramework)'=='net6.0-android'">
-			<PropertyGroup Condition="'$(Configuration)'=='Release' and '$(System_PullRequest_IsFork)'!='True'">
+		<When Condition="'$(TargetFramework)'=='net7.0-android'">
+			<PropertyGroup Condition="'$(Configuration)'=='Release' and '$(System_PullRequest_IsFork)'!='True' and '$(IsUiAutomationMappingEnabled)'==''">
 				<AndroidKeyStore>true</AndroidKeyStore>
 				<AndroidSigningKeyStore>..\Gallery.Droid\calc-prod.keystore</AndroidSigningKeyStore>
 				<AndroidSigningKeyAlias>gallery-prod</AndroidSigningKeyAlias>
@@ -81,24 +73,36 @@
 				<RunAOTCompilation>true</RunAOTCompilation>
 			</PropertyGroup>
 		</When>
-		<When Condition="'$(TargetFramework)'=='net6.0-ios'">
+		<When Condition="'$(TargetFramework)'=='net7.0-ios'">
 			<ItemGroup>
 				<PackageReference Include="Uno.Extensions.Logging.OSLog" Version="1.4.0" />
+			</ItemGroup>
+			<ItemGroup Condition="'$(Configuration)'=='Release'">
+				<TrimmableAssembly Include="CommunityToolkit.WinUI.UI" />
 			</ItemGroup>
 			<PropertyGroup>
 				<MtouchExtraArgs>$(MtouchExtraArgs) --registrar:static --dsym=true</MtouchExtraArgs>
 
 				<!-- https://github.com/xamarin/xamarin-macios/issues/14812 -->
 				<MtouchExtraArgs>$(MtouchExtraArgs) --marshal-objectivec-exceptions:disable</MtouchExtraArgs>
-				
+
 				<InvariantGlobalization>false</InvariantGlobalization>
 			</PropertyGroup>
 			<PropertyGroup Condition="'$(Configuration)'=='Release' and '$(System_PullRequest_IsFork)'!='True'">
 				<CodesignKey>iPhone Distribution</CodesignKey>
 				<RuntimeIdentifier>ios-arm64</RuntimeIdentifier>
 			</PropertyGroup>
+
+			<ItemGroup Condition="'$(Configuration)'=='Debug' or '$(IsUiAutomationMappingEnabled)'=='True'">
+				<PackageReference Include="Xamarin.TestCloud.Agent" Version="0.23.2" />
+			</ItemGroup>
+
+			<ItemGroup>
+				<!-- https://github.com/xamarin/xamarin-macios/issues/18388#issuecomment-1574486065 -->
+				<TrimmableAssembly Include="Microsoft.Toolkit.Uwp.UI" />
+			</ItemGroup>
 		</When>
-		<When Condition="'$(TargetFramework)'=='net6.0-maccatalyst'">
+		<When Condition="'$(TargetFramework)'=='net7.0-maccatalyst'">
 			<ItemGroup>
 				<PackageReference Include="Uno.Extensions.Logging.OSLog" Version="1.4.0" />
 			</ItemGroup>
@@ -107,7 +111,7 @@
 
 				<!-- https://github.com/xamarin/xamarin-macios/issues/14812 -->
 				<MtouchExtraArgs>$(MtouchExtraArgs) --marshal-objectivec-exceptions:disable</MtouchExtraArgs>
-				
+
 				<InvariantGlobalization>false</InvariantGlobalization>
 			</PropertyGroup>
 			<PropertyGroup Condition="'$(Configuration)'=='Release' and '$(System_PullRequest_IsFork)'!='True'">
@@ -128,6 +132,6 @@
 			</PropertyGroup>
 		</When>
 	</Choose>
-	
+
 	<Import Project="..\Uno.Gallery.Shared\Uno.Gallery.Shared.projitems" Label="Shared" />
 </Project>

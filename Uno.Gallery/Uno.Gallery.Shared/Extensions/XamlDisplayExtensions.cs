@@ -10,7 +10,7 @@ using System.Xml.Linq;
 using ShowMeTheXAML;
 using Uno.Extensions;
 using Uno.Gallery;
-using Windows.UI.Xaml;
+using Microsoft.UI.Xaml;
 
 namespace ShowMeTheXAML
 {
@@ -108,6 +108,17 @@ namespace ShowMeTheXAML
 
 		#endregion
 
+		#region Property: Options
+		public static DependencyProperty OptionsProperty { get; } = DependencyProperty.RegisterAttached(
+			"Options",
+			typeof(object),
+			typeof(XamlDisplayExtensions),
+			new PropertyMetadata(null));
+
+		public static object GetOptions(XamlDisplay obj) => (object)obj.GetValue(OptionsProperty);
+		public static void SetOptions(XamlDisplay obj, object value) => obj.SetValue(OptionsProperty, value);
+		#endregion
+
 		private static void OnIgnorePathChanged(XamlDisplay sender, DependencyPropertyChangedEventArgs e)
 		{
 			sender.RegisterPropertyChangedCallback(XamlDisplay.XamlProperty, OnXamlChanged);
@@ -126,7 +137,7 @@ namespace ShowMeTheXAML
 					return;
 				}
 
-				SetIsXamlDirty(target, false); 
+				SetIsXamlDirty(target, false);
 				var ignorePath = GetIgnorePath(target);
 				var formatter = new PrettyXamlFormatter() { IgnorePath = ignorePath };
 				var xaml = formatter.FormatXaml(target.Xaml);

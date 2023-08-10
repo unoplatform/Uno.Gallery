@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Windows.UI;
 using Windows.UI.ViewManagement;
-using Windows.UI.Xaml;
+using Microsoft.UI.Xaml;
 
 namespace Uno.Gallery.Helpers
 {
@@ -87,7 +87,7 @@ namespace Uno.Gallery.Helpers
 			}
 			//OS has no preference or API not implemented, use light as default
 			return ApplicationTheme.Light;
-#elif WINDOWS_UWP
+#elif WINDOWS
 			var settings = new UISettings();
 			var systemBackground = settings.GetColorValue(UIColorType.Background);
 			var black = Color.FromArgb(255, 0, 0, 0);
@@ -98,4 +98,12 @@ namespace Uno.Gallery.Helpers
 #endif
 		}
 	}
+
+#if __WASM__
+	static partial class Interop
+	{
+		[System.Runtime.InteropServices.JavaScript.JSImport("globalThis.Microsoft.UI.Xaml.Application.getDefaultSystemTheme")]
+		internal static partial string GetDefaultSystemTheme();
+	}
+#endif
 }
