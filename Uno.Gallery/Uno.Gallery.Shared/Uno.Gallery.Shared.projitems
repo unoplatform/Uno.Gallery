@@ -173,6 +173,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Design.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\SourceSdk.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\ClipboardExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\ResourceExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\XamlDisplayExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\Disposable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\EnumHelper.cs" />
@@ -180,12 +181,49 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\VisualTreeHelperEx.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Command.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ViewModelBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\SamplePages\LightWeightExtensionSameplePage.xaml.cs" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="$(MSBuildThisFileDirectory)App.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Page Include="$(MSBuildThisFileDirectory)Views\ControlResourcesOverride\Fluent\Button.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\ControlResourcesOverride\Fluent\CheckBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\ControlResourcesOverride\Fluent\RadioButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\ControlResourcesOverride\Fluent\TextBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\ControlResourcesOverride\Material\Button.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\ControlResourcesOverride\Material\CheckBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\ControlResourcesOverride\Material\RadioButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\ControlResourcesOverride\Material\TextBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\SamplePages\LightWeightExtensionSameplePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <_Globbled_Page Include="$(MSBuildThisFileDirectory)**/*.xaml" Exclude="@(Page);@(ApplicationDefinition)">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

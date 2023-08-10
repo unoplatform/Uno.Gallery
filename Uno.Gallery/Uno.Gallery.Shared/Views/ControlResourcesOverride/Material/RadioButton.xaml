@@ -1,0 +1,27 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+	<SolidColorBrush x:Key="RadioButtonForeground" Color="DarkGreen" />
+	<SolidColorBrush x:Key="RadioButtonOuterEllipseStroke" Color="LightGreen" />
+	<SolidColorBrush x:Key="RadioButtonOuterEllipseCheckedStroke" Color="DarkGreen" />
+	<SolidColorBrush x:Key="RadioButtonOuterEllipseFill" Color="LightGreen" />
+	<SolidColorBrush x:Key="RadioButtonOuterEllipseCheckedFill" Color="DarkGreen" />
+
+	<SolidColorBrush x:Key="RadioButtonForegroundPointerOver" Color="DarkRed" />
+	<SolidColorBrush x:Key="RadioButtonOuterEllipseStrokePointerOver" Color="LightPink" />
+	<SolidColorBrush x:Key="RadioButtonOuterEllipseCheckedStrokePointerOver" Color="DarkRed" />
+	<SolidColorBrush x:Key="RadioButtonOuterEllipseFillPointerOver" Color="LightPink" />
+	<SolidColorBrush x:Key="RadioButtonOuterEllipseCheckedFillPointerOver" Color="DarkRed" />
+
+	<SolidColorBrush x:Key="RadioButtonForegroundPressed" Color="DarkBlue" />
+	<SolidColorBrush x:Key="RadioButtonOuterEllipseStrokePressed" Color="LightSteelBlue" />
+	<SolidColorBrush x:Key="RadioButtonOuterEllipseCheckedStrokePressed" Color="DarkBlue" />
+	<SolidColorBrush x:Key="RadioButtonOuterEllipseFillPressed" Color="LightSteelBlue" />
+	<SolidColorBrush x:Key="RadioButtonOuterEllipseCheckedFillPressed" Color="DarkBlue" />
+
+	<SolidColorBrush x:Key="RadioButtonForegroundDisabled" Color="LightSlateGray" />
+	<SolidColorBrush x:Key="RadioButtonOuterEllipseStrokeDisabled" Color="DarkGray" />
+	<SolidColorBrush x:Key="RadioButtonOuterEllipseCheckedStrokeDisabled" Color="LightSlateGray" />
+	<SolidColorBrush x:Key="RadioButtonOuterEllipseFillDisabled" Color="DarkGray" />
+	<SolidColorBrush x:Key="RadioButtonOuterEllipseCheckedFillDisabled" Color="LightSlateGray" />
+</ResourceDictionary>

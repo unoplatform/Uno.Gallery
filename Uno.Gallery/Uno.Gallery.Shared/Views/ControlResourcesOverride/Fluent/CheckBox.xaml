@@ -1,0 +1,33 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+	<!-- Checked state -->
+	<SolidColorBrush x:Key="CheckBoxCheckGlyphForegroundChecked" Color="Teal" />
+	<SolidColorBrush x:Key="CheckBoxBorderBrushChecked" Color="Navy" />
+	<SolidColorBrush x:Key="CheckBoxBackgroundChecked" Color="Maroon" />
+
+	<!-- Checked and pointer over state -->
+	<SolidColorBrush x:Key="CheckBoxCheckGlyphForegroundCheckedPointerOver" Color="Lime" />
+	<SolidColorBrush x:Key="CheckBoxBorderBrushCheckedPointerOver" Color="Olive" />
+	<SolidColorBrush x:Key="CheckBoxBackgroundCheckedPointerOver" Color="Silver" />
+
+	<!-- Checked and pressed state -->
+	<SolidColorBrush x:Key="CheckBoxCheckGlyphForegroundCheckedPressed" Color="Purple" />
+	<SolidColorBrush x:Key="CheckBoxBorderBrushCheckedPressed" Color="Aqua" />
+	<SolidColorBrush x:Key="CheckBoxBackgroundCheckedPressed" Color="Yellow" />
+
+	<!-- Unchecked state -->
+	<SolidColorBrush x:Key="CheckBoxCheckGlyphForegroundUnchecked" Color="Black" />
+	<SolidColorBrush x:Key="CheckBoxBorderBrushUnchecked" Color="White" />
+	<SolidColorBrush x:Key="CheckBoxBackgroundUnchecked" Color="Gray" />
+
+	<!-- Unchecked and pointer over state -->
+	<SolidColorBrush x:Key="CheckBoxCheckGlyphForegroundUncheckedPointerOver" Color="Blue" />
+	<SolidColorBrush x:Key="CheckBoxBorderBrushUncheckedPointerOver" Color="Orange" />
+	<SolidColorBrush x:Key="CheckBoxBackgroundUncheckedPointerOver" Color="Green" />
+
+	<!-- Unchecked and pressed state -->
+	<SolidColorBrush x:Key="CheckBoxCheckGlyphForegroundUncheckedPressed" Color="Red" />
+	<SolidColorBrush x:Key="CheckBoxBorderBrushUncheckedPressed" Color="Cyan" />
+	<SolidColorBrush x:Key="CheckBoxBackgroundUncheckedPressed" Color="Pink" />
+</ResourceDictionary>

@@ -1,0 +1,23 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+	<SolidColorBrush x:Key="FilledButtonForeground" Color="DarkGreen" />
+	<SolidColorBrush x:Key="FilledButtonBackground" Color="LightGreen" />
+	<SolidColorBrush x:Key="FilledButtonBorderBrush" Color="DarkGreen" />
+
+	<SolidColorBrush x:Key="FilledButtonForegroundPointerOver" Color="DarkRed" />
+	<SolidColorBrush x:Key="FilledButtonBackgroundPointerOver" Color="LightPink" />
+	<SolidColorBrush x:Key="FilledButtonBorderBrushPointerOver" Color="DarkRed" />
+
+	<SolidColorBrush x:Key="FilledButtonForegroundPressed" Color="DarkBlue" />
+	<SolidColorBrush x:Key="FilledButtonBackgroundPressed" Color="LightSteelBlue" />
+	<SolidColorBrush x:Key="FilledButtonBorderBrushPressed" Color="DarkBlue" />
+
+	<SolidColorBrush x:Key="FilledButtonForegroundFocused" Color="AntiqueWhite" />
+	<SolidColorBrush x:Key="FilledButtonBackgroundFocused" Color="DarkMagenta" />
+	<SolidColorBrush x:Key="FilledButtonBorderBrushFocused" Color="AntiqueWhite" />
+
+	<SolidColorBrush x:Key="FilledButtonForegroundDisabled" Color="LightSlateGray" />
+	<SolidColorBrush x:Key="FilledButtonBackgroundDisabled" Color="DarkGray" />
+	<SolidColorBrush x:Key="FilledButtonBorderBrushDisabled" Color="LightSlateGray" />
+</ResourceDictionary>

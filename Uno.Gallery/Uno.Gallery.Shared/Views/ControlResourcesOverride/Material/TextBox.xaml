@@ -1,0 +1,18 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+	<!-- Normal State -->
+	<SolidColorBrush x:Key="OutlinedTextBoxBorderBrush" Color="Red" />
+	<SolidColorBrush x:Key="OutlinedTextBoxPlaceholderForeground" Color="Green" />
+	<SolidColorBrush x:Key="OutlinedTextBoxForeground" Color="Orange" />
+
+	<!-- Focused state -->
+	<SolidColorBrush x:Key="OutlinedTextBoxBorderBrushFocused" Color="Lime" />
+	<SolidColorBrush x:Key="OutlinedTextBoxPlaceholderForegroundFocused" Color="Navy" />
+	<SolidColorBrush x:Key="OutlinedTextBoxForegroundFocused" Color="Pink" />
+
+	<!-- Pointer over state -->
+	<StaticResource x:Key="OutlinedTextBoxPlaceholderForegroundPointerOver" ResourceKey="SecondaryLowBrush" />
+	<StaticResource x:Key="OutlinedTextBoxBorderBrushPointerOver" ResourceKey="SecondaryLowBrush" />
+	<StaticResource x:Key="OutlinedTextBoxForegroundPointerOver" ResourceKey="PrimaryBrush" />
+</ResourceDictionary>
