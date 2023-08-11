@@ -7,7 +7,7 @@ steps:
 
   - task: nventiveCanaryUpdater@5
     displayName: 'Canary Update (dev)'
-    condition: startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries/dev')
+    condition: or(startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries/dev'), startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries/4x')
     inputs:
       solution: '$(build.sourcesdirectory)'
       useNuGetOrg: true
