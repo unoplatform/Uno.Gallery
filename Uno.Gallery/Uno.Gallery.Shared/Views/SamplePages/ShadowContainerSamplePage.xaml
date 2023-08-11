@@ -1,0 +1,82 @@
+﻿<Page x:Class="Uno.Gallery.Views.SamplePages.ShadowContainerSamplePage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:local="using:Uno.Gallery"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"
+	  xmlns:utu="using:Uno.Toolkit.UI"
+	  xmlns:um="using:Uno.Material"
+	  xmlns:smtx="using:ShowMeTheXAML"
+	  xmlns:sample="using:Uno.Gallery"
+	  mc:Ignorable="d">
+	<Page.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<!-- Known issue at the moment where we cannot re-initialize MaterialToolkitTheme to override colors with a new palette for other platforms outside of Windows -->
+				<!-- https://github.com/unoplatform/Uno.Themes/issues/1145 -->
+				<!--<MaterialToolkitTheme xmlns="using:Uno.Toolkit.UI.Material"
+									  ColorOverrideSource="ms-appx:///Views/NeumorphicColorsOverride.xaml" />-->
+				<ResourceDictionary Source="../NeumorphicColorsOverride.xaml" />
+				<ResourceDictionary Source="../Styles/NeumorphicStyles.xaml" />
+			</ResourceDictionary.MergedDictionaries>
+		</ResourceDictionary>
+	</Page.Resources>
+
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<local:ContentPageLayout>
+			<StackPanel>
+				<!-- TextBox -->
+				<smtx:XamlDisplay UniqueKey="ShadowContainerSamplePage_TextBox"
+								  smtx:XamlDisplayExtensions.Header="Neumorphic TextBox"
+								  Background="{ThemeResource SurfaceBrush}"
+								  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\WrapPanel">
+
+					<controls:WrapPanel HorizontalSpacing="16"
+										VerticalSpacing="16">
+
+						<StackPanel Spacing="20">
+							<!-- TextBox Enabled -->
+							<TextBlock Text="Enabled"
+									   Style="{StaticResource BodyMedium}" />
+							<TextBox Width="328"
+									 PlaceholderText="Label"
+									 Style="{StaticResource NeumorphicTextBoxStyle}">
+								<um:ControlExtensions.Icon>
+									<SymbolIcon Symbol="Favorite" />
+								</um:ControlExtensions.Icon>
+							</TextBox>
+							<TextBox Width="328"
+									 PlaceholderText="Label"
+									 Style="{StaticResource NeumorphicTextBoxStyle}" />
+							<TextBox Width="328"
+									 Style="{StaticResource NeumorphicTextBoxStyle}" />
+						</StackPanel>
+
+						<StackPanel Spacing="20">
+							<!-- TextBox Disabled -->
+							<TextBlock Text="Disabled"
+									   Style="{StaticResource BodyMedium}" />
+							<TextBox Width="328"
+									 IsEnabled="False"
+									 PlaceholderText="Label"
+									 Style="{StaticResource NeumorphicTextBoxStyle}">
+								<um:ControlExtensions.Icon>
+									<SymbolIcon Symbol="Favorite" />
+								</um:ControlExtensions.Icon>
+							</TextBox>
+							<TextBox Width="328"
+									 IsEnabled="False"
+									 PlaceholderText="Label"
+									 Style="{StaticResource NeumorphicTextBoxStyle}" />
+							<TextBox Width="328"
+									 IsEnabled="False"
+									 Style="{StaticResource NeumorphicTextBoxStyle}" />
+						</StackPanel>
+
+					</controls:WrapPanel>
+				</smtx:XamlDisplay>
+			</StackPanel>
+		</local:ContentPageLayout>
+	</Grid>
+</Page>
