@@ -14,7 +14,7 @@ steps:
       usePrivateFeed: false
       mergeBranch: true
       branchToMerge: legacy/4x
-      nugetUpdaterVersion: 2.3.0-alpha.35
+      nugetUpdaterVersion: 2.3.0-alpha.46
       nugetVersion: dev
       useVersionOverrides: true
       versionOverridesFile: 'build/4x-overrides.json'
