@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<OutputType Condition="'$(Configuration)'=='Release'">WinExe</OutputType>
@@ -27,7 +27,7 @@
 		<PackageReference Include="Uno.Toolkit.Skia.WinUI" Version="4.0.0-dev.67" />
 		<PackageReference Include="Uno.Toolkit.WinUI.Cupertino" Version="4.0.0-dev.67" />
 		<PackageReference Include="Uno.Toolkit.WinUI.Material" Version="4.0.0-dev.67" />		
-		<PackageReference Include="Uno.WinUI.Lottie" Version="5.0.0-dev.1856" />
+		<PackageReference Include="Uno.WinUI.Lottie" Version="5.0.0-dev.1990" />
 		<PackageReference Include="Uno.WinUI.Skia.Gtk" Version="5.0.0-dev.1856" />
 		<PackageReference Include="Uno.WinUI.RemoteControl" Version="5.0.0-dev.1856" Condition="'$(Configuration)'=='Debug'" />
 		<PackageReference Include="Uno.UI.Adapter.Microsoft.Extensions.Logging" Version="5.0.0-dev.1856" />
