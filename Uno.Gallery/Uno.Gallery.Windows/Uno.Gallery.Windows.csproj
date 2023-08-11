@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<OutputType>WinExe</OutputType>
 		<TargetFramework>net7.0-windows10.0.19041</TargetFramework>
@@ -34,7 +34,10 @@
 		</PackageReference>
 		<PackageReference Include="Uno.Core.Extensions.Compatibility" Version="4.0.1" />
 		<PackageReference Include="Uno.Core.Extensions.Logging.Singleton" Version="4.0.1" />
+		<PackageReference Include="Uno.Toolkit.Skia.WinUI" Version="4.0.0-dev.67" />
+		<PackageReference Include="Uno.Toolkit.WinUI" Version="4.0.0-dev.67" />
 		<PackageReference Include="Uno.Toolkit.WinUI.Cupertino">
+<<<<<<< HEAD
 			<Version>3.0.5</Version>
 		</PackageReference>
 		<PackageReference Include="Uno.Toolkit.WinUI.Material">
@@ -42,6 +45,15 @@
 		</PackageReference>
 		<PackageReference Include="Uno.WinUI">
 			<Version>4.9.45</Version>
+=======
+			<Version>4.0.0-dev.67</Version>
+		</PackageReference>
+		<PackageReference Include="Uno.Toolkit.WinUI.Material">
+			<Version>4.0.0-dev.67</Version>
+		</PackageReference>
+		<PackageReference Include="Uno.WinUI">
+			<Version>5.0.0-dev.1856</Version>
+>>>>>>> 6fdfd38 (feat: Add ShadowContainer Sample Page & TextBox Shadow Style)
 		</PackageReference>
 		<Manifest Include="$(ApplicationManifest)" />
 	</ItemGroup>

@@ -28,8 +28,7 @@
 		</Style>
 	</Page.Resources>
 	<Grid>
-		<local:ContentPageLayout Title="Cupertino Palette"
-								 Description="Uno.Cupertino comes with a built-in set of named Color and Brush resources. They are used in most control styles provided by Uno.Cupertino, meaning that you can easily style most controls just by changing a few colors.">
+		<local:ContentPageLayout>
 			<StackPanel>
 				<VisualStateManager.VisualStateGroups>
 					<VisualStateGroup>
