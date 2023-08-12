@@ -76,6 +76,144 @@
 
 					</controls:WrapPanel>
 				</smtx:XamlDisplay>
+
+				<!--Button Elevated-->
+				<smtx:XamlDisplay UniqueKey="ShadowContainerSamplePage_ElevatedButton"
+								  smtx:XamlDisplayExtensions.Header="Neumorphic Elevated Button"
+								  Background="{ThemeResource SurfaceBrush}"
+								  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\WrapPanel">
+
+					<controls:WrapPanel HorizontalSpacing="16"
+										VerticalSpacing="16">
+
+						<StackPanel Spacing="30">
+							<StackPanel Spacing="20"
+										Orientation="Horizontal">
+								<Button Style="{StaticResource NmpElevatedButtonStyle}"
+										Content="Enabled" />
+
+								<Button Style="{StaticResource NmpElevatedButtonStyle}"
+										Content="Icon">
+									<um:ControlExtensions.Icon>
+										<PathIcon Data="M16 9.14286H9.14286V16H6.85714V9.14286H0V6.85714H6.85714V0H9.14286V6.85714H16V9.14286Z" />
+									</um:ControlExtensions.Icon>
+								</Button>
+							
+								<Button Style="{StaticResource NmpElevatedButtonStyle}"
+										Content="Disabled"
+										IsEnabled="False">
+								</Button>
+							
+								<Button Style="{StaticResource NmpElevatedButtonStyle}"
+										Content="Disabled"
+										IsEnabled="False">
+									<um:ControlExtensions.Icon>
+										<PathIcon Data="M16 9.14286H9.14286V16H6.85714V9.14286H0V6.85714H6.85714V0H9.14286V6.85714H16V9.14286Z" />
+									</um:ControlExtensions.Icon>
+								</Button>
+							</StackPanel>
+
+							<StackPanel Spacing="20"
+										Orientation="Horizontal">
+								<Button Style="{StaticResource NmpElevatedButtonStyle}"
+										Content="Enabled"
+										Height="48"/>
+
+								<Button Style="{StaticResource NmpElevatedButtonStyle}"
+										Content="Icon"
+										Height="48">
+									<um:ControlExtensions.Icon>
+										<PathIcon Data="M16 9.14286H9.14286V16H6.85714V9.14286H0V6.85714H6.85714V0H9.14286V6.85714H16V9.14286Z" />
+									</um:ControlExtensions.Icon>
+								</Button>
+
+								<Button Style="{StaticResource NmpElevatedButtonStyle}"
+										Content="Disabled"
+										IsEnabled="False"
+										Height="48">
+								</Button>
+
+								<Button Style="{StaticResource NmpElevatedButtonStyle}"
+										Content="Disabled"
+										IsEnabled="False"
+										Height="48">
+									<um:ControlExtensions.Icon>
+										<PathIcon Data="M16 9.14286H9.14286V16H6.85714V9.14286H0V6.85714H6.85714V0H9.14286V6.85714H16V9.14286Z" />
+									</um:ControlExtensions.Icon>
+								</Button>
+							</StackPanel>
+						</StackPanel>
+					</controls:WrapPanel>
+				</smtx:XamlDisplay>
+
+				<!--Button Filled-->
+				<smtx:XamlDisplay UniqueKey="ShadowContainerSamplePage_FilledButton"
+								  smtx:XamlDisplayExtensions.Header="Neumorphic Filled Button"
+								  Background="{ThemeResource PrimaryBrush}"
+								  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\WrapPanel">
+
+					<controls:WrapPanel HorizontalSpacing="16"
+										VerticalSpacing="16">
+
+						<StackPanel Spacing="30">
+							<StackPanel Spacing="20"
+										Orientation="Horizontal">
+								<Button Style="{StaticResource NmpFilledButtonStyle}"
+										Content="Enabled" />
+
+								<Button Style="{StaticResource NmpFilledButtonStyle}"
+										Content="Icon">
+									<um:ControlExtensions.Icon>
+										<PathIcon Data="M16 9.14286H9.14286V16H6.85714V9.14286H0V6.85714H6.85714V0H9.14286V6.85714H16V9.14286Z" />
+									</um:ControlExtensions.Icon>
+								</Button>
+
+								<Button Style="{StaticResource NmpFilledButtonStyle}"
+										Content="Disabled"
+										IsEnabled="False">
+								</Button>
+
+								<Button Style="{StaticResource NmpFilledButtonStyle}"
+										Content="Disabled"
+										IsEnabled="False">
+									<um:ControlExtensions.Icon>
+										<PathIcon Data="M16 9.14286H9.14286V16H6.85714V9.14286H0V6.85714H6.85714V0H9.14286V6.85714H16V9.14286Z" />
+									</um:ControlExtensions.Icon>
+								</Button>
+							</StackPanel>
+
+							<StackPanel Spacing="20"
+										Orientation="Horizontal">
+								<Button Style="{StaticResource NmpFilledButtonStyle}"
+										Content="Enabled"
+										Height="48"/>
+
+								<Button Style="{StaticResource NmpFilledButtonStyle}"
+										Content="Icon"
+										Height="48">
+									<um:ControlExtensions.Icon>
+										<PathIcon Data="M16 9.14286H9.14286V16H6.85714V9.14286H0V6.85714H6.85714V0H9.14286V6.85714H16V9.14286Z" />
+									</um:ControlExtensions.Icon>
+								</Button>
+
+								<Button Style="{StaticResource NmpFilledButtonStyle}"
+										Content="Disabled"
+										IsEnabled="False"
+										Height="48">
+								</Button>
+
+								<Button Style="{StaticResource NmpFilledButtonStyle}"
+										Content="Disabled"
+										IsEnabled="False"
+										Height="48">
+									<um:ControlExtensions.Icon>
+										<PathIcon Data="M16 9.14286H9.14286V16H6.85714V9.14286H0V6.85714H6.85714V0H9.14286V6.85714H16V9.14286Z" />
+									</um:ControlExtensions.Icon>
+								</Button>
+							</StackPanel>
+						</StackPanel>
+					</controls:WrapPanel>
+				</smtx:XamlDisplay>
 			</StackPanel>
 		</local:ContentPageLayout>
 	</Grid>
