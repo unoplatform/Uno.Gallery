@@ -1,0 +1,576 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					xmlns:utu="using:Uno.Toolkit.UI"
+					xmlns:um="using:Uno.Material">
+
+	<ResourceDictionary.ThemeDictionaries>
+		<ResourceDictionary x:Key="Dark">
+
+			<!-- Shadow colors -->
+			<Color x:Key="LightShadowColor">#3C3846</Color>
+			<Color x:Key="ShadeShadowColor">#24222A</Color>
+
+			<!--How are we dealing with the color names?-->
+			
+			<!--Some colors are only exist and are different on dark mode, ie Elevated Button-->
+			<!--So we don't have a corresponding color for light mode-->
+			<Color x:Key="LightShadowColor2">#615B71</Color>
+			<Color x:Key="ShadeShadowColor2">#000000</Color>
+
+			<Color x:Key="LightShadowColor3">#5F5B69</Color>
+			<Color x:Key="ShadeShadowColor3">#24222A</Color>
+
+			<Color x:Key="LightShadowColor4">#79718E</Color>
+			<Color x:Key="ShadeShadowColor4">#000000</Color>
+
+			<Color x:Key="LightShadowColor5">#E5DCFF</Color>
+			<Color x:Key="ShadeShadowColor5">#A9A2D9</Color>
+
+			<!--Elevated Button Shadows-->
+			<utu:ShadowCollection x:Key="ElevatedNormal">
+				<utu:Shadow BlurRadius="16" IsInner="False" OffsetX="-4" OffsetY="-4" Opacity="0.4" Spread="0" Color="{StaticResource LightShadowColor2}" />
+				<utu:Shadow BlurRadius="16" IsInner="False" OffsetX="4" OffsetY="4" Opacity="0.4" Spread="0" Color="{StaticResource ShadeShadowColor2}" />
+			</utu:ShadowCollection>
+
+			<utu:ShadowCollection x:Key="ElevatedHovered">
+				<utu:Shadow BlurRadius="16" IsInner="False" OffsetX="-4" OffsetY="-4" Opacity="0.5" Spread="0" Color="{StaticResource LightShadowColor4}" />
+				<utu:Shadow BlurRadius="16" IsInner="False" OffsetX="4" OffsetY="4" Opacity="0.5" Spread="0" Color="{StaticResource ShadeShadowColor4}" />
+			</utu:ShadowCollection>
+
+			<utu:ShadowCollection x:Key="ElevatedPressed">
+				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="4" OffsetY="4" Opacity="0.4" Spread="0" Color="{StaticResource ShadeShadowColor4}" />
+				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="-4" OffsetY="-4" Opacity="0.4" Spread="0" Color="{StaticResource LightShadowColor4}" />
+			</utu:ShadowCollection>
+
+			<utu:ShadowCollection x:Key="ElevatedDisabled">
+				<utu:Shadow BlurRadius="4" IsInner="False" OffsetX="-1" OffsetY="-1" Opacity="0.5" Spread="0" Color="{StaticResource LightShadowColor3}" />
+				<utu:Shadow BlurRadius="4" IsInner="False" OffsetX="1" OffsetY="1" Opacity="0.4" Spread="0" Color="{StaticResource ShadeShadowColor3}" />
+			</utu:ShadowCollection>
+
+			<utu:ShadowCollection x:Key="ElevatedFocused">
+				<utu:Shadow BlurRadius="48" IsInner="True" OffsetX="0" OffsetY="0" Opacity="0.24" Spread="0" Color="{StaticResource ShadeShadowColor4}" />
+				<utu:Shadow BlurRadius="16" IsInner="False" OffsetX="-4" OffsetY="-4" Opacity="0.4" Spread="0" Color="{StaticResource LightShadowColor4}" />
+				<utu:Shadow BlurRadius="16" IsInner="False" OffsetX="4" OffsetY="4" Opacity="0.4" Spread="0" Color="{StaticResource ShadeShadowColor4}" />
+			</utu:ShadowCollection>
+
+			<!--Filled Button Shadows-->
+			<utu:ShadowCollection x:Key="FilledNormal">
+				<utu:Shadow BlurRadius="16" IsInner="False" OffsetX="-4" OffsetY="-4" Opacity="0.4" Spread="0" Color="{StaticResource LightShadowColor5}" />
+				<utu:Shadow BlurRadius="16" IsInner="False" OffsetX="4" OffsetY="4" Opacity="0.6" Spread="0" Color="{StaticResource ShadeShadowColor5}" />
+			</utu:ShadowCollection>
+
+			<utu:ShadowCollection x:Key="FilledHovered">
+				<utu:Shadow BlurRadius="16" IsInner="False" OffsetX="-4" OffsetY="-4" Opacity="0.5" Spread="0" Color="{StaticResource LightShadowColor5}" />
+				<utu:Shadow BlurRadius="16" IsInner="False" OffsetX="4" OffsetY="4" Opacity="0.7" Spread="0" Color="{StaticResource ShadeShadowColor5}" />
+			</utu:ShadowCollection>
+
+			<utu:ShadowCollection x:Key="FilledPressed">
+				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="4" OffsetY="4" Opacity="0.6" Spread="0" Color="{StaticResource ShadeShadowColor5}" />
+				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="-4" OffsetY="-4" Opacity="0.4" Spread="0" Color="{StaticResource LightShadowColor5}" />
+			</utu:ShadowCollection>
+
+			<utu:ShadowCollection x:Key="FilledDisabled">
+				<utu:Shadow BlurRadius="4" IsInner="False" OffsetX="-1" OffsetY="-1" Opacity="0.5" Spread="0" Color="{StaticResource LightShadowColor5}" />
+				<utu:Shadow BlurRadius="4" IsInner="False" OffsetX="1" OffsetY="1" Opacity="1" Spread="0" Color="{StaticResource ShadeShadowColor5}" />
+			</utu:ShadowCollection>
+
+			<utu:ShadowCollection x:Key="FilledFocused">
+				<utu:Shadow BlurRadius="48" IsInner="True" OffsetX="0" OffsetY="0" Opacity="0.6" Spread="0" Color="{StaticResource ShadeShadowColor5}" />
+				<utu:Shadow BlurRadius="16" IsInner="False" OffsetX="-4" OffsetY="-4" Opacity="0.4" Spread="0" Color="{StaticResource LightShadowColor5}" />
+				<utu:Shadow BlurRadius="16" IsInner="False" OffsetX="4" OffsetY="4" Opacity="0.6" Spread="0" Color="{StaticResource ShadeShadowColor5}" />
+			</utu:ShadowCollection>
+
+		</ResourceDictionary>
+		<ResourceDictionary x:Key="Light">
+
+			<!--How are we dealing with the color names?-->
+			<!-- Shadow colors -->
+			<Color x:Key="LightShadowColor">#FFFFFF</Color>
+			<Color x:Key="ShadeShadowColor">#AEAEC0</Color>
+
+			<Color x:Key="LightShadowColor2">#6651F2</Color>
+			<Color x:Key="ShadeShadowColor2">#4C3CB3</Color>
+
+			<!--Elevated Button Shadows-->
+			<utu:ShadowCollection x:Key="ElevatedNormal">
+				<utu:Shadow BlurRadius="16" IsInner="False" OffsetX="-4" OffsetY="-4" Opacity="0.4" Spread="0" Color="{StaticResource LightShadowColor}" />
+				<utu:Shadow BlurRadius="16" IsInner="False" OffsetX="4" OffsetY="4" Opacity="0.4" Spread="0" Color="{StaticResource ShadeShadowColor}" />
+			</utu:ShadowCollection>
+
+			<utu:ShadowCollection x:Key="ElevatedHovered">
+				<utu:Shadow BlurRadius="16" IsInner="False" OffsetX="-4" OffsetY="-4" Opacity="0.5" Spread="0" Color="{StaticResource LightShadowColor}" />
+				<utu:Shadow BlurRadius="16" IsInner="False" OffsetX="4" OffsetY="4" Opacity="0.5" Spread="0" Color="{StaticResource ShadeShadowColor}" />
+			</utu:ShadowCollection>
+
+			<utu:ShadowCollection x:Key="ElevatedPressed">
+				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="4" OffsetY="4" Opacity="0.4" Spread="0" Color="{StaticResource ShadeShadowColor}" />
+				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="-4" OffsetY="-4" Opacity="0.4" Spread="0" Color="{StaticResource LightShadowColor}" />
+			</utu:ShadowCollection>
+
+			<utu:ShadowCollection x:Key="ElevatedDisabled">
+				<utu:Shadow BlurRadius="4" IsInner="False" OffsetX="-1" OffsetY="-1" Opacity="1" Spread="0" Color="{StaticResource LightShadowColor}" />
+				<utu:Shadow BlurRadius="4" IsInner="False" OffsetX="1" OffsetY="1" Opacity="0.4" Spread="0" Color="{StaticResource ShadeShadowColor}" />
+			</utu:ShadowCollection>
+
+			<utu:ShadowCollection x:Key="ElevatedFocused">
+				<utu:Shadow BlurRadius="48" IsInner="True" OffsetX="0" OffsetY="0" Opacity="0.24" Spread="0" Color="{StaticResource ShadeShadowColor}" />
+				<utu:Shadow BlurRadius="16" IsInner="False" OffsetX="-4" OffsetY="-4" Opacity="0.4" Spread="0" Color="{StaticResource LightShadowColor}" />
+				<utu:Shadow BlurRadius="16" IsInner="False" OffsetX="4" OffsetY="4" Opacity="0.4" Spread="0" Color="{StaticResource ShadeShadowColor}" />
+			</utu:ShadowCollection>
+
+			<!--Filled Button Shadows-->
+			<utu:ShadowCollection x:Key="FilledNormal">
+				<utu:Shadow BlurRadius="16" IsInner="False" OffsetX="-4" OffsetY="-4" Opacity="0.4" Spread="0" Color="{StaticResource LightShadowColor2}" />
+				<utu:Shadow BlurRadius="16" IsInner="False" OffsetX="4" OffsetY="4" Opacity="0.6" Spread="0" Color="{StaticResource ShadeShadowColor2}" />
+			</utu:ShadowCollection>
+
+			<utu:ShadowCollection x:Key="FilledHovered">
+				<utu:Shadow BlurRadius="16" IsInner="False" OffsetX="-4" OffsetY="-4" Opacity="0.5" Spread="0" Color="{StaticResource LightShadowColor2}" />
+				<utu:Shadow BlurRadius="16" IsInner="False" OffsetX="4" OffsetY="4" Opacity="0.7" Spread="0" Color="{StaticResource ShadeShadowColor2}" />
+			</utu:ShadowCollection>
+
+			<utu:ShadowCollection x:Key="FilledPressed">
+				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="4" OffsetY="4" Opacity="0.6" Spread="0" Color="{StaticResource ShadeShadowColor2}" />
+				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="-4" OffsetY="-4" Opacity="0.4" Spread="0" Color="{StaticResource LightShadowColor2}" />
+			</utu:ShadowCollection>
+
+			<utu:ShadowCollection x:Key="FilledDisabled">
+				<utu:Shadow BlurRadius="4" IsInner="False" OffsetX="-1" OffsetY="-1" Opacity="1" Spread="0" Color="{StaticResource LightShadowColor2}" />
+				<utu:Shadow BlurRadius="4" IsInner="False" OffsetX="1" OffsetY="1" Opacity="1" Spread="0" Color="{StaticResource ShadeShadowColor2}" />
+			</utu:ShadowCollection>
+
+			<utu:ShadowCollection x:Key="FilledFocused">
+				<utu:Shadow BlurRadius="48" IsInner="True" OffsetX="0" OffsetY="0" Opacity="0.6" Spread="0" Color="{StaticResource ShadeShadowColor2}" />
+				<utu:Shadow BlurRadius="16" IsInner="False" OffsetX="-4" OffsetY="-4" Opacity="0.4" Spread="0" Color="{StaticResource LightShadowColor2}" />
+				<utu:Shadow BlurRadius="16" IsInner="False" OffsetX="4" OffsetY="4" Opacity="0.6" Spread="0" Color="{StaticResource ShadeShadowColor2}" />
+			</utu:ShadowCollection>
+
+			<!--#endregion-->
+
+		</ResourceDictionary>
+	</ResourceDictionary.ThemeDictionaries>
+
+	<!--#region Shadow Collections -->
+	<!--TextBox-->
+	<utu:ShadowCollection x:Key="TextBoxShadows">
+		<utu:Shadow OffsetX="4"
+					OffsetY="4"
+					BlurRadius="4"
+					Color="{ThemeResource ShadeShadowColor}"
+					Opacity="0.4"
+					Spread="0"
+					IsInner="True" />
+		<utu:Shadow OffsetX="-4"
+					OffsetY="-4"
+					BlurRadius="4"
+					Color="{ThemeResource LightShadowColor}"
+					Opacity="0.4"
+					Spread="0"
+					IsInner="True" />
+	</utu:ShadowCollection>
+
+	<!-- Converters -->
+	<um:FromEmptyStringToValueConverter x:Key="EmptyToCompositeTransformTranslateY"
+										NotNullOrEmptyValue="8"
+										NullOrEmptyValue="0" />
+
+	<!--#region TextBox Style -->
+	<Style x:Key="NeumorphicTextBoxStyle"
+		   TargetType="TextBox">
+		<Setter Property="Background" Value="{ThemeResource SurfaceBrush}" />
+		<Setter Property="Foreground" Value="{ThemeResource OnSurfaceBrush}" />
+		<Setter Property="PlaceholderForeground" Value="{ThemeResource OnSurfaceVariantBrush}" />
+		<Setter Property="CornerRadius" Value="8" />
+
+		<!-- Start: Body Large Typo -->
+		<Setter Property="FontFamily" Value="{ThemeResource MaterialMediumFontFamily}" />
+		<Setter Property="FontWeight" Value="{ThemeResource BodyLargeFontWeight}" />
+		<Setter Property="FontSize" Value="{ThemeResource BodyLargeFontSize}" />
+		<Setter Property="CharacterSpacing" Value="{ThemeResource BodyLargeCharacterSpacing}" />
+		<!-- End: Body Large Typo -->
+
+		<Setter Property="HorizontalContentAlignment" Value="Left" />
+		<Setter Property="VerticalContentAlignment" Value="Center" />
+
+		<Setter Property="Padding" Value="16,16,14,16" />
+
+		<Setter Property="MinHeight" Value="56" />
+
+		<!-- Workaround for WinUI issue: https://github.com/microsoft/microsoft-ui-xaml/issues/6388 -->
+		<Setter Property="um:ControlExtensions.Icon" Value="{x:Null}" />
+
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="TextBox">
+					<utu:ShadowContainer x:Name="RootPanel"
+										 Shadows="{StaticResource TextBoxShadows}">
+						<VisualStateManager.VisualStateGroups>
+							<VisualStateGroup x:Name="CommonStates">
+								<VisualState x:Name="Normal" />
+								<VisualState x:Name="PointerOver">
+									<VisualState.Setters>
+										<Setter Target="PlaceholderElement.Foreground" Value="{ThemeResource OnSurfaceMediumBrush}" />
+									</VisualState.Setters>
+								</VisualState>
+								<VisualState x:Name="Pressed">
+									<VisualState.Setters>
+										<Setter Target="PlaceholderElement.Foreground" Value="{ThemeResource OnSurfaceMediumBrush}" />
+									</VisualState.Setters>
+								</VisualState>
+								<VisualState x:Name="Disabled">
+									<VisualState.Setters>
+										<Setter Target="IconPresenter.Opacity" Value="{ThemeResource DisabledOpacity}" />
+										<Setter Target="ContentElement.Opacity" Value="{ThemeResource DisabledOpacity}" />
+										<Setter Target="PlaceholderElement.Foreground" Value="{ThemeResource OnSurfaceLowBrush}" />
+									</VisualState.Setters>
+								</VisualState>
+								<VisualState x:Name="Focused">
+									<VisualState.Setters>
+										<Setter Target="PlaceholderElement.Foreground" Value="{ThemeResource PrimaryBrush}" />
+									</VisualState.Setters>
+								</VisualState>
+							</VisualStateGroup>
+							<VisualStateGroup x:Name="ButtonStates">
+								<VisualState x:Name="ButtonVisible">
+									<VisualState.Setters>
+										<Setter Target="DeleteButton.Visibility" Value="Visible" />
+									</VisualState.Setters>
+								</VisualState>
+								<VisualState x:Name="ButtonCollapsed" />
+							</VisualStateGroup>
+							<VisualStateGroup x:Name="HeaderStates">
+								<VisualState x:Name="NotEmpty">
+									<Storyboard>
+										<DoubleAnimation Storyboard.TargetName="PlaceholderElement_CompositeTransform"
+														 Storyboard.TargetProperty="TranslateY"
+														 Duration="{StaticResource MaterialTextBoxAnimationDuration}"
+														 EasingFunction="{StaticResource MaterialEaseInOutFunction}"
+														 To="-11" />
+										<!-- ContentElement TranslateY value changing depending if there is a PlaceholderText or not -->
+										<DoubleAnimation Storyboard.TargetName="ContentElement_CompositeTransform"
+														 Storyboard.TargetProperty="TranslateY"
+														 Duration="{StaticResource MaterialAnimationDuration}"
+														 EasingFunction="{StaticResource MaterialEaseInOutFunction}"
+														 To="{Binding PlaceholderText, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource EmptyToCompositeTransformTranslateY}, TargetNullValue=0, FallbackValue=0}" />
+										<DoubleAnimation Storyboard.TargetName="PlaceholderElement_CompositeTransform"
+														 Storyboard.TargetProperty="ScaleX"
+														 Duration="{StaticResource MaterialTextBoxAnimationDuration}"
+														 EasingFunction="{StaticResource MaterialEaseInOutFunction}"
+														 To="0.7" />
+										<DoubleAnimation Storyboard.TargetName="PlaceholderElement_CompositeTransform"
+														 Storyboard.TargetProperty="ScaleY"
+														 Duration="{StaticResource MaterialTextBoxAnimationDuration}"
+														 EasingFunction="{StaticResource MaterialEaseInOutFunction}"
+														 To="0.7" />
+									</Storyboard>
+									<VisualState.StateTriggers>
+										<StateTrigger IsActive="{Binding Text, Converter={StaticResource MaterialEmptyToFalse}, RelativeSource={RelativeSource TemplatedParent}}" />
+									</VisualState.StateTriggers>
+								</VisualState>
+								<VisualState x:Name="Empty">
+									<VisualState.StateTriggers>
+										<StateTrigger IsActive="{Binding Text, Converter={StaticResource MaterialEmptyToTrue}, RelativeSource={RelativeSource TemplatedParent}}" />
+									</VisualState.StateTriggers>
+								</VisualState>
+							</VisualStateGroup>
+						</VisualStateManager.VisualStateGroups>
+
+						<Grid x:Name="Root"
+							  Width="{TemplateBinding Width}"
+							  MinHeight="{TemplateBinding MinHeight}"
+							  CornerRadius="{TemplateBinding CornerRadius}"
+							  Background="{TemplateBinding Background}"
+							  Padding="{TemplateBinding Padding}">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="Auto" />
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="Auto" />
+							</Grid.ColumnDefinitions>
+
+							<!-- Border in place to properly vertically center the icon inside when it's a one-line TextBox -->
+							<!-- but keep it in the same place and at the top when it's a multiline TextBox -->
+							<Border Height="28"
+									VerticalAlignment="Top">
+								<ContentPresenter x:Name="IconPresenter"
+												  Content="{Binding Path=(um:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}}"
+												  HorizontalAlignment="Center"
+												  Width="20"
+												  Margin="1,0,18,0"
+												  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+												  Visibility="{Binding Path=(um:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialNullToCollapsedConverter}, FallbackValue=Collapsed, TargetNullValue=Collapsed}" />
+							</Border>
+
+							<ScrollViewer x:Name="ContentElement"
+										  Grid.Column="1"
+										  HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
+										  HorizontalScrollMode="{TemplateBinding ScrollViewer.HorizontalScrollMode}"
+										  IsDeferredScrollingEnabled="{TemplateBinding ScrollViewer.IsDeferredScrollingEnabled}"
+										  IsHorizontalRailEnabled="{TemplateBinding ScrollViewer.IsHorizontalRailEnabled}"
+										  IsTabStop="False"
+										  IsVerticalRailEnabled="{TemplateBinding ScrollViewer.IsVerticalRailEnabled}"
+										  VerticalScrollMode="{TemplateBinding ScrollViewer.VerticalScrollMode}"
+										  VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}"
+										  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+										  ZoomMode="Disabled"
+										  AutomationProperties.AccessibilityView="Raw">
+								<ScrollViewer.RenderTransform>
+									<CompositeTransform x:Name="ContentElement_CompositeTransform" />
+								</ScrollViewer.RenderTransform>
+							</ScrollViewer>
+
+							<!-- Border in place to properly vertically center the placeholder inside when it's a one-line TextBox -->
+							<!-- but keep it in the same place and at the top when it's a multiline TextBox -->
+							<Border Grid.Column="1"
+									Height="28"
+									VerticalAlignment="Top">
+								<TextBlock x:Name="PlaceholderElement"
+										   Foreground="{Binding PlaceholderForeground, RelativeSource={RelativeSource TemplatedParent}}"
+										   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+										   IsHitTestVisible="False"
+										   RenderTransformOrigin="0,0.5"
+										   Text="{TemplateBinding PlaceholderText}"
+										   TextAlignment="{TemplateBinding TextAlignment}"
+										   TextWrapping="{TemplateBinding TextWrapping}"
+										   VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+									<TextBlock.RenderTransform>
+										<CompositeTransform x:Name="PlaceholderElement_CompositeTransform" />
+									</TextBlock.RenderTransform>
+								</TextBlock>
+							</Border>
+
+							<Button x:Name="DeleteButton"
+									Grid.Column="2"
+									Margin="8,0,0,0"
+									IsTabStop="False"
+									Style="{StaticResource MaterialDeleteButtonStyle}"
+									VerticalAlignment="Stretch"
+									Visibility="Collapsed"
+									AutomationProperties.AccessibilityView="Raw" />
+						</Grid>
+					</utu:ShadowContainer>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<!--#endregion-->
+
+	<!--#region BUTTONS-->
+
+	<!--Elevated Style-->
+	<Style x:Key="NmpElevatedButtonStyle"
+		   BasedOn="{StaticResource MaterialBaseButtonStyle}"
+		   TargetType="Button">
+
+		<Setter Property="Foreground" Value="{ThemeResource PrimaryBrush}" />
+		<Setter Property="Background" Value="{ThemeResource SurfaceBrush}" />
+		<Setter Property="Width" Value="117" />
+		<Setter Property="Height" Value="38" />
+		<Setter Property="MinHeight" Value="38" />
+
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="Button">
+					<utu:ShadowContainer x:Name="RootPanel">
+
+						<VisualStateManager.VisualStateGroups>
+							<VisualStateGroup x:Name="CommonStates">
+
+								<VisualState x:Name="Normal">
+									<VisualState.Setters>
+										<Setter Target="RootPanel.Shadows" Value="{StaticResource ElevatedNormal}" />
+									</VisualState.Setters>
+								</VisualState>
+
+								<VisualState x:Name="PointerOver">
+									<VisualState.Setters>
+										<Setter Target="RootPanel.Shadows" Value="{StaticResource ElevatedHovered}" />
+									</VisualState.Setters>
+								</VisualState>
+
+								<VisualState x:Name="Pressed">
+									<VisualState.Setters>
+										<Setter Target="RootPanel.Shadows" Value="{StaticResource ElevatedPressed}" />
+									</VisualState.Setters>
+								</VisualState>
+
+								<VisualState x:Name="Disabled">
+									<VisualState.Setters>
+										<Setter Target="RootPanel.Shadows" Value="{StaticResource ElevatedDisabled}" />
+										<Setter Target="RootGrid.Background" Value="{StaticResource OnSurfaceDisabledBrush}" />
+										<Setter Target="ContentPresenter.Foreground" Value="{StaticResource OnSurfaceLowBrush}" />
+										<Setter Target="IconPresenter.Foreground" Value="{StaticResource OnSurfaceLowBrush}" />
+									</VisualState.Setters>
+								</VisualState>
+							</VisualStateGroup>
+
+							<VisualStateGroup x:Name="FocusStates">
+
+								<VisualState x:Name="Focused">
+									<VisualState.Setters>
+										<Setter Target="RootPanel.Shadows" Value="{StaticResource ElevatedFocused}" />
+									</VisualState.Setters>
+								</VisualState>
+
+								<VisualState x:Name="PointerFocused">
+									<VisualState.Setters>
+										<Setter Target="RootPanel.Shadows" Value="{StaticResource ElevatedHovered}" />
+									</VisualState.Setters>
+								</VisualState>
+
+								<VisualState x:Name="Unfocused">
+									<VisualState.Setters>
+										<Setter Target="RootPanel.Shadows" Value="{StaticResource ElevatedNormal}" />
+									</VisualState.Setters>
+								</VisualState>
+							</VisualStateGroup>
+						</VisualStateManager.VisualStateGroups>
+
+						<Grid x:Name="RootGrid"
+							  Background="{TemplateBinding Background}"
+							  CornerRadius="{TemplateBinding CornerRadius}"
+							  Height="{TemplateBinding Height}"
+							  Width="{TemplateBinding Width}"
+							  MinHeight="{TemplateBinding MinWidth}">
+
+							<Grid CornerRadius="{TemplateBinding CornerRadius}"
+								  Padding="{TemplateBinding Padding}">
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="Auto" />
+									<ColumnDefinition Width="*" />
+								</Grid.ColumnDefinitions>
+
+								<ContentPresenter x:Name="IconPresenter"
+												  Content="{Binding Path=(um:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}}"
+												  MinWidth="{StaticResource ButtonIconMinWidth}"
+												  HorizontalAlignment="{StaticResource ButtonIconHorizontalAlignment}"
+												  VerticalAlignment="{StaticResource ButtonIconVerticalAlignment}"
+												  Visibility="{Binding Path=(um:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialNullToCollapsedConverter}, FallbackValue=Collapsed, TargetNullValue=Collapsed}"
+												  VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+												  HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" />
+
+								<ContentPresenter x:Name="ContentPresenter"
+												  Grid.Column="1"
+												  Margin="{StaticResource ButtonContentMargin}"
+												  Content="{TemplateBinding Content}"
+												  ContentTemplate="{TemplateBinding ContentTemplate}"
+												  ContentTransitions="{TemplateBinding ContentTransitions}"
+												  FontFamily="{TemplateBinding FontFamily}"
+												  FontSize="{TemplateBinding FontSize}"
+												  FontWeight="{TemplateBinding FontWeight}"
+												  CharacterSpacing="{TemplateBinding CharacterSpacing}"
+												  HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+												  VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
+							</Grid>
+						</Grid>
+					</utu:ShadowContainer>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<!--Filled Style-->
+	<Style x:Key="NmpFilledButtonStyle"
+		   BasedOn="{StaticResource MaterialBaseButtonStyle}"
+		   TargetType="Button">
+
+		<Setter Property="Foreground" Value="{ThemeResource OnPrimaryBrush}" />
+		<Setter Property="Background" Value="{ThemeResource PrimaryBrush}" />
+		<Setter Property="Width" Value="117" />
+		<Setter Property="Height" Value="38" />
+		<Setter Property="MinHeight" Value="38" />
+		
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="Button">
+					<utu:ShadowContainer x:Name="RootPanel" Shadows="{StaticResource FilledNormal}">
+
+						<VisualStateManager.VisualStateGroups>
+							<VisualStateGroup x:Name="CommonStates">
+
+								<VisualState x:Name="Normal"/>
+
+								<VisualState x:Name="PointerOver">
+									<VisualState.Setters>
+										<Setter Target="RootPanel.Shadows" Value="{StaticResource FilledHovered}" />
+									</VisualState.Setters>
+								</VisualState>
+
+								<VisualState x:Name="Pressed">
+									<VisualState.Setters>
+										<Setter Target="RootPanel.Shadows" Value="{StaticResource FilledPressed}" />
+									</VisualState.Setters>
+								</VisualState>
+
+								<VisualState x:Name="Disabled">
+									<VisualState.Setters>
+										<Setter Target="RootPanel.Shadows" Value="{StaticResource FilledDisabled}" />
+										<Setter Target="RootGrid.Background" Value="{StaticResource OnSurfaceDisabledBrush}" />
+										<Setter Target="ContentPresenter.Foreground" Value="{StaticResource OnPrimaryLowBrush}" />
+										<Setter Target="IconPresenter.Foreground" Value="{StaticResource OnPrimaryLowBrush}" />
+									</VisualState.Setters>
+								</VisualState>
+							</VisualStateGroup>
+
+							<VisualStateGroup x:Name="FocusStates">
+
+								<VisualState x:Name="Focused">
+									<VisualState.Setters>
+										<Setter Target="RootPanel.Shadows" Value="{StaticResource FilledFocused}" />
+									</VisualState.Setters>
+								</VisualState>
+
+								<VisualState x:Name="PointerFocused">
+									<VisualState.Setters>
+										<Setter Target="RootPanel.Shadows" Value="{StaticResource FilledHovered}" />
+									</VisualState.Setters>
+								</VisualState>
+
+								<VisualState x:Name="Unfocused" />
+							</VisualStateGroup>
+						</VisualStateManager.VisualStateGroups>
+
+						<Grid x:Name="RootGrid"
+							  Background="{TemplateBinding Background}"
+							  CornerRadius="{TemplateBinding CornerRadius}"
+							  Height="{TemplateBinding Height}"
+							  Width="{TemplateBinding Width}"
+							  MinHeight="{TemplateBinding MinWidth}">
+
+							<Grid CornerRadius="{TemplateBinding CornerRadius}"
+								  Padding="{TemplateBinding Padding}">
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="Auto" />
+									<ColumnDefinition Width="*" />
+								</Grid.ColumnDefinitions>
+
+								<ContentPresenter x:Name="IconPresenter"
+												  Content="{Binding Path=(um:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}}"
+												  MinWidth="{StaticResource ButtonIconMinWidth}"
+												  HorizontalAlignment="{StaticResource ButtonIconHorizontalAlignment}"
+												  VerticalAlignment="{StaticResource ButtonIconVerticalAlignment}"
+												  Visibility="{Binding Path=(um:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialNullToCollapsedConverter}, FallbackValue=Collapsed, TargetNullValue=Collapsed}"
+												  VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+												  HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" />
+
+								<ContentPresenter x:Name="ContentPresenter"
+												  Grid.Column="1"
+												  Margin="{StaticResource ButtonContentMargin}"
+												  Content="{TemplateBinding Content}"
+												  ContentTemplate="{TemplateBinding ContentTemplate}"
+												  ContentTransitions="{TemplateBinding ContentTransitions}"
+												  FontFamily="{TemplateBinding FontFamily}"
+												  FontSize="{TemplateBinding FontSize}"
+												  FontWeight="{TemplateBinding FontWeight}"
+												  CharacterSpacing="{TemplateBinding CharacterSpacing}"
+												  HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+												  VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
+							</Grid>
+						</Grid>
+					</utu:ShadowContainer>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<!--#endregion-->
+</ResourceDictionary>
