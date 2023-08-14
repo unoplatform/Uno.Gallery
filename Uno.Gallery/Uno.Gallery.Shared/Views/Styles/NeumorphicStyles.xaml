@@ -20,7 +20,7 @@
 			<Color x:Key="LightShadowColor3">#5F5B69</Color>
 			<Color x:Key="ShadeShadowColor3">#24222A</Color>
 
-			<!--For ToggleButton it has a corresponding in Light Theme-->
+			<!--For ToggleButton/IconButton it has a corresponding in Light Theme-->
 			<Color x:Key="LightShadowColor4">#79718E</Color>
 			<Color x:Key="ShadeShadowColor4">#000000</Color>
 
@@ -176,6 +176,13 @@
 		<utu:Shadow BlurRadius="8" IsInner="False" OffsetX="-2" OffsetY="-2" Opacity="0.8" Spread="0" Color="{StaticResource LightShadowColor4}" />
 		<utu:Shadow BlurRadius="8" IsInner="False" OffsetX="2" OffsetY="2" Opacity="0.8" Spread="0" Color="{StaticResource ShadeShadowColor4}" />
 	</utu:ShadowCollection>
+
+	<!--IconButton-->
+	<utu:ShadowCollection x:Key="IconButtonShadows">
+		<utu:Shadow BlurRadius="8" IsInner="False" OffsetX="-2" OffsetY="-2" Opacity="0.8" Spread="0" Color="{StaticResource LightShadowColor4}" />
+		<utu:Shadow BlurRadius="8" IsInner="False" OffsetX="2" OffsetY="2" Opacity="0.8" Spread="0" Color="{StaticResource ShadeShadowColor4}" />
+	</utu:ShadowCollection>
+	
 	<!--#endregion-->
 	<!-- Converters -->
 	<um:FromEmptyStringToValueConverter x:Key="EmptyToCompositeTransformTranslateY"
@@ -755,4 +762,100 @@
 		</Setter>
 	</Style>
 	<!--endregion-->
+
+	<!--#region IconButton-->
+	
+	<x:Double x:Key="IconButtonNmpOpacityVisibleState">1</x:Double>
+	<x:String x:Key="IconButtonNmpEllipseVerticalAlignment">Stretch</x:String>
+	<x:String x:Key="IconButtonNmpEllipseHorizontalAlignment">Stretch</x:String>
+
+	<Style x:Key="NmpIconButtonStyle"
+		   BasedOn="{StaticResource MaterialBaseButtonStyle}"
+		   TargetType="Button">
+		<Setter Property="Foreground"
+				Value="{ThemeResource OnSurfaceMediumBrush}" />
+		<Setter Property="Background"
+				Value="{ThemeResource SurfaceBrush}" />
+		<Setter Property="CornerRadius"
+				Value="20" />
+		<Setter Property="MinHeight"
+				Value="40" />
+		<Setter Property="MinWidth"
+				Value="40" />
+		<Setter Property="HorizontalContentAlignment"
+				Value="Center" />
+		<Setter Property="VerticalContentAlignment"
+				Value="Center" />
+
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="Button">
+					<utu:ShadowContainer x:Name="RootPanel" Shadows="{StaticResource IconButtonShadows}">
+						<VisualStateManager.VisualStateGroups>
+							<VisualStateGroup x:Name="CommonStates">
+								<VisualState x:Name="Normal" />
+								<VisualState x:Name="PointerOver">
+									<VisualState.Setters>
+										<Setter Target="HoverOverlay.Opacity" Value="{ThemeResource IconButtonNmpOpacityVisibleState}" />
+									</VisualState.Setters>
+								</VisualState>
+								<VisualState x:Name="Pressed">
+									<VisualState.Setters>
+										<Setter Target="PressedOverlay.Opacity" Value="{ThemeResource IconButtonNmpOpacityVisibleState}" />
+									</VisualState.Setters>
+								</VisualState>
+								<VisualState x:Name="Focused">
+									<VisualState.Setters>
+										<Setter Target="FocusedOverlay.Opacity" Value="{ThemeResource IconButtonNmpOpacityVisibleState}" />
+									</VisualState.Setters>
+								</VisualState>
+								<VisualState x:Name="Disabled">
+									<VisualState.Setters>
+										<Setter Target="RootPanel.Opacity" Value="0.38" />
+									</VisualState.Setters>
+								</VisualState>
+							</VisualStateGroup>
+						</VisualStateManager.VisualStateGroups>
+						<Grid x:Name="RootGrid"
+							  Background="{TemplateBinding Background}"
+							  CornerRadius="{TemplateBinding CornerRadius}"
+							  Width="{TemplateBinding MinWidth}"
+							  Height="{TemplateBinding MinHeight}">
+							<!-- Ellipse for PointerOver State -->
+							<Ellipse x:Name="HoverOverlay"
+									 HorizontalAlignment="{StaticResource IconButtonNmpEllipseHorizontalAlignment}"
+									 VerticalAlignment="{StaticResource IconButtonNmpEllipseVerticalAlignment}"
+									 Fill="{ThemeResource IconButtonEllipseFillPointerOver}"
+									 Opacity="{ThemeResource IconButtonOpacityHiddenState}" />
+
+							<!-- Ellipse for Pressed State -->
+							<Ellipse x:Name="PressedOverlay"
+									 HorizontalAlignment="{StaticResource IconButtonNmpEllipseHorizontalAlignment}"
+									 VerticalAlignment="{StaticResource IconButtonNmpEllipseVerticalAlignment}"
+									 Fill="{ThemeResource IconButtonEllipseFillPressed}"
+									 Opacity="{ThemeResource IconButtonOpacityHiddenState}" />
+
+							<!-- Ellipse for Focused State -->
+							<Ellipse x:Name="FocusedOverlay"
+									 HorizontalAlignment="{StaticResource IconButtonNmpEllipseHorizontalAlignment}"
+									 VerticalAlignment="{StaticResource IconButtonNmpEllipseVerticalAlignment}"
+									 Fill="{ThemeResource IconButtonEllipseFillFocused}"
+									 Opacity="{ThemeResource IconButtonOpacityHiddenState}" />
+
+							<!-- Content -->
+							<ContentPresenter x:Name="ContentPresenter"
+											  AutomationProperties.AccessibilityView="Raw"
+											  Content="{TemplateBinding Content}"
+											  ContentTemplate="{TemplateBinding ContentTemplate}"
+											  HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+											  VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+											  Width="24"
+											  Height="24"/>
+						</Grid>
+					</utu:ShadowContainer>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<!--#endregion-->
 </ResourceDictionary>
