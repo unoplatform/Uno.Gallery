@@ -747,17 +747,9 @@
 									</VisualState.Setters>
 								</VisualState>
 
-								<VisualState x:Name="PointerFocused">
-									<VisualState.Setters>
-										<Setter Target="RootPanel.Shadows" Value="{StaticResource ElevatedHovered}" />
-									</VisualState.Setters>
-								</VisualState>
+								<VisualState x:Name="PointerFocused" />
+								<VisualState x:Name="Unfocused" />
 
-								<VisualState x:Name="Unfocused">
-									<VisualState.Setters>
-										<Setter Target="RootPanel.Shadows" Value="{StaticResource ElevatedNormal}" />
-									</VisualState.Setters>
-								</VisualState>
 							</VisualStateGroup>
 						</VisualStateManager.VisualStateGroups>
 
@@ -861,12 +853,7 @@
 									</VisualState.Setters>
 								</VisualState>
 
-								<VisualState x:Name="PointerFocused">
-									<VisualState.Setters>
-										<Setter Target="RootPanel.Shadows" Value="{StaticResource FilledHovered}" />
-									</VisualState.Setters>
-								</VisualState>
-
+								<VisualState x:Name="PointerFocused"/>
 								<VisualState x:Name="Unfocused" />
 							</VisualStateGroup>
 						</VisualStateManager.VisualStateGroups>
