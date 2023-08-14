@@ -283,6 +283,9 @@
 
 						<StackPanel Spacing="20"
 									Orientation="Horizontal">
+
+							<!--CRASHING WINDOWS-->
+							
 							<Button Style="{StaticResource NmpFabSmallStyle}"
 										Content="Create">
 								<um:ControlExtensions.Icon>
@@ -533,6 +536,183 @@
 										<PathIcon Data="M14 0H2C1.175 0 0.5075 0.675 0.5075 1.5L0.5 10.5C0.5 11.325 1.175 12 2 12H14C14.825 12 15.5 11.325 15.5 10.5V1.5C15.5 0.675 14.825 0 14 0ZM14 10.5H2V3L8 6.75L14 3V10.5ZM8 5.25L2 1.5H14L8 5.25Z"/>
 									</utu:Chip.Icon>
 								</utu:Chip>
+							</StackPanel>
+						</StackPanel>
+					</controls:WrapPanel>
+				</smtx:XamlDisplay>
+
+				<!--TabBar-->
+				<smtx:XamlDisplay UniqueKey="ShadowContainerSamplePage_TabBar"
+								  smtx:XamlDisplayExtensions.Header="Neumorphic TabBar"
+								  Background="{ThemeResource SurfaceBrush}"
+								  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\WrapPanel">
+
+					<controls:WrapPanel HorizontalSpacing="16"
+										VerticalSpacing="16">
+
+						<StackPanel Spacing="30">
+							<StackPanel Spacing="20"
+										Orientation="Vertical">
+								<utu:TabBar SelectedIndex="1"
+												Style="{StaticResource NmpTopTabBarStyle}">
+									<utu:TabBar.Items>
+										<utu:TabBarItem Content="HOME">
+											<utu:TabBarItem.Icon>
+												<SymbolIcon Symbol="Home" />
+											</utu:TabBarItem.Icon>
+										</utu:TabBarItem>
+										<utu:TabBarItem Content="SUPPORT">
+											<utu:TabBarItem.Icon>
+												<FontIcon Glyph="&#xE8F2;" />
+											</utu:TabBarItem.Icon>
+										</utu:TabBarItem>
+									</utu:TabBar.Items>
+								</utu:TabBar>
+
+								<utu:TabBar SelectedIndex="1"
+												Style="{StaticResource NmpTopTabBarStyle}">
+									<utu:TabBar.Items>
+										<utu:TabBarItem Content="HOME"/>
+
+										<utu:TabBarItem Content="SUPPORT"/>
+
+										<utu:TabBarItem Content="ABOUT"/>
+
+									</utu:TabBar.Items>
+								</utu:TabBar>
+
+								<utu:TabBar SelectedIndex="1"
+												Style="{StaticResource NmpTopTabBarStyle}">
+									<utu:TabBar.Items>
+										<utu:TabBarItem>
+											<utu:TabBarItem.Icon>
+												<SymbolIcon Symbol="Home" />
+											</utu:TabBarItem.Icon>
+										</utu:TabBarItem>
+										<utu:TabBarItem>
+											<utu:TabBarItem.Icon>
+												<FontIcon Glyph="&#xE8F2;" />
+											</utu:TabBarItem.Icon>
+										</utu:TabBarItem>
+										<utu:TabBarItem>
+											<utu:TabBarItem.Icon>
+												<FontIcon Glyph="&#xE946;" />
+											</utu:TabBarItem.Icon>
+										</utu:TabBarItem>
+
+									</utu:TabBar.Items>
+								</utu:TabBar>
+
+								<utu:TabBar SelectedIndex="1"
+												Style="{StaticResource NmpBottomTabBarStyle}">
+									<utu:TabBar.Items>
+										<utu:TabBarItem Content="HOME">
+											<utu:TabBarItem.Icon>
+												<SymbolIcon Symbol="Home" />
+											</utu:TabBarItem.Icon>
+										</utu:TabBarItem>
+										<utu:TabBarItem Content="SUPPORT">
+											<utu:TabBarItem.Icon>
+												<FontIcon Glyph="&#xE8F2;" />
+											</utu:TabBarItem.Icon>
+										</utu:TabBarItem>
+										<utu:TabBarItem Content="ABOUT">
+											<utu:TabBarItem.Icon>
+												<FontIcon Glyph="&#xE946;" />
+											</utu:TabBarItem.Icon>
+										</utu:TabBarItem>
+									</utu:TabBar.Items>
+								</utu:TabBar>
+
+								<utu:TabBar SelectedIndex="1"
+												Style="{StaticResource NmpVerticalTabBarStyle}">
+									<utu:TabBar.Items>
+										<utu:TabBarItem Content="HOME">
+											<utu:TabBarItem.Icon>
+												<SymbolIcon Symbol="Home" />
+											</utu:TabBarItem.Icon>
+										</utu:TabBarItem>
+										<utu:TabBarItem Content="SUPPORT">
+											<utu:TabBarItem.Icon>
+												<FontIcon Glyph="&#xE8F2;" />
+											</utu:TabBarItem.Icon>
+										</utu:TabBarItem>
+										<utu:TabBarItem Content="ABOUT">
+											<utu:TabBarItem.Icon>
+												<FontIcon Glyph="&#xE946;" />
+											</utu:TabBarItem.Icon>
+										</utu:TabBarItem>
+									</utu:TabBar.Items>
+								</utu:TabBar>
+
+								<utu:TabBar SelectedIndex="1"
+												Style="{StaticResource NmpBottomTabBarStyle}">
+									<utu:TabBar.Items>
+										<utu:TabBarItem Content="HOME"/>
+										<utu:TabBarItem Content="SUPPORT"/>
+										<utu:TabBarItem Content="ABOUT"/>
+									</utu:TabBar.Items>
+								</utu:TabBar>
+
+								<utu:TabBar SelectedIndex="1"
+												Style="{StaticResource NmpBottomTabBarStyle}">
+									<utu:TabBar.Items>
+										<utu:TabBarItem>
+											<utu:TabBarItem.Icon>
+												<SymbolIcon Symbol="Home" />
+											</utu:TabBarItem.Icon>
+										</utu:TabBarItem>
+										<utu:TabBarItem>
+											<utu:TabBarItem.Icon>
+												<FontIcon Glyph="&#xE8F2;" />
+											</utu:TabBarItem.Icon>
+										</utu:TabBarItem>
+										<utu:TabBarItem>
+											<utu:TabBarItem.Icon>
+												<FontIcon Glyph="&#xE946;" />
+											</utu:TabBarItem.Icon>
+										</utu:TabBarItem>
+									</utu:TabBar.Items>
+								</utu:TabBar>
+								<utu:TabBar SelectedIndex="1"
+												Style="{StaticResource NmpBottomTabBarStyle}">
+									<utu:TabBar.Items>
+										<utu:TabBarItem>
+											<utu:TabBarItem.Icon>
+												<SymbolIcon Symbol="Home" />
+											</utu:TabBarItem.Icon>
+										</utu:TabBarItem>
+										<utu:TabBarItem Style="{StaticResource NmpFabTabBarItemStyle}">
+											<utu:TabBarItem.Flyout>
+												<MenuFlyout Placement="Top"
+																MenuFlyoutPresenterStyle="{StaticResource MaterialMenuFlyoutPresenterStyle}">
+
+													<MenuFlyoutItem Text="Like"
+															Style="{StaticResource MaterialMenuFlyoutItemStyle}">
+														<MenuFlyoutItem.Icon>
+															<SymbolIcon Symbol="Like" />
+														</MenuFlyoutItem.Icon>
+													</MenuFlyoutItem>
+
+													<MenuFlyoutItem Text="Dislike"
+															Style="{StaticResource MaterialMenuFlyoutItemStyle}">
+														<MenuFlyoutItem.Icon>
+															<SymbolIcon Symbol="Dislike" />
+														</MenuFlyoutItem.Icon>
+													</MenuFlyoutItem>
+												</MenuFlyout>
+											</utu:TabBarItem.Flyout>
+											<utu:TabBarItem.Icon>
+												<PathIcon Data="M16.2227 9.14286H9.36551V16H7.0798V9.14286H0.222656V6.85714H7.0798V0H9.36551V6.85714H16.2227V9.14286Z"/>
+											</utu:TabBarItem.Icon>
+										</utu:TabBarItem>
+										<utu:TabBarItem>
+											<utu:TabBarItem.Icon>
+												<FontIcon Glyph="&#xE946;" />
+											</utu:TabBarItem.Icon>
+										</utu:TabBarItem>
+									</utu:TabBar.Items>
+								</utu:TabBar>
 							</StackPanel>
 						</StackPanel>
 					</controls:WrapPanel>
