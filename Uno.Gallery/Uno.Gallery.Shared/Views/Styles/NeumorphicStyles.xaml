@@ -689,7 +689,9 @@
 	<!--#endregion-->
 
 	<!--#region BUTTONS-->
-
+	<x:Double x:Key="NmpButtonIconContainerSize">18</x:Double>
+	<x:Double x:Key="NmpButtonIconSize">12</x:Double>
+	
 	<!--Elevated Style-->
 	<Style x:Key="NmpElevatedButtonStyle"
 		   BasedOn="{StaticResource MaterialBaseButtonStyle}"
@@ -767,21 +769,27 @@
 							  MinHeight="{TemplateBinding MinWidth}">
 
 							<Grid CornerRadius="{TemplateBinding CornerRadius}"
-								  Padding="{TemplateBinding Padding}">
+								  Padding="{TemplateBinding Padding}"
+								  HorizontalAlignment="Center"
+								  VerticalAlignment="Center">
 								<Grid.ColumnDefinitions>
 									<ColumnDefinition Width="Auto" />
 									<ColumnDefinition Width="*" />
 								</Grid.ColumnDefinitions>
 
-								<ContentPresenter x:Name="IconPresenter"
-												  Content="{Binding Path=(um:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}}"
-												  MinWidth="{StaticResource ButtonIconMinWidth}"
-												  HorizontalAlignment="{StaticResource ButtonIconHorizontalAlignment}"
-												  VerticalAlignment="{StaticResource ButtonIconVerticalAlignment}"
-												  Visibility="{Binding Path=(um:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialNullToCollapsedConverter}, FallbackValue=Collapsed, TargetNullValue=Collapsed}"
-												  VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-												  HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" />
-
+								<Border Height="{StaticResource NmpButtonIconContainerSize}"
+										Width="{StaticResource NmpButtonIconContainerSize}"
+										Visibility="{Binding Path=(um:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialNullToCollapsedConverter}, FallbackValue=Collapsed, TargetNullValue=Collapsed}">
+									<ContentPresenter x:Name="IconPresenter"
+													  Content="{Binding Path=(um:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}}"
+													  Width="{StaticResource NmpButtonIconSize}"
+													  Height="{StaticResource NmpButtonIconSize}"
+													  HorizontalAlignment="{StaticResource ButtonIconHorizontalAlignment}"
+													  VerticalAlignment="{StaticResource ButtonIconVerticalAlignment}"
+													  Visibility="{Binding Path=(um:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialNullToCollapsedConverter}, FallbackValue=Collapsed, TargetNullValue=Collapsed}"
+													  VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+													  HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" />
+								</Border>
 								<ContentPresenter x:Name="ContentPresenter"
 												  Grid.Column="1"
 												  Margin="{StaticResource ButtonContentMargin}"
@@ -871,20 +879,26 @@
 							  MinHeight="{TemplateBinding MinWidth}">
 
 							<Grid CornerRadius="{TemplateBinding CornerRadius}"
-								  Padding="{TemplateBinding Padding}">
+								  Padding="{TemplateBinding Padding}"
+								  HorizontalAlignment="Center"
+								  VerticalAlignment="Center">
 								<Grid.ColumnDefinitions>
 									<ColumnDefinition Width="Auto" />
 									<ColumnDefinition Width="*" />
 								</Grid.ColumnDefinitions>
 
-								<ContentPresenter x:Name="IconPresenter"
-												  Content="{Binding Path=(um:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}}"
-												  MinWidth="{StaticResource ButtonIconMinWidth}"
-												  HorizontalAlignment="{StaticResource ButtonIconHorizontalAlignment}"
-												  VerticalAlignment="{StaticResource ButtonIconVerticalAlignment}"
-												  Visibility="{Binding Path=(um:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialNullToCollapsedConverter}, FallbackValue=Collapsed, TargetNullValue=Collapsed}"
-												  VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-												  HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" />
+								<Border Height="{StaticResource NmpButtonIconContainerSize}"
+										Width="{StaticResource NmpButtonIconContainerSize}"
+										Visibility="{Binding Path=(um:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialNullToCollapsedConverter}, FallbackValue=Collapsed, TargetNullValue=Collapsed}">
+									<ContentPresenter x:Name="IconPresenter"
+													  Content="{Binding Path=(um:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}}"
+													  Width="{StaticResource NmpButtonIconSize}"
+													  Height="{StaticResource NmpButtonIconSize}"
+													  HorizontalAlignment="{StaticResource ButtonIconHorizontalAlignment}"
+													  VerticalAlignment="{StaticResource ButtonIconVerticalAlignment}"
+													  VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+													  HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" />
+								</Border>
 
 								<ContentPresenter x:Name="ContentPresenter"
 												  Grid.Column="1"
@@ -909,6 +923,7 @@
 	<!--FAB Style-->
 	<CornerRadius x:Key="NmpButtonCornerRadius">4</CornerRadius>
 	<x:Double x:Key="NmpFabFontSize">14</x:Double>
+
 	<Style x:Key="NmpFabStyle"
 		   TargetType="Button">
 
@@ -930,6 +945,10 @@
 				Value="16" />
 		<Setter Property="MinHeight"
 				Value="56" />
+		<Setter Property="um:ControlExtensions.IconHeight"
+				Value="16" />
+		<Setter Property="um:ControlExtensions.IconWidth"
+				Value="16" />
 
 		<!-- Workaround for WinUI issue: https://github.com/microsoft/microsoft-ui-xaml/issues/6388 -->
 		<Setter Property="um:ControlExtensions.Icon"
@@ -981,8 +1000,8 @@
 										Margin="{TemplateBinding Padding}">
 
 								<!-- Icon -->
-								<Viewbox Height="16"
-										 Width="16"
+								<Viewbox Height="{Binding Path=(um:ControlExtensions.IconHeight), RelativeSource={RelativeSource TemplatedParent}}"
+										 Width="{Binding Path=(um:ControlExtensions.IconWidth), RelativeSource={RelativeSource TemplatedParent}}"
 										 HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
 										 VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
 										 Visibility="{Binding Path=(um:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialNullToCollapsedConverter}, FallbackValue=Collapsed, TargetNullValue=Collapsed}">
@@ -1040,8 +1059,10 @@
 				Value="96" />
 		<Setter Property="CornerRadius"
 				Value="28" />
-
-		<!--Icon size should be 24x24-->
+		<Setter Property="um:ControlExtensions.IconHeight"
+				Value="24" />
+		<Setter Property="um:ControlExtensions.IconWidth"
+				Value="24" />
 	</Style>
 	<!--#endregion-->
 
