@@ -27,6 +27,9 @@
 			<Color x:Key="LightShadowColor5">#E5DCFF</Color>
 			<Color x:Key="ShadeShadowColor5">#A9A2D9</Color>
 
+			<Color x:Key="LightShadowColor6">#F7F5FF</Color>
+			<Color x:Key="ShadeShadowColor6">#584AB5</Color>
+
 			<!--Elevated Button Shadows-->
 			<utu:ShadowCollection x:Key="ElevatedNormal">
 				<utu:Shadow BlurRadius="16" IsInner="False" OffsetX="-4" OffsetY="-4" Opacity="0.4" Spread="0" Color="{StaticResource LightShadowColor2}" />
@@ -81,6 +84,16 @@
 				<utu:Shadow BlurRadius="16" IsInner="False" OffsetX="4" OffsetY="4" Opacity="0.6" Spread="0" Color="{StaticResource ShadeShadowColor5}" />
 			</utu:ShadowCollection>
 
+			<!--Chips-->
+			<utu:ShadowCollection x:Key="ChipsShadows">
+				<utu:Shadow BlurRadius="4" IsInner="False" OffsetX="-1" OffsetY="-1" Opacity="1" Spread="0" Color="{StaticResource LightShadowColor2}" />
+				<utu:Shadow BlurRadius="4" IsInner="False" OffsetX="1" OffsetY="1" Opacity="0.6" Spread="0" Color="{StaticResource ShadeShadowColor2}" />
+			</utu:ShadowCollection>
+			<utu:ShadowCollection x:Key="ChipsShadowsSelected">
+				<utu:Shadow BlurRadius="4" IsInner="True" OffsetX="1" OffsetY="1" Opacity="0.9" Spread="0" Color="{StaticResource ShadeShadowColor6}" />
+				<utu:Shadow BlurRadius="4" IsInner="True" OffsetX="-1" OffsetY="-1" Opacity="0.9" Spread="0" Color="{StaticResource LightShadowColor6}" />
+			</utu:ShadowCollection>
+			
 		</ResourceDictionary>
 		<ResourceDictionary x:Key="Light">
 
@@ -150,6 +163,15 @@
 				<utu:Shadow BlurRadius="16" IsInner="False" OffsetX="4" OffsetY="4" Opacity="0.6" Spread="0" Color="{StaticResource ShadeShadowColor2}" />
 			</utu:ShadowCollection>
 
+			<!--Chips-->
+			<utu:ShadowCollection x:Key="ChipsShadows">
+				<utu:Shadow BlurRadius="4" IsInner="False" OffsetX="-1" OffsetY="-1" Opacity="1" Spread="0" Color="{StaticResource LightShadowColor}" />
+				<utu:Shadow BlurRadius="4" IsInner="False" OffsetX="1" OffsetY="1" Opacity="0.6" Spread="0" Color="{StaticResource ShadeShadowColor}" />
+			</utu:ShadowCollection>
+			<utu:ShadowCollection x:Key="ChipsShadowsSelected">
+				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="4" OffsetY="4" Opacity="1" Spread="0" Color="{StaticResource ShadeShadowColor2}" />
+				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="-4" OffsetY="-4" Opacity="1" Spread="0" Color="{StaticResource LightShadowColor2}" />
+			</utu:ShadowCollection>
 		</ResourceDictionary>
 	</ResourceDictionary.ThemeDictionaries>
 
@@ -1104,6 +1126,173 @@
 											  VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
 											  Width="24"
 											  Height="24"/>
+						</Grid>
+					</utu:ShadowContainer>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<!--#endregion-->
+
+	<!--#region Chips-->
+	<Style x:Key="NmpChipStyle"
+		   TargetType="utu:Chip">
+		<Setter Property="Foreground"
+				Value="{ThemeResource OnSurfaceVariantBrush}" />
+		<Setter Property="Background"
+				Value="{ThemeResource PrimaryBrush}" />
+		<Setter Property="CornerRadius"
+				Value="8" />
+		<Setter Property="VerticalAlignment"
+				Value="Stretch" />
+		<Setter Property="VerticalContentAlignment"
+				Value="Center" />
+		<Setter Property="Padding"
+				Value="8,0" />
+
+		<Setter Property="Icon"
+				Value="{x:Null}" />
+
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="utu:Chip">
+					<utu:ShadowContainer x:Name="RootPanel">
+
+						<VisualStateManager.VisualStateGroups>
+							<VisualStateGroup x:Name="CommonStates">
+								<VisualState x:Name="Normal">
+									<VisualState.Setters>
+										<Setter Target="RootPanel.Shadows" Value="{ThemeResource ChipsShadows}" />
+										<Setter Target="StateOverlay.Background" Value="Transparent" />
+										<Setter Target="GridRoot.Background" Value="{ThemeResource SurfaceBrush}" />
+									</VisualState.Setters>
+								</VisualState>
+
+								<VisualState x:Name="PointerOver">
+									<VisualState.Setters>
+										<Setter Target="RootPanel.Shadows" Value="{ThemeResource ChipsShadows}" />
+										<Setter Target="StateOverlay.Background" Value="{ThemeResource OnSurfaceHoverBrush}" />
+										<Setter Target="GridRoot.Background" Value="{ThemeResource SurfaceBrush}" />
+									</VisualState.Setters>
+								</VisualState>
+								<VisualState x:Name="Pressed">
+									<VisualState.Setters>
+										<Setter Target="RootPanel.Shadows" Value="{ThemeResource ChipsShadows}" />
+										<Setter Target="StateOverlay.Background" Value="{ThemeResource OnSurfacePressedBrush}" />
+										<Setter Target="GridRoot.Background" Value="{ThemeResource SurfaceBrush}" />
+									</VisualState.Setters>
+								</VisualState>
+								<VisualState x:Name="Disabled">
+									<VisualState.Setters>
+										<Setter Target="RootPanel.Shadows" Value="{ThemeResource ChipsShadows}" />
+										<Setter Target="RootPanel.Opacity" Value="0.38" />
+										<Setter Target="GridRoot.Background" Value="{ThemeResource SurfaceBrush}" />
+										<Setter Target="StateOverlay.Background" Value="{ThemeResource OnSurfaceDisabledBrush}" />
+										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource OnSurfaceLowBrush}" />
+										<Setter Target="PART_RemoveButton.Foreground" Value="{ThemeResource OnSurfaceLowBrush}" />
+										<Setter Target="IconPresenter.Foreground" Value="{ThemeResource OnSurfaceLowBrush}" />
+									</VisualState.Setters>
+								</VisualState>
+								<VisualState x:Name="Checked">
+									<VisualState.Setters>
+										<Setter Target="RootPanel.Shadows" Value="{ThemeResource ChipsShadowsSelected}" />
+										<Setter Target="StateOverlay.Background" Value="Transparent" />
+										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource OnPrimaryBrush}" />
+										<Setter Target="IconPresenter.Foreground" Value="{ThemeResource OnPrimaryBrush}" />
+										<Setter Target="PART_RemoveButton.Foreground" Value="{ThemeResource OnPrimaryBrush}" />
+										<Setter Target="CheckGlyphElement.Visibility" Value="Visible" />
+									</VisualState.Setters>
+								</VisualState>
+								<VisualState x:Name="CheckedPointerOver">
+									<VisualState.Setters>
+										<Setter Target="RootPanel.Shadows" Value="{ThemeResource ChipsShadowsSelected}" />
+										<Setter Target="StateOverlay.Background" Value="{ThemeResource OnPrimaryContainerHovered}" />
+										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource OnPrimaryBrush}" />
+										<Setter Target="IconPresenter.Foreground" Value="{ThemeResource OnPrimaryBrush}" />
+										<Setter Target="PART_RemoveButton.Foreground" Value="{ThemeResource OnPrimaryBrush}" />
+										<Setter Target="CheckGlyphElement.Visibility" Value="Visible" />
+									</VisualState.Setters>
+								</VisualState>
+								<VisualState x:Name="CheckedPressed">
+									<VisualState.Setters>
+										<Setter Target="RootPanel.Shadows" Value="{ThemeResource ChipsShadowsSelected}" />
+										<Setter Target="StateOverlay.Background" Value="{ThemeResource OnPrimaryContainerPressed}" />
+										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource OnPrimaryBrush}" />
+										<Setter Target="IconPresenter.Foreground" Value="{ThemeResource OnPrimaryBrush}" />
+										<Setter Target="PART_RemoveButton.Foreground" Value="{ThemeResource OnPrimaryBrush}" />
+										<Setter Target="CheckGlyphElement.Visibility" Value="Visible" />
+									</VisualState.Setters>
+								</VisualState>
+							</VisualStateGroup>
+						</VisualStateManager.VisualStateGroups>
+
+						<Grid x:Name="GridRoot"
+							  CornerRadius="{TemplateBinding CornerRadius}"
+							  Height="32"
+							  Margin="4"
+							  Background="{TemplateBinding Background}">
+							<Border x:Name="StateOverlay"
+									Background="Transparent"
+									CornerRadius="{TemplateBinding CornerRadius}" />
+
+							<Grid Padding="{TemplateBinding Padding}"
+								  CornerRadius="{TemplateBinding CornerRadius}">
+								<Grid.ColumnDefinitions>
+									<!-- 0: Leading Icon, 1: Content: 2: Remove Button -->
+									<ColumnDefinition Width="Auto" />
+									<ColumnDefinition Width="*" />
+									<ColumnDefinition Width="Auto" />
+								</Grid.ColumnDefinitions>
+
+								<!-- C0: Leading Icon / Check Glyph -->
+								<ContentPresenter x:Name="IconPresenter"
+												  Grid.Column="0"
+												  Width="18"
+												  Height="18"
+												  VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+												  AutomationProperties.AccessibilityView="Raw"
+												  Content="{TemplateBinding Icon}"
+												  ContentTemplate="{TemplateBinding IconTemplate}"
+												  Foreground="{ThemeResource OnSurfaceVariantBrush}"
+												  Visibility="{Binding Icon, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource MaterialNullToCollapsedConverter}, FallbackValue=Collapsed}" />
+
+								<Grid x:Name="CheckGlyphElement"
+									  Grid.Column="0"
+									  Width="20"
+									  Height="20"
+									  Padding="2"
+									  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+									  Visibility="Collapsed">
+									<Path HorizontalAlignment="Center"
+										  VerticalAlignment="Center"
+										  AutomationProperties.AccessibilityView="Raw"
+										  Data="{StaticResource MaterialCheckGlyphPathData}"
+										  Fill="{StaticResource OnPrimaryBrush}"
+										  Stretch="Uniform"
+										  Visibility="{Binding Icon, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource MaterialEmptyOrNullToVisible}, FallbackValue=Collapsed}" />
+								</Grid>
+
+								<!-- C1: Content -->
+								<ContentPresenter x:Name="ContentPresenter"
+												  Grid.Column="1"
+												  Margin="8,0"
+												  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+												  AutomationProperties.AccessibilityView="Raw"
+												  CharacterSpacing="7"
+												  Content="{TemplateBinding Content}"
+												  ContentTemplate="{TemplateBinding ContentTemplate}"
+												  ContentTransitions="{TemplateBinding ContentTransitions}"
+												  FontFamily="{ThemeResource MaterialMediumFontFamily}"
+												  Foreground="{TemplateBinding Foreground}" />
+
+								<!-- C2: Remove Button -->
+								<Button x:Name="PART_RemoveButton"
+										Grid.Column="2"
+										VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+										Foreground="{TemplateBinding Foreground}"
+										Style="{StaticResource MaterialChipDeleteIconButtonStyle}"
+										Visibility="{Binding CanRemove, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource MaterialTrueToVisible}, FallbackValue=Collapsed}" />
+							</Grid>
 						</Grid>
 					</utu:ShadowContainer>
 				</ControlTemplate>
