@@ -77,6 +77,63 @@
 					</controls:WrapPanel>
 				</smtx:XamlDisplay>
 
+				<!-- ComboBox -->
+				<smtx:XamlDisplay UniqueKey="ShadowContainerSamplePage_ComboBox"
+								  smtx:XamlDisplayExtensions.Header="Neumorphic ComboBox"
+								  Background="{ThemeResource SurfaceBrush}"
+								  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\WrapPanel">
+
+					<controls:WrapPanel HorizontalSpacing="16"
+										VerticalSpacing="16">
+
+						<StackPanel Spacing="20">
+							<!-- ComboBox Enabled -->
+							<TextBlock Text="Enabled"
+									   Style="{StaticResource BodyMedium}" />
+							<ComboBox Width="328"
+									  PlaceholderText="Label"
+									  Style="{StaticResource NmpComboBoxStyle}"
+									  ItemsSource="{Binding Data.CbbItems}">
+								<um:ControlExtensions.Icon>
+									<SymbolIcon Symbol="Favorite" />
+								</um:ControlExtensions.Icon>
+							</ComboBox>
+							<ComboBox Width="328"
+									  PlaceholderText="Label"
+									  Style="{StaticResource NmpComboBoxStyle}"
+									  ItemsSource="{Binding Data.CbbItems}"/>
+							<ComboBox Width="328"
+									  Style="{StaticResource NmpComboBoxStyle}"
+									  ItemsSource="{Binding Data.CbbItems}"/>
+						</StackPanel>
+
+						<StackPanel Spacing="20">
+							<!-- ComboBox Disabled -->
+							<TextBlock Text="Disabled"
+									   Style="{StaticResource BodyMedium}" />
+							<ComboBox Width="328"
+									  IsEnabled="False"
+									  PlaceholderText="Label"
+									  Style="{StaticResource NmpComboBoxStyle}"
+									  ItemsSource="{Binding Data.CbbItems}">
+								<um:ControlExtensions.Icon>
+									<SymbolIcon Symbol="Favorite" />
+								</um:ControlExtensions.Icon>
+							</ComboBox>
+							<ComboBox Width="328"
+									  IsEnabled="False"
+									  PlaceholderText="Label"
+									  Style="{StaticResource NmpComboBoxStyle}"
+									  ItemsSource="{Binding Data.CbbItems}"/>
+							<ComboBox Width="328"
+									  IsEnabled="False"
+									  Style="{StaticResource NmpComboBoxStyle}"
+									  ItemsSource="{Binding Data.CbbItems}"/>
+						</StackPanel>
+
+					</controls:WrapPanel>
+				</smtx:XamlDisplay>
+
 				<!--Button Elevated-->
 				<smtx:XamlDisplay UniqueKey="ShadowContainerSamplePage_ElevatedButton"
 								  smtx:XamlDisplayExtensions.Header="Neumorphic Elevated Button"
@@ -374,7 +431,6 @@
 						</StackPanel>
 					</controls:WrapPanel>
 				</smtx:XamlDisplay>
-
 
 			</StackPanel>
 		</local:ContentPageLayout>

@@ -14,6 +14,8 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using System.Collections.ObjectModel;
+using Uno.Gallery.ViewModels;
 
 namespace Uno.Gallery.Views.SamplePages
 {
@@ -21,7 +23,7 @@ namespace Uno.Gallery.Views.SamplePages
 		SourceSdk.UnoToolkit,
 		Description = "The ShadowContainer provides the possibility to add many-colored shadows to its content.",
 		DocumentationLink = "https://github.com/unoplatform/uno.toolkit.ui/blob/main/doc/controls/ShadowContainer.md",
-		DataType = typeof(TestCollections))]
+		DataType = typeof(ShadowContainerViewModel))]
 	public sealed partial class ShadowContainerSamplePage : Page
 	{
 		public ShadowContainerSamplePage()
@@ -29,5 +31,14 @@ namespace Uno.Gallery.Views.SamplePages
 			this.InitializeComponent();
 		}
 
+		public class ShadowContainerViewModel : ViewModelBase
+		{
+			public ObservableCollection<string> CbbItems { get; } = new ObservableCollection<string>
+			{
+				"Item 1",
+				"Item 2",
+				"Item 3"
+			};
+		}
 	}
 }
