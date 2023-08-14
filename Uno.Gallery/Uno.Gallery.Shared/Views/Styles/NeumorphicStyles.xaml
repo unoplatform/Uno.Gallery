@@ -907,6 +907,8 @@
 	</Style>
 
 	<!--FAB Style-->
+	<CornerRadius x:Key="NmpButtonCornerRadius">4</CornerRadius>
+	<x:Double x:Key="NmpFabFontSize">14</x:Double>
 	<Style x:Key="NmpFabStyle"
 		   TargetType="Button">
 
@@ -915,9 +917,9 @@
 		<Setter Property="Foreground"
 				Value="{ThemeResource OnPrimaryContainerBrush}" />
 		<Setter Property="FontFamily"
-				Value="{StaticResource MaterialMediumFontFamily}" />
+				Value="{ThemeResource MaterialMediumFontFamily}" />
 		<Setter Property="FontSize"
-				Value="{StaticResource MaterialFabFontSize}" />
+				Value="{StaticResource NmpFabFontSize}" />
 		<Setter Property="HorizontalContentAlignment"
 				Value="Center" />
 		<Setter Property="VerticalContentAlignment"
@@ -999,7 +1001,7 @@
 												  Content="{TemplateBinding Content}"
 												  ContentTemplate="{TemplateBinding ContentTemplate}"
 												  ContentTransitions="{TemplateBinding ContentTransitions}"
-												  CornerRadius="{StaticResource MaterialButtonCornerRadius}"
+												  CornerRadius="{StaticResource NmpButtonCornerRadius}"
 												  FontFamily="{TemplateBinding FontFamily}"
 												  FontSize="{TemplateBinding FontSize}"
 												  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"

@@ -283,11 +283,9 @@
 
 						<StackPanel Spacing="20"
 									Orientation="Horizontal">
-
-							<!--CRASHING WINDOWS-->
 							
 							<Button Style="{StaticResource NmpFabSmallStyle}"
-										Content="Create">
+									Content="Create">
 								<um:ControlExtensions.Icon>
 									<PathIcon Data="M16.667 9.14286H9.80985V16H7.52414V9.14286H0.666992V6.85714H7.52414V0H9.80985V6.85714H16.667V9.14286Z" />
 								</um:ControlExtensions.Icon>
