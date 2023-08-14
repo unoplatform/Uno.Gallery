@@ -30,6 +30,10 @@
 			<Color x:Key="LightShadowColor6">#F7F5FF</Color>
 			<Color x:Key="ShadeShadowColor6">#584AB5</Color>
 
+			<Color x:Key="LightShadowColor7">#A9A2D9</Color>
+			<Color x:Key="MediumShadowColor7">#24222A</Color>
+			<Color x:Key="ShadeShadowColor7">#000000</Color>
+
 			<!--Elevated Button Shadows-->
 			<utu:ShadowCollection x:Key="ElevatedNormal">
 				<utu:Shadow BlurRadius="16" IsInner="False" OffsetX="-4" OffsetY="-4" Opacity="0.4" Spread="0" Color="{StaticResource LightShadowColor2}" />
@@ -84,6 +88,13 @@
 				<utu:Shadow BlurRadius="16" IsInner="False" OffsetX="4" OffsetY="4" Opacity="0.6" Spread="0" Color="{StaticResource ShadeShadowColor5}" />
 			</utu:ShadowCollection>
 
+			<!--FAB-->
+			<utu:ShadowCollection x:Key="FabShadow">
+				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="8" OffsetY="8" Opacity="0.2" Spread="0" Color="{StaticResource LightShadowColor7}" />
+				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="-8" OffsetY="-8" Opacity="0.4" Spread="0" Color="{StaticResource MediumShadowColor7}" />
+				<utu:Shadow BlurRadius="20" IsInner="False" OffsetX="12" OffsetY="12" Opacity="0.4" Spread="0" Color="{StaticResource ShadeShadowColor7}" />
+			</utu:ShadowCollection>
+
 			<!--Chips-->
 			<utu:ShadowCollection x:Key="ChipsShadows">
 				<utu:Shadow BlurRadius="4" IsInner="False" OffsetX="-1" OffsetY="-1" Opacity="1" Spread="0" Color="{StaticResource LightShadowColor2}" />
@@ -104,6 +115,10 @@
 
 			<Color x:Key="LightShadowColor2">#6651F2</Color>
 			<Color x:Key="ShadeShadowColor2">#4C3CB3</Color>
+
+			<Color x:Key="LightShadowColor3">#FFFFFF</Color>
+			<Color x:Key="MediumShadowColor3">#AEAEC0</Color>
+			<Color x:Key="ShadeShadowColor3">#170065</Color>
 
 			<!--For ToggleButton/IconButton it has a corresponding in Dark Theme-->
 			<Color x:Key="LightShadowColor4">#FFFFFF</Color>
@@ -161,6 +176,13 @@
 				<utu:Shadow BlurRadius="48" IsInner="True" OffsetX="0" OffsetY="0" Opacity="0.6" Spread="0" Color="{StaticResource ShadeShadowColor2}" />
 				<utu:Shadow BlurRadius="16" IsInner="False" OffsetX="-4" OffsetY="-4" Opacity="0.4" Spread="0" Color="{StaticResource LightShadowColor2}" />
 				<utu:Shadow BlurRadius="16" IsInner="False" OffsetX="4" OffsetY="4" Opacity="0.6" Spread="0" Color="{StaticResource ShadeShadowColor2}" />
+			</utu:ShadowCollection>
+
+			<!--FAB-->
+			<utu:ShadowCollection x:Key="FabShadow">
+				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="-8" OffsetY="-8" Opacity="0.08" Spread="0" Color="{StaticResource ShadeShadowColor3}" />
+				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="8" OffsetY="8" Opacity="0.4" Spread="0" Color="{StaticResource LightShadowColor3}" />
+				<utu:Shadow BlurRadius="20" IsInner="False" OffsetX="12" OffsetY="12" Opacity="0.4" Spread="0" Color="{StaticResource MediumShadowColor3}" />
 			</utu:ShadowCollection>
 
 			<!--Chips-->
@@ -862,6 +884,141 @@
 		</Setter>
 	</Style>
 
+	<!--FAB Style-->
+	<Style x:Key="NmpFabStyle"
+		   TargetType="Button">
+
+		<Setter Property="Background"
+				Value="{ThemeResource PrimaryContainerBrush}" />
+		<Setter Property="Foreground"
+				Value="{ThemeResource OnPrimaryContainerBrush}" />
+		<Setter Property="FontFamily"
+				Value="{StaticResource MaterialMediumFontFamily}" />
+		<Setter Property="FontSize"
+				Value="{StaticResource MaterialFabFontSize}" />
+		<Setter Property="HorizontalContentAlignment"
+				Value="Center" />
+		<Setter Property="VerticalContentAlignment"
+				Value="Center" />
+		<Setter Property="CornerRadius"
+				Value="16" />
+		<Setter Property="Padding"
+				Value="16" />
+		<Setter Property="MinHeight"
+				Value="56" />
+
+		<!-- Workaround for WinUI issue: https://github.com/microsoft/microsoft-ui-xaml/issues/6388 -->
+		<Setter Property="um:ControlExtensions.Icon"
+				Value="{x:Null}" />
+
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="Button">
+					<utu:ShadowContainer x:Name="RootPanel" Shadows="{StaticResource FabShadow}">
+						<VisualStateManager.VisualStateGroups>
+							<VisualStateGroup x:Name="CommonStates">
+								<VisualState x:Name="Normal" />
+								<VisualState x:Name="PointerOver">
+									<VisualState.Setters>
+										<Setter Target="RootGrid.Background" Value="{ThemeResource OnPrimaryContainerHoverBrush}" />
+									</VisualState.Setters>
+								</VisualState>
+
+								<VisualState x:Name="Disabled" />
+
+								<VisualState x:Name="Pressed">
+									<VisualState.Setters>
+										<Setter Target="RootGrid.Background" Value="{ThemeResource OnPrimaryContainerPressedBrush}" />
+									</VisualState.Setters>
+								</VisualState>
+							</VisualStateGroup>
+
+							<VisualStateGroup x:Name="FocusStates">
+
+								<VisualState x:Name="Focused">
+									<VisualState.Setters>
+										<Setter Target="RootGrid.Background" Value="{ThemeResource OnPrimaryContainerFocusedBrush}" />
+									</VisualState.Setters>
+								</VisualState>
+
+								<VisualState x:Name="PointerFocused" />
+
+								<VisualState x:Name="Unfocused" />
+							</VisualStateGroup>
+						</VisualStateManager.VisualStateGroups>
+						<Grid x:Name="RootGrid"
+							  CornerRadius="{TemplateBinding CornerRadius}"
+							  Background="{TemplateBinding Background}"
+							  MinHeight="{TemplateBinding MinHeight}"
+							  MinWidth="{TemplateBinding MinWidth}">
+
+							<StackPanel x:Name="ContentPanel"
+										Orientation="Horizontal"
+										Margin="{TemplateBinding Padding}">
+
+								<!-- Icon -->
+								<Viewbox Height="16"
+										 Width="16"
+										 HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+										 VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+										 Visibility="{Binding Path=(um:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialNullToCollapsedConverter}, FallbackValue=Collapsed, TargetNullValue=Collapsed}">
+									<ContentPresenter Content="{Binding Path=(um:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}}"
+													  Foreground="{Binding Path=Foreground, RelativeSource={RelativeSource TemplatedParent}}" />
+								</Viewbox>
+
+								<!-- Icon/Content spacing -->
+								<Border Visibility="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialEmptyToCollapsed}, FallbackValue=Collapsed, TargetNullValue=Collapsed}">
+									<Border Width="8"
+											Visibility="{Binding Path=(um:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialNullToCollapsedConverter}, FallbackValue=Collapsed, TargetNullValue=Collapsed}" />
+								</Border>
+
+								<!-- Content -->
+								<ContentPresenter x:Name="ContentPresenter"
+												  Content="{TemplateBinding Content}"
+												  ContentTemplate="{TemplateBinding ContentTemplate}"
+												  ContentTransitions="{TemplateBinding ContentTransitions}"
+												  CornerRadius="{StaticResource MaterialButtonCornerRadius}"
+												  FontFamily="{TemplateBinding FontFamily}"
+												  FontSize="{TemplateBinding FontSize}"
+												  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+												  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+							</StackPanel>
+						</Grid>
+					</utu:ShadowContainer>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<!--Small FAB Style-->
+	<Style x:Key="NmpFabSmallStyle"
+		   BasedOn="{StaticResource NmpFabStyle}"
+		   TargetType="Button">
+
+		<Setter Property="Padding"
+				Value="12,0" />
+		<Setter Property="MinHeight"
+				Value="40" />
+		<Setter Property="CornerRadius"
+				Value="12" />
+	</Style>
+
+	<!--Large FAB Style-->
+	<Style x:Key="NmpFabLargeStyle"
+		   BasedOn="{StaticResource NmpFabStyle}"
+		   TargetType="Button">
+
+		<Setter Property="Padding"
+				Value="40" />
+		<Setter Property="MinHeight"
+				Value="96" />
+		<Setter Property="MinWidth"
+				Value="96" />
+		<Setter Property="CornerRadius"
+				Value="28" />
+
+		<!--Icon size should be 24x24-->
+	</Style>
 	<!--#endregion-->
 
 	<!--#region ToggleButton-->
