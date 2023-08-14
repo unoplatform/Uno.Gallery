@@ -92,6 +92,7 @@
 			<Color x:Key="LightShadowColor2">#6651F2</Color>
 			<Color x:Key="ShadeShadowColor2">#4C3CB3</Color>
 
+			<!--For ToggleButton/IconButton it has a corresponding in Dark Theme-->
 			<Color x:Key="LightShadowColor4">#FFFFFF</Color>
 			<Color x:Key="ShadeShadowColor4">#AEAEC0</Color>
 
@@ -182,7 +183,13 @@
 		<utu:Shadow BlurRadius="8" IsInner="False" OffsetX="-2" OffsetY="-2" Opacity="0.8" Spread="0" Color="{StaticResource LightShadowColor4}" />
 		<utu:Shadow BlurRadius="8" IsInner="False" OffsetX="2" OffsetY="2" Opacity="0.8" Spread="0" Color="{StaticResource ShadeShadowColor4}" />
 	</utu:ShadowCollection>
-	
+
+	<!--ComboBox-->
+	<utu:ShadowCollection x:Key="ComboboxShadow">
+		<utu:Shadow BlurRadius="4" IsInner="True" OffsetX="4" OffsetY="4" Opacity="0.4" Spread="0" Color="{StaticResource ShadeShadowColor}" />
+		<utu:Shadow BlurRadius="4" IsInner="True" OffsetX="-4" OffsetY="-4" Opacity="0.4" Spread="0" Color="{StaticResource LightShadowColor}" />
+	</utu:ShadowCollection>
+
 	<!--#endregion-->
 	<!-- Converters -->
 	<um:FromEmptyStringToValueConverter x:Key="EmptyToCompositeTransformTranslateY"
@@ -361,6 +368,252 @@
 									VerticalAlignment="Stretch"
 									Visibility="Collapsed"
 									AutomationProperties.AccessibilityView="Raw" />
+						</Grid>
+					</utu:ShadowContainer>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<!--#endregion-->
+
+	<!--#region ComboBox-->
+	<Style x:Key="NmpComboBoxStyle"
+		   TargetType="ComboBox">
+		
+		<Setter Property="Foreground" Value="{ThemeResource OnSurfaceMediumBrush}" />
+		<Setter Property="Background" Value="{ThemeResource SurfaceBrush}" />
+		<Setter Property="HorizontalContentAlignment" Value="Left" />
+		<Setter Property="VerticalContentAlignment" Value="Center" />
+		<Setter Property="Padding" Value="16,16,14,16" />
+		<Setter Property="MinHeight" Value="56" />
+
+		<!-- Start: Body Large Typo -->
+		<Setter Property="FontFamily" Value="{ThemeResource MaterialMediumFontFamily}" />
+		<Setter Property="FontWeight" Value="{ThemeResource BodyLargeFontWeight}" />
+		<Setter Property="FontSize" Value="{ThemeResource BodyLargeFontSize}" />
+		<Setter Property="CharacterSpacing" Value="{ThemeResource BodyLargeCharacterSpacing}" />
+		<!-- End: Body Large Typo -->
+
+		<Setter Property="TabNavigation" Value="Once" />
+		<Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
+		<Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+		<Setter Property="ScrollViewer.HorizontalScrollMode" Value="Disabled" />
+		<Setter Property="ScrollViewer.VerticalScrollMode" Value="Auto" />
+		<Setter Property="ScrollViewer.IsVerticalRailEnabled" Value="True" />
+		<Setter Property="ScrollViewer.IsDeferredScrollingEnabled" Value="False" />
+		<Setter Property="ScrollViewer.BringIntoViewOnFocusChange" Value="True" />
+		<Setter Property="HorizontalAlignment" Value="Stretch" />
+		<Setter Property="ItemContainerStyle" Value="{StaticResource MaterialComboBoxItemStyle}" />
+		
+		<!-- Workaround for WinUI issue: https://github.com/microsoft/microsoft-ui-xaml/issues/6388 -->
+		<Setter Property="um:ControlExtensions.Icon" Value="{x:Null}" />
+
+		<Setter Property="ItemsPanel">
+			<Setter.Value>
+				<ItemsPanelTemplate>
+					<CarouselPanel />
+				</ItemsPanelTemplate>
+			</Setter.Value>
+		</Setter>
+
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="ComboBox">
+					<utu:ShadowContainer x:Name="RootPanel" Shadows="{StaticResource ComboboxShadow}">
+						<VisualStateManager.VisualStateGroups>
+							<VisualStateGroup x:Name="CommonStates">
+								<VisualState x:Name="Normal" />
+
+								<VisualState x:Name="Disabled">
+									<VisualState.Setters>
+										<Setter Target="ComboBoxContent.Background" Value="{ThemeResource SystemControlTransparentBrush}" />
+										<Setter Target="DropDownGlyph_Down.Fill" Value="{ThemeResource OnSurfaceLowBrush}" />
+										<Setter Target="PlaceholderElement.Foreground" Value="{ThemeResource OnSurfaceLowBrush}" />
+										<Setter Target="UpperPlaceholderElement.Foreground" Value="{ThemeResource OnSurfaceLowBrush}" />
+										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource OnSurfaceLowBrush}" />
+										<Setter Target="IconPresenter.Foreground" Value="{ThemeResource OnSurfaceLowBrush}" />
+										<Setter Target="PopupBorder.Background" Value="{ThemeResource SystemControlTransparentBrush}" />
+									</VisualState.Setters>
+								</VisualState>
+								<VisualState x:Name="PointerOver"/>
+								<VisualState x:Name="Pressed" />
+							</VisualStateGroup>
+
+							<VisualStateGroup x:Name="FocusStates">
+								<VisualState x:Name="PointerFocused" />
+								<VisualState x:Name="FocusedDropDown" />
+								<VisualState x:Name="Focused" />
+								<VisualState x:Name="FocusedPressed" />
+								<VisualState x:Name="Unfocused" />
+							</VisualStateGroup>
+
+							<VisualStateGroup x:Name="DropDownStates">
+								<VisualState x:Name="Opened">
+									<VisualState.Setters>
+										<Setter Target="DropDownGlyph_Up.Fill" Value="{ThemeResource PrimaryBrush}" />
+										<Setter Target="DropDownGlyph_Down.Visibility" Value="Collapsed" />
+										<Setter Target="DropDownGlyph_Up.Visibility" Value="Visible" />
+									</VisualState.Setters>
+									<Storyboard>
+
+										<SplitOpenThemeAnimation ClosedLength="{Binding TemplateSettings.DropDownClosedHeight, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+																 ClosedTargetName="ContentPresenter"
+																 ContentTargetName="ScrollViewer"
+																 ContentTranslationOffset="0"
+																 OffsetFromCenter="{Binding TemplateSettings.DropDownOffset, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+																 OpenedLength="{Binding TemplateSettings.DropDownOpenedHeight, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+																 OpenedTargetName="PopupBorder" />
+									</Storyboard>
+								</VisualState>
+
+								<VisualState x:Name="Closed">
+									<VisualState.Setters>
+										<Setter Target="DropDownGlyph_Down.Visibility" Value="Visible" />
+										<Setter Target="DropDownGlyph_Up.Visibility" Value="Collapsed" />
+									</VisualState.Setters>
+									<Storyboard>
+										<SplitCloseThemeAnimation ClosedLength="{Binding TemplateSettings.DropDownClosedHeight, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+																  ClosedTargetName="ContentPresenter"
+																  ContentTargetName="ScrollViewer"
+																  ContentTranslationDirection="{Binding TemplateSettings.SelectedItemDirection, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+																  ContentTranslationOffset="40"
+																  OffsetFromCenter="{Binding TemplateSettings.DropDownOffset, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+																  OpenedLength="{Binding TemplateSettings.DropDownOpenedHeight, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+																  OpenedTargetName="PopupBorder" />
+									</Storyboard>
+								</VisualState>
+							</VisualStateGroup>
+						</VisualStateManager.VisualStateGroups>
+
+						<Grid x:Name="RootGrid"
+							  HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+							  Background="{TemplateBinding Background}"
+							  CornerRadius="4"
+							  Width="{TemplateBinding Width}"
+							  MinHeight="{TemplateBinding MinHeight}">
+
+							<Grid x:Name="ComboBoxContent"
+								  Padding="{TemplateBinding Padding}">
+								<Grid.Resources>
+									<!-- Resources added here in order to manage the ContentPresenter TranslateY depending if there is a PlaceholderText or not -->
+									<CompositeTransform x:Key="ContentPresenter_CompositeTransformWithPlaceholder"
+														TranslateY="{Binding SelectedItem, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource NullToContentTranslateYConverter}, TargetNullValue=0, FallbackValue=0}" />
+
+									<CompositeTransform x:Key="ContentPresenter_CompositeTransformWithoutPlaceholder"
+														TranslateY="0" />
+
+									<um:FromEmptyStringToValueConverter x:Key="EmptyToCompositeTransformConverter"
+																		NotNullOrEmptyValue="{StaticResource ContentPresenter_CompositeTransformWithPlaceholder}"
+																		NullOrEmptyValue="{StaticResource ContentPresenter_CompositeTransformWithoutPlaceholder}" />
+								</Grid.Resources>
+
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="Auto" />
+									<ColumnDefinition Width="*" />
+									<ColumnDefinition Width="Auto" />
+								</Grid.ColumnDefinitions>
+
+								<!-- Leading Icon -->
+								<ContentPresenter x:Name="IconPresenter"
+												  Width="20"
+												  Margin="2,0,18,0"
+												  HorizontalAlignment="Center"
+												  VerticalAlignment="Center"
+												  Foreground="{ThemeResource OnSurfaceBrush}"
+												  Content="{Binding Path=(um:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}}"
+												  Visibility="{Binding Path=(um:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialNullToCollapsedConverter}, FallbackValue=Collapsed, TargetNullValue=Collapsed}" />
+
+								<!-- ContentPresenter -->
+								<ContentPresenter x:Name="ContentPresenter"
+												  Grid.Column="1"
+												  MaxLines="1"
+												  VerticalAlignment="Center"
+												  RenderTransform="{Binding PlaceholderText, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource EmptyToCompositeTransformConverter}, TargetNullValue={StaticResource ContentPresenter_CompositeTransformWithoutPlaceholder}, FallbackValue={StaticResource ContentPresenter_CompositeTransformWithoutPlaceholder}}" />
+
+								<!-- PlaceholderElement -->
+								<TextBlock x:Name="PlaceholderElement"
+										   Grid.Column="1"
+										   VerticalAlignment="Center"
+										   Visibility="{Binding SelectedItem, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource NullToVisible}, TargetNullValue=Collapsed, FallbackValue=Collapsed}"
+										   Foreground="{ThemeResource OnSurfaceMediumBrush}"
+										   IsHitTestVisible="False"
+										   MaxLines="1"
+										   RenderTransformOrigin="0,0.5"
+										   Style="{StaticResource BodyLarge}"
+										   Text="{TemplateBinding PlaceholderText}" />
+
+								<TextBlock x:Name="UpperPlaceholderElement"
+										   Grid.Column="1"
+										   VerticalAlignment="Center"
+										   Visibility="{Binding SelectedItem, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource NullToCollapsed}, TargetNullValue=Collapsed, FallbackValue=Collapsed}"
+										   Foreground="{ThemeResource OnSurfaceVariantBrush}"
+										   IsHitTestVisible="False"
+										   MaxLines="1"
+										   RenderTransformOrigin="0,0.5"
+										   Style="{StaticResource BodyLarge}"
+										   Text="{TemplateBinding PlaceholderText}">
+									<TextBlock.RenderTransform>
+										<CompositeTransform x:Name="UpperPlaceholderElement_CompositeTransform"
+															ScaleX="0.7"
+															ScaleY="0.7"
+															TranslateY="-11" />
+									</TextBlock.RenderTransform>
+								</TextBlock>
+
+								<!-- Down -->
+								<Path x:Name="DropDownGlyph_Down"
+									  Grid.Column="2"
+									  Width="10"
+									  Height="5"
+									  Margin="7,0"
+									  HorizontalAlignment="Center"
+									  VerticalAlignment="Center"
+									  Data="M0 0L5 5L10 0H0Z"
+									  Fill="{ThemeResource OnSurfaceMediumBrush}"
+									  Stretch="Uniform" />
+
+								<!-- Up -->
+								<Path x:Name="DropDownGlyph_Up"
+									  Grid.Column="2"
+									  Width="10"
+									  Height="5"
+									  Margin="7,0"
+									  HorizontalAlignment="Center"
+									  VerticalAlignment="Center"
+									  Data="M0 0L-5 -5L-10 0H0Z"
+									  Fill="{ThemeResource OnSurfaceMediumBrush}"
+									  Stretch="Uniform"
+									  Visibility="Collapsed" />
+							</Grid>
+
+							<!-- Popup -->
+							<Popup x:Name="Popup">
+								<Border x:Name="PopupBorder"
+										CornerRadius="4"
+										Background="{ThemeResource SurfaceBrush}">
+
+									<!-- Workaround for Issue #213 where android PopupBorder doesn't get redrawn properly, adds Background, CornerRadius and Border to ScrollViewer -->
+									<ScrollViewer x:Name="ScrollViewer"
+												  MinWidth="400"
+												  AutomationProperties.AccessibilityView="Raw"
+												  BringIntoViewOnFocusChange="{TemplateBinding ScrollViewer.BringIntoViewOnFocusChange}"
+												  CornerRadius="4"
+												  HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
+												  HorizontalScrollMode="{TemplateBinding ScrollViewer.HorizontalScrollMode}"
+												  IsDeferredScrollingEnabled="{TemplateBinding ScrollViewer.IsDeferredScrollingEnabled}"
+												  IsHorizontalRailEnabled="{TemplateBinding ScrollViewer.IsHorizontalRailEnabled}"
+												  IsVerticalRailEnabled="{TemplateBinding ScrollViewer.IsVerticalRailEnabled}"
+												  VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}"
+												  VerticalScrollMode="{TemplateBinding ScrollViewer.VerticalScrollMode}"
+												  VerticalSnapPointsAlignment="Near"
+												  VerticalSnapPointsType="OptionalSingle"
+												  ZoomMode="Disabled"
+												  Foreground="{ThemeResource SystemControlTransparentBrush}"
+												  BorderBrush="{ThemeResource SystemControlTransparentBrush}">
+										<ItemsPresenter />
+									</ScrollViewer>
+								</Border>
+							</Popup>
 						</Grid>
 					</utu:ShadowContainer>
 				</ControlTemplate>
