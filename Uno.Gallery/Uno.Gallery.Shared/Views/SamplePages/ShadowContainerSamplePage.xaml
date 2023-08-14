@@ -73,7 +73,6 @@
 									 IsEnabled="False"
 									 Style="{StaticResource NeumorphicTextBoxStyle}" />
 						</StackPanel>
-
 					</controls:WrapPanel>
 				</smtx:XamlDisplay>
 
@@ -93,18 +92,7 @@
 							<ComboBox Width="328"
 									  PlaceholderText="Label"
 									  Style="{StaticResource NmpComboBoxStyle}"
-									  ItemsSource="{Binding Data.CbbItems}">
-								<um:ControlExtensions.Icon>
-									<SymbolIcon Symbol="Favorite" />
-								</um:ControlExtensions.Icon>
-							</ComboBox>
-							<ComboBox Width="328"
-									  PlaceholderText="Label"
-									  Style="{StaticResource NmpComboBoxStyle}"
-									  ItemsSource="{Binding Data.CbbItems}"/>
-							<ComboBox Width="328"
-									  Style="{StaticResource NmpComboBoxStyle}"
-									  ItemsSource="{Binding Data.CbbItems}"/>
+									  ItemsSource="{Binding Data.CbbItems}" />
 						</StackPanel>
 
 						<StackPanel Spacing="20">
@@ -115,22 +103,8 @@
 									  IsEnabled="False"
 									  PlaceholderText="Label"
 									  Style="{StaticResource NmpComboBoxStyle}"
-									  ItemsSource="{Binding Data.CbbItems}">
-								<um:ControlExtensions.Icon>
-									<SymbolIcon Symbol="Favorite" />
-								</um:ControlExtensions.Icon>
-							</ComboBox>
-							<ComboBox Width="328"
-									  IsEnabled="False"
-									  PlaceholderText="Label"
-									  Style="{StaticResource NmpComboBoxStyle}"
-									  ItemsSource="{Binding Data.CbbItems}"/>
-							<ComboBox Width="328"
-									  IsEnabled="False"
-									  Style="{StaticResource NmpComboBoxStyle}"
-									  ItemsSource="{Binding Data.CbbItems}"/>
+									  ItemsSource="{Binding Data.CbbItems}" />
 						</StackPanel>
-
 					</controls:WrapPanel>
 				</smtx:XamlDisplay>
 
@@ -152,7 +126,7 @@
 								<Button Style="{StaticResource NmpElevatedButtonStyle}"
 										Content="Icon">
 									<um:ControlExtensions.Icon>
-										<PathIcon Data="M16 9.14286H9.14286V16H6.85714V9.14286H0V6.85714H6.85714V0H9.14286V6.85714H16V9.14286Z" />
+										<PathIcon Data="M12 6.85714H6.85714V12H5.14286V6.85714H0V5.14286H5.14286V0H6.85714V5.14286H12V6.85714Z" />
 									</um:ControlExtensions.Icon>
 								</Button>
 							
@@ -165,7 +139,7 @@
 										Content="Disabled"
 										IsEnabled="False">
 									<um:ControlExtensions.Icon>
-										<PathIcon Data="M16 9.14286H9.14286V16H6.85714V9.14286H0V6.85714H6.85714V0H9.14286V6.85714H16V9.14286Z" />
+										<PathIcon Data="M12 6.85714H6.85714V12H5.14286V6.85714H0V5.14286H5.14286V0H6.85714V5.14286H12V6.85714Z" />
 									</um:ControlExtensions.Icon>
 								</Button>
 							</StackPanel>
@@ -180,7 +154,7 @@
 										Content="Icon"
 										Height="48">
 									<um:ControlExtensions.Icon>
-										<PathIcon Data="M16 9.14286H9.14286V16H6.85714V9.14286H0V6.85714H6.85714V0H9.14286V6.85714H16V9.14286Z" />
+										<PathIcon Data="M12 6.85714H6.85714V12H5.14286V6.85714H0V5.14286H5.14286V0H6.85714V5.14286H12V6.85714Z" />
 									</um:ControlExtensions.Icon>
 								</Button>
 
@@ -195,7 +169,7 @@
 										IsEnabled="False"
 										Height="48">
 									<um:ControlExtensions.Icon>
-										<PathIcon Data="M16 9.14286H9.14286V16H6.85714V9.14286H0V6.85714H6.85714V0H9.14286V6.85714H16V9.14286Z" />
+										<PathIcon Data="M12 6.85714H6.85714V12H5.14286V6.85714H0V5.14286H5.14286V0H6.85714V5.14286H12V6.85714Z" />
 									</um:ControlExtensions.Icon>
 								</Button>
 							</StackPanel>
@@ -221,7 +195,7 @@
 								<Button Style="{StaticResource NmpFilledButtonStyle}"
 										Content="Icon">
 									<um:ControlExtensions.Icon>
-										<PathIcon Data="M16 9.14286H9.14286V16H6.85714V9.14286H0V6.85714H6.85714V0H9.14286V6.85714H16V9.14286Z" />
+										<PathIcon Data="M12 6.85714H6.85714V12H5.14286V6.85714H0V5.14286H5.14286V0H6.85714V5.14286H12V6.85714Z" />
 									</um:ControlExtensions.Icon>
 								</Button>
 
@@ -234,7 +208,7 @@
 										Content="Disabled"
 										IsEnabled="False">
 									<um:ControlExtensions.Icon>
-										<PathIcon Data="M16 9.14286H9.14286V16H6.85714V9.14286H0V6.85714H6.85714V0H9.14286V6.85714H16V9.14286Z" />
+										<PathIcon Data="M12 6.85714H6.85714V12H5.14286V6.85714H0V5.14286H5.14286V0H6.85714V5.14286H12V6.85714Z" />
 									</um:ControlExtensions.Icon>
 								</Button>
 							</StackPanel>
@@ -249,7 +223,7 @@
 										Content="Icon"
 										Height="48">
 									<um:ControlExtensions.Icon>
-										<PathIcon Data="M16 9.14286H9.14286V16H6.85714V9.14286H0V6.85714H6.85714V0H9.14286V6.85714H16V9.14286Z" />
+										<PathIcon Data="M12 6.85714H6.85714V12H5.14286V6.85714H0V5.14286H5.14286V0H6.85714V5.14286H12V6.85714Z" />
 									</um:ControlExtensions.Icon>
 								</Button>
 
@@ -264,7 +238,7 @@
 										IsEnabled="False"
 										Height="48">
 									<um:ControlExtensions.Icon>
-										<PathIcon Data="M16 9.14286H9.14286V16H6.85714V9.14286H0V6.85714H6.85714V0H9.14286V6.85714H16V9.14286Z" />
+										<PathIcon Data="M12 6.85714H6.85714V12H5.14286V6.85714H0V5.14286H5.14286V0H6.85714V5.14286H12V6.85714Z" />
 									</um:ControlExtensions.Icon>
 								</Button>
 							</StackPanel>
@@ -683,7 +657,7 @@
 										<utu:TabBarItem Style="{StaticResource NmpFabTabBarItemStyle}">
 											<utu:TabBarItem.Flyout>
 												<MenuFlyout Placement="Top"
-																MenuFlyoutPresenterStyle="{StaticResource MaterialMenuFlyoutPresenterStyle}">
+															MenuFlyoutPresenterStyle="{StaticResource MaterialMenuFlyoutPresenterStyle}">
 
 													<MenuFlyoutItem Text="Like"
 															Style="{StaticResource MaterialMenuFlyoutItemStyle}">
