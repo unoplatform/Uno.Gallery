@@ -432,6 +432,78 @@
 					</controls:WrapPanel>
 				</smtx:XamlDisplay>
 
+				<!--Chips-->
+				<smtx:XamlDisplay UniqueKey="ShadowContainerSamplePage_Chips"
+								  smtx:XamlDisplayExtensions.Header="Neumorphic Chips"
+								  Background="{ThemeResource SurfaceBrush}"
+								  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\WrapPanel">
+
+					<controls:WrapPanel HorizontalSpacing="16"
+										VerticalSpacing="16">
+
+						<StackPanel Spacing="30">
+							<StackPanel Spacing="20"
+										Orientation="Horizontal">
+								<utu:Chip Style="{StaticResource NmpChipStyle}"
+										  Content="Enabled"/>
+
+								<utu:Chip Style="{StaticResource NmpChipStyle}"
+										  Content="Enabled">
+									<utu:Chip.Icon>
+										<PathIcon Data="M14 0H2C1.175 0 0.5075 0.675 0.5075 1.5L0.5 10.5C0.5 11.325 1.175 12 2 12H14C14.825 12 15.5 11.325 15.5 10.5V1.5C15.5 0.675 14.825 0 14 0ZM14 10.5H2V3L8 6.75L14 3V10.5ZM8 5.25L2 1.5H14L8 5.25Z"/>
+									</utu:Chip.Icon>
+								</utu:Chip>
+								<utu:Chip Style="{StaticResource NmpChipStyle}"
+										  Content="Remove"
+										  CanRemove="True">
+									<utu:Chip.Icon>
+										<PathIcon Data="M14 0H2C1.175 0 0.5075 0.675 0.5075 1.5L0.5 10.5C0.5 11.325 1.175 12 2 12H14C14.825 12 15.5 11.325 15.5 10.5V1.5C15.5 0.675 14.825 0 14 0ZM14 10.5H2V3L8 6.75L14 3V10.5ZM8 5.25L2 1.5H14L8 5.25Z"/>
+									</utu:Chip.Icon>
+								</utu:Chip>
+								<utu:Chip Style="{StaticResource NmpChipStyle}"
+										  Content="Disabled"
+										  IsEnabled="False">
+									<utu:Chip.Icon>
+										<PathIcon Data="M14 0H2C1.175 0 0.5075 0.675 0.5075 1.5L0.5 10.5C0.5 11.325 1.175 12 2 12H14C14.825 12 15.5 11.325 15.5 10.5V1.5C15.5 0.675 14.825 0 14 0ZM14 10.5H2V3L8 6.75L14 3V10.5ZM8 5.25L2 1.5H14L8 5.25Z"/>
+									</utu:Chip.Icon>
+								</utu:Chip>
+							</StackPanel>
+
+							<StackPanel Spacing="20"
+										Orientation="Horizontal">
+								<utu:Chip Style="{StaticResource NmpChipStyle}"
+										  Content="Enabled"
+										  IsChecked="True" />
+
+								<utu:Chip Style="{StaticResource NmpChipStyle}"
+										  Content="Enabled"
+										  IsChecked="True">
+									<utu:Chip.Icon>
+										<PathIcon Data="M14 0H2C1.175 0 0.5075 0.675 0.5075 1.5L0.5 10.5C0.5 11.325 1.175 12 2 12H14C14.825 12 15.5 11.325 15.5 10.5V1.5C15.5 0.675 14.825 0 14 0ZM14 10.5H2V3L8 6.75L14 3V10.5ZM8 5.25L2 1.5H14L8 5.25Z"/>
+									</utu:Chip.Icon>
+								</utu:Chip>
+								<utu:Chip Style="{StaticResource NmpChipStyle}"
+										  Content="Remove"
+										  CanRemove="True"
+										  IsChecked="True">
+									<utu:Chip.Icon>
+										<PathIcon Data="M14 0H2C1.175 0 0.5075 0.675 0.5075 1.5L0.5 10.5C0.5 11.325 1.175 12 2 12H14C14.825 12 15.5 11.325 15.5 10.5V1.5C15.5 0.675 14.825 0 14 0ZM14 10.5H2V3L8 6.75L14 3V10.5ZM8 5.25L2 1.5H14L8 5.25Z"/>
+									</utu:Chip.Icon>
+								</utu:Chip>
+								
+								<!--BUG: IsCheck true when Disabled is causing the Background to be wrong-->
+								<utu:Chip Style="{StaticResource NmpChipStyle}"
+										  Content="Disabled"
+										  IsEnabled="False">
+									<utu:Chip.Icon>
+										<PathIcon Data="M14 0H2C1.175 0 0.5075 0.675 0.5075 1.5L0.5 10.5C0.5 11.325 1.175 12 2 12H14C14.825 12 15.5 11.325 15.5 10.5V1.5C15.5 0.675 14.825 0 14 0ZM14 10.5H2V3L8 6.75L14 3V10.5ZM8 5.25L2 1.5H14L8 5.25Z"/>
+									</utu:Chip.Icon>
+								</utu:Chip>
+							</StackPanel>
+						</StackPanel>
+					</controls:WrapPanel>
+				</smtx:XamlDisplay>
+
 			</StackPanel>
 		</local:ContentPageLayout>
 	</Grid>
