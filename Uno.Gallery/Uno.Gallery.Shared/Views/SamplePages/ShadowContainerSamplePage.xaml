@@ -252,60 +252,78 @@
 					<controls:WrapPanel HorizontalSpacing="16"
 										VerticalSpacing="16">
 
-						<StackPanel Spacing="30">
-							<StackPanel Spacing="20"
-										Orientation="Horizontal">
-								<Button Style="{StaticResource NeumorphicFilledButtonStyle}"
-										Content="Enabled" />
+						<StackPanel Spacing="20">
+							<TextBlock Text="Enabled"
+									   Style="{StaticResource BodyMedium}" />
+							<Button Style="{StaticResource NeumorphicSmallFilledButtonStyle}"
+									Content="Enabled" />
 
-								<Button Style="{StaticResource NeumorphicFilledButtonStyle}"
-										Content="Icon">
-									<um:ControlExtensions.Icon>
-										<PathIcon Data="M12 6.85714H6.85714V12H5.14286V6.85714H0V5.14286H5.14286V0H6.85714V5.14286H12V6.85714Z" />
-									</um:ControlExtensions.Icon>
-								</Button>
+							<Button Style="{StaticResource NeumorphicMediumFilledButtonStyle}"
+									Content="Enabled" />
 
-								<Button Style="{StaticResource NeumorphicFilledButtonStyle}"
-										Content="Disabled"
-										IsEnabled="False" />
+							<Button Style="{StaticResource NeumorphicLargeFilledButtonStyle}"
+									Content="Enabled" />
 
-								<Button Style="{StaticResource NeumorphicFilledButtonStyle}"
-										Content="Disabled"
-										IsEnabled="False">
-									<um:ControlExtensions.Icon>
-										<PathIcon Data="M12 6.85714H6.85714V12H5.14286V6.85714H0V5.14286H5.14286V0H6.85714V5.14286H12V6.85714Z" />
-									</um:ControlExtensions.Icon>
-								</Button>
-							</StackPanel>
+							<Button Style="{StaticResource NeumorphicSmallFilledButtonStyle}"
+									Content="Icon Enabled">
+								<um:ControlExtensions.Icon>
+									<PathIcon Data="M12 6.85714H6.85714V12H5.14286V6.85714H0V5.14286H5.14286V0H6.85714V5.14286H12V6.85714Z" />
+								</um:ControlExtensions.Icon>
+							</Button>
 
-							<StackPanel Spacing="20"
-										Orientation="Horizontal">
-								<Button Style="{StaticResource NeumorphicFilledButtonStyle}"
-										Content="Enabled"
-										Height="48" />
+							<Button Style="{StaticResource NeumorphicMediumFilledButtonStyle}"
+									Content="Icon Enabled">
+								<um:ControlExtensions.Icon>
+									<PathIcon Data="M12 6.85714H6.85714V12H5.14286V6.85714H0V5.14286H5.14286V0H6.85714V5.14286H12V6.85714Z" />
+								</um:ControlExtensions.Icon>
+							</Button>
 
-								<Button Style="{StaticResource NeumorphicFilledButtonStyle}"
-										Content="Icon"
-										Height="48">
-									<um:ControlExtensions.Icon>
-										<PathIcon Data="M12 6.85714H6.85714V12H5.14286V6.85714H0V5.14286H5.14286V0H6.85714V5.14286H12V6.85714Z" />
-									</um:ControlExtensions.Icon>
-								</Button>
+							<Button Style="{StaticResource NeumorphicLargeFilledButtonStyle}"
+									Content="Icon Enabled">
+								<um:ControlExtensions.Icon>
+									<PathIcon Data="M12 6.85714H6.85714V12H5.14286V6.85714H0V5.14286H5.14286V0H6.85714V5.14286H12V6.85714Z" />
+								</um:ControlExtensions.Icon>
+							</Button>
+						</StackPanel>
 
-								<Button Style="{StaticResource NeumorphicFilledButtonStyle}"
-										Content="Disabled"
-										IsEnabled="False"
-										Height="48" />
+						<StackPanel Spacing="20">
+							<TextBlock Text="Disabled"
+									   Style="{StaticResource BodyMedium}" />
+							<Button Style="{StaticResource NeumorphicSmallFilledButtonStyle}"
+									Content="Disabled"
+									IsEnabled="False" />
 
-								<Button Style="{StaticResource NeumorphicFilledButtonStyle}"
-										Content="Disabled"
-										IsEnabled="False"
-										Height="48">
-									<um:ControlExtensions.Icon>
-										<PathIcon Data="M12 6.85714H6.85714V12H5.14286V6.85714H0V5.14286H5.14286V0H6.85714V5.14286H12V6.85714Z" />
-									</um:ControlExtensions.Icon>
-								</Button>
-							</StackPanel>
+							<Button Style="{StaticResource NeumorphicMediumFilledButtonStyle}"
+									Content="Disabled"
+									IsEnabled="False" />
+
+							<Button Style="{StaticResource NeumorphicLargeFilledButtonStyle}"
+									Content="Disabled"
+									IsEnabled="False" />
+
+							<Button Style="{StaticResource NeumorphicSmallFilledButtonStyle}"
+									Content="Icon Disabled"
+									IsEnabled="False">
+								<um:ControlExtensions.Icon>
+									<PathIcon Data="M12 6.85714H6.85714V12H5.14286V6.85714H0V5.14286H5.14286V0H6.85714V5.14286H12V6.85714Z" />
+								</um:ControlExtensions.Icon>
+							</Button>
+
+							<Button Style="{StaticResource NeumorphicMediumFilledButtonStyle}"
+									Content="Icon Disabled"
+									IsEnabled="False">
+								<um:ControlExtensions.Icon>
+									<PathIcon Data="M12 6.85714H6.85714V12H5.14286V6.85714H0V5.14286H5.14286V0H6.85714V5.14286H12V6.85714Z" />
+								</um:ControlExtensions.Icon>
+							</Button>
+
+							<Button Style="{StaticResource NeumorphicLargeFilledButtonStyle}"
+									Content="Icon Disabled"
+									IsEnabled="False">
+								<um:ControlExtensions.Icon>
+									<PathIcon Data="M12 6.85714H6.85714V12H5.14286V6.85714H0V5.14286H5.14286V0H6.85714V5.14286H12V6.85714Z" />
+								</um:ControlExtensions.Icon>
+							</Button>
 						</StackPanel>
 					</controls:WrapPanel>
 				</smtx:XamlDisplay>
