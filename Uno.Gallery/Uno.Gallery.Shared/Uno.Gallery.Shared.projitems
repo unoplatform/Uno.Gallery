@@ -181,7 +181,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\VisualTreeHelperEx.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Command.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ViewModelBase.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\SamplePages\LightWeightExtensionSameplePage.xaml.cs" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="$(MSBuildThisFileDirectory)App.xaml">
@@ -217,10 +216,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\ControlResourcesOverride\Material\TextBox.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Views\SamplePages\LightWeightExtensionSameplePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

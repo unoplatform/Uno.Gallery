@@ -1,4 +1,4 @@
-﻿<Page x:Class="Uno.Gallery.Views.SamplePages.LightWeightExtensionSameplePage"
+﻿<Page x:Class="Uno.Gallery.Views.SamplePages.LightWeightExtensionSamplePage"
 	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	  xmlns:local="using:Uno.Gallery"
