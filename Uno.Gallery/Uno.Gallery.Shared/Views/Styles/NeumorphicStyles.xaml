@@ -5,6 +5,7 @@
 					xmlns:not_mobile="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 					xmlns:um="using:Uno.Material">
 
+	<!--#region Shadow ThemeDictionaries-->
 	<ResourceDictionary.ThemeDictionaries>
 		<ResourceDictionary x:Key="Dark">
 
@@ -12,17 +13,17 @@
 			<Color x:Key="LightShadowColor">#3C3846</Color>
 			<Color x:Key="ShadeShadowColor">#24222A</Color>
 
-			<!--How are we dealing with the color names?-->
-			
-			<!--Some colors are only exist and are different on dark mode, ie Elevated Button-->
-			<!--So we don't have a corresponding color for light mode-->
+			<!-- How are we dealing with the color names? -->
+
+			<!-- Some colors are only exist and are different on dark mode, ie Elevated Button -->
+			<!-- So we don't have a corresponding color for light mode -->
 			<Color x:Key="LightShadowColor2">#615B71</Color>
 			<Color x:Key="ShadeShadowColor2">#000000</Color>
 
 			<Color x:Key="LightShadowColor3">#5F5B69</Color>
 			<Color x:Key="ShadeShadowColor3">#24222A</Color>
 
-			<!--For ToggleButton/IconButton it has a corresponding in Light Theme-->
+			<!-- For ToggleButton/IconButton it has a corresponding in Light Theme -->
 			<Color x:Key="LightShadowColor4">#79718E</Color>
 			<Color x:Key="ShadeShadowColor4">#000000</Color>
 
@@ -32,12 +33,12 @@
 			<Color x:Key="LightShadowColor6">#F7F5FF</Color>
 			<Color x:Key="ShadeShadowColor6">#584AB5</Color>
 
-			<!--Corresponding to Light Used for FABTabBarItem-->
+			<!-- Corresponding to Light Used for FABTabBarItem -->
 			<Color x:Key="LightShadowColor7">#A9A2D9</Color>
 			<Color x:Key="MediumShadowColor7">#24222A</Color>
 			<Color x:Key="ShadeShadowColor7">#000000</Color>
 
-			<!--Elevated Button Shadows-->
+			<!-- Elevated Button Shadows -->
 			<utu:ShadowCollection x:Key="ElevatedNormal">
 				<utu:Shadow BlurRadius="16" IsInner="False" OffsetX="-4" OffsetY="-4" Opacity="0.4" Spread="0" Color="{StaticResource LightShadowColor2}" />
 				<utu:Shadow BlurRadius="16" IsInner="False" OffsetX="4" OffsetY="4" Opacity="0.4" Spread="0" Color="{StaticResource ShadeShadowColor2}" />
@@ -64,7 +65,7 @@
 				<utu:Shadow BlurRadius="16" IsInner="False" OffsetX="4" OffsetY="4" Opacity="0.4" Spread="0" Color="{StaticResource ShadeShadowColor4}" />
 			</utu:ShadowCollection>
 
-			<!--Filled Button Shadows-->
+			<!-- Filled Button Shadows -->
 			<utu:ShadowCollection x:Key="FilledNormal">
 				<utu:Shadow BlurRadius="16" IsInner="False" OffsetX="-4" OffsetY="-4" Opacity="0.4" Spread="0" Color="{StaticResource LightShadowColor5}" />
 				<utu:Shadow BlurRadius="16" IsInner="False" OffsetX="4" OffsetY="4" Opacity="0.6" Spread="0" Color="{StaticResource ShadeShadowColor5}" />
@@ -91,14 +92,14 @@
 				<utu:Shadow BlurRadius="16" IsInner="False" OffsetX="4" OffsetY="4" Opacity="0.6" Spread="0" Color="{StaticResource ShadeShadowColor5}" />
 			</utu:ShadowCollection>
 
-			<!--FAB-->
-			<utu:ShadowCollection x:Key="FabShadow">
+			<!-- FAB -->
+			<utu:ShadowCollection x:Key="FabShadows">
 				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="8" OffsetY="8" Opacity="0.2" Spread="0" Color="{StaticResource LightShadowColor7}" />
 				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="-8" OffsetY="-8" Opacity="0.4" Spread="0" Color="{StaticResource MediumShadowColor7}" />
 				<utu:Shadow BlurRadius="20" IsInner="False" OffsetX="12" OffsetY="12" Opacity="0.4" Spread="0" Color="{StaticResource ShadeShadowColor7}" />
 			</utu:ShadowCollection>
 
-			<!--Chips-->
+			<!-- Chips -->
 			<utu:ShadowCollection x:Key="ChipsShadows">
 				<utu:Shadow BlurRadius="4" IsInner="False" OffsetX="-1" OffsetY="-1" Opacity="1" Spread="0" Color="{StaticResource LightShadowColor2}" />
 				<utu:Shadow BlurRadius="4" IsInner="False" OffsetX="1" OffsetY="1" Opacity="0.6" Spread="0" Color="{StaticResource ShadeShadowColor2}" />
@@ -107,11 +108,11 @@
 				<utu:Shadow BlurRadius="4" IsInner="True" OffsetX="1" OffsetY="1" Opacity="0.9" Spread="0" Color="{StaticResource ShadeShadowColor6}" />
 				<utu:Shadow BlurRadius="4" IsInner="True" OffsetX="-1" OffsetY="-1" Opacity="0.9" Spread="0" Color="{StaticResource LightShadowColor6}" />
 			</utu:ShadowCollection>
-			
+
 		</ResourceDictionary>
 		<ResourceDictionary x:Key="Light">
 
-			<!--How are we dealing with the color names?-->
+			<!-- How are we dealing with the color names? -->
 			<!-- Shadow colors -->
 			<Color x:Key="LightShadowColor">#FFFFFF</Color>
 			<Color x:Key="ShadeShadowColor">#AEAEC0</Color>
@@ -119,16 +120,16 @@
 			<Color x:Key="LightShadowColor2">#6651F2</Color>
 			<Color x:Key="ShadeShadowColor2">#4C3CB3</Color>
 
-			<!--For ToggleButton/IconButton it has a corresponding in Dark Theme-->
+			<!-- For ToggleButton/IconButton it has a corresponding in Dark Theme -->
 			<Color x:Key="LightShadowColor4">#FFFFFF</Color>
 			<Color x:Key="ShadeShadowColor4">#AEAEC0</Color>
 
-			<!--Corresponding to Dark Used for FABTabBarItem-->
+			<!-- Corresponding to Dark Used for FABTabBarItem -->
 			<Color x:Key="LightShadowColor7">#FFFFFF</Color>
 			<Color x:Key="MediumShadowColor7">#AEAEC0</Color>
 			<Color x:Key="ShadeShadowColor7">#170065</Color>
 
-			<!--Elevated Button Shadows-->
+			<!-- Elevated Button Shadows -->
 			<utu:ShadowCollection x:Key="ElevatedNormal">
 				<utu:Shadow BlurRadius="16" IsInner="False" OffsetX="-4" OffsetY="-4" Opacity="0.4" Spread="0" Color="{StaticResource LightShadowColor}" />
 				<utu:Shadow BlurRadius="16" IsInner="False" OffsetX="4" OffsetY="4" Opacity="0.4" Spread="0" Color="{StaticResource ShadeShadowColor}" />
@@ -146,7 +147,7 @@
 
 			<utu:ShadowCollection x:Key="ElevatedDisabled">
 				<utu:Shadow BlurRadius="4" IsInner="False" OffsetX="-1" OffsetY="-1" Opacity="1" Spread="0" Color="{StaticResource LightShadowColor}" />
-				<utu:Shadow BlurRadius="4" IsInner="False" OffsetX="1" OffsetY="1" Opacity="0.4" Spread="0" Color="{StaticResource ShadeShadowColor}" />
+				<utu:Shadow BlurRadius="4" IsInner="False" OffsetX="1" OffsetY="1" Opacity="0.16" Spread="0" Color="{StaticResource ShadeShadowColor}" />
 			</utu:ShadowCollection>
 
 			<utu:ShadowCollection x:Key="ElevatedFocused">
@@ -155,7 +156,7 @@
 				<utu:Shadow BlurRadius="16" IsInner="False" OffsetX="4" OffsetY="4" Opacity="0.4" Spread="0" Color="{StaticResource ShadeShadowColor}" />
 			</utu:ShadowCollection>
 
-			<!--Filled Button Shadows-->
+			<!-- Filled Button Shadows -->
 			<utu:ShadowCollection x:Key="FilledNormal">
 				<utu:Shadow BlurRadius="16" IsInner="False" OffsetX="-4" OffsetY="-4" Opacity="0.4" Spread="0" Color="{StaticResource LightShadowColor2}" />
 				<utu:Shadow BlurRadius="16" IsInner="False" OffsetX="4" OffsetY="4" Opacity="0.6" Spread="0" Color="{StaticResource ShadeShadowColor2}" />
@@ -182,14 +183,14 @@
 				<utu:Shadow BlurRadius="16" IsInner="False" OffsetX="4" OffsetY="4" Opacity="0.6" Spread="0" Color="{StaticResource ShadeShadowColor2}" />
 			</utu:ShadowCollection>
 
-			<!--FAB-->
-			<utu:ShadowCollection x:Key="FabShadow">
+			<!-- FAB -->
+			<utu:ShadowCollection x:Key="FabShadows">
 				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="-8" OffsetY="-8" Opacity="0.08" Spread="0" Color="{StaticResource ShadeShadowColor7}" />
 				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="8" OffsetY="8" Opacity="0.4" Spread="0" Color="{StaticResource LightShadowColor7}" />
 				<utu:Shadow BlurRadius="20" IsInner="False" OffsetX="12" OffsetY="12" Opacity="0.4" Spread="0" Color="{StaticResource MediumShadowColor7}" />
 			</utu:ShadowCollection>
 
-			<!--Chips-->
+			<!-- Chips -->
 			<utu:ShadowCollection x:Key="ChipsShadows">
 				<utu:Shadow BlurRadius="4" IsInner="False" OffsetX="-1" OffsetY="-1" Opacity="1" Spread="0" Color="{StaticResource LightShadowColor}" />
 				<utu:Shadow BlurRadius="4" IsInner="False" OffsetX="1" OffsetY="1" Opacity="0.6" Spread="0" Color="{StaticResource ShadeShadowColor}" />
@@ -200,69 +201,74 @@
 			</utu:ShadowCollection>
 		</ResourceDictionary>
 	</ResourceDictionary.ThemeDictionaries>
+	<!--#endregion-->
 
-	<!--#region Shadow Collections -->
-	<!--TextBox-->
+	<!--#region Shadow Collections-->
+	<!-- TextBox -->
 	<utu:ShadowCollection x:Key="TextBoxShadows">
-		<utu:Shadow OffsetX="4"
-					OffsetY="4"
-					BlurRadius="4"
-					Color="{ThemeResource ShadeShadowColor}"
-					Opacity="0.4"
-					Spread="0"
-					IsInner="True" />
-		<utu:Shadow OffsetX="-4"
-					OffsetY="-4"
-					BlurRadius="4"
-					Color="{ThemeResource LightShadowColor}"
-					Opacity="0.4"
-					Spread="0"
-					IsInner="True" />
+		<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="4" Opacity="0.4" Spread="0" IsInner="True" Color="{ThemeResource ShadeShadowColor}" />
+		<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="4" Opacity="0.4" Spread="0" IsInner="True" Color="{ThemeResource LightShadowColor}" />
 	</utu:ShadowCollection>
 
-	<!--ToggleButton-->
+	<!-- ToggleButton -->
 	<utu:ShadowCollection x:Key="ToggleButtonShadow">
-		<utu:Shadow BlurRadius="8" IsInner="False" OffsetX="-2" OffsetY="-2" Opacity="0.8" Spread="0" Color="{StaticResource LightShadowColor4}" />
-		<utu:Shadow BlurRadius="8" IsInner="False" OffsetX="2" OffsetY="2" Opacity="0.8" Spread="0" Color="{StaticResource ShadeShadowColor4}" />
+		<utu:Shadow BlurRadius="8" IsInner="False" OffsetX="-2" OffsetY="-2" Opacity="0.8" Spread="0" Color="{ThemeResource LightShadowColor4}" />
+		<utu:Shadow BlurRadius="8" IsInner="False" OffsetX="2" OffsetY="2" Opacity="0.8" Spread="0" Color="{ThemeResource ShadeShadowColor4}" />
 	</utu:ShadowCollection>
 
-	<!--IconButton-->
+	<!-- IconButton -->
 	<utu:ShadowCollection x:Key="IconButtonShadows">
-		<utu:Shadow BlurRadius="8" IsInner="False" OffsetX="-2" OffsetY="-2" Opacity="0.8" Spread="0" Color="{StaticResource LightShadowColor4}" />
-		<utu:Shadow BlurRadius="8" IsInner="False" OffsetX="2" OffsetY="2" Opacity="0.8" Spread="0" Color="{StaticResource ShadeShadowColor4}" />
+		<utu:Shadow BlurRadius="8" IsInner="False" OffsetX="-2" OffsetY="-2" Opacity="0.8" Spread="0" Color="{ThemeResource LightShadowColor4}" />
+		<utu:Shadow BlurRadius="8" IsInner="False" OffsetX="2" OffsetY="2" Opacity="0.8" Spread="0" Color="{ThemeResource ShadeShadowColor4}" />
 	</utu:ShadowCollection>
 
-	<!--ComboBox-->
-	<utu:ShadowCollection x:Key="ComboboxShadow">
-		<utu:Shadow BlurRadius="4" IsInner="True" OffsetX="4" OffsetY="4" Opacity="0.4" Spread="0" Color="{StaticResource ShadeShadowColor}" />
-		<utu:Shadow BlurRadius="4" IsInner="True" OffsetX="-4" OffsetY="-4" Opacity="0.4" Spread="0" Color="{StaticResource LightShadowColor}" />
+	<!-- CheckBox -->
+	<utu:ShadowCollection x:Key="NeumorphicCheckBoxShadows">
+		<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="2" Opacity="0.36" Spread="0" Color="{ThemeResource ShadeShadowColor}" IsInner="False" />
+		<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="2" Opacity="1" Spread="0" Color="{ThemeResource LightShadowColor}" IsInner="False" />
+	</utu:ShadowCollection>
+	<utu:Shadow x:Key="NeumorphicCheckBoxVisualStatesShadow" OffsetX="0" OffsetY="0" BlurRadius="12" Color="{ThemeResource PrimaryColor}" Opacity="1" Spread="0" IsInner="True" />
+
+	<!-- RadioButton -->
+	<utu:ShadowCollection x:Key="NeumorphicRadioButtonShadows">
+		<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="2" Opacity="0.36" Spread="0" Color="{ThemeResource ShadeShadowColor}" IsInner="False" />
+		<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="2" Opacity="1" Spread="0" Color="{ThemeResource LightShadowColor}" IsInner="False" />
+	</utu:ShadowCollection>
+	<utu:Shadow x:Key="NeumorphicRadioButtonVisualStatesShadow" OffsetX="0" OffsetY="0" BlurRadius="12" Color="{ThemeResource PrimaryColor}" Opacity="1" Spread="0" IsInner="True" />
+
+	<!-- ComboBox -->
+	<utu:ShadowCollection x:Key="ComboboxShadows">
+		<utu:Shadow BlurRadius="4" IsInner="True" OffsetX="4" OffsetY="4" Opacity="0.4" Spread="0" Color="{ThemeResource ShadeShadowColor}" />
+		<utu:Shadow BlurRadius="4" IsInner="True" OffsetX="-4" OffsetY="-4" Opacity="0.4" Spread="0" Color="{ThemeResource LightShadowColor}" />
 	</utu:ShadowCollection>
 
-	<!--TabBar-->
+	<!-- TabBar -->
 	<utu:ShadowCollection x:Key="TabBarShadows">
-		<utu:Shadow BlurRadius="48" IsInner="False" OffsetX="-8" OffsetY="-16" Opacity="0.6" Spread="0" Color="{StaticResource LightShadowColor}" />
-		<utu:Shadow BlurRadius="32" IsInner="False" OffsetX="8" OffsetY="8" Opacity="0.6" Spread="0" Color="{StaticResource ShadeShadowColor}" />
+		<utu:Shadow BlurRadius="48" IsInner="False" OffsetX="-8" OffsetY="-16" Opacity="0.6" Spread="0" Color="{ThemeResource LightShadowColor}" />
+		<utu:Shadow BlurRadius="32" IsInner="False" OffsetX="8" OffsetY="8" Opacity="0.6" Spread="0" Color="{ThemeResource ShadeShadowColor}" />
 	</utu:ShadowCollection>
 
-	<!--TabBarItem-->
+	<!-- TabBarItem -->
 	<utu:ShadowCollection x:Key="TabBarItemShadows">
-		<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="4" OffsetY="4" Opacity="0.4" Spread="0" Color="{StaticResource ShadeShadowColor}" />
-		<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="-4" OffsetY="-4" Opacity="0.4" Spread="0" Color="{StaticResource LightShadowColor}" />
+		<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="4" OffsetY="4" Opacity="0.4" Spread="0" Color="{ThemeResource ShadeShadowColor}" />
+		<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="-4" OffsetY="-4" Opacity="0.4" Spread="0" Color="{ThemeResource LightShadowColor}" />
 	</utu:ShadowCollection>
 	<utu:ShadowCollection x:Key="FabTabBarItemShadows">
-		<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="-8" OffsetY="-8" Opacity="0.08" Spread="0" Color="{StaticResource ShadeShadowColor7}" />
-		<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="8" OffsetY="8" Opacity="0.4" Spread="0" Color="{StaticResource LightShadowColor7}" />
-		<utu:Shadow BlurRadius="20" IsInner="False" OffsetX="12" OffsetY="12" Opacity="0.4" Spread="0" Color="{StaticResource MediumShadowColor7}" />
+		<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="-8" OffsetY="-8" Opacity="0.08" Spread="0" Color="{ThemeResource ShadeShadowColor7}" />
+		<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="8" OffsetY="8" Opacity="0.4" Spread="0" Color="{ThemeResource LightShadowColor7}" />
+		<utu:Shadow BlurRadius="20" IsInner="False" OffsetX="12" OffsetY="12" Opacity="0.4" Spread="0" Color="{ThemeResource MediumShadowColor7}" />
 	</utu:ShadowCollection>
 
-	<utu:ShadowCollection x:Key="TabBarItemNoShadows"/>
+	<utu:ShadowCollection x:Key="TabBarItemNoShadows" />
 	<!--#endregion-->
-	<!-- Converters -->
+
+	<!--#region Converters-->
 	<um:FromEmptyStringToValueConverter x:Key="EmptyToCompositeTransformTranslateY"
 										NotNullOrEmptyValue="8"
 										NullOrEmptyValue="0" />
+	<!--#endregion-->
 
-	<!--#region TextBox Style -->
+	<!--#region TextBox Style-->
 	<Style x:Key="NeumorphicTextBoxStyle"
 		   TargetType="TextBox">
 		<Setter Property="Background" Value="{ThemeResource SurfaceBrush}" />
@@ -430,6 +436,7 @@
 									Grid.Column="2"
 									Margin="8,0,0,0"
 									IsTabStop="False"
+									Foreground="{ThemeResource OnSurfaceMediumBrush}"
 									Style="{StaticResource MaterialDeleteButtonStyle}"
 									VerticalAlignment="Stretch"
 									Visibility="Collapsed"
@@ -442,10 +449,197 @@
 	</Style>
 	<!--#endregion-->
 
-	<!--#region ComboBox-->
-	<Style x:Key="NmpComboBoxStyle"
+	<!--#region PasswordBox Style-->
+	<Style x:Key="NeumorphicPasswordBoxStyle"
+		   TargetType="PasswordBox">
+		<Setter Property="Background"
+				Value="{ThemeResource SurfaceBrush}" />
+		<Setter Property="Foreground"
+				Value="{ThemeResource OnSurfaceBrush}" />
+		<Setter Property="CornerRadius"
+				Value="8" />
+
+		<!-- Start: Body Large Typo -->
+		<Setter Property="FontFamily"
+				Value="{ThemeResource MaterialMediumFontFamily}" />
+		<Setter Property="FontWeight"
+				Value="{ThemeResource BodyLargeFontWeight}" />
+		<Setter Property="FontSize"
+				Value="{ThemeResource BodyLargeFontSize}" />
+		<Setter Property="CharacterSpacing"
+				Value="{ThemeResource BodyLargeCharacterSpacing}" />
+		<!-- End: Body Large Typo -->
+
+		<Setter Property="HorizontalContentAlignment"
+				Value="Left" />
+		<Setter Property="VerticalContentAlignment"
+				Value="Center" />
+
+		<Setter Property="Padding"
+				Value="16,16,14,16" />
+
+		<Setter Property="MinHeight"
+				Value="56" />
+
+		<!-- Workaround for WinUI issue: https://github.com/microsoft/microsoft-ui-xaml/issues/6388 -->
+		<Setter Property="um:ControlExtensions.Icon"
+				Value="{x:Null}" />
+
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="PasswordBox">
+					<utu:ShadowContainer x:Name="RootPanel"
+										 Shadows="{StaticResource TextBoxShadows}">
+						<VisualStateManager.VisualStateGroups>
+							<VisualStateGroup x:Name="CommonStates">
+								<VisualState x:Name="Normal" />
+								<VisualState x:Name="PointerOver">
+									<VisualState.Setters>
+										<Setter Target="PlaceholderElement.Foreground"
+												Value="{ThemeResource OnSurfaceMediumBrush}" />
+									</VisualState.Setters>
+								</VisualState>
+								<VisualState x:Name="Pressed">
+									<VisualState.Setters>
+										<Setter Target="PlaceholderElement.Foreground"
+												Value="{ThemeResource OnSurfaceMediumBrush}" />
+									</VisualState.Setters>
+								</VisualState>
+								<VisualState x:Name="Disabled">
+									<VisualState.Setters>
+										<Setter Target="IconPresenter.Opacity"
+												Value="{ThemeResource DisabledOpacity}" />
+										<Setter Target="ContentElement.Opacity"
+												Value="{ThemeResource DisabledOpacity}" />
+										<Setter Target="PlaceholderElement.Foreground"
+												Value="{ThemeResource OnSurfaceLowBrush}" />
+									</VisualState.Setters>
+								</VisualState>
+								<VisualState x:Name="Focused">
+									<VisualState.Setters>
+										<Setter Target="PlaceholderElement.Foreground"
+												Value="{ThemeResource PrimaryBrush}" />
+									</VisualState.Setters>
+								</VisualState>
+							</VisualStateGroup>
+							<VisualStateGroup x:Name="ButtonStates">
+								<VisualState x:Name="ButtonVisible">
+									<VisualState.Setters>
+										<Setter Target="RevealButton.Visibility"
+												Value="Visible" />
+									</VisualState.Setters>
+								</VisualState>
+								<VisualState x:Name="ButtonCollapsed" />
+							</VisualStateGroup>
+							<VisualStateGroup x:Name="HeaderStates">
+								<VisualState x:Name="NotEmpty">
+									<Storyboard>
+										<DoubleAnimation Storyboard.TargetName="PlaceholderElement_CompositeTransform"
+														 Storyboard.TargetProperty="TranslateY"
+														 Duration="{StaticResource MaterialTextBoxAnimationDuration}"
+														 EasingFunction="{StaticResource MaterialEaseInOutFunction}"
+														 To="-11" />
+										<!-- ContentElement TranslateY value changing depending if there is a PlaceholderText or not -->
+										<DoubleAnimation Storyboard.TargetName="ContentElement_CompositeTransform"
+														 Storyboard.TargetProperty="TranslateY"
+														 Duration="{StaticResource MaterialAnimationDuration}"
+														 EasingFunction="{StaticResource MaterialEaseInOutFunction}"
+														 To="{Binding PlaceholderText, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource EmptyToCompositeTransformTranslateY}, TargetNullValue=0, FallbackValue=0}" />
+										<DoubleAnimation Storyboard.TargetName="PlaceholderElement_CompositeTransform"
+														 Storyboard.TargetProperty="ScaleX"
+														 Duration="{StaticResource MaterialTextBoxAnimationDuration}"
+														 EasingFunction="{StaticResource MaterialEaseInOutFunction}"
+														 To="0.7" />
+										<DoubleAnimation Storyboard.TargetName="PlaceholderElement_CompositeTransform"
+														 Storyboard.TargetProperty="ScaleY"
+														 Duration="{StaticResource MaterialTextBoxAnimationDuration}"
+														 EasingFunction="{StaticResource MaterialEaseInOutFunction}"
+														 To="0.7" />
+									</Storyboard>
+									<VisualState.StateTriggers>
+										<StateTrigger IsActive="{Binding Password, Converter={StaticResource MaterialEmptyToFalse}, RelativeSource={RelativeSource TemplatedParent}}" />
+									</VisualState.StateTriggers>
+								</VisualState>
+								<VisualState x:Name="Empty">
+									<VisualState.StateTriggers>
+										<StateTrigger IsActive="{Binding Password, Converter={StaticResource MaterialEmptyToTrue}, RelativeSource={RelativeSource TemplatedParent}}" />
+									</VisualState.StateTriggers>
+								</VisualState>
+							</VisualStateGroup>
+						</VisualStateManager.VisualStateGroups>
+
+						<Grid x:Name="Root"
+							  Width="{TemplateBinding Width}"
+							  MinHeight="{TemplateBinding MinHeight}"
+							  CornerRadius="{TemplateBinding CornerRadius}"
+							  Background="{TemplateBinding Background}"
+							  Padding="{TemplateBinding Padding}">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="Auto" />
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="Auto" />
+							</Grid.ColumnDefinitions>
+
+							<ContentPresenter x:Name="IconPresenter"
+											  Content="{Binding Path=(um:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}}"
+											  HorizontalAlignment="Center"
+											  Width="20"
+											  Margin="1,0,18,0"
+											  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+											  Visibility="{Binding Path=(um:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialNullToCollapsedConverter}, FallbackValue=Collapsed, TargetNullValue=Collapsed}" />
+
+							<ScrollViewer x:Name="ContentElement"
+										  Grid.Column="1"
+										  HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
+										  HorizontalScrollMode="{TemplateBinding ScrollViewer.HorizontalScrollMode}"
+										  IsDeferredScrollingEnabled="{TemplateBinding ScrollViewer.IsDeferredScrollingEnabled}"
+										  IsHorizontalRailEnabled="{TemplateBinding ScrollViewer.IsHorizontalRailEnabled}"
+										  IsTabStop="False"
+										  IsVerticalRailEnabled="{TemplateBinding ScrollViewer.IsVerticalRailEnabled}"
+										  VerticalScrollMode="{TemplateBinding ScrollViewer.VerticalScrollMode}"
+										  VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}"
+										  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+										  ZoomMode="Disabled"
+										  AutomationProperties.AccessibilityView="Raw">
+								<ScrollViewer.RenderTransform>
+									<CompositeTransform x:Name="ContentElement_CompositeTransform" />
+								</ScrollViewer.RenderTransform>
+							</ScrollViewer>
+
+							<TextBlock x:Name="PlaceholderElement"
+									   Grid.Column="1"
+									   Foreground="{ThemeResource OnSurfaceVariantBrush}"
+									   IsHitTestVisible="False"
+									   RenderTransformOrigin="0,0.5"
+									   Text="{TemplateBinding PlaceholderText}"
+									   VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+									   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}">
+								<TextBlock.RenderTransform>
+									<CompositeTransform x:Name="PlaceholderElement_CompositeTransform" />
+								</TextBlock.RenderTransform>
+							</TextBlock>
+
+							<Button x:Name="RevealButton"
+									Grid.Column="2"
+									Margin="8,0,0,0"
+									IsTabStop="False"
+									Foreground="{ThemeResource OnSurfaceMediumBrush}"
+									Style="{StaticResource MaterialRevealButtonStyle}"
+									VerticalAlignment="Stretch"
+									Visibility="Collapsed"
+									AutomationProperties.AccessibilityView="Raw" />
+						</Grid>
+					</utu:ShadowContainer>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<!--#endregion-->
+
+	<!--#region ComboBox Style-->
+	<Style x:Key="NeumorphicComboBoxStyle"
 		   TargetType="ComboBox">
-		
+
 		<Setter Property="Foreground" Value="{ThemeResource OnSurfaceMediumBrush}" />
 		<Setter Property="Background" Value="{ThemeResource SurfaceBrush}" />
 		<Setter Property="HorizontalContentAlignment" Value="Left" />
@@ -470,7 +664,7 @@
 		<Setter Property="ScrollViewer.BringIntoViewOnFocusChange" Value="True" />
 		<Setter Property="HorizontalAlignment" Value="Stretch" />
 		<Setter Property="ItemContainerStyle" Value="{StaticResource MaterialComboBoxItemStyle}" />
-		
+
 		<!-- Workaround for WinUI issue: https://github.com/microsoft/microsoft-ui-xaml/issues/6388 -->
 		<Setter Property="um:ControlExtensions.Icon" Value="{x:Null}" />
 
@@ -485,7 +679,8 @@
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="ComboBox">
-					<utu:ShadowContainer x:Name="RootPanel" Shadows="{StaticResource ComboboxShadow}">
+					<utu:ShadowContainer x:Name="RootPanel"
+										 Shadows="{StaticResource ComboboxShadows}">
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup x:Name="CommonStates">
 								<VisualState x:Name="Normal" />
@@ -501,7 +696,7 @@
 										<Setter Target="PopupBorder.Background" Value="{ThemeResource SystemControlTransparentBrush}" />
 									</VisualState.Setters>
 								</VisualState>
-								<VisualState x:Name="PointerOver"/>
+								<VisualState x:Name="PointerOver" />
 								<VisualState x:Name="Pressed" />
 							</VisualStateGroup>
 
@@ -688,20 +883,22 @@
 	</Style>
 	<!--#endregion-->
 
-	<!--#region BUTTONS-->
-	<x:Double x:Key="NmpButtonIconContainerSize">18</x:Double>
-	<x:Double x:Key="NmpButtonIconSize">12</x:Double>
-	
-	<!--Elevated Style-->
-	<Style x:Key="NmpElevatedButtonStyle"
+	<!--#region Button Styles-->
+	<x:Double x:Key="NeumorphicButtonIconContainerSize">18</x:Double>
+	<x:Double x:Key="NeumorphicButtonIconSize">12</x:Double>
+
+	<!-- Elevated Style -->
+	<!-- Small -->
+	<Style x:Key="NeumorphicSmallElevatedButtonStyle"
 		   BasedOn="{StaticResource MaterialBaseButtonStyle}"
 		   TargetType="Button">
 
 		<Setter Property="Foreground" Value="{ThemeResource PrimaryBrush}" />
 		<Setter Property="Background" Value="{ThemeResource SurfaceBrush}" />
-		<Setter Property="Width" Value="117" />
-		<Setter Property="Height" Value="38" />
+		<Setter Property="MinWidth" Value="38" />
 		<Setter Property="MinHeight" Value="38" />
+		<Setter Property="CornerRadius" Value="19" />
+		<Setter Property="Padding" Value="10,0" />
 
 		<Setter Property="Template">
 			<Setter.Value>
@@ -713,25 +910,25 @@
 
 								<VisualState x:Name="Normal">
 									<VisualState.Setters>
-										<Setter Target="RootPanel.Shadows" Value="{StaticResource ElevatedNormal}" />
+										<Setter Target="RootPanel.Shadows" Value="{ThemeResource ElevatedNormal}" />
 									</VisualState.Setters>
 								</VisualState>
 
 								<VisualState x:Name="PointerOver">
 									<VisualState.Setters>
-										<Setter Target="RootPanel.Shadows" Value="{StaticResource ElevatedHovered}" />
+										<Setter Target="RootPanel.Shadows" Value="{ThemeResource ElevatedHovered}" />
 									</VisualState.Setters>
 								</VisualState>
 
 								<VisualState x:Name="Pressed">
 									<VisualState.Setters>
-										<Setter Target="RootPanel.Shadows" Value="{StaticResource ElevatedPressed}" />
+										<Setter Target="RootPanel.Shadows" Value="{ThemeResource ElevatedPressed}" />
 									</VisualState.Setters>
 								</VisualState>
 
 								<VisualState x:Name="Disabled">
 									<VisualState.Setters>
-										<Setter Target="RootPanel.Shadows" Value="{StaticResource ElevatedDisabled}" />
+										<Setter Target="RootPanel.Shadows" Value="{ThemeResource ElevatedDisabled}" />
 										<Setter Target="RootGrid.Background" Value="{StaticResource OnSurfaceDisabledBrush}" />
 										<Setter Target="ContentPresenter.Foreground" Value="{StaticResource OnSurfaceLowBrush}" />
 										<Setter Target="IconPresenter.Foreground" Value="{StaticResource OnSurfaceLowBrush}" />
@@ -743,7 +940,7 @@
 
 								<VisualState x:Name="Focused">
 									<VisualState.Setters>
-										<Setter Target="RootPanel.Shadows" Value="{StaticResource ElevatedFocused}" />
+										<Setter Target="RootPanel.Shadows" Value="{ThemeResource ElevatedFocused}" />
 									</VisualState.Setters>
 								</VisualState>
 
@@ -761,7 +958,7 @@
 							  MinHeight="{TemplateBinding MinWidth}">
 
 							<Grid CornerRadius="{TemplateBinding CornerRadius}"
-								  Padding="{TemplateBinding Padding}"
+								  Margin="{TemplateBinding Padding}"
 								  HorizontalAlignment="Center"
 								  VerticalAlignment="Center">
 								<Grid.ColumnDefinitions>
@@ -769,13 +966,13 @@
 									<ColumnDefinition Width="*" />
 								</Grid.ColumnDefinitions>
 
-								<Border Height="{StaticResource NmpButtonIconContainerSize}"
-										Width="{StaticResource NmpButtonIconContainerSize}"
+								<Border Height="{StaticResource NeumorphicButtonIconContainerSize}"
+										Width="{StaticResource NeumorphicButtonIconContainerSize}"
 										Visibility="{Binding Path=(um:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialNullToCollapsedConverter}, FallbackValue=Collapsed, TargetNullValue=Collapsed}">
 									<ContentPresenter x:Name="IconPresenter"
 													  Content="{Binding Path=(um:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}}"
-													  Width="{StaticResource NmpButtonIconSize}"
-													  Height="{StaticResource NmpButtonIconSize}"
+													  Width="{StaticResource NeumorphicButtonIconSize}"
+													  Height="{StaticResource NeumorphicButtonIconSize}"
 													  HorizontalAlignment="{StaticResource ButtonIconHorizontalAlignment}"
 													  VerticalAlignment="{StaticResource ButtonIconVerticalAlignment}"
 													  Visibility="{Binding Path=(um:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialNullToCollapsedConverter}, FallbackValue=Collapsed, TargetNullValue=Collapsed}"
@@ -802,8 +999,32 @@
 		</Setter>
 	</Style>
 
-	<!--Filled Style-->
-	<Style x:Key="NmpFilledButtonStyle"
+	<!-- Medium -->
+	<Style x:Key="NeumorphicMediumElevatedButtonStyle"
+		   BasedOn="{StaticResource NeumorphicSmallElevatedButtonStyle}"
+		   TargetType="Button">
+
+		<Setter Property="MinWidth" Value="48" />
+		<Setter Property="MinHeight" Value="48" />
+		<Setter Property="CornerRadius" Value="24" />
+		<Setter Property="Padding" Value="15,0" />
+		
+	</Style>
+
+	<!-- Large -->
+	<Style x:Key="NeumorphicLargeElevatedButtonStyle"
+		   BasedOn="{StaticResource NeumorphicSmallElevatedButtonStyle}"
+		   TargetType="Button">
+
+		<Setter Property="MinWidth" Value="58" />
+		<Setter Property="MinHeight" Value="58" />
+		<Setter Property="CornerRadius" Value="29" />
+		<Setter Property="Padding" Value="20,0" />
+
+	</Style>
+
+	<!-- Filled Style -->
+	<Style x:Key="NeumorphicFilledButtonStyle"
 		   BasedOn="{StaticResource MaterialBaseButtonStyle}"
 		   TargetType="Button">
 
@@ -812,32 +1033,33 @@
 		<Setter Property="Width" Value="117" />
 		<Setter Property="Height" Value="38" />
 		<Setter Property="MinHeight" Value="38" />
-		
+
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="Button">
-					<utu:ShadowContainer x:Name="RootPanel" Shadows="{StaticResource FilledNormal}">
+					<utu:ShadowContainer x:Name="RootPanel"
+										 Shadows="{ThemeResource FilledNormal}">
 
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup x:Name="CommonStates">
 
-								<VisualState x:Name="Normal"/>
+								<VisualState x:Name="Normal" />
 
 								<VisualState x:Name="PointerOver">
 									<VisualState.Setters>
-										<Setter Target="RootPanel.Shadows" Value="{StaticResource FilledHovered}" />
+										<Setter Target="RootPanel.Shadows" Value="{ThemeResource FilledHovered}" />
 									</VisualState.Setters>
 								</VisualState>
 
 								<VisualState x:Name="Pressed">
 									<VisualState.Setters>
-										<Setter Target="RootPanel.Shadows" Value="{StaticResource FilledPressed}" />
+										<Setter Target="RootPanel.Shadows" Value="{ThemeResource FilledPressed}" />
 									</VisualState.Setters>
 								</VisualState>
 
 								<VisualState x:Name="Disabled">
 									<VisualState.Setters>
-										<Setter Target="RootPanel.Shadows" Value="{StaticResource FilledDisabled}" />
+										<Setter Target="RootPanel.Shadows" Value="{ThemeResource FilledDisabled}" />
 										<Setter Target="RootGrid.Background" Value="{StaticResource OnSurfaceDisabledBrush}" />
 										<Setter Target="ContentPresenter.Foreground" Value="{StaticResource OnPrimaryLowBrush}" />
 										<Setter Target="IconPresenter.Foreground" Value="{StaticResource OnPrimaryLowBrush}" />
@@ -849,11 +1071,11 @@
 
 								<VisualState x:Name="Focused">
 									<VisualState.Setters>
-										<Setter Target="RootPanel.Shadows" Value="{StaticResource FilledFocused}" />
+										<Setter Target="RootPanel.Shadows" Value="{ThemeResource FilledFocused}" />
 									</VisualState.Setters>
 								</VisualState>
 
-								<VisualState x:Name="PointerFocused"/>
+								<VisualState x:Name="PointerFocused" />
 								<VisualState x:Name="Unfocused" />
 							</VisualStateGroup>
 						</VisualStateManager.VisualStateGroups>
@@ -874,13 +1096,13 @@
 									<ColumnDefinition Width="*" />
 								</Grid.ColumnDefinitions>
 
-								<Border Height="{StaticResource NmpButtonIconContainerSize}"
-										Width="{StaticResource NmpButtonIconContainerSize}"
+								<Border Height="{StaticResource NeumorphicButtonIconContainerSize}"
+										Width="{StaticResource NeumorphicButtonIconContainerSize}"
 										Visibility="{Binding Path=(um:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialNullToCollapsedConverter}, FallbackValue=Collapsed, TargetNullValue=Collapsed}">
 									<ContentPresenter x:Name="IconPresenter"
 													  Content="{Binding Path=(um:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}}"
-													  Width="{StaticResource NmpButtonIconSize}"
-													  Height="{StaticResource NmpButtonIconSize}"
+													  Width="{StaticResource NeumorphicButtonIconSize}"
+													  Height="{StaticResource NeumorphicButtonIconSize}"
 													  HorizontalAlignment="{StaticResource ButtonIconHorizontalAlignment}"
 													  VerticalAlignment="{StaticResource ButtonIconVerticalAlignment}"
 													  VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
@@ -907,44 +1129,33 @@
 		</Setter>
 	</Style>
 
-	<!--FAB Style-->
-	<CornerRadius x:Key="NmpButtonCornerRadius">4</CornerRadius>
-	<x:Double x:Key="NmpFabFontSize">14</x:Double>
+	<!-- FAB Style -->
+	<CornerRadius x:Key="NeumorphicButtonCornerRadius">4</CornerRadius>
+	<x:Double x:Key="NeumorphicFabFontSize">14</x:Double>
 
-	<Style x:Key="NmpFabStyle"
+	<Style x:Key="NeumorphicFabStyle"
 		   TargetType="Button">
 
-		<Setter Property="Background"
-				Value="{ThemeResource PrimaryContainerBrush}" />
-		<Setter Property="Foreground"
-				Value="{ThemeResource OnPrimaryContainerBrush}" />
-		<Setter Property="FontFamily"
-				Value="{ThemeResource MaterialMediumFontFamily}" />
-		<Setter Property="FontSize"
-				Value="{StaticResource NmpFabFontSize}" />
-		<Setter Property="HorizontalContentAlignment"
-				Value="Center" />
-		<Setter Property="VerticalContentAlignment"
-				Value="Center" />
-		<Setter Property="CornerRadius"
-				Value="16" />
-		<Setter Property="Padding"
-				Value="16" />
-		<Setter Property="MinHeight"
-				Value="56" />
-		<Setter Property="um:ControlExtensions.IconHeight"
-				Value="16" />
-		<Setter Property="um:ControlExtensions.IconWidth"
-				Value="16" />
+		<Setter Property="Background" Value="{ThemeResource PrimaryContainerBrush}" />
+		<Setter Property="Foreground" Value="{ThemeResource OnPrimaryContainerBrush}" />
+		<Setter Property="FontFamily" Value="{ThemeResource MaterialMediumFontFamily}" />
+		<Setter Property="FontSize" Value="{StaticResource NeumorphicFabFontSize}" />
+		<Setter Property="HorizontalContentAlignment" Value="Center" />
+		<Setter Property="VerticalContentAlignment" Value="Center" />
+		<Setter Property="CornerRadius" Value="16" />
+		<Setter Property="Padding" Value="16" />
+		<Setter Property="MinHeight" Value="56" />
+		<Setter Property="um:ControlExtensions.IconHeight" Value="16" />
+		<Setter Property="um:ControlExtensions.IconWidth" Value="16" />
 
 		<!-- Workaround for WinUI issue: https://github.com/microsoft/microsoft-ui-xaml/issues/6388 -->
-		<Setter Property="um:ControlExtensions.Icon"
-				Value="{x:Null}" />
+		<Setter Property="um:ControlExtensions.Icon" Value="{x:Null}" />
 
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="Button">
-					<utu:ShadowContainer x:Name="RootPanel" Shadows="{StaticResource FabShadow}">
+					<utu:ShadowContainer x:Name="RootPanel"
+										 Shadows="{ThemeResource FabShadows}">
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup x:Name="CommonStates">
 								<VisualState x:Name="Normal" />
@@ -1007,11 +1218,11 @@
 												  Content="{TemplateBinding Content}"
 												  ContentTemplate="{TemplateBinding ContentTemplate}"
 												  ContentTransitions="{TemplateBinding ContentTransitions}"
-												  CornerRadius="{StaticResource NmpButtonCornerRadius}"
+												  CornerRadius="{StaticResource NeumorphicButtonCornerRadius}"
 												  FontFamily="{TemplateBinding FontFamily}"
 												  FontSize="{TemplateBinding FontSize}"
 												  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-												  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+												  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
 							</StackPanel>
 						</Grid>
 					</utu:ShadowContainer>
@@ -1020,164 +1231,417 @@
 		</Setter>
 	</Style>
 
-	<!--Small FAB Style-->
-	<Style x:Key="NmpFabSmallStyle"
-		   BasedOn="{StaticResource NmpFabStyle}"
+	<!-- Small FAB Style -->
+	<Style x:Key="NeumorphicFabSmallStyle"
+		   BasedOn="{StaticResource NeumorphicFabStyle}"
 		   TargetType="Button">
 
-		<Setter Property="Padding"
-				Value="12,0" />
-		<Setter Property="MinHeight"
-				Value="40" />
-		<Setter Property="CornerRadius"
-				Value="12" />
+		<Setter Property="Padding" Value="12,0" />
+		<Setter Property="MinHeight" Value="40" />
+		<Setter Property="CornerRadius" Value="12" />
 	</Style>
 
-	<!--Large FAB Style-->
-	<Style x:Key="NmpFabLargeStyle"
-		   BasedOn="{StaticResource NmpFabStyle}"
+	<!-- Large FAB Style -->
+	<Style x:Key="NeumorphicFabLargeStyle"
+		   BasedOn="{StaticResource NeumorphicFabStyle}"
 		   TargetType="Button">
 
-		<Setter Property="Padding"
-				Value="40" />
-		<Setter Property="MinHeight"
-				Value="96" />
-		<Setter Property="MinWidth"
-				Value="96" />
-		<Setter Property="CornerRadius"
-				Value="28" />
-		<Setter Property="um:ControlExtensions.IconHeight"
-				Value="24" />
-		<Setter Property="um:ControlExtensions.IconWidth"
-				Value="24" />
+		<Setter Property="Padding" Value="40" />
+		<Setter Property="MinHeight" Value="96" />
+		<Setter Property="MinWidth" Value="96" />
+		<Setter Property="CornerRadius" Value="28" />
+		<Setter Property="um:ControlExtensions.IconHeight" Value="24" />
+		<Setter Property="um:ControlExtensions.IconWidth" Value="24" />
 	</Style>
 	<!--#endregion-->
 
-	<!--#region ToggleButton-->
-	<Style x:Key="NmpToggleButtonStyle"
-				TargetType="ToggleButton">
-		<Setter Property="Foreground"
-					Value="{ThemeResource OnSurfaceMediumBrush}" />
-		<Setter Property="Background"
-					Value="{ThemeResource SurfaceBrush}" />
-		<Setter Property="MinHeight"
-					Value="40" />
-		<Setter Property="MinWidth"
-					Value="40" />
-		<Setter Property="UseSystemFocusVisuals"
-					Value="True" />
-		<Setter Property="HorizontalContentAlignment"
-					Value="Center" />
-		<Setter Property="VerticalContentAlignment"
-					Value="Center" />
-		<Setter Property="CornerRadius"
-					Value="20" />
+	<!--#region CheckBox Style-->
+	<Style x:Key="NeumorphicCheckBoxStyle"
+		   TargetType="CheckBox">
+		<Setter Property="Background" Value="{ThemeResource SurfaceBrush}" />
+		<Setter Property="Foreground" Value="{ThemeResource OnSurfaceMediumBrush}" />
+
+		<!-- Start: Body Small Typo -->
+		<Setter Property="FontFamily" Value="{ThemeResource MaterialMediumFontFamily}" />
+		<Setter Property="FontWeight" Value="{ThemeResource BodySmallFontWeight}" />
+		<Setter Property="FontSize" Value="{ThemeResource BodySmallFontSize}" />
+		<Setter Property="CharacterSpacing" Value="{ThemeResource BodySmallCharacterSpacing}" />
+		<!-- End: Body Small Typo -->
+
+		<Setter Property="Padding" Value="{ThemeResource CheckBoxCheckAreaPadding}" />
+		<Setter Property="CornerRadius" Value="{ThemeResource CheckBoxCheckAreaCornerRadius}" />
+		<Setter Property="HorizontalAlignment" Value="Left" />
+		<Setter Property="VerticalAlignment" Value="Stretch" />
+		<Setter Property="HorizontalContentAlignment" Value="Left" />
+		<Setter Property="VerticalContentAlignment" Value="Center" />
+		<Setter Property="MinWidth" Value="0" />
+		<Setter Property="MinHeight" Value="{ThemeResource CheckBoxCheckAreaSize}" />
+		<Setter Property="UseSystemFocusVisuals" Value="False" />
+
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="CheckBox">
+					<Grid x:Name="Root"
+						  Background="Transparent">
+						<VisualStateManager.VisualStateGroups>
+
+							<VisualStateGroup x:Name="CommonStates">
+								<VisualState x:Name="Normal" />
+								<VisualState x:Name="PointerOver" />
+								<VisualState x:Name="Pressed" />
+								<VisualState x:Name="Disabled" />
+							</VisualStateGroup>
+
+							<VisualStateGroup x:Name="CombinedStates">
+
+								<VisualState x:Name="UncheckedNormal">
+									<VisualState.Setters>
+										<Setter Target="CheckGlyph.Opacity" Value="0" />
+									</VisualState.Setters>
+								</VisualState>
+
+								<VisualState x:Name="UncheckedPointerOver">
+									<VisualState.Setters>
+										<Setter Target="CheckGlyph.Opacity" Value="0" />
+									</VisualState.Setters>
+									<Storyboard>
+										<DoubleAnimation Storyboard.TargetName="PressRing"
+														 Storyboard.TargetProperty="Opacity"
+														 Duration="{StaticResource MaterialAnimationDuration}"
+														 To="{ThemeResource HoverOpacity}">
+											<DoubleAnimation.EasingFunction>
+												<CubicEase EasingMode="EaseIn" />
+											</DoubleAnimation.EasingFunction>
+										</DoubleAnimation>
+									</Storyboard>
+								</VisualState>
+
+								<VisualState x:Name="UncheckedPressed">
+									<VisualState.Setters>
+										<Setter Target="CheckGlyph.Opacity" Value="0" />
+									</VisualState.Setters>
+									<Storyboard>
+										<DoubleAnimation Storyboard.TargetName="PressRing"
+														 Storyboard.TargetProperty="Opacity"
+														 Duration="{StaticResource MaterialAnimationDuration}"
+														 To="{ThemeResource PressedOpacity}">
+											<DoubleAnimation.EasingFunction>
+												<CubicEase EasingMode="EaseIn" />
+											</DoubleAnimation.EasingFunction>
+										</DoubleAnimation>
+									</Storyboard>
+								</VisualState>
+
+								<VisualState x:Name="UncheckedDisabled">
+									<VisualState.Setters>
+										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource OnSurfaceLowBrush}" />
+										<Setter Target="CheckGlyph.Fill" Value="{ThemeResource OnSurfaceLowBrush}" />
+										<Setter Target="CheckGlyph.Opacity" Value="0" />
+									</VisualState.Setters>
+								</VisualState>
+
+								<VisualState x:Name="CheckedNormal">
+									<VisualState.Setters>
+										<Setter Target="CheckGlyph.Opacity" Value="1" />
+									</VisualState.Setters>
+								</VisualState>
+
+								<VisualState x:Name="CheckedPointerOver">
+									<VisualState.Setters>
+										<Setter Target="CheckGlyph.Opacity" Value="1" />
+									</VisualState.Setters>
+									<Storyboard>
+										<DoubleAnimation Storyboard.TargetName="PressRing"
+														 Storyboard.TargetProperty="Opacity"
+														 Duration="{StaticResource MaterialAnimationDuration}"
+														 To="{ThemeResource HoverOpacity}">
+											<DoubleAnimation.EasingFunction>
+												<CubicEase EasingMode="EaseIn" />
+											</DoubleAnimation.EasingFunction>
+										</DoubleAnimation>
+									</Storyboard>
+								</VisualState>
+
+								<VisualState x:Name="CheckedPressed">
+									<Storyboard>
+										<DoubleAnimation Storyboard.TargetName="CheckGlyph"
+														 Storyboard.TargetProperty="Opacity"
+														 Duration="{StaticResource MaterialAnimationDuration}"
+														 To="1">
+											<DoubleAnimation.EasingFunction>
+												<CubicEase EasingMode="EaseIn" />
+											</DoubleAnimation.EasingFunction>
+										</DoubleAnimation>
+										<DoubleAnimation Storyboard.TargetName="PressRing"
+														 Storyboard.TargetProperty="Opacity"
+														 Duration="{StaticResource MaterialAnimationDuration}"
+														 To="{ThemeResource PressedOpacity}">
+											<DoubleAnimation.EasingFunction>
+												<CubicEase EasingMode="EaseIn" />
+											</DoubleAnimation.EasingFunction>
+										</DoubleAnimation>
+									</Storyboard>
+								</VisualState>
+
+								<VisualState x:Name="CheckedDisabled">
+									<VisualState.Setters>
+										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource OnSurfaceLowBrush}" />
+										<Setter Target="CheckGlyph.Fill" Value="{ThemeResource OnSurfaceLowBrush}" />
+										<Setter Target="CheckGlyph.Opacity" Value="1" />
+									</VisualState.Setters>
+								</VisualState>
+
+								<VisualState x:Name="IndeterminateNormal">
+									<VisualState.Setters>
+										<Setter Target="CheckGlyph.Opacity" Value="0" />
+										<Setter Target="HyphenGlyph.Opacity" Value="1" />
+									</VisualState.Setters>
+								</VisualState>
+
+								<VisualState x:Name="IndeterminatePointerOver">
+									<VisualState.Setters>
+										<Setter Target="CheckGlyph.Opacity" Value="0" />
+										<Setter Target="HyphenGlyph.Opacity" Value="1" />
+									</VisualState.Setters>
+									<Storyboard>
+										<DoubleAnimation Storyboard.TargetName="PressRing"
+														 Storyboard.TargetProperty="Opacity"
+														 Duration="{StaticResource MaterialAnimationDuration}"
+														 To="{ThemeResource HoverOpacity}">
+											<DoubleAnimation.EasingFunction>
+												<CubicEase EasingMode="EaseIn" />
+											</DoubleAnimation.EasingFunction>
+										</DoubleAnimation>
+									</Storyboard>
+								</VisualState>
+
+								<VisualState x:Name="IndeterminatePressed">
+									<Storyboard>
+										<DoubleAnimation Storyboard.TargetName="HyphenGlyph"
+														 Storyboard.TargetProperty="Opacity"
+														 Duration="{StaticResource MaterialAnimationDuration}"
+														 To="1">
+											<DoubleAnimation.EasingFunction>
+												<CubicEase EasingMode="EaseIn" />
+											</DoubleAnimation.EasingFunction>
+										</DoubleAnimation>
+										<DoubleAnimation Storyboard.TargetName="PressRing"
+														 Storyboard.TargetProperty="Opacity"
+														 Duration="{StaticResource MaterialAnimationDuration}"
+														 To="{ThemeResource PressedOpacity}">
+											<DoubleAnimation.EasingFunction>
+												<CubicEase EasingMode="EaseIn" />
+											</DoubleAnimation.EasingFunction>
+										</DoubleAnimation>
+									</Storyboard>
+								</VisualState>
+
+								<VisualState x:Name="IndeterminateDisabled">
+									<VisualState.Setters>
+										<Setter Target="ContentPresenter.Foreground"
+												Value="{ThemeResource OnSurfaceLowBrush}" />
+										<Setter Target="HyphenGlyph.Fill"
+												Value="{ThemeResource OnSurfaceLowBrush}" />
+										<Setter Target="CheckGlyph.Opacity"
+												Value="0" />
+										<Setter Target="HyphenGlyph.Opacity"
+												Value="1" />
+									</VisualState.Setters>
+								</VisualState>
+							</VisualStateGroup>
+
+							<VisualStateGroup x:Name="FocusStates">
+								<VisualState x:Name="Focused">
+									<Storyboard>
+										<DoubleAnimation Storyboard.TargetName="FocusRing"
+														 Storyboard.TargetProperty="Opacity"
+														 Duration="{StaticResource MaterialAnimationDuration}"
+														 To="{ThemeResource FocusedOpacity}">
+											<DoubleAnimation.EasingFunction>
+												<CubicEase EasingMode="EaseIn" />
+											</DoubleAnimation.EasingFunction>
+										</DoubleAnimation>
+									</Storyboard>
+								</VisualState>
+
+								<VisualState x:Name="PointerFocused" />
+
+								<VisualState x:Name="Unfocused" />
+							</VisualStateGroup>
+						</VisualStateManager.VisualStateGroups>
+
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="{ThemeResource CheckBoxCheckAreaLength}" />
+							<ColumnDefinition Width="*" />
+						</Grid.ColumnDefinitions>
+
+						<!--<utu:ShadowContainer Shadow="{StaticResource NeumorphicCheckBoxVisualStatesShadow}">-->
+							<Ellipse x:Name="FocusRing"
+									 Stretch="Uniform"
+									 HorizontalAlignment="Center"
+									 VerticalAlignment="Center"
+									 IsHitTestVisible="False"
+									 Opacity="0"
+									 Width="{ThemeResource CheckBoxFocusAreaSize}"
+									 Height="{ThemeResource CheckBoxFocusAreaSize}"
+									 Fill="{ThemeResource PrimaryBrush}" />
+						<!--</utu:ShadowContainer>-->
+
+						<!--<utu:ShadowContainer Shadow="{StaticResource NeumorphicCheckBoxVisualStatesShadow}">-->
+							<Ellipse x:Name="PressRing"
+									 Stretch="Uniform"
+									 HorizontalAlignment="Center"
+									 VerticalAlignment="Center"
+									 IsHitTestVisible="False"
+									 Opacity="0"
+									 Width="{ThemeResource CheckBoxFocusAreaSize}"
+									 Height="{ThemeResource CheckBoxFocusAreaSize}"
+									 Fill="{ThemeResource PrimaryBrush}" />
+						<!--</utu:ShadowContainer>-->
+
+						<utu:ShadowContainer Shadows="{StaticResource NeumorphicCheckBoxShadows}">
+							<Grid x:Name="CheckBoxContainer"
+								  Height="{ThemeResource CheckBoxCheckAreaSize}"
+								  Width="{ThemeResource CheckBoxCheckAreaSize}"
+								  CornerRadius="{TemplateBinding CornerRadius}"
+								  Background="{TemplateBinding Background}">
+
+								<Path x:Name="HyphenGlyph"
+									  Data="{ThemeResource CheckBoxHyphenGlyphPathData}"
+									  Fill="{ThemeResource PrimaryBrush}"
+									  VerticalAlignment="Center"
+									  HorizontalAlignment="Center"
+									  Stretch="Uniform"
+									  Width="12"
+									  Height="4"
+									  Opacity="0"
+									  AutomationProperties.AccessibilityView="Raw" />
+								<!-- xamarin:Margin="0,2,0,0" /> -->
+
+								<Path x:Name="CheckGlyph"
+									  Data="{ThemeResource CheckBoxCheckGlyphPathData}"
+									  Fill="{ThemeResource PrimaryBrush}"
+									  VerticalAlignment="Center"
+									  HorizontalAlignment="Center"
+									  Stretch="Uniform"
+									  Width="12"
+									  Height="12"
+									  Opacity="0"
+									  AutomationProperties.AccessibilityView="Raw" />
+								<!-- xamarin:Margin="0,2,0,0" /> -->
+							</Grid>
+						</utu:ShadowContainer>
+
+						<ContentPresenter x:Name="ContentPresenter"
+										  ContentTemplate="{TemplateBinding ContentTemplate}"
+										  ContentTransitions="{TemplateBinding ContentTransitions}"
+										  Content="{TemplateBinding Content}"
+										  Foreground="{TemplateBinding Foreground}"
+										  FontWeight="{TemplateBinding FontWeight}"
+										  FontFamily="{TemplateBinding FontFamily}"
+										  FontSize="{TemplateBinding FontSize}"
+										  CharacterSpacing="{TemplateBinding CharacterSpacing}"
+										  Margin="{TemplateBinding Padding}"
+										  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+										  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+										  Grid.Column="1"
+										  AutomationProperties.AccessibilityView="Raw"
+										  TextWrapping="Wrap" />
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<!--#endregion-->
+
+	<!--#region ToggleButton Style-->
+	<Style x:Key="NeumorphicToggleButtonStyle"
+		   TargetType="ToggleButton">
+		<Setter Property="Foreground" Value="{ThemeResource OnSurfaceMediumBrush}" />
+		<Setter Property="Background" Value="{ThemeResource SurfaceBrush}" />
+		<Setter Property="MinHeight" Value="40" />
+		<Setter Property="MinWidth" Value="40" />
+		<Setter Property="UseSystemFocusVisuals" Value="True" />
+		<Setter Property="HorizontalContentAlignment" Value="Center" />
+		<Setter Property="VerticalContentAlignment" Value="Center" />
+		<Setter Property="CornerRadius" Value="20" />
 
 		<!-- Workaround for WinUI issue: https://github.com/microsoft/microsoft-ui-xaml/issues/6388 -->
-		<Setter Property="um:ControlExtensions.AlternateContent"
-				Value="{x:Null}" />
+		<Setter Property="um:ControlExtensions.AlternateContent" Value="{x:Null}" />
 
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="ToggleButton">
-					<utu:ShadowContainer x:Name="RootPanel" Shadows="{StaticResource ToggleButtonShadow}">
+					<utu:ShadowContainer x:Name="RootPanel"
+										 Shadows="{StaticResource ToggleButtonShadow}">
 
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup x:Name="CommonStates">
 								<VisualState x:Name="Normal">
 									<VisualState.Setters>
-										<Setter Target="RootGrid.Background"
-												Value="{ThemeResource SurfaceBrush}" />
+										<Setter Target="RootGrid.Background" Value="{ThemeResource SurfaceBrush}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="PointerOver">
 									<VisualState.Setters>
-										<Setter Target="ContentPresenter.Visibility"
-												Value="Visible" />
-										<Setter Target="AlternateContentPresenter.Visibility"
-												Value="Collapsed" />
-										<Setter Target="HoverOverlay.Opacity"
-												Value="1" />
-										<Setter Target="RootGrid.Background"
-												Value="{ThemeResource SurfaceBrush}" />
+										<Setter Target="ContentPresenter.Visibility" Value="Visible" />
+										<Setter Target="AlternateContentPresenter.Visibility" Value="Collapsed" />
+										<Setter Target="HoverOverlay.Opacity" Value="1" />
+										<Setter Target="RootGrid.Background" Value="{ThemeResource SurfaceBrush}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="Pressed">
 									<VisualState.Setters>
-										<Setter Target="ContentPresenter.Visibility"
-												Value="Visible" />
-										<Setter Target="AlternateContentPresenter.Visibility"
-												Value="Collapsed" />
-										<Setter Target="PressedOverlay.Opacity"
-												Value="1" />
-										<Setter Target="RootGrid.Background"
-												Value="{ThemeResource SurfaceBrush}" />
+										<Setter Target="ContentPresenter.Visibility" Value="Visible" />
+										<Setter Target="AlternateContentPresenter.Visibility" Value="Collapsed" />
+										<Setter Target="PressedOverlay.Opacity" Value="1" />
+										<Setter Target="RootGrid.Background" Value="{ThemeResource SurfaceBrush}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="Disabled">
 									<VisualState.Setters>
-										<Setter Target="ContentPresenter.Visibility"
-												Value="Visible" />
-										<Setter Target="AlternateContentPresenter.Visibility"
-												Value="Collapsed" />
-										<Setter Target="ContentPresenter.Foreground"
-												Value="{ThemeResource OnSurfaceLowBrush}" />
-										<Setter Target="RootPanel.Opacity"
-												Value="0.38" />
-										<Setter Target="RootGrid.Background"
-												Value="{ThemeResource SurfaceBrush}" />
+										<Setter Target="ContentPresenter.Visibility" Value="Visible" />
+										<Setter Target="AlternateContentPresenter.Visibility" Value="Collapsed" />
+										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource OnSurfaceLowBrush}" />
+										<Setter Target="RootPanel.Opacity" Value="0.38" />
+										<Setter Target="RootGrid.Background" Value="{ThemeResource SurfaceBrush}" />
 									</VisualState.Setters>
 								</VisualState>
 
-								<!--Checked-->
+								<!-- Checked -->
 								<VisualState x:Name="Checked">
 									<VisualState.Setters>
 
-										<Setter Target="ContentPresenter.Visibility"
-												Value="Collapsed" />
-										<Setter Target="AlternateContentPresenter.Visibility"
-												Value="Visible" />
-										<Setter Target="AlternateContentPresenter.Foreground"
-												Value="{ThemeResource OnPrimaryBrush}" />
+										<Setter Target="ContentPresenter.Visibility" Value="Collapsed" />
+										<Setter Target="AlternateContentPresenter.Visibility" Value="Visible" />
+										<Setter Target="AlternateContentPresenter.Foreground" Value="{ThemeResource OnPrimaryBrush}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="CheckedPointerOver">
 									<VisualState.Setters>
 
-										<Setter Target="ContentPresenter.Visibility"
-												Value="Collapsed" />
-										<Setter Target="AlternateContentPresenter.Visibility"
-												Value="Visible" />
-										<Setter Target="AlternateContentPresenter.Foreground"
-												Value="{ThemeResource OnPrimaryBrush}" />
-										<Setter Target="HoverOverlay.Opacity"
-												Value="1" />
+										<Setter Target="ContentPresenter.Visibility" Value="Collapsed" />
+										<Setter Target="AlternateContentPresenter.Visibility" Value="Visible" />
+										<Setter Target="AlternateContentPresenter.Foreground" Value="{ThemeResource OnPrimaryBrush}" />
+										<Setter Target="HoverOverlay.Opacity" Value="1" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="CheckedPressed">
 									<VisualState.Setters>
 
-										<Setter Target="ContentPresenter.Visibility"
-												Value="Collapsed" />
-										<Setter Target="AlternateContentPresenter.Visibility"
-												Value="Visible" />
-										<Setter Target="AlternateContentPresenter.Foreground"
-												Value="{ThemeResource OnPrimaryBrush}" />
-										<Setter Target="PressedOverlay.Opacity"
-												Value="1" />
+										<Setter Target="ContentPresenter.Visibility" Value="Collapsed" />
+										<Setter Target="AlternateContentPresenter.Visibility" Value="Visible" />
+										<Setter Target="AlternateContentPresenter.Foreground" Value="{ThemeResource OnPrimaryBrush}" />
+										<Setter Target="PressedOverlay.Opacity" Value="1" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="CheckedDisabled">
 									<VisualState.Setters>
 
-										<Setter Target="ContentPresenter.Visibility"
-												Value="Collapsed" />
-										<Setter Target="AlternateContentPresenter.Visibility"
-												Value="Visible" />
-										<Setter Target="AlternateContentPresenter.Foreground"
-												Value="{ThemeResource OnPrimaryMediumBrush}" />
-										<Setter Target="RootPanel.Opacity"
-												Value="0.38" />
+										<Setter Target="ContentPresenter.Visibility" Value="Collapsed" />
+										<Setter Target="AlternateContentPresenter.Visibility" Value="Visible" />
+										<Setter Target="AlternateContentPresenter.Foreground" Value="{ThemeResource OnPrimaryMediumBrush}" />
+										<Setter Target="RootPanel.Opacity" Value="0.38" />
 									</VisualState.Setters>
 								</VisualState>
 							</VisualStateGroup>
@@ -1194,7 +1658,7 @@
 									 VerticalAlignment="Stretch"
 									 Fill="{StaticResource PrimaryHoverBrush}"
 									 Opacity="0"
-									 Visibility="Visible"/>
+									 Visibility="Visible" />
 
 							<!-- Ellipse for Pressed State -->
 							<Ellipse x:Name="PressedOverlay"
@@ -1202,7 +1666,7 @@
 									 VerticalAlignment="Stretch"
 									 Fill="{StaticResource PrimaryPressedBrush}"
 									 Opacity="0"
-									 Visibility="Visible"/>
+									 Visibility="Visible" />
 
 							<!-- Content -->
 							<ContentPresenter x:Name="ContentPresenter"
@@ -1225,52 +1689,222 @@
 			</Setter.Value>
 		</Setter>
 	</Style>
-	<!--endregion-->
+	<!-- endregion -->
 
-	<!--#region IconButton-->
-	
-	<x:Double x:Key="IconButtonNmpOpacityVisibleState">1</x:Double>
-	<x:String x:Key="IconButtonNmpEllipseVerticalAlignment">Stretch</x:String>
-	<x:String x:Key="IconButtonNmpEllipseHorizontalAlignment">Stretch</x:String>
-
-	<Style x:Key="NmpIconButtonStyle"
-		   BasedOn="{StaticResource MaterialBaseButtonStyle}"
-		   TargetType="Button">
-		<Setter Property="Foreground"
-				Value="{ThemeResource OnSurfaceMediumBrush}" />
+	<!--#region RadioButton Style-->
+	<Style x:Key="NeumorphicRadioButtonStyle"
+		   TargetType="RadioButton">
 		<Setter Property="Background"
 				Value="{ThemeResource SurfaceBrush}" />
-		<Setter Property="CornerRadius"
-				Value="20" />
-		<Setter Property="MinHeight"
-				Value="40" />
-		<Setter Property="MinWidth"
-				Value="40" />
+		<Setter Property="Foreground"
+				Value="{ThemeResource OnSurfaceMediumBrush}" />
+
+		<!-- Start: Body Small Typo -->
+		<Setter Property="FontFamily"
+				Value="{ThemeResource MaterialRegularFontFamily}" />
+		<Setter Property="FontWeight"
+				Value="{ThemeResource BodySmallFontWeight}" />
+		<Setter Property="FontSize"
+				Value="{ThemeResource BodySmallFontSize}" />
+		<Setter Property="CharacterSpacing"
+				Value="{ThemeResource BodySmallCharacterSpacing}" />
+		<!-- End: Body Small Typo -->
+
+		<Setter Property="Padding"
+				Value="4,0,0,0" />
+		<Setter Property="HorizontalAlignment"
+				Value="Left" />
+		<Setter Property="VerticalAlignment"
+				Value="Stretch" />
 		<Setter Property="HorizontalContentAlignment"
-				Value="Center" />
+				Value="Left" />
 		<Setter Property="VerticalContentAlignment"
 				Value="Center" />
+		<Setter Property="MinWidth"
+				Value="40" />
+		<Setter Property="MinHeight"
+				Value="40" />
+		<Setter Property="UseSystemFocusVisuals"
+				Value="True" />
+
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="RadioButton">
+					<Grid x:Name="RootGrid"
+						  Background="Transparent">
+						<VisualStateManager.VisualStateGroups>
+							<VisualStateGroup x:Name="CommonStates">
+								<VisualState x:Name="Normal" />
+								<VisualState x:Name="PointerOver">
+									<Storyboard>
+										<DoubleAnimation Storyboard.TargetName="PressRing"
+														 Storyboard.TargetProperty="Opacity"
+														 Duration="{StaticResource MaterialAnimationDuration}"
+														 To="{ThemeResource HoverOpacity}">
+											<DoubleAnimation.EasingFunction>
+												<CubicEase EasingMode="EaseIn" />
+											</DoubleAnimation.EasingFunction>
+										</DoubleAnimation>
+									</Storyboard>
+								</VisualState>
+								<VisualState x:Name="Pressed">
+									<Storyboard>
+										<DoubleAnimation Storyboard.TargetName="PressRing"
+														 Storyboard.TargetProperty="Opacity"
+														 Duration="{StaticResource MaterialAnimationDuration}"
+														 To="{ThemeResource PressedOpacity}">
+											<DoubleAnimation.EasingFunction>
+												<CubicEase EasingMode="EaseIn" />
+											</DoubleAnimation.EasingFunction>
+										</DoubleAnimation>
+									</Storyboard>
+								</VisualState>
+								<VisualState x:Name="Disabled">
+									<VisualState.Setters>
+										<Setter Target="OuterEllipse.Fill"
+												Value="{ThemeResource OnSurfaceDisabledBrush}" />
+										<Setter Target="CheckEllipse.Fill"
+												Value="{ThemeResource OnSurfaceLowBrush}" />
+									</VisualState.Setters>
+								</VisualState>
+							</VisualStateGroup>
+
+							<VisualStateGroup x:Name="CheckStates">
+
+								<VisualState x:Name="Checked">
+									<VisualState.Setters>
+										<Setter Target="CheckEllipse.Opacity"
+												Value="1" />
+									</VisualState.Setters>
+								</VisualState>
+
+								<VisualState x:Name="Unchecked" />
+
+								<VisualState x:Name="Indeterminate" />
+							</VisualStateGroup>
+
+							<VisualStateGroup x:Name="FocusStates">
+
+								<VisualState x:Name="Focused">
+									<Storyboard>
+										<DoubleAnimation Storyboard.TargetName="FocusRing"
+														 Storyboard.TargetProperty="Opacity"
+														 Duration="{StaticResource MaterialAnimationDuration}"
+														 To="{ThemeResource FocusedOpacity}">
+											<DoubleAnimation.EasingFunction>
+												<CubicEase EasingMode="EaseIn" />
+											</DoubleAnimation.EasingFunction>
+										</DoubleAnimation>
+									</Storyboard>
+								</VisualState>
+
+								<VisualState x:Name="PointerFocused" />
+
+								<VisualState x:Name="Unfocused" />
+							</VisualStateGroup>
+						</VisualStateManager.VisualStateGroups>
+
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="{TemplateBinding MinWidth}" />
+							<ColumnDefinition Width="*" />
+						</Grid.ColumnDefinitions>
+
+						<!--<utu:ShadowContainer Shadow="{StaticResource NeumorphicRadioButtonVisualStatesShadow}">-->
+							<Ellipse x:Name="PressRing"
+									 HorizontalAlignment="Center"
+									 VerticalAlignment="Center"
+									 Height="{TemplateBinding MinHeight}"
+									 Width="{TemplateBinding MinWidth}"
+									 Fill="{ThemeResource PrimaryBrush}"
+									 IsHitTestVisible="False"
+									 Opacity="0" />
+						<!--</utu:ShadowContainer>-->
+
+						<!--<utu:ShadowContainer Shadow="{StaticResource NeumorphicRadioButtonVisualStatesShadow}">-->
+							<Ellipse x:Name="FocusRing"
+									 HorizontalAlignment="Center"
+									 VerticalAlignment="Center"
+									 Height="{TemplateBinding MinHeight}"
+									 Width="{TemplateBinding MinWidth}"
+									 Fill="{ThemeResource PrimaryBrush}"
+									 IsHitTestVisible="False"
+									 Opacity="0" />
+						<!--</utu:ShadowContainer>-->
+
+						<utu:ShadowContainer Shadows="{StaticResource NeumorphicRadioButtonShadows}">
+							<Grid Height="20"
+								  Width="20"
+								  CornerRadius="10">
+								<Ellipse x:Name="OuterEllipse"
+										 Height="20"
+										 Width="20"
+										 UseLayoutRounding="False"
+										 Fill="{TemplateBinding Background}" />
+
+								<Ellipse x:Name="CheckEllipse"
+										 Height="10"
+										 Width="10"
+										 UseLayoutRounding="False"
+										 Fill="{ThemeResource PrimaryBrush}"
+										 Opacity="0" />
+							</Grid>
+						</utu:ShadowContainer>
+
+						<ContentPresenter x:Name="ContentPresenter"
+										  ContentTemplate="{TemplateBinding ContentTemplate}"
+										  ContentTransitions="{TemplateBinding ContentTransitions}"
+										  Content="{TemplateBinding Content}"
+										  Margin="{TemplateBinding Padding}"
+										  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+										  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+										  AutomationProperties.AccessibilityView="Raw"
+										  TextWrapping="Wrap"
+										  Grid.Column="1" />
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<!--#endregion-->
+
+	<!--#region IconButton Style-->
+
+	<x:Double x:Key="IconButtonNeumorphicOpacityVisibleState">1</x:Double>
+	<x:String x:Key="IconButtonNeumorphicEllipseVerticalAlignment">Stretch</x:String>
+	<x:String x:Key="IconButtonNeumorphicEllipseHorizontalAlignment">Stretch</x:String>
+
+	<Style x:Key="NeumorphicIconButtonStyle"
+		   BasedOn="{StaticResource MaterialBaseButtonStyle}"
+		   TargetType="Button">
+		<Setter Property="Foreground" Value="{ThemeResource OnSurfaceMediumBrush}" />
+		<Setter Property="Background" Value="{ThemeResource SurfaceBrush}" />
+		<Setter Property="CornerRadius" Value="20" />
+		<Setter Property="MinHeight" Value="40" />
+		<Setter Property="MinWidth" Value="40" />
+		<Setter Property="HorizontalContentAlignment" Value="Center" />
+		<Setter Property="VerticalContentAlignment" Value="Center" />
 
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="Button">
-					<utu:ShadowContainer x:Name="RootPanel" Shadows="{StaticResource IconButtonShadows}">
+					<utu:ShadowContainer x:Name="RootPanel"
+										 Shadows="{StaticResource IconButtonShadows}">
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup x:Name="CommonStates">
 								<VisualState x:Name="Normal" />
 								<VisualState x:Name="PointerOver">
 									<VisualState.Setters>
-										<Setter Target="HoverOverlay.Opacity" Value="{ThemeResource IconButtonNmpOpacityVisibleState}" />
+										<Setter Target="HoverOverlay.Opacity" Value="{ThemeResource IconButtonNeumorphicOpacityVisibleState}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="Pressed">
 									<VisualState.Setters>
-										<Setter Target="PressedOverlay.Opacity" Value="{ThemeResource IconButtonNmpOpacityVisibleState}" />
+										<Setter Target="PressedOverlay.Opacity" Value="{ThemeResource IconButtonNeumorphicOpacityVisibleState}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="Focused">
 									<VisualState.Setters>
-										<Setter Target="FocusedOverlay.Opacity" Value="{ThemeResource IconButtonNmpOpacityVisibleState}" />
+										<Setter Target="FocusedOverlay.Opacity" Value="{ThemeResource IconButtonNeumorphicOpacityVisibleState}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="Disabled">
@@ -1287,22 +1921,22 @@
 							  Height="{TemplateBinding MinHeight}">
 							<!-- Ellipse for PointerOver State -->
 							<Ellipse x:Name="HoverOverlay"
-									 HorizontalAlignment="{StaticResource IconButtonNmpEllipseHorizontalAlignment}"
-									 VerticalAlignment="{StaticResource IconButtonNmpEllipseVerticalAlignment}"
+									 HorizontalAlignment="{StaticResource IconButtonNeumorphicEllipseHorizontalAlignment}"
+									 VerticalAlignment="{StaticResource IconButtonNeumorphicEllipseVerticalAlignment}"
 									 Fill="{ThemeResource IconButtonEllipseFillPointerOver}"
 									 Opacity="{ThemeResource IconButtonOpacityHiddenState}" />
 
 							<!-- Ellipse for Pressed State -->
 							<Ellipse x:Name="PressedOverlay"
-									 HorizontalAlignment="{StaticResource IconButtonNmpEllipseHorizontalAlignment}"
-									 VerticalAlignment="{StaticResource IconButtonNmpEllipseVerticalAlignment}"
+									 HorizontalAlignment="{StaticResource IconButtonNeumorphicEllipseHorizontalAlignment}"
+									 VerticalAlignment="{StaticResource IconButtonNeumorphicEllipseVerticalAlignment}"
 									 Fill="{ThemeResource IconButtonEllipseFillPressed}"
 									 Opacity="{ThemeResource IconButtonOpacityHiddenState}" />
 
 							<!-- Ellipse for Focused State -->
 							<Ellipse x:Name="FocusedOverlay"
-									 HorizontalAlignment="{StaticResource IconButtonNmpEllipseHorizontalAlignment}"
-									 VerticalAlignment="{StaticResource IconButtonNmpEllipseVerticalAlignment}"
+									 HorizontalAlignment="{StaticResource IconButtonNeumorphicEllipseHorizontalAlignment}"
+									 VerticalAlignment="{StaticResource IconButtonNeumorphicEllipseVerticalAlignment}"
 									 Fill="{ThemeResource IconButtonEllipseFillFocused}"
 									 Opacity="{ThemeResource IconButtonOpacityHiddenState}" />
 
@@ -1314,7 +1948,7 @@
 											  HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
 											  VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
 											  Width="24"
-											  Height="24"/>
+											  Height="24" />
 						</Grid>
 					</utu:ShadowContainer>
 				</ControlTemplate>
@@ -1323,24 +1957,17 @@
 	</Style>
 	<!--#endregion-->
 
-	<!--#region Chips-->
-	<Style x:Key="NmpChipStyle"
+	<!--#region Chip Style-->
+	<Style x:Key="NeumorphicChipStyle"
 		   TargetType="utu:Chip">
-		<Setter Property="Foreground"
-				Value="{ThemeResource OnSurfaceVariantBrush}" />
-		<Setter Property="Background"
-				Value="{ThemeResource PrimaryBrush}" />
-		<Setter Property="CornerRadius"
-				Value="8" />
-		<Setter Property="VerticalAlignment"
-				Value="Stretch" />
-		<Setter Property="VerticalContentAlignment"
-				Value="Center" />
-		<Setter Property="Padding"
-				Value="8,0" />
+		<Setter Property="Foreground" Value="{ThemeResource OnSurfaceVariantBrush}" />
+		<Setter Property="Background" Value="{ThemeResource PrimaryBrush}" />
+		<Setter Property="CornerRadius" Value="8" />
+		<Setter Property="VerticalAlignment" Value="Stretch" />
+		<Setter Property="VerticalContentAlignment" Value="Center" />
+		<Setter Property="Padding" Value="8,0" />
 
-		<Setter Property="Icon"
-				Value="{x:Null}" />
+		<Setter Property="Icon" Value="{x:Null}" />
 
 		<Setter Property="Template">
 			<Setter.Value>
@@ -1490,8 +2117,8 @@
 	</Style>
 	<!--#endregion-->
 
-	<!--#region TabBar-->
-	<Style x:Key="NmpBaseTabBarStyle"
+	<!--#region TabBar Style-->
+	<Style x:Key="NeumorphicBaseTabBarStyle"
 		   BasedOn="{StaticResource DefaultTabBarStyle}"
 		   TargetType="utu:TabBar">
 		<Setter Property="Width" Value="300" />
@@ -1570,8 +2197,8 @@
 		</Setter>
 	</Style>
 
-	<Style x:Key="NmpVerticalTabBarStyle"
-		   BasedOn="{StaticResource NmpBaseTabBarStyle}"
+	<Style x:Key="NeumorphicVerticalTabBarStyle"
+		   BasedOn="{StaticResource NeumorphicBaseTabBarStyle}"
 		   TargetType="utu:TabBar">
 		<Setter Property="Width" Value="80" />
 		<Setter Property="Height" Value="320" />
@@ -1579,7 +2206,7 @@
 		<Setter Property="HorizontalAlignment" Value="Center" />
 		<Setter Property="MinWidth" Value="{ThemeResource NavigationTabBarWidthOrHeight}" />
 		<Setter Property="utu:SafeArea.Insets" Value="VisibleBounds" />
-		<Setter Property="ItemContainerStyle" Value="{StaticResource NmpBaseNavigationTabBarItemStyle}" />
+		<Setter Property="ItemContainerStyle" Value="{StaticResource NeumorphicBaseNavigationTabBarItemStyle}" />
 		<Setter Property="Orientation" Value="Vertical" />
 		<Setter Property="ItemsPanel">
 			<Setter.Value>
@@ -1590,32 +2217,32 @@
 		</Setter>
 	</Style>
 
-	<Style x:Key="NmpBottomTabBarStyle"
-		   BasedOn="{StaticResource NmpBaseTabBarStyle}"
+	<Style x:Key="NeumorphicBottomTabBarStyle"
+		   BasedOn="{StaticResource NeumorphicBaseTabBarStyle}"
 		   TargetType="utu:TabBar">
 		<Setter Property="VerticalAlignment" Value="Bottom" />
 		<Setter Property="MinHeight" Value="{ThemeResource NavigationTabBarWidthOrHeight}" />
 		<Setter Property="utu:SafeArea.Insets" Value="Bottom" />
-		<Setter Property="ItemContainerStyle" Value="{StaticResource NmpBaseNavigationTabBarItemStyle}" />
+		<Setter Property="ItemContainerStyle" Value="{StaticResource NeumorphicBaseNavigationTabBarItemStyle}" />
 	</Style>
 
-	<Style x:Key="NmpTopTabBarStyle"
-		   BasedOn="{StaticResource NmpBaseTabBarStyle}"
+	<Style x:Key="NeumorphicTopTabBarStyle"
+		   BasedOn="{StaticResource NeumorphicBaseTabBarStyle}"
 		   TargetType="utu:TabBar">
 		<Setter Property="CornerRadius" Value="40" />
 		<Setter Property="VerticalAlignment" Value="Top" />
 		<Setter Property="MinHeight" Value="{ThemeResource TopTabBarHeight}" />
 		<Setter Property="utu:SafeArea.Insets" Value="Top" />
-		<Setter Property="ItemContainerStyle" Value="{StaticResource NmpBaseContentTabBarItemStyle}" />
+		<Setter Property="ItemContainerStyle" Value="{StaticResource NeumorphicBaseContentTabBarItemStyle}" />
 
 	</Style>
 
 	<!--#region TabBarItem-->
-	
+
 	<converters:FromNullToValueConverter x:Key="HasIconToContentShadow"
-											 NotNullValue="{StaticResource TabBarItemNoShadows}"
-											 NullValue="{StaticResource TabBarItemShadows}" />
-	<Style x:Key="NmpBaseNavigationTabBarItemStyle"
+										 NotNullValue="{StaticResource TabBarItemNoShadows}"
+										 NullValue="{StaticResource TabBarItemShadows}" />
+	<Style x:Key="NeumorphicBaseNavigationTabBarItemStyle"
 		   TargetType="utu:TabBarItem">
 		<Setter Property="FontFamily" Value="{ThemeResource MaterialMediumFontFamily}" />
 		<Setter Property="FontSize" Value="{ThemeResource LabelMediumFontSize}" />
@@ -1640,8 +2267,10 @@
 						<Grid x:Name="ContentGrid"
 							  RowSpacing="4">
 							<Grid.RowDefinitions>
-								<RowDefinition x:Name="IconRow" Height="*" />
-								<RowDefinition x:Name="ContentRow" Height="Auto" />
+								<RowDefinition x:Name="IconRow"
+											   Height="*" />
+								<RowDefinition x:Name="ContentRow"
+											   Height="Auto" />
 							</Grid.RowDefinitions>
 
 							<utu:ShadowContainer x:Name="IconShadowPanel">
@@ -1656,7 +2285,8 @@
 											Height="{ThemeResource NavigationTabBarItemIconHeight}"
 											HorizontalAlignment="Center"
 											VerticalAlignment="Center">
-										<Viewbox x:Name="IconBox" HorizontalAlignment="Center">
+										<Viewbox x:Name="IconBox"
+												 HorizontalAlignment="Center">
 											<ContentPresenter x:Name="Icon"
 															  Content="{TemplateBinding Icon}"
 															  Foreground="{TemplateBinding Foreground}" />
@@ -1664,13 +2294,13 @@
 										</Viewbox>
 									</Border>
 
-									<!--  BADGE  -->
-									<!--  This part can be replaced when InfoBadge will be available in WinUI3  -->
-									<!--  See this commit for the implementation: c935919b2c390014dd8509cc50e16b1549511ffa  -->
-									<!--  (Related Branch: dev/agzi/I274-InfoBadgeImplementationForTBI)  -->
+									<!-- BADGE -->
+									<!-- This part can be replaced when InfoBadge will be available in WinUI3 -->
+									<!-- See this commit for the implementation: c935919b2c390014dd8509cc50e16b1549511ffa -->
+									<!-- (Related Branch: dev/agzi/I274-InfoBadgeImplementationForTBI) -->
 
 									<Grid Visibility="{TemplateBinding BadgeVisibility}">
-										<!--  Small Badge  -->
+										<!-- Small Badge -->
 										<Ellipse Width="{ThemeResource NavigationTabBarItemSmallBadgeWidth}"
 												 Height="{ThemeResource NavigationTabBarItemSmallBadgeHeight}"
 												 Margin="{ThemeResource NavigationTabBarItemSmallBadgeMargin}"
@@ -1680,7 +2310,7 @@
 												 Visibility="{Binding BadgeValue, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialEmptyOrNullToVisible}}" />
 
 
-										<!--  Large Badge  -->
+										<!-- Large Badge -->
 										<Border Height="{ThemeResource NavigationTabBarItemLargeBadgeHeight}"
 												MinWidth="{ThemeResource NavigationTabBarItemLargeBadgeMinWidth}"
 												Margin="{ThemeResource NavigationTabBarItemLargeBadgeMargin}"
@@ -1719,7 +2349,7 @@
 														  Foreground="{TemplateBinding Foreground}"
 														  TextWrapping="NoWrap"
 														  HorizontalAlignment="Center"
-														  VerticalAlignment="Center"/>
+														  VerticalAlignment="Center" />
 									</Border>
 								</Grid>
 							</utu:ShadowContainer>
@@ -1777,7 +2407,7 @@
 								</VisualState>
 							</VisualStateGroup>
 							<VisualStateGroup x:Name="TabBarIconPositionStates">
-								<VisualState x:Name="IconOnTop"/>
+								<VisualState x:Name="IconOnTop" />
 								<VisualState x:Name="IconOnly">
 									<VisualState.Setters>
 										<Setter Target="ContentShadowPanel.Visibility" Value="Collapsed" />
@@ -1804,7 +2434,7 @@
 		</Setter>
 	</Style>
 
-	<Style x:Key="NmpBaseContentTabBarItemStyle"
+	<Style x:Key="NeumorphicBaseContentTabBarItemStyle"
 		   TargetType="utu:TabBarItem">
 		<Setter Property="FontFamily" Value="{ThemeResource MaterialMediumFontFamily}" />
 		<Setter Property="FontSize" Value="{ThemeResource LabelMediumFontSize}" />
@@ -1830,14 +2460,16 @@
 											 HorizontalAlignment="Center"
 											 VerticalAlignment="Center">
 							<Grid x:Name="ContentGrid"
-								 HorizontalAlignment="Center"
-								 VerticalAlignment="Center"
-								 RowSpacing="4"
-								 CornerRadius="64"
-								 Padding="12,8">
+								  HorizontalAlignment="Center"
+								  VerticalAlignment="Center"
+								  RowSpacing="4"
+								  CornerRadius="64"
+								  Padding="12,8">
 								<Grid.RowDefinitions>
-									<RowDefinition x:Name="IconRow" Height="*" />
-									<RowDefinition x:Name="ContentRow" Height="*" />
+									<RowDefinition x:Name="IconRow"
+												   Height="*" />
+									<RowDefinition x:Name="ContentRow"
+												   Height="*" />
 								</Grid.RowDefinitions>
 
 								<Grid x:Name="ActiveIndicator"
@@ -1859,13 +2491,13 @@
 										</Viewbox>
 									</Border>
 
-									<!--  BADGE  -->
-									<!--  This part can be replaced when InfoBadge will be available in WinUI3  -->
-									<!--  See this commit for the implementation: c935919b2c390014dd8509cc50e16b1549511ffa  -->
-									<!--  (Related Branch: dev/agzi/I274-InfoBadgeImplementationForTBI)  -->
+									<!-- BADGE -->
+									<!-- This part can be replaced when InfoBadge will be available in WinUI3 -->
+									<!-- See this commit for the implementation: c935919b2c390014dd8509cc50e16b1549511ffa -->
+									<!-- (Related Branch: dev/agzi/I274-InfoBadgeImplementationForTBI) -->
 
 									<Grid Visibility="{TemplateBinding BadgeVisibility}">
-										<!--  Small Badge  -->
+										<!-- Small Badge -->
 										<Ellipse Width="{ThemeResource NavigationTabBarItemSmallBadgeWidth}"
 												 Height="{ThemeResource NavigationTabBarItemSmallBadgeHeight}"
 												 Margin="{ThemeResource NavigationTabBarItemSmallBadgeMargin}"
@@ -1875,7 +2507,7 @@
 												 Visibility="{Binding BadgeValue, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialEmptyOrNullToVisible}}" />
 
 
-										<!--  Large Badge  -->
+										<!-- Large Badge -->
 										<Border Height="{ThemeResource NavigationTabBarItemLargeBadgeHeight}"
 												MinWidth="{ThemeResource NavigationTabBarItemLargeBadgeMinWidth}"
 												Margin="{ThemeResource NavigationTabBarItemLargeBadgeMargin}"
@@ -1904,7 +2536,7 @@
 									  VerticalAlignment="Center"
 									  Height="16">
 									<Border HorizontalAlignment="Center"
-												VerticalAlignment="Center">
+											VerticalAlignment="Center">
 										<ContentPresenter x:Name="ContentPresenter"
 														  Content="{TemplateBinding Content}"
 														  FontFamily="{TemplateBinding FontFamily}"
@@ -1913,7 +2545,7 @@
 														  Foreground="{TemplateBinding Foreground}"
 														  TextWrapping="NoWrap"
 														  HorizontalAlignment="Center"
-														  VerticalAlignment="Center"/>
+														  VerticalAlignment="Center" />
 									</Border>
 								</Grid>
 							</Grid>
@@ -1992,7 +2624,7 @@
 			</Setter.Value>
 		</Setter>
 	</Style>
-	<Style x:Key="NmpFabTabBarItemStyle"
+	<Style x:Key="NeumorphicFabTabBarItemStyle"
 		   TargetType="utu:TabBarItem">
 		<Setter Property="FontFamily" Value="{ThemeResource MaterialMediumFontFamily}" />
 		<Setter Property="FontSize" Value="{ThemeResource LabelMediumFontSize}" />
@@ -2047,7 +2679,7 @@
 											Margin="{TemplateBinding Padding}"
 											Orientation="Horizontal">
 
-									<!--  Icon  -->
+									<!-- Icon -->
 									<Viewbox Width="{ThemeResource FabTabBarItemContentWidthOrHeight}"
 											 Height="{ThemeResource FabTabBarItemContentWidthOrHeight}"
 											 HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
@@ -2060,13 +2692,13 @@
 
 									</Viewbox>
 
-									<!--  Icon/Content spacing  -->
+									<!-- Icon/Content spacing -->
 									<Border Visibility="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialEmptyToCollapsed}, FallbackValue=Collapsed, TargetNullValue=Collapsed}">
 										<Border Width="{ThemeResource FabTabBarItemIconTextPadding}"
 												Visibility="{Binding Path=Icon, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialNullToCollapsedConverter}, FallbackValue=Collapsed, TargetNullValue=Collapsed}" />
 									</Border>
 
-									<!--  Content  -->
+									<!-- Content -->
 									<ContentPresenter x:Name="ContentPresenter"
 													  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
 													  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
@@ -2090,6 +2722,6 @@
 		</Setter>
 	</Style>
 	<!--#endregion-->
-	
+
 	<!--#endregion-->
 </ResourceDictionary>
