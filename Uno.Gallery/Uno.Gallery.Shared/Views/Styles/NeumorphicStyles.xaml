@@ -174,7 +174,8 @@
 
 			<utu:ShadowCollection x:Key="FilledDisabled">
 				<utu:Shadow BlurRadius="4" IsInner="False" OffsetX="-1" OffsetY="-1" Opacity="1" Spread="0" Color="{StaticResource LightShadowColor2}" />
-				<utu:Shadow BlurRadius="4" IsInner="False" OffsetX="1" OffsetY="1" Opacity="1" Spread="0" Color="{StaticResource ShadeShadowColor2}" />
+				<!-- Opacity of 16% seems closer to the Figma design. Original is 100% -->
+				<utu:Shadow BlurRadius="4" IsInner="False" OffsetX="1" OffsetY="1" Opacity="0.16" Spread="0" Color="{StaticResource ShadeShadowColor2}" />
 			</utu:ShadowCollection>
 
 			<utu:ShadowCollection x:Key="FilledFocused">
@@ -1024,15 +1025,17 @@
 	</Style>
 
 	<!-- Filled Style -->
-	<Style x:Key="NeumorphicFilledButtonStyle"
+	<!-- Small -->
+	<Style x:Key="NeumorphicSmallFilledButtonStyle"
 		   BasedOn="{StaticResource MaterialBaseButtonStyle}"
 		   TargetType="Button">
 
 		<Setter Property="Foreground" Value="{ThemeResource OnPrimaryBrush}" />
 		<Setter Property="Background" Value="{ThemeResource PrimaryBrush}" />
-		<Setter Property="Width" Value="117" />
-		<Setter Property="Height" Value="38" />
+		<Setter Property="MinWidth" Value="38" />
 		<Setter Property="MinHeight" Value="38" />
+		<Setter Property="CornerRadius" Value="19" />
+		<Setter Property="Padding" Value="10,0" />
 
 		<Setter Property="Template">
 			<Setter.Value>
@@ -1088,7 +1091,7 @@
 							  MinHeight="{TemplateBinding MinWidth}">
 
 							<Grid CornerRadius="{TemplateBinding CornerRadius}"
-								  Padding="{TemplateBinding Padding}"
+								  Margin="{TemplateBinding Padding}"
 								  HorizontalAlignment="Center"
 								  VerticalAlignment="Center">
 								<Grid.ColumnDefinitions>
@@ -1129,6 +1132,29 @@
 		</Setter>
 	</Style>
 
+	<!-- Medium -->
+	<Style x:Key="NeumorphicMediumFilledButtonStyle"
+		   BasedOn="{StaticResource NeumorphicSmallFilledButtonStyle}"
+		   TargetType="Button">
+
+		<Setter Property="MinWidth" Value="48" />
+		<Setter Property="MinHeight" Value="48" />
+		<Setter Property="CornerRadius" Value="24" />
+		<Setter Property="Padding" Value="15,0" />
+
+	</Style>
+
+	<!-- Large -->
+	<Style x:Key="NeumorphicLargeFilledButtonStyle"
+		   BasedOn="{StaticResource NeumorphicSmallFilledButtonStyle}"
+		   TargetType="Button">
+
+		<Setter Property="MinWidth" Value="58" />
+		<Setter Property="MinHeight" Value="58" />
+		<Setter Property="CornerRadius" Value="29" />
+		<Setter Property="Padding" Value="20,0" />
+
+	</Style>
 	<!-- FAB Style -->
 	<CornerRadius x:Key="NeumorphicButtonCornerRadius">4</CornerRadius>
 	<x:Double x:Key="NeumorphicFabFontSize">14</x:Double>
