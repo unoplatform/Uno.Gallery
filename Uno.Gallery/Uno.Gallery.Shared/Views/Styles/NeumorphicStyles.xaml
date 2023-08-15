@@ -328,9 +328,13 @@
 										NullOrEmptyValue="0" />
 
 	<!--Should be using ThemeResource-->
-	<converters:FromNullToValueConverter x:Key="HasIconToContentShadow"
-										 NotNullValue="{StaticResource TabBarItemNoShadows}"
-										 NullValue="{StaticResource TabBarItemShadows}" />
+	<converters:FromNullToValueConverter x:Key="HasIconToVisible"
+										 NotNullValue="Visible"
+										 NullValue="Collapsed" />
+
+	<converters:FromNullToValueConverter x:Key="HasIconToCollapsed"
+										 NotNullValue="Collapsed"
+										 NullValue="Visible" />
 	<!--#endregion-->
 
 	<!--#region TextBox Style-->
@@ -2421,13 +2425,14 @@
 							</utu:ShadowContainer>
 
 							<utu:ShadowContainer x:Name="ContentShadowPanel"
-												 Grid.Row="1">
-								<Grid x:Name="ContentPresenterGrid"
+												 Grid.Row="1"
+												 Visibility="{Binding Icon, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource HasIconToCollapsed}}">
+								<Grid x:Name="ShadowContentPresenterGrid"
 									  HorizontalAlignment="Center"
 									  VerticalAlignment="Center">
 									<Border HorizontalAlignment="Center"
 											VerticalAlignment="Center">
-										<ContentPresenter x:Name="ContentPresenter"
+										<ContentPresenter x:Name="ShadowContentPresenter"
 														  Content="{TemplateBinding Content}"
 														  FontFamily="{TemplateBinding FontFamily}"
 														  FontSize="{TemplateBinding FontSize}"
@@ -2439,6 +2444,25 @@
 									</Border>
 								</Grid>
 							</utu:ShadowContainer>
+							
+							<Grid x:Name="ContentPresenterGrid"
+								  HorizontalAlignment="Center"
+								  VerticalAlignment="Center"
+								  Grid.Row="1"
+								  Visibility="{Binding Icon, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource HasIconToVisible}}">
+								<Border HorizontalAlignment="Center"
+										VerticalAlignment="Center">
+									<ContentPresenter x:Name="ContentPresenter"
+													  Content="{TemplateBinding Content}"
+													  FontFamily="{TemplateBinding FontFamily}"
+													  FontSize="{TemplateBinding FontSize}"
+													  FontWeight="{TemplateBinding FontWeight}"
+													  Foreground="{TemplateBinding Foreground}"
+													  TextWrapping="NoWrap"
+													  HorizontalAlignment="Center"
+													  VerticalAlignment="Center" />
+								</Border>
+							</Grid>
 						</Grid>
 
 						<VisualStateManager.VisualStateGroups>
@@ -2447,37 +2471,40 @@
 								<not_mobile:VisualState x:Name="PointerOver">
 									<VisualState.Setters>
 										<Setter Target="IconShadowPanel.Shadows" Value="{ThemeResource TabBarItemShadows}" />
-										<Setter Target="ContentShadowPanel.Shadows" Value="{Binding Icon, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource HasIconToContentShadow}}" />
+										<Setter Target="ContentShadowPanel.Shadows" Value="{ThemeResource TabBarItemShadows}" />
 									</VisualState.Setters>
 								</not_mobile:VisualState>
 								<VisualState x:Name="Pressed">
 									<VisualState.Setters>
 										<Setter Target="IconShadowPanel.Shadows" Value="{ThemeResource TabBarItemShadows}" />
-										<Setter Target="ContentShadowPanel.Shadows" Value="{Binding Icon, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource HasIconToContentShadow}}" />
+										<Setter Target="ContentShadowPanel.Shadows" Value="{ThemeResource TabBarItemShadows}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="Selected">
 									<VisualState.Setters>
 										<Setter Target="IconShadowPanel.Shadows" Value="{ThemeResource TabBarItemShadows}" />
-										<Setter Target="ContentShadowPanel.Shadows" Value="{Binding Icon, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource HasIconToContentShadow}}" />
+										<Setter Target="ContentShadowPanel.Shadows" Value="{ThemeResource TabBarItemShadows}" />
 										<Setter Target="Icon.Foreground" Value="{ThemeResource PrimaryBrush}" />
 										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource PrimaryBrush}" />
+										<Setter Target="ShadowContentPresenter.Foreground" Value="{ThemeResource PrimaryBrush}" />
 									</VisualState.Setters>
 								</VisualState>
 								<not_mobile:VisualState x:Name="PointerOverSelected">
 									<VisualState.Setters>
 										<Setter Target="IconShadowPanel.Shadows" Value="{ThemeResource TabBarItemShadows}" />
-										<Setter Target="ContentShadowPanel.Shadows" Value="{Binding Icon, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource HasIconToContentShadow}}" />
+										<Setter Target="ContentShadowPanel.Shadows" Value="{ThemeResource TabBarItemShadows}" />
 										<Setter Target="Icon.Foreground" Value="{ThemeResource PrimaryBrush}" />
 										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource PrimaryBrush}" />
+										<Setter Target="ShadowContentPresenter.Foreground" Value="{ThemeResource PrimaryBrush}" />
 									</VisualState.Setters>
 								</not_mobile:VisualState>
 								<VisualState x:Name="PressedSelected">
 									<VisualState.Setters>
 										<Setter Target="IconShadowPanel.Shadows" Value="{ThemeResource TabBarItemShadows}" />
-										<Setter Target="ContentShadowPanel.Shadows" Value="{Binding Icon, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource HasIconToContentShadow}}" />
+										<Setter Target="ContentShadowPanel.Shadows" Value="{ThemeResource TabBarItemShadows}" />
 										<Setter Target="Icon.Foreground" Value="{ThemeResource PrimaryBrush}" />
 										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource PrimaryBrush}" />
+										<Setter Target="ShadowContentPresenter.Foreground" Value="{ThemeResource PrimaryBrush}" />
 									</VisualState.Setters>
 								</VisualState>
 							</VisualStateGroup>
@@ -2489,6 +2516,7 @@
 										<Setter Target="ActiveIndicator.Background" Value="{ThemeResource NavigationTabBarItemActiveIndicatorBackgroundDisabled}" />
 										<Setter Target="Icon.Foreground" Value="{ThemeResource NavigationTabBarItemIconForegroundDisabled}" />
 										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource NavigationTabBarForegroundDisabled}" />
+										<Setter Target="ShadowContentPresenter.Foreground" Value="{ThemeResource NavigationTabBarForegroundDisabled}" />
 									</VisualState.Setters>
 								</VisualState>
 							</VisualStateGroup>
@@ -2508,6 +2536,11 @@
 										<Setter Target="ContentPresenterGrid.CornerRadius" Value="{ThemeResource NavigationTabBarItemActiveIndicatorCornerRadius}" />
 										<Setter Target="ContentPresenter.HorizontalAlignment" Value="Center" />
 										<Setter Target="ContentPresenter.VerticalAlignment" Value="Center" />
+										<Setter Target="ShadowContentPresenterGrid.Height" Value="{ThemeResource NavigationTabBarItemActiveIndicatorHeight}" />
+										<Setter Target="ShadowContentPresenterGrid.Width" Value="{ThemeResource NavigationTabBarItemActiveIndicatorWidth}" />
+										<Setter Target="ShadowContentPresenterGrid.CornerRadius" Value="{ThemeResource NavigationTabBarItemActiveIndicatorCornerRadius}" />
+										<Setter Target="ShadowContentPresenter.HorizontalAlignment" Value="Center" />
+										<Setter Target="ShadowContentPresenter.VerticalAlignment" Value="Center" />
 										<Setter Target="IconRow.Height" Value="0" />
 										<Setter Target="ContentRow.Height" Value="*" />
 									</VisualState.Setters>
