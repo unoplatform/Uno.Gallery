@@ -32,6 +32,8 @@
 		<PackageReference Include="Uno.Core.Extensions.Compatibility" Version="4.0.1" />
 		<PackageReference Include="SkiaSharp.Skottie" Version="2.88.3" />
 		<PackageReference Include="SkiaSharp.Views.Uno.WinUI" Version="2.88.3" />
+		<PackageReference Include="VideoLAN.LibVLC.Windows" Version="3.0.18" />
+		<PackageReference Include="Uno.WinUI.MediaPlayer.Skia.Gtk" Version="4.9.45" />
 	</ItemGroup>
 
 	<Import Project="..\Uno.Gallery.Shared\Uno.Gallery.Shared.projitems" Label="Shared" />
