@@ -38,6 +38,63 @@
 			<Color x:Key="MediumShadowColor7">#24222A</Color>
 			<Color x:Key="ShadeShadowColor7">#000000</Color>
 
+			<!-- TextBox -->
+			<utu:ShadowCollection x:Key="TextBoxShadows">
+				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="4" Opacity="0.4" Spread="0" IsInner="True" Color="{StaticResource ShadeShadowColor}" />
+				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="4" Opacity="0.4" Spread="0" IsInner="True" Color="{StaticResource LightShadowColor}" />
+			</utu:ShadowCollection>
+
+			<!-- ToggleButton -->
+			<utu:ShadowCollection x:Key="ToggleButtonShadow">
+				<utu:Shadow BlurRadius="8" IsInner="False" OffsetX="-2" OffsetY="-2" Opacity="0.8" Spread="0" Color="{StaticResource LightShadowColor4}" />
+				<utu:Shadow BlurRadius="8" IsInner="False" OffsetX="2" OffsetY="2" Opacity="0.8" Spread="0" Color="{StaticResource ShadeShadowColor4}" />
+			</utu:ShadowCollection>
+
+			<!-- IconButton -->
+			<utu:ShadowCollection x:Key="IconButtonShadows">
+				<utu:Shadow BlurRadius="8" IsInner="False" OffsetX="-2" OffsetY="-2" Opacity="0.8" Spread="0" Color="{StaticResource LightShadowColor4}" />
+				<utu:Shadow BlurRadius="8" IsInner="False" OffsetX="2" OffsetY="2" Opacity="0.8" Spread="0" Color="{StaticResource ShadeShadowColor4}" />
+			</utu:ShadowCollection>
+
+			<!-- CheckBox -->
+			<utu:ShadowCollection x:Key="NeumorphicCheckBoxShadows">
+				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="2" Opacity="0.36" Spread="0" Color="{StaticResource ShadeShadowColor}" IsInner="False" />
+				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="2" Opacity="1" Spread="0" Color="{StaticResource LightShadowColor}" IsInner="False" />
+			</utu:ShadowCollection>
+			<utu:Shadow x:Key="NeumorphicCheckBoxVisualStatesShadow" OffsetX="0" OffsetY="0" BlurRadius="12" Color="{StaticResource PrimaryColor}" Opacity="1" Spread="0" IsInner="True" />
+
+			<!-- RadioButton -->
+			<utu:ShadowCollection x:Key="NeumorphicRadioButtonShadows">
+				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="2" Opacity="0.36" Spread="0" Color="{StaticResource ShadeShadowColor}" IsInner="False" />
+				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="2" Opacity="1" Spread="0" Color="{StaticResource LightShadowColor}" IsInner="False" />
+			</utu:ShadowCollection>
+			<utu:Shadow x:Key="NeumorphicRadioButtonVisualStatesShadow" OffsetX="0" OffsetY="0" BlurRadius="12" Color="{StaticResource PrimaryColor}" Opacity="1" Spread="0" IsInner="True" />
+
+			<!-- ComboBox -->
+			<utu:ShadowCollection x:Key="ComboboxShadows">
+				<utu:Shadow BlurRadius="4" IsInner="True" OffsetX="4" OffsetY="4" Opacity="0.4" Spread="0" Color="{StaticResource ShadeShadowColor}" />
+				<utu:Shadow BlurRadius="4" IsInner="True" OffsetX="-4" OffsetY="-4" Opacity="0.4" Spread="0" Color="{StaticResource LightShadowColor}" />
+			</utu:ShadowCollection>
+
+			<!-- TabBar -->
+			<utu:ShadowCollection x:Key="TabBarShadows">
+				<utu:Shadow BlurRadius="48" IsInner="False" OffsetX="-8" OffsetY="-16" Opacity="0.6" Spread="0" Color="{StaticResource LightShadowColor}" />
+				<utu:Shadow BlurRadius="32" IsInner="False" OffsetX="8" OffsetY="8" Opacity="0.6" Spread="0" Color="{StaticResource ShadeShadowColor}" />
+			</utu:ShadowCollection>
+
+			<!-- TabBarItem -->
+			<utu:ShadowCollection x:Key="TabBarItemShadows">
+				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="4" OffsetY="4" Opacity="0.4" Spread="0" Color="{StaticResource ShadeShadowColor}" />
+				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="-4" OffsetY="-4" Opacity="0.4" Spread="0" Color="{StaticResource LightShadowColor}" />
+			</utu:ShadowCollection>
+			<utu:ShadowCollection x:Key="FabTabBarItemShadows">
+				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="-8" OffsetY="-8" Opacity="0.08" Spread="0" Color="{StaticResource ShadeShadowColor7}" />
+				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="8" OffsetY="8" Opacity="0.4" Spread="0" Color="{StaticResource LightShadowColor7}" />
+				<utu:Shadow BlurRadius="20" IsInner="False" OffsetX="12" OffsetY="12" Opacity="0.4" Spread="0" Color="{StaticResource MediumShadowColor7}" />
+			</utu:ShadowCollection>
+
+			<utu:ShadowCollection x:Key="TabBarItemNoShadows" />
+
 			<!-- Elevated Button Shadows -->
 			<utu:ShadowCollection x:Key="ElevatedNormal">
 				<utu:Shadow BlurRadius="16" IsInner="False" OffsetX="-4" OffsetY="-4" Opacity="0.4" Spread="0" Color="{StaticResource LightShadowColor2}" />
@@ -129,6 +186,63 @@
 			<Color x:Key="MediumShadowColor7">#AEAEC0</Color>
 			<Color x:Key="ShadeShadowColor7">#170065</Color>
 
+			<!-- TextBox -->
+			<utu:ShadowCollection x:Key="TextBoxShadows">
+				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="4" Opacity="0.4" Spread="0" IsInner="True" Color="{StaticResource ShadeShadowColor}" />
+				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="4" Opacity="0.4" Spread="0" IsInner="True" Color="{StaticResource LightShadowColor}" />
+			</utu:ShadowCollection>
+
+			<!-- ToggleButton -->
+			<utu:ShadowCollection x:Key="ToggleButtonShadow">
+				<utu:Shadow BlurRadius="8" IsInner="False" OffsetX="-2" OffsetY="-2" Opacity="0.8" Spread="0" Color="{StaticResource LightShadowColor4}" />
+				<utu:Shadow BlurRadius="8" IsInner="False" OffsetX="2" OffsetY="2" Opacity="0.8" Spread="0" Color="{StaticResource ShadeShadowColor4}" />
+			</utu:ShadowCollection>
+
+			<!-- IconButton -->
+			<utu:ShadowCollection x:Key="IconButtonShadows">
+				<utu:Shadow BlurRadius="8" IsInner="False" OffsetX="-2" OffsetY="-2" Opacity="0.8" Spread="0" Color="{StaticResource LightShadowColor4}" />
+				<utu:Shadow BlurRadius="8" IsInner="False" OffsetX="2" OffsetY="2" Opacity="0.8" Spread="0" Color="{StaticResource ShadeShadowColor4}" />
+			</utu:ShadowCollection>
+
+			<!-- CheckBox -->
+			<utu:ShadowCollection x:Key="NeumorphicCheckBoxShadows">
+				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="2" Opacity="0.36" Spread="0" Color="{StaticResource ShadeShadowColor}" IsInner="False" />
+				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="2" Opacity="1" Spread="0" Color="{StaticResource LightShadowColor}" IsInner="False" />
+			</utu:ShadowCollection>
+			<utu:Shadow x:Key="NeumorphicCheckBoxVisualStatesShadow" OffsetX="0" OffsetY="0" BlurRadius="12" Color="{StaticResource PrimaryColor}" Opacity="1" Spread="0" IsInner="True" />
+
+			<!-- RadioButton -->
+			<utu:ShadowCollection x:Key="NeumorphicRadioButtonShadows">
+				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="2" Opacity="0.36" Spread="0" Color="{StaticResource ShadeShadowColor}" IsInner="False" />
+				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="2" Opacity="1" Spread="0" Color="{StaticResource LightShadowColor}" IsInner="False" />
+			</utu:ShadowCollection>
+			<utu:Shadow x:Key="NeumorphicRadioButtonVisualStatesShadow" OffsetX="0" OffsetY="0" BlurRadius="12" Color="{StaticResource PrimaryColor}" Opacity="1" Spread="0" IsInner="True" />
+
+			<!-- ComboBox -->
+			<utu:ShadowCollection x:Key="ComboboxShadows">
+				<utu:Shadow BlurRadius="4" IsInner="True" OffsetX="4" OffsetY="4" Opacity="0.4" Spread="0" Color="{StaticResource ShadeShadowColor}" />
+				<utu:Shadow BlurRadius="4" IsInner="True" OffsetX="-4" OffsetY="-4" Opacity="0.4" Spread="0" Color="{StaticResource LightShadowColor}" />
+			</utu:ShadowCollection>
+
+			<!-- TabBar -->
+			<utu:ShadowCollection x:Key="TabBarShadows">
+				<utu:Shadow BlurRadius="48" IsInner="False" OffsetX="-8" OffsetY="-16" Opacity="0.6" Spread="0" Color="{StaticResource LightShadowColor}" />
+				<utu:Shadow BlurRadius="32" IsInner="False" OffsetX="8" OffsetY="8" Opacity="0.6" Spread="0" Color="{StaticResource ShadeShadowColor}" />
+			</utu:ShadowCollection>
+
+			<!-- TabBarItem -->
+			<utu:ShadowCollection x:Key="TabBarItemShadows">
+				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="4" OffsetY="4" Opacity="0.4" Spread="0" Color="{StaticResource ShadeShadowColor}" />
+				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="-4" OffsetY="-4" Opacity="0.4" Spread="0" Color="{StaticResource LightShadowColor}" />
+			</utu:ShadowCollection>
+			<utu:ShadowCollection x:Key="FabTabBarItemShadows">
+				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="-8" OffsetY="-8" Opacity="0.08" Spread="0" Color="{StaticResource ShadeShadowColor7}" />
+				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="8" OffsetY="8" Opacity="0.4" Spread="0" Color="{StaticResource LightShadowColor7}" />
+				<utu:Shadow BlurRadius="20" IsInner="False" OffsetX="12" OffsetY="12" Opacity="0.4" Spread="0" Color="{StaticResource MediumShadowColor7}" />
+			</utu:ShadowCollection>
+
+			<utu:ShadowCollection x:Key="TabBarItemNoShadows" />
+
 			<!-- Elevated Button Shadows -->
 			<utu:ShadowCollection x:Key="ElevatedNormal">
 				<utu:Shadow BlurRadius="16" IsInner="False" OffsetX="-4" OffsetY="-4" Opacity="0.4" Spread="0" Color="{StaticResource LightShadowColor}" />
@@ -205,68 +319,18 @@
 	<!--#endregion-->
 
 	<!--#region Shadow Collections-->
-	<!-- TextBox -->
-	<utu:ShadowCollection x:Key="TextBoxShadows">
-		<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="4" Opacity="0.4" Spread="0" IsInner="True" Color="{ThemeResource ShadeShadowColor}" />
-		<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="4" Opacity="0.4" Spread="0" IsInner="True" Color="{ThemeResource LightShadowColor}" />
-	</utu:ShadowCollection>
-
-	<!-- ToggleButton -->
-	<utu:ShadowCollection x:Key="ToggleButtonShadow">
-		<utu:Shadow BlurRadius="8" IsInner="False" OffsetX="-2" OffsetY="-2" Opacity="0.8" Spread="0" Color="{ThemeResource LightShadowColor4}" />
-		<utu:Shadow BlurRadius="8" IsInner="False" OffsetX="2" OffsetY="2" Opacity="0.8" Spread="0" Color="{ThemeResource ShadeShadowColor4}" />
-	</utu:ShadowCollection>
-
-	<!-- IconButton -->
-	<utu:ShadowCollection x:Key="IconButtonShadows">
-		<utu:Shadow BlurRadius="8" IsInner="False" OffsetX="-2" OffsetY="-2" Opacity="0.8" Spread="0" Color="{ThemeResource LightShadowColor4}" />
-		<utu:Shadow BlurRadius="8" IsInner="False" OffsetX="2" OffsetY="2" Opacity="0.8" Spread="0" Color="{ThemeResource ShadeShadowColor4}" />
-	</utu:ShadowCollection>
-
-	<!-- CheckBox -->
-	<utu:ShadowCollection x:Key="NeumorphicCheckBoxShadows">
-		<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="2" Opacity="0.36" Spread="0" Color="{ThemeResource ShadeShadowColor}" IsInner="False" />
-		<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="2" Opacity="1" Spread="0" Color="{ThemeResource LightShadowColor}" IsInner="False" />
-	</utu:ShadowCollection>
-	<utu:Shadow x:Key="NeumorphicCheckBoxVisualStatesShadow" OffsetX="0" OffsetY="0" BlurRadius="12" Color="{ThemeResource PrimaryColor}" Opacity="1" Spread="0" IsInner="True" />
-
-	<!-- RadioButton -->
-	<utu:ShadowCollection x:Key="NeumorphicRadioButtonShadows">
-		<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="2" Opacity="0.36" Spread="0" Color="{ThemeResource ShadeShadowColor}" IsInner="False" />
-		<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="2" Opacity="1" Spread="0" Color="{ThemeResource LightShadowColor}" IsInner="False" />
-	</utu:ShadowCollection>
-	<utu:Shadow x:Key="NeumorphicRadioButtonVisualStatesShadow" OffsetX="0" OffsetY="0" BlurRadius="12" Color="{ThemeResource PrimaryColor}" Opacity="1" Spread="0" IsInner="True" />
-
-	<!-- ComboBox -->
-	<utu:ShadowCollection x:Key="ComboboxShadows">
-		<utu:Shadow BlurRadius="4" IsInner="True" OffsetX="4" OffsetY="4" Opacity="0.4" Spread="0" Color="{ThemeResource ShadeShadowColor}" />
-		<utu:Shadow BlurRadius="4" IsInner="True" OffsetX="-4" OffsetY="-4" Opacity="0.4" Spread="0" Color="{ThemeResource LightShadowColor}" />
-	</utu:ShadowCollection>
-
-	<!-- TabBar -->
-	<utu:ShadowCollection x:Key="TabBarShadows">
-		<utu:Shadow BlurRadius="48" IsInner="False" OffsetX="-8" OffsetY="-16" Opacity="0.6" Spread="0" Color="{ThemeResource LightShadowColor}" />
-		<utu:Shadow BlurRadius="32" IsInner="False" OffsetX="8" OffsetY="8" Opacity="0.6" Spread="0" Color="{ThemeResource ShadeShadowColor}" />
-	</utu:ShadowCollection>
-
-	<!-- TabBarItem -->
-	<utu:ShadowCollection x:Key="TabBarItemShadows">
-		<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="4" OffsetY="4" Opacity="0.4" Spread="0" Color="{ThemeResource ShadeShadowColor}" />
-		<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="-4" OffsetY="-4" Opacity="0.4" Spread="0" Color="{ThemeResource LightShadowColor}" />
-	</utu:ShadowCollection>
-	<utu:ShadowCollection x:Key="FabTabBarItemShadows">
-		<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="-8" OffsetY="-8" Opacity="0.08" Spread="0" Color="{ThemeResource ShadeShadowColor7}" />
-		<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="8" OffsetY="8" Opacity="0.4" Spread="0" Color="{ThemeResource LightShadowColor7}" />
-		<utu:Shadow BlurRadius="20" IsInner="False" OffsetX="12" OffsetY="12" Opacity="0.4" Spread="0" Color="{ThemeResource MediumShadowColor7}" />
-	</utu:ShadowCollection>
-
-	<utu:ShadowCollection x:Key="TabBarItemNoShadows" />
+	
 	<!--#endregion-->
 
 	<!--#region Converters-->
 	<um:FromEmptyStringToValueConverter x:Key="EmptyToCompositeTransformTranslateY"
 										NotNullOrEmptyValue="8"
 										NullOrEmptyValue="0" />
+
+	<!--Should be using ThemeResource-->
+	<converters:FromNullToValueConverter x:Key="HasIconToContentShadow"
+										 NotNullValue="{StaticResource TabBarItemNoShadows}"
+										 NullValue="{StaticResource TabBarItemShadows}" />
 	<!--#endregion-->
 
 	<!--#region TextBox Style-->
@@ -298,7 +362,7 @@
 			<Setter.Value>
 				<ControlTemplate TargetType="TextBox">
 					<utu:ShadowContainer x:Name="RootPanel"
-										 Shadows="{StaticResource TextBoxShadows}">
+										 Shadows="{ThemeResource TextBoxShadows}">
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup x:Name="CommonStates">
 								<VisualState x:Name="Normal" />
@@ -490,7 +554,7 @@
 			<Setter.Value>
 				<ControlTemplate TargetType="PasswordBox">
 					<utu:ShadowContainer x:Name="RootPanel"
-										 Shadows="{StaticResource TextBoxShadows}">
+										 Shadows="{ThemeResource TextBoxShadows}">
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup x:Name="CommonStates">
 								<VisualState x:Name="Normal" />
@@ -681,7 +745,7 @@
 			<Setter.Value>
 				<ControlTemplate TargetType="ComboBox">
 					<utu:ShadowContainer x:Name="RootPanel"
-										 Shadows="{StaticResource ComboboxShadows}">
+										 Shadows="{ThemeResource ComboboxShadows}">
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup x:Name="CommonStates">
 								<VisualState x:Name="Normal" />
@@ -1525,7 +1589,7 @@
 									 Fill="{ThemeResource PrimaryBrush}" />
 						<!--</utu:ShadowContainer>-->
 
-						<utu:ShadowContainer Shadows="{StaticResource NeumorphicCheckBoxShadows}">
+						<utu:ShadowContainer Shadows="{ThemeResource NeumorphicCheckBoxShadows}">
 							<Grid x:Name="CheckBoxContainer"
 								  Height="{ThemeResource CheckBoxCheckAreaSize}"
 								  Width="{ThemeResource CheckBoxCheckAreaSize}"
@@ -1599,7 +1663,7 @@
 			<Setter.Value>
 				<ControlTemplate TargetType="ToggleButton">
 					<utu:ShadowContainer x:Name="RootPanel"
-										 Shadows="{StaticResource ToggleButtonShadow}">
+										 Shadows="{ThemeResource ToggleButtonShadow}">
 
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup x:Name="CommonStates">
@@ -1857,7 +1921,7 @@
 									 Opacity="0" />
 						<!--</utu:ShadowContainer>-->
 
-						<utu:ShadowContainer Shadows="{StaticResource NeumorphicRadioButtonShadows}">
+						<utu:ShadowContainer Shadows="{ThemeResource NeumorphicRadioButtonShadows}">
 							<Grid Height="20"
 								  Width="20"
 								  CornerRadius="10">
@@ -1914,7 +1978,7 @@
 			<Setter.Value>
 				<ControlTemplate TargetType="Button">
 					<utu:ShadowContainer x:Name="RootPanel"
-										 Shadows="{StaticResource IconButtonShadows}">
+										 Shadows="{ThemeResource IconButtonShadows}">
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup x:Name="CommonStates">
 								<VisualState x:Name="Normal" />
@@ -2157,7 +2221,7 @@
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="utu:TabBar">
-					<utu:ShadowContainer Shadows="{StaticResource TabBarShadows}">
+					<utu:ShadowContainer Shadows="{ThemeResource TabBarShadows}">
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup x:Name="OrientationStates">
 								<VisualState x:Name="Horizontal">
@@ -2264,10 +2328,6 @@
 	</Style>
 
 	<!--#region TabBarItem-->
-
-	<converters:FromNullToValueConverter x:Key="HasIconToContentShadow"
-										 NotNullValue="{StaticResource TabBarItemNoShadows}"
-										 NullValue="{StaticResource TabBarItemShadows}" />
 	<Style x:Key="NeumorphicBaseNavigationTabBarItemStyle"
 		   TargetType="utu:TabBarItem">
 		<Setter Property="FontFamily" Value="{ThemeResource MaterialMediumFontFamily}" />
@@ -2386,19 +2446,19 @@
 								<VisualState x:Name="Normal" />
 								<not_mobile:VisualState x:Name="PointerOver">
 									<VisualState.Setters>
-										<Setter Target="IconShadowPanel.Shadows" Value="{StaticResource TabBarItemShadows}" />
+										<Setter Target="IconShadowPanel.Shadows" Value="{ThemeResource TabBarItemShadows}" />
 										<Setter Target="ContentShadowPanel.Shadows" Value="{Binding Icon, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource HasIconToContentShadow}}" />
 									</VisualState.Setters>
 								</not_mobile:VisualState>
 								<VisualState x:Name="Pressed">
 									<VisualState.Setters>
-										<Setter Target="IconShadowPanel.Shadows" Value="{StaticResource TabBarItemShadows}" />
+										<Setter Target="IconShadowPanel.Shadows" Value="{ThemeResource TabBarItemShadows}" />
 										<Setter Target="ContentShadowPanel.Shadows" Value="{Binding Icon, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource HasIconToContentShadow}}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="Selected">
 									<VisualState.Setters>
-										<Setter Target="IconShadowPanel.Shadows" Value="{StaticResource TabBarItemShadows}" />
+										<Setter Target="IconShadowPanel.Shadows" Value="{ThemeResource TabBarItemShadows}" />
 										<Setter Target="ContentShadowPanel.Shadows" Value="{Binding Icon, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource HasIconToContentShadow}}" />
 										<Setter Target="Icon.Foreground" Value="{ThemeResource PrimaryBrush}" />
 										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource PrimaryBrush}" />
@@ -2406,7 +2466,7 @@
 								</VisualState>
 								<not_mobile:VisualState x:Name="PointerOverSelected">
 									<VisualState.Setters>
-										<Setter Target="IconShadowPanel.Shadows" Value="{StaticResource TabBarItemShadows}" />
+										<Setter Target="IconShadowPanel.Shadows" Value="{ThemeResource TabBarItemShadows}" />
 										<Setter Target="ContentShadowPanel.Shadows" Value="{Binding Icon, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource HasIconToContentShadow}}" />
 										<Setter Target="Icon.Foreground" Value="{ThemeResource PrimaryBrush}" />
 										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource PrimaryBrush}" />
@@ -2414,7 +2474,7 @@
 								</not_mobile:VisualState>
 								<VisualState x:Name="PressedSelected">
 									<VisualState.Setters>
-										<Setter Target="IconShadowPanel.Shadows" Value="{StaticResource TabBarItemShadows}" />
+										<Setter Target="IconShadowPanel.Shadows" Value="{ThemeResource TabBarItemShadows}" />
 										<Setter Target="ContentShadowPanel.Shadows" Value="{Binding Icon, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource HasIconToContentShadow}}" />
 										<Setter Target="Icon.Foreground" Value="{ThemeResource PrimaryBrush}" />
 										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource PrimaryBrush}" />
@@ -2582,31 +2642,31 @@
 								<VisualState x:Name="Normal" />
 								<not_mobile:VisualState x:Name="PointerOver">
 									<VisualState.Setters>
-										<Setter Target="ShadowPanel.Shadows" Value="{StaticResource TabBarItemShadows}" />
+										<Setter Target="ShadowPanel.Shadows" Value="{ThemeResource TabBarItemShadows}" />
 									</VisualState.Setters>
 								</not_mobile:VisualState>
 								<VisualState x:Name="Pressed">
 									<VisualState.Setters>
-										<Setter Target="ShadowPanel.Shadows" Value="{StaticResource TabBarItemShadows}" />
+										<Setter Target="ShadowPanel.Shadows" Value="{ThemeResource TabBarItemShadows}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="Selected">
 									<VisualState.Setters>
-										<Setter Target="ShadowPanel.Shadows" Value="{StaticResource TabBarItemShadows}" />
+										<Setter Target="ShadowPanel.Shadows" Value="{ThemeResource TabBarItemShadows}" />
 										<Setter Target="Icon.Foreground" Value="{ThemeResource PrimaryBrush}" />
 										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource PrimaryBrush}" />
 									</VisualState.Setters>
 								</VisualState>
 								<not_mobile:VisualState x:Name="PointerOverSelected">
 									<VisualState.Setters>
-										<Setter Target="ShadowPanel.Shadows" Value="{StaticResource TabBarItemShadows}" />
+										<Setter Target="ShadowPanel.Shadows" Value="{ThemeResource TabBarItemShadows}" />
 										<Setter Target="Icon.Foreground" Value="{ThemeResource PrimaryBrush}" />
 										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource PrimaryBrush}" />
 									</VisualState.Setters>
 								</not_mobile:VisualState>
 								<VisualState x:Name="PressedSelected">
 									<VisualState.Setters>
-										<Setter Target="ShadowPanel.Shadows" Value="{StaticResource TabBarItemShadows}" />
+										<Setter Target="ShadowPanel.Shadows" Value="{ThemeResource TabBarItemShadows}" />
 										<Setter Target="Icon.Foreground" Value="{ThemeResource PrimaryBrush}" />
 										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource PrimaryBrush}" />
 									</VisualState.Setters>
@@ -2666,7 +2726,7 @@
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="utu:TabBarItem">
-					<utu:ShadowContainer Shadows="{StaticResource FabTabBarItemShadows}">
+					<utu:ShadowContainer Shadows="{ThemeResource FabTabBarItemShadows}">
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup x:Name="CommonStates">
 								<VisualState x:Name="Normal" />
