@@ -318,16 +318,11 @@
 	</ResourceDictionary.ThemeDictionaries>
 	<!--#endregion-->
 
-	<!--#region Shadow Collections-->
-	
-	<!--#endregion-->
-
 	<!--#region Converters-->
 	<um:FromEmptyStringToValueConverter x:Key="EmptyToCompositeTransformTranslateY"
 										NotNullOrEmptyValue="8"
 										NullOrEmptyValue="0" />
 
-	<!--Should be using ThemeResource-->
 	<converters:FromNullToValueConverter x:Key="HasIconToVisible"
 										 NotNullValue="Visible"
 										 NullValue="Collapsed" />
@@ -335,6 +330,7 @@
 	<converters:FromNullToValueConverter x:Key="HasIconToCollapsed"
 										 NotNullValue="Collapsed"
 										 NullValue="Visible" />
+	
 	<!--#endregion-->
 
 	<!--#region TextBox Style-->
@@ -2843,4 +2839,5 @@
 	<!--#endregion-->
 
 	<!--#endregion-->
+	
 </ResourceDictionary>
