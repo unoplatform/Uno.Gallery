@@ -662,6 +662,25 @@
 					</controls:WrapPanel>
 				</smtx:XamlDisplay>
 
+				<!-- ToggleSwitch -->
+				<smtx:XamlDisplay UniqueKey="ShadowContainerSamplePage_ToggleSwitch"
+								  smtx:XamlDisplayExtensions.Header="Neumorphic ToggleSwitch"
+								  Background="{ThemeResource SurfaceBrush}"
+								  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\WrapPanel">
+
+					<controls:WrapPanel HorizontalSpacing="16"
+										VerticalSpacing="16">
+
+						<StackPanel Spacing="20"
+									Orientation="Horizontal">
+							<Viewbox Height="200">
+								<ToggleSwitch Style="{StaticResource NeumorphicToggleSwitchStyle}" />
+							</Viewbox>
+							<ToggleSwitch Style="{StaticResource NeumorphicToggleSwitchStyle}" />
+						</StackPanel>
+					</controls:WrapPanel>
+				</smtx:XamlDisplay>
+
 				<!-- TabBar -->
 				<smtx:XamlDisplay UniqueKey="ShadowContainerSamplePage_TabBar"
 								  smtx:XamlDisplayExtensions.Header="Neumorphic TabBar"
