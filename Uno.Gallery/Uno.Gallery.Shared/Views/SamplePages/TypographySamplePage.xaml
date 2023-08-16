@@ -31,10 +31,6 @@
 										<VisualState.StateTriggers>
 											<AdaptiveTrigger MinWindowWidth="0" />
 										</VisualState.StateTriggers>
-										<VisualState.Setters>
-											<Setter Target="fluentHeader.Visibility"
-													Value="Collapsed" />
-										</VisualState.Setters>
 									</VisualState>
 								</VisualStateGroup>
 							</VisualStateManager.VisualStateGroups>
@@ -141,10 +137,6 @@
 										<VisualState.StateTriggers>
 											<AdaptiveTrigger MinWindowWidth="0" />
 										</VisualState.StateTriggers>
-										<VisualState.Setters>
-											<Setter Target="materialHeader.Visibility"
-													Value="Collapsed" />
-										</VisualState.Setters>
 									</VisualState>
 								</VisualStateGroup>
 							</VisualStateManager.VisualStateGroups>
@@ -326,10 +318,6 @@
 										<VisualState.StateTriggers>
 											<AdaptiveTrigger MinWindowWidth="0" />
 										</VisualState.StateTriggers>
-										<VisualState.Setters>
-											<Setter Target="cupertinoHeader.Visibility"
-													Value="Collapsed" />
-										</VisualState.Setters>
 									</VisualState>
 								</VisualStateGroup>
 							</VisualStateManager.VisualStateGroups>
