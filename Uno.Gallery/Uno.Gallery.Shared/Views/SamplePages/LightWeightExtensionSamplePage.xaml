@@ -271,23 +271,23 @@
 
 								<TextBox PlaceholderText="Overriden TextBox Style"
 										 local:ResourceExtensions.OverridePath="ms-appx:///Views/ControlResourcesOverride/Fluent/TextBox.xaml" />
+
+								<!-- Fluent/TextBox.xaml content: -->
+								<example:ResourceDictionary>
+									<!-- Default State -->
+									<SolidColorBrush x:Key="TextControlForeground" Color="Red" />
+									<SolidColorBrush x:Key="TextControlBackground" Color="Cyan" />
+
+									<!-- Pointer Over State -->
+									<SolidColorBrush x:Key="TextControlButtonBackgroundPointerOver" Color="Orange" />
+									<SolidColorBrush x:Key="TextControlBackgroundPointerOver" Color="Navy" />
+									<SolidColorBrush x:Key="TextControlForegroundPointerOver" Color="Gray" />
+
+									<!-- Focused State -->
+									<SolidColorBrush x:Key="TextControlForegroundFocused" Color="Yellow" />
+									<SolidColorBrush x:Key="TextControlBackgroundFocused" Color="RosyBrown" />
+								</example:ResourceDictionary>
 							</StackPanel>
-
-							<!-- Fluent/TextBox.xaml content: -->
-							<example:ResourceDictionary>
-								<!-- Default State -->
-								<SolidColorBrush x:Key="TextControlForeground" Color="Red" />
-								<SolidColorBrush x:Key="TextControlBackground" Color="Cyan" />
-
-								<!-- Pointer Over State -->
-								<SolidColorBrush x:Key="TextControlButtonBackgroundPointerOver" Color="Orange" />
-								<SolidColorBrush x:Key="TextControlBackgroundPointerOver" Color="Navy" />
-								<SolidColorBrush x:Key="TextControlForegroundPointerOver" Color="Gray" />
-
-								<!-- Focused State -->
-								<SolidColorBrush x:Key="TextControlForegroundFocused" Color="Yellow" />
-								<SolidColorBrush x:Key="TextControlBackgroundFocused" Color="RosyBrown" />
-							</example:ResourceDictionary>
 						</smtx:XamlDisplay>
 
 						<!-- CheckBox -->
