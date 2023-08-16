@@ -1,0 +1,58 @@
+[
+	{
+	  "PackageId": "Uno.WinUI",
+	  "UpdatedVersion": "(,4.99.0-dev.999]"
+	},
+	{
+	  "PackageId": "Uno.WinUI.Lottie",
+	  "UpdatedVersion": "(,4.99.0-dev.999]"
+	},
+	{
+	  "PackageId": "Uno.WinUI.RemoteControl",
+	  "UpdatedVersion": "(,4.99.0-dev.999]"
+	},
+	{
+	  "PackageId": "Uno.WinUI.Skia.Gtk",
+	  "UpdatedVersion": "(,4.99.0-dev.999]"
+	},
+	{
+	  "PackageId": "Uno.WinUI.Foldable",
+	  "UpdatedVersion": "(,4.99.0-dev.999]"
+	},
+	{
+	  "PackageId": "Uno.WinUI.MediaPlayer.WebAssembly",
+	  "UpdatedVersion": "(,4.99.0-dev.999]"
+	},
+	{
+	  "PackageId": "Uno.WinUI.WebAssembly",
+	  "UpdatedVersion": "(,4.99.0-dev.999]"
+	},
+	{
+	  "PackageId": "Uno.WinUI.Svg",
+	  "UpdatedVersion": "(,4.99.0-dev.999]"
+	},
+	{
+	  "PackageId": "Uno.WinUI.Adapter.Microsoft.Extensions.Logging",
+	  "UpdatedVersion": "(,4.99.0-dev.999]"
+	},
+	{
+	  "PackageId": "Uno.Toolkit.WinUI.Cupertino",
+	  "UpdatedVersion": "(,3.99.0-dev.999]"
+	},
+	{
+	  "PackageId": "Uno.Toolkit.WinUI.Material",
+	  "UpdatedVersion": "(,3.99.0-dev.999]"
+	},
+	{
+	  "PackageId": "Uno.CommunityToolkit.WinUI.UI.Controls",
+	  "UpdatedVersion": "(,7.1.199]"
+	},
+	{
+	  "PackageId": "Uno.Material.WinUI",
+	  "UpdatedVersion": "(,2.99.0-dev.999]"
+	},
+	{
+	  "PackageId": "Uno.Cupertino.WinUI",
+	  "UpdatedVersion": "(,2.99.0-dev.999]"
+	}
+]
