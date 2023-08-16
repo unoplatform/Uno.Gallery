@@ -1,7 +1,11 @@
 [
 	{
-	  "PackageId": "Uno.WinUI",
-	  "UpdatedVersion": "(,4.99.0-dev.999]"
+		"PackageId": "Uno.UI.Adapter",
+		"UpdatedVersion": "(,4.99.0-dev.999]"
+	},
+	{
+		"PackageId": "Uno.WinUI",
+		"UpdatedVersion": "(,4.99.0-dev.999]"
 	},
 	{
 	  "PackageId": "Uno.WinUI.Lottie",
@@ -17,6 +21,10 @@
 	},
 	{
 	  "PackageId": "Uno.WinUI.Foldable",
+	  "UpdatedVersion": "(,4.99.0-dev.999]"
+	},
+	{
+	  "PackageId": "Uno.WinUI.MediaPlayer.Skia.Gtk",
 	  "UpdatedVersion": "(,4.99.0-dev.999]"
 	},
 	{
