@@ -115,18 +115,40 @@
 					</local:OverviewSampleView>
 
 					<local:OverviewSampleView SamplePageType="samples:ToggleSwitchSamplePage">
-						<StackPanel Spacing="8">
+						<Grid ColumnSpacing="16" RowSpacing="8">
+
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="auto" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+
+							<Grid.RowDefinitions>
+								<RowDefinition Height="auto" />
+								<RowDefinition Height="auto" />
+							</Grid.RowDefinitions>
+
+							<TextBlock Text="ToggleSwitch"
+									   Style="{StaticResource BodySmall}"
+									   VerticalAlignment="Center"/>
 
 							<ToggleSwitch Header="ToggleSwitch"
 										  IsOn="True"
-                                          MinWidth="200"
-										  Style="{StaticResource ToggleSwitchStyle}" />
+										  MinWidth="200"
+										  Style="{StaticResource ToggleSwitchStyle}"
+										  Grid.Column="1" />
+
+							<TextBlock Text="Disabled"
+									   Style="{StaticResource BodySmall}"
+									   VerticalAlignment="Center"
+									   Grid.Row="1" />
+
 							<ToggleSwitch Header="Disabled"
 										  IsEnabled="False"
-                                          MinWidth="200"
-										  Style="{StaticResource ToggleSwitchStyle}" />
-
-						</StackPanel>
+										  MinWidth="200"
+										  Style="{StaticResource ToggleSwitchStyle}"
+										  Grid.Column="1"
+										  Grid.Row="1"/>
+						</Grid>
 					</local:OverviewSampleView>
 
 				</StackPanel>
