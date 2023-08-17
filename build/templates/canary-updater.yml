@@ -22,6 +22,7 @@ steps:
 
   - task: nventiveCanaryUpdater@5
     displayName: 'Canary Update (5x)'
+    condition: startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries/5x')
     inputs:
       solution: '$(build.sourcesdirectory)'
       usePrivateFeed: false
