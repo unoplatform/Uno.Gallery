@@ -11,12 +11,12 @@ export UNO_UITEST_PLATFORM=Browser
 export UNO_UITEST_PROJECT=$BUILD_SOURCESDIRECTORY/Uno.Gallery/Uno.Gallery.UITest
 export UNO_UITEST_LOGFILE=$BUILD_ARTIFACTSTAGINGDIRECTORY/screenshots/wasm/nunit-log.txt
 export UNO_UITEST_WASM_PROJECT=$BUILD_SOURCESDIRECTORY/Uno.Gallery/Uno.Gallery.Wasm/Uno.Gallery.Wasm.csproj
-export UNO_UITEST_WASM_OUTPUT_PATH=$BUILD_SOURCESDIRECTORY/Uno.Gallery/Uno.Gallery.Wasm/bin/Debug/net7.0/dist/
+export UNO_UITEST_WASM_OUTPUT_PATH=$BUILD_SOURCESDIRECTORY/Uno.Gallery/Uno.Gallery.Wasm/bin/Release/net7.0/dist/
 export UITEST_TEST_TIMEOUT=60m
 
 cd $BUILD_SOURCESDIRECTORY
 
-dotnet build /r /p:Configuration=Debug $UNO_UITEST_WASM_PROJECT /p:IsUiAutomationMappingEnabled=True /bl:$UNO_UITEST_SCREENSHOT_PATH/msbuild.binlog
+dotnet build /r /p:Configuration=Release $UNO_UITEST_WASM_PROJECT /p:IsUiAutomationMappingEnabled=True /bl:$UNO_UITEST_SCREENSHOT_PATH/msbuild.binlog
 
 cd $BUILD_SOURCESDIRECTORY/build
 mkdir -p tools
@@ -34,7 +34,7 @@ mkdir -p $UNO_UITEST_SCREENSHOT_PATH
 
 # Start the server
 dotnet-serve -p 5000 -d "$UNO_UITEST_WASM_OUTPUT_PATH" &
-#dotnet run --project $UNO_UITEST_WASM_PROJECT -c Debug --no-build &
+#dotnet run --project $UNO_UITEST_WASM_PROJECT -c Release --no-build &
 
 
 
@@ -43,7 +43,7 @@ dotnet-serve -p 5000 -d "$UNO_UITEST_WASM_OUTPUT_PATH" &
 cd $UNO_UITEST_PROJECT
 
 dotnet test \
-	-c Debug \
+	-c Release \
 	-l:"console;verbosity=normal" \
 	--logger "nunit;LogFileName=$BUILD_SOURCESDIRECTORY/build/TestResult.xml" \
 	--blame-hang-timeout $UITEST_TEST_TIMEOUT \
