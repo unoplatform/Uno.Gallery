@@ -65,10 +65,10 @@
 	},
 	{
 	  "PackageId": "Uno.Wasm.Bootstrap",
-	  "UpdatedVersion": "(,7.0.24]"
+	  "UpdatedVersion": "(,7.999.999]"
 	},
 	{
 	  "PackageId": "Uno.Wasm.Bootstrap.DevServer",
-	  "UpdatedVersion": "(,7.0.24]"
+	  "UpdatedVersion": "(,7.999.999]"
 	}
 ]
