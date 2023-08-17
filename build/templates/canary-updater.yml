@@ -7,7 +7,6 @@ steps:
 
   - task: nventiveCanaryUpdater@5
     displayName: 'Canary Update (dev)'
-    condition: or(startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries/dev'), startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries/4x'))
     inputs:
       solution: '$(build.sourcesdirectory)'
       useNuGetOrg: true
@@ -23,7 +22,6 @@ steps:
 
   - task: nventiveCanaryUpdater@5
     displayName: 'Canary Update (5x)'
-    condition: startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries/5x')
     inputs:
       solution: '$(build.sourcesdirectory)'
       usePrivateFeed: false
@@ -46,7 +44,6 @@ steps:
 
   - powershell: |
       dotnet tool uninstall nventive.nuget.updater.tool --tool-path $(Agent.TempDirectory)
-    condition: startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries')
 
   - pwsh: |
       gci -r -include "info.plist" |
@@ -55,7 +52,6 @@ steps:
           foreach-object { $_ -replace "com.nventive.uno.gallery","com.nventive.uno.gallery-canary" } |
           set-content $a }
     displayName: 'Adjust info.plist bundle name'
-    condition: startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries')
 
   - pwsh: |
       gci -r -include AndroidManifest.xml,android-uitest-run.sh |
@@ -64,4 +60,3 @@ steps:
           foreach-object { $_ -replace "com.nventive.uno.ui.demo","com.nventive.uno.ui.demo.canary" } |
           set-content $a }
     displayName: 'Adjust info.plist bundle name'
-    condition: startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries')
