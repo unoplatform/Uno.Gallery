@@ -54,5 +54,13 @@
 	{
 	  "PackageId": "Uno.Cupertino.WinUI",
 	  "UpdatedVersion": "(,2.99.0-dev.999]"
+	},
+	{
+	  "PackageId": "Uno.Wasm.Bootstrap",
+	  "UpdatedVersion": "(,7.0.24]"
+	},
+	{
+	  "PackageId": "Uno.Wasm.Bootstrap.DevServer",
+	  "UpdatedVersion": "(,7.0.24]"
 	}
 ]
