@@ -412,6 +412,10 @@
 								 NullValue="{StaticResource SmallThumbOffSize}"
 								 NotNullValue="{StaticResource MediumThumbOffSize}" />
 
+	<um:FromNullToValueConverter x:Key="ToggleSwitchOffContentToCornerRadius"
+								 NullValue="8"
+								 NotNullValue="12" />
+
 	<um:FromNullToValueConverter x:Key="ToggleSwitchOffContentToContentMargin"
 								 NullValue="0,0,6,0"
 								 NotNullValue="0,0,2,0" />
@@ -2977,6 +2981,7 @@
 																  KeySpline="{StaticResource MaterialToggleSwitchFastOutSlowInKeySpline}"
 																  Value="{Binding OffContent, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ToggleSwitchOffContentToContentSize}}" />
 										</DoubleAnimationUsingKeyFrames>
+
 									</Storyboard>
 								</VisualState>
 
@@ -3131,12 +3136,12 @@
 																	Value="{StaticResource DisabledOpacity}" />
 										</ObjectAnimationUsingKeyFrames>
 										<ObjectAnimationUsingKeyFrames Storyboard.TargetName="KnobOff"
-																	   Storyboard.TargetProperty="Fill">
+																	   Storyboard.TargetProperty="Background">
 											<DiscreteObjectKeyFrame KeyTime="0"
 																	Value="{ThemeResource ToggleSwitchKnobOffFillDisabled}" />
 										</ObjectAnimationUsingKeyFrames>
 										<ObjectAnimationUsingKeyFrames Storyboard.TargetName="KnobOn"
-																	   Storyboard.TargetProperty="Fill">
+																	   Storyboard.TargetProperty="Background">
 											<DiscreteObjectKeyFrame KeyTime="0"
 																	Value="{ThemeResource ToggleSwitchKnobOnFillDisabled}" />
 										</ObjectAnimationUsingKeyFrames>
@@ -3379,6 +3384,13 @@
 									</VisualTransition>
 								</VisualStateGroup.Transitions>
 								<VisualState x:Name="Dragging">
+									<VisualState.Setters>
+										<Setter Target="ShadowKnobOff.Opacity" Value="{Binding IsOn, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ToggleSwitchIsOffToOpacity}}" />
+										<Setter Target="ShadowKnobOn.Opacity" Value="{Binding IsOn, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ToggleSwitchIsOnToOpacity}}" />
+										<Setter Target="ShadowKnobOff.Shadows" Value="{ThemeResource ToggleSwitchKnobOffShadow}" />
+										<Setter Target="ShadowKnobOn.Shadows" Value="{ThemeResource ToggleSwitchKnobOnShadow}" />
+	
+									</VisualState.Setters>
 									<Storyboard>
 										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobBounds"
 																	   Storyboard.TargetProperty="Opacity">
@@ -3415,6 +3427,8 @@
 								</VisualState>
 								<VisualState x:Name="Off">
 									<VisualState.Setters>
+										<Setter Target="ShadowKnobOff.Opacity" Value="{Binding IsOn, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ToggleSwitchIsOffToOpacity}}" />
+										<Setter Target="ShadowKnobOn.Opacity" Value="{Binding IsOn, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ToggleSwitchIsOnToOpacity}}" />
 										<Setter Target="ShadowKnobOff.Shadows" Value="{ThemeResource ToggleSwitchKnobOffShadow}" />
 										<Setter Target="ShadowKnobOn.Shadows" Value="{ThemeResource ToggleSwitchKnobNoShadow}" />
 									</VisualState.Setters>
@@ -3433,6 +3447,8 @@
 								</VisualState>
 								<VisualState x:Name="On">
 									<VisualState.Setters>
+										<Setter Target="ShadowKnobOff.Opacity" Value="{Binding IsOn, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ToggleSwitchIsOffToOpacity}}" />
+										<Setter Target="ShadowKnobOn.Opacity" Value="{Binding IsOn, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ToggleSwitchIsOnToOpacity}}" />
 										<Setter Target="ShadowKnobOff.Shadows" Value="{ThemeResource ToggleSwitchKnobNoShadow}" />
 										<Setter Target="ShadowKnobOn.Shadows" Value="{ThemeResource ToggleSwitchKnobOnShadow}" />
 									</VisualState.Setters>
@@ -3519,7 +3535,7 @@
 
 							<Grid x:Name="SwitchKnob"
 									HorizontalAlignment="Left"
-									Width="{ThemeResource SwitchKnobWidth}"
+									Width="{ThemeResource SwitchKnobIncludingOffShadowWidth}"
 									Height="{ThemeResource SwitchKnobHeight}"
 									CornerRadius="16">
 
@@ -3527,7 +3543,7 @@
 								<Grid x:Name="SwitchKnobOn"
 										Width="{ThemeResource LargeThumbSize}"
 										Height="{ThemeResource LargeThumbSize}"
-										Margin="{ThemeResource SwitchKnobOnMargin}"
+										Margin="24,0,0,0"
 										CornerRadius="{ThemeResource LargeThumbCornerRadius}"
 										HorizontalAlignment="Left">
 
@@ -3548,17 +3564,18 @@
 									<Border Height="{ThemeResource KnobIconSize}"
 											Width="{ThemeResource KnobIconSize}"
 											Padding="{ThemeResource KnobIconPadding}"
+											Margin="4,0,0,0"
 											VerticalAlignment="Center"
 											HorizontalAlignment="Center">
 										<Viewbox>
 											<ContentPresenter x:Name="OnIconPresenter"
-																Content="{TemplateBinding OnContent}"
-																Visibility="{Binding IsOn, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialTrueToVisible}}"
-																VerticalAlignment="Center"
-																HorizontalAlignment="Center"
-																VerticalContentAlignment="Center"
-																HorizontalContentAlignment="Center"
-																Foreground="{ThemeResource ToggleSwitchOnIconPresenterForeground}" />
+															  Content="{TemplateBinding OnContent}"
+															  Visibility="{Binding IsOn, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialTrueToVisible}}"
+															  VerticalAlignment="Center"
+															  HorizontalAlignment="Center"
+															  VerticalContentAlignment="Center"
+															  HorizontalContentAlignment="Center"
+															  Foreground="{ThemeResource ToggleSwitchOnIconPresenterForeground}" />
 										</Viewbox>
 									</Border>
 								</Grid>
@@ -3578,9 +3595,9 @@
 											  Height="{Binding OffContent, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ToggleSwitchOffContentToContentSize}}"
 											  Width="{Binding OffContent, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ToggleSwitchOffContentToContentSize}}"
 											  Margin="{Binding OffContent, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ToggleSwitchOffContentToContentMargin}}"
-											  CornerRadius="8"
 											  VerticalAlignment="Center"
-											  HorizontalAlignment="Right" />
+											  HorizontalAlignment="Right"
+											  CornerRadius="{Binding OffContent, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ToggleSwitchOffContentToCornerRadius}}"/>
 									</utu:ShadowContainer>
 
 									<!-- Off Icon -->
