@@ -33,7 +33,7 @@
   - task: CopyFiles@2
     displayName: Copy Wasm output
     inputs:
-      SourceFolder: Uno.Gallery/Uno.Gallery.Wasm/bin/Release/net7.0/dist
+      SourceFolder: Uno.Gallery/Uno.Gallery.Wasm/bin/Debug/net7.0/dist
       Contents: '**/*.*'
       TargetFolder: $(Build.ArtifactStagingDirectory)/bin
 
