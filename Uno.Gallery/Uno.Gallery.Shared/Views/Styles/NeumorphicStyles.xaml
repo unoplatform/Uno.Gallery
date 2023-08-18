@@ -84,22 +84,25 @@
 
 			<!-- TabBar -->
 			<utu:ShadowCollection x:Key="TabBarShadows">
-				<utu:Shadow BlurRadius="48" IsInner="False" OffsetX="-8" OffsetY="-16" Opacity="0.6" Spread="0" Color="{StaticResource LightShadowColor}" />
-				<utu:Shadow BlurRadius="32" IsInner="False" OffsetX="8" OffsetY="8" Opacity="0.6" Spread="0" Color="{StaticResource ShadeShadowColor}" />
+				<utu:Shadow BlurRadius="48" IsInner="False" OffsetX="-8" OffsetY="-16" Opacity="0.4" Spread="4" Color="{StaticResource LightShadowColor4}" />
+				<utu:Shadow BlurRadius="32" IsInner="False" OffsetX="8" OffsetY="8" Opacity="0.4" Spread="4" Color="{StaticResource ShadeShadowColor4}" />
+			</utu:ShadowCollection>
+			
+			<utu:ShadowCollection x:Key="ContentTabBarShadows">
+				<utu:Shadow BlurRadius="16" IsInner="False" OffsetX="-4" OffsetY="-4" Opacity="0.4" Spread="4" Color="{StaticResource LightShadowColor4}" />
+				<utu:Shadow BlurRadius="16" IsInner="False" OffsetX="4" OffsetY="4" Opacity="0.6" Spread="4" Color="{StaticResource ShadeShadowColor4}" />
 			</utu:ShadowCollection>
 
 			<!-- TabBarItem -->
 			<utu:ShadowCollection x:Key="TabBarItemShadows">
-				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="4" OffsetY="4" Opacity="0.4" Spread="0" Color="{StaticResource ShadeShadowColor}" />
-				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="-4" OffsetY="-4" Opacity="0.4" Spread="0" Color="{StaticResource LightShadowColor}" />
+				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="4" OffsetY="4" Opacity="0.4" Spread="0" Color="{StaticResource ShadeShadowColor4}" />
+				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="-4" OffsetY="-4" Opacity="0.4" Spread="0" Color="{StaticResource LightShadowColor4}" />
 			</utu:ShadowCollection>
 			<utu:ShadowCollection x:Key="FabTabBarItemShadows">
-				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="-8" OffsetY="-8" Opacity="0.08" Spread="0" Color="{StaticResource ShadeShadowColor7}" />
-				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="8" OffsetY="8" Opacity="0.4" Spread="0" Color="{StaticResource LightShadowColor7}" />
-				<utu:Shadow BlurRadius="20" IsInner="False" OffsetX="12" OffsetY="12" Opacity="0.4" Spread="0" Color="{StaticResource MediumShadowColor7}" />
+				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="-8" OffsetY="-8" Opacity="0.4" Spread="0" Color="{StaticResource MediumShadowColor7}" />
+				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="8" OffsetY="8" Opacity="0.2" Spread="0" Color="{StaticResource LightShadowColor7}" />
+				<utu:Shadow BlurRadius="20" IsInner="False" OffsetX="12" OffsetY="12" Opacity="0.4" Spread="0" Color="{StaticResource ShadeShadowColor7}" />
 			</utu:ShadowCollection>
-
-			<utu:ShadowCollection x:Key="TabBarItemNoShadows" />
 
 			<!-- Elevated Button Shadows -->
 			<utu:ShadowCollection x:Key="ElevatedNormal">
@@ -145,8 +148,9 @@
 			</utu:ShadowCollection>
 
 			<utu:ShadowCollection x:Key="FilledDisabled">
-				<utu:Shadow BlurRadius="4" IsInner="False" OffsetX="-1" OffsetY="-1" Opacity="0.5" Spread="0" Color="{StaticResource LightShadowColor5}" />
-				<utu:Shadow BlurRadius="4" IsInner="False" OffsetX="1" OffsetY="1" Opacity="1" Spread="0" Color="{StaticResource ShadeShadowColor5}" />
+				<!--Had to manually change some properties to achieve a closer look to figma design-->
+				<utu:Shadow BlurRadius="1" IsInner="False" OffsetX="0" OffsetY="-1" Opacity="0.4" Spread="0" Color="{StaticResource LightShadowColor5}" />
+				<utu:Shadow BlurRadius="1" IsInner="False" OffsetX="1" OffsetY="1" Opacity="0.4" Spread="0" Color="{StaticResource ShadeShadowColor5}" />
 			</utu:ShadowCollection>
 
 			<utu:ShadowCollection x:Key="FilledFocused">
@@ -277,6 +281,11 @@
 				<utu:Shadow BlurRadius="32" IsInner="False" OffsetX="8" OffsetY="8" Opacity="0.6" Spread="0" Color="{StaticResource ShadeShadowColor}" />
 			</utu:ShadowCollection>
 
+			<utu:ShadowCollection x:Key="ContentTabBarShadows">
+				<utu:Shadow BlurRadius="16" IsInner="False" OffsetX="-4" OffsetY="-4" Opacity="0.4" Spread="0" Color="{StaticResource LightShadowColor}" />
+				<utu:Shadow BlurRadius="16" IsInner="False" OffsetX="4" OffsetY="4" Opacity="0.4" Spread="0" Color="{StaticResource ShadeShadowColor}" />
+			</utu:ShadowCollection>
+
 			<!-- TabBarItem -->
 			<utu:ShadowCollection x:Key="TabBarItemShadows">
 				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="4" OffsetY="4" Opacity="0.4" Spread="0" Color="{StaticResource ShadeShadowColor}" />
@@ -287,8 +296,6 @@
 				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="8" OffsetY="8" Opacity="0.4" Spread="0" Color="{StaticResource LightShadowColor7}" />
 				<utu:Shadow BlurRadius="20" IsInner="False" OffsetX="12" OffsetY="12" Opacity="0.4" Spread="0" Color="{StaticResource MediumShadowColor7}" />
 			</utu:ShadowCollection>
-
-			<utu:ShadowCollection x:Key="TabBarItemNoShadows" />
 
 			<!-- Elevated Button Shadows -->
 			<utu:ShadowCollection x:Key="ElevatedNormal">
@@ -2415,14 +2422,86 @@
 	</Style>
 
 	<Style x:Key="NeumorphicTopTabBarStyle"
-		   BasedOn="{StaticResource NeumorphicBaseTabBarStyle}"
+		   BasedOn="{StaticResource DefaultTabBarStyle}"
 		   TargetType="utu:TabBar">
+		<Setter Property="Width" Value="300" />
+		<Setter Property="Height" Value="80" />
 		<Setter Property="CornerRadius" Value="40" />
+		<Setter Property="Background" Value="{StaticResource SurfaceBrush}" />
+		<Setter Property="um:ControlExtensions.TintedBackground" Value="{x:Null}" />
+		<Setter Property="um:ControlExtensions.IsTintEnabled" Value="False" />
 		<Setter Property="VerticalAlignment" Value="Top" />
 		<Setter Property="MinHeight" Value="{ThemeResource TopTabBarHeight}" />
 		<Setter Property="utu:SafeArea.Insets" Value="Top" />
 		<Setter Property="ItemContainerStyle" Value="{StaticResource NeumorphicBaseContentTabBarItemStyle}" />
+		
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="utu:TabBar">
+					<utu:ShadowContainer Shadows="{ThemeResource ContentTabBarShadows}">
+						<VisualStateManager.VisualStateGroups>
+							<VisualStateGroup x:Name="OrientationStates">
+								<VisualState x:Name="Horizontal">
+									<VisualState.Setters>
+										<Setter Target="BelowSelectionIndicatorPresenter.VerticalContentAlignment" Value="Stretch" />
+										<Setter Target="BelowSelectionIndicatorPresenter.HorizontalContentAlignment" Value="Left" />
+										<Setter Target="AboveSelectionIndicatorPresenter.VerticalContentAlignment" Value="Stretch" />
+										<Setter Target="AboveSelectionIndicatorPresenter.HorizontalContentAlignment" Value="Left" />
+									</VisualState.Setters>
+								</VisualState>
+								<VisualState x:Name="Vertical">
+									<VisualState.Setters>
+										<Setter Target="BelowSelectionIndicatorPresenter.VerticalContentAlignment" Value="Top" />
+										<Setter Target="BelowSelectionIndicatorPresenter.HorizontalContentAlignment" Value="Stretch" />
+										<Setter Target="AboveSelectionIndicatorPresenter.VerticalContentAlignment" Value="Top" />
+										<Setter Target="AboveSelectionIndicatorPresenter.HorizontalContentAlignment" Value="Stretch" />
+									</VisualState.Setters>
+								</VisualState>
+							</VisualStateGroup>
+							<VisualStateGroup x:Name="IndicatorPlacementStates">
+								<VisualState x:Name="Above" />
+								<VisualState x:Name="Below">
+									<VisualState.Setters>
+										<Setter Target="BelowSelectionIndicatorPresenter.Visibility" Value="Visible" />
+										<Setter Target="AboveSelectionIndicatorPresenter.Visibility" Value="Collapsed" />
+									</VisualState.Setters>
+								</VisualState>
+							</VisualStateGroup>
+						</VisualStateManager.VisualStateGroups>
+						<Grid x:Name="TabBarGrid"
+							  Background="{TemplateBinding Background}"
+							  CornerRadius="{TemplateBinding CornerRadius}">
+							<utu:TabBarSelectionIndicatorPresenter x:Name="BelowSelectionIndicatorPresenter"
+																   Padding="{TemplateBinding Padding}"
+																   AutomationProperties.AutomationId="BelowSelectionIndicatorPresenter"
+																   Content="{TemplateBinding SelectionIndicatorContent}"
+																   ContentTemplate="{TemplateBinding SelectionIndicatorContentTemplate}"
+																   Foreground="{TemplateBinding Foreground}"
+																   IndicatorTransitionMode="{TemplateBinding SelectionIndicatorTransitionMode}"
+																   Opacity="0"
+																   Owner="{Binding RelativeSource={RelativeSource TemplatedParent}}"
+																   Style="{TemplateBinding SelectionIndicatorPresenterStyle}"
+																   Visibility="Collapsed" />
+							<ItemsPresenter x:Name="TabBarItemsPresenter"
+											Width="{TemplateBinding Width}"
+											Height="{TemplateBinding Height}"
+											Padding="{TemplateBinding Padding}" />
+							<utu:TabBarSelectionIndicatorPresenter x:Name="AboveSelectionIndicatorPresenter"
+																   Padding="{TemplateBinding Padding}"
+																   AutomationProperties.AutomationId="AboveSelectionIndicatorPresenter"
+																   Content="{TemplateBinding SelectionIndicatorContent}"
+																   ContentTemplate="{TemplateBinding SelectionIndicatorContentTemplate}"
+																   Foreground="{TemplateBinding Foreground}"
+																   IndicatorTransitionMode="{TemplateBinding SelectionIndicatorTransitionMode}"
+																   Opacity="0"
+																   Owner="{Binding RelativeSource={RelativeSource TemplatedParent}}"
+																   Style="{TemplateBinding SelectionIndicatorPresenterStyle}" />
 
+						</Grid>
+					</utu:ShadowContainer>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
 	</Style>
 
 	<!--#region TabBarItem-->
@@ -2566,12 +2645,18 @@
 									<VisualState.Setters>
 										<Setter Target="IconShadowPanel.Shadows" Value="{ThemeResource TabBarItemShadows}" />
 										<Setter Target="ContentShadowPanel.Shadows" Value="{ThemeResource TabBarItemShadows}" />
+
+										<!-- This is not working properly -->
+										<!--<Setter Target="ActiveIndicator.Background" Value="{ThemeResource OnSurfaceVariantHoverBrush}" />
+										<Setter Target="ShadowContentPresenterGrid.Background" Value="{ThemeResource OnSurfaceVariantHoverBrush}" />-->
 									</VisualState.Setters>
 								</not_mobile:VisualState>
 								<VisualState x:Name="Pressed">
 									<VisualState.Setters>
 										<Setter Target="IconShadowPanel.Shadows" Value="{ThemeResource TabBarItemShadows}" />
 										<Setter Target="ContentShadowPanel.Shadows" Value="{ThemeResource TabBarItemShadows}" />
+										<Setter Target="ActiveIndicator.Background" Value="{ThemeResource OnSurfaceVariantPressedBrush}" />
+										<Setter Target="ShadowContentPresenterGrid.Background" Value="{ThemeResource OnSurfaceVariantPressedBrush}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="Selected">
@@ -2590,6 +2675,8 @@
 										<Setter Target="Icon.Foreground" Value="{ThemeResource PrimaryBrush}" />
 										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource PrimaryBrush}" />
 										<Setter Target="ShadowContentPresenter.Foreground" Value="{ThemeResource PrimaryBrush}" />
+										<Setter Target="ActiveIndicator.Background" Value="{ThemeResource OnSurfaceVariantHoverBrush}" />
+										<Setter Target="ShadowContentPresenterGrid.Background" Value="{ThemeResource OnSurfaceVariantHoverBrush}" />
 									</VisualState.Setters>
 								</not_mobile:VisualState>
 								<VisualState x:Name="PressedSelected">
@@ -2599,6 +2686,8 @@
 										<Setter Target="Icon.Foreground" Value="{ThemeResource PrimaryBrush}" />
 										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource PrimaryBrush}" />
 										<Setter Target="ShadowContentPresenter.Foreground" Value="{ThemeResource PrimaryBrush}" />
+										<Setter Target="ActiveIndicator.Background" Value="{ThemeResource OnSurfaceVariantPressedBrush}" />
+										<Setter Target="ShadowContentPresenterGrid.Background" Value="{ThemeResource OnSurfaceVariantPressedBrush}" />
 									</VisualState.Setters>
 								</VisualState>
 							</VisualStateGroup>
@@ -2606,11 +2695,10 @@
 								<VisualState x:Name="Enabled" />
 								<VisualState x:Name="Disabled">
 									<VisualState.Setters>
-										<Setter Target="LayoutRoot.Background" Value="{ThemeResource NavigationTabBarBackgroundDisabled}" />
-										<Setter Target="ActiveIndicator.Background" Value="{ThemeResource NavigationTabBarItemActiveIndicatorBackgroundDisabled}" />
-										<Setter Target="Icon.Foreground" Value="{ThemeResource NavigationTabBarItemIconForegroundDisabled}" />
-										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource NavigationTabBarForegroundDisabled}" />
-										<Setter Target="ShadowContentPresenter.Foreground" Value="{ThemeResource NavigationTabBarForegroundDisabled}" />
+										<Setter Target="ActiveIndicator.Background" Value="Transparent" />
+										<Setter Target="Icon.Foreground" Value="{ThemeResource OnSurfaceVariantColor}" />
+										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource OnSurfaceVariantColor}" />
+										<Setter Target="ShadowContentPresenter.Foreground" Value="{ThemeResource OnSurfaceVariantColor}" />
 									</VisualState.Setters>
 								</VisualState>
 							</VisualStateGroup>
@@ -2630,9 +2718,9 @@
 										<Setter Target="ContentPresenterGrid.CornerRadius" Value="{ThemeResource NavigationTabBarItemActiveIndicatorCornerRadius}" />
 										<Setter Target="ContentPresenter.HorizontalAlignment" Value="Center" />
 										<Setter Target="ContentPresenter.VerticalAlignment" Value="Center" />
-										<Setter Target="ShadowContentPresenterGrid.Height" Value="{ThemeResource NavigationTabBarItemActiveIndicatorHeight}" />
-										<Setter Target="ShadowContentPresenterGrid.Width" Value="{ThemeResource NavigationTabBarItemActiveIndicatorWidth}" />
-										<Setter Target="ShadowContentPresenterGrid.CornerRadius" Value="{ThemeResource NavigationTabBarItemActiveIndicatorCornerRadius}" />
+										<Setter Target="ShadowContentPresenterGrid.Height" Value="40" />
+										<Setter Target="ShadowContentPresenterGrid.Width" Value="70" />
+										<Setter Target="ShadowContentPresenterGrid.CornerRadius" Value="20" />
 										<Setter Target="ShadowContentPresenter.HorizontalAlignment" Value="Center" />
 										<Setter Target="ShadowContentPresenter.VerticalAlignment" Value="Center" />
 										<Setter Target="IconRow.Height" Value="0" />
@@ -2672,11 +2760,11 @@
 						<utu:ShadowContainer x:Name="ShadowPanel"
 											 HorizontalAlignment="Center"
 											 VerticalAlignment="Center">
+
 							<Grid x:Name="ContentGrid"
 								  HorizontalAlignment="Center"
 								  VerticalAlignment="Center"
-								  RowSpacing="4"
-								  CornerRadius="64"
+								  CornerRadius="34"
 								  Padding="12,8">
 								<Grid.RowDefinitions>
 									<RowDefinition x:Name="IconRow"
@@ -2770,11 +2858,13 @@
 								<not_mobile:VisualState x:Name="PointerOver">
 									<VisualState.Setters>
 										<Setter Target="ShadowPanel.Shadows" Value="{ThemeResource TabBarItemShadows}" />
+										<!--<Setter Target="ContentGrid.Background" Value="{ThemeResource PrimaryHoverBrush}" />-->
 									</VisualState.Setters>
 								</not_mobile:VisualState>
 								<VisualState x:Name="Pressed">
 									<VisualState.Setters>
 										<Setter Target="ShadowPanel.Shadows" Value="{ThemeResource TabBarItemShadows}" />
+										<Setter Target="ContentGrid.Background" Value="{ThemeResource PrimaryPressedBrush}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="Selected">
@@ -2789,6 +2879,7 @@
 										<Setter Target="ShadowPanel.Shadows" Value="{ThemeResource TabBarItemShadows}" />
 										<Setter Target="Icon.Foreground" Value="{ThemeResource PrimaryBrush}" />
 										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource PrimaryBrush}" />
+										<Setter Target="ContentGrid.Background" Value="{ThemeResource PrimaryHoverBrush}" />
 									</VisualState.Setters>
 								</not_mobile:VisualState>
 								<VisualState x:Name="PressedSelected">
@@ -2796,6 +2887,7 @@
 										<Setter Target="ShadowPanel.Shadows" Value="{ThemeResource TabBarItemShadows}" />
 										<Setter Target="Icon.Foreground" Value="{ThemeResource PrimaryBrush}" />
 										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource PrimaryBrush}" />
+										<Setter Target="ContentGrid.Background" Value="{ThemeResource PrimaryPressedBrush}" />
 									</VisualState.Setters>
 								</VisualState>
 							</VisualStateGroup>
@@ -2821,6 +2913,7 @@
 										<Setter Target="ContentRow.Height" Value="0" />
 										<Setter Target="ContentGrid.Height" Value="40" />
 										<Setter Target="ContentGrid.Width" Value="80" />
+										<Setter Target="ContentGrid.CornerRadius" Value="20" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="ContentOnly">
@@ -2828,6 +2921,7 @@
 										<Setter Target="ContentGrid.Height" Value="40" />
 										<Setter Target="ContentGrid.Width" Value="80" />
 										<Setter Target="IconRow.Height" Value="0" />
+										<Setter Target="ContentGrid.CornerRadius" Value="20" />
 									</VisualState.Setters>
 								</VisualState>
 							</VisualStateGroup>
@@ -2837,6 +2931,7 @@
 			</Setter.Value>
 		</Setter>
 	</Style>
+	
 	<Style x:Key="NeumorphicFabTabBarItemStyle"
 		   TargetType="utu:TabBarItem">
 		<Setter Property="FontFamily" Value="{ThemeResource MaterialMediumFontFamily}" />
@@ -2859,12 +2954,12 @@
 								<VisualState x:Name="Normal" />
 								<VisualState x:Name="PointerOver">
 									<VisualState.Setters>
-										<Setter Target="StateOverlay.Background" Value="{ThemeResource PrimaryFocusedBrush}" />
+										<Setter Target="StateOverlay.Background" Value="{ThemeResource OnPrimaryContainerHovered}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="Pressed">
 									<VisualState.Setters>
-										<Setter Target="StateOverlay.Background" Value="{ThemeResource PrimaryPressedBrush}" />
+										<Setter Target="StateOverlay.Background" Value="{ThemeResource OnPrimaryContainerPressed}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="Disabled" />
@@ -2874,7 +2969,7 @@
 							<VisualStateGroup x:Name="FocusStates">
 								<VisualState x:Name="Focused">
 									<VisualState.Setters>
-										<Setter Target="StateOverlay.Background" Value="{ThemeResource PrimaryFocusedBrush}" />
+										<Setter Target="StateOverlay.Background" Value="{ThemeResource OnPrimaryContainerFocused}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="PointerFocused" />
