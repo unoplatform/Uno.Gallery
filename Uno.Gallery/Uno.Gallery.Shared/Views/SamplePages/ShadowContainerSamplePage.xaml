@@ -168,23 +168,9 @@
 										VerticalSpacing="16">
 
 						<StackPanel Spacing="20">
-							<TextBlock Text="Enabled"
-									   Style="{StaticResource BodyMedium}" />
+							
 							<Button Style="{StaticResource NeumorphicSmallElevatedButtonStyle}"
 									Content="Enabled" />
-
-							<Button Style="{StaticResource NeumorphicMediumElevatedButtonStyle}"
-									Content="Enabled" />
-
-							<Button Style="{StaticResource NeumorphicLargeElevatedButtonStyle}"
-									Content="Enabled" />
-
-							<Button Style="{StaticResource NeumorphicSmallElevatedButtonStyle}"
-									Content="Icon Enabled">
-								<um:ControlExtensions.Icon>
-									<PathIcon Data="M12 6.85714H6.85714V12H5.14286V6.85714H0V5.14286H5.14286V0H6.85714V5.14286H12V6.85714Z" />
-								</um:ControlExtensions.Icon>
-							</Button>
 
 							<Button Style="{StaticResource NeumorphicMediumElevatedButtonStyle}"
 									Content="Icon Enabled">
@@ -202,27 +188,10 @@
 						</StackPanel>
 
 						<StackPanel Spacing="20">
-							<TextBlock Text="Disabled"
-									   Style="{StaticResource BodyMedium}" />
+							
 							<Button Style="{StaticResource NeumorphicSmallElevatedButtonStyle}"
 									Content="Disabled"
 									IsEnabled="False" />
-
-							<Button Style="{StaticResource NeumorphicMediumElevatedButtonStyle}"
-									Content="Disabled"
-									IsEnabled="False" />
-
-							<Button Style="{StaticResource NeumorphicLargeElevatedButtonStyle}"
-									Content="Disabled"
-									IsEnabled="False" />
-
-							<Button Style="{StaticResource NeumorphicSmallElevatedButtonStyle}"
-									Content="Icon Disabled"
-									IsEnabled="False">
-								<um:ControlExtensions.Icon>
-									<PathIcon Data="M12 6.85714H6.85714V12H5.14286V6.85714H0V5.14286H5.14286V0H6.85714V5.14286H12V6.85714Z" />
-								</um:ControlExtensions.Icon>
-							</Button>
 
 							<Button Style="{StaticResource NeumorphicMediumElevatedButtonStyle}"
 									Content="Icon Disabled"
@@ -253,23 +222,9 @@
 										VerticalSpacing="16">
 
 						<StackPanel Spacing="20">
-							<TextBlock Text="Enabled"
-									   Style="{StaticResource BodyMedium}" />
+							
 							<Button Style="{StaticResource NeumorphicSmallFilledButtonStyle}"
 									Content="Enabled" />
-
-							<Button Style="{StaticResource NeumorphicMediumFilledButtonStyle}"
-									Content="Enabled" />
-
-							<Button Style="{StaticResource NeumorphicLargeFilledButtonStyle}"
-									Content="Enabled" />
-
-							<Button Style="{StaticResource NeumorphicSmallFilledButtonStyle}"
-									Content="Icon Enabled">
-								<um:ControlExtensions.Icon>
-									<PathIcon Data="M12 6.85714H6.85714V12H5.14286V6.85714H0V5.14286H5.14286V0H6.85714V5.14286H12V6.85714Z" />
-								</um:ControlExtensions.Icon>
-							</Button>
 
 							<Button Style="{StaticResource NeumorphicMediumFilledButtonStyle}"
 									Content="Icon Enabled">
@@ -287,27 +242,10 @@
 						</StackPanel>
 
 						<StackPanel Spacing="20">
-							<TextBlock Text="Disabled"
-									   Style="{StaticResource BodyMedium}" />
+							
 							<Button Style="{StaticResource NeumorphicSmallFilledButtonStyle}"
 									Content="Disabled"
 									IsEnabled="False" />
-
-							<Button Style="{StaticResource NeumorphicMediumFilledButtonStyle}"
-									Content="Disabled"
-									IsEnabled="False" />
-
-							<Button Style="{StaticResource NeumorphicLargeFilledButtonStyle}"
-									Content="Disabled"
-									IsEnabled="False" />
-
-							<Button Style="{StaticResource NeumorphicSmallFilledButtonStyle}"
-									Content="Icon Disabled"
-									IsEnabled="False">
-								<um:ControlExtensions.Icon>
-									<PathIcon Data="M12 6.85714H6.85714V12H5.14286V6.85714H0V5.14286H5.14286V0H6.85714V5.14286H12V6.85714Z" />
-								</um:ControlExtensions.Icon>
-							</Button>
 
 							<Button Style="{StaticResource NeumorphicMediumFilledButtonStyle}"
 									Content="Icon Disabled"
@@ -341,14 +279,14 @@
 									Orientation="Horizontal">
 
 							<Button Style="{StaticResource NeumorphicFabSmallStyle}"
-									Content="Create">
+									Content="Small">
 								<um:ControlExtensions.Icon>
 									<PathIcon Data="M16.667 9.14286H9.80985V16H7.52414V9.14286H0.666992V6.85714H7.52414V0H9.80985V6.85714H16.667V9.14286Z" />
 								</um:ControlExtensions.Icon>
 							</Button>
 
 							<Button Style="{StaticResource NeumorphicFabStyle}"
-									Content="Create">
+									Content="Medium">
 								<um:ControlExtensions.Icon>
 									<PathIcon Data="M16.667 9.14286H9.80985V16H7.52414V9.14286H0.666992V6.85714H7.52414V0H9.80985V6.85714H16.667V9.14286Z" />
 								</um:ControlExtensions.Icon>
@@ -685,15 +623,33 @@
 									<PathIcon Data="M0.166992 3.99997L1.50033 5.3333C4.81366 2.01997 10.187 2.01997 13.5003 5.3333L14.8337 3.99997C10.787 -0.0467007 4.22033 -0.0467007 0.166992 3.99997ZM5.50033 9.3333L7.50033 11.3333L9.50032 9.3333C8.40033 8.22663 6.60699 8.22663 5.50033 9.3333ZM2.83366 6.66663L4.16699 7.99997C6.00699 6.15997 8.99366 6.15997 10.8337 7.99997L12.167 6.66663C9.59366 4.0933 5.41366 4.0933 2.83366 6.66663Z" />
 								</ToggleSwitch.OnContent>
 							</ToggleSwitch>
-							<ToggleSwitch Style="{StaticResource NeumorphicToggleSwitchStyle}"
+							<Viewbox Height="200">
+								<ToggleSwitch Style="{StaticResource NeumorphicToggleSwitchStyle}"
 											  IsEnabled="False"
-											  IsOn="True" />
-							<ToggleSwitch Style="{StaticResource NeumorphicToggleSwitchStyle}"
-											  IsEnabled="False" />
+											  IsOn="True">
+									<ToggleSwitch.OffContent>
+										<PathIcon Data="M14.827 5.00003C12.267 2.44003 8.70033 1.50669 5.39366 2.18669L7.07366 3.86669C9.38699 3.75336 11.7337 4.56669 13.4937 6.33336L14.827 5.00003V5.00003ZM12.1603 7.66669C11.3003 6.80669 10.267 6.24669 9.16699 5.96003L11.5203 8.31336L12.1603 7.66669V7.66669ZM0.833659 1.03336L2.88033 3.06669C1.90033 3.54669 0.980326 4.18669 0.166992 5.00003L1.49366 6.33336C2.32033 5.50669 3.27366 4.89336 4.29366 4.48669L5.78699 5.98003C4.70699 6.26003 3.68033 6.82003 2.83366 7.66669V7.67336L4.16033 9.00003C5.06699 8.09336 6.25366 7.64003 7.44033 7.62669L12.1537 12.3334L13.0003 11.4934L1.69366 0.193359L0.833659 1.03336ZM5.50033 10.3334L7.50033 12.3334L9.50033 10.3334C8.40033 9.22669 6.60699 9.22669 5.50033 10.3334Z" />
+									</ToggleSwitch.OffContent>
+									<ToggleSwitch.OnContent>
+										<PathIcon Data="M0.166992 3.99997L1.50033 5.3333C4.81366 2.01997 10.187 2.01997 13.5003 5.3333L14.8337 3.99997C10.787 -0.0467007 4.22033 -0.0467007 0.166992 3.99997ZM5.50033 9.3333L7.50033 11.3333L9.50032 9.3333C8.40033 8.22663 6.60699 8.22663 5.50033 9.3333ZM2.83366 6.66663L4.16699 7.99997C6.00699 6.15997 8.99366 6.15997 10.8337 7.99997L12.167 6.66663C9.59366 4.0933 5.41366 4.0933 2.83366 6.66663Z" />
+									</ToggleSwitch.OnContent>
+								</ToggleSwitch>
+							</Viewbox>
+							<Viewbox Height="200">
+								<ToggleSwitch Style="{StaticResource NeumorphicToggleSwitchStyle}"
+											  IsEnabled="False">
+									<ToggleSwitch.OffContent>
+										<PathIcon Data="M14.827 5.00003C12.267 2.44003 8.70033 1.50669 5.39366 2.18669L7.07366 3.86669C9.38699 3.75336 11.7337 4.56669 13.4937 6.33336L14.827 5.00003V5.00003ZM12.1603 7.66669C11.3003 6.80669 10.267 6.24669 9.16699 5.96003L11.5203 8.31336L12.1603 7.66669V7.66669ZM0.833659 1.03336L2.88033 3.06669C1.90033 3.54669 0.980326 4.18669 0.166992 5.00003L1.49366 6.33336C2.32033 5.50669 3.27366 4.89336 4.29366 4.48669L5.78699 5.98003C4.70699 6.26003 3.68033 6.82003 2.83366 7.66669V7.67336L4.16033 9.00003C5.06699 8.09336 6.25366 7.64003 7.44033 7.62669L12.1537 12.3334L13.0003 11.4934L1.69366 0.193359L0.833659 1.03336ZM5.50033 10.3334L7.50033 12.3334L9.50033 10.3334C8.40033 9.22669 6.60699 9.22669 5.50033 10.3334Z" />
+									</ToggleSwitch.OffContent>
+									<ToggleSwitch.OnContent>
+										<PathIcon Data="M0.166992 3.99997L1.50033 5.3333C4.81366 2.01997 10.187 2.01997 13.5003 5.3333L14.8337 3.99997C10.787 -0.0467007 4.22033 -0.0467007 0.166992 3.99997ZM5.50033 9.3333L7.50033 11.3333L9.50032 9.3333C8.40033 8.22663 6.60699 8.22663 5.50033 9.3333ZM2.83366 6.66663L4.16699 7.99997C6.00699 6.15997 8.99366 6.15997 10.8337 7.99997L12.167 6.66663C9.59366 4.0933 5.41366 4.0933 2.83366 6.66663Z" />
+									</ToggleSwitch.OnContent>
+								</ToggleSwitch>
+							</Viewbox>
 						</StackPanel>
 					</controls:WrapPanel>
 				</smtx:XamlDisplay>-->
-
+				
 				<!-- TabBar -->
 				<smtx:XamlDisplay UniqueKey="ShadowContainerSamplePage_TabBar"
 								  smtx:XamlDisplayExtensions.Header="Neumorphic TabBar"
@@ -703,170 +659,168 @@
 					<controls:WrapPanel HorizontalSpacing="16"
 										VerticalSpacing="16">
 
-						<StackPanel Spacing="30">
-							<StackPanel Spacing="20"
+						<StackPanel Spacing="70"
 										Orientation="Vertical">
-								<utu:TabBar SelectedIndex="1"
+							<utu:TabBar SelectedIndex="1"
 											Style="{StaticResource NeumorphicTopTabBarStyle}">
-									<utu:TabBar.Items>
-										<utu:TabBarItem Content="HOME">
-											<utu:TabBarItem.Icon>
-												<SymbolIcon Symbol="Home" />
-											</utu:TabBarItem.Icon>
-										</utu:TabBarItem>
-										<utu:TabBarItem Content="SUPPORT">
-											<utu:TabBarItem.Icon>
-												<FontIcon Glyph="&#xE8F2;" />
-											</utu:TabBarItem.Icon>
-										</utu:TabBarItem>
-									</utu:TabBar.Items>
-								</utu:TabBar>
+								<utu:TabBar.Items>
+									<utu:TabBarItem Content="HOME">
+										<utu:TabBarItem.Icon>
+											<SymbolIcon Symbol="Home" />
+										</utu:TabBarItem.Icon>
+									</utu:TabBarItem>
+									<utu:TabBarItem Content="SUPPORT">
+										<utu:TabBarItem.Icon>
+											<FontIcon Glyph="&#xE8F2;" />
+										</utu:TabBarItem.Icon>
+									</utu:TabBarItem>
+								</utu:TabBar.Items>
+							</utu:TabBar>
 
-								<utu:TabBar SelectedIndex="1"
+							<utu:TabBar SelectedIndex="1"
 											Style="{StaticResource NeumorphicTopTabBarStyle}">
-									<utu:TabBar.Items>
-										<utu:TabBarItem Content="HOME" />
+								<utu:TabBar.Items>
+									<utu:TabBarItem Content="HOME" />
 
-										<utu:TabBarItem Content="SUPPORT" />
+									<utu:TabBarItem Content="SUPPORT" />
 
-										<utu:TabBarItem Content="ABOUT" />
+									<utu:TabBarItem Content="ABOUT" />
 
-									</utu:TabBar.Items>
-								</utu:TabBar>
+								</utu:TabBar.Items>
+							</utu:TabBar>
 
-								<utu:TabBar SelectedIndex="1"
+							<utu:TabBar SelectedIndex="1"
 											Style="{StaticResource NeumorphicTopTabBarStyle}">
-									<utu:TabBar.Items>
-										<utu:TabBarItem>
-											<utu:TabBarItem.Icon>
-												<SymbolIcon Symbol="Home" />
-											</utu:TabBarItem.Icon>
-										</utu:TabBarItem>
-										<utu:TabBarItem>
-											<utu:TabBarItem.Icon>
-												<FontIcon Glyph="&#xE8F2;" />
-											</utu:TabBarItem.Icon>
-										</utu:TabBarItem>
-										<utu:TabBarItem>
-											<utu:TabBarItem.Icon>
-												<FontIcon Glyph="&#xE946;" />
-											</utu:TabBarItem.Icon>
-										</utu:TabBarItem>
+								<utu:TabBar.Items>
+									<utu:TabBarItem>
+										<utu:TabBarItem.Icon>
+											<SymbolIcon Symbol="Home" />
+										</utu:TabBarItem.Icon>
+									</utu:TabBarItem>
+									<utu:TabBarItem>
+										<utu:TabBarItem.Icon>
+											<FontIcon Glyph="&#xE8F2;" />
+										</utu:TabBarItem.Icon>
+									</utu:TabBarItem>
+									<utu:TabBarItem>
+										<utu:TabBarItem.Icon>
+											<FontIcon Glyph="&#xE946;" />
+										</utu:TabBarItem.Icon>
+									</utu:TabBarItem>
 
-									</utu:TabBar.Items>
-								</utu:TabBar>
+								</utu:TabBar.Items>
+							</utu:TabBar>
 
-								<utu:TabBar SelectedIndex="1"
+							<utu:TabBar SelectedIndex="1"
 											Style="{StaticResource NeumorphicBottomTabBarStyle}">
-									<utu:TabBar.Items>
-										<utu:TabBarItem Content="HOME">
-											<utu:TabBarItem.Icon>
-												<SymbolIcon Symbol="Home" />
-											</utu:TabBarItem.Icon>
-										</utu:TabBarItem>
-										<utu:TabBarItem Content="SUPPORT">
-											<utu:TabBarItem.Icon>
-												<FontIcon Glyph="&#xE8F2;" />
-											</utu:TabBarItem.Icon>
-										</utu:TabBarItem>
-										<utu:TabBarItem Content="ABOUT">
-											<utu:TabBarItem.Icon>
-												<FontIcon Glyph="&#xE946;" />
-											</utu:TabBarItem.Icon>
-										</utu:TabBarItem>
-									</utu:TabBar.Items>
-								</utu:TabBar>
+								<utu:TabBar.Items>
+									<utu:TabBarItem Content="HOME">
+										<utu:TabBarItem.Icon>
+											<SymbolIcon Symbol="Home" />
+										</utu:TabBarItem.Icon>
+									</utu:TabBarItem>
+									<utu:TabBarItem Content="SUPPORT">
+										<utu:TabBarItem.Icon>
+											<FontIcon Glyph="&#xE8F2;" />
+										</utu:TabBarItem.Icon>
+									</utu:TabBarItem>
+									<utu:TabBarItem Content="ABOUT">
+										<utu:TabBarItem.Icon>
+											<FontIcon Glyph="&#xE946;" />
+										</utu:TabBarItem.Icon>
+									</utu:TabBarItem>
+								</utu:TabBar.Items>
+							</utu:TabBar>
 
-								<utu:TabBar SelectedIndex="1"
+							<utu:TabBar SelectedIndex="1"
 											Style="{StaticResource NeumorphicVerticalTabBarStyle}">
-									<utu:TabBar.Items>
-										<utu:TabBarItem Content="HOME">
-											<utu:TabBarItem.Icon>
-												<SymbolIcon Symbol="Home" />
-											</utu:TabBarItem.Icon>
-										</utu:TabBarItem>
-										<utu:TabBarItem Content="SUPPORT">
-											<utu:TabBarItem.Icon>
-												<FontIcon Glyph="&#xE8F2;" />
-											</utu:TabBarItem.Icon>
-										</utu:TabBarItem>
-										<utu:TabBarItem Content="ABOUT">
-											<utu:TabBarItem.Icon>
-												<FontIcon Glyph="&#xE946;" />
-											</utu:TabBarItem.Icon>
-										</utu:TabBarItem>
-									</utu:TabBar.Items>
-								</utu:TabBar>
+								<utu:TabBar.Items>
+									<utu:TabBarItem Content="HOME">
+										<utu:TabBarItem.Icon>
+											<SymbolIcon Symbol="Home" />
+										</utu:TabBarItem.Icon>
+									</utu:TabBarItem>
+									<utu:TabBarItem Content="SUPPORT">
+										<utu:TabBarItem.Icon>
+											<FontIcon Glyph="&#xE8F2;" />
+										</utu:TabBarItem.Icon>
+									</utu:TabBarItem>
+									<utu:TabBarItem Content="ABOUT">
+										<utu:TabBarItem.Icon>
+											<FontIcon Glyph="&#xE946;" />
+										</utu:TabBarItem.Icon>
+									</utu:TabBarItem>
+								</utu:TabBar.Items>
+							</utu:TabBar>
 
-								<utu:TabBar SelectedIndex="1"
+							<utu:TabBar SelectedIndex="1"
 											Style="{StaticResource NeumorphicBottomTabBarStyle}">
-									<utu:TabBar.Items>
-										<utu:TabBarItem Content="HOME" />
-										<utu:TabBarItem Content="SUPPORT" />
-										<utu:TabBarItem Content="ABOUT" />
-									</utu:TabBar.Items>
-								</utu:TabBar>
+								<utu:TabBar.Items>
+									<utu:TabBarItem Content="HOME" />
+									<utu:TabBarItem Content="SUPPORT" />
+									<utu:TabBarItem Content="ABOUT" />
+								</utu:TabBar.Items>
+							</utu:TabBar>
 
-								<utu:TabBar SelectedIndex="1"
-											Style="{StaticResource NeumorphicBottomTabBarStyle}">
-									<utu:TabBar.Items>
-										<utu:TabBarItem>
-											<utu:TabBarItem.Icon>
-												<SymbolIcon Symbol="Home" />
-											</utu:TabBarItem.Icon>
-										</utu:TabBarItem>
-										<utu:TabBarItem>
-											<utu:TabBarItem.Icon>
-												<FontIcon Glyph="&#xE8F2;" />
-											</utu:TabBarItem.Icon>
-										</utu:TabBarItem>
-										<utu:TabBarItem>
-											<utu:TabBarItem.Icon>
-												<FontIcon Glyph="&#xE946;" />
-											</utu:TabBarItem.Icon>
-										</utu:TabBarItem>
-									</utu:TabBar.Items>
-								</utu:TabBar>
-								<utu:TabBar SelectedIndex="1"
-											Style="{StaticResource NeumorphicBottomTabBarStyle}">
-									<utu:TabBar.Items>
-										<utu:TabBarItem>
-											<utu:TabBarItem.Icon>
-												<SymbolIcon Symbol="Home" />
-											</utu:TabBarItem.Icon>
-										</utu:TabBarItem>
-										<utu:TabBarItem Style="{StaticResource NeumorphicFabTabBarItemStyle}">
-											<utu:TabBarItem.Flyout>
-												<MenuFlyout Placement="Top"
-															MenuFlyoutPresenterStyle="{StaticResource MaterialMenuFlyoutPresenterStyle}">
+							<utu:TabBar SelectedIndex="1"
+										Style="{StaticResource NeumorphicBottomTabBarStyle}">
+								<utu:TabBar.Items>
+									<utu:TabBarItem>
+										<utu:TabBarItem.Icon>
+											<SymbolIcon Symbol="Home" />
+										</utu:TabBarItem.Icon>
+									</utu:TabBarItem>
+									<utu:TabBarItem>
+										<utu:TabBarItem.Icon>
+											<FontIcon Glyph="&#xE8F2;" />
+										</utu:TabBarItem.Icon>
+									</utu:TabBarItem>
+									<utu:TabBarItem>
+										<utu:TabBarItem.Icon>
+											<FontIcon Glyph="&#xE946;" />
+										</utu:TabBarItem.Icon>
+									</utu:TabBarItem>
+								</utu:TabBar.Items>
+							</utu:TabBar>
+							<utu:TabBar SelectedIndex="1"
+										Style="{StaticResource NeumorphicBottomTabBarStyle}">
+								<utu:TabBar.Items>
+									<utu:TabBarItem>
+										<utu:TabBarItem.Icon>
+											<SymbolIcon Symbol="Home" />
+										</utu:TabBarItem.Icon>
+									</utu:TabBarItem>
+									<utu:TabBarItem Style="{StaticResource NeumorphicFabTabBarItemStyle}">
+										<utu:TabBarItem.Flyout>
+											<MenuFlyout Placement="Top"
+														MenuFlyoutPresenterStyle="{StaticResource MaterialMenuFlyoutPresenterStyle}">
 
-													<MenuFlyoutItem Text="Like"
-																	Style="{StaticResource MaterialMenuFlyoutItemStyle}">
-														<MenuFlyoutItem.Icon>
-															<SymbolIcon Symbol="Like" />
-														</MenuFlyoutItem.Icon>
-													</MenuFlyoutItem>
+												<MenuFlyoutItem Text="Like"
+																Style="{StaticResource MaterialMenuFlyoutItemStyle}">
+													<MenuFlyoutItem.Icon>
+														<SymbolIcon Symbol="Like" />
+													</MenuFlyoutItem.Icon>
+												</MenuFlyoutItem>
 
-													<MenuFlyoutItem Text="Dislike"
-																	Style="{StaticResource MaterialMenuFlyoutItemStyle}">
-														<MenuFlyoutItem.Icon>
-															<SymbolIcon Symbol="Dislike" />
-														</MenuFlyoutItem.Icon>
-													</MenuFlyoutItem>
-												</MenuFlyout>
-											</utu:TabBarItem.Flyout>
-											<utu:TabBarItem.Icon>
-												<PathIcon Data="M16.2227 9.14286H9.36551V16H7.0798V9.14286H0.222656V6.85714H7.0798V0H9.36551V6.85714H16.2227V9.14286Z" />
-											</utu:TabBarItem.Icon>
-										</utu:TabBarItem>
-										<utu:TabBarItem>
-											<utu:TabBarItem.Icon>
-												<FontIcon Glyph="&#xE946;" />
-											</utu:TabBarItem.Icon>
-										</utu:TabBarItem>
-									</utu:TabBar.Items>
-								</utu:TabBar>
-							</StackPanel>
+												<MenuFlyoutItem Text="Dislike"
+																Style="{StaticResource MaterialMenuFlyoutItemStyle}">
+													<MenuFlyoutItem.Icon>
+														<SymbolIcon Symbol="Dislike" />
+													</MenuFlyoutItem.Icon>
+												</MenuFlyoutItem>
+											</MenuFlyout>
+										</utu:TabBarItem.Flyout>
+										<utu:TabBarItem.Icon>
+											<PathIcon Data="M16.2227 9.14286H9.36551V16H7.0798V9.14286H0.222656V6.85714H7.0798V0H9.36551V6.85714H16.2227V9.14286Z" />
+										</utu:TabBarItem.Icon>
+									</utu:TabBarItem>
+									<utu:TabBarItem>
+										<utu:TabBarItem.Icon>
+											<FontIcon Glyph="&#xE946;" />
+										</utu:TabBarItem.Icon>
+									</utu:TabBarItem>
+								</utu:TabBar.Items>
+							</utu:TabBar>
 						</StackPanel>
 					</controls:WrapPanel>
 				</smtx:XamlDisplay>
