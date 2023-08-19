@@ -124,7 +124,8 @@
 				<CodeSignEntitlements>MacCatalyst\Entitlements.plist</CodeSignEntitlements>
 
 				<CodesignProvision>Uno Gallery (Catalyst)</CodesignProvision>
-				<CodesignProvision Condition="$(BUILD_SOURCEBRANCH.StartsWith('refs/heads/canaries'))">Uno Gallery Canary (Catalyst)</CodesignProvision>
+				<CodesignProvision Condition="$(BUILD_SOURCEBRANCH.StartsWith('refs/heads/canaries/dev'))">Uno Gallery Canary (Catalyst)</CodesignProvision>
+				<CodesignProvision Condition="$(BUILD_SOURCEBRANCH.StartsWith('refs/heads/canaries/4x'))">Uno Gallery Canary 4x (Catalyst)</CodesignProvision>
 
 				<!-- https://github.com/xamarin/xamarin-macios/issues/14686 -->
 				<_LibMonoLinkMode>Static</_LibMonoLinkMode>
