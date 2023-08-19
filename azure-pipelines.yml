@@ -164,6 +164,12 @@ jobs:
       provisioningProfileLocation: 'secureFiles'
       provProfileSecureFile: Uno_Gallery_Canary_4x_iOS.mobileprovision
 
+  - task: InstallAppleProvisioningProfile@1
+    displayName: 'Install Apple Provisioning Profile'
+    inputs:
+      provisioningProfileLocation: 'secureFiles'
+      provProfileSecureFile: Uno_Gallery_Canary_4x_Catalyst.provisionprofile
+
   - template: build/stage-build-mobile.yml
 
 - job: Linux
