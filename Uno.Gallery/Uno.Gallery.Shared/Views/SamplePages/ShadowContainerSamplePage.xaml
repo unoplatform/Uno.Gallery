@@ -600,6 +600,52 @@
 					</controls:WrapPanel>
 				</smtx:XamlDisplay>
 
+				<!-- Slider -->
+				<smtx:XamlDisplay UniqueKey="ShadowContainerSamplePage_Slider"
+								  smtx:XamlDisplayExtensions.Header="Neumorphic Slider"
+								  Background="{ThemeResource SurfaceBrush}"
+								  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+					<StackPanel>
+						<!--  Slider Vertical  -->
+						<StackPanel Orientation="Horizontal">
+
+							<Slider Height="200"
+									Maximum="100"
+									Minimum="0"
+									Orientation="Vertical"
+									Style="{StaticResource NeumorphicSliderStyle}"
+									Value="50" />
+
+							<Slider Height="200"
+									IsEnabled="False"
+									Maximum="100"
+									Minimum="0"
+									Orientation="Vertical"
+									Style="{StaticResource NeumorphicSliderStyle}"
+									Value="50" />
+						</StackPanel>
+
+						<!--  Slider Horizontal  -->
+						<StackPanel>
+
+							<Slider Width="200"
+									Maximum="100"
+									Minimum="0"
+									Orientation="Horizontal"
+									Style="{StaticResource NeumorphicSliderStyle}"
+									Value="50" />
+
+							<Slider Width="200"
+									IsEnabled="False"
+									Maximum="100"
+									Minimum="0"
+									Orientation="Horizontal"
+									Style="{StaticResource NeumorphicSliderStyle}"
+									Value="50" />
+						</StackPanel>
+					</StackPanel>
+				</smtx:XamlDisplay>
+
 				<!-- ToggleSwitch -->
 				<smtx:XamlDisplay UniqueKey="ShadowContainerSamplePage_ToggleSwitch"
 								  smtx:XamlDisplayExtensions.Header="Neumorphic ToggleSwitch"
