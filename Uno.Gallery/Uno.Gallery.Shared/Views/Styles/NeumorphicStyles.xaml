@@ -3,12 +3,18 @@
 					xmlns:utu="using:Uno.Toolkit.UI"
 					xmlns:converters="using:Uno.Gallery.Converters"
 					xmlns:not_mobile="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+					xmlns:win="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 					xmlns:um="using:Uno.Material">
 
 	<!--#region Shadow ThemeDictionaries-->
 	<ResourceDictionary.ThemeDictionaries>
 		<ResourceDictionary x:Key="Dark">
-
+			<!-- Workaround for OutlineVariantBrush not found in the NeumorphicColorPaletteOverride -->
+			<SolidColorBrush x:Key="OutlineVariantBrush"
+							 Color="{ThemeResource OutlineVariantColor}"/>
+			<SolidColorBrush x:Key="OutlineVariantBrushDisabled"
+							 Color="{ThemeResource OutlineVariantColor}"
+							 Opacity="0.12"/>
 			<!-- Shadow colors -->
 			<Color x:Key="LightShadowColor">#3C3846</Color>
 			<Color x:Key="ShadeShadowColor">#24222A</Color>
@@ -216,6 +222,13 @@
 			
 		</ResourceDictionary>
 		<ResourceDictionary x:Key="Light">
+
+			<!-- Workaround for OutlineVariantBrush not found in the NeumorphicColorPaletteOverride -->
+			<SolidColorBrush x:Key="OutlineVariantBrush"
+							 Color="{ThemeResource OutlineVariantColor}"/>
+			<SolidColorBrush x:Key="OutlineVariantBrushDisabled"
+							 Color="{ThemeResource OutlineVariantColor}"
+							 Opacity="0.12"/>
 
 			<!-- How are we dealing with the color names? -->
 			<!-- Shadow colors -->
@@ -3262,7 +3275,7 @@
 										<ObjectAnimationUsingKeyFrames Storyboard.TargetName="OuterBorder"
 																	   Storyboard.TargetProperty="BorderBrush">
 											<DiscreteObjectKeyFrame KeyTime="0"
-																	Value="#1FC9C5D0" />
+																	Value="{ThemeResource OutlineVariantBrushDisabled}" />
 										</ObjectAnimationUsingKeyFrames>
 										<ObjectAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobBounds"
 																	   Storyboard.TargetProperty="Background">
@@ -3339,7 +3352,7 @@
 													  To="On"
 													  GeneratedDuration="0">
 										<Storyboard>
-											<RepositionThemeAnimation TargetName="SwitchKnob"
+											<win:RepositionThemeAnimation TargetName="SwitchKnob"
 																	  FromHorizontalOffset="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.KnobCurrentToOnOffset}" />
 											<DoubleAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobBounds"
 																		   Storyboard.TargetProperty="Opacity">
@@ -3411,7 +3424,7 @@
 													  To="Off"
 													  GeneratedDuration="0">
 										<Storyboard>
-											<RepositionThemeAnimation TargetName="SwitchKnob"
+											<win:RepositionThemeAnimation TargetName="SwitchKnob"
 																	  FromHorizontalOffset="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.KnobCurrentToOffOffset}" />
 											<DoubleAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobBounds"
 																		   Storyboard.TargetProperty="Opacity">
@@ -3445,8 +3458,8 @@
 													  To="Off"
 													  GeneratedDuration="0">
 										<Storyboard>
-											<RepositionThemeAnimation TargetName="SwitchKnob"
-																	  FromHorizontalOffset="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.KnobOnToOffOffset}" />
+											<win:RepositionThemeAnimation TargetName="SwitchKnob"
+																		  FromHorizontalOffset="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.KnobOnToOffOffset}" />
 											<!--#region uno#9507: UNO specific workaround to reset the states-->
 											<DoubleAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobBounds"
 																		   Storyboard.TargetProperty="Opacity">
@@ -3487,8 +3500,8 @@
 													  GeneratedDuration="0">
 
 										<Storyboard>
-											<RepositionThemeAnimation TargetName="SwitchKnob"
-																	  FromHorizontalOffset="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.KnobOffToOnOffset}" />
+											<win:RepositionThemeAnimation TargetName="SwitchKnob"
+																		  FromHorizontalOffset="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.KnobOffToOnOffset}" />
 											<DoubleAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobBounds"
 																		   Storyboard.TargetProperty="Opacity">
 												<LinearDoubleKeyFrame KeyTime="{StaticResource MaterialToggleSwitchNormalAnimationDuration}"
@@ -3633,14 +3646,13 @@
 							  VerticalAlignment="Top">
 
 							<!-- Off -->
-							<!--BorderBrush="{StaticResource OutlineVariantBrush}"-->
 							<Grid x:Name="OuterBorder"
 								  Width="{ThemeResource SwitchKnobWidth}"
 								  Height="{ThemeResource SwitchKnobHeight}"
 								  CornerRadius="{ThemeResource SwitchKnobRadius}"
 								  Background="{ThemeResource SurfaceBrush}"
 								  BorderThickness="1"
-								  BorderBrush="#C9C5D0"
+								  BorderBrush="{ThemeResource OutlineVariantBrush}"
 								  HorizontalAlignment="Center">
 								<utu:ShadowContainer Shadows="{ThemeResource ToggleSwitchOffBorderShadow}">
 									<Grid Width="{ThemeResource SwitchKnobWidth}"
@@ -3651,14 +3663,13 @@
 							</Grid>
 							
 							<!-- On -->
-							<!--BorderBrush="{StaticResource OutlineVariantBrush}"-->
 							<Grid x:Name="SwitchKnobBounds"
 								  Width="{ThemeResource SwitchKnobWidth}"
 								  Height="{ThemeResource SwitchKnobHeight}"
 								  CornerRadius="{ThemeResource SwitchKnobRadius}"
 								  Background="{ThemeResource PrimaryBrush}"
 								  BorderThickness="1"
-								  BorderBrush="#C9C5D0"
+								  BorderBrush="{ThemeResource OutlineVariantBrush}"
 								  HorizontalAlignment="Center"
 								  Opacity="0">
 								<utu:ShadowContainer x:Name="OnShadowPanel"
