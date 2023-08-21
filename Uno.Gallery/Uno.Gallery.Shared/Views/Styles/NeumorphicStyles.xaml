@@ -46,8 +46,8 @@
 
 			<!-- TextBox -->
 			<utu:ShadowCollection x:Key="TextBoxShadows">
-				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="4" Opacity="0.4" Spread="0" IsInner="True" Color="{StaticResource ShadeShadowColor}" />
-				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="4" Opacity="0.4" Spread="0" IsInner="True" Color="{StaticResource LightShadowColor}" />
+				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="8" Opacity="0.4" Spread="0" IsInner="True" Color="{StaticResource ShadeShadowColor2}" />
+				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="8" Opacity="0.4" Spread="0" IsInner="True" Color="{StaticResource LightShadowColor2}" />
 			</utu:ShadowCollection>
 
 			<!-- ToggleButton -->
@@ -64,22 +64,28 @@
 
 			<!-- CheckBox -->
 			<utu:ShadowCollection x:Key="NeumorphicCheckBoxShadows">
-				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="2" Opacity="0.36" Spread="0" Color="{StaticResource ShadeShadowColor}" IsInner="False" />
-				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="2" Opacity="1" Spread="0" Color="{StaticResource LightShadowColor}" IsInner="False" />
+				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Opacity="1" Spread="0" Color="{StaticResource LightShadowColor2}" IsInner="False" />
+				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="4" Opacity="0.6" Spread="0" Color="{StaticResource ShadeShadowColor2}" IsInner="False" />
 			</utu:ShadowCollection>
-			<utu:Shadow x:Key="NeumorphicCheckBoxVisualStatesShadow" OffsetX="0" OffsetY="0" BlurRadius="12" Color="{StaticResource PrimaryColor}" Opacity="1" Spread="0" IsInner="True" />
-
+			
+			<utu:ShadowCollection x:Key="NeumorphicCheckBoxVisualStatesShadow">
+				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="24" Color="{StaticResource PrimaryColor}" Opacity="1" Spread="0" IsInner="True" />
+			</utu:ShadowCollection>
+			
 			<!-- RadioButton -->
 			<utu:ShadowCollection x:Key="NeumorphicRadioButtonShadows">
-				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="2" Opacity="0.36" Spread="0" Color="{StaticResource ShadeShadowColor}" IsInner="False" />
-				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="2" Opacity="1" Spread="0" Color="{StaticResource LightShadowColor}" IsInner="False" />
+				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Opacity="1" Spread="0" Color="{StaticResource LightShadowColor2}" IsInner="False" />
+				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="4" Opacity="0.6" Spread="0" Color="{StaticResource ShadeShadowColor2}" IsInner="False" />
 			</utu:ShadowCollection>
-			<utu:Shadow x:Key="NeumorphicRadioButtonVisualStatesShadow" OffsetX="0" OffsetY="0" BlurRadius="12" Color="{StaticResource PrimaryColor}" Opacity="1" Spread="0" IsInner="True" />
 
+			<utu:ShadowCollection x:Key="NeumorphicRadioButtonVisualStatesShadow">
+				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="24" Color="{StaticResource PrimaryColor}" Opacity="1" Spread="0" IsInner="True" />
+			</utu:ShadowCollection>
+			
 			<!-- ComboBox -->
 			<utu:ShadowCollection x:Key="ComboboxShadows">
-				<utu:Shadow BlurRadius="4" IsInner="True" OffsetX="4" OffsetY="4" Opacity="0.4" Spread="0" Color="{StaticResource ShadeShadowColor}" />
-				<utu:Shadow BlurRadius="4" IsInner="True" OffsetX="-4" OffsetY="-4" Opacity="0.4" Spread="0" Color="{StaticResource LightShadowColor}" />
+				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="4" OffsetY="4" Opacity="0.4" Spread="0" Color="{StaticResource ShadeShadowColor2}" />
+				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="-4" OffsetY="-4" Opacity="0.4" Spread="0" Color="{StaticResource LightShadowColor2}" />
 			</utu:ShadowCollection>
 
 			<!-- TabBar -->
@@ -98,9 +104,10 @@
 				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="4" OffsetY="4" Opacity="0.4" Spread="0" Color="{StaticResource ShadeShadowColor4}" />
 				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="-4" OffsetY="-4" Opacity="0.4" Spread="0" Color="{StaticResource LightShadowColor4}" />
 			</utu:ShadowCollection>
+			
 			<utu:ShadowCollection x:Key="FabTabBarItemShadows">
-				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="-8" OffsetY="-8" Opacity="0.4" Spread="0" Color="{StaticResource MediumShadowColor7}" />
 				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="8" OffsetY="8" Opacity="0.2" Spread="0" Color="{StaticResource LightShadowColor7}" />
+				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="-8" OffsetY="-8" Opacity="0.4" Spread="0" Color="{StaticResource MediumShadowColor7}" />
 				<utu:Shadow BlurRadius="20" IsInner="False" OffsetX="12" OffsetY="12" Opacity="0.4" Spread="0" Color="{StaticResource ShadeShadowColor7}" />
 			</utu:ShadowCollection>
 
@@ -171,6 +178,7 @@
 				<utu:Shadow BlurRadius="4" IsInner="False" OffsetX="-1" OffsetY="-1" Opacity="1" Spread="0" Color="{StaticResource LightShadowColor2}" />
 				<utu:Shadow BlurRadius="4" IsInner="False" OffsetX="1" OffsetY="1" Opacity="0.6" Spread="0" Color="{StaticResource ShadeShadowColor2}" />
 			</utu:ShadowCollection>
+			
 			<utu:ShadowCollection x:Key="ChipsShadowsSelected">
 				<utu:Shadow BlurRadius="4" IsInner="True" OffsetX="1" OffsetY="1" Opacity="0.9" Spread="0" Color="{StaticResource ShadeShadowColor6}" />
 				<utu:Shadow BlurRadius="4" IsInner="True" OffsetX="-1" OffsetY="-1" Opacity="0.9" Spread="0" Color="{StaticResource LightShadowColor6}" />
@@ -201,12 +209,11 @@
 				<utu:Shadow BlurRadius="1" IsInner="False" OffsetX="-1" OffsetY="0" Opacity="1" Spread="1" Color="{StaticResource VariantShadowColor8}" />
 			</utu:ShadowCollection>
 			
-			<utu:ShadowCollection x:Key="ToggleSwitchKnobNoShadow" />
-
 			<utu:ShadowCollection x:Key="ToggleSwitchOnBorderDisabledShadow">
 				<utu:Shadow BlurRadius="2" IsInner="True" OffsetX="1" OffsetY="1" Opacity="1" Spread="2" Color="{StaticResource ShadeShadowColor8}" />
 				<utu:Shadow BlurRadius="2" IsInner="True" OffsetX="-1" OffsetY="-1" Opacity="0.6" Spread="2" Color="{StaticResource LightShadowColor8}" />
 			</utu:ShadowCollection>
+			
 		</ResourceDictionary>
 		<ResourceDictionary x:Key="Light">
 
@@ -257,17 +264,23 @@
 
 			<!-- CheckBox -->
 			<utu:ShadowCollection x:Key="NeumorphicCheckBoxShadows">
-				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="2" Opacity="0.36" Spread="0" Color="{StaticResource ShadeShadowColor}" IsInner="False" />
 				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="2" Opacity="1" Spread="0" Color="{StaticResource LightShadowColor}" IsInner="False" />
+				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="2" Opacity="0.6" Spread="0" Color="{StaticResource ShadeShadowColor}" IsInner="False" />
 			</utu:ShadowCollection>
-			<utu:Shadow x:Key="NeumorphicCheckBoxVisualStatesShadow" OffsetX="0" OffsetY="0" BlurRadius="12" Color="{StaticResource PrimaryColor}" Opacity="1" Spread="0" IsInner="True" />
-
+			
+			<utu:ShadowCollection x:Key="NeumorphicCheckBoxVisualStatesShadow">
+				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="12" Opacity="1" Spread="0" IsInner="True" Color="{StaticResource PrimaryColor}" />
+			</utu:ShadowCollection>
+			
 			<!-- RadioButton -->
 			<utu:ShadowCollection x:Key="NeumorphicRadioButtonShadows">
-				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="2" Opacity="0.36" Spread="0" Color="{StaticResource ShadeShadowColor}" IsInner="False" />
-				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="2" Opacity="1" Spread="0" Color="{StaticResource LightShadowColor}" IsInner="False" />
+				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="2" Opacity="1" Spread="0" IsInner="False" Color="{StaticResource LightShadowColor}" />
+				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="2" Opacity="0.6" Spread="0" IsInner="False" Color="{StaticResource ShadeShadowColor}" />
 			</utu:ShadowCollection>
-			<utu:Shadow x:Key="NeumorphicRadioButtonVisualStatesShadow" OffsetX="0" OffsetY="0" BlurRadius="12" Color="{StaticResource PrimaryColor}" Opacity="1" Spread="0" IsInner="True" />
+				
+			<utu:ShadowCollection x:Key="NeumorphicRadioButtonVisualStatesShadow">
+				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="12" Opacity="1" Spread="0" IsInner="True" Color="{StaticResource PrimaryColor}" />
+			</utu:ShadowCollection>
 
 			<!-- ComboBox -->
 			<utu:ShadowCollection x:Key="ComboboxShadows">
@@ -291,6 +304,7 @@
 				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="4" OffsetY="4" Opacity="0.4" Spread="0" Color="{StaticResource ShadeShadowColor}" />
 				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="-4" OffsetY="-4" Opacity="0.4" Spread="0" Color="{StaticResource LightShadowColor}" />
 			</utu:ShadowCollection>
+
 			<utu:ShadowCollection x:Key="FabTabBarItemShadows">
 				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="-8" OffsetY="-8" Opacity="0.08" Spread="0" Color="{StaticResource ShadeShadowColor7}" />
 				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="8" OffsetY="8" Opacity="0.4" Spread="0" Color="{StaticResource LightShadowColor7}" />
@@ -364,6 +378,7 @@
 				<utu:Shadow BlurRadius="4" IsInner="False" OffsetX="-1" OffsetY="-1" Opacity="1" Spread="0" Color="{StaticResource LightShadowColor}" />
 				<utu:Shadow BlurRadius="4" IsInner="False" OffsetX="1" OffsetY="1" Opacity="0.6" Spread="0" Color="{StaticResource ShadeShadowColor}" />
 			</utu:ShadowCollection>
+			
 			<utu:ShadowCollection x:Key="ChipsShadowsSelected">
 				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="4" OffsetY="4" Opacity="1" Spread="0" Color="{StaticResource ShadeShadowColor2}" />
 				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="-4" OffsetY="-4" Opacity="1" Spread="0" Color="{StaticResource LightShadowColor2}" />
@@ -398,7 +413,6 @@
 				<utu:Shadow BlurRadius="2" IsInner="True" OffsetX="0.5" OffsetY="0.5" Opacity="0.15" Spread="2" Color="{StaticResource ShadeShadowColor5}" />
 			</utu:ShadowCollection>
 
-			<utu:ShadowCollection x:Key="ToggleSwitchKnobNoShadow" />
 		</ResourceDictionary>
 	</ResourceDictionary.ThemeDictionaries>
 	<!--#endregion-->
@@ -3188,6 +3202,8 @@
 									<VisualState.Setters>
 										<Setter Target="KnobOn.Margin" Value="0" />
 										<Setter Target="KnobOff.Margin" Value="0" />
+										<Setter Target="SwitchKnobOn.Margin" Value="26,0,0,0" />
+										<Setter Target="OnIconPresenterBorder.Margin" Value="0" />
 										<Setter Target="SwitchKnobOnShadow.Visibility" Value="Visible" />
 										<Setter Target="SwitchKnobOffShadow.Visibility" Value="Visible" />
 									</VisualState.Setters>
@@ -3242,6 +3258,11 @@
 																	   Storyboard.TargetProperty="Background">
 											<DiscreteObjectKeyFrame KeyTime="0"
 																	Value="{ThemeResource SurfaceVariantBrush}" />
+										</ObjectAnimationUsingKeyFrames>
+										<ObjectAnimationUsingKeyFrames Storyboard.TargetName="OuterBorder"
+																	   Storyboard.TargetProperty="BorderBrush">
+											<DiscreteObjectKeyFrame KeyTime="0"
+																	Value="#1FC9C5D0" />
 										</ObjectAnimationUsingKeyFrames>
 										<ObjectAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobBounds"
 																	   Storyboard.TargetProperty="Background">
@@ -3506,9 +3527,7 @@
 									<VisualState.Setters>
 										<Setter Target="ShadowKnobOff.Opacity" Value="{Binding IsOn, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ToggleSwitchIsOffToOpacity}}" />
 										<Setter Target="ShadowKnobOn.Opacity" Value="{Binding IsOn, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ToggleSwitchIsOnToOpacity}}" />
-										<Setter Target="ShadowKnobOff.Shadows" Value="{ThemeResource ToggleSwitchKnobOffShadow}" />
-										<Setter Target="ShadowKnobOn.Shadows" Value="{ThemeResource ToggleSwitchKnobOnShadow}" />
-	
+
 									</VisualState.Setters>
 									<Storyboard>
 										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobBounds"
@@ -3546,10 +3565,8 @@
 								</VisualState>
 								<VisualState x:Name="Off">
 									<VisualState.Setters>
-										<Setter Target="ShadowKnobOff.Opacity" Value="{Binding IsOn, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ToggleSwitchIsOffToOpacity}}" />
-										<Setter Target="ShadowKnobOn.Opacity" Value="{Binding IsOn, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ToggleSwitchIsOnToOpacity}}" />
-										<Setter Target="ShadowKnobOff.Shadows" Value="{ThemeResource ToggleSwitchKnobOffShadow}" />
-										<Setter Target="ShadowKnobOn.Shadows" Value="{ThemeResource ToggleSwitchKnobNoShadow}" />
+										<Setter Target="ShadowKnobOff.Opacity" Value="1" />
+										<Setter Target="ShadowKnobOn.Opacity" Value="0" />
 									</VisualState.Setters>
 									<Storyboard>
 										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobOnShadow"
@@ -3566,10 +3583,8 @@
 								</VisualState>
 								<VisualState x:Name="On">
 									<VisualState.Setters>
-										<Setter Target="ShadowKnobOff.Opacity" Value="{Binding IsOn, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ToggleSwitchIsOffToOpacity}}" />
-										<Setter Target="ShadowKnobOn.Opacity" Value="{Binding IsOn, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ToggleSwitchIsOnToOpacity}}" />
-										<Setter Target="ShadowKnobOff.Shadows" Value="{ThemeResource ToggleSwitchKnobNoShadow}" />
-										<Setter Target="ShadowKnobOn.Shadows" Value="{ThemeResource ToggleSwitchKnobOnShadow}" />
+										<Setter Target="ShadowKnobOff.Opacity" Value="0" />
+										<Setter Target="ShadowKnobOn.Opacity" Value="1" />
 									</VisualState.Setters>
 									<Storyboard>
 										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobBounds"
@@ -3670,9 +3685,10 @@
 										HorizontalAlignment="Left">
 
 									<Border x:Name="KnobOnBorder">
-										<utu:ShadowContainer x:Name="ShadowKnobOn">
+										<utu:ShadowContainer x:Name="ShadowKnobOn"
+															 Shadows="{ThemeResource ToggleSwitchKnobOnShadow}">
 											<!-- Knob On -->
-											<Grid x:Name="KnobOn"
+											<Border x:Name="KnobOn"
 												  Opacity="0"
 												  Width="{ThemeResource MediumThumbSize}"
 												  Height="{ThemeResource MediumThumbSize}"
@@ -3684,7 +3700,8 @@
 										</utu:ShadowContainer>
 									</Border>
 									<!-- On Icon -->
-									<Border Height="{ThemeResource KnobIconSize}"
+									<Border x:Name="OnIconPresenterBorder"
+											Height="{ThemeResource KnobIconSize}"
 											Width="{ThemeResource KnobIconSize}"
 											Padding="{ThemeResource KnobIconPadding}"
 											Margin="4,0,0,0"
@@ -3712,9 +3729,10 @@
 										HorizontalAlignment="Right">
 
 									<Border x:Name="KnobOffBorder">
-										<utu:ShadowContainer x:Name="ShadowKnobOff">
+										<utu:ShadowContainer x:Name="ShadowKnobOff"
+															 Shadows="{ThemeResource ToggleSwitchKnobOffShadow}">
 											<!-- Knob Off -->
-											<Grid x:Name="KnobOff"
+											<Border x:Name="KnobOff"
 												  Background="{ThemeResource OnSurfaceVariantBrush}"
 												  Height="{Binding OffContent, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ToggleSwitchOffContentToContentSize}}"
 												  Width="{Binding OffContent, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ToggleSwitchOffContentToContentSize}}"
