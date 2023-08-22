@@ -601,12 +601,12 @@
 				</smtx:XamlDisplay>
 
 				<!-- Slider -->
-				<smtx:XamlDisplay UniqueKey="ShadowContainerSamplePage_Slider"
+				<!--<smtx:XamlDisplay UniqueKey="ShadowContainerSamplePage_Slider"
 								  smtx:XamlDisplayExtensions.Header="Neumorphic Slider"
 								  Background="{ThemeResource SurfaceBrush}"
 								  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
 					<StackPanel>
-						<!--  Slider Vertical  -->
+						--><!--  Slider Vertical  --><!--
 						<StackPanel Orientation="Horizontal">
 
 							<Slider Height="200"
@@ -625,7 +625,7 @@
 									Value="50" />
 						</StackPanel>
 
-						<!--  Slider Horizontal  -->
+						--><!--  Slider Horizontal  --><!--
 						<StackPanel>
 
 							<Slider Width="200"
@@ -644,7 +644,7 @@
 									Value="50" />
 						</StackPanel>
 					</StackPanel>
-				</smtx:XamlDisplay>
+				</smtx:XamlDisplay>-->
 
 				<!-- ToggleSwitch -->
 				<smtx:XamlDisplay UniqueKey="ShadowContainerSamplePage_ToggleSwitch"
