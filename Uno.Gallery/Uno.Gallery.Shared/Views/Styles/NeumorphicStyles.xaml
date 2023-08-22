@@ -3,6 +3,7 @@
 					xmlns:utu="using:Uno.Toolkit.UI"
 					xmlns:converters="using:Uno.Gallery.Converters"
 					xmlns:not_mobile="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+					xmlns:win="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 					xmlns:um="using:Uno.Material">
 
 	<!--#region Shadow ThemeDictionaries-->
@@ -3573,6 +3574,8 @@
 									<VisualState.Setters>
 										<Setter Target="KnobOn.Margin" Value="0" />
 										<Setter Target="KnobOff.Margin" Value="0" />
+										<Setter Target="KnobOn.CornerRadius" Value="{ThemeResource LargeThumbCornerRadius}" />
+										<Setter Target="KnobOff.CornerRadius" Value="{ThemeResource LargeThumbCornerRadius}" />
 										<Setter Target="SwitchKnobOn.Margin" Value="26,0,0,0" />
 										<Setter Target="OnIconPresenterBorder.Margin" Value="0" />
 										<Setter Target="SwitchKnobOnShadow.Visibility" Value="Visible" />
@@ -3710,7 +3713,7 @@
 													  To="On"
 													  GeneratedDuration="0">
 										<Storyboard>
-											<RepositionThemeAnimation TargetName="SwitchKnob"
+											<win:RepositionThemeAnimation TargetName="SwitchKnob"
 																	  FromHorizontalOffset="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.KnobCurrentToOnOffset}" />
 											<DoubleAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobBounds"
 																		   Storyboard.TargetProperty="Opacity">
@@ -3782,7 +3785,7 @@
 													  To="Off"
 													  GeneratedDuration="0">
 										<Storyboard>
-											<RepositionThemeAnimation TargetName="SwitchKnob"
+											<win:RepositionThemeAnimation TargetName="SwitchKnob"
 																	  FromHorizontalOffset="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.KnobCurrentToOffOffset}" />
 											<DoubleAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobBounds"
 																		   Storyboard.TargetProperty="Opacity">
@@ -3816,7 +3819,7 @@
 													  To="Off"
 													  GeneratedDuration="0">
 										<Storyboard>
-											<RepositionThemeAnimation TargetName="SwitchKnob"
+											<win:RepositionThemeAnimation TargetName="SwitchKnob"
 																	  FromHorizontalOffset="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.KnobOnToOffOffset}" />
 											<!--#region uno#9507: UNO specific workaround to reset the states-->
 											<DoubleAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobBounds"
@@ -3858,7 +3861,7 @@
 													  GeneratedDuration="0">
 
 										<Storyboard>
-											<RepositionThemeAnimation TargetName="SwitchKnob"
+											<win:RepositionThemeAnimation TargetName="SwitchKnob"
 																	  FromHorizontalOffset="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.KnobOffToOnOffset}" />
 											<DoubleAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobBounds"
 																		   Storyboard.TargetProperty="Opacity">
@@ -4037,32 +4040,32 @@
 							</Grid>
 
 							<Grid x:Name="SwitchKnob"
-									HorizontalAlignment="Left"
-									Width="{ThemeResource SwitchKnobIncludingOffShadowWidth}"
-									Height="{ThemeResource SwitchKnobHeight}"
-									CornerRadius="16">
+								  HorizontalAlignment="Left"
+								  Width="{ThemeResource SwitchKnobIncludingOffShadowWidth}"
+								  Height="{ThemeResource SwitchKnobHeight}"
+								  CornerRadius="16">
 
 								<!-- Switch Knob - On -->
 								<Grid x:Name="SwitchKnobOn"
-										Width="{ThemeResource LargeThumbSize}"
-										Height="{ThemeResource LargeThumbSize}"
-										Margin="24,0,0,0"
-										CornerRadius="{ThemeResource LargeThumbCornerRadius}"
-										HorizontalAlignment="Left">
+									  Width="{ThemeResource LargeThumbSize}"
+									  Height="{ThemeResource LargeThumbSize}"
+									  Margin="24,0,0,0"
+									  CornerRadius="{ThemeResource LargeThumbCornerRadius}"
+									  HorizontalAlignment="Left">
 
 									<Border x:Name="KnobOnBorder">
 										<utu:ShadowContainer x:Name="ShadowKnobOn"
 															 Shadows="{ThemeResource ToggleSwitchKnobOnShadows}">
 											<!-- Knob On -->
 											<Border x:Name="KnobOn"
-												  Opacity="0"
-												  Width="{ThemeResource MediumThumbSize}"
-												  Height="{ThemeResource MediumThumbSize}"
-												  Margin="{ThemeResource KnobOnMargin}"
-												  VerticalAlignment="Center"
-												  HorizontalAlignment="Left"
-												  CornerRadius="12"
-												  Background="{ThemeResource SurfaceBrush}" />
+												    Opacity="0"
+												    Width="{ThemeResource MediumThumbSize}"
+												    Height="{ThemeResource MediumThumbSize}"
+												    Margin="{ThemeResource KnobOnMargin}"
+												    VerticalAlignment="Center"
+												    HorizontalAlignment="Left"
+												    CornerRadius="12"
+												    Background="{ThemeResource SurfaceBrush}" />
 										</utu:ShadowContainer>
 									</Border>
 									<!-- On Icon -->
@@ -4088,24 +4091,24 @@
 
 								<!-- Switch Knob - Off -->
 								<Grid x:Name="SwitchKnobOff"
-										Width="{ThemeResource LargeThumbSize}"
-										Height="{ThemeResource LargeThumbSize}"
-										Margin="{ThemeResource SwitchKnobOffMargin}"
-										CornerRadius="{ThemeResource LargeThumbCornerRadius}"
-										HorizontalAlignment="Right">
+									  Width="{ThemeResource LargeThumbSize}"
+									  Height="{ThemeResource LargeThumbSize}"
+									  Margin="{ThemeResource SwitchKnobOffMargin}"
+									  CornerRadius="{ThemeResource LargeThumbCornerRadius}"
+									  HorizontalAlignment="Right">
 
 									<Border x:Name="KnobOffBorder">
 										<utu:ShadowContainer x:Name="ShadowKnobOff"
 															 Shadows="{ThemeResource ToggleSwitchKnobOffShadows}">
 											<!-- Knob Off -->
 											<Border x:Name="KnobOff"
-												  Background="{ThemeResource OnSurfaceVariantBrush}"
-												  Height="{Binding OffContent, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ToggleSwitchOffContentToContentSize}}"
-												  Width="{Binding OffContent, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ToggleSwitchOffContentToContentSize}}"
-												  Margin="{Binding OffContent, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ToggleSwitchOffContentToContentMargin}}"
-												  VerticalAlignment="Center"
-												  HorizontalAlignment="Right"
-												  CornerRadius="{Binding OffContent, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ToggleSwitchOffContentToCornerRadius}}"/>
+													Background="{ThemeResource OnSurfaceVariantBrush}"
+													Height="{Binding OffContent, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ToggleSwitchOffContentToContentSize}}"
+													Width="{Binding OffContent, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ToggleSwitchOffContentToContentSize}}"
+													Margin="{Binding OffContent, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ToggleSwitchOffContentToContentMargin}}"
+													VerticalAlignment="Center"
+													HorizontalAlignment="Right"
+													CornerRadius="{Binding OffContent, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ToggleSwitchOffContentToCornerRadius}}"/>
 										</utu:ShadowContainer>
 									</Border>
 									<!-- Off Icon -->
