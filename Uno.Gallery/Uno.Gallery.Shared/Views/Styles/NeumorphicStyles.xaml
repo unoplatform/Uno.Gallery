@@ -52,8 +52,8 @@
 			<Color x:Key="LightShadowColor9">#615B71</Color>
 			<Color x:Key="ShadeShadowColor9">#000000</Color>
 
-			<Color x:Key="LightShadowColor10">#9B92D3</Color>
-			<Color x:Key="ShadeShadowColor10">#ECE5FF</Color>
+			<Color x:Key="LightShadowColor10">#ECE5FF</Color>
+			<Color x:Key="ShadeShadowColor10">#9B92D3</Color>
 
 			<Color x:Key="LightShadowColor11">#18171C</Color>
 			<Color x:Key="ShadeShadowColor11">#000000</Color>
