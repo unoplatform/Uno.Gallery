@@ -83,11 +83,19 @@
 				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Opacity="1" Spread="0" Color="{StaticResource LightShadowColor2}" IsInner="False" />
 				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="4" Opacity="0.6" Spread="0" Color="{StaticResource ShadeShadowColor2}" IsInner="False" />
 			</utu:ShadowCollection>
+
+			<utu:ShadowCollection x:Key="NeumorphicCheckBoxStateShadows">
+				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="8" Opacity="1" Spread="8" Color="{ThemeResource PrimaryColor}" IsInner="False" />
+			</utu:ShadowCollection>
 			
 			<!-- RadioButton -->
 			<utu:ShadowCollection x:Key="NeumorphicRadioButtonShadows">
 				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Opacity="1" Spread="0" Color="{StaticResource LightShadowColor2}" IsInner="False" />
 				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="4" Opacity="0.6" Spread="0" Color="{StaticResource ShadeShadowColor2}" IsInner="False" />
+			</utu:ShadowCollection>
+
+			<utu:ShadowCollection x:Key="NeumorphicRadioButtonStateShadows">
+				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="8" Opacity="1" Spread="8" Color="{ThemeResource PrimaryColor}" IsInner="False" />
 			</utu:ShadowCollection>
 			
 			<!-- ComboBox -->
@@ -210,6 +218,10 @@
 				<utu:Shadow BlurRadius="4" IsInner="False" OffsetX="0" OffsetY="4" Opacity="0.18" Spread="0" Color="{StaticResource ShadeShadowColor11}" />
 			</utu:ShadowCollection>
 
+			<utu:ShadowCollection x:Key="SliderThumbStateShadow">
+				<utu:Shadow BlurRadius="8" IsInner="False" OffsetX="0" OffsetY="0" Opacity="1" Spread="8" Color="{StaticResource PrimaryColor}" />
+			</utu:ShadowCollection>
+
 			<utu:ShadowCollection x:Key="SliderThumbDisabledShadow">
 				<utu:Shadow BlurRadius="1" IsInner="False" OffsetX="0" OffsetY="1" Opacity="0.24" Spread="0" Color="{StaticResource ShadeShadowColor11}" />
 			</utu:ShadowCollection>
@@ -312,11 +324,19 @@
 				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="2" Opacity="1" Spread="0" Color="{StaticResource LightShadowColor}" IsInner="False" />
 				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="2" Opacity="0.6" Spread="0" Color="{StaticResource ShadeShadowColor}" IsInner="False" />
 			</utu:ShadowCollection>
+
+			<utu:ShadowCollection x:Key="NeumorphicCheckBoxStateShadows">
+				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="8" Opacity="1" Spread="8" Color="{ThemeResource PrimaryColor}" IsInner="False" />
+			</utu:ShadowCollection>
 			
 			<!-- RadioButton -->
 			<utu:ShadowCollection x:Key="NeumorphicRadioButtonShadows">
 				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="2" Opacity="1" Spread="0" IsInner="False" Color="{StaticResource LightShadowColor}" />
 				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="2" Opacity="0.6" Spread="0" IsInner="False" Color="{StaticResource ShadeShadowColor}" />
+			</utu:ShadowCollection>
+
+			<utu:ShadowCollection x:Key="NeumorphicRadioButtonStateShadows">
+				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="8" Opacity="1" Spread="8" Color="{ThemeResource PrimaryColor}" IsInner="False" />
 			</utu:ShadowCollection>
 
 			<!-- ComboBox -->
@@ -437,6 +457,10 @@
 			<utu:ShadowCollection x:Key="SliderThumbShadows">
 				<utu:Shadow BlurRadius="16" IsInner="True" OffsetX="0" OffsetY="0" Opacity="1" Spread="0" Color="{StaticResource LightShadowColor11}" />
 				<utu:Shadow BlurRadius="4" IsInner="False" OffsetX="0" OffsetY="4" Opacity="0.18" Spread="0" Color="{StaticResource ShadeShadowColor11}" />
+			</utu:ShadowCollection>
+
+			<utu:ShadowCollection x:Key="SliderThumbStateShadow">
+				<utu:Shadow BlurRadius="8" IsInner="False" OffsetX="0" OffsetY="0" Opacity="1" Spread="8" Color="{StaticResource PrimaryColor}" />
 			</utu:ShadowCollection>
 
 			<utu:ShadowCollection x:Key="SliderThumbDisabledShadow">
@@ -1397,6 +1421,7 @@
 		<Setter Property="Padding" Value="20,0" />
 
 	</Style>
+
 	<!-- FAB Style -->
 	<CornerRadius x:Key="NeumorphicButtonCornerRadius">4</CornerRadius>
 	<x:Double x:Key="NeumorphicFabFontSize">14</x:Double>
@@ -1573,7 +1598,7 @@
 										<Setter Target="CheckGlyph.Opacity" Value="0" />
 									</VisualState.Setters>
 									<Storyboard>
-										<DoubleAnimation Storyboard.TargetName="PressRing"
+										<DoubleAnimation Storyboard.TargetName="StateLayer"
 														 Storyboard.TargetProperty="Opacity"
 														 Duration="{StaticResource MaterialAnimationDuration}"
 														 To="{ThemeResource HoverOpacity}">
@@ -1589,7 +1614,7 @@
 										<Setter Target="CheckGlyph.Opacity" Value="0" />
 									</VisualState.Setters>
 									<Storyboard>
-										<DoubleAnimation Storyboard.TargetName="PressRing"
+										<DoubleAnimation Storyboard.TargetName="StateLayer"
 														 Storyboard.TargetProperty="Opacity"
 														 Duration="{StaticResource MaterialAnimationDuration}"
 														 To="{ThemeResource PressedOpacity}">
@@ -1619,7 +1644,7 @@
 										<Setter Target="CheckGlyph.Opacity" Value="1" />
 									</VisualState.Setters>
 									<Storyboard>
-										<DoubleAnimation Storyboard.TargetName="PressRing"
+										<DoubleAnimation Storyboard.TargetName="StateLayer"
 														 Storyboard.TargetProperty="Opacity"
 														 Duration="{StaticResource MaterialAnimationDuration}"
 														 To="{ThemeResource HoverOpacity}">
@@ -1640,7 +1665,7 @@
 												<CubicEase EasingMode="EaseIn" />
 											</DoubleAnimation.EasingFunction>
 										</DoubleAnimation>
-										<DoubleAnimation Storyboard.TargetName="PressRing"
+										<DoubleAnimation Storyboard.TargetName="StateLayer"
 														 Storyboard.TargetProperty="Opacity"
 														 Duration="{StaticResource MaterialAnimationDuration}"
 														 To="{ThemeResource PressedOpacity}">
@@ -1672,7 +1697,7 @@
 										<Setter Target="HyphenGlyph.Opacity" Value="1" />
 									</VisualState.Setters>
 									<Storyboard>
-										<DoubleAnimation Storyboard.TargetName="PressRing"
+										<DoubleAnimation Storyboard.TargetName="StateLayer"
 														 Storyboard.TargetProperty="Opacity"
 														 Duration="{StaticResource MaterialAnimationDuration}"
 														 To="{ThemeResource HoverOpacity}">
@@ -1693,7 +1718,7 @@
 												<CubicEase EasingMode="EaseIn" />
 											</DoubleAnimation.EasingFunction>
 										</DoubleAnimation>
-										<DoubleAnimation Storyboard.TargetName="PressRing"
+										<DoubleAnimation Storyboard.TargetName="StateLayer"
 														 Storyboard.TargetProperty="Opacity"
 														 Duration="{StaticResource MaterialAnimationDuration}"
 														 To="{ThemeResource PressedOpacity}">
@@ -1721,7 +1746,7 @@
 							<VisualStateGroup x:Name="FocusStates">
 								<VisualState x:Name="Focused">
 									<Storyboard>
-										<DoubleAnimation Storyboard.TargetName="FocusRing"
+										<DoubleAnimation Storyboard.TargetName="StateLayer"
 														 Storyboard.TargetProperty="Opacity"
 														 Duration="{StaticResource MaterialAnimationDuration}"
 														 To="{ThemeResource FocusedOpacity}">
@@ -1742,26 +1767,14 @@
 							<ColumnDefinition Width="{ThemeResource CheckBoxCheckAreaLength}" />
 							<ColumnDefinition Width="*" />
 						</Grid.ColumnDefinitions>
-
-						<Ellipse x:Name="FocusRing"
-								 Stretch="Uniform"
-								 HorizontalAlignment="Center"
-								 VerticalAlignment="Center"
-								 IsHitTestVisible="False"
-								 Opacity="0"
-								 Width="{ThemeResource CheckBoxFocusAreaSize}"
-								 Height="{ThemeResource CheckBoxFocusAreaSize}"
-								 Fill="{ThemeResource PrimaryBrush}" />
-
-						<Ellipse x:Name="PressRing"
-								 Stretch="Uniform"
-								 HorizontalAlignment="Center"
-								 VerticalAlignment="Center"
-								 IsHitTestVisible="False"
-								 Opacity="0"
-								 Width="{ThemeResource CheckBoxFocusAreaSize}"
-								 Height="{ThemeResource CheckBoxFocusAreaSize}"
-								 Fill="{ThemeResource PrimaryBrush}" />
+						
+						<utu:ShadowContainer x:Name="StateLayer"
+											 Shadows="{ThemeResource NeumorphicCheckBoxStateShadows}"
+											 Opacity="0">
+							<Grid Height="{ThemeResource CheckBoxCheckAreaSize}"
+								  Width="{ThemeResource CheckBoxCheckAreaSize}"
+								  CornerRadius="{TemplateBinding CornerRadius}" />
+						</utu:ShadowContainer>
 
 						<utu:ShadowContainer Shadows="{ThemeResource NeumorphicCheckBoxShadows}">
 							<Grid x:Name="CheckBoxContainer"
@@ -1887,6 +1900,7 @@
 										<Setter Target="ContentPresenter.Visibility" Value="Collapsed" />
 										<Setter Target="AlternateContentPresenter.Visibility" Value="Visible" />
 										<Setter Target="AlternateContentPresenter.Foreground" Value="{ThemeResource OnPrimaryBrush}" />
+										<Setter Target="HoverOverlay.Fill" Value="{StaticResource OnPrimaryHoverBrush}" />
 										<Setter Target="HoverOverlay.Opacity" Value="1" />
 									</VisualState.Setters>
 								</VisualState>
@@ -1896,6 +1910,7 @@
 										<Setter Target="ContentPresenter.Visibility" Value="Collapsed" />
 										<Setter Target="AlternateContentPresenter.Visibility" Value="Visible" />
 										<Setter Target="AlternateContentPresenter.Foreground" Value="{ThemeResource OnPrimaryBrush}" />
+										<Setter Target="PressedOverlay.Fill" Value="{StaticResource OnPrimaryPressedBrush}" />
 										<Setter Target="PressedOverlay.Opacity" Value="1" />
 									</VisualState.Setters>
 								</VisualState>
@@ -2001,7 +2016,7 @@
 								<VisualState x:Name="Normal" />
 								<VisualState x:Name="PointerOver">
 									<Storyboard>
-										<DoubleAnimation Storyboard.TargetName="PressRing"
+										<DoubleAnimation Storyboard.TargetName="StateLayer"
 														 Storyboard.TargetProperty="Opacity"
 														 Duration="{StaticResource MaterialAnimationDuration}"
 														 To="{ThemeResource HoverOpacity}">
@@ -2013,7 +2028,7 @@
 								</VisualState>
 								<VisualState x:Name="Pressed">
 									<Storyboard>
-										<DoubleAnimation Storyboard.TargetName="PressRing"
+										<DoubleAnimation Storyboard.TargetName="StateLayer"
 														 Storyboard.TargetProperty="Opacity"
 														 Duration="{StaticResource MaterialAnimationDuration}"
 														 To="{ThemeResource PressedOpacity}">
@@ -2051,7 +2066,7 @@
 
 								<VisualState x:Name="Focused">
 									<Storyboard>
-										<DoubleAnimation Storyboard.TargetName="FocusRing"
+										<DoubleAnimation Storyboard.TargetName="StateLayer"
 														 Storyboard.TargetProperty="Opacity"
 														 Duration="{StaticResource MaterialAnimationDuration}"
 														 To="{ThemeResource FocusedOpacity}">
@@ -2073,23 +2088,13 @@
 							<ColumnDefinition Width="*" />
 						</Grid.ColumnDefinitions>
 
-						<Ellipse x:Name="PressRing"
-								 HorizontalAlignment="Center"
-								 VerticalAlignment="Center"
-								 Height="{TemplateBinding MinHeight}"
-								 Width="{TemplateBinding MinWidth}"
-								 Fill="{ThemeResource PrimaryBrush}"
-								 IsHitTestVisible="False"
-								 Opacity="0" />
-
-						<Ellipse x:Name="FocusRing"
-								 HorizontalAlignment="Center"
-								 VerticalAlignment="Center"
-								 Height="{TemplateBinding MinHeight}"
-								 Width="{TemplateBinding MinWidth}"
-								 Fill="{ThemeResource PrimaryBrush}"
-								 IsHitTestVisible="False"
-								 Opacity="0" />
+						<utu:ShadowContainer x:Name="StateLayer"
+											 Shadows="{ThemeResource NeumorphicRadioButtonStateShadows}"
+											 Opacity="0">
+							<Grid Height="20"
+								  Width="20"
+								  CornerRadius="10" />
+						</utu:ShadowContainer>
 
 						<utu:ShadowContainer Shadows="{ThemeResource NeumorphicRadioButtonShadows}">
 							<Grid Height="20"
@@ -3176,6 +3181,10 @@
 												Value="{ThemeResource SliderDecreaseRectShadows}" />
 										<Setter Target="VerticalDecreaseRectShadow.Shadows"
 												Value="{ThemeResource SliderDecreaseRectShadows}" />
+										<Setter Target="HorizontalStateLayer.Opacity"
+												Value="0.12" />
+										<Setter Target="VerticalStateLayer.Opacity"
+												Value="0.12" />
 									</VisualState.Setters>
 								</VisualState>
 
@@ -3226,6 +3235,10 @@
 												Value="{ThemeResource SliderDecreaseRectShadows}" />
 										<Setter Target="VerticalDecreaseRectShadow.Shadows"
 												Value="{ThemeResource SliderDecreaseRectShadows}" />
+										<Setter Target="HorizontalStateLayer.Opacity"
+												Value="0.08" />
+										<Setter Target="VerticalStateLayer.Opacity"
+												Value="0.08" />
 									</VisualState.Setters>
 								</VisualState>
 
@@ -3318,17 +3331,27 @@
 										 Fill="{ThemeResource SliderTickBarFill}"
 										 Visibility="Collapsed" />
 
-								<!-- HorizontalThumb -->
-								<utu:ShadowContainer Grid.RowSpan="3"
-													 Grid.Column="1"
-													 x:Name="HorizontalThumbShadow">
-									<Thumb x:Name="HorizontalThumb"
-										   Width="24"
-										   Height="24"
-										   AutomationProperties.AccessibilityView="Raw"
-										   DataContext="{TemplateBinding Value}"
-										   Style="{StaticResource NeumorphicSliderThumbStyle}" />
-								</utu:ShadowContainer>
+
+								<Grid Grid.RowSpan="3"
+									  Grid.Column="1">
+									<utu:ShadowContainer x:Name="HorizontalStateLayer"
+														 Shadows="{ThemeResource SliderThumbStateShadow}"
+														 Opacity="0">
+										<Grid Width="24"
+											  Height="24"
+											  CornerRadius="12"/>
+									</utu:ShadowContainer>
+									
+									<!-- HorizontalThumb -->
+									<utu:ShadowContainer x:Name="HorizontalThumbShadow">
+										<Thumb x:Name="HorizontalThumb"
+											   Width="24"
+											   Height="24"
+											   AutomationProperties.AccessibilityView="Raw"
+											   DataContext="{TemplateBinding Value}"
+											   Style="{StaticResource NeumorphicSliderThumbStyle}" />
+									</utu:ShadowContainer>
+								</Grid>
 							</Grid>
 
 							<!-- VerticalTemplate -->
@@ -3399,17 +3422,26 @@
 										 Fill="{ThemeResource SliderTickBarFill}"
 										 Visibility="Collapsed" />
 
-								<!-- VerticalThumb -->
-								<utu:ShadowContainer x:Name="VerticalThumbShadow"
-													 Grid.Row="1"
-													 Grid.ColumnSpan="3">
-									<Thumb x:Name="VerticalThumb"
-										   Width="24"
-										   Height="24"
-										   AutomationProperties.AccessibilityView="Raw"
-										   DataContext="{TemplateBinding Value}"
-										   Style="{StaticResource NeumorphicSliderThumbStyle}" />
-								</utu:ShadowContainer>
+								<Grid Grid.Row="1"
+									  Grid.ColumnSpan="3">
+									<utu:ShadowContainer x:Name="VerticalStateLayer"
+														 Shadows="{ThemeResource SliderThumbStateShadow}"
+														 Opacity="0">
+										<Grid Width="24"
+											  Height="24"
+											  CornerRadius="12"/>
+									</utu:ShadowContainer>
+
+									<!-- VerticalThumb -->
+									<utu:ShadowContainer x:Name="VerticalThumbShadow">
+										<Thumb x:Name="VerticalThumb"
+											   Width="24"
+											   Height="24"
+											   AutomationProperties.AccessibilityView="Raw"
+											   DataContext="{TemplateBinding Value}"
+											   Style="{StaticResource NeumorphicSliderThumbStyle}" />
+									</utu:ShadowContainer>
+								</Grid>
 							</Grid>
 						</Grid>
 					</Grid>
