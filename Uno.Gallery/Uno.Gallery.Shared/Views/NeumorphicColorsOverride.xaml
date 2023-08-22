@@ -997,7 +997,7 @@
 			<Color x:Key="SurfaceInverseColor">#313033</Color>
 			<Color x:Key="SurfaceTintColor">#5946D2</Color>
 			<Color x:Key="OnSurfaceInverseColor">#F4EFF4</Color>
-			<Color x:Key="SurfaceVariantColor">#F2EFF5</Color>
+			<Color x:Key="SurfaceVariantColor">#F3EFF5</Color>
 			<Color x:Key="OutlineColor">#79747E</Color>
 			<Color x:Key="OutlineVariantColor">#C9C5D0</Color>
 			<Color x:Key="ErrorColor">#B3261E</Color>
