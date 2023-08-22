@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFrameworks>net7.0-android;net7.0-ios;net7.0-maccatalyst;net7.0-macos</TargetFrameworks>
 		<SingleProject>true</SingleProject>
@@ -41,7 +41,7 @@
 		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="6.0.0" />
 		<PackageReference Include="Uno.Diagnostics.Eventing" Version="2.1.0-dev.1" />
 		<PackageReference Include="Uno.Toolkit.Skia.WinUI" Version="4.0.0-dev.67" />
-		<PackageReference Include="Uno.Toolkit.WinUI" Version="4.0.0-dev.67" />
+		<PackageReference Include="Uno.Toolkit.WinUI" Version="4.0.0-dev.80" />
 		<PackageReference Include="Uno.Toolkit.WinUI.Cupertino" Version="4.0.0-dev.67" />
 		<PackageReference Include="Uno.Toolkit.WinUI.Material" Version="4.0.0-dev.67" />
 		<PackageReference Include="Uno.WinUI.Lottie" Version="5.0.0-dev.2147" />
