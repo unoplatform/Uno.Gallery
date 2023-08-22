@@ -969,11 +969,6 @@
 							 Opacity="{StaticResource DisabledLowOpacity}" />
 			<!--#endregion OutlineColor-->
 
-			<!--#region OutlineVariantColor-->
-			<SolidColorBrush x:Key="OutlineVariantBrush"
-							 Color="{StaticResource OutlineVariantColor}"/>
-			<!--#endregion-->
-
 			<SolidColorBrush x:Key="SurfaceTintBrush"
 							 Color="{StaticResource SurfaceTintColor}" />
 
@@ -1946,11 +1941,6 @@
 							 Color="{StaticResource OutlineColor}"
 							 Opacity="{StaticResource DisabledLowOpacity}" />
 			<!--#endregion OutlineColor-->
-
-			<!--#region OutlineVariantColor-->
-			<SolidColorBrush x:Key="OutlineVariantBrush"
-							 Color="{StaticResource OutlineVariantColor}"/>
-			<!--#endregion-->
 
 			<!--#region SurfaceTintColor-->
 			<SolidColorBrush x:Key="SurfaceTintBrush"
