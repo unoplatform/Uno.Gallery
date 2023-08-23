@@ -27,7 +27,7 @@
 		<local:ContentPageLayout>
 			<StackPanel>
 				<!-- TextBox -->
-				<smtx:XamlDisplay UniqueKey="ShadowContainerSamplePage_TextBox"
+				<!--<smtx:XamlDisplay UniqueKey="ShadowContainerSamplePage_TextBox"
 								  smtx:XamlDisplayExtensions.Header="Neumorphic TextBox"
 								  Background="{ThemeResource SurfaceBrush}"
 								  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\WrapPanel\StackPanel">
@@ -36,7 +36,7 @@
 										VerticalSpacing="16">
 
 						<StackPanel Spacing="20">
-							<!-- TextBox Enabled -->
+							--><!-- TextBox Enabled --><!--
 							<TextBlock Text="Enabled"
 									   Style="{StaticResource BodyMedium}" />
 							<TextBox Width="328"
@@ -54,7 +54,7 @@
 						</StackPanel>
 
 						<StackPanel Spacing="20">
-							<!-- TextBox Disabled -->
+							--><!-- TextBox Disabled --><!--
 							<TextBlock Text="Disabled"
 									   Style="{StaticResource BodyMedium}" />
 							<TextBox Width="328"
@@ -74,10 +74,10 @@
 									 Style="{StaticResource NeumorphicTextBoxStyle}" />
 						</StackPanel>
 					</controls:WrapPanel>
-				</smtx:XamlDisplay>
+				</smtx:XamlDisplay>-->
 
 				<!-- PasswordBox -->
-				<smtx:XamlDisplay UniqueKey="ShadowContainerSamplePage_PasswordBox"
+				<!--<smtx:XamlDisplay UniqueKey="ShadowContainerSamplePage_PasswordBox"
 								  smtx:XamlDisplayExtensions.Header="Neumorphic PasswordBox"
 								  Background="{ThemeResource SurfaceBrush}"
 								  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\WrapPanel\StackPanel">
@@ -86,7 +86,7 @@
 										VerticalSpacing="16">
 
 						<StackPanel Spacing="20">
-							<!-- PasswordBox Enabled -->
+							--><!-- PasswordBox Enabled --><!--
 							<TextBlock Text="Enabled"
 									   Style="{StaticResource BodyMedium}" />
 							<PasswordBox Width="328"
@@ -104,7 +104,7 @@
 						</StackPanel>
 
 						<StackPanel Spacing="20">
-							<!-- PasswordBox Disabled -->
+							--><!-- PasswordBox Disabled --><!--
 							<TextBlock Text="Disabled"
 									   Style="{StaticResource BodyMedium}" />
 							<PasswordBox Width="328"
@@ -124,10 +124,10 @@
 										 Style="{StaticResource NeumorphicPasswordBoxStyle}" />
 						</StackPanel>
 					</controls:WrapPanel>
-				</smtx:XamlDisplay>
+				</smtx:XamlDisplay>-->
 
 				<!-- ComboBox -->
-				<smtx:XamlDisplay UniqueKey="ShadowContainerSamplePage_ComboBox"
+				<!--<smtx:XamlDisplay UniqueKey="ShadowContainerSamplePage_ComboBox"
 								  smtx:XamlDisplayExtensions.Header="Neumorphic ComboBox"
 								  Background="{ThemeResource SurfaceBrush}"
 								  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\WrapPanel">
@@ -136,7 +136,7 @@
 										VerticalSpacing="16">
 
 						<StackPanel Spacing="20">
-							<!-- ComboBox Enabled -->
+							--><!-- ComboBox Enabled --><!--
 							<TextBlock Text="Enabled"
 									   Style="{StaticResource BodyMedium}" />
 							<ComboBox Width="328"
@@ -146,7 +146,7 @@
 						</StackPanel>
 
 						<StackPanel Spacing="20">
-							<!-- ComboBox Disabled -->
+							--><!-- ComboBox Disabled --><!--
 							<TextBlock Text="Disabled"
 									   Style="{StaticResource BodyMedium}" />
 							<ComboBox Width="328"
@@ -156,10 +156,10 @@
 									  ItemsSource="{Binding Data.CbbItems}" />
 						</StackPanel>
 					</controls:WrapPanel>
-				</smtx:XamlDisplay>
+				</smtx:XamlDisplay>-->
 
 				<!-- Button Elevated -->
-				<smtx:XamlDisplay UniqueKey="ShadowContainerSamplePage_ElevatedButton"
+				<!--<smtx:XamlDisplay UniqueKey="ShadowContainerSamplePage_ElevatedButton"
 								  smtx:XamlDisplayExtensions.Header="Neumorphic Elevated Button"
 								  Background="{ThemeResource SurfaceBrush}"
 								  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\WrapPanel">
@@ -210,10 +210,10 @@
 							</Button>
 						</StackPanel>
 					</controls:WrapPanel>
-				</smtx:XamlDisplay>
+				</smtx:XamlDisplay>-->
 
 				<!-- Button Filled -->
-				<smtx:XamlDisplay UniqueKey="ShadowContainerSamplePage_FilledButton"
+				<!--<smtx:XamlDisplay UniqueKey="ShadowContainerSamplePage_FilledButton"
 								  smtx:XamlDisplayExtensions.Header="Neumorphic Filled Button"
 								  Background="{ThemeResource PrimaryBrush}"
 								  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\WrapPanel">
@@ -266,7 +266,7 @@
 					</controls:WrapPanel>
 				</smtx:XamlDisplay>
 
-				<!-- FAB -->
+				--><!-- FAB --><!--
 				<smtx:XamlDisplay UniqueKey="ShadowContainerSamplePage_FAB"
 								  smtx:XamlDisplayExtensions.Header="Neumorphic Floating Action Button"
 								  Background="{ThemeResource SurfaceBrush}"
@@ -299,7 +299,7 @@
 							</Button>
 						</StackPanel>
 					</controls:WrapPanel>
-				</smtx:XamlDisplay>
+				</smtx:XamlDisplay>-->
 
 				<!-- ToggleButton -->
 				<smtx:XamlDisplay UniqueKey="ShadowContainerSamplePage_ToggleButton"
@@ -462,7 +462,7 @@
 				</smtx:XamlDisplay>
 
 				<!-- RadioButton -->
-				<smtx:XamlDisplay UniqueKey="ShadowContainerSamplePage_RadioButton"
+				<!--<smtx:XamlDisplay UniqueKey="ShadowContainerSamplePage_RadioButton"
 								  smtx:XamlDisplayExtensions.Header="Neumorphic RadioButton"
 								  Background="{ThemeResource SurfaceBrush}"
 								  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel\StackPanel">
@@ -491,7 +491,7 @@
 										 Style="{StaticResource NeumorphicRadioButtonStyle}" />
 						</StackPanel>
 					</StackPanel>
-				</smtx:XamlDisplay>
+				</smtx:XamlDisplay>-->
 
 				<!-- CheckBox -->
 				<smtx:XamlDisplay UniqueKey="ShadowContainerSamplePage_CheckBox"
@@ -529,7 +529,7 @@
 				</smtx:XamlDisplay>
 
 				<!-- Chips -->
-				<smtx:XamlDisplay UniqueKey="ShadowContainerSamplePage_Chips"
+				<!--<smtx:XamlDisplay UniqueKey="ShadowContainerSamplePage_Chips"
 								  smtx:XamlDisplayExtensions.Header="Neumorphic Chips"
 								  Background="{ThemeResource SurfaceBrush}"
 								  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\WrapPanel">
@@ -587,7 +587,7 @@
 									</utu:Chip.Icon>
 								</utu:Chip>
 
-								<!-- BUG: IsCheck true when Disabled is causing the Background to be wrong -->
+								--><!-- BUG: IsCheck true when Disabled is causing the Background to be wrong --><!--
 								<utu:Chip Style="{StaticResource NeumorphicChipStyle}"
 										  Content="Disabled"
 										  IsEnabled="False">
@@ -598,15 +598,15 @@
 							</StackPanel>
 						</StackPanel>
 					</controls:WrapPanel>
-				</smtx:XamlDisplay>
+				</smtx:XamlDisplay>-->
 
 				<!-- Slider -->
-				<!--<smtx:XamlDisplay UniqueKey="ShadowContainerSamplePage_Slider"
+				<smtx:XamlDisplay UniqueKey="ShadowContainerSamplePage_Slider"
 								  smtx:XamlDisplayExtensions.Header="Neumorphic Slider"
 								  Background="{ThemeResource SurfaceBrush}"
 								  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
 					<StackPanel>
-						--><!--  Slider Vertical  --><!--
+						  <!--Slider Vertical-->  
 						<StackPanel Orientation="Horizontal">
 
 							<Slider Height="200"
@@ -625,7 +625,7 @@
 									Value="50" />
 						</StackPanel>
 
-						--><!--  Slider Horizontal  --><!--
+						  <!--Slider Horizontal-->  
 						<StackPanel>
 
 							<Slider Width="200"
@@ -644,10 +644,10 @@
 									Value="50" />
 						</StackPanel>
 					</StackPanel>
-				</smtx:XamlDisplay>-->
+				</smtx:XamlDisplay>
 
 				<!-- ToggleSwitch -->
-				<smtx:XamlDisplay UniqueKey="ShadowContainerSamplePage_ToggleSwitch"
+				<!--<smtx:XamlDisplay UniqueKey="ShadowContainerSamplePage_ToggleSwitch"
 								  smtx:XamlDisplayExtensions.Header="Neumorphic ToggleSwitch"
 								  Background="{ThemeResource SurfaceBrush}"
 								  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\WrapPanel">
@@ -705,10 +705,10 @@
 							</StackPanel>
 						</StackPanel>
 					</controls:WrapPanel>
-				</smtx:XamlDisplay>
+				</smtx:XamlDisplay>-->
 				
 				<!-- TabBar -->
-				<smtx:XamlDisplay UniqueKey="ShadowContainerSamplePage_TabBar"
+				<!--<smtx:XamlDisplay UniqueKey="ShadowContainerSamplePage_TabBar"
 								  smtx:XamlDisplayExtensions.Header="Neumorphic TabBar"
 								  Background="{ThemeResource SurfaceBrush}"
 								  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\WrapPanel">
@@ -880,7 +880,7 @@
 							</utu:TabBar>
 						</StackPanel>
 					</controls:WrapPanel>
-				</smtx:XamlDisplay>
+				</smtx:XamlDisplay>-->
 
 			</StackPanel>
 		</local:ContentPageLayout>
