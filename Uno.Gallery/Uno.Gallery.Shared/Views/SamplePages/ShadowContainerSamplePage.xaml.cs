@@ -26,9 +26,39 @@ namespace Uno.Gallery.Views.SamplePages
 		DataType = typeof(ShadowContainerViewModel))]
 	public sealed partial class ShadowContainerSamplePage : Page
 	{
+		public List<string> CbbItems = new List<string> {
+				"Item 1",
+				"Item 2",
+				"Item 3"
+			};
+		private ShadowCollection _shadows;
+
 		public ShadowContainerSamplePage()
 		{
 			this.InitializeComponent();
+
+			this.Loaded += (s, e) =>
+			{
+				_shadows = ShadowContainer.Shadows;
+				ShadowsItemsControl.ItemsSource = _shadows;
+			};
+		}
+
+		private void AddShadow(object sender, RoutedEventArgs e)
+		{
+			var defaultShadow = (Toolkit.UI.Shadow)Resources["DefaultShadow"];
+
+			_shadows.Add(defaultShadow.Clone());
+		}
+
+		private void RemoveShadow(object sender, RoutedEventArgs e)
+		{
+			if (_shadows.Count == 0)
+			{
+				return;
+			}
+
+			_shadows.RemoveAt(_shadows.Count - 1);
 		}
 
 		public class ShadowContainerViewModel : ViewModelBase
@@ -40,5 +70,7 @@ namespace Uno.Gallery.Views.SamplePages
 				"Item 3"
 			};
 		}
+
+		
 	}
 }
