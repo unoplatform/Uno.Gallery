@@ -35,13 +35,13 @@
 		<PackageReference Include="Uno.Core.Extensions.Compatibility" Version="4.0.1" />
 		<PackageReference Include="Uno.Core.Extensions.Logging.Singleton" Version="4.0.1" />
 		<PackageReference Include="Uno.Toolkit.WinUI.Cupertino">
-			<Version>3.0.5</Version>
+			<Version>3.2.0-dev.17</Version>
 		</PackageReference>
 		<PackageReference Include="Uno.Toolkit.WinUI.Material">
-			<Version>3.0.5</Version>
+			<Version>3.2.0-dev.17</Version>
 		</PackageReference>
 		<PackageReference Include="Uno.WinUI">
-			<Version>4.9.45</Version>
+			<Version>4.10.0-dev.684</Version>
 		</PackageReference>
 		<Manifest Include="$(ApplicationManifest)" />
 	</ItemGroup>
