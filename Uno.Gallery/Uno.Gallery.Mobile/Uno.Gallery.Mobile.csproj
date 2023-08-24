@@ -38,6 +38,8 @@
 		<PackageReference Include="Uno.UI.Adapter.Microsoft.Extensions.Logging" Version="4.9.45" />
 		<PackageReference Include="Uno.Toolkit.WinUI.Cupertino" Version="3.0.5" />
 		<PackageReference Include="Uno.Toolkit.WinUI.Material" Version="3.0.5" />
+		<PackageReference Include="Uno.Cupertino.WinUI" Version="2.7.0-dev.104" />
+		<PackageReference Include="Uno.Material.WinUI" Version="2.7.0-dev.104" />
 		<PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="6.0.0" />
 		<PackageReference Include="Uno.Diagnostics.Eventing" Version="2.1.0-dev.1" />
