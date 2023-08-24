@@ -11,7 +11,7 @@ dotnet tool install --tool-path . SignClient
 # Setup Variables we need to pass into the sign client tool
 $appSettings = "$currentDirectory\SignClient.json"
 
-$filesToSign = Get-ChildItem -Recurse $Env:ArtifactDirectory\* -Include *.msixbundle | Select-Object -ExpandProperty FullName
+$filesToSign = Get-ChildItem -Recurse $Env:ArtifactDirectory\* -Include *.msix | Select-Object -ExpandProperty FullName
 
 foreach ($fileToSign in $filesToSign) {
     Write-Host "Submitting $fileToSign for signing"
