@@ -218,7 +218,15 @@
 														  VerticalAlignment="Stretch"
 														  Content="{TemplateBinding Content}"
 														  ContentTemplate="{TemplateBinding MaterialTemplate}"
-														  Visibility="Collapsed" />
+														  Visibility="Collapsed">
+											<ContentPresenter.Resources>
+												<ResourceDictionary>
+													<ResourceDictionary.MergedDictionaries>
+														<MaterialToolkitTheme xmlns="using:Uno.Toolkit.UI.Material" />
+													</ResourceDictionary.MergedDictionaries>
+												</ResourceDictionary>
+											</ContentPresenter.Resources>
+										</ContentPresenter>
 
 										<!-- Fluent Content -->
 										<ContentPresenter x:Name="FluentContentPresenter"
