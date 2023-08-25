@@ -44,6 +44,10 @@
 	  "UpdatedVersion": "(,3.99.0-dev.999]"
 	},
 	{
+		"PackageId": "Uno.Toolkit.Skia.WinUI",
+		"UpdatedVersion": "(,3.99.0-dev.999]"
+	},
+	{
 	  "PackageId": "Uno.CommunityToolkit.WinUI.UI.Controls",
 	  "UpdatedVersion": "(,7.1.199]"
 	},
