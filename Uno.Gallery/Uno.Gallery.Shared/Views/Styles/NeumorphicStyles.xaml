@@ -104,6 +104,11 @@
 				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="-4" OffsetY="-4" Opacity="0.4" Spread="0" Color="{StaticResource LightShadowColor2}" />
 			</utu:ShadowCollection>
 
+			<utu:ShadowCollection x:Key="ComboBoxFlyoutShadow">
+				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="4" OffsetY="4" Opacity="0.4" Spread="0" Color="{StaticResource ShadeShadowColor2}" />
+				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="-4" OffsetY="-4" Opacity="0.4" Spread="0" Color="{StaticResource LightShadowColor2}" />
+			</utu:ShadowCollection>
+
 			<!-- TabBar -->
 			<utu:ShadowCollection x:Key="TabBarShadows">
 				<utu:Shadow BlurRadius="48" IsInner="False" OffsetX="-8" OffsetY="-16" Opacity="0.4" Spread="4" Color="{StaticResource LightShadowColor4}" />
@@ -255,6 +260,13 @@
 				<utu:Shadow BlurRadius="2" IsInner="True" OffsetX="1" OffsetY="1" Opacity="1" Spread="2" Color="{StaticResource ShadeShadowColor8}" />
 				<utu:Shadow BlurRadius="2" IsInner="True" OffsetX="-1" OffsetY="-1" Opacity="0.6" Spread="2" Color="{StaticResource LightShadowColor8}" />
 			</utu:ShadowCollection>
+
+			<!-- Flyout -->
+			<utu:ShadowCollection x:Key="FlyoutShadows">
+				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="-8" OffsetY="-8" Opacity="0.08" Spread="0" Color="{StaticResource ShadeShadowColor7}" />
+				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="8" OffsetY="8" Opacity="0.4" Spread="0" Color="{StaticResource LightShadowColor7}" />
+				<utu:Shadow BlurRadius="20" IsInner="False" OffsetX="12" OffsetY="12" Opacity="0.4" Spread="0" Color="{StaticResource MediumShadowColor7}" />
+			</utu:ShadowCollection>
 			
 		</ResourceDictionary>
 		<ResourceDictionary x:Key="Light">
@@ -343,6 +355,11 @@
 			<utu:ShadowCollection x:Key="ComboboxShadows">
 				<utu:Shadow BlurRadius="4" IsInner="True" OffsetX="4" OffsetY="4" Opacity="0.4" Spread="0" Color="{StaticResource ShadeShadowColor}" />
 				<utu:Shadow BlurRadius="4" IsInner="True" OffsetX="-4" OffsetY="-4" Opacity="0.4" Spread="0" Color="{StaticResource LightShadowColor}" />
+			</utu:ShadowCollection>
+
+			<utu:ShadowCollection x:Key="ComboBoxFlyoutShadow">
+				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="4" OffsetY="4" Opacity="0.4" Spread="0" Color="{StaticResource ShadeShadowColor}" />
+				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="-4" OffsetY="-4" Opacity="0.4" Spread="0" Color="{StaticResource LightShadowColor}" />
 			</utu:ShadowCollection>
 
 			<!-- TabBar -->
@@ -494,6 +511,13 @@
 
 			<utu:ShadowCollection x:Key="ToggleSwitchOnBorderDisabledShadows">
 				<utu:Shadow BlurRadius="2" IsInner="True" OffsetX="0.5" OffsetY="0.5" Opacity="0.15" Spread="2" Color="{StaticResource ShadeShadowColor5}" />
+			</utu:ShadowCollection>
+
+			<!-- Flyout -->
+			<utu:ShadowCollection x:Key="FlyoutShadows">
+				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="-8" OffsetY="-8" Opacity="0.08" Spread="0" Color="{StaticResource ShadeShadowColor7}" />
+				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="8" OffsetY="8" Opacity="0.4" Spread="0" Color="{StaticResource LightShadowColor7}" />
+				<utu:Shadow BlurRadius="20" IsInner="False" OffsetX="12" OffsetY="12" Opacity="0.4" Spread="0" Color="{StaticResource MediumShadowColor7}" />
 			</utu:ShadowCollection>
 
 		</ResourceDictionary>
@@ -1115,13 +1139,15 @@
 							</Grid>
 
 							<!-- Popup -->
+							
 							<Popup x:Name="Popup">
-								<Border x:Name="PopupBorder"
+								<utu:ShadowContainer Shadows="{ThemeResource ComboBoxFlyoutShadow}">
+									<Border x:Name="PopupBorder"
 										CornerRadius="4"
 										Background="{ThemeResource SurfaceBrush}">
 
-									<!-- Workaround for Issue #213 where android PopupBorder doesn't get redrawn properly, adds Background, CornerRadius and Border to ScrollViewer -->
-									<ScrollViewer x:Name="ScrollViewer"
+										<!-- Workaround for Issue #213 where android PopupBorder doesn't get redrawn properly, adds Background, CornerRadius and Border to ScrollViewer -->
+										<ScrollViewer x:Name="ScrollViewer"
 												  MinWidth="400"
 												  AutomationProperties.AccessibilityView="Raw"
 												  BringIntoViewOnFocusChange="{TemplateBinding ScrollViewer.BringIntoViewOnFocusChange}"
@@ -1138,9 +1164,10 @@
 												  ZoomMode="Disabled"
 												  Foreground="{ThemeResource SystemControlTransparentBrush}"
 												  BorderBrush="{ThemeResource SystemControlTransparentBrush}">
-										<ItemsPresenter />
-									</ScrollViewer>
-								</Border>
+											<ItemsPresenter />
+										</ScrollViewer>
+									</Border>
+								</utu:ShadowContainer>
 							</Popup>
 						</Grid>
 					</utu:ShadowContainer>
@@ -4198,5 +4225,52 @@
 		</Setter>
 	</Style>
 	<!--#endregion-->
+
+	<!-- #region Flyout -->
+	<Style x:Key="CustomMenuFlyoutPresenterStyle"
+		   TargetType="MenuFlyoutPresenter">
+		<Setter Property="Foreground"
+		        Value="{ThemeResource OnSurfaceBrush}" />
+		<Setter Property="Background"
+		        Value="{ThemeResource SurfaceBrush}" />
+		<!--  Start: Label Large Typo  -->
+		<Setter Property="FontSize"
+		        Value="{ThemeResource LabelLargeFontSize}" />
+		<Setter Property="FontWeight"
+		        Value="{ThemeResource LabelLargeFontWeight}" />
+		<Setter Property="FontFamily"
+		        Value="{ThemeResource MaterialMediumFontFamily}" />
+		<!--  End: Label Large Typo  -->
+		<Setter Property="MinWidth"
+		        Value="{StaticResource MaterialFlyoutPresenterMinWidth}" />
+		<Setter Property="MaxWidth"
+		        Value="{StaticResource MaterialFlyoutPresenterMaxWidth}" />
+		<Setter Property="CornerRadius"
+		        Value="4" />
+		<Setter Property="Margin"
+		        Value="0,0" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="MenuFlyoutPresenter">
+					<Grid CornerRadius="{TemplateBinding CornerRadius}">
+						<utu:ShadowContainer Shadows="{ThemeResource FlyoutShadows}">
+							<Grid Background="{TemplateBinding Background}">
+								<ItemsPresenter />
+							</Grid>
+						</utu:ShadowContainer>
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style x:Key="NeumorphicMenuFlyoutItemStyle"
+		   BasedOn="{StaticResource MaterialMenuFlyoutItemStyle}"
+	       TargetType="MenuFlyoutItem">
+
+		<Setter Property="Background"
+		        Value="Transparent" />
+	</Style>
 	
+	<!--#endregion-->
 </ResourceDictionary>
