@@ -1143,27 +1143,27 @@
 							<Popup x:Name="Popup">
 								<utu:ShadowContainer Shadows="{ThemeResource ComboBoxFlyoutShadow}">
 									<Border x:Name="PopupBorder"
-										CornerRadius="4"
-										Background="{ThemeResource SurfaceBrush}">
+											CornerRadius="4"
+											Background="{ThemeResource SurfaceBrush}">
 
 										<!-- Workaround for Issue #213 where android PopupBorder doesn't get redrawn properly, adds Background, CornerRadius and Border to ScrollViewer -->
 										<ScrollViewer x:Name="ScrollViewer"
-												  MinWidth="400"
-												  AutomationProperties.AccessibilityView="Raw"
-												  BringIntoViewOnFocusChange="{TemplateBinding ScrollViewer.BringIntoViewOnFocusChange}"
-												  CornerRadius="4"
-												  HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
-												  HorizontalScrollMode="{TemplateBinding ScrollViewer.HorizontalScrollMode}"
-												  IsDeferredScrollingEnabled="{TemplateBinding ScrollViewer.IsDeferredScrollingEnabled}"
-												  IsHorizontalRailEnabled="{TemplateBinding ScrollViewer.IsHorizontalRailEnabled}"
-												  IsVerticalRailEnabled="{TemplateBinding ScrollViewer.IsVerticalRailEnabled}"
-												  VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}"
-												  VerticalScrollMode="{TemplateBinding ScrollViewer.VerticalScrollMode}"
-												  VerticalSnapPointsAlignment="Near"
-												  VerticalSnapPointsType="OptionalSingle"
-												  ZoomMode="Disabled"
-												  Foreground="{ThemeResource SystemControlTransparentBrush}"
-												  BorderBrush="{ThemeResource SystemControlTransparentBrush}">
+													  MinWidth="400"
+													  AutomationProperties.AccessibilityView="Raw"
+													  BringIntoViewOnFocusChange="{TemplateBinding ScrollViewer.BringIntoViewOnFocusChange}"
+													  CornerRadius="4"
+													  HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
+													  HorizontalScrollMode="{TemplateBinding ScrollViewer.HorizontalScrollMode}"
+													  IsDeferredScrollingEnabled="{TemplateBinding ScrollViewer.IsDeferredScrollingEnabled}"
+													  IsHorizontalRailEnabled="{TemplateBinding ScrollViewer.IsHorizontalRailEnabled}"
+													  IsVerticalRailEnabled="{TemplateBinding ScrollViewer.IsVerticalRailEnabled}"
+													  VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}"
+													  VerticalScrollMode="{TemplateBinding ScrollViewer.VerticalScrollMode}"
+													  VerticalSnapPointsAlignment="Near"
+													  VerticalSnapPointsType="OptionalSingle"
+													  ZoomMode="Disabled"
+													  Foreground="{ThemeResource SystemControlTransparentBrush}"
+													  BorderBrush="{ThemeResource SystemControlTransparentBrush}">
 											<ItemsPresenter />
 										</ScrollViewer>
 									</Border>
