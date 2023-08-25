@@ -36,16 +36,13 @@
 		</PackageReference>
 		<PackageReference Include="Uno.Core.Extensions.Compatibility" Version="4.0.1" />
 		<PackageReference Include="Uno.Core.Extensions.Logging.Singleton" Version="4.0.1" />
-		<PackageReference Include="Uno.Toolkit.WinUI.Cupertino">
-			<Version>3.0.5</Version>
-		</PackageReference>
-		<PackageReference Include="Uno.Toolkit.WinUI.Material">
-			<Version>3.0.5</Version>
-		</PackageReference>
-		<PackageReference Include="Uno.WinUI">
-			<Version>4.9.45</Version>
-		</PackageReference>
+		<PackageReference Include="Uno.Toolkit.WinUI.Cupertino" Version="3.1.0-dev.44" />
+		<PackageReference Include="Uno.Toolkit.WinUI.Material" Version="3.1.0-dev.44" />
+		<PackageReference Include="Uno.Toolkit.Skia.WinUI" Version="3.1.0-dev.44" />
+		<PackageReference Include="Uno.WinUI" Version="4.9.45" />
 		<Manifest Include="$(ApplicationManifest)" />
+		<FrameworkReference Update="Microsoft.Windows.SDK.NET.Ref" RuntimeFrameworkVersion="10.0.22621.29" />
+		<FrameworkReference Update="Microsoft.Windows.SDK.NET.Ref" TargetingPackVersion="10.0.22621.29" />
 	</ItemGroup>
 
 	<!--
