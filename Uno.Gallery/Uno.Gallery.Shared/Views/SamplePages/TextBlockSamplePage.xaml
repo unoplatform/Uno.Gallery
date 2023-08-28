@@ -8,19 +8,19 @@
 	  mc:Ignorable="d">
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-		<local:SamplePageLayout>
+		<local:SamplePageLayout IsDesignAgnostic="True">
 
-			<local:SamplePageLayout.FluentTemplate>
+			<local:SamplePageLayout.DesignAgnosticTemplate>
 				<DataTemplate>
 					<StackPanel>
 
-						<smtx:XamlDisplay UniqueKey="TextBlockSamplePage_Fluent_Simple"
+						<smtx:XamlDisplay UniqueKey="TextBlockSamplePage_Simple"
 										  smtx:XamlDisplayExtensions.Header="Simple TextBlock">
 
 							<TextBlock Text="Text" />
 						</smtx:XamlDisplay>
 
-						<smtx:XamlDisplay UniqueKey="TextBlockSamplePage_Fluent_Foreground"
+						<smtx:XamlDisplay UniqueKey="TextBlockSamplePage_Foreground"
 										  smtx:XamlDisplayExtensions.Header="Foreground">
 							<StackPanel>
 
@@ -35,7 +35,7 @@
 							</StackPanel>
 						</smtx:XamlDisplay>
 
-						<smtx:XamlDisplay UniqueKey="TextBlockSamplePage_Fluent_FontStyle"
+						<smtx:XamlDisplay UniqueKey="TextBlockSamplePage_FontStyle"
 										  smtx:XamlDisplayExtensions.Header="FontStyle">
 							<StackPanel>
 
@@ -47,7 +47,7 @@
 							</StackPanel>
 						</smtx:XamlDisplay>
 
-						<smtx:XamlDisplay UniqueKey="TextBlockSamplePage_Fluent_FontWeight"
+						<smtx:XamlDisplay UniqueKey="TextBlockSamplePage_FontWeight"
 										  smtx:XamlDisplayExtensions.Header="FontWeight">
 							<StackPanel>
 
@@ -68,7 +68,7 @@
 							</StackPanel>
 						</smtx:XamlDisplay>
 
-						<smtx:XamlDisplay UniqueKey="TextBlockSamplePage_Fluent_FontFamily"
+						<smtx:XamlDisplay UniqueKey="TextBlockSamplePage_FontFamily"
 										  smtx:XamlDisplayExtensions.Header="FontFamily">
 							<StackPanel>
 
@@ -82,7 +82,7 @@
 							</StackPanel>
 						</smtx:XamlDisplay>
 
-						<smtx:XamlDisplay UniqueKey="TextBlockSamplePage_Fluent_FontSize"
+						<smtx:XamlDisplay UniqueKey="TextBlockSamplePage_FontSize"
 										  smtx:XamlDisplayExtensions.Header="FontSize">
 							<StackPanel>
 
@@ -97,255 +97,136 @@
 							</StackPanel>
 						</smtx:XamlDisplay>
 
-						<smtx:XamlDisplay UniqueKey="TextBlockSamplePage_Fluent_Inlines"
+						<smtx:XamlDisplay UniqueKey="TextBlockSamplePage_Inlines"
 										  smtx:XamlDisplayExtensions.Header="Inlines">
 
 							<TextBlock TextWrapping="Wrap">TextBlock supports inline tags including <Bold>Bold</Bold>, <Italic>Italic</Italic>, <Underline>Underline</Underline>, <Span Foreground="Red">Span</Span>, and <Hyperlink Foreground="#1079CD"
 																																																									 NavigateUri="https://platform.uno/">Hyperlink</Hyperlink>.</TextBlock>
 						</smtx:XamlDisplay>
 
-						<smtx:XamlDisplay UniqueKey="TextBlockSamplePage_Fluent_Trimming"
+						<smtx:XamlDisplay UniqueKey="TextBlockSamplePage_Trimming"
 										  smtx:XamlDisplayExtensions.Header="TextTrimming &amp; MaxLines">
-							
-							<TextBlock
-									   TextTrimming="CharacterEllipsis"
+
+							<TextBlock TextTrimming="CharacterEllipsis"
 									   TextWrapping="Wrap"
-									   MaxLines="2" >
-<TextBlock.Text>
-Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper 
+									   MaxLines="2">
+								<TextBlock.Text>
+									Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper 
 commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet. 
 Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi 
 rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius 
 curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales 
 sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida
 turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant.
-</TextBlock.Text>
+								</TextBlock.Text>
 							</TextBlock>
 						</smtx:XamlDisplay>
 
-						<smtx:XamlDisplay UniqueKey="TextBlockSamplePage_Fluent_TextAlignment"
+						<smtx:XamlDisplay UniqueKey="TextBlockSamplePage_TextAlignment"
 										  smtx:XamlDisplayExtensions.Header="TextAlignment">
 							<StackPanel>
-								
-								<TextBlock
-										   Width="200"
+
+								<TextBlock Width="200"
 										   Margin="0,5"
 										   TextWrapping="Wrap"
 										   TextAlignment="Left"
 										   HorizontalAlignment="Left">
-<TextBlock.Text>
-Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper 
+									<TextBlock.Text>
+										Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper 
 commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet. 
 Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi 
 rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius 
 curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales 
 sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida
 turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant.
-</TextBlock.Text>
+									</TextBlock.Text>
 								</TextBlock>
-								
-								<TextBlock
-										   Width="200"
+
+								<TextBlock Width="200"
 										   Margin="0,5"
 										   TextWrapping="Wrap"
 										   TextAlignment="Center"
 										   HorizontalAlignment="Center">
-<TextBlock.Text>
-Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper 
+									<TextBlock.Text>
+										Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper 
 commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet. 
 Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi 
 rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius 
 curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales 
 sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida
 turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant.
-</TextBlock.Text>
+									</TextBlock.Text>
 								</TextBlock>
-								
-								<TextBlock
-										   Width="200"
+
+								<TextBlock Width="200"
 										   Margin="0,5"
 										   TextWrapping="Wrap"
 										   TextAlignment="Right"
 										   HorizontalAlignment="Right">
-<TextBlock.Text>
-Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper 
+									<TextBlock.Text>
+										Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper 
 commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet. 
 Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi 
 rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius 
 curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales 
 sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida
 turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant.
-</TextBlock.Text>
+									</TextBlock.Text>
 								</TextBlock>
-								
-								<TextBlock
-										   Margin="0,5"
+
+								<TextBlock Margin="0,5"
 										   TextWrapping="Wrap"
 										   TextAlignment="Justify"
 										   HorizontalAlignment="Left">
-<TextBlock.Text>
-Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper 
+									<TextBlock.Text>
+										Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper 
 commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet. 
 Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi 
 rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius 
 curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales 
 sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida
 turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant.
-</TextBlock.Text>
+									</TextBlock.Text>
 								</TextBlock>
 							</StackPanel>
 						</smtx:XamlDisplay>
 
-						<smtx:XamlDisplay UniqueKey="TextBlockSamplePage_Fluent_CharacterSpacing"
+						<smtx:XamlDisplay UniqueKey="TextBlockSamplePage_CharacterSpacing"
 										  smtx:XamlDisplayExtensions.Header="CharacterSpacing">
-							
-							<TextBlock 
-									   TextWrapping="Wrap"
+
+							<TextBlock TextWrapping="Wrap"
 									   CharacterSpacing="100">
-<TextBlock.Text>
-Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper 
+								<TextBlock.Text>
+									Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper 
 commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet. 
 Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi 
 rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius 
 curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales 
 sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida
 turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant.
-</TextBlock.Text>
+								</TextBlock.Text>
 							</TextBlock>
 						</smtx:XamlDisplay>
 
-						<smtx:XamlDisplay UniqueKey="TextBlockSamplePage_Fluent_LineHeight"
+						<smtx:XamlDisplay UniqueKey="TextBlockSamplePage_LineHeight"
 										  smtx:XamlDisplayExtensions.Header="LineHeight">
-							
-							<TextBlock 
-									   TextWrapping="Wrap"
+
+							<TextBlock TextWrapping="Wrap"
 									   LineHeight="30">
-<TextBlock.Text>
-Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper 
+								<TextBlock.Text>
+									Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper 
 commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet. 
 Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi 
 rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius 
 curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales 
 sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida
 turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant.
-</TextBlock.Text>
+								</TextBlock.Text>
 							</TextBlock>
 						</smtx:XamlDisplay>
 					</StackPanel>
 				</DataTemplate>
-			</local:SamplePageLayout.FluentTemplate>
-			<local:SamplePageLayout.CupertinoTemplate>
-				<DataTemplate>
-					<StackPanel>
-
-						<!-- Large title -->
-						<smtx:XamlDisplay UniqueKey="Cupertino_TextBlockSamplePage_LargeTitle">
-							<TextBlock Text="Large title"
-									   Style="{StaticResource CupertinoLargeTitle}" />
-						</smtx:XamlDisplay>
-
-						<!-- Title 1 -->
-						<smtx:XamlDisplay UniqueKey="Cupertino_TextBlockSamplePage_PrimaryTitle">
-							<TextBlock Text="Title 1"
-									   Style="{StaticResource CupertinoPrimaryTitle}" />
-						</smtx:XamlDisplay>
-
-						<!-- Title 2 -->
-						<smtx:XamlDisplay UniqueKey="Cupertino_TextBlockSamplePage_SecondaryTitle">
-							<TextBlock Text="Title 2"
-									   Style="{StaticResource CupertinoSecondaryTitle}" />
-						</smtx:XamlDisplay>
-
-						<!-- Title 3 -->
-						<smtx:XamlDisplay UniqueKey="Cupertino_TextBlockSamplePage_TertiaryTitle">
-							<TextBlock Text="Title 3"
-									   Style="{StaticResource CupertinoTertiaryTitle}" />
-						</smtx:XamlDisplay>
-
-						<!-- Headline -->
-						<smtx:XamlDisplay UniqueKey="Cupertino_TextBlockSamplePage_Headline">
-							<TextBlock Text="Headline"
-									   Style="{StaticResource CupertinoHeadline}" />
-						</smtx:XamlDisplay>
-
-						<!-- Body -->
-						<smtx:XamlDisplay UniqueKey="Cupertino_TextBlockSamplePage_Body"
-										  smtx:XamlDisplayExtensions.Header="Body">
-							<TextBlock  Style="{StaticResource CupertinoBody}">
-<TextBlock.Text>
-Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper 
-commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet. 
-Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi 
-rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius 
-curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales 
-sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida
-turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant.
-</TextBlock.Text>
-							</TextBlock>
-						</smtx:XamlDisplay>
-
-						<!-- Callout -->
-						<smtx:XamlDisplay UniqueKey="Cupertino_TextBlockSamplePage_Callout">
-							<TextBlock Text="Callout"
-									   Style="{StaticResource CupertinoCallout}" />
-						</smtx:XamlDisplay>
-
-						<!-- Subhead -->
-						<smtx:XamlDisplay UniqueKey="Cupertino_TextBlockSamplePage_Subhead">
-							<TextBlock Text="Subhead"
-									   Style="{StaticResource CupertinoSubhead}" />
-						</smtx:XamlDisplay>
-
-						<!-- Footnote -->
-						<smtx:XamlDisplay UniqueKey="Cupertino_TextBlockSamplePage_Footnote"
-										  smtx:XamlDisplayExtensions.Header="Footnote">
-							<TextBlock Style="{StaticResource CupertinoFootnote}">
-<TextBlock.Text>
-Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper 
-commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet. 
-Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi 
-rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius 
-curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales 
-sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida
-turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant.
-</TextBlock.Text>
-							</TextBlock>
-						</smtx:XamlDisplay>
-
-						<!-- Caption 1 -->
-						<smtx:XamlDisplay UniqueKey="Cupertino_TextBlockSamplePage_PrimaryCaption"
-										  smtx:XamlDisplayExtensions.Header="Caption 1">
-							<TextBlock Style="{StaticResource CupertinoPrimaryCaption}">
-<TextBlock.Text>
-Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper 
-commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet. 
-Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi 
-rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius 
-curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales 
-sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida
-turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant.
-</TextBlock.Text>
-						</TextBlock>
-						</smtx:XamlDisplay>
-
-						<!-- Caption 2 -->
-						<smtx:XamlDisplay UniqueKey="Cupertino_TextBlockSamplePage_SecondaryCaption"
-										  smtx:XamlDisplayExtensions.Header="Caption 2">
-							<TextBlock Style="{StaticResource CupertinoSecondaryCaption}">
-<TextBlock.Text>
-Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper 
-commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet. 
-Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi 
-rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius 
-curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales 
-sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida
-turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant.
-</TextBlock.Text>
-							</TextBlock>
-						</smtx:XamlDisplay>
-					</StackPanel>
-				</DataTemplate>
-			</local:SamplePageLayout.CupertinoTemplate>
+			</local:SamplePageLayout.DesignAgnosticTemplate>
 		</local:SamplePageLayout>
 	</Grid>
 </Page>
