@@ -45,7 +45,7 @@
 							<Border Background="{StaticResource UnoRedColorBrush}"
 									Width="110"
 									Height="110"
-									Margin="0,20,0,0">
+									Margin="0,20">
 
 								<!-- RotateTransform -->
 								<FrameworkElement.RenderTransform>
