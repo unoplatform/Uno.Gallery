@@ -3024,12 +3024,12 @@
 								<VisualState x:Name="Normal" />
 								<VisualState x:Name="PointerOver">
 									<VisualState.Setters>
-										<Setter Target="StateOverlay.Background" Value="{ThemeResource OnPrimaryContainerHovered}" />
+										<Setter Target="StateOverlay.Background" Value="{ThemeResource OnPrimaryContainerHoverBrush}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="Pressed">
 									<VisualState.Setters>
-										<Setter Target="StateOverlay.Background" Value="{ThemeResource OnPrimaryContainerPressed}" />
+										<Setter Target="StateOverlay.Background" Value="{ThemeResource OnPrimaryContainerPressedBrush}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="Disabled" />
@@ -3039,7 +3039,7 @@
 							<VisualStateGroup x:Name="FocusStates">
 								<VisualState x:Name="Focused">
 									<VisualState.Setters>
-										<Setter Target="StateOverlay.Background" Value="{ThemeResource OnPrimaryContainerFocused}" />
+										<Setter Target="StateOverlay.Background" Value="{ThemeResource OnPrimaryContainerFocusedBrush}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="PointerFocused" />
@@ -3745,7 +3745,7 @@
 													  To="On"
 													  GeneratedDuration="0">
 										<Storyboard>
-											<win:RepositionThemeAnimation TargetName="SwitchKnob"
+											<RepositionThemeAnimation TargetName="SwitchKnob"
 																	  FromHorizontalOffset="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.KnobCurrentToOnOffset}" />
 											<DoubleAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobBounds"
 																		   Storyboard.TargetProperty="Opacity">
@@ -3817,7 +3817,7 @@
 													  To="Off"
 													  GeneratedDuration="0">
 										<Storyboard>
-											<win:RepositionThemeAnimation TargetName="SwitchKnob"
+											<RepositionThemeAnimation TargetName="SwitchKnob"
 																	  FromHorizontalOffset="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.KnobCurrentToOffOffset}" />
 											<DoubleAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobBounds"
 																		   Storyboard.TargetProperty="Opacity">
@@ -3851,7 +3851,7 @@
 													  To="Off"
 													  GeneratedDuration="0">
 										<Storyboard>
-											<win:RepositionThemeAnimation TargetName="SwitchKnob"
+											<RepositionThemeAnimation TargetName="SwitchKnob"
 																	  FromHorizontalOffset="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.KnobOnToOffOffset}" />
 											<!--#region uno#9507: UNO specific workaround to reset the states-->
 											<DoubleAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobBounds"
@@ -3893,7 +3893,7 @@
 													  GeneratedDuration="0">
 
 										<Storyboard>
-											<win:RepositionThemeAnimation TargetName="SwitchKnob"
+											<RepositionThemeAnimation TargetName="SwitchKnob"
 																	  FromHorizontalOffset="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.KnobOffToOnOffset}" />
 											<DoubleAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobBounds"
 																		   Storyboard.TargetProperty="Opacity">
