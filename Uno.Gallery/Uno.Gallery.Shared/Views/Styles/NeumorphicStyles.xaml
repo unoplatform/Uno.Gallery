@@ -1447,14 +1447,13 @@
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="Button">
-					<utu:ShadowContainer x:Name="RootPanel"
-										 Shadows="{ThemeResource FabShadows}">
+					<Grid x:Name="RootGrid">
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup x:Name="CommonStates">
 								<VisualState x:Name="Normal" />
 								<VisualState x:Name="PointerOver">
 									<VisualState.Setters>
-										<Setter Target="RootGrid.Background" Value="{ThemeResource OnPrimaryContainerHoverBrush}" />
+										<Setter Target="StateLayer.Background" Value="{ThemeResource OnPrimaryContainerHoverBrush}" />
 									</VisualState.Setters>
 								</VisualState>
 
@@ -1462,7 +1461,7 @@
 
 								<VisualState x:Name="Pressed">
 									<VisualState.Setters>
-										<Setter Target="RootGrid.Background" Value="{ThemeResource OnPrimaryContainerPressedBrush}" />
+										<Setter Target="StateLayer.Background" Value="{ThemeResource OnPrimaryContainerPressedBrush}" />
 									</VisualState.Setters>
 								</VisualState>
 							</VisualStateGroup>
@@ -1471,7 +1470,7 @@
 
 								<VisualState x:Name="Focused">
 									<VisualState.Setters>
-										<Setter Target="RootGrid.Background" Value="{ThemeResource OnPrimaryContainerFocusedBrush}" />
+										<Setter Target="StateLayer.Background" Value="{ThemeResource OnPrimaryContainerFocusedBrush}" />
 									</VisualState.Setters>
 								</VisualState>
 
@@ -1480,45 +1479,53 @@
 								<VisualState x:Name="Unfocused" />
 							</VisualStateGroup>
 						</VisualStateManager.VisualStateGroups>
-						<Grid x:Name="RootGrid"
+						
+						<utu:ShadowContainer Shadows="{ThemeResource FabShadows}">
+
+							<Grid CornerRadius="{TemplateBinding CornerRadius}"
+								  Background="{TemplateBinding Background}"
+								  MinHeight="{TemplateBinding MinHeight}"
+								  MinWidth="{TemplateBinding MinWidth}">
+
+								<StackPanel x:Name="ContentPanel"
+											Orientation="Horizontal"
+											Margin="{TemplateBinding Padding}">
+
+									<!-- Icon -->
+									<Viewbox Height="{Binding Path=(um:ControlExtensions.IconHeight), RelativeSource={RelativeSource TemplatedParent}}"
+											 Width="{Binding Path=(um:ControlExtensions.IconWidth), RelativeSource={RelativeSource TemplatedParent}}"
+											 HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+											 VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+											 Visibility="{Binding Path=(um:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialNullToCollapsedConverter}, FallbackValue=Collapsed, TargetNullValue=Collapsed}">
+										<ContentPresenter Content="{Binding Path=(um:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}}"
+														  Foreground="{Binding Path=Foreground, RelativeSource={RelativeSource TemplatedParent}}" />
+									</Viewbox>
+
+									<!-- Icon/Content spacing -->
+									<Border Visibility="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialEmptyToCollapsed}, FallbackValue=Collapsed, TargetNullValue=Collapsed}">
+										<Border Width="8"
+												Visibility="{Binding Path=(um:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialNullToCollapsedConverter}, FallbackValue=Collapsed, TargetNullValue=Collapsed}" />
+									</Border>
+
+									<!-- Content -->
+									<ContentPresenter x:Name="ContentPresenter"
+													  Content="{TemplateBinding Content}"
+													  ContentTemplate="{TemplateBinding ContentTemplate}"
+													  ContentTransitions="{TemplateBinding ContentTransitions}"
+													  CornerRadius="{StaticResource NeumorphicButtonCornerRadius}"
+													  FontFamily="{TemplateBinding FontFamily}"
+													  FontSize="{TemplateBinding FontSize}"
+													  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+													  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+								</StackPanel>
+							</Grid>
+						</utu:ShadowContainer>
+						
+						<Grid x:Name="StateLayer"
 							  CornerRadius="{TemplateBinding CornerRadius}"
-							  Background="{TemplateBinding Background}"
 							  MinHeight="{TemplateBinding MinHeight}"
-							  MinWidth="{TemplateBinding MinWidth}">
-
-							<StackPanel x:Name="ContentPanel"
-										Orientation="Horizontal"
-										Margin="{TemplateBinding Padding}">
-
-								<!-- Icon -->
-								<Viewbox Height="{Binding Path=(um:ControlExtensions.IconHeight), RelativeSource={RelativeSource TemplatedParent}}"
-										 Width="{Binding Path=(um:ControlExtensions.IconWidth), RelativeSource={RelativeSource TemplatedParent}}"
-										 HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-										 VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-										 Visibility="{Binding Path=(um:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialNullToCollapsedConverter}, FallbackValue=Collapsed, TargetNullValue=Collapsed}">
-									<ContentPresenter Content="{Binding Path=(um:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}}"
-													  Foreground="{Binding Path=Foreground, RelativeSource={RelativeSource TemplatedParent}}" />
-								</Viewbox>
-
-								<!-- Icon/Content spacing -->
-								<Border Visibility="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialEmptyToCollapsed}, FallbackValue=Collapsed, TargetNullValue=Collapsed}">
-									<Border Width="8"
-											Visibility="{Binding Path=(um:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialNullToCollapsedConverter}, FallbackValue=Collapsed, TargetNullValue=Collapsed}" />
-								</Border>
-
-								<!-- Content -->
-								<ContentPresenter x:Name="ContentPresenter"
-												  Content="{TemplateBinding Content}"
-												  ContentTemplate="{TemplateBinding ContentTemplate}"
-												  ContentTransitions="{TemplateBinding ContentTransitions}"
-												  CornerRadius="{StaticResource NeumorphicButtonCornerRadius}"
-												  FontFamily="{TemplateBinding FontFamily}"
-												  FontSize="{TemplateBinding FontSize}"
-												  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-												  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
-							</StackPanel>
-						</Grid>
-					</utu:ShadowContainer>
+							  MinWidth="{TemplateBinding MinWidth}" />
+					</Grid>
 				</ControlTemplate>
 			</Setter.Value>
 		</Setter>
@@ -2606,6 +2613,13 @@
 											   Height="Auto" />
 							</Grid.RowDefinitions>
 
+							<Grid x:Name="IconStateLayer"
+								  Width="{ThemeResource NavigationTabBarItemActiveIndicatorWidth}"
+								  Height="{ThemeResource NavigationTabBarItemActiveIndicatorHeight}"
+								  HorizontalAlignment="Center"
+								  VerticalAlignment="Center"
+								  CornerRadius="{ThemeResource NavigationTabBarItemActiveIndicatorCornerRadius}" />
+							
 							<utu:ShadowContainer x:Name="IconShadowPanel">
 								<Grid x:Name="ActiveIndicator"
 									  Width="{ThemeResource NavigationTabBarItemActiveIndicatorWidth}"
@@ -2667,6 +2681,15 @@
 								</Grid>
 							</utu:ShadowContainer>
 
+							<Grid x:Name="ContentStateLayer"
+								  Grid.Row="1"
+								  HorizontalAlignment="Center"
+								  VerticalAlignment="Center"
+								  Height="40"
+								  Width="70"
+								  CornerRadius="20"
+								  Visibility="{Binding Icon, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource HasIconToCollapsed}}" />
+
 							<utu:ShadowContainer x:Name="ContentShadowPanel"
 												 Grid.Row="1"
 												 Visibility="{Binding Icon, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource HasIconToCollapsed}}">
@@ -2715,18 +2738,16 @@
 									<VisualState.Setters>
 										<Setter Target="IconShadowPanel.Shadows" Value="{ThemeResource TabBarItemShadows}" />
 										<Setter Target="ContentShadowPanel.Shadows" Value="{ThemeResource TabBarItemShadows}" />
-
-										<!-- This is not working properly -->
-										<!--<Setter Target="ActiveIndicator.Background" Value="{ThemeResource OnSurfaceVariantHoverBrush}" />
-										<Setter Target="ShadowContentPresenterGrid.Background" Value="{ThemeResource OnSurfaceVariantHoverBrush}" />-->
+										<Setter Target="IconStateLayer.Background" Value="{ThemeResource PrimaryHoverBrush}" />
+										<Setter Target="ContentStateLayer.Background" Value="{ThemeResource PrimaryHoverBrush}" />
 									</VisualState.Setters>
 								</not_mobile:VisualState>
 								<VisualState x:Name="Pressed">
 									<VisualState.Setters>
 										<Setter Target="IconShadowPanel.Shadows" Value="{ThemeResource TabBarItemShadows}" />
 										<Setter Target="ContentShadowPanel.Shadows" Value="{ThemeResource TabBarItemShadows}" />
-										<Setter Target="ActiveIndicator.Background" Value="{ThemeResource OnSurfaceVariantPressedBrush}" />
-										<Setter Target="ShadowContentPresenterGrid.Background" Value="{ThemeResource OnSurfaceVariantPressedBrush}" />
+										<Setter Target="IconStateLayer.Background" Value="{ThemeResource PrimaryPressedBrush}" />
+										<Setter Target="ContentStateLayer.Background" Value="{ThemeResource PrimaryPressedBrush}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="Selected">
@@ -2745,8 +2766,8 @@
 										<Setter Target="Icon.Foreground" Value="{ThemeResource PrimaryBrush}" />
 										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource PrimaryBrush}" />
 										<Setter Target="ShadowContentPresenter.Foreground" Value="{ThemeResource PrimaryBrush}" />
-										<Setter Target="ActiveIndicator.Background" Value="{ThemeResource OnSurfaceVariantHoverBrush}" />
-										<Setter Target="ShadowContentPresenterGrid.Background" Value="{ThemeResource OnSurfaceVariantHoverBrush}" />
+										<Setter Target="IconStateLayer.Background" Value="{ThemeResource PrimaryHoverBrush}" />
+										<Setter Target="ContentStateLayer.Background" Value="{ThemeResource PrimaryHoverBrush}" />
 									</VisualState.Setters>
 								</not_mobile:VisualState>
 								<VisualState x:Name="PressedSelected">
@@ -2756,8 +2777,8 @@
 										<Setter Target="Icon.Foreground" Value="{ThemeResource PrimaryBrush}" />
 										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource PrimaryBrush}" />
 										<Setter Target="ShadowContentPresenter.Foreground" Value="{ThemeResource PrimaryBrush}" />
-										<Setter Target="ActiveIndicator.Background" Value="{ThemeResource OnSurfaceVariantPressedBrush}" />
-										<Setter Target="ShadowContentPresenterGrid.Background" Value="{ThemeResource OnSurfaceVariantPressedBrush}" />
+										<Setter Target="IconStateLayer.Background" Value="{ThemeResource PrimaryPressedBrush}" />
+										<Setter Target="ContentStateLayer.Background" Value="{ThemeResource PrimaryPressedBrush}" />
 									</VisualState.Setters>
 								</VisualState>
 							</VisualStateGroup>
@@ -2783,6 +2804,7 @@
 								<VisualState x:Name="ContentOnly">
 									<VisualState.Setters>
 										<Setter Target="IconShadowPanel.Visibility" Value="Collapsed" />
+										<Setter Target="IconStateLayer.Visibility" Value="Collapsed" />
 										<Setter Target="ContentPresenterGrid.Height" Value="{ThemeResource NavigationTabBarItemActiveIndicatorHeight}" />
 										<Setter Target="ContentPresenterGrid.Width" Value="{ThemeResource NavigationTabBarItemActiveIndicatorWidth}" />
 										<Setter Target="ContentPresenterGrid.CornerRadius" Value="{ThemeResource NavigationTabBarItemActiveIndicatorCornerRadius}" />
@@ -2805,6 +2827,10 @@
 		</Setter>
 	</Style>
 
+	<x:String x:Key="ContentTabBarItemCornerRadius">32</x:String>
+	<x:Double x:Key="ContentTabBarItemHeight">64</x:Double>
+	<x:Double x:Key="ContentTabBarItemWidth">120</x:Double>
+	
 	<Style x:Key="NeumorphicBaseContentTabBarItemStyle"
 		   TargetType="utu:TabBarItem">
 		<Setter Property="FontFamily" Value="{ThemeResource MaterialMediumFontFamily}" />
@@ -2827,14 +2853,21 @@
 						  AutomationProperties.AccessibilityView="Raw"
 						  CornerRadius="{TemplateBinding CornerRadius}">
 
-						<utu:ShadowContainer x:Name="ShadowPanel"
-											 HorizontalAlignment="Center"
-											 VerticalAlignment="Center">
+						<Grid x:Name="StateLayer"
+							  HorizontalAlignment="Center"
+							  VerticalAlignment="Center"
+							  CornerRadius="{StaticResource ContentTabBarItemCornerRadius}"
+							  Height="{StaticResource ContentTabBarItemHeight}"
+							  Width="{StaticResource ContentTabBarItemWidth}" />
+						
+						<utu:ShadowContainer x:Name="ShadowPanel">
 
 							<Grid x:Name="ContentGrid"
 								  HorizontalAlignment="Center"
 								  VerticalAlignment="Center"
-								  CornerRadius="34"
+								  CornerRadius="{StaticResource ContentTabBarItemCornerRadius}"
+								  Height="{StaticResource ContentTabBarItemHeight}"
+								  Width="{StaticResource ContentTabBarItemWidth}"
 								  Padding="12,8">
 								<Grid.RowDefinitions>
 									<RowDefinition x:Name="IconRow"
@@ -2928,13 +2961,13 @@
 								<not_mobile:VisualState x:Name="PointerOver">
 									<VisualState.Setters>
 										<Setter Target="ShadowPanel.Shadows" Value="{ThemeResource TabBarItemShadows}" />
-										<!--<Setter Target="ContentGrid.Background" Value="{ThemeResource PrimaryHoverBrush}" />-->
+										<Setter Target="StateLayer.Background" Value="{ThemeResource PrimaryHoverBrush}" />
 									</VisualState.Setters>
 								</not_mobile:VisualState>
 								<VisualState x:Name="Pressed">
 									<VisualState.Setters>
 										<Setter Target="ShadowPanel.Shadows" Value="{ThemeResource TabBarItemShadows}" />
-										<Setter Target="ContentGrid.Background" Value="{ThemeResource PrimaryPressedBrush}" />
+										<Setter Target="StateLayer.Background" Value="{ThemeResource PrimaryPressedBrush}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="Selected">
@@ -2949,7 +2982,7 @@
 										<Setter Target="ShadowPanel.Shadows" Value="{ThemeResource TabBarItemShadows}" />
 										<Setter Target="Icon.Foreground" Value="{ThemeResource PrimaryBrush}" />
 										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource PrimaryBrush}" />
-										<Setter Target="ContentGrid.Background" Value="{ThemeResource PrimaryHoverBrush}" />
+										<Setter Target="StateLayer.Background" Value="{ThemeResource PrimaryHoverBrush}" />
 									</VisualState.Setters>
 								</not_mobile:VisualState>
 								<VisualState x:Name="PressedSelected">
@@ -2957,7 +2990,7 @@
 										<Setter Target="ShadowPanel.Shadows" Value="{ThemeResource TabBarItemShadows}" />
 										<Setter Target="Icon.Foreground" Value="{ThemeResource PrimaryBrush}" />
 										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource PrimaryBrush}" />
-										<Setter Target="ContentGrid.Background" Value="{ThemeResource PrimaryPressedBrush}" />
+										<Setter Target="StateLayer.Background" Value="{ThemeResource PrimaryPressedBrush}" />
 									</VisualState.Setters>
 								</VisualState>
 							</VisualStateGroup>
@@ -2972,26 +3005,29 @@
 								</VisualState>
 							</VisualStateGroup>
 							<VisualStateGroup x:Name="TabBarIconPositionStates">
-								<VisualState x:Name="IconOnTop">
-									<VisualState.Setters>
-										<Setter Target="ContentGrid.Height" Value="70" />
-										<Setter Target="ContentGrid.Width" Value="120" />
-									</VisualState.Setters>
-								</VisualState>
+								
+								<VisualState x:Name="IconOnTop" />
+
 								<VisualState x:Name="IconOnly">
 									<VisualState.Setters>
 										<Setter Target="ContentRow.Height" Value="0" />
 										<Setter Target="ContentGrid.Height" Value="40" />
 										<Setter Target="ContentGrid.Width" Value="80" />
 										<Setter Target="ContentGrid.CornerRadius" Value="20" />
+										<Setter Target="StateLayer.Height" Value="40" />
+										<Setter Target="StateLayer.Width" Value="80" />
+										<Setter Target="StateLayer.CornerRadius" Value="20" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="ContentOnly">
 									<VisualState.Setters>
+										<Setter Target="IconRow.Height" Value="0" />
 										<Setter Target="ContentGrid.Height" Value="40" />
 										<Setter Target="ContentGrid.Width" Value="80" />
-										<Setter Target="IconRow.Height" Value="0" />
 										<Setter Target="ContentGrid.CornerRadius" Value="20" />
+										<Setter Target="StateLayer.Height" Value="40" />
+										<Setter Target="StateLayer.Width" Value="80" />
+										<Setter Target="StateLayer.CornerRadius" Value="20" />
 									</VisualState.Setters>
 								</VisualState>
 							</VisualStateGroup>
@@ -3024,12 +3060,12 @@
 								<VisualState x:Name="Normal" />
 								<VisualState x:Name="PointerOver">
 									<VisualState.Setters>
-										<Setter Target="StateOverlay.Background" Value="{ThemeResource OnPrimaryContainerHovered}" />
+										<Setter Target="StateOverlay.Background" Value="{ThemeResource OnPrimaryContainerHoverBrush}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="Pressed">
 									<VisualState.Setters>
-										<Setter Target="StateOverlay.Background" Value="{ThemeResource OnPrimaryContainerPressed}" />
+										<Setter Target="StateOverlay.Background" Value="{ThemeResource OnPrimaryContainerPressedBrush}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="Disabled" />
@@ -3039,7 +3075,7 @@
 							<VisualStateGroup x:Name="FocusStates">
 								<VisualState x:Name="Focused">
 									<VisualState.Setters>
-										<Setter Target="StateOverlay.Background" Value="{ThemeResource OnPrimaryContainerFocused}" />
+										<Setter Target="StateOverlay.Background" Value="{ThemeResource OnPrimaryContainerFocusedBrush}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="PointerFocused" />
