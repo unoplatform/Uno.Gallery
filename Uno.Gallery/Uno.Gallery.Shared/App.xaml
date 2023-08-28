@@ -21,6 +21,7 @@
 				<!-- Load WinUI resources -->
 				<!-- Load these resources after the Material/Cupertino resources. This ensures that the default Fluent styles will be used as the implicit styles. -->
 				<XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
+				<ResourceDictionary Source="Views/Styles/FluentOverrides.xaml" />
 
 				<!-- Application's custom styles -->
 				<ResourceDictionary Source="Views/Colors.xaml" todo:note="define some colors\brushes, and images resources; not for color overriding" />
