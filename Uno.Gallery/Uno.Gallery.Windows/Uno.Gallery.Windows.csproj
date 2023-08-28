@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<OutputType>WinExe</OutputType>
 		<TargetFramework>net7.0-windows10.0.19041</TargetFramework>
@@ -37,7 +37,7 @@
 		<PackageReference Include="Uno.Core.Extensions.Compatibility" Version="4.0.1" />
 		<PackageReference Include="Uno.Core.Extensions.Logging.Singleton" Version="4.0.1" />
 		<PackageReference Include="Uno.Toolkit.Skia.WinUI" Version="4.0.0-dev.67" />
-		<PackageReference Include="Uno.Toolkit.WinUI" Version="4.0.0-dev.67" />
+		<PackageReference Include="Uno.Toolkit.WinUI" Version="4.0.0-dev.84" />
 		<PackageReference Include="Uno.Toolkit.WinUI.Cupertino">
 			<Version>4.0.0-dev.67</Version>
 		</PackageReference>

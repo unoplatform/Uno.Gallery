@@ -109,7 +109,7 @@
 		<PackageReference Include="Uno.ShowMeTheXAML" Version="2.0.0-dev0012" />
 		<PackageReference Include="Uno.ShowMeTheXAML.MSBuild" Version="2.0.0-dev0012" />
 		<PackageReference Include="Uno.Toolkit.Skia.WinUI" Version="4.0.0-dev.67" />
-		<PackageReference Include="Uno.Toolkit.WinUI" Version="4.0.0-dev.67" />
+		<PackageReference Include="Uno.Toolkit.WinUI" Version="4.0.0-dev.84" />
 		<PackageReference Include="Uno.Toolkit.WinUI.Cupertino" Version="4.0.0-dev.67" />
 		<PackageReference Include="Uno.Toolkit.WinUI.Material" Version="4.0.0-dev.67" />
 		<PackageReference Include="Uno.WinUI.Lottie" Version="5.0.0-dev.2147" />
