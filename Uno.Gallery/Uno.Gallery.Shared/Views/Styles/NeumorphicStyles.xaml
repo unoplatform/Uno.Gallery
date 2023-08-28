@@ -15,7 +15,7 @@
 			<SolidColorBrush x:Key="OutlineVariantBrushDisabledBrush"
 							 Color="{ThemeResource OutlineVariantColor}"
 							 Opacity="0.12"/>
-			
+
 			<!-- Shadow colors -->
 			<Color x:Key="LightShadowColor">#3C3846</Color>
 			<Color x:Key="ShadeShadowColor">#24222A</Color>
@@ -87,7 +87,7 @@
 			<utu:ShadowCollection x:Key="NeumorphicCheckBoxStateShadows">
 				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="8" Opacity="1" Spread="8" Color="{ThemeResource PrimaryColor}" IsInner="False" />
 			</utu:ShadowCollection>
-			
+
 			<!-- RadioButton -->
 			<utu:ShadowCollection x:Key="NeumorphicRadioButtonShadows">
 				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Opacity="1" Spread="0" Color="{StaticResource LightShadowColor2}" IsInner="False" />
@@ -97,7 +97,7 @@
 			<utu:ShadowCollection x:Key="NeumorphicRadioButtonStateShadows">
 				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="8" Opacity="1" Spread="8" Color="{ThemeResource PrimaryColor}" IsInner="False" />
 			</utu:ShadowCollection>
-			
+
 			<!-- ComboBox -->
 			<utu:ShadowCollection x:Key="ComboboxShadows">
 				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="4" OffsetY="4" Opacity="0.4" Spread="0" Color="{StaticResource ShadeShadowColor2}" />
@@ -109,7 +109,7 @@
 				<utu:Shadow BlurRadius="48" IsInner="False" OffsetX="-8" OffsetY="-16" Opacity="0.4" Spread="4" Color="{StaticResource LightShadowColor4}" />
 				<utu:Shadow BlurRadius="32" IsInner="False" OffsetX="8" OffsetY="8" Opacity="0.4" Spread="4" Color="{StaticResource ShadeShadowColor4}" />
 			</utu:ShadowCollection>
-			
+
 			<utu:ShadowCollection x:Key="ContentTabBarShadows">
 				<utu:Shadow BlurRadius="16" IsInner="False" OffsetX="-4" OffsetY="-4" Opacity="0.4" Spread="4" Color="{StaticResource LightShadowColor4}" />
 				<utu:Shadow BlurRadius="16" IsInner="False" OffsetX="4" OffsetY="4" Opacity="0.6" Spread="4" Color="{StaticResource ShadeShadowColor4}" />
@@ -120,7 +120,7 @@
 				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="4" OffsetY="4" Opacity="0.4" Spread="0" Color="{StaticResource ShadeShadowColor4}" />
 				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="-4" OffsetY="-4" Opacity="0.4" Spread="0" Color="{StaticResource LightShadowColor4}" />
 			</utu:ShadowCollection>
-			
+
 			<utu:ShadowCollection x:Key="FabTabBarItemShadows">
 				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="8" OffsetY="8" Opacity="0.2" Spread="0" Color="{StaticResource LightShadowColor7}" />
 				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="-8" OffsetY="-8" Opacity="0.4" Spread="0" Color="{StaticResource MediumShadowColor7}" />
@@ -194,7 +194,7 @@
 				<utu:Shadow BlurRadius="4" IsInner="False" OffsetX="-1" OffsetY="-1" Opacity="1" Spread="0" Color="{StaticResource LightShadowColor2}" />
 				<utu:Shadow BlurRadius="4" IsInner="False" OffsetX="1" OffsetY="1" Opacity="0.6" Spread="0" Color="{StaticResource ShadeShadowColor2}" />
 			</utu:ShadowCollection>
-			
+
 			<utu:ShadowCollection x:Key="ChipsShadowsSelected">
 				<utu:Shadow BlurRadius="4" IsInner="True" OffsetX="1" OffsetY="1" Opacity="0.9" Spread="0" Color="{StaticResource ShadeShadowColor6}" />
 				<utu:Shadow BlurRadius="4" IsInner="True" OffsetX="-1" OffsetY="-1" Opacity="0.9" Spread="0" Color="{StaticResource LightShadowColor6}" />
@@ -250,12 +250,12 @@
 				<utu:Shadow BlurRadius="2" IsInner="True" OffsetX="1" OffsetY="0" Opacity="0.5" Spread="0" Color="{StaticResource ShadeShadowColor8}" />
 				<utu:Shadow BlurRadius="1" IsInner="False" OffsetX="-1" OffsetY="0" Opacity="1" Spread="1" Color="{StaticResource VariantShadowColor8}" />
 			</utu:ShadowCollection>
-			
+
 			<utu:ShadowCollection x:Key="ToggleSwitchOnBorderDisabledShadows">
 				<utu:Shadow BlurRadius="2" IsInner="True" OffsetX="1" OffsetY="1" Opacity="1" Spread="2" Color="{StaticResource ShadeShadowColor8}" />
 				<utu:Shadow BlurRadius="2" IsInner="True" OffsetX="-1" OffsetY="-1" Opacity="0.6" Spread="2" Color="{StaticResource LightShadowColor8}" />
 			</utu:ShadowCollection>
-			
+
 		</ResourceDictionary>
 		<ResourceDictionary x:Key="Light">
 
@@ -328,7 +328,7 @@
 			<utu:ShadowCollection x:Key="NeumorphicCheckBoxStateShadows">
 				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="8" Opacity="1" Spread="8" Color="{ThemeResource PrimaryColor}" IsInner="False" />
 			</utu:ShadowCollection>
-			
+
 			<!-- RadioButton -->
 			<utu:ShadowCollection x:Key="NeumorphicRadioButtonShadows">
 				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="2" Opacity="1" Spread="0" IsInner="False" Color="{StaticResource LightShadowColor}" />
@@ -435,7 +435,7 @@
 				<utu:Shadow BlurRadius="4" IsInner="False" OffsetX="-1" OffsetY="-1" Opacity="1" Spread="0" Color="{StaticResource LightShadowColor}" />
 				<utu:Shadow BlurRadius="4" IsInner="False" OffsetX="1" OffsetY="1" Opacity="0.6" Spread="0" Color="{StaticResource ShadeShadowColor}" />
 			</utu:ShadowCollection>
-			
+
 			<utu:ShadowCollection x:Key="ChipsShadowsSelected">
 				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="4" OffsetY="4" Opacity="1" Spread="0" Color="{StaticResource ShadeShadowColor2}" />
 				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="-4" OffsetY="-4" Opacity="1" Spread="0" Color="{StaticResource LightShadowColor2}" />
@@ -532,7 +532,7 @@
 	<um:FromNullToValueConverter x:Key="ToggleSwitchOffContentToContentMargin"
 								 NullValue="0,0,6,0"
 								 NotNullValue="0,0,2,0" />
-	
+
 	<!--#endregion-->
 
 	<!--#region TextBox Style-->
@@ -1275,7 +1275,7 @@
 		<Setter Property="MinHeight" Value="48" />
 		<Setter Property="CornerRadius" Value="24" />
 		<Setter Property="Padding" Value="15,0" />
-		
+
 	</Style>
 
 	<!-- Large -->
@@ -1479,7 +1479,7 @@
 								<VisualState x:Name="Unfocused" />
 							</VisualStateGroup>
 						</VisualStateManager.VisualStateGroups>
-						
+
 						<utu:ShadowContainer Shadows="{ThemeResource FabShadows}">
 
 							<Grid CornerRadius="{TemplateBinding CornerRadius}"
@@ -1520,7 +1520,7 @@
 								</StackPanel>
 							</Grid>
 						</utu:ShadowContainer>
-						
+
 						<Grid x:Name="StateLayer"
 							  CornerRadius="{TemplateBinding CornerRadius}"
 							  MinHeight="{TemplateBinding MinHeight}"
@@ -1774,7 +1774,7 @@
 							<ColumnDefinition Width="{ThemeResource CheckBoxCheckAreaLength}" />
 							<ColumnDefinition Width="*" />
 						</Grid.ColumnDefinitions>
-						
+
 						<utu:ShadowContainer x:Name="StateLayer"
 											 Shadows="{ThemeResource NeumorphicCheckBoxStateShadows}"
 											 Opacity="0">
@@ -2393,8 +2393,8 @@
 	<Style x:Key="NeumorphicBaseTabBarStyle"
 		   BasedOn="{StaticResource DefaultTabBarStyle}"
 		   TargetType="utu:TabBar">
-		<Setter Property="Width" Value="300" />
-		<Setter Property="Height" Value="80" />
+		<Setter Property="MinWidth" Value="300" />
+		<Setter Property="MinHeight" Value="80" />
 		<Setter Property="CornerRadius" Value="16,16,0,0" />
 		<Setter Property="Background" Value="{StaticResource SurfaceBrush}" />
 		<Setter Property="um:ControlExtensions.TintedBackground" Value="{x:Null}" />
@@ -2435,7 +2435,10 @@
 						</VisualStateManager.VisualStateGroups>
 						<Grid x:Name="TabBarGrid"
 							  Background="{TemplateBinding Background}"
-							  CornerRadius="{TemplateBinding CornerRadius}">
+							  CornerRadius="{TemplateBinding CornerRadius}"
+							  Width="{TemplateBinding MinWidth}"
+							  Height="{TemplateBinding MinHeight}"
+							  Padding="{TemplateBinding Padding}">
 							<utu:TabBarSelectionIndicatorPresenter x:Name="BelowSelectionIndicatorPresenter"
 																   Padding="{TemplateBinding Padding}"
 																   AutomationProperties.AutomationId="BelowSelectionIndicatorPresenter"
@@ -2447,10 +2450,7 @@
 																   Owner="{Binding RelativeSource={RelativeSource TemplatedParent}}"
 																   Style="{TemplateBinding SelectionIndicatorPresenterStyle}"
 																   Visibility="Collapsed" />
-							<ItemsPresenter x:Name="TabBarItemsPresenter"
-											Width="{TemplateBinding Width}"
-											Height="{TemplateBinding Height}"
-											Padding="{TemplateBinding Padding}" />
+							<ItemsPresenter x:Name="TabBarItemsPresenter" />
 							<utu:TabBarSelectionIndicatorPresenter x:Name="AboveSelectionIndicatorPresenter"
 																   Padding="{TemplateBinding Padding}"
 																   AutomationProperties.AutomationId="AboveSelectionIndicatorPresenter"
@@ -2472,8 +2472,8 @@
 	<Style x:Key="NeumorphicVerticalTabBarStyle"
 		   BasedOn="{StaticResource NeumorphicBaseTabBarStyle}"
 		   TargetType="utu:TabBar">
-		<Setter Property="Width" Value="80" />
-		<Setter Property="Height" Value="320" />
+		<Setter Property="MinWidth" Value="80" />
+		<Setter Property="MinHeight" Value="320" />
 		<Setter Property="CornerRadius" Value="40" />
 		<Setter Property="HorizontalAlignment" Value="Center" />
 		<Setter Property="MinWidth" Value="{ThemeResource NavigationTabBarWidthOrHeight}" />
@@ -2501,17 +2501,16 @@
 	<Style x:Key="NeumorphicTopTabBarStyle"
 		   BasedOn="{StaticResource DefaultTabBarStyle}"
 		   TargetType="utu:TabBar">
-		<Setter Property="Width" Value="300" />
-		<Setter Property="Height" Value="80" />
+		<Setter Property="MinWidth" Value="300" />
+		<Setter Property="MinHeight" Value="80" />
 		<Setter Property="CornerRadius" Value="40" />
 		<Setter Property="Background" Value="{StaticResource SurfaceBrush}" />
 		<Setter Property="um:ControlExtensions.TintedBackground" Value="{x:Null}" />
 		<Setter Property="um:ControlExtensions.IsTintEnabled" Value="False" />
 		<Setter Property="VerticalAlignment" Value="Top" />
-		<Setter Property="MinHeight" Value="{ThemeResource TopTabBarHeight}" />
 		<Setter Property="utu:SafeArea.Insets" Value="Top" />
 		<Setter Property="ItemContainerStyle" Value="{StaticResource NeumorphicBaseContentTabBarItemStyle}" />
-		
+
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="utu:TabBar">
@@ -2547,7 +2546,10 @@
 						</VisualStateManager.VisualStateGroups>
 						<Grid x:Name="TabBarGrid"
 							  Background="{TemplateBinding Background}"
-							  CornerRadius="{TemplateBinding CornerRadius}">
+							  CornerRadius="{TemplateBinding CornerRadius}"
+							  Width="{TemplateBinding MinWidth}"
+							  Height="{TemplateBinding MinHeight}"
+							  Padding="{TemplateBinding Padding}">
 							<utu:TabBarSelectionIndicatorPresenter x:Name="BelowSelectionIndicatorPresenter"
 																   Padding="{TemplateBinding Padding}"
 																   AutomationProperties.AutomationId="BelowSelectionIndicatorPresenter"
@@ -2559,10 +2561,7 @@
 																   Owner="{Binding RelativeSource={RelativeSource TemplatedParent}}"
 																   Style="{TemplateBinding SelectionIndicatorPresenterStyle}"
 																   Visibility="Collapsed" />
-							<ItemsPresenter x:Name="TabBarItemsPresenter"
-											Width="{TemplateBinding Width}"
-											Height="{TemplateBinding Height}"
-											Padding="{TemplateBinding Padding}" />
+							<ItemsPresenter x:Name="TabBarItemsPresenter" />
 							<utu:TabBarSelectionIndicatorPresenter x:Name="AboveSelectionIndicatorPresenter"
 																   Padding="{TemplateBinding Padding}"
 																   AutomationProperties.AutomationId="AboveSelectionIndicatorPresenter"
@@ -2619,7 +2618,7 @@
 								  HorizontalAlignment="Center"
 								  VerticalAlignment="Center"
 								  CornerRadius="{ThemeResource NavigationTabBarItemActiveIndicatorCornerRadius}" />
-							
+
 							<utu:ShadowContainer x:Name="IconShadowPanel">
 								<Grid x:Name="ActiveIndicator"
 									  Width="{ThemeResource NavigationTabBarItemActiveIndicatorWidth}"
@@ -2710,7 +2709,7 @@
 									</Border>
 								</Grid>
 							</utu:ShadowContainer>
-							
+
 							<Grid x:Name="ContentPresenterGrid"
 								  HorizontalAlignment="Center"
 								  VerticalAlignment="Center"
@@ -2830,7 +2829,7 @@
 	<x:String x:Key="ContentTabBarItemCornerRadius">32</x:String>
 	<x:Double x:Key="ContentTabBarItemHeight">64</x:Double>
 	<x:Double x:Key="ContentTabBarItemWidth">120</x:Double>
-	
+
 	<Style x:Key="NeumorphicBaseContentTabBarItemStyle"
 		   TargetType="utu:TabBarItem">
 		<Setter Property="FontFamily" Value="{ThemeResource MaterialMediumFontFamily}" />
@@ -2859,7 +2858,7 @@
 							  CornerRadius="{StaticResource ContentTabBarItemCornerRadius}"
 							  Height="{StaticResource ContentTabBarItemHeight}"
 							  Width="{StaticResource ContentTabBarItemWidth}" />
-						
+
 						<utu:ShadowContainer x:Name="ShadowPanel">
 
 							<Grid x:Name="ContentGrid"
@@ -3005,7 +3004,7 @@
 								</VisualState>
 							</VisualStateGroup>
 							<VisualStateGroup x:Name="TabBarIconPositionStates">
-								
+
 								<VisualState x:Name="IconOnTop" />
 
 								<VisualState x:Name="IconOnly">
@@ -3037,7 +3036,7 @@
 			</Setter.Value>
 		</Setter>
 	</Style>
-	
+
 	<Style x:Key="NeumorphicFabTabBarItemStyle"
 		   TargetType="utu:TabBarItem">
 		<Setter Property="FontFamily" Value="{ThemeResource MaterialMediumFontFamily}" />
@@ -3327,7 +3326,7 @@
 										  Background="{TemplateBinding Background}"
 										  CornerRadius="8" />
 								</utu:ShadowContainer>
-								
+
 								<!-- HorizontalDecreaseRect -->
 								<utu:ShadowContainer x:Name="HorizontalDecreaseRectShadow"
 													 Grid.Row="1">
@@ -3377,7 +3376,7 @@
 											  Height="24"
 											  CornerRadius="12"/>
 									</utu:ShadowContainer>
-									
+
 									<!-- HorizontalThumb -->
 									<utu:ShadowContainer x:Name="HorizontalThumbShadow">
 										<Thumb x:Name="HorizontalThumb"
@@ -3769,7 +3768,7 @@
 																  KeySpline="{StaticResource MaterialToggleSwitchFastOutSlowInKeySpline}"
 																  Value="{Binding OffContent, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ToggleSwitchOffContentToContentSize}}" />
 										</DoubleAnimationUsingKeyFrames>
-										
+
 									</Storyboard>
 								</VisualState>
 							</VisualStateGroup>
@@ -4087,7 +4086,7 @@
 										  HorizontalAlignment="Center" />
 								</utu:ShadowContainer>
 							</Grid>
-							
+
 							<!-- On -->
 							<Grid x:Name="SwitchKnobBounds"
 								  Width="{ThemeResource SwitchKnobWidth}"
@@ -4234,5 +4233,5 @@
 		</Setter>
 	</Style>
 	<!--#endregion-->
-	
+
 </ResourceDictionary>
