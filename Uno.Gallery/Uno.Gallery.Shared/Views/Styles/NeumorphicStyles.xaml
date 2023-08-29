@@ -953,14 +953,22 @@
 										<Setter Target="PopupBorder.Background" Value="{ThemeResource SystemControlTransparentBrush}" />
 									</VisualState.Setters>
 								</VisualState>
-								<VisualState x:Name="PointerOver" />
+								<VisualState x:Name="PointerOver">
+									<VisualState.Setters>
+										<Setter Target="PlaceholderElement.Foreground" Value="{ThemeResource OnSurfaceMediumBrush}" />
+									</VisualState.Setters>
+								</VisualState>
 								<VisualState x:Name="Pressed" />
 							</VisualStateGroup>
 
 							<VisualStateGroup x:Name="FocusStates">
 								<VisualState x:Name="PointerFocused" />
 								<VisualState x:Name="FocusedDropDown" />
-								<VisualState x:Name="Focused" />
+								<VisualState x:Name="Focused">
+									<VisualState.Setters>
+										<Setter Target="PlaceholderElement.Foreground" Value="{ThemeResource PrimaryBrush}" />
+									</VisualState.Setters>
+								</VisualState>
 								<VisualState x:Name="FocusedPressed" />
 								<VisualState x:Name="Unfocused" />
 							</VisualStateGroup>
@@ -1053,7 +1061,7 @@
 										   Grid.Column="1"
 										   VerticalAlignment="Center"
 										   Visibility="{Binding SelectedItem, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource NullToVisible}, TargetNullValue=Collapsed, FallbackValue=Collapsed}"
-										   Foreground="{ThemeResource OnSurfaceMediumBrush}"
+										   Foreground="{TemplateBinding Foreground}"
 										   IsHitTestVisible="False"
 										   MaxLines="1"
 										   RenderTransformOrigin="0,0.5"
@@ -1087,7 +1095,7 @@
 									  HorizontalAlignment="Center"
 									  VerticalAlignment="Center"
 									  Data="M0 0L5 5L10 0H0Z"
-									  Fill="{ThemeResource OnSurfaceMediumBrush}"
+									  Fill="{ThemeResource PrimaryBrush}"
 									  Stretch="Uniform" />
 
 								<!-- Up -->
@@ -1099,7 +1107,7 @@
 									  HorizontalAlignment="Center"
 									  VerticalAlignment="Center"
 									  Data="M0 0L-5 -5L-10 0H0Z"
-									  Fill="{ThemeResource OnSurfaceMediumBrush}"
+									  Fill="{ThemeResource PrimaryBrush}"
 									  Stretch="Uniform"
 									  Visibility="Collapsed" />
 							</Grid>
