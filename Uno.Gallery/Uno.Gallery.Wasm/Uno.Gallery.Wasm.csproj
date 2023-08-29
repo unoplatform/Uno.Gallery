@@ -112,10 +112,10 @@
 		<PackageReference Include="Uno.Toolkit.WinUI" Version="5.0.0-dev.94" />
 		<PackageReference Include="Uno.Toolkit.WinUI.Cupertino" Version="5.0.0-dev.94" />
 		<PackageReference Include="Uno.Toolkit.WinUI.Material" Version="5.0.0-dev.94" />
-		<PackageReference Include="Uno.WinUI.Lottie" Version="5.0.0-dev.2319" />
-		<PackageReference Include="Uno.WinUI.MediaPlayer.WebAssembly" Version="5.0.0-dev.2319" />
-		<PackageReference Include="Uno.WinUI.WebAssembly" Version="5.0.0-dev.2319" />
-		<PackageReference Include="Uno.WinUI.RemoteControl" Version="5.0.0-dev.2319" Condition="'$(Configuration)'=='Debug'" />
+		<PackageReference Include="Uno.WinUI.Lottie" Version="5.0.0-dev.2366" />
+		<PackageReference Include="Uno.WinUI.MediaPlayer.WebAssembly" Version="5.0.0-dev.2366" />
+		<PackageReference Include="Uno.WinUI.WebAssembly" Version="5.0.0-dev.2366" />
+		<PackageReference Include="Uno.WinUI.RemoteControl" Version="5.0.0-dev.2366" Condition="'$(Configuration)'=='Debug'" />
 		<PackageReference Include="Uno.Wasm.Bootstrap" Version="8.0.0-dev.252" />
 		<PackageReference Include="Uno.Wasm.Bootstrap.DevServer" Version="8.0.0-dev.252" />
 		<PackageReference Include="Microsoft.TypeScript.Compiler" Version="3.1.5">
@@ -126,7 +126,7 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Uno.UI.Adapter.Microsoft.Extensions.Logging" Version="5.0.0-dev.2319" />
+		<PackageReference Include="Uno.UI.Adapter.Microsoft.Extensions.Logging" Version="5.0.0-dev.2366" />
 		<PackageReference Include="Uno.Core.Extensions.Disposables" Version="4.0.1" />
 		<PackageReference Include="Uno.Core.Extensions.Compatibility" Version="4.0.1" />
 

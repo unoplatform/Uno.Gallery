@@ -45,7 +45,7 @@
 			<Version>5.0.0-dev.94</Version>
 		</PackageReference>
 		<PackageReference Include="Uno.WinUI">
-			<Version>5.0.0-dev.2319</Version>
+			<Version>5.0.0-dev.2366</Version>
 		</PackageReference>
 		<Manifest Include="$(ApplicationManifest)" />
 	</ItemGroup>
