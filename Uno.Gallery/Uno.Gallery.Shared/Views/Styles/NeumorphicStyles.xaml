@@ -576,14 +576,13 @@
 								</VisualState>
 								<VisualState x:Name="Pressed">
 									<VisualState.Setters>
-										<Setter Target="PlaceholderElement.Foreground" Value="{ThemeResource OnSurfaceMediumBrush}" />
+										<Setter Target="PlaceholderElement.Foreground" Value="{ThemeResource PrimaryBrush}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="Disabled">
 									<VisualState.Setters>
 										<Setter Target="IconPresenter.Foreground" Value="{ThemeResource OnSurfaceLowBrush}" />
-										<Setter Target="IconPresenter.Opacity" Value="{ThemeResource DisabledOpacity}" />
-										<Setter Target="ContentElement.Opacity" Value="{ThemeResource DisabledOpacity}" />
+										<Setter Target="ContentElement.Foreground" Value="{ThemeResource OnSurfaceLowBrush}" />
 										<Setter Target="PlaceholderElement.Foreground" Value="{ThemeResource OnSurfaceLowBrush}" />
 									</VisualState.Setters>
 								</VisualState>
@@ -655,6 +654,7 @@
 									VerticalAlignment="Top">
 								<ContentPresenter x:Name="IconPresenter"
 												  Content="{Binding Path=(um:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}}"
+												  Foreground="{ThemeResource PrimaryBrush}"
 												  HorizontalAlignment="Center"
 												  Width="20"
 												  Margin="1,0,18,0"
@@ -894,7 +894,7 @@
 	<Style x:Key="NeumorphicComboBoxStyle"
 		   TargetType="ComboBox">
 
-		<Setter Property="Foreground" Value="{ThemeResource OnSurfaceMediumBrush}" />
+		<Setter Property="Foreground" Value="{ThemeResource OnSurfaceVariantBrush}" />
 		<Setter Property="Background" Value="{ThemeResource SurfaceBrush}" />
 		<Setter Property="HorizontalContentAlignment" Value="Left" />
 		<Setter Property="VerticalContentAlignment" Value="Center" />
@@ -955,6 +955,7 @@
 								</VisualState>
 								<VisualState x:Name="PointerOver">
 									<VisualState.Setters>
+										<Setter Target="UpperPlaceholderElement.Foreground" Value="{ThemeResource OnSurfaceMediumBrush}" />
 										<Setter Target="PlaceholderElement.Foreground" Value="{ThemeResource OnSurfaceMediumBrush}" />
 									</VisualState.Setters>
 								</VisualState>
@@ -966,6 +967,7 @@
 								<VisualState x:Name="FocusedDropDown" />
 								<VisualState x:Name="Focused">
 									<VisualState.Setters>
+										<Setter Target="UpperPlaceholderElement.Foreground" Value="{ThemeResource PrimaryBrush}" />
 										<Setter Target="PlaceholderElement.Foreground" Value="{ThemeResource PrimaryBrush}" />
 									</VisualState.Setters>
 								</VisualState>
