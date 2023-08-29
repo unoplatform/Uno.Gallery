@@ -3781,7 +3781,7 @@
 													  To="On"
 													  GeneratedDuration="0">
 										<Storyboard>
-											<win:RepositionThemeAnimation TargetName="SwitchKnob"
+											<RepositionThemeAnimation TargetName="SwitchKnob"
 																	  FromHorizontalOffset="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.KnobCurrentToOnOffset}" />
 											<DoubleAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobBounds"
 																		   Storyboard.TargetProperty="Opacity">
@@ -3853,7 +3853,7 @@
 													  To="Off"
 													  GeneratedDuration="0">
 										<Storyboard>
-											<win:RepositionThemeAnimation TargetName="SwitchKnob"
+											<RepositionThemeAnimation TargetName="SwitchKnob"
 																	  FromHorizontalOffset="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.KnobCurrentToOffOffset}" />
 											<DoubleAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobBounds"
 																		   Storyboard.TargetProperty="Opacity">
@@ -3887,7 +3887,7 @@
 													  To="Off"
 													  GeneratedDuration="0">
 										<Storyboard>
-											<win:RepositionThemeAnimation TargetName="SwitchKnob"
+											<RepositionThemeAnimation TargetName="SwitchKnob"
 																	  FromHorizontalOffset="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.KnobOnToOffOffset}" />
 											<!--#region uno#9507: UNO specific workaround to reset the states-->
 											<DoubleAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobBounds"
@@ -3929,7 +3929,7 @@
 													  GeneratedDuration="0">
 
 										<Storyboard>
-											<win:RepositionThemeAnimation TargetName="SwitchKnob"
+											<RepositionThemeAnimation TargetName="SwitchKnob"
 																	  FromHorizontalOffset="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.KnobOffToOnOffset}" />
 											<DoubleAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobBounds"
 																		   Storyboard.TargetProperty="Opacity">

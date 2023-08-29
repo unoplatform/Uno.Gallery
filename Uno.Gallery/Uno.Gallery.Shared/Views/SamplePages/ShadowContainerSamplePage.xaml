@@ -2,6 +2,7 @@
 	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	  xmlns:local="using:Uno.Gallery"
+	  xmlns:helpers="using:Uno.Gallery.Helpers"
 	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	  xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"
@@ -9,6 +10,8 @@
 	  xmlns:um="using:Uno.Material"
 	  xmlns:smtx="using:ShowMeTheXAML"
 	  xmlns:sample="using:Uno.Gallery"
+	  xmlns:converters="using:Uno.Gallery.Converters"
+	  xmlns:selectors="using:Uno.Gallery.Selectors"
 	  mc:Ignorable="d">
 	<Page.Resources>
 		<ResourceDictionary>
@@ -20,23 +23,25 @@
 				<ResourceDictionary Source="../NeumorphicColorsOverride.xaml" />
 				<ResourceDictionary Source="../Styles/NeumorphicStyles.xaml" />
 			</ResourceDictionary.MergedDictionaries>
-		</ResourceDictionary>
-	</Page.Resources>
 
-	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-		<local:ContentPageLayout>
-			<StackPanel>
-				<!-- TextBox -->
+			<!--#region Neumorphic Templates-->
+			<DataTemplate x:Key="NeumorphicNoneTemplate">
+				<TextBlock VerticalAlignment="Center"
+						   HorizontalAlignment="Center"
+						   TextWrapping="WrapWholeWords"
+						   Style="{StaticResource BodyLarge}"
+						   Text="Select a control to view its Neumorphic style" />
+			</DataTemplate>
+
+			<DataTemplate x:Key="NeumorphicTextBoxTemplate">
 				<smtx:XamlDisplay UniqueKey="ShadowContainerSamplePage_TextBox"
-								  smtx:XamlDisplayExtensions.Header="Neumorphic TextBox"
 								  Background="{ThemeResource SurfaceBrush}"
 								  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\WrapPanel\StackPanel">
-
 					<controls:WrapPanel HorizontalSpacing="16"
 										VerticalSpacing="16">
 
 						<StackPanel Spacing="20">
-							<!-- TextBox Enabled -->
+							<!-- Enabled -->
 							<TextBlock Text="Enabled"
 									   Style="{StaticResource BodyMedium}" />
 							<TextBox Width="328"
@@ -54,7 +59,7 @@
 						</StackPanel>
 
 						<StackPanel Spacing="20">
-							<!-- TextBox Disabled -->
+							<!-- Disabled -->
 							<TextBlock Text="Disabled"
 									   Style="{StaticResource BodyMedium}" />
 							<TextBox Width="328"
@@ -75,540 +80,550 @@
 						</StackPanel>
 					</controls:WrapPanel>
 				</smtx:XamlDisplay>
+			</DataTemplate>
 
-				<!-- PasswordBox -->
+			<DataTemplate x:Key="NeumorphicPasswordBoxTemplate">
 				<smtx:XamlDisplay UniqueKey="ShadowContainerSamplePage_PasswordBox"
-								  smtx:XamlDisplayExtensions.Header="Neumorphic PasswordBox"
+								  Background="{ThemeResource SurfaceBrush}"
+								  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\WrapPanel\StackPanel">
+					<controls:WrapPanel HorizontalSpacing="16"
+										VerticalSpacing="16">
+
+						<StackPanel Spacing="20">
+							<!-- Enabled -->
+							<TextBlock Text="Enabled"
+									   Style="{StaticResource BodyMedium}" />
+							<PasswordBox Width="328"
+										 PlaceholderText="Label"
+										 Style="{StaticResource NeumorphicPasswordBoxStyle}">
+								<um:ControlExtensions.Icon>
+									<SymbolIcon Symbol="Permissions" />
+								</um:ControlExtensions.Icon>
+							</PasswordBox>
+							<PasswordBox Width="328"
+										 PlaceholderText="Label"
+										 Style="{StaticResource NeumorphicPasswordBoxStyle}" />
+							<PasswordBox Width="328"
+										 Style="{StaticResource NeumorphicPasswordBoxStyle}" />
+						</StackPanel>
+
+						<StackPanel Spacing="20">
+							<!-- Disabled -->
+							<TextBlock Text="Disabled"
+									   Style="{StaticResource BodyMedium}" />
+							<PasswordBox Width="328"
+										 IsEnabled="False"
+										 PlaceholderText="Label"
+										 Style="{StaticResource NeumorphicPasswordBoxStyle}">
+								<um:ControlExtensions.Icon>
+									<SymbolIcon Symbol="Permissions" />
+								</um:ControlExtensions.Icon>
+							</PasswordBox>
+							<PasswordBox Width="328"
+										 IsEnabled="False"
+										 PlaceholderText="Label"
+										 Style="{StaticResource NeumorphicPasswordBoxStyle}" />
+							<PasswordBox Width="328"
+										 IsEnabled="False"
+										 Style="{StaticResource NeumorphicPasswordBoxStyle}" />
+						</StackPanel>
+					</controls:WrapPanel>
+				</smtx:XamlDisplay>
+			</DataTemplate>
+
+			<DataTemplate x:Key="NeumorphicComboBoxTemplate">
+				<smtx:XamlDisplay UniqueKey="ShadowContainerSamplePage_ComboBox"
+								  Background="{ThemeResource SurfaceBrush}"
+								  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\WrapPanel">
+
+					<controls:WrapPanel HorizontalSpacing="16"
+										VerticalSpacing="16">
+						<ComboBox Width="328"
+								  PlaceholderText="Placeholder"
+								  Style="{StaticResource NeumorphicComboBoxStyle}"
+								  ItemsSource="{utu:AncestorBinding AncestorType=local:ContentPageLayout,
+																	Path=DataContext.Data.CbbItems}" />
+						<ComboBox Width="328"
+								  PlaceholderText="Disabled"
+								  IsEnabled="False"
+								  Style="{StaticResource NeumorphicComboBoxStyle}"
+								  ItemsSource="{utu:AncestorBinding AncestorType=local:ContentPageLayout,
+																	Path=DataContext.Data.CbbItems}" />
+					</controls:WrapPanel>
+				</smtx:XamlDisplay>
+			</DataTemplate>
+
+			<DataTemplate x:Key="NeumorphicButtonTemplate">
+				<smtx:XamlDisplay UniqueKey="ShadowContainerSamplePage_Button"
 								  Background="{ThemeResource SurfaceBrush}"
 								  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\WrapPanel\StackPanel">
 
 					<controls:WrapPanel HorizontalSpacing="16"
 										VerticalSpacing="16">
-
 						<StackPanel Spacing="20">
-							<!-- PasswordBox Enabled -->
-							<TextBlock Text="Enabled"
-									   Style="{StaticResource BodyMedium}" />
-							<PasswordBox Width="328"
-										 PlaceholderText="Label"
-										 Style="{StaticResource NeumorphicPasswordBoxStyle}">
-								<um:ControlExtensions.Icon>
-									<SymbolIcon Symbol="Permissions" />
-								</um:ControlExtensions.Icon>
-							</PasswordBox>
-							<PasswordBox Width="328"
-										 PlaceholderText="Label"
-										 Style="{StaticResource NeumorphicPasswordBoxStyle}" />
-							<PasswordBox Width="328"
-										 Style="{StaticResource NeumorphicPasswordBoxStyle}" />
+							<!-- Elevated -->
+							<TextBlock Text="Elevated"
+									   Style="{StaticResource BodyMedium}"
+									   Margin="16" />
+							<StackPanel Padding="20"
+										Spacing="20"
+										CornerRadius="20"
+										BorderThickness="1"
+										BorderBrush="{ThemeResource DividerBrush}">
+
+								<Button Style="{StaticResource NeumorphicSmallElevatedButtonStyle}"
+										Content="Small" />
+
+								<Button Style="{StaticResource NeumorphicMediumElevatedButtonStyle}"
+										Content="Medium with icon">
+									<um:ControlExtensions.Icon>
+										<PathIcon Data="M12 6.85714H6.85714V12H5.14286V6.85714H0V5.14286H5.14286V0H6.85714V5.14286H12V6.85714Z" />
+									</um:ControlExtensions.Icon>
+								</Button>
+
+								<Button Style="{StaticResource NeumorphicLargeElevatedButtonStyle}"
+										Content="Large with icon">
+									<um:ControlExtensions.Icon>
+										<PathIcon Data="M12 6.85714H6.85714V12H5.14286V6.85714H0V5.14286H5.14286V0H6.85714V5.14286H12V6.85714Z" />
+									</um:ControlExtensions.Icon>
+								</Button>
+
+								<StackPanel Spacing="20">
+
+									<Button Style="{StaticResource NeumorphicSmallElevatedButtonStyle}"
+											Content="Small"
+											IsEnabled="False" />
+
+									<Button Style="{StaticResource NeumorphicMediumElevatedButtonStyle}"
+											Content="Medium with icon"
+											IsEnabled="False">
+										<um:ControlExtensions.Icon>
+											<PathIcon Data="M12 6.85714H6.85714V12H5.14286V6.85714H0V5.14286H5.14286V0H6.85714V5.14286H12V6.85714Z" />
+										</um:ControlExtensions.Icon>
+									</Button>
+
+									<Button Style="{StaticResource NeumorphicLargeElevatedButtonStyle}"
+											Content="Large with icon"
+											IsEnabled="False">
+										<um:ControlExtensions.Icon>
+											<PathIcon Data="M12 6.85714H6.85714V12H5.14286V6.85714H0V5.14286H5.14286V0H6.85714V5.14286H12V6.85714Z" />
+										</um:ControlExtensions.Icon>
+									</Button>
+								</StackPanel>
+							</StackPanel>
 						</StackPanel>
 
 						<StackPanel Spacing="20">
-							<!-- PasswordBox Disabled -->
-							<TextBlock Text="Disabled"
-									   Style="{StaticResource BodyMedium}" />
-							<PasswordBox Width="328"
-										 IsEnabled="False"
-										 PlaceholderText="Label"
-										 Style="{StaticResource NeumorphicPasswordBoxStyle}">
-								<um:ControlExtensions.Icon>
-									<SymbolIcon Symbol="Permissions" />
-								</um:ControlExtensions.Icon>
-							</PasswordBox>
-							<PasswordBox Width="328"
-										 IsEnabled="False"
-										 PlaceholderText="Label"
-										 Style="{StaticResource NeumorphicPasswordBoxStyle}" />
-							<PasswordBox Width="328"
-										 IsEnabled="False"
-										 Style="{StaticResource NeumorphicPasswordBoxStyle}" />
-						</StackPanel>
-					</controls:WrapPanel>
-				</smtx:XamlDisplay>
+							<!-- Filled -->
+							<TextBlock Text="Filled"
+									   Style="{StaticResource BodyMedium}"
+									   Margin="16" />
 
-				<!-- ComboBox -->
-				<smtx:XamlDisplay UniqueKey="ShadowContainerSamplePage_ComboBox"
-								  smtx:XamlDisplayExtensions.Header="Neumorphic ComboBox"
-								  Background="{ThemeResource SurfaceBrush}"
-								  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\WrapPanel">
+							<StackPanel Padding="20"
+										Spacing="20"
+										CornerRadius="20"
+										Background="{ThemeResource PrimaryBrush}">
+								<Button Style="{StaticResource NeumorphicSmallFilledButtonStyle}"
+										Content="Small" />
 
-					<controls:WrapPanel HorizontalSpacing="16"
-										VerticalSpacing="16">
+								<Button Style="{StaticResource NeumorphicMediumFilledButtonStyle}"
+										Content="Medium with icon">
+									<um:ControlExtensions.Icon>
+										<PathIcon Data="M12 6.85714H6.85714V12H5.14286V6.85714H0V5.14286H5.14286V0H6.85714V5.14286H12V6.85714Z" />
+									</um:ControlExtensions.Icon>
+								</Button>
 
-						<StackPanel Spacing="20">
-							<!-- ComboBox Enabled -->
-							<TextBlock Text="Enabled"
-									   Style="{StaticResource BodyMedium}" />
-							<ComboBox Width="328"
-									  PlaceholderText="Label"
-									  Style="{StaticResource NeumorphicComboBoxStyle}"
-									  ItemsSource="{Binding Data.CbbItems}" />
-						</StackPanel>
+								<Button Style="{StaticResource NeumorphicLargeFilledButtonStyle}"
+										Content="Large with icon">
+									<um:ControlExtensions.Icon>
+										<PathIcon Data="M12 6.85714H6.85714V12H5.14286V6.85714H0V5.14286H5.14286V0H6.85714V5.14286H12V6.85714Z" />
+									</um:ControlExtensions.Icon>
+								</Button>
 
-						<StackPanel Spacing="20">
-							<!-- ComboBox Disabled -->
-							<TextBlock Text="Disabled"
-									   Style="{StaticResource BodyMedium}" />
-							<ComboBox Width="328"
-									  IsEnabled="False"
-									  PlaceholderText="Label"
-									  Style="{StaticResource NeumorphicComboBoxStyle}"
-									  ItemsSource="{Binding Data.CbbItems}" />
-						</StackPanel>
-					</controls:WrapPanel>
-				</smtx:XamlDisplay>
 
-				<!-- Button Elevated -->
-				<smtx:XamlDisplay UniqueKey="ShadowContainerSamplePage_ElevatedButton"
-								  smtx:XamlDisplayExtensions.Header="Neumorphic Elevated Button"
-								  Background="{ThemeResource SurfaceBrush}"
-								  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\WrapPanel">
+								<Button Style="{StaticResource NeumorphicSmallFilledButtonStyle}"
+										Content="Small"
+										IsEnabled="False" />
 
-					<controls:WrapPanel HorizontalSpacing="16"
-										VerticalSpacing="16">
+								<Button Style="{StaticResource NeumorphicMediumFilledButtonStyle}"
+										Content="Medium with icon"
+										IsEnabled="False">
+									<um:ControlExtensions.Icon>
+										<PathIcon Data="M12 6.85714H6.85714V12H5.14286V6.85714H0V5.14286H5.14286V0H6.85714V5.14286H12V6.85714Z" />
+									</um:ControlExtensions.Icon>
+								</Button>
 
-						<StackPanel Spacing="20">
-							
-							<Button Style="{StaticResource NeumorphicSmallElevatedButtonStyle}"
-									Content="Enabled" />
-
-							<Button Style="{StaticResource NeumorphicMediumElevatedButtonStyle}"
-									Content="Icon Enabled">
-								<um:ControlExtensions.Icon>
-									<PathIcon Data="M12 6.85714H6.85714V12H5.14286V6.85714H0V5.14286H5.14286V0H6.85714V5.14286H12V6.85714Z" />
-								</um:ControlExtensions.Icon>
-							</Button>
-
-							<Button Style="{StaticResource NeumorphicLargeElevatedButtonStyle}"
-									Content="Icon Enabled">
-								<um:ControlExtensions.Icon>
-									<PathIcon Data="M12 6.85714H6.85714V12H5.14286V6.85714H0V5.14286H5.14286V0H6.85714V5.14286H12V6.85714Z" />
-								</um:ControlExtensions.Icon>
-							</Button>
-						</StackPanel>
-
-						<StackPanel Spacing="20">
-							
-							<Button Style="{StaticResource NeumorphicSmallElevatedButtonStyle}"
-									Content="Disabled"
-									IsEnabled="False" />
-
-							<Button Style="{StaticResource NeumorphicMediumElevatedButtonStyle}"
-									Content="Icon Disabled"
-									IsEnabled="False">
-								<um:ControlExtensions.Icon>
-									<PathIcon Data="M12 6.85714H6.85714V12H5.14286V6.85714H0V5.14286H5.14286V0H6.85714V5.14286H12V6.85714Z" />
-								</um:ControlExtensions.Icon>
-							</Button>
-
-							<Button Style="{StaticResource NeumorphicLargeElevatedButtonStyle}"
-									Content="Icon Disabled"
-									IsEnabled="False">
-								<um:ControlExtensions.Icon>
-									<PathIcon Data="M12 6.85714H6.85714V12H5.14286V6.85714H0V5.14286H5.14286V0H6.85714V5.14286H12V6.85714Z" />
-								</um:ControlExtensions.Icon>
-							</Button>
+								<Button Style="{StaticResource NeumorphicLargeFilledButtonStyle}"
+										Content="Large with icon"
+										IsEnabled="False">
+									<um:ControlExtensions.Icon>
+										<PathIcon Data="M12 6.85714H6.85714V12H5.14286V6.85714H0V5.14286H5.14286V0H6.85714V5.14286H12V6.85714Z" />
+									</um:ControlExtensions.Icon>
+								</Button>
+							</StackPanel>
 						</StackPanel>
 					</controls:WrapPanel>
 				</smtx:XamlDisplay>
+			</DataTemplate>
 
-				<!-- Button Filled -->
-				<smtx:XamlDisplay UniqueKey="ShadowContainerSamplePage_FilledButton"
-								  smtx:XamlDisplayExtensions.Header="Neumorphic Filled Button"
-								  Background="{ThemeResource PrimaryBrush}"
-								  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\WrapPanel">
-
-					<controls:WrapPanel HorizontalSpacing="16"
-										VerticalSpacing="16">
-
-						<StackPanel Spacing="20">
-							
-							<Button Style="{StaticResource NeumorphicSmallFilledButtonStyle}"
-									Content="Enabled" />
-
-							<Button Style="{StaticResource NeumorphicMediumFilledButtonStyle}"
-									Content="Icon Enabled">
-								<um:ControlExtensions.Icon>
-									<PathIcon Data="M12 6.85714H6.85714V12H5.14286V6.85714H0V5.14286H5.14286V0H6.85714V5.14286H12V6.85714Z" />
-								</um:ControlExtensions.Icon>
-							</Button>
-
-							<Button Style="{StaticResource NeumorphicLargeFilledButtonStyle}"
-									Content="Icon Enabled">
-								<um:ControlExtensions.Icon>
-									<PathIcon Data="M12 6.85714H6.85714V12H5.14286V6.85714H0V5.14286H5.14286V0H6.85714V5.14286H12V6.85714Z" />
-								</um:ControlExtensions.Icon>
-							</Button>
-						</StackPanel>
-
-						<StackPanel Spacing="20">
-							
-							<Button Style="{StaticResource NeumorphicSmallFilledButtonStyle}"
-									Content="Disabled"
-									IsEnabled="False" />
-
-							<Button Style="{StaticResource NeumorphicMediumFilledButtonStyle}"
-									Content="Icon Disabled"
-									IsEnabled="False">
-								<um:ControlExtensions.Icon>
-									<PathIcon Data="M12 6.85714H6.85714V12H5.14286V6.85714H0V5.14286H5.14286V0H6.85714V5.14286H12V6.85714Z" />
-								</um:ControlExtensions.Icon>
-							</Button>
-
-							<Button Style="{StaticResource NeumorphicLargeFilledButtonStyle}"
-									Content="Icon Disabled"
-									IsEnabled="False">
-								<um:ControlExtensions.Icon>
-									<PathIcon Data="M12 6.85714H6.85714V12H5.14286V6.85714H0V5.14286H5.14286V0H6.85714V5.14286H12V6.85714Z" />
-								</um:ControlExtensions.Icon>
-							</Button>
-						</StackPanel>
-					</controls:WrapPanel>
-				</smtx:XamlDisplay>
-
-				<!-- FAB -->
+			<DataTemplate x:Key="NeumorphicFabTemplate">
 				<smtx:XamlDisplay UniqueKey="ShadowContainerSamplePage_FAB"
-								  smtx:XamlDisplayExtensions.Header="Neumorphic Floating Action Button"
-								  Background="{ThemeResource SurfaceBrush}"
-								  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\WrapPanel">
-
-					<controls:WrapPanel HorizontalSpacing="16"
-										VerticalSpacing="16">
-
-						<StackPanel Spacing="20"
-									Orientation="Horizontal">
-
-							<Button Style="{StaticResource NeumorphicFabSmallStyle}"
-									Content="Small">
-								<um:ControlExtensions.Icon>
-									<PathIcon Data="M16.667 9.14286H9.80985V16H7.52414V9.14286H0.666992V6.85714H7.52414V0H9.80985V6.85714H16.667V9.14286Z" />
-								</um:ControlExtensions.Icon>
-							</Button>
-
-							<Button Style="{StaticResource NeumorphicFabStyle}"
-									Content="Medium">
-								<um:ControlExtensions.Icon>
-									<PathIcon Data="M16.667 9.14286H9.80985V16H7.52414V9.14286H0.666992V6.85714H7.52414V0H9.80985V6.85714H16.667V9.14286Z" />
-								</um:ControlExtensions.Icon>
-							</Button>
-
-							<Button Style="{StaticResource NeumorphicFabLargeStyle}">
-								<um:ControlExtensions.Icon>
-									<PathIcon Data="M24.334 13.7143H14.0483V24H10.6197V13.7143H0.333984V10.2857H10.6197V0H14.0483V10.2857H24.334V13.7143Z" />
-								</um:ControlExtensions.Icon>
-							</Button>
-						</StackPanel>
-					</controls:WrapPanel>
-				</smtx:XamlDisplay>
-
-				<!-- ToggleButton -->
-				<smtx:XamlDisplay UniqueKey="ShadowContainerSamplePage_ToggleButton"
-								  smtx:XamlDisplayExtensions.Header="Neumorphic ToggleButton"
-								  Background="{ThemeResource SurfaceBrush}"
-								  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\WrapPanel">
-
-					<controls:WrapPanel HorizontalSpacing="16"
-										VerticalSpacing="16">
-
-						<StackPanel Spacing="30">
-							<StackPanel Spacing="20"
-										Orientation="Horizontal">
-								<ToggleButton Style="{StaticResource NeumorphicToggleButtonStyle}">
-									<ToggleButton.Content>
-										<PathIcon Data="M8 14.5L14 10L8 5.5V14.5ZM10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM10 18C5.59 18 2 14.41 2 10C2 5.59 5.59 2 10 2C14.41 2 18 5.59 18 10C18 14.41 14.41 18 10 18Z" />
-									</ToggleButton.Content>
-									<um:ControlExtensions.AlternateContent>
-										<PathIcon Data="M7 14H9V6H7V14ZM10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM10 18C5.59 18 2 14.41 2 10C2 5.59 5.59 2 10 2C14.41 2 18 5.59 18 10C18 14.41 14.41 18 10 18ZM11 14H13V6H11V14Z" />
-									</um:ControlExtensions.AlternateContent>
-								</ToggleButton>
-
-								<ToggleButton Style="{StaticResource NeumorphicToggleButtonStyle}"
-											  IsChecked="True">
-									<ToggleButton.Content>
-										<PathIcon Data="M8 14.5L14 10L8 5.5V14.5ZM10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM10 18C5.59 18 2 14.41 2 10C2 5.59 5.59 2 10 2C14.41 2 18 5.59 18 10C18 14.41 14.41 18 10 18Z" />
-									</ToggleButton.Content>
-									<um:ControlExtensions.AlternateContent>
-										<PathIcon Data="M7 14H9V6H7V14ZM10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM10 18C5.59 18 2 14.41 2 10C2 5.59 5.59 2 10 2C14.41 2 18 5.59 18 10C18 14.41 14.41 18 10 18ZM11 14H13V6H11V14Z" />
-									</um:ControlExtensions.AlternateContent>
-								</ToggleButton>
-
-								<ToggleButton Style="{StaticResource NeumorphicToggleButtonStyle}"
-											  IsEnabled="False">
-									<ToggleButton.Content>
-										<PathIcon Data="M8 14.5L14 10L8 5.5V14.5ZM10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM10 18C5.59 18 2 14.41 2 10C2 5.59 5.59 2 10 2C14.41 2 18 5.59 18 10C18 14.41 14.41 18 10 18Z" />
-									</ToggleButton.Content>
-									<um:ControlExtensions.AlternateContent>
-										<PathIcon Data="M7 14H9V6H7V14ZM10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM10 18C5.59 18 2 14.41 2 10C2 5.59 5.59 2 10 2C14.41 2 18 5.59 18 10C18 14.41 14.41 18 10 18ZM11 14H13V6H11V14Z" />
-									</um:ControlExtensions.AlternateContent>
-								</ToggleButton>
-
-								<ToggleButton Style="{StaticResource NeumorphicToggleButtonStyle}"
-											  IsEnabled="False"
-											  IsChecked="True">
-									<ToggleButton.Content>
-										<PathIcon Data="M8 14.5L14 10L8 5.5V14.5ZM10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM10 18C5.59 18 2 14.41 2 10C2 5.59 5.59 2 10 2C14.41 2 18 5.59 18 10C18 14.41 14.41 18 10 18Z" />
-									</ToggleButton.Content>
-									<um:ControlExtensions.AlternateContent>
-										<PathIcon Data="M7 14H9V6H7V14ZM10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM10 18C5.59 18 2 14.41 2 10C2 5.59 5.59 2 10 2C14.41 2 18 5.59 18 10C18 14.41 14.41 18 10 18ZM11 14H13V6H11V14Z" />
-									</um:ControlExtensions.AlternateContent>
-								</ToggleButton>
-							</StackPanel>
-
-							<StackPanel Spacing="20"
-										Orientation="Horizontal">
-								<ToggleButton Style="{StaticResource NeumorphicToggleButtonStyle}">
-									<ToggleButton.Content>
-										<PathIcon Data="M0 5.00001L2 7.00001C6.97 2.03001 15.03 2.03001 20 7.00001L22 5.00001C15.93 -1.06999 6.08 -1.06999 0 5.00001ZM8 13L11 16L14 13C12.35 11.34 9.66 11.34 8 13ZM4 9.00001L6 11C8.76 8.24001 13.24 8.24001 16 11L18 9.00001C14.14 5.14001 7.87 5.14001 4 9.00001Z" />
-									</ToggleButton.Content>
-									<um:ControlExtensions.AlternateContent>
-										<PathIcon Data="M21.99 8.00004C18.15 4.16004 12.8 2.76004 7.84 3.78004L10.36 6.30004C13.83 6.13004 17.35 7.35004 19.99 10L21.99 8.00004ZM17.99 12C16.7 10.71 15.15 9.87004 13.5 9.44004L17.03 12.97L17.99 12ZM1 2.05004L4.07 5.10004C2.6 5.82004 1.22 6.78004 0 8.00004L1.99 10C3.23 8.76004 4.66 7.84004 6.19 7.23004L8.43 9.47004C6.81 9.89004 5.27 10.73 4 12V12.01L5.99 14C7.35 12.64 9.13 11.96 10.91 11.94L17.98 19L19.25 17.74L2.29 0.790039L1 2.05004ZM8 16L11 19L14 16C12.35 14.34 9.66 14.34 8 16Z" />
-									</um:ControlExtensions.AlternateContent>
-								</ToggleButton>
-
-								<ToggleButton Style="{StaticResource NeumorphicToggleButtonStyle}"
-											  IsChecked="True">
-									<ToggleButton.Content>
-										<PathIcon Data="M0 5.00001L2 7.00001C6.97 2.03001 15.03 2.03001 20 7.00001L22 5.00001C15.93 -1.06999 6.08 -1.06999 0 5.00001ZM8 13L11 16L14 13C12.35 11.34 9.66 11.34 8 13ZM4 9.00001L6 11C8.76 8.24001 13.24 8.24001 16 11L18 9.00001C14.14 5.14001 7.87 5.14001 4 9.00001Z" />
-									</ToggleButton.Content>
-									<um:ControlExtensions.AlternateContent>
-										<PathIcon Data="M21.99 8.00004C18.15 4.16004 12.8 2.76004 7.84 3.78004L10.36 6.30004C13.83 6.13004 17.35 7.35004 19.99 10L21.99 8.00004ZM17.99 12C16.7 10.71 15.15 9.87004 13.5 9.44004L17.03 12.97L17.99 12ZM1 2.05004L4.07 5.10004C2.6 5.82004 1.22 6.78004 0 8.00004L1.99 10C3.23 8.76004 4.66 7.84004 6.19 7.23004L8.43 9.47004C6.81 9.89004 5.27 10.73 4 12V12.01L5.99 14C7.35 12.64 9.13 11.96 10.91 11.94L17.98 19L19.25 17.74L2.29 0.790039L1 2.05004ZM8 16L11 19L14 16C12.35 14.34 9.66 14.34 8 16Z" />
-									</um:ControlExtensions.AlternateContent>
-								</ToggleButton>
-
-								<ToggleButton Style="{StaticResource NeumorphicToggleButtonStyle}"
-											  IsEnabled="False">
-									<ToggleButton.Content>
-										<PathIcon Data="M0 5.00001L2 7.00001C6.97 2.03001 15.03 2.03001 20 7.00001L22 5.00001C15.93 -1.06999 6.08 -1.06999 0 5.00001ZM8 13L11 16L14 13C12.35 11.34 9.66 11.34 8 13ZM4 9.00001L6 11C8.76 8.24001 13.24 8.24001 16 11L18 9.00001C14.14 5.14001 7.87 5.14001 4 9.00001Z" />
-									</ToggleButton.Content>
-									<um:ControlExtensions.AlternateContent>
-										<PathIcon Data="M21.99 8.00004C18.15 4.16004 12.8 2.76004 7.84 3.78004L10.36 6.30004C13.83 6.13004 17.35 7.35004 19.99 10L21.99 8.00004ZM17.99 12C16.7 10.71 15.15 9.87004 13.5 9.44004L17.03 12.97L17.99 12ZM1 2.05004L4.07 5.10004C2.6 5.82004 1.22 6.78004 0 8.00004L1.99 10C3.23 8.76004 4.66 7.84004 6.19 7.23004L8.43 9.47004C6.81 9.89004 5.27 10.73 4 12V12.01L5.99 14C7.35 12.64 9.13 11.96 10.91 11.94L17.98 19L19.25 17.74L2.29 0.790039L1 2.05004ZM8 16L11 19L14 16C12.35 14.34 9.66 14.34 8 16Z" />
-									</um:ControlExtensions.AlternateContent>
-								</ToggleButton>
-
-								<ToggleButton Style="{StaticResource NeumorphicToggleButtonStyle}"
-											  IsEnabled="False"
-											  IsChecked="True">
-									<ToggleButton.Content>
-										<PathIcon Data="M0 5.00001L2 7.00001C6.97 2.03001 15.03 2.03001 20 7.00001L22 5.00001C15.93 -1.06999 6.08 -1.06999 0 5.00001ZM8 13L11 16L14 13C12.35 11.34 9.66 11.34 8 13ZM4 9.00001L6 11C8.76 8.24001 13.24 8.24001 16 11L18 9.00001C14.14 5.14001 7.87 5.14001 4 9.00001Z" />
-									</ToggleButton.Content>
-									<um:ControlExtensions.AlternateContent>
-										<PathIcon Data="M21.99 8.00004C18.15 4.16004 12.8 2.76004 7.84 3.78004L10.36 6.30004C13.83 6.13004 17.35 7.35004 19.99 10L21.99 8.00004ZM17.99 12C16.7 10.71 15.15 9.87004 13.5 9.44004L17.03 12.97L17.99 12ZM1 2.05004L4.07 5.10004C2.6 5.82004 1.22 6.78004 0 8.00004L1.99 10C3.23 8.76004 4.66 7.84004 6.19 7.23004L8.43 9.47004C6.81 9.89004 5.27 10.73 4 12V12.01L5.99 14C7.35 12.64 9.13 11.96 10.91 11.94L17.98 19L19.25 17.74L2.29 0.790039L1 2.05004ZM8 16L11 19L14 16C12.35 14.34 9.66 14.34 8 16Z" />
-									</um:ControlExtensions.AlternateContent>
-								</ToggleButton>
-							</StackPanel>
-						</StackPanel>
-					</controls:WrapPanel>
-				</smtx:XamlDisplay>
-
-				<!-- IconButton -->
-				<smtx:XamlDisplay UniqueKey="ShadowContainerSamplePage_IconButton"
-								  smtx:XamlDisplayExtensions.Header="Neumorphic IconButton"
-								  Background="{ThemeResource SurfaceBrush}"
-								  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\WrapPanel">
-
-					<controls:WrapPanel HorizontalSpacing="16"
-										VerticalSpacing="16">
-
-						<StackPanel Spacing="30">
-							<StackPanel Spacing="20"
-										Orientation="Horizontal">
-								<Button Style="{StaticResource NeumorphicIconButtonStyle}">
-									<Button.Content>
-										<PathIcon Data="M0 12H18V10H0V12ZM0 7H18V5H0V7ZM0 0V2H18V0H0Z" />
-									</Button.Content>
-								</Button>
-
-								<Button Style="{StaticResource NeumorphicIconButtonStyle}"
-										IsEnabled="False">
-									<Button.Content>
-										<PathIcon Data="M0 12H18V10H0V12ZM0 7H18V5H0V7ZM0 0V2H18V0H0Z" />
-									</Button.Content>
-								</Button>
-							</StackPanel>
-
-							<StackPanel Spacing="20"
-										Orientation="Horizontal">
-								<Button Style="{StaticResource NeumorphicIconButtonStyle}">
-									<Button.Content>
-										<PathIcon Data="M17 5H3C1.34 5 0 6.34 0 8V14H4V18H16V14H20V8C20 6.34 18.66 5 17 5ZM14 16H6V11H14V16ZM17 9C16.45 9 16 8.55 16 8C16 7.45 16.45 7 17 7C17.55 7 18 7.45 18 8C18 8.55 17.55 9 17 9ZM16 0H4V4H16V0Z" />
-									</Button.Content>
-								</Button>
-
-								<Button Style="{StaticResource NeumorphicIconButtonStyle}"
-										IsEnabled="False">
-									<Button.Content>
-										<PathIcon Data="M17 5H3C1.34 5 0 6.34 0 8V14H4V18H16V14H20V8C20 6.34 18.66 5 17 5ZM14 16H6V11H14V16ZM17 9C16.45 9 16 8.55 16 8C16 7.45 16.45 7 17 7C17.55 7 18 7.45 18 8C18 8.55 17.55 9 17 9ZM16 0H4V4H16V0Z" />
-									</Button.Content>
-								</Button>
-							</StackPanel>
-
-							<StackPanel Spacing="20"
-										Orientation="Horizontal">
-								<Button Style="{StaticResource NeumorphicIconButtonStyle}">
-									<Button.Content>
-										<PathIcon Data="M15 14.08C14.24 14.08 13.56 14.38 13.04 14.85L5.91 10.7C5.96 10.47 6 10.24 6 10C6 9.76 5.96 9.53 5.91 9.3L12.96 5.19C13.5 5.69 14.21 6 15 6C16.66 6 18 4.66 18 3C18 1.34 16.66 0 15 0C13.34 0 12 1.34 12 3C12 3.24 12.04 3.47 12.09 3.7L5.04 7.81C4.5 7.31 3.79 7 3 7C1.34 7 0 8.34 0 10C0 11.66 1.34 13 3 13C3.79 13 4.5 12.69 5.04 12.19L12.16 16.35C12.11 16.56 12.08 16.78 12.08 17C12.08 18.61 13.39 19.92 15 19.92C16.61 19.92 17.92 18.61 17.92 17C17.92 15.39 16.61 14.08 15 14.08Z" />
-									</Button.Content>
-								</Button>
-
-								<Button Style="{StaticResource NeumorphicIconButtonStyle}"
-										IsEnabled="False">
-									<Button.Content>
-										<PathIcon Data="M15 14.08C14.24 14.08 13.56 14.38 13.04 14.85L5.91 10.7C5.96 10.47 6 10.24 6 10C6 9.76 5.96 9.53 5.91 9.3L12.96 5.19C13.5 5.69 14.21 6 15 6C16.66 6 18 4.66 18 3C18 1.34 16.66 0 15 0C13.34 0 12 1.34 12 3C12 3.24 12.04 3.47 12.09 3.7L5.04 7.81C4.5 7.31 3.79 7 3 7C1.34 7 0 8.34 0 10C0 11.66 1.34 13 3 13C3.79 13 4.5 12.69 5.04 12.19L12.16 16.35C12.11 16.56 12.08 16.78 12.08 17C12.08 18.61 13.39 19.92 15 19.92C16.61 19.92 17.92 18.61 17.92 17C17.92 15.39 16.61 14.08 15 14.08Z" />
-									</Button.Content>
-								</Button>
-							</StackPanel>
-						</StackPanel>
-					</controls:WrapPanel>
-				</smtx:XamlDisplay>
-
-				<!-- RadioButton -->
-				<smtx:XamlDisplay UniqueKey="ShadowContainerSamplePage_RadioButton"
-								  smtx:XamlDisplayExtensions.Header="Neumorphic RadioButton"
-								  Background="{ThemeResource SurfaceBrush}"
-								  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel\StackPanel">
-
-					<StackPanel Orientation="Horizontal"
-								Spacing="16">
-						<StackPanel Spacing="20">
-							<RadioButton GroupName="NeumorphicRadioButton_GroupeEnabled"
-										 Content="Label"
-										 Style="{StaticResource NeumorphicRadioButtonStyle}" />
-							<RadioButton GroupName="NeumorphicRadioButton_GroupeEnabled"
-										 Content="Label"
-										 IsChecked="True"
-										 Style="{StaticResource NeumorphicRadioButtonStyle}" />
-						</StackPanel>
-
-						<StackPanel Spacing="20">
-							<RadioButton GroupName="NeumorphicRadioButton_GroupeDisabled"
-										 Content="Label"
-										 IsEnabled="False"
-										 Style="{StaticResource NeumorphicRadioButtonStyle}" />
-							<RadioButton GroupName="NeumorphicRadioButton_GroupeDisabled"
-										 Content="Label"
-										 IsChecked="True"
-										 IsEnabled="False"
-										 Style="{StaticResource NeumorphicRadioButtonStyle}" />
-						</StackPanel>
-					</StackPanel>
-				</smtx:XamlDisplay>
-
-				<!-- CheckBox -->
-				<smtx:XamlDisplay UniqueKey="ShadowContainerSamplePage_CheckBox"
-								  smtx:XamlDisplayExtensions.Header="Neumorphic CheckBox"
-								  Background="{ThemeResource SurfaceBrush}"
-								  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel\StackPanel">
-
-					<StackPanel Orientation="Horizontal"
-								Spacing="16">
-						<StackPanel Spacing="20">
-							<CheckBox Content="Label"
-									  Style="{StaticResource NeumorphicCheckBoxStyle}" />
-							<CheckBox Content="Label"
-									  IsChecked="True"
-									  Style="{StaticResource NeumorphicCheckBoxStyle}" />
-							<CheckBox Content="Label"
-									  IsChecked="{x:Null}"
-									  Style="{StaticResource NeumorphicCheckBoxStyle}" />
-						</StackPanel>
-
-						<StackPanel Spacing="20">
-							<CheckBox Content="Label"
-									  IsEnabled="False"
-									  Style="{StaticResource NeumorphicCheckBoxStyle}" />
-							<CheckBox Content="Label"
-									  IsChecked="True"
-									  IsEnabled="False"
-									  Style="{StaticResource NeumorphicCheckBoxStyle}" />
-							<CheckBox Content="Label"
-									  IsChecked="{x:Null}"
-									  IsEnabled="False"
-									  Style="{StaticResource NeumorphicCheckBoxStyle}" />
-						</StackPanel>
-					</StackPanel>
-				</smtx:XamlDisplay>
-
-				<!-- Chips -->
-				<smtx:XamlDisplay UniqueKey="ShadowContainerSamplePage_Chips"
-								  smtx:XamlDisplayExtensions.Header="Neumorphic Chips"
-								  Background="{ThemeResource SurfaceBrush}"
-								  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\WrapPanel">
-
-					<controls:WrapPanel HorizontalSpacing="16"
-										VerticalSpacing="16">
-
-						<StackPanel Spacing="30">
-							<StackPanel Spacing="20"
-										Orientation="Horizontal">
-								<utu:Chip Style="{StaticResource NeumorphicChipStyle}"
-										  Content="Enabled" />
-
-								<utu:Chip Style="{StaticResource NeumorphicChipStyle}"
-										  Content="Enabled">
-									<utu:Chip.Icon>
-										<PathIcon Data="M14 0H2C1.175 0 0.5075 0.675 0.5075 1.5L0.5 10.5C0.5 11.325 1.175 12 2 12H14C14.825 12 15.5 11.325 15.5 10.5V1.5C15.5 0.675 14.825 0 14 0ZM14 10.5H2V3L8 6.75L14 3V10.5ZM8 5.25L2 1.5H14L8 5.25Z" />
-									</utu:Chip.Icon>
-								</utu:Chip>
-								<utu:Chip Style="{StaticResource NeumorphicChipStyle}"
-										  Content="Remove"
-										  CanRemove="True">
-									<utu:Chip.Icon>
-										<PathIcon Data="M14 0H2C1.175 0 0.5075 0.675 0.5075 1.5L0.5 10.5C0.5 11.325 1.175 12 2 12H14C14.825 12 15.5 11.325 15.5 10.5V1.5C15.5 0.675 14.825 0 14 0ZM14 10.5H2V3L8 6.75L14 3V10.5ZM8 5.25L2 1.5H14L8 5.25Z" />
-									</utu:Chip.Icon>
-								</utu:Chip>
-								<utu:Chip Style="{StaticResource NeumorphicChipStyle}"
-										  Content="Disabled"
-										  IsEnabled="False">
-									<utu:Chip.Icon>
-										<PathIcon Data="M14 0H2C1.175 0 0.5075 0.675 0.5075 1.5L0.5 10.5C0.5 11.325 1.175 12 2 12H14C14.825 12 15.5 11.325 15.5 10.5V1.5C15.5 0.675 14.825 0 14 0ZM14 10.5H2V3L8 6.75L14 3V10.5ZM8 5.25L2 1.5H14L8 5.25Z" />
-									</utu:Chip.Icon>
-								</utu:Chip>
-							</StackPanel>
-
-							<StackPanel Spacing="20"
-										Orientation="Horizontal">
-								<utu:Chip Style="{StaticResource NeumorphicChipStyle}"
-										  Content="Enabled"
-										  IsChecked="True" />
-
-								<utu:Chip Style="{StaticResource NeumorphicChipStyle}"
-										  Content="Enabled"
-										  IsChecked="True">
-									<utu:Chip.Icon>
-										<PathIcon Data="M14 0H2C1.175 0 0.5075 0.675 0.5075 1.5L0.5 10.5C0.5 11.325 1.175 12 2 12H14C14.825 12 15.5 11.325 15.5 10.5V1.5C15.5 0.675 14.825 0 14 0ZM14 10.5H2V3L8 6.75L14 3V10.5ZM8 5.25L2 1.5H14L8 5.25Z" />
-									</utu:Chip.Icon>
-								</utu:Chip>
-								<utu:Chip Style="{StaticResource NeumorphicChipStyle}"
-										  Content="Remove"
-										  CanRemove="True"
-										  IsChecked="True">
-									<utu:Chip.Icon>
-										<PathIcon Data="M14 0H2C1.175 0 0.5075 0.675 0.5075 1.5L0.5 10.5C0.5 11.325 1.175 12 2 12H14C14.825 12 15.5 11.325 15.5 10.5V1.5C15.5 0.675 14.825 0 14 0ZM14 10.5H2V3L8 6.75L14 3V10.5ZM8 5.25L2 1.5H14L8 5.25Z" />
-									</utu:Chip.Icon>
-								</utu:Chip>
-
-								<!-- BUG: IsCheck true when Disabled is causing the Background to be wrong -->
-								<utu:Chip Style="{StaticResource NeumorphicChipStyle}"
-										  Content="Disabled"
-										  IsEnabled="False">
-									<utu:Chip.Icon>
-										<PathIcon Data="M14 0H2C1.175 0 0.5075 0.675 0.5075 1.5L0.5 10.5C0.5 11.325 1.175 12 2 12H14C14.825 12 15.5 11.325 15.5 10.5V1.5C15.5 0.675 14.825 0 14 0ZM14 10.5H2V3L8 6.75L14 3V10.5ZM8 5.25L2 1.5H14L8 5.25Z" />
-									</utu:Chip.Icon>
-								</utu:Chip>
-							</StackPanel>
-						</StackPanel>
-					</controls:WrapPanel>
-				</smtx:XamlDisplay>
-
-				<!-- Slider -->
-				<!--<smtx:XamlDisplay UniqueKey="ShadowContainerSamplePage_Slider"
-								  smtx:XamlDisplayExtensions.Header="Neumorphic Slider"
 								  Background="{ThemeResource SurfaceBrush}"
 								  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
-					<StackPanel>
-						--><!--  Slider Vertical  --><!--
-						<StackPanel Orientation="Horizontal">
 
+					<controls:WrapPanel HorizontalSpacing="16"
+										VerticalSpacing="16">
+						<Button Style="{StaticResource NeumorphicFabSmallStyle}"
+								Content="Small">
+							<um:ControlExtensions.Icon>
+								<PathIcon Data="M16.667 9.14286H9.80985V16H7.52414V9.14286H0.666992V6.85714H7.52414V0H9.80985V6.85714H16.667V9.14286Z" />
+							</um:ControlExtensions.Icon>
+						</Button>
+
+						<Button Style="{StaticResource NeumorphicFabStyle}"
+								Content="Medium">
+							<um:ControlExtensions.Icon>
+								<PathIcon Data="M16.667 9.14286H9.80985V16H7.52414V9.14286H0.666992V6.85714H7.52414V0H9.80985V6.85714H16.667V9.14286Z" />
+							</um:ControlExtensions.Icon>
+						</Button>
+
+						<Button Style="{StaticResource NeumorphicFabLargeStyle}">
+							<um:ControlExtensions.Icon>
+								<PathIcon Data="M24.334 13.7143H14.0483V24H10.6197V13.7143H0.333984V10.2857H10.6197V0H14.0483V10.2857H24.334V13.7143Z" />
+							</um:ControlExtensions.Icon>
+						</Button>
+					</controls:WrapPanel>
+				</smtx:XamlDisplay>
+			</DataTemplate>
+
+			<DataTemplate x:Key="NeumorphicToggleButtonTemplate">
+				<smtx:XamlDisplay UniqueKey="ShadowContainerSamplePage_ToggleButton"
+								  Background="{ThemeResource SurfaceBrush}"
+								  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel\StackPanel">
+					<controls:WrapPanel HorizontalSpacing="16"
+										VerticalSpacing="16">
+						<StackPanel Spacing="20">
+							<!-- Enabled -->
+							<TextBlock Text="Enabled"
+									   Style="{StaticResource BodyMedium}" />
+							<StackPanel Spacing="20">
+								<StackPanel Spacing="20"
+											Orientation="Horizontal">
+									<ToggleButton Style="{StaticResource NeumorphicToggleButtonStyle}">
+										<ToggleButton.Content>
+											<PathIcon Data="M7 14H9V6H7V14ZM10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM10 18C5.59 18 2 14.41 2 10C2 5.59 5.59 2 10 2C14.41 2 18 5.59 18 10C18 14.41 14.41 18 10 18ZM11 14H13V6H11V14Z" />
+										</ToggleButton.Content>
+										<um:ControlExtensions.AlternateContent>
+											<PathIcon Data="M8 14.5L14 10L8 5.5V14.5ZM10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM10 18C5.59 18 2 14.41 2 10C2 5.59 5.59 2 10 2C14.41 2 18 5.59 18 10C18 14.41 14.41 18 10 18Z" />
+										</um:ControlExtensions.AlternateContent>
+									</ToggleButton>
+
+									<ToggleButton Style="{StaticResource NeumorphicToggleButtonStyle}"
+												  IsChecked="True">
+										<ToggleButton.Content>
+											<PathIcon Data="M7 14H9V6H7V14ZM10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM10 18C5.59 18 2 14.41 2 10C2 5.59 5.59 2 10 2C14.41 2 18 5.59 18 10C18 14.41 14.41 18 10 18ZM11 14H13V6H11V14Z" />
+										</ToggleButton.Content>
+										<um:ControlExtensions.AlternateContent>
+											<PathIcon Data="M8 14.5L14 10L8 5.5V14.5ZM10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM10 18C5.59 18 2 14.41 2 10C2 5.59 5.59 2 10 2C14.41 2 18 5.59 18 10C18 14.41 14.41 18 10 18Z" />
+
+										</um:ControlExtensions.AlternateContent>
+									</ToggleButton>
+								</StackPanel>
+
+								<StackPanel Spacing="20"
+											Orientation="Horizontal">
+									<ToggleButton Style="{StaticResource NeumorphicToggleButtonStyle}">
+										<ToggleButton.Content>
+											<PathIcon Data="M21.99 8.00004C18.15 4.16004 12.8 2.76004 7.84 3.78004L10.36 6.30004C13.83 6.13004 17.35 7.35004 19.99 10L21.99 8.00004ZM17.99 12C16.7 10.71 15.15 9.87004 13.5 9.44004L17.03 12.97L17.99 12ZM1 2.05004L4.07 5.10004C2.6 5.82004 1.22 6.78004 0 8.00004L1.99 10C3.23 8.76004 4.66 7.84004 6.19 7.23004L8.43 9.47004C6.81 9.89004 5.27 10.73 4 12V12.01L5.99 14C7.35 12.64 9.13 11.96 10.91 11.94L17.98 19L19.25 17.74L2.29 0.790039L1 2.05004ZM8 16L11 19L14 16C12.35 14.34 9.66 14.34 8 16Z" />
+										</ToggleButton.Content>
+										<um:ControlExtensions.AlternateContent>
+											<PathIcon Data="M0 5.00001L2 7.00001C6.97 2.03001 15.03 2.03001 20 7.00001L22 5.00001C15.93 -1.06999 6.08 -1.06999 0 5.00001ZM8 13L11 16L14 13C12.35 11.34 9.66 11.34 8 13ZM4 9.00001L6 11C8.76 8.24001 13.24 8.24001 16 11L18 9.00001C14.14 5.14001 7.87 5.14001 4 9.00001Z" />
+										</um:ControlExtensions.AlternateContent>
+									</ToggleButton>
+
+									<ToggleButton Style="{StaticResource NeumorphicToggleButtonStyle}"
+												  IsChecked="True">
+										<ToggleButton.Content>
+											<PathIcon Data="M21.99 8.00004C18.15 4.16004 12.8 2.76004 7.84 3.78004L10.36 6.30004C13.83 6.13004 17.35 7.35004 19.99 10L21.99 8.00004ZM17.99 12C16.7 10.71 15.15 9.87004 13.5 9.44004L17.03 12.97L17.99 12ZM1 2.05004L4.07 5.10004C2.6 5.82004 1.22 6.78004 0 8.00004L1.99 10C3.23 8.76004 4.66 7.84004 6.19 7.23004L8.43 9.47004C6.81 9.89004 5.27 10.73 4 12V12.01L5.99 14C7.35 12.64 9.13 11.96 10.91 11.94L17.98 19L19.25 17.74L2.29 0.790039L1 2.05004ZM8 16L11 19L14 16C12.35 14.34 9.66 14.34 8 16Z" />
+										</ToggleButton.Content>
+										<um:ControlExtensions.AlternateContent>
+											<PathIcon Data="M0 5.00001L2 7.00001C6.97 2.03001 15.03 2.03001 20 7.00001L22 5.00001C15.93 -1.06999 6.08 -1.06999 0 5.00001ZM8 13L11 16L14 13C12.35 11.34 9.66 11.34 8 13ZM4 9.00001L6 11C8.76 8.24001 13.24 8.24001 16 11L18 9.00001C14.14 5.14001 7.87 5.14001 4 9.00001Z" />
+										</um:ControlExtensions.AlternateContent>
+									</ToggleButton>
+								</StackPanel>
+							</StackPanel>
+						</StackPanel>
+
+						<StackPanel Spacing="20">
+							<!-- Disabled -->
+							<TextBlock Text="Disabled"
+									   Style="{StaticResource BodyMedium}" />
+							<StackPanel Spacing="20">
+								<StackPanel Spacing="20"
+											Orientation="Horizontal">
+									<ToggleButton Style="{StaticResource NeumorphicToggleButtonStyle}"
+												  IsEnabled="False">
+										<ToggleButton.Content>
+											<PathIcon Data="M7 14H9V6H7V14ZM10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM10 18C5.59 18 2 14.41 2 10C2 5.59 5.59 2 10 2C14.41 2 18 5.59 18 10C18 14.41 14.41 18 10 18ZM11 14H13V6H11V14Z" />
+										</ToggleButton.Content>
+										<um:ControlExtensions.AlternateContent>
+											<PathIcon Data="M8 14.5L14 10L8 5.5V14.5ZM10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM10 18C5.59 18 2 14.41 2 10C2 5.59 5.59 2 10 2C14.41 2 18 5.59 18 10C18 14.41 14.41 18 10 18Z" />
+										</um:ControlExtensions.AlternateContent>
+									</ToggleButton>
+
+									<ToggleButton Style="{StaticResource NeumorphicToggleButtonStyle}"
+												  IsEnabled="False"
+												  IsChecked="True">
+										<ToggleButton.Content>
+											<PathIcon Data="M7 14H9V6H7V14ZM10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM10 18C5.59 18 2 14.41 2 10C2 5.59 5.59 2 10 2C14.41 2 18 5.59 18 10C18 14.41 14.41 18 10 18ZM11 14H13V6H11V14Z" />
+										</ToggleButton.Content>
+										<um:ControlExtensions.AlternateContent>
+											<PathIcon Data="M8 14.5L14 10L8 5.5V14.5ZM10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM10 18C5.59 18 2 14.41 2 10C2 5.59 5.59 2 10 2C14.41 2 18 5.59 18 10C18 14.41 14.41 18 10 18Z" />
+										</um:ControlExtensions.AlternateContent>
+									</ToggleButton>
+								</StackPanel>
+
+								<StackPanel Spacing="20"
+											Orientation="Horizontal">
+									<ToggleButton Style="{StaticResource NeumorphicToggleButtonStyle}"
+												  IsEnabled="False">
+										<ToggleButton.Content>
+											<PathIcon Data="M21.99 8.00004C18.15 4.16004 12.8 2.76004 7.84 3.78004L10.36 6.30004C13.83 6.13004 17.35 7.35004 19.99 10L21.99 8.00004ZM17.99 12C16.7 10.71 15.15 9.87004 13.5 9.44004L17.03 12.97L17.99 12ZM1 2.05004L4.07 5.10004C2.6 5.82004 1.22 6.78004 0 8.00004L1.99 10C3.23 8.76004 4.66 7.84004 6.19 7.23004L8.43 9.47004C6.81 9.89004 5.27 10.73 4 12V12.01L5.99 14C7.35 12.64 9.13 11.96 10.91 11.94L17.98 19L19.25 17.74L2.29 0.790039L1 2.05004ZM8 16L11 19L14 16C12.35 14.34 9.66 14.34 8 16Z" />
+										</ToggleButton.Content>
+										<um:ControlExtensions.AlternateContent>
+											<PathIcon Data="M0 5.00001L2 7.00001C6.97 2.03001 15.03 2.03001 20 7.00001L22 5.00001C15.93 -1.06999 6.08 -1.06999 0 5.00001ZM8 13L11 16L14 13C12.35 11.34 9.66 11.34 8 13ZM4 9.00001L6 11C8.76 8.24001 13.24 8.24001 16 11L18 9.00001C14.14 5.14001 7.87 5.14001 4 9.00001Z" />
+										</um:ControlExtensions.AlternateContent>
+									</ToggleButton>
+
+									<ToggleButton Style="{StaticResource NeumorphicToggleButtonStyle}"
+												  IsEnabled="False"
+												  IsChecked="True">
+										<ToggleButton.Content>
+											<PathIcon Data="M21.99 8.00004C18.15 4.16004 12.8 2.76004 7.84 3.78004L10.36 6.30004C13.83 6.13004 17.35 7.35004 19.99 10L21.99 8.00004ZM17.99 12C16.7 10.71 15.15 9.87004 13.5 9.44004L17.03 12.97L17.99 12ZM1 2.05004L4.07 5.10004C2.6 5.82004 1.22 6.78004 0 8.00004L1.99 10C3.23 8.76004 4.66 7.84004 6.19 7.23004L8.43 9.47004C6.81 9.89004 5.27 10.73 4 12V12.01L5.99 14C7.35 12.64 9.13 11.96 10.91 11.94L17.98 19L19.25 17.74L2.29 0.790039L1 2.05004ZM8 16L11 19L14 16C12.35 14.34 9.66 14.34 8 16Z" />
+										</ToggleButton.Content>
+										<um:ControlExtensions.AlternateContent>
+											<PathIcon Data="M0 5.00001L2 7.00001C6.97 2.03001 15.03 2.03001 20 7.00001L22 5.00001C15.93 -1.06999 6.08 -1.06999 0 5.00001ZM8 13L11 16L14 13C12.35 11.34 9.66 11.34 8 13ZM4 9.00001L6 11C8.76 8.24001 13.24 8.24001 16 11L18 9.00001C14.14 5.14001 7.87 5.14001 4 9.00001Z" />
+										</um:ControlExtensions.AlternateContent>
+									</ToggleButton>
+								</StackPanel>
+							</StackPanel>
+						</StackPanel>
+					</controls:WrapPanel>
+				</smtx:XamlDisplay>
+			</DataTemplate>
+
+			<DataTemplate x:Key="NeumorphicIconButtonTemplate">
+				<smtx:XamlDisplay UniqueKey="ShadowContainerSamplePage_IconButton"
+								  Background="{ThemeResource SurfaceBrush}"
+								  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel\StackPanel">
+
+					<StackPanel Spacing="16"
+								Orientation="Horizontal">
+
+						<StackPanel Spacing="20">
+							<!-- Enabled -->
+							<TextBlock Text="Enabled"
+									   Style="{StaticResource BodyMedium}" />
+
+							<Button Style="{StaticResource NeumorphicIconButtonStyle}">
+								<Button.Content>
+									<PathIcon Data="M0 12H18V10H0V12ZM0 7H18V5H0V7ZM0 0V2H18V0H0Z" />
+								</Button.Content>
+							</Button>
+
+							<Button Style="{StaticResource NeumorphicIconButtonStyle}">
+								<Button.Content>
+									<PathIcon Data="M17 5H3C1.34 5 0 6.34 0 8V14H4V18H16V14H20V8C20 6.34 18.66 5 17 5ZM14 16H6V11H14V16ZM17 9C16.45 9 16 8.55 16 8C16 7.45 16.45 7 17 7C17.55 7 18 7.45 18 8C18 8.55 17.55 9 17 9ZM16 0H4V4H16V0Z" />
+								</Button.Content>
+							</Button>
+
+							<Button Style="{StaticResource NeumorphicIconButtonStyle}">
+								<Button.Content>
+									<PathIcon Data="M15 14.08C14.24 14.08 13.56 14.38 13.04 14.85L5.91 10.7C5.96 10.47 6 10.24 6 10C6 9.76 5.96 9.53 5.91 9.3L12.96 5.19C13.5 5.69 14.21 6 15 6C16.66 6 18 4.66 18 3C18 1.34 16.66 0 15 0C13.34 0 12 1.34 12 3C12 3.24 12.04 3.47 12.09 3.7L5.04 7.81C4.5 7.31 3.79 7 3 7C1.34 7 0 8.34 0 10C0 11.66 1.34 13 3 13C3.79 13 4.5 12.69 5.04 12.19L12.16 16.35C12.11 16.56 12.08 16.78 12.08 17C12.08 18.61 13.39 19.92 15 19.92C16.61 19.92 17.92 18.61 17.92 17C17.92 15.39 16.61 14.08 15 14.08Z" />
+								</Button.Content>
+							</Button>
+						</StackPanel>
+
+						<StackPanel Spacing="20">
+							<!-- Disabled -->
+							<TextBlock Text="Disabled"
+									   Style="{StaticResource BodyMedium}" />
+
+							<Button Style="{StaticResource NeumorphicIconButtonStyle}"
+									IsEnabled="False">
+								<Button.Content>
+									<PathIcon Data="M0 12H18V10H0V12ZM0 7H18V5H0V7ZM0 0V2H18V0H0Z" />
+								</Button.Content>
+							</Button>
+
+							<Button Style="{StaticResource NeumorphicIconButtonStyle}"
+									IsEnabled="False">
+								<Button.Content>
+									<PathIcon Data="M17 5H3C1.34 5 0 6.34 0 8V14H4V18H16V14H20V8C20 6.34 18.66 5 17 5ZM14 16H6V11H14V16ZM17 9C16.45 9 16 8.55 16 8C16 7.45 16.45 7 17 7C17.55 7 18 7.45 18 8C18 8.55 17.55 9 17 9ZM16 0H4V4H16V0Z" />
+								</Button.Content>
+							</Button>
+
+							<Button Style="{StaticResource NeumorphicIconButtonStyle}"
+									IsEnabled="False">
+								<Button.Content>
+									<PathIcon Data="M15 14.08C14.24 14.08 13.56 14.38 13.04 14.85L5.91 10.7C5.96 10.47 6 10.24 6 10C6 9.76 5.96 9.53 5.91 9.3L12.96 5.19C13.5 5.69 14.21 6 15 6C16.66 6 18 4.66 18 3C18 1.34 16.66 0 15 0C13.34 0 12 1.34 12 3C12 3.24 12.04 3.47 12.09 3.7L5.04 7.81C4.5 7.31 3.79 7 3 7C1.34 7 0 8.34 0 10C0 11.66 1.34 13 3 13C3.79 13 4.5 12.69 5.04 12.19L12.16 16.35C12.11 16.56 12.08 16.78 12.08 17C12.08 18.61 13.39 19.92 15 19.92C16.61 19.92 17.92 18.61 17.92 17C17.92 15.39 16.61 14.08 15 14.08Z" />
+								</Button.Content>
+							</Button>
+						</StackPanel>
+					</StackPanel>
+				</smtx:XamlDisplay>
+
+			</DataTemplate>
+
+			<DataTemplate x:Key="NeumorphicRadioButtonTemplate">
+				<smtx:XamlDisplay UniqueKey="ShadowContainerSamplePage_RadioButton"
+								  Background="{ThemeResource SurfaceBrush}"
+								  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel\StackPanel">
+
+					<StackPanel Orientation="Horizontal"
+								Spacing="16">
+						<StackPanel Spacing="20">
+							<!-- Enabled -->
+							<RadioButton GroupName="NeumorphicRadioButton_GroupeEnabled"
+										 Content="Unchecked"
+										 Style="{StaticResource NeumorphicRadioButtonStyle}" />
+							<RadioButton GroupName="NeumorphicRadioButton_GroupeEnabled"
+										 Content="Checked"
+										 IsChecked="True"
+										 Style="{StaticResource NeumorphicRadioButtonStyle}" />
+						</StackPanel>
+
+						<StackPanel Spacing="20">
+							<!-- Disabled -->
+							<RadioButton GroupName="NeumorphicRadioButton_GroupeDisabled"
+										 Content="Disabled Unchecked"
+										 IsEnabled="False"
+										 Style="{StaticResource NeumorphicRadioButtonStyle}" />
+							<RadioButton GroupName="NeumorphicRadioButton_GroupeDisabled"
+										 Content="Disabled Checked"
+										 IsChecked="True"
+										 IsEnabled="False"
+										 Style="{StaticResource NeumorphicRadioButtonStyle}" />
+						</StackPanel>
+					</StackPanel>
+				</smtx:XamlDisplay>
+			</DataTemplate>
+
+			<DataTemplate x:Key="NeumorphicCheckBoxTemplate">
+				<smtx:XamlDisplay UniqueKey="ShadowContainerSamplePage_CheckBox"
+								  Background="{ThemeResource SurfaceBrush}"
+								  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel\StackPanel">
+
+					<StackPanel Orientation="Horizontal"
+								Spacing="16">
+						<StackPanel Spacing="20">
+							<!-- Enabled -->
+							<CheckBox Content="Unchecked"
+									  Style="{StaticResource NeumorphicCheckBoxStyle}" />
+							<CheckBox Content="Checked"
+									  IsChecked="True"
+									  Style="{StaticResource NeumorphicCheckBoxStyle}" />
+							<CheckBox Content="Indeterminite"
+									  IsChecked="{x:Null}"
+									  Style="{StaticResource NeumorphicCheckBoxStyle}" />
+						</StackPanel>
+
+						<StackPanel Spacing="20">
+							<!-- Disabled -->
+							<CheckBox Content="Diabled Unchecked"
+									  IsEnabled="False"
+									  Style="{StaticResource NeumorphicCheckBoxStyle}" />
+							<CheckBox Content="Disabled Checked"
+									  IsChecked="True"
+									  IsEnabled="False"
+									  Style="{StaticResource NeumorphicCheckBoxStyle}" />
+							<CheckBox Content="Disabled Indeterminite"
+									  IsChecked="{x:Null}"
+									  IsEnabled="False"
+									  Style="{StaticResource NeumorphicCheckBoxStyle}" />
+						</StackPanel>
+					</StackPanel>
+				</smtx:XamlDisplay>
+			</DataTemplate>
+
+			<DataTemplate x:Key="NeumorphicChipTemplate">
+				<smtx:XamlDisplay UniqueKey="ShadowContainerSamplePage_Chips"
+								  Background="{ThemeResource SurfaceBrush}"
+								  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\WrapPanel\StackPanel\StackPanel">
+
+					<StackPanel Spacing="20">
+
+						<controls:WrapPanel HorizontalSpacing="16"
+											VerticalSpacing="16">
+							<!-- Enabled -->
+							<utu:Chip Style="{StaticResource NeumorphicChipStyle}"
+									  Content="Enabled" />
+
+							<utu:Chip Style="{StaticResource NeumorphicChipStyle}"
+									  Content="Enabled">
+								<utu:Chip.Icon>
+									<PathIcon Data="M14 0H2C1.175 0 0.5075 0.675 0.5075 1.5L0.5 10.5C0.5 11.325 1.175 12 2 12H14C14.825 12 15.5 11.325 15.5 10.5V1.5C15.5 0.675 14.825 0 14 0ZM14 10.5H2V3L8 6.75L14 3V10.5ZM8 5.25L2 1.5H14L8 5.25Z" />
+								</utu:Chip.Icon>
+							</utu:Chip>
+							<utu:Chip Style="{StaticResource NeumorphicChipStyle}"
+									  Content="Remove"
+									  CanRemove="True">
+								<utu:Chip.Icon>
+									<PathIcon Data="M14 0H2C1.175 0 0.5075 0.675 0.5075 1.5L0.5 10.5C0.5 11.325 1.175 12 2 12H14C14.825 12 15.5 11.325 15.5 10.5V1.5C15.5 0.675 14.825 0 14 0ZM14 10.5H2V3L8 6.75L14 3V10.5ZM8 5.25L2 1.5H14L8 5.25Z" />
+								</utu:Chip.Icon>
+							</utu:Chip>
+							<utu:Chip Style="{StaticResource NeumorphicChipStyle}"
+									  Content="Disabled"
+									  IsEnabled="False">
+								<utu:Chip.Icon>
+									<PathIcon Data="M14 0H2C1.175 0 0.5075 0.675 0.5075 1.5L0.5 10.5C0.5 11.325 1.175 12 2 12H14C14.825 12 15.5 11.325 15.5 10.5V1.5C15.5 0.675 14.825 0 14 0ZM14 10.5H2V3L8 6.75L14 3V10.5ZM8 5.25L2 1.5H14L8 5.25Z" />
+								</utu:Chip.Icon>
+							</utu:Chip>
+						</controls:WrapPanel>
+
+						<controls:WrapPanel HorizontalSpacing="16"
+											VerticalSpacing="16">
+							<!-- Disabled -->
+							<utu:Chip Style="{StaticResource NeumorphicChipStyle}"
+									  Content="Enabled"
+									  IsChecked="True" />
+
+							<utu:Chip Style="{StaticResource NeumorphicChipStyle}"
+									  Content="Enabled"
+									  IsChecked="True">
+								<utu:Chip.Icon>
+									<PathIcon Data="M14 0H2C1.175 0 0.5075 0.675 0.5075 1.5L0.5 10.5C0.5 11.325 1.175 12 2 12H14C14.825 12 15.5 11.325 15.5 10.5V1.5C15.5 0.675 14.825 0 14 0ZM14 10.5H2V3L8 6.75L14 3V10.5ZM8 5.25L2 1.5H14L8 5.25Z" />
+								</utu:Chip.Icon>
+							</utu:Chip>
+							<utu:Chip Style="{StaticResource NeumorphicChipStyle}"
+									  Content="Remove"
+									  CanRemove="True"
+									  IsChecked="True">
+								<utu:Chip.Icon>
+									<PathIcon Data="M14 0H2C1.175 0 0.5075 0.675 0.5075 1.5L0.5 10.5C0.5 11.325 1.175 12 2 12H14C14.825 12 15.5 11.325 15.5 10.5V1.5C15.5 0.675 14.825 0 14 0ZM14 10.5H2V3L8 6.75L14 3V10.5ZM8 5.25L2 1.5H14L8 5.25Z" />
+								</utu:Chip.Icon>
+							</utu:Chip>
+
+							<!-- BUG: IsCheck true when Disabled is causing the Background to be wrong -->
+							<utu:Chip Style="{StaticResource NeumorphicChipStyle}"
+									  Content="Disabled"
+									  IsEnabled="False">
+								<utu:Chip.Icon>
+									<PathIcon Data="M14 0H2C1.175 0 0.5075 0.675 0.5075 1.5L0.5 10.5C0.5 11.325 1.175 12 2 12H14C14.825 12 15.5 11.325 15.5 10.5V1.5C15.5 0.675 14.825 0 14 0ZM14 10.5H2V3L8 6.75L14 3V10.5ZM8 5.25L2 1.5H14L8 5.25Z" />
+								</utu:Chip.Icon>
+							</utu:Chip>
+						</controls:WrapPanel>
+					</StackPanel>
+				</smtx:XamlDisplay>
+			</DataTemplate>
+
+			<DataTemplate x:Key="NeumorphicSliderTemplate">
+				<smtx:XamlDisplay UniqueKey="ShadowContainerSamplePage_Slider"
+								  Background="{ThemeResource SurfaceBrush}"
+								  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel\StackPanel">
+					<StackPanel>
+						<StackPanel Orientation="Horizontal">
+							<!-- Slider Vertical -->
 							<Slider Height="200"
 									Maximum="100"
 									Minimum="0"
@@ -625,9 +640,8 @@
 									Value="50" />
 						</StackPanel>
 
-						--><!--  Slider Horizontal  --><!--
 						<StackPanel>
-
+							<!-- Slider Horizontal -->
 							<Slider Width="200"
 									Maximum="100"
 									Minimum="0"
@@ -644,23 +658,23 @@
 									Value="50" />
 						</StackPanel>
 					</StackPanel>
-				</smtx:XamlDisplay>-->
+				</smtx:XamlDisplay>
+			</DataTemplate>
 
-				<!-- ToggleSwitch -->
+			<DataTemplate x:Key="NeumorphicToggleSwitchTemplate">
 				<smtx:XamlDisplay UniqueKey="ShadowContainerSamplePage_ToggleSwitch"
-								  smtx:XamlDisplayExtensions.Header="Neumorphic ToggleSwitch"
 								  Background="{ThemeResource SurfaceBrush}"
-								  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\WrapPanel">
+								  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\WrapPanel\StackPanel\StackPanel">
 
 					<controls:WrapPanel HorizontalSpacing="16"
 										VerticalSpacing="16">
 
 						<StackPanel Orientation="Horizontal"
-								Spacing="16">
-							
-							<StackPanel Spacing="20"
-									Orientation="Vertical">
+									Spacing="16">
 
+							<StackPanel Spacing="20"
+										Orientation="Vertical">
+								<!-- Enabled -->
 								<ToggleSwitch Style="{StaticResource NeumorphicToggleSwitchStyle}" />
 								<ToggleSwitch Style="{StaticResource NeumorphicToggleSwitchStyle}">
 									<ToggleSwitch.OnContent>
@@ -683,6 +697,7 @@
 							</StackPanel>
 							<StackPanel Spacing="20"
 										Orientation="Vertical">
+								<!-- Disabled -->
 								<ToggleSwitch Style="{StaticResource NeumorphicToggleSwitchStyle}"
 											  IsEnabled="False"
 											  IsOn="True" />
@@ -706,20 +721,20 @@
 						</StackPanel>
 					</controls:WrapPanel>
 				</smtx:XamlDisplay>
-				
-				<!-- TabBar -->
+			</DataTemplate>
+
+			<DataTemplate x:Key="NeumorphicTabBarTemplate">
 				<smtx:XamlDisplay UniqueKey="ShadowContainerSamplePage_TabBar"
-								  smtx:XamlDisplayExtensions.Header="Neumorphic TabBar"
 								  Background="{ThemeResource SurfaceBrush}"
-								  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\WrapPanel">
+								  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\WrapPanel\StackPanel">
 
 					<controls:WrapPanel HorizontalSpacing="16"
 										VerticalSpacing="16">
 
 						<StackPanel Spacing="70"
-										Orientation="Vertical">
+									Orientation="Vertical">
 							<utu:TabBar SelectedIndex="1"
-											Style="{StaticResource NeumorphicTopTabBarStyle}">
+										Style="{StaticResource NeumorphicTopTabBarStyle}">
 								<utu:TabBar.Items>
 									<utu:TabBarItem Content="HOME">
 										<utu:TabBarItem.Icon>
@@ -735,7 +750,7 @@
 							</utu:TabBar>
 
 							<utu:TabBar SelectedIndex="1"
-											Style="{StaticResource NeumorphicTopTabBarStyle}">
+										Style="{StaticResource NeumorphicTopTabBarStyle}">
 								<utu:TabBar.Items>
 									<utu:TabBarItem Content="HOME" />
 
@@ -747,7 +762,7 @@
 							</utu:TabBar>
 
 							<utu:TabBar SelectedIndex="1"
-											Style="{StaticResource NeumorphicTopTabBarStyle}">
+										Style="{StaticResource NeumorphicTopTabBarStyle}">
 								<utu:TabBar.Items>
 									<utu:TabBarItem>
 										<utu:TabBarItem.Icon>
@@ -769,28 +784,7 @@
 							</utu:TabBar>
 
 							<utu:TabBar SelectedIndex="1"
-											Style="{StaticResource NeumorphicBottomTabBarStyle}">
-								<utu:TabBar.Items>
-									<utu:TabBarItem Content="HOME">
-										<utu:TabBarItem.Icon>
-											<SymbolIcon Symbol="Home" />
-										</utu:TabBarItem.Icon>
-									</utu:TabBarItem>
-									<utu:TabBarItem Content="SUPPORT">
-										<utu:TabBarItem.Icon>
-											<FontIcon Glyph="&#xE8F2;" />
-										</utu:TabBarItem.Icon>
-									</utu:TabBarItem>
-									<utu:TabBarItem Content="ABOUT">
-										<utu:TabBarItem.Icon>
-											<FontIcon Glyph="&#xE946;" />
-										</utu:TabBarItem.Icon>
-									</utu:TabBarItem>
-								</utu:TabBar.Items>
-							</utu:TabBar>
-
-							<utu:TabBar SelectedIndex="1"
-											Style="{StaticResource NeumorphicVerticalTabBarStyle}">
+										Style="{StaticResource NeumorphicBottomTabBarStyle}">
 								<utu:TabBar.Items>
 									<utu:TabBarItem Content="HOME">
 										<utu:TabBarItem.Icon>
@@ -811,7 +805,28 @@
 							</utu:TabBar>
 
 							<utu:TabBar SelectedIndex="1"
-											Style="{StaticResource NeumorphicBottomTabBarStyle}">
+										Style="{StaticResource NeumorphicVerticalTabBarStyle}">
+								<utu:TabBar.Items>
+									<utu:TabBarItem Content="HOME">
+										<utu:TabBarItem.Icon>
+											<SymbolIcon Symbol="Home" />
+										</utu:TabBarItem.Icon>
+									</utu:TabBarItem>
+									<utu:TabBarItem Content="SUPPORT">
+										<utu:TabBarItem.Icon>
+											<FontIcon Glyph="&#xE8F2;" />
+										</utu:TabBarItem.Icon>
+									</utu:TabBarItem>
+									<utu:TabBarItem Content="ABOUT">
+										<utu:TabBarItem.Icon>
+											<FontIcon Glyph="&#xE946;" />
+										</utu:TabBarItem.Icon>
+									</utu:TabBarItem>
+								</utu:TabBar.Items>
+							</utu:TabBar>
+
+							<utu:TabBar SelectedIndex="1"
+										Style="{StaticResource NeumorphicBottomTabBarStyle}">
 								<utu:TabBar.Items>
 									<utu:TabBarItem Content="HOME" />
 									<utu:TabBarItem Content="SUPPORT" />
@@ -881,6 +896,187 @@
 						</StackPanel>
 					</controls:WrapPanel>
 				</smtx:XamlDisplay>
+			</DataTemplate>
+			<!--#endregion-->
+
+			<selectors:NeumorphicTemplateSelector x:Key="NeumorphicTemplateSelector"
+												  TextBoxTemplate="{StaticResource NeumorphicTextBoxTemplate}"
+												  PasswordBoxTemplate="{StaticResource NeumorphicPasswordBoxTemplate}"
+												  ComboBoxTemplate="{StaticResource NeumorphicComboBoxTemplate}"
+												  ButtonTemplate="{StaticResource NeumorphicButtonTemplate}"
+												  FabTemplate="{StaticResource NeumorphicFabTemplate}"
+												  ToggleButtonTemplate="{StaticResource NeumorphicToggleButtonTemplate}"
+												  IconButtonTemplate="{StaticResource NeumorphicIconButtonTemplate}"
+												  RadioButtonTemplate="{StaticResource NeumorphicRadioButtonTemplate}"
+												  CheckBoxTemplate="{StaticResource NeumorphicCheckBoxTemplate}"
+												  ChipTemplate="{StaticResource NeumorphicChipTemplate}"
+												  SliderTemplate="{StaticResource NeumorphicSliderTemplate}"
+												  ToggleSwitchTemplate="{StaticResource NeumorphicToggleSwitchTemplate}"
+												  TabBarTemplate="{StaticResource NeumorphicTabBarTemplate}"
+												  NoneTemplate="{StaticResource NeumorphicNoneTemplate}" />
+
+			<converters:HexToColorConverter x:Key="HexToColor" />
+
+			<Color x:Key="UnoPurple">#7a67f8</Color>
+			<Color x:Key="UnoPink">#f85977</Color>
+			<Color x:Key="UnoBlue">#159bff</Color>
+			<Color x:Key="UnoGreen">#67e5ad</Color>
+
+			<utu:Shadow x:Key="DefaultShadow"
+						BlurRadius="20"
+						OffsetX="10"
+						OffsetY="10"
+						Opacity="0.5"
+						Spread="0"
+						Color="{StaticResource UnoPurple}" />
+		</ResourceDictionary>
+	</Page.Resources>
+
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<local:ContentPageLayout>
+			<StackPanel>
+				<smtx:XamlDisplay UniqueKey="ShadowContainerSamplePage_ShadowBuilder"
+								  Background="{ThemeResource SurfaceBrush}"
+								  smtx:XamlDisplayExtensions.Header="Shadow Builder"
+								  smtx:XamlDisplayExtensions.Description="You can add as many shadows as you like. You can also dynamically change the shadow properties.">
+
+					<utu:ShadowContainer x:Name="ShadowContainer"
+										 HorizontalAlignment="Left"
+										 Margin="32">
+						<utu:ShadowContainer.Shadows>
+							<utu:ShadowCollection x:Name="Shadows">
+								<utu:Shadow BlurRadius="20"
+											OffsetX="10"
+											OffsetY="10"
+											Opacity="0.5"
+											Spread="0"
+											Color="{StaticResource UnoPurple}" />
+								<utu:Shadow BlurRadius="20"
+											OffsetX="-10"
+											OffsetY="-10"
+											Opacity="0.5"
+											Spread="0"
+											Color="{StaticResource UnoPink}" />
+							</utu:ShadowCollection>
+						</utu:ShadowContainer.Shadows>
+						<StackPanel MaxWidth="500"
+									Padding="16"
+									Background="{ThemeResource SurfaceBrush}"
+									BorderBrush="{StaticResource CardStrokeColorDefaultBrush}"
+									BorderThickness="1"
+									CornerRadius="20">
+							<ItemsControl x:Name="ShadowsItemsControl">
+								<ItemsControl.ItemsPanel>
+									<ItemsPanelTemplate>
+										<StackPanel Orientation="Vertical"
+													Spacing="10" />
+									</ItemsPanelTemplate>
+								</ItemsControl.ItemsPanel>
+								<ItemsControl.ItemTemplate>
+									<DataTemplate>
+										<StackPanel Spacing="5">
+											<controls:WrapPanel HorizontalSpacing="5"
+																VerticalSpacing="5">
+												<TextBox Grid.ColumnSpan="2"
+														 Header="Color"
+														 Text="{Binding Color, Mode=TwoWay, Converter={StaticResource HexToColor}}">
+													<TextBox.Foreground>
+														<SolidColorBrush Color="{Binding Color}" />
+													</TextBox.Foreground>
+												</TextBox>
+												<TextBox Grid.Column="2"
+														 Header="Opacity"
+														 Text="{Binding Opacity, Mode=TwoWay}" />
+												<CheckBox Grid.Column="3"
+														  Padding="5,0"
+														  Content="Inner"
+														  VerticalAlignment="Bottom"
+														  VerticalContentAlignment="Center"
+														  IsChecked="{Binding IsInner, Mode=TwoWay}" />
+											</controls:WrapPanel>
+
+											<controls:WrapPanel HorizontalSpacing="5"
+																VerticalSpacing="5">
+												<TextBox Grid.Row="1"
+														 Header="Offset X"
+														 Text="{Binding OffsetX, Mode=TwoWay}" />
+												<TextBox Grid.Row="1"
+														 Grid.Column="1"
+														 Header="Offset Y"
+														 Text="{Binding OffsetY, Mode=TwoWay}" />
+												<TextBox Grid.Row="1"
+														 Grid.Column="2"
+														 Header="Blur"
+														 Text="{Binding BlurRadius, Mode=TwoWay}" />
+												<TextBox Grid.Row="1"
+														 Grid.Column="3"
+														 Header="Spread"
+														 Text="{Binding Spread, Mode=TwoWay}" />
+											</controls:WrapPanel>
+
+										</StackPanel>
+									</DataTemplate>
+								</ItemsControl.ItemTemplate>
+							</ItemsControl>
+							<StackPanel Margin="0,16,0,0"
+										HorizontalAlignment="Center"
+										Orientation="Horizontal"
+										Spacing="16">
+								<Button Style="{StaticResource NeumorphicMediumElevatedButtonStyle}"
+										BorderThickness="1"
+										Click="AddShadow"
+										Content="Add Shadow" />
+								<Button Style="{StaticResource NeumorphicMediumElevatedButtonStyle}"
+										BorderThickness="1"
+										Click="RemoveShadow"
+										Content="Remove Shadow" />
+							</StackPanel>
+						</StackPanel>
+					</utu:ShadowContainer>
+				</smtx:XamlDisplay>
+
+				<utu:Divider Margin="0,36" />
+
+				<TextBlock Text="Neumorphic Styles"
+						   Style="{StaticResource TitleLarge}"
+						   Foreground="{ThemeResource OnBackgroundBrush}" />
+
+				<TextBlock Text="Neumorphism is a design style where elements are usually the same color as the background, and are only distinguished by shadows and highlights surrounding the element. This gives the elements the appearance that they are protruding from the background, or that they are dented into it."
+						   Style="{StaticResource BodyMedium}"
+						   Foreground="{ThemeResource OnBackgroundBrush}"
+						   TextWrapping="WrapWholeWords"
+						   Opacity="0.8"
+						   Margin="0,16,0,0" />
+
+				<ComboBox x:Name="NeumorphicControlCombo"
+						  PlaceholderText="Select a control"
+						  SelectedIndex="0"
+						  Margin="0,16">
+					<x:String>Button</x:String>
+					<x:String>CheckBox</x:String>
+					<x:String>Chip</x:String>
+					<x:String>ComboBox</x:String>
+					<x:String>FAB</x:String>
+					<x:String>IconButton</x:String>
+					<x:String>PasswordBox</x:String>
+					<x:String>RadioButton</x:String>
+					<!--<x:String>Slider</x:String>-->
+					<x:String>TabBar</x:String>
+					<x:String>TextBox</x:String>
+					<x:String>ToggleButton</x:String>
+					<x:String>ToggleSwitch</x:String>
+				</ComboBox>
+
+				<ContentControl Content="{Binding Path=SelectedValue, ElementName=NeumorphicControlCombo}"
+								Margin="0,16"
+								HorizontalContentAlignment="Stretch"
+								VerticalContentAlignment="Stretch"
+								ContentTemplateSelector="{StaticResource NeumorphicTemplateSelector}" />
+
+
+
+
+
 
 			</StackPanel>
 		</local:ContentPageLayout>

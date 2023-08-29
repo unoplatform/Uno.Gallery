@@ -22,10 +22,10 @@
 		<PackageReference Include="Uno.Material.WinUI" Version="2.7.0-dev.102" />
 		<PackageReference Include="Uno.ShowMeTheXAML" Version="2.0.0-dev0015" />
 		<PackageReference Include="Uno.ShowMeTheXAML.MSBuild" Version="2.0.0-dev0015" />
-		<PackageReference Include="Uno.Toolkit.Skia.WinUI" Version="3.1.0-dev.44" />
-		<PackageReference Include="Uno.Toolkit.WinUI.Cupertino" Version="3.1.0-dev.44" />
-		<PackageReference Include="Uno.Toolkit.WinUI.Material" Version="3.1.0-dev.44" />
-   	<PackageReference Include="Uno.Cupertino.WinUI" Version="2.7.0-dev.104" />
+		<PackageReference Include="Uno.Toolkit.Skia.WinUI" Version="3.2.0-dev.30" />
+		<PackageReference Include="Uno.Toolkit.WinUI.Cupertino" Version="3.2.0-dev.30" />
+		<PackageReference Include="Uno.Toolkit.WinUI.Material" Version="3.2.0-dev.30" />
+		<PackageReference Include="Uno.Cupertino.WinUI" Version="2.7.0-dev.104" />
 		<PackageReference Include="Uno.Material.WinUI" Version="2.7.0-dev.104" />
 		<PackageReference Include="Uno.WinUI.Lottie" Version="4.9.45" />
 		<PackageReference Include="Uno.WinUI.Skia.Gtk" Version="4.9.45" />
@@ -34,8 +34,8 @@
 		<PackageReference Include="Uno.WinUI.Svg" Version="4.9.45" />
 		<PackageReference Include="Uno.Core.Extensions.Disposables" Version="4.0.1" />
 		<PackageReference Include="Uno.Core.Extensions.Compatibility" Version="4.0.1" />
-		<PackageReference Include="SkiaSharp.Skottie" Version="2.88.4-preview.84" />
-		<PackageReference Include="SkiaSharp.Views.Uno.WinUI" Version="2.88.4-preview.84" />
+		<PackageReference Include="SkiaSharp.Skottie" Version="2.88.5" />
+		<PackageReference Include="SkiaSharp.Views.Uno.WinUI" Version="2.88.5" />
 		<PackageReference Include="VideoLAN.LibVLC.Windows" Version="3.0.18" />
 		<PackageReference Include="Uno.WinUI.MediaPlayer.Skia.Gtk" Version="4.9.45" />
 	</ItemGroup>
