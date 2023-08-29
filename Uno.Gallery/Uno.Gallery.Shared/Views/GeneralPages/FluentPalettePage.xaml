@@ -20,7 +20,7 @@
 	</Page.Resources>
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-		<local:ContentPageLayout Title="Fluent Palette">
+		<local:ContentPageLayout>
 			<StackPanel Spacing="16">
 
 				<!-- Overview -->

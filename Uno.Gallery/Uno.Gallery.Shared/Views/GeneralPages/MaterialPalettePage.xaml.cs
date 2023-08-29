@@ -15,11 +15,11 @@ using Microsoft.UI.Xaml.Navigation;
 
 namespace Uno.Gallery
 {
-	[SamplePage(SampleCategory.Theming, "Material Palette", SortOrder = 1, Description = Description)]
+	[SamplePage(SampleCategory.Theming, "Material Palette",
+		SortOrder = 1,
+		Description = "Uno.Material comes with a built-in set of named Color and Brush resources. They are used in most control styles provided by Uno.Material, meaning that you can easily style most controls just by changing a few colors.")]
 	public sealed partial class MaterialPalettePage : Page
 	{
-		private const string Description = "View the Uno palette adapted to Material's styles.";
-
 		public MaterialPalettePage()
 		{
 			this.InitializeComponent();
