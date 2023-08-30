@@ -20,6 +20,11 @@
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.WinUI.Lottie" Version="7.1.2" />
 		<PackageReference Include="CommunityToolkit.WinUI.UI.Controls" Version="7.1.2" />
+<<<<<<< HEAD
+=======
+		<PackageReference Include="Uno.Cupertino.WinUI" Version="3.0.0-dev.352" />
+		<PackageReference Include="Uno.Material.WinUI" Version="3.0.0-dev.352" />
+>>>>>>> 6378478 (chore: bump packages)
 		<PackageReference Include="Uno.ShowMeTheXAML" Version="2.0.0-dev0015" />
 		<PackageReference Include="Uno.ShowMeTheXAML.MSBuild" Version="2.0.0-dev0015" />
 		<PackageReference Include="Uno.Cupertino.WinUI" Version="2.7.0-dev.104" />
@@ -36,10 +41,24 @@
 		</PackageReference>
 		<PackageReference Include="Uno.Core.Extensions.Compatibility" Version="4.0.1" />
 		<PackageReference Include="Uno.Core.Extensions.Logging.Singleton" Version="4.0.1" />
+<<<<<<< HEAD
 		<PackageReference Include="Uno.Toolkit.WinUI.Cupertino" Version="3.2.0-dev.30" />
 		<PackageReference Include="Uno.Toolkit.WinUI.Material" Version="3.2.0-dev.30" />
 		<PackageReference Include="Uno.Toolkit.Skia.WinUI" Version="3.2.0-dev.30" />
 		<PackageReference Include="Uno.WinUI" Version="4.9.45" />
+=======
+		<PackageReference Include="Uno.Toolkit.Skia.WinUI" Version="4.0.0-dev.98" />
+		<PackageReference Include="Uno.Toolkit.WinUI" Version="4.0.0-dev.98" />
+		<PackageReference Include="Uno.Toolkit.WinUI.Cupertino">
+			<Version>4.0.0-dev.98</Version>
+		</PackageReference>
+		<PackageReference Include="Uno.Toolkit.WinUI.Material">
+			<Version>4.0.0-dev.98</Version>
+		</PackageReference>
+		<PackageReference Include="Uno.WinUI">
+			<Version>5.0.0-dev.2319</Version>
+		</PackageReference>
+>>>>>>> 6378478 (chore: bump packages)
 		<Manifest Include="$(ApplicationManifest)" />
 		<FrameworkReference Update="Microsoft.Windows.SDK.NET.Ref" RuntimeFrameworkVersion="10.0.22621.29" />
 		<FrameworkReference Update="Microsoft.Windows.SDK.NET.Ref" TargetingPackVersion="10.0.22621.29" />

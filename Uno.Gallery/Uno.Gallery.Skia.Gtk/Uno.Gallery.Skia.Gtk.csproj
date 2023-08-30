@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<OutputType Condition="'$(Configuration)'=='Release'">WinExe</OutputType>
@@ -15,6 +15,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Svg.Skia" Version="0.5.18" />
+<<<<<<< HEAD
 		<PackageReference Include="Uno.CommunityToolkit.WinUI.UI.Controls" Version="7.1.100" />
 		<PackageReference Include="Uno.Fonts.Fluent" Version="2.2.2" />
 		<PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
@@ -32,12 +33,37 @@
 		<PackageReference Include="Uno.WinUI.RemoteControl" Version="4.9.45" Condition="'$(Configuration)'=='Debug'" />
 		<PackageReference Include="Uno.UI.Adapter.Microsoft.Extensions.Logging" Version="4.9.45" />
 		<PackageReference Include="Uno.WinUI.Svg" Version="4.9.45" />
+=======
+		<PackageReference Include="Uno.CommunityToolkit.WinUI.UI.Controls" Version="7.1.200-dev.13.gef3f523648" />
+		<PackageReference Include="Uno.Cupertino.WinUI" Version="3.0.0-dev.352" />
+		<PackageReference Include="Uno.Fonts.Fluent" Version="2.3.0-dev.6" />
+		<!-- Note that for WebAssembly version 1.1.1 of the console logger required -->
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="6.0.0" />
+		<PackageReference Include="Uno.Material.WinUI" Version="3.0.0-dev.352" />
+		<PackageReference Include="Uno.ShowMeTheXAML" Version="2.0.0-dev0015" />
+		<PackageReference Include="Uno.ShowMeTheXAML.MSBuild" Version="2.0.0-dev0015" />
+		<PackageReference Include="Uno.Toolkit.Skia.WinUI" Version="4.0.0-dev.98" />
+		<PackageReference Include="Uno.Toolkit.WinUI.Cupertino" Version="4.0.0-dev.98" />
+		<PackageReference Include="Uno.Toolkit.WinUI.Material" Version="4.0.0-dev.98" />		
+		<PackageReference Include="Uno.WinUI.Lottie" Version="5.0.0-dev.2319" />
+		<PackageReference Include="Uno.WinUI.Skia.Gtk" Version="5.0.0-dev.2319" />
+		<PackageReference Include="Uno.WinUI.RemoteControl" Version="5.0.0-dev.2319" Condition="'$(Configuration)'=='Debug'" />
+		<PackageReference Include="Uno.UI.Adapter.Microsoft.Extensions.Logging" Version="5.0.0-dev.2319" />
+>>>>>>> 6378478 (chore: bump packages)
 		<PackageReference Include="Uno.Core.Extensions.Disposables" Version="4.0.1" />
 		<PackageReference Include="Uno.Core.Extensions.Compatibility" Version="4.0.1" />
 		<PackageReference Include="SkiaSharp.Skottie" Version="2.88.5" />
 		<PackageReference Include="SkiaSharp.Views.Uno.WinUI" Version="2.88.5" />
+<<<<<<< HEAD
 		<PackageReference Include="VideoLAN.LibVLC.Windows" Version="3.0.18" />
 		<PackageReference Include="Uno.WinUI.MediaPlayer.Skia.Gtk" Version="4.9.45" />
+=======
+		<PackageReference Include="Uno.WinUI.Svg" Version="5.0.0-dev.2319" />
+		<PackageReference Include="VideoLAN.LibVLC.Windows" Version="3.0.18" />
+		<PackageReference Include="Uno.WinUI.MediaPlayer.Skia.Gtk" Version="5.0.0-dev.2319" />
+
+>>>>>>> 6378478 (chore: bump packages)
 	</ItemGroup>
 
 	<Import Project="..\Uno.Gallery.Shared\Uno.Gallery.Shared.projitems" Label="Shared" />
