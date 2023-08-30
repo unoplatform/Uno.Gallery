@@ -28,5 +28,19 @@ namespace Uno.Gallery
 
 		public static readonly DependencyProperty DescriptionProperty =
 			DependencyProperty.Register("Description", typeof(string), typeof(ContentPageLayout), new PropertyMetadata(null));
+		
+		public ContentPageLayout()
+		{
+			DataContextChanged += OnDataContextChanged;
+
+			void OnDataContextChanged(object sender, DataContextChangedEventArgs args)
+			{
+				if (args.NewValue is Sample sample)
+				{
+					Title = sample.Title;
+					Description = sample.Description;
+				}
+			}
+		}
 	}
 }
