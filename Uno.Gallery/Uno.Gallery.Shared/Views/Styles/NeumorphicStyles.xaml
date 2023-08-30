@@ -11,11 +11,11 @@
 		<ResourceDictionary x:Key="Dark">
 			<!-- Workaround for OutlineVariantBrush not found in the NeumorphicColorPaletteOverride -->
 			<SolidColorBrush x:Key="OutlineVariantBrush"
-							 Color="{ThemeResource OutlineVariantColor}"/>
+							 Color="{ThemeResource OutlineVariantColor}" />
 			<SolidColorBrush x:Key="OutlineVariantBrushDisabledBrush"
 							 Color="{ThemeResource OutlineVariantColor}"
-							 Opacity="0.12"/>
-			
+							 Opacity="0.12" />
+
 			<!-- Shadow colors -->
 			<Color x:Key="LightShadowColor">#3C3846</Color>
 			<Color x:Key="ShadeShadowColor">#24222A</Color>
@@ -87,7 +87,7 @@
 			<utu:ShadowCollection x:Key="NeumorphicCheckBoxStateShadows">
 				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="8" Opacity="1" Spread="8" Color="{ThemeResource PrimaryColor}" IsInner="False" />
 			</utu:ShadowCollection>
-			
+
 			<!-- RadioButton -->
 			<utu:ShadowCollection x:Key="NeumorphicRadioButtonShadows">
 				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Opacity="1" Spread="0" Color="{StaticResource LightShadowColor2}" IsInner="False" />
@@ -97,7 +97,7 @@
 			<utu:ShadowCollection x:Key="NeumorphicRadioButtonStateShadows">
 				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="8" Opacity="1" Spread="8" Color="{ThemeResource PrimaryColor}" IsInner="False" />
 			</utu:ShadowCollection>
-			
+
 			<!-- ComboBox -->
 			<utu:ShadowCollection x:Key="ComboboxShadows">
 				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="4" OffsetY="4" Opacity="0.4" Spread="0" Color="{StaticResource ShadeShadowColor2}" />
@@ -109,7 +109,7 @@
 				<utu:Shadow BlurRadius="48" IsInner="False" OffsetX="-8" OffsetY="-16" Opacity="0.4" Spread="4" Color="{StaticResource LightShadowColor4}" />
 				<utu:Shadow BlurRadius="32" IsInner="False" OffsetX="8" OffsetY="8" Opacity="0.4" Spread="4" Color="{StaticResource ShadeShadowColor4}" />
 			</utu:ShadowCollection>
-			
+
 			<utu:ShadowCollection x:Key="ContentTabBarShadows">
 				<utu:Shadow BlurRadius="16" IsInner="False" OffsetX="-4" OffsetY="-4" Opacity="0.4" Spread="4" Color="{StaticResource LightShadowColor4}" />
 				<utu:Shadow BlurRadius="16" IsInner="False" OffsetX="4" OffsetY="4" Opacity="0.6" Spread="4" Color="{StaticResource ShadeShadowColor4}" />
@@ -120,7 +120,7 @@
 				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="4" OffsetY="4" Opacity="0.4" Spread="0" Color="{StaticResource ShadeShadowColor4}" />
 				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="-4" OffsetY="-4" Opacity="0.4" Spread="0" Color="{StaticResource LightShadowColor4}" />
 			</utu:ShadowCollection>
-			
+
 			<utu:ShadowCollection x:Key="FabTabBarItemShadows">
 				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="8" OffsetY="8" Opacity="0.2" Spread="0" Color="{StaticResource LightShadowColor7}" />
 				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="-8" OffsetY="-8" Opacity="0.4" Spread="0" Color="{StaticResource MediumShadowColor7}" />
@@ -171,7 +171,7 @@
 			</utu:ShadowCollection>
 
 			<utu:ShadowCollection x:Key="FilledDisabled">
-				<!--Had to manually change some properties to achieve a closer look to figma design-->
+				<!-- Had to manually change some properties to achieve a closer look to figma design -->
 				<utu:Shadow BlurRadius="1" IsInner="False" OffsetX="0" OffsetY="-1" Opacity="0.4" Spread="0" Color="{StaticResource LightShadowColor5}" />
 				<utu:Shadow BlurRadius="1" IsInner="False" OffsetX="1" OffsetY="1" Opacity="0.4" Spread="0" Color="{StaticResource ShadeShadowColor5}" />
 			</utu:ShadowCollection>
@@ -194,7 +194,7 @@
 				<utu:Shadow BlurRadius="4" IsInner="False" OffsetX="-1" OffsetY="-1" Opacity="1" Spread="0" Color="{StaticResource LightShadowColor2}" />
 				<utu:Shadow BlurRadius="4" IsInner="False" OffsetX="1" OffsetY="1" Opacity="0.6" Spread="0" Color="{StaticResource ShadeShadowColor2}" />
 			</utu:ShadowCollection>
-			
+
 			<utu:ShadowCollection x:Key="ChipsShadowsSelected">
 				<utu:Shadow BlurRadius="4" IsInner="True" OffsetX="1" OffsetY="1" Opacity="0.9" Spread="0" Color="{StaticResource ShadeShadowColor6}" />
 				<utu:Shadow BlurRadius="4" IsInner="True" OffsetX="-1" OffsetY="-1" Opacity="0.9" Spread="0" Color="{StaticResource LightShadowColor6}" />
@@ -211,7 +211,8 @@
 				<utu:Shadow BlurRadius="4" IsInner="True" OffsetX="-2" OffsetY="-2" Opacity="1" Spread="0" Color="{StaticResource LightShadowColor10}" />
 			</utu:ShadowCollection>
 
-			<SolidColorBrush x:Key="ThumbBackgroundDisabledBrush" Color="#4A4751" />
+			<SolidColorBrush x:Key="ThumbBackgroundDisabledBrush"
+							 Color="#4A4751" />
 
 			<utu:ShadowCollection x:Key="SliderThumbShadows">
 				<utu:Shadow BlurRadius="16" IsInner="True" OffsetX="0" OffsetY="0" Opacity="1" Spread="0" Color="{StaticResource LightShadowColor11}" />
@@ -250,21 +251,21 @@
 				<utu:Shadow BlurRadius="2" IsInner="True" OffsetX="1" OffsetY="0" Opacity="0.5" Spread="0" Color="{StaticResource ShadeShadowColor8}" />
 				<utu:Shadow BlurRadius="1" IsInner="False" OffsetX="-1" OffsetY="0" Opacity="1" Spread="1" Color="{StaticResource VariantShadowColor8}" />
 			</utu:ShadowCollection>
-			
+
 			<utu:ShadowCollection x:Key="ToggleSwitchOnBorderDisabledShadows">
 				<utu:Shadow BlurRadius="2" IsInner="True" OffsetX="1" OffsetY="1" Opacity="1" Spread="2" Color="{StaticResource ShadeShadowColor8}" />
 				<utu:Shadow BlurRadius="2" IsInner="True" OffsetX="-1" OffsetY="-1" Opacity="0.6" Spread="2" Color="{StaticResource LightShadowColor8}" />
 			</utu:ShadowCollection>
-			
+
 		</ResourceDictionary>
 		<ResourceDictionary x:Key="Light">
 
 			<!-- Workaround for OutlineVariantBrush not found in the NeumorphicColorPaletteOverride -->
 			<SolidColorBrush x:Key="OutlineVariantBrush"
-							 Color="{ThemeResource OutlineVariantColor}"/>
+							 Color="{ThemeResource OutlineVariantColor}" />
 			<SolidColorBrush x:Key="OutlineVariantBrushDisabledBrush"
 							 Color="{ThemeResource OutlineVariantColor}"
-							 Opacity="0.12"/>
+							 Opacity="0.12" />
 
 			<!-- How are we dealing with the color names? -->
 			<!-- Shadow colors -->
@@ -328,7 +329,7 @@
 			<utu:ShadowCollection x:Key="NeumorphicCheckBoxStateShadows">
 				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="8" Opacity="1" Spread="8" Color="{ThemeResource PrimaryColor}" IsInner="False" />
 			</utu:ShadowCollection>
-			
+
 			<!-- RadioButton -->
 			<utu:ShadowCollection x:Key="NeumorphicRadioButtonShadows">
 				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="2" Opacity="1" Spread="0" IsInner="False" Color="{StaticResource LightShadowColor}" />
@@ -435,7 +436,7 @@
 				<utu:Shadow BlurRadius="4" IsInner="False" OffsetX="-1" OffsetY="-1" Opacity="1" Spread="0" Color="{StaticResource LightShadowColor}" />
 				<utu:Shadow BlurRadius="4" IsInner="False" OffsetX="1" OffsetY="1" Opacity="0.6" Spread="0" Color="{StaticResource ShadeShadowColor}" />
 			</utu:ShadowCollection>
-			
+
 			<utu:ShadowCollection x:Key="ChipsShadowsSelected">
 				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="4" OffsetY="4" Opacity="1" Spread="0" Color="{StaticResource ShadeShadowColor2}" />
 				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="-4" OffsetY="-4" Opacity="1" Spread="0" Color="{StaticResource LightShadowColor2}" />
@@ -452,7 +453,8 @@
 				<utu:Shadow BlurRadius="4" IsInner="True" OffsetX="-2" OffsetY="-2" Opacity="1" Spread="0" Color="{StaticResource LightShadowColor10}" />
 			</utu:ShadowCollection>
 
-			<SolidColorBrush x:Key="ThumbBackgroundDisabledBrush" Color="#D1D1D4" />
+			<SolidColorBrush x:Key="ThumbBackgroundDisabledBrush"
+							 Color="#D1D1D4" />
 
 			<utu:ShadowCollection x:Key="SliderThumbShadows">
 				<utu:Shadow BlurRadius="16" IsInner="True" OffsetX="0" OffsetY="0" Opacity="1" Spread="0" Color="{StaticResource LightShadowColor11}" />
@@ -532,7 +534,7 @@
 	<um:FromNullToValueConverter x:Key="ToggleSwitchOffContentToContentMargin"
 								 NullValue="0,0,6,0"
 								 NotNullValue="0,0,2,0" />
-	
+
 	<!--#endregion-->
 
 	<!--#region TextBox Style-->
@@ -719,38 +721,26 @@
 	<!--#region PasswordBox Style-->
 	<Style x:Key="NeumorphicPasswordBoxStyle"
 		   TargetType="PasswordBox">
-		<Setter Property="Background"
-				Value="{ThemeResource SurfaceBrush}" />
-		<Setter Property="Foreground"
-				Value="{ThemeResource OnSurfaceBrush}" />
-		<Setter Property="CornerRadius"
-				Value="8" />
+		<Setter Property="Background" Value="{ThemeResource SurfaceBrush}" />
+		<Setter Property="Foreground" Value="{ThemeResource OnSurfaceBrush}" />
+		<Setter Property="CornerRadius" Value="8" />
 
 		<!-- Start: Body Large Typo -->
-		<Setter Property="FontFamily"
-				Value="{ThemeResource MaterialMediumFontFamily}" />
-		<Setter Property="FontWeight"
-				Value="{ThemeResource BodyLargeFontWeight}" />
-		<Setter Property="FontSize"
-				Value="{ThemeResource BodyLargeFontSize}" />
-		<Setter Property="CharacterSpacing"
-				Value="{ThemeResource BodyLargeCharacterSpacing}" />
+		<Setter Property="FontFamily" Value="{ThemeResource MaterialMediumFontFamily}" />
+		<Setter Property="FontWeight" Value="{ThemeResource BodyLargeFontWeight}" />
+		<Setter Property="FontSize" Value="{ThemeResource BodyLargeFontSize}" />
+		<Setter Property="CharacterSpacing" Value="{ThemeResource BodyLargeCharacterSpacing}" />
 		<!-- End: Body Large Typo -->
 
-		<Setter Property="HorizontalContentAlignment"
-				Value="Left" />
-		<Setter Property="VerticalContentAlignment"
-				Value="Center" />
+		<Setter Property="HorizontalContentAlignment" Value="Left" />
+		<Setter Property="VerticalContentAlignment" Value="Center" />
 
-		<Setter Property="Padding"
-				Value="16,16,14,16" />
+		<Setter Property="Padding" Value="16,16,14,16" />
 
-		<Setter Property="MinHeight"
-				Value="56" />
+		<Setter Property="MinHeight" Value="56" />
 
 		<!-- Workaround for WinUI issue: https://github.com/microsoft/microsoft-ui-xaml/issues/6388 -->
-		<Setter Property="um:ControlExtensions.Icon"
-				Value="{x:Null}" />
+		<Setter Property="um:ControlExtensions.Icon" Value="{x:Null}" />
 
 		<Setter Property="Template">
 			<Setter.Value>
@@ -762,38 +752,31 @@
 								<VisualState x:Name="Normal" />
 								<VisualState x:Name="PointerOver">
 									<VisualState.Setters>
-										<Setter Target="PlaceholderElement.Foreground"
-												Value="{ThemeResource OnSurfaceMediumBrush}" />
+										<Setter Target="PlaceholderElement.Foreground" Value="{ThemeResource OnSurfaceMediumBrush}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="Pressed">
 									<VisualState.Setters>
-										<Setter Target="PlaceholderElement.Foreground"
-												Value="{ThemeResource OnSurfaceMediumBrush}" />
+										<Setter Target="PlaceholderElement.Foreground" Value="{ThemeResource OnSurfaceMediumBrush}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="Disabled">
 									<VisualState.Setters>
-										<Setter Target="IconPresenter.Opacity"
-												Value="{ThemeResource DisabledOpacity}" />
-										<Setter Target="ContentElement.Opacity"
-												Value="{ThemeResource DisabledOpacity}" />
-										<Setter Target="PlaceholderElement.Foreground"
-												Value="{ThemeResource OnSurfaceLowBrush}" />
+										<Setter Target="IconPresenter.Opacity" Value="{ThemeResource DisabledOpacity}" />
+										<Setter Target="ContentElement.Opacity" Value="{ThemeResource DisabledOpacity}" />
+										<Setter Target="PlaceholderElement.Foreground" Value="{ThemeResource OnSurfaceLowBrush}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="Focused">
 									<VisualState.Setters>
-										<Setter Target="PlaceholderElement.Foreground"
-												Value="{ThemeResource PrimaryBrush}" />
+										<Setter Target="PlaceholderElement.Foreground" Value="{ThemeResource PrimaryBrush}" />
 									</VisualState.Setters>
 								</VisualState>
 							</VisualStateGroup>
 							<VisualStateGroup x:Name="ButtonStates">
 								<VisualState x:Name="ButtonVisible">
 									<VisualState.Setters>
-										<Setter Target="RevealButton.Visibility"
-												Value="Visible" />
+										<Setter Target="RevealButton.Visibility" Value="Visible" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="ButtonCollapsed" />
@@ -1218,7 +1201,6 @@
 						</VisualStateManager.VisualStateGroups>
 
 						<Grid x:Name="RootGrid"
-							  Background="{TemplateBinding Background}"
 							  CornerRadius="{TemplateBinding CornerRadius}"
 							  Height="{TemplateBinding Height}"
 							  Width="{TemplateBinding Width}"
@@ -1275,7 +1257,7 @@
 		<Setter Property="MinHeight" Value="48" />
 		<Setter Property="CornerRadius" Value="24" />
 		<Setter Property="Padding" Value="15,0" />
-		
+
 	</Style>
 
 	<!-- Large -->
@@ -1479,7 +1461,7 @@
 								<VisualState x:Name="Unfocused" />
 							</VisualStateGroup>
 						</VisualStateManager.VisualStateGroups>
-						
+
 						<utu:ShadowContainer Shadows="{ThemeResource FabShadows}">
 
 							<Grid CornerRadius="{TemplateBinding CornerRadius}"
@@ -1520,7 +1502,7 @@
 								</StackPanel>
 							</Grid>
 						</utu:ShadowContainer>
-						
+
 						<Grid x:Name="StateLayer"
 							  CornerRadius="{TemplateBinding CornerRadius}"
 							  MinHeight="{TemplateBinding MinHeight}"
@@ -1738,14 +1720,10 @@
 
 								<VisualState x:Name="IndeterminateDisabled">
 									<VisualState.Setters>
-										<Setter Target="ContentPresenter.Foreground"
-												Value="{ThemeResource OnSurfaceLowBrush}" />
-										<Setter Target="HyphenGlyph.Fill"
-												Value="{ThemeResource OnSurfaceLowBrush}" />
-										<Setter Target="CheckGlyph.Opacity"
-												Value="0" />
-										<Setter Target="HyphenGlyph.Opacity"
-												Value="1" />
+										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource OnSurfaceLowBrush}" />
+										<Setter Target="HyphenGlyph.Fill" Value="{ThemeResource OnSurfaceLowBrush}" />
+										<Setter Target="CheckGlyph.Opacity" Value="0" />
+										<Setter Target="HyphenGlyph.Opacity" Value="1" />
 									</VisualState.Setters>
 								</VisualState>
 							</VisualStateGroup>
@@ -1774,7 +1752,7 @@
 							<ColumnDefinition Width="{ThemeResource CheckBoxCheckAreaLength}" />
 							<ColumnDefinition Width="*" />
 						</Grid.ColumnDefinitions>
-						
+
 						<utu:ShadowContainer x:Name="StateLayer"
 											 Shadows="{ThemeResource NeumorphicCheckBoxStateShadows}"
 											 Opacity="0">
@@ -1980,38 +1958,24 @@
 	<!--#region RadioButton Style-->
 	<Style x:Key="NeumorphicRadioButtonStyle"
 		   TargetType="RadioButton">
-		<Setter Property="Background"
-				Value="{ThemeResource SurfaceBrush}" />
-		<Setter Property="Foreground"
-				Value="{ThemeResource OnSurfaceMediumBrush}" />
+		<Setter Property="Background" Value="{ThemeResource SurfaceBrush}" />
+		<Setter Property="Foreground" Value="{ThemeResource OnSurfaceMediumBrush}" />
 
 		<!-- Start: Body Small Typo -->
-		<Setter Property="FontFamily"
-				Value="{ThemeResource MaterialRegularFontFamily}" />
-		<Setter Property="FontWeight"
-				Value="{ThemeResource BodySmallFontWeight}" />
-		<Setter Property="FontSize"
-				Value="{ThemeResource BodySmallFontSize}" />
-		<Setter Property="CharacterSpacing"
-				Value="{ThemeResource BodySmallCharacterSpacing}" />
+		<Setter Property="FontFamily" Value="{ThemeResource MaterialRegularFontFamily}" />
+		<Setter Property="FontWeight" Value="{ThemeResource BodySmallFontWeight}" />
+		<Setter Property="FontSize" Value="{ThemeResource BodySmallFontSize}" />
+		<Setter Property="CharacterSpacing" Value="{ThemeResource BodySmallCharacterSpacing}" />
 		<!-- End: Body Small Typo -->
 
-		<Setter Property="Padding"
-				Value="4,0,0,0" />
-		<Setter Property="HorizontalAlignment"
-				Value="Left" />
-		<Setter Property="VerticalAlignment"
-				Value="Stretch" />
-		<Setter Property="HorizontalContentAlignment"
-				Value="Left" />
-		<Setter Property="VerticalContentAlignment"
-				Value="Center" />
-		<Setter Property="MinWidth"
-				Value="40" />
-		<Setter Property="MinHeight"
-				Value="40" />
-		<Setter Property="UseSystemFocusVisuals"
-				Value="True" />
+		<Setter Property="Padding" Value="4,0,0,0" />
+		<Setter Property="HorizontalAlignment" Value="Left" />
+		<Setter Property="VerticalAlignment" Value="Stretch" />
+		<Setter Property="HorizontalContentAlignment" Value="Left" />
+		<Setter Property="VerticalContentAlignment" Value="Center" />
+		<Setter Property="MinWidth" Value="40" />
+		<Setter Property="MinHeight" Value="40" />
+		<Setter Property="UseSystemFocusVisuals" Value="True" />
 
 		<Setter Property="Template">
 			<Setter.Value>
@@ -2047,10 +2011,8 @@
 								</VisualState>
 								<VisualState x:Name="Disabled">
 									<VisualState.Setters>
-										<Setter Target="OuterEllipse.Fill"
-												Value="{ThemeResource OnSurfaceDisabledBrush}" />
-										<Setter Target="CheckEllipse.Fill"
-												Value="{ThemeResource OnSurfaceLowBrush}" />
+										<Setter Target="OuterEllipse.Fill" Value="{ThemeResource OnSurfaceDisabledBrush}" />
+										<Setter Target="CheckEllipse.Fill" Value="{ThemeResource OnSurfaceLowBrush}" />
 									</VisualState.Setters>
 								</VisualState>
 							</VisualStateGroup>
@@ -2059,8 +2021,7 @@
 
 								<VisualState x:Name="Checked">
 									<VisualState.Setters>
-										<Setter Target="CheckEllipse.Opacity"
-												Value="1" />
+										<Setter Target="CheckEllipse.Opacity" Value="1" />
 									</VisualState.Setters>
 								</VisualState>
 
@@ -2511,7 +2472,7 @@
 		<Setter Property="MinHeight" Value="{ThemeResource TopTabBarHeight}" />
 		<Setter Property="utu:SafeArea.Insets" Value="Top" />
 		<Setter Property="ItemContainerStyle" Value="{StaticResource NeumorphicBaseContentTabBarItemStyle}" />
-		
+
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="utu:TabBar">
@@ -2619,7 +2580,7 @@
 								  HorizontalAlignment="Center"
 								  VerticalAlignment="Center"
 								  CornerRadius="{ThemeResource NavigationTabBarItemActiveIndicatorCornerRadius}" />
-							
+
 							<utu:ShadowContainer x:Name="IconShadowPanel">
 								<Grid x:Name="ActiveIndicator"
 									  Width="{ThemeResource NavigationTabBarItemActiveIndicatorWidth}"
@@ -2710,7 +2671,7 @@
 									</Border>
 								</Grid>
 							</utu:ShadowContainer>
-							
+
 							<Grid x:Name="ContentPresenterGrid"
 								  HorizontalAlignment="Center"
 								  VerticalAlignment="Center"
@@ -2830,7 +2791,7 @@
 	<x:String x:Key="ContentTabBarItemCornerRadius">32</x:String>
 	<x:Double x:Key="ContentTabBarItemHeight">64</x:Double>
 	<x:Double x:Key="ContentTabBarItemWidth">120</x:Double>
-	
+
 	<Style x:Key="NeumorphicBaseContentTabBarItemStyle"
 		   TargetType="utu:TabBarItem">
 		<Setter Property="FontFamily" Value="{ThemeResource MaterialMediumFontFamily}" />
@@ -2859,7 +2820,7 @@
 							  CornerRadius="{StaticResource ContentTabBarItemCornerRadius}"
 							  Height="{StaticResource ContentTabBarItemHeight}"
 							  Width="{StaticResource ContentTabBarItemWidth}" />
-						
+
 						<utu:ShadowContainer x:Name="ShadowPanel">
 
 							<Grid x:Name="ContentGrid"
@@ -3005,7 +2966,7 @@
 								</VisualState>
 							</VisualStateGroup>
 							<VisualStateGroup x:Name="TabBarIconPositionStates">
-								
+
 								<VisualState x:Name="IconOnTop" />
 
 								<VisualState x:Name="IconOnly">
@@ -3037,7 +2998,7 @@
 			</Setter.Value>
 		</Setter>
 	</Style>
-	
+
 	<Style x:Key="NeumorphicFabTabBarItemStyle"
 		   TargetType="utu:TabBarItem">
 		<Setter Property="FontFamily" Value="{ThemeResource MaterialMediumFontFamily}" />
@@ -3143,12 +3104,9 @@
 	<Style x:Key="NeumorphicSliderThumbStyle"
 		   TargetType="Thumb">
 
-		<Setter Property="Background"
-				Value="{ThemeResource SurfaceBrush}" />
-		<Setter Property="BorderThickness"
-				Value="0" />
-		<Setter Property="CornerRadius"
-				Value="12" />
+		<Setter Property="Background" Value="{ThemeResource SurfaceBrush}" />
+		<Setter Property="BorderThickness" Value="0" />
+		<Setter Property="CornerRadius" Value="12" />
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="Thumb">
@@ -3164,20 +3122,13 @@
 	<Style x:Key="NeumorphicSliderStyle"
 		   TargetType="Slider">
 
-		<Setter Property="Background"
-				Value="{ThemeResource SurfaceVariantBrush}" />
-		<Setter Property="Foreground"
-				Value="{ThemeResource PrimaryBrush}" />
-		<Setter Property="BorderThickness"
-				Value="0" />
-		<Setter Property="FontFamily"
-				Value="{ThemeResource SliderFontFamily}" />
-		<Setter Property="FontSize"
-				Value="{ThemeResource SliderFontSize}" />
-		<Setter Property="ManipulationMode"
-				Value="None" />
-		<Setter Property="IsFocusEngagementEnabled"
-				Value="True" />
+		<Setter Property="Background" Value="{ThemeResource SurfaceVariantBrush}" />
+		<Setter Property="Foreground" Value="{ThemeResource PrimaryBrush}" />
+		<Setter Property="BorderThickness" Value="0" />
+		<Setter Property="FontFamily" Value="{ThemeResource SliderFontFamily}" />
+		<Setter Property="FontSize" Value="{ThemeResource SliderFontSize}" />
+		<Setter Property="ManipulationMode" Value="None" />
+		<Setter Property="IsFocusEngagementEnabled" Value="True" />
 
 		<Setter Property="Template">
 			<Setter.Value>
@@ -3189,92 +3140,56 @@
 							<VisualStateGroup x:Name="CommonStates">
 								<VisualState x:Name="Normal">
 									<VisualState.Setters>
-										<Setter Target="HorizontalThumbShadow.Shadows"
-												Value="{ThemeResource SliderThumbShadows}" />
-										<Setter Target="VerticalThumbShadow.Shadows"
-												Value="{ThemeResource SliderThumbShadows}" />
-										<Setter Target="HorizontalTrackRectShadow.Shadows"
-												Value="{ThemeResource SliderTrackRectShadows}" />
-										<Setter Target="VerticalTrackRectShadow.Shadows"
-												Value="{ThemeResource SliderTrackRectShadows}" />
-										<Setter Target="HorizontalDecreaseRectShadow.Shadows"
-												Value="{ThemeResource SliderDecreaseRectShadows}" />
-										<Setter Target="VerticalDecreaseRectShadow.Shadows"
-												Value="{ThemeResource SliderDecreaseRectShadows}" />
+										<Setter Target="HorizontalThumbShadow.Shadows" Value="{ThemeResource SliderThumbShadows}" />
+										<Setter Target="VerticalThumbShadow.Shadows" Value="{ThemeResource SliderThumbShadows}" />
+										<Setter Target="HorizontalTrackRectShadow.Shadows" Value="{ThemeResource SliderTrackRectShadows}" />
+										<Setter Target="VerticalTrackRectShadow.Shadows" Value="{ThemeResource SliderTrackRectShadows}" />
+										<Setter Target="HorizontalDecreaseRectShadow.Shadows" Value="{ThemeResource SliderDecreaseRectShadows}" />
+										<Setter Target="VerticalDecreaseRectShadow.Shadows" Value="{ThemeResource SliderDecreaseRectShadows}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="Pressed">
 									<VisualState.Setters>
-										<Setter Target="HorizontalThumbShadow.Shadows"
-												Value="{ThemeResource SliderThumbShadows}" />
-										<Setter Target="VerticalThumbShadow.Shadows"
-												Value="{ThemeResource SliderThumbShadows}" />
-										<Setter Target="HorizontalTrackRectShadow.Shadows"
-												Value="{ThemeResource SliderTrackRectShadows}" />
-										<Setter Target="VerticalTrackRectShadow.Shadows"
-												Value="{ThemeResource SliderTrackRectShadows}" />
-										<Setter Target="HorizontalDecreaseRectShadow.Shadows"
-												Value="{ThemeResource SliderDecreaseRectShadows}" />
-										<Setter Target="VerticalDecreaseRectShadow.Shadows"
-												Value="{ThemeResource SliderDecreaseRectShadows}" />
-										<Setter Target="HorizontalStateLayer.Opacity"
-												Value="0.12" />
-										<Setter Target="VerticalStateLayer.Opacity"
-												Value="0.12" />
+										<Setter Target="HorizontalThumbShadow.Shadows" Value="{ThemeResource SliderThumbShadows}" />
+										<Setter Target="VerticalThumbShadow.Shadows" Value="{ThemeResource SliderThumbShadows}" />
+										<Setter Target="HorizontalTrackRectShadow.Shadows" Value="{ThemeResource SliderTrackRectShadows}" />
+										<Setter Target="VerticalTrackRectShadow.Shadows" Value="{ThemeResource SliderTrackRectShadows}" />
+										<Setter Target="HorizontalDecreaseRectShadow.Shadows" Value="{ThemeResource SliderDecreaseRectShadows}" />
+										<Setter Target="VerticalDecreaseRectShadow.Shadows" Value="{ThemeResource SliderDecreaseRectShadows}" />
+										<Setter Target="HorizontalStateLayer.Opacity" Value="0.12" />
+										<Setter Target="VerticalStateLayer.Opacity" Value="0.12" />
 									</VisualState.Setters>
 								</VisualState>
 
 								<VisualState x:Name="Disabled">
 									<VisualState.Setters>
-										<Setter Target="HorizontalDecreaseBorder.Background"
-												Value="{ThemeResource OnSurfaceDisabledBrush}" />
-										<Setter Target="VerticalDecreaseBorder.Background"
-												Value="{ThemeResource OnSurfaceDisabledBrush}" />
-										<Setter Target="VerticalTrackRect.Background"
-												Value="{ThemeResource SurfaceBrush}" />
-										<Setter Target="HorizontalTrackRect.Background"
-												Value="{ThemeResource SurfaceBrush}" />
-										<Setter Target="HorizontalTrackRectShadow.Shadows"
-												Value="{ThemeResource SliderTrackRectShadows}" />
-										<Setter Target="VerticalTrackRectShadow.Shadows"
-												Value="{ThemeResource SliderTrackRectShadows}" />
-										<Setter Target="HorizontalThumb.Background"
-												Value="{ThemeResource ThumbBackgroundDisabledBrush}" />
-										<Setter Target="VerticalThumb.Background"
-												Value="{ThemeResource ThumbBackgroundDisabledBrush}" />
-										<Setter Target="HorizontalThumbShadow.Shadows"
-												Value="{ThemeResource SliderThumbDisabledShadow}" />
-										<Setter Target="VerticalThumbShadow.Shadows"
-												Value="{ThemeResource SliderThumbDisabledShadow}" />
-										<Setter Target="TopTickBar.Fill"
-												Value="{ThemeResource SliderTickBarFillDisabled}" />
-										<Setter Target="BottomTickBar.Fill"
-												Value="{ThemeResource SliderTickBarFillDisabled}" />
-										<Setter Target="LeftTickBar.Fill"
-												Value="{ThemeResource SliderTickBarFillDisabled}" />
-										<Setter Target="RightTickBar.Fill"
-												Value="{ThemeResource SliderTickBarFillDisabled}" />
+										<Setter Target="HorizontalDecreaseBorder.Background" Value="{ThemeResource OnSurfaceDisabledBrush}" />
+										<Setter Target="VerticalDecreaseBorder.Background" Value="{ThemeResource OnSurfaceDisabledBrush}" />
+										<Setter Target="VerticalTrackRect.Background" Value="{ThemeResource SurfaceBrush}" />
+										<Setter Target="HorizontalTrackRect.Background" Value="{ThemeResource SurfaceBrush}" />
+										<Setter Target="HorizontalTrackRectShadow.Shadows" Value="{ThemeResource SliderTrackRectShadows}" />
+										<Setter Target="VerticalTrackRectShadow.Shadows" Value="{ThemeResource SliderTrackRectShadows}" />
+										<Setter Target="HorizontalThumb.Background" Value="{ThemeResource ThumbBackgroundDisabledBrush}" />
+										<Setter Target="VerticalThumb.Background" Value="{ThemeResource ThumbBackgroundDisabledBrush}" />
+										<Setter Target="HorizontalThumbShadow.Shadows" Value="{ThemeResource SliderThumbDisabledShadow}" />
+										<Setter Target="VerticalThumbShadow.Shadows" Value="{ThemeResource SliderThumbDisabledShadow}" />
+										<Setter Target="TopTickBar.Fill" Value="{ThemeResource SliderTickBarFillDisabled}" />
+										<Setter Target="BottomTickBar.Fill" Value="{ThemeResource SliderTickBarFillDisabled}" />
+										<Setter Target="LeftTickBar.Fill" Value="{ThemeResource SliderTickBarFillDisabled}" />
+										<Setter Target="RightTickBar.Fill" Value="{ThemeResource SliderTickBarFillDisabled}" />
 									</VisualState.Setters>
 								</VisualState>
 
 								<VisualState x:Name="PointerOver">
 									<VisualState.Setters>
-										<Setter Target="HorizontalThumbShadow.Shadows"
-												Value="{ThemeResource SliderThumbShadows}" />
-										<Setter Target="VerticalThumbShadow.Shadows"
-												Value="{ThemeResource SliderThumbShadows}" />
-										<Setter Target="HorizontalTrackRectShadow.Shadows"
-												Value="{ThemeResource SliderTrackRectShadows}" />
-										<Setter Target="VerticalTrackRectShadow.Shadows"
-												Value="{ThemeResource SliderTrackRectShadows}" />
-										<Setter Target="HorizontalDecreaseRectShadow.Shadows"
-												Value="{ThemeResource SliderDecreaseRectShadows}" />
-										<Setter Target="VerticalDecreaseRectShadow.Shadows"
-												Value="{ThemeResource SliderDecreaseRectShadows}" />
-										<Setter Target="HorizontalStateLayer.Opacity"
-												Value="0.08" />
-										<Setter Target="VerticalStateLayer.Opacity"
-												Value="0.08" />
+										<Setter Target="HorizontalThumbShadow.Shadows" Value="{ThemeResource SliderThumbShadows}" />
+										<Setter Target="VerticalThumbShadow.Shadows" Value="{ThemeResource SliderThumbShadows}" />
+										<Setter Target="HorizontalTrackRectShadow.Shadows" Value="{ThemeResource SliderTrackRectShadows}" />
+										<Setter Target="VerticalTrackRectShadow.Shadows" Value="{ThemeResource SliderTrackRectShadows}" />
+										<Setter Target="HorizontalDecreaseRectShadow.Shadows" Value="{ThemeResource SliderDecreaseRectShadows}" />
+										<Setter Target="VerticalDecreaseRectShadow.Shadows" Value="{ThemeResource SliderDecreaseRectShadows}" />
+										<Setter Target="HorizontalStateLayer.Opacity" Value="0.08" />
+										<Setter Target="VerticalStateLayer.Opacity" Value="0.08" />
 									</VisualState.Setters>
 								</VisualState>
 
@@ -3322,12 +3237,12 @@
 													 Grid.Row="1"
 													 Grid.ColumnSpan="3">
 									<Border x:Name="HorizontalTrackRect"
-										  Width="{TemplateBinding Width}"
-										  Height="10"
-										  Background="{TemplateBinding Background}"
-										  CornerRadius="8" />
+											Width="{TemplateBinding Width}"
+											Height="10"
+											Background="{TemplateBinding Background}"
+											CornerRadius="8" />
 								</utu:ShadowContainer>
-								
+
 								<!-- HorizontalDecreaseRect -->
 								<utu:ShadowContainer x:Name="HorizontalDecreaseRectShadow"
 													 Grid.Row="1">
@@ -3375,9 +3290,9 @@
 														 Opacity="0">
 										<Grid Width="24"
 											  Height="24"
-											  CornerRadius="12"/>
+											  CornerRadius="12" />
 									</utu:ShadowContainer>
-									
+
 									<!-- HorizontalThumb -->
 									<utu:ShadowContainer x:Name="HorizontalThumbShadow">
 										<Thumb x:Name="HorizontalThumb"
@@ -3465,7 +3380,7 @@
 														 Opacity="0">
 										<Grid Width="24"
 											  Height="24"
-											  CornerRadius="12"/>
+											  CornerRadius="12" />
 									</utu:ShadowContainer>
 
 									<!-- VerticalThumb -->
@@ -3769,7 +3684,7 @@
 																  KeySpline="{StaticResource MaterialToggleSwitchFastOutSlowInKeySpline}"
 																  Value="{Binding OffContent, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ToggleSwitchOffContentToContentSize}}" />
 										</DoubleAnimationUsingKeyFrames>
-										
+
 									</Storyboard>
 								</VisualState>
 							</VisualStateGroup>
@@ -4087,7 +4002,7 @@
 										  HorizontalAlignment="Center" />
 								</utu:ShadowContainer>
 							</Grid>
-							
+
 							<!-- On -->
 							<Grid x:Name="SwitchKnobBounds"
 								  Width="{ThemeResource SwitchKnobWidth}"
@@ -4126,14 +4041,14 @@
 															 Shadows="{ThemeResource ToggleSwitchKnobOnShadows}">
 											<!-- Knob On -->
 											<Border x:Name="KnobOn"
-												    Opacity="0"
-												    Width="{ThemeResource MediumThumbSize}"
-												    Height="{ThemeResource MediumThumbSize}"
-												    Margin="{ThemeResource KnobOnMargin}"
-												    VerticalAlignment="Center"
-												    HorizontalAlignment="Left"
-												    CornerRadius="12"
-												    Background="{ThemeResource SurfaceBrush}" />
+													Opacity="0"
+													Width="{ThemeResource MediumThumbSize}"
+													Height="{ThemeResource MediumThumbSize}"
+													Margin="{ThemeResource KnobOnMargin}"
+													VerticalAlignment="Center"
+													HorizontalAlignment="Left"
+													CornerRadius="12"
+													Background="{ThemeResource SurfaceBrush}" />
 										</utu:ShadowContainer>
 									</Border>
 									<!-- On Icon -->
@@ -4176,7 +4091,7 @@
 													Margin="{Binding OffContent, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ToggleSwitchOffContentToContentMargin}}"
 													VerticalAlignment="Center"
 													HorizontalAlignment="Right"
-													CornerRadius="{Binding OffContent, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ToggleSwitchOffContentToCornerRadius}}"/>
+													CornerRadius="{Binding OffContent, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ToggleSwitchOffContentToCornerRadius}}" />
 										</utu:ShadowContainer>
 									</Border>
 									<!-- Off Icon -->
@@ -4187,13 +4102,13 @@
 											HorizontalAlignment="Center">
 										<Viewbox>
 											<ContentPresenter x:Name="OffIconPresenter"
-																Content="{TemplateBinding OffContent}"
-																Visibility="{Binding IsOn, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialTrueToCollapsed}}"
-																VerticalAlignment="Center"
-																HorizontalAlignment="Center"
-																VerticalContentAlignment="Center"
-																HorizontalContentAlignment="Center"
-																Foreground="{ThemeResource ToggleSwitchOffIconPresenterForeground}" />
+															  Content="{TemplateBinding OffContent}"
+															  Visibility="{Binding IsOn, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialTrueToCollapsed}}"
+															  VerticalAlignment="Center"
+															  HorizontalAlignment="Center"
+															  VerticalContentAlignment="Center"
+															  HorizontalContentAlignment="Center"
+															  Foreground="{ThemeResource ToggleSwitchOffIconPresenterForeground}" />
 										</Viewbox>
 									</Border>
 								</Grid>
@@ -4234,5 +4149,5 @@
 		</Setter>
 	</Style>
 	<!--#endregion-->
-	
+
 </ResourceDictionary>
