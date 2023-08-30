@@ -523,8 +523,9 @@
 							<CheckBox Content="Checked"
 									  IsChecked="True"
 									  Style="{StaticResource NeumorphicCheckBoxStyle}" />
-							<CheckBox Content="Indeterminite"
+							<CheckBox Content="Indeterminate"
 									  IsChecked="{x:Null}"
+									  IsThreeState="True"
 									  Style="{StaticResource NeumorphicCheckBoxStyle}" />
 						</StackPanel>
 
@@ -539,6 +540,7 @@
 									  Style="{StaticResource NeumorphicCheckBoxStyle}" />
 							<CheckBox Content="Disabled Indeterminate"
 									  IsChecked="{x:Null}"
+									  IsThreeState="True"
 									  IsEnabled="False"
 									  Style="{StaticResource NeumorphicCheckBoxStyle}" />
 						</StackPanel>
