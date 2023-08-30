@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFrameworks>net7.0-android;net7.0-ios;net7.0-maccatalyst;net7.0-macos</TargetFrameworks>
 		<SingleProject>true</SingleProject>
@@ -28,23 +28,23 @@
 
 	<ItemGroup>
 		<PackageReference Include="Uno.CommunityToolkit.WinUI.UI.Controls" Version="7.1.200-dev.13.gef3f523648" />
-		<PackageReference Include="Uno.Cupertino.WinUI" Version="3.0.0-dev.339" />
-		<PackageReference Include="Uno.Extensions.Logging.OSLog" Version="1.4.0" />
+		<PackageReference Include="Uno.Cupertino.WinUI" Version="3.0.0-dev.352" />
+		<PackageReference Include="Uno.Extensions.Logging.OSLog" Version="1.6.0-dev.2" />
 		<PackageReference Include="Uno.Fonts.Fluent" Version="2.3.0-dev.6" />
-		<PackageReference Include="Uno.Material.WinUI" Version="3.0.0-dev.339" />
+		<PackageReference Include="Uno.Material.WinUI" Version="3.0.0-dev.352" />
 		<PackageReference Include="Uno.ShowMeTheXAML" Version="2.0.0-dev0015" />
 		<PackageReference Include="Uno.ShowMeTheXAML.MSBuild" Version="2.0.0-dev0015" />
-		<PackageReference Include="Uno.WinUI" Version="5.0.0-dev.2280" />
-		<PackageReference Include="Uno.WinUI.RemoteControl" Version="5.0.0-dev.2280" Condition="'$(Configuration)'=='Debug'" />
-		<PackageReference Include="Uno.UI.Adapter.Microsoft.Extensions.Logging" Version="5.0.0-dev.1856" />
+		<PackageReference Include="Uno.WinUI" Version="5.0.0-dev.2319" />
+		<PackageReference Include="Uno.WinUI.RemoteControl" Version="5.0.0-dev.2319" Condition="'$(Configuration)'=='Debug'" />
+		<PackageReference Include="Uno.UI.Adapter.Microsoft.Extensions.Logging" Version="5.0.0-dev.2319" />
 		<PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="6.0.0" />
 		<PackageReference Include="Uno.Diagnostics.Eventing" Version="2.1.0-dev.1" />
-		<PackageReference Include="Uno.Toolkit.Skia.WinUI" Version="4.0.0-dev.84" />
-		<PackageReference Include="Uno.Toolkit.WinUI" Version="4.0.0-dev.84" />
-		<PackageReference Include="Uno.Toolkit.WinUI.Cupertino" Version="4.0.0-dev.84" />
-		<PackageReference Include="Uno.Toolkit.WinUI.Material" Version="4.0.0-dev.84" />
-		<PackageReference Include="Uno.WinUI.Lottie" Version="5.0.0-dev.2280" />
+		<PackageReference Include="Uno.Toolkit.Skia.WinUI" Version="4.0.0-dev.98" />
+		<PackageReference Include="Uno.Toolkit.WinUI" Version="4.0.0-dev.98" />
+		<PackageReference Include="Uno.Toolkit.WinUI.Cupertino" Version="4.0.0-dev.98" />
+		<PackageReference Include="Uno.Toolkit.WinUI.Material" Version="4.0.0-dev.98" />
+		<PackageReference Include="Uno.WinUI.Lottie" Version="5.0.0-dev.2319" />
 		<PackageReference Include="Uno.Core.Extensions.Disposables" Version="4.0.1" />
 		<PackageReference Include="Uno.Core.Extensions.Compatibility" Version="4.0.1" />
 	</ItemGroup>
@@ -79,7 +79,7 @@
 		</When>
 		<When Condition="'$(TargetFramework)'=='net7.0-ios'">
 			<ItemGroup>
-				<PackageReference Include="Uno.Extensions.Logging.OSLog" Version="1.4.0" />
+				<PackageReference Include="Uno.Extensions.Logging.OSLog" Version="1.6.0-dev.2" />
 			</ItemGroup>
 			<ItemGroup Condition="'$(Configuration)'=='Release'">
 				<TrimmableAssembly Include="CommunityToolkit.WinUI.UI" />
@@ -108,7 +108,7 @@
 		</When>
 		<When Condition="'$(TargetFramework)'=='net7.0-maccatalyst'">
 			<ItemGroup>
-				<PackageReference Include="Uno.Extensions.Logging.OSLog" Version="1.4.0" />
+				<PackageReference Include="Uno.Extensions.Logging.OSLog" Version="1.6.0-dev.2" />
 			</ItemGroup>
 			<PropertyGroup>
 				<MtouchExtraArgs>$(MtouchExtraArgs) --registrar:static --dsym=true</MtouchExtraArgs>
