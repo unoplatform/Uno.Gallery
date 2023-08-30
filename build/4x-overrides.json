@@ -45,19 +45,19 @@
 	},
 	{
 	  "PackageId": "Uno.Toolkit.WinUI.Cupertino",
-	  "UpdatedVersion": "(,3.99.0-dev.999]"
+	  "UpdatedVersion": "(,4.99.0-dev.999]"
 	},
 	{
 	  "PackageId": "Uno.Toolkit.WinUI.Material",
-	  "UpdatedVersion": "(,3.99.0-dev.999]"
+	  "UpdatedVersion": "(,4.99.0-dev.999]"
 	},
 	{
 	  "PackageId": "Uno.Toolkit.Skia.WinUI",
-	  "UpdatedVersion": "(,3.99.0-dev.999]"
+	  "UpdatedVersion": "(,4.99.0-dev.999]"
 	},
 	{
 	  "PackageId": "Uno.Toolkit.WinUI",
-	  "UpdatedVersion": "(,3.99.0-dev.999]"
+	  "UpdatedVersion": "(,4.99.0-dev.999]"
 	},
 	{
 	  "PackageId": "Uno.CommunityToolkit.WinUI.UI.Controls",
@@ -65,11 +65,11 @@
 	},
 	{
 	  "PackageId": "Uno.Material.WinUI",
-	  "UpdatedVersion": "(,2.99.0-dev.999]"
+	  "UpdatedVersion": "(,3.99.0-dev.999]"
 	},
 	{
 	  "PackageId": "Uno.Cupertino.WinUI",
-	  "UpdatedVersion": "(,2.99.0-dev.999]"
+	  "UpdatedVersion": "(,3.99.0-dev.999]"
 	},
 	{
 	  "PackageId": "Uno.Wasm.Bootstrap",
