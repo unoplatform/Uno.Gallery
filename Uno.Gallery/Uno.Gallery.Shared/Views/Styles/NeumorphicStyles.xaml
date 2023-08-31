@@ -65,8 +65,8 @@
 
 			<!-- TextBox -->
 			<utu:ShadowCollection x:Key="TextBoxShadows">
-				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="8" Opacity="0.4" Spread="0" IsInner="True" Color="{StaticResource ShadeShadowColor2}" />
-				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="8" Opacity="0.4" Spread="0" IsInner="True" Color="{StaticResource LightShadowColor2}" />
+				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="8" Spread="0" Color="#615B71" Opacity="0.6" IsInner="True" />
+				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="8" Spread="0" Color="#000000" Opacity="0.4" IsInner="True" />
 			</utu:ShadowCollection>
 
 			<!-- ToggleButton -->
@@ -319,8 +319,8 @@
 
 			<!-- TextBox -->
 			<utu:ShadowCollection x:Key="TextBoxShadows">
-				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="4" Opacity="0.4" Spread="0" IsInner="True" Color="{StaticResource ShadeShadowColor}" />
-				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="4" Opacity="0.4" Spread="0" IsInner="True" Color="{StaticResource LightShadowColor}" />
+				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="4" Spread="0" Color="#FFFFFF" Opacity="0.6" IsInner="True" />
+				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="4" Spread="0" Color="#AEAEC0" Opacity="0.4" IsInner="True" />
 			</utu:ShadowCollection>
 
 			<!-- ToggleButton -->
@@ -598,6 +598,7 @@
 			<Setter.Value>
 				<ControlTemplate TargetType="TextBox">
 					<utu:ShadowContainer x:Name="RootPanel"
+										 Background="{TemplateBinding Background}"
 										 Shadows="{ThemeResource TextBoxShadows}">
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup x:Name="CommonStates">
@@ -674,7 +675,6 @@
 							  Width="{TemplateBinding Width}"
 							  MinHeight="{TemplateBinding MinHeight}"
 							  CornerRadius="{TemplateBinding CornerRadius}"
-							  Background="{TemplateBinding Background}"
 							  Padding="{TemplateBinding Padding}">
 							<Grid.ColumnDefinitions>
 								<ColumnDefinition Width="Auto" />
@@ -778,6 +778,7 @@
 			<Setter.Value>
 				<ControlTemplate TargetType="PasswordBox">
 					<utu:ShadowContainer x:Name="RootPanel"
+										 Background="{TemplateBinding Background}"
 										 Shadows="{ThemeResource TextBoxShadows}">
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup x:Name="CommonStates">
@@ -854,7 +855,6 @@
 							  Width="{TemplateBinding Width}"
 							  MinHeight="{TemplateBinding MinHeight}"
 							  CornerRadius="{TemplateBinding CornerRadius}"
-							  Background="{TemplateBinding Background}"
 							  Padding="{TemplateBinding Padding}">
 							<Grid.ColumnDefinitions>
 								<ColumnDefinition Width="Auto" />
