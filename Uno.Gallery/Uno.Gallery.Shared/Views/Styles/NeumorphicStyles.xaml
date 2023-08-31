@@ -71,8 +71,8 @@
 
 			<!-- ToggleButton -->
 			<utu:ShadowCollection x:Key="ToggleButtonShadows">
-				<utu:Shadow BlurRadius="8" IsInner="False" OffsetX="-2" OffsetY="-2" Opacity="0.8" Spread="0" Color="{StaticResource LightShadowColor4}" />
-				<utu:Shadow BlurRadius="8" IsInner="False" OffsetX="2" OffsetY="2" Opacity="0.8" Spread="0" Color="{StaticResource ShadeShadowColor4}" />
+				<utu:Shadow OffsetX="2" OffsetY="2" BlurRadius="8" Spread="0" Color="#000000" Opacity="0.8" IsInner="False" />
+				<utu:Shadow OffsetX="-2" OffsetY="-2" BlurRadius="8" Spread="0" Color="#79718E" Opacity="0.8" IsInner="False" />
 			</utu:ShadowCollection>
 
 			<!-- IconButton -->
@@ -315,8 +315,8 @@
 
 			<!-- ToggleButton -->
 			<utu:ShadowCollection x:Key="ToggleButtonShadows">
-				<utu:Shadow BlurRadius="8" IsInner="False" OffsetX="-2" OffsetY="-2" Opacity="0.8" Spread="0" Color="{StaticResource LightShadowColor4}" />
-				<utu:Shadow BlurRadius="8" IsInner="False" OffsetX="2" OffsetY="2" Opacity="0.8" Spread="0" Color="{StaticResource ShadeShadowColor4}" />
+				<utu:Shadow OffsetX="2" OffsetY="2" BlurRadius="8" Spread="0" Color="#AEAEC0" Opacity="0.8" IsInner="False" />
+				<utu:Shadow OffsetX="-2" OffsetY="-2" BlurRadius="8" Spread="0" Color="#FFFFFF" Opacity="0.8" IsInner="False" />
 			</utu:ShadowCollection>
 
 			<!-- IconButton -->
@@ -1765,45 +1765,39 @@
 			<Setter.Value>
 				<ControlTemplate TargetType="ToggleButton">
 					<utu:ShadowContainer x:Name="RootPanel"
+										 Background="{TemplateBinding Background}"
 										 Shadows="{ThemeResource ToggleButtonShadows}">
 
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup x:Name="CommonStates">
-								<VisualState x:Name="Normal">
-									<VisualState.Setters>
-										<Setter Target="RootGrid.Background" Value="{ThemeResource SurfaceBrush}" />
-									</VisualState.Setters>
-								</VisualState>
+								<VisualState x:Name="Normal" />
 								<VisualState x:Name="PointerOver">
 									<VisualState.Setters>
+										<Setter Target="StateOverlay.Fill" Value="{ThemeResource PrimaryHoverBrush}" />
 										<Setter Target="ContentPresenter.Visibility" Value="Visible" />
 										<Setter Target="AlternateContentPresenter.Visibility" Value="Collapsed" />
-										<Setter Target="HoverOverlay.Opacity" Value="1" />
-										<Setter Target="RootGrid.Background" Value="{ThemeResource SurfaceBrush}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="Pressed">
 									<VisualState.Setters>
+										<Setter Target="StateOverlay.Fill" Value="{ThemeResource PrimaryPressedBrush}" />
 										<Setter Target="ContentPresenter.Visibility" Value="Visible" />
 										<Setter Target="AlternateContentPresenter.Visibility" Value="Collapsed" />
-										<Setter Target="PressedOverlay.Opacity" Value="1" />
-										<Setter Target="RootGrid.Background" Value="{ThemeResource SurfaceBrush}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="Disabled">
 									<VisualState.Setters>
+										<Setter Target="RootPanel.Opacity" Value="0.38" />
 										<Setter Target="ContentPresenter.Visibility" Value="Visible" />
 										<Setter Target="AlternateContentPresenter.Visibility" Value="Collapsed" />
 										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource OnSurfaceLowBrush}" />
-										<Setter Target="RootPanel.Opacity" Value="0.38" />
-										<Setter Target="RootGrid.Background" Value="{ThemeResource SurfaceBrush}" />
 									</VisualState.Setters>
 								</VisualState>
 
 								<!-- Checked -->
 								<VisualState x:Name="Checked">
 									<VisualState.Setters>
-
+										<Setter Target="RootPanel.Background" Value="{ThemeResource PrimaryBrush}" />
 										<Setter Target="ContentPresenter.Visibility" Value="Collapsed" />
 										<Setter Target="AlternateContentPresenter.Visibility" Value="Visible" />
 										<Setter Target="AlternateContentPresenter.Foreground" Value="{ThemeResource OnPrimaryBrush}" />
@@ -1811,56 +1805,43 @@
 								</VisualState>
 								<VisualState x:Name="CheckedPointerOver">
 									<VisualState.Setters>
-
+										<Setter Target="RootPanel.Background" Value="{ThemeResource PrimaryBrush}" />
+										<Setter Target="StateOverlay.Fill" Value="{ThemeResource OnPrimaryHoverBrush}" />
 										<Setter Target="ContentPresenter.Visibility" Value="Collapsed" />
 										<Setter Target="AlternateContentPresenter.Visibility" Value="Visible" />
 										<Setter Target="AlternateContentPresenter.Foreground" Value="{ThemeResource OnPrimaryBrush}" />
-										<Setter Target="HoverOverlay.Fill" Value="{StaticResource OnPrimaryHoverBrush}" />
-										<Setter Target="HoverOverlay.Opacity" Value="1" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="CheckedPressed">
 									<VisualState.Setters>
-
+										<Setter Target="RootPanel.Background" Value="{ThemeResource PrimaryBrush}" />
+										<Setter Target="StateOverlay.Fill" Value="{ThemeResource OnPrimaryPressedBrush}" />
 										<Setter Target="ContentPresenter.Visibility" Value="Collapsed" />
 										<Setter Target="AlternateContentPresenter.Visibility" Value="Visible" />
 										<Setter Target="AlternateContentPresenter.Foreground" Value="{ThemeResource OnPrimaryBrush}" />
-										<Setter Target="PressedOverlay.Fill" Value="{StaticResource OnPrimaryPressedBrush}" />
-										<Setter Target="PressedOverlay.Opacity" Value="1" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="CheckedDisabled">
 									<VisualState.Setters>
-
+										<Setter Target="RootPanel.Background" Value="{ThemeResource PrimaryBrush}" />
+										<Setter Target="RootPanel.Opacity" Value="0.38" />
 										<Setter Target="ContentPresenter.Visibility" Value="Collapsed" />
 										<Setter Target="AlternateContentPresenter.Visibility" Value="Visible" />
 										<Setter Target="AlternateContentPresenter.Foreground" Value="{ThemeResource OnPrimaryMediumBrush}" />
-										<Setter Target="RootPanel.Opacity" Value="0.38" />
 									</VisualState.Setters>
 								</VisualState>
 							</VisualStateGroup>
 						</VisualStateManager.VisualStateGroups>
 
 						<Grid x:Name="RootGrid"
-							  Background="{ThemeResource PrimaryBrush}"
 							  CornerRadius="{TemplateBinding CornerRadius}"
 							  Width="{TemplateBinding MinWidth}"
 							  Height="{TemplateBinding MinHeight}">
-							<!-- Ellipse for PointedOver State -->
-							<Ellipse x:Name="HoverOverlay"
-									 HorizontalAlignment="Stretch"
-									 VerticalAlignment="Stretch"
-									 Fill="{StaticResource PrimaryHoverBrush}"
-									 Opacity="0"
-									 Visibility="Visible" />
 
-							<!-- Ellipse for Pressed State -->
-							<Ellipse x:Name="PressedOverlay"
+							<Ellipse x:Name="StateOverlay"
 									 HorizontalAlignment="Stretch"
 									 VerticalAlignment="Stretch"
-									 Fill="{StaticResource PrimaryPressedBrush}"
-									 Opacity="0"
-									 Visibility="Visible" />
+									 Fill="Transparent" />
 
 							<!-- Content -->
 							<ContentPresenter x:Name="ContentPresenter"
