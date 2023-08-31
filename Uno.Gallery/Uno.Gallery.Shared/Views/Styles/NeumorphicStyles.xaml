@@ -200,9 +200,9 @@
 
 			<!-- FAB -->
 			<utu:ShadowCollection x:Key="FabShadows">
-				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="8" OffsetY="8" Opacity="0.2" Spread="0" Color="{StaticResource LightShadowColor7}" />
-				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="-8" OffsetY="-8" Opacity="0.4" Spread="0" Color="{StaticResource MediumShadowColor7}" />
-				<utu:Shadow BlurRadius="20" IsInner="False" OffsetX="12" OffsetY="12" Opacity="0.4" Spread="0" Color="{StaticResource ShadeShadowColor7}" />
+				<utu:Shadow OffsetX="12" OffsetY="12" BlurRadius="20" Spread="0" Color="#000000" Opacity="0.4" IsInner="False" />
+				<utu:Shadow OffsetX="-8" OffsetY="-8" BlurRadius="8" Spread="0" Color="#24222A" Opacity="0.4" IsInner="True" />
+				<utu:Shadow OffsetX="8" OffsetY="8" BlurRadius="8" Spread="0" Color="#A9A2D9" Opacity="0.2" IsInner="True" />
 			</utu:ShadowCollection>
 
 			<!-- Chips -->
@@ -459,9 +459,9 @@
 
 			<!-- FAB -->
 			<utu:ShadowCollection x:Key="FabShadows">
-				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="-8" OffsetY="-8" Opacity="0.08" Spread="0" Color="{StaticResource ShadeShadowColor7}" />
-				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="8" OffsetY="8" Opacity="0.4" Spread="0" Color="{StaticResource LightShadowColor7}" />
-				<utu:Shadow BlurRadius="20" IsInner="False" OffsetX="12" OffsetY="12" Opacity="0.4" Spread="0" Color="{StaticResource MediumShadowColor7}" />
+				<utu:Shadow OffsetX="12" OffsetY="12" BlurRadius="20" Spread="0" Color="#AEAEC0" Opacity="0.4" IsInner="False" />
+				<utu:Shadow OffsetX="8" OffsetY="8" BlurRadius="8" Spread="0" Color="#FFFFFF" Opacity="0.4" IsInner="True" />
+				<utu:Shadow OffsetX="-8" OffsetY="-8" BlurRadius="8" Spread="0" Color="#170065" Opacity="0.1" IsInner="True" />
 			</utu:ShadowCollection>
 
 			<!-- Chips -->
@@ -1444,7 +1444,9 @@
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="Button">
-					<Grid x:Name="RootGrid">
+					<utu:ShadowContainer Background="{TemplateBinding Background}"
+										 Shadows="{ThemeResource FabShadows}">
+
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup x:Name="CommonStates">
 								<VisualState x:Name="Normal" />
@@ -1453,76 +1455,68 @@
 										<Setter Target="StateLayer.Background" Value="{ThemeResource OnPrimaryContainerHoverBrush}" />
 									</VisualState.Setters>
 								</VisualState>
-
-								<VisualState x:Name="Disabled" />
-
 								<VisualState x:Name="Pressed">
 									<VisualState.Setters>
 										<Setter Target="StateLayer.Background" Value="{ThemeResource OnPrimaryContainerPressedBrush}" />
 									</VisualState.Setters>
 								</VisualState>
+								<VisualState x:Name="Disabled" />
 							</VisualStateGroup>
-
 							<VisualStateGroup x:Name="FocusStates">
-
 								<VisualState x:Name="Focused">
 									<VisualState.Setters>
 										<Setter Target="StateLayer.Background" Value="{ThemeResource OnPrimaryContainerFocusedBrush}" />
 									</VisualState.Setters>
 								</VisualState>
-
 								<VisualState x:Name="PointerFocused" />
-
 								<VisualState x:Name="Unfocused" />
 							</VisualStateGroup>
 						</VisualStateManager.VisualStateGroups>
 
-						<utu:ShadowContainer Shadows="{ThemeResource FabShadows}">
-
-							<Grid CornerRadius="{TemplateBinding CornerRadius}"
-								  Background="{TemplateBinding Background}"
-								  MinHeight="{TemplateBinding MinHeight}"
-								  MinWidth="{TemplateBinding MinWidth}">
-
-								<StackPanel x:Name="ContentPanel"
-											Orientation="Horizontal"
-											Margin="{TemplateBinding Padding}">
-
-									<!-- Icon -->
-									<Viewbox Height="{Binding Path=(um:ControlExtensions.IconHeight), RelativeSource={RelativeSource TemplatedParent}}"
-											 Width="{Binding Path=(um:ControlExtensions.IconWidth), RelativeSource={RelativeSource TemplatedParent}}"
-											 HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-											 VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-											 Visibility="{Binding Path=(um:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialNullToCollapsedConverter}, FallbackValue=Collapsed, TargetNullValue=Collapsed}">
-										<ContentPresenter Content="{Binding Path=(um:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}}"
-														  Foreground="{Binding Path=Foreground, RelativeSource={RelativeSource TemplatedParent}}" />
-									</Viewbox>
-
-									<!-- Icon/Content spacing -->
-									<Border Visibility="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialEmptyToCollapsed}, FallbackValue=Collapsed, TargetNullValue=Collapsed}">
-										<Border Width="8"
-												Visibility="{Binding Path=(um:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialNullToCollapsedConverter}, FallbackValue=Collapsed, TargetNullValue=Collapsed}" />
-									</Border>
-
-									<!-- Content -->
-									<ContentPresenter x:Name="ContentPresenter"
-													  Content="{TemplateBinding Content}"
-													  ContentTemplate="{TemplateBinding ContentTemplate}"
-													  ContentTransitions="{TemplateBinding ContentTransitions}"
-													  CornerRadius="{StaticResource NeumorphicButtonCornerRadius}"
-													  FontFamily="{TemplateBinding FontFamily}"
-													  FontSize="{TemplateBinding FontSize}"
-													  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-													  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
-								</StackPanel>
-							</Grid>
-						</utu:ShadowContainer>
-
-						<Grid x:Name="StateLayer"
-							  CornerRadius="{TemplateBinding CornerRadius}"
+						<Grid CornerRadius="{TemplateBinding CornerRadius}"
 							  MinHeight="{TemplateBinding MinHeight}"
-							  MinWidth="{TemplateBinding MinWidth}" />
-					</Grid>
+							  MinWidth="{TemplateBinding MinWidth}">
+
+							<Grid x:Name="StateLayer"
+								  CornerRadius="{TemplateBinding CornerRadius}"
+								  MinHeight="{TemplateBinding MinHeight}"
+								  MinWidth="{TemplateBinding MinWidth}" />
+
+							<StackPanel x:Name="ContentPanel"
+										Orientation="Horizontal"
+										Margin="{TemplateBinding Padding}">
+
+								<!-- Icon -->
+								<Viewbox Height="{Binding Path=(um:ControlExtensions.IconHeight), RelativeSource={RelativeSource TemplatedParent}}"
+										 Width="{Binding Path=(um:ControlExtensions.IconWidth), RelativeSource={RelativeSource TemplatedParent}}"
+										 HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+										 VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+										 Visibility="{Binding Path=(um:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialNullToCollapsedConverter}, FallbackValue=Collapsed, TargetNullValue=Collapsed}">
+									<ContentPresenter Content="{Binding Path=(um:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}}"
+													  Foreground="{Binding Path=Foreground, RelativeSource={RelativeSource TemplatedParent}}" />
+								</Viewbox>
+
+								<!-- Icon/Content spacing -->
+								<Border Visibility="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialEmptyToCollapsed}, FallbackValue=Collapsed, TargetNullValue=Collapsed}">
+									<Border Width="8"
+											Visibility="{Binding Path=(um:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialNullToCollapsedConverter}, FallbackValue=Collapsed, TargetNullValue=Collapsed}" />
+								</Border>
+
+								<!-- Content -->
+								<ContentPresenter x:Name="ContentPresenter"
+												  Content="{TemplateBinding Content}"
+												  ContentTemplate="{TemplateBinding ContentTemplate}"
+												  ContentTransitions="{TemplateBinding ContentTransitions}"
+												  CornerRadius="{StaticResource NeumorphicButtonCornerRadius}"
+												  FontFamily="{TemplateBinding FontFamily}"
+												  FontSize="{TemplateBinding FontSize}"
+												  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+												  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+							</StackPanel>
+						</Grid>
+
+
+					</utu:ShadowContainer>
 				</ControlTemplate>
 			</Setter.Value>
 		</Setter>
