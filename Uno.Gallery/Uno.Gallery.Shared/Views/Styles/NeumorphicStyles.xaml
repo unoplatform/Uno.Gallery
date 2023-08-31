@@ -77,8 +77,8 @@
 
 			<!-- IconButton -->
 			<utu:ShadowCollection x:Key="IconButtonShadows">
-				<utu:Shadow BlurRadius="8" IsInner="False" OffsetX="-2" OffsetY="-2" Opacity="0.8" Spread="0" Color="{StaticResource LightShadowColor4}" />
-				<utu:Shadow BlurRadius="8" IsInner="False" OffsetX="2" OffsetY="2" Opacity="0.8" Spread="0" Color="{StaticResource ShadeShadowColor4}" />
+				<utu:Shadow OffsetX="2" OffsetY="2" BlurRadius="8" Spread="0" Color="#000000" Opacity="0.8" IsInner="False" />
+				<utu:Shadow OffsetX="-2" OffsetY="-2" BlurRadius="8" Spread="0" Color="#79718E" Opacity="0.8" IsInner="False" />
 			</utu:ShadowCollection>
 
 			<!-- CheckBox -->
@@ -331,8 +331,8 @@
 
 			<!-- IconButton -->
 			<utu:ShadowCollection x:Key="IconButtonShadows">
-				<utu:Shadow BlurRadius="8" IsInner="False" OffsetX="-2" OffsetY="-2" Opacity="0.8" Spread="0" Color="{StaticResource LightShadowColor4}" />
-				<utu:Shadow BlurRadius="8" IsInner="False" OffsetX="2" OffsetY="2" Opacity="0.8" Spread="0" Color="{StaticResource ShadeShadowColor4}" />
+				<utu:Shadow OffsetX="2" OffsetY="2" BlurRadius="8" Spread="0" Color="#AEAEC0" Opacity="0.8" IsInner="False" />
+				<utu:Shadow OffsetX="-2" OffsetY="-2" BlurRadius="8" Spread="0" Color="#FFFFFF" Opacity="0.8" IsInner="False" />
 			</utu:ShadowCollection>
 
 			<!-- CheckBox -->
@@ -2053,23 +2053,24 @@
 			<Setter.Value>
 				<ControlTemplate TargetType="Button">
 					<utu:ShadowContainer x:Name="RootPanel"
+										 Background="{TemplateBinding Background}"
 										 Shadows="{ThemeResource IconButtonShadows}">
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup x:Name="CommonStates">
 								<VisualState x:Name="Normal" />
 								<VisualState x:Name="PointerOver">
 									<VisualState.Setters>
-										<Setter Target="HoverOverlay.Opacity" Value="{ThemeResource IconButtonNeumorphicOpacityVisibleState}" />
+										<Setter Target="RootGrid.Background" Value="{ThemeResource PrimaryHoverBrush}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="Pressed">
 									<VisualState.Setters>
-										<Setter Target="PressedOverlay.Opacity" Value="{ThemeResource IconButtonNeumorphicOpacityVisibleState}" />
+										<Setter Target="RootGrid.Background" Value="{ThemeResource PrimaryPressedBrush}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="Focused">
 									<VisualState.Setters>
-										<Setter Target="FocusedOverlay.Opacity" Value="{ThemeResource IconButtonNeumorphicOpacityVisibleState}" />
+										<Setter Target="RootGrid.Background" Value="{ThemeResource PrimaryFocusedBrush}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="Disabled">
@@ -2079,31 +2080,11 @@
 								</VisualState>
 							</VisualStateGroup>
 						</VisualStateManager.VisualStateGroups>
+
 						<Grid x:Name="RootGrid"
-							  Background="{TemplateBinding Background}"
 							  CornerRadius="{TemplateBinding CornerRadius}"
 							  Width="{TemplateBinding MinWidth}"
 							  Height="{TemplateBinding MinHeight}">
-							<!-- Ellipse for PointerOver State -->
-							<Ellipse x:Name="HoverOverlay"
-									 HorizontalAlignment="{StaticResource IconButtonNeumorphicEllipseHorizontalAlignment}"
-									 VerticalAlignment="{StaticResource IconButtonNeumorphicEllipseVerticalAlignment}"
-									 Fill="{ThemeResource IconButtonEllipseFillPointerOver}"
-									 Opacity="{ThemeResource IconButtonOpacityHiddenState}" />
-
-							<!-- Ellipse for Pressed State -->
-							<Ellipse x:Name="PressedOverlay"
-									 HorizontalAlignment="{StaticResource IconButtonNeumorphicEllipseHorizontalAlignment}"
-									 VerticalAlignment="{StaticResource IconButtonNeumorphicEllipseVerticalAlignment}"
-									 Fill="{ThemeResource IconButtonEllipseFillPressed}"
-									 Opacity="{ThemeResource IconButtonOpacityHiddenState}" />
-
-							<!-- Ellipse for Focused State -->
-							<Ellipse x:Name="FocusedOverlay"
-									 HorizontalAlignment="{StaticResource IconButtonNeumorphicEllipseHorizontalAlignment}"
-									 VerticalAlignment="{StaticResource IconButtonNeumorphicEllipseVerticalAlignment}"
-									 Fill="{ThemeResource IconButtonEllipseFillFocused}"
-									 Opacity="{ThemeResource IconButtonOpacityHiddenState}" />
 
 							<!-- Content -->
 							<ContentPresenter x:Name="ContentPresenter"
