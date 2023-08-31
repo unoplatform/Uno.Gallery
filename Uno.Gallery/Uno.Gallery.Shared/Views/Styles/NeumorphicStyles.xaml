@@ -114,14 +114,7 @@
 			</utu:ShadowCollection>
 
 			<!-- RadioButton -->
-			<utu:ShadowCollection x:Key="NeumorphicRadioButtonShadows">
-				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Opacity="1" Spread="0" Color="{StaticResource LightShadowColor2}" IsInner="False" />
-				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="4" Opacity="0.6" Spread="0" Color="{StaticResource ShadeShadowColor2}" IsInner="False" />
-			</utu:ShadowCollection>
-
-			<utu:ShadowCollection x:Key="NeumorphicRadioButtonStateShadows">
-				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="8" Opacity="1" Spread="8" Color="{ThemeResource PrimaryColor}" IsInner="False" />
-			</utu:ShadowCollection>
+			<!-- reusing CheckBox shadows -->
 
 			<!-- ComboBox -->
 			<utu:ShadowCollection x:Key="ComboboxShadows">
@@ -368,14 +361,7 @@
 			</utu:ShadowCollection>
 
 			<!-- RadioButton -->
-			<utu:ShadowCollection x:Key="NeumorphicRadioButtonShadows">
-				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="2" Opacity="1" Spread="0" IsInner="False" Color="{StaticResource LightShadowColor}" />
-				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="2" Opacity="0.6" Spread="0" IsInner="False" Color="{StaticResource ShadeShadowColor}" />
-			</utu:ShadowCollection>
-
-			<utu:ShadowCollection x:Key="NeumorphicRadioButtonStateShadows">
-				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="8" Opacity="1" Spread="8" Color="{ThemeResource PrimaryColor}" IsInner="False" />
-			</utu:ShadowCollection>
+			<!-- reusing CheckBox shadows -->
 
 			<!-- ComboBox -->
 			<utu:ShadowCollection x:Key="ComboboxShadows">
@@ -1912,73 +1898,42 @@
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="RadioButton">
-					<Grid x:Name="RootGrid"
-						  Background="Transparent">
+					<Grid x:Name="RootGrid">
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup x:Name="CommonStates">
 								<VisualState x:Name="Normal" />
 								<VisualState x:Name="PointerOver">
-									<Storyboard>
-										<DoubleAnimation Storyboard.TargetName="StateLayer"
-														 Storyboard.TargetProperty="Opacity"
-														 Duration="{StaticResource MaterialAnimationDuration}"
-														 To="{ThemeResource HoverOpacity}">
-											<DoubleAnimation.EasingFunction>
-												<CubicEase EasingMode="EaseIn" />
-											</DoubleAnimation.EasingFunction>
-										</DoubleAnimation>
-									</Storyboard>
+									<VisualState.Setters>
+										<Setter Target="RadioPanel.Shadows" Value="{ThemeResource NeumorphicCheckBoxHoverShadows}" />
+									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="Pressed">
-									<Storyboard>
-										<DoubleAnimation Storyboard.TargetName="StateLayer"
-														 Storyboard.TargetProperty="Opacity"
-														 Duration="{StaticResource MaterialAnimationDuration}"
-														 To="{ThemeResource PressedOpacity}">
-											<DoubleAnimation.EasingFunction>
-												<CubicEase EasingMode="EaseIn" />
-											</DoubleAnimation.EasingFunction>
-										</DoubleAnimation>
-									</Storyboard>
+									<VisualState.Setters>
+										<Setter Target="RadioPanel.Shadows" Value="{ThemeResource NeumorphicCheckBoxPressedShadows}" />
+									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="Disabled">
 									<VisualState.Setters>
-										<Setter Target="OuterEllipse.Fill" Value="{ThemeResource OnSurfaceDisabledBrush}" />
-										<Setter Target="CheckEllipse.Fill" Value="{ThemeResource OnSurfaceLowBrush}" />
+										<Setter Target="RadioPanel.Shadows" Value="{ThemeResource NeumorphicCheckBoxDisabledShadows}" />
 									</VisualState.Setters>
 								</VisualState>
 							</VisualStateGroup>
-
 							<VisualStateGroup x:Name="CheckStates">
-
 								<VisualState x:Name="Checked">
 									<VisualState.Setters>
 										<Setter Target="CheckEllipse.Opacity" Value="1" />
 									</VisualState.Setters>
 								</VisualState>
-
 								<VisualState x:Name="Unchecked" />
-
 								<VisualState x:Name="Indeterminate" />
 							</VisualStateGroup>
-
 							<VisualStateGroup x:Name="FocusStates">
-
-								<VisualState x:Name="Focused">
-									<Storyboard>
-										<DoubleAnimation Storyboard.TargetName="StateLayer"
-														 Storyboard.TargetProperty="Opacity"
-														 Duration="{StaticResource MaterialAnimationDuration}"
-														 To="{ThemeResource FocusedOpacity}">
-											<DoubleAnimation.EasingFunction>
-												<CubicEase EasingMode="EaseIn" />
-											</DoubleAnimation.EasingFunction>
-										</DoubleAnimation>
-									</Storyboard>
+								<VisualState x:Name="Focused" >
+									<VisualState.Setters>
+										<Setter Target="RadioPanel.Shadows" Value="{ThemeResource NeumorphicCheckBoxFocusedShadows}" />
+									</VisualState.Setters>
 								</VisualState>
-
 								<VisualState x:Name="PointerFocused" />
-
 								<VisualState x:Name="Unfocused" />
 							</VisualStateGroup>
 						</VisualStateManager.VisualStateGroups>
@@ -1988,24 +1943,13 @@
 							<ColumnDefinition Width="*" />
 						</Grid.ColumnDefinitions>
 
-						<utu:ShadowContainer x:Name="StateLayer"
-											 Shadows="{ThemeResource NeumorphicRadioButtonStateShadows}"
-											 Opacity="0">
-							<Grid Height="20"
-								  Width="20"
-								  CornerRadius="10" />
-						</utu:ShadowContainer>
-
-						<utu:ShadowContainer Shadows="{ThemeResource NeumorphicRadioButtonShadows}">
-							<Grid Height="20"
+						<utu:ShadowContainer x:Name="RadioPanel"
+											 Background="{TemplateBinding Background}"
+											 Shadows="{ThemeResource NeumorphicCheckBoxShadows}">
+							<Grid x:Name="RadioInnerPanel"
+								Height="20"
 								  Width="20"
 								  CornerRadius="10">
-								<Ellipse x:Name="OuterEllipse"
-										 Height="20"
-										 Width="20"
-										 UseLayoutRounding="False"
-										 Fill="{TemplateBinding Background}" />
-
 								<Ellipse x:Name="CheckEllipse"
 										 Height="10"
 										 Width="10"
