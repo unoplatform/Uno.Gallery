@@ -125,8 +125,8 @@
 
 			<!-- ComboBox -->
 			<utu:ShadowCollection x:Key="ComboboxShadows">
-				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="4" OffsetY="4" Opacity="0.4" Spread="0" Color="{StaticResource ShadeShadowColor2}" />
-				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="-4" OffsetY="-4" Opacity="0.4" Spread="0" Color="{StaticResource LightShadowColor2}" />
+				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="8" Spread="0" Color="#615B71" Opacity="0.6" IsInner="True" />
+				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="8" Spread="0" Color="#000000" Opacity="0.4" IsInner="True" />
 			</utu:ShadowCollection>
 
 			<!-- TabBar -->
@@ -379,8 +379,8 @@
 
 			<!-- ComboBox -->
 			<utu:ShadowCollection x:Key="ComboboxShadows">
-				<utu:Shadow BlurRadius="4" IsInner="True" OffsetX="4" OffsetY="4" Opacity="0.4" Spread="0" Color="{StaticResource ShadeShadowColor}" />
-				<utu:Shadow BlurRadius="4" IsInner="True" OffsetX="-4" OffsetY="-4" Opacity="0.4" Spread="0" Color="{StaticResource LightShadowColor}" />
+				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="4" Spread="0" Color="#FFFFFF" Opacity="0.6" IsInner="True" />
+				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="4" Spread="0" Color="#AEAEC0" Opacity="0.4" IsInner="True" />
 			</utu:ShadowCollection>
 
 			<!-- TabBar -->
@@ -962,6 +962,7 @@
 			<Setter.Value>
 				<ControlTemplate TargetType="ComboBox">
 					<utu:ShadowContainer x:Name="RootPanel"
+										 Background="{TemplateBinding Background}"
 										 Shadows="{ThemeResource ComboboxShadows}">
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup x:Name="CommonStates">
@@ -1030,7 +1031,6 @@
 
 						<Grid x:Name="RootGrid"
 							  HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
-							  Background="{TemplateBinding Background}"
 							  CornerRadius="4"
 							  Width="{TemplateBinding Width}"
 							  MinHeight="{TemplateBinding MinHeight}">
