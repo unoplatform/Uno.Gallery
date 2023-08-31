@@ -206,14 +206,13 @@
 			</utu:ShadowCollection>
 
 			<!-- Chips -->
-			<utu:ShadowCollection x:Key="ChipsShadows">
-				<utu:Shadow BlurRadius="4" IsInner="False" OffsetX="-1" OffsetY="-1" Opacity="1" Spread="0" Color="{StaticResource LightShadowColor2}" />
-				<utu:Shadow BlurRadius="4" IsInner="False" OffsetX="1" OffsetY="1" Opacity="0.6" Spread="0" Color="{StaticResource ShadeShadowColor2}" />
+			<utu:ShadowCollection x:Key="ChipShadows">
+				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="4" Spread="0" Color="#000000" Opacity="0.6" IsInner="False" />
+				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Spread="0" Color="#615B71" Opacity="1" IsInner="False" />
 			</utu:ShadowCollection>
-
-			<utu:ShadowCollection x:Key="ChipsShadowsSelected">
-				<utu:Shadow BlurRadius="4" IsInner="True" OffsetX="1" OffsetY="1" Opacity="0.9" Spread="0" Color="{StaticResource ShadeShadowColor6}" />
-				<utu:Shadow BlurRadius="4" IsInner="True" OffsetX="-1" OffsetY="-1" Opacity="0.9" Spread="0" Color="{StaticResource LightShadowColor6}" />
+			<utu:ShadowCollection x:Key="ChipSelectedShadows">
+				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Spread="0" Color="#F7F5FF" Opacity="0.9" IsInner="True" />
+				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="4" Spread="0" Color="#584AB5" Opacity="0.9" IsInner="True" />
 			</utu:ShadowCollection>
 
 			<!-- Slider -->
@@ -466,14 +465,13 @@
 			</utu:ShadowCollection>
 
 			<!-- Chips -->
-			<utu:ShadowCollection x:Key="ChipsShadows">
-				<utu:Shadow BlurRadius="4" IsInner="False" OffsetX="-1" OffsetY="-1" Opacity="1" Spread="0" Color="{StaticResource LightShadowColor}" />
-				<utu:Shadow BlurRadius="4" IsInner="False" OffsetX="1" OffsetY="1" Opacity="0.6" Spread="0" Color="{StaticResource ShadeShadowColor}" />
+			<utu:ShadowCollection x:Key="ChipShadows">
+				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="4" Spread="0" Color="#AEAEC0" Opacity="0.6" IsInner="False" />
+				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Spread="0" Color="#FFFFFF" Opacity="1" IsInner="False" />
 			</utu:ShadowCollection>
-
-			<utu:ShadowCollection x:Key="ChipsShadowsSelected">
-				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="4" OffsetY="4" Opacity="1" Spread="0" Color="{StaticResource ShadeShadowColor2}" />
-				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="-4" OffsetY="-4" Opacity="1" Spread="0" Color="{StaticResource LightShadowColor2}" />
+			<utu:ShadowCollection x:Key="ChipSelectedShadows">
+				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="8" Spread="0" Color="#8271F4" Opacity="1" IsInner="True" />
+				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="8" Spread="0" Color="#4C3CB3" Opacity="1" IsInner="True" />
 			</utu:ShadowCollection>
 
 			<!-- Slider -->
@@ -2134,7 +2132,7 @@
 	<Style x:Key="NeumorphicChipStyle"
 		   TargetType="utu:Chip">
 		<Setter Property="Foreground" Value="{ThemeResource OnSurfaceVariantBrush}" />
-		<Setter Property="Background" Value="{ThemeResource PrimaryBrush}" />
+		<Setter Property="Background" Value="{ThemeResource SurfaceBrush}" />
 		<Setter Property="CornerRadius" Value="8" />
 		<Setter Property="VerticalAlignment" Value="Stretch" />
 		<Setter Property="VerticalContentAlignment" Value="Center" />
@@ -2145,38 +2143,35 @@
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="utu:Chip">
-					<utu:ShadowContainer x:Name="RootPanel">
+					<utu:ShadowContainer x:Name="RootPanel"
+										 Background="{TemplateBinding Background}"
+										 Shadows="{ThemeResource ChipShadows}">
 
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup x:Name="CommonStates">
-								<VisualState x:Name="Normal">
-									<VisualState.Setters>
-										<Setter Target="RootPanel.Shadows" Value="{ThemeResource ChipsShadows}" />
-										<Setter Target="StateOverlay.Background" Value="Transparent" />
-										<Setter Target="GridRoot.Background" Value="{ThemeResource SurfaceBrush}" />
-									</VisualState.Setters>
-								</VisualState>
+								<!-- [null,Checked,~~Indeterminate~~]*[null,Pressed,PointerOver,Disabled] ?? Normal -->
 
+								<VisualState x:Name="Normal">
+									<VisualState.Setters />
+								</VisualState>
 								<VisualState x:Name="PointerOver">
 									<VisualState.Setters>
-										<Setter Target="RootPanel.Shadows" Value="{ThemeResource ChipsShadows}" />
+										<Setter Target="RootPanel.Shadows" Value="{ThemeResource ChipShadows}" />
 										<Setter Target="StateOverlay.Background" Value="{ThemeResource OnSurfaceHoverBrush}" />
-										<Setter Target="GridRoot.Background" Value="{ThemeResource SurfaceBrush}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="Pressed">
 									<VisualState.Setters>
-										<Setter Target="RootPanel.Shadows" Value="{ThemeResource ChipsShadows}" />
+										<Setter Target="RootPanel.Shadows" Value="{ThemeResource ChipShadows}" />
 										<Setter Target="StateOverlay.Background" Value="{ThemeResource OnSurfacePressedBrush}" />
-										<Setter Target="GridRoot.Background" Value="{ThemeResource SurfaceBrush}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="Disabled">
 									<VisualState.Setters>
-										<Setter Target="RootPanel.Shadows" Value="{ThemeResource ChipsShadows}" />
+										<Setter Target="RootPanel.Shadows" Value="{ThemeResource ChipShadows}" />
 										<Setter Target="RootPanel.Opacity" Value="0.38" />
-										<Setter Target="GridRoot.Background" Value="{ThemeResource SurfaceBrush}" />
 										<Setter Target="StateOverlay.Background" Value="{ThemeResource OnSurfaceDisabledBrush}" />
+
 										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource OnSurfaceLowBrush}" />
 										<Setter Target="PART_RemoveButton.Foreground" Value="{ThemeResource OnSurfaceLowBrush}" />
 										<Setter Target="IconPresenter.Foreground" Value="{ThemeResource OnSurfaceLowBrush}" />
@@ -2184,8 +2179,8 @@
 								</VisualState>
 								<VisualState x:Name="Checked">
 									<VisualState.Setters>
-										<Setter Target="RootPanel.Shadows" Value="{ThemeResource ChipsShadowsSelected}" />
-										<Setter Target="StateOverlay.Background" Value="Transparent" />
+										<Setter Target="RootPanel.Shadows" Value="{ThemeResource ChipSelectedShadows}" />
+										<Setter Target="RootPanel.Background" Value="{ThemeResource PrimaryBrush}" />
 										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource OnPrimaryBrush}" />
 										<Setter Target="IconPresenter.Foreground" Value="{ThemeResource OnPrimaryBrush}" />
 										<Setter Target="PART_RemoveButton.Foreground" Value="{ThemeResource OnPrimaryBrush}" />
@@ -2194,8 +2189,9 @@
 								</VisualState>
 								<VisualState x:Name="CheckedPointerOver">
 									<VisualState.Setters>
-										<Setter Target="RootPanel.Shadows" Value="{ThemeResource ChipsShadowsSelected}" />
-										<Setter Target="StateOverlay.Background" Value="{ThemeResource OnPrimaryContainerHoverBrush}" />
+										<Setter Target="RootPanel.Shadows" Value="{ThemeResource ChipSelectedShadows}" />
+										<Setter Target="RootPanel.Background" Value="{ThemeResource PrimaryBrush}" />
+										<Setter Target="StateOverlay.Background" Value="{ThemeResource OnPrimaryHoverBrush}" />
 										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource OnPrimaryBrush}" />
 										<Setter Target="IconPresenter.Foreground" Value="{ThemeResource OnPrimaryBrush}" />
 										<Setter Target="PART_RemoveButton.Foreground" Value="{ThemeResource OnPrimaryBrush}" />
@@ -2204,8 +2200,9 @@
 								</VisualState>
 								<VisualState x:Name="CheckedPressed">
 									<VisualState.Setters>
-										<Setter Target="RootPanel.Shadows" Value="{ThemeResource ChipsShadowsSelected}" />
-										<Setter Target="StateOverlay.Background" Value="{ThemeResource OnPrimaryContainerPressedBrush}" />
+										<Setter Target="RootPanel.Shadows" Value="{ThemeResource ChipSelectedShadows}" />
+										<Setter Target="RootPanel.Background" Value="{ThemeResource PrimaryBrush}" />
+										<Setter Target="StateOverlay.Background" Value="{ThemeResource OnPrimaryPressedBrush}" />
 										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource OnPrimaryBrush}" />
 										<Setter Target="IconPresenter.Foreground" Value="{ThemeResource OnPrimaryBrush}" />
 										<Setter Target="PART_RemoveButton.Foreground" Value="{ThemeResource OnPrimaryBrush}" />
@@ -2218,8 +2215,7 @@
 						<Grid x:Name="GridRoot"
 							  CornerRadius="{TemplateBinding CornerRadius}"
 							  Height="32"
-							  Margin="4"
-							  Background="{TemplateBinding Background}">
+							  Margin="4">
 							<Border x:Name="StateOverlay"
 									Background="Transparent"
 									CornerRadius="{TemplateBinding CornerRadius}" />
