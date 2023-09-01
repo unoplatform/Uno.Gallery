@@ -3249,28 +3249,28 @@
 							<VisualStateGroup x:Name="CommonStates">
 								<VisualState x:Name="Normal">
 									<Storyboard>
-										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="KnobOn"
+										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="KnobOnBorder"
 																	   Storyboard.TargetProperty="Width"
 																	   EnableDependentAnimation="True">
 											<SplineDoubleKeyFrame KeyTime="{StaticResource MaterialToggleSwitchFasterAnimationDuration}"
 																  KeySpline="{StaticResource MaterialToggleSwitchFastOutSlowInKeySpline}"
 																  Value="{ThemeResource MediumThumbSize}" />
 										</DoubleAnimationUsingKeyFrames>
-										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="KnobOn"
+										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="KnobOnBorder"
 																	   Storyboard.TargetProperty="Height"
 																	   EnableDependentAnimation="True">
 											<SplineDoubleKeyFrame KeyTime="{StaticResource MaterialToggleSwitchFasterAnimationDuration}"
 																  KeySpline="{StaticResource MaterialToggleSwitchFastOutSlowInKeySpline}"
 																  Value="{ThemeResource MediumThumbSize}" />
 										</DoubleAnimationUsingKeyFrames>
-										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="KnobOff"
+										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="KnobOffBorder"
 																	   Storyboard.TargetProperty="Width"
 																	   EnableDependentAnimation="True">
 											<SplineDoubleKeyFrame KeyTime="{StaticResource MaterialToggleSwitchFasterAnimationDuration}"
 																  KeySpline="{StaticResource MaterialToggleSwitchFastOutSlowInKeySpline}"
 																  Value="{Binding OffContent, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ToggleSwitchOffContentToContentSize}}" />
 										</DoubleAnimationUsingKeyFrames>
-										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="KnobOff"
+										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="KnobOffBorder"
 																	   Storyboard.TargetProperty="Height"
 																	   EnableDependentAnimation="True">
 											<SplineDoubleKeyFrame KeyTime="{StaticResource MaterialToggleSwitchFasterAnimationDuration}"
@@ -3286,28 +3286,28 @@
 										<Setter Target="SwitchKnobOffShadow.Visibility" Value="Visible" />
 									</VisualState.Setters>
 									<Storyboard>
-										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="KnobOn"
+										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="KnobOnBorder"
 																	   Storyboard.TargetProperty="Width"
 																	   EnableDependentAnimation="True">
 											<SplineDoubleKeyFrame KeyTime="{StaticResource MaterialToggleSwitchFasterAnimationDuration}"
 																  KeySpline="{StaticResource MaterialToggleSwitchFastOutSlowInKeySpline}"
 																  Value="{ThemeResource MediumThumbSize}" />
 										</DoubleAnimationUsingKeyFrames>
-										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="KnobOn"
+										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="KnobOnBorder"
 																	   Storyboard.TargetProperty="Height"
 																	   EnableDependentAnimation="True">
 											<SplineDoubleKeyFrame KeyTime="{StaticResource MaterialToggleSwitchFasterAnimationDuration}"
 																  KeySpline="{StaticResource MaterialToggleSwitchFastOutSlowInKeySpline}"
 																  Value="{ThemeResource MediumThumbSize}" />
 										</DoubleAnimationUsingKeyFrames>
-										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="KnobOff"
+										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="KnobOffBorder"
 																	   Storyboard.TargetProperty="Width"
 																	   EnableDependentAnimation="True">
 											<SplineDoubleKeyFrame KeyTime="{StaticResource MaterialToggleSwitchFasterAnimationDuration}"
 																  KeySpline="{StaticResource MaterialToggleSwitchFastOutSlowInKeySpline}"
 																  Value="{Binding OffContent, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ToggleSwitchOffContentToContentSize}}" />
 										</DoubleAnimationUsingKeyFrames>
-										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="KnobOff"
+										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="KnobOffBorder"
 																	   Storyboard.TargetProperty="Height"
 																	   EnableDependentAnimation="True">
 											<SplineDoubleKeyFrame KeyTime="{StaticResource MaterialToggleSwitchFasterAnimationDuration}"
@@ -3332,28 +3332,28 @@
 										<Setter Target="SwitchKnobOffShadow.Visibility" Value="Visible" />
 									</VisualState.Setters>
 									<Storyboard>
-										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="KnobOn"
+										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="KnobOnBorder"
 																	   Storyboard.TargetProperty="Width"
 																	   EnableDependentAnimation="True">
 											<SplineDoubleKeyFrame KeyTime="{StaticResource MaterialToggleSwitchFasterAnimationDuration}"
 																  KeySpline="{StaticResource MaterialToggleSwitchFastOutSlowInKeySpline}"
 																  Value="{ThemeResource MediumThumbSize}" />
 										</DoubleAnimationUsingKeyFrames>
-										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="KnobOn"
+										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="KnobOnBorder"
 																	   Storyboard.TargetProperty="Height"
 																	   EnableDependentAnimation="True">
 											<SplineDoubleKeyFrame KeyTime="{StaticResource MaterialToggleSwitchFasterAnimationDuration}"
 																  KeySpline="{StaticResource MaterialToggleSwitchFastOutSlowInKeySpline}"
 																  Value="{ThemeResource MediumThumbSize}" />
 										</DoubleAnimationUsingKeyFrames>
-										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="KnobOff"
+										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="KnobOffBorder"
 																	   Storyboard.TargetProperty="Width"
 																	   EnableDependentAnimation="True">
 											<SplineDoubleKeyFrame KeyTime="{StaticResource MaterialToggleSwitchFasterAnimationDuration}"
 																  KeySpline="{StaticResource MaterialToggleSwitchFastOutSlowInKeySpline}"
 																  Value="{Binding OffContent, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ToggleSwitchOffContentToContentSize}}" />
 										</DoubleAnimationUsingKeyFrames>
-										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="KnobOff"
+										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="KnobOffBorder"
 																	   Storyboard.TargetProperty="Height"
 																	   EnableDependentAnimation="True">
 											<SplineDoubleKeyFrame KeyTime="{StaticResource MaterialToggleSwitchFasterAnimationDuration}"
@@ -3374,38 +3374,38 @@
 								</VisualState>
 								<VisualState x:Name="Pressed">
 									<VisualState.Setters>
-										<Setter Target="KnobOn.Margin" Value="0" />
-										<Setter Target="KnobOff.Margin" Value="0" />
-										<Setter Target="KnobOn.CornerRadius" Value="{ThemeResource LargeThumbCornerRadius}" />
-										<Setter Target="KnobOff.CornerRadius" Value="{ThemeResource LargeThumbCornerRadius}" />
+										<Setter Target="KnobOnBorder.Margin" Value="0" />
+										<Setter Target="KnobOffBorder.Margin" Value="0" />
+										<Setter Target="KnobOnBorder.CornerRadius" Value="{ThemeResource LargeThumbCornerRadius}" />
+										<Setter Target="KnobOffBorder.CornerRadius" Value="{ThemeResource LargeThumbCornerRadius}" />
 										<Setter Target="SwitchKnobOn.Margin" Value="26,0,0,0" />
 										<Setter Target="OnIconPresenterBorder.Margin" Value="0" />
 										<Setter Target="SwitchKnobOnShadow.Visibility" Value="Visible" />
 										<Setter Target="SwitchKnobOffShadow.Visibility" Value="Visible" />
 									</VisualState.Setters>
 									<Storyboard>
-										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="KnobOn"
+										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="KnobOnBorder"
 																	   Storyboard.TargetProperty="Width"
 																	   EnableDependentAnimation="True">
 											<SplineDoubleKeyFrame KeyTime="{StaticResource MaterialToggleSwitchFasterAnimationDuration}"
 																  KeySpline="{StaticResource MaterialToggleSwitchFastOutSlowInKeySpline}"
 																  Value="{ThemeResource LargeThumbSize}" />
 										</DoubleAnimationUsingKeyFrames>
-										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="KnobOn"
+										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="KnobOnBorder"
 																	   Storyboard.TargetProperty="Height"
 																	   EnableDependentAnimation="True">
 											<SplineDoubleKeyFrame KeyTime="{StaticResource MaterialToggleSwitchFasterAnimationDuration}"
 																  KeySpline="{StaticResource MaterialToggleSwitchFastOutSlowInKeySpline}"
 																  Value="{ThemeResource LargeThumbSize}" />
 										</DoubleAnimationUsingKeyFrames>
-										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="KnobOff"
+										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="KnobOffBorder"
 																	   Storyboard.TargetProperty="Width"
 																	   EnableDependentAnimation="True">
 											<SplineDoubleKeyFrame KeyTime="{StaticResource MaterialToggleSwitchFasterAnimationDuration}"
 																  KeySpline="{StaticResource MaterialToggleSwitchFastOutSlowInKeySpline}"
 																  Value="{ThemeResource LargeThumbSize}" />
 										</DoubleAnimationUsingKeyFrames>
-										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="KnobOff"
+										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="KnobOffBorder"
 																	   Storyboard.TargetProperty="Height"
 																	   EnableDependentAnimation="True">
 											<SplineDoubleKeyFrame KeyTime="{StaticResource MaterialToggleSwitchFasterAnimationDuration}"
@@ -3441,14 +3441,14 @@
 											<DiscreteObjectKeyFrame KeyTime="0"
 																	Value="{ThemeResource SurfaceBrush}" />
 										</ObjectAnimationUsingKeyFrames>
-										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="KnobOn"
+										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="KnobOnBorder"
 																	   Storyboard.TargetProperty="Width"
 																	   EnableDependentAnimation="True">
 											<SplineDoubleKeyFrame KeyTime="{StaticResource MaterialToggleSwitchNormalAnimationDuration}"
 																  KeySpline="{StaticResource MaterialToggleSwitchFastOutSlowInKeySpline}"
 																  Value="{ThemeResource MediumThumbSize}" />
 										</DoubleAnimationUsingKeyFrames>
-										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="KnobOn"
+										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="KnobOnBorder"
 																	   Storyboard.TargetProperty="Height"
 																	   EnableDependentAnimation="True">
 											<SplineDoubleKeyFrame KeyTime="{StaticResource MaterialToggleSwitchNormalAnimationDuration}"
@@ -3465,14 +3465,14 @@
 											<DiscreteObjectKeyFrame KeyTime="0"
 																	Value="{ThemeResource SurfaceVariantBrush}" />
 										</ObjectAnimationUsingKeyFrames>
-										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="KnobOff"
+										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="KnobOffBorder"
 																	   Storyboard.TargetProperty="Width"
 																	   EnableDependentAnimation="True">
 											<SplineDoubleKeyFrame KeyTime="{StaticResource MaterialToggleSwitchFasterAnimationDuration}"
 																  KeySpline="{StaticResource MaterialToggleSwitchFastOutSlowInKeySpline}"
 																  Value="{Binding OffContent, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ToggleSwitchOffContentToContentSize}}" />
 										</DoubleAnimationUsingKeyFrames>
-										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="KnobOff"
+										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="KnobOffBorder"
 																	   Storyboard.TargetProperty="Height"
 																	   EnableDependentAnimation="True">
 											<SplineDoubleKeyFrame KeyTime="{StaticResource MaterialToggleSwitchFasterAnimationDuration}"
@@ -3765,29 +3765,27 @@
 									  CornerRadius="{ThemeResource LargeThumbCornerRadius}"
 									  HorizontalAlignment="Left">
 
-									<Border x:Name="KnobOnBorder">
-										<utu:ShadowContainer x:Name="ShadowKnobOn"
-															 Background="{ThemeResource SurfaceBrush}"
-															 Shadows="{ThemeResource ToggleSwitchKnobOnShadows}">
+									<utu:ShadowContainer x:Name="ShadowKnobOn"
+														 Background="{ThemeResource SurfaceBrush}"
+														 Shadows="{ThemeResource ToggleSwitchKnobOnShadows}">
+										<Border x:Name="KnobOnBorder"
+												Width="{ThemeResource MediumThumbSize}"
+												Height="{ThemeResource MediumThumbSize}"
+												Margin="{ThemeResource KnobOnMargin}"
+												CornerRadius="12">
 											<!-- Knob On -->
-											<Border x:Name="KnobOn"
-													Opacity="0"
-													Width="{ThemeResource MediumThumbSize}"
-													Height="{ThemeResource MediumThumbSize}"
-													Margin="{ThemeResource KnobOnMargin}"
-													VerticalAlignment="Center"
-													HorizontalAlignment="Left"
-													CornerRadius="12" />
-										</utu:ShadowContainer>
-									</Border>
+											<Border x:Name="KnobOn" />
+										</Border>
+									</utu:ShadowContainer>
+
 									<!-- On Icon -->
 									<Border x:Name="OnIconPresenterBorder"
 											Height="{ThemeResource KnobIconSize}"
 											Width="{ThemeResource KnobIconSize}"
 											Padding="{ThemeResource KnobIconPadding}"
-											Margin="4,0,0,0"
 											VerticalAlignment="Center"
-											HorizontalAlignment="Center">
+											HorizontalAlignment="Center"
+											Margin="2,0,0,0">
 										<Viewbox>
 											<ContentPresenter x:Name="OnIconPresenter"
 															  Content="{TemplateBinding OnContent}"
@@ -3809,26 +3807,26 @@
 									  CornerRadius="{ThemeResource LargeThumbCornerRadius}"
 									  HorizontalAlignment="Right">
 
-									<Border x:Name="KnobOffBorder">
-										<utu:ShadowContainer x:Name="ShadowKnobOff"
-															 Background="{ThemeResource OnSurfaceVariantBrush}"
-															 Shadows="{ThemeResource ToggleSwitchKnobOffShadows}">
+									<utu:ShadowContainer x:Name="ShadowKnobOff"
+														 Background="{ThemeResource OnSurfaceVariantBrush}"
+														 Shadows="{ThemeResource ToggleSwitchKnobOffShadows}">
+										<Border x:Name="KnobOffBorder"
+												Height="{Binding OffContent, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ToggleSwitchOffContentToContentSize}}"
+												Width="{Binding OffContent, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ToggleSwitchOffContentToContentSize}}"
+												Margin="{Binding OffContent, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ToggleSwitchOffContentToContentMargin}}"
+												CornerRadius="{Binding OffContent, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ToggleSwitchOffContentToCornerRadius}}">
 											<!-- Knob Off -->
-											<Border x:Name="KnobOff"
-													Height="{Binding OffContent, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ToggleSwitchOffContentToContentSize}}"
-													Width="{Binding OffContent, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ToggleSwitchOffContentToContentSize}}"
-													Margin="{Binding OffContent, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ToggleSwitchOffContentToContentMargin}}"
-													VerticalAlignment="Center"
-													HorizontalAlignment="Right"
-													CornerRadius="{Binding OffContent, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ToggleSwitchOffContentToCornerRadius}}" />
-										</utu:ShadowContainer>
-									</Border>
+											<Border x:Name="KnobOff" />
+										</Border>
+									</utu:ShadowContainer>
+									
 									<!-- Off Icon -->
 									<Border Height="{ThemeResource KnobIconSize}"
 											Width="{ThemeResource KnobIconSize}"
 											Padding="{ThemeResource KnobIconPadding}"
 											VerticalAlignment="Center"
-											HorizontalAlignment="Center">
+											HorizontalAlignment="Center"
+											Margin="0,0,2,0">
 										<Viewbox>
 											<ContentPresenter x:Name="OffIconPresenter"
 															  Content="{TemplateBinding OffContent}"
