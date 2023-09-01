@@ -1856,7 +1856,7 @@
 											  Content="{Binding Path=(um:ControlExtensions.AlternateContent), RelativeSource={RelativeSource TemplatedParent}}"
 											  HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
 											  VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-											  Foreground="{StaticResource OnPrimaryBrush}"
+											  Foreground="{ThemeResource OnPrimaryBrush}"
 											  Visibility="Collapsed" />
 						</Grid>
 					</utu:ShadowContainer>
@@ -2164,7 +2164,7 @@
 										  VerticalAlignment="Center"
 										  AutomationProperties.AccessibilityView="Raw"
 										  Data="{StaticResource MaterialCheckGlyphPathData}"
-										  Fill="{StaticResource OnPrimaryBrush}"
+										  Fill="{ThemeResource OnPrimaryBrush}"
 										  Stretch="Uniform"
 										  Visibility="{Binding Icon, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource MaterialEmptyOrNullToVisible}, FallbackValue=Collapsed}" />
 								</Grid>
@@ -2205,7 +2205,7 @@
 		<Setter Property="Width" Value="300" />
 		<Setter Property="Height" Value="80" />
 		<Setter Property="CornerRadius" Value="16,16,0,0" />
-		<Setter Property="Background" Value="{StaticResource SurfaceBrush}" />
+		<Setter Property="Background" Value="{ThemeResource SurfaceBrush}" />
 		<Setter Property="um:ControlExtensions.TintedBackground" Value="{x:Null}" />
 		<Setter Property="um:ControlExtensions.IsTintEnabled" Value="False" />
 		<Setter Property="SelectionIndicatorPresenterStyle" Value="{StaticResource MaterialTabBarSelectionIndicatorPresenterStyle}" />
@@ -2313,7 +2313,7 @@
 		<Setter Property="Width" Value="300" />
 		<Setter Property="Height" Value="80" />
 		<Setter Property="CornerRadius" Value="40" />
-		<Setter Property="Background" Value="{StaticResource SurfaceBrush}" />
+		<Setter Property="Background" Value="{ThemeResource SurfaceBrush}" />
 		<Setter Property="um:ControlExtensions.TintedBackground" Value="{x:Null}" />
 		<Setter Property="um:ControlExtensions.IsTintEnabled" Value="False" />
 		<Setter Property="VerticalAlignment" Value="Top" />
