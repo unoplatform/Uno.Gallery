@@ -1184,7 +1184,7 @@
 								<VisualState x:Name="Disabled">
 									<VisualState.Setters>
 										<Setter Target="RootPanel.Shadows" Value="{ThemeResource ElevatedButtonDisabledShadows}" />
-										<Setter Target="RootPanel.Background" Value="{ThemeResource OnSurfaceDisabledBrush}" />
+										<Setter Target="RootPanel.Background" Value="{ThemeResource OnSurfaceInverseBrush}" />
 										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource OnSurfaceLowBrush}" />
 										<Setter Target="IconPresenter.Foreground" Value="{ThemeResource OnSurfaceLowBrush}" />
 									</VisualState.Setters>
@@ -1309,7 +1309,7 @@
 								<VisualState x:Name="Disabled">
 									<VisualState.Setters>
 										<Setter Target="RootPanel.Shadows" Value="{ThemeResource FilledButtonDisabledShadows}" />
-										<Setter Target="RootPanel.Background" Value="{ThemeResource OnSurfaceDisabledBrush}" />
+										<Setter Target="RootPanel.Background" Value="{ThemeResource PrimaryBrush}" />
 										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource OnPrimaryLowBrush}" />
 										<Setter Target="IconPresenter.Foreground" Value="{ThemeResource OnPrimaryLowBrush}" />
 									</VisualState.Setters>
