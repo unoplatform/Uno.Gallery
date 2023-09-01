@@ -27,11 +27,19 @@
 	</ItemGroup>
 
 	<ItemGroup>
+<<<<<<< HEAD
 		<PackageReference Include="Uno.CommunityToolkit.WinUI.UI.Controls" Version="7.1.100" />
 		<PackageReference Include="Uno.Cupertino.WinUI" Version="3.1.0-dev.96" />
 		<PackageReference Include="Uno.Extensions.Logging.OSLog" Version="1.6.0-dev.2" />
 		<PackageReference Include="Uno.Fonts.Fluent" Version="2.3.0-dev.6" />
 		<PackageReference Include="Uno.Material.WinUI" Version="3.1.0-dev.96" />
+=======
+		<PackageReference Include="Uno.CommunityToolkit.WinUI.UI.Controls" Version="7.1.200-dev.13.gef3f523648" />
+		<PackageReference Include="Uno.Cupertino.WinUI" Version="4.0.0-dev.126" />
+		<PackageReference Include="Uno.Extensions.Logging.OSLog" Version="1.6.0-dev.2" />
+		<PackageReference Include="Uno.Fonts.Fluent" Version="2.3.0-dev.6" />
+		<PackageReference Include="Uno.Material.WinUI" Version="4.0.0-dev.126" />
+>>>>>>> f72bdb0 (chore: bump Uno.Themes libs and add missing OutlineVariant brushes to match latest fixes in Uno.Themes)
 		<PackageReference Include="Uno.ShowMeTheXAML" Version="2.0.0-dev0015" />
 		<PackageReference Include="Uno.ShowMeTheXAML.MSBuild" Version="2.0.0-dev0015" />
 		<PackageReference Include="Uno.WinUI" Version="4.11.0-dev.36" />

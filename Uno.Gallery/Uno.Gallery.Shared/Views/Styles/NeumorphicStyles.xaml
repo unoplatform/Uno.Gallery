@@ -12,13 +12,6 @@
 	<!--#region Shadow ThemeDictionaries-->
 	<ResourceDictionary.ThemeDictionaries>
 		<ResourceDictionary x:Key="Dark">
-			<!-- Workaround for OutlineVariantBrush not found in the NeumorphicColorPaletteOverride -->
-			<SolidColorBrush x:Key="OutlineVariantBrush"
-							 Color="{ThemeResource OutlineVariantColor}" />
-			<SolidColorBrush x:Key="OutlineVariantBrushDisabledBrush"
-							 Color="{ThemeResource OutlineVariantColor}"
-							 Opacity="0.12" />
-
 			<!-- Shadow colors -->
 			<Color x:Key="LightShadowColor">#3C3846</Color>
 			<Color x:Key="ShadeShadowColor">#24222A</Color>
@@ -262,14 +255,6 @@
 
 		</ResourceDictionary>
 		<ResourceDictionary x:Key="Light">
-
-			<!-- Workaround for OutlineVariantBrush not found in the NeumorphicColorPaletteOverride -->
-			<SolidColorBrush x:Key="OutlineVariantBrush"
-							 Color="{ThemeResource OutlineVariantColor}" />
-			<SolidColorBrush x:Key="OutlineVariantBrushDisabledBrush"
-							 Color="{ThemeResource OutlineVariantColor}"
-							 Opacity="0.12" />
-
 			<!-- How are we dealing with the color names? -->
 			<!-- Shadow colors -->
 			<Color x:Key="LightShadowColor">#FFFFFF</Color>
