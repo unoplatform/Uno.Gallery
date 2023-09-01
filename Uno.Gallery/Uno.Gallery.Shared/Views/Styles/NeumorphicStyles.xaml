@@ -124,25 +124,23 @@
 
 			<!-- TabBar -->
 			<utu:ShadowCollection x:Key="TabBarShadows">
-				<utu:Shadow BlurRadius="48" IsInner="False" OffsetX="-8" OffsetY="-16" Opacity="0.4" Spread="4" Color="{StaticResource LightShadowColor4}" />
-				<utu:Shadow BlurRadius="32" IsInner="False" OffsetX="8" OffsetY="8" Opacity="0.4" Spread="4" Color="{StaticResource ShadeShadowColor4}" />
+				<utu:Shadow OffsetX="8" OffsetY="8" BlurRadius="32" Spread="4" Color="#000000" Opacity="0.4" IsInner="False" />
+				<utu:Shadow OffsetX="-8" OffsetY="-16" BlurRadius="48" Spread="4" Color="#79718E" Opacity="0.4" IsInner="False" />
 			</utu:ShadowCollection>
-
 			<utu:ShadowCollection x:Key="ContentTabBarShadows">
-				<utu:Shadow BlurRadius="16" IsInner="False" OffsetX="-4" OffsetY="-4" Opacity="0.4" Spread="4" Color="{StaticResource LightShadowColor4}" />
-				<utu:Shadow BlurRadius="16" IsInner="False" OffsetX="4" OffsetY="4" Opacity="0.6" Spread="4" Color="{StaticResource ShadeShadowColor4}" />
+				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="16" Spread="4" Color="#000000" Opacity="0.6" IsInner="False" />
+				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="16" Spread="4" Color="#79718E" Opacity="0.4" IsInner="False" />
 			</utu:ShadowCollection>
 
 			<!-- TabBarItem -->
 			<utu:ShadowCollection x:Key="TabBarItemShadows">
-				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="4" OffsetY="4" Opacity="0.4" Spread="0" Color="{StaticResource ShadeShadowColor4}" />
-				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="-4" OffsetY="-4" Opacity="0.4" Spread="0" Color="{StaticResource LightShadowColor4}" />
+				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="8" Spread="0" Color="#79718E" Opacity="0.6" IsInner="True" />
+				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="8" Spread="0" Color="#000000" Opacity="0.4" IsInner="True" />
 			</utu:ShadowCollection>
-
 			<utu:ShadowCollection x:Key="FabTabBarItemShadows">
-				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="8" OffsetY="8" Opacity="0.2" Spread="0" Color="{StaticResource LightShadowColor7}" />
-				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="-8" OffsetY="-8" Opacity="0.4" Spread="0" Color="{StaticResource MediumShadowColor7}" />
-				<utu:Shadow BlurRadius="20" IsInner="False" OffsetX="12" OffsetY="12" Opacity="0.4" Spread="0" Color="{StaticResource ShadeShadowColor7}" />
+				<utu:Shadow OffsetX="12" OffsetY="12" BlurRadius="20" Spread="0" Color="#000000" Opacity="0.4" IsInner="False" />
+				<utu:Shadow OffsetX="-8" OffsetY="-8" BlurRadius="8" Spread="0" Color="#24222A" Opacity="0.4" IsInner="True" />
+				<utu:Shadow OffsetX="8" OffsetY="8" BlurRadius="8" Spread="0" Color="#A9A2D9" Opacity="0.2" IsInner="True" />
 			</utu:ShadowCollection>
 
 			<!-- Elevated Button Shadows -->
@@ -368,25 +366,23 @@
 
 			<!-- TabBar -->
 			<utu:ShadowCollection x:Key="TabBarShadows">
-				<utu:Shadow BlurRadius="48" IsInner="False" OffsetX="-8" OffsetY="-16" Opacity="0.6" Spread="0" Color="{StaticResource LightShadowColor}" />
-				<utu:Shadow BlurRadius="32" IsInner="False" OffsetX="8" OffsetY="8" Opacity="0.6" Spread="0" Color="{StaticResource ShadeShadowColor}" />
+				<utu:Shadow OffsetX="8" OffsetY="8" BlurRadius="32" Spread="0" Color="#AEAEC0" Opacity="0.6" IsInner="False" />
+				<utu:Shadow OffsetX="-8" OffsetY="-16" BlurRadius="48" Spread="0" Color="#FFFFFF" Opacity="0.6" IsInner="False" />
 			</utu:ShadowCollection>
-
 			<utu:ShadowCollection x:Key="ContentTabBarShadows">
-				<utu:Shadow BlurRadius="16" IsInner="False" OffsetX="-4" OffsetY="-4" Opacity="0.4" Spread="0" Color="{StaticResource LightShadowColor}" />
-				<utu:Shadow BlurRadius="16" IsInner="False" OffsetX="4" OffsetY="4" Opacity="0.4" Spread="0" Color="{StaticResource ShadeShadowColor}" />
+				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="16" Spread="0" Color="#AEAEC0" Opacity="0.4" IsInner="False" />
+				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="16" Spread="0" Color="#FFFFFF" Opacity="0.4" IsInner="False" />
 			</utu:ShadowCollection>
 
 			<!-- TabBarItem -->
 			<utu:ShadowCollection x:Key="TabBarItemShadows">
-				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="4" OffsetY="4" Opacity="0.4" Spread="0" Color="{StaticResource ShadeShadowColor}" />
-				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="-4" OffsetY="-4" Opacity="0.4" Spread="0" Color="{StaticResource LightShadowColor}" />
+				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="8" Spread="0" Color="#FFFFFF" Opacity="0.6" IsInner="True" />
+				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="8" Spread="0" Color="#AEAEC0" Opacity="0.4" IsInner="True" />
 			</utu:ShadowCollection>
-
 			<utu:ShadowCollection x:Key="FabTabBarItemShadows">
-				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="-8" OffsetY="-8" Opacity="0.08" Spread="0" Color="{StaticResource ShadeShadowColor7}" />
-				<utu:Shadow BlurRadius="8" IsInner="True" OffsetX="8" OffsetY="8" Opacity="0.4" Spread="0" Color="{StaticResource LightShadowColor7}" />
-				<utu:Shadow BlurRadius="20" IsInner="False" OffsetX="12" OffsetY="12" Opacity="0.4" Spread="0" Color="{StaticResource MediumShadowColor7}" />
+				<utu:Shadow OffsetX="12" OffsetY="12" BlurRadius="20" Spread="0" Color="#AEAEC0" Opacity="0.4" IsInner="False" />
+				<utu:Shadow OffsetX="8" OffsetY="8" BlurRadius="8" Spread="0" Color="#FFFFFF" Opacity="0.4" IsInner="True" />
+				<utu:Shadow OffsetX="-8" OffsetY="-8" BlurRadius="8" Spread="0" Color="#170065" Opacity="0.1" IsInner="True" />
 			</utu:ShadowCollection>
 
 			<!-- Elevated Button Shadows -->
@@ -515,22 +511,7 @@
 	</ResourceDictionary.ThemeDictionaries>
 	<!--#endregion-->
 
-	<utu:ShadowCollection x:Key="TestInsetShadowA">
-		<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="8" Spread="0" Color="Red" Opacity="0.8" IsInner="True" />
-		<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="8" Spread="0" Color="Green" Opacity="0.8" IsInner="True" />
-	</utu:ShadowCollection>
-	<utu:ShadowCollection x:Key="TestInsetShadowB">
-		<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="8" Spread="0" Color="Blue" Opacity="0.8" IsInner="True" />
-		<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="8" Spread="0" Color="Orange" Opacity="0.8" IsInner="True" />
-	</utu:ShadowCollection>
-	<utu:ShadowCollection x:Key="TestDropShadowA">
-		<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="8" Spread="0" Color="Red" Opacity="0.8" IsInner="False" />
-		<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="8" Spread="0" Color="Green" Opacity="0.8" IsInner="False" />
-	</utu:ShadowCollection>
-	<utu:ShadowCollection x:Key="TestDropShadowB">
-		<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="8" Spread="0" Color="Blue" Opacity="0.8" IsInner="False" />
-		<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="8" Spread="0" Color="Orange" Opacity="0.8" IsInner="False" />
-	</utu:ShadowCollection>
+	<utu:ShadowCollection x:Key="EmptyShadows" />
 
 	<!--#region Converters-->
 	<um:FromEmptyStringToValueConverter x:Key="EmptyToCompositeTransformTranslateY"
@@ -2270,14 +2251,12 @@
 																   Opacity="0"
 																   Owner="{Binding RelativeSource={RelativeSource TemplatedParent}}"
 																   Style="{TemplateBinding SelectionIndicatorPresenterStyle}" />
-
 						</Grid>
 					</utu:ShadowContainer>
 				</ControlTemplate>
 			</Setter.Value>
 		</Setter>
 	</Style>
-
 	<Style x:Key="NeumorphicVerticalTabBarStyle"
 		   BasedOn="{StaticResource NeumorphicBaseTabBarStyle}"
 		   TargetType="utu:TabBar">
@@ -2297,7 +2276,6 @@
 			</Setter.Value>
 		</Setter>
 	</Style>
-
 	<Style x:Key="NeumorphicBottomTabBarStyle"
 		   BasedOn="{StaticResource NeumorphicBaseTabBarStyle}"
 		   TargetType="utu:TabBar">
@@ -2306,7 +2284,6 @@
 		<Setter Property="utu:SafeArea.Insets" Value="Bottom" />
 		<Setter Property="ItemContainerStyle" Value="{StaticResource NeumorphicBaseNavigationTabBarItemStyle}" />
 	</Style>
-
 	<Style x:Key="NeumorphicTopTabBarStyle"
 		   BasedOn="{StaticResource DefaultTabBarStyle}"
 		   TargetType="utu:TabBar">
@@ -2324,7 +2301,8 @@
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="utu:TabBar">
-					<utu:ShadowContainer Shadows="{ThemeResource ContentTabBarShadows}">
+					<utu:ShadowContainer Background="{TemplateBinding Background}"
+										 Shadows="{ThemeResource ContentTabBarShadows}">
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup x:Name="OrientationStates">
 								<VisualState x:Name="Horizontal">
@@ -2355,7 +2333,6 @@
 							</VisualStateGroup>
 						</VisualStateManager.VisualStateGroups>
 						<Grid x:Name="TabBarGrid"
-							  Background="{TemplateBinding Background}"
 							  CornerRadius="{TemplateBinding CornerRadius}">
 							<utu:TabBarSelectionIndicatorPresenter x:Name="BelowSelectionIndicatorPresenter"
 																   Padding="{TemplateBinding Padding}"
@@ -2382,7 +2359,6 @@
 																   Opacity="0"
 																   Owner="{Binding RelativeSource={RelativeSource TemplatedParent}}"
 																   Style="{TemplateBinding SelectionIndicatorPresenterStyle}" />
-
 						</Grid>
 					</utu:ShadowContainer>
 				</ControlTemplate>
@@ -2391,6 +2367,10 @@
 	</Style>
 
 	<!--#region TabBarItem-->
+	<x:String x:Key="ContentTabBarItemCornerRadius">32</x:String>
+	<x:Double x:Key="ContentTabBarItemHeight">64</x:Double>
+	<x:Double x:Key="ContentTabBarItemWidth">120</x:Double>
+
 	<Style x:Key="NeumorphicBaseNavigationTabBarItemStyle"
 		   TargetType="utu:TabBarItem">
 		<Setter Property="FontFamily" Value="{ThemeResource MaterialMediumFontFamily}" />
@@ -2540,6 +2520,11 @@
 							</Grid>
 						</Grid>
 
+						<d:Ellipse Fill="Pink"
+								   Width="50"
+								   Height="50"
+								   Opacity="0.5" />
+
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup x:Name="PointerStates">
 								<VisualState x:Name="Normal" />
@@ -2635,11 +2620,6 @@
 			</Setter.Value>
 		</Setter>
 	</Style>
-
-	<x:String x:Key="ContentTabBarItemCornerRadius">32</x:String>
-	<x:Double x:Key="ContentTabBarItemHeight">64</x:Double>
-	<x:Double x:Key="ContentTabBarItemWidth">120</x:Double>
-
 	<Style x:Key="NeumorphicBaseContentTabBarItemStyle"
 		   TargetType="utu:TabBarItem">
 		<Setter Property="FontFamily" Value="{ThemeResource MaterialMediumFontFamily}" />
@@ -2662,144 +2642,140 @@
 						  AutomationProperties.AccessibilityView="Raw"
 						  CornerRadius="{TemplateBinding CornerRadius}">
 
-						<Grid x:Name="StateLayer"
-							  HorizontalAlignment="Center"
-							  VerticalAlignment="Center"
-							  CornerRadius="{StaticResource ContentTabBarItemCornerRadius}"
-							  Height="{StaticResource ContentTabBarItemHeight}"
-							  Width="{StaticResource ContentTabBarItemWidth}" />
-
-						<utu:ShadowContainer x:Name="ShadowPanel">
-
-							<Grid x:Name="ContentGrid"
-								  HorizontalAlignment="Center"
-								  VerticalAlignment="Center"
+						<utu:ShadowContainer x:Name="ShadowPanel"
+											 Shadows="{ThemeResource TabBarItemShadows}">
+							<Grid x:Name="ContentPanel"
 								  CornerRadius="{StaticResource ContentTabBarItemCornerRadius}"
 								  Height="{StaticResource ContentTabBarItemHeight}"
-								  Width="{StaticResource ContentTabBarItemWidth}"
-								  Padding="12,8">
-								<Grid.RowDefinitions>
-									<RowDefinition x:Name="IconRow"
-												   Height="*" />
-									<RowDefinition x:Name="ContentRow"
-												   Height="*" />
-								</Grid.RowDefinitions>
+								  Width="{StaticResource ContentTabBarItemWidth}">
 
-								<Grid x:Name="ActiveIndicator"
+								<Border x:Name="StateLayer" />
+								<Grid x:Name="ContentGrid"
 									  HorizontalAlignment="Center"
 									  VerticalAlignment="Center"
-									  Width="24"
-									  Height="24">
+									  Padding="12,8">
+									<Grid.RowDefinitions>
+										<RowDefinition x:Name="IconRow"
+													   Height="*" />
+										<RowDefinition x:Name="ContentRow"
+													   Height="*" />
+									</Grid.RowDefinitions>
 
-									<Border Width="{ThemeResource NavigationTabBarItemIconHeight}"
-											Height="{ThemeResource NavigationTabBarItemIconHeight}"
-											HorizontalAlignment="Center"
-											VerticalAlignment="Center">
-										<Viewbox x:Name="IconBox"
-												 HorizontalAlignment="Center">
-											<ContentPresenter x:Name="Icon"
-															  Content="{TemplateBinding Icon}"
-															  Foreground="{TemplateBinding Foreground}" />
+									<Grid x:Name="ActiveIndicator"
+										  HorizontalAlignment="Center"
+										  VerticalAlignment="Center"
+										  Width="24"
+										  Height="24">
 
-										</Viewbox>
-									</Border>
+										<Border Width="{ThemeResource NavigationTabBarItemIconHeight}"
+												Height="{ThemeResource NavigationTabBarItemIconHeight}"
+												HorizontalAlignment="Center"
+												VerticalAlignment="Center">
+											<Viewbox x:Name="IconBox"
+													 HorizontalAlignment="Center">
+												<ContentPresenter x:Name="Icon"
+																  Content="{TemplateBinding Icon}"
+																  Foreground="{TemplateBinding Foreground}" />
 
-									<!-- BADGE -->
-									<!-- This part can be replaced when InfoBadge will be available in WinUI3 -->
-									<!-- See this commit for the implementation: c935919b2c390014dd8509cc50e16b1549511ffa -->
-									<!-- (Related Branch: dev/agzi/I274-InfoBadgeImplementationForTBI) -->
+											</Viewbox>
+										</Border>
 
-									<Grid Visibility="{TemplateBinding BadgeVisibility}">
-										<!-- Small Badge -->
-										<Ellipse Width="{ThemeResource NavigationTabBarItemSmallBadgeWidth}"
-												 Height="{ThemeResource NavigationTabBarItemSmallBadgeHeight}"
-												 Margin="{ThemeResource NavigationTabBarItemSmallBadgeMargin}"
-												 HorizontalAlignment="Right"
-												 VerticalAlignment="Top"
-												 Fill="{ThemeResource NavigationTabBarItemErrorBrush}"
-												 Visibility="{Binding BadgeValue, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialEmptyOrNullToVisible}}" />
+										<!-- BADGE -->
+										<!-- This part can be replaced when InfoBadge will be available in WinUI3 -->
+										<!-- See this commit for the implementation: c935919b2c390014dd8509cc50e16b1549511ffa -->
+										<!-- (Related Branch: dev/agzi/I274-InfoBadgeImplementationForTBI) -->
+
+										<Grid Visibility="{TemplateBinding BadgeVisibility}">
+											<!-- Small Badge -->
+											<Ellipse Width="{ThemeResource NavigationTabBarItemSmallBadgeWidth}"
+													 Height="{ThemeResource NavigationTabBarItemSmallBadgeHeight}"
+													 Margin="{ThemeResource NavigationTabBarItemSmallBadgeMargin}"
+													 HorizontalAlignment="Right"
+													 VerticalAlignment="Top"
+													 Fill="{ThemeResource NavigationTabBarItemErrorBrush}"
+													 Visibility="{Binding BadgeValue, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialEmptyOrNullToVisible}}" />
 
 
-										<!-- Large Badge -->
-										<Border Height="{ThemeResource NavigationTabBarItemLargeBadgeHeight}"
-												MinWidth="{ThemeResource NavigationTabBarItemLargeBadgeMinWidth}"
-												Margin="{ThemeResource NavigationTabBarItemLargeBadgeMargin}"
-												Padding="{ThemeResource NavigationTabBarItemLargeBadgePadding}"
-												HorizontalAlignment="Left"
-												VerticalAlignment="Top"
-												Background="{ThemeResource NavigationTabBarItemErrorBrush}"
-												CornerRadius="{ThemeResource NavigationTabBarItemLargeBadgeCornerRadius}"
-												Visibility="{Binding BadgeValue, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialEmptyOrNullToCollapsed}}">
+											<!-- Large Badge -->
+											<Border Height="{ThemeResource NavigationTabBarItemLargeBadgeHeight}"
+													MinWidth="{ThemeResource NavigationTabBarItemLargeBadgeMinWidth}"
+													Margin="{ThemeResource NavigationTabBarItemLargeBadgeMargin}"
+													Padding="{ThemeResource NavigationTabBarItemLargeBadgePadding}"
+													HorizontalAlignment="Left"
+													VerticalAlignment="Top"
+													Background="{ThemeResource NavigationTabBarItemErrorBrush}"
+													CornerRadius="{ThemeResource NavigationTabBarItemLargeBadgeCornerRadius}"
+													Visibility="{Binding BadgeValue, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialEmptyOrNullToCollapsed}}">
 
-											<TextBlock HorizontalAlignment="Center"
-													   VerticalAlignment="Center"
-													   Foreground="{ThemeResource NavigationTabBarItemOnErrorBrush}"
-													   MaxLines="1"
-													   Style="{StaticResource LabelExtraSmall}"
-													   Text="{TemplateBinding BadgeValue}"
-													   TextAlignment="Center" />
+												<TextBlock HorizontalAlignment="Center"
+														   VerticalAlignment="Center"
+														   Foreground="{ThemeResource NavigationTabBarItemOnErrorBrush}"
+														   MaxLines="1"
+														   Style="{StaticResource LabelExtraSmall}"
+														   Text="{TemplateBinding BadgeValue}"
+														   TextAlignment="Center" />
 
+											</Border>
+										</Grid>
+									</Grid>
+									<Grid x:Name="ContentPresenterGrid"
+										  Grid.Row="1"
+										  HorizontalAlignment="Center"
+										  VerticalAlignment="Center"
+										  Height="16">
+										<Border HorizontalAlignment="Center"
+												VerticalAlignment="Center">
+											<ContentPresenter x:Name="ContentPresenter"
+															  Content="{TemplateBinding Content}"
+															  FontFamily="{TemplateBinding FontFamily}"
+															  FontSize="{TemplateBinding FontSize}"
+															  FontWeight="{TemplateBinding FontWeight}"
+															  Foreground="{TemplateBinding Foreground}"
+															  TextWrapping="NoWrap"
+															  HorizontalAlignment="Center"
+															  VerticalAlignment="Center" />
 										</Border>
 									</Grid>
 								</Grid>
 
-								<Grid x:Name="ContentPresenterGrid"
-									  Grid.Row="1"
-									  HorizontalAlignment="Center"
-									  VerticalAlignment="Center"
-									  Height="16">
-									<Border HorizontalAlignment="Center"
-											VerticalAlignment="Center">
-										<ContentPresenter x:Name="ContentPresenter"
-														  Content="{TemplateBinding Content}"
-														  FontFamily="{TemplateBinding FontFamily}"
-														  FontSize="{TemplateBinding FontSize}"
-														  FontWeight="{TemplateBinding FontWeight}"
-														  Foreground="{TemplateBinding Foreground}"
-														  TextWrapping="NoWrap"
-														  HorizontalAlignment="Center"
-														  VerticalAlignment="Center" />
-									</Border>
-								</Grid>
 							</Grid>
 						</utu:ShadowContainer>
 
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup x:Name="PointerStates">
-								<VisualState x:Name="Normal" />
+								<VisualState x:Name="Normal">
+									<VisualState.Setters>
+										<Setter Target="ShadowPanel.Shadows" Value="{StaticResource EmptyShadows}" />
+									</VisualState.Setters>
+								</VisualState>
 								<not_mobile:VisualState x:Name="PointerOver">
 									<VisualState.Setters>
-										<Setter Target="ShadowPanel.Shadows" Value="{ThemeResource TabBarItemShadows}" />
-										<Setter Target="StateLayer.Background" Value="{ThemeResource PrimaryHoverBrush}" />
+										<Setter Target="StateLayer.Background" Value="{ThemeResource OnSurfaceHoverBrush}" />
 									</VisualState.Setters>
 								</not_mobile:VisualState>
 								<VisualState x:Name="Pressed">
 									<VisualState.Setters>
-										<Setter Target="ShadowPanel.Shadows" Value="{ThemeResource TabBarItemShadows}" />
-										<Setter Target="StateLayer.Background" Value="{ThemeResource PrimaryPressedBrush}" />
+										<Setter Target="StateLayer.Background" Value="{ThemeResource OnSurfacePressedBrush}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="Selected">
 									<VisualState.Setters>
-										<Setter Target="ShadowPanel.Shadows" Value="{ThemeResource TabBarItemShadows}" />
 										<Setter Target="Icon.Foreground" Value="{ThemeResource PrimaryBrush}" />
 										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource PrimaryBrush}" />
 									</VisualState.Setters>
 								</VisualState>
 								<not_mobile:VisualState x:Name="PointerOverSelected">
 									<VisualState.Setters>
-										<Setter Target="ShadowPanel.Shadows" Value="{ThemeResource TabBarItemShadows}" />
+										<Setter Target="StateLayer.Background" Value="{ThemeResource PrimaryHoverBrush}" />
 										<Setter Target="Icon.Foreground" Value="{ThemeResource PrimaryBrush}" />
 										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource PrimaryBrush}" />
-										<Setter Target="StateLayer.Background" Value="{ThemeResource PrimaryHoverBrush}" />
 									</VisualState.Setters>
 								</not_mobile:VisualState>
 								<VisualState x:Name="PressedSelected">
 									<VisualState.Setters>
-										<Setter Target="ShadowPanel.Shadows" Value="{ThemeResource TabBarItemShadows}" />
+										<Setter Target="StateLayer.Background" Value="{ThemeResource PrimaryPressedBrush}" />
 										<Setter Target="Icon.Foreground" Value="{ThemeResource PrimaryBrush}" />
 										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource PrimaryBrush}" />
-										<Setter Target="StateLayer.Background" Value="{ThemeResource PrimaryPressedBrush}" />
 									</VisualState.Setters>
 								</VisualState>
 							</VisualStateGroup>
@@ -2814,29 +2790,21 @@
 								</VisualState>
 							</VisualStateGroup>
 							<VisualStateGroup x:Name="TabBarIconPositionStates">
-
 								<VisualState x:Name="IconOnTop" />
-
 								<VisualState x:Name="IconOnly">
 									<VisualState.Setters>
+										<Setter Target="ContentPanel.CornerRadius" Value="20" />
+										<Setter Target="ContentPanel.Height" Value="40" />
+										<Setter Target="ContentPanel.Width" Value="80" />
 										<Setter Target="ContentRow.Height" Value="0" />
-										<Setter Target="ContentGrid.Height" Value="40" />
-										<Setter Target="ContentGrid.Width" Value="80" />
-										<Setter Target="ContentGrid.CornerRadius" Value="20" />
-										<Setter Target="StateLayer.Height" Value="40" />
-										<Setter Target="StateLayer.Width" Value="80" />
-										<Setter Target="StateLayer.CornerRadius" Value="20" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="ContentOnly">
 									<VisualState.Setters>
+										<Setter Target="ContentPanel.CornerRadius" Value="20" />
+										<Setter Target="ContentPanel.Height" Value="40" />
+										<Setter Target="ContentPanel.Width" Value="80" />
 										<Setter Target="IconRow.Height" Value="0" />
-										<Setter Target="ContentGrid.Height" Value="40" />
-										<Setter Target="ContentGrid.Width" Value="80" />
-										<Setter Target="ContentGrid.CornerRadius" Value="20" />
-										<Setter Target="StateLayer.Height" Value="40" />
-										<Setter Target="StateLayer.Width" Value="80" />
-										<Setter Target="StateLayer.CornerRadius" Value="20" />
 									</VisualState.Setters>
 								</VisualState>
 							</VisualStateGroup>
@@ -2846,7 +2814,6 @@
 			</Setter.Value>
 		</Setter>
 	</Style>
-
 	<Style x:Key="NeumorphicFabTabBarItemStyle"
 		   TargetType="utu:TabBarItem">
 		<Setter Property="FontFamily" Value="{ThemeResource MaterialMediumFontFamily}" />
@@ -2863,7 +2830,8 @@
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="utu:TabBarItem">
-					<utu:ShadowContainer Shadows="{ThemeResource FabTabBarItemShadows}">
+					<utu:ShadowContainer Background="{TemplateBinding Background}"
+										 Shadows="{ThemeResource FabTabBarItemShadows}">
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup x:Name="CommonStates">
 								<VisualState x:Name="Normal" />
@@ -2878,9 +2846,7 @@
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="Disabled" />
-
 							</VisualStateGroup>
-
 							<VisualStateGroup x:Name="FocusStates">
 								<VisualState x:Name="Focused">
 									<VisualState.Setters>
@@ -2891,52 +2857,49 @@
 								<VisualState x:Name="Unfocused" />
 							</VisualStateGroup>
 						</VisualStateManager.VisualStateGroups>
+
 						<Grid x:Name="Root"
 							  HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
 							  VerticalAlignment="{TemplateBinding VerticalAlignment}"
-							  CornerRadius="{TemplateBinding CornerRadius}"
-							  Background="{TemplateBinding Background}">
+							  CornerRadius="{TemplateBinding CornerRadius}">
 
-							<Grid>
-								<StackPanel x:Name="ContentPanel"
-											Margin="{TemplateBinding Padding}"
-											Orientation="Horizontal">
+							<Border x:Name="StateOverlay" />
 
-									<!-- Icon -->
-									<Viewbox Width="{ThemeResource FabTabBarItemContentWidthOrHeight}"
-											 Height="{ThemeResource FabTabBarItemContentWidthOrHeight}"
-											 HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-											 VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-											 Visibility="{Binding Path=Icon, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialNullToCollapsedConverter}, FallbackValue=Collapsed, TargetNullValue=Collapsed}">
+							<StackPanel x:Name="ContentPanel"
+										Margin="{TemplateBinding Padding}"
+										Orientation="Horizontal">
 
-										<ContentPresenter x:Name="IconPresenter"
-														  Content="{TemplateBinding Icon}"
-														  Foreground="{Binding Path=Foreground, RelativeSource={RelativeSource TemplatedParent}}" />
+								<!-- Icon -->
+								<Viewbox Width="{ThemeResource FabTabBarItemContentWidthOrHeight}"
+										 Height="{ThemeResource FabTabBarItemContentWidthOrHeight}"
+										 HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+										 VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+										 Visibility="{Binding Path=Icon, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialNullToCollapsedConverter}, FallbackValue=Collapsed, TargetNullValue=Collapsed}">
 
-									</Viewbox>
+									<ContentPresenter x:Name="IconPresenter"
+													  Content="{TemplateBinding Icon}"
+													  Foreground="{Binding Path=Foreground, RelativeSource={RelativeSource TemplatedParent}}" />
 
-									<!-- Icon/Content spacing -->
-									<Border Visibility="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialEmptyToCollapsed}, FallbackValue=Collapsed, TargetNullValue=Collapsed}">
-										<Border Width="{ThemeResource FabTabBarItemIconTextPadding}"
-												Visibility="{Binding Path=Icon, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialNullToCollapsedConverter}, FallbackValue=Collapsed, TargetNullValue=Collapsed}" />
-									</Border>
+								</Viewbox>
 
-									<!-- Content -->
-									<ContentPresenter x:Name="ContentPresenter"
-													  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-													  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-													  Content="{TemplateBinding Content}"
-													  ContentTemplate="{TemplateBinding ContentTemplate}"
-													  ContentTransitions="{TemplateBinding ContentTransitions}"
-													  FontFamily="{TemplateBinding FontFamily}"
-													  FontSize="{TemplateBinding FontSize}"
-													  FontWeight="{TemplateBinding FontWeight}" />
+								<!-- Icon/Content spacing -->
+								<Border Visibility="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialEmptyToCollapsed}, FallbackValue=Collapsed, TargetNullValue=Collapsed}">
+									<Border Width="{ThemeResource FabTabBarItemIconTextPadding}"
+											Visibility="{Binding Path=Icon, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialNullToCollapsedConverter}, FallbackValue=Collapsed, TargetNullValue=Collapsed}" />
+								</Border>
 
-								</StackPanel>
-							</Grid>
-							<Border x:Name="StateOverlay"
-									Background="Transparent"
-									CornerRadius="{TemplateBinding CornerRadius}" />
+								<!-- Content -->
+								<ContentPresenter x:Name="ContentPresenter"
+												  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+												  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+												  Content="{TemplateBinding Content}"
+												  ContentTemplate="{TemplateBinding ContentTemplate}"
+												  ContentTransitions="{TemplateBinding ContentTransitions}"
+												  FontFamily="{TemplateBinding FontFamily}"
+												  FontSize="{TemplateBinding FontSize}"
+												  FontWeight="{TemplateBinding FontWeight}" />
+
+							</StackPanel>
 
 						</Grid>
 					</utu:ShadowContainer>
