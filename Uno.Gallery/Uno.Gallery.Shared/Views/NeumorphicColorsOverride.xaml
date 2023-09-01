@@ -975,7 +975,7 @@
 		</ResourceDictionary>
 
 		<ResourceDictionary x:Key="Light">
-			<Color x:Key="OnSurfaceColor">#8E8AA7</Color>
+			<Color x:Key="OnSurfaceColor">#1C1B1F</Color>
 			<Color x:Key="OnSurfaceVariantColor">#8A8494</Color>
 			<Color x:Key="PrimaryColor">#5946D2</Color>
 			<Color x:Key="SurfaceColor">#F0F0F3</Color>
