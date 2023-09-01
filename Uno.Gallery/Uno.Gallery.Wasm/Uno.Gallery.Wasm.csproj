@@ -108,6 +108,7 @@
 		<PackageReference Include="Uno.Material.WinUI" Version="3.1.0-dev.96" />
 		<PackageReference Include="Uno.ShowMeTheXAML" Version="2.0.0-dev0015" />
 		<PackageReference Include="Uno.ShowMeTheXAML.MSBuild" Version="2.0.0-dev0015" />
+<<<<<<< HEAD
 		<PackageReference Include="Uno.Toolkit.Skia.WinUI" Version="4.3.0-dev.5" />
 		<PackageReference Include="Uno.Toolkit.WinUI" Version="4.3.0-dev.5" />
 		<PackageReference Include="Uno.Toolkit.WinUI.Cupertino" Version="4.3.0-dev.5" />
@@ -116,6 +117,16 @@
 		<PackageReference Include="Uno.WinUI.MediaPlayer.WebAssembly" Version="4.11.0-dev.36" />
 		<PackageReference Include="Uno.WinUI.WebAssembly" Version="4.11.0-dev.36" />
 		<PackageReference Include="Uno.WinUI.RemoteControl" Version="4.11.0-dev.36" Condition="'$(Configuration)'=='Debug'" />
+=======
+		<PackageReference Include="Uno.Toolkit.Skia.WinUI" Version="5.0.0-dev.94" />
+		<PackageReference Include="Uno.Toolkit.WinUI" Version="5.0.0-dev.94" />
+		<PackageReference Include="Uno.Toolkit.WinUI.Cupertino" Version="5.0.0-dev.94" />
+		<PackageReference Include="Uno.Toolkit.WinUI.Material" Version="5.0.0-dev.94" />
+		<PackageReference Include="Uno.WinUI.Lottie" Version="5.0.0-dev.2319" />
+		<PackageReference Include="Uno.WinUI.MediaPlayer.WebAssembly" Version="5.0.0-dev.2319" />
+		<PackageReference Include="Uno.WinUI.WebAssembly" Version="5.0.0-dev.2319" />
+		<PackageReference Include="Uno.WinUI.RemoteControl" Version="5.0.0-dev.2319" Condition="'$(Configuration)'=='Debug'" />
+>>>>>>> a6b9024 (chore: bump toolkit package to latest)
 		<PackageReference Include="Uno.Wasm.Bootstrap" Version="8.0.0-dev.252" />
 		<PackageReference Include="Uno.Wasm.Bootstrap.DevServer" Version="8.0.0-dev.252" />
 		<PackageReference Include="Microsoft.TypeScript.Compiler" Version="3.1.5">

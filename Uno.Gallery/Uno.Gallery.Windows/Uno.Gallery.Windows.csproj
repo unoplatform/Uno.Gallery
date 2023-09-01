@@ -36,6 +36,7 @@
 		</PackageReference>
 		<PackageReference Include="Uno.Core.Extensions.Compatibility" Version="4.0.1" />
 		<PackageReference Include="Uno.Core.Extensions.Logging.Singleton" Version="4.0.1" />
+<<<<<<< HEAD
 		<PackageReference Include="Uno.Toolkit.Skia.WinUI" Version="4.3.0-dev.5" />
 		<PackageReference Include="Uno.Toolkit.WinUI" Version="4.3.0-dev.5" />
 		<PackageReference Include="Uno.Toolkit.WinUI.Cupertino">
@@ -43,6 +44,15 @@
 		</PackageReference>
 		<PackageReference Include="Uno.Toolkit.WinUI.Material">
 			<Version>4.3.0-dev.5</Version>
+=======
+		<PackageReference Include="Uno.Toolkit.Skia.WinUI" Version="5.0.0-dev.94" />
+		<PackageReference Include="Uno.Toolkit.WinUI" Version="5.0.0-dev.94" />
+		<PackageReference Include="Uno.Toolkit.WinUI.Cupertino">
+			<Version>5.0.0-dev.94</Version>
+		</PackageReference>
+		<PackageReference Include="Uno.Toolkit.WinUI.Material">
+			<Version>5.0.0-dev.94</Version>
+>>>>>>> a6b9024 (chore: bump toolkit package to latest)
 		</PackageReference>
 		<PackageReference Include="Uno.WinUI">
 			<Version>4.11.0-dev.36</Version>
