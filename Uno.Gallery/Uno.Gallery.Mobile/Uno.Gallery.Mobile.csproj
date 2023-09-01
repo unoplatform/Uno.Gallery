@@ -10,7 +10,7 @@
 		<!-- Debugger workaround https://github.com/dotnet/maui-samples/blob/8aa6b8780b12e97b157514c3bdc54bb4a13001cd/HelloMacCatalyst/HelloMacCatalyst.csproj#L7 -->
 		<!-- <MtouchExtraArgs Condition="'$(TargetFramework)' == 'net7.0-maccatalyst'">$(MtouchExtraArgs) -setenv:MONO_THREADS_SUSPEND=preemptive</MtouchExtraArgs> -->
 		<!-- Required for C# Hot Reload -->
-
+		
 		<!-- https://github.com/dotnet/runtime/issues/68808 -->
 		<!--<UseInterpreter Condition="'$(Configuration)' == 'Debug'">True</UseInterpreter>-->
 		<IsUnoHead>true</IsUnoHead>
@@ -27,46 +27,24 @@
 	</ItemGroup>
 
 	<ItemGroup>
-<<<<<<< HEAD
 		<PackageReference Include="Uno.CommunityToolkit.WinUI.UI.Controls" Version="7.1.100" />
-		<PackageReference Include="Uno.Extensions.Logging.OSLog" Version="1.4.0" />
-		<PackageReference Include="Uno.Fonts.Fluent" Version="2.2.2" />
-		<PackageReference Include="Uno.Material.WinUI" Version="2.7.0-dev.102" />
-		<PackageReference Include="Uno.ShowMeTheXAML" Version="2.0.0-dev0015" />
-		<PackageReference Include="Uno.ShowMeTheXAML.MSBuild" Version="2.0.0-dev0015" />
-		<PackageReference Include="Uno.WinUI" Version="4.9.45" />
-		<PackageReference Include="Uno.WinUI.Lottie" Version="4.9.45" />
-		<PackageReference Include="Uno.WinUI.RemoteControl" Version="4.9.45" Condition="'$(Configuration)'=='Debug'" />
-		<PackageReference Include="Uno.UI.Adapter.Microsoft.Extensions.Logging" Version="4.9.45" />
-		<PackageReference Include="Uno.Toolkit.Skia.WinUI" Version="3.2.0-dev.30" />
-		<PackageReference Include="Uno.Toolkit.WinUI" Version="3.2.0-dev.30" />
-		<PackageReference Include="Uno.Toolkit.WinUI.Cupertino" Version="3.2.0-dev.30" />
-		<PackageReference Include="Uno.Toolkit.WinUI.Material" Version="3.2.0-dev.30" />
-		<PackageReference Include="Uno.Cupertino.WinUI" Version="2.7.0-dev.104" />
-		<PackageReference Include="Uno.Material.WinUI" Version="2.7.0-dev.104" />
-		<PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="6.0.0" />
-		<PackageReference Include="Uno.Diagnostics.Eventing" Version="2.1.0-dev.1" />
-=======
-		<PackageReference Include="Uno.CommunityToolkit.WinUI.UI.Controls" Version="7.1.200-dev.13.gef3f523648" />
-		<PackageReference Include="Uno.Cupertino.WinUI" Version="3.0.0-dev.352" />
+		<PackageReference Include="Uno.Cupertino.WinUI" Version="3.1.0-dev.96" />
 		<PackageReference Include="Uno.Extensions.Logging.OSLog" Version="1.6.0-dev.2" />
 		<PackageReference Include="Uno.Fonts.Fluent" Version="2.3.0-dev.6" />
-		<PackageReference Include="Uno.Material.WinUI" Version="3.0.0-dev.352" />
+		<PackageReference Include="Uno.Material.WinUI" Version="3.1.0-dev.96" />
 		<PackageReference Include="Uno.ShowMeTheXAML" Version="2.0.0-dev0015" />
 		<PackageReference Include="Uno.ShowMeTheXAML.MSBuild" Version="2.0.0-dev0015" />
-		<PackageReference Include="Uno.WinUI" Version="5.0.0-dev.2319" />
-		<PackageReference Include="Uno.WinUI.RemoteControl" Version="5.0.0-dev.2319" Condition="'$(Configuration)'=='Debug'" />
-		<PackageReference Include="Uno.UI.Adapter.Microsoft.Extensions.Logging" Version="5.0.0-dev.2319" />
+		<PackageReference Include="Uno.WinUI" Version="4.11.0-dev.36" />
+		<PackageReference Include="Uno.WinUI.RemoteControl" Version="4.11.0-dev.36" Condition="'$(Configuration)'=='Debug'" />
+		<PackageReference Include="Uno.UI.Adapter.Microsoft.Extensions.Logging" Version="4.11.0-dev.36" />
 		<PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="6.0.0" />
 		<PackageReference Include="Uno.Diagnostics.Eventing" Version="2.1.0-dev.1" />
-		<PackageReference Include="Uno.Toolkit.Skia.WinUI" Version="4.0.0-dev.98" />
-		<PackageReference Include="Uno.Toolkit.WinUI" Version="4.0.0-dev.98" />
-		<PackageReference Include="Uno.Toolkit.WinUI.Cupertino" Version="4.0.0-dev.98" />
-		<PackageReference Include="Uno.Toolkit.WinUI.Material" Version="4.0.0-dev.98" />
-		<PackageReference Include="Uno.WinUI.Lottie" Version="5.0.0-dev.2319" />
->>>>>>> 6378478 (chore: bump packages)
+		<PackageReference Include="Uno.Toolkit.Skia.WinUI" Version="4.3.0-dev.5" />
+		<PackageReference Include="Uno.Toolkit.WinUI" Version="4.3.0-dev.5" />
+		<PackageReference Include="Uno.Toolkit.WinUI.Cupertino" Version="4.3.0-dev.5" />
+		<PackageReference Include="Uno.Toolkit.WinUI.Material" Version="4.3.0-dev.5" />
+		<PackageReference Include="Uno.WinUI.Lottie" Version="4.11.0-dev.36" />
 		<PackageReference Include="Uno.Core.Extensions.Disposables" Version="4.0.1" />
 		<PackageReference Include="Uno.Core.Extensions.Compatibility" Version="4.0.1" />
 	</ItemGroup>
@@ -75,7 +53,7 @@
 		<IsUiAutomationMappingEnabled>True</IsUiAutomationMappingEnabled>
 		<DefineConstants>$(DefineConstants);USE_UITESTS</DefineConstants>
 	</PropertyGroup>
-
+	
 	<Choose>
 		<When Condition="'$(TargetFramework)'=='net7.0-android'">
 			<PropertyGroup Condition="'$(Configuration)'=='Release' and '$(System_PullRequest_IsFork)'!='True' and '$(IsUiAutomationMappingEnabled)'==''">
@@ -111,7 +89,7 @@
 
 				<!-- https://github.com/xamarin/xamarin-macios/issues/14812 -->
 				<MtouchExtraArgs>$(MtouchExtraArgs) --marshal-objectivec-exceptions:disable</MtouchExtraArgs>
-
+				
 				<InvariantGlobalization>false</InvariantGlobalization>
 			</PropertyGroup>
 			<PropertyGroup Condition="'$(Configuration)'=='Release' and '$(System_PullRequest_IsFork)'!='True'">
@@ -137,7 +115,7 @@
 
 				<!-- https://github.com/xamarin/xamarin-macios/issues/14812 -->
 				<MtouchExtraArgs>$(MtouchExtraArgs) --marshal-objectivec-exceptions:disable</MtouchExtraArgs>
-
+				
 				<InvariantGlobalization>false</InvariantGlobalization>
 			</PropertyGroup>
 			<PropertyGroup Condition="'$(Configuration)'=='Release' and '$(System_PullRequest_IsFork)'!='True'">
@@ -158,6 +136,6 @@
 			</PropertyGroup>
 		</When>
 	</Choose>
-
+	
 	<Import Project="..\Uno.Gallery.Shared\Uno.Gallery.Shared.projitems" Label="Shared" />
 </Project>

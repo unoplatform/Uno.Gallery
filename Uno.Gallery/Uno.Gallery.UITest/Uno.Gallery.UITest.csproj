@@ -1,28 +1,17 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net47</TargetFramework>
-		<LangVersion>8.0</LangVersion>
+		<TargetFramework>net7.0</TargetFramework>
 		<RootNamespace>Uno.Gallery.UITests</RootNamespace>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.2.0" />
-		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
 		<PackageReference Include="NUnit" Version="3.13.3" />
 		<PackageReference Include="NUnit3TestAdapter" Version="4.2.1" />
-<<<<<<< HEAD
-<<<<<<< HEAD
-		<PackageReference Include="Uno.UITest.Helpers" Version="1.1.0-dev.34" />
-		<PackageReference Include="Xamarin.UITest" Version="3.2.9" />
-=======
-		<PackageReference Include="Uno.UITest.Helpers" Version="1.1.0-dev.70" />
-=======
 		<PackageReference Include="Uno.UITest.Helpers" Version="1.1.0-dev.59" />
->>>>>>> c29cb53 (chore: downgrade uno.uitest.helpers)
 		<PackageReference Include="Xamarin.UITest" Version="4.1.4" />
 		<PackageReference Include="NunitXml.TestLogger" Version="3.0.131" />
->>>>>>> 6378478 (chore: bump packages)
 	</ItemGroup>
 
 </Project>

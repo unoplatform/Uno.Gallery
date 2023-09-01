@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<OutputType>WinExe</OutputType>
 		<TargetFramework>net7.0-windows10.0.19041</TargetFramework>
@@ -16,24 +16,19 @@
 		<IncludeXamlNamespaces Include="not_mobile" Visible="False" />
 		<ExcludeXamlNamespaces Include="mobile" Visible="False" />
 	</ItemGroup>
-
+	
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.WinUI.Lottie" Version="7.1.2" />
 		<PackageReference Include="CommunityToolkit.WinUI.UI.Controls" Version="7.1.2" />
-<<<<<<< HEAD
-=======
-		<PackageReference Include="Uno.Cupertino.WinUI" Version="3.0.0-dev.352" />
-		<PackageReference Include="Uno.Material.WinUI" Version="3.0.0-dev.352" />
->>>>>>> 6378478 (chore: bump packages)
+		<PackageReference Include="Uno.Cupertino.WinUI" Version="3.1.0-dev.96" />
+		<PackageReference Include="Uno.Material.WinUI" Version="3.1.0-dev.96" />
 		<PackageReference Include="Uno.ShowMeTheXAML" Version="2.0.0-dev0015" />
 		<PackageReference Include="Uno.ShowMeTheXAML.MSBuild" Version="2.0.0-dev0015" />
-		<PackageReference Include="Uno.Cupertino.WinUI" Version="2.7.0-dev.104" />
-		<PackageReference Include="Uno.Material.WinUI" Version="2.7.0-dev.104" />
 		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.3.230502000" />
 		<PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.756" />
-		<PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="6.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="6.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="7.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="7.0.0" />
 		<PackageReference Include="nventive.Nimue.Application.Packaging">
 			<Version>0.1.0-alpha.58</Version>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -41,30 +36,23 @@
 		</PackageReference>
 		<PackageReference Include="Uno.Core.Extensions.Compatibility" Version="4.0.1" />
 		<PackageReference Include="Uno.Core.Extensions.Logging.Singleton" Version="4.0.1" />
-<<<<<<< HEAD
-		<PackageReference Include="Uno.Toolkit.WinUI.Cupertino" Version="3.2.0-dev.30" />
-		<PackageReference Include="Uno.Toolkit.WinUI.Material" Version="3.2.0-dev.30" />
-		<PackageReference Include="Uno.Toolkit.Skia.WinUI" Version="3.2.0-dev.30" />
-		<PackageReference Include="Uno.WinUI" Version="4.9.45" />
-=======
-		<PackageReference Include="Uno.Toolkit.Skia.WinUI" Version="4.0.0-dev.98" />
-		<PackageReference Include="Uno.Toolkit.WinUI" Version="4.0.0-dev.98" />
+		<PackageReference Include="Uno.Toolkit.Skia.WinUI" Version="4.3.0-dev.5" />
+		<PackageReference Include="Uno.Toolkit.WinUI" Version="4.3.0-dev.5" />
 		<PackageReference Include="Uno.Toolkit.WinUI.Cupertino">
-			<Version>4.0.0-dev.98</Version>
+			<Version>4.3.0-dev.5</Version>
 		</PackageReference>
 		<PackageReference Include="Uno.Toolkit.WinUI.Material">
-			<Version>4.0.0-dev.98</Version>
+			<Version>4.3.0-dev.5</Version>
 		</PackageReference>
 		<PackageReference Include="Uno.WinUI">
-			<Version>5.0.0-dev.2319</Version>
+			<Version>4.11.0-dev.36</Version>
 		</PackageReference>
->>>>>>> 6378478 (chore: bump packages)
 		<Manifest Include="$(ApplicationManifest)" />
 		<FrameworkReference Update="Microsoft.Windows.SDK.NET.Ref" RuntimeFrameworkVersion="10.0.22621.29" />
 		<FrameworkReference Update="Microsoft.Windows.SDK.NET.Ref" TargetingPackVersion="10.0.22621.29" />
 	</ItemGroup>
 
-	<!--
+	<!-- 
     Defining the "Msix" ProjectCapability here allows the Single-project MSIX Packaging
     Tools extension to be activated for this project even if the Windows App SDK Nuget
     package has not yet been restored.
@@ -73,9 +61,9 @@
 		<ProjectCapability Include="Msix" />
 	</ItemGroup>
 
-	<!--
-    Defining the "HasPackageAndPublishMenuAddedByProject" property here allows the Solution
-    Explorer "Package and Publish" context menu entry to be enabled for this project even if
+	<!-- 
+    Defining the "HasPackageAndPublishMenuAddedByProject" property here allows the Solution 
+    Explorer "Package and Publish" context menu entry to be enabled for this project even if 
     the Windows App SDK Nuget package has not yet been restored.
   -->
 	<PropertyGroup Condition="'$(DisableHasPackageAndPublishMenuAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
