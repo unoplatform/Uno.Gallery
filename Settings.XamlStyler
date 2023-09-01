@@ -3,7 +3,7 @@
 	"KeepFirstAttributeOnSameLine": true,
 	"MaxAttributeCharactersPerLine": 0,
 	"MaxAttributesPerLine": 1,
-	"NewlineExemptionElements": "RadialGradientBrush, GradientStop, LinearGradientBrush, ScaleTransform, SkewTransform, RotateTransform, TranslateTransform, Trigger, Condition, Setter, StaticResource",
+	"NewlineExemptionElements": "RadialGradientBrush, GradientStop, LinearGradientBrush, ScaleTransform, SkewTransform, RotateTransform, TranslateTransform, Trigger, Condition, Setter, StaticResource, utu:Shadow, d:Shadow",
 	"SeparateByGroups": false,
 	"AttributeIndentation": 0,
 	"AttributeIndentationStyle": 0,
