@@ -75,6 +75,25 @@ namespace Uno.Gallery
 			OnLaunchedOrActivated();
 		}
 
+		protected override void OnActivated(IActivatedEventArgs args)
+		{
+			base.OnActivated(args);
+			OnLaunchedOrActivated();
+
+			if (args.Kind == ActivationKind.Protocol)
+			{
+				var protocolActivatedEventArgs = (ProtocolActivatedEventArgs)args;
+				var uri = protocolActivatedEventArgs.Uri;
+
+				// Handle uris on the form https://unogallery.app.link/designName/sampleName
+				if (uri.Host.Equals("unogallery.app.link", StringComparison.OrdinalIgnoreCase))
+				{
+					var urlParts = uri.LocalPath.Split('/', StringSplitOptions.RemoveEmptyEntries);
+					TryNavigateToLaunchSample(title: urlParts[1], design: urlParts[0]);
+				}
+			}
+		}
+
 		private void OnLaunchedOrActivated()
 		{
 #if WINDOWS && !HAS_UNO
@@ -115,7 +134,7 @@ namespace Uno.Gallery
 			var sample = GetSamples().FirstOrDefault(s => s.ViewType.Name.ToLowerInvariant() == title.ToLowerInvariant());
 			if (sample != null)
 			{
-				if (HasValue(design) && Enum.TryParse<Design>(design, out var designType))
+				if (HasValue(design) && Enum.TryParse<Design>(design, ignoreCase: true, out var designType))
 				{
 					SamplePageLayout.SetPreferredDesign(designType);
 				}
@@ -413,6 +432,11 @@ namespace Uno.Gallery
 		private void ConfigureXamlDisplay()
 		{
 			XamlDisplay.Init(GetType().Assembly);
+		}
+
+		public static void OpenSample(string pageName, string designName)
+		{
+
 		}
 
 		public static IEnumerable<Sample> GetSamples()

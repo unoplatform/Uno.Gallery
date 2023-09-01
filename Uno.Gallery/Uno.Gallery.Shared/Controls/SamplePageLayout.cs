@@ -13,6 +13,10 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Documents;
 using Microsoft.UI.Xaml.Media;
 
+#if __ANDROID__
+using Android.Content;
+#endif
+
 namespace Uno.Gallery
 {
 	/// <summary>
@@ -166,9 +170,15 @@ namespace Uno.Gallery
 
 		private void OnShareClicked(Hyperlink sender, HyperlinkClickEventArgs args)
 		{
-#if (__IOS__ || __ANDROID__) && !NET6_0_OR_GREATER
+#if __ANDROID__
 			var sample = DataContext as Sample;
-			_ = Deeplinking.BranchService.Instance.ShareSample(sample, _design);
+			var intent = new Intent(Intent.ActionSend);
+			intent.SetType("text/plain");
+			intent.PutExtra(Intent.ExtraText, $"Check out this Uno Gallery page!{Environment.NewLine}https://unogallery.app.link/{_design.ToString().ToLowerInvariant()}/{sample.ViewType.Name.ToLowerInvariant()}");
+			var chooserIntent = Intent.CreateChooser(intent, "Share Link");
+			var flags = ActivityFlags.ClearTop | ActivityFlags.NewTask;
+			chooserIntent.SetFlags(flags);
+			global::Android.App.Application.Context.StartActivity(chooserIntent);
 #endif
 		}
 

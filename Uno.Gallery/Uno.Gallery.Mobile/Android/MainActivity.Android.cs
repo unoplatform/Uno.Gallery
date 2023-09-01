@@ -11,6 +11,11 @@ namespace Uno.Gallery
 			ConfigurationChanges = global::Uno.UI.ActivityHelper.AllConfigChanges,
 			WindowSoftInputMode = SoftInput.AdjustPan | SoftInput.StateHidden
 		)]
+	[IntentFilter(new[] { Android.Content.Intent.ActionView },
+		Categories = new[] { Android.Content.Intent.CategoryDefault, Android.Content.Intent.CategoryBrowsable },
+		DataScheme = "https",
+		DataHost = "unogallery.app.link",
+		AutoVerify = true)]
 	public class MainActivity : Microsoft.UI.Xaml.ApplicationActivity
 	{
 	}
