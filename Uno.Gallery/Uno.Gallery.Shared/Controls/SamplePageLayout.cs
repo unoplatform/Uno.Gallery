@@ -12,9 +12,12 @@ using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Documents;
 using Microsoft.UI.Xaml.Media;
-
 #if __ANDROID__
 using Android.Content;
+#elif __IOS__
+using UIKit;
+using Foundation;
+using LinkPresentation;
 #endif
 
 namespace Uno.Gallery
@@ -179,8 +182,45 @@ namespace Uno.Gallery
 			var flags = ActivityFlags.ClearTop | ActivityFlags.NewTask;
 			chooserIntent.SetFlags(flags);
 			global::Android.App.Application.Context.StartActivity(chooserIntent);
+#elif false // __IOS__ , not working.
+			UIResponder responder = this;
+
+			while (responder is UIView nativeView)
+			{
+				responder = nativeView.NextResponder;
+			}
+
+			if (responder is UIViewController vc)
+			{
+				var sample = DataContext as Sample;
+				var activityController = new UIActivityViewController(new NSObject[] { new ShareableSample(_design.ToString(), sample.ViewType.Name) }, null);
+				activityController.PopoverPresentationController.SourceView = vc.View;
+				vc.PresentViewController(activityController, animated: true, null);
+			}
 #endif
 		}
+
+#if false // __IOS__ , not working.
+		private sealed class ShareableSample : UIActivityItemSource
+		{
+			public ShareableSample(string designName, string sampleName)
+			{
+				Subtitle = $"Check out this Uno Gallery page!{Environment.NewLine}https://unogallery.app.link/{designName.ToLowerInvariant()}/{sampleName.ToLowerInvariant()}";
+			}
+
+			public string Title => "Share Link";
+			public string Subtitle { get; }
+
+			public override NSObject GetPlaceholderData(UIActivityViewController activityViewController) => new NSString(Title);
+
+			public override LPLinkMetadata GetLinkMetadata(UIActivityViewController activityViewController)
+			{
+				var metadata = new LPLinkMetadata();
+				metadata.Title = Title;
+				return metadata;
+			}
+		}
+#endif
 
 		/// <summary>
 		/// Changes the preferred design.

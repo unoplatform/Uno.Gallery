@@ -45,11 +45,6 @@ namespace Uno.Gallery
 		private void OnLoaded(object sender, RoutedEventArgs e)
 		{
 			SetDarkLightToggleInitialState();
-
-#if (__IOS__ || __ANDROID__) && !NET6_0_OR_GREATER
-			this.Log().Debug("Loaded Shell.");
-			Uno.Gallery.Deeplinking.BranchService.Instance.SetIsAppReady();
-#endif
 		}
 
 		private void SetDarkLightToggleInitialState()
