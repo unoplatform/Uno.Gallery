@@ -24,7 +24,7 @@
 			<Color x:Key="SurfaceInverseColor">#E6E1E5</Color>
 			<Color x:Key="SurfaceTintColor">#C7BFFF</Color>
 			<Color x:Key="SurfaceVariantColor">#47464F</Color>
-			<Color x:Key="OnSurfaceInverseColor">#1C1B1F</Color>
+			<Color x:Key="OnSurfaceInverseColor">#3E3B46</Color>
 			<Color x:Key="OutlineColor">#928F99</Color>
 			<Color x:Key="OutlineVariantColor">#57545D</Color>
 			<Color x:Key="ErrorColor">#FFB4AB</Color>
@@ -35,7 +35,7 @@
 			<Color x:Key="OnTertiaryColor">#003258</Color>
 			<Color x:Key="TertiaryContainerColor">#00497D</Color>
 			<Color x:Key="OnTertiaryContainerColor">#D1E4FF</Color>
-			
+
 			<!-- Workaround to add the SolidColorBrush until https://github.com/unoplatform/Uno.Themes/issues/1145 is fixed -->
 
 			<!--#region PrimaryColor-->
