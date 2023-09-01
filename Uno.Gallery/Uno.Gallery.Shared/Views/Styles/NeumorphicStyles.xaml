@@ -2529,11 +2529,6 @@
 							</Grid>
 						</Grid>
 
-						<d:Ellipse Fill="Pink"
-								   Width="50"
-								   Height="50"
-								   Opacity="0.5" />
-
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup x:Name="PointerStates">
 								<VisualState x:Name="Normal" />
@@ -2850,6 +2845,17 @@
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="Pressed">
+									<VisualState.Setters>
+										<Setter Target="StateOverlay.Background" Value="{ThemeResource OnPrimaryContainerPressedBrush}" />
+									</VisualState.Setters>
+								</VisualState>
+								<VisualState x:Name="Selected" />
+								<VisualState x:Name="PointerOverSelected">
+									<VisualState.Setters>
+										<Setter Target="StateOverlay.Background" Value="{ThemeResource OnPrimaryContainerHoverBrush}" />
+									</VisualState.Setters>
+								</VisualState>
+								<VisualState x:Name="PressedSelected">
 									<VisualState.Setters>
 										<Setter Target="StateOverlay.Background" Value="{ThemeResource OnPrimaryContainerPressedBrush}" />
 									</VisualState.Setters>
