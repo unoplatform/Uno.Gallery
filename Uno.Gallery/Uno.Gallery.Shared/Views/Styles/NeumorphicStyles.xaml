@@ -200,30 +200,31 @@
 			</utu:ShadowCollection>
 
 			<!-- Slider -->
+			<SolidColorBrush x:Key="SliderTrackBackground" Color="#302D38" />
+			
 			<utu:ShadowCollection x:Key="SliderTrackRectShadows">
-				<utu:Shadow BlurRadius="4" IsInner="True" OffsetX="1" OffsetY="1" Opacity="1" Spread="0" Color="{StaticResource ShadeShadowColor9}" />
-				<utu:Shadow BlurRadius="4" IsInner="True" OffsetX="-1" OffsetY="-1" Opacity="1" Spread="0" Color="{StaticResource LightShadowColor9}" />
+				<utu:Shadow BlurRadius="4" IsInner="True" OffsetX="1" OffsetY="1" Opacity="1" Spread="0" Color="#000000" />
+				<utu:Shadow BlurRadius="4" IsInner="True" OffsetX="-1" OffsetY="-1" Opacity="1" Spread="0" Color="#615B71" />
 			</utu:ShadowCollection>
 
 			<utu:ShadowCollection x:Key="SliderDecreaseRectShadows">
-				<utu:Shadow BlurRadius="4" IsInner="True" OffsetX="2" OffsetY="2" Opacity="1" Spread="0" Color="{StaticResource ShadeShadowColor10}" />
-				<utu:Shadow BlurRadius="4" IsInner="True" OffsetX="-2" OffsetY="-2" Opacity="1" Spread="0" Color="{StaticResource LightShadowColor10}" />
+				<utu:Shadow BlurRadius="4" IsInner="True" OffsetX="2" OffsetY="2" Opacity="1" Spread="0" Color="#9B92D3" />
+				<utu:Shadow BlurRadius="4" IsInner="True" OffsetX="-2" OffsetY="-2" Opacity="1" Spread="0" Color="#ECE5FF" />
 			</utu:ShadowCollection>
 
-			<SolidColorBrush x:Key="ThumbBackgroundDisabledBrush"
-							 Color="#4A4751" />
-
 			<utu:ShadowCollection x:Key="SliderThumbShadows">
-				<utu:Shadow BlurRadius="16" IsInner="True" OffsetX="0" OffsetY="0" Opacity="1" Spread="0" Color="{StaticResource LightShadowColor11}" />
-				<utu:Shadow BlurRadius="4" IsInner="False" OffsetX="0" OffsetY="4" Opacity="0.18" Spread="0" Color="{StaticResource ShadeShadowColor11}" />
+				<utu:Shadow BlurRadius="16" IsInner="True" OffsetX="0" OffsetY="0" Opacity="1" Spread="0" Color="#18171C" />
+				<utu:Shadow BlurRadius="4" IsInner="False" OffsetX="0" OffsetY="4" Opacity="0.18" Spread="0" Color="#000000" />
 			</utu:ShadowCollection>
 
 			<utu:ShadowCollection x:Key="SliderThumbStateShadow">
-				<utu:Shadow BlurRadius="8" IsInner="False" OffsetX="0" OffsetY="0" Opacity="1" Spread="8" Color="{StaticResource PrimaryColor}" />
+				<utu:Shadow BlurRadius="8" IsInner="False" OffsetX="0" OffsetY="0" Opacity="1" Spread="8" Color="#5845CF" />
 			</utu:ShadowCollection>
 
+			<SolidColorBrush x:Key="ThumbBackgroundDisabledBrush" Color="#4A4751" />
+
 			<utu:ShadowCollection x:Key="SliderThumbDisabledShadow">
-				<utu:Shadow BlurRadius="1" IsInner="False" OffsetX="0" OffsetY="1" Opacity="0.24" Spread="0" Color="{StaticResource ShadeShadowColor11}" />
+				<utu:Shadow BlurRadius="1" IsInner="False" OffsetX="0" OffsetY="1" Opacity="0.24" Spread="0" Color="#000000" />
 			</utu:ShadowCollection>
 
 			<!-- ToggleSwitch -->
@@ -439,30 +440,31 @@
 			</utu:ShadowCollection>
 
 			<!-- Slider -->
+			<SolidColorBrush x:Key="SliderTrackBackground" Color="#F3EFF5" />
+			
 			<utu:ShadowCollection x:Key="SliderTrackRectShadows">
-				<utu:Shadow BlurRadius="4" IsInner="True" OffsetX="1" OffsetY="1" Opacity="1" Spread="0" Color="{StaticResource ShadeShadowColor9}" />
-				<utu:Shadow BlurRadius="4" IsInner="True" OffsetX="-1" OffsetY="-1" Opacity="0.8" Spread="0" Color="{StaticResource LightShadowColor9}" />
+				<utu:Shadow BlurRadius="4" IsInner="True" OffsetX="1" OffsetY="1" Opacity="1" Spread="0" Color="#C8C7D1" />
+				<utu:Shadow BlurRadius="4" IsInner="True" OffsetX="-1" OffsetY="-1" Opacity="0.8" Spread="0" Color="#FFFFFF" />
 			</utu:ShadowCollection>
 
 			<utu:ShadowCollection x:Key="SliderDecreaseRectShadows">
-				<utu:Shadow BlurRadius="4" IsInner="True" OffsetX="2" OffsetY="2" Opacity="1" Spread="0" Color="{StaticResource ShadeShadowColor10}" />
-				<utu:Shadow BlurRadius="4" IsInner="True" OffsetX="-2" OffsetY="-2" Opacity="1" Spread="0" Color="{StaticResource LightShadowColor10}" />
+				<utu:Shadow BlurRadius="4" IsInner="True" OffsetX="2" OffsetY="2" Opacity="1" Spread="0" Color="#4C3CB3" />
+				<utu:Shadow BlurRadius="4" IsInner="True" OffsetX="-2" OffsetY="-2" Opacity="1" Spread="0" Color="#6651F2" />
 			</utu:ShadowCollection>
 
-			<SolidColorBrush x:Key="ThumbBackgroundDisabledBrush"
-							 Color="#D1D1D4" />
-
 			<utu:ShadowCollection x:Key="SliderThumbShadows">
-				<utu:Shadow BlurRadius="16" IsInner="True" OffsetX="0" OffsetY="0" Opacity="1" Spread="0" Color="{StaticResource LightShadowColor11}" />
-				<utu:Shadow BlurRadius="4" IsInner="False" OffsetX="0" OffsetY="4" Opacity="0.18" Spread="0" Color="{StaticResource ShadeShadowColor11}" />
+				<utu:Shadow BlurRadius="16" IsInner="True" OffsetX="0" OffsetY="0" Opacity="1" Spread="0" Color="#FFFFFF" />
+				<utu:Shadow BlurRadius="4" IsInner="False" OffsetX="0" OffsetY="4" Opacity="0.18" Spread="0" Color="#000000" />
 			</utu:ShadowCollection>
 
 			<utu:ShadowCollection x:Key="SliderThumbStateShadow">
-				<utu:Shadow BlurRadius="8" IsInner="False" OffsetX="0" OffsetY="0" Opacity="1" Spread="8" Color="{StaticResource PrimaryColor}" />
+				<utu:Shadow BlurRadius="8" IsInner="False" OffsetX="0" OffsetY="0" Opacity="1" Spread="8" Color="#5845CF" />
 			</utu:ShadowCollection>
 
+			<SolidColorBrush x:Key="ThumbBackgroundDisabledBrush" Color="#D1D1D4" />
+
 			<utu:ShadowCollection x:Key="SliderThumbDisabledShadow">
-				<utu:Shadow BlurRadius="1" IsInner="False" OffsetX="0" OffsetY="1" Opacity="0.24" Spread="0" Color="{StaticResource ShadeShadowColor11}" />
+				<utu:Shadow BlurRadius="1" IsInner="False" OffsetX="0" OffsetY="1" Opacity="0.24" Spread="0" Color="#000000" />
 			</utu:ShadowCollection>
 
 			<!-- ToggleSwitch -->
@@ -2964,7 +2966,7 @@
 	<Style x:Key="NeumorphicSliderStyle"
 		   TargetType="Slider">
 
-		<Setter Property="Background" Value="{ThemeResource SurfaceVariantBrush}" />
+		<Setter Property="Background" Value="{ThemeResource SliderTrackBackground}" />
 		<Setter Property="Foreground" Value="{ThemeResource PrimaryBrush}" />
 		<Setter Property="BorderThickness" Value="0" />
 		<Setter Property="FontFamily" Value="{ThemeResource SliderFontFamily}" />
@@ -3006,10 +3008,10 @@
 
 								<VisualState x:Name="Disabled">
 									<VisualState.Setters>
-										<Setter Target="HorizontalDecreaseBorder.Background" Value="{ThemeResource OnSurfaceDisabledBrush}" />
-										<Setter Target="VerticalDecreaseBorder.Background" Value="{ThemeResource OnSurfaceDisabledBrush}" />
-										<Setter Target="VerticalTrackRect.Background" Value="{ThemeResource SurfaceBrush}" />
-										<Setter Target="HorizontalTrackRect.Background" Value="{ThemeResource SurfaceBrush}" />
+										<Setter Target="HorizontalDecreaseRectShadow.Background" Value="{ThemeResource OnSurfaceDisabledBrush}" />
+										<Setter Target="VerticalDecreaseRectShadow.Background" Value="{ThemeResource OnSurfaceDisabledBrush}" />
+										<Setter Target="VerticalTrackRectShadow.Background" Value="{ThemeResource SurfaceBrush}" />
+										<Setter Target="HorizontalTrackRectShadow.Background" Value="{ThemeResource SurfaceBrush}" />
 										<Setter Target="HorizontalTrackRectShadow.Shadows" Value="{ThemeResource SliderTrackRectShadows}" />
 										<Setter Target="VerticalTrackRectShadow.Shadows" Value="{ThemeResource SliderTrackRectShadows}" />
 										<Setter Target="HorizontalThumb.Background" Value="{ThemeResource ThumbBackgroundDisabledBrush}" />
@@ -3078,25 +3080,24 @@
 								<!-- HorizontalTrackRect -->
 								<utu:ShadowContainer x:Name="HorizontalTrackRectShadow"
 													 Grid.Row="1"
-													 Grid.ColumnSpan="3">
+													 Grid.ColumnSpan="3"
+													 Background="{TemplateBinding Background}">
 									<Border x:Name="HorizontalTrackRect"
 											Width="{TemplateBinding Width}"
 											Height="10"
-											Background="{TemplateBinding Background}"
 											CornerRadius="8" />
 								</utu:ShadowContainer>
 
 								<!-- HorizontalDecreaseRect -->
-								<utu:ShadowContainer x:Name="HorizontalDecreaseRectShadow"
-													 Grid.Row="1">
-									<!-- Using CornerRadius of 8 instead of 8,0,0,8 here until https://github.com/unoplatform/uno.toolkit.ui/issues/735 is fixed -->
-									<Border x:Name="HorizontalDecreaseBorder"
-											CornerRadius="8"
-											Height="10"
-											Background="{TemplateBinding Foreground}">
-										<Rectangle x:Name="HorizontalDecreaseRect" />
-									</Border>
-								</utu:ShadowContainer>
+								<Border x:Name="HorizontalDecreaseBorder"
+										Grid.Row="1"
+										CornerRadius="8,0,0,8">
+									<utu:ShadowContainer x:Name="HorizontalDecreaseRectShadow"
+														 Background="{TemplateBinding Foreground}">
+										<Rectangle x:Name="HorizontalDecreaseRect"
+												   Height="10" />
+									</utu:ShadowContainer>
+								</Border>
 
 								<!-- TopTickBar -->
 								<TickBar x:Name="TopTickBar"
@@ -3168,26 +3169,25 @@
 								<!-- VerticalTrackRect -->
 								<utu:ShadowContainer x:Name="VerticalTrackRectShadow"
 													 Grid.RowSpan="3"
-													 Grid.Column="1">
+													 Grid.Column="1"
+													 Background="{TemplateBinding Background}">
 									<Grid x:Name="VerticalTrackRect"
 										  Height="{TemplateBinding Height}"
 										  Width="10"
-										  Background="{TemplateBinding Background}"
 										  CornerRadius="8" />
 								</utu:ShadowContainer>
 
 								<!-- VerticalDecreaseRect -->
-								<utu:ShadowContainer x:Name="VerticalDecreaseRectShadow"
-													 Grid.Row="2"
-													 Grid.Column="1">
-									<!-- Using CornerRadius of 8 instead of 8,8,0,0 here until https://github.com/unoplatform/uno.toolkit.ui/issues/735 is fixed -->
-									<Border x:Name="VerticalDecreaseBorder"
-											CornerRadius="8"
-											Width="10"
-											Background="{TemplateBinding Foreground}">
-										<Rectangle x:Name="VerticalDecreaseRect" />
-									</Border>
-								</utu:ShadowContainer>
+								<Border x:Name="VerticalDecreaseBorder"
+										Grid.Row="2"
+										Grid.Column="1"
+										CornerRadius="0,0,8,8">
+									<utu:ShadowContainer x:Name="VerticalDecreaseRectShadow"
+														 Background="{TemplateBinding Foreground}">
+										<Rectangle x:Name="VerticalDecreaseRect"
+												   Width="10" />
+									</utu:ShadowContainer>
+								</Border>
 
 								<!-- LeftTickBar -->
 								<TickBar x:Name="LeftTickBar"
