@@ -4,12 +4,9 @@
 	<ResourceDictionary.ThemeDictionaries>
 		<!-- Neumorphic ColorPaletteOverride -->
 		<ResourceDictionary x:Key="Dark">
-			<Color x:Key="OnSurfaceColor">#E6E1E5</Color>
-			<Color x:Key="OnSurfaceVariantColor">#C9C5D0</Color>
-			<Color x:Key="PrimaryColor">#C7BFFF</Color>
-			<Color x:Key="SurfaceColor">#302D38</Color>
-			<Color x:Key="OnBackgroundColor">#E5E1E6</Color>
 			<Color x:Key="StatusBarForegroundColor">#FFFFFF</Color>
+			<Color x:Key="SurfaceColor">#302D37</Color>
+			<Color x:Key="PrimaryColor">#C7BFFF</Color>
 			<Color x:Key="PrimaryInverseColor">#2A009F</Color>
 			<Color x:Key="OnPrimaryColor">#2A009F</Color>
 			<Color x:Key="PrimaryContainerColor">#4129BA</Color>
@@ -21,12 +18,15 @@
 			<Color x:Key="SecondaryContainerColor">#433C52</Color>
 			<Color x:Key="OnSecondaryContainerColor">#EDDFFF</Color>
 			<Color x:Key="BackgroundColor">#1C1B1F</Color>
+			<Color x:Key="OnBackgroundColor">#E5E1E6</Color>
 			<Color x:Key="SurfaceInverseColor">#E6E1E5</Color>
 			<Color x:Key="SurfaceTintColor">#C7BFFF</Color>
 			<Color x:Key="SurfaceVariantColor">#47464F</Color>
+			<Color x:Key="OnSurfaceColor">#E6E1E5</Color>
 			<Color x:Key="OnSurfaceInverseColor">#3E3B46</Color>
+			<Color x:Key="OnSurfaceVariantColor">#C9C5D0</Color>
 			<Color x:Key="OutlineColor">#928F99</Color>
-			<Color x:Key="OutlineVariantColor">#57545D</Color>
+			<Color x:Key="OutlineVariantColor">#928F99</Color>
 			<Color x:Key="ErrorColor">#FFB4AB</Color>
 			<Color x:Key="OnErrorColor">#690005</Color>
 			<Color x:Key="ErrorContainerColor">#93000A</Color>
@@ -997,7 +997,7 @@
 			<Color x:Key="SurfaceInverseColor">#313033</Color>
 			<Color x:Key="SurfaceTintColor">#5946D2</Color>
 			<Color x:Key="OnSurfaceInverseColor">#F4EFF4</Color>
-			<Color x:Key="SurfaceVariantColor">#F3EFF5</Color>
+			<Color x:Key="SurfaceVariantColor">#F2EFF5</Color>
 			<Color x:Key="OutlineColor">#79747E</Color>
 			<Color x:Key="OutlineVariantColor">#C9C5D0</Color>
 			<Color x:Key="ErrorColor">#B3261E</Color>
