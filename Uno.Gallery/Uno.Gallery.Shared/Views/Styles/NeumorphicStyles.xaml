@@ -1058,6 +1058,7 @@
 												  Grid.Column="1"
 												  MaxLines="1"
 												  VerticalAlignment="Center"
+												  Foreground="{ThemeResource OnSurfaceBrush}"
 												  RenderTransform="{Binding PlaceholderText, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource EmptyToCompositeTransformConverter}, TargetNullValue={StaticResource ContentPresenter_CompositeTransformWithoutPlaceholder}, FallbackValue={StaticResource ContentPresenter_CompositeTransformWithoutPlaceholder}}" />
 
 								<!-- PlaceholderElement -->
