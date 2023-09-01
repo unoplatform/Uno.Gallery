@@ -218,15 +218,8 @@
 														  VerticalAlignment="Stretch"
 														  Content="{TemplateBinding Content}"
 														  ContentTemplate="{TemplateBinding MaterialTemplate}"
-														  Visibility="Collapsed">
-											<ContentPresenter.Resources>
-												<ResourceDictionary>
-													<ResourceDictionary.MergedDictionaries>
-														<MaterialToolkitTheme xmlns="using:Uno.Toolkit.UI.Material" />
-													</ResourceDictionary.MergedDictionaries>
-												</ResourceDictionary>
-											</ContentPresenter.Resources>
-										</ContentPresenter>
+														  Visibility="Collapsed" />
+
 
 										<!-- Fluent Content -->
 										<ContentPresenter x:Name="FluentContentPresenter"
@@ -235,7 +228,16 @@
 														  VerticalAlignment="Stretch"
 														  Content="{TemplateBinding Content}"
 														  ContentTemplate="{TemplateBinding FluentTemplate}"
-														  Visibility="Collapsed" />
+														  Visibility="Collapsed">
+											<ContentPresenter.Resources>
+												<ResourceDictionary>
+													<ResourceDictionary.MergedDictionaries>
+														<XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
+														<ResourceDictionary Source="FluentOverrides.xaml" />
+													</ResourceDictionary.MergedDictionaries>
+												</ResourceDictionary>
+											</ContentPresenter.Resources>
+										</ContentPresenter>
 
 										<!-- Cupertino Content -->
 										<ContentPresenter x:Name="CupertinoContentPresenter"
