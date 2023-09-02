@@ -558,6 +558,8 @@
 		<!-- Workaround for WinUI issue: https://github.com/microsoft/microsoft-ui-xaml/issues/6388 -->
 		<Setter Property="um:ControlExtensions.Icon" Value="{x:Null}" />
 
+		<Setter Property="UseSystemFocusVisuals" Value="False" />
+
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="TextBox">
@@ -742,6 +744,8 @@
 		<!-- Workaround for WinUI issue: https://github.com/microsoft/microsoft-ui-xaml/issues/6388 -->
 		<Setter Property="um:ControlExtensions.Icon" Value="{x:Null}" />
 
+		<Setter Property="UseSystemFocusVisuals" Value="False" />
+
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="PasswordBox">
@@ -921,6 +925,8 @@
 
 		<!-- Workaround for WinUI issue: https://github.com/microsoft/microsoft-ui-xaml/issues/6388 -->
 		<Setter Property="um:ControlExtensions.Icon" Value="{x:Null}" />
+
+		<Setter Property="UseSystemFocusVisuals" Value="False" />
 
 		<Setter Property="ItemsPanel">
 			<Setter.Value>
@@ -1154,6 +1160,7 @@
 		<Setter Property="MinHeight" Value="38" />
 		<Setter Property="CornerRadius" Value="19" />
 		<Setter Property="Padding" Value="10,0" />
+		<Setter Property="UseSystemFocusVisuals" Value="False" />
 
 		<Setter Property="Template">
 			<Setter.Value>
@@ -1279,6 +1286,7 @@
 		<Setter Property="MinHeight" Value="38" />
 		<Setter Property="CornerRadius" Value="19" />
 		<Setter Property="Padding" Value="10,0" />
+		<Setter Property="UseSystemFocusVisuals" Value="False" />
 
 		<Setter Property="Template">
 			<Setter.Value>
@@ -1413,6 +1421,8 @@
 
 		<!-- Workaround for WinUI issue: https://github.com/microsoft/microsoft-ui-xaml/issues/6388 -->
 		<Setter Property="um:ControlExtensions.Icon" Value="{x:Null}" />
+
+		<Setter Property="UseSystemFocusVisuals" Value="False" />
 
 		<Setter Property="Template">
 			<Setter.Value>
@@ -1728,13 +1738,15 @@
 		<Setter Property="Background" Value="{ThemeResource SurfaceBrush}" />
 		<Setter Property="MinHeight" Value="40" />
 		<Setter Property="MinWidth" Value="40" />
-		<Setter Property="UseSystemFocusVisuals" Value="True" />
+		<Setter Property="UseSystemFocusVisuals" Value="False" />
 		<Setter Property="HorizontalContentAlignment" Value="Center" />
 		<Setter Property="VerticalContentAlignment" Value="Center" />
 		<Setter Property="CornerRadius" Value="20" />
 
 		<!-- Workaround for WinUI issue: https://github.com/microsoft/microsoft-ui-xaml/issues/6388 -->
 		<Setter Property="um:ControlExtensions.AlternateContent" Value="{x:Null}" />
+
+		<Setter Property="UseSystemFocusVisuals" Value="False" />
 
 		<Setter Property="Template">
 			<Setter.Value>
@@ -1861,7 +1873,7 @@
 		<Setter Property="VerticalContentAlignment" Value="Center" />
 		<Setter Property="MinWidth" Value="40" />
 		<Setter Property="MinHeight" Value="40" />
-		<Setter Property="UseSystemFocusVisuals" Value="True" />
+		<Setter Property="UseSystemFocusVisuals" Value="False" />
 
 		<Setter Property="Template">
 			<Setter.Value>
@@ -1960,6 +1972,7 @@
 		<Setter Property="MinWidth" Value="40" />
 		<Setter Property="HorizontalContentAlignment" Value="Center" />
 		<Setter Property="VerticalContentAlignment" Value="Center" />
+		<Setter Property="UseSystemFocusVisuals" Value="False" />
 
 		<Setter Property="Template">
 			<Setter.Value>
@@ -2026,6 +2039,8 @@
 		<Setter Property="Padding" Value="8,0" />
 
 		<Setter Property="Icon" Value="{x:Null}" />
+
+		<Setter Property="UseSystemFocusVisuals" Value="False" />
 
 		<Setter Property="Template">
 			<Setter.Value>
@@ -2184,6 +2199,7 @@
 		<Setter Property="um:ControlExtensions.TintedBackground" Value="{x:Null}" />
 		<Setter Property="um:ControlExtensions.IsTintEnabled" Value="False" />
 		<Setter Property="SelectionIndicatorPresenterStyle" Value="{StaticResource MaterialTabBarSelectionIndicatorPresenterStyle}" />
+		<Setter Property="UseSystemFocusVisuals" Value="False" />
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="utu:TabBar">
@@ -2291,6 +2307,7 @@
 		<Setter Property="MinHeight" Value="{ThemeResource TopTabBarHeight}" />
 		<Setter Property="utu:SafeArea.Insets" Value="Top" />
 		<Setter Property="ItemContainerStyle" Value="{StaticResource NeumorphicBaseContentTabBarItemStyle}" />
+		<Setter Property="UseSystemFocusVisuals" Value="False" />
 
 		<Setter Property="Template">
 			<Setter.Value>
@@ -2370,7 +2387,7 @@
 		<Setter Property="FontFamily" Value="{ThemeResource MaterialMediumFontFamily}" />
 		<Setter Property="FontSize" Value="{ThemeResource LabelMediumFontSize}" />
 		<Setter Property="FontWeight" Value="{ThemeResource LabelMediumFontWeight}" />
-		<Setter Property="UseSystemFocusVisuals" Value="True" />
+		<Setter Property="UseSystemFocusVisuals" Value="False" />
 		<Setter Property="HorizontalContentAlignment" Value="Center" />
 		<Setter Property="Background" Value="{ThemeResource SurfaceBrush}" />
 		<Setter Property="Foreground" Value="{ThemeResource OnSurfaceVariantBrush}" />
@@ -2614,7 +2631,7 @@
 		<Setter Property="FontFamily" Value="{ThemeResource MaterialMediumFontFamily}" />
 		<Setter Property="FontSize" Value="{ThemeResource LabelMediumFontSize}" />
 		<Setter Property="FontWeight" Value="{ThemeResource LabelMediumFontWeight}" />
-		<Setter Property="UseSystemFocusVisuals" Value="True" />
+		<Setter Property="UseSystemFocusVisuals" Value="False" />
 		<Setter Property="HorizontalContentAlignment" Value="Center" />
 		<Setter Property="Background" Value="{ThemeResource SurfaceBrush}" />
 		<Setter Property="Foreground" Value="{ThemeResource OnSurfaceVariantBrush}" />
@@ -2809,7 +2826,7 @@
 		<Setter Property="FontSize" Value="{ThemeResource LabelMediumFontSize}" />
 		<Setter Property="FontWeight" Value="{ThemeResource LabelMediumFontWeight}" />
 		<Setter Property="IsSelectable" Value="False" />
-		<Setter Property="UseSystemFocusVisuals" Value="True" />
+		<Setter Property="UseSystemFocusVisuals" Value="False" />
 		<Setter Property="VerticalContentAlignment" Value="Center" />
 		<Setter Property="HorizontalContentAlignment" Value="Center" />
 		<Setter Property="CornerRadius" Value="64" />
@@ -2921,6 +2938,7 @@
 		<Setter Property="Background" Value="{ThemeResource SurfaceBrush}" />
 		<Setter Property="BorderThickness" Value="0" />
 		<Setter Property="CornerRadius" Value="12" />
+		<Setter Property="UseSystemFocusVisuals" Value="False" />
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="Thumb">
@@ -2943,6 +2961,7 @@
 		<Setter Property="FontSize" Value="{ThemeResource SliderFontSize}" />
 		<Setter Property="ManipulationMode" Value="None" />
 		<Setter Property="IsFocusEngagementEnabled" Value="True" />
+		<Setter Property="UseSystemFocusVisuals" Value="False" />
 
 		<Setter Property="Template">
 			<Setter.Value>
@@ -3224,6 +3243,7 @@
 		<Setter Property="HorizontalContentAlignment" Value="Left" />
 		<Setter Property="ManipulationMode" Value="System,TranslateX" />
 		<Setter Property="FocusVisualMargin" Value="0" />
+		<Setter Property="UseSystemFocusVisuals" Value="False" />
 
 		<Setter Property="OnContent" Value="{x:Null}" />
 		<Setter Property="OffContent" Value="{x:Null}" />
@@ -3811,7 +3831,7 @@
 											<Border x:Name="KnobOff" />
 										</Border>
 									</utu:ShadowContainer>
-									
+
 									<!-- Off Icon -->
 									<Border Height="{ThemeResource KnobIconSize}"
 											Width="{ThemeResource KnobIconSize}"
