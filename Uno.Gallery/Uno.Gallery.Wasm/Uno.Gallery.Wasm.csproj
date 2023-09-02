@@ -108,10 +108,10 @@
 		<PackageReference Include="Uno.Material.WinUI" Version="4.0.0-dev.126" />
 		<PackageReference Include="Uno.ShowMeTheXAML" Version="2.0.0-dev0015" />
 		<PackageReference Include="Uno.ShowMeTheXAML.MSBuild" Version="2.0.0-dev0015" />
-		<PackageReference Include="Uno.Toolkit.Skia.WinUI" Version="4.0.0-dev.98" />
-		<PackageReference Include="Uno.Toolkit.WinUI" Version="4.0.0-dev.98" />
-		<PackageReference Include="Uno.Toolkit.WinUI.Cupertino" Version="4.0.0-dev.98" />
-		<PackageReference Include="Uno.Toolkit.WinUI.Material" Version="4.0.0-dev.98" />
+		<PackageReference Include="Uno.Toolkit.Skia.WinUI" Version="5.0.0-dev.94" />
+		<PackageReference Include="Uno.Toolkit.WinUI" Version="5.0.0-dev.94" />
+		<PackageReference Include="Uno.Toolkit.WinUI.Cupertino" Version="5.0.0-dev.94" />
+		<PackageReference Include="Uno.Toolkit.WinUI.Material" Version="5.0.0-dev.94" />
 		<PackageReference Include="Uno.WinUI.Lottie" Version="5.0.0-dev.2319" />
 		<PackageReference Include="Uno.WinUI.MediaPlayer.WebAssembly" Version="5.0.0-dev.2319" />
 		<PackageReference Include="Uno.WinUI.WebAssembly" Version="5.0.0-dev.2319" />
