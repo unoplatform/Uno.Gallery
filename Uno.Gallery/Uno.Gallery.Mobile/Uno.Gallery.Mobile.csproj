@@ -27,19 +27,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
-<<<<<<< HEAD
 		<PackageReference Include="Uno.CommunityToolkit.WinUI.UI.Controls" Version="7.1.100" />
 		<PackageReference Include="Uno.Cupertino.WinUI" Version="3.1.0-dev.96" />
 		<PackageReference Include="Uno.Extensions.Logging.OSLog" Version="1.6.0-dev.2" />
 		<PackageReference Include="Uno.Fonts.Fluent" Version="2.3.0-dev.6" />
 		<PackageReference Include="Uno.Material.WinUI" Version="3.1.0-dev.96" />
-=======
-		<PackageReference Include="Uno.CommunityToolkit.WinUI.UI.Controls" Version="7.1.200-dev.13.gef3f523648" />
-		<PackageReference Include="Uno.Cupertino.WinUI" Version="4.0.0-dev.126" />
-		<PackageReference Include="Uno.Extensions.Logging.OSLog" Version="1.6.0-dev.2" />
-		<PackageReference Include="Uno.Fonts.Fluent" Version="2.3.0-dev.6" />
-		<PackageReference Include="Uno.Material.WinUI" Version="4.0.0-dev.126" />
->>>>>>> f72bdb0 (chore: bump Uno.Themes libs and add missing OutlineVariant brushes to match latest fixes in Uno.Themes)
 		<PackageReference Include="Uno.ShowMeTheXAML" Version="2.0.0-dev0015" />
 		<PackageReference Include="Uno.ShowMeTheXAML.MSBuild" Version="2.0.0-dev0015" />
 		<PackageReference Include="Uno.WinUI" Version="4.11.0-dev.36" />
@@ -48,19 +40,11 @@
 		<PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="6.0.0" />
 		<PackageReference Include="Uno.Diagnostics.Eventing" Version="2.1.0-dev.1" />
-<<<<<<< HEAD
 		<PackageReference Include="Uno.Toolkit.Skia.WinUI" Version="4.3.0-dev.5" />
 		<PackageReference Include="Uno.Toolkit.WinUI" Version="4.3.0-dev.5" />
 		<PackageReference Include="Uno.Toolkit.WinUI.Cupertino" Version="4.3.0-dev.5" />
 		<PackageReference Include="Uno.Toolkit.WinUI.Material" Version="4.3.0-dev.5" />
 		<PackageReference Include="Uno.WinUI.Lottie" Version="4.11.0-dev.36" />
-=======
-		<PackageReference Include="Uno.Toolkit.Skia.WinUI" Version="5.0.0-dev.94" />
-		<PackageReference Include="Uno.Toolkit.WinUI" Version="5.0.0-dev.94" />
-		<PackageReference Include="Uno.Toolkit.WinUI.Cupertino" Version="5.0.0-dev.94" />
-		<PackageReference Include="Uno.Toolkit.WinUI.Material" Version="5.0.0-dev.94" />
-		<PackageReference Include="Uno.WinUI.Lottie" Version="5.0.0-dev.2319" />
->>>>>>> a6b9024 (chore: bump toolkit package to latest)
 		<PackageReference Include="Uno.Core.Extensions.Disposables" Version="4.0.1" />
 		<PackageReference Include="Uno.Core.Extensions.Compatibility" Version="4.0.1" />
 	</ItemGroup>
