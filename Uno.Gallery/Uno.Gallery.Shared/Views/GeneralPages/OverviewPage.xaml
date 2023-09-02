@@ -35,23 +35,24 @@
 							<Button Content="ELEVATED"
 									AutomationProperties.AutomationId="Material_ElevatedButton"
 									Style="{StaticResource ElevatedButtonStyle}" />
-                            <Button Content="FILLED"
-                                    AutomationProperties.AutomationId="Material_FilledButton"
-                                    Style="{StaticResource FilledButtonStyle}" />
-                            <Button Content="TONAL"
-                                    AutomationProperties.AutomationId="Material_FilledTonalButton"
-                                    Style="{StaticResource FilledTonalButtonStyle}" />
-                            <Button Content="OUTLINED"
-                                    AutomationProperties.AutomationId="Material_OutlinedButton"
-                                    Style="{StaticResource OutlinedButtonStyle}" />
-                            <Button Content="TEXT"
-                                    AutomationProperties.AutomationId="Material_TextButton"
-                                    Style="{StaticResource TextButtonStyle}" />
-							<Button AutomationProperties.AutomationId="Material_IconButton" Style="{StaticResource IconButtonStyle}">
-                                <SymbolIcon Symbol="Favorite" />
-                            </Button>
+							<Button Content="FILLED"
+									AutomationProperties.AutomationId="Material_FilledButton"
+									Style="{StaticResource FilledButtonStyle}" />
+							<Button Content="TONAL"
+									AutomationProperties.AutomationId="Material_FilledTonalButton"
+									Style="{StaticResource FilledTonalButtonStyle}" />
+							<Button Content="OUTLINED"
+									AutomationProperties.AutomationId="Material_OutlinedButton"
+									Style="{StaticResource OutlinedButtonStyle}" />
+							<Button Content="TEXT"
+									AutomationProperties.AutomationId="Material_TextButton"
+									Style="{StaticResource TextButtonStyle}" />
+							<Button AutomationProperties.AutomationId="Material_IconButton"
+									Style="{StaticResource IconButtonStyle}">
+								<SymbolIcon Symbol="Favorite" />
+							</Button>
 
-                        </StackPanel>
+						</StackPanel>
 					</local:OverviewSampleView>
 
 					<!-- TextBox -->
@@ -96,6 +97,10 @@
 									  IsChecked="{x:Null}"
 									  IsThreeState="True"
 									  Style="{StaticResource CheckBoxStyle}" />
+							<CheckBox Content="Disabled"
+									  IsChecked="True"
+									  IsEnabled="False"
+									  Style="{StaticResource CheckBoxStyle}" />
 
 						</StackPanel>
 					</local:OverviewSampleView>
@@ -104,51 +109,37 @@
 					<local:OverviewSampleView SamplePageType="samples:RadioButtonSamplePage">
 						<StackPanel Spacing="8">
 
-							<RadioButton Content="Checked"
+							<RadioButton GroupName="Material_RadioButton"
+										 Content="Checked"
 										 IsChecked="True"
 										 Style="{StaticResource RadioButtonStyle}" />
-							<RadioButton Content="Unchecked"
-										 IsChecked="False"
+							<RadioButton GroupName="Material_RadioButton"
+										 Content="Unchecked"
+										 Style="{StaticResource RadioButtonStyle}" />
+							<RadioButton Content="Disabled"
+										 IsChecked="True"
+										 IsEnabled="False"
 										 Style="{StaticResource RadioButtonStyle}" />
 
 						</StackPanel>
 					</local:OverviewSampleView>
 
+					<!-- ToggleSwitch -->
 					<local:OverviewSampleView SamplePageType="samples:ToggleSwitchSamplePage">
-						<Grid ColumnSpacing="16" RowSpacing="8">
-
-							<Grid.ColumnDefinitions>
-								<ColumnDefinition Width="auto" />
-								<ColumnDefinition Width="*" />
-							</Grid.ColumnDefinitions>
-
-							<Grid.RowDefinitions>
-								<RowDefinition Height="auto" />
-								<RowDefinition Height="auto" />
-							</Grid.RowDefinitions>
+						<StackPanel Spacing="8">
 
 							<TextBlock Text="ToggleSwitch"
-									   Style="{StaticResource BodySmall}"
-									   VerticalAlignment="Center"/>
+									   Foreground="{ThemeResource OnSurfaceVariantBrush}"
+									   Style="{StaticResource BodySmall}" />
+							<ToggleSwitch IsOn="True"
+										  Style="{StaticResource MaterialToggleSwitchStyle}" />
+							<TextBlock Text="ToggleSwitch Disabled"
+									   Foreground="{ThemeResource OnSurfaceLowBrush}"
+									   Style="{StaticResource BodySmall}" />
+							<ToggleSwitch IsEnabled="False"
+										  Style="{StaticResource MaterialToggleSwitchStyle}" />
 
-							<ToggleSwitch Header="ToggleSwitch"
-										  IsOn="True"
-										  MinWidth="200"
-										  Style="{StaticResource ToggleSwitchStyle}"
-										  Grid.Column="1" />
-
-							<TextBlock Text="Disabled"
-									   Style="{StaticResource BodySmall}"
-									   VerticalAlignment="Center"
-									   Grid.Row="1" />
-
-							<ToggleSwitch Header="Disabled"
-										  IsEnabled="False"
-										  MinWidth="200"
-										  Style="{StaticResource ToggleSwitchStyle}"
-										  Grid.Column="1"
-										  Grid.Row="1"/>
-						</Grid>
+						</StackPanel>
 					</local:OverviewSampleView>
 
 				</StackPanel>
@@ -163,7 +154,8 @@
 						<StackPanel Spacing="8">
 
 							<Button Content="Button" />
-							<Button Content="Text Button" Style="{StaticResource TextBlockButtonStyle}" />
+							<Button Content="Text Button"
+									Style="{StaticResource TextBlockButtonStyle}" />
 							<Button Style="{StaticResource NavigationBackButtonNormalStyle}" />
 
 						</StackPanel>
@@ -174,7 +166,8 @@
 						<StackPanel Spacing="8">
 
 							<TextBox PlaceholderText="TextBox" />
-							<TextBox PlaceholderText="Disabled" IsEnabled="False" />
+							<TextBox PlaceholderText="Disabled"
+									 IsEnabled="False" />
 
 						</StackPanel>
 					</local:OverviewSampleView>
@@ -183,11 +176,16 @@
 					<local:OverviewSampleView SamplePageType="samples:CheckBoxSamplePage">
 						<StackPanel Spacing="8">
 
-							<CheckBox Content="Checked" IsChecked="True" />
-							<CheckBox Content="Unchecked" IsChecked="False" />
+							<CheckBox Content="Checked"
+									  IsChecked="True" />
+							<CheckBox Content="Unchecked"
+									  IsChecked="False" />
 							<CheckBox Content="Indeterminate"
 									  IsChecked="{x:Null}"
 									  IsThreeState="True" />
+							<CheckBox Content="Disabled"
+									  IsChecked="True"
+									  IsEnabled="False" />
 
 						</StackPanel>
 					</local:OverviewSampleView>
@@ -196,9 +194,14 @@
 					<local:OverviewSampleView SamplePageType="samples:RadioButtonSamplePage">
 						<StackPanel Spacing="8">
 
-							<RadioButton Content="Checked" IsChecked="True" />
-							<RadioButton Content="Unchecked" />
-
+							<RadioButton GroupName="Fluent_RadioButton"
+										 Content="Checked"
+										 IsChecked="True" />
+							<RadioButton GroupName="Fluent_RadioButton"
+										 Content="Unchecked" />
+							<RadioButton Content="Disabled"
+										 IsChecked="True"
+										 IsEnabled="False" />
 						</StackPanel>
 					</local:OverviewSampleView>
 
@@ -206,8 +209,10 @@
 					<local:OverviewSampleView SamplePageType="samples:ToggleSwitchSamplePage">
 						<StackPanel Spacing="8">
 
-							<ToggleSwitch Header="ToggleSwitch" IsOn="True" />
-							<ToggleSwitch Header="Disabled" IsEnabled="False" />
+							<ToggleSwitch Header="ToggleSwitch"
+										  IsOn="True" />
+							<ToggleSwitch Header="Disabled"
+										  IsEnabled="False" />
 
 						</StackPanel>
 					</local:OverviewSampleView>
@@ -222,7 +227,7 @@
 					<!-- Button -->
 					<local:OverviewSampleView SamplePageType="samples:ButtonSamplePage">
 						<StackPanel Spacing="8"
-                                    Padding="11,0">
+									Padding="11,0">
 
 							<Button Content="DEFAULT"
 									AutomationProperties.AutomationId="CupertinoButton"
@@ -237,9 +242,10 @@
 					<!-- TextBox -->
 					<local:OverviewSampleView SamplePageType="samples:TextBoxSamplePage">
 						<StackPanel Spacing="8"
-                                    Padding="11,0">
+									Padding="11,0">
 
-							<TextBox Style="{StaticResource CupertinoTextBoxStyle}" PlaceholderText="Placeholder single line" />
+							<TextBox Style="{StaticResource CupertinoTextBoxStyle}"
+									 PlaceholderText="Placeholder single line" />
 							<TextBox Style="{StaticResource CupertinoTextBoxStyle}"
 									 Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent pretium augue ut lectus consequat lobortis. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque suscipit, diam eu aliquet egestas, dolor sem mattis tortor, eu congue augue ipsum et nulla."
 									 VerticalContentAlignment="Top"
@@ -264,6 +270,10 @@
 									  IsChecked="{x:Null}"
 									  IsThreeState="True"
 									  Style="{StaticResource CupertinoCheckBoxStyle}" />
+							<CheckBox Content="Disabled"
+									  IsChecked="True"
+									  IsEnabled="False"
+									  Style="{StaticResource CupertinoCheckBoxStyle}" />
 
 						</StackPanel>
 					</local:OverviewSampleView>
@@ -271,12 +281,19 @@
 					<!-- RadioButton -->
 					<local:OverviewSampleView SamplePageType="samples:RadioButtonSamplePage">
 						<StackPanel Spacing="8"
-                                    Padding="11,0">
+									Padding="11,0">
 
-							<RadioButton Content="Checked"
+							<RadioButton GroupName="Cupertino_RadioButton"
+										 Content="Checked"
 										 IsChecked="True"
 										 Style="{StaticResource CupertinoRadioButtonStyle}" />
-							<RadioButton Content="Unchecked" Style="{StaticResource CupertinoRadioButtonStyle}" />
+							<RadioButton GroupName="Cupertino_RadioButton"
+										 Content="Unchecked"
+										 Style="{StaticResource CupertinoRadioButtonStyle}" />
+							<RadioButton Content="Disabled"
+										 IsChecked="True"
+										 IsEnabled="False"
+										 Style="{StaticResource CupertinoRadioButtonStyle}" />
 
 						</StackPanel>
 					</local:OverviewSampleView>
@@ -284,7 +301,7 @@
 					<!-- ToggleSwitch -->
 					<local:OverviewSampleView SamplePageType="samples:ToggleSwitchSamplePage">
 						<StackPanel Spacing="8"
-                                    Padding="11,0">
+									Padding="11,0">
 
 							<ToggleSwitch Header="ToggleSwitch"
 										  IsOn="True"
