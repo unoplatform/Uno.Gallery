@@ -28,14 +28,15 @@
                                     <Span>Tap to see your current GPS coordinates.</Span>
                                 </TextBlock>
 
-                                <Button Click="GetGeopositionButton_Click">
-                                    <TextBlock Text="{Binding ButtonContent}" VerticalAlignment="Stretch" TextAlignment="Center" />
-                                </Button>
+								<Button Click="GetGeopositionButton_Click"
+										Content="{Binding ButtonContent}"
+										HorizontalContentAlignment="Center"
+										VerticalContentAlignment="Stretch" />
 
                                 <TextBlock>
                                     <Span>Tap to toggle the geoposition location changed tracker.</Span>
                                 </TextBlock>
-                                
+
                                 <Button Click="ToggleGeopositionButton_Click">
                                     <TextBlock Text="{Binding ToggleButtonContent}" VerticalAlignment="Stretch" TextAlignment="Center" />
                                 </Button>
@@ -59,7 +60,7 @@
                                     <Span>Timestamp: </Span>
                                     <Run Text="{Binding GeolocatedTimestamp}" />
                                 </TextBlock>
-                                
+
                             </StackPanel>
                         </smtx:XamlDisplay>
                     </StackPanel>
