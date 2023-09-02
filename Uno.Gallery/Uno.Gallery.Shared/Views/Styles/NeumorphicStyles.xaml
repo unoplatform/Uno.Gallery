@@ -571,13 +571,11 @@
 								<VisualState x:Name="Normal" />
 								<VisualState x:Name="PointerOver">
 									<VisualState.Setters>
-										<Setter Target="IconPresenter.Foreground" Value="{ThemeResource OnSurfaceMediumBrush}" />
 										<Setter Target="PlaceholderElement.Foreground" Value="{ThemeResource OnSurfaceMediumBrush}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="Pressed">
 									<VisualState.Setters>
-										<Setter Target="IconPresenter.Foreground" Value="{ThemeResource OnSurfaceMediumBrush}" />
 										<Setter Target="PlaceholderElement.Foreground" Value="{ThemeResource OnSurfaceMediumBrush}" />
 									</VisualState.Setters>
 								</VisualState>
@@ -591,7 +589,6 @@
 								</VisualState>
 								<VisualState x:Name="Focused">
 									<VisualState.Setters>
-										<Setter Target="IconPresenter.Foreground" Value="{ThemeResource PrimaryBrush}" />
 										<Setter Target="PlaceholderElement.Foreground" Value="{ThemeResource PrimaryBrush}" />
 									</VisualState.Setters>
 								</VisualState>
@@ -661,6 +658,7 @@
 												  HorizontalAlignment="Center"
 												  Width="20"
 												  Margin="1,0,18,0"
+												  Foreground="{ThemeResource PrimaryBrush}"
 												  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
 												  Visibility="{Binding Path=(um:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialNullToCollapsedConverter}, FallbackValue=Collapsed, TargetNullValue=Collapsed}" />
 							</Border>
@@ -757,13 +755,11 @@
 								<VisualState x:Name="Normal" />
 								<VisualState x:Name="PointerOver">
 									<VisualState.Setters>
-										<Setter Target="IconPresenter.Foreground" Value="{ThemeResource OnSurfaceMediumBrush}" />
 										<Setter Target="PlaceholderElement.Foreground" Value="{ThemeResource OnSurfaceMediumBrush}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="Pressed">
 									<VisualState.Setters>
-										<Setter Target="IconPresenter.Foreground" Value="{ThemeResource OnSurfaceMediumBrush}" />
 										<Setter Target="PlaceholderElement.Foreground" Value="{ThemeResource OnSurfaceMediumBrush}" />
 									</VisualState.Setters>
 								</VisualState>
@@ -777,7 +773,6 @@
 								</VisualState>
 								<VisualState x:Name="Focused">
 									<VisualState.Setters>
-										<Setter Target="IconPresenter.Foreground" Value="{ThemeResource PrimaryBrush}" />
 										<Setter Target="PlaceholderElement.Foreground" Value="{ThemeResource PrimaryBrush}" />
 									</VisualState.Setters>
 								</VisualState>
@@ -843,6 +838,7 @@
 											  HorizontalAlignment="Center"
 											  Width="20"
 											  Margin="1,0,18,0"
+											  Foreground="{ThemeResource PrimaryBrush}"
 											  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
 											  Visibility="{Binding Path=(um:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialNullToCollapsedConverter}, FallbackValue=Collapsed, TargetNullValue=Collapsed}" />
 
@@ -1409,8 +1405,14 @@
 
 		<Setter Property="Background" Value="{ThemeResource PrimaryContainerBrush}" />
 		<Setter Property="Foreground" Value="{ThemeResource OnPrimaryContainerBrush}" />
+
+		<!-- Start: Label Large Typo -->
 		<Setter Property="FontFamily" Value="{ThemeResource MaterialMediumFontFamily}" />
-		<Setter Property="FontSize" Value="{StaticResource NeumorphicFabFontSize}" />
+		<Setter Property="FontWeight" Value="{ThemeResource LabelLargeFontWeight}" />
+		<Setter Property="FontSize" Value="{ThemeResource LabelLargeFontSize}" />
+		<Setter Property="CharacterSpacing" Value="{ThemeResource LabelLargeCharacterSpacing}" />
+		<!-- End: Label Large Typo -->
+
 		<Setter Property="HorizontalContentAlignment" Value="Center" />
 		<Setter Property="VerticalContentAlignment" Value="Center" />
 		<Setter Property="CornerRadius" Value="16" />
@@ -1866,7 +1868,7 @@
 		<Setter Property="CharacterSpacing" Value="{ThemeResource BodySmallCharacterSpacing}" />
 		<!-- End: Body Small Typo -->
 
-		<Setter Property="Padding" Value="4,0,0,0" />
+		<Setter Property="Padding" Value="8,0,0,0" />
 		<Setter Property="HorizontalAlignment" Value="Left" />
 		<Setter Property="VerticalAlignment" Value="Stretch" />
 		<Setter Property="HorizontalContentAlignment" Value="Left" />
@@ -1895,6 +1897,8 @@
 								<VisualState x:Name="Disabled">
 									<VisualState.Setters>
 										<Setter Target="RadioPanel.Shadows" Value="{ThemeResource NeumorphicCheckBoxDisabledShadows}" />
+										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource OnSurfaceLowBrush}" />
+										<Setter Target="CheckEllipse.Fill" Value="{ThemeResource OnSurfaceLowBrush}" />
 									</VisualState.Setters>
 								</VisualState>
 							</VisualStateGroup>
@@ -2033,6 +2037,14 @@
 		   TargetType="utu:Chip">
 		<Setter Property="Foreground" Value="{ThemeResource OnSurfaceVariantBrush}" />
 		<Setter Property="Background" Value="{ThemeResource SurfaceBrush}" />
+
+		<!-- Start: Label Large Typo -->
+		<Setter Property="FontFamily" Value="{ThemeResource MaterialMediumFontFamily}" />
+		<Setter Property="FontWeight" Value="{ThemeResource LabelLargeFontWeight}" />
+		<Setter Property="FontSize" Value="{ThemeResource LabelLargeFontSize}" />
+		<Setter Property="CharacterSpacing" Value="{ThemeResource LabelLargeCharacterSpacing}" />
+		<!-- End: Label Large Typo -->
+
 		<Setter Property="CornerRadius" Value="8" />
 		<Setter Property="VerticalAlignment" Value="Stretch" />
 		<Setter Property="VerticalContentAlignment" Value="Center" />
