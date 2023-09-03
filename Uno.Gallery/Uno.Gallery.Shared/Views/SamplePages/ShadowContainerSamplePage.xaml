@@ -924,13 +924,7 @@
 			<Color x:Key="UnoBlue">#159bff</Color>
 			<Color x:Key="UnoGreen">#67e5ad</Color>
 
-			<utu:Shadow x:Key="DefaultShadow"
-						BlurRadius="20"
-						OffsetX="10"
-						OffsetY="10"
-						Opacity="0.5"
-						Spread="0"
-						Color="{StaticResource UnoPurple}" />
+			<utu:Shadow x:Key="DefaultShadow" BlurRadius="20" OffsetX="10" OffsetY="10" Opacity="0.5" Spread="0" Color="{StaticResource UnoPurple}" />
 		</ResourceDictionary>
 	</Page.Resources>
 
@@ -948,25 +942,9 @@
 										 Margin="40">
 						<utu:ShadowContainer.Shadows>
 							<utu:ShadowCollection x:Name="Shadows">
-								<utu:Shadow BlurRadius="20"
-											OffsetX="10"
-											OffsetY="10"
-											Opacity="0.5"
-											Spread="0"
-											Color="{StaticResource UnoPurple}" />
-								<utu:Shadow BlurRadius="20"
-											OffsetX="-10"
-											OffsetY="-10"
-											Opacity="0.5"
-											Spread="0"
-											Color="{StaticResource UnoPink}" />
-								<utu:Shadow BlurRadius="20"
-											OffsetX="-10"
-											OffsetY="-10"
-											Opacity="0.5"
-											Spread="0"
-											IsInner="True"
-											Color="{StaticResource UnoGreen}" />
+								<utu:Shadow BlurRadius="20" OffsetX="10" OffsetY="10" Opacity="0.5" Spread="0" Color="{StaticResource UnoPurple}" />
+								<utu:Shadow BlurRadius="20" OffsetX="-10" OffsetY="-10" Opacity="0.5" Spread="0" Color="{StaticResource UnoPink}" />
+								<utu:Shadow BlurRadius="20" OffsetX="-10" OffsetY="-10" Opacity="0.5" Spread="0" IsInner="True" Color="{StaticResource UnoGreen}" />
 							</utu:ShadowCollection>
 						</utu:ShadowContainer.Shadows>
 						<Grid MaxWidth="500"
@@ -1005,7 +983,7 @@
 													 Grid.ColumnSpan="2"
 													 PlaceholderText="Color"
 													 Style="{StaticResource NeumorphicTextBoxStyle}"
-													 Text="{Binding Color, Mode=TwoWay, Converter={StaticResource HexToColor}}">
+													 Text="{Binding Color, Mode=TwoWay, Converter={StaticResource HexToColor}, UpdateSourceTrigger=PropertyChanged}">
 												<TextBox.Foreground>
 													<SolidColorBrush Color="{Binding Color}" />
 												</TextBox.Foreground>
@@ -1020,7 +998,7 @@
 											<TextBox Grid.Column="2"
 													 PlaceholderText="Opacity"
 													 Style="{StaticResource NeumorphicTextBoxStyle}"
-													 Text="{Binding Opacity, Mode=TwoWay}" />
+													 Text="{Binding Opacity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 											<CheckBox Grid.Column="3"
 													  Padding="5,0"
 													  Content="Inner"
@@ -1032,22 +1010,22 @@
 											<TextBox Grid.Row="1"
 													 PlaceholderText="Offset X"
 													 Style="{StaticResource NeumorphicTextBoxStyle}"
-													 Text="{Binding OffsetX, Mode=TwoWay}" />
+													 Text="{Binding OffsetX, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 											<TextBox Grid.Row="1"
 													 Grid.Column="1"
 													 PlaceholderText="Offset Y"
 													 Style="{StaticResource NeumorphicTextBoxStyle}"
-													 Text="{Binding OffsetY, Mode=TwoWay}" />
+													 Text="{Binding OffsetY, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 											<TextBox Grid.Row="1"
 													 Grid.Column="2"
 													 PlaceholderText="Blur"
 													 Style="{StaticResource NeumorphicTextBoxStyle}"
-													 Text="{Binding BlurRadius, Mode=TwoWay}" />
+													 Text="{Binding BlurRadius, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 											<TextBox Grid.Row="1"
 													 Grid.Column="3"
 													 PlaceholderText="Spread"
 													 Style="{StaticResource NeumorphicTextBoxStyle}"
-													 Text="{Binding Spread, Mode=TwoWay}" />
+													 Text="{Binding Spread, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
 											<utu:Divider Grid.Row="2"
 														 Grid.ColumnSpan="4"
