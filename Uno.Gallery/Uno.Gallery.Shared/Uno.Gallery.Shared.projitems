@@ -62,6 +62,7 @@
     <Content Include="$(MSBuildThisFileDirectory)Assets\FluentIcon_Small.scale-400.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Fonts\Cupertino\SF-Pro-Text-Regular.otf" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Gamepad.svg" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\ImageMaster.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\ImageSample.scale-100.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\ImageSample.scale-150.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\ImageSample.scale-200.png" />
