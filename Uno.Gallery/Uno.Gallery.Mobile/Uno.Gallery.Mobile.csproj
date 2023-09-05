@@ -111,6 +111,10 @@
 				<PackageReference Include="Uno.Extensions.Logging.OSLog" Version="1.6.0-dev.2" />
 			</ItemGroup>
 			<PropertyGroup>
+				<!-- https://github.com/xamarin/xamarin-macios/issues/14686 -->
+				<_LibMonoLinkMode>static</_LibMonoLinkMode>
+				<_LibXamarinLinkMode>static</_LibXamarinLinkMode>
+				
 				<MtouchExtraArgs>$(MtouchExtraArgs) --registrar:static --dsym=true</MtouchExtraArgs>
 
 				<!-- https://github.com/xamarin/xamarin-macios/issues/14812 -->
