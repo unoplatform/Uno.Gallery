@@ -1213,19 +1213,17 @@
 									<ColumnDefinition Width="*" />
 								</Grid.ColumnDefinitions>
 
-								<Border Height="{StaticResource NeumorphicButtonIconContainerSize}"
-										Width="{StaticResource NeumorphicButtonIconContainerSize}"
-										Visibility="{Binding Path=(um:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialNullToCollapsedConverter}, FallbackValue=Collapsed, TargetNullValue=Collapsed}">
+								<Viewbox Height="{StaticResource NeumorphicButtonIconContainerSize}"
+										 Width="{StaticResource NeumorphicButtonIconContainerSize}"
+										 HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+										 VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+										 Visibility="{Binding Path=(um:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialNullToCollapsedConverter}, FallbackValue=Collapsed, TargetNullValue=Collapsed}">
 									<ContentPresenter x:Name="IconPresenter"
 													  Content="{Binding Path=(um:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}}"
-													  Width="{StaticResource NeumorphicButtonIconSize}"
-													  Height="{StaticResource NeumorphicButtonIconSize}"
+											
 													  HorizontalAlignment="{StaticResource ButtonIconHorizontalAlignment}"
-													  VerticalAlignment="{StaticResource ButtonIconVerticalAlignment}"
-													  Visibility="{Binding Path=(um:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialNullToCollapsedConverter}, FallbackValue=Collapsed, TargetNullValue=Collapsed}"
-													  VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-													  HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" />
-								</Border>
+													  VerticalAlignment="{StaticResource ButtonIconVerticalAlignment}" />
+								</Viewbox>
 								<ContentPresenter x:Name="ContentPresenter"
 												  Grid.Column="1"
 												  Margin="{StaticResource ButtonContentMargin}"

@@ -45,7 +45,7 @@
 			<Version>4.3.0-dev.5</Version>
 		</PackageReference>
 		<PackageReference Include="Uno.WinUI">
-			<Version>4.11.0-dev.36</Version>
+			<Version>4.11.0-dev.40</Version>
 		</PackageReference>
 		<Manifest Include="$(ApplicationManifest)" />
 		<FrameworkReference Update="Microsoft.Windows.SDK.NET.Ref" RuntimeFrameworkVersion="10.0.22621.29" />
