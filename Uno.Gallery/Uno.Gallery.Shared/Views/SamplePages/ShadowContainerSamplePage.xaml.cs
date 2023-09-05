@@ -40,7 +40,7 @@ namespace Uno.Gallery.Views.SamplePages
 			this.Loaded += (s, e) =>
 			{
 				_shadows = ShadowContainer.Shadows;
-				ShadowsItemsControl.ItemsSource = _shadows;
+				ShadowsItemsRepeater.ItemsSource = _shadows;
 			};
 		}
 
