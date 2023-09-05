@@ -540,10 +540,6 @@
 								 TrueValue="0"
 								 FalseValue="1" />
 
-	<um:FromBoolToValueConverter x:Key="ToggleSwitchIsEnabledToOpacity"
-								 TrueValue="1"
-								 FalseValue="0.25" />
-
 	<um:FromNullToValueConverter x:Key="ToggleSwitchOffContentToContentSize"
 								 NullValue="{StaticResource SmallThumbOffSize}"
 								 NotNullValue="{StaticResource MediumThumbOffSize}" />
