@@ -536,9 +536,9 @@
 	<!--#region TextBox Style-->
 	<Style x:Key="NeumorphicTextBoxStyle"
 		   TargetType="TextBox">
-		<Setter Property="Background" Value="{ThemeResource SurfaceBrush}" />
 		<Setter Property="Foreground" Value="{ThemeResource OnSurfaceBrush}" />
 		<Setter Property="PlaceholderForeground" Value="{ThemeResource OnSurfaceVariantBrush}" />
+		<Setter Property="Background" Value="{ThemeResource SurfaceBrush}" />
 		<Setter Property="CornerRadius" Value="8" />
 
 		<!-- Start: Body Large Typo -->
@@ -576,14 +576,13 @@
 								</VisualState>
 								<VisualState x:Name="Pressed">
 									<VisualState.Setters>
-										<Setter Target="PlaceholderElement.Foreground" Value="{ThemeResource OnSurfaceMediumBrush}" />
+										<Setter Target="PlaceholderElement.Foreground" Value="{ThemeResource PrimaryBrush}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="Disabled">
 									<VisualState.Setters>
 										<Setter Target="IconPresenter.Foreground" Value="{ThemeResource OnSurfaceLowBrush}" />
-										<Setter Target="IconPresenter.Opacity" Value="{ThemeResource DisabledOpacity}" />
-										<Setter Target="ContentElement.Opacity" Value="{ThemeResource DisabledOpacity}" />
+										<Setter Target="ContentElement.Foreground" Value="{ThemeResource OnSurfaceLowBrush}" />
 										<Setter Target="PlaceholderElement.Foreground" Value="{ThemeResource OnSurfaceLowBrush}" />
 									</VisualState.Setters>
 								</VisualState>
@@ -655,10 +654,10 @@
 									VerticalAlignment="Top">
 								<ContentPresenter x:Name="IconPresenter"
 												  Content="{Binding Path=(um:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}}"
+												  Foreground="{ThemeResource PrimaryBrush}"
 												  HorizontalAlignment="Center"
 												  Width="20"
 												  Margin="1,0,18,0"
-												  Foreground="{ThemeResource PrimaryBrush}"
 												  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
 												  Visibility="{Binding Path=(um:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialNullToCollapsedConverter}, FallbackValue=Collapsed, TargetNullValue=Collapsed}" />
 							</Border>
@@ -721,8 +720,8 @@
 	<!--#region PasswordBox Style-->
 	<Style x:Key="NeumorphicPasswordBoxStyle"
 		   TargetType="PasswordBox">
-		<Setter Property="Background" Value="{ThemeResource SurfaceBrush}" />
 		<Setter Property="Foreground" Value="{ThemeResource OnSurfaceBrush}" />
+		<Setter Property="Background" Value="{ThemeResource SurfaceBrush}" />
 		<Setter Property="CornerRadius" Value="8" />
 
 		<!-- Start: Body Large Typo -->
@@ -760,14 +759,13 @@
 								</VisualState>
 								<VisualState x:Name="Pressed">
 									<VisualState.Setters>
-										<Setter Target="PlaceholderElement.Foreground" Value="{ThemeResource OnSurfaceMediumBrush}" />
+										<Setter Target="PlaceholderElement.Foreground" Value="{ThemeResource PrimaryBrush}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="Disabled">
 									<VisualState.Setters>
 										<Setter Target="IconPresenter.Foreground" Value="{ThemeResource OnSurfaceLowBrush}" />
-										<Setter Target="IconPresenter.Opacity" Value="{ThemeResource DisabledOpacity}" />
-										<Setter Target="ContentElement.Opacity" Value="{ThemeResource DisabledOpacity}" />
+										<Setter Target="ContentElement.Foreground" Value="{ThemeResource OnSurfaceLowBrush}" />
 										<Setter Target="PlaceholderElement.Foreground" Value="{ThemeResource OnSurfaceLowBrush}" />
 									</VisualState.Setters>
 								</VisualState>
@@ -835,10 +833,10 @@
 
 							<ContentPresenter x:Name="IconPresenter"
 											  Content="{Binding Path=(um:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}}"
+											  Foreground="{ThemeResource PrimaryBrush}"
 											  HorizontalAlignment="Center"
 											  Width="20"
 											  Margin="1,0,18,0"
-											  Foreground="{ThemeResource PrimaryBrush}"
 											  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
 											  Visibility="{Binding Path=(um:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialNullToCollapsedConverter}, FallbackValue=Collapsed, TargetNullValue=Collapsed}" />
 
@@ -894,7 +892,8 @@
 	<Style x:Key="NeumorphicComboBoxStyle"
 		   TargetType="ComboBox">
 
-		<Setter Property="Foreground" Value="{ThemeResource OnSurfaceMediumBrush}" />
+		<Setter Property="Foreground" Value="{ThemeResource OnSurfaceBrush}" />
+		<Setter Property="PlaceholderForeground" Value="{ThemeResource OnSurfaceVariantBrush}" />
 		<Setter Property="Background" Value="{ThemeResource SurfaceBrush}" />
 		<Setter Property="HorizontalContentAlignment" Value="Left" />
 		<Setter Property="VerticalContentAlignment" Value="Center" />
@@ -953,14 +952,24 @@
 										<Setter Target="PopupBorder.Background" Value="{ThemeResource SystemControlTransparentBrush}" />
 									</VisualState.Setters>
 								</VisualState>
-								<VisualState x:Name="PointerOver" />
+								<VisualState x:Name="PointerOver">
+									<VisualState.Setters>
+										<Setter Target="UpperPlaceholderElement.Foreground" Value="{ThemeResource OnSurfaceMediumBrush}" />
+										<Setter Target="PlaceholderElement.Foreground" Value="{ThemeResource OnSurfaceMediumBrush}" />
+									</VisualState.Setters>
+								</VisualState>
 								<VisualState x:Name="Pressed" />
 							</VisualStateGroup>
 
 							<VisualStateGroup x:Name="FocusStates">
 								<VisualState x:Name="PointerFocused" />
 								<VisualState x:Name="FocusedDropDown" />
-								<VisualState x:Name="Focused" />
+								<VisualState x:Name="Focused">
+									<VisualState.Setters>
+										<Setter Target="UpperPlaceholderElement.Foreground" Value="{ThemeResource PrimaryBrush}" />
+										<Setter Target="PlaceholderElement.Foreground" Value="{ThemeResource PrimaryBrush}" />
+									</VisualState.Setters>
+								</VisualState>
 								<VisualState x:Name="FocusedPressed" />
 								<VisualState x:Name="Unfocused" />
 							</VisualStateGroup>
@@ -1045,7 +1054,7 @@
 												  Grid.Column="1"
 												  MaxLines="1"
 												  VerticalAlignment="Center"
-												  Foreground="{ThemeResource OnSurfaceBrush}"
+												  Foreground="{TemplateBinding Foreground}"
 												  RenderTransform="{Binding PlaceholderText, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource EmptyToCompositeTransformConverter}, TargetNullValue={StaticResource ContentPresenter_CompositeTransformWithoutPlaceholder}, FallbackValue={StaticResource ContentPresenter_CompositeTransformWithoutPlaceholder}}" />
 
 								<!-- PlaceholderElement -->
@@ -1053,7 +1062,7 @@
 										   Grid.Column="1"
 										   VerticalAlignment="Center"
 										   Visibility="{Binding SelectedItem, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource NullToVisible}, TargetNullValue=Collapsed, FallbackValue=Collapsed}"
-										   Foreground="{ThemeResource OnSurfaceMediumBrush}"
+										   Foreground="{TemplateBinding PlaceholderForeground}"
 										   IsHitTestVisible="False"
 										   MaxLines="1"
 										   RenderTransformOrigin="0,0.5"
@@ -1087,7 +1096,7 @@
 									  HorizontalAlignment="Center"
 									  VerticalAlignment="Center"
 									  Data="M0 0L5 5L10 0H0Z"
-									  Fill="{ThemeResource OnSurfaceMediumBrush}"
+									  Fill="{ThemeResource PrimaryBrush}"
 									  Stretch="Uniform" />
 
 								<!-- Up -->
@@ -1099,7 +1108,7 @@
 									  HorizontalAlignment="Center"
 									  VerticalAlignment="Center"
 									  Data="M0 0L-5 -5L-10 0H0Z"
-									  Fill="{ThemeResource OnSurfaceMediumBrush}"
+									  Fill="{ThemeResource PrimaryBrush}"
 									  Stretch="Uniform"
 									  Visibility="Collapsed" />
 							</Grid>
