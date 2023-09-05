@@ -12,50 +12,6 @@
 	<!--#region Shadow ThemeDictionaries-->
 	<ResourceDictionary.ThemeDictionaries>
 		<ResourceDictionary x:Key="Dark">
-			<!-- Shadow colors -->
-			<Color x:Key="LightShadowColor">#3C3846</Color>
-			<Color x:Key="ShadeShadowColor">#24222A</Color>
-
-			<!-- How are we dealing with the color names? -->
-
-			<!-- Some colors are only exist and are different on dark mode, ie Elevated Button -->
-			<!-- So we don't have a corresponding color for light mode -->
-			<Color x:Key="LightShadowColor2">#615B71</Color>
-			<Color x:Key="ShadeShadowColor2">#000000</Color>
-
-			<Color x:Key="LightShadowColor3">#5F5B69</Color>
-			<Color x:Key="ShadeShadowColor3">#24222A</Color>
-
-			<!-- For ToggleButton/IconButton it has a corresponding in Light Theme -->
-			<Color x:Key="LightShadowColor4">#79718E</Color>
-			<Color x:Key="ShadeShadowColor4">#000000</Color>
-
-			<Color x:Key="LightShadowColor5">#E5DCFF</Color>
-			<Color x:Key="ShadeShadowColor5">#A9A2D9</Color>
-
-			<Color x:Key="LightShadowColor6">#F7F5FF</Color>
-			<Color x:Key="ShadeShadowColor6">#584AB5</Color>
-
-			<!-- Corresponding to Light Used for FABTabBarItem -->
-			<Color x:Key="LightShadowColor7">#A9A2D9</Color>
-			<Color x:Key="MediumShadowColor7">#24222A</Color>
-			<Color x:Key="ShadeShadowColor7">#000000</Color>
-
-			<Color x:Key="LightShadowColor8">#FFFFFF</Color>
-			<Color x:Key="MediumShadowColor8">#615B71</Color>
-			<Color x:Key="ShadeShadowColor8">#000000</Color>
-			<Color x:Key="VariantShadowColor8">#9B92D3</Color>
-
-			<Color x:Key="LightShadowColor9">#615B71</Color>
-			<Color x:Key="ShadeShadowColor9">#000000</Color>
-
-			<Color x:Key="LightShadowColor10">#ECE5FF</Color>
-			<Color x:Key="ShadeShadowColor10">#9B92D3</Color>
-
-			<Color x:Key="LightShadowColor11">#18171C</Color>
-			<Color x:Key="ShadeShadowColor11">#000000</Color>
-
-
 			<!-- TextBox -->
 			<utu:ShadowCollection x:Key="TextBoxShadows">
 				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="8" Spread="0" Color="#615B71" Opacity="0.6" IsInner="True" />
@@ -256,41 +212,6 @@
 
 		</ResourceDictionary>
 		<ResourceDictionary x:Key="Light">
-			<!-- How are we dealing with the color names? -->
-			<!-- Shadow colors -->
-			<Color x:Key="LightShadowColor">#FFFFFF</Color>
-			<Color x:Key="ShadeShadowColor">#AEAEC0</Color>
-
-			<Color x:Key="LightShadowColor2">#6651F2</Color>
-			<Color x:Key="ShadeShadowColor2">#4C3CB3</Color>
-
-			<!-- For ToggleButton/IconButton it has a corresponding in Dark Theme -->
-			<Color x:Key="LightShadowColor4">#FFFFFF</Color>
-			<Color x:Key="ShadeShadowColor4">#AEAEC0</Color>
-
-			<Color x:Key="LightShadowColor5">#FFFFFF</Color>
-			<Color x:Key="ShadeShadowColor5">#584A7F</Color>
-
-			<Color x:Key="LightShadowColor6">#FFFFFF</Color>
-			<Color x:Key="ShadeShadowColor6">#413399</Color>
-
-			<!-- Corresponding to Dark Used for FABTabBarItem -->
-			<Color x:Key="LightShadowColor7">#FFFFFF</Color>
-			<Color x:Key="MediumShadowColor7">#AEAEC0</Color>
-			<Color x:Key="ShadeShadowColor7">#170065</Color>
-
-			<Color x:Key="LightShadowColor8">#FFFFFF</Color>
-			<Color x:Key="ShadeShadowColor8">#000000</Color>
-
-			<Color x:Key="LightShadowColor9">#FFFFFF</Color>
-			<Color x:Key="ShadeShadowColor9">#C8C7D1</Color>
-
-			<Color x:Key="LightShadowColor10">#6651F2</Color>
-			<Color x:Key="ShadeShadowColor10">#4C3CB3</Color>
-
-			<Color x:Key="LightShadowColor11">#FFFFFF</Color>
-			<Color x:Key="ShadeShadowColor11">#000000</Color>
-
 			<!-- TextBox -->
 			<utu:ShadowCollection x:Key="TextBoxShadows">
 				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="4" Spread="0" Color="#FFFFFF" Opacity="0.6" IsInner="True" />
@@ -409,9 +330,9 @@
 			</utu:ShadowCollection>
 			<utu:ShadowCollection x:Key="FilledButtonDisabledShadows">
 				<d:Legacy>
-					<utu:Shadow BlurRadius="4" IsInner="False" OffsetX="-1" OffsetY="-1" Opacity="1" Spread="0" Color="{StaticResource LightShadowColor2}" />
+					<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Spread="0" Color="#6651F2" Opacity="1"  IsInner="False" />
 					<!-- Opacity of 16% seems closer to the Figma design. Original is 100% -->
-					<utu:Shadow BlurRadius="4" IsInner="False" OffsetX="1" OffsetY="1" Opacity="0.16" Spread="0" Color="{StaticResource ShadeShadowColor2}" />
+					<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="4" Spread="0" Color="#4C3CB3" Opacity="0.16" IsInner="False" />
 				</d:Legacy>
 				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="4" Spread="0" Color="#4C3CB3" Opacity="1" IsInner="False" />
 				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Spread="0" Color="#6651F2" Opacity="1" IsInner="False" />
