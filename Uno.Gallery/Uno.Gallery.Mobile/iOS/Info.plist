@@ -57,6 +57,8 @@
 		<false/>
 		<key>NSMotionUsageDescription</key>
 		<string>This app requires motion tracking for the Pedometer sample to work.</string>
+		<key>NSLocationWhenInUseUsageDescription</key>
+		<string>This app requires location for the Geolocator sample to work. The data is not shared.</string>
 		<key>LSApplicationQueriesSchemes</key>
 		<array>
 			<string>tel</string>
