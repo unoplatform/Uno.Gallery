@@ -293,7 +293,7 @@
 														   Style="{StaticResource BodyMedium}">
 											<Run Text="You can" />
 
-											<Hyperlink x:Name="PART_ShareHyperlink">
+											<Hyperlink x:Name="PART_ShareHyperlink" >
 												<Run Text="share" />
 											</Hyperlink>
 

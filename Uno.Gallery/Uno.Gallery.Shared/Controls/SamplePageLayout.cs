@@ -12,6 +12,8 @@ using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Documents;
 using Microsoft.UI.Xaml.Media;
+using Windows.ApplicationModel.DataTransfer;
+
 
 namespace Uno.Gallery
 {
@@ -166,10 +168,22 @@ namespace Uno.Gallery
 
 		private void OnShareClicked(Hyperlink sender, HyperlinkClickEventArgs args)
 		{
-#if (__IOS__ || __ANDROID__) && !NET6_0_OR_GREATER
-			var sample = DataContext as Sample;
-			_ = Deeplinking.BranchService.Instance.ShareSample(sample, _design);
-#endif
+			if (DataTransferManager.IsSupported())
+			{
+				var dataTransferManager = DataTransferManagerHelper.GetForCurrentView();
+				dataTransferManager.DataRequested += DataRequested_URI;
+				DataTransferManagerHelper.ShowShareUI();
+			}
+		}
+
+		private void DataRequested_URI(DataTransferManager sender, DataRequestedEventArgs args)
+		{
+			args.Request.Data.Properties.Title = "Uno Gallery - Share-Sample Title";
+			args.Request.Data.Properties.Description = "See this awesome project:";
+
+			args.Request.Data.SetWebLink(new Uri("https://gallery.platform.uno/"));
+
+			sender.DataRequested -= DataRequested_URI;
 		}
 
 		/// <summary>
