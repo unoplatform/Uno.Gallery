@@ -1085,7 +1085,7 @@
 					<x:String>IconButton</x:String>
 					<x:String>PasswordBox</x:String>
 					<x:String>RadioButton</x:String>
-					<x:String>Slider</x:String>
+					<!--<x:String>Slider</x:String>-->
 					<x:String>TabBar</x:String>
 					<x:String>TextBox</x:String>
 					<x:String>ToggleButton</x:String>
