@@ -3476,15 +3476,20 @@
 								</VisualState>
 								<VisualState x:Name="Disabled">
 									<Storyboard>
-										<ObjectAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnobBounds"
+										<ObjectAnimationUsingKeyFrames Storyboard.TargetName="TrackHighlightOn"
 																	   Storyboard.TargetProperty="Background">
 											<DiscreteObjectKeyFrame KeyTime="0"
-																	Value="{ThemeResource OnSurfaceDisabledBrush}" />
+																	Value="{ThemeResource SurfaceBrush}" />
+										</ObjectAnimationUsingKeyFrames>
+										<ObjectAnimationUsingKeyFrames Storyboard.TargetName="TrackHighlightOff"
+																	   Storyboard.TargetProperty="Background">
+											<DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{ThemeResource SurfaceBrush}" />
 										</ObjectAnimationUsingKeyFrames>
 										<ObjectAnimationUsingKeyFrames Storyboard.TargetName="ShadowKnobOff"
 																	   Storyboard.TargetProperty="Background">
 											<DiscreteObjectKeyFrame KeyTime="0"
-																	Value="{ThemeResource OnSurfaceLowBrush}" />
+																	Value="{ThemeResource SurfaceBrush}" />
 										</ObjectAnimationUsingKeyFrames>
 										<ObjectAnimationUsingKeyFrames Storyboard.TargetName="ShadowKnobOn"
 																	   Storyboard.TargetProperty="Background">
@@ -3508,12 +3513,12 @@
 										<ObjectAnimationUsingKeyFrames Storyboard.TargetName="OnIconPresenter"
 																	   Storyboard.TargetProperty="Foreground">
 											<DiscreteObjectKeyFrame KeyTime="0"
-																	Value="{ThemeResource OnSurfaceLowBrush}" />
+																	Value="{ThemeResource OnSurfaceBrush}" />
 										</ObjectAnimationUsingKeyFrames>
 										<ObjectAnimationUsingKeyFrames Storyboard.TargetName="OffIconPresenter"
 																	   Storyboard.TargetProperty="Foreground">
 											<DiscreteObjectKeyFrame KeyTime="0"
-																	Value="{ThemeResource SurfaceVariantBrush}" />
+																	Value="{ThemeResource OnSurfaceBrush}" />
 										</ObjectAnimationUsingKeyFrames>
 										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="KnobOffBorder"
 																	   Storyboard.TargetProperty="Width"
@@ -3532,11 +3537,9 @@
 
 									</Storyboard>
 									<VisualState.Setters>
-										<Setter Target="SwitchKnobOn.Opacity" Value="0.25" />
-										<Setter Target="SwitchKnobOff.Opacity" Value="0.25" />
+										<Setter Target="RootGrid.Opacity" Value="0.3" />
 										<Setter Target="OnShadowPanel.Shadows" Value="{ThemeResource ToggleSwitchOnBorderDisabledShadows}" />
 										<Setter Target="ShadowKnobOn.Shadows" Value="{ThemeResource ToggleSwitchKnobOnDisabledShadows}" />
-										<Setter Target="TrackHighlightOn.Visibility" Value="Collapsed" />
 									</VisualState.Setters>
 								</VisualState>
 							</VisualStateGroup>
@@ -3751,9 +3754,9 @@
 									</Storyboard>
 									<VisualState.Setters>
 										<Setter Target="TrackHighlightOn.Opacity" Value="0" />
-										<Setter Target="TrackHighlightOff.Opacity" Value="{Binding IsEnabled, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ToggleSwitchIsEnabledToOpacity}}" />
+										<Setter Target="TrackHighlightOff.Opacity" Value="1" />
 										<Setter Target="OnShadowPanel.Opacity" Value="0" />
-										<Setter Target="OffShadowPanel.Opacity" Value="{Binding IsEnabled, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ToggleSwitchIsEnabledToOpacity}}" />
+										<Setter Target="OffShadowPanel.Opacity" Value="1" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="On">
@@ -3780,13 +3783,8 @@
 										</DoubleAnimationUsingKeyFrames>
 									</Storyboard>
 									<VisualState.Setters>
-										<!--Needed for Dark mode, but not light-->
-										<!--<Setter Target="TrackHighlightOn.Opacity" Value="{Binding IsEnabled, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ToggleSwitchIsEnabledToOpacity}}" />-->
 										<Setter Target="TrackHighlightOn.Opacity" Value="1" />
 										<Setter Target="TrackHighlightOff.Opacity" Value="0" />
-
-										<!--Needed for Dark mode, but not light-->
-										<!--<Setter Target="OnShadowPanel.Opacity" Value="{Binding IsEnabled, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ToggleSwitchIsEnabledToOpacity}}" />-->
 										<Setter Target="OnShadowPanel.Opacity" Value="1" />
 										<Setter Target="OffShadowPanel.Opacity" Value="0" />
 									</VisualState.Setters>
