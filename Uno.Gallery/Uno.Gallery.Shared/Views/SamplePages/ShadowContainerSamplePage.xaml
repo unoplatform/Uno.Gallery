@@ -956,15 +956,9 @@
 								<RowDefinition Height="Auto" />
 								<RowDefinition Height="Auto" />
 							</Grid.RowDefinitions>
-							<ItemsControl Background="Green"
-										  x:Name="ShadowsItemsControl">
-								<ItemsControl.ItemsPanel>
-									<ItemsPanelTemplate>
-										<StackPanel Orientation="Vertical"
-													Spacing="24" />
-									</ItemsPanelTemplate>
-								</ItemsControl.ItemsPanel>
-								<ItemsControl.ItemTemplate>
+							<ItemsRepeater Background="Green"
+										  x:Name="ShadowsItemsRepeater">
+								<ItemsRepeater.ItemTemplate>
 									<DataTemplate>
 										<Grid RowSpacing="12"
 											  ColumnSpacing="12">
@@ -1032,8 +1026,8 @@
 														 Margin="0,12,0,0" />
 										</Grid>
 									</DataTemplate>
-								</ItemsControl.ItemTemplate>
-							</ItemsControl>
+								</ItemsRepeater.ItemTemplate>
+							</ItemsRepeater>
 							<StackPanel Margin="0,24,0,0"
 										Grid.Row="1"
 										HorizontalAlignment="Center"
