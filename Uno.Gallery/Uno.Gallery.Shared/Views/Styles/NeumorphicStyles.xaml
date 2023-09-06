@@ -960,7 +960,8 @@
 							  HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
 							  CornerRadius="4"
 							  Width="{TemplateBinding Width}"
-							  MinHeight="{TemplateBinding MinHeight}">
+							  MinHeight="{TemplateBinding MinHeight}"
+							  Background="Transparent">
 
 							<Grid x:Name="ComboBoxContent"
 								  Padding="{TemplateBinding Padding}">
