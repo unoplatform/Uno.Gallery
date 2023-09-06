@@ -24,23 +24,13 @@
 		<PackageReference Include="Uno.Material.WinUI" Version="3.1.0-dev.96" />
 		<PackageReference Include="Uno.ShowMeTheXAML" Version="2.0.0-dev0015" />
 		<PackageReference Include="Uno.ShowMeTheXAML.MSBuild" Version="2.0.0-dev0015" />
-<<<<<<< HEAD
-		<PackageReference Include="Uno.Toolkit.Skia.WinUI" Version="4.3.0-dev.5" />
-		<PackageReference Include="Uno.Toolkit.WinUI.Cupertino" Version="4.3.0-dev.5" />
-		<PackageReference Include="Uno.Toolkit.WinUI.Material" Version="4.3.0-dev.5" />		
+		<PackageReference Include="Uno.Toolkit.Skia.WinUI" Version="4.2.22" />
+		<PackageReference Include="Uno.Toolkit.WinUI.Cupertino" Version="4.2.22" />
+		<PackageReference Include="Uno.Toolkit.WinUI.Material" Version="4.2.22" />		
 		<PackageReference Include="Uno.WinUI.Lottie" Version="4.11.0-dev.40" />
 		<PackageReference Include="Uno.WinUI.Skia.Gtk" Version="4.11.0-dev.40" />
 		<PackageReference Include="Uno.WinUI.RemoteControl" Version="4.11.0-dev.40" Condition="'$(Configuration)'=='Debug'" />
 		<PackageReference Include="Uno.UI.Adapter.Microsoft.Extensions.Logging" Version="4.11.0-dev.40" />
-=======
-		<PackageReference Include="Uno.Toolkit.Skia.WinUI" Version="5.0.0-dev.99" />
-		<PackageReference Include="Uno.Toolkit.WinUI.Cupertino" Version="5.0.0-dev.99" />
-		<PackageReference Include="Uno.Toolkit.WinUI.Material" Version="5.0.0-dev.99" />		
-		<PackageReference Include="Uno.WinUI.Lottie" Version="5.0.0-dev.2366" />
-		<PackageReference Include="Uno.WinUI.Skia.Gtk" Version="5.0.0-dev.2366" />
-		<PackageReference Include="Uno.WinUI.RemoteControl" Version="5.0.0-dev.2366" Condition="'$(Configuration)'=='Debug'" />
-		<PackageReference Include="Uno.UI.Adapter.Microsoft.Extensions.Logging" Version="5.0.0-dev.2366" />
->>>>>>> dd5241b6 (chore: update toolkit packages)
 		<PackageReference Include="Uno.Core.Extensions.Disposables" Version="4.0.1" />
 		<PackageReference Include="Uno.Core.Extensions.Compatibility" Version="4.0.1" />
 		<PackageReference Include="SkiaSharp.Skottie" Version="2.88.5" />
