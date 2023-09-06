@@ -96,10 +96,12 @@
 			<utu:ShadowCollection x:Key="ElevatedButtonNormalShadows">
 				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="16" Spread="0" Color="#000000" Opacity="0.4" IsInner="False" />
 				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="16" Spread="0" Color="#615B71" Opacity="0.6" IsInner="False" />
+				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="2" Spread="0" Color="#000000" Opacity="0.1" IsInner="True" />
+				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="2" Spread="0" Color="#615B71" Opacity="0.3" IsInner="True" />
 			</utu:ShadowCollection>
 			<utu:ShadowCollection x:Key="ElevatedButtonHoveredShadows">
-				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="16" Spread="0" Color="#000000" Opacity="0.5" IsInner="False" />
-				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="16" Spread="0" Color="#79718E" Opacity="0.5" IsInner="False" />
+				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="8" Spread="0" Color="#79718E" Opacity="0.6" IsInner="True" />
+				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="8" Spread="0" Color="#000000" Opacity="0.4" IsInner="True" />
 			</utu:ShadowCollection>
 			<utu:ShadowCollection x:Key="ElevatedButtonPressedShadows">
 				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="8" Spread="0" Color="#79718E" Opacity="0.6" IsInner="True" />
@@ -110,19 +112,20 @@
 				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Spread="0" Color="#5F5B69" Opacity="0.5" IsInner="False" />
 			</utu:ShadowCollection>
 			<utu:ShadowCollection x:Key="ElevatedButtonFocusedShadows">
-				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="16" Spread="0" Color="#000000" Opacity="0.4" IsInner="False" />
-				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="16" Spread="0" Color="#79718E" Opacity="0.4" IsInner="False" />
-				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="48" Spread="0" Color="#000000" Opacity="0.2" IsInner="True" />
+				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="8" Spread="0" Color="#79718E" Opacity="0.6" IsInner="True" />
+				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="8" Spread="0" Color="#000000" Opacity="0.4" IsInner="True" />
 			</utu:ShadowCollection>
 
 			<!-- Filled Button Shadows -->
 			<utu:ShadowCollection x:Key="FilledButtonNormalShadows">
 				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="16" Spread="0" Color="#A9A2D9" Opacity="0.6" IsInner="False" />
 				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="16" Spread="0" Color="#E5DCFF" Opacity="0.6" IsInner="False" />
+				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="2" Spread="0" Color="#000000" Opacity="0.1" IsInner="True" />
+				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="2" Spread="0" Color="#FFFFFF" Opacity="0.1" IsInner="True" />
 			</utu:ShadowCollection>
 			<utu:ShadowCollection x:Key="FilledButtonHoveredShadows">
-				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="16" Spread="0" Color="#A9A2D9" Opacity="0.7" IsInner="False" />
-				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="16" Spread="0" Color="#E5DCFF" Opacity="0.5" IsInner="False" />
+				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="8" Spread="0" Color="#E5DCFF" Opacity="0.6" IsInner="True" />
+				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="8" Spread="0" Color="#A9A2D9" Opacity="0.6" IsInner="True" />
 			</utu:ShadowCollection>
 			<utu:ShadowCollection x:Key="FilledButtonPressedShadows">
 				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="8" Spread="0" Color="#E5DCFF" Opacity="0.6" IsInner="True" />
@@ -133,9 +136,8 @@
 				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Spread="0" Color="#E5DCFF" Opacity="0.5" IsInner="False" />
 			</utu:ShadowCollection>
 			<utu:ShadowCollection x:Key="FilledButtonFocusedShadows">
-				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="16" Spread="0" Color="#A9A2D9" Opacity="0.6" IsInner="False" />
-				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="16" Spread="0" Color="#E5DCFF" Opacity="0.4" IsInner="False" />
-				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="48" Spread="0" Color="#A9A2D9" Opacity="0.6" IsInner="True" />
+				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="8" Spread="0" Color="#E5DCFF" Opacity="0.6" IsInner="True" />
+				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="8" Spread="0" Color="#A9A2D9" Opacity="0.6" IsInner="True" />
 			</utu:ShadowCollection>
 
 			<!-- FAB -->
@@ -157,7 +159,7 @@
 
 			<!-- Slider -->
 			<SolidColorBrush x:Key="SliderTrackBackground" Color="#302D38" />
-			
+
 			<utu:ShadowCollection x:Key="SliderTrackRectShadows">
 				<utu:Shadow BlurRadius="4" IsInner="True" OffsetX="1" OffsetY="1" Opacity="1" Spread="0" Color="#000000" />
 				<utu:Shadow BlurRadius="4" IsInner="True" OffsetX="-1" OffsetY="-1" Opacity="1" Spread="0" Color="#615B71" />
@@ -306,10 +308,12 @@
 			<utu:ShadowCollection x:Key="ElevatedButtonNormalShadows">
 				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="16" Spread="0" Color="#AEAEC0" Opacity="0.4" IsInner="False" />
 				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="16" Spread="0" Color="#FFFFFF" Opacity="0.6" IsInner="False" />
+				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="2" Spread="0" Color="#AEAEC0" Opacity="0.4" IsInner="True" />
+				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="2" Spread="0" Color="#FFFFFF" Opacity="0.6" IsInner="True" />
 			</utu:ShadowCollection>
 			<utu:ShadowCollection x:Key="ElevatedButtonHoveredShadows">
-				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="16" Spread="0" Color="#AEAEC0" Opacity="0.5" IsInner="False" />
-				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="16" Spread="0" Color="#FFFFFF" Opacity="0.5" IsInner="False" />
+				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="8" Spread="0" Color="#FFFFFF" Opacity="0.6" IsInner="True" />
+				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="8" Spread="0" Color="#AEAEC0" Opacity="0.4" IsInner="True" />
 			</utu:ShadowCollection>
 			<utu:ShadowCollection x:Key="ElevatedButtonPressedShadows">
 				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="8" Spread="0" Color="#FFFFFF" Opacity="0.6" IsInner="True" />
@@ -317,40 +321,35 @@
 			</utu:ShadowCollection>
 			<utu:ShadowCollection x:Key="ElevatedButtonDisabledShadows">
 				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="4" Spread="0" Color="#AEAEC0" Opacity="0.4" IsInner="False" />
-				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Spread="0" Color="#FFFFFF" Opacity="1" IsInner="False" />
+				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Spread="0" Color="#FFFFFF" Opacity="0.6" IsInner="False" />
 			</utu:ShadowCollection>
 			<utu:ShadowCollection x:Key="ElevatedButtonFocusedShadows">
-				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="16" Spread="0" Color="#AEAEC0" Opacity="0.4" IsInner="False" />
-				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="16" Spread="0" Color="#FFFFFF" Opacity="0.4" IsInner="False" />
-				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="48" Spread="0" Color="#AEAEC0" Opacity="0.2" IsInner="True" />
+				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="8" Spread="0" Color="#FFFFFF" Opacity="0.6" IsInner="True" />
+				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="8" Spread="0" Color="#AEAEC0" Opacity="0.4" IsInner="True" />
 			</utu:ShadowCollection>
 
 			<!-- Filled Button Shadows -->
 			<utu:ShadowCollection x:Key="FilledButtonNormalShadows">
 				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="16" Spread="0" Color="#4C3CB3" Opacity="0.6" IsInner="False" />
 				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="16" Spread="0" Color="#6651F2" Opacity="0.6" IsInner="False" />
+				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="2" Spread="0" Color="#000000" Opacity="0.1" IsInner="True" />
+				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="2" Spread="0" Color="#FFFFFF" Opacity="0.1" IsInner="True" />
 			</utu:ShadowCollection>
 			<utu:ShadowCollection x:Key="FilledButtonHoveredShadows">
-				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="16" Spread="0" Color="#4C3CB3" Opacity="0.7" IsInner="False" />
-				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="16" Spread="0" Color="#6651F2" Opacity="0.5" IsInner="False" />
+				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="16" Spread="0" Color="#4C3CB3" Opacity="0.7" IsInner="True" />
+				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="16" Spread="0" Color="#6651F2" Opacity="0.5" IsInner="True" />
 			</utu:ShadowCollection>
 			<utu:ShadowCollection x:Key="FilledButtonPressedShadows">
 				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="8" Spread="0" Color="#6651F2" Opacity="0.6" IsInner="True" />
 				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="8" Spread="0" Color="#4C3CB3" Opacity="0.6" IsInner="True" />
 			</utu:ShadowCollection>
 			<utu:ShadowCollection x:Key="FilledButtonDisabledShadows">
-				<d:Legacy>
-					<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Spread="0" Color="#6651F2" Opacity="1"  IsInner="False" />
-					<!-- Opacity of 16% seems closer to the Figma design. Original is 100% -->
-					<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="4" Spread="0" Color="#4C3CB3" Opacity="0.16" IsInner="False" />
-				</d:Legacy>
 				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="4" Spread="0" Color="#4C3CB3" Opacity="1" IsInner="False" />
 				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Spread="0" Color="#6651F2" Opacity="1" IsInner="False" />
 			</utu:ShadowCollection>
 			<utu:ShadowCollection x:Key="FilledButtonFocusedShadows">
-				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="16" Spread="0" Color="#4C3CB3" Opacity="0.6" IsInner="False" />
-				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="16" Spread="0" Color="#6651F2" Opacity="0.4" IsInner="False" />
-				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="48" Spread="0" Color="#4C3CB3" Opacity="0.6" IsInner="True" />
+				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="8" Spread="0" Color="#4C3CB3" Opacity="0.6" IsInner="True" />
+				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="8" Spread="0" Color="#6651F2" Opacity="0.4" IsInner="True" />
 			</utu:ShadowCollection>
 
 			<!-- FAB -->
@@ -372,7 +371,7 @@
 
 			<!-- Slider -->
 			<SolidColorBrush x:Key="SliderTrackBackground" Color="#F3EFF5" />
-			
+
 			<utu:ShadowCollection x:Key="SliderTrackRectShadows">
 				<utu:Shadow BlurRadius="4" IsInner="True" OffsetX="1" OffsetY="1" Opacity="1" Spread="0" Color="#C8C7D1" />
 				<utu:Shadow BlurRadius="4" IsInner="True" OffsetX="-1" OffsetY="-1" Opacity="0.8" Spread="0" Color="#FFFFFF" />
@@ -1119,11 +1118,16 @@
 										 Shadows="{ThemeResource ElevatedButtonNormalShadows}">
 
 						<VisualStateManager.VisualStateGroups>
+							<!--
+								ShadowContainer direct child shouldn't have background.
+								However, here we are just reusing it as a state-layer to apply a non-opaque overlay.
+							-->
 							<VisualStateGroup x:Name="CommonStates">
 								<VisualState x:Name="Normal" />
 								<VisualState x:Name="PointerOver">
 									<VisualState.Setters>
 										<Setter Target="RootPanel.Shadows" Value="{ThemeResource ElevatedButtonHoveredShadows}" />
+										<Setter Target="RootGrid.Background" Value="{ThemeResource OnSurfaceHoverBrush}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="Pressed">
@@ -1134,9 +1138,11 @@
 								<VisualState x:Name="Disabled">
 									<VisualState.Setters>
 										<Setter Target="RootPanel.Shadows" Value="{ThemeResource ElevatedButtonDisabledShadows}" />
-										<Setter Target="RootPanel.Background" Value="{ThemeResource OnSurfaceInverseBrush}" />
-										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource OnSurfaceLowBrush}" />
-										<Setter Target="IconPresenter.Foreground" Value="{ThemeResource OnSurfaceLowBrush}" />
+										<Setter Target="RootPanel.Opacity" Value="0.38" />
+										<Setter Target="RootGrid.Background" Value="{ThemeResource OnSurfaceDisabledBrush}" />
+										<!-- using OnSurfaceBrush instead of OnSurfaceLowBrush, because 38% opacity is already applied from RootPanel -->
+										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource OnSurfaceBrush}" />
+										<Setter Target="IconPresenter.Foreground" Value="{ThemeResource OnSurfaceBrush}" />
 									</VisualState.Setters>
 								</VisualState>
 							</VisualStateGroup>
@@ -1144,6 +1150,7 @@
 								<VisualState x:Name="Focused">
 									<VisualState.Setters>
 										<Setter Target="RootPanel.Shadows" Value="{ThemeResource ElevatedButtonFocusedShadows}" />
+										<Setter Target="RootGrid.Background" Value="{ThemeResource OnSurfaceFocusedBrush}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="PointerFocused" />
@@ -1173,7 +1180,6 @@
 										 Visibility="{Binding Path=(um:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialNullToCollapsedConverter}, FallbackValue=Collapsed, TargetNullValue=Collapsed}">
 									<ContentPresenter x:Name="IconPresenter"
 													  Content="{Binding Path=(um:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}}"
-											
 													  HorizontalAlignment="{StaticResource ButtonIconHorizontalAlignment}"
 													  VerticalAlignment="{StaticResource ButtonIconVerticalAlignment}" />
 								</Viewbox>
@@ -1243,11 +1249,16 @@
 										 Shadows="{ThemeResource FilledButtonNormalShadows}">
 
 						<VisualStateManager.VisualStateGroups>
+							<!--
+								ShadowContainer direct child shouldn't have background.
+								However, here we are just reusing it as a state-layer to apply a non-opaque overlay.
+							-->
 							<VisualStateGroup x:Name="CommonStates">
 								<VisualState x:Name="Normal" />
 								<VisualState x:Name="PointerOver">
 									<VisualState.Setters>
 										<Setter Target="RootPanel.Shadows" Value="{ThemeResource FilledButtonHoveredShadows}" />
+										<Setter Target="RootGrid.Background" Value="{ThemeResource OnPrimaryHoverBrush}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="Pressed">
@@ -1258,7 +1269,8 @@
 								<VisualState x:Name="Disabled">
 									<VisualState.Setters>
 										<Setter Target="RootPanel.Shadows" Value="{ThemeResource FilledButtonDisabledShadows}" />
-										<Setter Target="RootPanel.Background" Value="{ThemeResource PrimaryBrush}" />
+										<Setter Target="RootPanel.Opacity" Value="0.85" />
+										<Setter Target="RootGrid.Background" Value="{ThemeResource OnSurfaceDisabledBrush}" />
 										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource OnPrimaryLowBrush}" />
 										<Setter Target="IconPresenter.Foreground" Value="{ThemeResource OnPrimaryLowBrush}" />
 									</VisualState.Setters>
@@ -1268,6 +1280,7 @@
 								<VisualState x:Name="Focused">
 									<VisualState.Setters>
 										<Setter Target="RootPanel.Shadows" Value="{ThemeResource FilledButtonFocusedShadows}" />
+										<Setter Target="RootGrid.Background" Value="{ThemeResource OnPrimaryFocusedBrush}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="PointerFocused" />
@@ -3735,7 +3748,7 @@
 								  BorderBrush="{ThemeResource OutlineVariantBrush}"
 								  BorderThickness="1"
 								  Opacity="0" />
-							
+
 							<Grid x:Name="TrackHighlightOff"
 								  Background="{ThemeResource SurfaceVariantBrush}"
 								  Width="{ThemeResource SwitchKnobWidth}"
@@ -3744,7 +3757,7 @@
 								  HorizontalAlignment="Center"
 								  BorderBrush="{ThemeResource OutlineVariantBrush}"
 								  BorderThickness="1" />
-							
+
 							<utu:ShadowContainer x:Name="OnShadowPanel"
 												 HorizontalAlignment="Center"
 												 Shadows="{ThemeResource ToggleSwitchOnBorderShadows}"
