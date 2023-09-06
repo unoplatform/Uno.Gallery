@@ -10,7 +10,7 @@
 			 xmlns:xamarin="http://uno.ui/xamarin"
 			 mc:Ignorable="wasm xamarin">
 
-	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+	<Grid Background="{ThemeResource SurfaceBrush}">
 
 		<Grid.RowDefinitions>
 			<RowDefinition x:Name="TopPaddingRow"
@@ -85,6 +85,7 @@
 		<!-- Custom pane toggle button -->
 		<Button x:Name="NavViewToggleButton"
 				Grid.Row="2"
+				Foreground="{ThemeResource SurfaceBrush}"
 				Click="NavViewToggleButton_Click"
 				HorizontalAlignment="Left"
 				AutomationProperties.AutomationId="NavToggle"

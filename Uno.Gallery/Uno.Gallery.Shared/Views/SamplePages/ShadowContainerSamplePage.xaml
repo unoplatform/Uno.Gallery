@@ -12,6 +12,8 @@
 	  xmlns:sample="using:Uno.Gallery"
 	  xmlns:converters="using:Uno.Gallery.Converters"
 	  xmlns:selectors="using:Uno.Gallery.Selectors"
+	  utu:StatusBar.Background="{ThemeResource SurfaceBrush}"
+	  Background="{ThemeResource SurfaceBrush}"
 	  mc:Ignorable="d">
 	<Page.Resources>
 		<ResourceDictionary>
@@ -23,6 +25,20 @@
 				<ResourceDictionary Source="../NeumorphicColorsOverride.xaml" />
 				<ResourceDictionary Source="../Styles/NeumorphicStyles.xaml" />
 			</ResourceDictionary.MergedDictionaries>
+			<ResourceDictionary.ThemeDictionaries>
+				<ResourceDictionary x:Key="Default">
+					<utu:ShadowCollection x:Key="PersonPictureShadows">
+						<utu:Shadow OffsetX="2" OffsetY="2" BlurRadius="8" Spread="0" Color="#000000" Opacity="0.8" IsInner="False" />
+						<utu:Shadow OffsetX="-2" OffsetY="-2" BlurRadius="8" Spread="0" Color="#79718E" Opacity="0.8" IsInner="False" />
+					</utu:ShadowCollection>
+				</ResourceDictionary>
+				<ResourceDictionary x:Key="Light">
+					<utu:ShadowCollection x:Key="PersonPictureShadows">
+						<utu:Shadow OffsetX="2" OffsetY="2" BlurRadius="8" Spread="0" Color="#AEAEC0" Opacity="0.8" IsInner="False" />
+						<utu:Shadow OffsetX="-2" OffsetY="-2" BlurRadius="8" Spread="0" Color="#FFFFFF" Opacity="0.8" IsInner="False" />
+					</utu:ShadowCollection>
+				</ResourceDictionary>
+			</ResourceDictionary.ThemeDictionaries>
 
 			<!--#region Neumorphic Templates-->
 			<DataTemplate x:Key="NeumorphicNoneTemplate">
@@ -903,7 +919,7 @@
 			<DataTemplate x:Key="MySampleTemplate">
 				<smtx:XamlDisplay UniqueKey="ShadowContainerSamplePage_MySample"
 								  Background="{ThemeResource SurfaceBrush}"
-								  Padding="100">
+								  Padding="0">
 					<Grid RowSpacing="20">
 						<Grid.RowDefinitions>
 							<RowDefinition Height="*" />
@@ -1009,194 +1025,191 @@
 			<utu:Shadow x:Key="DefaultShadow" BlurRadius="20" OffsetX="10" OffsetY="10" Opacity="0.5" Spread="0" Color="{StaticResource UnoPurple}" />
 		</ResourceDictionary>
 	</Page.Resources>
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<utu:NavigationBar Content="Uno Commerce" Background="{ThemeResource SurfaceInvariantBrush}" />
+		<StackPanel Grid.Row="1" Background="{ThemeResource SurfaceBrush}">
+			<StackPanel Background="{ThemeResource SurfaceBrush}"
+						HorizontalAlignment="Center">
 
-	<utu:AutoLayout Background="{ThemeResource SurfaceBrush}">
-		<utu:AutoLayout Spacing="16"
-						Padding="32,48,32,8"
-						utu:AutoLayout.IsIndependentLayout="True"
-						Margin="0,24,0,0"
-						VerticalAlignment="Top"
-						HorizontalAlignment="Left"
-						Width="411">
-			<utu:ShadowContainer utu:AutoLayout.CounterAlignment="Start"
-								 Background="{ThemeResource SurfaceBrush}">
-				<utu:ShadowContainer.Shadows>
-					<utu:Shadow OffsetX="2" OffsetY="2" BlurRadius="8" Spread="0" Color="#AEAEC0" Opacity="0.8" IsInner="False" />
-					<utu:Shadow OffsetX="-2" OffsetY="-2" BlurRadius="8" Spread="0" Color="#FFFFFF" Opacity="0.8" IsInner="False" />
-				</utu:ShadowContainer.Shadows>
-				<Border CornerRadius="30"
-						Width="60"
-						Height="60">
-					<Image Source="ms-appx:///Assets/ImageMaster.png" />
-				</Border>
-			</utu:ShadowContainer>
-			<TextBlock Text="Michael Scott"
-					   utu:AutoLayout.CounterAlignment="Start"
-					   Foreground="{ThemeResource OnSurfaceBrush}"
-					   Style="{StaticResource HeadlineMedium}" />
-		</utu:AutoLayout>
-		<utu:AutoLayout Spacing="8"
-						CornerRadius="4"
-						Padding="16,24"
-						utu:AutoLayout.IsIndependentLayout="True"
-						Margin="0,184,0,0"
-						VerticalAlignment="Top"
-						HorizontalAlignment="Left"
-						Width="411">
-			<utu:AutoLayout Orientation="Horizontal"
-							Padding="12">
-				<PathIcon Data="{StaticResource Icon_Person}"
-						  Margin="0,0,16,0"
-						  utu:AutoLayout.CounterAlignment="Center"
-						  Foreground="{ThemeResource OnSurfaceLowBrush}" />
-				<utu:AutoLayout Orientation="Horizontal"
-								Padding="0,2"
-								utu:AutoLayout.CounterAlignment="Center"
-								utu:AutoLayout.PrimaryAlignment="Stretch">
-					<TextBlock Text="Account"
-							   utu:AutoLayout.CounterAlignment="Center"
-							   Style="{StaticResource BodyMedium}"
-							   Foreground="{ThemeResource OnSurfaceBrush}" />
-				</utu:AutoLayout>
-				<Button Margin="16,0,0,0"
-						utu:AutoLayout.CounterAlignment="Center"
-						Foreground="{ThemeResource OnSurfaceVariantBrush}"
-						Style="{StaticResource NeumorphicIconButtonStyle}">
-					<PathIcon Data="{StaticResource Icon_Arrow_Right}"
-							  Foreground="{ThemeResource OnSurfaceVariantBrush}" />
-				</Button>
-			</utu:AutoLayout>
-			<utu:Divider Style="{StaticResource DividerStyle}" />
-			<utu:AutoLayout Justify="SpaceBetween"
-							Orientation="Horizontal"
-							Padding="12">
-				<PathIcon Data="{StaticResource Icon_Settings}"
-						  Margin="0,0,16,0"
-						  utu:AutoLayout.CounterAlignment="Center"
-						  Foreground="{ThemeResource OnSurfaceLowBrush}" />
-				<utu:AutoLayout Orientation="Horizontal"
-								Padding="0,2"
-								utu:AutoLayout.CounterAlignment="Center"
-								utu:AutoLayout.PrimaryAlignment="Stretch">
-					<TextBlock Text="Settings"
-							   Style="{StaticResource BodyMedium}"
-							   utu:AutoLayout.CounterAlignment="Center"
-							   Foreground="{ThemeResource OnSurfaceBrush}" />
-				</utu:AutoLayout>
-				<Button Margin="16,0,0,0"
-						utu:AutoLayout.CounterAlignment="Center"
-						Foreground="{ThemeResource OnSurfaceVariantBrush}"
-						Style="{StaticResource NeumorphicIconButtonStyle}">
-					<PathIcon Data="{StaticResource Icon_Arrow_Right}"
-							  Foreground="{ThemeResource OnSurfaceVariantBrush}" />
-				</Button>
-			</utu:AutoLayout>
-			<utu:Divider Style="{StaticResource DividerStyle}" />
-			<utu:AutoLayout Justify="SpaceBetween"
-							Orientation="Horizontal"
-							Padding="12">
-				<PathIcon Data="{StaticResource Icon_Local_Shipping}"
-						  Margin="0,0,16,0"
-						  utu:AutoLayout.CounterAlignment="Center"
-						  Foreground="{ThemeResource OnSurfaceLowBrush}" />
-				<utu:AutoLayout Orientation="Horizontal"
-								Padding="0,2"
-								utu:AutoLayout.CounterAlignment="Center"
-								utu:AutoLayout.PrimaryAlignment="Stretch">
-					<TextBlock Text="Orders"
-							   Style="{StaticResource BodyMedium}"
-							   utu:AutoLayout.CounterAlignment="Center"
-							   Foreground="{ThemeResource OnSurfaceBrush}" />
-				</utu:AutoLayout>
-				<Button Margin="16,0,0,0"
-						utu:AutoLayout.CounterAlignment="Center"
-						Foreground="{ThemeResource OnSurfaceVariantBrush}"
-						Style="{StaticResource NeumorphicIconButtonStyle}">
-					<PathIcon Data="{StaticResource Icon_Arrow_Right}"
-							  Foreground="{ThemeResource OnSurfaceVariantBrush}" />
-				</Button>
-			</utu:AutoLayout>
-			<utu:Divider Style="{StaticResource DividerStyle}" />
-			<utu:AutoLayout Justify="SpaceBetween"
-							Orientation="Horizontal"
-							Padding="12">
-				<PathIcon Data="{StaticResource Icon_Help}"
-						  Margin="0,0,16,0"
-						  utu:AutoLayout.CounterAlignment="Center"
-						  Foreground="{ThemeResource OnSurfaceLowBrush}" />
-				<utu:AutoLayout Orientation="Horizontal"
-								Padding="0,2"
-								utu:AutoLayout.CounterAlignment="Center"
-								utu:AutoLayout.PrimaryAlignment="Stretch">
-					<TextBlock Text="Help"
-							   Style="{StaticResource BodyMedium}"
-							   utu:AutoLayout.CounterAlignment="Center"
-							   Foreground="{ThemeResource OnSurfaceBrush}" />
-				</utu:AutoLayout>
-				<Button Margin="16,0,0,0"
-						utu:AutoLayout.CounterAlignment="Center"
-						Foreground="{ThemeResource OnSurfaceVariantBrush}"
-						Style="{StaticResource NeumorphicIconButtonStyle}">
-					<PathIcon Data="{StaticResource Icon_Arrow_Right}"
-							  Foreground="{ThemeResource OnSurfaceVariantBrush}" />
-				</Button>
-			</utu:AutoLayout>
-		</utu:AutoLayout>
-		<utu:AutoLayout Padding="16,24"
-						utu:AutoLayout.IsIndependentLayout="True"
-						Margin="0,539,0,0"
-						VerticalAlignment="Top"
-						HorizontalAlignment="Left">
-			<Button Width="379"
-					Style="{StaticResource NeumorphicMediumElevatedButtonStyle}"
-					Content="Log out">
-				<um:ControlExtensions.Icon>
-					<PathIcon Data="{StaticResource Icon_Add}"
-							  utu:AutoLayout.CounterAlignment="Center"
-							  Foreground="{ThemeResource PrimaryBrush}" />
-				</um:ControlExtensions.Icon>
-			</Button>
-
-		</utu:AutoLayout>
-		<Grid utu:AutoLayout.IsIndependentLayout="True"
-			  Margin="16,0,0,64"
-			  VerticalAlignment="Bottom"
-			  HorizontalAlignment="Left">
-			<utu:TabBar CornerRadius="20"
-						Width="380"
-						Style="{StaticResource NeumorphicBottomTabBarStyle}">
-				<utu:TabBarItem Content="Deals"
-								Foreground="{ThemeResource OnSurfaceVariantBrush}">
-					<utu:TabBarItem.Icon>
-						<PathIcon Data="{StaticResource Icon_Bolt}" />
-					</utu:TabBarItem.Icon>
-				</utu:TabBarItem>
-				<utu:TabBarItem Content="Search"
-								Foreground="{ThemeResource OnSurfaceVariantBrush}">
-					<utu:TabBarItem.Icon>
-						<PathIcon Data="{StaticResource Icon_Search}" />
-					</utu:TabBarItem.Icon>
-				</utu:TabBarItem>
-				<utu:TabBarItem Content="Profile">
-					<utu:TabBarItem.Icon>
-						<PathIcon Data="{StaticResource Icon_Person}"
-								  Foreground="{ThemeResource PrimaryBrush}" />
-					</utu:TabBarItem.Icon>
-				</utu:TabBarItem>
-				<utu:TabBarItem />
-
-			</utu:TabBar>
-			<utu:TabBarItem IsSelectable="False"
-							HorizontalAlignment="Right"
+				<StackPanel Spacing="16"
+							Padding="32,16,32,8"
 							VerticalAlignment="Top"
-							Margin="0,-20,30,0"
-							Background="{ThemeResource PrimaryContainerBrush}"
-							Style="{StaticResource NeumorphicFabTabBarItemStyle}">
-				<utu:TabBarItem.Icon>
-					<PathIcon Data="{StaticResource Icon_Shopping_Cart}"
-							  Foreground="{ThemeResource OnPrimaryContainerBrush}" />
-				</utu:TabBarItem.Icon>
-			</utu:TabBarItem>
-		</Grid>
-	</utu:AutoLayout>
+							HorizontalAlignment="Left">
+					<utu:ShadowContainer HorizontalAlignment="Left"
+										 Background="{ThemeResource SurfaceBrush}"
+										 Shadows="{ThemeResource PersonPictureShadows}">
+						<Border CornerRadius="30"
+								Width="60"
+								Height="60">
+							<Image Source="ms-appx:///Assets/ImageMaster.png" />
+						</Border>
+					</utu:ShadowContainer>
+					<TextBlock Text="Michael Scott"
+							   utu:AutoLayout.CounterAlignment="Start"
+							   Foreground="{ThemeResource OnSurfaceBrush}"
+							   Style="{StaticResource HeadlineMedium}" />
+				</StackPanel>
+				<StackPanel Spacing="8"
+							CornerRadius="4"
+							Padding="16,24"
+							VerticalAlignment="Top"
+							HorizontalAlignment="Left">
+					<utu:AutoLayout Orientation="Horizontal"
+									Padding="12">
+						<PathIcon Data="{StaticResource Icon_Person}"
+								  Margin="0,0,16,0"
+								  utu:AutoLayout.CounterAlignment="Center"
+								  Foreground="{ThemeResource OnSurfaceLowBrush}" />
+						<utu:AutoLayout Orientation="Horizontal"
+										Padding="0,2"
+										utu:AutoLayout.CounterAlignment="Center"
+										utu:AutoLayout.PrimaryAlignment="Stretch">
+							<TextBlock Text="Account"
+									   utu:AutoLayout.CounterAlignment="Center"
+									   Style="{StaticResource BodyMedium}"
+									   Foreground="{ThemeResource OnSurfaceBrush}" />
+						</utu:AutoLayout>
+						<Button Margin="16,0,0,0"
+								utu:AutoLayout.CounterAlignment="Center"
+								Foreground="{ThemeResource OnSurfaceVariantBrush}"
+								Style="{StaticResource NeumorphicIconButtonStyle}">
+							<PathIcon Data="{StaticResource Icon_Arrow_Right}"
+									  Foreground="{ThemeResource OnSurfaceVariantBrush}" />
+						</Button>
+					</utu:AutoLayout>
+					<utu:Divider Style="{StaticResource DividerStyle}" />
+					<utu:AutoLayout Justify="SpaceBetween"
+									Orientation="Horizontal"
+									Padding="12">
+						<PathIcon Data="{StaticResource Icon_Settings}"
+								  Margin="0,0,16,0"
+								  utu:AutoLayout.CounterAlignment="Center"
+								  Foreground="{ThemeResource OnSurfaceLowBrush}" />
+						<utu:AutoLayout Orientation="Horizontal"
+										Padding="0,2"
+										utu:AutoLayout.CounterAlignment="Center"
+										utu:AutoLayout.PrimaryAlignment="Stretch">
+							<TextBlock Text="Settings"
+									   Style="{StaticResource BodyMedium}"
+									   utu:AutoLayout.CounterAlignment="Center"
+									   Foreground="{ThemeResource OnSurfaceBrush}" />
+						</utu:AutoLayout>
+						<Button Margin="16,0,0,0"
+								utu:AutoLayout.CounterAlignment="Center"
+								Foreground="{ThemeResource OnSurfaceVariantBrush}"
+								Style="{StaticResource NeumorphicIconButtonStyle}">
+							<PathIcon Data="{StaticResource Icon_Arrow_Right}"
+									  Foreground="{ThemeResource OnSurfaceVariantBrush}" />
+						</Button>
+					</utu:AutoLayout>
+					<utu:Divider Style="{StaticResource DividerStyle}" />
+					<utu:AutoLayout Justify="SpaceBetween"
+									Orientation="Horizontal"
+									Padding="12">
+						<PathIcon Data="{StaticResource Icon_Local_Shipping}"
+								  Margin="0,0,16,0"
+								  utu:AutoLayout.CounterAlignment="Center"
+								  Foreground="{ThemeResource OnSurfaceLowBrush}" />
+						<utu:AutoLayout Orientation="Horizontal"
+										Padding="0,2"
+										utu:AutoLayout.CounterAlignment="Center"
+										utu:AutoLayout.PrimaryAlignment="Stretch">
+							<TextBlock Text="Orders"
+									   Style="{StaticResource BodyMedium}"
+									   utu:AutoLayout.CounterAlignment="Center"
+									   Foreground="{ThemeResource OnSurfaceBrush}" />
+						</utu:AutoLayout>
+						<Button Margin="16,0,0,0"
+								utu:AutoLayout.CounterAlignment="Center"
+								Foreground="{ThemeResource OnSurfaceVariantBrush}"
+								Style="{StaticResource NeumorphicIconButtonStyle}">
+							<PathIcon Data="{StaticResource Icon_Arrow_Right}"
+									  Foreground="{ThemeResource OnSurfaceVariantBrush}" />
+						</Button>
+					</utu:AutoLayout>
+					<utu:Divider Style="{StaticResource DividerStyle}" />
+					<utu:AutoLayout Justify="SpaceBetween"
+									Orientation="Horizontal"
+									Padding="12">
+						<PathIcon Data="{StaticResource Icon_Help}"
+								  Margin="0,0,16,0"
+								  utu:AutoLayout.CounterAlignment="Center"
+								  Foreground="{ThemeResource OnSurfaceLowBrush}" />
+						<utu:AutoLayout Orientation="Horizontal"
+										Padding="0,2"
+										utu:AutoLayout.CounterAlignment="Center"
+										utu:AutoLayout.PrimaryAlignment="Stretch">
+							<TextBlock Text="Help"
+									   Style="{StaticResource BodyMedium}"
+									   utu:AutoLayout.CounterAlignment="Center"
+									   Foreground="{ThemeResource OnSurfaceBrush}" />
+						</utu:AutoLayout>
+						<Button Margin="16,0,0,0"
+								utu:AutoLayout.CounterAlignment="Center"
+								Foreground="{ThemeResource OnSurfaceVariantBrush}"
+								Style="{StaticResource NeumorphicIconButtonStyle}">
+							<PathIcon Data="{StaticResource Icon_Arrow_Right}"
+									  Foreground="{ThemeResource OnSurfaceVariantBrush}" />
+						</Button>
+					</utu:AutoLayout>
+				</StackPanel>
+
+				<Button HorizontalAlignment="Stretch"
+						Margin="16,30,16,16"
+						Style="{StaticResource NeumorphicMediumElevatedButtonStyle}"
+						Content="Log out">
+					<um:ControlExtensions.Icon>
+						<PathIcon Data="{StaticResource Icon_Add}"
+								  utu:AutoLayout.CounterAlignment="Center"
+								  Foreground="{ThemeResource PrimaryBrush}" />
+					</um:ControlExtensions.Icon>
+				</Button>
+
+
+
+			</StackPanel>
+			<Grid Margin="16,60,16,16"
+				  VerticalAlignment="Bottom">
+				<utu:TabBar CornerRadius="20"
+							Width="NaN"
+							Style="{StaticResource NeumorphicBottomTabBarStyle}">
+					<utu:TabBarItem Content="Deals"
+									Foreground="{ThemeResource OnSurfaceVariantBrush}">
+						<utu:TabBarItem.Icon>
+							<PathIcon Data="{StaticResource Icon_Bolt}" />
+						</utu:TabBarItem.Icon>
+					</utu:TabBarItem>
+					<utu:TabBarItem Content="Search"
+									Foreground="{ThemeResource OnSurfaceVariantBrush}">
+						<utu:TabBarItem.Icon>
+							<PathIcon Data="{StaticResource Icon_Search}" />
+						</utu:TabBarItem.Icon>
+					</utu:TabBarItem>
+					<utu:TabBarItem Content="Profile">
+						<utu:TabBarItem.Icon>
+							<PathIcon Data="{StaticResource Icon_Person}"
+									  Foreground="{ThemeResource PrimaryBrush}" />
+						</utu:TabBarItem.Icon>
+					</utu:TabBarItem>
+					<utu:TabBarItem />
+
+				</utu:TabBar>
+				<utu:TabBarItem IsSelectable="False"
+								HorizontalAlignment="Right"
+								VerticalAlignment="Top"
+								Margin="0,-20,30,0"
+								Background="{ThemeResource PrimaryContainerBrush}"
+								Style="{StaticResource NeumorphicFabTabBarItemStyle}">
+					<utu:TabBarItem.Icon>
+						<PathIcon Data="{StaticResource Icon_Shopping_Cart}"
+								  Foreground="{ThemeResource OnPrimaryContainerBrush}" />
+					</utu:TabBarItem.Icon>
+				</utu:TabBarItem>
+			</Grid>
+		</StackPanel>
+	</Grid>
 </Page>

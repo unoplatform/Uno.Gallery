@@ -30,7 +30,7 @@ namespace Uno.Gallery.Views.SamplePages
 
         private void LaunchFullScreenSample(object sender, RoutedEventArgs e)
         {
-            Shell.GetForCurrentView().ShowNestedSample<NavigationBarSample_NestedPage1>(clearStack: true);
+            Shell.GetForCurrentView().ShowNestedSample<ShadowContainerSamplePage>(clearStack: true);
         }
     }
 }
