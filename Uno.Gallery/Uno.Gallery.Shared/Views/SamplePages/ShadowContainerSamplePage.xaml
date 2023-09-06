@@ -10,9 +10,10 @@
 	  xmlns:um="using:Uno.Material"
 	  xmlns:smtx="using:ShowMeTheXAML"
 	  xmlns:sample="using:Uno.Gallery"
+	   utu:StatusBar.Foreground="Light"
 	  xmlns:converters="using:Uno.Gallery.Converters"
 	  xmlns:selectors="using:Uno.Gallery.Selectors"
-	  utu:StatusBar.Background="{ThemeResource SurfaceBrush}"
+	  
 	  Background="{ThemeResource SurfaceBrush}"
 	  mc:Ignorable="d">
 	<Page.Resources>
@@ -1030,7 +1031,7 @@
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="*" />
 		</Grid.RowDefinitions>
-		<utu:NavigationBar Content="Uno Commerce" Background="{ThemeResource SurfaceInvariantBrush}" />
+		<utu:NavigationBar Content="Uno Commerce" Background="{ThemeResource SurfaceBrush}" />
 		<StackPanel Grid.Row="1" Background="{ThemeResource SurfaceBrush}">
 			<StackPanel Background="{ThemeResource SurfaceBrush}"
 						HorizontalAlignment="Center">
