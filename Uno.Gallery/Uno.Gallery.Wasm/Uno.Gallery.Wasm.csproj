@@ -116,8 +116,8 @@
 		<PackageReference Include="Uno.WinUI.MediaPlayer.WebAssembly" Version="5.0.0-dev.2366" />
 		<PackageReference Include="Uno.WinUI.WebAssembly" Version="5.0.0-dev.2366" />
 		<PackageReference Include="Uno.WinUI.RemoteControl" Version="5.0.0-dev.2366" Condition="'$(Configuration)'=='Debug'" />
-		<PackageReference Include="Uno.Wasm.Bootstrap" Version="8.0.0-dev.252" />
-		<PackageReference Include="Uno.Wasm.Bootstrap.DevServer" Version="8.0.0-dev.252" />
+		<PackageReference Include="Uno.Wasm.Bootstrap" Version="8.0.0-dev.270" />
+		<PackageReference Include="Uno.Wasm.Bootstrap.DevServer" Version="8.0.0-dev.270" />
 		<PackageReference Include="Microsoft.TypeScript.Compiler" Version="3.1.5">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
