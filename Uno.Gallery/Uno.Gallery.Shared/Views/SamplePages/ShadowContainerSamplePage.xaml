@@ -935,7 +935,6 @@
 								  Background="{ThemeResource SurfaceBrush}"
 								  smtx:XamlDisplayExtensions.Header="Shadow Builder"
 								  smtx:XamlDisplayExtensions.Description="You can add as many shadows as you like. You can also dynamically change the shadow properties.">
-
 					<utu:ShadowContainer x:Name="ShadowContainer"
 										 Background="{ThemeResource SurfaceBrush}"
 										 HorizontalAlignment="Left"
@@ -956,8 +955,11 @@
 								<RowDefinition Height="Auto" />
 								<RowDefinition Height="Auto" />
 							</Grid.RowDefinitions>
-							<ItemsRepeater Background="Green"
-										  x:Name="ShadowsItemsRepeater">
+							<ItemsRepeater x:Name="ShadowsItemsRepeater">
+								<ItemsRepeater.Layout>
+									<StackLayout Orientation="Vertical"
+												 Spacing="24" />
+								</ItemsRepeater.Layout>
 								<ItemsRepeater.ItemTemplate>
 									<DataTemplate>
 										<Grid RowSpacing="12"
@@ -1033,7 +1035,8 @@
 										HorizontalAlignment="Center"
 										Orientation="Horizontal"
 										Spacing="24">
-								<Button Style="{StaticResource NeumorphicMediumElevatedButtonStyle}"
+								<Button x:Name="RemoveShadowButton"
+										Style="{StaticResource NeumorphicMediumElevatedButtonStyle}"
 										BorderThickness="1"
 										Click="RemoveShadow"
 										Content="Shadow">
