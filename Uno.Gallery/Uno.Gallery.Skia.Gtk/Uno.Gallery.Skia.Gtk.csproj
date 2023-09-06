@@ -24,9 +24,9 @@
 		<PackageReference Include="Uno.Material.WinUI" Version="3.1.0-dev.96" />
 		<PackageReference Include="Uno.ShowMeTheXAML" Version="2.0.0-dev0015" />
 		<PackageReference Include="Uno.ShowMeTheXAML.MSBuild" Version="2.0.0-dev0015" />
-		<PackageReference Include="Uno.Toolkit.Skia.WinUI" Version="4.3.0-dev.5" />
-		<PackageReference Include="Uno.Toolkit.WinUI.Cupertino" Version="4.3.0-dev.5" />
-		<PackageReference Include="Uno.Toolkit.WinUI.Material" Version="4.3.0-dev.5" />		
+		<PackageReference Include="Uno.Toolkit.Skia.WinUI" Version="4.2.22" />
+		<PackageReference Include="Uno.Toolkit.WinUI.Cupertino" Version="4.2.22" />
+		<PackageReference Include="Uno.Toolkit.WinUI.Material" Version="4.2.22" />		
 		<PackageReference Include="Uno.WinUI.Lottie" Version="4.11.0-dev.40" />
 		<PackageReference Include="Uno.WinUI.Skia.Gtk" Version="4.11.0-dev.40" />
 		<PackageReference Include="Uno.WinUI.RemoteControl" Version="4.11.0-dev.40" Condition="'$(Configuration)'=='Debug'" />
