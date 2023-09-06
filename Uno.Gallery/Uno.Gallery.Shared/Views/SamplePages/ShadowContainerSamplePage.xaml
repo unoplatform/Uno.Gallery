@@ -937,10 +937,10 @@
 								  smtx:XamlDisplayExtensions.Description="You can add as many shadows as you like. You can also dynamically change the shadow properties.">
 					<!-- Viewbox here to be able to use ShadowBuilder for Narrow breakpoint or on a Phone -->
 					<!-- MaxWidth here for Wide breakpoint or on a Tablet -->
-					<Viewbox MaxWidth="500">
+					<Viewbox MaxWidth="500" HorizontalAlignment="Left">
 						<utu:ShadowContainer x:Name="ShadowContainer"
 											 Background="{ThemeResource SurfaceBrush}"
-											 HorizontalAlignment="Left"
+											 
 											 Margin="40">
 							<utu:ShadowContainer.Shadows>
 								<utu:ShadowCollection x:Name="Shadows">
