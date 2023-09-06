@@ -23,6 +23,14 @@
 				<utu:Shadow OffsetX="2" OffsetY="2" BlurRadius="8" Spread="0" Color="#000000" Opacity="0.8" IsInner="False" />
 				<utu:Shadow OffsetX="-2" OffsetY="-2" BlurRadius="8" Spread="0" Color="#79718E" Opacity="0.8" IsInner="False" />
 			</utu:ShadowCollection>
+			<utu:ShadowCollection x:Key="ToggleButtonUncheckedHollowShadows">
+				<utu:Shadow OffsetX="2" OffsetY="2" BlurRadius="8" Spread="0" Color="#000000" Opacity="0.8" IsInner="True" />
+				<utu:Shadow OffsetX="-2" OffsetY="-2" BlurRadius="8" Spread="0" Color="#79718E" Opacity="0.8" IsInner="True" />
+			</utu:ShadowCollection>
+			<utu:ShadowCollection x:Key="ToggleButtonCheckedHollowShadows">
+				<utu:Shadow OffsetX="4" OffsetY="2" BlurRadius="8" Spread="0" Color="#000000" Opacity="0.6" IsInner="True" />
+				<utu:Shadow OffsetX="-4" OffsetY="-2" BlurRadius="8" Spread="0" Color="#E5DCFF" Opacity="0.6" IsInner="True" />
+			</utu:ShadowCollection>
 
 			<!-- IconButton -->
 			<utu:ShadowCollection x:Key="IconButtonShadows">
@@ -234,6 +242,14 @@
 			<utu:ShadowCollection x:Key="ToggleButtonShadows">
 				<utu:Shadow OffsetX="2" OffsetY="2" BlurRadius="8" Spread="0" Color="#AEAEC0" Opacity="0.8" IsInner="False" />
 				<utu:Shadow OffsetX="-2" OffsetY="-2" BlurRadius="8" Spread="0" Color="#FFFFFF" Opacity="0.8" IsInner="False" />
+			</utu:ShadowCollection>
+			<utu:ShadowCollection x:Key="ToggleButtonUncheckedHollowShadows">
+				<utu:Shadow OffsetX="2" OffsetY="2" BlurRadius="8" Spread="0" Color="#AEAEC0" Opacity="0.8" IsInner="True" />
+				<utu:Shadow OffsetX="-2" OffsetY="-2" BlurRadius="8" Spread="0" Color="#FFFFFF" Opacity="0.8" IsInner="True" />
+			</utu:ShadowCollection>
+			<utu:ShadowCollection x:Key="ToggleButtonCheckedHollowShadows">
+				<utu:Shadow OffsetX="-4" OffsetY="-2" BlurRadius="8" Spread="0" Color="#5F4CE2" Opacity="1" IsInner="True" />
+				<utu:Shadow OffsetX="4" OffsetY="2" BlurRadius="8" Spread="0" Color="#20194D" Opacity="1" IsInner="True" />
 			</utu:ShadowCollection>
 
 			<!-- IconButton -->
@@ -1733,6 +1749,7 @@
 								</VisualState>
 								<VisualState x:Name="Pressed">
 									<VisualState.Setters>
+										<Setter Target="RootPanel.Shadows" Value="{ThemeResource ToggleButtonUncheckedHollowShadows}" />
 										<Setter Target="StateOverlay.Fill" Value="{ThemeResource PrimaryPressedBrush}" />
 										<Setter Target="ContentPresenter.Visibility" Value="Visible" />
 										<Setter Target="AlternateContentPresenter.Visibility" Value="Collapsed" />
@@ -1750,6 +1767,7 @@
 								<!-- Checked -->
 								<VisualState x:Name="Checked">
 									<VisualState.Setters>
+										<Setter Target="RootPanel.Shadows" Value="{ThemeResource ToggleButtonCheckedHollowShadows}" />
 										<Setter Target="RootPanel.Background" Value="{ThemeResource PrimaryBrush}" />
 										<Setter Target="ContentPresenter.Visibility" Value="Collapsed" />
 										<Setter Target="AlternateContentPresenter.Visibility" Value="Visible" />
@@ -1767,6 +1785,7 @@
 								</VisualState>
 								<VisualState x:Name="CheckedPressed">
 									<VisualState.Setters>
+										<Setter Target="RootPanel.Shadows" Value="{ThemeResource ToggleButtonCheckedHollowShadows}" />
 										<Setter Target="RootPanel.Background" Value="{ThemeResource PrimaryBrush}" />
 										<Setter Target="StateOverlay.Fill" Value="{ThemeResource OnPrimaryPressedBrush}" />
 										<Setter Target="ContentPresenter.Visibility" Value="Collapsed" />
