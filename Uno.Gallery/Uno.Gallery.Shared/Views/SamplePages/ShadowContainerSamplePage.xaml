@@ -935,126 +935,135 @@
 								  Background="{ThemeResource SurfaceBrush}"
 								  smtx:XamlDisplayExtensions.Header="Shadow Builder"
 								  smtx:XamlDisplayExtensions.Description="You can add as many shadows as you like. You can also dynamically change the shadow properties.">
-					<utu:ShadowContainer x:Name="ShadowContainer"
-										 Background="{ThemeResource SurfaceBrush}"
-										 HorizontalAlignment="Left"
-										 Margin="40">
-						<utu:ShadowContainer.Shadows>
-							<utu:ShadowCollection x:Name="Shadows">
-								<utu:Shadow BlurRadius="20" OffsetX="10" OffsetY="10" Opacity="0.5" Spread="0" Color="{StaticResource UnoPurple}" />
-								<utu:Shadow BlurRadius="20" OffsetX="-10" OffsetY="-10" Opacity="0.5" Spread="0" Color="{StaticResource UnoPink}" />
-								<utu:Shadow BlurRadius="20" OffsetX="-10" OffsetY="-10" Opacity="0.5" Spread="0" IsInner="True" Color="{StaticResource UnoGreen}" />
-							</utu:ShadowCollection>
-						</utu:ShadowContainer.Shadows>
-						<Grid MaxWidth="500"
-							  Padding="16"
-							  BorderBrush="{StaticResource CardStrokeColorDefaultBrush}"
-							  BorderThickness="1"
-							  CornerRadius="20">
-							<Grid.RowDefinitions>
-								<RowDefinition Height="Auto" />
-								<RowDefinition Height="Auto" />
-							</Grid.RowDefinitions>
-							<ItemsRepeater x:Name="ShadowsItemsRepeater">
-								<ItemsRepeater.Layout>
-									<StackLayout Orientation="Vertical"
-												 Spacing="24" />
-								</ItemsRepeater.Layout>
-								<ItemsRepeater.ItemTemplate>
-									<DataTemplate>
-										<Grid RowSpacing="12"
-											  ColumnSpacing="12">
-											<Grid.RowDefinitions>
-												<RowDefinition Height="Auto" />
-												<RowDefinition Height="Auto" />
-												<RowDefinition Height="Auto" />
-											</Grid.RowDefinitions>
-											<Grid.ColumnDefinitions>
-												<ColumnDefinition Width="Auto" />
-												<ColumnDefinition Width="Auto" />
-												<ColumnDefinition Width="Auto" />
-												<ColumnDefinition Width="Auto" />
-											</Grid.ColumnDefinitions>
-											<TextBox Grid.Column="0"
-													 Grid.ColumnSpan="2"
-													 PlaceholderText="Color"
-													 Style="{StaticResource NeumorphicTextBoxStyle}"
-													 Text="{Binding Color, Mode=TwoWay, Converter={StaticResource HexToColor}, UpdateSourceTrigger=PropertyChanged}">
-												<TextBox.Foreground>
-													<SolidColorBrush Color="{Binding Color}" />
-												</TextBox.Foreground>
-												<um:ControlExtensions.Icon>
-													<PathIcon Data="M10 0C4.47 0 0 4.47 0 10C0 15.53 4.47 20 10 20C15.53 20 20 15.53 20 10C20 4.47 15.53 0 10 0Z">
-														<PathIcon.Foreground>
-															<SolidColorBrush Color="{Binding Color}" />
-														</PathIcon.Foreground>
-													</PathIcon>
-												</um:ControlExtensions.Icon>
-											</TextBox>
-											<TextBox Grid.Column="2"
-													 PlaceholderText="Opacity"
-													 Style="{StaticResource NeumorphicTextBoxStyle}"
-													 Text="{Binding Opacity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-											<CheckBox Grid.Column="3"
-													  Padding="5,0"
-													  Content="Inner"
-													  VerticalAlignment="Bottom"
-													  VerticalContentAlignment="Center"
-													  Style="{StaticResource NeumorphicCheckBoxStyle}"
-													  IsChecked="{Binding IsInner, Mode=TwoWay}" />
+					<!-- Viewbox here to be able to use ShadowBuilder for Narrow breakpoint or on a Phone -->
+					<!-- MaxWidth here for Wide breakpoint or on a Tablet -->
+					<Viewbox MaxWidth="500">
+						<utu:ShadowContainer x:Name="ShadowContainer"
+											 Background="{ThemeResource SurfaceBrush}"
+											 HorizontalAlignment="Left"
+											 Margin="40">
+							<utu:ShadowContainer.Shadows>
+								<utu:ShadowCollection x:Name="Shadows">
+									<utu:Shadow BlurRadius="20" OffsetX="10" OffsetY="10" Opacity="0.5" Spread="0" Color="{StaticResource UnoPurple}" />
+									<utu:Shadow BlurRadius="20" OffsetX="-10" OffsetY="-10" Opacity="0.5" Spread="0" Color="{StaticResource UnoPink}" />
+									<utu:Shadow BlurRadius="20" OffsetX="-10" OffsetY="-10" Opacity="0.5" Spread="0" IsInner="True" Color="{StaticResource UnoGreen}" />
+								</utu:ShadowCollection>
+							</utu:ShadowContainer.Shadows>
+							<Grid Padding="16"
+								  BorderBrush="{StaticResource CardStrokeColorDefaultBrush}"
+								  BorderThickness="1"
+								  CornerRadius="20">
+								<Grid.RowDefinitions>
+									<RowDefinition Height="Auto" />
+									<RowDefinition Height="Auto" />
+								</Grid.RowDefinitions>
+								<ItemsRepeater x:Name="ShadowsItemsRepeater">
+									<ItemsRepeater.Layout>
+										<StackLayout Orientation="Vertical"
+													 Spacing="24" />
+									</ItemsRepeater.Layout>
+									<ItemsRepeater.ItemTemplate>
+										<DataTemplate>
+											<Grid RowSpacing="12"
+												  ColumnSpacing="12">
+												<Grid.RowDefinitions>
+													<RowDefinition Height="Auto" />
+													<RowDefinition Height="Auto" />
+													<RowDefinition Height="Auto" />
+												</Grid.RowDefinitions>
+												<Grid.ColumnDefinitions>
+													<ColumnDefinition Width="*" />
+													<ColumnDefinition Width="*" />
+													<ColumnDefinition Width="*" />
+													<ColumnDefinition Width="*" />
+												</Grid.ColumnDefinitions>
 
-											<TextBox Grid.Row="1"
-													 PlaceholderText="Offset X"
-													 Style="{StaticResource NeumorphicTextBoxStyle}"
-													 Text="{Binding OffsetX, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-											<TextBox Grid.Row="1"
-													 Grid.Column="1"
-													 PlaceholderText="Offset Y"
-													 Style="{StaticResource NeumorphicTextBoxStyle}"
-													 Text="{Binding OffsetY, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-											<TextBox Grid.Row="1"
-													 Grid.Column="2"
-													 PlaceholderText="Blur"
-													 Style="{StaticResource NeumorphicTextBoxStyle}"
-													 Text="{Binding BlurRadius, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-											<TextBox Grid.Row="1"
-													 Grid.Column="3"
-													 PlaceholderText="Spread"
-													 Style="{StaticResource NeumorphicTextBoxStyle}"
-													 Text="{Binding Spread, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+												<TextBox Grid.Column="0"
+														 Grid.ColumnSpan="2"
+														 PlaceholderText="Color"
+														 Style="{StaticResource NeumorphicTextBoxStyle}"
+														 Text="{Binding Color, Mode=TwoWay, Converter={StaticResource HexToColor}, UpdateSourceTrigger=PropertyChanged}">
+													<TextBox.Foreground>
+														<SolidColorBrush Color="{Binding Color}" />
+													</TextBox.Foreground>
+													<um:ControlExtensions.Icon>
+														<PathIcon Data="M10 0C4.47 0 0 4.47 0 10C0 15.53 4.47 20 10 20C15.53 20 20 15.53 20 10C20 4.47 15.53 0 10 0Z">
+															<PathIcon.Foreground>
+																<SolidColorBrush Color="{Binding Color}" />
+															</PathIcon.Foreground>
+														</PathIcon>
+													</um:ControlExtensions.Icon>
+												</TextBox>
 
-											<utu:Divider Grid.Row="2"
-														 Grid.ColumnSpan="4"
-														 Margin="0,12,0,0" />
-										</Grid>
-									</DataTemplate>
-								</ItemsRepeater.ItemTemplate>
-							</ItemsRepeater>
-							<StackPanel Margin="0,24,0,0"
-										Grid.Row="1"
-										HorizontalAlignment="Center"
-										Orientation="Horizontal"
-										Spacing="24">
-								<Button x:Name="RemoveShadowButton"
-										Style="{StaticResource NeumorphicMediumElevatedButtonStyle}"
-										BorderThickness="1"
-										Click="RemoveShadow"
-										Content="Shadow">
-									<um:ControlExtensions.Icon>
-										<SymbolIcon Symbol="Remove" />
-									</um:ControlExtensions.Icon>
-								</Button>
-								<Button Style="{StaticResource NeumorphicMediumElevatedButtonStyle}"
-										BorderThickness="1"
-										Click="AddShadow"
-										Content="Shadow">
-									<um:ControlExtensions.Icon>
-										<SymbolIcon Symbol="Add" />
-									</um:ControlExtensions.Icon>
-								</Button>
-							</StackPanel>
-						</Grid>
-					</utu:ShadowContainer>
+												<TextBox Grid.Column="2"
+														 PlaceholderText="Opacity"
+														 Style="{StaticResource NeumorphicTextBoxStyle}"
+														 Text="{Binding Opacity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+												<CheckBox Grid.Column="3"
+														  Padding="5,0"
+														  Content="Inner"
+														  VerticalAlignment="Bottom"
+														  VerticalContentAlignment="Center"
+														  Style="{StaticResource NeumorphicCheckBoxStyle}"
+														  IsChecked="{Binding IsInner, Mode=TwoWay}" />
+
+												<TextBox Grid.Row="1"
+														 PlaceholderText="Offset X"
+														 Style="{StaticResource NeumorphicTextBoxStyle}"
+														 Text="{Binding OffsetX, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+												<TextBox Grid.Row="1"
+														 Grid.Column="1"
+														 PlaceholderText="Offset Y"
+														 Style="{StaticResource NeumorphicTextBoxStyle}"
+														 Text="{Binding OffsetY, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+												<TextBox Grid.Row="1"
+														 Grid.Column="2"
+														 PlaceholderText="Blur"
+														 Style="{StaticResource NeumorphicTextBoxStyle}"
+														 Text="{Binding BlurRadius, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+												<TextBox Grid.Row="1"
+														 Grid.Column="3"
+														 PlaceholderText="Spread"
+														 Style="{StaticResource NeumorphicTextBoxStyle}"
+														 Text="{Binding Spread, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+												<utu:Divider Grid.Row="2"
+															 Grid.ColumnSpan="4"
+															 Margin="0,12,0,0" />
+											</Grid>
+										</DataTemplate>
+									</ItemsRepeater.ItemTemplate>
+								</ItemsRepeater>
+								<StackPanel Margin="0,24,0,0"
+											Grid.Row="1"
+											HorizontalAlignment="Center"
+											Orientation="Horizontal"
+											Spacing="24">
+									<Button x:Name="RemoveShadowButton"
+											Style="{StaticResource NeumorphicMediumElevatedButtonStyle}"
+											BorderThickness="1"
+											Click="RemoveShadow"
+											Content="Shadow">
+										<um:ControlExtensions.Icon>
+											<SymbolIcon Symbol="Remove" />
+										</um:ControlExtensions.Icon>
+									</Button>
+									<Button Style="{StaticResource NeumorphicMediumElevatedButtonStyle}"
+											BorderThickness="1"
+											Click="AddShadow"
+											Content="Shadow">
+										<um:ControlExtensions.Icon>
+											<SymbolIcon Symbol="Add" />
+										</um:ControlExtensions.Icon>
+									</Button>
+								</StackPanel>
+							</Grid>
+						</utu:ShadowContainer>
+					</Viewbox>
 				</smtx:XamlDisplay>
 
 				<utu:Divider Margin="0,36" />
