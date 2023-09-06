@@ -40,8 +40,16 @@ namespace Uno.Gallery.Views.SamplePages
 			this.Loaded += (s, e) =>
 			{
 				_shadows = ShadowContainer.Shadows;
-				ShadowsItemsControl.ItemsSource = _shadows;
+				ShadowsItemsRepeater.ItemsSource = _shadows;
+				_shadows.CollectionChanged += (s, e) => OnShadowsChanged();
+
+				OnShadowsChanged();
 			};
+		}
+
+		private void OnShadowsChanged()
+		{
+			RemoveShadowButton.IsEnabled = _shadows?.Count > 1;
 		}
 
 		private void AddShadow(object sender, RoutedEventArgs e)
