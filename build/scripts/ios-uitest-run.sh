@@ -22,6 +22,9 @@ dotnet build -f net7.0-ios -r iossimulator-x64 -c Release -p:IsUiAutomationMappi
 
 mkdir -p $UNO_UITEST_SCREENSHOT_PATH
 
+# https://github.com/microsoft/appcenter/issues/2475#issuecomment-1546997444
+xcrun simctl install booted $UNO_UITEST_IOSBUNDLE_PATH
+
 cd $UNO_UITEST_PROJECT
 
 dotnet test \
