@@ -33,10 +33,7 @@
 			</utu:ShadowCollection>
 
 			<!-- IconButton -->
-			<utu:ShadowCollection x:Key="IconButtonShadows">
-				<utu:Shadow OffsetX="2" OffsetY="2" BlurRadius="8" Spread="0" Color="#000000" Opacity="0.8" IsInner="False" />
-				<utu:Shadow OffsetX="-2" OffsetY="-2" BlurRadius="8" Spread="0" Color="#79718E" Opacity="0.8" IsInner="False" />
-			</utu:ShadowCollection>
+			<!-- reusing Elevated Button shadows -->
 
 			<!-- CheckBox -->
 			<!-- note: 1st shadow's opacity in Hover,Focused,Pressed is calculated from (attached element opacity: [0.08 or 0.12])*(shadow color alpha: 1.0) -->
@@ -253,10 +250,7 @@
 			</utu:ShadowCollection>
 
 			<!-- IconButton -->
-			<utu:ShadowCollection x:Key="IconButtonShadows">
-				<utu:Shadow OffsetX="2" OffsetY="2" BlurRadius="8" Spread="0" Color="#AEAEC0" Opacity="0.8" IsInner="False" />
-				<utu:Shadow OffsetX="-2" OffsetY="-2" BlurRadius="8" Spread="0" Color="#FFFFFF" Opacity="0.8" IsInner="False" />
-			</utu:ShadowCollection>
+			<!-- reusing Elevated Button shadows -->
 
 			<!-- CheckBox -->
 			<!-- note: 1st shadow's opacity in Hover,Focused,Pressed is calculated from (attached element opacity: [0.08 or 0.12])*(shadow color alpha: 1.0) -->
@@ -1966,30 +1960,39 @@
 				<ControlTemplate TargetType="Button">
 					<utu:ShadowContainer x:Name="RootPanel"
 										 Background="{TemplateBinding Background}"
-										 Shadows="{ThemeResource IconButtonShadows}">
+										 Shadows="{ThemeResource ElevatedButtonNormalShadows}">
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup x:Name="CommonStates">
 								<VisualState x:Name="Normal" />
 								<VisualState x:Name="PointerOver">
 									<VisualState.Setters>
-										<Setter Target="RootGrid.Background" Value="{ThemeResource PrimaryHoverBrush}" />
+										<Setter Target="RootPanel.Shadows" Value="{ThemeResource ElevatedButtonHoveredShadows}" />
+										<Setter Target="RootGrid.Background" Value="{ThemeResource OnSurfaceHoverBrush}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="Pressed">
 									<VisualState.Setters>
-										<Setter Target="RootGrid.Background" Value="{ThemeResource PrimaryPressedBrush}" />
-									</VisualState.Setters>
-								</VisualState>
-								<VisualState x:Name="Focused">
-									<VisualState.Setters>
-										<Setter Target="RootGrid.Background" Value="{ThemeResource PrimaryFocusedBrush}" />
+										<Setter Target="RootPanel.Shadows" Value="{ThemeResource ElevatedButtonPressedShadows}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="Disabled">
 									<VisualState.Setters>
+										<Setter Target="RootPanel.Shadows" Value="{ThemeResource ElevatedButtonDisabledShadows}" />
 										<Setter Target="RootPanel.Opacity" Value="0.38" />
+										<Setter Target="RootGrid.Background" Value="{ThemeResource OnSurfaceDisabledBrush}" />
+										<!-- using OnSurfaceBrush instead of OnSurfaceLowBrush, because 38% opacity is already applied from RootPanel -->
+										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource OnSurfaceBrush}" />
 									</VisualState.Setters>
 								</VisualState>
+							</VisualStateGroup>
+							<VisualStateGroup x:Name="FocusStates">
+								<VisualState x:Name="Focused">
+									<VisualState.Setters>
+										<Setter Target="RootPanel.Shadows" Value="{ThemeResource ElevatedButtonFocusedShadows}" />
+									</VisualState.Setters>
+								</VisualState>
+								<VisualState x:Name="PointerFocused" />
+								<VisualState x:Name="Unfocused" />
 							</VisualStateGroup>
 						</VisualStateManager.VisualStateGroups>
 
