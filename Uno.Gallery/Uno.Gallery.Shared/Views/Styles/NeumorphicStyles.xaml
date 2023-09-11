@@ -1509,7 +1509,9 @@
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="CheckBox">
-					<Grid x:Name="Root">
+					<!--We need an invisible background because of this bug: https://github.com/unoplatform/uno/issues/13604-->
+					<Grid x:Name="Root"
+						  Background="Transparent">
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup x:Name="CommonStates">
 								<VisualState x:Name="Normal" />
@@ -1832,7 +1834,9 @@
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="RadioButton">
-					<Grid x:Name="RootGrid">
+					<!--We need an invisible background because of this bug: https://github.com/unoplatform/uno/issues/13604-->
+					<Grid x:Name="RootGrid"
+						  Background="Transparent">
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup x:Name="CommonStates">
 								<VisualState x:Name="Normal" />
