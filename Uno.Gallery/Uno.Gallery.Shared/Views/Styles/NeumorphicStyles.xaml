@@ -36,39 +36,21 @@
 			<!-- reusing Elevated Button shadows -->
 
 			<!-- CheckBox -->
-			<!-- note: 1st shadow's opacity in Hover,Focused,Pressed is calculated from (attached element opacity: [0.08 or 0.12])*(shadow color alpha: 1.0) -->
-			<utu:ShadowCollection x:Key="NeumorphicCheckBoxShadows">
-				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="8" Spread="8" Color="Transparent" Opacity="0" IsInner="False">
-					<!-- workaround: invisible shadow to prevent major layout difference between states -->
-				</utu:Shadow>
+			<!-- RadioButton (reuses CheckBox shadows) -->
+			<utu:ShadowCollection x:Key="CheckBoxRaisingShadows">
 				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="4" Spread="0" Color="#000000" Opacity="0.6" IsInner="False" />
 				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Spread="0" Color="#615B71" Opacity="1" IsInner="False" />
 			</utu:ShadowCollection>
-			<utu:ShadowCollection x:Key="NeumorphicCheckBoxFocusedShadows">
-				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="8" Spread="8" Color="#C7BFFE" Opacity="0.12" IsInner="False" />
+			<utu:ShadowCollection x:Key="CheckBoxRaisingAuraShadows">
 				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="4" Spread="0" Color="#000000" Opacity="0.6" IsInner="False" />
 				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Spread="0" Color="#615B71" Opacity="1" IsInner="False" />
+				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="16" Spread="0" Color="#C7BFFF" Opacity="0.4" IsInner="False" />
 			</utu:ShadowCollection>
-			<utu:ShadowCollection x:Key="NeumorphicCheckBoxHoverShadows">
-				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="8" Spread="8" Color="#C7BFFE" Opacity="0.08" IsInner="False" />
-				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="4" Spread="0" Color="#000000" Opacity="0.6" IsInner="False" />
-				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Spread="0" Color="#615B71" Opacity="1" IsInner="False" />
+			<utu:ShadowCollection x:Key="CheckBoxHollowShadows">
+				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="4" Spread="0" Color="#000000" Opacity="0.4" IsInner="False" />
+				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="1" Spread="0" Color="#000000" Opacity="0.6" IsInner="True" />
+				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="1" Spread="0" Color="#615B71" Opacity="1" IsInner="True" />
 			</utu:ShadowCollection>
-			<utu:ShadowCollection x:Key="NeumorphicCheckBoxPressedShadows">
-				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="8" Spread="8" Color="#C7BFFE" Opacity="0.12" IsInner="False" />
-				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="4" Spread="0" Color="#000000" Opacity="0.6" IsInner="False" />
-				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Spread="0" Color="#615B71" Opacity="1" IsInner="False" />
-			</utu:ShadowCollection>
-			<utu:ShadowCollection x:Key="NeumorphicCheckBoxDisabledShadows">
-				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="8" Spread="8" Color="Transparent" Opacity="0" IsInner="False">
-					<!-- workaround: invisible shadow to prevent major layout difference between states -->
-				</utu:Shadow>
-				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="4" Spread="0" Color="#000000" Opacity="0.6" IsInner="False" />
-				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Spread="0" Color="#615B71" Opacity="1" IsInner="False" />
-			</utu:ShadowCollection>
-
-			<!-- RadioButton -->
-			<!-- reusing CheckBox shadows -->
 
 			<!-- ComboBox -->
 			<!-- reusing TextBox shadows -->
@@ -250,39 +232,21 @@
 			<!-- reusing Elevated Button shadows -->
 
 			<!-- CheckBox -->
-			<!-- note: 1st shadow's opacity in Hover,Focused,Pressed is calculated from (attached element opacity: [0.08 or 0.12])*(shadow color alpha: 1.0) -->
-			<utu:ShadowCollection x:Key="NeumorphicCheckBoxShadows">
-				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="8" Spread="8" Color="Transparent" Opacity="0" IsInner="False">
-					<!-- workaround: invisible shadow to prevent major layout difference between states -->
-				</utu:Shadow>
-				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="2" Spread="0" Color="#AEAEC0" Opacity="0.6" IsInner="False" />
-				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="2" Spread="0" Color="#FFFFFF" Opacity="1" IsInner="False" />
-			</utu:ShadowCollection>
-			<utu:ShadowCollection x:Key="NeumorphicCheckBoxFocusedShadows">
-				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="8" Spread="8" Color="#5845CF" Opacity="0.12" IsInner="False" />
+			<!-- RadioButton (reuses CheckBox shadows) -->
+			<utu:ShadowCollection x:Key="CheckBoxRaisingShadows">
 				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="4" Spread="0" Color="#AEAEC0" Opacity="0.6" IsInner="False" />
 				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Spread="0" Color="#FFFFFF" Opacity="1" IsInner="False" />
 			</utu:ShadowCollection>
-			<utu:ShadowCollection x:Key="NeumorphicCheckBoxHoverShadows">
-				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="8" Spread="8" Color="#5845CF" Opacity="0.08" IsInner="False" />
+			<utu:ShadowCollection x:Key="CheckBoxRaisingAuraShadows">
 				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="4" Spread="0" Color="#AEAEC0" Opacity="0.6" IsInner="False" />
 				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Spread="0" Color="#FFFFFF" Opacity="1" IsInner="False" />
+				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="16" Spread="0" Color="#5845CF" Opacity="0.4" IsInner="False" />
 			</utu:ShadowCollection>
-			<utu:ShadowCollection x:Key="NeumorphicCheckBoxPressedShadows">
-				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="8" Spread="8" Color="#5845CF" Opacity="0.12" IsInner="False" />
-				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="4" Spread="0" Color="#AEAEC0" Opacity="0.6" IsInner="False" />
-				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Spread="0" Color="#FFFFFF" Opacity="1" IsInner="False" />
+			<utu:ShadowCollection x:Key="CheckBoxHollowShadows">
+				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="4" Spread="0" Color="#AEAEC0" Opacity="0.4" IsInner="False" />
+				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="1" Spread="0" Color="#FFFFFF" Opacity="1" IsInner="True" />
+				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="1" Spread="0" Color="#000000" Opacity="0.4" IsInner="True" />
 			</utu:ShadowCollection>
-			<utu:ShadowCollection x:Key="NeumorphicCheckBoxDisabledShadows">
-				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="8" Spread="8" Color="Transparent" Opacity="0" IsInner="False">
-					<!-- workaround: invisible shadow to prevent major layout difference between states -->
-				</utu:Shadow>
-				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="2" Spread="0" Color="#AEAEC0" Opacity="0.6" IsInner="False" />
-				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="2" Spread="0" Color="#FFFFFF" Opacity="1" IsInner="False" />
-			</utu:ShadowCollection>
-
-			<!-- RadioButton -->
-			<!-- reusing CheckBox shadows -->
 
 			<!-- ComboBox -->
 			<!-- reusing TextBox shadows -->
@@ -1092,7 +1056,7 @@
 									</ScrollViewer>
 								</Border>
 							</Popup>
-							
+
 						</Grid>
 					</utu:ShadowContainer>
 				</ControlTemplate>
@@ -1546,19 +1510,18 @@
 								</VisualState>
 								<VisualState x:Name="UncheckedPointerOver">
 									<VisualState.Setters>
-										<Setter Target="CheckPanel.Shadows" Value="{ThemeResource NeumorphicCheckBoxHoverShadows}" />
+										<Setter Target="CheckPanel.Shadows" Value="{ThemeResource CheckBoxRaisingAuraShadows}" />
 										<Setter Target="CheckGlyph.Opacity" Value="0" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="UncheckedPressed">
 									<VisualState.Setters>
-										<Setter Target="CheckPanel.Shadows" Value="{ThemeResource NeumorphicCheckBoxPressedShadows}" />
+										<Setter Target="CheckPanel.Shadows" Value="{ThemeResource CheckBoxHollowShadows}" />
 										<Setter Target="CheckGlyph.Opacity" Value="0" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="UncheckedDisabled">
 									<VisualState.Setters>
-										<Setter Target="CheckPanel.Shadows" Value="{ThemeResource NeumorphicCheckBoxDisabledShadows}" />
 										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource OnSurfaceLowBrush}" />
 										<Setter Target="CheckGlyph.Fill" Value="{ThemeResource OnSurfaceLowBrush}" />
 										<Setter Target="CheckGlyph.Opacity" Value="0" />
@@ -1571,7 +1534,7 @@
 								</VisualState>
 								<VisualState x:Name="CheckedPointerOver">
 									<VisualState.Setters>
-										<Setter Target="CheckPanel.Shadows" Value="{ThemeResource NeumorphicCheckBoxHoverShadows}" />
+										<Setter Target="CheckPanel.Shadows" Value="{ThemeResource CheckBoxRaisingAuraShadows}" />
 										<Setter Target="CheckGlyph.Opacity" Value="1" />
 									</VisualState.Setters>
 								</VisualState>
@@ -1587,12 +1550,11 @@
 										</DoubleAnimation>
 									</Storyboard>
 									<VisualState.Setters>
-										<Setter Target="CheckPanel.Shadows" Value="{ThemeResource NeumorphicCheckBoxPressedShadows}" />
+										<Setter Target="CheckPanel.Shadows" Value="{ThemeResource CheckBoxHollowShadows}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="CheckedDisabled">
 									<VisualState.Setters>
-										<Setter Target="CheckPanel.Shadows" Value="{ThemeResource NeumorphicCheckBoxDisabledShadows}" />
 										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource OnSurfaceLowBrush}" />
 										<Setter Target="CheckGlyph.Fill" Value="{ThemeResource OnSurfaceLowBrush}" />
 										<Setter Target="CheckGlyph.Opacity" Value="1" />
@@ -1606,7 +1568,7 @@
 								</VisualState>
 								<VisualState x:Name="IndeterminatePointerOver">
 									<VisualState.Setters>
-										<Setter Target="CheckPanel.Shadows" Value="{ThemeResource NeumorphicCheckBoxHoverShadows}" />
+										<Setter Target="CheckPanel.Shadows" Value="{ThemeResource CheckBoxRaisingAuraShadows}" />
 										<Setter Target="CheckGlyph.Opacity" Value="0" />
 										<Setter Target="HyphenGlyph.Opacity" Value="1" />
 									</VisualState.Setters>
@@ -1623,12 +1585,11 @@
 										</DoubleAnimation>
 									</Storyboard>
 									<VisualState.Setters>
-										<Setter Target="CheckPanel.Shadows" Value="{ThemeResource NeumorphicCheckBoxPressedShadows}" />
+										<Setter Target="CheckPanel.Shadows" Value="{ThemeResource CheckBoxHollowShadows}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="IndeterminateDisabled">
 									<VisualState.Setters>
-										<Setter Target="CheckPanel.Shadows" Value="{ThemeResource NeumorphicCheckBoxDisabledShadows}" />
 										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource OnSurfaceLowBrush}" />
 										<Setter Target="HyphenGlyph.Fill" Value="{ThemeResource OnSurfaceLowBrush}" />
 										<Setter Target="CheckGlyph.Opacity" Value="0" />
@@ -1639,7 +1600,7 @@
 							<VisualStateGroup x:Name="FocusStates">
 								<VisualState x:Name="Focused">
 									<VisualState.Setters>
-										<Setter Target="CheckPanel.Shadows" Value="{ThemeResource NeumorphicCheckBoxFocusedShadows}" />
+										<Setter Target="CheckPanel.Shadows" Value="{ThemeResource CheckBoxRaisingAuraShadows}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="PointerFocused" />
@@ -1654,7 +1615,7 @@
 
 						<utu:ShadowContainer x:Name="CheckPanel"
 											 Background="{TemplateBinding Background}"
-											 Shadows="{ThemeResource NeumorphicCheckBoxShadows}">
+											 Shadows="{ThemeResource CheckBoxRaisingShadows}">
 							<Grid x:Name="CheckBoxContainer"
 								  Height="{ThemeResource CheckBoxCheckAreaSize}"
 								  Width="{ThemeResource CheckBoxCheckAreaSize}"
@@ -1862,17 +1823,16 @@
 								<VisualState x:Name="Normal" />
 								<VisualState x:Name="PointerOver">
 									<VisualState.Setters>
-										<Setter Target="RadioPanel.Shadows" Value="{ThemeResource NeumorphicCheckBoxHoverShadows}" />
+										<Setter Target="RadioPanel.Shadows" Value="{ThemeResource CheckBoxRaisingAuraShadows}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="Pressed">
 									<VisualState.Setters>
-										<Setter Target="RadioPanel.Shadows" Value="{ThemeResource NeumorphicCheckBoxPressedShadows}" />
+										<Setter Target="RadioPanel.Shadows" Value="{ThemeResource CheckBoxHollowShadows}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="Disabled">
 									<VisualState.Setters>
-										<Setter Target="RadioPanel.Shadows" Value="{ThemeResource NeumorphicCheckBoxDisabledShadows}" />
 										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource OnSurfaceLowBrush}" />
 										<Setter Target="CheckEllipse.Fill" Value="{ThemeResource OnSurfaceLowBrush}" />
 									</VisualState.Setters>
@@ -1890,7 +1850,7 @@
 							<VisualStateGroup x:Name="FocusStates">
 								<VisualState x:Name="Focused">
 									<VisualState.Setters>
-										<Setter Target="RadioPanel.Shadows" Value="{ThemeResource NeumorphicCheckBoxFocusedShadows}" />
+										<Setter Target="RadioPanel.Shadows" Value="{ThemeResource CheckBoxRaisingAuraShadows}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="PointerFocused" />
@@ -1905,7 +1865,7 @@
 
 						<utu:ShadowContainer x:Name="RadioPanel"
 											 Background="{TemplateBinding Background}"
-											 Shadows="{ThemeResource NeumorphicCheckBoxShadows}">
+											 Shadows="{ThemeResource CheckBoxRaisingShadows}">
 							<Grid x:Name="RadioInnerPanel"
 								  Height="20"
 								  Width="20"
