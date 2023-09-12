@@ -132,11 +132,11 @@
 			</utu:ShadowCollection>
 
 			<!-- Chips -->
-			<utu:ShadowCollection x:Key="ChipShadows">
+			<utu:ShadowCollection x:Key="ChipRaisingShadows">
 				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="4" Spread="0" Color="#000000" Opacity="0.6" IsInner="False" />
 				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Spread="0" Color="#615B71" Opacity="1" IsInner="False" />
 			</utu:ShadowCollection>
-			<utu:ShadowCollection x:Key="ChipSelectedShadows">
+			<utu:ShadowCollection x:Key="ChipHollowShadows">
 				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Spread="0" Color="#F7F5FF" Opacity="0.9" IsInner="True" />
 				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="4" Spread="0" Color="#584AB5" Opacity="0.9" IsInner="True" />
 			</utu:ShadowCollection>
@@ -328,11 +328,11 @@
 			</utu:ShadowCollection>
 
 			<!-- Chips -->
-			<utu:ShadowCollection x:Key="ChipShadows">
+			<utu:ShadowCollection x:Key="ChipRaisingShadows">
 				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="4" Spread="0" Color="#AEAEC0" Opacity="0.6" IsInner="False" />
 				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Spread="0" Color="#FFFFFF" Opacity="1" IsInner="False" />
 			</utu:ShadowCollection>
-			<utu:ShadowCollection x:Key="ChipSelectedShadows">
+			<utu:ShadowCollection x:Key="ChipHollowShadows">
 				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="8" Spread="0" Color="#8271F4" Opacity="1" IsInner="True" />
 				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="8" Spread="0" Color="#4C3CB3" Opacity="1" IsInner="True" />
 			</utu:ShadowCollection>
@@ -2004,33 +2004,26 @@
 				<ControlTemplate TargetType="utu:Chip">
 					<utu:ShadowContainer x:Name="RootPanel"
 										 Background="{TemplateBinding Background}"
-										 Shadows="{ThemeResource ChipShadows}">
+										 Shadows="{ThemeResource ChipRaisingShadows}">
 
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup x:Name="CommonStates">
 								<!-- [null,Checked,~~Indeterminate~~]*[null,Pressed,PointerOver,Disabled] ?? Normal -->
-
-								<VisualState x:Name="Normal">
-									<VisualState.Setters />
-								</VisualState>
+								<VisualState x:Name="Normal" />
 								<VisualState x:Name="PointerOver">
 									<VisualState.Setters>
-										<Setter Target="RootPanel.Shadows" Value="{ThemeResource ChipShadows}" />
 										<Setter Target="StateOverlay.Background" Value="{ThemeResource OnSurfaceHoverBrush}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="Pressed">
 									<VisualState.Setters>
-										<Setter Target="RootPanel.Shadows" Value="{ThemeResource ChipShadows}" />
 										<Setter Target="StateOverlay.Background" Value="{ThemeResource OnSurfacePressedBrush}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="Disabled">
 									<VisualState.Setters>
-										<Setter Target="RootPanel.Shadows" Value="{ThemeResource ChipShadows}" />
 										<Setter Target="RootPanel.Opacity" Value="0.38" />
 										<Setter Target="StateOverlay.Background" Value="{ThemeResource OnSurfaceDisabledBrush}" />
-
 										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource OnSurfaceLowBrush}" />
 										<Setter Target="PART_RemoveButton.Foreground" Value="{ThemeResource OnSurfaceLowBrush}" />
 										<Setter Target="IconPresenter.Foreground" Value="{ThemeResource OnSurfaceLowBrush}" />
@@ -2038,7 +2031,7 @@
 								</VisualState>
 								<VisualState x:Name="Checked">
 									<VisualState.Setters>
-										<Setter Target="RootPanel.Shadows" Value="{ThemeResource ChipSelectedShadows}" />
+										<Setter Target="RootPanel.Shadows" Value="{ThemeResource ChipHollowShadows}" />
 										<Setter Target="RootPanel.Background" Value="{ThemeResource PrimaryBrush}" />
 										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource OnPrimaryBrush}" />
 										<Setter Target="IconPresenter.Foreground" Value="{ThemeResource OnPrimaryBrush}" />
@@ -2048,7 +2041,7 @@
 								</VisualState>
 								<VisualState x:Name="CheckedPointerOver">
 									<VisualState.Setters>
-										<Setter Target="RootPanel.Shadows" Value="{ThemeResource ChipSelectedShadows}" />
+										<Setter Target="RootPanel.Shadows" Value="{ThemeResource ChipHollowShadows}" />
 										<Setter Target="RootPanel.Background" Value="{ThemeResource PrimaryBrush}" />
 										<Setter Target="StateOverlay.Background" Value="{ThemeResource OnPrimaryHoverBrush}" />
 										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource OnPrimaryBrush}" />
@@ -2059,7 +2052,7 @@
 								</VisualState>
 								<VisualState x:Name="CheckedPressed">
 									<VisualState.Setters>
-										<Setter Target="RootPanel.Shadows" Value="{ThemeResource ChipSelectedShadows}" />
+										<Setter Target="RootPanel.Shadows" Value="{ThemeResource ChipHollowShadows}" />
 										<Setter Target="RootPanel.Background" Value="{ThemeResource PrimaryBrush}" />
 										<Setter Target="StateOverlay.Background" Value="{ThemeResource OnPrimaryPressedBrush}" />
 										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource OnPrimaryBrush}" />
