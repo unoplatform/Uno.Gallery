@@ -383,7 +383,7 @@ namespace ShowMeTheXAML
 
 			private static string ExtractXmlns(string xaml)
 			{
-				// extract/remove all xmlns declaration from the xaml,
+				// extract/remove all xmlns declarations from the xaml,
 				// and add them at the start, like so:
 				// xmlns:this="example.com"
 				// ...
