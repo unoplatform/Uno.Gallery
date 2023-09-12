@@ -375,26 +375,49 @@ namespace ShowMeTheXAML
 			}
 			protected override string PostprocessXaml(string xaml)
 			{
-				xaml = RemoveXmlns(xaml);
-
+				xaml = ExtractXmlns(xaml);
 				xaml = RemoveOptions(xaml);
 
 				return xaml;
 			}
 
-			private static string RemoveXmlns(string xaml)
+			private static string ExtractXmlns(string xaml)
 			{
-				var namespaces = new[]
+				// extract/remove all xmlns declaration from the xaml,
+				// and add them at the start, like so:
+				// xmlns:this="example.com"
+				// ...
+				//
+				// <!-- rest of xaml... -->
+
+				// some well known xmlns are also skipped:
+				bool SkipWellKnownXmlns(KeyValuePair<string, string> x) =>
+					// skip well known xmlnses that are just assumed
+					// check prefix too, since default name(url) can also be used for platform conditionals, and we should not ignore those
+					x is not { Key: "", Value: "http://schemas.microsoft.com/winfx/2006/xaml/presentation" } &&
+					x is not { Key: "x", Value: "http://schemas.microsoft.com/winfx/2006/xaml" };
+
+				var xmlns = new Dictionary<string, string>();
+
+				xaml = Regex.Replace(xaml, @"\s+xmlns(?<prefix>:\w+)?=\""(?<name>[^""]+)""", m =>
 				{
-					"http://schemas.microsoft.com/winfx/2006/xaml/presentation",
-					"http://schemas.microsoft.com/winfx/2006/xaml",
-				};
-				return Regex.Replace(xaml, @"\s+xmlns(:(?<prefix>\w+))?=""(?<uri>[^""]+)""", m =>
-				{
-					return namespaces?.Contains(m.Groups["uri"].Value) == true
-						? null
-						: m.Value;
+					if (xmlns.TryAdd(m.Groups["prefix"].Value.TrimStart(':'), m.Groups["name"].Value))
+					{
+						// ignoring xmlns re-definitions in nested node for now
+					}
+
+					return string.Empty;
 				});
+
+				if (xmlns.Where(SkipWellKnownXmlns).ToArray() is { Length: >0 } injectables)
+				{
+					xaml = string.Join("\n", injectables
+						.OrderBy(x => x.Key)
+						.Select(x => $"xmlns{(string.IsNullOrEmpty(x.Key) ? null : $":{x.Key}")}=\"{x.Value}\"")
+					) + "\n...\n\n" + xaml;
+				}
+
+				return xaml;
 			}
 
 			private static string RemoveOptions(string xaml)
