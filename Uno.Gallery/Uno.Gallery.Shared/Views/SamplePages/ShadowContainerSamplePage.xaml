@@ -924,7 +924,13 @@
 			<Color x:Key="UnoBlue">#159bff</Color>
 			<Color x:Key="UnoGreen">#67e5ad</Color>
 
-			<utu:Shadow x:Key="DefaultShadow" BlurRadius="20" OffsetX="10" OffsetY="10" Opacity="0.5" Spread="0" Color="{StaticResource UnoPurple}" />
+			<utu:Shadow x:Key="DefaultShadow"
+						BlurRadius="20"
+						OffsetX="10"
+						OffsetY="10"
+						Opacity="0.5"
+						Spread="0"
+						Color="{StaticResource UnoPurple}" />
 		</ResourceDictionary>
 	</Page.Resources>
 
@@ -933,20 +939,28 @@
 			<StackPanel>
 				<smtx:XamlDisplay UniqueKey="ShadowContainerSamplePage_ShadowBuilder"
 								  Background="{ThemeResource SurfaceBrush}"
+								  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\Viewbox"
 								  smtx:XamlDisplayExtensions.Header="Shadow Builder"
 								  smtx:XamlDisplayExtensions.Description="You can add as many shadows as you like. You can also dynamically change the shadow properties.">
-					<!-- Viewbox here to be able to use ShadowBuilder for Narrow breakpoint or on a Phone -->
-					<!-- MaxWidth here for Wide breakpoint or on a Tablet -->
-					<Viewbox MaxWidth="500" HorizontalAlignment="Left">
+					<Viewbox MaxWidth="500"
+							 HorizontalAlignment="Left">
 						<utu:ShadowContainer x:Name="ShadowContainer"
 											 Background="{ThemeResource SurfaceBrush}"
-											 
 											 Margin="40">
 							<utu:ShadowContainer.Shadows>
 								<utu:ShadowCollection x:Name="Shadows">
-									<utu:Shadow BlurRadius="20" OffsetX="10" OffsetY="10" Opacity="0.5" Spread="0" Color="{StaticResource UnoPurple}" />
-									<utu:Shadow BlurRadius="20" OffsetX="-10" OffsetY="-10" Opacity="0.5" Spread="0" Color="{StaticResource UnoPink}" />
-									<utu:Shadow BlurRadius="20" OffsetX="-10" OffsetY="-10" Opacity="0.5" Spread="0" IsInner="True" Color="{StaticResource UnoGreen}" />
+									<utu:Shadow BlurRadius="20"
+												OffsetX="10"
+												OffsetY="10"
+												Opacity="0.5"
+												Spread="0"
+												Color="{StaticResource UnoPurple}" />
+									<utu:Shadow BlurRadius="20"
+												OffsetX="-10"
+												OffsetY="-10"
+												Opacity="0.5"
+												Spread="0"
+												Color="{StaticResource UnoPink}" />
 								</utu:ShadowCollection>
 							</utu:ShadowContainer.Shadows>
 							<Grid Padding="16"
@@ -1016,6 +1030,7 @@
 												<TextBox Grid.Row="1"
 														 Grid.Column="1"
 														 PlaceholderText="Offset Y"
+														 TextWrapping="NoWrap"
 														 Style="{StaticResource NeumorphicTextBoxStyle}"
 														 Text="{Binding OffsetY, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
