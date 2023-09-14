@@ -176,40 +176,25 @@
 			</utu:ShadowCollection>
 
 			<!-- ToggleSwitch -->
-			<utu:ShadowCollection x:Key="ToggleSwitchOffBorderShadows">
-				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Spread="4" Color="#615B71" Opacity="0.8" IsInner="True" />
-				<utu:Shadow OffsetX="1" OffsetY="2" BlurRadius="2" Spread="2" Color="#000000" Opacity="1" IsInner="True" />
-			</utu:ShadowCollection>
-			<utu:ShadowCollection x:Key="ToggleSwitchOnBorderShadows">
-				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Spread="4" Color="Transparent" Opacity="0" IsInner="True">
-					<!-- workaround: invisible shadow to prevent major layout difference between states -->
-				</utu:Shadow>
+			<utu:ShadowCollection x:Key="ToggleSwitchOnTrackShadows">
 				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="2" Spread="2" Color="#FFFFFF" Opacity="0.6" IsInner="True" />
 				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="2" Spread="2" Color="#000000" Opacity="1" IsInner="True" />
 			</utu:ShadowCollection>
-			<utu:ShadowCollection x:Key="ToggleSwitchKnobOffShadows">
+			<utu:ShadowCollection x:Key="ToggleSwitchOffTrackShadows">
+				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Spread="4" Color="#615B71" Opacity="0.8" IsInner="True" />
+				<utu:Shadow OffsetX="1" OffsetY="2" BlurRadius="2" Spread="2" Color="#000000" Opacity="1" IsInner="True" />
+			</utu:ShadowCollection>
+			<utu:ShadowCollection x:Key="ToggleSwitchOnKnobShadows">
+				<utu:Shadow OffsetX="-1" OffsetY="0" BlurRadius="1" Spread="1" Color="#9B92D3" Opacity="1" IsInner="False" />
+				<utu:Shadow OffsetX="1" OffsetY="0" BlurRadius="2" Spread="0" Color="#000000" Opacity="0.5" IsInner="True" />
+				<utu:Shadow OffsetX="0" OffsetY="4" BlurRadius="4" Spread="0" Color="#000000" Opacity="0.3" IsInner="True" />
+				<utu:Shadow OffsetX="-2" OffsetY="4" BlurRadius="2" Spread="0" Color="#615B71" Opacity="0.8" IsInner="True" />
+			</utu:ShadowCollection>
+			<utu:ShadowCollection x:Key="ToggleSwitchOffKnobShadows">
 				<utu:Shadow OffsetX="2" OffsetY="2" BlurRadius="4" Spread="0" Color="#000000" Opacity="0.8" IsInner="True" />
 				<utu:Shadow OffsetX="-2" OffsetY="2" BlurRadius="4" Spread="0" Color="#FFFFFF" Opacity="1" IsInner="True" />
 				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="1" Spread="0" Color="#000000" Opacity="0.5" IsInner="True" />
 				<utu:Shadow OffsetX="2" OffsetY="0" BlurRadius="2" Spread="0" Color="#000000" Opacity="0.2" IsInner="False" />
-			</utu:ShadowCollection>
-			<utu:ShadowCollection x:Key="ToggleSwitchKnobOnShadows">
-				<utu:Shadow OffsetX="1" OffsetY="0" BlurRadius="2" Spread="0" Color="#000000" Opacity="0.5" IsInner="True" />
-				<utu:Shadow OffsetX="0" OffsetY="4" BlurRadius="4" Spread="0" Color="#000000" Opacity="0.3" IsInner="True" />
-				<utu:Shadow OffsetX="-2" OffsetY="4" BlurRadius="2" Spread="0" Color="#615B71" Opacity="0.8" IsInner="True" />
-				<utu:Shadow OffsetX="-1" OffsetY="0" BlurRadius="1" Spread="1" Color="#9B92D3" Opacity="1" IsInner="False" />
-			</utu:ShadowCollection>
-
-			<!-- Same as ToggleSwitchOnBorderShadows -->
-			<!-- Needed as we need a different ShadowCollection for disabled state in light mode -->
-			<utu:ShadowCollection x:Key="ToggleSwitchOnBorderDisabledShadows">
-				<utu:Shadow BlurRadius="2" IsInner="True" OffsetX="1" OffsetY="1" Opacity="1" Spread="2" Color="#000000" />
-				<utu:Shadow BlurRadius="2" IsInner="True" OffsetX="-1" OffsetY="-1" Opacity="0.6" Spread="2" Color="#FFFFFF" />
-			</utu:ShadowCollection>
-
-			<utu:ShadowCollection x:Key="ToggleSwitchKnobOnDisabledShadows">
-				<utu:Shadow BlurRadius="2" IsInner="True" OffsetX="1" OffsetY="0" Opacity="0.25" Spread="0" Color="#000000" />
-				<utu:Shadow BlurRadius="2" IsInner="False" OffsetX="-2" OffsetY="0" Opacity="0.2" Spread="0" Color="#000000" />
 			</utu:ShadowCollection>
 
 		</ResourceDictionary>
@@ -378,41 +363,25 @@
 			</utu:ShadowCollection>
 
 			<!-- ToggleSwitch -->
-			<utu:ShadowCollection x:Key="ToggleSwitchOffBorderShadows">
-				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Spread="4" Color="#FFFFFF" Opacity="0.7" IsInner="True" />
-				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="2" Spread="2" Color="#584A7F" Opacity="0.6" IsInner="True" />
-			</utu:ShadowCollection>
-			<utu:ShadowCollection x:Key="ToggleSwitchOnBorderShadows">
-				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Spread="4" Color="Transparent" Opacity="0" IsInner="True">
-					<!-- workaround: invisible shadow to prevent major layout difference between states -->
-				</utu:Shadow>
+			<utu:ShadowCollection x:Key="ToggleSwitchOnTrackShadows">
 				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="2" Spread="2" Color="#413399" Opacity="1" IsInner="True" />
 				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="2" Spread="0" Color="#FFFFFF" Opacity="0.6" IsInner="True" />
 			</utu:ShadowCollection>
-			<utu:ShadowCollection x:Key="ToggleSwitchKnobOffShadows">
+			<utu:ShadowCollection x:Key="ToggleSwitchOffTrackShadows">
+				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Spread="4" Color="#FFFFFF" Opacity="0.7" IsInner="True" />
+				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="2" Spread="2" Color="#584A7F" Opacity="0.6" IsInner="True" />
+			</utu:ShadowCollection>
+			<utu:ShadowCollection x:Key="ToggleSwitchOnKnobShadows">
+				<utu:Shadow OffsetX="-1" OffsetY="0" BlurRadius="1" Spread="1" Color="#413399" Opacity="1" IsInner="False" />
+				<utu:Shadow OffsetX="1" OffsetY="0" BlurRadius="2" Spread="0" Color="#000000" Opacity="0.5" IsInner="True" />
+				<utu:Shadow OffsetX="0" OffsetY="4" BlurRadius="4" Spread="0" Color="#000000" Opacity="0.3" IsInner="True" />
+				<utu:Shadow OffsetX="-2" OffsetY="4" BlurRadius="2" Spread="0" Color="#FFFFFF" Opacity="0.8" IsInner="True" />
+			</utu:ShadowCollection>
+			<utu:ShadowCollection x:Key="ToggleSwitchOffKnobShadows">
 				<utu:Shadow OffsetX="2" OffsetY="2" BlurRadius="4" Spread="0" Color="#000000" Opacity="0.8" IsInner="True" />
 				<utu:Shadow OffsetX="-2" OffsetY="2" BlurRadius="4" Spread="0" Color="#FFFFFF" Opacity="1" IsInner="True" />
 				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="1" Spread="0" Color="#000000" Opacity="0.5" IsInner="True" />
 				<utu:Shadow OffsetX="2" OffsetY="0" BlurRadius="2" Spread="0" Color="#000000" Opacity="0.2" IsInner="False" />
-			</utu:ShadowCollection>
-			<utu:ShadowCollection x:Key="ToggleSwitchKnobOnShadows">
-				<utu:Shadow OffsetX="1" OffsetY="0" BlurRadius="2" Spread="0" Color="#000000" Opacity="0.5" IsInner="True" />
-				<utu:Shadow OffsetX="0" OffsetY="4" BlurRadius="4" Spread="0" Color="#000000" Opacity="0.3" IsInner="True" />
-				<utu:Shadow OffsetX="-2" OffsetY="4" BlurRadius="2" Spread="0" Color="#FFFFFF" Opacity="0.8" IsInner="True" />
-				<utu:Shadow OffsetX="-1" OffsetY="0" BlurRadius="1" Spread="1" Color="#413399" Opacity="1" IsInner="False" />
-			</utu:ShadowCollection>
-
-			<utu:ShadowCollection x:Key="ToggleSwitchOnBorderDisabledShadows">
-				<utu:Shadow BlurRadius="2" IsInner="True" OffsetX="0.5" OffsetY="0.5" Opacity="0.15" Spread="2" Color="#584A7F" />
-			</utu:ShadowCollection>
-
-			<!-- Same as ToggleSwitchKnobOnShadows -->
-			<!-- Needed as we need a different ShadowCollection for disabled state in dark mode -->
-			<utu:ShadowCollection x:Key="ToggleSwitchKnobOnDisabledShadows">
-				<utu:Shadow OffsetX="1" OffsetY="0" BlurRadius="2" Spread="0" Color="#000000" Opacity="0.5" IsInner="True" />
-				<utu:Shadow OffsetX="0" OffsetY="4" BlurRadius="4" Spread="0" Color="#000000" Opacity="0.3" IsInner="True" />
-				<utu:Shadow OffsetX="-2" OffsetY="4" BlurRadius="2" Spread="0" Color="#FFFFFF" Opacity="0.8" IsInner="True" />
-				<utu:Shadow OffsetX="-1" OffsetY="0" BlurRadius="1" Spread="1" Color="#413399" Opacity="1" IsInner="False" />
 			</utu:ShadowCollection>
 
 		</ResourceDictionary>
@@ -3252,10 +3221,6 @@
 									</Storyboard>
 								</VisualState>
 								<VisualState x:Name="PointerOver">
-									<VisualState.Setters>
-										<Setter Target="SwitchKnobOnShadow.Visibility" Value="Visible" />
-										<Setter Target="SwitchKnobOffShadow.Visibility" Value="Visible" />
-									</VisualState.Setters>
 									<Storyboard>
 										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="KnobOnBorder"
 																	   Storyboard.TargetProperty="Width"
@@ -3296,12 +3261,12 @@
 																	Value="{ThemeResource ToggleSwitchKnobOffShadowFillPointerOver}" />
 										</ObjectAnimationUsingKeyFrames>
 									</Storyboard>
-								</VisualState>
-								<VisualState x:Name="Focused">
 									<VisualState.Setters>
 										<Setter Target="SwitchKnobOnShadow.Visibility" Value="Visible" />
 										<Setter Target="SwitchKnobOffShadow.Visibility" Value="Visible" />
 									</VisualState.Setters>
+								</VisualState>
+								<VisualState x:Name="Focused">
 									<Storyboard>
 										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="KnobOnBorder"
 																	   Storyboard.TargetProperty="Width"
@@ -3342,19 +3307,12 @@
 																	Value="{ThemeResource ToggleSwitchKnobOffShadowFillFocused}" />
 										</ObjectAnimationUsingKeyFrames>
 									</Storyboard>
-								</VisualState>
-								<VisualState x:Name="Pressed">
 									<VisualState.Setters>
-										<Setter Target="KnobOnBorder.Margin" Value="0" />
-										<Setter Target="KnobOffBorder.Margin" Value="0" />
-										<Setter Target="KnobOnBorder.CornerRadius" Value="{ThemeResource LargeThumbCornerRadius}" />
-										<Setter Target="KnobOffBorder.CornerRadius" Value="{ThemeResource LargeThumbCornerRadius}" />
-										<Setter Target="SwitchKnobOn.Margin" Value="26,0,0,0" />
-										<Setter Target="SwitchKnobOff.Margin" Value="0,0,22,0" />
-										<Setter Target="OnIconPresenterBorder.Margin" Value="0" />
 										<Setter Target="SwitchKnobOnShadow.Visibility" Value="Visible" />
 										<Setter Target="SwitchKnobOffShadow.Visibility" Value="Visible" />
 									</VisualState.Setters>
+								</VisualState>
+								<VisualState x:Name="Pressed">
 									<Storyboard>
 										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="KnobOnBorder"
 																	   Storyboard.TargetProperty="Width"
@@ -3395,6 +3353,17 @@
 																	Value="{ThemeResource ToggleSwitchKnobOffShadowFillPressed}" />
 										</ObjectAnimationUsingKeyFrames>
 									</Storyboard>
+									<VisualState.Setters>
+										<Setter Target="KnobOnBorder.Margin" Value="0" />
+										<Setter Target="KnobOffBorder.Margin" Value="0" />
+										<Setter Target="KnobOnBorder.CornerRadius" Value="{ThemeResource LargeThumbCornerRadius}" />
+										<Setter Target="KnobOffBorder.CornerRadius" Value="{ThemeResource LargeThumbCornerRadius}" />
+										<Setter Target="SwitchKnobOn.Margin" Value="26,0,0,0" />
+										<Setter Target="SwitchKnobOff.Margin" Value="0,0,22,0" />
+										<Setter Target="OnIconPresenterBorder.Margin" Value="0" />
+										<Setter Target="SwitchKnobOnShadow.Visibility" Value="Visible" />
+										<Setter Target="SwitchKnobOffShadow.Visibility" Value="Visible" />
+									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="Disabled">
 									<Storyboard>
@@ -3456,12 +3425,9 @@
 																  KeySpline="{StaticResource MaterialToggleSwitchFastOutSlowInKeySpline}"
 																  Value="{Binding OffContent, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ToggleSwitchOffContentToContentSize}}" />
 										</DoubleAnimationUsingKeyFrames>
-
 									</Storyboard>
 									<VisualState.Setters>
 										<Setter Target="RootGrid.Opacity" Value="0.3" />
-										<Setter Target="OnShadowPanel.Shadows" Value="{ThemeResource ToggleSwitchOnBorderDisabledShadows}" />
-										<Setter Target="ShadowKnobOn.Shadows" Value="{ThemeResource ToggleSwitchKnobOnDisabledShadows}" />
 									</VisualState.Setters>
 								</VisualState>
 							</VisualStateGroup>
@@ -3591,7 +3557,6 @@
 													  From="Off"
 													  To="On"
 													  GeneratedDuration="0">
-
 										<Storyboard>
 											<RepositionThemeAnimation TargetName="SwitchKnob"
 																	  FromHorizontalOffset="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.KnobOffToOnOffset}" />
@@ -3745,7 +3710,7 @@
 
 							<utu:ShadowContainer x:Name="OnShadowPanel"
 												 HorizontalAlignment="Center"
-												 Shadows="{ThemeResource ToggleSwitchOnBorderShadows}"
+												 Shadows="{ThemeResource ToggleSwitchOnTrackShadows}"
 												 Opacity="0">
 								<Grid x:Name="SwitchKnobBounds"
 									  Width="{ThemeResource SwitchKnobWidth}"
@@ -3756,7 +3721,7 @@
 
 							<utu:ShadowContainer x:Name="OffShadowPanel"
 												 HorizontalAlignment="Center"
-												 Shadows="{ThemeResource ToggleSwitchOffBorderShadows}">
+												 Shadows="{ThemeResource ToggleSwitchOffTrackShadows}">
 								<Grid x:Name="SwitchKnobBoundsOff"
 									  Width="{ThemeResource SwitchKnobWidth}"
 									  Height="{ThemeResource SwitchKnobHeight}"
@@ -3781,7 +3746,7 @@
 
 									<utu:ShadowContainer x:Name="ShadowKnobOn"
 														 Background="{ThemeResource SurfaceBrush}"
-														 Shadows="{ThemeResource ToggleSwitchKnobOnShadows}">
+														 Shadows="{ThemeResource ToggleSwitchOnKnobShadows}">
 										<Border x:Name="KnobOnBorder"
 												Width="{ThemeResource MediumThumbSize}"
 												Height="{ThemeResource MediumThumbSize}"
@@ -3823,7 +3788,7 @@
 
 									<utu:ShadowContainer x:Name="ShadowKnobOff"
 														 Background="{ThemeResource OnSurfaceVariantBrush}"
-														 Shadows="{ThemeResource ToggleSwitchKnobOffShadows}">
+														 Shadows="{ThemeResource ToggleSwitchOffKnobShadows}">
 										<Border x:Name="KnobOffBorder"
 												Height="{Binding OffContent, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ToggleSwitchOffContentToContentSize}}"
 												Width="{Binding OffContent, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ToggleSwitchOffContentToContentSize}}"
