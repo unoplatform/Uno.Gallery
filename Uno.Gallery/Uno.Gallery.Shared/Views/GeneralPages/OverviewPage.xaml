@@ -21,14 +21,6 @@
 
 	<Page.Resources>
 		<ResourceDictionary>
-			<!--<ResourceDictionary.MergedDictionaries>
-				--><!-- Known issue at the moment where we cannot re-initialize MaterialToolkitTheme to override colors with a new palette for other platforms outside of Windows -->
-				<!-- https://github.com/unoplatform/Uno.Themes/issues/1145 -->
-				<!--<MaterialToolkitTheme xmlns="using:Uno.Toolkit.UI.Material"
-									  ColorOverrideSource="ms-appx:///Views/NeumorphicColorsOverride.xaml" />--><!--
-				<ResourceDictionary Source="../NeumorphicColorsOverride.xaml" />
-				<ResourceDictionary Source="../Styles/NeumorphicStyles.xaml" />
-			</ResourceDictionary.MergedDictionaries>-->
 
 			<Style x:Key="NeumorphicButtonStyle"
 				   TargetType="Button">
@@ -72,19 +64,7 @@
 			<controls:WrapPanel HorizontalSpacing="16"
 								VerticalSpacing="16"
 								Margin="0,40,0,0">
-				<!--<Button Style="{StaticResource NeumorphicFabSmallStyle}"
-						Content="Small">
-					<um:ControlExtensions.Icon>
-						<PathIcon Data="M16.667 9.14286H9.80985V16H7.52414V9.14286H0.666992V6.85714H7.52414V0H9.80985V6.85714H16.667V9.14286Z" />
-					</um:ControlExtensions.Icon>
-				</Button>-->
 
-				<!--<Button Style="{StaticResource NeumorphicFabStyle}"
-						Content="Medium">
-					<um:ControlExtensions.Icon>
-						<PathIcon Data="M16.667 9.14286H9.80985V16H7.52414V9.14286H0.666992V6.85714H7.52414V0H9.80985V6.85714H16.667V9.14286Z" />
-					</um:ControlExtensions.Icon>
-				</Button>-->
 				<Button Style="{StaticResource NeumorphicButtonStyle}"
 						MinHeight="40"
 						Content="Medium" />
@@ -92,17 +72,9 @@
 						MinHeight="20"
 						Content="Medium" />
 
-
-
 				<Rectangle Height="100"
 						   Width="20"
 						   Fill="White" />
-
-				<!--<Button Style="{StaticResource NeumorphicFabLargeStyle}">
-					<um:ControlExtensions.Icon>
-						<PathIcon Data="M24.334 13.7143H14.0483V24H10.6197V13.7143H0.333984V10.2857H10.6197V0H14.0483V10.2857H24.334V13.7143Z" />
-					</um:ControlExtensions.Icon>
-				</Button>-->
 
 			</controls:WrapPanel>
 		</StackPanel>
