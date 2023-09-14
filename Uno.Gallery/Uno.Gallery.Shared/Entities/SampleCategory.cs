@@ -23,5 +23,8 @@ namespace Uno.Gallery
 
 		[SampleCategoryInfo("\uF0B4", "Toolkit")]
 		Toolkit,
+
+		[SampleCategoryInfo("\uE821", "Community Toolkit")]
+		CommunityToolkit,
 	}
 }
