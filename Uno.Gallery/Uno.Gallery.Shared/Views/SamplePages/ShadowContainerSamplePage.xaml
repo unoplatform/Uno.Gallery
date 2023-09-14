@@ -946,7 +946,6 @@
 								<utu:ShadowCollection x:Name="Shadows">
 									<utu:Shadow BlurRadius="20" OffsetX="10" OffsetY="10" Opacity="0.5" Spread="0" Color="{StaticResource UnoPurple}" />
 									<utu:Shadow BlurRadius="20" OffsetX="-10" OffsetY="-10" Opacity="0.5" Spread="0" Color="{StaticResource UnoPink}" />
-									<utu:Shadow BlurRadius="20" OffsetX="-10" OffsetY="-10" Opacity="0.5" Spread="0" IsInner="True" Color="{StaticResource UnoGreen}" />
 								</utu:ShadowCollection>
 							</utu:ShadowContainer.Shadows>
 							<Grid Padding="16"
