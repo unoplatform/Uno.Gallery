@@ -33,9 +33,6 @@
 			<!-- CheckBox -->
 			<!-- note: 1st shadow's opacity in Hover,Focused,Pressed is calculated from (attached element opacity: [0.08 or 0.12])*(shadow color alpha: 1.0) -->
 			<utu:ShadowCollection x:Key="NeumorphicCheckBoxShadows">
-				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="8" Spread="8" Color="Transparent" Opacity="0" IsInner="False">
-					<!-- workaround: invisible shadow to prevent major layout difference between states -->
-				</utu:Shadow>
 				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="4" Spread="0" Color="#000000" Opacity="0.6" IsInner="False" />
 				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Spread="0" Color="#615B71" Opacity="1" IsInner="False" />
 			</utu:ShadowCollection>
@@ -55,9 +52,6 @@
 				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Spread="0" Color="#615B71" Opacity="1" IsInner="False" />
 			</utu:ShadowCollection>
 			<utu:ShadowCollection x:Key="NeumorphicCheckBoxDisabledShadows">
-				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="8" Spread="8" Color="Transparent" Opacity="0" IsInner="False">
-					<!-- workaround: invisible shadow to prevent major layout difference between states -->
-				</utu:Shadow>
 				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="4" Spread="0" Color="#000000" Opacity="0.6" IsInner="False" />
 				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Spread="0" Color="#615B71" Opacity="1" IsInner="False" />
 			</utu:ShadowCollection>
@@ -189,9 +183,6 @@
 				<utu:Shadow OffsetX="1" OffsetY="2" BlurRadius="2" Spread="2" Color="#000000" Opacity="1" IsInner="True" />
 			</utu:ShadowCollection>
 			<utu:ShadowCollection x:Key="ToggleSwitchOnBorderShadows">
-				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Spread="4" Color="Transparent" Opacity="0" IsInner="True">
-					<!-- workaround: invisible shadow to prevent major layout difference between states -->
-				</utu:Shadow>
 				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="2" Spread="2" Color="#FFFFFF" Opacity="0.6" IsInner="True" />
 				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="2" Spread="2" Color="#000000" Opacity="1" IsInner="True" />
 			</utu:ShadowCollection>
@@ -243,9 +234,6 @@
 			<!-- CheckBox -->
 			<!-- note: 1st shadow's opacity in Hover,Focused,Pressed is calculated from (attached element opacity: [0.08 or 0.12])*(shadow color alpha: 1.0) -->
 			<utu:ShadowCollection x:Key="NeumorphicCheckBoxShadows">
-				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="8" Spread="8" Color="Transparent" Opacity="0" IsInner="False">
-					<!-- workaround: invisible shadow to prevent major layout difference between states -->
-				</utu:Shadow>
 				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="2" Spread="0" Color="#AEAEC0" Opacity="0.6" IsInner="False" />
 				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="2" Spread="0" Color="#FFFFFF" Opacity="1" IsInner="False" />
 			</utu:ShadowCollection>
@@ -265,9 +253,6 @@
 				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Spread="0" Color="#FFFFFF" Opacity="1" IsInner="False" />
 			</utu:ShadowCollection>
 			<utu:ShadowCollection x:Key="NeumorphicCheckBoxDisabledShadows">
-				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="8" Spread="8" Color="Transparent" Opacity="0" IsInner="False">
-					<!-- workaround: invisible shadow to prevent major layout difference between states -->
-				</utu:Shadow>
 				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="2" Spread="0" Color="#AEAEC0" Opacity="0.6" IsInner="False" />
 				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="2" Spread="0" Color="#FFFFFF" Opacity="1" IsInner="False" />
 			</utu:ShadowCollection>
@@ -404,9 +389,6 @@
 				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="2" Spread="2" Color="#584A7F" Opacity="0.6" IsInner="True" />
 			</utu:ShadowCollection>
 			<utu:ShadowCollection x:Key="ToggleSwitchOnBorderShadows">
-				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Spread="4" Color="Transparent" Opacity="0" IsInner="True">
-					<!-- workaround: invisible shadow to prevent major layout difference between states -->
-				</utu:Shadow>
 				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="2" Spread="2" Color="#413399" Opacity="1" IsInner="True" />
 				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="2" Spread="0" Color="#FFFFFF" Opacity="0.6" IsInner="True" />
 			</utu:ShadowCollection>

@@ -36,13 +36,13 @@
 		</PackageReference>
 		<PackageReference Include="Uno.Core.Extensions.Compatibility" Version="4.0.1" />
 		<PackageReference Include="Uno.Core.Extensions.Logging.Singleton" Version="4.0.1" />
-		<PackageReference Include="Uno.Toolkit.Skia.WinUI" Version="5.0.0-dev.99" />
-		<PackageReference Include="Uno.Toolkit.WinUI" Version="5.0.0-dev.99" />
+		<PackageReference Include="Uno.Toolkit.Skia.WinUI" Version="5.0.0-dev.94" />
+		<PackageReference Include="Uno.Toolkit.WinUI" Version="5.0.0-dev.94" />
 		<PackageReference Include="Uno.Toolkit.WinUI.Cupertino">
-			<Version>5.0.0-dev.99</Version>
+			<Version>5.0.0-dev.94</Version>
 		</PackageReference>
 		<PackageReference Include="Uno.Toolkit.WinUI.Material">
-			<Version>5.0.0-dev.99</Version>
+			<Version>5.0.0-dev.94</Version>
 		</PackageReference>
 		<PackageReference Include="Uno.WinUI">
 			<Version>5.0.0-dev.2366</Version>
