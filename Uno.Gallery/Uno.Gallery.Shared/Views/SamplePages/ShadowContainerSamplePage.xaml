@@ -286,6 +286,16 @@
 								<PathIcon Data="M16.667 9.14286H9.80985V16H7.52414V9.14286H0.666992V6.85714H7.52414V0H9.80985V6.85714H16.667V9.14286Z" />
 							</um:ControlExtensions.Icon>
 						</Button>
+						<!--<Button Style="{StaticResource NeumorphicButtonStyle}"
+								Content="Medium">
+							<um:ControlExtensions.Icon>
+								<PathIcon Data="M16.667 9.14286H9.80985V16H7.52414V9.14286H0.666992V6.85714H7.52414V0H9.80985V6.85714H16.667V9.14286Z" />
+							</um:ControlExtensions.Icon>
+						</Button>-->
+
+						<!--<Rectangle Height="300"
+								   Width="10"
+								   Fill="Aqua" />-->
 
 						<Button Style="{StaticResource NeumorphicFabLargeStyle}">
 							<um:ControlExtensions.Icon>
@@ -926,189 +936,61 @@
 
 			<utu:Shadow x:Key="DefaultShadow" BlurRadius="20" OffsetX="10" OffsetY="10" Opacity="0.5" Spread="0" Color="{StaticResource UnoPurple}" />
 		</ResourceDictionary>
+
+		<Style x:Key="NeumorphicButtonStyle"
+			   TargetType="Button">
+
+			<Setter Property="Background"
+					Value="{ThemeResource PrimaryContainerBrush}" />
+
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="Button">
+						<utu:ShadowContainer Background="{TemplateBinding Background}">
+
+							<!-- Content -->
+							<ContentPresenter x:Name="ContentPresenter"
+											  Content="{TemplateBinding Content}" />
+						</utu:ShadowContainer>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
 	</Page.Resources>
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 		<local:ContentPageLayout>
 			<StackPanel>
-				<smtx:XamlDisplay UniqueKey="ShadowContainerSamplePage_ShadowBuilder"
-								  Background="{ThemeResource SurfaceBrush}"
-								  smtx:XamlDisplayExtensions.Header="Shadow Builder"
-								  smtx:XamlDisplayExtensions.Description="You can add as many shadows as you like. You can also dynamically change the shadow properties.">
-					<!-- Viewbox here to be able to use ShadowBuilder for Narrow breakpoint or on a Phone -->
-					<!-- MaxWidth here for Wide breakpoint or on a Tablet -->
-					<Viewbox MaxWidth="500" HorizontalAlignment="Left">
-						<utu:ShadowContainer x:Name="ShadowContainer"
-											 Background="{ThemeResource SurfaceBrush}"
-											 
-											 Margin="40">
-							<utu:ShadowContainer.Shadows>
-								<utu:ShadowCollection x:Name="Shadows">
-									<utu:Shadow BlurRadius="20" OffsetX="10" OffsetY="10" Opacity="0.5" Spread="0" Color="{StaticResource UnoPurple}" />
-									<utu:Shadow BlurRadius="20" OffsetX="-10" OffsetY="-10" Opacity="0.5" Spread="0" Color="{StaticResource UnoPink}" />
-									<utu:Shadow BlurRadius="20" OffsetX="-10" OffsetY="-10" Opacity="0.5" Spread="0" IsInner="True" Color="{StaticResource UnoGreen}" />
-								</utu:ShadowCollection>
-							</utu:ShadowContainer.Shadows>
-							<Grid Padding="16"
-								  BorderBrush="{StaticResource CardStrokeColorDefaultBrush}"
-								  BorderThickness="1"
-								  CornerRadius="20">
-								<Grid.RowDefinitions>
-									<RowDefinition Height="Auto" />
-									<RowDefinition Height="Auto" />
-								</Grid.RowDefinitions>
-								<ItemsRepeater x:Name="ShadowsItemsRepeater">
-									<ItemsRepeater.Layout>
-										<StackLayout Orientation="Vertical"
-													 Spacing="24" />
-									</ItemsRepeater.Layout>
-									<ItemsRepeater.ItemTemplate>
-										<DataTemplate>
-											<Grid RowSpacing="12"
-												  ColumnSpacing="12">
-												<Grid.RowDefinitions>
-													<RowDefinition Height="Auto" />
-													<RowDefinition Height="Auto" />
-													<RowDefinition Height="Auto" />
-												</Grid.RowDefinitions>
-												<Grid.ColumnDefinitions>
-													<ColumnDefinition Width="*" />
-													<ColumnDefinition Width="*" />
-													<ColumnDefinition Width="*" />
-													<ColumnDefinition Width="*" />
-												</Grid.ColumnDefinitions>
 
-												<TextBox Grid.Column="0"
-														 Grid.ColumnSpan="2"
-														 PlaceholderText="Color"
-														 Style="{StaticResource NeumorphicTextBoxStyle}"
-														 Text="{Binding Color, Mode=TwoWay, Converter={StaticResource HexToColor}, UpdateSourceTrigger=PropertyChanged}">
-													<TextBox.Foreground>
-														<SolidColorBrush Color="{Binding Color}" />
-													</TextBox.Foreground>
-													<um:ControlExtensions.Icon>
-														<PathIcon Data="M10 0C4.47 0 0 4.47 0 10C0 15.53 4.47 20 10 20C15.53 20 20 15.53 20 10C20 4.47 15.53 0 10 0Z">
-															<PathIcon.Foreground>
-																<SolidColorBrush Color="{Binding Color}" />
-															</PathIcon.Foreground>
-														</PathIcon>
-													</um:ControlExtensions.Icon>
-												</TextBox>
+				<controls:WrapPanel HorizontalSpacing="16"
+									VerticalSpacing="16">
+					<Button Style="{StaticResource NeumorphicFabSmallStyle}"
+							Content="Small">
+						<um:ControlExtensions.Icon>
+							<PathIcon Data="M16.667 9.14286H9.80985V16H7.52414V9.14286H0.666992V6.85714H7.52414V0H9.80985V6.85714H16.667V9.14286Z" />
+						</um:ControlExtensions.Icon>
+					</Button>
 
-												<TextBox Grid.Column="2"
-														 PlaceholderText="Opacity"
-														 Style="{StaticResource NeumorphicTextBoxStyle}"
-														 Text="{Binding Opacity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+					<Button Style="{StaticResource NeumorphicFabStyle}"
+							Content="Medium">
+						<um:ControlExtensions.Icon>
+							<PathIcon Data="M16.667 9.14286H9.80985V16H7.52414V9.14286H0.666992V6.85714H7.52414V0H9.80985V6.85714H16.667V9.14286Z" />
+						</um:ControlExtensions.Icon>
+					</Button>
+					<!--<Button Style="{StaticResource NeumorphicButtonStyle}"
+								Content="Medium">
+							<um:ControlExtensions.Icon>
+								<PathIcon Data="M16.667 9.14286H9.80985V16H7.52414V9.14286H0.666992V6.85714H7.52414V0H9.80985V6.85714H16.667V9.14286Z" />
+							</um:ControlExtensions.Icon>
+						</Button>-->
 
-												<CheckBox Grid.Column="3"
-														  Padding="5,0"
-														  Content="Inner"
-														  VerticalAlignment="Bottom"
-														  VerticalContentAlignment="Center"
-														  Style="{StaticResource NeumorphicCheckBoxStyle}"
-														  IsChecked="{Binding IsInner, Mode=TwoWay}" />
+					<Button Style="{StaticResource NeumorphicFabLargeStyle}">
+						<um:ControlExtensions.Icon>
+							<PathIcon Data="M24.334 13.7143H14.0483V24H10.6197V13.7143H0.333984V10.2857H10.6197V0H14.0483V10.2857H24.334V13.7143Z" />
+						</um:ControlExtensions.Icon>
+					</Button>
 
-												<TextBox Grid.Row="1"
-														 PlaceholderText="Offset X"
-														 Style="{StaticResource NeumorphicTextBoxStyle}"
-														 Text="{Binding OffsetX, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-
-												<TextBox Grid.Row="1"
-														 Grid.Column="1"
-														 PlaceholderText="Offset Y"
-														 Style="{StaticResource NeumorphicTextBoxStyle}"
-														 Text="{Binding OffsetY, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-
-												<TextBox Grid.Row="1"
-														 Grid.Column="2"
-														 PlaceholderText="Blur"
-														 Style="{StaticResource NeumorphicTextBoxStyle}"
-														 Text="{Binding BlurRadius, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-
-												<TextBox Grid.Row="1"
-														 Grid.Column="3"
-														 PlaceholderText="Spread"
-														 Style="{StaticResource NeumorphicTextBoxStyle}"
-														 Text="{Binding Spread, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-
-												<utu:Divider Grid.Row="2"
-															 Grid.ColumnSpan="4"
-															 Margin="0,12,0,0" />
-											</Grid>
-										</DataTemplate>
-									</ItemsRepeater.ItemTemplate>
-								</ItemsRepeater>
-								<StackPanel Margin="0,24,0,0"
-											Grid.Row="1"
-											HorizontalAlignment="Center"
-											Orientation="Horizontal"
-											Spacing="24">
-									<Button x:Name="RemoveShadowButton"
-											Style="{StaticResource NeumorphicMediumElevatedButtonStyle}"
-											BorderThickness="1"
-											Click="RemoveShadow"
-											Content="Shadow">
-										<um:ControlExtensions.Icon>
-											<SymbolIcon Symbol="Remove" />
-										</um:ControlExtensions.Icon>
-									</Button>
-									<Button Style="{StaticResource NeumorphicMediumElevatedButtonStyle}"
-											BorderThickness="1"
-											Click="AddShadow"
-											Content="Shadow">
-										<um:ControlExtensions.Icon>
-											<SymbolIcon Symbol="Add" />
-										</um:ControlExtensions.Icon>
-									</Button>
-								</StackPanel>
-							</Grid>
-						</utu:ShadowContainer>
-					</Viewbox>
-				</smtx:XamlDisplay>
-
-				<utu:Divider Margin="0,36" />
-
-				<TextBlock Text="Neumorphic Styles"
-						   Style="{StaticResource TitleLarge}"
-						   Foreground="{ThemeResource OnBackgroundBrush}" />
-
-				<TextBlock Text="Neumorphism is a design style where elements are usually the same color as the background, and are only distinguished by shadows and highlights surrounding the element. This gives the elements the appearance that they are protruding from the background, or that they are dented into it."
-						   Style="{StaticResource BodyMedium}"
-						   Foreground="{ThemeResource OnBackgroundBrush}"
-						   TextWrapping="WrapWholeWords"
-						   Opacity="0.8"
-						   Margin="0,16,0,0" />
-
-				<ComboBox x:Name="NeumorphicControlCombo"
-						  PlaceholderText="Select a control"
-						  SelectedIndex="0"
-						  Margin="0,16">
-					<x:String>Button</x:String>
-					<x:String>CheckBox</x:String>
-					<x:String>Chip</x:String>
-					<x:String>ComboBox</x:String>
-					<x:String>FAB</x:String>
-					<x:String>IconButton</x:String>
-					<x:String>PasswordBox</x:String>
-					<x:String>RadioButton</x:String>
-					<!--<x:String>Slider</x:String>-->
-					<x:String>TabBar</x:String>
-					<x:String>TextBox</x:String>
-					<x:String>ToggleButton</x:String>
-					<x:String>ToggleSwitch</x:String>
-				</ComboBox>
-
-				<ContentControl Content="{Binding Path=SelectedValue, ElementName=NeumorphicControlCombo}"
-								Margin="0,16"
-								HorizontalContentAlignment="Stretch"
-								VerticalContentAlignment="Stretch"
-								ContentTemplateSelector="{StaticResource NeumorphicTemplateSelector}" />
-
-
-
-
-
-
+				</controls:WrapPanel>
 			</StackPanel>
 		</local:ContentPageLayout>
 	</Grid>
