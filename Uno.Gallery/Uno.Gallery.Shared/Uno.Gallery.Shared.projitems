@@ -142,6 +142,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Controls\ContentPageLayout.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\OverviewSampleView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\SamplePageLayout.Properties.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\DateTimeToDateTimeOffsetConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\DebugConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\EnumDescriptionConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\EnumDesignConverter.cs" />
@@ -154,11 +155,13 @@
     <Compile Include="$(MSBuildThisFileDirectory)Controls\FluentColorAccentView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\ThreeColorPaletteView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\FromColorBrushToHexConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\FromValueToStringConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\HexToColorConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\RandomColorConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\SecretConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Deeplinking\BranchService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Domain\AnalyticsService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Data\Plant.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Data\TreeItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Data\Folder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\SampleCategoryInfoAttribute.cs" />
@@ -182,12 +185,17 @@
     <Compile Include="$(MSBuildThisFileDirectory)Selectors\NeumorphicTemplateSelector.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Command.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ViewModelBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\SamplePages\DataGridSamplePage.xaml.cs" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="$(MSBuildThisFileDirectory)App.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Page Include="$(MSBuildThisFileDirectory)Views\SamplePages\DataGridSamplePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <_Globbled_Page Include="$(MSBuildThisFileDirectory)**/*.xaml" Exclude="@(Page);@(ApplicationDefinition)">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

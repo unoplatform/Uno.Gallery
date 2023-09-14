@@ -20,6 +20,7 @@
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.WinUI.Lottie" Version="7.1.2" />
 		<PackageReference Include="CommunityToolkit.WinUI.UI.Controls" Version="7.1.2" />
+		<PackageReference Include="CommunityToolkit.WinUI.UI.Controls.DataGrid" Version="7.1.2" />
 		<PackageReference Include="Uno.Cupertino.WinUI" Version="4.0.0-dev.126" />
 		<PackageReference Include="Uno.Material.WinUI" Version="4.0.0-dev.126" />
 		<PackageReference Include="Uno.ShowMeTheXAML" Version="2.0.0-dev0015" />

@@ -28,6 +28,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Uno.CommunityToolkit.WinUI.UI.Controls" Version="7.1.200-dev.13.gef3f523648" />
+		<PackageReference Include="Uno.CommunityToolkit.WinUI.UI.Controls.DataGrid" Version="7.1.200-dev.13.gef3f523648" />
 		<PackageReference Include="Uno.Cupertino.WinUI" Version="4.0.0-dev.126" />
 		<PackageReference Include="Uno.Extensions.Logging.OSLog" Version="1.6.0-dev.2" />
 		<PackageReference Include="Uno.Fonts.Fluent" Version="2.3.0" />
