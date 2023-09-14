@@ -271,8 +271,33 @@
 								  Background="{ThemeResource SurfaceBrush}"
 								  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
 
-					<controls:WrapPanel HorizontalSpacing="16"
-										VerticalSpacing="16">
+					<StackPanel x:Name="FABStackPanel"
+								Orientation="Horizontal"
+								Spacing="16">
+						<VisualStateManager.VisualStateGroups>
+							<VisualStateGroup x:Name="FormFactors">
+
+								<VisualState x:Name="Desktop">
+									<VisualState.StateTriggers>
+										<AdaptiveTrigger MinWindowWidth="{StaticResource DesktopAdaptiveThresholdWidth}" />
+									</VisualState.StateTriggers>
+									<VisualState.Setters>
+									</VisualState.Setters>
+								</VisualState>
+
+								<VisualState x:Name="Mobile">
+									<VisualState.StateTriggers>
+										<AdaptiveTrigger MinWindowWidth="0" />
+									</VisualState.StateTriggers>
+
+									<VisualState.Setters>
+										<Setter Target="FABStackPanel.Orientation"
+												Value="Vertical" />										
+									</VisualState.Setters>
+								</VisualState>
+							</VisualStateGroup>
+						</VisualStateManager.VisualStateGroups>
+						
 						<Button Style="{StaticResource NeumorphicFabSmallStyle}"
 								Content="Small">
 							<um:ControlExtensions.Icon>
@@ -292,7 +317,7 @@
 								<PathIcon Data="M24.334 13.7143H14.0483V24H10.6197V13.7143H0.333984V10.2857H10.6197V0H14.0483V10.2857H24.334V13.7143Z" />
 							</um:ControlExtensions.Icon>
 						</Button>
-					</controls:WrapPanel>
+					</StackPanel>
 				</smtx:XamlDisplay>
 			</DataTemplate>
 
