@@ -40,6 +40,9 @@
 			<utu:ShadowCollection x:Key="CheckBoxRaisingShadows">
 				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="4" Spread="0" Color="#000000" Opacity="0.6" IsInner="False" />
 				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Spread="0" Color="#615B71" Opacity="1" IsInner="False" />
+				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="16" Spread="0" Color="Transparent" Opacity="0" IsInner="False">
+					<!-- gallery#996 workaround: invisible shadow to prevent major layout difference between states -->
+				</utu:Shadow>
 			</utu:ShadowCollection>
 			<utu:ShadowCollection x:Key="CheckBoxRaisingAuraShadows">
 				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="4" Spread="0" Color="#000000" Opacity="0.6" IsInner="False" />
@@ -50,6 +53,9 @@
 				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="4" Spread="0" Color="#000000" Opacity="0.4" IsInner="False" />
 				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="1" Spread="0" Color="#000000" Opacity="0.6" IsInner="True" />
 				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="1" Spread="0" Color="#615B71" Opacity="1" IsInner="True" />
+				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="16" Spread="0" Color="Transparent" Opacity="0" IsInner="False">
+					<!-- gallery#996 workaround: invisible shadow to prevent major layout difference between states -->
+				</utu:Shadow>
 			</utu:ShadowCollection>
 
 			<!-- ComboBox -->
@@ -136,10 +142,16 @@
 			<utu:ShadowCollection x:Key="ChipRaisingShadows">
 				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="4" Spread="0" Color="#000000" Opacity="0.6" IsInner="False" />
 				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Spread="0" Color="#615B71" Opacity="1" IsInner="False" />
+				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="8" Spread="0" Color="Transparent" Opacity="0" IsInner="False">
+					<!-- gallery#996 workaround: invisible shadow to prevent major layout difference between states -->
+				</utu:Shadow>
 			</utu:ShadowCollection>
 			<utu:ShadowCollection x:Key="ChipHollowShadows">
 				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Spread="0" Color="#F7F5FF" Opacity="0.9" IsInner="True" />
 				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="4" Spread="0" Color="#584AB5" Opacity="0.9" IsInner="True" />
+				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="8" Spread="0" Color="Transparent" Opacity="0" IsInner="False">
+					<!-- gallery#996 workaround: invisible shadow to prevent major layout difference between states -->
+				</utu:Shadow>
 			</utu:ShadowCollection>
 
 			<!-- Slider -->
@@ -222,6 +234,9 @@
 			<utu:ShadowCollection x:Key="CheckBoxRaisingShadows">
 				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="4" Spread="0" Color="#AEAEC0" Opacity="0.6" IsInner="False" />
 				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Spread="0" Color="#FFFFFF" Opacity="1" IsInner="False" />
+				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="16" Spread="0" Color="Transparent" Opacity="0" IsInner="False">
+					<!-- gallery#996 workaround: invisible shadow to prevent major layout difference between states -->
+				</utu:Shadow>
 			</utu:ShadowCollection>
 			<utu:ShadowCollection x:Key="CheckBoxRaisingAuraShadows">
 				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="4" Spread="0" Color="#AEAEC0" Opacity="0.6" IsInner="False" />
@@ -232,6 +247,9 @@
 				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="4" Spread="0" Color="#AEAEC0" Opacity="0.4" IsInner="False" />
 				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="1" Spread="0" Color="#FFFFFF" Opacity="1" IsInner="True" />
 				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="1" Spread="0" Color="#000000" Opacity="0.4" IsInner="True" />
+				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="16" Spread="0" Color="Transparent" Opacity="0" IsInner="False">
+					<!-- gallery#996 workaround: invisible shadow to prevent major layout difference between states -->
+				</utu:Shadow>
 			</utu:ShadowCollection>
 
 			<!-- ComboBox -->
@@ -309,19 +327,28 @@
 				<utu:Shadow OffsetX="-8" OffsetY="-8" BlurRadius="8" Spread="0" Color="#170065" Opacity="0.1" IsInner="True" />
 			</utu:ShadowCollection>
 			<utu:ShadowCollection x:Key="FabPressedShadows">
+				<utu:Shadow OffsetX="12" OffsetY="12" BlurRadius="20" Spread="0" Color="Transparent" Opacity="0" IsInner="False">
+					<!-- gallery#996 workaround: invisible shadow to prevent major layout difference between states -->
+				</utu:Shadow>
 				<utu:Shadow OffsetX="2" OffsetY="2" BlurRadius="4" Spread="0" Color="#000000" Opacity="0.4" IsInner="False" />
 				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="8" Spread="0" Color="#FFFFFF" Opacity="0.4" IsInner="True" />
 				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="8" Spread="0" Color="#170065" Opacity="0.1" IsInner="True" />
 			</utu:ShadowCollection>
 
-				<!-- Chips -->
+			<!-- Chips -->
 			<utu:ShadowCollection x:Key="ChipRaisingShadows">
 				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="4" Spread="0" Color="#AEAEC0" Opacity="0.6" IsInner="False" />
 				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Spread="0" Color="#FFFFFF" Opacity="1" IsInner="False" />
+				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="8" Spread="0" Color="Transparent" Opacity="0" IsInner="False">
+					<!-- gallery#996 workaround: invisible shadow to prevent major layout difference between states -->
+				</utu:Shadow>
 			</utu:ShadowCollection>
 			<utu:ShadowCollection x:Key="ChipHollowShadows">
 				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="8" Spread="0" Color="#8271F4" Opacity="1" IsInner="True" />
 				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="8" Spread="0" Color="#4C3CB3" Opacity="1" IsInner="True" />
+				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="8" Spread="0" Color="Transparent" Opacity="0" IsInner="False">
+					<!-- gallery#996 workaround: invisible shadow to prevent major layout difference between states -->
+				</utu:Shadow>
 			</utu:ShadowCollection>
 
 			<!-- Slider -->
