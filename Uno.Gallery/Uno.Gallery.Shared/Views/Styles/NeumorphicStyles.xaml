@@ -543,7 +543,9 @@
 							</VisualStateGroup>
 						</VisualStateManager.VisualStateGroups>
 
+						<!-- workaround gallery#999: transparent background added to fix hitbox on ios/droid -->
 						<Grid x:Name="RootGrid"
+							  Background="Transparent"
 							  Width="{TemplateBinding Width}"
 							  MinHeight="{TemplateBinding MinHeight}"
 							  CornerRadius="{TemplateBinding CornerRadius}">
@@ -727,7 +729,9 @@
 							</VisualStateGroup>
 						</VisualStateManager.VisualStateGroups>
 
+						<!-- workaround gallery#999: transparent background added to fix hitbox on ios/droid -->
 						<Grid x:Name="RootGrid"
+							  Background="Transparent"
 							  Width="{TemplateBinding Width}"
 							  MinHeight="{TemplateBinding MinHeight}"
 							  CornerRadius="{TemplateBinding CornerRadius}">
@@ -924,7 +928,9 @@
 							</VisualStateGroup>
 						</VisualStateManager.VisualStateGroups>
 
+						<!-- workaround gallery#999: transparent background added to fix hitbox on ios/droid -->
 						<Grid x:Name="RootGrid"
+							  Background="Transparent"
 							  HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
 							  CornerRadius="4"
 							  Width="{TemplateBinding Width}"
