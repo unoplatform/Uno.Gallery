@@ -1491,7 +1491,8 @@
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="CheckBox">
-					<Grid x:Name="Root">
+					<!-- workaround uno#13604: transparent background used to prevent android double-click-->
+					<Grid x:Name="Root" Background="Transparent">
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup x:Name="CommonStates">
 								<VisualState x:Name="Normal" />
@@ -1814,7 +1815,8 @@
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="RadioButton">
-					<Grid x:Name="RootGrid">
+					<!-- workaround uno#13604: transparent background used to prevent android double-click-->
+					<Grid x:Name="RootGrid" Background="Transparent">
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup x:Name="CommonStates">
 								<VisualState x:Name="Normal" />
