@@ -934,7 +934,8 @@
 							  HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
 							  CornerRadius="4"
 							  Width="{TemplateBinding Width}"
-							  MinHeight="{TemplateBinding MinHeight}">
+							  MinHeight="{TemplateBinding MinHeight}"
+							  Background="Transparent">
 
 							<Border x:Name="StateOverlay" />
 							<Grid x:Name="ComboBoxContent"
