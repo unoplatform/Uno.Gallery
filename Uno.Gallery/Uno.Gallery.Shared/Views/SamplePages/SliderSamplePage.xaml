@@ -18,16 +18,16 @@
 						<smtx:XamlDisplay UniqueKey="SliderSamplePage_Vertical"
 										  smtx:XamlDisplayExtensions.Header="Vertical Slider"
 										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
-							<StackPanel>
+							<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
 
 								<Slider Style="{StaticResource SliderStyle}"
-										Width="200"
+										Height="200"
 										Value="25"
 										Minimum="0"
 										Maximum="100"
 										Orientation="Vertical" />
 								<Slider Style="{StaticResource SliderStyle}"
-										Width="200"
+										Height="200"
 										Value="25"
 										Minimum="0"
 										Maximum="100"
@@ -39,18 +39,18 @@
 						<smtx:XamlDisplay UniqueKey="SliderSamplePage_Horizontal"
 										  smtx:XamlDisplayExtensions.Header="Horizontal Slider"
 										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
-							<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+							<StackPanel>
 
 								<Slider Value="25"
 										Minimum="0"
 										Maximum="100"
-										Height="200"
+										Width="200"
 										Orientation="Horizontal"
 										Style="{StaticResource SliderStyle}" />
 								<Slider Value="25"
 										Minimum="0"
 										Maximum="100"
-										Height="200"
+										Width="200"
 										Orientation="Horizontal"
 										IsEnabled="False"
 										Style="{StaticResource SliderStyle}" />
