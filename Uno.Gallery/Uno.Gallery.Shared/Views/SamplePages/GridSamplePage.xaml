@@ -136,9 +136,9 @@
 									<ColumnDefinition Width="*"/>
 								</Grid.ColumnDefinitions>
 
-								<TextBox Header="First name" Grid.Column="0" Grid.Row="1" Margin="10"/>
-								<TextBox Header="Last name" Grid.Column="1" Grid.Row="1" Margin="10"/>
-								<TextBox Header="Address" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Margin="10"/>
+								<TextBox Header="First name" Grid.Column="0" Grid.Row="0" Margin="10"/>
+								<TextBox Header="Last name" Grid.Column="1" Grid.Row="0" Margin="10"/>
+								<TextBox Header="Address" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Margin="10"/>
 							</Grid>
 
 
