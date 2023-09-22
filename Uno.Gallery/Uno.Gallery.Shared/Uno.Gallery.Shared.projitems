@@ -157,7 +157,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\HexToColorConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\RandomColorConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\SecretConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Deeplinking\BranchService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Domain\AnalyticsService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Data\TreeItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Data\Folder.cs" />
