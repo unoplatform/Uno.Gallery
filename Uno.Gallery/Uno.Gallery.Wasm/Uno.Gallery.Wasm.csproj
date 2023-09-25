@@ -100,6 +100,7 @@
 		<!-- Note that for WebAssembly version 1.1.1 of the console logger required -->
 		<PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
 		<PackageReference Include="Uno.CommunityToolkit.WinUI.UI.Controls" Version="7.1.200-dev.13.gef3f523648" />
+		<PackageReference Include="Uno.CommunityToolkit.WinUI.UI.Controls.DataGrid" Version="7.1.200-dev.13.gef3f523648" />
 		<PackageReference Include="Uno.Cupertino.WinUI" Version="4.0.0-dev.126" />
 		<PackageReference Include="Uno.Extensions.Logging.WebAssembly.Console" Version="1.6.0-dev.2" />
 		<PackageReference Include="Microsoft.Windows.Compatibility" Version="6.0.6" />
