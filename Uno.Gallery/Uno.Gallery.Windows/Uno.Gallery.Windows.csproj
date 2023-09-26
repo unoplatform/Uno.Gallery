@@ -51,6 +51,10 @@
 		<Manifest Include="$(ApplicationManifest)" />
 	</ItemGroup>
 
+	<ItemGroup>
+		<ProjectReference Include="..\..\Uno.Gallery.SourceGenerators\Uno.Gallery.SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+	</ItemGroup>
+
 	<!-- 
     Defining the "Msix" ProjectCapability here allows the Single-project MSIX Packaging
     Tools extension to be activated for this project even if the Windows App SDK Nuget
