@@ -134,6 +134,11 @@
 		<!-- Use ILLink package to improve XAML trimming performance -->
 		<PackageReference Include="Microsoft.NET.ILLink.Tasks" Version="8.0.100-1.23067.1" />
 	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\Uno.Gallery.SourceGenerators\Uno.Gallery.SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+	</ItemGroup>
+
 	<ItemGroup>
 		<TypeScriptCompile Include="ts\GoogleAnalytics.ts" />
 	</ItemGroup>

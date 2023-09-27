@@ -196,7 +196,7 @@ public class DataGridSamplePageViewModel : ViewModelBase
 		HeadersVisibility = DataGridHeadersVisibility.Column;
 		SelectionMode = DataGridSelectionMode.Extended;
 
-		AvailableColors = new List<SolidColorBrush>(typeof(Colors).GetRuntimeProperties()
+		AvailableColors = new List<SolidColorBrush>(typeof(Colors).GetProperties(BindingFlags.Public | BindingFlags.Static)
 			.Select(c => new SolidColorBrush((Color)c.GetValue(null))));
 
 		GridLinesVisibilityOptions = Enum.GetValues(typeof(DataGridGridLinesVisibility)).Cast<DataGridGridLinesVisibility>().ToList();

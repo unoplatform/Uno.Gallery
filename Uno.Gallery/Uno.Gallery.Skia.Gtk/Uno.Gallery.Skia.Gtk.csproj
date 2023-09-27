@@ -49,6 +49,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\..\Uno.Gallery.SourceGenerators\Uno.Gallery.SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<IncludeXamlNamespaces Include="not_mobile" Visible="False" />
 		<ExcludeXamlNamespaces Include="mobile" Visible="False" />
 	</ItemGroup>
