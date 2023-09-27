@@ -52,7 +52,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\Uno.Gallery.SourceGenerators\Uno.Gallery.SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+		<!-- We build WinUI project with Platform=x86 due to a CommunityToolkit bug -->
+		<!-- https://github.com/CommunityToolkit/Lottie-Windows/issues/515#issuecomment-1662305826 -->
+		<!-- If the source generator project is built with x86, the compiler fails to load the generator assembly, so we force AnyCPU here -->
+		<ProjectReference Include="..\..\Uno.Gallery.SourceGenerators\Uno.Gallery.SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" SetPlatform="Platform=AnyCPU" />
 	</ItemGroup>
 
 	<!-- 
