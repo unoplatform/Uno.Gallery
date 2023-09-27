@@ -132,7 +132,7 @@
 		<PackageReference Include="Uno.Core.Extensions.Compatibility" Version="4.0.1" />
 
 		<!-- Use ILLink package to improve XAML trimming performance -->
-		<PackageReference Include="Microsoft.NET.ILLink.Tasks" Version="8.0.100-1.23067.1" />
+		<PackageReference Include="Microsoft.NET.ILLink.Tasks" Version="8.0.0-rc.1.23419.4" />
 	</ItemGroup>
 	<ItemGroup>
 		<TypeScriptCompile Include="ts\GoogleAnalytics.ts" />
