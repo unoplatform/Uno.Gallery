@@ -15,7 +15,7 @@
 	  mc:Ignorable="d android ios macos skia wasm"
 	  x:Name="page">
 
-    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 		<local:SamplePageLayout IsDesignAgnostic="True">
 			<local:SamplePageLayout.DesignAgnosticTemplate>
 				<DataTemplate>
@@ -28,7 +28,7 @@
                                 <CheckBox Content="Keep screen on" Click="CheckBox_Click"/>
                                 <!--
 private DisplayRequest _displayRequest;
-								
+
 private void CheckBox_Click(object sender, RoutedEventArgs e)
 {
 	var checkBox = sender as CheckBox;
@@ -41,7 +41,7 @@ private void CheckBox_Click(object sender, RoutedEventArgs e)
 	{
 		_displayRequest.RequestRelease();
 	}
-}	
+}
 -->
                             </StackPanel>
                         </smtx:XamlDisplay>
