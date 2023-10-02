@@ -15,7 +15,7 @@
 		mc:Ignorable="d android ios macos skia wasm"
 		x:Name="page">
 
-	<Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 		<local:SamplePageLayout IsDesignAgnostic="True">
 			<local:SamplePageLayout.DesignAgnosticTemplate>
 				<DataTemplate>

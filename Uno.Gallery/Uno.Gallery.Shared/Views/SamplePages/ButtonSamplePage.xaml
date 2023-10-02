@@ -9,7 +9,7 @@
 	  xmlns:todo="what should be done"
 	  mc:Ignorable="d todo">
 
-    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 		<local:SamplePageLayout>
 			<local:SamplePageLayout.MaterialTemplate>
 				<DataTemplate>
