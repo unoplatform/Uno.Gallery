@@ -24,7 +24,7 @@
 								</muxc:TwoPaneView.Pane1>
 
 								<muxc:TwoPaneView.Pane2>
-									<Border Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+									<Border Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 										<TextBlock FontSize="24" Padding="15">Pane 2</TextBlock>
 									</Border>
 								</muxc:TwoPaneView.Pane2>
@@ -42,7 +42,7 @@
 								</muxc:TwoPaneView.Pane1>
 
 								<muxc:TwoPaneView.Pane2>
-									<Border Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+									<Border Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 										<TextBlock FontSize="24" Padding="15">Pane 2</TextBlock>
 									</Border>
 								</muxc:TwoPaneView.Pane2>

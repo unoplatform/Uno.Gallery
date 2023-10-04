@@ -414,48 +414,5 @@ namespace Uno.Gallery
 		{
 			XamlDisplay.Init(GetType().Assembly);
 		}
-
-		public static IEnumerable<Sample> GetSamples()
-		{
-			return _samples = _samples ??
-				Assembly.GetExecutingAssembly().DefinedTypes
-					.Where(x => x.Namespace?.StartsWith("Uno.Gallery") == true)
-					.Select(x => new
-					{
-						TypeInfo = x,
-						Attribute = x.GetCustomAttribute<SamplePageAttribute>(),
-						Conditional = x.GetCustomAttribute<SampleConditionalAttribute>(),
-					})
-					.Where(x => x.Attribute != null)
-					.Where(x => x.Conditional == null || ShouldBeDisplayed(x.Conditional.Conditionals))
-					.Select(x => new Sample(x.Attribute, x.TypeInfo.AsType()))
-					.ToArray();
-
-			bool ShouldBeDisplayed(SampleConditionals conditionals)
-			{
-				if (conditionals.HasFlag(SampleConditionals.Disabled)) return false;
-
-				var context = SampleConditionals
-#if WINDOWS
-					.Windows;
-#elif __MACOS__
-					.macOS;
-#elif __IOS__
-					.iOS;
-#elif __ANDROID__
-					.Droid;
-#elif __WASM__
-					.Wasm;
-#elif HAS_UNO_SKIA_GTK
-					.SkiaGtk;
-#else
-					.Always;
-#endif
-
-				var result = conditionals.HasFlag(context);
-
-				return result;
-			}
-		}
 	}
 }

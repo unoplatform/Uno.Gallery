@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Uno.Extensions;
 using Uno.Logging;
 using Microsoft.UI.Xaml.Data;
+using Microsoft.UI.Xaml.Controls;
 
 namespace Uno.Gallery
 {
