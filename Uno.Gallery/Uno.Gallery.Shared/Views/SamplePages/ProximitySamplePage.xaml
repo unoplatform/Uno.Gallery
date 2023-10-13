@@ -8,6 +8,10 @@
       xmlns:local="using:Uno.Gallery"
       mc:Ignorable="d">
 
+
+
+
+
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 		<local:SamplePageLayout IsDesignAgnostic="True">
 			<local:SamplePageLayout.DesignAgnosticTemplate>
@@ -16,16 +20,37 @@
 						<smtx:XamlDisplay UniqueKey="ProximitySamplePage_Sample"
 						                  smtx:XamlDisplayExtensions.IgnorePath="XX"
 						                  smtx:XamlDisplayExtensions.Header="Proximity">
+<!-- C# code
+var selector = ProximitySensor.GetDeviceSelector();
+var devices = await DeviceInformation.FindAllAsync(selector);
+var device = devices.FirstOrDefault();
+if (device is not null)
+{
+
+#if __ANDROID__
+	_proximity = ProximitySensor.FromId(device.Id);
+#endif
+}
+private async void Proximity_ReadingChanged(ProximitySensor sender, ProximitySensorReadingChangedEventArgs args)
+{
+	await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+	{
+		Distance = args.Reading.DistanceInMillimeters;
+		IsDetected = args.Reading.IsDetected;
+	});
+}
+-->
 							<StackPanel Spacing="20">
 
 								<TextBlock>
 									<LineBreak />
 									<Span FontWeight="Bold">Distance: </Span>
 									<Run Text="{Binding Data.Distance}" />
+									<Span>mm</Span>
 									<LineBreak />
 								</TextBlock>
 
-								<Button IsEnabled="{Binding Data.ProximityAvailable}" Click="ObserveReadingChangeButton_Click">
+								<Button IsEnabled="{Binding Data.IsProximityAvailable}" Click="ObserveReadingChangeButton_Click">
 									<TextBlock Text="{Binding Data.ButtonContent}" VerticalAlignment="Stretch" TextAlignment="Center" />
 								</Button>
 							</StackPanel>

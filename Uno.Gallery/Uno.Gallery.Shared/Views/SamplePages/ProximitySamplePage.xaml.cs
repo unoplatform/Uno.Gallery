@@ -7,6 +7,7 @@ using Windows.Devices.Sensors;
 using Windows.UI.Core;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using System.Threading.Tasks;
 
 namespace Uno.Gallery.Views.Samples
 {
@@ -19,20 +20,28 @@ namespace Uno.Gallery.Views.Samples
 		public ProximitySamplePage ()
 		{
 			this.InitializeComponent();
+			Loaded += ProximitySamplePage_Loaded;
+		}
+
+		private async void ProximitySamplePage_Loaded(object sender, RoutedEventArgs e)
+		{
+			if (!(((Sample)DataContext).Data is ProximitySamplePageViewModel viewModel))
+				return;
+			await viewModel.OnLoaded();
 		}
 
 		private void ObserveReadingChangeButton_Click(object sender, RoutedEventArgs e)
 		{
-			if ((sender as Button)?.DataContext is ProximitySamplePageViewModel viewModel)
+			if (!(((Sample)DataContext).Data is ProximitySamplePageViewModel viewModel))
+				return;
+			
+			if (!viewModel.ObservingReadingChange)
 			{
-				if (!viewModel.ObservingReadingChange)
-				{
-					viewModel.StartObserveReadingChange();
-				}
-				else
-				{
-					viewModel.StopObservingReadingChange();
-				}
+				viewModel.StartObserveReadingChange();
+			}
+			else
+			{
+				viewModel.StopObservingReadingChange();
 			}
 		}
 	}
@@ -43,12 +52,18 @@ namespace Uno.Gallery.Views.Samples
 		private const string _stopObservingContent = "Stop observing proximity reading changes";
 		private string _notAvailable = "Proximity is not available on this device/platform";
 
-		private ProximitySensor _proximity;
+		private ProximitySensor _proximity = null;
 
 		public string ButtonContent
 		{
 			get => GetProperty<string>();
 			set => SetProperty<string>(value);
+		}
+
+		public bool IsProximityAvailable
+		{
+			get => GetProperty<bool>();
+			set => SetProperty<bool>(value);
 		}
 
 		public bool ObservingReadingChange
@@ -75,26 +90,8 @@ namespace Uno.Gallery.Views.Samples
 
 		public ProximitySamplePageViewModel()
 		{
-			var selector = ProximitySensor.GetDeviceSelector();
-			var devices = DeviceInformation.FindAllAsync(selector).GetAwaiter().GetResult();
-			var device = devices.FirstOrDefault();
-			if (device is not null)
-			{
-				var proximitySensor = ProximitySensor.FromId(device.Id);
-				if (proximitySensor is not null)
-				{
-					_proximity = proximitySensor;
-				}
-				else
-				{
-					ButtonContent = _notAvailable;
-				}
-			}
-			else
-			{
-				ButtonContent = _notAvailable;
-			}
-
+			IsProximityAvailable = false;
+			ButtonContent = _notAvailable;
 		}
 
 		public void StartObserveReadingChange()
@@ -119,5 +116,36 @@ namespace Uno.Gallery.Views.Samples
 				IsDetected = args.Reading.IsDetected;
 			});
 		}
+
+		internal async Task OnLoaded()
+		{
+			var selector = ProximitySensor.GetDeviceSelector();
+			var devices = await DeviceInformation.FindAllAsync(selector);
+			var device = devices.FirstOrDefault();
+			if (device is not null)
+			{
+
+#if __ANDROID__
+				_proximity = ProximitySensor.FromId(device.Id);
+#endif
+			}
+
+			if (_proximity is not null)
+			{
+				await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+				{
+					IsProximityAvailable = true;
+					ButtonContent = _startObservingContent;
+				});
+				return;
+			}
+
+			await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+			{
+				IsProximityAvailable = false;
+				ButtonContent = _notAvailable;
+			});
+		}
+		
 	}
 }
