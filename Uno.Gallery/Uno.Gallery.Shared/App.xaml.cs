@@ -20,6 +20,7 @@ using MUXC = Microsoft.UI.Xaml.Controls;
 using MUXCP = Microsoft.UI.Xaml.Controls.Primitives;
 using LaunchActivatedEventArgs = Microsoft.UI.Xaml.LaunchActivatedEventArgs;
 using Microsoft.UI.Dispatching;
+using Uno.UI;
 
 namespace Uno.Gallery
 {
@@ -48,6 +49,7 @@ namespace Uno.Gallery
 #endif
 
 			InitializeLogging();
+			ConfigureFeatureFlags();
 			ConfigureXamlDisplay();
 
 			this.InitializeComponent();
@@ -349,7 +351,7 @@ namespace Uno.Gallery
 #if true // Force enable logging for debugging CI // DEBUG || __IOS__
 			// Logging is disabled by default for release builds, as it incurs a significant
 			// initialization cost from Microsoft.Extensions.Logging setup. If startup performance
-			// is a concern for your application, keep this disabled. If you're running on web or 
+			// is a concern for your application, keep this disabled. If you're running on web or
 			// desktop targets, you can use url or command line parameters to enable it.
 			//
 			// For more performance documentation: https://platform.uno/docs/articles/Uno-UI-Performance.html
@@ -413,6 +415,11 @@ namespace Uno.Gallery
 		private void ConfigureXamlDisplay()
 		{
 			XamlDisplay.Init(GetType().Assembly);
+		}
+
+		private void ConfigureFeatureFlags()
+		{
+			FeatureConfiguration.ToolTip.UseToolTips = true;
 		}
 	}
 }
