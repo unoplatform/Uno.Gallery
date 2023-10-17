@@ -29,7 +29,8 @@ jobs:
       - name: Install GitVersion
         uses: gittools/actions/gitversion/setup@v0.9.7
         with:
-          versionSpec: '5.x'
+          # pinning to 5.0.1 due to https://github.com/GitTools/GitVersion/issues/1876
+          versionSpec: '5.0.1'
 
       - name: Determine Version
         id: gitversion

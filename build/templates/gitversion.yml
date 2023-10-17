@@ -10,7 +10,8 @@ steps:
   - task: gitversion/setup@0
     retryCountOnTaskFailure: 3
     inputs:
-      versionSpec: '5.5.1'
+      # pinning to 5.0.1 due to https://github.com/GitTools/GitVersion/issues/1876
+      versionSpec: '5.0.1'
 
   - task: gitversion/execute@0
     inputs:
@@ -18,5 +19,5 @@ steps:
       useConfigFile: true
       configFilePath: build/gitversion.yml
     displayName: Use GitVersion
-    
+
   - template: set-app-versions.yml
