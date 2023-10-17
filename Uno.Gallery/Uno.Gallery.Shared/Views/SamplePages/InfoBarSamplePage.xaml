@@ -113,20 +113,21 @@
 						</smtx:XamlDisplay>
 						<smtx:XamlDisplay UniqueKey="Material_InfoBarSamplePage_InProgress_SingleButton">
 							<winui:InfoBar x:Name="fifthInfo"
-										Title="Title"
-										IsOpen="True"
-										Message="Process is in progress. Please wait..."
-										Severity="Informational"
-										MinHeight="54"
-										IsIconVisible="True"
-										Style="{StaticResource MaterialInfoBarStyle}">
-									<Button Style="{StaticResource InformationButtonStyle}"
-											Content="DISMISS" />
-								</winui:InfoBar.Content>
-								<winui:InfoBar.IconSource>
-									<winui:BitmapIconSource UriSource="/Assets/MaterialIcon_Medium.png"
-															Foreground="{ThemeResource PrimaryBrush}" />
-								</winui:InfoBar.IconSource>
+							    Title="Title"
+							    IsOpen="True"
+							    Message="Process is in progress. Please wait..."
+							    Severity="Informational"
+							    MinHeight="54"
+							    IsIconVisible="True"
+							    Style="{StaticResource MaterialInfoBarStyle}">
+							    <winui:InfoBar.Content>
+							        <Button Style="{StaticResource InformationButtonStyle}"
+							            Content="DISMISS" />
+							    </winui:InfoBar.Content>
+							    <winui:InfoBar.IconSource>
+							        <winui:BitmapIconSource UriSource="/Assets/MaterialIcon_Medium.png"
+							            Foreground="{ThemeResource PrimaryBrush}" />
+							    </winui:InfoBar.IconSource>
 							</winui:InfoBar>
 						</smtx:XamlDisplay>
 						<smtx:XamlDisplay UniqueKey="Material_InfoBarSamplePage_Timeout_SingleButton">
