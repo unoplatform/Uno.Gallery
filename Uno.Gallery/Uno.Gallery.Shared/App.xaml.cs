@@ -44,12 +44,9 @@ namespace Uno.Gallery
 		public App()
 		{
 			Instance = this;
-#if !WINDOWS
-			Uno.UI.FeatureConfiguration.ApiInformation.NotImplementedLogLevel = Foundation.Logging.LogLevel.Debug; // Raise not implemented usages as Debug messages
-#endif
 
-			InitializeLogging();
 			ConfigureFeatureFlags();
+			InitializeLogging();
 			ConfigureXamlDisplay();
 
 			this.InitializeComponent();
@@ -419,7 +416,10 @@ namespace Uno.Gallery
 
 		private void ConfigureFeatureFlags()
 		{
+#if !WINDOWS
+            FeatureConfiguration.ApiInformation.NotImplementedLogLevel = Foundation.Logging.LogLevel.Debug; // Raise not implemented usages as Debug messages
 			FeatureConfiguration.ToolTip.UseToolTips = true;
+#endif
 		}
 	}
 }
