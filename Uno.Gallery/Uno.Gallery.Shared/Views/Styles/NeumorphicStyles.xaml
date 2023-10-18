@@ -23,53 +23,43 @@
 				<utu:Shadow OffsetX="2" OffsetY="2" BlurRadius="8" Spread="0" Color="#000000" Opacity="0.8" IsInner="False" />
 				<utu:Shadow OffsetX="-2" OffsetY="-2" BlurRadius="8" Spread="0" Color="#79718E" Opacity="0.8" IsInner="False" />
 			</utu:ShadowCollection>
+			<utu:ShadowCollection x:Key="ToggleButtonUncheckedHollowShadows">
+				<utu:Shadow OffsetX="2" OffsetY="2" BlurRadius="8" Spread="0" Color="#000000" Opacity="0.8" IsInner="True" />
+				<utu:Shadow OffsetX="-2" OffsetY="-2" BlurRadius="8" Spread="0" Color="#79718E" Opacity="0.8" IsInner="True" />
+			</utu:ShadowCollection>
+			<utu:ShadowCollection x:Key="ToggleButtonCheckedHollowShadows">
+				<utu:Shadow OffsetX="4" OffsetY="2" BlurRadius="8" Spread="0" Color="#000000" Opacity="0.6" IsInner="True" />
+				<utu:Shadow OffsetX="-4" OffsetY="-2" BlurRadius="8" Spread="0" Color="#E5DCFF" Opacity="0.6" IsInner="True" />
+			</utu:ShadowCollection>
 
 			<!-- IconButton -->
-			<utu:ShadowCollection x:Key="IconButtonShadows">
-				<utu:Shadow OffsetX="2" OffsetY="2" BlurRadius="8" Spread="0" Color="#000000" Opacity="0.8" IsInner="False" />
-				<utu:Shadow OffsetX="-2" OffsetY="-2" BlurRadius="8" Spread="0" Color="#79718E" Opacity="0.8" IsInner="False" />
-			</utu:ShadowCollection>
+			<!-- reusing Elevated Button shadows -->
 
 			<!-- CheckBox -->
-			<!-- note: 1st shadow's opacity in Hover,Focused,Pressed is calculated from (attached element opacity: [0.08 or 0.12])*(shadow color alpha: 1.0) -->
-			<utu:ShadowCollection x:Key="NeumorphicCheckBoxShadows">
-				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="8" Spread="8" Color="Transparent" Opacity="0" IsInner="False">
-					<!-- workaround: invisible shadow to prevent major layout difference between states -->
+			<!-- RadioButton (reuses CheckBox shadows) -->
+			<utu:ShadowCollection x:Key="CheckBoxRaisingShadows">
+				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="4" Spread="0" Color="#000000" Opacity="0.6" IsInner="False" />
+				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Spread="0" Color="#615B71" Opacity="1" IsInner="False" />
+				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="16" Spread="0" Color="Transparent" Opacity="0" IsInner="False">
+					<!-- gallery#996 workaround: invisible shadow to prevent major layout difference between states -->
 				</utu:Shadow>
+			</utu:ShadowCollection>
+			<utu:ShadowCollection x:Key="CheckBoxRaisingAuraShadows">
 				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="4" Spread="0" Color="#000000" Opacity="0.6" IsInner="False" />
 				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Spread="0" Color="#615B71" Opacity="1" IsInner="False" />
+				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="16" Spread="0" Color="#C7BFFF" Opacity="0.4" IsInner="False" />
 			</utu:ShadowCollection>
-			<utu:ShadowCollection x:Key="NeumorphicCheckBoxFocusedShadows">
-				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="8" Spread="8" Color="#C7BFFE" Opacity="0.12" IsInner="False" />
-				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="4" Spread="0" Color="#000000" Opacity="0.6" IsInner="False" />
-				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Spread="0" Color="#615B71" Opacity="1" IsInner="False" />
-			</utu:ShadowCollection>
-			<utu:ShadowCollection x:Key="NeumorphicCheckBoxHoverShadows">
-				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="8" Spread="8" Color="#C7BFFE" Opacity="0.08" IsInner="False" />
-				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="4" Spread="0" Color="#000000" Opacity="0.6" IsInner="False" />
-				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Spread="0" Color="#615B71" Opacity="1" IsInner="False" />
-			</utu:ShadowCollection>
-			<utu:ShadowCollection x:Key="NeumorphicCheckBoxPressedShadows">
-				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="8" Spread="8" Color="#C7BFFE" Opacity="0.12" IsInner="False" />
-				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="4" Spread="0" Color="#000000" Opacity="0.6" IsInner="False" />
-				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Spread="0" Color="#615B71" Opacity="1" IsInner="False" />
-			</utu:ShadowCollection>
-			<utu:ShadowCollection x:Key="NeumorphicCheckBoxDisabledShadows">
-				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="8" Spread="8" Color="Transparent" Opacity="0" IsInner="False">
-					<!-- workaround: invisible shadow to prevent major layout difference between states -->
+			<utu:ShadowCollection x:Key="CheckBoxHollowShadows">
+				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="4" Spread="0" Color="#000000" Opacity="0.4" IsInner="False" />
+				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="1" Spread="0" Color="#000000" Opacity="0.6" IsInner="True" />
+				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="1" Spread="0" Color="#615B71" Opacity="1" IsInner="True" />
+				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="16" Spread="0" Color="Transparent" Opacity="0" IsInner="False">
+					<!-- gallery#996 workaround: invisible shadow to prevent major layout difference between states -->
 				</utu:Shadow>
-				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="4" Spread="0" Color="#000000" Opacity="0.6" IsInner="False" />
-				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Spread="0" Color="#615B71" Opacity="1" IsInner="False" />
 			</utu:ShadowCollection>
-
-			<!-- RadioButton -->
-			<!-- reusing CheckBox shadows -->
 
 			<!-- ComboBox -->
-			<utu:ShadowCollection x:Key="ComboboxShadows">
-				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="8" Spread="0" Color="#615B71" Opacity="0.6" IsInner="True" />
-				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="8" Spread="0" Color="#000000" Opacity="0.4" IsInner="True" />
-			</utu:ShadowCollection>
+			<!-- reusing TextBox shadows -->
 
 			<!-- TabBar -->
 			<utu:ShadowCollection x:Key="TabBarShadows">
@@ -86,20 +76,17 @@
 				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="8" Spread="0" Color="#79718E" Opacity="0.6" IsInner="True" />
 				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="8" Spread="0" Color="#000000" Opacity="0.4" IsInner="True" />
 			</utu:ShadowCollection>
-			<utu:ShadowCollection x:Key="FabTabBarItemShadows">
-				<utu:Shadow OffsetX="12" OffsetY="12" BlurRadius="20" Spread="0" Color="#000000" Opacity="0.4" IsInner="False" />
-				<utu:Shadow OffsetX="-8" OffsetY="-8" BlurRadius="8" Spread="0" Color="#24222A" Opacity="0.4" IsInner="True" />
-				<utu:Shadow OffsetX="8" OffsetY="8" BlurRadius="8" Spread="0" Color="#A9A2D9" Opacity="0.2" IsInner="True" />
-			</utu:ShadowCollection>
 
 			<!-- Elevated Button Shadows -->
 			<utu:ShadowCollection x:Key="ElevatedButtonNormalShadows">
 				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="16" Spread="0" Color="#000000" Opacity="0.4" IsInner="False" />
 				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="16" Spread="0" Color="#615B71" Opacity="0.6" IsInner="False" />
+				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="2" Spread="0" Color="#000000" Opacity="0.1" IsInner="True" />
+				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="2" Spread="0" Color="#615B71" Opacity="0.3" IsInner="True" />
 			</utu:ShadowCollection>
 			<utu:ShadowCollection x:Key="ElevatedButtonHoveredShadows">
-				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="16" Spread="0" Color="#000000" Opacity="0.5" IsInner="False" />
-				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="16" Spread="0" Color="#79718E" Opacity="0.5" IsInner="False" />
+				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="8" Spread="0" Color="#79718E" Opacity="0.6" IsInner="True" />
+				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="8" Spread="0" Color="#000000" Opacity="0.4" IsInner="True" />
 			</utu:ShadowCollection>
 			<utu:ShadowCollection x:Key="ElevatedButtonPressedShadows">
 				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="8" Spread="0" Color="#79718E" Opacity="0.6" IsInner="True" />
@@ -110,19 +97,20 @@
 				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Spread="0" Color="#5F5B69" Opacity="0.5" IsInner="False" />
 			</utu:ShadowCollection>
 			<utu:ShadowCollection x:Key="ElevatedButtonFocusedShadows">
-				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="16" Spread="0" Color="#000000" Opacity="0.4" IsInner="False" />
-				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="16" Spread="0" Color="#79718E" Opacity="0.4" IsInner="False" />
-				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="48" Spread="0" Color="#000000" Opacity="0.2" IsInner="True" />
+				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="8" Spread="0" Color="#79718E" Opacity="0.6" IsInner="True" />
+				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="8" Spread="0" Color="#000000" Opacity="0.4" IsInner="True" />
 			</utu:ShadowCollection>
 
 			<!-- Filled Button Shadows -->
 			<utu:ShadowCollection x:Key="FilledButtonNormalShadows">
 				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="16" Spread="0" Color="#A9A2D9" Opacity="0.6" IsInner="False" />
 				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="16" Spread="0" Color="#E5DCFF" Opacity="0.6" IsInner="False" />
+				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="2" Spread="0" Color="#000000" Opacity="0.1" IsInner="True" />
+				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="2" Spread="0" Color="#FFFFFF" Opacity="0.1" IsInner="True" />
 			</utu:ShadowCollection>
 			<utu:ShadowCollection x:Key="FilledButtonHoveredShadows">
-				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="16" Spread="0" Color="#A9A2D9" Opacity="0.7" IsInner="False" />
-				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="16" Spread="0" Color="#E5DCFF" Opacity="0.5" IsInner="False" />
+				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="8" Spread="0" Color="#E5DCFF" Opacity="0.6" IsInner="True" />
+				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="8" Spread="0" Color="#A9A2D9" Opacity="0.6" IsInner="True" />
 			</utu:ShadowCollection>
 			<utu:ShadowCollection x:Key="FilledButtonPressedShadows">
 				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="8" Spread="0" Color="#E5DCFF" Opacity="0.6" IsInner="True" />
@@ -133,31 +121,42 @@
 				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Spread="0" Color="#E5DCFF" Opacity="0.5" IsInner="False" />
 			</utu:ShadowCollection>
 			<utu:ShadowCollection x:Key="FilledButtonFocusedShadows">
-				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="16" Spread="0" Color="#A9A2D9" Opacity="0.6" IsInner="False" />
-				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="16" Spread="0" Color="#E5DCFF" Opacity="0.4" IsInner="False" />
-				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="48" Spread="0" Color="#A9A2D9" Opacity="0.6" IsInner="True" />
+				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="8" Spread="0" Color="#E5DCFF" Opacity="0.6" IsInner="True" />
+				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="8" Spread="0" Color="#A9A2D9" Opacity="0.6" IsInner="True" />
 			</utu:ShadowCollection>
 
 			<!-- FAB -->
 			<utu:ShadowCollection x:Key="FabShadows">
+				<!-- 0: drop shadow, 1-2: bulging -->
 				<utu:Shadow OffsetX="12" OffsetY="12" BlurRadius="20" Spread="0" Color="#000000" Opacity="0.4" IsInner="False" />
 				<utu:Shadow OffsetX="-8" OffsetY="-8" BlurRadius="8" Spread="0" Color="#24222A" Opacity="0.4" IsInner="True" />
 				<utu:Shadow OffsetX="8" OffsetY="8" BlurRadius="8" Spread="0" Color="#A9A2D9" Opacity="0.2" IsInner="True" />
 			</utu:ShadowCollection>
+			<utu:ShadowCollection x:Key="FabPressedShadows">
+				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="4" Spread="0" Color="#000000" Opacity="0.2" IsInner="False" />
+				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="8" Spread="0" Color="#24222A" Opacity="0.4" IsInner="True" />
+				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="8" Spread="0" Color="#A9A2D9" Opacity="0.2" IsInner="True" />
+			</utu:ShadowCollection>
 
 			<!-- Chips -->
-			<utu:ShadowCollection x:Key="ChipShadows">
+			<utu:ShadowCollection x:Key="ChipRaisingShadows">
 				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="4" Spread="0" Color="#000000" Opacity="0.6" IsInner="False" />
 				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Spread="0" Color="#615B71" Opacity="1" IsInner="False" />
+				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="8" Spread="0" Color="Transparent" Opacity="0" IsInner="False">
+					<!-- gallery#996 workaround: invisible shadow to prevent major layout difference between states -->
+				</utu:Shadow>
 			</utu:ShadowCollection>
-			<utu:ShadowCollection x:Key="ChipSelectedShadows">
+			<utu:ShadowCollection x:Key="ChipHollowShadows">
 				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Spread="0" Color="#F7F5FF" Opacity="0.9" IsInner="True" />
 				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="4" Spread="0" Color="#584AB5" Opacity="0.9" IsInner="True" />
+				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="8" Spread="0" Color="Transparent" Opacity="0" IsInner="False">
+					<!-- gallery#996 workaround: invisible shadow to prevent major layout difference between states -->
+				</utu:Shadow>
 			</utu:ShadowCollection>
 
 			<!-- Slider -->
 			<SolidColorBrush x:Key="SliderTrackBackground" Color="#302D38" />
-			
+
 			<utu:ShadowCollection x:Key="SliderTrackRectShadows">
 				<utu:Shadow BlurRadius="4" IsInner="True" OffsetX="1" OffsetY="1" Opacity="1" Spread="0" Color="#000000" />
 				<utu:Shadow BlurRadius="4" IsInner="True" OffsetX="-1" OffsetY="-1" Opacity="1" Spread="0" Color="#615B71" />
@@ -184,40 +183,25 @@
 			</utu:ShadowCollection>
 
 			<!-- ToggleSwitch -->
-			<utu:ShadowCollection x:Key="ToggleSwitchOffBorderShadows">
-				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Spread="4" Color="#615B71" Opacity="0.8" IsInner="True" />
-				<utu:Shadow OffsetX="1" OffsetY="2" BlurRadius="2" Spread="2" Color="#000000" Opacity="1" IsInner="True" />
-			</utu:ShadowCollection>
-			<utu:ShadowCollection x:Key="ToggleSwitchOnBorderShadows">
-				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Spread="4" Color="Transparent" Opacity="0" IsInner="True">
-					<!-- workaround: invisible shadow to prevent major layout difference between states -->
-				</utu:Shadow>
+			<utu:ShadowCollection x:Key="ToggleSwitchOnTrackShadows">
 				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="2" Spread="2" Color="#FFFFFF" Opacity="0.6" IsInner="True" />
 				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="2" Spread="2" Color="#000000" Opacity="1" IsInner="True" />
 			</utu:ShadowCollection>
-			<utu:ShadowCollection x:Key="ToggleSwitchKnobOffShadows">
+			<utu:ShadowCollection x:Key="ToggleSwitchOffTrackShadows">
+				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Spread="4" Color="#615B71" Opacity="0.8" IsInner="True" />
+				<utu:Shadow OffsetX="1" OffsetY="2" BlurRadius="2" Spread="2" Color="#000000" Opacity="1" IsInner="True" />
+			</utu:ShadowCollection>
+			<utu:ShadowCollection x:Key="ToggleSwitchOnKnobShadows">
+				<utu:Shadow OffsetX="-1" OffsetY="0" BlurRadius="1" Spread="1" Color="#9B92D3" Opacity="1" IsInner="False" />
+				<utu:Shadow OffsetX="1" OffsetY="0" BlurRadius="2" Spread="0" Color="#000000" Opacity="0.5" IsInner="True" />
+				<utu:Shadow OffsetX="0" OffsetY="4" BlurRadius="4" Spread="0" Color="#000000" Opacity="0.3" IsInner="True" />
+				<utu:Shadow OffsetX="-2" OffsetY="4" BlurRadius="2" Spread="0" Color="#615B71" Opacity="0.8" IsInner="True" />
+			</utu:ShadowCollection>
+			<utu:ShadowCollection x:Key="ToggleSwitchOffKnobShadows">
 				<utu:Shadow OffsetX="2" OffsetY="2" BlurRadius="4" Spread="0" Color="#000000" Opacity="0.8" IsInner="True" />
 				<utu:Shadow OffsetX="-2" OffsetY="2" BlurRadius="4" Spread="0" Color="#FFFFFF" Opacity="1" IsInner="True" />
 				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="1" Spread="0" Color="#000000" Opacity="0.5" IsInner="True" />
 				<utu:Shadow OffsetX="2" OffsetY="0" BlurRadius="2" Spread="0" Color="#000000" Opacity="0.2" IsInner="False" />
-			</utu:ShadowCollection>
-			<utu:ShadowCollection x:Key="ToggleSwitchKnobOnShadows">
-				<utu:Shadow OffsetX="1" OffsetY="0" BlurRadius="2" Spread="0" Color="#000000" Opacity="0.5" IsInner="True" />
-				<utu:Shadow OffsetX="0" OffsetY="4" BlurRadius="4" Spread="0" Color="#000000" Opacity="0.3" IsInner="True" />
-				<utu:Shadow OffsetX="-2" OffsetY="4" BlurRadius="2" Spread="0" Color="#615B71" Opacity="0.8" IsInner="True" />
-				<utu:Shadow OffsetX="-1" OffsetY="0" BlurRadius="1" Spread="1" Color="#9B92D3" Opacity="1" IsInner="False" />
-			</utu:ShadowCollection>
-
-			<!-- Same as ToggleSwitchOnBorderShadows -->
-			<!-- Needed as we need a different ShadowCollection for disabled state in light mode -->
-			<utu:ShadowCollection x:Key="ToggleSwitchOnBorderDisabledShadows">
-				<utu:Shadow BlurRadius="2" IsInner="True" OffsetX="1" OffsetY="1" Opacity="1" Spread="2" Color="#000000" />
-				<utu:Shadow BlurRadius="2" IsInner="True" OffsetX="-1" OffsetY="-1" Opacity="0.6" Spread="2" Color="#FFFFFF" />
-			</utu:ShadowCollection>
-
-			<utu:ShadowCollection x:Key="ToggleSwitchKnobOnDisabledShadows">
-				<utu:Shadow BlurRadius="2" IsInner="True" OffsetX="1" OffsetY="0" Opacity="0.25" Spread="0" Color="#000000" />
-				<utu:Shadow BlurRadius="2" IsInner="False" OffsetX="-2" OffsetY="0" Opacity="0.2" Spread="0" Color="#000000" />
 			</utu:ShadowCollection>
 
 		</ResourceDictionary>
@@ -233,53 +217,43 @@
 				<utu:Shadow OffsetX="2" OffsetY="2" BlurRadius="8" Spread="0" Color="#AEAEC0" Opacity="0.8" IsInner="False" />
 				<utu:Shadow OffsetX="-2" OffsetY="-2" BlurRadius="8" Spread="0" Color="#FFFFFF" Opacity="0.8" IsInner="False" />
 			</utu:ShadowCollection>
+			<utu:ShadowCollection x:Key="ToggleButtonUncheckedHollowShadows">
+				<utu:Shadow OffsetX="2" OffsetY="2" BlurRadius="8" Spread="0" Color="#AEAEC0" Opacity="0.8" IsInner="True" />
+				<utu:Shadow OffsetX="-2" OffsetY="-2" BlurRadius="8" Spread="0" Color="#FFFFFF" Opacity="0.8" IsInner="True" />
+			</utu:ShadowCollection>
+			<utu:ShadowCollection x:Key="ToggleButtonCheckedHollowShadows">
+				<utu:Shadow OffsetX="-4" OffsetY="-2" BlurRadius="8" Spread="0" Color="#5F4CE2" Opacity="1" IsInner="True" />
+				<utu:Shadow OffsetX="4" OffsetY="2" BlurRadius="8" Spread="0" Color="#20194D" Opacity="1" IsInner="True" />
+			</utu:ShadowCollection>
 
 			<!-- IconButton -->
-			<utu:ShadowCollection x:Key="IconButtonShadows">
-				<utu:Shadow OffsetX="2" OffsetY="2" BlurRadius="8" Spread="0" Color="#AEAEC0" Opacity="0.8" IsInner="False" />
-				<utu:Shadow OffsetX="-2" OffsetY="-2" BlurRadius="8" Spread="0" Color="#FFFFFF" Opacity="0.8" IsInner="False" />
-			</utu:ShadowCollection>
+			<!-- reusing Elevated Button shadows -->
 
 			<!-- CheckBox -->
-			<!-- note: 1st shadow's opacity in Hover,Focused,Pressed is calculated from (attached element opacity: [0.08 or 0.12])*(shadow color alpha: 1.0) -->
-			<utu:ShadowCollection x:Key="NeumorphicCheckBoxShadows">
-				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="8" Spread="8" Color="Transparent" Opacity="0" IsInner="False">
-					<!-- workaround: invisible shadow to prevent major layout difference between states -->
+			<!-- RadioButton (reuses CheckBox shadows) -->
+			<utu:ShadowCollection x:Key="CheckBoxRaisingShadows">
+				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="4" Spread="0" Color="#AEAEC0" Opacity="0.6" IsInner="False" />
+				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Spread="0" Color="#FFFFFF" Opacity="1" IsInner="False" />
+				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="16" Spread="0" Color="Transparent" Opacity="0" IsInner="False">
+					<!-- gallery#996 workaround: invisible shadow to prevent major layout difference between states -->
 				</utu:Shadow>
-				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="2" Spread="0" Color="#AEAEC0" Opacity="0.6" IsInner="False" />
-				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="2" Spread="0" Color="#FFFFFF" Opacity="1" IsInner="False" />
 			</utu:ShadowCollection>
-			<utu:ShadowCollection x:Key="NeumorphicCheckBoxFocusedShadows">
-				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="8" Spread="8" Color="#5845CF" Opacity="0.12" IsInner="False" />
+			<utu:ShadowCollection x:Key="CheckBoxRaisingAuraShadows">
 				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="4" Spread="0" Color="#AEAEC0" Opacity="0.6" IsInner="False" />
 				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Spread="0" Color="#FFFFFF" Opacity="1" IsInner="False" />
+				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="16" Spread="0" Color="#5845CF" Opacity="0.4" IsInner="False" />
 			</utu:ShadowCollection>
-			<utu:ShadowCollection x:Key="NeumorphicCheckBoxHoverShadows">
-				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="8" Spread="8" Color="#5845CF" Opacity="0.08" IsInner="False" />
-				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="4" Spread="0" Color="#AEAEC0" Opacity="0.6" IsInner="False" />
-				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Spread="0" Color="#FFFFFF" Opacity="1" IsInner="False" />
-			</utu:ShadowCollection>
-			<utu:ShadowCollection x:Key="NeumorphicCheckBoxPressedShadows">
-				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="8" Spread="8" Color="#5845CF" Opacity="0.12" IsInner="False" />
-				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="4" Spread="0" Color="#AEAEC0" Opacity="0.6" IsInner="False" />
-				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Spread="0" Color="#FFFFFF" Opacity="1" IsInner="False" />
-			</utu:ShadowCollection>
-			<utu:ShadowCollection x:Key="NeumorphicCheckBoxDisabledShadows">
-				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="8" Spread="8" Color="Transparent" Opacity="0" IsInner="False">
-					<!-- workaround: invisible shadow to prevent major layout difference between states -->
+			<utu:ShadowCollection x:Key="CheckBoxHollowShadows">
+				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="4" Spread="0" Color="#AEAEC0" Opacity="0.4" IsInner="False" />
+				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="1" Spread="0" Color="#FFFFFF" Opacity="1" IsInner="True" />
+				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="1" Spread="0" Color="#000000" Opacity="0.4" IsInner="True" />
+				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="16" Spread="0" Color="Transparent" Opacity="0" IsInner="False">
+					<!-- gallery#996 workaround: invisible shadow to prevent major layout difference between states -->
 				</utu:Shadow>
-				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="2" Spread="0" Color="#AEAEC0" Opacity="0.6" IsInner="False" />
-				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="2" Spread="0" Color="#FFFFFF" Opacity="1" IsInner="False" />
 			</utu:ShadowCollection>
-
-			<!-- RadioButton -->
-			<!-- reusing CheckBox shadows -->
 
 			<!-- ComboBox -->
-			<utu:ShadowCollection x:Key="ComboboxShadows">
-				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="4" Spread="0" Color="#FFFFFF" Opacity="0.6" IsInner="True" />
-				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="4" Spread="0" Color="#AEAEC0" Opacity="0.4" IsInner="True" />
-			</utu:ShadowCollection>
+			<!-- reusing TextBox shadows -->
 
 			<!-- TabBar -->
 			<utu:ShadowCollection x:Key="TabBarShadows">
@@ -296,20 +270,17 @@
 				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="8" Spread="0" Color="#FFFFFF" Opacity="0.6" IsInner="True" />
 				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="8" Spread="0" Color="#AEAEC0" Opacity="0.4" IsInner="True" />
 			</utu:ShadowCollection>
-			<utu:ShadowCollection x:Key="FabTabBarItemShadows">
-				<utu:Shadow OffsetX="12" OffsetY="12" BlurRadius="20" Spread="0" Color="#AEAEC0" Opacity="0.4" IsInner="False" />
-				<utu:Shadow OffsetX="8" OffsetY="8" BlurRadius="8" Spread="0" Color="#FFFFFF" Opacity="0.4" IsInner="True" />
-				<utu:Shadow OffsetX="-8" OffsetY="-8" BlurRadius="8" Spread="0" Color="#170065" Opacity="0.1" IsInner="True" />
-			</utu:ShadowCollection>
 
 			<!-- Elevated Button Shadows -->
 			<utu:ShadowCollection x:Key="ElevatedButtonNormalShadows">
 				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="16" Spread="0" Color="#AEAEC0" Opacity="0.4" IsInner="False" />
 				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="16" Spread="0" Color="#FFFFFF" Opacity="0.6" IsInner="False" />
+				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="2" Spread="0" Color="#AEAEC0" Opacity="0.4" IsInner="True" />
+				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="2" Spread="0" Color="#FFFFFF" Opacity="0.6" IsInner="True" />
 			</utu:ShadowCollection>
 			<utu:ShadowCollection x:Key="ElevatedButtonHoveredShadows">
-				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="16" Spread="0" Color="#AEAEC0" Opacity="0.5" IsInner="False" />
-				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="16" Spread="0" Color="#FFFFFF" Opacity="0.5" IsInner="False" />
+				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="8" Spread="0" Color="#FFFFFF" Opacity="0.6" IsInner="True" />
+				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="8" Spread="0" Color="#AEAEC0" Opacity="0.4" IsInner="True" />
 			</utu:ShadowCollection>
 			<utu:ShadowCollection x:Key="ElevatedButtonPressedShadows">
 				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="8" Spread="0" Color="#FFFFFF" Opacity="0.6" IsInner="True" />
@@ -317,62 +288,72 @@
 			</utu:ShadowCollection>
 			<utu:ShadowCollection x:Key="ElevatedButtonDisabledShadows">
 				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="4" Spread="0" Color="#AEAEC0" Opacity="0.4" IsInner="False" />
-				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Spread="0" Color="#FFFFFF" Opacity="1" IsInner="False" />
+				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Spread="0" Color="#FFFFFF" Opacity="0.6" IsInner="False" />
 			</utu:ShadowCollection>
 			<utu:ShadowCollection x:Key="ElevatedButtonFocusedShadows">
-				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="16" Spread="0" Color="#AEAEC0" Opacity="0.4" IsInner="False" />
-				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="16" Spread="0" Color="#FFFFFF" Opacity="0.4" IsInner="False" />
-				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="48" Spread="0" Color="#AEAEC0" Opacity="0.2" IsInner="True" />
+				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="8" Spread="0" Color="#FFFFFF" Opacity="0.6" IsInner="True" />
+				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="8" Spread="0" Color="#AEAEC0" Opacity="0.4" IsInner="True" />
 			</utu:ShadowCollection>
 
 			<!-- Filled Button Shadows -->
 			<utu:ShadowCollection x:Key="FilledButtonNormalShadows">
 				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="16" Spread="0" Color="#4C3CB3" Opacity="0.6" IsInner="False" />
 				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="16" Spread="0" Color="#6651F2" Opacity="0.6" IsInner="False" />
+				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="2" Spread="0" Color="#000000" Opacity="0.1" IsInner="True" />
+				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="2" Spread="0" Color="#FFFFFF" Opacity="0.1" IsInner="True" />
 			</utu:ShadowCollection>
 			<utu:ShadowCollection x:Key="FilledButtonHoveredShadows">
-				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="16" Spread="0" Color="#4C3CB3" Opacity="0.7" IsInner="False" />
-				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="16" Spread="0" Color="#6651F2" Opacity="0.5" IsInner="False" />
+				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="16" Spread="0" Color="#4C3CB3" Opacity="0.7" IsInner="True" />
+				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="16" Spread="0" Color="#6651F2" Opacity="0.5" IsInner="True" />
 			</utu:ShadowCollection>
 			<utu:ShadowCollection x:Key="FilledButtonPressedShadows">
 				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="8" Spread="0" Color="#6651F2" Opacity="0.6" IsInner="True" />
 				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="8" Spread="0" Color="#4C3CB3" Opacity="0.6" IsInner="True" />
 			</utu:ShadowCollection>
 			<utu:ShadowCollection x:Key="FilledButtonDisabledShadows">
-				<d:Legacy>
-					<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Spread="0" Color="#6651F2" Opacity="1"  IsInner="False" />
-					<!-- Opacity of 16% seems closer to the Figma design. Original is 100% -->
-					<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="4" Spread="0" Color="#4C3CB3" Opacity="0.16" IsInner="False" />
-				</d:Legacy>
 				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="4" Spread="0" Color="#4C3CB3" Opacity="1" IsInner="False" />
 				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Spread="0" Color="#6651F2" Opacity="1" IsInner="False" />
 			</utu:ShadowCollection>
 			<utu:ShadowCollection x:Key="FilledButtonFocusedShadows">
-				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="16" Spread="0" Color="#4C3CB3" Opacity="0.6" IsInner="False" />
-				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="16" Spread="0" Color="#6651F2" Opacity="0.4" IsInner="False" />
-				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="48" Spread="0" Color="#4C3CB3" Opacity="0.6" IsInner="True" />
+				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="8" Spread="0" Color="#4C3CB3" Opacity="0.6" IsInner="True" />
+				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="8" Spread="0" Color="#6651F2" Opacity="0.4" IsInner="True" />
 			</utu:ShadowCollection>
 
 			<!-- FAB -->
 			<utu:ShadowCollection x:Key="FabShadows">
+				<!-- 0: drop shadow, 1-2: bulging -->
 				<utu:Shadow OffsetX="12" OffsetY="12" BlurRadius="20" Spread="0" Color="#AEAEC0" Opacity="0.4" IsInner="False" />
 				<utu:Shadow OffsetX="8" OffsetY="8" BlurRadius="8" Spread="0" Color="#FFFFFF" Opacity="0.4" IsInner="True" />
 				<utu:Shadow OffsetX="-8" OffsetY="-8" BlurRadius="8" Spread="0" Color="#170065" Opacity="0.1" IsInner="True" />
 			</utu:ShadowCollection>
+			<utu:ShadowCollection x:Key="FabPressedShadows">
+				<utu:Shadow OffsetX="12" OffsetY="12" BlurRadius="20" Spread="0" Color="Transparent" Opacity="0" IsInner="False">
+					<!-- gallery#996 workaround: invisible shadow to prevent major layout difference between states -->
+				</utu:Shadow>
+				<utu:Shadow OffsetX="2" OffsetY="2" BlurRadius="4" Spread="0" Color="#000000" Opacity="0.4" IsInner="False" />
+				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="8" Spread="0" Color="#FFFFFF" Opacity="0.4" IsInner="True" />
+				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="8" Spread="0" Color="#170065" Opacity="0.1" IsInner="True" />
+			</utu:ShadowCollection>
 
 			<!-- Chips -->
-			<utu:ShadowCollection x:Key="ChipShadows">
+			<utu:ShadowCollection x:Key="ChipRaisingShadows">
 				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="4" Spread="0" Color="#AEAEC0" Opacity="0.6" IsInner="False" />
 				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Spread="0" Color="#FFFFFF" Opacity="1" IsInner="False" />
+				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="8" Spread="0" Color="Transparent" Opacity="0" IsInner="False">
+					<!-- gallery#996 workaround: invisible shadow to prevent major layout difference between states -->
+				</utu:Shadow>
 			</utu:ShadowCollection>
-			<utu:ShadowCollection x:Key="ChipSelectedShadows">
+			<utu:ShadowCollection x:Key="ChipHollowShadows">
 				<utu:Shadow OffsetX="-4" OffsetY="-4" BlurRadius="8" Spread="0" Color="#8271F4" Opacity="1" IsInner="True" />
 				<utu:Shadow OffsetX="4" OffsetY="4" BlurRadius="8" Spread="0" Color="#4C3CB3" Opacity="1" IsInner="True" />
+				<utu:Shadow OffsetX="0" OffsetY="0" BlurRadius="8" Spread="0" Color="Transparent" Opacity="0" IsInner="False">
+					<!-- gallery#996 workaround: invisible shadow to prevent major layout difference between states -->
+				</utu:Shadow>
 			</utu:ShadowCollection>
 
 			<!-- Slider -->
 			<SolidColorBrush x:Key="SliderTrackBackground" Color="#F3EFF5" />
-			
+
 			<utu:ShadowCollection x:Key="SliderTrackRectShadows">
 				<utu:Shadow BlurRadius="4" IsInner="True" OffsetX="1" OffsetY="1" Opacity="1" Spread="0" Color="#C8C7D1" />
 				<utu:Shadow BlurRadius="4" IsInner="True" OffsetX="-1" OffsetY="-1" Opacity="0.8" Spread="0" Color="#FFFFFF" />
@@ -399,41 +380,25 @@
 			</utu:ShadowCollection>
 
 			<!-- ToggleSwitch -->
-			<utu:ShadowCollection x:Key="ToggleSwitchOffBorderShadows">
-				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Spread="4" Color="#FFFFFF" Opacity="0.7" IsInner="True" />
-				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="2" Spread="2" Color="#584A7F" Opacity="0.6" IsInner="True" />
-			</utu:ShadowCollection>
-			<utu:ShadowCollection x:Key="ToggleSwitchOnBorderShadows">
-				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Spread="4" Color="Transparent" Opacity="0" IsInner="True">
-					<!-- workaround: invisible shadow to prevent major layout difference between states -->
-				</utu:Shadow>
+			<utu:ShadowCollection x:Key="ToggleSwitchOnTrackShadows">
 				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="2" Spread="2" Color="#413399" Opacity="1" IsInner="True" />
 				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="2" Spread="0" Color="#FFFFFF" Opacity="0.6" IsInner="True" />
 			</utu:ShadowCollection>
-			<utu:ShadowCollection x:Key="ToggleSwitchKnobOffShadows">
+			<utu:ShadowCollection x:Key="ToggleSwitchOffTrackShadows">
+				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="4" Spread="4" Color="#FFFFFF" Opacity="0.7" IsInner="True" />
+				<utu:Shadow OffsetX="1" OffsetY="1" BlurRadius="2" Spread="2" Color="#584A7F" Opacity="0.6" IsInner="True" />
+			</utu:ShadowCollection>
+			<utu:ShadowCollection x:Key="ToggleSwitchOnKnobShadows">
+				<utu:Shadow OffsetX="-1" OffsetY="0" BlurRadius="1" Spread="1" Color="#413399" Opacity="1" IsInner="False" />
+				<utu:Shadow OffsetX="1" OffsetY="0" BlurRadius="2" Spread="0" Color="#000000" Opacity="0.5" IsInner="True" />
+				<utu:Shadow OffsetX="0" OffsetY="4" BlurRadius="4" Spread="0" Color="#000000" Opacity="0.3" IsInner="True" />
+				<utu:Shadow OffsetX="-2" OffsetY="4" BlurRadius="2" Spread="0" Color="#FFFFFF" Opacity="0.8" IsInner="True" />
+			</utu:ShadowCollection>
+			<utu:ShadowCollection x:Key="ToggleSwitchOffKnobShadows">
 				<utu:Shadow OffsetX="2" OffsetY="2" BlurRadius="4" Spread="0" Color="#000000" Opacity="0.8" IsInner="True" />
 				<utu:Shadow OffsetX="-2" OffsetY="2" BlurRadius="4" Spread="0" Color="#FFFFFF" Opacity="1" IsInner="True" />
 				<utu:Shadow OffsetX="-1" OffsetY="-1" BlurRadius="1" Spread="0" Color="#000000" Opacity="0.5" IsInner="True" />
 				<utu:Shadow OffsetX="2" OffsetY="0" BlurRadius="2" Spread="0" Color="#000000" Opacity="0.2" IsInner="False" />
-			</utu:ShadowCollection>
-			<utu:ShadowCollection x:Key="ToggleSwitchKnobOnShadows">
-				<utu:Shadow OffsetX="1" OffsetY="0" BlurRadius="2" Spread="0" Color="#000000" Opacity="0.5" IsInner="True" />
-				<utu:Shadow OffsetX="0" OffsetY="4" BlurRadius="4" Spread="0" Color="#000000" Opacity="0.3" IsInner="True" />
-				<utu:Shadow OffsetX="-2" OffsetY="4" BlurRadius="2" Spread="0" Color="#FFFFFF" Opacity="0.8" IsInner="True" />
-				<utu:Shadow OffsetX="-1" OffsetY="0" BlurRadius="1" Spread="1" Color="#413399" Opacity="1" IsInner="False" />
-			</utu:ShadowCollection>
-
-			<utu:ShadowCollection x:Key="ToggleSwitchOnBorderDisabledShadows">
-				<utu:Shadow BlurRadius="2" IsInner="True" OffsetX="0.5" OffsetY="0.5" Opacity="0.15" Spread="2" Color="#584A7F" />
-			</utu:ShadowCollection>
-
-			<!-- Same as ToggleSwitchKnobOnShadows -->
-			<!-- Needed as we need a different ShadowCollection for disabled state in dark mode -->
-			<utu:ShadowCollection x:Key="ToggleSwitchKnobOnDisabledShadows">
-				<utu:Shadow OffsetX="1" OffsetY="0" BlurRadius="2" Spread="0" Color="#000000" Opacity="0.5" IsInner="True" />
-				<utu:Shadow OffsetX="0" OffsetY="4" BlurRadius="4" Spread="0" Color="#000000" Opacity="0.3" IsInner="True" />
-				<utu:Shadow OffsetX="-2" OffsetY="4" BlurRadius="2" Spread="0" Color="#FFFFFF" Opacity="0.8" IsInner="True" />
-				<utu:Shadow OffsetX="-1" OffsetY="0" BlurRadius="1" Spread="1" Color="#413399" Opacity="1" IsInner="False" />
 			</utu:ShadowCollection>
 
 		</ResourceDictionary>
@@ -516,9 +481,11 @@
 								<VisualState x:Name="PointerOver">
 									<VisualState.Setters>
 										<Setter Target="PlaceholderElement.Foreground" Value="{ThemeResource OnSurfaceMediumBrush}" />
+										<Setter Target="StateOverlay.Background" Value="{ThemeResource PrimaryHoverBrush}" />
+										<Setter Target="StateOverlay.Opacity" Value="0.5" />
 									</VisualState.Setters>
 								</VisualState>
-								<VisualState x:Name="Pressed">
+								<VisualState x:Name="Focused">
 									<VisualState.Setters>
 										<Setter Target="PlaceholderElement.Foreground" Value="{ThemeResource PrimaryBrush}" />
 									</VisualState.Setters>
@@ -528,11 +495,6 @@
 										<Setter Target="IconPresenter.Foreground" Value="{ThemeResource OnSurfaceLowBrush}" />
 										<Setter Target="ContentElement.Foreground" Value="{ThemeResource OnSurfaceLowBrush}" />
 										<Setter Target="PlaceholderElement.Foreground" Value="{ThemeResource OnSurfaceLowBrush}" />
-									</VisualState.Setters>
-								</VisualState>
-								<VisualState x:Name="Focused">
-									<VisualState.Setters>
-										<Setter Target="PlaceholderElement.Foreground" Value="{ThemeResource PrimaryBrush}" />
 									</VisualState.Setters>
 								</VisualState>
 							</VisualStateGroup>
@@ -581,79 +543,85 @@
 							</VisualStateGroup>
 						</VisualStateManager.VisualStateGroups>
 
-						<Grid x:Name="Root"
+						<!-- workaround gallery#999: transparent background added to fix hitbox on ios/droid -->
+						<Grid x:Name="RootGrid"
+							  Background="Transparent"
 							  Width="{TemplateBinding Width}"
 							  MinHeight="{TemplateBinding MinHeight}"
-							  CornerRadius="{TemplateBinding CornerRadius}"
-							  Padding="{TemplateBinding Padding}">
-							<Grid.ColumnDefinitions>
-								<ColumnDefinition Width="Auto" />
-								<ColumnDefinition Width="*" />
-								<ColumnDefinition Width="Auto" />
-							</Grid.ColumnDefinitions>
+							  CornerRadius="{TemplateBinding CornerRadius}">
 
-							<!-- Border in place to properly vertically center the icon inside when it's a one-line TextBox -->
-							<!-- but keep it in the same place and at the top when it's a multiline TextBox -->
-							<Border Height="28"
-									VerticalAlignment="Top">
-								<ContentPresenter x:Name="IconPresenter"
-												  Content="{Binding Path=(um:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}}"
-												  Foreground="{ThemeResource PrimaryBrush}"
-												  HorizontalAlignment="Center"
-												  Width="20"
-												  Margin="1,0,18,0"
-												  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-												  Visibility="{Binding Path=(um:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialNullToCollapsedConverter}, FallbackValue=Collapsed, TargetNullValue=Collapsed}" />
-							</Border>
+							<Border x:Name="StateOverlay" />
+							<Grid Padding="{TemplateBinding Padding}">
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="Auto" />
+									<ColumnDefinition Width="*" />
+									<ColumnDefinition Width="Auto" />
+								</Grid.ColumnDefinitions>
 
-							<ScrollViewer x:Name="ContentElement"
-										  Grid.Column="1"
-										  HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
-										  HorizontalScrollMode="{TemplateBinding ScrollViewer.HorizontalScrollMode}"
-										  IsDeferredScrollingEnabled="{TemplateBinding ScrollViewer.IsDeferredScrollingEnabled}"
-										  IsHorizontalRailEnabled="{TemplateBinding ScrollViewer.IsHorizontalRailEnabled}"
-										  IsTabStop="False"
-										  IsVerticalRailEnabled="{TemplateBinding ScrollViewer.IsVerticalRailEnabled}"
-										  VerticalScrollMode="{TemplateBinding ScrollViewer.VerticalScrollMode}"
-										  VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}"
-										  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-										  ZoomMode="Disabled"
-										  AutomationProperties.AccessibilityView="Raw">
-								<ScrollViewer.RenderTransform>
-									<CompositeTransform x:Name="ContentElement_CompositeTransform" />
-								</ScrollViewer.RenderTransform>
-							</ScrollViewer>
+								<!-- Border in place to properly vertically center the icon inside when it's a one-line TextBox -->
+								<!-- but keep it in the same place and at the top when it's a multiline TextBox -->
+								<Border Height="28"
+										VerticalAlignment="Top">
+									<ContentPresenter x:Name="IconPresenter"
+													  Content="{Binding Path=(um:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}}"
+													  Foreground="{ThemeResource PrimaryBrush}"
+													  HorizontalAlignment="Center"
+													  Width="20"
+													  Margin="1,0,18,0"
+													  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+													  Visibility="{Binding Path=(um:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialNullToCollapsedConverter}, FallbackValue=Collapsed, TargetNullValue=Collapsed}" />
+								</Border>
 
-							<!-- Border in place to properly vertically center the placeholder inside when it's a one-line TextBox -->
-							<!-- but keep it in the same place and at the top when it's a multiline TextBox -->
-							<Border Grid.Column="1"
-									Height="28"
-									VerticalAlignment="Top">
-								<TextBlock x:Name="PlaceholderElement"
-										   Foreground="{Binding PlaceholderForeground, RelativeSource={RelativeSource TemplatedParent}}"
-										   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-										   IsHitTestVisible="False"
-										   RenderTransformOrigin="0,0.5"
-										   Text="{TemplateBinding PlaceholderText}"
-										   TextAlignment="{TemplateBinding TextAlignment}"
-										   TextWrapping="{TemplateBinding TextWrapping}"
-										   VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
-									<TextBlock.RenderTransform>
-										<CompositeTransform x:Name="PlaceholderElement_CompositeTransform" />
-									</TextBlock.RenderTransform>
-								</TextBlock>
-							</Border>
+								<ScrollViewer x:Name="ContentElement"
+											  Grid.Column="1"
+											  HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
+											  HorizontalScrollMode="{TemplateBinding ScrollViewer.HorizontalScrollMode}"
+											  IsDeferredScrollingEnabled="{TemplateBinding ScrollViewer.IsDeferredScrollingEnabled}"
+											  IsHorizontalRailEnabled="{TemplateBinding ScrollViewer.IsHorizontalRailEnabled}"
+											  IsTabStop="False"
+											  IsVerticalRailEnabled="{TemplateBinding ScrollViewer.IsVerticalRailEnabled}"
+											  VerticalScrollMode="{TemplateBinding ScrollViewer.VerticalScrollMode}"
+											  VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}"
+											  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+											  ZoomMode="Disabled"
+											  AutomationProperties.AccessibilityView="Raw">
+									<ScrollViewer.RenderTransform>
+										<CompositeTransform x:Name="ContentElement_CompositeTransform" />
+									</ScrollViewer.RenderTransform>
+								</ScrollViewer>
 
-							<Button x:Name="DeleteButton"
-									Grid.Column="2"
-									Margin="8,0,0,0"
-									IsTabStop="False"
-									Foreground="{ThemeResource PrimaryBrush}"
-									Style="{StaticResource MaterialDeleteButtonStyle}"
-									VerticalAlignment="Stretch"
-									Visibility="Collapsed"
-									AutomationProperties.AccessibilityView="Raw" />
+								<!-- Border in place to properly vertically center the placeholder inside when it's a one-line TextBox -->
+								<!-- but keep it in the same place and at the top when it's a multiline TextBox -->
+								<Border Grid.Column="1"
+										Height="28"
+										VerticalAlignment="Top">
+									<TextBlock x:Name="PlaceholderElement"
+											   Foreground="{Binding PlaceholderForeground, RelativeSource={RelativeSource TemplatedParent}}"
+											   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+											   IsHitTestVisible="False"
+											   RenderTransformOrigin="0,0.5"
+											   Text="{TemplateBinding PlaceholderText}"
+											   TextAlignment="{TemplateBinding TextAlignment}"
+											   TextWrapping="{TemplateBinding TextWrapping}"
+											   VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+										<TextBlock.RenderTransform>
+											<CompositeTransform x:Name="PlaceholderElement_CompositeTransform" />
+										</TextBlock.RenderTransform>
+									</TextBlock>
+								</Border>
+
+								<Button x:Name="DeleteButton"
+										Grid.Column="2"
+										Margin="8,0,0,0"
+										IsTabStop="False"
+										Foreground="{ThemeResource PrimaryBrush}"
+										Style="{StaticResource MaterialDeleteButtonStyle}"
+										VerticalAlignment="Stretch"
+										Visibility="Collapsed"
+										AutomationProperties.AccessibilityView="Raw" />
+							</Grid>
 						</Grid>
+
 					</utu:ShadowContainer>
 				</ControlTemplate>
 			</Setter.Value>
@@ -699,9 +667,11 @@
 								<VisualState x:Name="PointerOver">
 									<VisualState.Setters>
 										<Setter Target="PlaceholderElement.Foreground" Value="{ThemeResource OnSurfaceMediumBrush}" />
+										<Setter Target="StateOverlay.Background" Value="{ThemeResource PrimaryHoverBrush}" />
+										<Setter Target="StateOverlay.Opacity" Value="0.5" />
 									</VisualState.Setters>
 								</VisualState>
-								<VisualState x:Name="Pressed">
+								<VisualState x:Name="Focused">
 									<VisualState.Setters>
 										<Setter Target="PlaceholderElement.Foreground" Value="{ThemeResource PrimaryBrush}" />
 									</VisualState.Setters>
@@ -711,11 +681,6 @@
 										<Setter Target="IconPresenter.Foreground" Value="{ThemeResource OnSurfaceLowBrush}" />
 										<Setter Target="ContentElement.Foreground" Value="{ThemeResource OnSurfaceLowBrush}" />
 										<Setter Target="PlaceholderElement.Foreground" Value="{ThemeResource OnSurfaceLowBrush}" />
-									</VisualState.Setters>
-								</VisualState>
-								<VisualState x:Name="Focused">
-									<VisualState.Setters>
-										<Setter Target="PlaceholderElement.Foreground" Value="{ThemeResource PrimaryBrush}" />
 									</VisualState.Setters>
 								</VisualState>
 							</VisualStateGroup>
@@ -764,67 +729,74 @@
 							</VisualStateGroup>
 						</VisualStateManager.VisualStateGroups>
 
-						<Grid x:Name="Root"
+						<!-- workaround gallery#999: transparent background added to fix hitbox on ios/droid -->
+						<Grid x:Name="RootGrid"
+							  Background="Transparent"
 							  Width="{TemplateBinding Width}"
 							  MinHeight="{TemplateBinding MinHeight}"
-							  CornerRadius="{TemplateBinding CornerRadius}"
-							  Padding="{TemplateBinding Padding}">
-							<Grid.ColumnDefinitions>
-								<ColumnDefinition Width="Auto" />
-								<ColumnDefinition Width="*" />
-								<ColumnDefinition Width="Auto" />
-							</Grid.ColumnDefinitions>
+							  CornerRadius="{TemplateBinding CornerRadius}">
 
-							<ContentPresenter x:Name="IconPresenter"
-											  Content="{Binding Path=(um:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}}"
-											  Foreground="{ThemeResource PrimaryBrush}"
-											  HorizontalAlignment="Center"
-											  Width="20"
-											  Margin="1,0,18,0"
+							<Border x:Name="StateOverlay" />
+							<Grid x:Name="Root"
+								  Padding="{TemplateBinding Padding}">
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="Auto" />
+									<ColumnDefinition Width="*" />
+									<ColumnDefinition Width="Auto" />
+								</Grid.ColumnDefinitions>
+
+								<ContentPresenter x:Name="IconPresenter"
+												  Content="{Binding Path=(um:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}}"
+												  Foreground="{ThemeResource PrimaryBrush}"
+												  HorizontalAlignment="Center"
+												  Width="20"
+												  Margin="1,0,18,0"
+												  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+												  Visibility="{Binding Path=(um:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialNullToCollapsedConverter}, FallbackValue=Collapsed, TargetNullValue=Collapsed}" />
+
+								<ScrollViewer x:Name="ContentElement"
+											  Grid.Column="1"
+											  HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
+											  HorizontalScrollMode="{TemplateBinding ScrollViewer.HorizontalScrollMode}"
+											  IsDeferredScrollingEnabled="{TemplateBinding ScrollViewer.IsDeferredScrollingEnabled}"
+											  IsHorizontalRailEnabled="{TemplateBinding ScrollViewer.IsHorizontalRailEnabled}"
+											  IsTabStop="False"
+											  IsVerticalRailEnabled="{TemplateBinding ScrollViewer.IsVerticalRailEnabled}"
+											  VerticalScrollMode="{TemplateBinding ScrollViewer.VerticalScrollMode}"
+											  VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}"
 											  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-											  Visibility="{Binding Path=(um:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialNullToCollapsedConverter}, FallbackValue=Collapsed, TargetNullValue=Collapsed}" />
+											  ZoomMode="Disabled"
+											  AutomationProperties.AccessibilityView="Raw">
+									<ScrollViewer.RenderTransform>
+										<CompositeTransform x:Name="ContentElement_CompositeTransform" />
+									</ScrollViewer.RenderTransform>
+								</ScrollViewer>
 
-							<ScrollViewer x:Name="ContentElement"
-										  Grid.Column="1"
-										  HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
-										  HorizontalScrollMode="{TemplateBinding ScrollViewer.HorizontalScrollMode}"
-										  IsDeferredScrollingEnabled="{TemplateBinding ScrollViewer.IsDeferredScrollingEnabled}"
-										  IsHorizontalRailEnabled="{TemplateBinding ScrollViewer.IsHorizontalRailEnabled}"
-										  IsTabStop="False"
-										  IsVerticalRailEnabled="{TemplateBinding ScrollViewer.IsVerticalRailEnabled}"
-										  VerticalScrollMode="{TemplateBinding ScrollViewer.VerticalScrollMode}"
-										  VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}"
-										  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-										  ZoomMode="Disabled"
-										  AutomationProperties.AccessibilityView="Raw">
-								<ScrollViewer.RenderTransform>
-									<CompositeTransform x:Name="ContentElement_CompositeTransform" />
-								</ScrollViewer.RenderTransform>
-							</ScrollViewer>
+								<TextBlock x:Name="PlaceholderElement"
+										   Grid.Column="1"
+										   Foreground="{ThemeResource OnSurfaceVariantBrush}"
+										   IsHitTestVisible="False"
+										   RenderTransformOrigin="0,0.5"
+										   Text="{TemplateBinding PlaceholderText}"
+										   VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+										   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}">
+									<TextBlock.RenderTransform>
+										<CompositeTransform x:Name="PlaceholderElement_CompositeTransform" />
+									</TextBlock.RenderTransform>
+								</TextBlock>
 
-							<TextBlock x:Name="PlaceholderElement"
-									   Grid.Column="1"
-									   Foreground="{ThemeResource OnSurfaceVariantBrush}"
-									   IsHitTestVisible="False"
-									   RenderTransformOrigin="0,0.5"
-									   Text="{TemplateBinding PlaceholderText}"
-									   VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-									   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}">
-								<TextBlock.RenderTransform>
-									<CompositeTransform x:Name="PlaceholderElement_CompositeTransform" />
-								</TextBlock.RenderTransform>
-							</TextBlock>
-
-							<Button x:Name="RevealButton"
-									Grid.Column="2"
-									Margin="8,0,0,0"
-									IsTabStop="False"
-									Foreground="{ThemeResource PrimaryBrush}"
-									Style="{StaticResource MaterialRevealButtonStyle}"
-									VerticalAlignment="Stretch"
-									Visibility="Collapsed"
-									AutomationProperties.AccessibilityView="Raw" />
+								<Button x:Name="RevealButton"
+										Grid.Column="2"
+										Margin="8,0,0,0"
+										IsTabStop="False"
+										Foreground="{ThemeResource PrimaryBrush}"
+										Style="{StaticResource MaterialRevealButtonStyle}"
+										VerticalAlignment="Stretch"
+										Visibility="Collapsed"
+										AutomationProperties.AccessibilityView="Raw" />
+							</Grid>
 						</Grid>
+
 					</utu:ShadowContainer>
 				</ControlTemplate>
 			</Setter.Value>
@@ -880,11 +852,10 @@
 				<ControlTemplate TargetType="ComboBox">
 					<utu:ShadowContainer x:Name="RootPanel"
 										 Background="{TemplateBinding Background}"
-										 Shadows="{ThemeResource ComboboxShadows}">
+										 Shadows="{ThemeResource TextBoxShadows}">
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup x:Name="CommonStates">
 								<VisualState x:Name="Normal" />
-
 								<VisualState x:Name="Disabled">
 									<VisualState.Setters>
 										<Setter Target="ComboBoxContent.Background" Value="{ThemeResource SystemControlTransparentBrush}" />
@@ -898,13 +869,15 @@
 								</VisualState>
 								<VisualState x:Name="PointerOver">
 									<VisualState.Setters>
-										<Setter Target="UpperPlaceholderElement.Foreground" Value="{ThemeResource OnSurfaceMediumBrush}" />
-										<Setter Target="PlaceholderElement.Foreground" Value="{ThemeResource OnSurfaceMediumBrush}" />
+										<Setter Target="UpperPlaceholderElement.Foreground" Value="{ThemeResource PrimaryBrush}" />
+										<Setter Target="PlaceholderElement.Foreground" Value="{ThemeResource PrimaryBrush}" />
+										<Setter Target="IconPresenter.Foreground" Value="{ThemeResource PrimaryBrush}" />
+										<Setter Target="StateOverlay.Background" Value="{ThemeResource PrimaryHoverBrush}" />
+										<Setter Target="StateOverlay.Opacity" Value="0.5" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="Pressed" />
 							</VisualStateGroup>
-
 							<VisualStateGroup x:Name="FocusStates">
 								<VisualState x:Name="PointerFocused" />
 								<VisualState x:Name="FocusedDropDown" />
@@ -917,7 +890,6 @@
 								<VisualState x:Name="FocusedPressed" />
 								<VisualState x:Name="Unfocused" />
 							</VisualStateGroup>
-
 							<VisualStateGroup x:Name="DropDownStates">
 								<VisualState x:Name="Opened">
 									<VisualState.Setters>
@@ -956,13 +928,15 @@
 							</VisualStateGroup>
 						</VisualStateManager.VisualStateGroups>
 
+						<!-- workaround gallery#999: transparent background added to fix hitbox on ios/droid -->
 						<Grid x:Name="RootGrid"
+							  Background="Transparent"
 							  HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
 							  CornerRadius="4"
 							  Width="{TemplateBinding Width}"
-							  MinHeight="{TemplateBinding MinHeight}"
-							  Background="Transparent">
+							  MinHeight="{TemplateBinding MinHeight}">
 
+							<Border x:Name="StateOverlay" />
 							<Grid x:Name="ComboBoxContent"
 								  Padding="{TemplateBinding Padding}">
 								<Grid.Resources>
@@ -1086,6 +1060,7 @@
 									</ScrollViewer>
 								</Border>
 							</Popup>
+
 						</Grid>
 					</utu:ShadowContainer>
 				</ControlTemplate>
@@ -1120,11 +1095,16 @@
 										 Shadows="{ThemeResource ElevatedButtonNormalShadows}">
 
 						<VisualStateManager.VisualStateGroups>
+							<!--
+								ShadowContainer direct child shouldn't have background.
+								However, here we are just reusing it as a state-layer to apply a non-opaque overlay.
+							-->
 							<VisualStateGroup x:Name="CommonStates">
 								<VisualState x:Name="Normal" />
 								<VisualState x:Name="PointerOver">
 									<VisualState.Setters>
 										<Setter Target="RootPanel.Shadows" Value="{ThemeResource ElevatedButtonHoveredShadows}" />
+										<Setter Target="RootGrid.Background" Value="{ThemeResource OnSurfaceHoverBrush}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="Pressed">
@@ -1135,9 +1115,11 @@
 								<VisualState x:Name="Disabled">
 									<VisualState.Setters>
 										<Setter Target="RootPanel.Shadows" Value="{ThemeResource ElevatedButtonDisabledShadows}" />
-										<Setter Target="RootPanel.Background" Value="{ThemeResource OnSurfaceInverseBrush}" />
-										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource OnSurfaceLowBrush}" />
-										<Setter Target="IconPresenter.Foreground" Value="{ThemeResource OnSurfaceLowBrush}" />
+										<Setter Target="RootPanel.Opacity" Value="0.38" />
+										<Setter Target="RootGrid.Background" Value="{ThemeResource OnSurfaceDisabledBrush}" />
+										<!-- using OnSurfaceBrush instead of OnSurfaceLowBrush, because 38% opacity is already applied from RootPanel -->
+										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource OnSurfaceBrush}" />
+										<Setter Target="IconPresenter.Foreground" Value="{ThemeResource OnSurfaceBrush}" />
 									</VisualState.Setters>
 								</VisualState>
 							</VisualStateGroup>
@@ -1145,6 +1127,7 @@
 								<VisualState x:Name="Focused">
 									<VisualState.Setters>
 										<Setter Target="RootPanel.Shadows" Value="{ThemeResource ElevatedButtonFocusedShadows}" />
+										<Setter Target="RootGrid.Background" Value="{ThemeResource OnSurfaceFocusedBrush}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="PointerFocused" />
@@ -1174,7 +1157,6 @@
 										 Visibility="{Binding Path=(um:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialNullToCollapsedConverter}, FallbackValue=Collapsed, TargetNullValue=Collapsed}">
 									<ContentPresenter x:Name="IconPresenter"
 													  Content="{Binding Path=(um:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}}"
-											
 													  HorizontalAlignment="{StaticResource ButtonIconHorizontalAlignment}"
 													  VerticalAlignment="{StaticResource ButtonIconVerticalAlignment}" />
 								</Viewbox>
@@ -1244,11 +1226,16 @@
 										 Shadows="{ThemeResource FilledButtonNormalShadows}">
 
 						<VisualStateManager.VisualStateGroups>
+							<!--
+								ShadowContainer direct child shouldn't have background.
+								However, here we are just reusing it as a state-layer to apply a non-opaque overlay.
+							-->
 							<VisualStateGroup x:Name="CommonStates">
 								<VisualState x:Name="Normal" />
 								<VisualState x:Name="PointerOver">
 									<VisualState.Setters>
 										<Setter Target="RootPanel.Shadows" Value="{ThemeResource FilledButtonHoveredShadows}" />
+										<Setter Target="RootGrid.Background" Value="{ThemeResource OnPrimaryHoverBrush}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="Pressed">
@@ -1259,7 +1246,8 @@
 								<VisualState x:Name="Disabled">
 									<VisualState.Setters>
 										<Setter Target="RootPanel.Shadows" Value="{ThemeResource FilledButtonDisabledShadows}" />
-										<Setter Target="RootPanel.Background" Value="{ThemeResource PrimaryBrush}" />
+										<Setter Target="RootPanel.Opacity" Value="0.85" />
+										<Setter Target="RootGrid.Background" Value="{ThemeResource OnSurfaceDisabledBrush}" />
 										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource OnPrimaryLowBrush}" />
 										<Setter Target="IconPresenter.Foreground" Value="{ThemeResource OnPrimaryLowBrush}" />
 									</VisualState.Setters>
@@ -1269,6 +1257,7 @@
 								<VisualState x:Name="Focused">
 									<VisualState.Setters>
 										<Setter Target="RootPanel.Shadows" Value="{ThemeResource FilledButtonFocusedShadows}" />
+										<Setter Target="RootGrid.Background" Value="{ThemeResource OnPrimaryFocusedBrush}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="PointerFocused" />
@@ -1381,7 +1370,8 @@
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="Button">
-					<utu:ShadowContainer Background="{TemplateBinding Background}"
+					<utu:ShadowContainer x:Name="RootPanel"
+										 Background="{TemplateBinding Background}"
 										 Shadows="{ThemeResource FabShadows}">
 
 						<VisualStateManager.VisualStateGroups>
@@ -1394,6 +1384,7 @@
 								</VisualState>
 								<VisualState x:Name="Pressed">
 									<VisualState.Setters>
+										<Setter Target="RootPanel.Shadows" Value="{ThemeResource FabPressedShadows}" />
 										<Setter Target="StateLayer.Background" Value="{ThemeResource OnPrimaryContainerPressedBrush}" />
 									</VisualState.Setters>
 								</VisualState>
@@ -1414,10 +1405,7 @@
 							  MinHeight="{TemplateBinding MinHeight}"
 							  MinWidth="{TemplateBinding MinWidth}">
 
-							<Grid x:Name="StateLayer"
-								  CornerRadius="{TemplateBinding CornerRadius}"
-								  MinHeight="{TemplateBinding MinHeight}"
-								  MinWidth="{TemplateBinding MinWidth}" />
+							<Grid x:Name="StateLayer" />
 
 							<StackPanel x:Name="ContentPanel"
 										Orientation="Horizontal"
@@ -1509,9 +1497,8 @@
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="CheckBox">
-					<!--We need an invisible background because of this bug: https://github.com/unoplatform/uno/issues/13604-->
-					<Grid x:Name="Root"
-						  Background="Transparent">
+					<!-- workaround uno#13604: transparent background used to prevent android double-click-->
+					<Grid x:Name="Root" Background="Transparent">
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup x:Name="CommonStates">
 								<VisualState x:Name="Normal" />
@@ -1527,19 +1514,18 @@
 								</VisualState>
 								<VisualState x:Name="UncheckedPointerOver">
 									<VisualState.Setters>
-										<Setter Target="CheckPanel.Shadows" Value="{ThemeResource NeumorphicCheckBoxHoverShadows}" />
+										<Setter Target="CheckPanel.Shadows" Value="{ThemeResource CheckBoxRaisingAuraShadows}" />
 										<Setter Target="CheckGlyph.Opacity" Value="0" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="UncheckedPressed">
 									<VisualState.Setters>
-										<Setter Target="CheckPanel.Shadows" Value="{ThemeResource NeumorphicCheckBoxPressedShadows}" />
+										<Setter Target="CheckPanel.Shadows" Value="{ThemeResource CheckBoxHollowShadows}" />
 										<Setter Target="CheckGlyph.Opacity" Value="0" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="UncheckedDisabled">
 									<VisualState.Setters>
-										<Setter Target="CheckPanel.Shadows" Value="{ThemeResource NeumorphicCheckBoxDisabledShadows}" />
 										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource OnSurfaceLowBrush}" />
 										<Setter Target="CheckGlyph.Fill" Value="{ThemeResource OnSurfaceLowBrush}" />
 										<Setter Target="CheckGlyph.Opacity" Value="0" />
@@ -1552,7 +1538,7 @@
 								</VisualState>
 								<VisualState x:Name="CheckedPointerOver">
 									<VisualState.Setters>
-										<Setter Target="CheckPanel.Shadows" Value="{ThemeResource NeumorphicCheckBoxHoverShadows}" />
+										<Setter Target="CheckPanel.Shadows" Value="{ThemeResource CheckBoxRaisingAuraShadows}" />
 										<Setter Target="CheckGlyph.Opacity" Value="1" />
 									</VisualState.Setters>
 								</VisualState>
@@ -1568,12 +1554,11 @@
 										</DoubleAnimation>
 									</Storyboard>
 									<VisualState.Setters>
-										<Setter Target="CheckPanel.Shadows" Value="{ThemeResource NeumorphicCheckBoxPressedShadows}" />
+										<Setter Target="CheckPanel.Shadows" Value="{ThemeResource CheckBoxHollowShadows}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="CheckedDisabled">
 									<VisualState.Setters>
-										<Setter Target="CheckPanel.Shadows" Value="{ThemeResource NeumorphicCheckBoxDisabledShadows}" />
 										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource OnSurfaceLowBrush}" />
 										<Setter Target="CheckGlyph.Fill" Value="{ThemeResource OnSurfaceLowBrush}" />
 										<Setter Target="CheckGlyph.Opacity" Value="1" />
@@ -1587,7 +1572,7 @@
 								</VisualState>
 								<VisualState x:Name="IndeterminatePointerOver">
 									<VisualState.Setters>
-										<Setter Target="CheckPanel.Shadows" Value="{ThemeResource NeumorphicCheckBoxHoverShadows}" />
+										<Setter Target="CheckPanel.Shadows" Value="{ThemeResource CheckBoxRaisingAuraShadows}" />
 										<Setter Target="CheckGlyph.Opacity" Value="0" />
 										<Setter Target="HyphenGlyph.Opacity" Value="1" />
 									</VisualState.Setters>
@@ -1604,12 +1589,11 @@
 										</DoubleAnimation>
 									</Storyboard>
 									<VisualState.Setters>
-										<Setter Target="CheckPanel.Shadows" Value="{ThemeResource NeumorphicCheckBoxPressedShadows}" />
+										<Setter Target="CheckPanel.Shadows" Value="{ThemeResource CheckBoxHollowShadows}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="IndeterminateDisabled">
 									<VisualState.Setters>
-										<Setter Target="CheckPanel.Shadows" Value="{ThemeResource NeumorphicCheckBoxDisabledShadows}" />
 										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource OnSurfaceLowBrush}" />
 										<Setter Target="HyphenGlyph.Fill" Value="{ThemeResource OnSurfaceLowBrush}" />
 										<Setter Target="CheckGlyph.Opacity" Value="0" />
@@ -1620,7 +1604,7 @@
 							<VisualStateGroup x:Name="FocusStates">
 								<VisualState x:Name="Focused">
 									<VisualState.Setters>
-										<Setter Target="CheckPanel.Shadows" Value="{ThemeResource NeumorphicCheckBoxFocusedShadows}" />
+										<Setter Target="CheckPanel.Shadows" Value="{ThemeResource CheckBoxRaisingAuraShadows}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="PointerFocused" />
@@ -1635,7 +1619,7 @@
 
 						<utu:ShadowContainer x:Name="CheckPanel"
 											 Background="{TemplateBinding Background}"
-											 Shadows="{ThemeResource NeumorphicCheckBoxShadows}">
+											 Shadows="{ThemeResource CheckBoxRaisingShadows}">
 							<Grid x:Name="CheckBoxContainer"
 								  Height="{ThemeResource CheckBoxCheckAreaSize}"
 								  Width="{ThemeResource CheckBoxCheckAreaSize}"
@@ -1723,6 +1707,7 @@
 								</VisualState>
 								<VisualState x:Name="Pressed">
 									<VisualState.Setters>
+										<Setter Target="RootPanel.Shadows" Value="{ThemeResource ToggleButtonUncheckedHollowShadows}" />
 										<Setter Target="StateOverlay.Fill" Value="{ThemeResource PrimaryPressedBrush}" />
 										<Setter Target="ContentPresenter.Visibility" Value="Visible" />
 										<Setter Target="AlternateContentPresenter.Visibility" Value="Collapsed" />
@@ -1740,6 +1725,7 @@
 								<!-- Checked -->
 								<VisualState x:Name="Checked">
 									<VisualState.Setters>
+										<Setter Target="RootPanel.Shadows" Value="{ThemeResource ToggleButtonCheckedHollowShadows}" />
 										<Setter Target="RootPanel.Background" Value="{ThemeResource PrimaryBrush}" />
 										<Setter Target="ContentPresenter.Visibility" Value="Collapsed" />
 										<Setter Target="AlternateContentPresenter.Visibility" Value="Visible" />
@@ -1757,6 +1743,7 @@
 								</VisualState>
 								<VisualState x:Name="CheckedPressed">
 									<VisualState.Setters>
+										<Setter Target="RootPanel.Shadows" Value="{ThemeResource ToggleButtonCheckedHollowShadows}" />
 										<Setter Target="RootPanel.Background" Value="{ThemeResource PrimaryBrush}" />
 										<Setter Target="StateOverlay.Fill" Value="{ThemeResource OnPrimaryPressedBrush}" />
 										<Setter Target="ContentPresenter.Visibility" Value="Collapsed" />
@@ -1834,25 +1821,23 @@
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="RadioButton">
-					<!--We need an invisible background because of this bug: https://github.com/unoplatform/uno/issues/13604-->
-					<Grid x:Name="RootGrid"
-						  Background="Transparent">
+					<!-- workaround uno#13604: transparent background used to prevent android double-click-->
+					<Grid x:Name="RootGrid" Background="Transparent">
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup x:Name="CommonStates">
 								<VisualState x:Name="Normal" />
 								<VisualState x:Name="PointerOver">
 									<VisualState.Setters>
-										<Setter Target="RadioPanel.Shadows" Value="{ThemeResource NeumorphicCheckBoxHoverShadows}" />
+										<Setter Target="RadioPanel.Shadows" Value="{ThemeResource CheckBoxRaisingAuraShadows}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="Pressed">
 									<VisualState.Setters>
-										<Setter Target="RadioPanel.Shadows" Value="{ThemeResource NeumorphicCheckBoxPressedShadows}" />
+										<Setter Target="RadioPanel.Shadows" Value="{ThemeResource CheckBoxHollowShadows}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="Disabled">
 									<VisualState.Setters>
-										<Setter Target="RadioPanel.Shadows" Value="{ThemeResource NeumorphicCheckBoxDisabledShadows}" />
 										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource OnSurfaceLowBrush}" />
 										<Setter Target="CheckEllipse.Fill" Value="{ThemeResource OnSurfaceLowBrush}" />
 									</VisualState.Setters>
@@ -1870,7 +1855,7 @@
 							<VisualStateGroup x:Name="FocusStates">
 								<VisualState x:Name="Focused">
 									<VisualState.Setters>
-										<Setter Target="RadioPanel.Shadows" Value="{ThemeResource NeumorphicCheckBoxFocusedShadows}" />
+										<Setter Target="RadioPanel.Shadows" Value="{ThemeResource CheckBoxRaisingAuraShadows}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="PointerFocused" />
@@ -1885,7 +1870,7 @@
 
 						<utu:ShadowContainer x:Name="RadioPanel"
 											 Background="{TemplateBinding Background}"
-											 Shadows="{ThemeResource NeumorphicCheckBoxShadows}">
+											 Shadows="{ThemeResource CheckBoxRaisingShadows}">
 							<Grid x:Name="RadioInnerPanel"
 								  Height="20"
 								  Width="20"
@@ -1939,30 +1924,39 @@
 				<ControlTemplate TargetType="Button">
 					<utu:ShadowContainer x:Name="RootPanel"
 										 Background="{TemplateBinding Background}"
-										 Shadows="{ThemeResource IconButtonShadows}">
+										 Shadows="{ThemeResource ElevatedButtonNormalShadows}">
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup x:Name="CommonStates">
 								<VisualState x:Name="Normal" />
 								<VisualState x:Name="PointerOver">
 									<VisualState.Setters>
-										<Setter Target="RootGrid.Background" Value="{ThemeResource PrimaryHoverBrush}" />
+										<Setter Target="RootPanel.Shadows" Value="{ThemeResource ElevatedButtonHoveredShadows}" />
+										<Setter Target="RootGrid.Background" Value="{ThemeResource OnSurfaceHoverBrush}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="Pressed">
 									<VisualState.Setters>
-										<Setter Target="RootGrid.Background" Value="{ThemeResource PrimaryPressedBrush}" />
-									</VisualState.Setters>
-								</VisualState>
-								<VisualState x:Name="Focused">
-									<VisualState.Setters>
-										<Setter Target="RootGrid.Background" Value="{ThemeResource PrimaryFocusedBrush}" />
+										<Setter Target="RootPanel.Shadows" Value="{ThemeResource ElevatedButtonPressedShadows}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="Disabled">
 									<VisualState.Setters>
+										<Setter Target="RootPanel.Shadows" Value="{ThemeResource ElevatedButtonDisabledShadows}" />
 										<Setter Target="RootPanel.Opacity" Value="0.38" />
+										<Setter Target="RootGrid.Background" Value="{ThemeResource OnSurfaceDisabledBrush}" />
+										<!-- using OnSurfaceBrush instead of OnSurfaceLowBrush, because 38% opacity is already applied from RootPanel -->
+										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource OnSurfaceBrush}" />
 									</VisualState.Setters>
 								</VisualState>
+							</VisualStateGroup>
+							<VisualStateGroup x:Name="FocusStates">
+								<VisualState x:Name="Focused">
+									<VisualState.Setters>
+										<Setter Target="RootPanel.Shadows" Value="{ThemeResource ElevatedButtonFocusedShadows}" />
+									</VisualState.Setters>
+								</VisualState>
+								<VisualState x:Name="PointerFocused" />
+								<VisualState x:Name="Unfocused" />
 							</VisualStateGroup>
 						</VisualStateManager.VisualStateGroups>
 
@@ -2015,33 +2009,26 @@
 				<ControlTemplate TargetType="utu:Chip">
 					<utu:ShadowContainer x:Name="RootPanel"
 										 Background="{TemplateBinding Background}"
-										 Shadows="{ThemeResource ChipShadows}">
+										 Shadows="{ThemeResource ChipRaisingShadows}">
 
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup x:Name="CommonStates">
 								<!-- [null,Checked,~~Indeterminate~~]*[null,Pressed,PointerOver,Disabled] ?? Normal -->
-
-								<VisualState x:Name="Normal">
-									<VisualState.Setters />
-								</VisualState>
+								<VisualState x:Name="Normal" />
 								<VisualState x:Name="PointerOver">
 									<VisualState.Setters>
-										<Setter Target="RootPanel.Shadows" Value="{ThemeResource ChipShadows}" />
 										<Setter Target="StateOverlay.Background" Value="{ThemeResource OnSurfaceHoverBrush}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="Pressed">
 									<VisualState.Setters>
-										<Setter Target="RootPanel.Shadows" Value="{ThemeResource ChipShadows}" />
 										<Setter Target="StateOverlay.Background" Value="{ThemeResource OnSurfacePressedBrush}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="Disabled">
 									<VisualState.Setters>
-										<Setter Target="RootPanel.Shadows" Value="{ThemeResource ChipShadows}" />
 										<Setter Target="RootPanel.Opacity" Value="0.38" />
 										<Setter Target="StateOverlay.Background" Value="{ThemeResource OnSurfaceDisabledBrush}" />
-
 										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource OnSurfaceLowBrush}" />
 										<Setter Target="PART_RemoveButton.Foreground" Value="{ThemeResource OnSurfaceLowBrush}" />
 										<Setter Target="IconPresenter.Foreground" Value="{ThemeResource OnSurfaceLowBrush}" />
@@ -2049,7 +2036,7 @@
 								</VisualState>
 								<VisualState x:Name="Checked">
 									<VisualState.Setters>
-										<Setter Target="RootPanel.Shadows" Value="{ThemeResource ChipSelectedShadows}" />
+										<Setter Target="RootPanel.Shadows" Value="{ThemeResource ChipHollowShadows}" />
 										<Setter Target="RootPanel.Background" Value="{ThemeResource PrimaryBrush}" />
 										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource OnPrimaryBrush}" />
 										<Setter Target="IconPresenter.Foreground" Value="{ThemeResource OnPrimaryBrush}" />
@@ -2059,7 +2046,7 @@
 								</VisualState>
 								<VisualState x:Name="CheckedPointerOver">
 									<VisualState.Setters>
-										<Setter Target="RootPanel.Shadows" Value="{ThemeResource ChipSelectedShadows}" />
+										<Setter Target="RootPanel.Shadows" Value="{ThemeResource ChipHollowShadows}" />
 										<Setter Target="RootPanel.Background" Value="{ThemeResource PrimaryBrush}" />
 										<Setter Target="StateOverlay.Background" Value="{ThemeResource OnPrimaryHoverBrush}" />
 										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource OnPrimaryBrush}" />
@@ -2070,7 +2057,7 @@
 								</VisualState>
 								<VisualState x:Name="CheckedPressed">
 									<VisualState.Setters>
-										<Setter Target="RootPanel.Shadows" Value="{ThemeResource ChipSelectedShadows}" />
+										<Setter Target="RootPanel.Shadows" Value="{ThemeResource ChipHollowShadows}" />
 										<Setter Target="RootPanel.Background" Value="{ThemeResource PrimaryBrush}" />
 										<Setter Target="StateOverlay.Background" Value="{ThemeResource OnPrimaryPressedBrush}" />
 										<Setter Target="ContentPresenter.Foreground" Value="{ThemeResource OnPrimaryBrush}" />
@@ -2804,8 +2791,9 @@
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="utu:TabBarItem">
-					<utu:ShadowContainer Background="{TemplateBinding Background}"
-										 Shadows="{ThemeResource FabTabBarItemShadows}">
+					<utu:ShadowContainer x:Name="RootPanel"
+										 Background="{TemplateBinding Background}"
+										 Shadows="{ThemeResource FabShadows}">
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup x:Name="CommonStates">
 								<VisualState x:Name="Normal" />
@@ -2816,6 +2804,7 @@
 								</VisualState>
 								<VisualState x:Name="Pressed">
 									<VisualState.Setters>
+										<Setter Target="RootPanel.Shadows" Value="{ThemeResource FabPressedShadows}" />
 										<Setter Target="StateOverlay.Background" Value="{ThemeResource OnPrimaryContainerPressedBrush}" />
 									</VisualState.Setters>
 								</VisualState>
@@ -2827,6 +2816,7 @@
 								</VisualState>
 								<VisualState x:Name="PressedSelected">
 									<VisualState.Setters>
+										<Setter Target="RootPanel.Shadows" Value="{ThemeResource FabPressedShadows}" />
 										<Setter Target="StateOverlay.Background" Value="{ThemeResource OnPrimaryContainerPressedBrush}" />
 									</VisualState.Setters>
 								</VisualState>
@@ -3259,10 +3249,6 @@
 									</Storyboard>
 								</VisualState>
 								<VisualState x:Name="PointerOver">
-									<VisualState.Setters>
-										<Setter Target="SwitchKnobOnShadow.Visibility" Value="Visible" />
-										<Setter Target="SwitchKnobOffShadow.Visibility" Value="Visible" />
-									</VisualState.Setters>
 									<Storyboard>
 										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="KnobOnBorder"
 																	   Storyboard.TargetProperty="Width"
@@ -3303,12 +3289,12 @@
 																	Value="{ThemeResource ToggleSwitchKnobOffShadowFillPointerOver}" />
 										</ObjectAnimationUsingKeyFrames>
 									</Storyboard>
-								</VisualState>
-								<VisualState x:Name="Focused">
 									<VisualState.Setters>
 										<Setter Target="SwitchKnobOnShadow.Visibility" Value="Visible" />
 										<Setter Target="SwitchKnobOffShadow.Visibility" Value="Visible" />
 									</VisualState.Setters>
+								</VisualState>
+								<VisualState x:Name="Focused">
 									<Storyboard>
 										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="KnobOnBorder"
 																	   Storyboard.TargetProperty="Width"
@@ -3349,19 +3335,12 @@
 																	Value="{ThemeResource ToggleSwitchKnobOffShadowFillFocused}" />
 										</ObjectAnimationUsingKeyFrames>
 									</Storyboard>
-								</VisualState>
-								<VisualState x:Name="Pressed">
 									<VisualState.Setters>
-										<Setter Target="KnobOnBorder.Margin" Value="0" />
-										<Setter Target="KnobOffBorder.Margin" Value="0" />
-										<Setter Target="KnobOnBorder.CornerRadius" Value="{ThemeResource LargeThumbCornerRadius}" />
-										<Setter Target="KnobOffBorder.CornerRadius" Value="{ThemeResource LargeThumbCornerRadius}" />
-										<Setter Target="SwitchKnobOn.Margin" Value="26,0,0,0" />
-										<Setter Target="SwitchKnobOff.Margin" Value="0,0,22,0" />
-										<Setter Target="OnIconPresenterBorder.Margin" Value="0" />
 										<Setter Target="SwitchKnobOnShadow.Visibility" Value="Visible" />
 										<Setter Target="SwitchKnobOffShadow.Visibility" Value="Visible" />
 									</VisualState.Setters>
+								</VisualState>
+								<VisualState x:Name="Pressed">
 									<Storyboard>
 										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="KnobOnBorder"
 																	   Storyboard.TargetProperty="Width"
@@ -3402,6 +3381,17 @@
 																	Value="{ThemeResource ToggleSwitchKnobOffShadowFillPressed}" />
 										</ObjectAnimationUsingKeyFrames>
 									</Storyboard>
+									<VisualState.Setters>
+										<Setter Target="KnobOnBorder.Margin" Value="0" />
+										<Setter Target="KnobOffBorder.Margin" Value="0" />
+										<Setter Target="KnobOnBorder.CornerRadius" Value="{ThemeResource LargeThumbCornerRadius}" />
+										<Setter Target="KnobOffBorder.CornerRadius" Value="{ThemeResource LargeThumbCornerRadius}" />
+										<Setter Target="SwitchKnobOn.Margin" Value="26,0,0,0" />
+										<Setter Target="SwitchKnobOff.Margin" Value="0,0,22,0" />
+										<Setter Target="OnIconPresenterBorder.Margin" Value="0" />
+										<Setter Target="SwitchKnobOnShadow.Visibility" Value="Visible" />
+										<Setter Target="SwitchKnobOffShadow.Visibility" Value="Visible" />
+									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="Disabled">
 									<Storyboard>
@@ -3463,12 +3453,9 @@
 																  KeySpline="{StaticResource MaterialToggleSwitchFastOutSlowInKeySpline}"
 																  Value="{Binding OffContent, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ToggleSwitchOffContentToContentSize}}" />
 										</DoubleAnimationUsingKeyFrames>
-
 									</Storyboard>
 									<VisualState.Setters>
 										<Setter Target="RootGrid.Opacity" Value="0.3" />
-										<Setter Target="OnShadowPanel.Shadows" Value="{ThemeResource ToggleSwitchOnBorderDisabledShadows}" />
-										<Setter Target="ShadowKnobOn.Shadows" Value="{ThemeResource ToggleSwitchKnobOnDisabledShadows}" />
 									</VisualState.Setters>
 								</VisualState>
 							</VisualStateGroup>
@@ -3598,7 +3585,6 @@
 													  From="Off"
 													  To="On"
 													  GeneratedDuration="0">
-
 										<Storyboard>
 											<RepositionThemeAnimation TargetName="SwitchKnob"
 																	  FromHorizontalOffset="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.KnobOffToOnOffset}" />
@@ -3740,7 +3726,7 @@
 								  BorderBrush="{ThemeResource OutlineVariantBrush}"
 								  BorderThickness="1"
 								  Opacity="0" />
-							
+
 							<Grid x:Name="TrackHighlightOff"
 								  Background="{ThemeResource SurfaceVariantBrush}"
 								  Width="{ThemeResource SwitchKnobWidth}"
@@ -3749,10 +3735,10 @@
 								  HorizontalAlignment="Center"
 								  BorderBrush="{ThemeResource OutlineVariantBrush}"
 								  BorderThickness="1" />
-							
+
 							<utu:ShadowContainer x:Name="OnShadowPanel"
 												 HorizontalAlignment="Center"
-												 Shadows="{ThemeResource ToggleSwitchOnBorderShadows}"
+												 Shadows="{ThemeResource ToggleSwitchOnTrackShadows}"
 												 Opacity="0">
 								<Grid x:Name="SwitchKnobBounds"
 									  Width="{ThemeResource SwitchKnobWidth}"
@@ -3763,7 +3749,7 @@
 
 							<utu:ShadowContainer x:Name="OffShadowPanel"
 												 HorizontalAlignment="Center"
-												 Shadows="{ThemeResource ToggleSwitchOffBorderShadows}">
+												 Shadows="{ThemeResource ToggleSwitchOffTrackShadows}">
 								<Grid x:Name="SwitchKnobBoundsOff"
 									  Width="{ThemeResource SwitchKnobWidth}"
 									  Height="{ThemeResource SwitchKnobHeight}"
@@ -3788,7 +3774,7 @@
 
 									<utu:ShadowContainer x:Name="ShadowKnobOn"
 														 Background="{ThemeResource SurfaceBrush}"
-														 Shadows="{ThemeResource ToggleSwitchKnobOnShadows}">
+														 Shadows="{ThemeResource ToggleSwitchOnKnobShadows}">
 										<Border x:Name="KnobOnBorder"
 												Width="{ThemeResource MediumThumbSize}"
 												Height="{ThemeResource MediumThumbSize}"
@@ -3830,7 +3816,7 @@
 
 									<utu:ShadowContainer x:Name="ShadowKnobOff"
 														 Background="{ThemeResource OnSurfaceVariantBrush}"
-														 Shadows="{ThemeResource ToggleSwitchKnobOffShadows}">
+														 Shadows="{ThemeResource ToggleSwitchOffKnobShadows}">
 										<Border x:Name="KnobOffBorder"
 												Height="{Binding OffContent, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ToggleSwitchOffContentToContentSize}}"
 												Width="{Binding OffContent, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ToggleSwitchOffContentToContentSize}}"
