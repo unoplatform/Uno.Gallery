@@ -5,7 +5,7 @@ steps:
   retryCountOnTaskFailure: 3
   inputs:
     packageType: runtime
-    version: 3.1.3
+    version: 6.0.0
 
 - template: templates/gitversion.yml
 - template: templates/canary-updater.yml
@@ -18,7 +18,7 @@ steps:
 
 - script: |
     cd $(build.sourcesdirectory)/Uno.Gallery/Uno.Gallery.Windows
-    dotnet publish -c Release /p:Platform=$(ApplicationPlatform) /p:AppxPackageDir="Packages/" /p:AppxBundle=Never /p:UapAppxPackageBuildMode=SideloadOnly /p:GenerateAppxPackageOnBuild=true /bl:$(build.artifactstagingdirectory)/build.binlog "/p:InformationalVersion=$GITVERSION_INFORMATIONALVERSION" 
+    dotnet publish -c Release /p:Platform=$(ApplicationPlatform) /p:AppxPackageDir="Packages/" /p:AppxBundle=Never /p:UapAppxPackageBuildMode=SideloadOnly /p:GenerateAppxPackageOnBuild=true /bl:$(build.artifactstagingdirectory)/build.binlog "/p:InformationalVersion=$GITVERSION_INFORMATIONALVERSION"
   displayName: Build project for Release
 
 - task: CopyFiles@2
@@ -41,6 +41,7 @@ steps:
   condition: and(succeeded(), not(eq(variables['build.reason'], 'PullRequest')), not(eq(variables['SignClientSecret'], '')), not(eq(variables['SignClientUser'], '')))
 
 - task: PublishBuildArtifacts@1
+  condition: always()
   retryCountOnTaskFailure: 3
   inputs:
     ArtifactName: windows

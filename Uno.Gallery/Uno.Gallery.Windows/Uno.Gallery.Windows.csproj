@@ -20,6 +20,7 @@
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.WinUI.Lottie" Version="7.1.2" />
 		<PackageReference Include="CommunityToolkit.WinUI.UI.Controls" Version="7.1.2" />
+		<PackageReference Include="CommunityToolkit.WinUI.UI.Controls.DataGrid" Version="7.1.2" />
 		<PackageReference Include="Uno.Cupertino.WinUI" Version="4.0.0-dev.126" />
 		<PackageReference Include="Uno.Material.WinUI" Version="4.0.0-dev.126" />
 		<PackageReference Include="Uno.ShowMeTheXAML" Version="2.0.0-dev0015" />
@@ -48,6 +49,13 @@
 			<Version>5.0.0-dev.2366</Version>
 		</PackageReference>
 		<Manifest Include="$(ApplicationManifest)" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<!-- We build WinUI project with Platform=x86 due to a CommunityToolkit bug -->
+		<!-- https://github.com/CommunityToolkit/Lottie-Windows/issues/515#issuecomment-1662305826 -->
+		<!-- If the source generator project is built with x86, the compiler fails to load the generator assembly, so we force AnyCPU here -->
+		<ProjectReference Include="..\..\Uno.Gallery.SourceGenerators\Uno.Gallery.SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" SetPlatform="Platform=AnyCPU" />
 	</ItemGroup>
 
 	<!-- 

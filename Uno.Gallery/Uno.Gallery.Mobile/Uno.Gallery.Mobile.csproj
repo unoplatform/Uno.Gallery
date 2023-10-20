@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFrameworks>net7.0-android;net7.0-ios;net7.0-maccatalyst;net7.0-macos</TargetFrameworks>
 		<SingleProject>true</SingleProject>
@@ -28,6 +28,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Uno.CommunityToolkit.WinUI.UI.Controls" Version="7.1.200-dev.13.gef3f523648" />
+		<PackageReference Include="Uno.CommunityToolkit.WinUI.UI.Controls.DataGrid" Version="7.1.200-dev.13.gef3f523648" />
 		<PackageReference Include="Uno.Cupertino.WinUI" Version="4.0.0-dev.126" />
 		<PackageReference Include="Uno.Extensions.Logging.OSLog" Version="1.6.0-dev.2" />
 		<PackageReference Include="Uno.Fonts.Fluent" Version="2.3.0" />
@@ -47,6 +48,10 @@
 		<PackageReference Include="Uno.WinUI.Lottie" Version="5.0.0-dev.2366" />
 		<PackageReference Include="Uno.Core.Extensions.Disposables" Version="4.0.1" />
 		<PackageReference Include="Uno.Core.Extensions.Compatibility" Version="4.0.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\Uno.Gallery.SourceGenerators\Uno.Gallery.SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
 	</ItemGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='Debug' or '$(IsUiAutomationMappingEnabled)'=='True'">
