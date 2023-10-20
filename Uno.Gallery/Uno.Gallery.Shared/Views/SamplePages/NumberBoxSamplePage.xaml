@@ -31,7 +31,7 @@
 												PlaceholderText="10" />
 								<TextBlock Text="This is a description which is shown below the NumberBox"
 										   TextWrapping="WrapWholeWords"
-										   Foreground="{ThemeResource SystemControlDescriptionTextForegroundBrush}" />
+										   Foreground="{ThemeResource SystemControlDescriptionTextForegroundBrush}"/>
 							</StackPanel>
 						</smtx:XamlDisplay>
 
