@@ -125,7 +125,7 @@ namespace Uno.Gallery.Views.Samples
 			if (device is not null)
 			{
 
-#if __ANDROID__
+#if __ANDROID__ || !HAS_UNO
 				_proximity = ProximitySensor.FromId(device.Id);
 #endif
 			}
@@ -139,12 +139,6 @@ namespace Uno.Gallery.Views.Samples
 				});
 				return;
 			}
-
-			await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-			{
-				IsProximityAvailable = false;
-				ButtonContent = _notAvailable;
-			});
 		}
 		
 	}

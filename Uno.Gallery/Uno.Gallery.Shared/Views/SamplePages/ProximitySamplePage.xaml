@@ -7,11 +7,6 @@
       xmlns:smtx="using:ShowMeTheXAML"
       xmlns:local="using:Uno.Gallery"
       mc:Ignorable="d">
-
-
-
-
-
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 		<local:SamplePageLayout IsDesignAgnostic="True">
 			<local:SamplePageLayout.DesignAgnosticTemplate>
