@@ -1,4 +1,4 @@
-﻿88.<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<OutputType Condition="'$(Configuration)'=='Release'">WinExe</OutputType>
