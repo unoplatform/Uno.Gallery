@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿88.<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<OutputType Condition="'$(Configuration)'=='Release'">WinExe</OutputType>
@@ -34,8 +34,8 @@
 		<PackageReference Include="Uno.UI.Adapter.Microsoft.Extensions.Logging" Version="5.0.0-dev.2366" />
 		<PackageReference Include="Uno.Core.Extensions.Disposables" Version="4.0.1" />
 		<PackageReference Include="Uno.Core.Extensions.Compatibility" Version="4.0.1" />
-		<PackageReference Include="SkiaSharp.Skottie" Version="2.88.5" />
-		<PackageReference Include="SkiaSharp.Views.Uno.WinUI" Version="2.88.5" />
+		<PackageReference Include="SkiaSharp.Skottie" Version="2.88.6" />
+		<PackageReference Include="SkiaSharp.Views.Uno.WinUI" Version="2.88.6" />
 		<PackageReference Include="Uno.WinUI.Svg" Version="5.0.0-dev.2366" />
 		<PackageReference Include="VideoLAN.LibVLC.Windows" Version="3.0.18" />
 		<PackageReference Include="Uno.WinUI.MediaPlayer.Skia.Gtk" Version="5.0.0-dev.2366" />
