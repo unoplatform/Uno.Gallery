@@ -24,11 +24,15 @@
 
 						<smtx:XamlDisplay UniqueKey="NumberBoxSamplePage_Fluent_Default"
 										  smtx:XamlDisplayExtensions.Header="A simple NumberBox">
-							<muxc:NumberBox Header="Enter a number:"
-											Minimum="10"
-											Maximum="100"
-											PlaceholderText="10"
-											Description="This is a description which is shown below the NumberBox"/>
+							<StackPanel>
+								<muxc:NumberBox Header="Enter a number:"
+												Minimum="10"
+												Maximum="100"
+												PlaceholderText="10" />
+								<TextBlock Text="This is a description which is shown below the NumberBox"
+										   TextWrapping="WrapWholeWords"
+										   Foreground="{ThemeResource SystemControlDescriptionTextForegroundBrush}" />
+							</StackPanel>
 						</smtx:XamlDisplay>
 
 						<smtx:XamlDisplay UniqueKey="NumberBoxSamplePage_Fluent_Expressions"
