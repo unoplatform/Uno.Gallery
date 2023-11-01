@@ -27,6 +27,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="SkiaSharp.Views.Uno.WinUI" Version="2.88.6" />
 		<PackageReference Include="Uno.CommunityToolkit.WinUI.UI.Controls" Version="7.1.200-dev.13.gef3f523648" />
 		<PackageReference Include="Uno.CommunityToolkit.WinUI.UI.Controls.DataGrid" Version="7.1.200-dev.13.gef3f523648" />
 		<PackageReference Include="Uno.Cupertino.WinUI" Version="4.0.0-dev.126" />
@@ -48,6 +49,7 @@
 		<PackageReference Include="Uno.WinUI.Lottie" Version="5.0.0-dev.2366" />
 		<PackageReference Include="Uno.Core.Extensions.Disposables" Version="4.0.1" />
 		<PackageReference Include="Uno.Core.Extensions.Compatibility" Version="4.0.1" />
+		<PackageReference Include="Uno.WinUI.Svg" Version="5.0.0-dev.2366" />
 	</ItemGroup>
 
 	<ItemGroup>
