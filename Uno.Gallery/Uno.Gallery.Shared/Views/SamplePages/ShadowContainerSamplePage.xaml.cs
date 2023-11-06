@@ -50,6 +50,14 @@ namespace Uno.Gallery.Views.SamplePages
 		private void OnShadowsChanged()
 		{
 			RemoveShadowButton.IsEnabled = _shadows?.Count > 1;
+			_shadows.Cast<Uno.Toolkit.UI.Shadow>().ToList().ForEach(shadow => shadow.PropertyChanged += (s, e) => OnShadowChanged());
+		}
+
+		private void OnShadowChanged()
+		{
+			//Put it back to null to force the DataContext to be picked up again by the converter.
+			TreasureHuntSection.DataContext = null;
+			TreasureHuntSection.DataContext = ShadowsItemsRepeater.ItemsSource;
 		}
 
 		private void AddShadow(object sender, RoutedEventArgs e)

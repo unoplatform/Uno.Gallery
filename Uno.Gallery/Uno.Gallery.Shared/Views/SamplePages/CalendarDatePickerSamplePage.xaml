@@ -36,48 +36,10 @@
 					<StackPanel Spacing="20">
 						<smtx:XamlDisplay UniqueKey="CalendarViewSamplePage_Cupertino_CalendarDatePicker"
 										  smtx:XamlDisplayExtensions.Header="Default">
-							<StackPanel>
-								<Grid Visibility="{Binding ElementName=Cupertino_CalendarDatePicker, Path=Date, Converter={StaticResource Secret}, ConverterParameter=SecretDate}"
-									  Margin="0,0,0,20">
-									<Grid.RowDefinitions>
-										<RowDefinition Height="Auto" />
-										<RowDefinition Height="Auto" />
-									</Grid.RowDefinitions>
-
-									<Border Background="#E2068C"
-											CornerRadius="15"
-											Margin="70,0,0,0"
-											Padding="10"
-											HorizontalAlignment="Left"
-											VerticalAlignment="Top">
-										<TextBlock TextWrapping="WrapWholeWords"
-												   FontSize="20"
-												   Foreground="White">
-										<Run Text="You got it!" />
-										<LineBreak /><Run Text="The .NET Conf secret decoder challenge letter is" />
-										<Span xml:space="preserve"><Run Text="&quot;" /><Run FontWeight="Bold"
-																							 Text="{Binding ElementName=Cupertino_CalendarDatePicker, Path=Date, Converter={StaticResource Secret}, ConverterParameter=HiddenSecret}" /><Run Text="&quot;" /></Span><Run Text="." />
-										</TextBlock>
-									</Border>
-									
-									<Polygon Grid.Row="1"
-											 Points="20,0 15,15, 16,16 18,16 19,15 40,0"
-											 Fill="#E2068C"
-											 Margin="65,0,0,70"
-											 VerticalAlignment="Top" />
-
-									<Image Grid.RowSpan="2"
-										   Source="ms-appx:///Assets/DotnetBot.png"
-										   Width="100"
-										   HorizontalAlignment="Left"
-										   VerticalAlignment="Bottom" />
-								</Grid>
-								
-								<CalendarDatePicker Header="Date"
-													x:Name="Cupertino_CalendarDatePicker"
-													AutomationProperties.AutomationId="Cupertino_CalendarDatePicker"
-													Style="{StaticResource CupertinoCalendarDatePickerStyle}" />
-							</StackPanel>
+							<CalendarDatePicker Header="Date"
+												x:Name="Cupertino_CalendarDatePicker"
+												AutomationProperties.AutomationId="Cupertino_CalendarDatePicker"
+												Style="{StaticResource CupertinoCalendarDatePickerStyle}" />
 						</smtx:XamlDisplay>
 						<smtx:XamlDisplay UniqueKey="CalendarViewSamplePage_Cupertino_CalendarDatePicker_Disabled"
 										  smtx:XamlDisplayExtensions.Header="Disabled">
