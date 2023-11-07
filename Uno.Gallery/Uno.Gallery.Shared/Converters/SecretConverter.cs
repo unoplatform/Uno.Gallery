@@ -5,6 +5,8 @@ using System.Text;
 using System.Text.RegularExpressions;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Data;
+using Uno.Toolkit.UI;
+using Windows.UI;
 
 namespace Uno.Gallery.Converters
 {
@@ -12,15 +14,25 @@ namespace Uno.Gallery.Converters
 	{
 		public object Convert(object value, Type targetType, object parameter, string language)
 		{
-			var date = (value as DateTimeOffset?)?.Date == new DateTime(2021, 11, 30).Date;
+			var shadowContainerSource = value as ShadowCollection;
+			var thirdShadow = shadowContainerSource?.ElementAtOrDefault(2);
 
-			if (date && (string)parameter == "HiddenSecret")
+			if (shadowContainerSource != null && thirdShadow != null)
 			{
-				return GetAnswer();
-			}
-			else if (date && (string)parameter == "SecretDate")
-			{
-				return Visibility.Visible;
+				var isThirdShadowSuccess = thirdShadow.Color.Equals(Color.FromArgb(255, 34, 157, 252)) && thirdShadow.IsInner == true;
+
+				if (isThirdShadowSuccess && (string)parameter == "HiddenSecret")
+				{
+					return GetAnswer();
+				}
+				else if (isThirdShadowSuccess && (string)parameter == "SecretShadowCombination")
+				{
+					return Visibility.Visible;
+				}
+				else
+				{
+					return Visibility.Collapsed;
+				}
 			}
 			else
 			{
@@ -41,7 +53,7 @@ namespace Uno.Gallery.Converters
 				.Select(x => x.Key)
 				.LastOrDefault();
 
-			var answer = a[3].ToString().ToUpper();
+			var answer = a[0].ToString().ToLower();
 
 			return answer;
 		}

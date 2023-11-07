@@ -948,10 +948,10 @@
 								  smtx:XamlDisplayExtensions.Description="You can add as many shadows as you like. You can also dynamically change the shadow properties.">
 					<!-- Viewbox here to be able to use ShadowBuilder for Narrow breakpoint or on a Phone -->
 					<!-- MaxWidth here for Wide breakpoint or on a Tablet -->
-					<Viewbox MaxWidth="500" HorizontalAlignment="Left">
+					<Viewbox MaxWidth="500"
+							 HorizontalAlignment="Left">
 						<utu:ShadowContainer x:Name="ShadowContainer"
 											 Background="{ThemeResource SurfaceBrush}"
-											 
 											 Margin="40">
 							<utu:ShadowContainer.Shadows>
 								<utu:ShadowCollection x:Name="Shadows">
@@ -1076,6 +1076,44 @@
 					</Viewbox>
 				</smtx:XamlDisplay>
 
+				<Grid x:Name="TreasureHuntSection"
+					  HorizontalAlignment="Center"
+					  Visibility="{Binding Converter={StaticResource Secret}, ConverterParameter=SecretShadowCombination, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+					  Margin="20">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="Auto" />
+					</Grid.RowDefinitions>
+
+					<Border Background="#E2068C"
+							CornerRadius="15"
+							Margin="70,0,0,0"
+							Padding="10"
+							HorizontalAlignment="Left"
+							VerticalAlignment="Top">
+						<TextBlock TextWrapping="WrapWholeWords"
+								   FontSize="20"
+								   Foreground="White">
+							<Run Text="You got it!" />
+							<LineBreak /><Run Text="The .NET Conf secret decoder challenge letter is" />
+							<Span xml:space="preserve"><Run Text="&quot;" /><Run FontWeight="Bold"
+									 Text="{Binding Converter={StaticResource Secret}, ConverterParameter=HiddenSecret, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" /><Run Text="&quot;" /></Span><Run Text="." />
+						</TextBlock>
+					</Border>
+
+					<Polygon Grid.Row="1"
+							 Points="20,0 15,15, 16,16 18,16 19,15 40,0"
+							 Fill="#E2068C"
+							 Margin="65,0,0,70"
+							 VerticalAlignment="Top" />
+
+					<Image Grid.RowSpan="2"
+						   Source="ms-appx:///Assets/DotnetBot.png"
+						   Width="100"
+						   HorizontalAlignment="Left"
+						   VerticalAlignment="Bottom" />
+				</Grid>
+
 				<utu:Divider Margin="0,36" />
 
 				<TextBlock Text="Neumorphic Styles"
@@ -1113,11 +1151,6 @@
 								HorizontalContentAlignment="Stretch"
 								VerticalContentAlignment="Stretch"
 								ContentTemplateSelector="{StaticResource NeumorphicTemplateSelector}" />
-
-
-
-
-
 
 			</StackPanel>
 		</local:ContentPageLayout>
