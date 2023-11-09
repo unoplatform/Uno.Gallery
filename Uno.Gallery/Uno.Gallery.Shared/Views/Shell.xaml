@@ -20,7 +20,7 @@
 
 			<Setter Property="FontSize" Value="19" />
 			<Setter Property="FontWeight" Value="SemiBold" />
-			<Setter Property="FontFamily" Value="{ThemeResource BodyMediumFontFamily}" />
+			<Setter Property="FontFamily" Value="{ThemeResource MaterialMediumFontFamily}" />
 			<Setter Property="Template">
 				<Setter.Value>
 					<ControlTemplate TargetType="Button">
@@ -51,6 +51,7 @@
 				</Setter.Value>
 			</Setter>
 		</Style>
+
 		<Style x:Key="AppBarDropdownButtonStyle"
 			   TargetType="Button">
 			<Setter Property="Foreground" Value="{ThemeResource OnSurfaceBrush}" />
@@ -58,7 +59,7 @@
 
 			<Setter Property="FontSize" Value="19" />
 			<Setter Property="FontWeight" Value="SemiBold" />
-			<Setter Property="FontFamily" Value="{ThemeResource BodyMediumFontFamily}" />
+			<Setter Property="FontFamily" Value="{ThemeResource MaterialMediumFontFamily}" />
 			<Setter Property="Template">
 				<Setter.Value>
 					<ControlTemplate TargetType="Button">
@@ -66,14 +67,14 @@
 									Spacing="8">
 							<ContentPresenter Content="{TemplateBinding Content}"
 											  Foreground="{TemplateBinding Foreground}" />
-							<PathIcon todo:Data="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
-									  Data="M 7.41 6.58 L 12 11.17 L 16.59 6.58 L 18 8 L 12 14 L 6 8 L 7.41 6.58 Z"
+							<PathIcon Data="M 7.41 6.58 L 12 11.17 L 16.59 6.58 L 18 8 L 12 14 L 6 8 L 7.41 6.58 Z"
 									  VerticalAlignment="Center" />
 						</StackPanel>
 					</ControlTemplate>
 				</Setter.Value>
 			</Setter>
 		</Style>
+
 		<Style x:Key="AppBarCtaButtonStyle"
 			   TargetType="Button">
 			<Setter Property="Background" Value="{StaticResource UnoGreenColorBrush}" />
@@ -84,7 +85,7 @@
 
 			<Setter Property="FontSize" Value="16" />
 			<Setter Property="FontWeight" Value="Bold" />
-			<Setter Property="FontFamily" Value="{ThemeResource BodyMediumFontFamily}" />
+			<Setter Property="FontFamily" Value="{ThemeResource MaterialMediumFontFamily}" />
 			<Setter Property="Template">
 				<Setter.Value>
 					<ControlTemplate TargetType="Button">
@@ -119,6 +120,7 @@
 				</Setter.Value>
 			</Setter>
 		</Style>
+
 		<Style x:Key="AppBarMenuFlyoutPresenterStyle"
 			   TargetType="MenuFlyoutPresenter">
 			<Setter Property="Background" Value="{ThemeResource SurfaceBrush}" />
@@ -140,6 +142,7 @@
 				</Setter.Value>
 			</Setter>
 		</Style>
+
 		<Style x:Key="AppBarMenuFlyoutItemStyle"
 			   TargetType="MenuFlyoutItem">
 			<Setter Property="Foreground" Value="{ThemeResource OnSurfaceBrush}" />
@@ -147,7 +150,7 @@
 			<Setter Property="Padding" Value="10" />
 
 			<Setter Property="FontSize" Value="14" />
-			<Setter Property="FontFamily" Value="{ThemeResource BodyMediumFontFamily}" />
+			<Setter Property="FontFamily" Value="{ThemeResource MaterialMediumFontFamily}" />
 
 			<Setter Property="Template">
 				<Setter.Value>
@@ -186,6 +189,7 @@
 				</Setter.Value>
 			</Setter>
 		</Style>
+
 		<Style x:Key="AppBarHeaderMenuFlyoutItemStyle"
 			   BasedOn="{StaticResource AppBarMenuFlyoutItemStyle}"
 			   TargetType="MenuFlyoutItem">
@@ -203,8 +207,33 @@
 		</Grid.RowDefinitions>
 
 		<!-- Banner similar to the Uno website (WASM only) -->
-		<wasm:Grid Grid.Row="1"
+		<wasm:Grid x:Name="WebBanner"
+				   Grid.Row="1"
 				   Padding="32,16">
+			<VisualStateManager.VisualStateGroups>
+				<VisualStateGroup>
+					<VisualState x:Name="Desktop">
+						<VisualState.StateTriggers>
+							<!-- Based on the size of the Banner content -->
+							<AdaptiveTrigger MinWindowWidth="1000" />
+						</VisualState.StateTriggers>
+						<VisualState.Setters>
+							<Setter Target="WebBanner.BorderThickness" Value="0,0,0,1" />
+							<Setter Target="WebBanner.BorderBrush" Value="{ThemeResource DividerBrush}" />
+						</VisualState.Setters>
+					</VisualState>
+
+					<VisualState x:Name="Mobile">
+						<VisualState.StateTriggers>
+							<AdaptiveTrigger MinWindowWidth="0" />
+						</VisualState.StateTriggers>
+						<VisualState.Setters>
+							<Setter Target="WebBanner.Visibility" Value="Collapsed" />
+						</VisualState.Setters>
+					</VisualState>
+				</VisualStateGroup>
+			</VisualStateManager.VisualStateGroups>
+
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="auto" />
 				<ColumnDefinition Width="*" />
@@ -215,7 +244,8 @@
 				   Width="120"
 				   Height="35"
 				   IsTabStop="False"
-				   wasm:Source="https://uno-website-assets.s3.amazonaws.com/wp-content/uploads/2021/03/24151905/uno-logo-tm.svg" />
+				   Stretch="Fill"
+				   wasm:Source="{ThemeResource UnoLogoWebBannerImageSource}" />
 
 			<StackPanel Grid.Column="2"
 						Orientation="Horizontal"

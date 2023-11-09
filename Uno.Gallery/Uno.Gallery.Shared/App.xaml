@@ -24,7 +24,6 @@
 				<!-- Application's custom styles -->
 				<ResourceDictionary Source="Views/Colors.xaml" todo:note="define some colors\brushes, and images resources; not for color overriding" />
 				<ResourceDictionary Source="Views/Converters.xaml" />
-				<ResourceDictionary Source="Views/Styles/Banner.xaml" />
 				<ResourceDictionary Source="Views/Styles/Button.xaml" />
 				<ResourceDictionary Source="Views/Styles/ColorPaletteView.xaml" />
 				<ResourceDictionary Source="Views/Styles/ContentPageLayout.xaml" />

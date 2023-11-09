@@ -137,7 +137,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Controls\AppDialog.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\Banner.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\TypographyControl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\ContentPageLayout.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\OverviewSampleView.cs" />
@@ -216,5 +215,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Assets\Thumbnails\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\uno-logo-tm-dark.svg" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\uno-logo-tm-light.svg" />
   </ItemGroup>
 </Project>
