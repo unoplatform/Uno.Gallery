@@ -25,7 +25,10 @@
 		<WasmShellEmccLinkOptimization>false</WasmShellEmccLinkOptimization>
 		<WasmShellEnableEmccProfiling>true</WasmShellEnableEmccProfiling>
 		<UnoXamlResourcesTrimming>true</UnoXamlResourcesTrimming>
-		
+
+		<!-- Tentative disable SIMD for Safari corruption issue -->
+		<WasmShellEnableSimd>false</WasmShellEnableSimd>
+
 		<!--
 		Uncomment this block to generate a profile
 		<WasmShellGenerateAOTProfile>true</WasmShellGenerateAOTProfile>
