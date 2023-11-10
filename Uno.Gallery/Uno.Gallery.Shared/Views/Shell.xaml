@@ -18,9 +18,9 @@
 			<Setter Property="Foreground" Value="{ThemeResource OnSurfaceBrush}" />
 			<Setter Property="Margin" Value="27.2,11.2" />
 
-			<Setter Property="FontSize" Value="19" />
-			<Setter Property="FontWeight" Value="SemiBold" />
-			<Setter Property="FontFamily" Value="{ThemeResource MaterialMediumFontFamily}" />
+			<Setter Property="FontSize" Value="20" />
+			<Setter Property="FontWeight" Value="Normal" />
+			<Setter Property="FontFamily" Value="{ThemeResource MaterialRegularFontFamily}" />
 			<Setter Property="Template">
 				<Setter.Value>
 					<ControlTemplate TargetType="Button">
@@ -57,9 +57,9 @@
 			<Setter Property="Foreground" Value="{ThemeResource OnSurfaceBrush}" />
 			<Setter Property="Margin" Value="27.2,11.2" />
 
-			<Setter Property="FontSize" Value="19" />
-			<Setter Property="FontWeight" Value="SemiBold" />
-			<Setter Property="FontFamily" Value="{ThemeResource MaterialMediumFontFamily}" />
+			<Setter Property="FontSize" Value="20" />
+			<Setter Property="FontWeight" Value="Normal" />
+			<Setter Property="FontFamily" Value="{ThemeResource MaterialRegularFontFamily}" />
 			<Setter Property="Template">
 				<Setter.Value>
 					<ControlTemplate TargetType="Button">
@@ -67,7 +67,7 @@
 									Spacing="8">
 							<ContentPresenter Content="{TemplateBinding Content}"
 											  Foreground="{TemplateBinding Foreground}" />
-							<PathIcon Data="M 7.41 6.58 L 12 11.17 L 16.59 6.58 L 18 8 L 12 14 L 6 8 L 7.41 6.58 Z"
+							<PathIcon Data="M 1.692 0 L 7.2 5.508 L 12.708 0 L 14.4 2.704 L 7.2 9.904 L 0 2.704 L 1.692 0 Z"
 									  VerticalAlignment="Center" />
 						</StackPanel>
 					</ControlTemplate>
@@ -85,27 +85,51 @@
 
 			<Setter Property="FontSize" Value="16" />
 			<Setter Property="FontWeight" Value="Bold" />
-			<Setter Property="FontFamily" Value="{ThemeResource MaterialMediumFontFamily}" />
+			<Setter Property="FontFamily" Value="{ThemeResource MaterialRegularFontFamily}" />
 			<Setter Property="Template">
 				<Setter.Value>
 					<ControlTemplate TargetType="Button">
 						<Grid x:Name="RootGrid"
 							  Background="{TemplateBinding Background}"
-							  CornerRadius="{TemplateBinding CornerRadius}"
-							  Padding="{TemplateBinding Padding}">
+							  CornerRadius="{TemplateBinding CornerRadius}">
 							<VisualStateManager.VisualStateGroups>
 								<VisualStateGroup x:Name="CommonStates">
-									<!-- todo: add gradient animation -->
+									<VisualStateGroup.Transitions>
+										<VisualTransition From="Normal"
+														  To="PointerOver">
+											<Storyboard>
+												<DoubleAnimation Storyboard.TargetName="PointerOverlayScaleTransform"
+																 Storyboard.TargetProperty="ScaleY"
+																 From="0"
+																 To="1"
+																 Duration="00:00:00.5">
+													<DoubleAnimation.EasingFunction>
+														<CubicEase EasingMode="EaseInOut" />
+													</DoubleAnimation.EasingFunction>
+												</DoubleAnimation>
+												<ColorAnimation Storyboard.TargetName="ContentPresenter"
+																Storyboard.TargetProperty="(ContentPresenter.Foreground).(SolidColorBrush.Color)"
+																From="Black"
+																To="White"
+																Duration="00:00:00.5">
+													<ColorAnimation.EasingFunction>
+														<CubicEase EasingMode="EaseInOut" />
+													</ColorAnimation.EasingFunction>
+												</ColorAnimation>
+											</Storyboard>
+										</VisualTransition>
+									</VisualStateGroup.Transitions>
+
 									<VisualState x:Name="Normal" />
 									<VisualState x:Name="PointerOver">
 										<VisualState.Setters>
-											<Setter Target="RootGrid.Background" Value="{StaticResource UnoBlueColorBrush}" />
+											<Setter Target="PointerOverlayScaleTransform.ScaleY" Value="1" />
 											<Setter Target="ContentPresenter.Foreground" Value="White" />
 										</VisualState.Setters>
 									</VisualState>
 									<VisualState x:Name="Pressed">
 										<VisualState.Setters>
-											<Setter Target="RootGrid.Background" Value="{StaticResource UnoPurpleColorBrush}" />
+											<Setter Target="PointerOverlayScaleTransform.ScaleY" Value="1" />
 											<Setter Target="ContentPresenter.Foreground" Value="White" />
 										</VisualState.Setters>
 									</VisualState>
@@ -113,7 +137,15 @@
 								</VisualStateGroup>
 							</VisualStateManager.VisualStateGroups>
 
+							<Border Background="{StaticResource UnoBlueColorBrush}"
+									RenderTransformOrigin="0,1">
+								<Border.RenderTransform>
+									<ScaleTransform x:Name="PointerOverlayScaleTransform" ScaleY="0" />
+								</Border.RenderTransform>
+							</Border>
+
 							<ContentPresenter x:Name="ContentPresenter"
+											  Margin="{TemplateBinding Padding}"
 											  Content="{TemplateBinding Content}" />
 						</Grid>
 					</ControlTemplate>
