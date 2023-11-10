@@ -7,9 +7,7 @@
 		<WasmHead>true</WasmHead>
 		<DefineConstants>__WASM__</DefineConstants>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-		
-		<UnoUIUseRoslynSourceGenerators>false</UnoUIUseRoslynSourceGenerators>
-  		<WasmShellWebAppBasePath>/</WasmShellWebAppBasePath>
+		<WasmShellWebAppBasePath>/</WasmShellWebAppBasePath>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='Debug'">
@@ -27,7 +25,7 @@
 		<UnoXamlResourcesTrimming>true</UnoXamlResourcesTrimming>
 
 		<!-- Tentative disable SIMD for Safari corruption issue -->
-		<WasmShellEnableSimd>false</WasmShellEnableSimd>
+		<!--<WasmShellEnableSimd>false</WasmShellEnableSimd>-->
 
 		<!--
 		Uncomment this block to generate a profile
@@ -38,29 +36,10 @@
 		-->
 	</PropertyGroup>
 
-
-	<!-- REMOVE ME -->
-	<ItemGroup>
-		<WasmShellMonoEnvironment Include="MONO_GC_PARAMS" Value="soft-heap-limit=512m,nursery-size=64m,evacuation-threshold=66,major=marksweep" />
-		<WasmShellMonoEnvironment Include="MONO_LOG_LEVEL" Value="debug" />
-		<WasmShellMonoEnvironment Include="MONO_LOG_MASK" Value="all" />
-	</ItemGroup>
-	<!-- REMOVE ME -->
-
-	<PropertyGroup>
-		<WasmShellAOTProfileExcludedMethods>System\.IO;AsyncTaskMethodBuilder;AsyncValueTaskMethodBuilder</WasmShellAOTProfileExcludedMethods>
-	</PropertyGroup>
-
-	<ItemGroup>
-		<MonoRuntimeMixedModeExcludedAssembly Include="System.Private.Xml" />
-		<MonoRuntimeMixedModeExcludedAssembly Include="System.Linq.Expressions" />
-	</ItemGroup>
-
 	<PropertyGroup Condition="'$(Configuration)'=='Debug' or '$(IsUiAutomationMappingEnabled)'=='True'">
 		<IsUiAutomationMappingEnabled>True</IsUiAutomationMappingEnabled>
 		<DefineConstants>$(DefineConstants);USE_UITESTS</DefineConstants>
 	</PropertyGroup>
-
 
 	<ItemGroup Condition="'$(Configuration)'=='Release' and '$(WasmShellMonoRuntimeExecutionMode)'=='InterpreterAndAOT'">
 		<WasmShellEnableAotProfile Condition="'$(IsUiAutomationMappingEnabled)'==''" Include="aot.profile" />
@@ -69,16 +48,6 @@
 		use to go higher than the Ci agent's availability-->
 
 		<WasmShellEnableAotProfile Condition="'$(IsUiAutomationMappingEnabled)'=='True'" Include="aot-uitests.profile" />
-	</ItemGroup>
-
-	<PropertyGroup>
-		<WasmShellAOTProfileExcludedMethods>$(WasmShellAOTProfileExcludedMethods);System\.Reflection\.Assembly\.GetExecutingAssembly</WasmShellAOTProfileExcludedMethods>
-		<WasmShellAOTProfileExcludedMethods>$(WasmShellAOTProfileExcludedMethods);Dispose</WasmShellAOTProfileExcludedMethods>
-	</PropertyGroup>
-
-
-	<ItemGroup>
-		<MonoRuntimeMixedModeExcludedAssembly Include="System.Console" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -129,8 +98,8 @@
 		<PackageReference Include="Uno.WinUI.MediaPlayer.WebAssembly" Version="5.0.0-dev.2366" />
 		<PackageReference Include="Uno.WinUI.WebAssembly" Version="5.0.0-dev.2366" />
 		<PackageReference Include="Uno.WinUI.RemoteControl" Version="5.0.0-dev.2366" Condition="'$(Configuration)'=='Debug'" />
-		<PackageReference Include="Uno.Wasm.Bootstrap" Version="8.0.0-dev.252" />
-		<PackageReference Include="Uno.Wasm.Bootstrap.DevServer" Version="8.0.0-dev.252" />
+		<PackageReference Include="Uno.Wasm.Bootstrap" Version="8.0.0" />
+		<PackageReference Include="Uno.Wasm.Bootstrap.DevServer" Version="8.0.0" />
 		<PackageReference Include="Microsoft.TypeScript.Compiler" Version="3.1.5">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
