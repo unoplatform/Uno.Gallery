@@ -10,6 +10,8 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
 using MUXC = Microsoft.UI.Xaml.Controls;
+using System.Threading.Tasks;
+using Windows.System;
 
 namespace Uno.Gallery
 {
@@ -244,6 +246,14 @@ namespace Uno.Gallery
 		private void CtrlF_Invoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
 		{
 			SamplesSearchBox.Focus(FocusState.Programmatic);
+		}
+
+		private async void OnAppBarButtonClick(object sender, RoutedEventArgs e)
+		{
+			if (sender is FrameworkElement { Tag: string { Length: >0 } url })
+			{
+				await Launcher.LaunchUriAsync(new Uri(url));
+			}
 		}
 	}
 }
