@@ -20,7 +20,7 @@
 
 	<PropertyGroup Condition="'$(Configuration)'=='Release'">
 		<WasmShellMonoRuntimeExecutionMode>InterpreterAndAOT</WasmShellMonoRuntimeExecutionMode>
-		<WasmShellEmccLinkOptimization>false</WasmShellEmccLinkOptimization>
+		<WasmShellEmccLinkOptimization>true</WasmShellEmccLinkOptimization>
 		<WasmShellEnableEmccProfiling>true</WasmShellEnableEmccProfiling>
 		<UnoXamlResourcesTrimming>true</UnoXamlResourcesTrimming>
 
