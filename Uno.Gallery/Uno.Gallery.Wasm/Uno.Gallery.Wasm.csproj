@@ -35,7 +35,13 @@
 		<WasmShellEnableJiterpreter>false</WasmShellEnableJiterpreter>
 		-->
 	</PropertyGroup>
-
+	
+	<ItemGroup>
+		<MonoRuntimeMixedModeExcludedAssembly Include="Uno.UI.FluentTheme" />
+		<MonoRuntimeMixedModeExcludedAssembly Include="Uno.UI.FluentTheme.v1" />
+		<MonoRuntimeMixedModeExcludedAssembly Include="Uno.UI.FluentTheme.v2" />
+	</ItemGroup>
+	
 	<PropertyGroup Condition="'$(Configuration)'=='Debug' or '$(IsUiAutomationMappingEnabled)'=='True'">
 		<IsUiAutomationMappingEnabled>True</IsUiAutomationMappingEnabled>
 		<DefineConstants>$(DefineConstants);USE_UITESTS</DefineConstants>
