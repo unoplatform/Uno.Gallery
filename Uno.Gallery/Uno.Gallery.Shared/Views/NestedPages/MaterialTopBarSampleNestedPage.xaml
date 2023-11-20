@@ -42,32 +42,32 @@
 			<Grid x:Name="Home" Visibility="Collapsed">
 				<Border Background="LightGray">
 					<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-						<FontIcon  Foreground="{StaticResource OnSurfaceBrush}"  Glyph="{StaticResource HomeIcon}" />
-						<TextBlock Foreground="{StaticResource OnSurfaceBrush}" Text="Home" TextAlignment="Center" />
+						<FontIcon  Foreground="{ThemeResource OnSurfaceBrush}"  Glyph="{ThemeResource HomeIcon}" />
+						<TextBlock Foreground="{ThemeResource OnSurfaceBrush}" Text="Home" TextAlignment="Center" />
 					</StackPanel>
 				</Border>
 			</Grid>
 			<Grid x:Name="Search" Visibility="Collapsed">
 				<Border Background="LightGray">
 					<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-						<FontIcon  Foreground="{StaticResource OnSurfaceBrush}" Glyph="{StaticResource SearchIcon}" />
-						<TextBlock Foreground="{StaticResource OnSurfaceBrush}" Text="Search" TextAlignment="Center" />
+						<FontIcon  Foreground="{ThemeResource OnSurfaceBrush}" Glyph="{ThemeResource SearchIcon}" />
+						<TextBlock Foreground="{ThemeResource OnSurfaceBrush}" Text="Search" TextAlignment="Center" />
 					</StackPanel>
 				</Border>
 			</Grid>
 			<Grid x:Name="Support" Visibility="Collapsed">
 				<Border Background="LightGray">
 					<StackPanel  HorizontalAlignment="Center" VerticalAlignment="Center">
-						<FontIcon  Foreground="{StaticResource OnSurfaceBrush}"  Glyph="{StaticResource SupportIcon}" />
-						<TextBlock Foreground="{StaticResource OnSurfaceBrush}"   Text="Support" TextAlignment="Center" />
+						<FontIcon  Foreground="{ThemeResource OnSurfaceBrush}"  Glyph="{ThemeResource SupportIcon}" />
+						<TextBlock Foreground="{ThemeResource OnSurfaceBrush}"   Text="Support" TextAlignment="Center" />
 					</StackPanel>
 				</Border>
 			</Grid>
 			<Grid x:Name="About" Visibility="Collapsed">
 				<Border Background="LightGray">
 					<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-						<FontIcon  Foreground="{StaticResource OnSurfaceBrush}"  Glyph="{StaticResource AboutIcon}" />
-						<TextBlock Foreground="{StaticResource OnSurfaceBrush}"  Text="About" TextAlignment="Center" />
+						<FontIcon  Foreground="{ThemeResource OnSurfaceBrush}"  Glyph="{ThemeResource AboutIcon}" />
+						<TextBlock Foreground="{ThemeResource OnSurfaceBrush}"  Text="About" TextAlignment="Center" />
 					</StackPanel>
 				</Border>
 			</Grid>
