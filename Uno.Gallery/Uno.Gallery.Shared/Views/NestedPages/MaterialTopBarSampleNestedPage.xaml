@@ -42,7 +42,7 @@
 			<Grid x:Name="Home" Visibility="Collapsed">
 				<Border Background="LightGray">
 					<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-						<FontIcon  Foreground="{ThemeResource OnSurfaceBrush}"  Glyph="{ThemeResource HomeIcon}" />
+						<FontIcon  Foreground="{ThemeResource OnSurfaceBrush}"  Glyph="{StaticResource HomeIcon}" />
 						<TextBlock Foreground="{ThemeResource OnSurfaceBrush}" Text="Home" TextAlignment="Center" />
 					</StackPanel>
 				</Border>
@@ -50,7 +50,7 @@
 			<Grid x:Name="Search" Visibility="Collapsed">
 				<Border Background="LightGray">
 					<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-						<FontIcon  Foreground="{ThemeResource OnSurfaceBrush}" Glyph="{ThemeResource SearchIcon}" />
+						<FontIcon  Foreground="{ThemeResource OnSurfaceBrush}" Glyph="{StaticResource SearchIcon}" />
 						<TextBlock Foreground="{ThemeResource OnSurfaceBrush}" Text="Search" TextAlignment="Center" />
 					</StackPanel>
 				</Border>
@@ -58,7 +58,7 @@
 			<Grid x:Name="Support" Visibility="Collapsed">
 				<Border Background="LightGray">
 					<StackPanel  HorizontalAlignment="Center" VerticalAlignment="Center">
-						<FontIcon  Foreground="{ThemeResource OnSurfaceBrush}"  Glyph="{ThemeResource SupportIcon}" />
+						<FontIcon  Foreground="{ThemeResource OnSurfaceBrush}"  Glyph="{StaticResource SupportIcon}" />
 						<TextBlock Foreground="{ThemeResource OnSurfaceBrush}"   Text="Support" TextAlignment="Center" />
 					</StackPanel>
 				</Border>
@@ -66,7 +66,7 @@
 			<Grid x:Name="About" Visibility="Collapsed">
 				<Border Background="LightGray">
 					<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-						<FontIcon  Foreground="{ThemeResource OnSurfaceBrush}"  Glyph="{ThemeResource AboutIcon}" />
+						<FontIcon  Foreground="{ThemeResource OnSurfaceBrush}"  Glyph="{StaticResource AboutIcon}" />
 						<TextBlock Foreground="{ThemeResource OnSurfaceBrush}"  Text="About" TextAlignment="Center" />
 					</StackPanel>
 				</Border>
