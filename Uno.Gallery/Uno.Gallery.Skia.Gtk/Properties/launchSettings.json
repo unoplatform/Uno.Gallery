@@ -1,0 +1,10 @@
+{
+  "profiles": {
+	"Uno.Gallery.Skia.Gtk": {
+		"commandName": "Project",
+		"commandLineArgs": ""
+		//To navigate to a specific sample on startup
+		//"commandLineArgs": "#CalendarDatePicker"
+	}
+  }
+}
