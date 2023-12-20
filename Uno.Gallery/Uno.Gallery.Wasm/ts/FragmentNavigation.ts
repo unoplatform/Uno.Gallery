@@ -1,4 +1,4 @@
-﻿namespace Uno.UI {
+﻿namespace Uno.Gallery.Wasm {
 	export class FragmentNavigationHandler {
 
 		private static currentFragment: string;
@@ -55,7 +55,7 @@
 			}
 
 			const asm = MonoRuntime.assembly_load("Uno.Gallery.WASM");
-			const handlerClass = MonoRuntime.find_class(asm, "Uno.UI.Wasm", "FragmentHavigationHandler");
+			const handlerClass = MonoRuntime.find_class(asm, "Uno.UI.Wasm", "FragmentNavigationHandler");
 			this.notifyFragmentChangedMethod = MonoRuntime.find_method(handlerClass, "NotifyFragmentChanged", -1);
 		}
 	}

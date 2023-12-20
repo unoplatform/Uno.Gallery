@@ -1,4 +1,4 @@
-declare namespace Uno.UI {
+declare namespace Uno.Gallery.Wasm {
     class FragmentNavigationHandler {
         private static currentFragment;
         static getCurrentFragment(): string;
@@ -15,5 +15,17 @@ declare namespace Uno.UI.Demo {
         private static isLoaded;
         static reportPageView(screenName: string, appName?: string): string;
         private static init;
+    }
+}
+declare namespace Uno.Gallery.Wasm {
+    class LocationHrefNavigationHandler {
+        private static currentLocationHref;
+        static getCurrentLocationHref(): string;
+        static setCurrentLocationHref(locationHref: string): string;
+        private static subscribed;
+        static subscribeToLocationHrefChanged(): string;
+        private static notifyLocationHrefChangedMethod;
+        private static notifyLocationHrefChanged;
+        private static initializeMethods;
     }
 }

@@ -251,7 +251,7 @@ namespace Uno.Gallery
 		private bool IsThereSampleFilteredByArgs(MUXC.NavigationView nv, LaunchActivatedEventArgs e)
 		{
 #if __WASM__
-			var argumentsHash = Uno.Gallery.Wasm.FragmentHavigationHandler.CurrentFragment;
+			var argumentsHash = Wasm.FragmentNavigationHandler.CurrentFragment;
 #else
 			var argumentsHash = e.Arguments;
 #endif
@@ -277,6 +277,10 @@ namespace Uno.Gallery
 						return true;
 					}
 				}
+#if __WASM__
+				//If there is a Hash that is not valid, redirect it to the root of the site.
+				Wasm.LocationHrefNavigationHandler.CurrentLocationHref = "/";
+#endif
 			}
 			return false;
 		}

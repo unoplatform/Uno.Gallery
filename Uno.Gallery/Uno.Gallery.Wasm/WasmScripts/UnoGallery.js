@@ -1,47 +1,50 @@
 var Uno;
 (function (Uno) {
-    var UI;
-    (function (UI) {
-        class FragmentNavigationHandler {
-            static getCurrentFragment() {
-                return window.location.hash;
-            }
-            static setCurrentFragment(fragment) {
-                window.location.hash = fragment;
-                this.currentFragment = window.location.hash;
-                return "ok";
-            }
-            static subscribeToFragmentChanged() {
-                if (this.subscribed) {
-                    return "already subscribed";
+    var Gallery;
+    (function (Gallery) {
+        var Wasm;
+        (function (Wasm) {
+            class FragmentNavigationHandler {
+                static getCurrentFragment() {
+                    return window.location.hash;
                 }
-                this.subscribed = true;
-                this.currentFragment = this.getCurrentFragment();
-                window.addEventListener("hashchange", _ => this.notifyFragmentChanged(), false);
-                return "ok";
-            }
-            static notifyFragmentChanged() {
-                const newFragment = this.getCurrentFragment();
-                if (newFragment === this.currentFragment) {
-                    return; // nothing to do
+                static setCurrentFragment(fragment) {
+                    window.location.hash = fragment;
+                    this.currentFragment = window.location.hash;
+                    return "ok";
                 }
-                this.currentFragment = newFragment;
-                this.initializeMethods();
-                const newFragmentStr = MonoRuntime.mono_string(newFragment);
-                MonoRuntime.call_method(this.notifyFragmentChangedMethod, null, [newFragmentStr]);
-            }
-            static initializeMethods() {
-                if (this.notifyFragmentChangedMethod) {
-                    return; // already initialized.
+                static subscribeToFragmentChanged() {
+                    if (this.subscribed) {
+                        return "already subscribed";
+                    }
+                    this.subscribed = true;
+                    this.currentFragment = this.getCurrentFragment();
+                    window.addEventListener("hashchange", _ => this.notifyFragmentChanged(), false);
+                    return "ok";
                 }
-                const asm = MonoRuntime.assembly_load("Uno.Gallery.WASM");
-                const handlerClass = MonoRuntime.find_class(asm, "Uno.UI.Wasm", "FragmentHavigationHandler");
-                this.notifyFragmentChangedMethod = MonoRuntime.find_method(handlerClass, "NotifyFragmentChanged", -1);
+                static notifyFragmentChanged() {
+                    const newFragment = this.getCurrentFragment();
+                    if (newFragment === this.currentFragment) {
+                        return; // nothing to do
+                    }
+                    this.currentFragment = newFragment;
+                    this.initializeMethods();
+                    const newFragmentStr = MonoRuntime.mono_string(newFragment);
+                    MonoRuntime.call_method(this.notifyFragmentChangedMethod, null, [newFragmentStr]);
+                }
+                static initializeMethods() {
+                    if (this.notifyFragmentChangedMethod) {
+                        return; // already initialized.
+                    }
+                    const asm = MonoRuntime.assembly_load("Uno.Gallery.WASM");
+                    const handlerClass = MonoRuntime.find_class(asm, "Uno.UI.Wasm", "FragmentNavigationHandler");
+                    this.notifyFragmentChangedMethod = MonoRuntime.find_method(handlerClass, "NotifyFragmentChanged", -1);
+                }
             }
-        }
-        FragmentNavigationHandler.subscribed = false;
-        UI.FragmentNavigationHandler = FragmentNavigationHandler;
-    })(UI = Uno.UI || (Uno.UI = {}));
+            FragmentNavigationHandler.subscribed = false;
+            Wasm.FragmentNavigationHandler = FragmentNavigationHandler;
+        })(Wasm = Gallery.Wasm || (Gallery.Wasm = {}));
+    })(Gallery = Uno.Gallery || (Uno.Gallery = {}));
 })(Uno || (Uno = {}));
 var Uno;
 (function (Uno) {
@@ -92,4 +95,52 @@ var Uno;
             Demo.Analytics = Analytics;
         })(Demo = UI.Demo || (UI.Demo = {}));
     })(UI = Uno.UI || (Uno.UI = {}));
+})(Uno || (Uno = {}));
+var Uno;
+(function (Uno) {
+    var Gallery;
+    (function (Gallery) {
+        var Wasm;
+        (function (Wasm) {
+            class LocationHrefNavigationHandler {
+                static getCurrentLocationHref() {
+                    return window.location.href;
+                }
+                static setCurrentLocationHref(locationHref) {
+                    window.location.href = locationHref;
+                    this.currentLocationHref = window.location.href;
+                    return "ok";
+                }
+                static subscribeToLocationHrefChanged() {
+                    if (this.subscribed) {
+                        return "already subscribed";
+                    }
+                    this.subscribed = true;
+                    this.currentLocationHref = this.getCurrentLocationHref();
+                    window.addEventListener("hashchange", _ => this.notifyLocationHrefChanged(), false);
+                    return "ok";
+                }
+                static notifyLocationHrefChanged() {
+                    const newLocationHref = this.getCurrentLocationHref();
+                    if (newLocationHref === this.currentLocationHref) {
+                        return; // nothing to do
+                    }
+                    this.currentLocationHref = newLocationHref;
+                    this.initializeMethods();
+                    const newLocationHrefStr = MonoRuntime.mono_string(newLocationHref);
+                    MonoRuntime.call_method(this.notifyLocationHrefChangedMethod, null, [newLocationHrefStr]);
+                }
+                static initializeMethods() {
+                    if (this.notifyLocationHrefChangedMethod) {
+                        return; // already initialized.
+                    }
+                    const asm = MonoRuntime.assembly_load("Uno.Gallery.WASM");
+                    const handlerClass = MonoRuntime.find_class(asm, "Uno.UI.Wasm", "LocationHrefHavigationHandler");
+                    this.notifyLocationHrefChangedMethod = MonoRuntime.find_method(handlerClass, "NotifyLocationHrefChanged", -1);
+                }
+            }
+            LocationHrefNavigationHandler.subscribed = false;
+            Wasm.LocationHrefNavigationHandler = LocationHrefNavigationHandler;
+        })(Wasm = Gallery.Wasm || (Gallery.Wasm = {}));
+    })(Gallery = Uno.Gallery || (Uno.Gallery = {}));
 })(Uno || (Uno = {}));
