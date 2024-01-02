@@ -2,24 +2,19 @@
 
 namespace Uno.Gallery.Wasm
 {
-	public class FragmentNavigationHandler
+	internal partial class FragmentNavigationHandler
 	{
 		public static string CurrentFragment
 		{
 			get
 			{
-				const string command = "Uno.Gallery.Wasm.FragmentNavigationHandler.getCurrentFragment()";
-				var fragment = WebAssemblyRuntime.InvokeJS(command);
-				return fragment;
+				return NativeMethods.GetCurrentFragment();
 			}
 
 			set
 			{
 				var escaped = WebAssemblyRuntime.EscapeJs(value);
-				var command =
-					"Uno.Gallery.Wasm.FragmentNavigationHandler.setCurrentFragment(\"" + escaped + "\")";
-
-				WebAssemblyRuntime.InvokeJS(command);
+				NativeMethods.SetCurrentFragment(escaped);
 			}
 		}
 	}

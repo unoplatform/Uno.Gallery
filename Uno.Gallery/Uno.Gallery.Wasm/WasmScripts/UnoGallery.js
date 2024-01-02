@@ -4,7 +4,7 @@ var Uno;
     (function (Gallery) {
         var Wasm;
         (function (Wasm) {
-            class FragmentNavigationHandler {
+            class FragmentNavigation {
                 static getCurrentFragment() {
                     return window.location.hash;
                 }
@@ -37,12 +37,12 @@ var Uno;
                         return; // already initialized.
                     }
                     const asm = MonoRuntime.assembly_load("Uno.Gallery.WASM");
-                    const handlerClass = MonoRuntime.find_class(asm, "Uno.UI.Wasm", "FragmentNavigationHandler");
+                    const handlerClass = MonoRuntime.find_class(asm, "Uno.Gallery.Wasm", "FragmentNavigation");
                     this.notifyFragmentChangedMethod = MonoRuntime.find_method(handlerClass, "NotifyFragmentChanged", -1);
                 }
             }
-            FragmentNavigationHandler.subscribed = false;
-            Wasm.FragmentNavigationHandler = FragmentNavigationHandler;
+            FragmentNavigation.subscribed = false;
+            Wasm.FragmentNavigation = FragmentNavigation;
         })(Wasm = Gallery.Wasm || (Gallery.Wasm = {}));
     })(Gallery = Uno.Gallery || (Uno.Gallery = {}));
 })(Uno || (Uno = {}));
@@ -102,7 +102,7 @@ var Uno;
     (function (Gallery) {
         var Wasm;
         (function (Wasm) {
-            class LocationHrefNavigationHandler {
+            class LocationHrefNavigation {
                 static getCurrentLocationHref() {
                     return window.location.href;
                 }
@@ -135,12 +135,12 @@ var Uno;
                         return; // already initialized.
                     }
                     const asm = MonoRuntime.assembly_load("Uno.Gallery.WASM");
-                    const handlerClass = MonoRuntime.find_class(asm, "Uno.UI.Wasm", "LocationHrefHavigationHandler");
+                    const handlerClass = MonoRuntime.find_class(asm, "Uno.Gallery.Wasm", "LocationHrefHavigation");
                     this.notifyLocationHrefChangedMethod = MonoRuntime.find_method(handlerClass, "NotifyLocationHrefChanged", -1);
                 }
             }
-            LocationHrefNavigationHandler.subscribed = false;
-            Wasm.LocationHrefNavigationHandler = LocationHrefNavigationHandler;
+            LocationHrefNavigation.subscribed = false;
+            Wasm.LocationHrefNavigation = LocationHrefNavigation;
         })(Wasm = Gallery.Wasm || (Gallery.Wasm = {}));
     })(Gallery = Uno.Gallery || (Uno.Gallery = {}));
 })(Uno || (Uno = {}));

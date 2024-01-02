@@ -1,5 +1,5 @@
 ﻿namespace Uno.Gallery.Wasm {
-	export class LocationHrefNavigationHandler {
+	export class LocationHrefNavigation {
 
 		private static currentLocationHref: string;
 
@@ -55,7 +55,7 @@
 			}
 
 			const asm = MonoRuntime.assembly_load("Uno.Gallery.WASM");
-			const handlerClass = MonoRuntime.find_class(asm, "Uno.UI.Wasm", "LocationHrefHavigationHandler");
+			const handlerClass = MonoRuntime.find_class(asm, "Uno.Gallery.Wasm", "LocationHrefHavigation");
 			this.notifyLocationHrefChangedMethod = MonoRuntime.find_method(handlerClass, "NotifyLocationHrefChanged", -1);
 		}
 	}
