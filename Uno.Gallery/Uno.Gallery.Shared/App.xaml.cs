@@ -29,8 +29,6 @@ namespace Uno.Gallery
 
 		public Window MainWindow { get; private set; }
 
-		private static Sample[] _samples;
-
 		private Shell _shell;
 
 		/// <summary>
@@ -67,11 +65,10 @@ namespace Uno.Gallery
 			base.OnLaunched(e);
 
 			this.Log().Debug("Launched app.");
-			this.Log().Debug(e.Arguments.ToString());
-			OnLaunchedOrActivated(e);
+			OnLaunchedOrActivated();
 		}
 
-		private void OnLaunchedOrActivated(LaunchActivatedEventArgs e)
+		private void OnLaunchedOrActivated()
 		{
 #if WINDOWS && !HAS_UNO
 			MainWindow = new Window();
@@ -87,7 +84,7 @@ namespace Uno.Gallery
 				Xamarin.Calabash.Start();
 #endif
 
-				MainWindow.Content = _shell = BuildShell(e);
+				MainWindow.Content = _shell = BuildShell();
 			}
 
 			// Ensure the current window is active
@@ -223,15 +220,16 @@ namespace Uno.Gallery
 			_shell.NavigationView.Content = page;
 		}
 
-		private Shell BuildShell(LaunchActivatedEventArgs e)
+		private Shell BuildShell()
 		{
 			_shell = new Shell();
 			AutomationProperties.SetAutomationId(_shell, "AppShell");
 			_shell.RegisterPropertyChangedCallback(Shell.CurrentSampleBackdoorProperty, OnCurrentSampleBackdoorChanged);
 			var nv = _shell.NavigationView;
 			AddNavigationItems(nv);
-
-			if (!IsThereSampleFilteredByArgs(nv, e))
+#if __WASM__
+			if (!IsThereSampleFilteredByArgs(nv))
+#endif
 			{
 				// landing navigation
 				ShellNavigateTo<OverviewPage>(
@@ -247,14 +245,10 @@ namespace Uno.Gallery
 
 			return _shell;
 		}
-
-		private bool IsThereSampleFilteredByArgs(MUXC.NavigationView nv, LaunchActivatedEventArgs e)
-		{
 #if __WASM__
+		private bool IsThereSampleFilteredByArgs(MUXC.NavigationView nv)
+		{
 			var argumentsHash = Wasm.FragmentNavigationHandler.CurrentFragment;
-#else
-			var argumentsHash = e.Arguments;
-#endif
 			if (argumentsHash.Contains("#"))
 			{
 				string searchTerm = (argumentsHash + string.Empty).Replace("#", string.Empty);
@@ -269,21 +263,17 @@ namespace Uno.Gallery
 					{
 						ShellNavigateTo(
 							(Uno.Gallery.Sample)sampleItem.DataContext
-#if !WINDOWS
-							// workaround for uno#5069: setting NavView.SelectedItem at launch bricks it
 							, trySynchronizeCurrentItem: false
-#endif
 						);
 						return true;
 					}
 				}
-#if __WASM__
 				//If there is a Hash that is not valid, redirect it to the root of the site.
 				Wasm.LocationHrefNavigationHandler.CurrentLocationHref = "/";
-#endif
 			}
 			return false;
 		}
+#endif
 
 		private void OnCurrentSampleBackdoorChanged(DependencyObject sender, DependencyProperty dp)
 		{
