@@ -15,9 +15,7 @@ using Microsoft.UI.Xaml.Navigation;
 
 namespace Uno.Gallery.Views.Samples
 {
-#if !__MACOS__
 	[SamplePage(SampleCategory.UIComponents, "DatePicker", Description = "This control allows users to pick a date value.", DocumentationLink = "https://learn.microsoft.com/en-us/windows/windows-app-sdk/api/winrt/microsoft.ui.xaml.controls.datepicker")]
-#endif
 	public sealed partial class DatePickerSamplePage : Page
 	{
 		public DatePickerSamplePage()
