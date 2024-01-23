@@ -53,7 +53,11 @@ namespace Uno.Gallery.Views.Samples
 			LaunchUriText = "https://platform.uno/";
 		}
 
-		public async void LaunchUri()
+		public
+#if !__WASM__
+			async
+#endif
+			void LaunchUri()
 		{
 			if (!Uri.TryCreate(LaunchUriText, UriKind.Absolute, out var uri))
 			{
@@ -65,17 +69,14 @@ namespace Uno.Gallery.Views.Samples
 
 #if !__WASM__
 			var supportStatus = await Launcher.QueryUriSupportAsync(uri, LaunchQuerySupportType.Uri);
-			if (supportStatus == LaunchQuerySupportStatus.Available)
 #else
-			if (true)
+			var supportStatus = LaunchQuerySupportStatus.Available;
 #endif
-			{
-				Launcher.LaunchUriAsync(uri);
-				IsWebsiteInfoBarOpen = false;
 
-#if __WASM__
-				await Task.CompletedTask;
-#endif
+			if (supportStatus == LaunchQuerySupportStatus.Available)
+			{
+				_ = Launcher.LaunchUriAsync(uri);
+				IsWebsiteInfoBarOpen = false;
 			}
 			else
 			{

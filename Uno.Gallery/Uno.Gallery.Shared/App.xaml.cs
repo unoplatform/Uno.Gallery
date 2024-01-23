@@ -33,8 +33,6 @@ namespace Uno.Gallery
 
 		public Window MainWindow { get; private set; }
 
-		private static Sample[] _samples;
-
 		private Shell _shell;
 
 		/// <summary>
