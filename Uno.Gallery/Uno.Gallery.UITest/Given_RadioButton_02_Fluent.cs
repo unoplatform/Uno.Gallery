@@ -29,8 +29,8 @@ namespace Uno.Gallery.UITests
 			Assert.IsTrue(FluentUncheckRadioButton.GetDependencyPropertyValue<bool>("IsChecked"));
 
 		}
-		[Test]
 
+		[Test]
 		public void WhenRadioButtonFluentClick_02_Checked()
 		{
 			NavigateToSample("RadioButton", "Fluent");
@@ -45,6 +45,7 @@ namespace Uno.Gallery.UITests
 			Assert.IsTrue(FluentCheckedRadioButton.GetDependencyPropertyValue<bool>("IsChecked"));
 
 		}
+
 		[Test]
 		public void WhenRadioButtonFluentClick_03_DisabledUnchecked()
 		{
@@ -61,6 +62,7 @@ namespace Uno.Gallery.UITests
 			Assert.IsFalse(FluentDisabledUnCheckedRadioButton.GetDependencyPropertyValue<bool>("IsChecked"));
 
 		}
+
 		[Test]
 		public void WhenRadioButtonFluentClick_04_DisabledChecked()
 		{
