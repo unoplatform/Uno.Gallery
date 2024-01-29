@@ -21,8 +21,8 @@
 		<PackageReference Include="CommunityToolkit.WinUI.Lottie" Version="7.1.2" />
 		<PackageReference Include="CommunityToolkit.WinUI.UI.Controls" Version="7.1.2" />
 		<PackageReference Include="CommunityToolkit.WinUI.UI.Controls.DataGrid" Version="7.1.2" />
-		<PackageReference Include="Uno.Cupertino.WinUI" Version="4.0.0-dev.126" />
-		<PackageReference Include="Uno.Material.WinUI" Version="4.0.0-dev.126" />
+		<PackageReference Include="Uno.Cupertino.WinUI" Version="4.1.0" />
+		<PackageReference Include="Uno.Material.WinUI" Version="4.1.0" />
 		<PackageReference Include="Uno.ShowMeTheXAML" Version="2.0.0-dev0015" />
 		<PackageReference Include="Uno.ShowMeTheXAML.MSBuild" Version="2.0.0-dev0015" />
 		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.3.230502000" />
@@ -37,16 +37,16 @@
 		</PackageReference>
 		<PackageReference Include="Uno.Core.Extensions.Compatibility" Version="4.0.1" />
 		<PackageReference Include="Uno.Core.Extensions.Logging.Singleton" Version="4.0.1" />
-		<PackageReference Include="Uno.Toolkit.Skia.WinUI" Version="5.0.0-dev.99" />
-		<PackageReference Include="Uno.Toolkit.WinUI" Version="5.0.0-dev.99" />
+		<PackageReference Include="Uno.Toolkit.Skia.WinUI" Version="5.1.3" />
+		<PackageReference Include="Uno.Toolkit.WinUI" Version="5.1.3" />
 		<PackageReference Include="Uno.Toolkit.WinUI.Cupertino">
-			<Version>5.0.0-dev.99</Version>
+			<Version>5.1.3</Version>
 		</PackageReference>
 		<PackageReference Include="Uno.Toolkit.WinUI.Material">
-			<Version>5.0.0-dev.99</Version>
+			<Version>5.1.3</Version>
 		</PackageReference>
 		<PackageReference Include="Uno.WinUI">
-			<Version>5.1.0-dev.1549</Version>
+			<Version>5.1.31</Version>
 		</PackageReference>
 		<Manifest Include="$(ApplicationManifest)" />
 	</ItemGroup>
