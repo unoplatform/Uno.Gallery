@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using NUnit.Framework;
-using OpenQA.Selenium.Chrome;
 using Uno.UITest;
 using Uno.UITest.Helpers;
 using Uno.UITest.Helpers.Queries;
@@ -26,7 +25,6 @@ namespace Uno.Gallery.UITests
             AppInitializer.TestEnvironment.AndroidAppName = Constants.AndroidAppName;
             AppInitializer.TestEnvironment.iOSDeviceNameOrId = Constants.iOSDeviceNameOrId;
             AppInitializer.TestEnvironment.CurrentPlatform = Constants.CurrentPlatform;
-			AppInitializer.TestEnvironment.ChromeDriverPath = Constants.ChromeDriverPath;
 
 #if DEBUG
 			AppInitializer.TestEnvironment.WebAssemblyHeadless = false;
