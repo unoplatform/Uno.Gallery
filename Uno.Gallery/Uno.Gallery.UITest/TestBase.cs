@@ -26,6 +26,7 @@ namespace Uno.Gallery.UITests
             AppInitializer.TestEnvironment.AndroidAppName = Constants.AndroidAppName;
             AppInitializer.TestEnvironment.iOSDeviceNameOrId = Constants.iOSDeviceNameOrId;
             AppInitializer.TestEnvironment.CurrentPlatform = Constants.CurrentPlatform;
+			AppInitializer.TestEnvironment.ChromeDriverPath = Constants.ChromeDriverPath;
 
 #if DEBUG
 			AppInitializer.TestEnvironment.WebAssemblyHeadless = false;
