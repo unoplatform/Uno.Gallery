@@ -1,7 +1,10 @@
 using Microsoft.Extensions.Logging;
+using Microsoft.UI.Dispatching;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Automation;
+using Microsoft.UI.Xaml.Controls;
 using ShowMeTheXAML;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Uno.Extensions;
@@ -9,18 +12,11 @@ using Uno.Gallery.Entities;
 using Uno.Gallery.Helpers;
 using Uno.Gallery.Views.GeneralPages;
 using Uno.Logging;
+using Uno.UI;
 using Windows.ApplicationModel;
-using Windows.ApplicationModel.Activation;
-using Windows.Foundation;
-using Windows.UI.ViewManagement;
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Automation;
-using Microsoft.UI.Xaml.Controls;
+using LaunchActivatedEventArgs = Microsoft.UI.Xaml.LaunchActivatedEventArgs;
 using MUXC = Microsoft.UI.Xaml.Controls;
 using MUXCP = Microsoft.UI.Xaml.Controls.Primitives;
-using LaunchActivatedEventArgs = Microsoft.UI.Xaml.LaunchActivatedEventArgs;
-using Microsoft.UI.Dispatching;
-using Uno.UI;
 
 namespace Uno.Gallery
 {
@@ -32,8 +28,6 @@ namespace Uno.Gallery
 		public static App Instance { get; private set; }
 
 		public Window MainWindow { get; private set; }
-
-		private static Sample[] _samples;
 
 		private Shell _shell;
 
@@ -184,7 +178,7 @@ namespace Uno.Gallery
 		public void SearchShellNavigateTo(Sample sample)
 		{
 			var nv = _shell.NavigationView;
-			if(nv.Content?.GetType() == sample.ViewType)
+			if (nv.Content?.GetType() == sample.ViewType)
 			{
 				return;
 			}
@@ -192,7 +186,7 @@ namespace Uno.Gallery
 			MUXC.NavigationViewItem selectedItem = null;
 			MUXC.NavigationViewItem selectedCategory = null;
 
-			foreach(MUXC.NavigationViewItem category in nv.MenuItems)
+			foreach (MUXC.NavigationViewItem category in nv.MenuItems)
 			{
 				selectedItem = category.MenuItems.OfType<MUXC.NavigationViewItem>()
 					.FirstOrDefault(item => item.DataContext is Sample s && s.ViewType == sample.ViewType);
@@ -204,7 +198,7 @@ namespace Uno.Gallery
 				}
 			}
 
-			if(selectedItem is null)
+			if (selectedItem is null)
 			{
 				nv.SelectedItem = nv.MenuItems[0];
 			}
@@ -233,20 +227,53 @@ namespace Uno.Gallery
 			_shell.RegisterPropertyChangedCallback(Shell.CurrentSampleBackdoorProperty, OnCurrentSampleBackdoorChanged);
 			var nv = _shell.NavigationView;
 			AddNavigationItems(nv);
-
-			// landing navigation
-			ShellNavigateTo<OverviewPage>(
-#if !WINDOWS
-				// workaround for uno#5069: setting NavView.SelectedItem at launch bricks it
-				trySynchronizeCurrentItem: false
+#if __WASM__
+			if (!IsThereSampleFilteredByArgs(nv))
 #endif
-			);
+			{
+				// landing navigation
+				ShellNavigateTo<OverviewPage>(
+#if !WINDOWS
+					// workaround for uno#5069: setting NavView.SelectedItem at launch bricks it
+					trySynchronizeCurrentItem: false
+#endif
+				);
+			}
 
 			// navigation + setting handler
 			nv.ItemInvoked += OnNavigationItemInvoked;
 
 			return _shell;
 		}
+#if __WASM__
+		private bool IsThereSampleFilteredByArgs(MUXC.NavigationView nv)
+		{
+			var argumentsHash = Wasm.FragmentNavigationHandler.CurrentFragment;
+			if (argumentsHash.Contains("#"))
+			{
+				string searchTerm = (argumentsHash + string.Empty).Replace("#", string.Empty);
+
+				foreach (MUXC.NavigationViewItem item in nv.MenuItems)
+				{
+					MUXC.NavigationViewItem sampleItem = item.MenuItems
+						.Cast<MUXC.NavigationViewItem>()
+						.FirstOrDefault(i => i.Content.ToString().Contains(searchTerm, StringComparison.InvariantCultureIgnoreCase));
+
+					if (sampleItem != null)
+					{
+						ShellNavigateTo(
+							(Uno.Gallery.Sample)sampleItem.DataContext
+							, trySynchronizeCurrentItem: false
+						);
+						return true;
+					}
+				}
+				//If there is a Hash that is not valid, redirect it to the root of the site.
+				Wasm.LocationHrefNavigationHandler.CurrentLocationHref = "/";
+			}
+			return false;
+		}
+#endif
 
 		private void OnCurrentSampleBackdoorChanged(DependencyObject sender, DependencyProperty dp)
 		{
@@ -417,7 +444,7 @@ namespace Uno.Gallery
 		private void ConfigureFeatureFlags()
 		{
 #if !WINDOWS
-            FeatureConfiguration.ApiInformation.NotImplementedLogLevel = Foundation.Logging.LogLevel.Debug; // Raise not implemented usages as Debug messages
+			FeatureConfiguration.ApiInformation.NotImplementedLogLevel = Foundation.Logging.LogLevel.Debug; // Raise not implemented usages as Debug messages
 			FeatureConfiguration.ToolTip.UseToolTips = true;
 #endif
 		}

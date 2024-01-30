@@ -146,4 +146,10 @@
 	  <Folder Include="Properties\" />
 	</ItemGroup>
 	<Import Project="..\Uno.Gallery.Shared\Uno.Gallery.Shared.projitems" Label="Shared" Condition="Exists('..\Uno.Gallery.Shared\Uno.Gallery.Shared.projitems')" />
+	<ItemGroup>
+	  <_Globbed_Compile Remove="FragmentNavigationHandler.cs" />
+	  <_Globbed_Compile Remove="FragmentNavigationHandler.Interop.wasm.cs" />
+	  <_Globbed_Compile Remove="LocationHrefNavigationHandler.cs" />
+	  <_Globbed_Compile Remove="LocationHrefNavigationHandler.Interop.wasm.cs" />
+	</ItemGroup>
 </Project>
