@@ -13,7 +13,7 @@ namespace Uno.Gallery.UITests
         public readonly static string iOSAppName = "com.nventive.uno.gallery";
         public readonly static string AndroidAppName = "com.nventive.uno.ui.demo";
         public readonly static string iOSDeviceNameOrId = "iPad Pro (12.9-inch) (5th generation)";
-
-        public readonly static Platform CurrentPlatform = Platform.Browser;
+		public readonly static string ChromeDriverPath = @"C:\Program Files\Google\Chrome\chromedriver-win64";
+		public readonly static Platform CurrentPlatform = Platform.Browser;
     }
 }
