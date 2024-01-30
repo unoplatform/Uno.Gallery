@@ -257,7 +257,7 @@ namespace Uno.Gallery
 				{
 					MUXC.NavigationViewItem sampleItem = item.MenuItems
 						.Cast<MUXC.NavigationViewItem>()
-						.FirstOrDefault(i => i.Content.ToString().Contains(searchTerm));
+						.FirstOrDefault(i => i.Content.ToString().Contains(searchTerm, StringComparison.InvariantCultureIgnoreCase));
 
 					if (sampleItem != null)
 					{
