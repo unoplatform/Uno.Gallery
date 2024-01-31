@@ -15,7 +15,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Uno.Gallery.Mobile", "Uno.G
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Uno.Gallery.Windows", "Uno.Gallery\Uno.Gallery.Windows\Uno.Gallery.Windows.csproj", "{7408E845-56F8-44B3-BC29-9EDF44ABB208}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.Gallery.SourceGenerators", "Uno.Gallery.SourceGenerators\Uno.Gallery.SourceGenerators.csproj", "{9C67E941-0290-4C31-A1D6-D5740F7C0CBB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Uno.Gallery.SourceGenerators", "Uno.Gallery.SourceGenerators\Uno.Gallery.SourceGenerators.csproj", "{9C67E941-0290-4C31-A1D6-D5740F7C0CBB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0A9386E5-A912-4EEF-B67B-C1CD9170CC84}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Build.props = Directory.Build.props
+		Directory.Packages.props = Directory.Packages.props
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
