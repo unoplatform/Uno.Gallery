@@ -27,7 +27,7 @@ namespace Uno.Gallery.UITests
             AppInitializer.TestEnvironment.CurrentPlatform = Constants.CurrentPlatform;
 
 #if DEBUG
-            AppInitializer.TestEnvironment.WebAssemblyHeadless = false;
+			AppInitializer.TestEnvironment.WebAssemblyHeadless = false;
 #endif
 
             AppInitializer.ColdStartApp();
