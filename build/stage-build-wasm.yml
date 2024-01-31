@@ -16,7 +16,7 @@
 - template: templates/canary-updater.yml
 
 - bash: |
-    dotnet msbuild /ds /m /r /p:Configuration=Release "/p:InformationalVersion=%GITVERSION_InformationalVersion%" Uno.Gallery/Uno.Gallery.Wasm/Uno.Gallery.Wasm.csproj /bl:$(Build.ArtifactStagingDirectory)/wasm.binlog
+    dotnet msbuild /ds /m /r /p:Configuration=Release "/p:InformationalVersion=$(GitVersion.InformationalVersion)" Uno.Gallery/Uno.Gallery.Wasm/Uno.Gallery.Wasm.csproj /bl:$(Build.ArtifactStagingDirectory)/wasm.binlog
 
 - task: CopyFiles@2
   displayName: Copy Wasm output
