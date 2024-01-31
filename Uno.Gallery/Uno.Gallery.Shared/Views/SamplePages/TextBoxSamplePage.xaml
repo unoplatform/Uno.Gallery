@@ -4,7 +4,7 @@
 	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	  xmlns:local="using:Uno.Gallery"
-	  xmlns:um="using:Uno.Material"
+	  xmlns:ut="using:Uno.Themes"
 	  xmlns:smtx="using:ShowMeTheXAML"
 	  mc:Ignorable="d">
 
@@ -78,9 +78,9 @@
 
 								<TextBox PlaceholderText="Default" Style="{StaticResource FilledTextBoxStyle}" />
 								<TextBox PlaceholderText="With Icon" Style="{StaticResource FilledTextBoxStyle}">
-									<um:ControlExtensions.Icon>
+									<ut:ControlExtensions.Icon>
 										<SymbolIcon Symbol="Favorite" />
-									</um:ControlExtensions.Icon>
+									</ut:ControlExtensions.Icon>
 								</TextBox>
 								<TextBox PlaceholderText="Disabled"
 										 IsEnabled="False"
@@ -95,9 +95,9 @@
 
 								<TextBox PlaceholderText="Outline" Style="{StaticResource OutlinedTextBoxStyle}" />
 								<TextBox PlaceholderText="With Icon" Style="{StaticResource OutlinedTextBoxStyle}">
-									<um:ControlExtensions.Icon>
+									<ut:ControlExtensions.Icon>
 										<SymbolIcon Symbol="Favorite" />
-									</um:ControlExtensions.Icon>
+									</ut:ControlExtensions.Icon>
 								</TextBox>
 								<TextBox PlaceholderText="Outline Disabled"
 										 IsEnabled="False"
