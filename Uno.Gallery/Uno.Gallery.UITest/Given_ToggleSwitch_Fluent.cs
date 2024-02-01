@@ -16,9 +16,19 @@ namespace Uno.Gallery.UITests
 		[Test]
 		public void WhenToggleSwitchOff()
 		{
-			NavigateToSample("ToggleSwitch","Fluent");
+			NavigateToSample("ToggleSwitch", "Fluent");
 
-			TakeScreenshot("Before Click");
+			TakeScreenshot("Before On");
+			var offToggleSwitch = new QueryEx(x => x.All().Marked("fluent_Off"));
+			App.ScrollDownTo("fluent_Off");
+			offToggleSwitch.Tap();
+			TakeScreenshot("After On");
+			Assert.IsTrue(offToggleSwitch.GetDependencyPropertyValue<bool>("IsOn"));
+
+
+
+
+
 		}
 
 	}
