@@ -7,8 +7,8 @@ steps:
     packageType: runtime
     version: 6.0.0
 
-- template: templates/gitversion.yml
 - template: templates/canary-updater.yml
+- template: templates/gitversion.yml
 
 - task: UseDotNet@2
   displayName: 'Use .NET'
@@ -18,7 +18,7 @@ steps:
 
 - script: |
     cd $(build.sourcesdirectory)/Uno.Gallery/Uno.Gallery.Windows
-    dotnet publish -c Release /p:Platform=$(ApplicationPlatform) /p:AppxPackageDir="Packages/" /p:AppxBundle=Never /p:UapAppxPackageBuildMode=SideloadOnly /p:GenerateAppxPackageOnBuild=true /bl:$(build.artifactstagingdirectory)/build.binlog "/p:InformationalVersion=$GITVERSION_INFORMATIONALVERSION"
+    dotnet publish -c Release /p:Platform=$(ApplicationPlatform) /p:AppxPackageDir="Packages/" /p:AppxBundle=Never /p:UapAppxPackageBuildMode=SideloadOnly /p:GenerateAppxPackageOnBuild=true /bl:$(build.artifactstagingdirectory)/build.binlog "/p:InformationalVersion=$(GitVersion.InformationalVersion)"
   displayName: Build project for Release
 
 - task: CopyFiles@2

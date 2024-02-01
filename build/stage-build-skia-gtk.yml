@@ -7,7 +7,7 @@ steps:
   displayName: Build project
   inputs:
     solution: Uno.Gallery\Uno.Gallery.Skia.Gtk\Uno.Gallery.Skia.Gtk.csproj
-    msbuildArguments: /ds /m /r /p:Configuration=Release "/p:InformationalVersion=%GITVERSION_InformationalVersion%" /bl:$(build.artifactstagingdirectory)/build.binlog 
+    msbuildArguments: /ds /m /r /p:Configuration=Release "/p:InformationalVersion=$(GitVersion.InformationalVersion)" /bl:$(build.artifactstagingdirectory)/build.binlog 
 
 - task: CopyFiles@2
   displayName: Copy Skia output
