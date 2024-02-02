@@ -4,7 +4,7 @@
 	  xmlns:local="using:Uno.Gallery"
 	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	  xmlns:um="using:Uno.Material"
+	  xmlns:ut="using:Uno.Themes"
 	  xmlns:smtx="using:ShowMeTheXAML"
 	  xmlns:todo="what should be done"
 	  mc:Ignorable="d todo">
@@ -26,9 +26,9 @@
 
 								<Button Content="ELEVATED" Style="{StaticResource ElevatedButtonStyle}" />
 								<Button Content="ICON ELEVATED" Style="{StaticResource ElevatedButtonStyle}">
-									<um:ControlExtensions.Icon>
+									<ut:ControlExtensions.Icon>
 										<PathIcon Data="M3,3H18V18H3V3M19,19H21V21H19V19M19,16H21V18H19V16M19,13H21V15H19V13M19,10H21V12H19V10M19,7H21V9H19V7M16,19H18V21H16V19M13,19H15V21H13V19M10,19H12V21H10V19M7,19H9V21H7V19Z" />
-									</um:ControlExtensions.Icon>
+									</ut:ControlExtensions.Icon>
 								</Button>
 								<Button Content="ELEVATED DISABLED"
 										IsEnabled="False"
@@ -46,9 +46,9 @@
 
 								<Button Content="FILLED" Style="{StaticResource FilledButtonStyle}" />
 								<Button Content="FILLED" Style="{StaticResource FilledButtonStyle}">
-									<um:ControlExtensions.Icon>
+									<ut:ControlExtensions.Icon>
 										<PathIcon Data="M21 3C21.53 3 22.04 3.21 22.41 3.59C22.79 3.96 23 4.47 23 5V15C23 15.53 22.79 16.04 22.41 16.41C22.04 16.79 21.53 17 21 17H7C6.47 17 5.96 16.79 5.59 16.41C5.21 16.04 5 15.53 5 15V5C5 4.47 5.21 3.96 5.59 3.59C5.96 3.21 6.47 3 7 3H21M3 19H18V21H3C2.47 21 1.96 20.79 1.59 20.41C1.21 20.04 1 19.53 1 19V8H3V19Z" />
-									</um:ControlExtensions.Icon>
+									</ut:ControlExtensions.Icon>
 								</Button>
 								<Button Content="FILLED DISABLED"
 										IsEnabled="False"
@@ -66,9 +66,9 @@
 
 								<Button Content="FILLED TONAL" Style="{StaticResource FilledTonalButtonStyle}" />
 								<Button Content="FILLED TONAL" Style="{StaticResource FilledTonalButtonStyle}">
-									<um:ControlExtensions.Icon>
+									<ut:ControlExtensions.Icon>
 										<PathIcon Data="M21 3C21.53 3 22.04 3.21 22.41 3.59C22.79 3.96 23 4.47 23 5V15C23 15.53 22.79 16.04 22.41 16.41C22.04 16.79 21.53 17 21 17H7C6.47 17 5.96 16.79 5.59 16.41C5.21 16.04 5 15.53 5 15V5C5 4.47 5.21 3.96 5.59 3.59C5.96 3.21 6.47 3 7 3H21M3 19H18V21H3C2.47 21 1.96 20.79 1.59 20.41C1.21 20.04 1 19.53 1 19V8H3V19Z" />
-									</um:ControlExtensions.Icon>
+									</ut:ControlExtensions.Icon>
 								</Button>
 								<Button Content="FILLED TONAL DISABLED"
 										IsEnabled="False"
@@ -86,9 +86,9 @@
 
 								<Button Content="OUTLINED" Style="{StaticResource OutlinedButtonStyle}" />
 								<Button Content="ICON OUTLINED" Style="{StaticResource OutlinedButtonStyle}">
-									<um:ControlExtensions.Icon>
+									<ut:ControlExtensions.Icon>
 										<PathIcon Data="M21 16V6H7V16H21M21 4C21.53 4 22.04 4.21 22.41 4.59C22.79 4.96 23 5.47 23 6V16C23 16.53 22.79 17.04 22.41 17.41C22.04 17.79 21.53 18 21 18H7C5.89 18 5 17.1 5 16V6C5 4.89 5.89 4 7 4H21M3 20H18V22H3C2.47 22 1.96 21.79 1.59 21.41C1.21 21.04 1 20.53 1 20V9H3V20Z" />
-									</um:ControlExtensions.Icon>
+									</ut:ControlExtensions.Icon>
 								</Button>
 								<Button Content="OUTLINED DISABLED"
 										IsEnabled="False"
@@ -106,9 +106,9 @@
 
 								<Button Content="TEXT" Style="{StaticResource TextButtonStyle}" />
 								<Button Content="ICON TEXT" Style="{StaticResource TextButtonStyle}">
-									<um:ControlExtensions.Icon>
+									<ut:ControlExtensions.Icon>
 										<PathIcon Data="M18.5,4L19.66,8.35L18.7,8.61C18.25,7.74 17.79,6.87 17.26,6.43C16.73,6 16.11,6 15.5,6H13V16.5C13,17 13,17.5 13.33,17.75C13.67,18 14.33,18 15,18V19H9V18C9.67,18 10.33,18 10.67,17.75C11,17.5 11,17 11,16.5V6H8.5C7.89,6 7.27,6 6.74,6.43C6.21,6.87 5.75,7.74 5.3,8.61L4.34,8.35L5.5,4H18.5Z" />
-									</um:ControlExtensions.Icon>
+									</ut:ControlExtensions.Icon>
 								</Button>
 								<Button Content="TEXT DISABLED"
 										IsEnabled="False"

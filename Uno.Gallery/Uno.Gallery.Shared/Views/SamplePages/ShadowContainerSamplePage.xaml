@@ -7,7 +7,7 @@
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	  xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"
 	  xmlns:utu="using:Uno.Toolkit.UI"
-	  xmlns:um="using:Uno.Material"
+	  xmlns:ut="using:Uno.Themes"
 	  xmlns:smtx="using:ShowMeTheXAML"
 	  xmlns:sample="using:Uno.Gallery"
 	  xmlns:converters="using:Uno.Gallery.Converters"
@@ -47,9 +47,9 @@
 							<TextBox Width="328"
 									 PlaceholderText="Label"
 									 Style="{StaticResource NeumorphicTextBoxStyle}">
-								<um:ControlExtensions.Icon>
+								<ut:ControlExtensions.Icon>
 									<SymbolIcon Symbol="Favorite" />
-								</um:ControlExtensions.Icon>
+								</ut:ControlExtensions.Icon>
 							</TextBox>
 							<TextBox Width="328"
 									 PlaceholderText="Label"
@@ -66,9 +66,9 @@
 									 IsEnabled="False"
 									 PlaceholderText="Label"
 									 Style="{StaticResource NeumorphicTextBoxStyle}">
-								<um:ControlExtensions.Icon>
+								<ut:ControlExtensions.Icon>
 									<SymbolIcon Symbol="Favorite" />
-								</um:ControlExtensions.Icon>
+								</ut:ControlExtensions.Icon>
 							</TextBox>
 							<TextBox Width="328"
 									 IsEnabled="False"
@@ -96,9 +96,9 @@
 							<PasswordBox Width="328"
 										 PlaceholderText="Label"
 										 Style="{StaticResource NeumorphicPasswordBoxStyle}">
-								<um:ControlExtensions.Icon>
+								<ut:ControlExtensions.Icon>
 									<SymbolIcon Symbol="Permissions" />
-								</um:ControlExtensions.Icon>
+								</ut:ControlExtensions.Icon>
 							</PasswordBox>
 							<PasswordBox Width="328"
 										 PlaceholderText="Label"
@@ -115,9 +115,9 @@
 										 IsEnabled="False"
 										 PlaceholderText="Label"
 										 Style="{StaticResource NeumorphicPasswordBoxStyle}">
-								<um:ControlExtensions.Icon>
+								<ut:ControlExtensions.Icon>
 									<SymbolIcon Symbol="Permissions" />
-								</um:ControlExtensions.Icon>
+								</ut:ControlExtensions.Icon>
 							</PasswordBox>
 							<PasswordBox Width="328"
 										 IsEnabled="False"
@@ -144,9 +144,9 @@
 								  Style="{StaticResource NeumorphicComboBoxStyle}"
 								  ItemsSource="{utu:AncestorBinding AncestorType=local:ContentPageLayout,
 																	Path=DataContext.Data.CbbItems}">
-							<um:ControlExtensions.Icon>
+							<ut:ControlExtensions.Icon>
 								<SymbolIcon Symbol="Contact" />
-							</um:ControlExtensions.Icon>
+							</ut:ControlExtensions.Icon>
 						</ComboBox>
 
 						<ComboBox Width="328"
@@ -187,16 +187,16 @@
 
 								<Button Style="{StaticResource NeumorphicMediumElevatedButtonStyle}"
 										Content="Medium with icon">
-									<um:ControlExtensions.Icon>
+									<ut:ControlExtensions.Icon>
 										<PathIcon Data="M12 6.85714H6.85714V12H5.14286V6.85714H0V5.14286H5.14286V0H6.85714V5.14286H12V6.85714Z" />
-									</um:ControlExtensions.Icon>
+									</ut:ControlExtensions.Icon>
 								</Button>
 
 								<Button Style="{StaticResource NeumorphicLargeElevatedButtonStyle}"
 										Content="Large with icon">
-									<um:ControlExtensions.Icon>
+									<ut:ControlExtensions.Icon>
 										<PathIcon Data="M12 6.85714H6.85714V12H5.14286V6.85714H0V5.14286H5.14286V0H6.85714V5.14286H12V6.85714Z" />
-									</um:ControlExtensions.Icon>
+									</ut:ControlExtensions.Icon>
 								</Button>
 
 								<StackPanel Spacing="20">
@@ -208,17 +208,17 @@
 									<Button Style="{StaticResource NeumorphicMediumElevatedButtonStyle}"
 											Content="Medium with icon"
 											IsEnabled="False">
-										<um:ControlExtensions.Icon>
+										<ut:ControlExtensions.Icon>
 											<PathIcon Data="M12 6.85714H6.85714V12H5.14286V6.85714H0V5.14286H5.14286V0H6.85714V5.14286H12V6.85714Z" />
-										</um:ControlExtensions.Icon>
+										</ut:ControlExtensions.Icon>
 									</Button>
 
 									<Button Style="{StaticResource NeumorphicLargeElevatedButtonStyle}"
 											Content="Large with icon"
 											IsEnabled="False">
-										<um:ControlExtensions.Icon>
+										<ut:ControlExtensions.Icon>
 											<PathIcon Data="M12 6.85714H6.85714V12H5.14286V6.85714H0V5.14286H5.14286V0H6.85714V5.14286H12V6.85714Z" />
-										</um:ControlExtensions.Icon>
+										</ut:ControlExtensions.Icon>
 									</Button>
 								</StackPanel>
 							</StackPanel>
@@ -239,16 +239,16 @@
 
 								<Button Style="{StaticResource NeumorphicMediumFilledButtonStyle}"
 										Content="Medium with icon">
-									<um:ControlExtensions.Icon>
+									<ut:ControlExtensions.Icon>
 										<PathIcon Data="M12 6.85714H6.85714V12H5.14286V6.85714H0V5.14286H5.14286V0H6.85714V5.14286H12V6.85714Z" />
-									</um:ControlExtensions.Icon>
+									</ut:ControlExtensions.Icon>
 								</Button>
 
 								<Button Style="{StaticResource NeumorphicLargeFilledButtonStyle}"
 										Content="Large with icon">
-									<um:ControlExtensions.Icon>
+									<ut:ControlExtensions.Icon>
 										<PathIcon Data="M12 6.85714H6.85714V12H5.14286V6.85714H0V5.14286H5.14286V0H6.85714V5.14286H12V6.85714Z" />
-									</um:ControlExtensions.Icon>
+									</ut:ControlExtensions.Icon>
 								</Button>
 
 
@@ -259,17 +259,17 @@
 								<Button Style="{StaticResource NeumorphicMediumFilledButtonStyle}"
 										Content="Medium with icon"
 										IsEnabled="False">
-									<um:ControlExtensions.Icon>
+									<ut:ControlExtensions.Icon>
 										<PathIcon Data="M12 6.85714H6.85714V12H5.14286V6.85714H0V5.14286H5.14286V0H6.85714V5.14286H12V6.85714Z" />
-									</um:ControlExtensions.Icon>
+									</ut:ControlExtensions.Icon>
 								</Button>
 
 								<Button Style="{StaticResource NeumorphicLargeFilledButtonStyle}"
 										Content="Large with icon"
 										IsEnabled="False">
-									<um:ControlExtensions.Icon>
+									<ut:ControlExtensions.Icon>
 										<PathIcon Data="M12 6.85714H6.85714V12H5.14286V6.85714H0V5.14286H5.14286V0H6.85714V5.14286H12V6.85714Z" />
-									</um:ControlExtensions.Icon>
+									</ut:ControlExtensions.Icon>
 								</Button>
 							</StackPanel>
 						</StackPanel>
@@ -286,22 +286,22 @@
 										VerticalSpacing="16">
 						<Button Style="{StaticResource NeumorphicFabSmallStyle}"
 								Content="Small">
-							<um:ControlExtensions.Icon>
+							<ut:ControlExtensions.Icon>
 								<PathIcon Data="M16.667 9.14286H9.80985V16H7.52414V9.14286H0.666992V6.85714H7.52414V0H9.80985V6.85714H16.667V9.14286Z" />
-							</um:ControlExtensions.Icon>
+							</ut:ControlExtensions.Icon>
 						</Button>
 
 						<Button Style="{StaticResource NeumorphicFabStyle}"
 								Content="Medium">
-							<um:ControlExtensions.Icon>
+							<ut:ControlExtensions.Icon>
 								<PathIcon Data="M16.667 9.14286H9.80985V16H7.52414V9.14286H0.666992V6.85714H7.52414V0H9.80985V6.85714H16.667V9.14286Z" />
-							</um:ControlExtensions.Icon>
+							</ut:ControlExtensions.Icon>
 						</Button>
 
 						<Button Style="{StaticResource NeumorphicFabLargeStyle}">
-							<um:ControlExtensions.Icon>
+							<ut:ControlExtensions.Icon>
 								<PathIcon Data="M24.334 13.7143H14.0483V24H10.6197V13.7143H0.333984V10.2857H10.6197V0H14.0483V10.2857H24.334V13.7143Z" />
-							</um:ControlExtensions.Icon>
+							</ut:ControlExtensions.Icon>
 						</Button>
 					</controls:WrapPanel>
 				</smtx:XamlDisplay>
@@ -324,9 +324,9 @@
 										<ToggleButton.Content>
 											<PathIcon Data="M7 14H9V6H7V14ZM10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM10 18C5.59 18 2 14.41 2 10C2 5.59 5.59 2 10 2C14.41 2 18 5.59 18 10C18 14.41 14.41 18 10 18ZM11 14H13V6H11V14Z" />
 										</ToggleButton.Content>
-										<um:ControlExtensions.AlternateContent>
+										<ut:ControlExtensions.AlternateContent>
 											<PathIcon Data="M8 14.5L14 10L8 5.5V14.5ZM10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM10 18C5.59 18 2 14.41 2 10C2 5.59 5.59 2 10 2C14.41 2 18 5.59 18 10C18 14.41 14.41 18 10 18Z" />
-										</um:ControlExtensions.AlternateContent>
+										</ut:ControlExtensions.AlternateContent>
 									</ToggleButton>
 
 									<ToggleButton Style="{StaticResource NeumorphicToggleButtonStyle}"
@@ -334,10 +334,10 @@
 										<ToggleButton.Content>
 											<PathIcon Data="M7 14H9V6H7V14ZM10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM10 18C5.59 18 2 14.41 2 10C2 5.59 5.59 2 10 2C14.41 2 18 5.59 18 10C18 14.41 14.41 18 10 18ZM11 14H13V6H11V14Z" />
 										</ToggleButton.Content>
-										<um:ControlExtensions.AlternateContent>
+										<ut:ControlExtensions.AlternateContent>
 											<PathIcon Data="M8 14.5L14 10L8 5.5V14.5ZM10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM10 18C5.59 18 2 14.41 2 10C2 5.59 5.59 2 10 2C14.41 2 18 5.59 18 10C18 14.41 14.41 18 10 18Z" />
 
-										</um:ControlExtensions.AlternateContent>
+										</ut:ControlExtensions.AlternateContent>
 									</ToggleButton>
 								</StackPanel>
 
@@ -347,9 +347,9 @@
 										<ToggleButton.Content>
 											<PathIcon Data="M21.99 8.00004C18.15 4.16004 12.8 2.76004 7.84 3.78004L10.36 6.30004C13.83 6.13004 17.35 7.35004 19.99 10L21.99 8.00004ZM17.99 12C16.7 10.71 15.15 9.87004 13.5 9.44004L17.03 12.97L17.99 12ZM1 2.05004L4.07 5.10004C2.6 5.82004 1.22 6.78004 0 8.00004L1.99 10C3.23 8.76004 4.66 7.84004 6.19 7.23004L8.43 9.47004C6.81 9.89004 5.27 10.73 4 12V12.01L5.99 14C7.35 12.64 9.13 11.96 10.91 11.94L17.98 19L19.25 17.74L2.29 0.790039L1 2.05004ZM8 16L11 19L14 16C12.35 14.34 9.66 14.34 8 16Z" />
 										</ToggleButton.Content>
-										<um:ControlExtensions.AlternateContent>
+										<ut:ControlExtensions.AlternateContent>
 											<PathIcon Data="M0 5.00001L2 7.00001C6.97 2.03001 15.03 2.03001 20 7.00001L22 5.00001C15.93 -1.06999 6.08 -1.06999 0 5.00001ZM8 13L11 16L14 13C12.35 11.34 9.66 11.34 8 13ZM4 9.00001L6 11C8.76 8.24001 13.24 8.24001 16 11L18 9.00001C14.14 5.14001 7.87 5.14001 4 9.00001Z" />
-										</um:ControlExtensions.AlternateContent>
+										</ut:ControlExtensions.AlternateContent>
 									</ToggleButton>
 
 									<ToggleButton Style="{StaticResource NeumorphicToggleButtonStyle}"
@@ -357,9 +357,9 @@
 										<ToggleButton.Content>
 											<PathIcon Data="M21.99 8.00004C18.15 4.16004 12.8 2.76004 7.84 3.78004L10.36 6.30004C13.83 6.13004 17.35 7.35004 19.99 10L21.99 8.00004ZM17.99 12C16.7 10.71 15.15 9.87004 13.5 9.44004L17.03 12.97L17.99 12ZM1 2.05004L4.07 5.10004C2.6 5.82004 1.22 6.78004 0 8.00004L1.99 10C3.23 8.76004 4.66 7.84004 6.19 7.23004L8.43 9.47004C6.81 9.89004 5.27 10.73 4 12V12.01L5.99 14C7.35 12.64 9.13 11.96 10.91 11.94L17.98 19L19.25 17.74L2.29 0.790039L1 2.05004ZM8 16L11 19L14 16C12.35 14.34 9.66 14.34 8 16Z" />
 										</ToggleButton.Content>
-										<um:ControlExtensions.AlternateContent>
+										<ut:ControlExtensions.AlternateContent>
 											<PathIcon Data="M0 5.00001L2 7.00001C6.97 2.03001 15.03 2.03001 20 7.00001L22 5.00001C15.93 -1.06999 6.08 -1.06999 0 5.00001ZM8 13L11 16L14 13C12.35 11.34 9.66 11.34 8 13ZM4 9.00001L6 11C8.76 8.24001 13.24 8.24001 16 11L18 9.00001C14.14 5.14001 7.87 5.14001 4 9.00001Z" />
-										</um:ControlExtensions.AlternateContent>
+										</ut:ControlExtensions.AlternateContent>
 									</ToggleButton>
 								</StackPanel>
 							</StackPanel>
@@ -377,9 +377,9 @@
 										<ToggleButton.Content>
 											<PathIcon Data="M7 14H9V6H7V14ZM10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM10 18C5.59 18 2 14.41 2 10C2 5.59 5.59 2 10 2C14.41 2 18 5.59 18 10C18 14.41 14.41 18 10 18ZM11 14H13V6H11V14Z" />
 										</ToggleButton.Content>
-										<um:ControlExtensions.AlternateContent>
+										<ut:ControlExtensions.AlternateContent>
 											<PathIcon Data="M8 14.5L14 10L8 5.5V14.5ZM10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM10 18C5.59 18 2 14.41 2 10C2 5.59 5.59 2 10 2C14.41 2 18 5.59 18 10C18 14.41 14.41 18 10 18Z" />
-										</um:ControlExtensions.AlternateContent>
+										</ut:ControlExtensions.AlternateContent>
 									</ToggleButton>
 
 									<ToggleButton Style="{StaticResource NeumorphicToggleButtonStyle}"
@@ -388,9 +388,9 @@
 										<ToggleButton.Content>
 											<PathIcon Data="M7 14H9V6H7V14ZM10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM10 18C5.59 18 2 14.41 2 10C2 5.59 5.59 2 10 2C14.41 2 18 5.59 18 10C18 14.41 14.41 18 10 18ZM11 14H13V6H11V14Z" />
 										</ToggleButton.Content>
-										<um:ControlExtensions.AlternateContent>
+										<ut:ControlExtensions.AlternateContent>
 											<PathIcon Data="M8 14.5L14 10L8 5.5V14.5ZM10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM10 18C5.59 18 2 14.41 2 10C2 5.59 5.59 2 10 2C14.41 2 18 5.59 18 10C18 14.41 14.41 18 10 18Z" />
-										</um:ControlExtensions.AlternateContent>
+										</ut:ControlExtensions.AlternateContent>
 									</ToggleButton>
 								</StackPanel>
 
@@ -401,9 +401,9 @@
 										<ToggleButton.Content>
 											<PathIcon Data="M21.99 8.00004C18.15 4.16004 12.8 2.76004 7.84 3.78004L10.36 6.30004C13.83 6.13004 17.35 7.35004 19.99 10L21.99 8.00004ZM17.99 12C16.7 10.71 15.15 9.87004 13.5 9.44004L17.03 12.97L17.99 12ZM1 2.05004L4.07 5.10004C2.6 5.82004 1.22 6.78004 0 8.00004L1.99 10C3.23 8.76004 4.66 7.84004 6.19 7.23004L8.43 9.47004C6.81 9.89004 5.27 10.73 4 12V12.01L5.99 14C7.35 12.64 9.13 11.96 10.91 11.94L17.98 19L19.25 17.74L2.29 0.790039L1 2.05004ZM8 16L11 19L14 16C12.35 14.34 9.66 14.34 8 16Z" />
 										</ToggleButton.Content>
-										<um:ControlExtensions.AlternateContent>
+										<ut:ControlExtensions.AlternateContent>
 											<PathIcon Data="M0 5.00001L2 7.00001C6.97 2.03001 15.03 2.03001 20 7.00001L22 5.00001C15.93 -1.06999 6.08 -1.06999 0 5.00001ZM8 13L11 16L14 13C12.35 11.34 9.66 11.34 8 13ZM4 9.00001L6 11C8.76 8.24001 13.24 8.24001 16 11L18 9.00001C14.14 5.14001 7.87 5.14001 4 9.00001Z" />
-										</um:ControlExtensions.AlternateContent>
+										</ut:ControlExtensions.AlternateContent>
 									</ToggleButton>
 
 									<ToggleButton Style="{StaticResource NeumorphicToggleButtonStyle}"
@@ -412,9 +412,9 @@
 										<ToggleButton.Content>
 											<PathIcon Data="M21.99 8.00004C18.15 4.16004 12.8 2.76004 7.84 3.78004L10.36 6.30004C13.83 6.13004 17.35 7.35004 19.99 10L21.99 8.00004ZM17.99 12C16.7 10.71 15.15 9.87004 13.5 9.44004L17.03 12.97L17.99 12ZM1 2.05004L4.07 5.10004C2.6 5.82004 1.22 6.78004 0 8.00004L1.99 10C3.23 8.76004 4.66 7.84004 6.19 7.23004L8.43 9.47004C6.81 9.89004 5.27 10.73 4 12V12.01L5.99 14C7.35 12.64 9.13 11.96 10.91 11.94L17.98 19L19.25 17.74L2.29 0.790039L1 2.05004ZM8 16L11 19L14 16C12.35 14.34 9.66 14.34 8 16Z" />
 										</ToggleButton.Content>
-										<um:ControlExtensions.AlternateContent>
+										<ut:ControlExtensions.AlternateContent>
 											<PathIcon Data="M0 5.00001L2 7.00001C6.97 2.03001 15.03 2.03001 20 7.00001L22 5.00001C15.93 -1.06999 6.08 -1.06999 0 5.00001ZM8 13L11 16L14 13C12.35 11.34 9.66 11.34 8 13ZM4 9.00001L6 11C8.76 8.24001 13.24 8.24001 16 11L18 9.00001C14.14 5.14001 7.87 5.14001 4 9.00001Z" />
-										</um:ControlExtensions.AlternateContent>
+										</ut:ControlExtensions.AlternateContent>
 									</ToggleButton>
 								</StackPanel>
 							</StackPanel>
@@ -996,13 +996,13 @@
 													<TextBox.Foreground>
 														<SolidColorBrush Color="{Binding Color}" />
 													</TextBox.Foreground>
-													<um:ControlExtensions.Icon>
+													<ut:ControlExtensions.Icon>
 														<PathIcon Data="M10 0C4.47 0 0 4.47 0 10C0 15.53 4.47 20 10 20C15.53 20 20 15.53 20 10C20 4.47 15.53 0 10 0Z">
 															<PathIcon.Foreground>
 																<SolidColorBrush Color="{Binding Color}" />
 															</PathIcon.Foreground>
 														</PathIcon>
-													</um:ControlExtensions.Icon>
+													</ut:ControlExtensions.Icon>
 												</TextBox>
 
 												<TextBox Grid.Column="2"
@@ -1058,17 +1058,17 @@
 											BorderThickness="1"
 											Click="RemoveShadow"
 											Content="Shadow">
-										<um:ControlExtensions.Icon>
+										<ut:ControlExtensions.Icon>
 											<SymbolIcon Symbol="Remove" />
-										</um:ControlExtensions.Icon>
+										</ut:ControlExtensions.Icon>
 									</Button>
 									<Button Style="{StaticResource NeumorphicMediumElevatedButtonStyle}"
 											BorderThickness="1"
 											Click="AddShadow"
 											Content="Shadow">
-										<um:ControlExtensions.Icon>
+										<ut:ControlExtensions.Icon>
 											<SymbolIcon Symbol="Add" />
-										</um:ControlExtensions.Icon>
+										</ut:ControlExtensions.Icon>
 									</Button>
 								</StackPanel>
 							</Grid>
