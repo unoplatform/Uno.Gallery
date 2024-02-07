@@ -9,23 +9,21 @@ using Uno.UITests.Helpers;
 
 namespace Uno.Gallery.UITests
 {
-	//[Ignore("WIP: M3 Migration")]
 	public class Given_RadioButton_01_Material : TestBase
 	{
-		/*     
-		* This function is to test the Unchecked option  in checkbox for material, 
-		*/
+		
 		[Test]
 		public void WhenRadioButtonMaterialClick_01_Unchecked()
 		{
 			NavigateToSample("RadioButton", "Material");
 
 			TakeScreenshot("Before Checked");
-			App.ScrollDownTo("RadioButton_Material_Unchecked");
+
 			var uncheckedRadioButton = App.WaitThenTap("RadioButton_Material_Unchecked").ToQueryEx();
+			App.ScrollDownTo(uncheckedRadioButton);
+			uncheckedRadioButton.Tap();
 			TakeScreenshot("After Checked");
 
-			//Assert.IsFalse(uncheckedBox.GetDependencyPropertyValue<bool>("IsChecked"));
 			Assert.IsTrue(uncheckedRadioButton.GetDependencyPropertyValue<bool>("IsChecked"));
 		}
 
@@ -37,12 +35,12 @@ namespace Uno.Gallery.UITests
 
 			TakeScreenshot("Before Tap");
 
-			App.ScrollDownTo("RadioButton_material_Checked");
 			var materialCheckedRadioButton = new QueryEx(x => x.All().Marked("RadioButton_Material_Checked"));
-
+			App.ScrollDownTo(materialCheckedRadioButton);
 			materialCheckedRadioButton.Tap();
 			TakeScreenshot("After Tap");
-			Assert.IsFalse(materialCheckedRadioButton.GetDependencyPropertyValue<bool>("IsChecked"));
+
+			Assert.IsTrue(materialCheckedRadioButton.GetDependencyPropertyValue<bool>("IsChecked"));
 
 		}
 
@@ -54,11 +52,11 @@ namespace Uno.Gallery.UITests
 			TakeScreenshot("Before Tap");
 			var materialDisabledUnCheckedRadioButton = new QueryEx(x => x.All().Marked("RadioButton_Material_Disabled_Unchecked"));
 
-			App.ScrollDownTo("RadioButton_material_Disabled_Unchecked");
+			App.ScrollDownTo(materialDisabledUnCheckedRadioButton);
 
 			materialDisabledUnCheckedRadioButton.Tap();
 			TakeScreenshot("After Tap");
-			Assert.IsTrue(materialDisabledUnCheckedRadioButton.GetDependencyPropertyValue<bool>("IsEnabled"));
+			Assert.IsFalse (materialDisabledUnCheckedRadioButton.GetDependencyPropertyValue<bool>("IsEnabled"));
 			Assert.IsFalse(materialDisabledUnCheckedRadioButton.GetDependencyPropertyValue<bool>("IsChecked"));
 
 		}
@@ -71,7 +69,7 @@ namespace Uno.Gallery.UITests
 			TakeScreenshot("Before Tap");
 			var materialDisabledCheckedRadioButton = new QueryEx(x => x.All().Marked("RadioButton_Material_Disabled_Checked"));
 
-			App.ScrollDownTo("RadioButton_Material_Disabled_Checked");
+			App.ScrollDownTo(materialDisabledCheckedRadioButton);
 
 			materialDisabledCheckedRadioButton.Tap();
 			TakeScreenshot("After Tap");

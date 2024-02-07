@@ -12,7 +12,6 @@ namespace Uno.Gallery.UITests
 {
 	public class Given_RadioButton_03_Cupertino : TestBase
 	{
-		/* This one is used to test the Unchecked option which we have in Cupertino */
 
 		[Test]
 		public void WhenRadioButtonCupertinoClick_01_Unchecked()
@@ -22,7 +21,7 @@ namespace Uno.Gallery.UITests
 			TakeScreenshot("Before Tap");
 			var cupertinoUncheckRadioButton = new QueryEx(x => x.All().Marked("RadioButton_Cupertino_Unchecked"));
 
-			App.ScrollDownTo("RadioButton_Cupertino_Unchecked");
+			App.ScrollDownTo(cupertinoUncheckRadioButton);
 
 			cupertinoUncheckRadioButton.Tap();
 			TakeScreenshot("After Tap");
@@ -38,7 +37,7 @@ namespace Uno.Gallery.UITests
 			TakeScreenshot("Before Tap");
 			var cupertinoCheckedRadioButton = new QueryEx(x => x.All().Marked("RadioButton_Cupertino_Checked"));
 
-			App.ScrollDownTo("RadioButton_Cupertino_Checked");
+			App.ScrollDownTo(cupertinoCheckedRadioButton);
 
 			cupertinoCheckedRadioButton.Tap();
 			TakeScreenshot("After Tap");
@@ -54,7 +53,7 @@ namespace Uno.Gallery.UITests
 			TakeScreenshot("Before Tap");
 			var cupertinoDisabledUnCheckedRadioButton = new QueryEx(x => x.All().Marked("RadioButton_Cupertino_Disabled_Unchecked"));
 
-			App.ScrollDownTo("RadioButton_Cupertino_Disabled_Unchecked");
+			App.ScrollDownTo(cupertinoDisabledUnCheckedRadioButton);
 
 			cupertinoDisabledUnCheckedRadioButton.Tap();
 			TakeScreenshot("After Tap");
@@ -71,7 +70,7 @@ namespace Uno.Gallery.UITests
 			TakeScreenshot("Before Tap");
 			var cupertinoDisabledCheckedRadioButton = new QueryEx(x => x.All().Marked("RadioButton_Cupertino_Disabled_Checked"));
 
-			App.ScrollDownTo("RadioButton_Cupertino_Disabled_Checked");
+			App.ScrollDownTo(cupertinoDisabledCheckedRadioButton);
 
 			cupertinoDisabledCheckedRadioButton.Tap();
 			TakeScreenshot("After Tap");
