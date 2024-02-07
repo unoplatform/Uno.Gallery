@@ -9,7 +9,6 @@ using Uno.UITests.Helpers;
 
 namespace Uno.Gallery.UITests
 {
-	//[Ignore("WIP: M3 Migration")]
 	public class Given_PasswordBox_Material : TestBase
 	{
 
