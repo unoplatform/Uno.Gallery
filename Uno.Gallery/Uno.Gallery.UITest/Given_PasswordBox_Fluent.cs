@@ -41,7 +41,6 @@ namespace Uno.Gallery.UITests
 			PasswordBoxHeader.EnterText("Uno platform");
 
 			TakeScreenshot("After PasswordBox");
-			//Assert.IsTrue(NoPasswordBox.GetDependencyPropertyValue<string>("Password") == "Uno platform");
 			Assert.AreEqual("Uno platform", PasswordBoxHeader.GetDependencyPropertyValue<string>("Password"));
 
 		}
