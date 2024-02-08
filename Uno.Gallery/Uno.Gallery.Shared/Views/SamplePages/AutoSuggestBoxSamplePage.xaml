@@ -66,7 +66,8 @@ public List<Sample> GetSuggestedItems(string searchQuery)
 
 								<TextBlock Margin="0,20,0,0"
 										   Text="{Binding Data.SelectedString}"
-										   Visibility="{Binding Data.SelectedString, Converter={StaticResource NullToCollapsed}}" />
+										   Visibility="{Binding Data.SelectedString, Converter={StaticResource NullToCollapsed}}"
+										  AutomationProperties.AutomationId="fluent_AutoSuggestBox" />
 							</StackPanel>
 						</smtx:XamlDisplay>
 
@@ -135,6 +136,7 @@ public List<Sample> GetSuggestedItems(string searchQuery)
 														   FontWeight="Bold" />
 												<TextBlock Text="{Binding Description}"
 														   TextWrapping="WrapWholeWords"
+														   AutomationProperties.AutomationId="Auto_SuggestBox"
 														   Visibility="{Binding Description, Converter={StaticResource IsNullOrEmptyToCollapsed}}" />
 											</StackPanel>
 										</DataTemplate>
