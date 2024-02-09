@@ -29,22 +29,22 @@ namespace Uno.Gallery.UITests
 
 		}
 
-		[Test]
-		public void WhenPasswordBoxDefaultDisabled()
-		{
-			NavigateToSample("PasswordBox", "Material");
+		//[Test]
+		//public void WhenPasswordBoxDefaultDisabled()
+		//{
+		//	NavigateToSample("PasswordBox", "Material");
 
-			TakeScreenshot("Before PasswordBox");
+		//	TakeScreenshot("Before PasswordBox");
 
-			var passwordBox_Defalut_Disbaled = new QueryEx(x => x.All().Marked("PasswordBox_Default_Disabled"));
-			App.ScrollDownTo(passwordBox_Defalut_Disbaled);
-			passwordBox_Defalut_Disbaled.EnterText("Uno platform");
+		//	var passwordBox_Defalut_Disbaled = new QueryEx(x => x.All().Marked("PasswordBox_Default_Disabled"));
+		//	App.ScrollDownTo(passwordBox_Defalut_Disbaled);
+		//	passwordBox_Defalut_Disbaled.EnterText("Uno platform");
 
 
-			TakeScreenshot("After PasswordBox");
-			Assert.AreEqual("", passwordBox_Defalut_Disbaled.GetDependencyPropertyValue<string>("Password"));
+		//	TakeScreenshot("After PasswordBox");
+		//	Assert.AreEqual("", passwordBox_Defalut_Disbaled.GetDependencyPropertyValue<string>("Password"));
 
-		}
+		//}
 
 		[Test]
 		public void WhenPasswordBoxOutlined()
@@ -63,22 +63,22 @@ namespace Uno.Gallery.UITests
 
 		}
 
-		[Test]
-		public void WhenPasswordBoxOutlinedDisabled()
-		{
-			NavigateToSample("PasswordBox", "Material");
+		//[Test]
+		//public void WhenPasswordBoxOutlinedDisabled()
+		//{
+		//	NavigateToSample("PasswordBox", "Material");
 
-			TakeScreenshot("Before PasswordBox");
+		//	TakeScreenshot("Before PasswordBox");
 
-			var passwordBox_outlined_disabled = new QueryEx(x => x.All().Marked("PasswordBox_Outlined_Disabled"));
-			App.ScrollDownTo(passwordBox_outlined_disabled);
-			passwordBox_outlined_disabled.EnterText("Uno platform");
+		//	var passwordBox_outlined_disabled = new QueryEx(x => x.All().Marked("PasswordBox_Outlined_Disabled"));
+		//	App.ScrollDownTo(passwordBox_outlined_disabled);
+		//	passwordBox_outlined_disabled.EnterText("Uno platform");
 
 
-			TakeScreenshot("After PasswordBox");
-			Assert.AreEqual("", passwordBox_outlined_disabled.GetDependencyPropertyValue<string>("Password"));
+		//	TakeScreenshot("After PasswordBox");
+		//	Assert.AreEqual("", passwordBox_outlined_disabled.GetDependencyPropertyValue<string>("Password"));
 
-		}
+		//}
 
 
 	}

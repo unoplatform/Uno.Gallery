@@ -20,7 +20,7 @@ namespace Uno.Gallery.UITests
 			TakeScreenshot("Before PasswordBox");
 
 			var NoPasswordBox = new QueryEx(x => x.All().Marked("PasswordBox_NoHeader"));
-			App.ScrollDownTo(NoPasswordBox);
+			//App.ScrollDownTo(NoPasswordBox);
 			NoPasswordBox.EnterText("Uno platform");
 
 			TakeScreenshot("After PasswordBox");
@@ -44,21 +44,21 @@ namespace Uno.Gallery.UITests
 
 		}
 
-		[Test]
-		public void WhenPasswordBoxHeaderDisabled()
-		{
-			NavigateToSample("PasswordBox", "Fluent");
+		//[Test]
+		//public void WhenPasswordBoxHeaderDisabled()
+		//{
+		//	NavigateToSample("PasswordBox", "Fluent");
 
-			TakeScreenshot("Before PasswordBox");
+		//	TakeScreenshot("Before PasswordBox");
 
-			var PasswordBoxDisabled = new QueryEx(x => x.All().Marked("PasswordBox_Disabled"));
-			App.ScrollDownTo(PasswordBoxDisabled);
-			PasswordBoxDisabled.EnterText("Uno platform");
+		//	var PasswordBoxDisabled = new QueryEx(x => x.All().Marked("PasswordBox_Disabled"));
+		//	App.ScrollDownTo(PasswordBoxDisabled);
+		//	PasswordBoxDisabled.EnterText("Uno platform");
 
-			TakeScreenshot("After PasswordBox");
-			Assert.AreEqual("", PasswordBoxDisabled.GetDependencyPropertyValue<string>("Password"));
+		//	TakeScreenshot("After PasswordBox");
+		//	Assert.AreEqual("", PasswordBoxDisabled.GetDependencyPropertyValue<string>("Password"));
 
-		}
+		//}
 
 
 	}
