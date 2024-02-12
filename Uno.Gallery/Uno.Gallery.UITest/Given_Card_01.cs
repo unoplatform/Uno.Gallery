@@ -20,7 +20,7 @@ namespace Uno.Gallery.UITests
 			NavigateToSample("Card", "Material");
 
 			// Scrolling to Outlined card
-			//App.ScrollDownTo("Outlined_Card");
+			App.ScrollDownTo("Outlined_Card");
 
 			//Initial Validation
 			TakeScreenshot("Before Click");

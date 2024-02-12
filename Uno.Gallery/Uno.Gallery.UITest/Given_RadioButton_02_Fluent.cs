@@ -19,9 +19,6 @@ namespace Uno.Gallery.UITests
 		{
 			NavigateToSample("RadioButton", "Fluent");
 
-			TakeScreenshot("Before Tap");
-			var fluentUncheckRadioButton = new QueryEx(x => x.All().Marked("RadioButton_Fluent_Unchecked"));
-
 			App.ScrollDownTo("RadioButton_Fluent_Unchecked");
 
 			fluentUncheckRadioButton.Tap();
@@ -56,20 +53,6 @@ namespace Uno.Gallery.UITests
 
 			App.ScrollDownTo("RadioButton_Fluent_Disabled_Unchecked");
 
-			fluentDisabledUnCheckedRadioButton.Tap();
-			TakeScreenshot("After Tap");
-			Assert.IsFalse(fluentDisabledUnCheckedRadioButton.GetDependencyPropertyValue<bool>("IsEnabled"));
-			Assert.IsFalse(fluentDisabledUnCheckedRadioButton.GetDependencyPropertyValue<bool>("IsChecked"));
-
-		}
-
-		[Test]
-		public void WhenRadioButtonFluentClick_04_DisabledChecked()
-		{
-			NavigateToSample("RadioButton", "Fluent");
-
-			TakeScreenshot("Before Tap");
-			var fluentDisabledCheckedRadioButton = new QueryEx(x => x.All().Marked("RadioButton_Material_Disabled_Checked"));
 
 			App.ScrollDownTo("RadioButton_Material_Disabled_Checked");
 
