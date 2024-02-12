@@ -21,9 +21,8 @@ namespace Uno.Gallery.UITests
 			//TakeScreenshot("Before Text");
 			var AutoSuggest = new QueryEx(x => x.All().Marked("fluent_AutoSuggestBox"));
 			AutoSuggest.EnterText("PasswordBox");
-			//var suggestionList = new QueryEx(x => x.All().Marked("AutoSuggestBox_SuggestionChosen")); 
-			//suggestionList.Descendant().AtIndex(0).Tap();
-
+			
+			
 
 
 
