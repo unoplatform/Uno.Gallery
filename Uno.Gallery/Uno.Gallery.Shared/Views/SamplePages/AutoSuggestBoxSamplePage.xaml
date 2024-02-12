@@ -62,12 +62,12 @@ public List<Sample> GetSuggestedItems(string searchQuery)
 								<AutoSuggestBox TextChanged="AutoSuggestBox_TextChanged"
 												SuggestionChosen="AutoSuggestBox_SuggestionChosen"
 												Width="300"
-												HorizontalAlignment="Left" />
+												AutomationProperties.AutomationId="fluent_AutoSuggestBox" 
+												HorizontalAlignment="Left"/>
 
 								<TextBlock Margin="0,20,0,0"
 										   Text="{Binding Data.SelectedString}"
-										   Visibility="{Binding Data.SelectedString, Converter={StaticResource NullToCollapsed}}"
-										  AutomationProperties.AutomationId="fluent_AutoSuggestBox" />
+										   Visibility="{Binding Data.SelectedString, Converter={StaticResource NullToCollapsed}}"/>
 							</StackPanel>
 						</smtx:XamlDisplay>
 
