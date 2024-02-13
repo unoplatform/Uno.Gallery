@@ -201,8 +201,6 @@
 														 Color="LightGreen" />
 										<SolidColorBrush x:Key="RadioButtonOuterEllipseCheckedStroke"
 														 Color="DarkGreen" />
-										<SolidColorBrush x:Key="RadioButtonOuterEllipseFill"
-														 Color="LightGreen" />
 										<SolidColorBrush x:Key="RadioButtonOuterEllipseCheckedFill"
 														 Color="DarkGreen" />
 
@@ -212,8 +210,6 @@
 														 Color="LightPink" />
 										<SolidColorBrush x:Key="RadioButtonOuterEllipseCheckedStrokePointerOver"
 														 Color="DarkRed" />
-										<SolidColorBrush x:Key="RadioButtonOuterEllipseFillPointerOver"
-														 Color="LightPink" />
 										<SolidColorBrush x:Key="RadioButtonOuterEllipseCheckedFillPointerOver"
 														 Color="DarkRed" />
 
@@ -223,8 +219,6 @@
 														 Color="LightSteelBlue" />
 										<SolidColorBrush x:Key="RadioButtonOuterEllipseCheckedStrokePressed"
 														 Color="DarkBlue" />
-										<SolidColorBrush x:Key="RadioButtonOuterEllipseFillPressed"
-														 Color="LightSteelBlue" />
 										<SolidColorBrush x:Key="RadioButtonOuterEllipseCheckedFillPressed"
 														 Color="DarkBlue" />
 									</RadioButton.Resources>
@@ -241,8 +235,6 @@
 														 Color="LightGreen" />
 										<SolidColorBrush x:Key="RadioButtonOuterEllipseCheckedStroke"
 														 Color="DarkGreen" />
-										<SolidColorBrush x:Key="RadioButtonOuterEllipseFill"
-														 Color="LightGreen" />
 										<SolidColorBrush x:Key="RadioButtonOuterEllipseCheckedFill"
 														 Color="DarkGreen" />
 
@@ -252,8 +244,6 @@
 														 Color="LightPink" />
 										<SolidColorBrush x:Key="RadioButtonOuterEllipseCheckedStrokePointerOver"
 														 Color="DarkRed" />
-										<SolidColorBrush x:Key="RadioButtonOuterEllipseFillPointerOver"
-														 Color="LightPink" />
 										<SolidColorBrush x:Key="RadioButtonOuterEllipseCheckedFillPointerOver"
 														 Color="DarkRed" />
 
@@ -263,8 +253,6 @@
 														 Color="LightSteelBlue" />
 										<SolidColorBrush x:Key="RadioButtonOuterEllipseCheckedStrokePressed"
 														 Color="DarkBlue" />
-										<SolidColorBrush x:Key="RadioButtonOuterEllipseFillPressed"
-														 Color="LightSteelBlue" />
 										<SolidColorBrush x:Key="RadioButtonOuterEllipseCheckedFillPressed"
 														 Color="DarkBlue" />
 									</RadioButton.Resources>
@@ -281,8 +269,6 @@
 														 Color="DarkGray" />
 										<SolidColorBrush x:Key="RadioButtonOuterEllipseCheckedStrokeDisabled"
 														 Color="LightSlateGray" />
-										<SolidColorBrush x:Key="RadioButtonOuterEllipseFillDisabled"
-														 Color="DarkGray" />
 										<SolidColorBrush x:Key="RadioButtonOuterEllipseCheckedFillDisabled"
 														 Color="LightSlateGray" />
 									</RadioButton.Resources>
