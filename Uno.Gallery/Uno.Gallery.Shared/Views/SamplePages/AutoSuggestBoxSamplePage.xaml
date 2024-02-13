@@ -137,7 +137,6 @@ public List<Sample> GetSuggestedItems(string searchQuery)
 														   FontWeight="Bold" />
 												<TextBlock Text="{Binding Description}"
 														   TextWrapping="WrapWholeWords"
-														   AutomationProperties.AutomationId="Auto_SuggestBox"
 														   Visibility="{Binding Description, Converter={StaticResource IsNullOrEmptyToCollapsed}}" />
 											</StackPanel>
 										</DataTemplate>
