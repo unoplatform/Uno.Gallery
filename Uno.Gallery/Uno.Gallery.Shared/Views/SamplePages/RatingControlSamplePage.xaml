@@ -43,14 +43,18 @@
 							</Grid>
 
 							<smtx:XamlDisplayExtensions.Options>
-								<StackPanel Spacing="8">
-									<TextBlock>
-										<Run Text="Value: " />
+								<StackPanel Spacing="8"
+											AutomationProperties.AutomationId="Rating_Fluent"
+>
+									<TextBlock
+										AutomationProperties.AutomationId="Value_Fluent">
+										<Run Text="Value: "/>
 										<Run Text="{Binding Data.RatingControlValue}" />
 									</TextBlock>
 									<StackPanel Spacing="4"
 												Orientation="Horizontal">
 										<Button Content="-1"
+												AutomationProperties.AutomationId="Minus_Fluent"
 												Command="{Binding Data.Minus1Command}" />
 										<Button Content="Clear"
 												Command="{Binding Data.ClearCommand}" />
