@@ -123,6 +123,7 @@ public List<Sample> GetSuggestedItems(string searchQuery)
 												TextChanged="SearchBox_TextChanged"
 												TextMemberPath="Title"
 												QueryIcon="Find"
+												AutomationProperties.AutomationId="fluent_AutoSuggestBox_WithText" 
 												Width="300"
 												HorizontalAlignment="Left"
 												QuerySubmitted="SearchBox_QuerySubmitted"
