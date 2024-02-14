@@ -24,20 +24,23 @@ namespace Uno.Gallery.UITests
 			AutoSuggest.EnterText("PasswordBox");
 			bool isSuggestionListOpen = AutoSuggest.GetDependencyPropertyValue<bool>("IsSuggestionListOpen");
 			Assert.IsTrue(isSuggestionListOpen, "Suggestion list is open");
-			Assert.AreEqual("PasswordBox", AutoSuggest.GetDependencyPropertyValue<String>("Text"));
+			Assert.AreEqual("PasswordBox", AutoSuggest.GetDependencyPropertyValue<string>("Text"));
 
 			AutoSuggest.ClearText();
+			AutoSuggest.GetDependencyPropertyValue<bool>("IsSuggestionListOpen");
 			AutoSuggest.EnterText("Button");
 			Assert.IsTrue(isSuggestionListOpen, "Suggestion list is open");
-			Assert.AreEqual("Button", AutoSuggest.GetDependencyPropertyValue<String>("Text"));
+			Assert.AreEqual("Button", AutoSuggest.GetDependencyPropertyValue<string>("Text"));
 
 			AutoSuggest.ClearText();
+			AutoSuggest.GetDependencyPropertyValue<bool>("IsSuggestionListOpen");
 			AutoSuggest.EnterText("RadioButton");
 			Assert.IsTrue(isSuggestionListOpen, "Suggestion list is open");
-			Assert.AreEqual("RadioButton", AutoSuggest.GetDependencyPropertyValue<String>("Text"));
+			Assert.AreEqual("RadioButton", AutoSuggest.GetDependencyPropertyValue<string>("Text"));
 
 			AutoSuggest.ClearText();
-			Assert.AreEqual("", AutoSuggest.GetDependencyPropertyValue<String>("Text"));
+			AutoSuggest.GetDependencyPropertyValue<bool>("IsSuggestionListOpen");
+			Assert.AreEqual("", AutoSuggest.GetDependencyPropertyValue<string>("Text"));
 			Assert.IsTrue(isSuggestionListOpen, "Suggestion list is open");
 
 
@@ -52,20 +55,23 @@ namespace Uno.Gallery.UITests
 			AutoSuggest_Text.EnterText("PasswordBox");
 			bool isSuggestionListOpen_Text = AutoSuggest_Text.GetDependencyPropertyValue<bool>("IsSuggestionListOpen");
 			Assert.IsTrue(isSuggestionListOpen_Text, "Suggestion list is open");
-			Assert.AreEqual("PasswordBox", AutoSuggest_Text.GetDependencyPropertyValue<String>("Text"));
+			Assert.AreEqual("PasswordBox", AutoSuggest_Text.GetDependencyPropertyValue<string>("Text"));
 
 			AutoSuggest_Text.ClearText();
+			AutoSuggest_Text.GetDependencyPropertyValue<bool>("IsSuggestionListOpen");
 			AutoSuggest_Text.EnterText("Button");
 			Assert.IsTrue(isSuggestionListOpen_Text, "Suggestion list is open");
-			Assert.AreEqual("Button", AutoSuggest_Text.GetDependencyPropertyValue<String>("Text"));
+			Assert.AreEqual("Button", AutoSuggest_Text.GetDependencyPropertyValue<string>("Text"));
 
 			AutoSuggest_Text.ClearText();
+			AutoSuggest_Text.GetDependencyPropertyValue<bool>("IsSuggestionListOpen");
 			AutoSuggest_Text.EnterText("RadioButton");
 			Assert.IsTrue(isSuggestionListOpen_Text, "Suggestion list is open");
-			Assert.AreEqual("RadioButton", AutoSuggest_Text.GetDependencyPropertyValue<String>("Text"));
+			Assert.AreEqual("RadioButton", AutoSuggest_Text.GetDependencyPropertyValue<string>("Text"));
 
 			AutoSuggest_Text.ClearText();
-			Assert.AreEqual("", AutoSuggest_Text.GetDependencyPropertyValue<String>("Text"));
+			AutoSuggest_Text.GetDependencyPropertyValue<bool>("IsSuggestionListOpen");
+			Assert.AreEqual("", AutoSuggest_Text.GetDependencyPropertyValue<string>("Text"));
 			Assert.IsTrue(isSuggestionListOpen_Text, "Suggestion list is open");
 
 		}
