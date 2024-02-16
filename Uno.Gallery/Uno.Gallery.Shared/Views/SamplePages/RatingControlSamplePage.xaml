@@ -57,8 +57,10 @@
 												AutomationProperties.AutomationId="Minus_Fluent"
 												Command="{Binding Data.Minus1Command}" />
 										<Button Content="Clear"
+												AutomationProperties.AutomationId="Clear_Fluent"												
 												Command="{Binding Data.ClearCommand}" />
 										<Button Content="+1"
+												AutomationProperties.AutomationId="Plus_Fluent"
 												Command="{Binding Data.Plus1Command}" />
 									</StackPanel>
 
