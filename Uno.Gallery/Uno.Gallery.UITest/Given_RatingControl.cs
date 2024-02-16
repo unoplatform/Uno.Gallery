@@ -19,19 +19,20 @@ namespace Uno.Gallery.UITests
 			NavigateToSample("RatingControl", "Fluent");
 			var Rating = new QueryEx(x => x.All().Marked("Rating_Fluent"));
 			var Minus = new QueryEx(x => x.All().Marked("Minus_Fluent"));
-			var value = new QueryEx(x => x.All().Marked("Value_Fluent"));
+			var Value = new QueryEx(x => x.All().Marked("Value_Fluent"));
 			var Plus = new QueryEx(x => x.All().Marked("Plus_Fluent"));
 
 
 			Minus.Tap();
-			Assert.AreEqual("Value:  2", value.GetDependencyPropertyValue<string>("Text"));
-			var clear = new QueryEx(x => x.All().Marked("Clear_Fluent"));
+			Assert.AreEqual("Value:  2", Value.GetDependencyPropertyValue<string>("Text"));
+			var RatingControl_Clear = new QueryEx(x => x.All().Marked("Clear_Fluent"));
 			Plus.Tap();
-			Assert.AreEqual("Value:  2", value.GetDependencyPropertyValue<string>("Text"));
-			Minus.Tap();
-			Assert.AreEqual("Value:  1", value.GetDependencyPropertyValue<string>("Text"));
-			Minus.Tap();
-			Assert.AreEqual("Value:  3", value.GetDependencyPropertyValue<string>("Text"));
+			Assert.AreEqual("Value:  3", Value.GetDependencyPropertyValue<string>("Text"));
+			Plus.Tap();
+			Assert.AreEqual("Value:  4", Value.GetDependencyPropertyValue<string>("Text"));
+			Plus.Tap();
+			RatingControl_Clear.Tap();
+			Assert.AreEqual("Value:  1", Value.GetDependencyPropertyValue<string>("Text"));
 
 
 
