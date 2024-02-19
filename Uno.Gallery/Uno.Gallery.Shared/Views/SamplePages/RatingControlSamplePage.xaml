@@ -36,6 +36,7 @@
 								  HorizontalAlignment="Stretch">
 								<muxc:RatingControl Value="{Binding Data.RatingControlValue, Mode=TwoWay}"
 													MaxRating="{Binding Data.MaxRating}"
+													AutomationProperties.AutomationId="Rating_Control"
 													IsReadOnly="{Binding Data.IsReadOnly}"
 													IsClearEnabled="{Binding Data.IsClearEnabled}"
 													Caption="{Binding Data.Caption}"
@@ -64,24 +65,30 @@
 												Command="{Binding Data.Plus1Command}" />
 									</StackPanel>
 
-									<TextBlock>
+									<TextBlock
+										AutomationProperties.AutomationId="MaxRating_Fluent">
 									<Run Text="MaxRating: " />
 									<Run Text="{Binding Data.MaxRating}" />
 									</TextBlock>
 									<Slider Value="{Binding Data.MaxRating, Mode=TwoWay}"
+											AutomationProperties.AutomationId="Slider_Fluent"											
 											Minimum="1"
 											Maximum="15" />
 
 									<CheckBox Content="IsReadOnly"
-											  IsChecked="{Binding Data.IsReadOnly, Mode=TwoWay}" />
+										     AutomationProperties.AutomationId="ReadOnly_Fluent"
+										     IsChecked="{Binding Data.IsReadOnly, Mode=TwoWay}" />
 
 									<CheckBox Content="IsClearEnabled"
+											  AutomationProperties.AutomationId="CLearOnly_Fluent"
 											  IsChecked="{Binding Data.IsClearEnabled, Mode=TwoWay}" />
 
 									<TextBox Header="Caption"
+											 AutomationProperties.AutomationId="Caption_Fluent"
 											 Text="{Binding Data.Caption, Mode=TwoWay}" />
 
 									<CheckBox Content="CanDrag"
+											  AutomationProperties.AutomationId="CanDrag_Fluent"
 											  IsChecked="{Binding Data.CanDrag, Mode=TwoWay}" />
 								</StackPanel>
 							</smtx:XamlDisplayExtensions.Options>
