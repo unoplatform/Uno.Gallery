@@ -255,7 +255,18 @@
 														  VerticalAlignment="Stretch"
 														  Content="{TemplateBinding Content}"
 														  ContentTemplate="{TemplateBinding NativeTemplate}"
-														  Visibility="Collapsed" />
+														  Visibility="Collapsed">
+											<!-- Added the Fluent overrides for the NativeTemplate to avoid having Material styles overriding by default for a control -->
+											<!-- For example DatePicker sample should showcase fluent style by default but with native picker -->
+											<ContentPresenter.Resources>
+												<ResourceDictionary>
+													<ResourceDictionary.MergedDictionaries>
+														<XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
+														<ResourceDictionary Source="ms-appx:///Views/Styles/FluentOverrides.xaml" />
+													</ResourceDictionary.MergedDictionaries>
+												</ResourceDictionary>
+											</ContentPresenter.Resources>
+										</ContentPresenter>
 
 										<!-- Agnostic Content -->
 										<ContentPresenter x:Name="AgnosticContentPresenter"
