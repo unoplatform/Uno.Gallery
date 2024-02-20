@@ -34,21 +34,19 @@ namespace Uno.Gallery.UITests
 
 
 			Minus_Button.Tap();
-			Assert.AreEqual("Value:  2", Value.GetDependencyPropertyValue<string>("Text"));
+  			Assert.AreEqual(2, Rate.GetDependencyPropertyValue<double>("Value"));
 			Plus_Butoon.Tap();
-			Assert.AreEqual("Value:  3", Value.GetDependencyPropertyValue<string>("Text"));
+     		Assert.AreEqual(3, Rate.GetDependencyPropertyValue<double>("Value"));
 			Plus_Butoon.Tap();
-			Assert.AreEqual("Value:  4", Value.GetDependencyPropertyValue<string>("Text"));
+			Assert.AreEqual(4, Rate.GetDependencyPropertyValue<double>("Value"));
 			Plus_Butoon.Tap();
-			Assert.AreEqual("Value:  5", Value.GetDependencyPropertyValue<string>("Text"));
+			Assert.AreEqual(5, Rate.GetDependencyPropertyValue<double>("Value"));
 			Minus_Button.Tap();
-			Assert.AreEqual("Value:  4", Value.GetDependencyPropertyValue<string>("Text"));
-			Assert.AreEqual("4", Rate.GetDependencyPropertyValue<string>("Value"));
+			Assert.AreEqual(4, Rate.GetDependencyPropertyValue<double>("Value"));
 			Plus_Butoon.Tap();
-			Assert.AreEqual("Value:  5", Value.GetDependencyPropertyValue<string>("Text"));
-			Assert.AreEqual("5", Rate.GetDependencyPropertyValue<string>("Value"));
+			Assert.AreEqual(5, Rate.GetDependencyPropertyValue<double>("Value"));
 			RatingControl_Clear.Tap();
-			Assert.AreEqual("Value:  1", Value.GetDependencyPropertyValue<string>("Text"));
+			Assert.AreEqual(1, Rate.GetDependencyPropertyValue<double>("Value"));
 			Read.Tap();
 			Assert.IsTrue(Read.GetDependencyPropertyValue<bool>("IsChecked"));
 			Drag.Tap();
