@@ -51,7 +51,7 @@ namespace Uno.Gallery.UITests
 			//Fluent :- MultiLine Disabled
 			var TextBox_MultiLine_Disabled = new QueryEx(x => x.All().Marked("TextBox_MultiLine_Disabled_Fluent"));
 			bool TextBox_MultiLine_Disabled_bool = TextBox_MultiLine_Disabled.GetDependencyPropertyValue<bool>("IsEnabled");
-			Assert.IsFalse(TextBox_MultiLine_Disabled_bool, "Suggestion list is open");
+			Assert.IsFalse(TextBox_MultiLine_Disabled_bool, "Is TextBox Enabled?");
 			Assert.AreEqual("Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper commodo primis ornare himenaeos, inceptos tellus accumsan praesent laoreet. Pharetra semper ullamcorper neque mollis vestibulum luctus gravida facilisi rhoncus, rutrum massa bibendum vitae imperdiet quisque fames dignissim, varius curae erat risus platea orci quis scelerisque. Auctor erat vestibulum enim sodales sapien nam litora rhoncus condimentum praesent, platea dui odio eros integer id gravida turpis semper nisi maecenas, nascetur dictumst sed arcu aenean varius dis leo habitant.", TextBox_MultiLine_Disabled.GetDependencyPropertyValue<string>("Text"));
 
 
