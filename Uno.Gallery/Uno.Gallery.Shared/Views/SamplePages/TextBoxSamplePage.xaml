@@ -32,8 +32,10 @@
 										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
 							<StackPanel Spacing="20">
 
-								<TextBox PlaceholderText="Default" />
-								<TextBox PlaceholderText="Disabled" IsEnabled="False" />
+								<TextBox PlaceholderText="Default"
+										 AutomationProperties.AutomationId="TextBox_Fluent"/>
+								<TextBox PlaceholderText="Disabled" IsEnabled="False"
+										 AutomationProperties.AutomationId="TextBox_Disabled_Fluent"/>
 
 							</StackPanel>
 						</smtx:XamlDisplay>
@@ -42,10 +44,12 @@
 										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
 							<StackPanel Spacing="20">
 
-								<TextBox PlaceholderText="Text" Header="Header" />
+								<TextBox PlaceholderText="Text" Header="Header"
+										  AutomationProperties.AutomationId="TextBox_Header_Fluent"/>
 								<TextBox PlaceholderText="Disabled"
 										 Header="Header"
-										 IsEnabled="False" />
+										 IsEnabled="False"
+										 AutomationProperties.AutomationId="TextBox_Header_Disabled_Fluent"/>
 
 							</StackPanel>
 						</smtx:XamlDisplay>
@@ -56,11 +60,13 @@
 
 								<TextBox Text="{StaticResource LongLongText}"
 										 TextWrapping="Wrap"
-										 AcceptsReturn="True" />
+										 AcceptsReturn="True"
+										 AutomationProperties.AutomationId="TextBox_MultiLine_Fluent"/>
 								<TextBox Text="{StaticResource LongLongText}"
 										 TextWrapping="Wrap"
 										 AcceptsReturn="True"
-										 IsEnabled="False" />
+										 IsEnabled="False"
+										 AutomationProperties.AutomationId="TextBox_MultiLine_Disabled_Fluent"/>
 
 							</StackPanel>
 						</smtx:XamlDisplay>
@@ -76,15 +82,18 @@
 										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
 							<StackPanel Spacing="20">
 
-								<TextBox PlaceholderText="Default" Style="{StaticResource FilledTextBoxStyle}" />
-								<TextBox PlaceholderText="With Icon" Style="{StaticResource FilledTextBoxStyle}">
-									<ut:ControlExtensions.Icon>
-										<SymbolIcon Symbol="Favorite" />
-									</ut:ControlExtensions.Icon>
+								<TextBox PlaceholderText="Default" Style="{StaticResource FilledTextBoxStyle}"
+										 AutomationProperties.AutomationId="TextBox_Default_Material"/>
+								<TextBox PlaceholderText="With Icon" Style="{StaticResource FilledTextBoxStyle}"
+										 AutomationProperties.AutomationId="TextBox_Default_WithIcon_Material">
+								<ut:ControlExtensions.Icon>
+									<SymbolIcon Symbol="Favorite" />
+								</ut:ControlExtensions.Icon>
 								</TextBox>
 								<TextBox PlaceholderText="Disabled"
 										 IsEnabled="False"
-										 Style="{StaticResource FilledTextBoxStyle}" />
+										 Style="{StaticResource FilledTextBoxStyle}"
+										 AutomationProperties.AutomationId="TextBox_Default_Disabled_Material"/>
 
 							</StackPanel>
 						</smtx:XamlDisplay>
@@ -93,15 +102,18 @@
 										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
 							<StackPanel Spacing="20">
 
-								<TextBox PlaceholderText="Outline" Style="{StaticResource OutlinedTextBoxStyle}" />
-								<TextBox PlaceholderText="With Icon" Style="{StaticResource OutlinedTextBoxStyle}">
+								<TextBox PlaceholderText="Outline" Style="{StaticResource OutlinedTextBoxStyle}"
+										 AutomationProperties.AutomationId="TextBox_Outlined_Material"/>
+								<TextBox PlaceholderText="With Icon" Style="{StaticResource OutlinedTextBoxStyle}"
+										  AutomationProperties.AutomationId="TextBox_Outlined_WithIcon_Material">
 									<ut:ControlExtensions.Icon>
 										<SymbolIcon Symbol="Favorite" />
 									</ut:ControlExtensions.Icon>
 								</TextBox>
 								<TextBox PlaceholderText="Outline Disabled"
 										 IsEnabled="False"
-										 Style="{StaticResource OutlinedTextBoxStyle}" />
+										 Style="{StaticResource OutlinedTextBoxStyle}"
+										 AutomationProperties.AutomationId="TextBox_Outlined_Disabled_Material" />
 
 							</StackPanel>
 						</smtx:XamlDisplay>
@@ -113,12 +125,14 @@
 								<TextBox Text="{StaticResource LongLongText}"
 										 TextWrapping="Wrap"
 										 AcceptsReturn="True"
-										 Style="{StaticResource FilledTextBoxStyle}" />
+										 Style="{StaticResource FilledTextBoxStyle}"
+										 AutomationProperties.AutomationId="TextBox_MultiLine_Material"/>
 								<TextBox Text="{StaticResource LongLongText}"
 										 TextWrapping="Wrap"
 										 AcceptsReturn="True"
 										 IsEnabled="False"
-										 Style="{StaticResource FilledTextBoxStyle}" />
+										 Style="{StaticResource FilledTextBoxStyle}"
+										 AutomationProperties.AutomationId="TextBox_MultiLine_Disabled_Material"/>
 
 							</StackPanel>
 						</smtx:XamlDisplay>
@@ -132,7 +146,8 @@
 
 						<!-- Default Single Line -->
 						<smtx:XamlDisplay UniqueKey="Cupertino_TextBoxSamplePage_DefaultSingleLine" smtx:XamlDisplayExtensions.Header="Default">
-							<TextBox PlaceholderText="Placeholder single line" Style="{StaticResource CupertinoTextBoxStyle}" />
+							<TextBox PlaceholderText="Placeholder single line" Style="{StaticResource CupertinoTextBoxStyle}"
+									  AutomationProperties.AutomationId="TextBox_Default_Cupertino"/>
 						</smtx:XamlDisplay>
 
 						<!-- Default Multi Line -->
@@ -142,14 +157,16 @@
 									 TextWrapping="Wrap"
 									 AcceptsReturn="True"
 									 VerticalContentAlignment="Top"
-									 Style="{StaticResource CupertinoTextBoxStyle}" />
+									 Style="{StaticResource CupertinoTextBoxStyle}"
+									 AutomationProperties.AutomationId="TextBox_MultiLine_Cupertino"/>
 						</smtx:XamlDisplay>
 
 						<!-- Disabled Empty -->
 						<smtx:XamlDisplay UniqueKey="Cupertino_TextBoxSamplePage_DisabledEmpty" smtx:XamlDisplayExtensions.Header="Disabled (Empty)">
 							<TextBox PlaceholderText="Placeholder"
 									 IsEnabled="False"
-									 Style="{StaticResource CupertinoTextBoxStyle}" />
+									 Style="{StaticResource CupertinoTextBoxStyle}"
+									 AutomationProperties.AutomationId="TextBox_Default_Disabled_Cupertino"/>
 						</smtx:XamlDisplay>
 
 						<!-- Disabled -->
@@ -157,7 +174,8 @@
 							<TextBox Text="This is my text"
 									 PlaceholderText="Placeholder"
 									 IsEnabled="False"
-									 Style="{StaticResource CupertinoTextBoxStyle}" />
+									 Style="{StaticResource CupertinoTextBoxStyle}"
+									 AutomationProperties.AutomationId="TextBox_MultLine_Disabled_Cupertino"/>
 						</smtx:XamlDisplay>
 
 					</StackPanel>
