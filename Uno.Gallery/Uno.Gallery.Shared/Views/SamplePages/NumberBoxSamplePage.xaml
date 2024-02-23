@@ -28,7 +28,8 @@
 								<muxc:NumberBox Header="Enter a number:"
 												Minimum="10"
 												Maximum="100"
-												PlaceholderText="10" />
+												PlaceholderText="10"
+												AutomationProperties.AutomationId="NumberBox_Simple"/>
 								<TextBlock Text="This is a description which is shown below the NumberBox"
 										   TextWrapping="WrapWholeWords"
 										   Foreground="{ThemeResource SystemControlDescriptionTextForegroundBrush}" />
@@ -39,7 +40,8 @@
 										  smtx:XamlDisplayExtensions.Header="A NumberBox that evaluates expressions">
 							<muxc:NumberBox Header="Enter an expression:"
 											PlaceholderText="1 + 2^2"
-											AcceptsExpression="True" />
+											AcceptsExpression="True"
+											AutomationProperties.AutomationId="NumberBox_Expression"/>
 						</smtx:XamlDisplay>
 
 						<smtx:XamlDisplay UniqueKey="NumberBoxSamplePage_Fluent_Spin"
@@ -61,7 +63,8 @@
 						<smtx:XamlDisplay UniqueKey="NumberBoxSamplePage_Fluent_Formatter"
 										  smtx:XamlDisplayExtensions.Header="A formatted NumberBox that rounds to the nearest 0.25">
 							<muxc:NumberBox Header="Enter a dollar amount:"
-											PlaceholderText="0.00">
+											PlaceholderText="0.00"
+											AutomationProperties.AutomationId="NumberBox_RoundOff">
 
 								<muxc:NumberBox.NumberFormatter>
 									<nf:DecimalFormatter IntegerDigits="1"
