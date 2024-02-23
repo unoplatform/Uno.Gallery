@@ -35,11 +35,6 @@ namespace Uno.Gallery.UITests
 			Round.EnterText("1.01");
 			App.PressEnter();
 			Assert.AreEqual(1, Round.GetDependencyPropertyValue<double>("Value"));
-
-
-
-
-
 		}
 
 	}
