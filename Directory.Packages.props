@@ -3,7 +3,7 @@
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
   </PropertyGroup>
   <ItemGroup>
-    <PackageVersion Include="CommunityToolkit.WinUI.Lottie" Version="7.1.2" />
+    <PackageVersion Include="CommunityToolkit.WinUI.Lottie" Version="8.0.0-rc" />
     <PackageVersion Include="CommunityToolkit.WinUI.UI.Controls" Version="7.1.2" />
     <PackageVersion Include="CommunityToolkit.WinUI.UI.Controls.DataGrid" Version="7.1.2" />
     <PackageVersion Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4" />
@@ -25,23 +25,23 @@
     <PackageVersion Include="SkiaSharp.Skottie" Version="2.88.6" />
     <PackageVersion Include="SkiaSharp.Views.Uno.WinUI" Version="2.88.6" />
     <PackageVersion Include="Svg.Skia" Version="1.0.0.1" />
-    <PackageVersion Include="Uno.CommunityToolkit.WinUI.UI.Controls" Version="7.1.200-dev.13.gef3f523648" />
-    <PackageVersion Include="Uno.CommunityToolkit.WinUI.UI.Controls.DataGrid" Version="7.1.200-dev.13.gef3f523648" />
+    <PackageVersion Include="Uno.CommunityToolkit.WinUI.UI.Controls" Version="7.1.2" />
+    <PackageVersion Include="Uno.CommunityToolkit.WinUI.UI.Controls.DataGrid" Version="7.1.2" />
     <PackageVersion Include="Uno.Core.Extensions.Compatibility" Version="4.0.1" />
     <PackageVersion Include="Uno.Core.Extensions.Disposables" Version="4.0.1" />
     <PackageVersion Include="Uno.Core.Extensions.Logging.Singleton" Version="4.0.1" />
-    <PackageVersion Include="Uno.Cupertino.WinUI" Version="4.2.0-dev.9" />
+    <PackageVersion Include="Uno.Cupertino.WinUI" Version="4.2.0-dev.18" />
     <PackageVersion Include="Uno.Diagnostics.Eventing" Version="2.1.0-dev.1" />
     <PackageVersion Include="Uno.Extensions.Logging.OSLog" Version="1.6.0-dev.2" />
     <PackageVersion Include="Uno.Extensions.Logging.WebAssembly.Console" Version="1.6.0-dev.2" />
     <PackageVersion Include="Uno.Fonts.Fluent" Version="2.3.0" />
-    <PackageVersion Include="Uno.Material.WinUI" Version="4.2.0-dev.9" />
+    <PackageVersion Include="Uno.Material.WinUI" Version="4.2.0-dev.18" />
     <PackageVersion Include="Uno.ShowMeTheXAML" Version="2.0.0-dev0015" />
     <PackageVersion Include="Uno.ShowMeTheXAML.MSBuild" Version="2.0.0-dev0015" />
-    <PackageVersion Include="Uno.Toolkit.Skia.WinUI" Version="5.2.0-dev.9" />
-    <PackageVersion Include="Uno.Toolkit.WinUI" Version="5.2.0-dev.9" />
-    <PackageVersion Include="Uno.Toolkit.WinUI.Cupertino" Version="5.2.0-dev.9" />
-    <PackageVersion Include="Uno.Toolkit.WinUI.Material" Version="5.2.0-dev.9" />
+    <PackageVersion Include="Uno.Toolkit.Skia.WinUI" Version="5.2.0-dev.37" />
+    <PackageVersion Include="Uno.Toolkit.WinUI" Version="5.2.0-dev.37" />
+    <PackageVersion Include="Uno.Toolkit.WinUI.Cupertino" Version="5.2.0-dev.37" />
+    <PackageVersion Include="Uno.Toolkit.WinUI.Material" Version="5.2.0-dev.37" />
     <PackageVersion Include="Uno.UI.Adapter.Microsoft.Extensions.Logging" Version="5.1.31" />
     <PackageVersion Include="Uno.UITest.Helpers" Version="1.1.0-dev.70" />
     <PackageVersion Include="Uno.UniversalImageLoader" Version="1.9.36" />
