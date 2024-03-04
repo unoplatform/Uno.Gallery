@@ -532,12 +532,12 @@
 														 To="0.7" />
 									</Storyboard>
 									<VisualState.StateTriggers>
-										<StateTrigger IsActive="{Binding Text, Converter={StaticResource MaterialEmptyToFalse}, RelativeSource={RelativeSource TemplatedParent}}" />
+										<StateTrigger IsActive="{Binding Text, Converter={StaticResource EmptyToFalseConverter}, RelativeSource={RelativeSource TemplatedParent}}" />
 									</VisualState.StateTriggers>
 								</VisualState>
 								<VisualState x:Name="Empty">
 									<VisualState.StateTriggers>
-										<StateTrigger IsActive="{Binding Text, Converter={StaticResource MaterialEmptyToTrue}, RelativeSource={RelativeSource TemplatedParent}}" />
+										<StateTrigger IsActive="{Binding Text, Converter={StaticResource EmptyToTrueConverter}, RelativeSource={RelativeSource TemplatedParent}}" />
 									</VisualState.StateTriggers>
 								</VisualState>
 							</VisualStateGroup>
@@ -569,7 +569,7 @@
 													  Width="20"
 													  Margin="1,0,18,0"
 													  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-													  Visibility="{Binding Path=(ut:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialNullToCollapsedConverter}, FallbackValue=Collapsed, TargetNullValue=Collapsed}" />
+													  Visibility="{Binding Path=(ut:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource NullToCollapsedConverter}, FallbackValue=Collapsed, TargetNullValue=Collapsed}" />
 								</Border>
 
 								<ScrollViewer x:Name="ContentElement"
@@ -718,12 +718,12 @@
 														 To="0.7" />
 									</Storyboard>
 									<VisualState.StateTriggers>
-										<StateTrigger IsActive="{Binding Password, Converter={StaticResource MaterialEmptyToFalse}, RelativeSource={RelativeSource TemplatedParent}}" />
+										<StateTrigger IsActive="{Binding Password, Converter={StaticResource EmptyToFalseConverter}, RelativeSource={RelativeSource TemplatedParent}}" />
 									</VisualState.StateTriggers>
 								</VisualState>
 								<VisualState x:Name="Empty">
 									<VisualState.StateTriggers>
-										<StateTrigger IsActive="{Binding Password, Converter={StaticResource MaterialEmptyToTrue}, RelativeSource={RelativeSource TemplatedParent}}" />
+										<StateTrigger IsActive="{Binding Password, Converter={StaticResource EmptyToTrueConverter}, RelativeSource={RelativeSource TemplatedParent}}" />
 									</VisualState.StateTriggers>
 								</VisualState>
 							</VisualStateGroup>
@@ -752,7 +752,7 @@
 												  Width="20"
 												  Margin="1,0,18,0"
 												  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-												  Visibility="{Binding Path=(ut:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialNullToCollapsedConverter}, FallbackValue=Collapsed, TargetNullValue=Collapsed}" />
+												  Visibility="{Binding Path=(ut:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource NullToCollapsedConverter}, FallbackValue=Collapsed, TargetNullValue=Collapsed}" />
 
 								<ScrollViewer x:Name="ContentElement"
 											  Grid.Column="1"
@@ -966,7 +966,7 @@
 												  VerticalAlignment="Center"
 												  Foreground="{ThemeResource PrimaryBrush}"
 												  Content="{Binding Path=(ut:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}}"
-												  Visibility="{Binding Path=(ut:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialNullToCollapsedConverter}, FallbackValue=Collapsed, TargetNullValue=Collapsed}" />
+												  Visibility="{Binding Path=(ut:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource NullToCollapsedConverter}, FallbackValue=Collapsed, TargetNullValue=Collapsed}" />
 
 								<!-- ContentPresenter -->
 								<ContentPresenter x:Name="ContentPresenter"
@@ -1154,7 +1154,7 @@
 										 Width="{StaticResource NeumorphicButtonIconContainerSize}"
 										 HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
 										 VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-										 Visibility="{Binding Path=(ut:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialNullToCollapsedConverter}, FallbackValue=Collapsed, TargetNullValue=Collapsed}">
+										 Visibility="{Binding Path=(ut:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource NullToCollapsedConverter}, FallbackValue=Collapsed, TargetNullValue=Collapsed}">
 									<ContentPresenter x:Name="IconPresenter"
 													  Content="{Binding Path=(ut:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}}"
 													  HorizontalAlignment="{StaticResource ButtonIconHorizontalAlignment}"
@@ -1282,7 +1282,7 @@
 
 								<Border Height="{StaticResource NeumorphicButtonIconContainerSize}"
 										Width="{StaticResource NeumorphicButtonIconContainerSize}"
-										Visibility="{Binding Path=(ut:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialNullToCollapsedConverter}, FallbackValue=Collapsed, TargetNullValue=Collapsed}">
+										Visibility="{Binding Path=(ut:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource NullToCollapsedConverter}, FallbackValue=Collapsed, TargetNullValue=Collapsed}">
 									<ContentPresenter x:Name="IconPresenter"
 													  Content="{Binding Path=(ut:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}}"
 													  Width="{StaticResource NeumorphicButtonIconSize}"
@@ -1416,15 +1416,15 @@
 										 Width="{Binding Path=(ut:ControlExtensions.IconWidth), RelativeSource={RelativeSource TemplatedParent}}"
 										 HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
 										 VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-										 Visibility="{Binding Path=(ut:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialNullToCollapsedConverter}, FallbackValue=Collapsed, TargetNullValue=Collapsed}">
+										 Visibility="{Binding Path=(ut:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource NullToCollapsedConverter}, FallbackValue=Collapsed, TargetNullValue=Collapsed}">
 									<ContentPresenter Content="{Binding Path=(ut:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}}"
 													  Foreground="{Binding Path=Foreground, RelativeSource={RelativeSource TemplatedParent}}" />
 								</Viewbox>
 
 								<!-- Icon/Content spacing -->
-								<Border Visibility="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialEmptyToCollapsed}, FallbackValue=Collapsed, TargetNullValue=Collapsed}">
+								<Border Visibility="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource EmptyToCollapsed}, FallbackValue=Collapsed, TargetNullValue=Collapsed}">
 									<Border Width="8"
-											Visibility="{Binding Path=(ut:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialNullToCollapsedConverter}, FallbackValue=Collapsed, TargetNullValue=Collapsed}" />
+											Visibility="{Binding Path=(ut:ControlExtensions.Icon), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource NullToCollapsedConverter}, FallbackValue=Collapsed, TargetNullValue=Collapsed}" />
 								</Border>
 
 								<!-- Content -->
@@ -2096,7 +2096,7 @@
 												  Content="{TemplateBinding Icon}"
 												  ContentTemplate="{TemplateBinding IconTemplate}"
 												  Foreground="{ThemeResource OnSurfaceVariantBrush}"
-												  Visibility="{Binding Icon, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource MaterialNullToCollapsedConverter}, FallbackValue=Collapsed}" />
+												  Visibility="{Binding Icon, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource NullToCollapsedConverter}, FallbackValue=Collapsed}" />
 
 								<Grid x:Name="CheckGlyphElement"
 									  Grid.Column="0"
@@ -2111,7 +2111,7 @@
 										  Data="{StaticResource MaterialCheckGlyphPathData}"
 										  Fill="{ThemeResource OnPrimaryBrush}"
 										  Stretch="Uniform"
-										  Visibility="{Binding Icon, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource MaterialEmptyOrNullToVisible}, FallbackValue=Collapsed}" />
+										  Visibility="{Binding Icon, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource EmptyOrNullToVisible}, FallbackValue=Collapsed}" />
 								</Grid>
 
 								<!-- C1: Content -->
@@ -2133,7 +2133,7 @@
 										VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
 										Foreground="{TemplateBinding Foreground}"
 										Style="{StaticResource MaterialChipDeleteIconButtonStyle}"
-										Visibility="{Binding CanRemove, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource MaterialTrueToVisible}, FallbackValue=Collapsed}" />
+										Visibility="{Binding CanRemove, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}" />
 							</Grid>
 						</Grid>
 					</utu:ShadowContainer>
@@ -2405,7 +2405,7 @@
 												 HorizontalAlignment="Right"
 												 VerticalAlignment="Top"
 												 Fill="{ThemeResource NavigationTabBarItemErrorBrush}"
-												 Visibility="{Binding BadgeValue, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialEmptyOrNullToVisible}}" />
+												 Visibility="{Binding BadgeValue, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource EmptyOrNullToVisible}}" />
 
 
 										<!-- Large Badge -->
@@ -2417,7 +2417,7 @@
 												VerticalAlignment="Top"
 												Background="{ThemeResource NavigationTabBarItemErrorBrush}"
 												CornerRadius="{ThemeResource NavigationTabBarItemLargeBadgeCornerRadius}"
-												Visibility="{Binding BadgeValue, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialEmptyOrNullToCollapsed}}">
+												Visibility="{Binding BadgeValue, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource EmptyOrNullToCollapsed}}">
 
 											<TextBlock HorizontalAlignment="Center"
 													   VerticalAlignment="Center"
@@ -2650,7 +2650,7 @@
 													 HorizontalAlignment="Right"
 													 VerticalAlignment="Top"
 													 Fill="{ThemeResource NavigationTabBarItemErrorBrush}"
-													 Visibility="{Binding BadgeValue, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialEmptyOrNullToVisible}}" />
+													 Visibility="{Binding BadgeValue, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource EmptyOrNullToVisible}}" />
 
 
 											<!-- Large Badge -->
@@ -2662,7 +2662,7 @@
 													VerticalAlignment="Top"
 													Background="{ThemeResource NavigationTabBarItemErrorBrush}"
 													CornerRadius="{ThemeResource NavigationTabBarItemLargeBadgeCornerRadius}"
-													Visibility="{Binding BadgeValue, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialEmptyOrNullToCollapsed}}">
+													Visibility="{Binding BadgeValue, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource EmptyOrNullToCollapsed}}">
 
 												<TextBlock HorizontalAlignment="Center"
 														   VerticalAlignment="Center"
@@ -2848,7 +2848,7 @@
 										 Height="{ThemeResource FabTabBarItemContentWidthOrHeight}"
 										 HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
 										 VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-										 Visibility="{Binding Path=Icon, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialNullToCollapsedConverter}, FallbackValue=Collapsed, TargetNullValue=Collapsed}">
+										 Visibility="{Binding Path=Icon, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource NullToCollapsedConverter}, FallbackValue=Collapsed, TargetNullValue=Collapsed}">
 
 									<ContentPresenter x:Name="IconPresenter"
 													  Content="{TemplateBinding Icon}"
@@ -2857,9 +2857,9 @@
 								</Viewbox>
 
 								<!-- Icon/Content spacing -->
-								<Border Visibility="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialEmptyToCollapsed}, FallbackValue=Collapsed, TargetNullValue=Collapsed}">
+								<Border Visibility="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource EmptyToCollapsed}, FallbackValue=Collapsed, TargetNullValue=Collapsed}">
 									<Border Width="{ThemeResource FabTabBarItemIconTextPadding}"
-											Visibility="{Binding Path=Icon, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialNullToCollapsedConverter}, FallbackValue=Collapsed, TargetNullValue=Collapsed}" />
+											Visibility="{Binding Path=Icon, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource NullToCollapsedConverter}, FallbackValue=Collapsed, TargetNullValue=Collapsed}" />
 								</Border>
 
 								<!-- Content -->
@@ -3792,7 +3792,7 @@
 										<Viewbox>
 											<ContentPresenter x:Name="OnIconPresenter"
 															  Content="{TemplateBinding OnContent}"
-															  Visibility="{Binding IsOn, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialTrueToVisible}}"
+															  Visibility="{Binding IsOn, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource TrueToVisible}}"
 															  VerticalAlignment="Center"
 															  HorizontalAlignment="Center"
 															  VerticalContentAlignment="Center"
@@ -3833,7 +3833,7 @@
 										<Viewbox>
 											<ContentPresenter x:Name="OffIconPresenter"
 															  Content="{TemplateBinding OffContent}"
-															  Visibility="{Binding IsOn, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialTrueToCollapsed}}"
+															  Visibility="{Binding IsOn, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource TrueToCollapsed}}"
 															  VerticalAlignment="Center"
 															  HorizontalAlignment="Center"
 															  VerticalContentAlignment="Center"
