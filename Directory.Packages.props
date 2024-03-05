@@ -42,19 +42,19 @@
     <PackageVersion Include="Uno.Toolkit.WinUI" Version="5.2.0-dev.37" />
     <PackageVersion Include="Uno.Toolkit.WinUI.Cupertino" Version="5.2.0-dev.37" />
     <PackageVersion Include="Uno.Toolkit.WinUI.Material" Version="5.2.0-dev.37" />
-    <PackageVersion Include="Uno.UI.Adapter.Microsoft.Extensions.Logging" Version="5.1.31" />
+    <PackageVersion Include="Uno.UI.Adapter.Microsoft.Extensions.Logging" Version="5.1.80" />
     <PackageVersion Include="Uno.UITest.Helpers" Version="1.1.0-dev.70" />
     <PackageVersion Include="Uno.UniversalImageLoader" Version="1.9.36" />
-    <PackageVersion Include="Uno.Wasm.Bootstrap" Version="9.0.0-dev.27" />
-    <PackageVersion Include="Uno.Wasm.Bootstrap.DevServer" Version="9.0.0-dev.27" />
-    <PackageVersion Include="Uno.WinUI" Version="5.1.31" />
-    <PackageVersion Include="Uno.WinUI.Lottie" Version="5.1.31" />
-    <PackageVersion Include="Uno.WinUI.MediaPlayer.Skia.Gtk" Version="5.1.31" />
-    <PackageVersion Include="Uno.WinUI.MediaPlayer.WebAssembly" Version="5.1.31" />
-    <PackageVersion Include="Uno.WinUI.RemoteControl" Version="5.1.31" />
-    <PackageVersion Include="Uno.WinUI.Skia.Gtk" Version="5.1.31" />
-    <PackageVersion Include="Uno.WinUI.Svg" Version="5.1.31" />
-    <PackageVersion Include="Uno.WinUI.WebAssembly" Version="5.1.31" />
+    <PackageVersion Include="Uno.Wasm.Bootstrap" Version="9.0.0-dev.35" />
+    <PackageVersion Include="Uno.Wasm.Bootstrap.DevServer" Version="9.0.0-dev.35" />
+    <PackageVersion Include="Uno.WinUI" Version="5.1.80" />
+    <PackageVersion Include="Uno.WinUI.Lottie" Version="5.1.80" />
+    <PackageVersion Include="Uno.WinUI.MediaPlayer.Skia.Gtk" Version="5.1.80" />
+    <PackageVersion Include="Uno.WinUI.MediaPlayer.WebAssembly" Version="5.1.80" />
+    <PackageVersion Include="Uno.WinUI.RemoteControl" Version="5.1.80" />
+    <PackageVersion Include="Uno.WinUI.Skia.Gtk" Version="5.1.80" />
+    <PackageVersion Include="Uno.WinUI.Svg" Version="5.1.80" />
+    <PackageVersion Include="Uno.WinUI.WebAssembly" Version="5.1.80" />
     <PackageVersion Include="VideoLAN.LibVLC.Windows" Version="3.0.18" />
     <PackageVersion Include="Xamarin.Google.Android.Material" Version="1.6.0" />
     <PackageVersion Include="Xamarin.UITest" Version="4.1.4" />

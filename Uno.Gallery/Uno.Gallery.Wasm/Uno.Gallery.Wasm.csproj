@@ -25,6 +25,7 @@
 		<WasmShellEmccLinkOptimization>false</WasmShellEmccLinkOptimization>
 		<WasmShellEnableEmccProfiling>true</WasmShellEnableEmccProfiling>
 		<UnoXamlResourcesTrimming>true</UnoXamlResourcesTrimming>
+		<WasmShellObfuscateAssemblies>true</WasmShellObfuscateAssemblies>
 		
 		<!--
 		Uncomment this block to generate a profile
