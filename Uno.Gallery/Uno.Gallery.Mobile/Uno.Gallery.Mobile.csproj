@@ -85,9 +85,6 @@
 			</PropertyGroup>
 		</When>
 		<When Condition="'$(TargetFramework)'=='net7.0-ios'">
-			<ItemGroup>
-				<PackageReference Include="Uno.Extensions.Logging.OSLog" />
-			</ItemGroup>
 			<ItemGroup Condition="'$(Configuration)'=='Release'">
 				<TrimmableAssembly Include="CommunityToolkit.WinUI.UI" />
 			</ItemGroup>
@@ -114,9 +111,6 @@
 			</ItemGroup>
 		</When>
 		<When Condition="'$(TargetFramework)'=='net7.0-maccatalyst'">
-			<ItemGroup>
-				<PackageReference Include="Uno.Extensions.Logging.OSLog" />
-			</ItemGroup>
 			<PropertyGroup>
 				<!-- https://github.com/xamarin/xamarin-macios/issues/14686 -->
 				<_LibMonoLinkMode>static</_LibMonoLinkMode>
