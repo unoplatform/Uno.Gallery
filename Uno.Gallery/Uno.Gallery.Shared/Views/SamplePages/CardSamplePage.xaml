@@ -298,7 +298,7 @@
 									  AvatarContent="ms-appx:///Assets/Avatar.png"
 									  SupportingContent="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor."
 									  MediaContent="ms-appx:///Assets/LargeMedia.png"
-									  Style="{StaticResource AvatarElevatedCardStyle}"
+									  Style="{StaticResource AvatarOutlinedCardStyle}"
                                       AutomationProperties.AutomationId="Disabled_Outlined_Card"
 									  IsEnabled="False">
 
