@@ -55,15 +55,87 @@
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 		<local:SamplePageLayout>
+			<local:SamplePageLayout.MaterialTemplate>
+				<DataTemplate>
+					<StackPanel>
+						<smtx:XamlDisplay UniqueKey="PipsPagerSamplePage_Material_HorizontalOrientation"
+										  smtx:XamlDisplayExtensions.Header="PipsPager with horizontal orientation">
+
+							<muxc:PipsPager NumberOfPages="15"
+											Orientation="Horizontal"
+											Style="{StaticResource PipsPagerStyle}" />
+
+						</smtx:XamlDisplay>
+
+						<smtx:XamlDisplay UniqueKey="PipsPagerSamplePage_Material_VerticalOrientation"
+										  smtx:XamlDisplayExtensions.Header="PipsPager with vertical orientation">
+
+							<muxc:PipsPager NumberOfPages="15"
+											Orientation="Vertical"
+											Style="{StaticResource PipsPagerStyle}" />
+
+						</smtx:XamlDisplay>
+
+						<smtx:XamlDisplay UniqueKey="PipsPagerSamplePage_Material_MaxPips"
+										  smtx:XamlDisplayExtensions.Header="PipsPager with 10 visible glyphs">
+
+							<muxc:PipsPager NumberOfPages="15"
+											MaxVisiblePips="10"
+											Style="{StaticResource PipsPagerStyle}" />
+
+						</smtx:XamlDisplay>
+
+						<smtx:XamlDisplay UniqueKey="PipsPagerSamplePage_Material_Visibility"
+										  smtx:XamlDisplayExtensions.Header="PipsPager with navigation buttons">
+
+							<muxc:PipsPager NumberOfPages="15"
+											SelectedPageIndex="2"
+											NextButtonVisibility="Visible"
+											PreviousButtonVisibility="Visible"
+											Style="{StaticResource PipsPagerStyle}" />
+
+						</smtx:XamlDisplay>
+
+						<smtx:XamlDisplay UniqueKey="PipsPagerSamplePage_Material_Visibility_OnPointerOver"
+										  smtx:XamlDisplayExtensions.Header="PipsPager with navigation buttons on hover">
+
+							<muxc:PipsPager NumberOfPages="15"
+											SelectedPageIndex="2"
+											NextButtonVisibility="VisibleOnPointerOver"
+											PreviousButtonVisibility="VisibleOnPointerOver"
+											Style="{StaticResource PipsPagerStyle}" />
+
+						</smtx:XamlDisplay>
+
+						<smtx:XamlDisplay UniqueKey="PipsPagerSamplePage_Material_CollectionControl"
+										  smtx:XamlDisplayExtensions.Header="PipsPager integrated with a FlipView">
+
+							<StackPanel>
+								<FlipView x:Name="MaterialGallery"
+										  MaxWidth="400"
+										  Height="270"
+										  ItemsSource="{StaticResource items}" />
+
+								<muxc:PipsPager x:Name="FlipViewMaterialPipsPager"
+												Style="{StaticResource PipsPagerStyle}"
+												HorizontalAlignment="Center"
+												Margin="0, 12, 0, 0"
+												NumberOfPages="{Binding Count, Source={StaticResource items}}"
+												SelectedPageIndex="{Binding SelectedIndex, ElementName=MaterialGallery, Mode=TwoWay}" />
+							</StackPanel>
+						</smtx:XamlDisplay>
+					</StackPanel>
+				</DataTemplate>
+			</local:SamplePageLayout.MaterialTemplate>
+			
 			<local:SamplePageLayout.FluentTemplate>
 				<DataTemplate>
 					<StackPanel>
-
 						<smtx:XamlDisplay UniqueKey="PipsPagerSamplePage_Fluent_HorizontalOrientation"
 										  smtx:XamlDisplayExtensions.Header="PipsPager with horizontal orientation">
 
 							<muxc:PipsPager NumberOfPages="15"
-											Orientation="Horizontal"/>
+											Orientation="Horizontal" />
 
 						</smtx:XamlDisplay>
 
@@ -71,7 +143,7 @@
 										  smtx:XamlDisplayExtensions.Header="PipsPager with vertical orientation">
 
 							<muxc:PipsPager NumberOfPages="15"
-											Orientation="Vertical"/>
+											Orientation="Vertical" />
 
 						</smtx:XamlDisplay>
 
@@ -79,7 +151,7 @@
 										  smtx:XamlDisplayExtensions.Header="PipsPager with 10 visible glyphs">
 
 							<muxc:PipsPager NumberOfPages="15"
-											MaxVisiblePips="10"/>
+											MaxVisiblePips="10" />
 
 						</smtx:XamlDisplay>
 
@@ -89,7 +161,7 @@
 							<muxc:PipsPager NumberOfPages="15"
 											SelectedPageIndex="2"
 											NextButtonVisibility="Visible"
-											PreviousButtonVisibility="Visible"/>
+											PreviousButtonVisibility="Visible" />
 
 						</smtx:XamlDisplay>
 
@@ -99,7 +171,7 @@
 							<muxc:PipsPager NumberOfPages="15"
 											SelectedPageIndex="2"
 											NextButtonVisibility="VisibleOnPointerOver"
-											PreviousButtonVisibility="VisibleOnPointerOver"/>
+											PreviousButtonVisibility="VisibleOnPointerOver" />
 
 						</smtx:XamlDisplay>
 
@@ -107,19 +179,18 @@
 										  smtx:XamlDisplayExtensions.Header="PipsPager integrated with a FlipView">
 
 							<StackPanel>
-								<FlipView x:Name="Gallery"
+								<FlipView x:Name="FluentGallery"
 										  MaxWidth="400"
 										  Height="270"
 										  ItemsSource="{StaticResource items}" />
 
-								<muxc:PipsPager x:Name="FlipViewPipsPager"
+								<muxc:PipsPager x:Name="FlipViewFluentPipsPager"
 												HorizontalAlignment="Center"
 												Margin="0, 12, 0, 0"
 												NumberOfPages="{Binding Count, Source={StaticResource items}}"
-												SelectedPageIndex="{Binding SelectedIndex, ElementName=Gallery, Mode=TwoWay}"/>
+												SelectedPageIndex="{Binding SelectedIndex, ElementName=FluentGallery, Mode=TwoWay}" />
 							</StackPanel>
 						</smtx:XamlDisplay>
-
 					</StackPanel>
 				</DataTemplate>
 			</local:SamplePageLayout.FluentTemplate>
