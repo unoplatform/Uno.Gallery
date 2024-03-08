@@ -23,7 +23,7 @@
     <PackageVersion Include="NunitXml.TestLogger" Version="3.0.131" />
     <PackageVersion Include="nventive.Nimue.Application.Packaging" Version="0.1.0-alpha.58" />
     <PackageVersion Include="SkiaSharp.Skottie" Version="2.88.6" />
-    <PackageVersion Include="SkiaSharp.Views.Uno.WinUI" Version="2.88.6" />
+    <PackageVersion Include="SkiaSharp.Views.Uno.WinUI" Version="2.88.7" />
     <PackageVersion Include="Svg.Skia" Version="1.0.0.1" />
     <PackageVersion Include="Uno.CommunityToolkit.WinUI.UI.Controls" Version="7.1.2" />
     <PackageVersion Include="Uno.CommunityToolkit.WinUI.UI.Controls.DataGrid" Version="7.1.2" />
