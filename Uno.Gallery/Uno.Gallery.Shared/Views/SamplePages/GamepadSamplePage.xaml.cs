@@ -97,7 +97,7 @@ namespace Uno.Gallery.Views.Samples
 			UpdateGamepads();
 		}
 
-		private async void UpdateGamepads()
+		private void UpdateGamepads()
 		{
 			_ = App.Instance.MainWindow.DispatcherQueue.TryEnqueue(DispatcherQueuePriority.Normal, () =>
 			{

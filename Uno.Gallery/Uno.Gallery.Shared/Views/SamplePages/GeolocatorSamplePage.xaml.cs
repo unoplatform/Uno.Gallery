@@ -161,12 +161,12 @@ namespace Uno.Gallery.Views.Samples
             });
         }
 
-        private async void ShowMessageGeolocationAccessDenied()
+        private void ShowMessageGeolocationAccessDenied()
         {
             // Code to handle access to location services denied.
         }
 
-        private async void ShowMessageGeolocationAccessUnspecified()
+        private void ShowMessageGeolocationAccessUnspecified()
         {
             // Code to handle access to location services with unspecified status.
         }
