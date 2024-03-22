@@ -7,6 +7,7 @@ trigger:
       - stable
       - release/stable/*
       - legacy/*
+      - feature/*
 
   paths:
     include:
@@ -27,6 +28,7 @@ pr:
       - stable
       - release/stable/*
       - legacy/*
+      - feature/*
 
   paths:
     include:
@@ -43,6 +45,13 @@ variables:
   IsCanaryBranch: $[startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries/')]
   
 jobs:
+- job: Conventional_Commits_Validation
+  pool:
+    vmImage: ubuntu-latest
+
+  steps:
+    - template: .github/workflows/azure-devops-commitsar.yml
+
 - job: Windows_Android_Mobile
   strategy:
     maxParallel: 3
