@@ -126,7 +126,6 @@
 			<PropertyGroup Condition="'$(Configuration)'=='Release' and '$(System_PullRequest_IsFork)'!='True'">
 				<MtouchUseLlvm>true</MtouchUseLlvm>
 				<CodeSigningKey>Apple Distribution: Uno Platform Inc. (PD74CHS9Z5)</CodeSigningKey>
-				<PackageSigningKey>3rd Party Mac Developer Installer</PackageSigningKey>
 				<CreatePackage>true</CreatePackage>
 				<EnablePackageSigning>true</EnablePackageSigning>
 				<EnableCodeSigning>true</EnableCodeSigning>

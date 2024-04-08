@@ -122,17 +122,7 @@ jobs:
       certSecureFile: UnoPlatform-Apple-Distribution.p12
       certPwd: $(appleappstorecertificatepassword)
       keychain: temp
-      # disabled because of azure devops failing to uninstall as of 2022-11-16
-      # deleteCert: true
-
-  - task: InstallAppleCertificate@2
-    displayName: Install Certificate
-    inputs:
-      certSecureFile: UnoPlatform-MacInstaller.p12
-      certPwd: $(appleappstorecertificatepassword)
-      keychain: temp
-      # disabled because of azure devops failing to uninstall as of 2022-11-16
-      # deleteCert: true
+      deleteCert: true
 
   - task: InstallAppleProvisioningProfile@1
     displayName: 'Install Apple Provisioning Profile'
