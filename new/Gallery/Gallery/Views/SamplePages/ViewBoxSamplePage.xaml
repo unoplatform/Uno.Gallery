@@ -1,0 +1,72 @@
+﻿<Page x:Class="Uno.Gallery.Views.Samples.ViewBoxSamplePage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:local="using:Uno.Gallery"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  xmlns:smtx="using:ShowMeTheXAML"
+	  xmlns:todo="what should be done"
+	  mc:Ignorable="d todo">
+
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<local:SamplePageLayout>
+			<local:SamplePageLayout.FluentTemplate>
+				<DataTemplate>
+					<StackPanel>
+
+						<smtx:XamlDisplay UniqueKey="ViewBoxSamplePage_Default"
+										  smtx:XamlDisplayExtensions.Header="Default">
+							<StackPanel Orientation="vertical">
+
+								<!-- Size Slider -->
+								<Slider x:Name="SizeSlider"
+										HorizontalAlignment="Center"
+										Width="200"
+										Maximum="400"
+										Minimum="20"
+										Value="200"
+										todo:Style="{StaticResource MaterialSliderStyle}" />
+
+								<!-- ViewBox -->
+								<Viewbox Height="{Binding Value, ElementName=SizeSlider, Mode=OneWay}"
+										 Width="{Binding Value, ElementName=SizeSlider, Mode=OneWay}"
+										 StretchDirection="Both"
+										 VerticalAlignment="Top"
+										 Margin="0,12,0,0">
+
+									<StackPanel Background="{ThemeResource OnBackgroundBrush}">
+										<StackPanel Orientation="Horizontal">
+
+											<Rectangle Fill="{StaticResource UnoGreenColor}"
+													   Height="10"
+													   Width="40" />
+
+											<Rectangle Fill="{StaticResource UnoPurpleColor}"
+													   Height="10"
+													   Width="40" />
+
+											<Rectangle Fill="{StaticResource UnoRedColor}"
+													   Height="10"
+													   Width="40" />
+
+											<Rectangle Fill="{StaticResource UnoBlueColor}"
+													   Height="10"
+													   Width="40" />
+										</StackPanel>
+
+										<!-- Text -->
+										<TextBlock Text="Some text"
+												   Style="{StaticResource TitleLarge}"
+												   Foreground="{ThemeResource BackgroundBrush}" 
+												   HorizontalAlignment="Center"
+												   Margin="0,0,0,4"/>
+									</StackPanel>
+								</Viewbox>
+							</StackPanel>
+						</smtx:XamlDisplay>
+					</StackPanel>
+				</DataTemplate>
+			</local:SamplePageLayout.FluentTemplate>
+		</local:SamplePageLayout>
+	</Grid>
+</Page>

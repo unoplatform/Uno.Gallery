@@ -1,0 +1,168 @@
+﻿<Page x:Class="Uno.Gallery.Views.Samples.AutoSuggestBoxSamplePage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  xmlns:smtx="using:ShowMeTheXAML"
+	  xmlns:local="using:Uno.Gallery"
+	  mc:Ignorable="d">
+
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<local:SamplePageLayout>
+
+			<local:SamplePageLayout.FluentTemplate>
+				<DataTemplate>
+					<StackPanel>
+
+						<smtx:XamlDisplay UniqueKey="AutoSuggestBoxSamplePage_Fluent_Default"
+										  smtx:XamlDisplayExtensions.Header="Default"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+
+							<StackPanel>
+								<!--
+private void AutoSuggestBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+{
+	if (string.IsNullOrEmpty(sender.Text))
+	{
+		return;
+	}
+								
+	if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
+	{
+		sender.ItemsSource = viewModel.GetSuggestedItems(sender.Text).Select(sample => sample.Title).ToList();
+	}
+}
+
+private void AutoSuggestBox_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
+{
+	SelectedString = args.SelectedItem.ToString();
+}
+
+public string SelectedString { get => GetProperty<string>(); set => SetProperty(value); }
+								
+public List<Sample> GetSuggestedItems(string searchQuery)
+{
+	if (string.IsNullOrEmpty(searchQuery))
+	{
+		return null;
+	}
+
+	var splitText = searchQuery.ToLower().Split(" ", StringSplitOptions.RemoveEmptyEntries);
+
+	var samples = App.GetSamples()
+		.OrderByDescending(sample => sample.SortOrder.HasValue)
+		.ThenBy(sample => sample.SortOrder)
+		.ThenBy(sample => sample.Title)
+		.Where(sample => splitText.All(key => sample.Title.IndexOf(key, StringComparison.OrdinalIgnoreCase) >= 0));
+
+	return samples.ToList();
+}
+-->
+
+								<AutoSuggestBox TextChanged="AutoSuggestBox_TextChanged"
+												SuggestionChosen="AutoSuggestBox_SuggestionChosen"
+												Width="300"
+												AutomationProperties.AutomationId="fluent_AutoSuggestBox" 
+												HorizontalAlignment="Left"/>
+
+								<TextBlock Margin="0,20,0,0"
+										   Text="{Binding Data.SelectedString}"
+										   Visibility="{Binding Data.SelectedString, Converter={StaticResource NullToCollapsed}}"/>
+							</StackPanel>
+						</smtx:XamlDisplay>
+
+						<smtx:XamlDisplay UniqueKey="AutoSuggestBoxSamplePage_Fluent_SearchBox"
+										  smtx:XamlDisplayExtensions.Header="AutoSuggestBox with SearchBox experience"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+
+							<StackPanel>
+								<!--
+private void SearchBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+{
+	if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
+	{
+		sender.ItemsSource = viewModel.GetSuggestedItems(sender.Text);
+	}
+}
+
+private void SearchBox_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
+{
+	if (args is not null)
+	{
+		viewModel.SearchBoxSelectedItem = (Sample)args.ChosenSuggestion;
+	}
+}
+
+private void SearchBox_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
+{
+	viewModel.SearchBoxSelectedItem = (Sample)args.SelectedItem;
+}
+
+public Sample SearchBoxSelectedItem { get => GetProperty<Sample>(); set => SetProperty(value); }
+
+public List<Sample> GetSuggestedItems(string searchQuery)
+{
+	if (string.IsNullOrEmpty(searchQuery))
+	{
+		return null;
+	}
+
+	var splitText = searchQuery.ToLower().Split(" ", StringSplitOptions.RemoveEmptyEntries);
+
+	var samples = App.GetSamples()
+		.OrderByDescending(sample => sample.SortOrder.HasValue)
+		.ThenBy(sample => sample.SortOrder)
+		.ThenBy(sample => sample.Title)
+		.Where(sample => splitText.All(key => sample.Title.IndexOf(key, StringComparison.OrdinalIgnoreCase) >= 0));
+
+	return samples.ToList();
+}
+-->
+
+								<AutoSuggestBox PlaceholderText="Type a control name"
+												TextChanged="SearchBox_TextChanged"
+												TextMemberPath="Title"
+												QueryIcon="Find"
+												AutomationProperties.AutomationId="fluent_AutoSuggestBox_WithText" 
+												Width="300"
+												HorizontalAlignment="Left"
+												QuerySubmitted="SearchBox_QuerySubmitted"
+												SuggestionChosen="SearchBox_SuggestionChosen">
+
+									<AutoSuggestBox.ItemTemplate>
+										<DataTemplate x:DataType="local:Sample">
+											<StackPanel Spacing="4"
+														Margin="0,8">
+												<TextBlock Text="{Binding Title}"
+														   FontWeight="Bold" />
+												<TextBlock Text="{Binding Description}"
+														   TextWrapping="WrapWholeWords"
+														   Visibility="{Binding Description, Converter={StaticResource IsNullOrEmptyToCollapsed}}" />
+											</StackPanel>
+										</DataTemplate>
+									</AutoSuggestBox.ItemTemplate>
+								</AutoSuggestBox>
+
+								<StackPanel Spacing="4"
+											Margin="0,20,0,0"
+											Visibility="{Binding Data.SearchBoxSelectedItem, Converter={StaticResource NullToCollapsed}}">
+
+									<TextBlock Text="{Binding Data.SearchBoxSelectedItem.Title}"
+											   FontWeight="Bold" />
+									<TextBlock>
+										<Run Text="Category: " />
+										<Run Text="{Binding Data.SearchBoxSelectedItem.Category}" />
+									</TextBlock>
+									<TextBlock Text="{Binding Data.SearchBoxSelectedItem.Description}"
+											   TextWrapping="WrapWholeWords"
+											   Visibility="{Binding Data.SearchBoxSelectedItem.Description, Converter={StaticResource IsNullOrEmptyToCollapsed}}" />
+								</StackPanel>
+
+							</StackPanel>
+						</smtx:XamlDisplay>
+					</StackPanel>
+				</DataTemplate>
+			</local:SamplePageLayout.FluentTemplate>
+		</local:SamplePageLayout>
+	</Grid>
+</Page>

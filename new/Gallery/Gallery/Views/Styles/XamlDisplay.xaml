@@ -1,0 +1,237 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+					xmlns:smtx="using:ShowMeTheXAML"
+					xmlns:local="using:Uno.Gallery">
+
+	<Style x:Key="ExpanderXamlDisplayStyle"
+		   TargetType="smtx:XamlDisplay">
+
+		<Setter Property="smtx:XamlDisplayExtensions.IgnorePath"
+				Value="XamlDisplay" />
+		<Setter Property="Margin"
+				Value="0,16,0,0" />
+		<Setter Property="BorderBrush"
+				Value="{ThemeResource DividerBrush}" />
+		<Setter Property="BorderThickness"
+				Value="1" />
+		<Setter Property="Formatter"
+				Value="{x:Null}" />
+		<Setter Property="Background"
+				Value="{ThemeResource SampleSecondBackgroundBrush}" />
+
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="smtx:XamlDisplay">
+					<StackPanel>
+						<!-- Header -->
+						<TextBlock Text="{Binding Path=(smtx:XamlDisplayExtensions.Header), RelativeSource={RelativeSource TemplatedParent}}"
+								   Style="{StaticResource TitleLarge}"
+								   Foreground="{ThemeResource OnBackgroundBrush}"
+								   Visibility="{Binding Path=(smtx:XamlDisplayExtensions.Header), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource IsNullOrEmptyToCollapsed}, FallbackValue=Collapsed}" />
+
+						<!-- Description -->
+						<TextBlock Text="{Binding Path=(smtx:XamlDisplayExtensions.Description), RelativeSource={RelativeSource TemplatedParent}}"
+								   Style="{StaticResource BodyMedium}"
+								   Foreground="{ThemeResource OnBackgroundBrush}"
+								   Opacity="0.8"
+								   Visibility="{Binding Path=(smtx:XamlDisplayExtensions.Description), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource IsNullOrEmptyToCollapsed}, FallbackValue=Collapsed}"
+								   Margin="0,16,0,0" />
+
+						<Grid BorderBrush="{TemplateBinding BorderBrush}"
+							  BorderThickness="{TemplateBinding BorderThickness}"
+							  Margin="0,16,0,0">
+
+							<Grid.RowDefinitions>
+								<RowDefinition Height="Auto" />
+								<RowDefinition Height="Auto" />
+								<RowDefinition Height="Auto" />
+							</Grid.RowDefinitions>
+
+							<UserControl>
+								<VisualStateManager.VisualStateGroups>
+									<VisualStateGroup>
+										<VisualState x:Name="WideState">
+											<VisualState.StateTriggers>
+												<AdaptiveTrigger MinWindowWidth="970" />
+											</VisualState.StateTriggers>
+											<VisualState.Setters>
+												<Setter Target="Options.(Grid.Column)"
+														Value="1" />
+												<Setter Target="Options.(Grid.Row)"
+														Value="0" />
+												<Setter Target="Options.HorizontalAlignment"
+														Value="Right" />
+											</VisualState.Setters>
+										</VisualState>
+									</VisualStateGroup>
+								</VisualStateManager.VisualStateGroups>
+
+								<Grid Background="{TemplateBinding Background}">
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="*" />
+										<ColumnDefinition Width="auto" />
+									</Grid.ColumnDefinitions>
+									<Grid.RowDefinitions>
+										<RowDefinition Height="*" />
+										<RowDefinition Height="auto" />
+									</Grid.RowDefinitions>
+
+									<!-- Content -->
+									<ContentPresenter x:Name="MainContent"
+													  Padding="16"
+													  Content="{TemplateBinding Content}" />
+
+									<!-- Options -->
+									<Border x:Name="Options"
+											Grid.Row="1"
+											Grid.Column="0"
+											CornerRadius="8"
+											HorizontalAlignment="Stretch"
+											VerticalAlignment="Top"
+											Margin="8"
+											Padding="16"
+											Visibility="{Binding Path=(smtx:XamlDisplayExtensions.Options), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource NullToCollapsed}, FallbackValue=Collapsed}"
+											Background="{ThemeResource CardBackgroundFillColorDefaultBrush}">
+										<ContentPresenter x:Name="OptionsPresenter"
+														  HorizontalAlignment="Stretch"
+														  MinWidth="220"
+														  Content="{Binding Path=(smtx:XamlDisplayExtensions.Options), RelativeSource={RelativeSource TemplatedParent}}" />
+									</Border>
+								</Grid>
+							</UserControl>
+
+							<Grid Grid.Row="1"
+								  Padding="16,0,0,0"
+								  Background="{ThemeResource SampleFourthBackgroundBrush}">
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="Auto" />
+									<ColumnDefinition Width="*" />
+									<ColumnDefinition Width="Auto" />
+									<ColumnDefinition Width="Auto" />
+								</Grid.ColumnDefinitions>
+
+								<TextBlock Text="XAML"
+										   VerticalAlignment="Center"
+										   Foreground="{ThemeResource OnSurfaceMediumBrush}"
+										   Style="{StaticResource BodyMedium}" />
+
+								<!-- Copy Button -->
+								<Button Grid.Column="2"
+										ToolTipService.ToolTip="Copy XAML"
+										local:ClipboardExtensions.CopyTrigger="ButtonClicked"
+										local:ClipboardExtensions.CopyContent="{Binding Path=(smtx:XamlDisplayExtensions.PrettyXaml), RelativeSource={RelativeSource TemplatedParent}}"
+										Style="{StaticResource XamlDisplayCopyButtonStyle}" />
+
+								<!-- Reveal Button -->
+								<ToggleButton Grid.Column="3"
+											  x:Name="RevealButton"
+											  ToolTipService.ToolTip="Show XAML"
+											  IsChecked="{Binding Path=(smtx:XamlDisplayExtensions.ShowXaml), RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+											  Style="{StaticResource XamlDisplayExpandToggleButtonStyle}" />
+							</Grid>
+
+							<ScrollViewer Grid.Row="2"
+										  Background="{ThemeResource SampleThirdBackgroundBrush}"
+										  HorizontalScrollBarVisibility="Auto"
+										  VerticalScrollBarVisibility="Disabled"
+										  Visibility="{Binding Path=(smtx:XamlDisplayExtensions.ShowXaml), RelativeSource={RelativeSource TemplatedParent}}">
+								<!-- Xaml -->
+								<TextBlock Text="{Binding Path=(smtx:XamlDisplayExtensions.PrettyXaml), RelativeSource={RelativeSource TemplatedParent}}"
+										   IsTextSelectionEnabled="True"
+										   FontFamily="Consolas"
+										   Foreground="{ThemeResource OnSurfaceBrush}"
+										   Margin="16" />
+							</ScrollViewer>
+						</Grid>
+					</StackPanel>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style x:Key="ContentOnlyXamlDisplayStyle"
+		   TargetType="smtx:XamlDisplay">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="smtx:XamlDisplay">
+					<ContentPresenter Content="{TemplateBinding Content}" />
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style x:Key="DefaultXamlPresenterStyle"
+		   TargetType="smtx:XamlPresenter">
+		<Setter Property="Formatter"
+				Value="{StaticResource NiceFormatter}" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="smtx:XamlPresenter">
+					<Grid>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="Auto" />
+							<RowDefinition Height="Auto" />
+							<RowDefinition Height="Auto" />
+						</Grid.RowDefinitions>
+
+						<ContentControl Content="{Binding Tag, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+										VerticalContentAlignment="Center" />
+
+						<Grid Grid.Row="1"
+							  Padding="16,0,0,0"
+							  Background="{ThemeResource SampleFourthBackgroundBrush}">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="Auto" />
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="Auto" />
+								<ColumnDefinition Width="Auto" />
+							</Grid.ColumnDefinitions>
+
+							<TextBlock Text="XAML"
+									   VerticalAlignment="Center"
+									   Foreground="{ThemeResource OnSurfaceMediumBrush}"
+									   Style="{StaticResource BodyMedium}" />
+
+							<!-- Copy Button -->
+							<Button Grid.Column="2"
+									ToolTipService.ToolTip="Copy XAML"
+									local:ClipboardExtensions.CopyTrigger="ButtonClicked"
+									local:ClipboardExtensions.CopyContent="{TemplateBinding Xaml}"
+									Style="{StaticResource XamlDisplayCopyButtonStyle}" />
+
+							<!-- Reveal Button -->
+							<ToggleButton Grid.Column="3"
+										  x:Name="RevealButton"
+										  ToolTipService.ToolTip="Show XAML"
+										  IsChecked="False"
+										  Style="{StaticResource XamlDisplayExpandToggleButtonStyle}" />
+						</Grid>
+
+						<ScrollViewer Grid.Row="2"
+									  Background="{ThemeResource SampleThirdBackgroundBrush}"
+									  HorizontalScrollBarVisibility="Auto"
+									  VerticalScrollBarVisibility="Disabled"
+									  Visibility="{Binding ElementName=RevealButton, Path=IsChecked, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}">
+							<!-- Xaml -->
+							<TextBlock Text="{TemplateBinding Xaml}"
+									   IsTextSelectionEnabled="True"
+									   FontFamily="Consolas"
+									   Foreground="{ThemeResource OnSurfaceBrush}"
+									   Margin="16" />
+						</ScrollViewer>
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style TargetType="smtx:XamlDisplay"
+		   BasedOn="{StaticResource ExpanderXamlDisplayStyle}" />
+
+	<Style TargetType="smtx:XamlPresenter"
+		   BasedOn="{StaticResource DefaultXamlPresenterStyle}" />
+
+	<smtx:NiceFormatter x:Key="NiceFormatter" />
+
+</ResourceDictionary>

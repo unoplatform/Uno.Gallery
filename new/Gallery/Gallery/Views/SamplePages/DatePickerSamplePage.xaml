@@ -1,0 +1,96 @@
+﻿<Page x:Class="Uno.Gallery.Views.Samples.DatePickerSamplePage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:local="using:Uno.Gallery"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  xmlns:mobile="http://uno.ui/mobile"
+	  xmlns:not_mobile="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:smtx="using:ShowMeTheXAML"
+	  xmlns:ios="http://uno.ui/ios"
+	  xmlns:not_win="http://uno.ui/not_win"
+	  xmlns:android="http://uno.ui/android"
+	  mc:Ignorable="d ios android not_win mobile">
+
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<local:SamplePageLayout>
+
+			<local:SamplePageLayout.MaterialTemplate>
+				<DataTemplate>
+					<smtx:XamlDisplay UniqueKey="DatePickerSamplePage_Material"
+									  smtx:XamlDisplayExtensions.Header="Default Material"
+									  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+						<StackPanel Spacing="20">
+
+							<DatePicker Header="Set Date"
+										not_win:UseNativeStyle="False"
+										HorizontalAlignment="Left"
+										Style="{StaticResource DatePickerStyle}" />
+							<DatePicker Header="DatePicker Disabled"
+										not_win:UseNativeStyle="False"
+										HorizontalAlignment="Left"
+										Style="{StaticResource DatePickerStyle}"
+										IsEnabled="False" />
+
+						</StackPanel>
+					</smtx:XamlDisplay>
+				</DataTemplate>
+			</local:SamplePageLayout.MaterialTemplate>
+			<local:SamplePageLayout.FluentTemplate>
+				<DataTemplate>
+					<smtx:XamlDisplay UniqueKey="DatePickerSamplePage_Fluent"
+									  smtx:XamlDisplayExtensions.Header="Default"
+									  smtx:XamlDisplayExtensions.Description=" The DatePicker uses the Fluent style for the text button as well as the flyout picker (with UseNativeStyle set to False)."
+									  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+						<StackPanel Spacing="20">
+
+							<DatePicker not_win:UseNativeStyle="False" />
+							<DatePicker Header="DatePicker Disabled"
+										IsEnabled="False"
+										not_win:UseNativeStyle="False" />
+
+						</StackPanel>
+					</smtx:XamlDisplay>
+				</DataTemplate>
+			</local:SamplePageLayout.FluentTemplate>
+			<local:SamplePageLayout.CupertinoTemplate>
+				<DataTemplate>
+					<smtx:XamlDisplay UniqueKey="DatePickerSamplePage_Cupertino"
+									  smtx:XamlDisplayExtensions.Header="Default Cupertino"
+									  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+						<StackPanel Spacing="20">
+
+							<DatePicker Header="Enter Date"
+										not_win:UseNativeStyle="False"
+										HorizontalAlignment="Left"
+										Style="{StaticResource CupertinoDatePickerStyle}" />
+							<DatePicker Header="DatePicker Disabled"
+										IsEnabled="False"
+										not_win:UseNativeStyle="False"
+										HorizontalAlignment="Left"
+										Style="{StaticResource CupertinoDatePickerStyle}" />
+
+						</StackPanel>
+					</smtx:XamlDisplay>
+				</DataTemplate>
+			</local:SamplePageLayout.CupertinoTemplate>
+			<local:SamplePageLayout.NativeTemplate>
+				<mobile:DataTemplate>
+					<smtx:XamlDisplay UniqueKey="DatePickerSamplePage_Native"
+									  smtx:XamlDisplayExtensions.Header="Default with Native picker"
+									  smtx:XamlDisplayExtensions.Description="The DatePicker is composed of two parts: the text button which uses the Fluent style, and the Flyout Picker which is native to the platform (with UseNativeStyle set to True by default)."
+									  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+						<StackPanel Spacing="20">
+
+							<DatePicker />
+							<DatePicker Header="DatePicker Disabled"
+										IsEnabled="False" />
+
+						</StackPanel>
+					</smtx:XamlDisplay>
+				</mobile:DataTemplate>
+			</local:SamplePageLayout.NativeTemplate>
+
+		</local:SamplePageLayout>
+	</Grid>
+</Page>

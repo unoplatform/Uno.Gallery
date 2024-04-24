@@ -1,0 +1,98 @@
+﻿<Page x:Class="Uno.Gallery.Views.Samples.FlipViewSamplePage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:local="using:Uno.Gallery"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  xmlns:smtx="using:ShowMeTheXAML"
+	  mc:Ignorable="d">
+
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<local:SamplePageLayout>
+
+			<local:SamplePageLayout.FluentTemplate>
+				<DataTemplate>
+					<StackPanel>
+						<smtx:XamlDisplay UniqueKey="FlipViewSamplePage_Fluent_Default"
+										  smtx:XamlDisplayExtensions.Header="FlipView">
+
+							<FlipView x:Name="flipView"
+									  Height="600"
+									  SelectedIndex="0">
+								<FlipViewItem>
+									<Grid Background="{StaticResource UnoBlueColorBrush}">
+										<StackPanel VerticalAlignment="Center">
+
+											<TextBlock Text="Item 1"
+													   Style="{StaticResource HeadlineLarge}"
+													   Foreground="White"
+													   HorizontalAlignment="Center" />
+
+											<TextBlock Text="&#x2190; Swipe"
+													   Style="{StaticResource HeadlineLarge}"
+													   Foreground="White"
+													   HorizontalAlignment="Center"
+													   Margin="0,0,46,0" />
+										</StackPanel>
+									</Grid>
+								</FlipViewItem>
+
+								<FlipViewItem>
+									<Grid Background="{StaticResource UnoPurpleColorBrush}">
+										<StackPanel VerticalAlignment="Center">
+
+											<TextBlock Text="Item 2"
+													   Style="{StaticResource HeadlineLarge}"
+													   Foreground="White"
+													   HorizontalAlignment="Center" />
+
+											<TextBlock Text="&#x2190; Swipe &#x2192;"
+													   Style="{StaticResource HeadlineLarge}"
+													   Foreground="White"
+													   HorizontalAlignment="Center" />
+										</StackPanel>
+									</Grid>
+								</FlipViewItem>
+
+								<FlipViewItem>
+									<Grid Background="{StaticResource UnoGreenColorBrush}">
+										<StackPanel VerticalAlignment="Center">
+
+											<TextBlock Text="Item 3"
+													   Style="{StaticResource HeadlineLarge}"
+													   Foreground="White"
+													   HorizontalAlignment="Center" />
+
+											<TextBlock Text="&#x2190; Swipe &#x2192;"
+													   Style="{StaticResource HeadlineLarge}"
+													   Foreground="White"
+													   HorizontalAlignment="Center" />
+										</StackPanel>
+									</Grid>
+								</FlipViewItem>
+
+								<FlipViewItem>
+									<Grid Background="{StaticResource UnoRedColorBrush}">
+										<StackPanel VerticalAlignment="Center">
+
+											<TextBlock Text="Item 4"
+													   Style="{StaticResource HeadlineLarge}"
+													   Foreground="White"
+													   HorizontalAlignment="Center" />
+
+											<TextBlock Text="Swipe &#x2192;"
+													   Style="{StaticResource HeadlineLarge}"
+													   Foreground="White"
+													   HorizontalAlignment="Center"
+													   Margin="44,0,0,0" />
+										</StackPanel>
+									</Grid>
+								</FlipViewItem>
+							</FlipView>
+						</smtx:XamlDisplay>
+					</StackPanel>
+				</DataTemplate>
+			</local:SamplePageLayout.FluentTemplate>
+		</local:SamplePageLayout>
+	</Grid>
+</Page>

@@ -1,0 +1,197 @@
+﻿<Page x:Class="Uno.Gallery.Views.SamplePages.TabBarSamplePage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  xmlns:sample="using:Uno.Gallery"
+	  xmlns:smtx="using:ShowMeTheXAML"
+	  xmlns:utu="using:Uno.Toolkit.UI"
+	  xmlns:todo="what should be done"
+	  mc:Ignorable="d todo">
+
+	<sample:SamplePageLayout Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<sample:SamplePageLayout.MaterialTemplate>
+			<DataTemplate>
+				<StackPanel Padding="0,20" Spacing="20">
+
+					<smtx:XamlDisplay UniqueKey="TabBarSamplePage_TopTabBar" smtx:XamlDisplayExtensions.Header="TopTabBarStyle">
+						<utu:TabBar SelectedIndex="1" Style="{StaticResource TopTabBarStyle}">
+							<utu:TabBar.Items>
+								<utu:TabBarItem Content="HOME">
+									<utu:TabBarItem.Icon>
+										<FontIcon Glyph="{StaticResource HomeIcon}" />
+									</utu:TabBarItem.Icon>
+								</utu:TabBarItem>
+								<utu:TabBarItem Content="SUPPORT">
+									<utu:TabBarItem.Icon>
+										<FontIcon Glyph="{StaticResource SupportIcon}" />
+									</utu:TabBarItem.Icon>
+								</utu:TabBarItem>
+								<utu:TabBarItem Content="ABOUT">
+									<utu:TabBarItem.Icon>
+										<FontIcon Glyph="{StaticResource AboutIcon}" />
+									</utu:TabBarItem.Icon>
+								</utu:TabBarItem>
+
+							</utu:TabBar.Items>
+						</utu:TabBar>
+					</smtx:XamlDisplay>
+					<Button Content="Show Fullscreen Sample"
+							Click="ShowMaterialTopBarSampleInNestedFrame"
+							Style="{StaticResource OutlinedButtonStyle}" />
+					<smtx:XamlDisplay UniqueKey="TabBarSamplePage_ColoredTopTabBar" smtx:XamlDisplayExtensions.Header="ColoredTopTabBarStyle">
+						<utu:TabBar SelectedIndex="1" Style="{StaticResource ColoredTopTabBarStyle}">
+							<utu:TabBar.Items>
+								<utu:TabBarItem Content="HOME">
+									<utu:TabBarItem.Icon>
+										<FontIcon Glyph="{StaticResource HomeIcon}" />
+									</utu:TabBarItem.Icon>
+								</utu:TabBarItem>
+								<utu:TabBarItem Content="SUPPORT">
+									<utu:TabBarItem.Icon>
+										<FontIcon Glyph="{StaticResource SupportIcon}" />
+									</utu:TabBarItem.Icon>
+								</utu:TabBarItem>
+								<utu:TabBarItem Content="ABOUT">
+									<utu:TabBarItem.Icon>
+										<FontIcon Glyph="{StaticResource AboutIcon}" />
+									</utu:TabBarItem.Icon>
+								</utu:TabBarItem>
+
+							</utu:TabBar.Items>
+						</utu:TabBar>
+					</smtx:XamlDisplay>
+					<smtx:XamlDisplay UniqueKey="TabBarSamplePage_TopDirectContentMaterial" smtx:XamlDisplayExtensions.Description="Adding Items as TabBarItems directly">
+						<utu:TabBar SelectedIndex="2" Style="{StaticResource TopTabBarStyle}">
+							<utu:TabBar.Items>
+								<utu:TabBarItem Content="Tab with Icon" Icon="Accept" />
+								<utu:TabBarItem Icon="Accept" />
+								<utu:TabBarItem Content="Content only" />
+							</utu:TabBar.Items>
+						</utu:TabBar>
+					</smtx:XamlDisplay>
+					<smtx:XamlDisplay UniqueKey="TabBarSamplePage_TopItemsSourceMaterial" smtx:XamlDisplayExtensions.Description="Using ItemsSource">
+						<utu:TabBar ItemsSource="{Binding Data.Items}"
+									SelectedIndex="3"
+									Style="{StaticResource TopTabBarStyle}" />
+					</smtx:XamlDisplay>
+					<smtx:XamlDisplay UniqueKey="TabBarSamplePage_TopCommandMaterial" smtx:XamlDisplayExtensions.Description="Using TabBarItem Command">
+						<utu:TabBar Style="{StaticResource TopTabBarStyle}">
+							<utu:TabBar.Items>
+								<utu:TabBarItem Content="Tab 1"
+												Command="{Binding Data.IncrementCounterCommand}"
+												CommandParameter="1" />
+								<utu:TabBarItem Content="Tab 2"
+												Command="{Binding Data.IncrementCounterCommand}"
+												CommandParameter="2" />
+								<utu:TabBarItem Content="Tab 3"
+												Command="{Binding Data.IncrementCounterCommand}"
+												CommandParameter="3" />
+							</utu:TabBar.Items>
+						</utu:TabBar>
+					</smtx:XamlDisplay>
+					<StackPanel HorizontalAlignment="Center">
+						<TextBlock Text="Click count" Style="{StaticResource BodySmall}" />
+						<TextBlock Style="{StaticResource BodySmall}">
+							<Run Text="Tab 1:" />
+							<Run Text="{Binding Data.HitCounter1}" />
+						</TextBlock>
+						<TextBlock Style="{StaticResource BodySmall}">
+							<Run Text="Tab 2:" />
+							<Run Text="{Binding Data.HitCounter2}" />
+						</TextBlock>
+						<TextBlock Style="{StaticResource BodySmall}">
+							<Run Text="Tab 3:" />
+							<Run Text="{Binding Data.HitCounter3}" />
+						</TextBlock>
+					</StackPanel>
+					<Button Content="Reset all counters"
+                            Command="{Binding Data.ResetAllCounterCommand}"
+							HorizontalAlignment="Center"
+							Style="{StaticResource OutlinedButtonStyle}" />
+
+				</StackPanel>
+			</DataTemplate>
+		</sample:SamplePageLayout.MaterialTemplate>
+		<sample:SamplePageLayout.CupertinoTemplate>
+			<DataTemplate>
+				<StackPanel Padding="0,20" Spacing="20">
+
+					<smtx:XamlDisplay UniqueKey="TabBarSamplePage_BottomDefaultCupertino" smtx:XamlDisplayExtensions.Header="Default style">
+						<utu:TabBar SelectedIndex="1" Style="{StaticResource CupertinoBottomTabBarStyle}">
+							<utu:TabBar.Items>
+								<utu:TabBarItem Content="Home">
+									<utu:TabBarItem.Icon>
+										<FontIcon Glyph="{StaticResource HomeIcon}" />
+									</utu:TabBarItem.Icon>
+								</utu:TabBarItem>
+								<utu:TabBarItem Content="Support">
+									<utu:TabBarItem.Icon>
+										<FontIcon Glyph="{StaticResource SupportIcon}" />
+									</utu:TabBarItem.Icon>
+								</utu:TabBarItem>
+								<utu:TabBarItem Content="About">
+									<utu:TabBarItem.Icon>
+										<FontIcon Glyph="{StaticResource AboutIcon}" />
+									</utu:TabBarItem.Icon>
+								</utu:TabBarItem>
+							</utu:TabBar.Items>
+						</utu:TabBar>
+					</smtx:XamlDisplay>
+					<Button Content="Show Fullscreen Sample"
+							Click="ShowCupertinoBottomBarSampleInNestedFrame"
+							Style="{StaticResource CupertinoContainedButtonStyle}" />
+					<smtx:XamlDisplay smtx:XamlDisplayExtensions.Description="Adding Items as TabBarItems directly" UniqueKey="TabBarSamplePage_BottomContentCupertino">
+						<utu:TabBar SelectedIndex="2" Style="{StaticResource CupertinoBottomTabBarStyle}">
+							<utu:TabBar.Items>
+								<utu:TabBarItem Content="Tab with Icon" Icon="Accept" />
+								<utu:TabBarItem Icon="Accept" />
+								<utu:TabBarItem Content="Content only" />
+							</utu:TabBar.Items>
+						</utu:TabBar>
+					</smtx:XamlDisplay>
+					<smtx:XamlDisplay smtx:XamlDisplayExtensions.Description="Using ItemsSource" UniqueKey="TabBarSamplePage_BottomItemsSourceCupertino">
+						<utu:TabBar ItemsSource="{Binding Data.Items}"
+									SelectedIndex="3"
+									Style="{StaticResource CupertinoBottomTabBarStyle}" />
+					</smtx:XamlDisplay>
+					<smtx:XamlDisplay smtx:XamlDisplayExtensions.Description="Using TabBarItem Command" UniqueKey="TabBarSamplePage_BottomCommandCupertino">
+						<utu:TabBar Style="{StaticResource CupertinoBottomTabBarStyle}">
+							<utu:TabBar.Items>
+								<utu:TabBarItem Content="Tab 1"
+												Command="{Binding Data.IncrementCounterCommand}"
+												CommandParameter="1" />
+								<utu:TabBarItem Content="Tab 2"
+												Command="{Binding Data.IncrementCounterCommand}"
+												CommandParameter="2" />
+								<utu:TabBarItem Content="Tab 3"
+												Command="{Binding Data.IncrementCounterCommand}"
+												CommandParameter="3" />
+							</utu:TabBar.Items>
+						</utu:TabBar>
+					</smtx:XamlDisplay>
+					<StackPanel HorizontalAlignment="Center">
+						<TextBlock Text="Click count" Style="{StaticResource BodySmall}" />
+						<TextBlock Style="{StaticResource BodySmall}">
+							<Run Text="Tab 1:" />
+							<Run Text="{Binding Data.HitCounter1}" />
+						</TextBlock>
+						<TextBlock Style="{StaticResource BodySmall}">
+							<Run Text="Tab 2:" />
+							<Run Text="{Binding Data.HitCounter2}" />
+						</TextBlock>
+						<TextBlock Style="{StaticResource BodySmall}">
+							<Run Text="Tab 3:" />
+							<Run Text="{Binding Data.HitCounter3}" />
+						</TextBlock>
+					</StackPanel>
+					<Button Content="Reset all counters"
+							Command="{Binding Data.ResetAllCounterCommand}"
+							HorizontalAlignment="Center"
+							Style="{StaticResource OutlinedButtonStyle}" />
+
+				</StackPanel>
+			</DataTemplate>
+		</sample:SamplePageLayout.CupertinoTemplate>
+	</sample:SamplePageLayout>
+</Page>

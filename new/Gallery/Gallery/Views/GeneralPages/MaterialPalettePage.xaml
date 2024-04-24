@@ -1,0 +1,251 @@
+﻿<Page x:Class="Uno.Gallery.MaterialPalettePage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:local="using:Uno.Gallery"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  xmlns:todo="what should be done"
+	  mc:Ignorable="d todo">
+
+	<Page.Resources>
+		<Style x:Key="T1MaterialPaletteHeader"
+			   TargetType="TextBlock"
+			   BasedOn="{StaticResource HeadlineMedium}">
+			<Setter Property="Foreground"
+					Value="{ThemeResource OnSurfaceBrush}" />
+		</Style>
+		<Style x:Key="T2MaterialPaletteHeader"
+			   TargetType="TextBlock"
+			   BasedOn="{StaticResource TitleLarge}">
+			<Setter Property="Foreground"
+					Value="{ThemeResource OnSurfaceBrush}" />
+		</Style>
+		<Style x:Key="MaterialPaletteText"
+			   TargetType="TextBlock"
+			   BasedOn="{StaticResource BodyMedium}">
+			<Setter Property="Foreground"
+					Value="{ThemeResource OnSurfaceBrush}" />
+		</Style>
+		<Style x:Key="MaterialPaletteSpacing"
+			   TargetType="StackPanel">
+			<Setter Property="Spacing"
+					Value="8" />
+		</Style>
+	</Page.Resources>
+
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<local:ContentPageLayout>
+			<StackPanel Spacing="20">
+
+				<!-- Accent roles -->
+				<TextBlock Text="Accent roles"
+						   Style="{StaticResource T1MaterialPaletteHeader}" />
+				
+				<StackPanel Style="{StaticResource MaterialPaletteSpacing}">
+					<TextBlock Text="Primary"
+							   Style="{StaticResource T2MaterialPaletteHeader}" />
+					<TextBlock Text="Primary roles are used for key components across the UI, such as the FAB, prominent buttons, active states, as well as the tint of elevated surfaces."
+							   Style="{StaticResource MaterialPaletteText}" />
+
+					<StackPanel>
+						<local:ColorPaletteView ColorName="PrimaryBrush"
+												ColorBrush="{ThemeResource PrimaryBrush}"
+												OnColorBrush="{ThemeResource OnPrimaryBrush}"
+												Style="{StaticResource MaterialColorPaletteViewStyle}" />
+						<local:ColorPaletteView ColorName="OnPrimaryBrush"
+												ColorBrush="{ThemeResource OnPrimaryBrush}"
+												OnColorBrush="{ThemeResource PrimaryBrush}"
+												Style="{StaticResource MaterialColorPaletteViewStyle}" />
+						<local:ColorPaletteView ColorName="PrimaryContainerBrush"
+												ColorBrush="{ThemeResource PrimaryContainerBrush}"
+												OnColorBrush="{ThemeResource OnPrimaryContainerBrush}"
+												Style="{StaticResource MaterialColorPaletteViewStyle}" />
+						<local:ColorPaletteView ColorName="OnPrimaryContainerBrush"
+												ColorBrush="{ThemeResource OnPrimaryContainerBrush}"
+												OnColorBrush="{ThemeResource PrimaryContainerBrush}"
+												Style="{StaticResource MaterialColorPaletteViewStyle}" />
+						<todo:ColorPaletteView ColorName="PrimaryVariantDarkBrush"
+											   ColorBrush="{ThemeResource PrimaryVariantDarkBrush}"
+											   OnColorBrush="{StaticResource OnPrimaryColor}"
+											   Margin="0,8,0,0"
+											   Style="{StaticResource MaterialColorPaletteViewStyle}" />
+						<todo:ColorPaletteView ColorName="PrimaryVariantLightBrush"
+											   ColorBrush="{ThemeResource PrimaryVariantLightBrush}"
+											   OnColorBrush="{StaticResource OnPrimaryColor}"
+											   Style="{StaticResource MaterialColorPaletteViewStyle}" />
+					</StackPanel>
+				</StackPanel>
+
+				<StackPanel Style="{StaticResource MaterialPaletteSpacing}">
+					<TextBlock Text="Secondary"
+							   Style="{StaticResource T2MaterialPaletteHeader}" />
+					<TextBlock Text="Secondary roles are used for less prominent components in the UI, such as filter chips, while expanding the opportunity for color expression."
+							   Style="{StaticResource MaterialPaletteText}" />
+
+					<StackPanel>
+						<local:ColorPaletteView ColorName="SecondaryBrush"
+												ColorBrush="{ThemeResource SecondaryBrush}"
+												OnColorBrush="{ThemeResource OnSecondaryBrush}"
+												Style="{StaticResource MaterialColorPaletteViewStyle}" />
+						<local:ColorPaletteView ColorName="OnSecondaryBrush"
+												ColorBrush="{ThemeResource OnSecondaryBrush}"
+												OnColorBrush="{ThemeResource SecondaryBrush}"
+												Style="{StaticResource MaterialColorPaletteViewStyle}" />
+						<local:ColorPaletteView ColorName="SecondaryContainerBrush"
+												ColorBrush="{ThemeResource SecondaryContainerBrush}"
+												OnColorBrush="{ThemeResource OnSecondaryContainerBrush}"
+												Style="{StaticResource MaterialColorPaletteViewStyle}" />
+						<local:ColorPaletteView ColorName="OnSecondaryContainerBrush"
+												ColorBrush="{ThemeResource OnSecondaryContainerBrush}"
+												OnColorBrush="{ThemeResource SecondaryContainerBrush}"
+												Style="{StaticResource MaterialColorPaletteViewStyle}" />
+						<todo:ColorPaletteView ColorName="SecondaryVariantDarkBrush"
+											   ColorBrush="{ThemeResource SecondaryVariantDarkBrush}"
+											   OnColorBrush="{StaticResource OnSecondaryColor}"
+											   Margin="0,8,0,0"
+											   Style="{StaticResource MaterialColorPaletteViewStyle}" />
+						<todo:ColorPaletteView ColorName="SecondaryVariantLightBrush"
+											   ColorBrush="{ThemeResource SecondaryVariantLightBrush}"
+											   OnColorBrush="{StaticResource OnSecondaryColor}"
+											   Style="{StaticResource MaterialColorPaletteViewStyle}" />
+					</StackPanel>
+				</StackPanel>
+
+				<StackPanel Style="{StaticResource MaterialPaletteSpacing}">
+					<TextBlock Text="Tertiary"
+							   Style="{StaticResource T2MaterialPaletteHeader}" />
+					<TextBlock Text="Tertiary roles are used for contrasting accents that can be used to balance primary and secondary colors or bring heightened attention to an element, such as an input field."
+							   Style="{StaticResource MaterialPaletteText}" />
+					<TextBlock Text="The tertiary color role is left for makers to use at their discretion and is intended to support broader color expression in products."
+							   Style="{StaticResource MaterialPaletteText}" />
+
+					<StackPanel>
+
+						<local:ColorPaletteView ColorName="TertiaryBrush"
+												ColorBrush="{ThemeResource TertiaryBrush}"
+												OnColorBrush="{ThemeResource OnTertiaryBrush}"
+												Style="{StaticResource MaterialColorPaletteViewStyle}" />
+						<local:ColorPaletteView ColorName="OnTertiaryBrush"
+												ColorBrush="{ThemeResource OnTertiaryBrush}"
+												OnColorBrush="{ThemeResource TertiaryBrush}"
+												Style="{StaticResource MaterialColorPaletteViewStyle}" />
+						<local:ColorPaletteView ColorName="TertiaryContainerBrush"
+												ColorBrush="{ThemeResource TertiaryContainerBrush}"
+												OnColorBrush="{ThemeResource OnTertiaryContainerBrush}"
+												Style="{StaticResource MaterialColorPaletteViewStyle}" />
+						<local:ColorPaletteView ColorName="OnTertiaryContainerBrush"
+												ColorBrush="{ThemeResource OnTertiaryContainerBrush}"
+												OnColorBrush="{ThemeResource TertiaryContainerBrush}"
+												Style="{StaticResource MaterialColorPaletteViewStyle}" />
+					</StackPanel>
+				</StackPanel>
+
+				<!-- Neutral roles -->
+				<TextBlock Text="Neutral roles"
+						   Style="{StaticResource T1MaterialPaletteHeader}" />
+
+				<StackPanel Style="{StaticResource MaterialPaletteSpacing}">
+					<TextBlock Text="Neutral"
+							   Style="{StaticResource T2MaterialPaletteHeader}" />
+					<TextBlock Text="Neutral roles are used for surfaces and backgrounds, as well as high emphasis text and icons."
+							   Style="{StaticResource MaterialPaletteText}" />
+
+					<StackPanel>
+						<local:ColorPaletteView ColorName="BackgroundBrush"
+												ColorBrush="{ThemeResource BackgroundBrush}"
+												OnColorBrush="{ThemeResource OnBackgroundBrush}"
+												Style="{StaticResource MaterialColorPaletteViewStyle}" />
+						<local:ColorPaletteView ColorName="OnBackgroundBrush"
+												ColorBrush="{ThemeResource OnBackgroundBrush}"
+												OnColorBrush="{ThemeResource BackgroundBrush}"
+												Style="{StaticResource MaterialColorPaletteViewStyle}" />
+						<local:ColorPaletteView ColorName="SurfaceBrush"
+												ColorBrush="{ThemeResource SurfaceBrush}"
+												OnColorBrush="{ThemeResource OnSurfaceBrush}"
+												Style="{StaticResource MaterialColorPaletteViewStyle}" />
+						<local:ColorPaletteView ColorName="OnSurfaceBrush"
+												ColorBrush="{ThemeResource OnSurfaceBrush}"
+												OnColorBrush="{ThemeResource SurfaceBrush}"
+												Style="{StaticResource MaterialColorPaletteViewStyle}" />
+					</StackPanel>
+				</StackPanel>
+
+				<StackPanel Style="{StaticResource MaterialPaletteSpacing}">
+					<TextBlock Text="Inverse roles"
+							   Style="{StaticResource T2MaterialPaletteHeader}" />
+					<TextBlock Text="These additional role mappings exist in a scheme and are mapped to components where needed."
+							   Style="{StaticResource MaterialPaletteText}" />
+
+					<StackPanel>
+						<local:ColorPaletteView ColorName="SurfaceInverseBrush"
+												ColorBrush="{ThemeResource SurfaceInverseBrush}"
+												OnColorBrush="{ThemeResource OnSurfaceInverseBrush}"
+												Style="{StaticResource MaterialColorPaletteViewStyle}" />
+						<local:ColorPaletteView ColorName="OnSurfaceInverseBrush"
+												ColorBrush="{ThemeResource OnSurfaceInverseBrush}"
+												OnColorBrush="{ThemeResource SurfaceInverseBrush}"
+												Style="{StaticResource MaterialColorPaletteViewStyle}" />
+						<local:ColorPaletteView ColorName="PrimaryInverseBrush"
+												ColorBrush="{ThemeResource PrimaryInverseBrush}"
+												OnColorBrush="{ThemeResource PrimaryBrush}"
+												Style="{StaticResource MaterialColorPaletteViewStyle}" />
+					</StackPanel>
+				</StackPanel>
+
+				<StackPanel Style="{StaticResource MaterialPaletteSpacing}">
+					<TextBlock Text="Neutral variant"
+							   Style="{StaticResource T2MaterialPaletteHeader}" />
+					<TextBlock Text="Surface variant and on-surface variant can be used for differentiation against a surface."
+							   Style="{StaticResource MaterialPaletteText}" />
+					<TextBlock Text="Outline is a utility color that creates boundaries and emphasis to improve usability. It's distinct from the divider component, which uses the surface variant role for low-emphasis content separation that is more decorative than essential."
+							   Style="{StaticResource MaterialPaletteText}" />
+					<StackPanel>
+						<local:ColorPaletteView ColorName="SurfaceVariantBrush"
+												ColorBrush="{ThemeResource SurfaceVariantBrush}"
+												OnColorBrush="{ThemeResource OnSurfaceVariantBrush}"
+												Style="{StaticResource MaterialColorPaletteViewStyle}" />
+						<local:ColorPaletteView ColorName="OnSurfaceVariantBrush"
+												ColorBrush="{ThemeResource OnSurfaceVariantBrush}"
+												OnColorBrush="{ThemeResource SurfaceVariantBrush}"
+												Style="{StaticResource MaterialColorPaletteViewStyle}" />
+						<local:ColorPaletteView ColorName="OutlineBrush"
+												ColorBrush="{ThemeResource OutlineBrush}"
+												OnColorBrush="{ThemeResource OnSurfaceBrush}"
+												Style="{StaticResource MaterialColorPaletteViewStyle}" />
+					</StackPanel>
+				</StackPanel>
+
+				<!-- Additional colors -->
+				<TextBlock Text="Additional colors"
+						   Style="{StaticResource T1MaterialPaletteHeader}" />
+				
+				<StackPanel Style="{StaticResource MaterialPaletteSpacing}">
+					<TextBlock Text="Error colors"
+							   Style="{StaticResource T2MaterialPaletteHeader}" />
+					<TextBlock Text="In addition to the accent and neutral key color, the color system includes a semantic color role for error, again in the form of the error role itself, plus an on-error, error container, and on-error container role."
+							   Style="{StaticResource MaterialPaletteText}" />
+
+					<StackPanel>
+						<local:ColorPaletteView ColorName="ErrorBrush"
+												ColorBrush="{ThemeResource ErrorBrush}"
+												OnColorBrush="{ThemeResource OnErrorBrush}"
+												Style="{StaticResource MaterialColorPaletteViewStyle}" />
+						<local:ColorPaletteView ColorName="OnErrorBrush"
+												ColorBrush="{ThemeResource OnErrorBrush}"
+												OnColorBrush="{ThemeResource ErrorBrush}"
+												Style="{StaticResource MaterialColorPaletteViewStyle}" />
+						<local:ColorPaletteView ColorName="ErrorContainerBrush"
+												ColorBrush="{ThemeResource ErrorContainerBrush}"
+												OnColorBrush="{ThemeResource OnErrorContainerBrush}"
+												Style="{StaticResource MaterialColorPaletteViewStyle}" />
+						<local:ColorPaletteView ColorName="OnErrorContainerBrush"
+												ColorBrush="{ThemeResource OnErrorContainerBrush}"
+												OnColorBrush="{ThemeResource ErrorContainerBrush}"
+												Style="{StaticResource MaterialColorPaletteViewStyle}" />
+					</StackPanel>
+				</StackPanel>
+
+			</StackPanel>
+		</local:ContentPageLayout>
+	</Grid>
+</Page>

@@ -1,0 +1,56 @@
+﻿<Page x:Class="Uno.Gallery.Views.Samples.LampSamplePage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  xmlns:smtx="using:ShowMeTheXAML"
+	  xmlns:local="using:Uno.Gallery"
+	  mc:Ignorable="d">
+
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<local:SamplePageLayout IsDesignAgnostic="True">
+			<local:SamplePageLayout.DesignAgnosticTemplate>
+				<DataTemplate>
+					<StackPanel>
+						<smtx:XamlDisplay UniqueKey="LampSamplePage_Sample"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel"
+										  smtx:XamlDisplayExtensions.Header="Lamp control">
+							<StackPanel>
+								<!-- C# code
+if (await Lamp.GetDefaultAsync() is Lamp lamp)
+{
+	lamp.IsEnabled = true; // Turn on the flashlight.
+
+	lamp.BrightnessLevel = 0.5; // Set brightness of 50 %.
+
+	lamp.IsEnabled = false; // Turn off the flashlight.
+
+	lamp.Dispose(); // Stop using flashlight and clean up resources.
+}
+-->
+
+								<Slider Header="Brightness"
+										Visibility="{Binding Data.IsBrightnessSupported, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
+										Maximum="1"
+										Minimum="0"
+										Value="{Binding Data.BrightnessLevel, Mode=TwoWay}"
+										StepFrequency="0.1"
+										TickFrequency="0.1"
+										TickPlacement="Outside"
+										IsThumbToolTipEnabled="True"
+										Margin="0,0,0,20" />
+
+								<Button Click="ChangeLampState_Click"
+										IsEnabled="{Binding Data.IsAvailable}">
+									<TextBlock Text="{Binding Data.ButtonContent}"
+											   VerticalAlignment="Stretch"
+											   TextAlignment="Center" />
+								</Button>
+							</StackPanel>
+						</smtx:XamlDisplay>
+					</StackPanel>
+				</DataTemplate>
+			</local:SamplePageLayout.DesignAgnosticTemplate>
+		</local:SamplePageLayout>
+	</Grid>
+</Page>

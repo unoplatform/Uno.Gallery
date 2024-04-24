@@ -1,0 +1,188 @@
+﻿<Page x:Class="Uno.Gallery.Views.Samples.SharingSamplePage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:local="using:Uno.Gallery"
+	  xmlns:samples="using:Uno.Gallery.Views.Samples"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  xmlns:smtx="using:ShowMeTheXAML"
+	  xmlns:android="http://uno.ui/android"
+	  xmlns:ios="http://uno.ui/ios"
+	  xmlns:macos="http://uno.ui/macos"
+	  xmlns:skia="http://uno.ui/skia"
+	  xmlns:wasm="http://uno.ui/wasm"
+	  xmlns:win="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  mc:Ignorable="d android ios macos skia wasm"
+	  x:Name="page">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<local:SamplePageLayout IsDesignAgnostic="True">
+			<local:SamplePageLayout.DesignAgnosticTemplate>
+				<DataTemplate>
+					<StackPanel>
+                        <smtx:XamlDisplay UniqueKey="SharingSamplePage_Text"
+										  smtx:XamlDisplayExtensions.Header="Text"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+                            <StackPanel Spacing="8">
+                                <TextBlock Text="This sample will share a string." TextWrapping="Wrap" />
+								<Button Content="Share a text" Click="ShareText_Click"/>
+								<!--
+	private async void ShareText_Click(object sender, RoutedEventArgs args)
+	{
+		if (DataTransferManager.IsSupported())
+		{
+			var dataTransferManager = DataTransferManager.GetForCurrentView();
+			dataTransferManager.DataRequested += DataRequested_Text;
+			DataTransferManager.ShowShareUI();
+		}
+		else
+		{
+			var dialog = new ContentDialog()
+			{
+				Title = "Sharing is not supported on this device.",
+				PrimaryButtonText = "OK"
+			};
+			await dialog.ShowAsync();
+		}
+	}
+
+	private void DataRequested_Text(DataTransferManager sender, DataRequestedEventArgs args)
+	{
+		args.Request.Data.Properties.Title = "A title";
+		args.Request.Data.Properties.Description = "A description";
+
+		args.Request.Data.SetText("The text to share");
+
+		sender.DataRequested -= DataRequested_Text;
+	}
+-->
+                            </StackPanel>
+                        </smtx:XamlDisplay>
+						<smtx:XamlDisplay UniqueKey="SharingSamplePage_URI"
+										  smtx:XamlDisplayExtensions.Header="Uri"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+							<StackPanel Spacing="8">
+								<TextBlock Text="This sample will share a URI." TextWrapping="Wrap" />
+								<Button Content="Share a URI" Click="ShareURI_Click"/>
+								<!--
+	private void ShareURI_Click(object sender, RoutedEventArgs args)
+	{
+		if (DataTransferManager.IsSupported())
+		{
+			var dataTransferManager = DataTransferManager.GetForCurrentView();
+			dataTransferManager.DataRequested += DataRequested_URI;
+			DataTransferManager.ShowShareUI();
+		}
+	}
+
+	private void DataRequested_URI(DataTransferManager sender, DataRequestedEventArgs args)
+	{
+		args.Request.Data.Properties.Title = "A title";
+		args.Request.Data.Properties.Description = "A description";
+
+		args.Request.Data.SetWebLink(new Uri("https://platform.uno"));
+
+		sender.DataRequested -= DataRequested_URI;
+	}
+-->
+							</StackPanel>
+						</smtx:XamlDisplay>
+						<smtx:XamlDisplay UniqueKey="SharingSamplePage_Async"
+										  smtx:XamlDisplayExtensions.Header="Async preparation"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+							<StackPanel Spacing="8">
+								<TextBlock Text="This sample will share a text with asynchronous data preparation (with an explicit delay of 3 seconds)." TextWrapping="Wrap" />
+								<Button Content="Share async" Click="ShareAsync_Click"/>
+								<!--
+	private void ShareAsync_Click(object sender, RoutedEventArgs args)
+	{
+		if (DataTransferManager.IsSupported())
+		{
+			var dataTransferManager = DataTransferManager.GetForCurrentView();
+			dataTransferManager.DataRequested += DataRequested_Async;
+			DataTransferManager.ShowShareUI();
+		}
+	}
+
+	private async void DataRequested_Async(DataTransferManager sender, DataRequestedEventArgs args)
+	{
+		var deferral = args.Request.GetDeferral();
+
+		await Task.Delay(3000);
+
+		args.Request.Data.Properties.Title = "Uno Gallery - Share-Sample Title";
+		args.Request.Data.Properties.Description = "You've waited so long, here it is:";
+
+		args.Request.Data.SetText("This text was delayed for 3 second.");
+
+		sender.DataRequested -= DataRequested_URI;
+
+		deferral.Complete();
+	}
+-->
+							</StackPanel>
+						</smtx:XamlDisplay>
+						<smtx:XamlDisplay UniqueKey="SharingSamplePage_TextDark"
+										  smtx:XamlDisplayExtensions.Header="Text (Dark theme)"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+							<StackPanel Spacing="8">
+								<TextBlock Text="This sample will share a string with a dark theme share UI." TextWrapping="Wrap" />
+								<Button Content="Share a text" Click="ShareTextDark_Click"/>
+								<!--
+	private void ShareTextDark_Click(object sender, RoutedEventArgs args)
+	{
+		if (DataTransferManager.IsSupported())
+		{
+			var dataTransferManager = DataTransferManager.GetForCurrentView();
+			dataTransferManager.DataRequested += DataRequested_TextDark;
+			DataTransferManager.ShowShareUI(new ShareUIOptions { Theme = ShareUITheme.Dark });
+		}
+	}
+
+	private void DataRequested_TextDark(DataTransferManager sender, DataRequestedEventArgs args)
+	{
+		args.Request.Data.Properties.Title = "Uno Gallery - Share-Sample Title";
+		args.Request.Data.Properties.Description = "See this awesome shared dark theme text:";
+
+		args.Request.Data.SetText("This dark theme text was created on " + DateTime.Now.ToShortDateString() + " - " + DateTime.Now.ToShortTimeString());
+
+		sender.DataRequested -= DataRequested_TextDark;
+	}
+-->
+							</StackPanel>
+						</smtx:XamlDisplay>
+						<smtx:XamlDisplay UniqueKey="SharingSamplePage_TextLight"
+										  smtx:XamlDisplayExtensions.Header="Text (Light theme)"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+							<StackPanel Spacing="8">
+								<TextBlock Text="This sample will share a string with a light theme share UI." TextWrapping="Wrap" />
+								<Button Content="Share a text" Click="ShareTextLight_Click"/>
+								<!--
+	private void ShareTextLight_Click(object sender, RoutedEventArgs args)
+	{
+		if (DataTransferManager.IsSupported())
+		{
+			var dataTransferManager = DataTransferManager.GetForCurrentView();
+			dataTransferManager.DataRequested += DataRequested_TextLight;
+			DataTransferManager.ShowShareUI(new ShareUIOptions { Theme = ShareUITheme.Dark });
+		}
+	}
+
+	private void DataRequested_TextLight(DataTransferManager sender, DataRequestedEventArgs args)
+	{
+		args.Request.Data.Properties.Title = "Uno Gallery - Share-Sample Title";
+		args.Request.Data.Properties.Description = "See this awesome shared light theme text:";
+
+		args.Request.Data.SetText("This light theme text was created on " + DateTime.Now.ToShortDateString() + " - " + DateTime.Now.ToShortTimeString());
+
+		sender.DataRequested -= DataRequested_TextLight;
+	}
+-->
+							</StackPanel>
+						</smtx:XamlDisplay>
+					</StackPanel>
+				</DataTemplate>
+			</local:SamplePageLayout.DesignAgnosticTemplate>
+		</local:SamplePageLayout>
+	</Grid>
+</Page>

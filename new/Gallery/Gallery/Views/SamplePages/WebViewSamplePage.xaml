@@ -1,0 +1,43 @@
+﻿<Page x:Class="Uno.Gallery.Views.Samples.WebViewSamplePage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  xmlns:local="using:Uno.Gallery"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  xmlns:smtx="using:ShowMeTheXAML"
+	  xmlns:win="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:not_win="http://uno.ui/not_win"
+	  mc:Ignorable="d not_win">
+
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<local:SamplePageLayout>
+
+			<local:SamplePageLayout.FluentTemplate>
+				<DataTemplate>
+					<Grid>
+						<win:Grid>
+
+							<!-- WebView -->
+							<smtx:XamlDisplay UniqueKey="WebViewSamplePage_WebView_Win"
+											  smtx:XamlDisplayExtensions.Header="WebView">
+								<WebView2 Source="https://platform.uno/"
+											  Height="400" />
+							</smtx:XamlDisplay>
+
+						</win:Grid>
+						<not_win:Grid>
+
+							<!-- WebView -->
+							<smtx:XamlDisplay UniqueKey="WebViewSamplePage_WebView_Not_Win"
+											  smtx:XamlDisplayExtensions.Header="WebView">
+								<WebView Source="https://platform.uno/"
+												 Height="400" />
+							</smtx:XamlDisplay>
+
+						</not_win:Grid>
+					</Grid>
+				</DataTemplate>
+			</local:SamplePageLayout.FluentTemplate>
+		</local:SamplePageLayout>
+	</Grid>
+</Page>

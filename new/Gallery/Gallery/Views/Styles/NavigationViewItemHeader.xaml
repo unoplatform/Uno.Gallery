@@ -1,0 +1,77 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Uno.Gallery.Views.Styles">
+    
+	<!-- this style highlights a little more the headers. Compared to the material one it has a higher top margin -->
+	<Style TargetType="NavigationViewItemHeader"
+		   x:Key="DefaultNavigationViewItemHeaderStyle">
+		<Setter Property="IsEnabled"
+				Value="False" />
+		<Setter Property="IsTabStop"
+				Value="False" />
+		<Setter Property="MinHeight"
+				Value="0" />
+		<Setter Property="HorizontalContentAlignment"
+				Value="Stretch" />
+		<Setter Property="AutomationProperties.AccessibilityView"
+				Value="Raw" />
+		<Setter Property="Margin"
+				Value="0,24,0,0"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="NavigationViewItemHeader">
+					<Grid>
+
+						<VisualStateManager.VisualStateGroups>
+							<VisualStateGroup x:Name="PaneStates">
+								<VisualStateGroup.Transitions>
+									<VisualTransition From="HeaderTextCollapsed"
+													  To="HeaderTextVisible">
+										<Storyboard>
+											<ObjectAnimationUsingKeyFrames Storyboard.TargetName="HeaderText"
+																		   Storyboard.TargetProperty="Visibility">
+												<DiscreteObjectKeyFrame KeyTime="0:0:0"
+																		Value="Visible" />
+											</ObjectAnimationUsingKeyFrames>
+										</Storyboard>
+									</VisualTransition>
+									<VisualTransition From="HeaderTextVisible"
+													  To="HeaderTextCollapsed">
+										<Storyboard>
+											<ObjectAnimationUsingKeyFrames Storyboard.TargetName="HeaderText"
+																		   Storyboard.TargetProperty="Visibility">
+												<DiscreteObjectKeyFrame KeyTime="0:0:0.2"
+																		Value="Collapsed" />
+											</ObjectAnimationUsingKeyFrames>
+										</Storyboard>
+									</VisualTransition>
+								</VisualStateGroup.Transitions>
+
+								<VisualState x:Name="HeaderTextVisible" />
+								<VisualState x:Name="HeaderTextCollapsed">
+									<VisualState.Setters>
+										<Setter Target="HeaderText.Visibility"
+												Value="Collapsed" />
+									</VisualState.Setters>
+								</VisualState>
+							</VisualStateGroup>
+						</VisualStateManager.VisualStateGroups>
+
+						<Grid x:Name="InnerHeaderGrid"
+							  HorizontalAlignment="Left">
+							<TextBlock x:Name="HeaderText"
+									   VerticalAlignment="Center"
+									   Margin="16,8"
+									   Opacity="{StaticResource LowOpacity}"
+									   FontSize="16"
+									   LineHeight="23"
+									   Text="{TemplateBinding Content}"
+									   TextWrapping="NoWrap" />
+						</Grid>
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+</ResourceDictionary>

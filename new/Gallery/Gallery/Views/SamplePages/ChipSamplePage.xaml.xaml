@@ -1,0 +1,203 @@
+﻿<Page x:Class="Uno.Gallery.Views.SamplePages.ChipSamplePage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:local="using:Uno.Gallery.Views.SamplePages"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  xmlns:utu="using:Uno.Toolkit.UI"
+	  xmlns:smtx="using:ShowMeTheXAML"
+	  xmlns:sample="using:Uno.Gallery"
+	  mc:Ignorable="d">
+
+	<Page.Resources>
+		<Style x:Key="HorizontalScrollViewerStyle" TargetType="ScrollViewer">
+			<Setter Property="HorizontalScrollMode" Value="Auto" />
+			<Setter Property="HorizontalScrollBarVisibility" Value="Auto" />
+			<Setter Property="VerticalScrollMode" Value="Disabled" />
+			<Setter Property="VerticalScrollBarVisibility" Value="Hidden" />
+			<Setter Property="Margin" Value="0,10" />
+		</Style>
+	</Page.Resources>
+
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<sample:SamplePageLayout>
+			<sample:SamplePageLayout.MaterialTemplate>
+				<DataTemplate>
+					<StackPanel>
+
+						<smtx:XamlDisplay UniqueKey="ChipSamplePage_Assist"
+										  smtx:XamlDisplayExtensions.Header="Assist"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\ScrollViewer\StackPanel">
+							<ScrollViewer Style="{StaticResource HorizontalScrollViewerStyle}">
+								<StackPanel Orientation="Horizontal" Spacing="8">
+
+									<utu:Chip Content="Default" Style="{StaticResource AssistChipStyle}">
+										<utu:Chip.Icon>
+											<Image Source="ms-appx:///Assets/Avatar.png" />
+										</utu:Chip.Icon>
+									</utu:Chip>
+									<utu:Chip Content="Disabled"
+											  IsEnabled="False"
+											  Style="{StaticResource AssistChipStyle}">
+										<utu:Chip.Icon>
+											<Image Source="ms-appx:///Assets/Avatar.png" />
+										</utu:Chip.Icon>
+									</utu:Chip>
+
+								</StackPanel>
+							</ScrollViewer>
+						</smtx:XamlDisplay>
+						<smtx:XamlDisplay UniqueKey="ChipSamplePage_ElevatedAssist"
+										  smtx:XamlDisplayExtensions.Header="Elevated Assist"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\ScrollViewer\StackPanel">
+							<ScrollViewer Style="{StaticResource HorizontalScrollViewerStyle}">
+								<StackPanel Orientation="Horizontal" Spacing="8">
+
+									<utu:Chip Content="Default" Style="{StaticResource ElevatedAssistChipStyle}">
+										<utu:Chip.Icon>
+											<Image Source="ms-appx:///Assets/Avatar.png" />
+										</utu:Chip.Icon>
+									</utu:Chip>
+									<utu:Chip Content="Disabled"
+											  IsEnabled="False"
+											  Style="{StaticResource ElevatedAssistChipStyle}">
+										<utu:Chip.Icon>
+											<Image Source="ms-appx:///Assets/Avatar.png" />
+										</utu:Chip.Icon>
+									</utu:Chip>
+
+								</StackPanel>
+							</ScrollViewer>
+						</smtx:XamlDisplay>
+						<smtx:XamlDisplay UniqueKey="ChipSamplePage_Input"
+										  smtx:XamlDisplayExtensions.Header="Input"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\ScrollViewer\StackPanel">
+							<ScrollViewer Style="{StaticResource HorizontalScrollViewerStyle}">
+								<StackPanel Orientation="Horizontal" Spacing="8">
+
+									<utu:Chip Content="Default" Style="{StaticResource InputChipStyle}">
+										<utu:Chip.Icon>
+											<Image Source="ms-appx:///Assets/Avatar.png" />
+										</utu:Chip.Icon>
+									</utu:Chip>
+									<utu:Chip Content="Selected"
+											  IsChecked="True"
+											  Style="{StaticResource InputChipStyle}" />
+									<utu:Chip Content="Disabled"
+											  IsEnabled="False"
+											  Style="{StaticResource InputChipStyle}">
+										<utu:Chip.Icon>
+											<Image Source="ms-appx:///Assets/Avatar.png" />
+										</utu:Chip.Icon>
+									</utu:Chip>
+
+								</StackPanel>
+							</ScrollViewer>
+						</smtx:XamlDisplay>
+						<smtx:XamlDisplay UniqueKey="ChipSamplePage_Filter"
+										  smtx:XamlDisplayExtensions.Header="Filter"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\ScrollViewer\StackPanel">
+							<ScrollViewer Style="{StaticResource HorizontalScrollViewerStyle}">
+								<StackPanel Orientation="Horizontal" Spacing="8">
+
+									<utu:Chip Content="Default" Style="{StaticResource FilterChipStyle}">
+										<utu:Chip.Icon>
+											<Image Source="ms-appx:///Assets/Avatar.png" />
+										</utu:Chip.Icon>
+									</utu:Chip>
+									<utu:Chip Content="Selected"
+											  IsChecked="True"
+											  Style="{StaticResource FilterChipStyle}" />
+									<utu:Chip Content="Disabled"
+											  IsEnabled="False"
+											  Style="{StaticResource FilterChipStyle}">
+										<utu:Chip.Icon>
+											<Image Source="ms-appx:///Assets/Avatar.png" />
+										</utu:Chip.Icon>
+									</utu:Chip>
+
+								</StackPanel>
+							</ScrollViewer>
+						</smtx:XamlDisplay>
+						<smtx:XamlDisplay UniqueKey="ChipSamplePage_ElevatedFilter"
+										  smtx:XamlDisplayExtensions.Header="Elevated Filter"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\ScrollViewer\StackPanel">
+							<ScrollViewer Style="{StaticResource HorizontalScrollViewerStyle}">
+								<StackPanel Orientation="Horizontal" Spacing="8">
+
+									<utu:Chip Content="Default" Style="{StaticResource ElevatedFilterChipStyle}">
+										<utu:Chip.Icon>
+											<Image Source="ms-appx:///Assets/Avatar.png" />
+										</utu:Chip.Icon>
+									</utu:Chip>
+									<utu:Chip Content="Selected"
+											  IsChecked="True"
+											  Style="{StaticResource ElevatedFilterChipStyle}" />
+									<utu:Chip Content="Disabled"
+											  IsEnabled="False"
+											  Style="{StaticResource ElevatedFilterChipStyle}">
+										<utu:Chip.Icon>
+											<Image Source="ms-appx:///Assets/Avatar.png" />
+										</utu:Chip.Icon>
+									</utu:Chip>
+
+								</StackPanel>
+							</ScrollViewer>
+						</smtx:XamlDisplay>
+						<smtx:XamlDisplay UniqueKey="ChipSamplePage_Suggestion"
+										  smtx:XamlDisplayExtensions.Header="Suggestion"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\ScrollViewer\StackPanel">
+							<ScrollViewer Style="{StaticResource HorizontalScrollViewerStyle}">
+								<StackPanel Orientation="Horizontal" Spacing="8">
+
+									<utu:Chip Content="Default" Style="{StaticResource SuggestionChipStyle}">
+										<utu:Chip.Icon>
+											<Image Source="ms-appx:///Assets/Avatar.png" />
+										</utu:Chip.Icon>
+									</utu:Chip>
+									<utu:Chip Content="Selected"
+											  IsChecked="True"
+											  Style="{StaticResource SuggestionChipStyle}" />
+									<utu:Chip Content="Disabled"
+											  IsEnabled="False"
+											  Style="{StaticResource SuggestionChipStyle}">
+										<utu:Chip.Icon>
+											<Image Source="ms-appx:///Assets/Avatar.png" />
+										</utu:Chip.Icon>
+									</utu:Chip>
+
+								</StackPanel>
+							</ScrollViewer>
+						</smtx:XamlDisplay>
+						<smtx:XamlDisplay UniqueKey="ChipSamplePage_ElevatedSuggestion"
+										  smtx:XamlDisplayExtensions.Header="Elevated Suggestion"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\ScrollViewer\StackPanel">
+							<ScrollViewer Style="{StaticResource HorizontalScrollViewerStyle}">
+								<StackPanel Orientation="Horizontal" Spacing="8">
+
+									<utu:Chip Content="Default" Style="{StaticResource ElevatedSuggestionChipStyle}">
+										<utu:Chip.Icon>
+											<Image Source="ms-appx:///Assets/Avatar.png" />
+										</utu:Chip.Icon>
+									</utu:Chip>
+									<utu:Chip Content="Selected"
+											  IsChecked="True"
+											  Style="{StaticResource ElevatedSuggestionChipStyle}" />
+									<utu:Chip Content="Disabled"
+											  IsEnabled="False"
+											  Style="{StaticResource ElevatedSuggestionChipStyle}">
+										<utu:Chip.Icon>
+											<Image Source="ms-appx:///Assets/Avatar.png" />
+										</utu:Chip.Icon>
+									</utu:Chip>
+
+								</StackPanel>
+							</ScrollViewer>
+						</smtx:XamlDisplay>
+
+					</StackPanel>
+				</DataTemplate>
+			</sample:SamplePageLayout.MaterialTemplate>
+		</sample:SamplePageLayout>
+	</Grid>
+</Page>
