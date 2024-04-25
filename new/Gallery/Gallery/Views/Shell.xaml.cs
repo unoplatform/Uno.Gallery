@@ -12,6 +12,7 @@ using Microsoft.UI.Xaml.Input;
 using MUXC = Microsoft.UI.Xaml.Controls;
 using System.Threading.Tasks;
 using Windows.System;
+using SystemThemeHelper = Uno.Gallery.Helpers.SystemThemeHelper;
 
 namespace Uno.Gallery
 {

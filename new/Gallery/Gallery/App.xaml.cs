@@ -1,4 +1,4 @@
-using Android.Views;
+//using Android.Views;
 using Microsoft.Extensions.Logging;
 using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml;
@@ -18,6 +18,7 @@ using Windows.ApplicationModel;
 using LaunchActivatedEventArgs = Microsoft.UI.Xaml.LaunchActivatedEventArgs;
 using MUXC = Microsoft.UI.Xaml.Controls;
 using MUXCP = Microsoft.UI.Xaml.Controls.Primitives;
+using Window = Microsoft.UI.Xaml.Window;
 
 namespace Uno.Gallery
 {
