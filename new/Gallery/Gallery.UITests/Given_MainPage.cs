@@ -1,23 +1,25 @@
-namespace Uno.Gallery.UITests;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using NUnit.Framework;
+using Uno.UITest.Helpers.Queries;
 
-public class Given_MainPage : TestBase
+namespace Uno.Gallery.UITests
 {
-    [Test]
-    public async Task When_SmokeTest()
-    {
-        // NOTICE
-        // To run UITests, Run the WASM target without debugger. Note
-        // the port that is being used and update the Constants.cs file
-        // in the UITests project with the correct port number.
+	public class Given_MainPage : TestBase
+	{
+		[Test]
+		public void When_SmokeTest()
+		{
+			NavigateToSample("Overview", "Material");
 
-        // Add delay to allow for the splash screen to disappear
-        await Task.Delay(5000);
+			TakeScreenshot("Start");
 
-        // Query for the MainPage Text Block
-        Query textBlock = q => q.All().Marked("HelloTextBlock");
-        App.WaitForElement(textBlock);
+			App.WaitThenTap("Material_FilledButton");
 
-        // Take a screenshot and add it to the test results
-        TakeScreenshot("After launch");
-    }
+			TakeScreenshot("Finish");
+		}
+	}
 }

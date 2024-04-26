@@ -1,12 +1,19 @@
-namespace Uno.Gallery.UITests;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Uno.UITest.Helpers.Queries;
 
-public class Constants
+namespace Uno.Gallery.UITests
 {
-    public readonly static string WebAssemblyDefaultUri = "http://localhost:5000/";
-    public readonly static string iOSAppName = "com.companyname.Gallery";
-    public readonly static string AndroidAppName = "com.companyname.Gallery";
-    public readonly static string iOSDeviceNameOrId = "iPad Pro (12.9-inch) (3rd generation)";
+    public class Constants
+    {
+        public readonly static string WebAssemblyDefaultUri = "http://localhost:56745/";
+        public readonly static string iOSAppName = "com.nventive.uno.gallery";
+        public readonly static string AndroidAppName = "com.nventive.uno.ui.demo";
+        public readonly static string iOSDeviceNameOrId = "iPad Pro (12.9-inch) (5th generation)";
 
-    public readonly static Platform CurrentPlatform = Platform.Browser;
-    public readonly static Browser WebAssemblyBrowser = Browser.Chrome;
+		public readonly static Platform CurrentPlatform = Platform.Browser;
+    }
 }
