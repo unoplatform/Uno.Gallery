@@ -1,9 +1,0 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-					xmlns:muxc="using:Microsoft.UI.Xaml.Controls">
-	<!-- uno issue: 13398 -->
-	<!-- This ensures that the default Fluent styles for these controls will be used as the implicit styles -->
-	<!-- The implicit Fluent styles here are not included in the XamlControlsResources res-dict -->
-	<Style TargetType="muxc:PipsPager" />
-	<Style TargetType="muxc:ProgressRing" />
-	<Style TargetType="muxc:ProgressBar" />
-</ResourceDictionary>
