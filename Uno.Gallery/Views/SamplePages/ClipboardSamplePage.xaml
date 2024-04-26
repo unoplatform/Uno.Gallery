@@ -61,7 +61,7 @@
 	private async void CopyBitmap_Click(object sender, RoutedEventArgs args)
 	{
 		var package = new DataPackage();
-        var sFile = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///Assets/UnoLogo.png"));
+        var sFile = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///Assets/unologo.png"));
         package.SetBitmap(RandomAccessStreamReference.CreateFromFile(sFile));
 		Clipboard.SetContent(package);
 	}
@@ -143,7 +143,7 @@
 								<!--
 	private async void CopyFile_Click(object sender, RoutedEventArgs args)
 	{
-        var sFile = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///Assets/UnoLogo.png"));
+        var sFile = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///Assets/unologo.png"));
 		var package = new DataPackage();
 		package.SetStorageItems(new IStorageItem[] { sFile });
 		Clipboard.SetContent(package);

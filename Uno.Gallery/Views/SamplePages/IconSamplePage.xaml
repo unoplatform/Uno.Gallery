@@ -18,7 +18,7 @@
 										  smtx:XamlDisplayExtensions.Header="BitmapIcon">
 
 							<!-- Bitmap Icon -->
-							<BitmapIcon UriSource="ms-appx:///Assets/UnoLogo.png"
+							<BitmapIcon UriSource="ms-appx:///Assets/unologo.png"
 										ShowAsMonochrome="False"
 										Height="50" />
 						</smtx:XamlDisplay>

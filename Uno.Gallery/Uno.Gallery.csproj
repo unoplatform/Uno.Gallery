@@ -112,6 +112,14 @@
         <ItemGroup>
           <PackageReference Include="Uno.CommunityToolkit.WinUI.UI.Controls" />
           <PackageReference Include="Uno.CommunityToolkit.WinUI.UI.Controls.DataGrid" />
+			<PackageReference Include="Microsoft.TypeScript.Compiler">
+				<PrivateAssets>all</PrivateAssets>
+				<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+			</PackageReference>
+			<PackageReference Include="Microsoft.TypeScript.MSBuild">
+				<PrivateAssets>all</PrivateAssets>
+				<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+			</PackageReference>
         </ItemGroup>
       </When>
   </Choose>

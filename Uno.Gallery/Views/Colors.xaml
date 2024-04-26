@@ -6,13 +6,13 @@
 
 	<ResourceDictionary.ThemeDictionaries>
 		<ResourceDictionary x:Key="Light">
-			<x:String x:Key="UnoLogoWebBannerImageSource">ms-appx:///Assets/uno-logo-tm-light.svg</x:String>
+			<x:String x:Key="UnoLogoWebBannerImageSource">ms-appx:///Assets/uno_logo_tm_light.svg</x:String>
 			<x:String x:Key="UnoLogoImageSource">ms-appx:///Assets/UnoGalleryLogo_Light.png</x:String>
 			<x:String x:Key="OverviewImageSource">ms-appx:///Assets/uno-banner-light.png</x:String>
 			<SolidColorBrush x:Key="ApplicationPageBackgroundThemeBrush" Color="{StaticResource SurfaceColor}" />
 		</ResourceDictionary>
 		<ResourceDictionary x:Key="Dark">
-			<x:String x:Key="UnoLogoWebBannerImageSource">ms-appx:///Assets/uno-logo-tm-dark.svg</x:String>
+			<x:String x:Key="UnoLogoWebBannerImageSource">ms-appx:///Assets/uno_logo_tm_dark.svg</x:String>
 			<x:String x:Key="UnoLogoImageSource">ms-appx:///Assets/UnoGalleryLogo_Dark.png</x:String>
 			<x:String x:Key="OverviewImageSource">ms-appx:///Assets/uno-banner-dark.png</x:String>
 			<SolidColorBrush x:Key="ApplicationPageBackgroundThemeBrush" Color="{StaticResource SurfaceColor}" />

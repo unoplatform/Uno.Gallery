@@ -36,7 +36,7 @@
 		   BasedOn="{StaticResource InfoBadgeStyle_Margin}">
 		<Setter Property="Background">
 			<Setter.Value>
-				<ImageBrush ImageSource="ms-appx:///Assets/UnoLogo.png" />
+				<ImageBrush ImageSource="ms-appx:///Assets/unologo.png" />
 			</Setter.Value>
 		</Setter>
 		<Setter Property="Width" Value="18" />
