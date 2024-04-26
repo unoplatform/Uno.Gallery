@@ -78,22 +78,20 @@
         <ItemGroup>
           <PackageReference Include="Uno.CommunityToolkit.WinUI.UI.Controls" />
           <PackageReference Include="Uno.CommunityToolkit.WinUI.UI.Controls.DataGrid" />
-          <!--TODO: Fix me-->
-          <!--<PackageReference Include="Xamarin.TestCloud.Agent" />-->
+          <PackageReference Include="Xamarin.TestCloud.Agent" />
         </ItemGroup>
       </When>
       <When Condition="'$(TargetFramework)'=='net8.0-android'">
         <ItemGroup>
           <PackageReference Include="Uno.CommunityToolkit.WinUI.UI.Controls" />
           <PackageReference Include="Uno.CommunityToolkit.WinUI.UI.Controls.DataGrid" />
-          <!--TODO: Fix me-->
-          <!--<PackageReference Include="Xamarin.TestCloud.Agent" />-->
         </ItemGroup>
       </When>
       <When Condition="'$(TargetFramework)'=='net8.0-maccatalyst'">
         <ItemGroup>
           <PackageReference Include="Uno.CommunityToolkit.WinUI.UI.Controls" />
           <PackageReference Include="Uno.CommunityToolkit.WinUI.UI.Controls.DataGrid" />
+          <PackageReference Include="Xamarin.TestCloud.Agent" />
         </ItemGroup>
       </When>
       <When Condition="'$(TargetFramework)'=='net8.0-windows10.0.19041'">
