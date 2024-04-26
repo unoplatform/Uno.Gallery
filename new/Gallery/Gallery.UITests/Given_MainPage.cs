@@ -1,4 +1,4 @@
-namespace Gallery.UITests;
+namespace Uno.Gallery.UITests;
 
 public class Given_MainPage : TestBase
 {

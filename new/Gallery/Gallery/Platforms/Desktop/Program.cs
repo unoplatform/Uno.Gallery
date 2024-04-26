@@ -1,6 +1,6 @@
 using Uno.UI.Runtime.Skia;
 
-namespace Gallery;
+namespace Uno.Gallery;
 
 public class Program
 {

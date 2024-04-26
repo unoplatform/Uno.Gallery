@@ -83,7 +83,8 @@ namespace Uno.Gallery
             {
 #if __IOS__ && USE_UITESTS
 				// requires Xamarin Test Cloud Agent
-				Xamarin.Calabash.Start();
+                //TODO: Fix me
+				//Xamarin.Calabash.Start();
 #endif
 
                 MainWindow.Content = _shell = BuildShell();
@@ -372,7 +373,7 @@ namespace Uno.Gallery
         /// <summary>
         /// Configures global Uno Platform logging
         /// </summary>
-        private static void InitializeLogging()
+        internal static void InitializeLogging()
         {
 #if true // Force enable logging for debugging CI // DEBUG || __IOS__
             // Logging is disabled by default for release builds, as it incurs a significant

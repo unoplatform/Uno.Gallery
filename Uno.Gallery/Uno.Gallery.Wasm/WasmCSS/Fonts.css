@@ -1,23 +1,28 @@
-/*
-Fonts preloading is done via javascript (in FontLoader.js in the WasmScripts folder)
- to make sure they are loaded very early in the app's life cycle.
+/**
+  When adding fonts here, make sure to add them using a base64 data uri, otherwise
+  fonts loading are delayed, and text may get displayed incorrectly.
 */
 
-.uno-textblock {
-	letter-spacing: 1.1em;
-}
-
-/* https://github.com/unoplatform/uno/issues/4304 */
+/* https://github.com/unoplatform/uno/issues/3954 */
 @font-face {
-	font-family: 'Segoe UI';
-	src: local('system-ui'), local('Segoe UI'), local('-apple-system'), local('BlinkMacSystemFont'), local('Inter'), local('Cantarell'), local('Ubuntu'), local('Open Sans'), local('Noto Sans'), local('Helvetica Neue'), local('sans-serif');
+  font-family: 'Segoe UI';
+  src: local('Segoe UI'), local('-apple-system'), local('BlinkMacSystemFont'), local('Inter'), local('Cantarell'), local('Ubuntu'), local('Roboto'), local('Open Sans'), local('Noto Sans'), local('Helvetica Neue'), local('sans-serif');
 }
 
-body::after {
-	font-family: 'Symbols';
-	background: transparent;
-	content: "";
-	opacity: 0;
-	pointer-events: none;
-	position: absolute;
+@font-face {
+  font-family: 'Roboto';
+  src: url(./Uno.Fonts.Roboto/Fonts/Roboto-Light.ttf) format('truetype');
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url(./Uno.Fonts.Roboto/Fonts/Roboto-Regular.ttf) format('truetype');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url(./Uno.Fonts.Roboto/Fonts/Roboto-Medium.ttf) format('truetype');
+  font-weight: 500;
 }

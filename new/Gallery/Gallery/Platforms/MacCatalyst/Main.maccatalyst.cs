@@ -1,6 +1,6 @@
 using UIKit;
 
-namespace Gallery.MacCatalyst;
+namespace Uno.Gallery.MacCatalyst;
 
 public class EntryPoint
 {

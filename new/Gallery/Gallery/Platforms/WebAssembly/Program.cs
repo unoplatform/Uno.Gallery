@@ -1,4 +1,4 @@
-namespace Gallery;
+namespace Uno.Gallery;
 
 public class Program
 {

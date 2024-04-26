@@ -4,7 +4,7 @@ using Android.OS;
 using Android.Views;
 using Android.Widget;
 
-namespace Gallery.Droid;
+namespace Uno.Gallery.Droid;
 
 [Activity(
     MainLauncher = true,

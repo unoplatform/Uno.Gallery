@@ -1,5 +1,5 @@
 
-namespace Gallery.UITests;
+namespace Uno.Gallery.UITests;
 
 public class TestBase
 {

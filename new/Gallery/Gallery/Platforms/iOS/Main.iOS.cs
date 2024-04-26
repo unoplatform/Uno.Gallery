@@ -1,6 +1,6 @@
 using UIKit;
 
-namespace Gallery.iOS;
+namespace Uno.Gallery.iOS;
 
 public class EntryPoint
 {
