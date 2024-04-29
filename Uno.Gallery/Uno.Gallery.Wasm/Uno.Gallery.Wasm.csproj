@@ -133,7 +133,7 @@
 		<PackageReference Include="Uno.Core.Extensions.Compatibility" />
 
 		<!-- Use ILLink package to improve XAML trimming performance -->
-		<PackageReference Include="Microsoft.NET.ILLink.Tasks" />
+		<!-- <PackageReference Include="Microsoft.NET.ILLink.Tasks" /> -->
 	</ItemGroup>
 
 	<ItemGroup>
