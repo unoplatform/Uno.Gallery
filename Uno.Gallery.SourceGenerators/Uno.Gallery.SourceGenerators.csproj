@@ -11,7 +11,7 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" />
 		<PackageReference Include="Microsoft.CodeAnalysis.Analyzers" />
-		<Compile Include="../Uno.Gallery/Uno.Gallery.Shared/Entities/SampleConditionals.cs" />
+		<Compile Include="../Uno.Gallery/Entities/SampleConditionals.cs" />
 	</ItemGroup>
 
 </Project>
