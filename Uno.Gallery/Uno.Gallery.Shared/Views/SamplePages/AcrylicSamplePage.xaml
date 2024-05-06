@@ -35,6 +35,31 @@
 							</Grid>
 						</smtx:XamlDisplay>
 
+						<smtx:XamlDisplay UniqueKey="AcrylicSamplePage_Fluent_AcrylicSecondary" smtx:XamlDisplayExtensions.Header="Acrylic Tint Color">
+							<Grid x:Name="Example3Grid" MinWidth="320" MinHeight="200" Padding="50">
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="*"/>
+								</Grid.ColumnDefinitions>
+								<Grid.RowDefinitions>
+									<RowDefinition Height="*"/>
+									<RowDefinition Height="Auto"/>
+									<RowDefinition Height="Auto"/>
+								</Grid.RowDefinitions>
+								<Grid Width="250">
+									<Rectangle Fill="Aqua" Height="200" Width="100" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+									<Ellipse Fill="Magenta" Height="150" Width="150" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+									<Rectangle Fill="Yellow" Height="100" Width="80" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+								</Grid>
+								<Border Width="240" Height="120" x:Name="CustomAcrylicShapeInApp" Margin="12">
+									<Border.Background>
+										<AcrylicBrush x:Name="acrylicBrush" TintOpacity="{Binding ElementName=TintSlider, Path=Value}" TintLuminosityOpacity="{Binding ElementName=TintLuminositySlider, Path=Value}"  TintColor="Red" FallbackColor="Green" />
+									</Border.Background>
+								</Border>
+								<Slider Header="Tint Opacity" x:Name="TintSlider" Grid.Row="1" Value="0.5" StepFrequency="0.01" Minimum="0" Maximum="1" />
+								<Slider Header="Tint Luminosity Opacity" x:Name="TintLuminositySlider" Grid.Row="2" Value="0.5" StepFrequency="0.01" Minimum="0" Maximum="1" />
+							</Grid>
+						</smtx:XamlDisplay>
+
 						<!-- Host backdrop only useful on macOS -->
 						<macos:Grid>
 							<smtx:XamlDisplay UniqueKey="AcrylicSamplePage_Fluent_AcrylicHostBackdrop_macos"
