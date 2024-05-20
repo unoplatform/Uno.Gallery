@@ -7,12 +7,12 @@ steps:
   displayName: Build project
   inputs:
     solution: Uno.Gallery\Uno.Gallery.Skia.Gtk\Uno.Gallery.Skia.Gtk.csproj
-    msbuildArguments: /ds /m /r /p:Configuration=Release "/p:InformationalVersion=$(GitVersion.InformationalVersion)" /bl:$(build.artifactstagingdirectory)/build.binlog 
+    msbuildArguments: /ds /m /r /p:Configuration=Release "/p:InformationalVersion=$(GitVersion.InformationalVersion)" /bl:$(build.artifactstagingdirectory)/build.binlog
 
 - task: CopyFiles@2
   displayName: Copy Skia output
   inputs:
-    SourceFolder: Uno.Gallery\Uno.Gallery.Skia.Gtk\bin\Release\net7.0
+    SourceFolder: Uno.Gallery\Uno.Gallery.Skia.Gtk\bin\Release\net8.0
     Contents: '**/*.*'
     TargetFolder: $(Build.ArtifactStagingDirectory)/bin
 
