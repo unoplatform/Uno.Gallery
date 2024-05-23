@@ -108,7 +108,7 @@ jobs:
         ApplicationBuildNumberOffset: 50
         BuildCommand: build
   pool:
-    vmImage: macos-12
+    vmImage: macos-13
 
   variables:
   - name: SkipUnknownFrameworks
