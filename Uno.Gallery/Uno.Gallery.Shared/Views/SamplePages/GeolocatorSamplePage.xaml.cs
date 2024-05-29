@@ -10,7 +10,7 @@ using Microsoft.UI.Xaml.Controls;
 
 namespace Uno.Gallery.Views.Samples
 {
-    [SamplePage(SampleCategory.NonUIFeatures, "Geolocator", Description = "Represents a geolocator sensor. This sensor returns latitude, longitude, longitude and accuracy.", DocumentationLink = "https://learn.microsoft.com/en-us/uwp/api/windows.devices.geolocation.geolocator")]
+    [SamplePage(SampleCategory.NonUIFeatures, "Geolocator", Description = "Represents a geolocator sensor. This sensor returns latitude, longitude, altitude and accuracy.", DocumentationLink = "https://learn.microsoft.com/en-us/uwp/api/windows.devices.geolocation.geolocator")]
     public sealed partial class GeolocatorSamplePage : Page
     {
         public GeolocatorSamplePage()
