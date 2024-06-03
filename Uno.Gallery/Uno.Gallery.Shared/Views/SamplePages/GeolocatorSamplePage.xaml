@@ -29,9 +29,7 @@
                                 </TextBlock>
 
 								<Button Click="GetGeopositionButton_Click"
-										Content="{Binding ButtonContent}"
-										HorizontalContentAlignment="Center"
-										VerticalContentAlignment="Stretch" />
+										Content="{Binding ButtonContent}" />
 
                                 <TextBlock>
                                     <Span>Tap to toggle the geoposition location changed tracker.</Span>
