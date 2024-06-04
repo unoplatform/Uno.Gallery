@@ -2393,42 +2393,14 @@
 									</Border>
 
 									<!-- BADGE -->
-									<!-- This part can be replaced when InfoBadge will be available in WinUI3 -->
-									<!-- See this commit for the implementation: c935919b2c390014dd8509cc50e16b1549511ffa -->
-									<!-- (Related Branch: dev/agzi/I274-InfoBadgeImplementationForTBI) -->
-
-									<Grid Visibility="{TemplateBinding BadgeVisibility}">
-										<!-- Small Badge -->
-										<Ellipse Width="{ThemeResource NavigationTabBarItemSmallBadgeWidth}"
-												 Height="{ThemeResource NavigationTabBarItemSmallBadgeHeight}"
-												 Margin="{ThemeResource NavigationTabBarItemSmallBadgeMargin}"
-												 HorizontalAlignment="Right"
-												 VerticalAlignment="Top"
-												 Fill="{ThemeResource NavigationTabBarItemErrorBrush}"
-												 Visibility="{Binding BadgeValue, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource EmptyOrNullToVisible}}" />
-
-
-										<!-- Large Badge -->
-										<Border Height="{ThemeResource NavigationTabBarItemLargeBadgeHeight}"
-												MinWidth="{ThemeResource NavigationTabBarItemLargeBadgeMinWidth}"
-												Margin="{ThemeResource NavigationTabBarItemLargeBadgeMargin}"
-												Padding="{ThemeResource NavigationTabBarItemLargeBadgePadding}"
-												HorizontalAlignment="Left"
-												VerticalAlignment="Top"
-												Background="{ThemeResource NavigationTabBarItemErrorBrush}"
-												CornerRadius="{ThemeResource NavigationTabBarItemLargeBadgeCornerRadius}"
-												Visibility="{Binding BadgeValue, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource EmptyOrNullToCollapsed}}">
-
-											<TextBlock HorizontalAlignment="Center"
-													   VerticalAlignment="Center"
-													   Foreground="{ThemeResource NavigationTabBarItemOnErrorBrush}"
-													   MaxLines="1"
-													   Style="{StaticResource LabelExtraSmall}"
-													   Text="{TemplateBinding BadgeValue}"
-													   TextAlignment="Center" />
-
-										</Border>
-									</Grid>
+									<!--  InfoBadge Presenter  -->
+									<ContentPresenter x:Name="InfoBadgePresenter"
+													  Content="{TemplateBinding InfoBadge}"
+													  Margin="{ThemeResource NavigationTabBarItemLargeBadgeMargin}"
+													  Padding="{ThemeResource NavigationTabBarItemLargeBadgePadding}"
+													  HorizontalAlignment="Left"
+													  VerticalAlignment="Top"
+													  Visibility="{Binding InfoBadge, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialEmptyOrNullToCollapsed}}" />
 								</Grid>
 							</utu:ShadowContainer>
 
@@ -2638,42 +2610,14 @@
 										</Border>
 
 										<!-- BADGE -->
-										<!-- This part can be replaced when InfoBadge will be available in WinUI3 -->
-										<!-- See this commit for the implementation: c935919b2c390014dd8509cc50e16b1549511ffa -->
-										<!-- (Related Branch: dev/agzi/I274-InfoBadgeImplementationForTBI) -->
-
-										<Grid Visibility="{TemplateBinding BadgeVisibility}">
-											<!-- Small Badge -->
-											<Ellipse Width="{ThemeResource NavigationTabBarItemSmallBadgeWidth}"
-													 Height="{ThemeResource NavigationTabBarItemSmallBadgeHeight}"
-													 Margin="{ThemeResource NavigationTabBarItemSmallBadgeMargin}"
-													 HorizontalAlignment="Right"
-													 VerticalAlignment="Top"
-													 Fill="{ThemeResource NavigationTabBarItemErrorBrush}"
-													 Visibility="{Binding BadgeValue, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource EmptyOrNullToVisible}}" />
-
-
-											<!-- Large Badge -->
-											<Border Height="{ThemeResource NavigationTabBarItemLargeBadgeHeight}"
-													MinWidth="{ThemeResource NavigationTabBarItemLargeBadgeMinWidth}"
-													Margin="{ThemeResource NavigationTabBarItemLargeBadgeMargin}"
-													Padding="{ThemeResource NavigationTabBarItemLargeBadgePadding}"
-													HorizontalAlignment="Left"
-													VerticalAlignment="Top"
-													Background="{ThemeResource NavigationTabBarItemErrorBrush}"
-													CornerRadius="{ThemeResource NavigationTabBarItemLargeBadgeCornerRadius}"
-													Visibility="{Binding BadgeValue, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource EmptyOrNullToCollapsed}}">
-
-												<TextBlock HorizontalAlignment="Center"
-														   VerticalAlignment="Center"
-														   Foreground="{ThemeResource NavigationTabBarItemOnErrorBrush}"
-														   MaxLines="1"
-														   Style="{StaticResource LabelExtraSmall}"
-														   Text="{TemplateBinding BadgeValue}"
-														   TextAlignment="Center" />
-
-											</Border>
-										</Grid>
+										<!--  InfoBadge Presenter  -->
+										<ContentPresenter x:Name="InfoBadgePresenter"
+														  Content="{TemplateBinding InfoBadge}"
+														  Margin="{ThemeResource NavigationTabBarItemLargeBadgeMargin}"
+														  Padding="{ThemeResource NavigationTabBarItemLargeBadgePadding}"
+														  HorizontalAlignment="Left"
+														  VerticalAlignment="Top"
+														  Visibility="{Binding InfoBadge, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialEmptyOrNullToCollapsed}}" />
 									</Grid>
 									<Grid x:Name="ContentPresenterGrid"
 										  Grid.Row="1"
