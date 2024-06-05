@@ -44,3 +44,11 @@
       PathtoPublish: $(build.artifactstagingdirectory)
       ArtifactName: uno-uitest-tests
       ArtifactType: Container
+
+  - task: PublishBuildArtifacts@1
+    condition: always()
+    retryCountOnTaskFailure: 3
+    inputs:
+      PathtoPublish: $(build.sourcesdirectory)/Uno.Gallery/Uno.Gallery.Mobile/bin/Release/net8.0-ios/iossimulator-x64/Uno.Gallery.Mobile.app
+      ArtifactName: uno-uitest-ios-bin
+      ArtifactType: Container
