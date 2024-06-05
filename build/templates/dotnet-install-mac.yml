@@ -1,7 +1,7 @@
 parameters:
-  DotNetVersion: '7.0.400'
-  UnoCheck_Version: '1.14.1'
-  UnoCheck_Manifest: 'https://raw.githubusercontent.com/unoplatform/uno.check/35c63c2c44c937586f7d03952d53a7464a62fa69/manifests/uno.ui.manifest.json'
+  DotNetVersion: '8.0.100'
+  UnoCheck_Version: '1.23.0'
+  UnoCheck_Manifest: 'https://raw.githubusercontent.com/unoplatform/uno.check/37f4a7cefd69680d788c27a1fd0cd7224725aff1/manifests/uno.ui.manifest.json'
 steps:
   # Required until .NET 6 installs properly using UseDotnet
   # using preview builds

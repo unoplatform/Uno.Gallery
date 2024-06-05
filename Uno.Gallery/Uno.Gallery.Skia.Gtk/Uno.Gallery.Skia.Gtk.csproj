@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<OutputType Condition="'$(Configuration)'=='Release'">WinExe</OutputType>
 		<OutputType Condition="'$(Configuration)'=='Debug' or '$(IsCanaryBranch)'=='true'">Exe</OutputType>
-		<TargetFramework>net7.0</TargetFramework>
+		<TargetFramework>net8.0</TargetFramework>
 		<NoWarn>$(NoWarn);NU1701</NoWarn>
 	</PropertyGroup>
 
@@ -27,7 +27,7 @@
 		<PackageReference Include="Uno.ShowMeTheXAML.MSBuild" />
 		<PackageReference Include="Uno.Toolkit.Skia.WinUI" />
 		<PackageReference Include="Uno.Toolkit.WinUI.Cupertino" />
-		<PackageReference Include="Uno.Toolkit.WinUI.Material" />		
+		<PackageReference Include="Uno.Toolkit.WinUI.Material" />
 		<PackageReference Include="Uno.WinUI.Lottie" />
 		<PackageReference Include="Uno.WinUI.Skia.Gtk" />
 		<PackageReference Include="Uno.WinUI.RemoteControl" Condition="'$(Configuration)'=='Debug'" />

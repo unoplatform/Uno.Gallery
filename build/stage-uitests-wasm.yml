@@ -18,7 +18,7 @@
     retryCountOnTaskFailure: 3
     inputs:
       packageType: sdk
-      version: 7.0.102
+      version: 8.0.100
 
   - template: templates/canary-updater.yml
 
@@ -33,7 +33,7 @@
   - task: CopyFiles@2
     displayName: Copy Wasm output
     inputs:
-      SourceFolder: Uno.Gallery/Uno.Gallery.Wasm/bin/Release/net7.0/dist
+      SourceFolder: Uno.Gallery/Uno.Gallery.Wasm/bin/Release/net8.0/dist
       Contents: '**/*.*'
       TargetFolder: $(Build.ArtifactStagingDirectory)/bin
 

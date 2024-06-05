@@ -1,23 +1,23 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>net7.0-android;net7.0-ios;net7.0-maccatalyst;net7.0-macos</TargetFrameworks>
+		<TargetFrameworks>net8.0-android;net8.0-ios;net8.0-maccatalyst;net8.0-macos</TargetFrameworks>
 		<SingleProject>true</SingleProject>
 		<OutputType>Exe</OutputType>
-		<RuntimeIdentifier Condition="'$(TargetFramework)' == 'net7.0-ios'">iossimulator-x64</RuntimeIdentifier>
-		<RuntimeIdentifier Condition="'$(TargetFramework)' == 'net7.0-maccatalyst'">maccatalyst-x64</RuntimeIdentifier>
-		<RuntimeIdentifier Condition="'$(TargetFramework)' == 'net7.0-macos'">osx-x64</RuntimeIdentifier>
-		<InvariantGlobalization Condition="'$(TargetFramework)' == 'net7.0-maccatalyst'">true</InvariantGlobalization>
+		<RuntimeIdentifier Condition="'$(TargetFramework)' == 'net8.0-ios'">iossimulator-x64</RuntimeIdentifier>
+		<RuntimeIdentifier Condition="'$(TargetFramework)' == 'net8.0-maccatalyst'">maccatalyst-x64</RuntimeIdentifier>
+		<RuntimeIdentifier Condition="'$(TargetFramework)' == 'net8.0-macos'">osx-x64</RuntimeIdentifier>
+		<InvariantGlobalization Condition="'$(TargetFramework)' == 'net8.0-maccatalyst'">true</InvariantGlobalization>
 		<!-- Debugger workaround https://github.com/dotnet/maui-samples/blob/8aa6b8780b12e97b157514c3bdc54bb4a13001cd/HelloMacCatalyst/HelloMacCatalyst.csproj#L7 -->
-		<!-- <MtouchExtraArgs Condition="'$(TargetFramework)' == 'net7.0-maccatalyst'">$(MtouchExtraArgs) -setenv:MONO_THREADS_SUSPEND=preemptive</MtouchExtraArgs> -->
+		<!-- <MtouchExtraArgs Condition="'$(TargetFramework)' == 'net8.0-maccatalyst'">$(MtouchExtraArgs) -setenv:MONO_THREADS_SUSPEND=preemptive</MtouchExtraArgs> -->
 		<!-- Required for C# Hot Reload -->
-		
+
 		<!-- https://github.com/dotnet/runtime/issues/68808 -->
 		<!--<UseInterpreter Condition="'$(Configuration)' == 'Debug'">True</UseInterpreter>-->
 		<IsUnoHead>true</IsUnoHead>
-		<SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net7.0-ios'">14.2</SupportedOSPlatformVersion>
-		<SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net7.0-maccatalyst'">14.0</SupportedOSPlatformVersion>
-		<SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net7.0-android'">21.0</SupportedOSPlatformVersion>
-		<SupportedOSPlatformVersion Condition="'$(TargetFramework)'=='net7.0-macos'">10.14</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net8.0-ios'">14.2</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net8.0-maccatalyst'">14.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net8.0-android'">21.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="'$(TargetFramework)'=='net8.0-macos'">10.14</SupportedOSPlatformVersion>
 		<NoWarn>CA1416;Uno0001</NoWarn>
 		<AndroidManifest>Android\AndroidManifest.xml</AndroidManifest>
 	</PropertyGroup>
@@ -61,9 +61,9 @@
 		<IsUiAutomationMappingEnabled>True</IsUiAutomationMappingEnabled>
 		<DefineConstants>$(DefineConstants);USE_UITESTS</DefineConstants>
 	</PropertyGroup>
-	
+
 	<Choose>
-		<When Condition="'$(TargetFramework)'=='net7.0-android'">
+		<When Condition="'$(TargetFramework)'=='net8.0-android'">
 			<PropertyGroup Condition="'$(Configuration)'=='Release' and '$(System_PullRequest_IsFork)'!='True' and '$(IsUiAutomationMappingEnabled)'==''">
 				<AndroidKeyStore>true</AndroidKeyStore>
 				<AndroidSigningKeyStore>..\Gallery.Droid\calc-prod.keystore</AndroidSigningKeyStore>
@@ -84,7 +84,7 @@
 				<RunAOTCompilation>true</RunAOTCompilation>
 			</PropertyGroup>
 		</When>
-		<When Condition="'$(TargetFramework)'=='net7.0-ios'">
+		<When Condition="'$(TargetFramework)'=='net8.0-ios'">
 			<ItemGroup Condition="'$(Configuration)'=='Release'">
 				<TrimmableAssembly Include="CommunityToolkit.WinUI.UI" />
 			</ItemGroup>
@@ -93,7 +93,7 @@
 
 				<!-- https://github.com/xamarin/xamarin-macios/issues/14812 -->
 				<MtouchExtraArgs>$(MtouchExtraArgs) --marshal-objectivec-exceptions:disable</MtouchExtraArgs>
-				
+
 				<InvariantGlobalization>false</InvariantGlobalization>
 			</PropertyGroup>
 			<PropertyGroup Condition="'$(Configuration)'=='Release' and '$(System_PullRequest_IsFork)'!='True'">
@@ -110,17 +110,17 @@
 				<TrimmableAssembly Include="Microsoft.Toolkit.Uwp.UI" />
 			</ItemGroup>
 		</When>
-		<When Condition="'$(TargetFramework)'=='net7.0-maccatalyst'">
+		<When Condition="'$(TargetFramework)'=='net8.0-maccatalyst'">
 			<PropertyGroup>
 				<!-- https://github.com/xamarin/xamarin-macios/issues/14686 -->
 				<_LibMonoLinkMode>static</_LibMonoLinkMode>
 				<_LibXamarinLinkMode>static</_LibXamarinLinkMode>
-				
+
 				<MtouchExtraArgs>$(MtouchExtraArgs) --registrar:static --dsym=true</MtouchExtraArgs>
 
 				<!-- https://github.com/xamarin/xamarin-macios/issues/14812 -->
 				<MtouchExtraArgs>$(MtouchExtraArgs) --marshal-objectivec-exceptions:disable</MtouchExtraArgs>
-				
+
 				<InvariantGlobalization>false</InvariantGlobalization>
 			</PropertyGroup>
 			<PropertyGroup Condition="'$(Configuration)'=='Release' and '$(System_PullRequest_IsFork)'!='True'">
@@ -141,6 +141,6 @@
 			</PropertyGroup>
 		</When>
 	</Choose>
-	
+
 	<Import Project="..\Uno.Gallery.Shared\Uno.Gallery.Shared.projitems" Label="Shared" />
 </Project>

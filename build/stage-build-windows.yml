@@ -14,7 +14,7 @@ steps:
   displayName: 'Use .NET'
   inputs:
     packageType: 'sdk'
-    version: '7.0.400'
+    version: '8.0.100'
 
 - script: |
     cd $(build.sourcesdirectory)/Uno.Gallery/Uno.Gallery.Windows

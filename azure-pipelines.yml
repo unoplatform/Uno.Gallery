@@ -18,7 +18,7 @@ trigger:
     - doc/*
     - '**/*.md'
 
-pr: 
+pr:
   branches:
     include:
       - master
@@ -41,7 +41,7 @@ pr:
 variables:
   IsLightBuild: $[eq(variables['Build.Reason'], 'PullRequest')]
   IsCanaryBranch: $[startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries/')]
-  
+
 jobs:
 - job: Windows_Android_Mobile
   strategy:
@@ -55,7 +55,7 @@ jobs:
 
   pool:
     vmImage: windows-2022
-    
+
   variables:
   - group: 'UADO Keystore' # Import all variables for the signing from the library in azure devops
 
@@ -65,14 +65,14 @@ jobs:
 - job: Windows_WinAppSDK
   pool:
     vmImage: windows-2022
-    
+
   variables:
   - group: 'UADO Keystore' # Import all variables for the Android signing from the library in azure devops
   - group: 'Uno Platform authenticode signing' # Import all variables for the signing from the library in azure devops
   - name: ApplicationPlatform
     value: x86 # switch back to x64 once CommunityToolkit.WinUI.UI supports x64 (https://github.com/CommunityToolkit/Lottie-Windows/issues/515#issuecomment-1662305826)
   - name: BuildTargetFramework
-    value: net7.0-windows10.0.19041
+    value: net8.0-windows10.0.19041
   - name: ArtifactName
     value: Windows
   - name: VersionCodeOffset
@@ -86,7 +86,7 @@ jobs:
 - job: Windows_SkiaGtk
   pool:
     vmImage: windows-2022
-    
+
   variables:
   - group: 'UADO Keystore' # Import all variables for the signing from the library in azure devops
 
@@ -98,18 +98,18 @@ jobs:
     maxParallel: 2
     matrix:
       iOS:
-        BuildTargetFramework: net7.0-ios
+        BuildTargetFramework: net8.0-ios
         ArtifactName: iOS-mobile
         ApplicationBuildNumberOffset: 50
         BuildCommand: publish
       Catalyst:
-        BuildTargetFramework: net7.0-maccatalyst
+        BuildTargetFramework: net8.0-maccatalyst
         ArtifactName: Catalyst
         ApplicationBuildNumberOffset: 50
         BuildCommand: build
   pool:
-    vmImage: macos-12
-    
+    vmImage: macos-13
+
   variables:
   - name: SkipUnknownFrameworks
     value: true # Used by TargetFrameworks.Filtering package
@@ -161,10 +161,10 @@ jobs:
   - template: build/stage-build-mobile.yml
 
 - job: Linux
-  timeoutInMinutes: 30
+  timeoutInMinutes: 40
   pool:
     vmImage: ubuntu-latest
-  
+
   container: unoplatform/wasm-build:3.0
 
   variables:
@@ -175,5 +175,6 @@ jobs:
     - template: build/stage-build-wasm.yml
 
 - template: build/stage-uitests-wasm.yml
-- template: build/stage-uitests-ios.yml
+# disabled until https://github.com/microsoft/appcenter/issues/2584 can be worked around
+#- template: build/stage-uitests-ios.yml
 - template: build/stage-uitests-android.yml

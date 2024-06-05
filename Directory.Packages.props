@@ -11,7 +11,6 @@
     <PackageVersion Include="Microsoft.Extensions.Logging" Version="7.0.0" />
     <PackageVersion Include="Microsoft.Extensions.Logging.Console" Version="7.0.0" />
     <PackageVersion Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
-    <PackageVersion Include="Microsoft.NET.ILLink.Tasks" Version="8.0.100-1.23067.1" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.2.0" />
     <PackageVersion Include="Microsoft.TypeScript.Compiler" Version="3.1.5" />
     <PackageVersion Include="Microsoft.TypeScript.MSBuild" Version="4.6.4" />
@@ -25,8 +24,8 @@
     <PackageVersion Include="SkiaSharp.Skottie" Version="2.88.6" />
     <PackageVersion Include="SkiaSharp.Views.Uno.WinUI" Version="2.88.7" />
     <PackageVersion Include="Svg.Skia" Version="1.0.0.1" />
-    <PackageVersion Include="Uno.CommunityToolkit.WinUI.UI.Controls" Version="7.1.2" />
-    <PackageVersion Include="Uno.CommunityToolkit.WinUI.UI.Controls.DataGrid" Version="7.1.2" />
+    <PackageVersion Include="Uno.CommunityToolkit.WinUI.UI.Controls" Version="7.1.200" />
+    <PackageVersion Include="Uno.CommunityToolkit.WinUI.UI.Controls.DataGrid" Version="7.1.200" />
     <PackageVersion Include="Uno.Core.Extensions.Compatibility" Version="4.0.1" />
     <PackageVersion Include="Uno.Core.Extensions.Disposables" Version="4.0.1" />
     <PackageVersion Include="Uno.Core.Extensions.Logging.Singleton" Version="4.0.1" />
