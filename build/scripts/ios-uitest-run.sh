@@ -23,10 +23,6 @@ cd $BUILD_SOURCESDIRECTORY
 cd $UNO_UITEST_IOS_PROJECT
 dotnet build -f net8.0-ios -r iossimulator-x64 -c Release -p:IsUiAutomationMappingEnabled=True -bl:$BUILD_ARTIFACTSTAGINGDIRECTORY/ios-app.binlog
 
-
-
-export UITEST_IOSDEVICE_ID=`xcrun simctl list -j | jq -r --arg sim "$UNO_UITEST_SIMULATOR_VERSION" --arg name "$UNO_UITEST_SIMULATOR_NAME" '.devices[$sim] | .[] | select(.name==$name) | .udid'`
-
 ##
 ## Pre-install the application to avoid https://github.com/microsoft/appcenter/issues/2389
 ##
@@ -47,6 +43,12 @@ while true; do
 	echo "Waiting for the simulator to be available"
 	sleep 5
 done
+
+# get the simulator data path
+export UITEST_IOSDEVICE_DATA_PATH=`xcrun simctl list -j | jq -r --arg sim "$UNO_UITEST_SIMULATOR_VERSION" --arg name "$UNO_UITEST_SIMULATOR_NAME" '.devices[$sim] | .[] | select(.name==$name) | .dataPath'`
+
+echo "Simulator Data Path: $UITEST_IOSDEVICE_DATA_PATH"
+cp "$UITEST_IOSDEVICE_DATA_PATH/../device.plist" $UNO_UITEST_SCREENSHOT_PATH/_logs
 
 echo "Starting simulator: [$UITEST_IOSDEVICE_ID] ($UNO_UITEST_SIMULATOR_VERSION / $UNO_UITEST_SIMULATOR_NAME)"
 
