@@ -4,10 +4,10 @@
   variables:
     CI_Build: true
     SourceLinkEnabled: false
-    XCODE_ROOT: '/Applications/Xcode_15.2.app'
+    XCODE_ROOT: '/Applications/Xcode_15.4.app'
 
   pool:
-    vmImage: 'macos-13'
+    vmImage: 'macos-14'
 
   steps:
   - checkout: self
