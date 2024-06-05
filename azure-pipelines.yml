@@ -180,6 +180,5 @@ jobs:
     - template: build/stage-build-wasm.yml
 
 - template: build/stage-uitests-wasm.yml
-# disabled until https://github.com/microsoft/appcenter/issues/2584 can be worked around
-#- template: build/stage-uitests-ios.yml
+- template: build/stage-uitests-ios.yml
 - template: build/stage-uitests-android.yml
