@@ -20,7 +20,29 @@ xcrun simctl list devices --json
 
 export UITEST_IOSDEVICE_ID=`xcrun simctl list -j | jq -r --arg sim "$UNO_UITEST_SIMULATOR_VERSION" --arg name "$UNO_UITEST_SIMULATOR_NAME" '.devices[$sim] | .[] | select(.name==$name) | .udid'`
 
-echo "Using DeviceID: $UITEST_IOSDEVICE_ID"
+##
+## Pre-install the application to avoid https://github.com/microsoft/appcenter/issues/2389
+##
+echo "Starting simulator: [$UITEST_IOSDEVICE_ID] ($UNO_UITEST_SIMULATOR_VERSION / $UNO_UITEST_SIMULATOR_NAME)"
+
+# check for the presence of idb, and install it if it's not present
+export PATH=$PATH:~/.local/bin
+
+if ! command -v idb &> /dev/null
+then
+	echo "Installing idb"
+	brew install pipx
+	# # https://github.com/microsoft/appcenter/issues/2605#issuecomment-1854414963
+	brew tap facebook/fb
+	brew install idb-companion
+	pipx install fb-idb
+else
+	echo "Using idb from:" `command -v idb`
+fi
+
+xcrun simctl boot "$UITEST_IOSDEVICE_ID" || true
+
+idb install --udid "$UITEST_IOSDEVICE_ID" "$UNO_UITEST_IOSBUNDLE_PATH"
 
 cd $BUILD_SOURCESDIRECTORY
 
@@ -28,9 +50,6 @@ cd $UNO_UITEST_IOS_PROJECT
 dotnet build -f net8.0-ios -r iossimulator-x64 -c Release -p:IsUiAutomationMappingEnabled=True -bl:$BUILD_ARTIFACTSTAGINGDIRECTORY/ios-app.binlog
 
 mkdir -p $UNO_UITEST_SCREENSHOT_PATH
-
-# https://github.com/microsoft/appcenter/issues/2475#issuecomment-1546997444
-xcrun simctl install booted $UNO_UITEST_IOSBUNDLE_PATH
 
 cd $UNO_UITEST_PROJECT
 
