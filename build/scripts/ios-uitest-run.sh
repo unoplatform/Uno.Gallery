@@ -18,6 +18,9 @@ xcrun simctl list devices --json
 
 /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app/Contents/MacOS/Simulator &
 
+# Prime the output directory
+mkdir -p $UNO_UITEST_SCREENSHOT_PATH
+
 cd $BUILD_SOURCESDIRECTORY
 
 cd $UNO_UITEST_IOS_PROJECT
@@ -43,9 +46,6 @@ while true; do
 	echo "Waiting for the simulator to be available"
 	sleep 5
 done
-
-# get the simulator data path
-export UITEST_IOSDEVICE_DATA_PATH=`xcrun simctl list -j | jq -r --arg sim "$UNO_UITEST_SIMULATOR_VERSION" --arg name "$UNO_UITEST_SIMULATOR_NAME" '.devices[$sim] | .[] | select(.name==$name) | .dataPath'`
 
 echo "Simulator Data Path: $UITEST_IOSDEVICE_DATA_PATH"
 cp "$UITEST_IOSDEVICE_DATA_PATH/../device.plist" $UNO_UITEST_SCREENSHOT_PATH/_logs
@@ -73,7 +73,6 @@ idb install --udid "$UITEST_IOSDEVICE_ID" "$UNO_UITEST_IOSBUNDLE_PATH"
 
 
 # Run the tests
-mkdir -p $UNO_UITEST_SCREENSHOT_PATH
 
 cd $UNO_UITEST_PROJECT
 
