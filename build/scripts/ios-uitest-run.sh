@@ -18,6 +18,13 @@ xcrun simctl list devices --json
 
 /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app/Contents/MacOS/Simulator &
 
+cd $BUILD_SOURCESDIRECTORY
+
+cd $UNO_UITEST_IOS_PROJECT
+dotnet build -f net8.0-ios -r iossimulator-x64 -c Release -p:IsUiAutomationMappingEnabled=True -bl:$BUILD_ARTIFACTSTAGINGDIRECTORY/ios-app.binlog
+
+
+
 export UITEST_IOSDEVICE_ID=`xcrun simctl list -j | jq -r --arg sim "$UNO_UITEST_SIMULATOR_VERSION" --arg name "$UNO_UITEST_SIMULATOR_NAME" '.devices[$sim] | .[] | select(.name==$name) | .udid'`
 
 ##
@@ -44,11 +51,8 @@ xcrun simctl boot "$UITEST_IOSDEVICE_ID" || true
 
 idb install --udid "$UITEST_IOSDEVICE_ID" "$UNO_UITEST_IOSBUNDLE_PATH"
 
-cd $BUILD_SOURCESDIRECTORY
 
-cd $UNO_UITEST_IOS_PROJECT
-dotnet build -f net8.0-ios -r iossimulator-x64 -c Release -p:IsUiAutomationMappingEnabled=True -bl:$BUILD_ARTIFACTSTAGINGDIRECTORY/ios-app.binlog
-
+# Run the tests
 mkdir -p $UNO_UITEST_SCREENSHOT_PATH
 
 cd $UNO_UITEST_PROJECT
