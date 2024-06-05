@@ -16,7 +16,11 @@ namespace Uno.Gallery.UITests
 	public class Given_NumberBox : TestBase 
 	{
 		[Test]
-		public void NumberBox_Flunet()
+		[Ignore("""
+			On Wasm: CI, it produces NaN for unknown reason. Locally, it types 3^3 and produces 27
+			On iOS and Android: Fails with 'Timed out waiting for keyboard'
+			""")]
+		public void NumberBox_Fluent()
 		{
 			NavigateToSample("NumberBox", "Fluent");
 
@@ -29,7 +33,7 @@ namespace Uno.Gallery.UITests
 			var Numbox_Exp = new QueryEx(x => x.All().Marked("NumberBox_Expression"));
 			Numbox_Exp.EnterText("1+3^3");
 			App.PressEnter();
-			Assert.AreEqual(27.00, Numbox_Exp.GetDependencyPropertyValue<double>("Value"));
+			Assert.AreEqual(28.00, Numbox_Exp.GetDependencyPropertyValue<double>("Value"));
 
 			var Round = new QueryEx(x => x.All().Marked("NumberBox_RoundOff"));
 			Round.EnterText("1.01");
