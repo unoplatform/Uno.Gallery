@@ -21,6 +21,9 @@ xcrun simctl list devices --json
 # Prime the output directory
 mkdir -p $UNO_UITEST_SCREENSHOT_PATH
 
+# create a symlink from ~/Library to ~/Document/Library to work around https://github.com/microsoft/appcenter/issues/2584
+ln -s ~/Library ~/Documents/Library
+
 cd $BUILD_SOURCESDIRECTORY
 
 cd $UNO_UITEST_IOS_PROJECT
