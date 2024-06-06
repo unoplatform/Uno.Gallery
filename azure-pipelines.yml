@@ -160,7 +160,7 @@ jobs:
       provisioningProfileLocation: 'secureFiles'
       provProfileSecureFile: Uno_Gallery_Canary_iOS.mobileprovision
 
-  - template: xcode-select.yml
+  - template: build/templates/xcode-select.yml
     parameters:
       xCodeRoot: $(XCODE_ROOT)
 
