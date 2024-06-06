@@ -19,7 +19,7 @@ xcrun simctl list devices --json
 /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app/Contents/MacOS/Simulator &
 
 # Prime the output directory
-mkdir -p $UNO_UITEST_SCREENSHOT_PATH
+mkdir -p $UNO_UITEST_SCREENSHOT_PATH/_logs
 
 # create a symlink from ~/Library to ~/Document/Library to work around https://github.com/microsoft/appcenter/issues/2584
 ln -s ~/Library ~/Documents/Library
