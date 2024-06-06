@@ -14,7 +14,7 @@
 
   - template: templates/dotnet-install-mac.yml
 
-  - template: xcode-select.yml
+  - template: templates/xcode-select.yml
     parameters:
       xCodeRoot: $(XCODE_ROOT)
     
