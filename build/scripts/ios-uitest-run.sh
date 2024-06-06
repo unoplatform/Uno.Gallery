@@ -24,8 +24,6 @@ mkdir -p $UNO_UITEST_SCREENSHOT_PATH
 # create a symlink from ~/Library to ~/Document/Library to work around https://github.com/microsoft/appcenter/issues/2584
 ln -s ~/Library ~/Documents/Library
 
-cd $BUILD_SOURCESDIRECTORY
-
 cd $UNO_UITEST_IOS_PROJECT
 dotnet build -f net8.0-ios -r iossimulator-x64 -c Release -p:IsUiAutomationMappingEnabled=True -bl:$BUILD_ARTIFACTSTAGINGDIRECTORY/ios-app.binlog
 
@@ -92,6 +90,5 @@ export LOG_FILEPATH=$UNO_UITEST_SCREENSHOT_PATH/_logs
 export TMP_LOG_FILEPATH=/tmp/DeviceLog-`date +"%Y%m%d%H%M%S"`.logarchive
 export LOG_FILEPATH_FULL=$LOG_FILEPATH/DeviceLog-`date +"%Y%m%d%H%M%S"`.txt
 
-mkdir -p $LOG_FILEPATH
 xcrun simctl spawn booted log collect --output $TMP_LOG_FILEPATH
 log show --style syslog $TMP_LOG_FILEPATH > $LOG_FILEPATH_FULL
