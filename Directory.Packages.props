@@ -58,5 +58,6 @@
     <PackageVersion Include="Xamarin.Google.Android.Material" Version="1.6.0" />
     <PackageVersion Include="Xamarin.UITest" Version="4.3.5" />
     <PackageVersion Include="Xamarin.TestCloud.Agent" Version="0.23.2" />
+    <PackageVersion Include="Microsoft.NET.ILLink.Tasks" Version="8.0.6" />
   </ItemGroup>
 </Project>
