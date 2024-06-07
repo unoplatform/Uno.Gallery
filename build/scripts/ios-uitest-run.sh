@@ -21,9 +21,6 @@ xcrun simctl list devices --json
 # Prime the output directory
 mkdir -p $UNO_UITEST_SCREENSHOT_PATH/_logs
 
-# create a symlink from ~/Library to ~/Document/Library to work around https://github.com/microsoft/appcenter/issues/2584
-ln -s ~/Library ~/Documents/Library
-
 cd $UNO_UITEST_IOS_PROJECT
 dotnet build -f net8.0-ios -r iossimulator-x64 -c Release -p:IsUiAutomationMappingEnabled=True -bl:$BUILD_ARTIFACTSTAGINGDIRECTORY/ios-app.binlog
 

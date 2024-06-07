@@ -56,7 +56,7 @@
     <PackageVersion Include="Uno.WinUI.WebAssembly" Version="5.1.80" />
     <PackageVersion Include="VideoLAN.LibVLC.Windows" Version="3.0.18" />
     <PackageVersion Include="Xamarin.Google.Android.Material" Version="1.6.0" />
-    <PackageVersion Include="Xamarin.UITest" Version="4.3.4" />
+    <PackageVersion Include="Xamarin.UITest" Version="4.3.5" />
     <PackageVersion Include="Xamarin.TestCloud.Agent" Version="0.23.2" />
   </ItemGroup>
 </Project>
