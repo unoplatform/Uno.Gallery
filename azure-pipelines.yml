@@ -42,6 +42,8 @@ variables:
   IsLightBuild: $[eq(variables['Build.Reason'], 'PullRequest')]
   IsCanaryBranch: $[startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries/')]
 
+  XCODE_ROOT: '/Applications/Xcode_15.4.app'
+  
 jobs:
 - job: Windows_Android_Mobile
   strategy:
@@ -108,7 +110,7 @@ jobs:
         ApplicationBuildNumberOffset: 50
         BuildCommand: build
   pool:
-    vmImage: macos-13
+    vmImage: macos-14
 
   variables:
   - name: SkipUnknownFrameworks
@@ -158,6 +160,10 @@ jobs:
       provisioningProfileLocation: 'secureFiles'
       provProfileSecureFile: Uno_Gallery_Canary_iOS.mobileprovision
 
+  - template: build/templates/xcode-select.yml
+    parameters:
+      xCodeRoot: $(XCODE_ROOT)
+
   - template: build/stage-build-mobile.yml
 
 - job: Linux
@@ -175,6 +181,5 @@ jobs:
     - template: build/stage-build-wasm.yml
 
 - template: build/stage-uitests-wasm.yml
-# disabled until https://github.com/microsoft/appcenter/issues/2584 can be worked around
-#- template: build/stage-uitests-ios.yml
+- template: build/stage-uitests-ios.yml
 - template: build/stage-uitests-android.yml

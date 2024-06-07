@@ -15,6 +15,12 @@ namespace Uno.Gallery.UITests
 		[Test]
 		public void WhenPasswordBoxNoHeader() 
 		{
+			if (AppInitializer.GetLocalPlatform() == Platform.iOS)
+			{
+				// The entered text fails to show more than one character
+				Assert.Ignore("Not working on Xamarin.UITest 4.3");
+			}
+
 			NavigateToSample("PasswordBox", "Fluent");
 
 			TakeScreenshot("Before PasswordBox");
