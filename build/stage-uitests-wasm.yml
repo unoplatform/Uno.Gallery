@@ -1,5 +1,6 @@
 ﻿jobs:
 - job: Wasm_UITests
+  timeoutInMinutes: 90
   displayName: 'WebAssembly UI Tests'
   container: unoplatform/wasm-build:3.0
 
