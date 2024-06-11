@@ -3,7 +3,6 @@
   timeoutInMinutes: 90
   displayName: 'WebAssembly UI Tests'
   container: unoplatform/wasm-build:3.0
-  timeoutInMinutes: 75
 
   pool:
     vmImage: 'ubuntu-latest'
