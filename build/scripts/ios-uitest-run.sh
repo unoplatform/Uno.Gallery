@@ -21,15 +21,12 @@ xcrun simctl list devices --json
 # Prime the output directory
 mkdir -p $UNO_UITEST_SCREENSHOT_PATH/_logs
 
-cd $UNO_UITEST_IOS_PROJECT
-dotnet build -f net8.0-ios -r iossimulator-x64 -c Release -p:IsUiAutomationMappingEnabled=True -bl:$BUILD_ARTIFACTSTAGINGDIRECTORY/ios-app.binlog
-
 ##
 ## Pre-install the application to avoid https://github.com/microsoft/appcenter/issues/2389
 ##
 
 ## Install iOS 16.1 simulators
-xcodes runtimes install --keep-archive 'iOS 16.1' || true
+xcodes runtimes install --keep-archive 'iOS 16.1'
 
 # Wait while ios runtime 16.1 is not having simulators. The install process may 
 # take a few seconds and "simctl list devices" may not return devices.
@@ -44,6 +41,9 @@ while true; do
 	echo "Waiting for the simulator to be available"
 	sleep 5
 done
+
+cd $UNO_UITEST_IOS_PROJECT
+dotnet build -f net8.0-ios -r iossimulator-x64 -c Release -p:IsUiAutomationMappingEnabled=True -bl:$BUILD_ARTIFACTSTAGINGDIRECTORY/ios-app.binlog
 
 echo "Simulator Data Path: $UITEST_IOSDEVICE_DATA_PATH"
 cp "$UITEST_IOSDEVICE_DATA_PATH/../device.plist" $UNO_UITEST_SCREENSHOT_PATH/_logs
