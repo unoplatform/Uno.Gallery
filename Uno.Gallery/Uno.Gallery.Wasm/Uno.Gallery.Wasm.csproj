@@ -27,6 +27,9 @@
 		<UnoXamlResourcesTrimming>true</UnoXamlResourcesTrimming>
 		<WasmShellObfuscateAssemblies>true</WasmShellObfuscateAssemblies>
 
+		<!-- Ensure that the ILLinker from the runtime is used -->
+		<_RequiresILLinkPack>true</_RequiresILLinkPack>
+
 		<!--
 		Uncomment this block to generate a profile
 		<WasmShellGenerateAOTProfile>true</WasmShellGenerateAOTProfile>
