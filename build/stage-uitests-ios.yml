@@ -4,10 +4,9 @@
   variables:
     CI_Build: true
     SourceLinkEnabled: false
-    XCODE_ROOT: '/Applications/Xcode_14.3.app'
 
   pool:
-    vmImage: 'macos-13'
+    vmImage: 'macos-14'
 
   steps:
   - checkout: self
@@ -15,8 +14,9 @@
 
   - template: templates/dotnet-install-mac.yml
 
-  - bash: /bin/bash -c "echo '##vso[task.setvariable variable=MD_APPLE_SDK_ROOT;]'${XCODE_ROOT};sudo xcode-select --switch ${XCODE_ROOT}/Contents/Developer"
-    displayName: Select Xcode
+  - template: templates/xcode-select.yml
+    parameters:
+      xCodeRoot: $(XCODE_ROOT)
     
   - template: templates/canary-updater.yml
 
@@ -43,4 +43,12 @@
     inputs:
       PathtoPublish: $(build.artifactstagingdirectory)
       ArtifactName: uno-uitest-tests
+      ArtifactType: Container
+
+  - task: PublishBuildArtifacts@1
+    condition: always()
+    retryCountOnTaskFailure: 3
+    inputs:
+      PathtoPublish: $(build.sourcesdirectory)/Uno.Gallery/Uno.Gallery.Mobile/bin/Release/net8.0-ios/iossimulator-x64/Uno.Gallery.Mobile.app
+      ArtifactName: uno-uitest-ios-bin
       ArtifactType: Container

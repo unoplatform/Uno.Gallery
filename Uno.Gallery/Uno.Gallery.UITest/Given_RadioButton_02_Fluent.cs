@@ -19,6 +19,8 @@ namespace Uno.Gallery.UITests
 		{
 			NavigateToSample("RadioButton", "Fluent");
 
+			var fluentUncheckRadioButton = new QueryEx(x => x.All().Marked("RadioButton_Fluent_Unchecked"));
+
 			App.ScrollDownTo("RadioButton_Fluent_Unchecked");
 
 			fluentUncheckRadioButton.Tap();
@@ -56,11 +58,10 @@ namespace Uno.Gallery.UITests
 
 			App.ScrollDownTo("RadioButton_Material_Disabled_Checked");
 
-			fluentDisabledCheckedRadioButton.Tap();
+			fluentDisabledUnCheckedRadioButton.Tap();
 			TakeScreenshot("After Tap");
-			Assert.IsFalse(fluentDisabledCheckedRadioButton.GetDependencyPropertyValue<bool>("IsEnabled"));
-			Assert.IsTrue(fluentDisabledCheckedRadioButton.GetDependencyPropertyValue<bool>("IsChecked"));
-
+			Assert.IsFalse(fluentDisabledUnCheckedRadioButton.GetDependencyPropertyValue<bool>("IsEnabled"));
+			Assert.IsFalse(fluentDisabledUnCheckedRadioButton.GetDependencyPropertyValue<bool>("IsChecked"));
 		}
 	}
 }
