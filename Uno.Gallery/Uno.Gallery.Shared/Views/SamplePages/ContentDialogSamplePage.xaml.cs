@@ -31,8 +31,16 @@ namespace Uno.Gallery.Views.Samples
 			{
 				Content = "Hello world!",
 				PrimaryButtonText = "OK",
-				XamlRoot = this.XamlRoot
+				XamlRoot = this.XamlRoot,
 			};
+
+			if ((sender is Button button) && button.Tag is { } tag && tag.ToString() == "Fluent")
+			{
+				var resourceDictionary = new ResourceDictionary();
+				resourceDictionary.MergedDictionaries.Add(new XamlControlsResources());
+				contentDialog.Resources = resourceDictionary;
+			}
+
 			await contentDialog.ShowAsync();
 		}
 
@@ -45,6 +53,14 @@ namespace Uno.Gallery.Views.Samples
 				PrimaryButtonText = "OK",
 				XamlRoot = this.XamlRoot
 			};
+
+			if ((sender is Button button) && button.Tag is { } tag && tag.ToString() == "Fluent")
+			{
+				var resourceDictionary = new ResourceDictionary();
+				resourceDictionary.MergedDictionaries.Add(new XamlControlsResources());
+				contentDialog.Resources = resourceDictionary;
+			}
+
 			await contentDialog.ShowAsync();
 		}
 
@@ -59,6 +75,13 @@ namespace Uno.Gallery.Views.Samples
 				DefaultButton = ContentDialogButton.Primary,
 				XamlRoot = this.XamlRoot,
 			};
+
+			if ((sender is Button button) && button.Tag is { } tag && tag.ToString() == "Fluent")
+			{
+				var resourceDictionary = new ResourceDictionary();
+				resourceDictionary.MergedDictionaries.Add(new XamlControlsResources());
+				contentDialog.Resources = resourceDictionary;
+			}
 
 			if (await contentDialog.ShowAsync() == ContentDialogResult.Primary)
 			{
