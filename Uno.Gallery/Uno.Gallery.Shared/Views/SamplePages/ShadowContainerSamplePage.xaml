@@ -16,12 +16,9 @@
 	<Page.Resources>
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
-				<!-- Known issue at the moment where we cannot re-initialize MaterialToolkitTheme to override colors with a new palette for other platforms outside of Windows -->
-				<!-- https://github.com/unoplatform/Uno.Themes/issues/1145 -->
-				<!--<MaterialToolkitTheme xmlns="using:Uno.Toolkit.UI.Material"
-									  ColorOverrideSource="ms-appx:///Views/NeumorphicColorsOverride.xaml" />-->
-				<ResourceDictionary Source="../NeumorphicColorsOverride.xaml" />
-				<ResourceDictionary Source="../Styles/NeumorphicStyles.xaml" />
+
+				<MaterialToolkitTheme xmlns="using:Uno.Toolkit.UI.Material"
+									  ColorOverrideSource="ms-appx:///Views/NeumorphicColorsOverride.xaml" />
 			</ResourceDictionary.MergedDictionaries>
 
 			<!--#region Neumorphic Templates-->
