@@ -134,21 +134,45 @@
 			<local:SamplePageLayout.FluentTemplate>
 				<DataTemplate>
 					<StackPanel>
+						<StackPanel.Resources>
+							<ResourceDictionary>
+								<ResourceDictionary.MergedDictionaries>
+									<XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
+								</ResourceDictionary.MergedDictionaries>
 
-						<smtx:XamlDisplay UniqueKey="FlyoutSamplePage_Fluent_Flyout" smtx:XamlDisplayExtensions.Header="FlyoutPresenter">
+								<Style x:Key="FluentMenuFlyoutPresenterStyle"
+									   TargetType="MenuFlyoutPresenter">
+								</Style>
+								<Style x:Key="FluentMenuFlyoutItemStyle"
+									   TargetType="MenuFlyoutItem">
+								</Style>
+								<Style x:Key="FluentToggleMenuFlyoutItemStyle"
+									   TargetType="ToggleMenuFlyoutItem">
+								</Style>
+								<Style x:Key="FluentMenuFlyoutSeparatorStyle"
+									   TargetType="MenuFlyoutSeparator">
+								</Style>
+								<Style x:Key="FluentMenuFlyoutSubItemStyle"
+									   TargetType="MenuFlyoutSubItem">
+								</Style>
+								<Style x:Key="FluentFlyoutPresenterStyle"
+									   TargetType="FlyoutPresenter">
+									<Setter Property="ScrollViewer.HorizontalScrollMode"
+											Value="Disabled" />
+									<Setter Property="ScrollViewer.HorizontalScrollBarVisibility"
+											Value="Disabled" />
+									<Setter Property="Margin"
+											Value="16" />
+								</Style>
+							</ResourceDictionary>
+						</StackPanel.Resources>
+
+						<smtx:XamlDisplay UniqueKey="FlyoutSamplePage_Fluent_Flyout"
+										  smtx:XamlDisplayExtensions.Header="FlyoutPresenter">
 
 							<Button Content="Flyout">
 								<Button.Flyout>
-									<Flyout>
-										<Flyout.FlyoutPresenterStyle>
-											<Style TargetType="FlyoutPresenter">
-
-												<Setter Property="ScrollViewer.HorizontalScrollMode" Value="Disabled" />
-												<Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
-												<Setter Property="Margin" Value="16" />
-											</Style>
-										</Flyout.FlyoutPresenterStyle>
-
+									<Flyout FlyoutPresenterStyle="{StaticResource FluentFlyoutPresenterStyle}">
 										<TextBlock Style="{StaticResource BodyMedium}">
 											<TextBlock.Text>
 												Lorem ipsum dolor sit amet consectetur adipiscing, elit aliquam ullamcorper
@@ -164,72 +188,97 @@
 								</Button.Flyout>
 							</Button>
 						</smtx:XamlDisplay>
-						<smtx:XamlDisplay UniqueKey="FlyoutSamplePage_Fluent_Flyout_Icons" smtx:XamlDisplayExtensions.Header="MenuFlyout &amp; Icons">
+						<smtx:XamlDisplay UniqueKey="FlyoutSamplePage_Fluent_Flyout_Icons"
+										  smtx:XamlDisplayExtensions.Header="MenuFlyout &amp; Icons">
 							<Button Content="Open">
 								<Button.Flyout>
-									<MenuFlyout>
-
-										<MenuFlyoutItem Text="Like">
+									<MenuFlyout MenuFlyoutPresenterStyle="{StaticResource FluentMenuFlyoutPresenterStyle}">
+										<MenuFlyoutItem Text="Like"
+														Style="{StaticResource FluentMenuFlyoutItemStyle}">
 											<MenuFlyoutItem.Icon>
 												<SymbolIcon Symbol="Like" />
 											</MenuFlyoutItem.Icon>
 										</MenuFlyoutItem>
-										<MenuFlyoutItem Text="Dislike">
+										<MenuFlyoutItem Text="Dislike"
+														Style="{StaticResource FluentMenuFlyoutItemStyle}">
 											<MenuFlyoutItem.Icon>
 												<SymbolIcon Symbol="Dislike" />
 											</MenuFlyoutItem.Icon>
 										</MenuFlyoutItem>
 
-										<MenuFlyoutSeparator />
+										<MenuFlyoutSeparator Style="{StaticResource FluentMenuFlyoutSeparatorStyle}"/>
 
-										<MenuFlyoutItem Text="Calculator" Icon="Calculator" />
+										<MenuFlyoutItem Text="Calculator"
+														Icon="Calculator"
+														Style="{StaticResource FluentMenuFlyoutItemStyle}" />
 										<MenuFlyoutItem Text="Camera"
 														Icon="Camera"
-														win:KeyboardAcceleratorTextOverride="Ctrl+C" />
+														win:KeyboardAcceleratorTextOverride="Ctrl+C"
+														Style="{StaticResource FluentMenuFlyoutItemStyle}" />
 										<MenuFlyoutItem Text="Calendar"
 														Icon="Calendar"
 														IsEnabled="False"
-														win:KeyboardAcceleratorTextOverride="Ctrl+D" />
+														win:KeyboardAcceleratorTextOverride="Ctrl+D"
+														Style="{StaticResource FluentMenuFlyoutItemStyle}" />
 									</MenuFlyout>
 								</Button.Flyout>
 							</Button>
 						</smtx:XamlDisplay>
-						<smtx:XamlDisplay UniqueKey="FlyoutSamplePage_Fluent_MenuFlyout_Toggles" smtx:XamlDisplayExtensions.Header="MenuFlyout &amp; Toggles">
+						<smtx:XamlDisplay UniqueKey="FlyoutSamplePage_Fluent_MenuFlyout_Toggles"
+										  smtx:XamlDisplayExtensions.Header="MenuFlyout &amp; Toggles">
 							<Button Content="Options">
 								<Button.Flyout>
-									<MenuFlyout>
+									<MenuFlyout MenuFlyoutPresenterStyle="{StaticResource FluentMenuFlyoutPresenterStyle}">
 
-										<MenuFlyoutItem Text="Clear History" win:KeyboardAcceleratorTextOverride="Ctrl+Shift+C" />
+										<MenuFlyoutItem Text="Clear History"
+														win:KeyboardAcceleratorTextOverride="Ctrl+Shift+C"
+														Style="{StaticResource FluentMenuFlyoutItemStyle}" />
 
-										<MenuFlyoutSeparator />
+										<MenuFlyoutSeparator Style="{StaticResource FluentMenuFlyoutSeparatorStyle}"/>
 
-										<ToggleMenuFlyoutItem Text="Incognito Mode" IsChecked="True" />
+										<ToggleMenuFlyoutItem Text="Incognito Mode"
+															  IsChecked="True"
+															  Style="{StaticResource FluentToggleMenuFlyoutItemStyle}" />
 										<ToggleMenuFlyoutItem Text="Dark Mode"
 															  IsChecked="True"
-															  win:KeyboardAcceleratorTextOverride="Ctrl+D" />
+															  win:KeyboardAcceleratorTextOverride="Ctrl+D"
+															  Style="{StaticResource FluentToggleMenuFlyoutItemStyle}" />
 										<ToggleMenuFlyoutItem Text="High Contrast Mode"
 															  IsChecked="True"
-															  IsEnabled="False" />
+															  IsEnabled="False"
+															  Style="{StaticResource FluentToggleMenuFlyoutItemStyle}" />
 									</MenuFlyout>
 								</Button.Flyout>
 							</Button>
 						</smtx:XamlDisplay>
-						<smtx:XamlDisplay UniqueKey="FlyoutSamplePage_Fluent_Nested_MenuFlyout" smtx:XamlDisplayExtensions.Header="Nested MenuFlyout">
+						<smtx:XamlDisplay UniqueKey="FlyoutSamplePage_Fluent_Nested_MenuFlyout"
+										  smtx:XamlDisplayExtensions.Header="Nested MenuFlyout">
 							<Button Content="Help">
 								<Button.Flyout>
-									<MenuFlyout>
+									<MenuFlyout MenuFlyoutPresenterStyle="{StaticResource FluentMenuFlyoutPresenterStyle}">
 
-										<MenuFlyoutItem Text="View Help" />
-										<MenuFlyoutSubItem Text="Disabled" IsEnabled="False">
-											<MenuFlyoutItem Text="Can't be seen" />
+										<MenuFlyoutItem Text="View Help"
+														Style="{StaticResource FluentMenuFlyoutItemStyle}" />
+										<MenuFlyoutSubItem Text="Disabled"
+														   IsEnabled="False"
+														   Style="{StaticResource FluentMenuFlyoutSubItemStyle}">
+											<MenuFlyoutItem Text="Can't be seen"
+															Style="{StaticResource FluentMenuFlyoutItemStyle}" />
 										</MenuFlyoutSubItem>
-										<MenuFlyoutSubItem Text="Send Feedback">
-											<MenuFlyoutItem Text="Report Problem" />
-											<MenuFlyoutItem Text="Suggest Feature" />
-											<MenuFlyoutSubItem Text="Settings">
-												<MenuFlyoutItem Text="Auto Save" />
-												<MenuFlyoutItem Text="Start Up" />
-												<MenuFlyoutItem Text="Font and Colors" />
+										<MenuFlyoutSubItem Text="Send Feedback"
+														   Style="{StaticResource FluentMenuFlyoutSubItemStyle}">
+											<MenuFlyoutItem Text="Report Problem"
+															Style="{StaticResource FluentMenuFlyoutItemStyle}" />
+											<MenuFlyoutItem Text="Suggest Feature"
+															Style="{StaticResource FluentMenuFlyoutItemStyle}" />
+											<MenuFlyoutSubItem Text="Settings"
+															   Style="{StaticResource FluentMenuFlyoutSubItemStyle}">
+												<MenuFlyoutItem Text="Auto Save"
+																Style="{StaticResource FluentMenuFlyoutItemStyle}"/>
+												<MenuFlyoutItem Text="Start Up"
+																Style="{StaticResource FluentMenuFlyoutItemStyle}" />
+												<MenuFlyoutItem Text="Font and Colors"
+																Style="{StaticResource FluentMenuFlyoutItemStyle}" />
 											</MenuFlyoutSubItem>
 										</MenuFlyoutSubItem>
 
