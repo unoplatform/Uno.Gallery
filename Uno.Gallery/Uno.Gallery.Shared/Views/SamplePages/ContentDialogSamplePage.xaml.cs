@@ -34,7 +34,7 @@ namespace Uno.Gallery.Views.Samples
 				XamlRoot = this.XamlRoot,
 			};
 
-			if ((sender is Button button) && button.Tag is { } tag && tag.ToString() == "Fluent")
+			if ((sender as Button)?.Tag?.ToString()  == "Fluent")
 			{
 				var resourceDictionary = new ResourceDictionary();
 				resourceDictionary.MergedDictionaries.Add(new XamlControlsResources());
@@ -54,7 +54,7 @@ namespace Uno.Gallery.Views.Samples
 				XamlRoot = this.XamlRoot
 			};
 
-			if ((sender is Button button) && button.Tag is { } tag && tag.ToString() == "Fluent")
+			if ((sender as Button)?.Tag?.ToString() == "Fluent")
 			{
 				var resourceDictionary = new ResourceDictionary();
 				resourceDictionary.MergedDictionaries.Add(new XamlControlsResources());
