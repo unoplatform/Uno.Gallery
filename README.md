@@ -20,7 +20,7 @@ Available on:
 
 - [Uno Gallery in the browser](https://gallery.platform.uno/) (WebAssembly)
 - [Uno Gallery on Google Play](https://play.google.com/store/apps/details?id=com.nventive.uno.ui.demo) (Android)
-- [Uno Gallery in the AppStore](https://apps.apple.com/us/app/uno-gallery/id1380984680) (iOS)
+- [Uno Gallery in the App Store](https://apps.apple.com/us/app/uno-gallery/id1380984680) (iOS)
 
 ## Acknowledgments
 

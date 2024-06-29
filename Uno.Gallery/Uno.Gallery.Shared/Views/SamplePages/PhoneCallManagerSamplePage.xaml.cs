@@ -14,17 +14,17 @@ namespace Uno.Gallery.Views.Samples
 			this.InitializeComponent();
 		}
 
-		private async void ShowPhoneCallUI_Click(object sender, RoutedEventArgs e)
+		private void ShowPhoneCallUI_Click(object sender, RoutedEventArgs e)
 		{
 			PhoneCallManager.ShowPhoneCallUI("123456789", "Jon Doe");
 		}
 
-		private async void ShowPhoneCallSettingsUI_Click(object sender, RoutedEventArgs e)
+		private void ShowPhoneCallSettingsUI_Click(object sender, RoutedEventArgs e)
 		{
 			PhoneCallManager.ShowPhoneCallSettingsUI();
 		}
 
-		private async void ObservePhoneCallState_Click(object sender, RoutedEventArgs e)
+		private void ObservePhoneCallState_Click(object sender, RoutedEventArgs e)
 		{
 			if ((sender as Button)?.DataContext is PhoneCallManagerSamplePageViewModel viewModel)
 			{
@@ -68,11 +68,10 @@ namespace Uno.Gallery.Views.Samples
 		public PhoneCallManagerSamplePageViewModel()
 		{
 #if __ANDROID__
-IsSettingsUISupported = true;
-IsCallStateSupported = true;
-#endif
-#if __IOS__
-IsCallStateSupported = true;
+			IsSettingsUISupported = true;
+			IsCallStateSupported = true;
+#elif __IOS__
+			IsCallStateSupported = true;
 #endif
 		}
 

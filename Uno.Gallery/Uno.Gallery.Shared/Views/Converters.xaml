@@ -41,6 +41,4 @@
 									 Provider="HashCode" />
 
 	<converters:DebugConverter x:Key="debug" />
-
-	<converters:SecretConverter x:Key="Secret" />
 </ResourceDictionary>

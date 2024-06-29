@@ -137,7 +137,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Controls\AppDialog.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\Banner.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\TypographyControl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\ContentPageLayout.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\OverviewSampleView.cs" />
@@ -158,7 +157,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\FromValueToStringConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\HexToColorConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\RandomColorConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Converters\SecretConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Deeplinking\BranchService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Domain\AnalyticsService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Data\Plant.cs" />
@@ -216,5 +214,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Assets\Thumbnails\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\uno-logo-tm-dark.svg" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\uno-logo-tm-light.svg" />
   </ItemGroup>
 </Project>

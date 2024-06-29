@@ -9,82 +9,76 @@ using Uno.UITests.Helpers;
 
 namespace Uno.Gallery.UITests
 {
-	//[Ignore("WIP: M3 Migration")]
 	public class Given_RadioButton_01_Material : TestBase
 	{
-		/*     
-		* This function is to test the Unchecked option  in checkbox for material, 
-		*/
+		
 		[Test]
 		public void WhenRadioButtonMaterialClick_01_Unchecked()
 		{
 			NavigateToSample("RadioButton", "Material");
 
 			TakeScreenshot("Before Checked");
-			App.ScrollDownTo("RadioButton_Material_Unchecked");
+
 			var uncheckedRadioButton = App.WaitThenTap("RadioButton_Material_Unchecked").ToQueryEx();
+			App.ScrollDownTo(uncheckedRadioButton);
+			uncheckedRadioButton.Tap();
 			TakeScreenshot("After Checked");
 
-			//Assert.IsFalse(uncheckedBox.GetDependencyPropertyValue<bool>("IsChecked"));
 			Assert.IsTrue(uncheckedRadioButton.GetDependencyPropertyValue<bool>("IsChecked"));
 		}
 
-		/*     
-		* This function is to test the DisabledUnchecked option  in checkbox for material.
-		
-		[Test]
-		public void WhenRadioButtonMaterialClick_03_DisabledUnchecked()
-		{
-			NavigateToSample("RadioButton", "Material");
 
-			TakeScreenshot("Before Checked");
-
-			var materialDisabledUncheckedRadioButton = App.WaitThenTap("RadioButton_Material_Disabled_Unchecked").ToQueryEx();
-
-			TakeScreenshot("After Checked");
-
-			//Assert.IsFalse(materialDisabledUncheckedBox.GetDependencyPropertyValue<bool>("IsEnabled"));
-			Assert.IsTrue(materialDisabledUncheckedRadioButton.GetDependencyPropertyValue<bool>("IsEnabled"));
-		}
-
-		/*     
-		 * This function is to test the Checked option in checkbox for material.    
-		 
 		[Test]
 		public void WhenRadioButtonMaterialClick_02_Checked()
 		{
 			NavigateToSample("RadioButton", "Material");
 
-			TakeScreenshot("Before UnChecked");
+			TakeScreenshot("Before Tap");
 
-			var checkedRadioButton = App.WaitThenTap("RadioButton_Material_Checked").ToQueryEx();
+			var materialCheckedRadioButton = new QueryEx(x => x.All().Marked("RadioButton_Material_Checked"));
+			App.ScrollDownTo(materialCheckedRadioButton);
+			materialCheckedRadioButton.Tap();
+			TakeScreenshot("After Tap");
 
-			TakeScreenshot("After UnChecked");
+			Assert.IsTrue(materialCheckedRadioButton.GetDependencyPropertyValue<bool>("IsChecked"));
 
-			//Assert.IsFalse(checkedBox.GetDependencyPropertyValue<bool>("IsChecked"));
-			Assert.IsTrue(checkedRadioButton.GetDependencyPropertyValue<bool>("IsChecked"));
 		}
 
-		/*     
-        * This function is to test the DisabledChecked option  in checkbox for material, 
-        
+		[Test]
+		public void WhenRadioButtonMaterialClick_03_DisabledUnchecked()
+		{
+			NavigateToSample("RadioButton", "Material");
+
+			TakeScreenshot("Before Tap");
+			var materialDisabledUnCheckedRadioButton = new QueryEx(x => x.All().Marked("RadioButton_Material_Disabled_Unchecked"));
+
+			App.ScrollDownTo(materialDisabledUnCheckedRadioButton);
+
+			materialDisabledUnCheckedRadioButton.Tap();
+			TakeScreenshot("After Tap");
+			Assert.IsFalse (materialDisabledUnCheckedRadioButton.GetDependencyPropertyValue<bool>("IsEnabled"));
+			Assert.IsFalse(materialDisabledUnCheckedRadioButton.GetDependencyPropertyValue<bool>("IsChecked"));
+
+		}
+
 		[Test]
 		public void WhenRadioButtonMaterialClick_04_DisabledChecked()
 		{
 			NavigateToSample("RadioButton", "Material");
 
-			TakeScreenshot("Before Checked");
+			TakeScreenshot("Before Tap");
+			var materialDisabledCheckedRadioButton = new QueryEx(x => x.All().Marked("RadioButton_Material_Disabled_Checked"));
 
-			var materialDisabledCheckedRadioButton = App.WaitThenTap("Material_Disabled_Checked").ToQueryEx();
+			App.ScrollDownTo(materialDisabledCheckedRadioButton);
 
-			TakeScreenshot("After Checked");
-
-			Assert.IsTrue(materialDisabledCheckedRadioButton.GetDependencyPropertyValue<bool>("IsEnabled"));
+			materialDisabledCheckedRadioButton.Tap();
+			TakeScreenshot("After Tap");
+			Assert.IsFalse(materialDisabledCheckedRadioButton.GetDependencyPropertyValue<bool>("IsEnabled"));
 			Assert.IsTrue(materialDisabledCheckedRadioButton.GetDependencyPropertyValue<bool>("IsChecked"));
-		}*/
 
-		
-		
-		
+		}
+
+
+
 	}
 }

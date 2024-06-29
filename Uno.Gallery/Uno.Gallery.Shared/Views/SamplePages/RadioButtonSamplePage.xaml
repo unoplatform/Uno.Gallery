@@ -39,66 +39,34 @@
 			</local:SamplePageLayout.FluentTemplate>
 			<local:SamplePageLayout.MaterialTemplate>
 				<DataTemplate>
-					<StackPanel>
+					<smtx:XamlDisplay UniqueKey="RadioButtonSamplePage_Material"
+									  smtx:XamlDisplayExtensions.Header="Default"
+									  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+						<StackPanel Spacing="10">
 
-						<smtx:XamlDisplay UniqueKey="RadioButtonSamplePage_Material"
-										  smtx:XamlDisplayExtensions.Header="Default"
-										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
-							<StackPanel Spacing="10">
+							<RadioButton GroupName="RadioButtonDemo_Material_1a"
+										 AutomationProperties.AutomationId="RadioButton_Material_Unchecked"
+										 Content="UNCHECKED"
+										 Style="{StaticResource RadioButtonStyle}" />
+							<RadioButton GroupName="RadioButtonDemo_Material_1a"
+										 AutomationProperties.AutomationId="RadioButton_Material_Checked"
+										 Content="CHECKED"
+										 IsChecked="True"
+										 Style="{StaticResource RadioButtonStyle}" />
+							<RadioButton GroupName="RadioButtonDemo_Material_1b"
+										 AutomationProperties.AutomationId="RadioButton_Material_Disabled_Unchecked"
+										 Content="DISABLED UNCHECKED"
+										 IsEnabled="False"
+										 Style="{StaticResource RadioButtonStyle}" />
+							<RadioButton GroupName="RadioButtonDemo_Material_1b"
+										 AutomationProperties.AutomationId="RadioButton_Material_Disabled_Checked"
+										 Content="DISABLED CHECKED"
+										 IsChecked="True"
+										 IsEnabled="False"
+										 Style="{StaticResource RadioButtonStyle}" />
 
-								<RadioButton GroupName="RadioButtonDemo_Material_1a"
-											 AutomationProperties.AutomationId="RadioButton_Material_Unchecked"
-											 Content="UNCHECKED"
-											 Style="{StaticResource RadioButtonStyle}" />
-								<RadioButton GroupName="RadioButtonDemo_Material_1a"
-											 AutomationProperties.AutomationId="RadioButton_Material_Checked"
-											 Content="CHECKED"
-											 IsChecked="True"
-											 Style="{StaticResource RadioButtonStyle}" />
-								<RadioButton GroupName="RadioButtonDemo_Material_1b"
-											 AutomationProperties.AutomationId="RadioButton_Material_Disabled_Unchecked"
-											 Content="DISABLED UNCHECKED"
-											 IsEnabled="False"
-											 Style="{StaticResource RadioButtonStyle}" />
-								<RadioButton GroupName="RadioButtonDemo_Material_1b"
-											 AutomationProperties.AutomationId="RadioButton_Material_Disabled_Checked"
-											 Content="DISABLED CHECKED"
-											 IsChecked="True"
-											 IsEnabled="False"
-											 Style="{StaticResource RadioButtonStyle}" />
-
-							</StackPanel>
-						</smtx:XamlDisplay>
-						<smtx:XamlDisplay UniqueKey="RadioButtonSamplePage_Material_Secondary"
-										  smtx:XamlDisplayExtensions.Header="Secondary"
-										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
-							<StackPanel Spacing="10">
-
-								<RadioButton GroupName="RadioButtonDemo_Material_2a"
-											 AutomationProperties.AutomationId="RadioButton_Material_Secondary_Unchecked"
-											 Content="UNCHECKED"
-											 Style="{StaticResource SecondaryRadioButtonStyle}" />
-								<RadioButton GroupName="RadioButtonDemo_Material_2a"
-											 AutomationProperties.AutomationId="RadioButton_Material_Secondary_Checked"
-											 Content="CHECKED"
-											 IsChecked="True"
-											 Style="{StaticResource SecondaryRadioButtonStyle}" />
-								<RadioButton GroupName="RadioButtonDemo_Material_2b"
-											 AutomationProperties.AutomationId="RadioButton_Material_Secondary_Disabled_Unchecked"
-											 Content="DISABLED UNCHECKED"
-											 IsEnabled="False"
-											 Style="{StaticResource SecondaryRadioButtonStyle}" />
-								<RadioButton GroupName="RadioButtonDemo_Material_2b"
-											 AutomationProperties.AutomationId="RadioButton_Material_Secondary_Disabled_Checked"
-											 Content="DISABLED CHECKED"
-											 IsChecked="True"
-											 IsEnabled="False"
-											 Style="{StaticResource SecondaryRadioButtonStyle}" />
-
-							</StackPanel>
-						</smtx:XamlDisplay>
-
-					</StackPanel>
+						</StackPanel>
+					</smtx:XamlDisplay>
 				</DataTemplate>
 			</local:SamplePageLayout.MaterialTemplate>
 			<local:SamplePageLayout.CupertinoTemplate>

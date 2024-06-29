@@ -4,7 +4,7 @@
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	  xmlns:local="using:Uno.Gallery"
-	  xmlns:um="using:Uno.Material"
+	  xmlns:ut="using:Uno.Themes"
 	  xmlns:smtx="using:ShowMeTheXAML"
 	  mc:Ignorable="d"
 	  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -201,8 +201,6 @@
 														 Color="LightGreen" />
 										<SolidColorBrush x:Key="RadioButtonOuterEllipseCheckedStroke"
 														 Color="DarkGreen" />
-										<SolidColorBrush x:Key="RadioButtonOuterEllipseFill"
-														 Color="LightGreen" />
 										<SolidColorBrush x:Key="RadioButtonOuterEllipseCheckedFill"
 														 Color="DarkGreen" />
 
@@ -212,8 +210,6 @@
 														 Color="LightPink" />
 										<SolidColorBrush x:Key="RadioButtonOuterEllipseCheckedStrokePointerOver"
 														 Color="DarkRed" />
-										<SolidColorBrush x:Key="RadioButtonOuterEllipseFillPointerOver"
-														 Color="LightPink" />
 										<SolidColorBrush x:Key="RadioButtonOuterEllipseCheckedFillPointerOver"
 														 Color="DarkRed" />
 
@@ -223,8 +219,6 @@
 														 Color="LightSteelBlue" />
 										<SolidColorBrush x:Key="RadioButtonOuterEllipseCheckedStrokePressed"
 														 Color="DarkBlue" />
-										<SolidColorBrush x:Key="RadioButtonOuterEllipseFillPressed"
-														 Color="LightSteelBlue" />
 										<SolidColorBrush x:Key="RadioButtonOuterEllipseCheckedFillPressed"
 														 Color="DarkBlue" />
 									</RadioButton.Resources>
@@ -241,8 +235,6 @@
 														 Color="LightGreen" />
 										<SolidColorBrush x:Key="RadioButtonOuterEllipseCheckedStroke"
 														 Color="DarkGreen" />
-										<SolidColorBrush x:Key="RadioButtonOuterEllipseFill"
-														 Color="LightGreen" />
 										<SolidColorBrush x:Key="RadioButtonOuterEllipseCheckedFill"
 														 Color="DarkGreen" />
 
@@ -252,8 +244,6 @@
 														 Color="LightPink" />
 										<SolidColorBrush x:Key="RadioButtonOuterEllipseCheckedStrokePointerOver"
 														 Color="DarkRed" />
-										<SolidColorBrush x:Key="RadioButtonOuterEllipseFillPointerOver"
-														 Color="LightPink" />
 										<SolidColorBrush x:Key="RadioButtonOuterEllipseCheckedFillPointerOver"
 														 Color="DarkRed" />
 
@@ -263,8 +253,6 @@
 														 Color="LightSteelBlue" />
 										<SolidColorBrush x:Key="RadioButtonOuterEllipseCheckedStrokePressed"
 														 Color="DarkBlue" />
-										<SolidColorBrush x:Key="RadioButtonOuterEllipseFillPressed"
-														 Color="LightSteelBlue" />
 										<SolidColorBrush x:Key="RadioButtonOuterEllipseCheckedFillPressed"
 														 Color="DarkBlue" />
 									</RadioButton.Resources>
@@ -281,8 +269,6 @@
 														 Color="DarkGray" />
 										<SolidColorBrush x:Key="RadioButtonOuterEllipseCheckedStrokeDisabled"
 														 Color="LightSlateGray" />
-										<SolidColorBrush x:Key="RadioButtonOuterEllipseFillDisabled"
-														 Color="DarkGray" />
 										<SolidColorBrush x:Key="RadioButtonOuterEllipseCheckedFillDisabled"
 														 Color="LightSlateGray" />
 									</RadioButton.Resources>
@@ -448,18 +434,18 @@
 										  smtx:XamlDisplayExtensions.Description="The example below contrasts a default radio button style with a customized one, where the standard properties of foreground, ellipse and ellipse fill colors are overridden for different states (normal, pointer over, pressed and disabled)."
 										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
 							<StackPanel Spacing="40">
-								<RadioButton GroupName="RadioButton_Material_A"
+								<RadioButton GroupName="RadioButton_Fluent_A"
 											 Content="Default Radio Button Style - Unchecked" />
 
-								<RadioButton GroupName="RadioButton_Material_A"
+								<RadioButton GroupName="RadioButton_Fluent_A"
 											 IsChecked="True"
 											 Content="Default Radio Button Style - Checked" />
 
-								<RadioButton GroupName="RadioButton_Material_A"
+								<RadioButton GroupName="RadioButton_Fluent_A"
 											 Content="Default Radio Button Style - Disabled"
 											 IsEnabled="False" />
 
-								<RadioButton GroupName="RadioButton_Material_B"
+								<RadioButton GroupName="RadioButton_Fluent_B"
 											 Content="Overridden Radio Button Style - Unchecked">
 									<RadioButton.Resources>
 										<SolidColorBrush x:Key="RadioButtonForeground"
@@ -497,7 +483,7 @@
 									</RadioButton.Resources>
 								</RadioButton>
 
-								<RadioButton GroupName="RadioButton_Material_B"
+								<RadioButton GroupName="RadioButton_Fluent_B"
 											 IsChecked="True"
 											 Content="Overridden Radio Button Style - Checked">
 									<RadioButton.Resources>
@@ -536,7 +522,7 @@
 									</RadioButton.Resources>
 								</RadioButton>
 
-								<RadioButton GroupName="RadioButton_Material_B"
+								<RadioButton GroupName="RadioButton_Fluent_B"
 											 Content="Overridden Radio Button Style - Disabled"
 											 IsEnabled="False">
 									<RadioButton.Resources>

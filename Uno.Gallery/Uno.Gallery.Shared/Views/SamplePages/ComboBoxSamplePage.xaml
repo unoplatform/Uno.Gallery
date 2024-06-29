@@ -4,7 +4,7 @@
 	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	  xmlns:local="using:Uno.Gallery"
-	  xmlns:um="using:Uno.Material"
+	  xmlns:ut="using:Uno.Themes"
 	  xmlns:smtx="using:ShowMeTheXAML"
 	  xmlns:android="http://uno.ui/android"
 	  xmlns:ios="http://uno.ui/ios"
@@ -45,9 +45,9 @@
 								<ComboBox Style="{StaticResource ComboBoxStyle}"
 										  PlaceholderText="ComboBox + Icon"
 										  ItemsSource="{Binding Data.Items}">
-									<um:ControlExtensions.Icon>
+									<ut:ControlExtensions.Icon>
 										<SymbolIcon Symbol="Favorite" />
-									</um:ControlExtensions.Icon>
+									</ut:ControlExtensions.Icon>
 								</ComboBox>
 								<ComboBox Style="{StaticResource ComboBoxStyle}"
 										  PlaceholderText="Disabled ComboBox"

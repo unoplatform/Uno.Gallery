@@ -1,0 +1,45 @@
+﻿<Page x:Class="Uno.Gallery.Views.Samples.TeachingTipSamplePage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:local="using:Uno.Gallery"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  xmlns:ut="using:Uno.Themes"
+	  xmlns:smtx="using:ShowMeTheXAML"
+	  xmlns:todo="what should be done"
+	  mc:Ignorable="d todo">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<local:SamplePageLayout>
+			<local:SamplePageLayout.FluentTemplate>
+				<DataTemplate>
+					<StackPanel>
+						<!-- Description from: https://m3.material.io/components/buttons/overview -->
+
+						<!-- Elevated Buttons -->
+						<smtx:XamlDisplay UniqueKey="TeachingTip_WithButtons"
+										  smtx:XamlDisplayExtensions.Header="TeachingTip with target and content"
+										  smtx:XamlDisplayExtensions.Description="Displays a teaching tip targeting a button with custom content."
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\Grid">
+							<Grid>
+								<Button x:Name="TestButton" Content="Show TeachingTip" Click="ShowTip_Click" />
+
+								<TeachingTip x:Name="TeachingTipForTest"
+									Target="{Binding ElementName=TestButton}"
+									Title="Get started here"
+									Subtitle="It's easier than ever build cross-platform .NET apps with Uno Platform!">
+									<TeachingTip.HeroContent>
+										<Image Source="ms-appx:///Assets/DotnetBot.png" Width="120" AutomationProperties.Name="Sunset" />
+									</TeachingTip.HeroContent>
+									<TeachingTip.Content>
+										<TextBlock TextWrapping="WrapWholeWords" Margin="0,16,0,0">Visit the <Hyperlink NavigateUri="https://platform.uno">Uno Platform website</Hyperlink> for more info.</TextBlock>
+									</TeachingTip.Content>
+								</TeachingTip>
+							</Grid>
+						</smtx:XamlDisplay>
+					</StackPanel>
+				</DataTemplate>
+			</local:SamplePageLayout.FluentTemplate>
+		</local:SamplePageLayout>
+	</Grid>
+</Page>

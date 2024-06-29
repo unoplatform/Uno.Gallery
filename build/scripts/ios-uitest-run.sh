@@ -3,27 +3,74 @@ set -euo pipefail
 IFS=$'\n\t'
 
 export UNO_UITEST_PLATFORM=iOS
-export UNO_UITEST_IOSBUNDLE_PATH=$BUILD_SOURCESDIRECTORY/Uno.Gallery/Uno.Gallery.Mobile/bin/Release/net7.0-ios/iossimulator-x64/Uno.Gallery.Mobile.app
+export UNO_UITEST_IOSBUNDLE_PATH=$BUILD_SOURCESDIRECTORY/Uno.Gallery/Uno.Gallery.Mobile/bin/Release/net8.0-ios/iossimulator-x64/Uno.Gallery.Mobile.app
 export UNO_UITEST_SCREENSHOT_PATH=$BUILD_ARTIFACTSTAGINGDIRECTORY/screenshots/ios
 export UNO_UITEST_PROJECT=$BUILD_SOURCESDIRECTORY/Uno.Gallery/Uno.Gallery.UITest
 export UNO_UITEST_LOGFILE=$BUILD_ARTIFACTSTAGINGDIRECTORY/screenshots/ios/nunit-log.txt
 export UNO_UITEST_IOS_PROJECT=$BUILD_SOURCESDIRECTORY/Uno.Gallery/Uno.Gallery.Mobile
 export UITEST_TEST_TIMEOUT=60m
 
+export UNO_UITEST_SIMULATOR_VERSION="com.apple.CoreSimulator.SimRuntime.iOS-16-1"
+export UNO_UITEST_SIMULATOR_NAME="iPad Pro (12.9-inch) (6th generation)"
+
 echo "Lising iOS simulators"
 xcrun simctl list devices --json
 
 /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app/Contents/MacOS/Simulator &
 
-cd $BUILD_SOURCESDIRECTORY
+# Prime the output directory
+mkdir -p $UNO_UITEST_SCREENSHOT_PATH/_logs
 
-cd $UNO_UITEST_IOS_PROJECT 
-dotnet build -f net7.0-ios -r iossimulator-x64 -c Release -p:IsUiAutomationMappingEnabled=True -bl:$BUILD_ARTIFACTSTAGINGDIRECTORY/ios-app.binlog
+cd $UNO_UITEST_IOS_PROJECT
+dotnet build -f net8.0-ios -r iossimulator-x64 -c Release -p:IsUiAutomationMappingEnabled=True -bl:$BUILD_ARTIFACTSTAGINGDIRECTORY/ios-app.binlog
 
-mkdir -p $UNO_UITEST_SCREENSHOT_PATH
+##
+## Pre-install the application to avoid https://github.com/microsoft/appcenter/issues/2389
+##
 
-# https://github.com/microsoft/appcenter/issues/2475#issuecomment-1546997444
-xcrun simctl install booted $UNO_UITEST_IOSBUNDLE_PATH
+## Install iOS 16.1 simulators
+xcodes runtimes install --keep-archive 'iOS 16.1' || true
+
+# Wait while ios runtime 16.1 is not having simulators. The install process may 
+# take a few seconds and "simctl list devices" may not return devices.
+while true; do
+	export UITEST_IOSDEVICE_ID=`xcrun simctl list -j | jq -r --arg sim "$UNO_UITEST_SIMULATOR_VERSION" --arg name "$UNO_UITEST_SIMULATOR_NAME" '.devices[$sim] | .[] | select(.name==$name) | .udid'`
+	export UITEST_IOSDEVICE_DATA_PATH=`xcrun simctl list -j | jq -r --arg sim "$UNO_UITEST_SIMULATOR_VERSION" --arg name "$UNO_UITEST_SIMULATOR_NAME" '.devices[$sim] | .[] | select(.name==$name) | .dataPath'`
+
+	if [ -n "$UITEST_IOSDEVICE_ID" ]; then
+		break
+	fi
+
+	echo "Waiting for the simulator to be available"
+	sleep 5
+done
+
+echo "Simulator Data Path: $UITEST_IOSDEVICE_DATA_PATH"
+cp "$UITEST_IOSDEVICE_DATA_PATH/../device.plist" $UNO_UITEST_SCREENSHOT_PATH/_logs
+
+echo "Starting simulator: [$UITEST_IOSDEVICE_ID] ($UNO_UITEST_SIMULATOR_VERSION / $UNO_UITEST_SIMULATOR_NAME)"
+
+# check for the presence of idb, and install it if it's not present
+export PATH=$PATH:~/.local/bin
+
+if ! command -v idb &> /dev/null
+then
+	echo "Installing idb"
+	brew install pipx
+	# # https://github.com/microsoft/appcenter/issues/2605#issuecomment-1854414963
+	brew tap facebook/fb
+	brew install idb-companion
+	pipx install fb-idb
+else
+	echo "Using idb from:" `command -v idb`
+fi
+
+xcrun simctl boot "$UITEST_IOSDEVICE_ID" || true
+
+idb install --udid "$UITEST_IOSDEVICE_ID" "$UNO_UITEST_IOSBUNDLE_PATH"
+
+
+# Run the tests
 
 cd $UNO_UITEST_PROJECT
 
@@ -40,6 +87,5 @@ export LOG_FILEPATH=$UNO_UITEST_SCREENSHOT_PATH/_logs
 export TMP_LOG_FILEPATH=/tmp/DeviceLog-`date +"%Y%m%d%H%M%S"`.logarchive
 export LOG_FILEPATH_FULL=$LOG_FILEPATH/DeviceLog-`date +"%Y%m%d%H%M%S"`.txt
 
-mkdir -p $LOG_FILEPATH
 xcrun simctl spawn booted log collect --output $TMP_LOG_FILEPATH
 log show --style syslog $TMP_LOG_FILEPATH > $LOG_FILEPATH_FULL
