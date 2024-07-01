@@ -12,11 +12,13 @@ using Microsoft.UI.Xaml.Input;
 using MUXC = Microsoft.UI.Xaml.Controls;
 using System.Threading.Tasks;
 using Windows.System;
+using System.Collections.Generic;
 
 namespace Uno.Gallery
 {
 	public sealed partial class Shell : UserControl
 	{
+		private const string NoSuggestionsFoundText = "No suggestions found";
 		public Shell()
 		{
 			this.InitializeComponent();
@@ -213,13 +215,10 @@ namespace Uno.Gallery
 
 		private void SamplesSearchBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
 		{
-			//This check can be removed when https://github.com/unoplatform/uno/issues/11635 is fixed
-#if !__ANDROID__ && !__IOS__
 			if(args.Reason != AutoSuggestionBoxTextChangeReason.UserInput)
 			{
 				return;
 			}
-#endif
 
 			if (string.IsNullOrEmpty(sender.Text))
 			{
@@ -227,20 +226,34 @@ namespace Uno.Gallery
 				return;
 			}
 
-			var splitText = sender.Text.ToLower().ToLower().Split(" ");
+			var splitText = sender.Text.ToLower().Split(" ");
 
-			var samples = App.GetSamples()
+			var filteredSamples = App.GetSamples()
 				.OrderByDescending(x => x.SortOrder.HasValue)
 				.ThenBy(x => x.SortOrder)
 				.ThenBy(x => x.Title)
-				.Where(cat => splitText.All(key => cat.Title.IndexOf(key, StringComparison.OrdinalIgnoreCase) >= 0));
+				.Where(sample => splitText.All(key => sample.Title.Contains(key, StringComparison.OrdinalIgnoreCase)));
 
-			sender.ItemsSource = samples;
+			if (!filteredSamples.Any())
+			{
+				sender.ItemsSource = new List<Sample>() { new(new SamplePageAttribute(SampleCategory.None, NoSuggestionsFoundText), null) };
+			}
+			else
+			{
+				sender.ItemsSource = filteredSamples;
+			}
 		}
 
 		private void SamplesSearchBox_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
 		{
-			(Application.Current as App)?.SearchShellNavigateTo(args.SelectedItem as Sample);
+			var sample = args.SelectedItem as Sample;
+
+			if (sample.Title.Contains(NoSuggestionsFoundText))
+			{
+				return;
+			}
+
+			(Application.Current as App)?.SearchShellNavigateTo(sample);
 		}
 
 		private void CtrlF_Invoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)

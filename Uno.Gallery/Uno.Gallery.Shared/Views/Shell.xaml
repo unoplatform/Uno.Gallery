@@ -456,7 +456,6 @@
 
 					<!-- Samples Search Box -->
 					<AutoSuggestBox x:Name="SamplesSearchBox"
-									DisplayMemberPath="Title"
 									TextMemberPath="Title"
 									PlaceholderText="Search"
 									QueryIcon="Find"
@@ -467,6 +466,12 @@
 												 Invoked="CtrlF_Invoked"
 												 Modifiers="Control" />
 						</AutoSuggestBox.KeyboardAccelerators>
+						<AutoSuggestBox.ItemTemplate>
+							<DataTemplate x:DataType="local:Sample">
+								<TextBlock Text="{x:Bind Title}"
+										   Margin="20,0,0,0" />
+							</DataTemplate>
+						</AutoSuggestBox.ItemTemplate>
 					</AutoSuggestBox>
 				</StackPanel>
 			</muxc:NavigationView.PaneHeader>
