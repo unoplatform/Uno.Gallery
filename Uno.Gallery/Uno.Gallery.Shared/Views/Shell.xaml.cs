@@ -18,6 +18,7 @@ namespace Uno.Gallery
 {
 	public sealed partial class Shell : UserControl
 	{
+		private const string NoSuggestionsFoundText = "No suggestions found";
 		public Shell()
 		{
 			this.InitializeComponent();
@@ -235,7 +236,7 @@ namespace Uno.Gallery
 
 			if (!filteredSamples.Any())
 			{
-				sender.ItemsSource = new List<Sample>() { new(new SamplePageAttribute(SampleCategory.None, "No suggestions found"), null) };
+				sender.ItemsSource = new List<Sample>() { new(new SamplePageAttribute(SampleCategory.None, NoSuggestionsFoundText), null) };
 			}
 			else
 			{
@@ -247,7 +248,7 @@ namespace Uno.Gallery
 		{
 			var sample = args.SelectedItem as Sample;
 
-			if (sample.Title.Contains("No suggestions found"))
+			if (sample.Title.Contains(NoSuggestionsFoundText))
 			{
 				return;
 			}
