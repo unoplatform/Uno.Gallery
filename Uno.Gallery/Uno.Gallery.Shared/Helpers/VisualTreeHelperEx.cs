@@ -35,5 +35,19 @@ namespace Uno.Gallery.Helpers
 				.Range(0, VisualTreeHelper.GetChildrenCount(reference))
 				.Select(x => VisualTreeHelper.GetChild(reference, x));
 		}
+
+		public static T FindAncestor<T>(DependencyObject current) where T : DependencyObject
+		{
+			while (current != null)
+			{
+				if (current is T)
+				{
+					return (T)current;
+				}
+				current = VisualTreeHelper.GetParent(current);
+			}
+
+			throw new InvalidOperationException($"Ancestor of type {typeof(T).Name} not found.");
+		}
 	}
 }
