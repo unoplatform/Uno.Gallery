@@ -101,8 +101,7 @@ private async void Button_Click3(object sender, RoutedEventArgs e)
 										  smtx:XamlDisplayExtensions.Header="Default ContentDialog">
 
 							<Button Content="Open dialog"
-									Click="Button_Click"
-									Tag="Fluent" />
+									Click="Button_Click" />
 							<!-- with the following C# code
 private async void Button_Click(object sender, RoutedEventArgs e)
 {
@@ -121,8 +120,7 @@ private async void Button_Click(object sender, RoutedEventArgs e)
 										  smtx:XamlDisplayExtensions.Header="ContentDialog with Title">
 
 							<Button Content="Open dialog"
-									Click="Button_Click2"
-									Tag="Fluent" />
+									Click="Button_Click2" />
 							<!-- with the following C# code
 private async void Button_Click2(object sender, RoutedEventArgs e)
 {
@@ -141,8 +139,7 @@ private async void Button_Click2(object sender, RoutedEventArgs e)
 						<smtx:XamlDisplay UniqueKey="ContentDialogSamplePage_Fluent_Prompt"
 											  smtx:XamlDisplayExtensions.Header="ContentDialog with Prompt">
 							<Button Content="Open dialog"
-									Click="Button_Click3"
-									Tag="Fluent" />
+									Click="Button_Click3" />
 							<!-- with the following C# code
 private async void Button_Click3(object sender, RoutedEventArgs e)
 {
