@@ -460,7 +460,8 @@
 									PlaceholderText="Search"
 									QueryIcon="Find"
 									TextChanged="SamplesSearchBox_TextChanged"
-									SuggestionChosen="SamplesSearchBox_SuggestionChosen">
+									SuggestionChosen="SamplesSearchBox_SuggestionChosen"
+									QuerySubmitted="SamplesSearchBox_QuerySubmitted">
 						<AutoSuggestBox.KeyboardAccelerators>
 							<KeyboardAccelerator Key="F"
 												 Invoked="CtrlF_Invoked"

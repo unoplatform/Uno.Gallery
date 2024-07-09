@@ -261,6 +261,24 @@ namespace Uno.Gallery
 			SamplesSearchBox.Focus(FocusState.Programmatic);
 		}
 
+		private void SamplesSearchBox_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
+		{
+			if (args.ChosenSuggestion is Sample sample)
+			{
+				// User selected an item, take an action
+				(Application.Current as App)?.SearchShellNavigateTo(sample);
+			}
+			else if (!string.IsNullOrEmpty(args.QueryText))
+			{
+				//Do a fuzzy search based on the text
+				var suggestions = SearchSamples(sender.Text);
+				if (Enumerable.Count(suggestions) > 0)
+				{
+					(Application.Current as App)?.SearchShellNavigateTo(suggestions.FirstOrDefault());
+				}
+			}
+		}
+
 		private async void OnAppBarButtonClick(object sender, RoutedEventArgs e)
 		{
 			if (sender is FrameworkElement { Tag: string { Length: >0 } url })
