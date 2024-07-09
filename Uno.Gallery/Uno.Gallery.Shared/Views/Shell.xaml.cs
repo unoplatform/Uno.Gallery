@@ -13,12 +13,22 @@ using MUXC = Microsoft.UI.Xaml.Controls;
 using System.Threading.Tasks;
 using Windows.System;
 using System.Collections.Generic;
+using Microsoft.UI.Xaml.Controls.Primitives;
+using Microsoft.UI.Xaml.Media;
 
 namespace Uno.Gallery
 {
 	public sealed partial class Shell : UserControl
 	{
 		private const string NoSuggestionsFoundText = "No suggestions found";
+
+		private static IEnumerable<Sample> SearchSamples(string query)
+			=> App.GetSamples()
+				.OrderByDescending(x => x.SortOrder.HasValue)
+				.ThenBy(x => x.SortOrder)
+				.ThenBy(x => x.Title)
+				.Where(sample => query.ToLower().Split(" ").All(key => sample.Title.Contains(key, StringComparison.OrdinalIgnoreCase)));
+
 		public Shell()
 		{
 			this.InitializeComponent();
@@ -226,13 +236,7 @@ namespace Uno.Gallery
 				return;
 			}
 
-			var splitText = sender.Text.ToLower().Split(" ");
-
-			var filteredSamples = App.GetSamples()
-				.OrderByDescending(x => x.SortOrder.HasValue)
-				.ThenBy(x => x.SortOrder)
-				.ThenBy(x => x.Title)
-				.Where(sample => splitText.All(key => sample.Title.Contains(key, StringComparison.OrdinalIgnoreCase)));
+			var filteredSamples = SearchSamples(sender.Text);
 
 			if (!filteredSamples.Any())
 			{
