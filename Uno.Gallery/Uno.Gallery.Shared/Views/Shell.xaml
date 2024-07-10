@@ -179,7 +179,11 @@
 			   TargetType="MenuFlyoutItem">
 			<Setter Property="Foreground" Value="{ThemeResource OnSurfaceBrush}" />
 			<Setter Property="Background" Value="Transparent" />
-			<Setter Property="Padding" Value="10" />
+			<Setter Property="BorderBrush" Value="{ThemeResource OnSurfaceBrush}" />
+
+			<Setter Property="BorderThickness" Value="0" />
+			<Setter Property="Padding" Value="0,10" />
+			<Setter Property="Margin" Value="0" />
 
 			<Setter Property="FontSize" Value="14" />
 			<Setter Property="FontFamily" Value="{ThemeResource MaterialMediumFontFamily}" />
@@ -188,6 +192,8 @@
 				<Setter.Value>
 					<ControlTemplate TargetType="MenuFlyoutItem">
 						<Grid x:Name="RootGrid"
+							  BorderBrush="{TemplateBinding BorderBrush}"
+							  BorderThickness="{TemplateBinding BorderThickness}"
 							  Padding="{TemplateBinding Padding}">
 							<VisualStateManager.VisualStateGroups>
 								<VisualStateGroup x:Name="CommonStates">
@@ -202,7 +208,11 @@
 											<Setter Target="TextBlock.Foreground" Value="{StaticResource UnoPurpleColorBrush}" />
 										</VisualState.Setters>
 									</VisualState>
-									<VisualState x:Name="Disabled" />
+									<VisualState x:Name="Disabled">
+										<VisualState.Setters>
+											<Setter Target="TextBlock.Foreground" Value="#7D7D7D" />
+										</VisualState.Setters>
+									</VisualState>
 								</VisualStateGroup>
 							</VisualStateManager.VisualStateGroups>
 
@@ -225,7 +235,10 @@
 		<Style x:Key="AppBarHeaderMenuFlyoutItemStyle"
 			   BasedOn="{StaticResource AppBarMenuFlyoutItemStyle}"
 			   TargetType="MenuFlyoutItem">
-			<Setter Property="FontWeight" Value="SemiBold" />
+			<Setter Property="BorderThickness" Value="0,0,0,1" />
+			<Setter Property="Margin" Value="0,0,0,6" />
+			<Setter Property="FontSize" Value="15" />
+			<Setter Property="FontWeight" Value="Bold" />
 		</Style>
 	</UserControl.Resources>
 
@@ -284,12 +297,14 @@
 						HorizontalAlignment="Right"
 						VerticalAlignment="Center">
 
+				<!--#region platform.uno nav mimic (ctrl+f: BANNER_SOURCE_GEN)-->
+				<!-- GENERATED CODE, see scripts\wasm banner source-gen.linq -->
 				<Button Content="PLATFORMS"
 						Style="{StaticResource AppBarDropdownButtonStyle}">
 					<Button.Flyout>
 						<MenuBarItemFlyout Placement="Bottom"
 										   MenuFlyoutPresenterStyle="{StaticResource AppBarMenuFlyoutPresenterStyle}">
-							<MenuFlyoutItem Text="Overview"
+							<MenuFlyoutItem Text="Target Platforms"
 											Click="OnAppBarButtonClick"
 											Tag="https://platform.uno/platforms/"
 											Style="{StaticResource AppBarHeaderMenuFlyoutItemStyle}" />
@@ -317,14 +332,32 @@
 											Click="OnAppBarButtonClick"
 											Tag="https://platform.uno/uno-platform-for-macos/"
 											Style="{StaticResource AppBarMenuFlyoutItemStyle}" />
+							<MenuFlyoutItem Text="Migration"
+											IsEnabled="False"
+											Style="{StaticResource AppBarHeaderMenuFlyoutItemStyle}" />
+							<MenuFlyoutItem Text="WPF Developers"
+											Click="OnAppBarButtonClick"
+											Tag="https://platform.uno/wpf/"
+											Style="{StaticResource AppBarMenuFlyoutItemStyle}" />
+							<MenuFlyoutItem Text="Silverlight"
+											Click="OnAppBarButtonClick"
+											Tag="https://platform.uno/silverlight/"
+											Style="{StaticResource AppBarMenuFlyoutItemStyle}" />
+							<MenuFlyoutItem Text="Xamarin Forms"
+											Click="OnAppBarButtonClick"
+											Tag="https://platform.uno/xamarin-forms/"
+											Style="{StaticResource AppBarMenuFlyoutItemStyle}" />
 						</MenuBarItemFlyout>
 					</Button.Flyout>
 				</Button>
-				<Button Content="IDE &amp; TOOLS"
+				<Button Content="DEVELOP"
 						Style="{StaticResource AppBarDropdownButtonStyle}">
 					<Button.Flyout>
 						<MenuBarItemFlyout Placement="Bottom"
 										   MenuFlyoutPresenterStyle="{StaticResource AppBarMenuFlyoutPresenterStyle}">
+							<MenuFlyoutItem Text="IDE"
+											IsEnabled="False"
+											Style="{StaticResource AppBarHeaderMenuFlyoutItemStyle}" />
 							<MenuFlyoutItem Text="Visual Studio"
 											Click="OnAppBarButtonClick"
 											Tag="https://platform.uno/visual-studio/"
@@ -335,9 +368,12 @@
 											Style="{StaticResource AppBarMenuFlyoutItemStyle}" />
 							<MenuFlyoutItem Text="Rider"
 											Click="OnAppBarButtonClick"
-											Tag="https://platform.uno/docs/articles/get-started-rider.html"
+											Tag="https://platform.uno/docs/articles/get-started-rider.html?tabs=windows"
 											Style="{StaticResource AppBarMenuFlyoutItemStyle}" />
-							<MenuFlyoutItem Text="Reative/MVUX"
+							<MenuFlyoutItem Text="TOOLS"
+											IsEnabled="False"
+											Style="{StaticResource AppBarHeaderMenuFlyoutItemStyle}" />
+							<MenuFlyoutItem Text="Reactive/MVUX"
 											Click="OnAppBarButtonClick"
 											Tag="https://platform.uno/reactive/"
 											Style="{StaticResource AppBarMenuFlyoutItemStyle}" />
@@ -361,17 +397,45 @@
 											Click="OnAppBarButtonClick"
 											Tag="https://platform.uno/uno-toolkit/"
 											Style="{StaticResource AppBarMenuFlyoutItemStyle}" />
-							<MenuFlyoutItem Text="Figma"
+						</MenuBarItemFlyout>
+					</Button.Flyout>
+				</Button>
+				<Button Content="DESIGN"
+						Style="{StaticResource AppBarDropdownButtonStyle}">
+					<Button.Flyout>
+						<MenuBarItemFlyout Placement="Bottom"
+										   MenuFlyoutPresenterStyle="{StaticResource AppBarMenuFlyoutPresenterStyle}">
+							<MenuFlyoutItem Text="Uno Platform Figma Plugin"
 											Click="OnAppBarButtonClick"
 											Tag="https://platform.uno/unofigma/"
+											Style="{StaticResource AppBarMenuFlyoutItemStyle}" />
+							<MenuFlyoutItem Text="Uno Platform Material Toolkit"
+											Click="OnAppBarButtonClick"
+											Tag="https://platform.uno/uno-material-toolkit-for-figma/"
 											Style="{StaticResource AppBarMenuFlyoutItemStyle}" />
 						</MenuBarItemFlyout>
 					</Button.Flyout>
 				</Button>
-				<Button Content="BLOG"
-						Click="OnAppBarButtonClick"
-						Tag="https://platform.uno/blog/"
-						Style="{StaticResource AppBarButtonStyle}" />
+				<Button Content="COMMUNITY"
+						Style="{StaticResource AppBarDropdownButtonStyle}">
+					<Button.Flyout>
+						<MenuBarItemFlyout Placement="Bottom"
+										   MenuFlyoutPresenterStyle="{StaticResource AppBarMenuFlyoutPresenterStyle}">
+							<MenuFlyoutItem Text="GitHub"
+											Click="OnAppBarButtonClick"
+											Tag="https://github.com/unoplatform/uno"
+											Style="{StaticResource AppBarMenuFlyoutItemStyle}" />
+							<MenuFlyoutItem Text="Discord"
+											Click="OnAppBarButtonClick"
+											Tag="https://platform.uno/discord"
+											Style="{StaticResource AppBarMenuFlyoutItemStyle}" />
+							<MenuFlyoutItem Text="Blog"
+											Click="OnAppBarButtonClick"
+											Tag="https://platform.uno/blog/"
+											Style="{StaticResource AppBarMenuFlyoutItemStyle}" />
+						</MenuBarItemFlyout>
+					</Button.Flyout>
+				</Button>
 				<Button Content="DOCS"
 						Click="OnAppBarButtonClick"
 						Tag="https://platform.uno/docs/articles/intro.html"
@@ -393,11 +457,15 @@
 											Click="OnAppBarButtonClick"
 											Tag="https://platform.uno/code-samples/"
 											Style="{StaticResource AppBarMenuFlyoutItemStyle}" />
+							<MenuFlyoutItem Text="Case Studies"
+											Click="OnAppBarButtonClick"
+											Tag="https://platform.uno/case-studies/"
+											Style="{StaticResource AppBarMenuFlyoutItemStyle}" />
 							<MenuFlyoutItem Text="Uno Gallery"
 											Click="OnAppBarButtonClick"
 											Tag="https://gallery.platform.uno/"
 											Style="{StaticResource AppBarMenuFlyoutItemStyle}" />
-							<MenuFlyoutItem Text="Uno Playgroud"
+							<MenuFlyoutItem Text="Uno Playground"
 											Click="OnAppBarButtonClick"
 											Tag="https://playground.platform.uno/#wasm-start"
 											Style="{StaticResource AppBarMenuFlyoutItemStyle}" />
@@ -412,10 +480,12 @@
 						</MenuBarItemFlyout>
 					</Button.Flyout>
 				</Button>
-				<Button Content="Get Started"
+				<Button Content="GET STARTED"
 						Click="OnAppBarButtonClick"
-						Tag="https://platform.uno/docs/articles/getting-started-tutorial-1.html"
+						Tag="https://marketplace.visualstudio.com/items?itemName=unoplatform.uno-platform-addin-2022"
 						Style="{StaticResource AppBarCtaButtonStyle}" />
+				<!--#endregion platform.uno nav mimic-->
+
 			</StackPanel>
 		</wasm:Grid>
 
