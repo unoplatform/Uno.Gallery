@@ -145,6 +145,7 @@ public List<Sample> GetSuggestedItems(string searchQuery)
 
 								<StackPanel Spacing="4"
 											Margin="0,20,0,0"
+											MaxWidth="300"
 											Visibility="{Binding Data.SearchBoxSelectedItem, Converter={StaticResource NullToCollapsed}}">
 
 									<TextBlock Text="{Binding Data.SearchBoxSelectedItem.Title}"
