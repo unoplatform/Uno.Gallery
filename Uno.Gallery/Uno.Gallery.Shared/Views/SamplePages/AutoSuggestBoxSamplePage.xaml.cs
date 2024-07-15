@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Uno.Gallery.ViewModels;
 using Microsoft.UI.Xaml.Controls;
+using Uno.Gallery.Helpers;
+using Microsoft.UI.Xaml.Media;
 
 namespace Uno.Gallery.Views.Samples
 {
@@ -16,13 +18,10 @@ namespace Uno.Gallery.Views.Samples
 
 		private void AutoSuggestBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
 		{
-			//This check can be removed when https://github.com/unoplatform/uno/issues/11635 is fixed
-#if !__ANDROID__ && !__IOS__
 			if (args.Reason != AutoSuggestionBoxTextChangeReason.UserInput)
 			{
 				return;
 			}
-#endif
 
 			if (string.IsNullOrEmpty(sender.Text))
 			{
@@ -31,6 +30,7 @@ namespace Uno.Gallery.Views.Samples
 
 			if (((Sample)DataContext).Data is AutoSuggestBoxSamplePageViewModel viewModel)
 			{
+				EnsureFluentResourcesForPopups(sender);
 				sender.ItemsSource = viewModel.GetSuggestedItems(sender.Text).Select(sample => sample.Title).ToList();
 			}
 		}
@@ -46,16 +46,14 @@ namespace Uno.Gallery.Views.Samples
 
 		private void SearchBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
 		{
-			//This check can be removed when https://github.com/unoplatform/uno/issues/11635 is fixed
-#if !__ANDROID__ && !__IOS__
 			if (args.Reason != AutoSuggestionBoxTextChangeReason.UserInput)
 			{
 				return;
 			}
-#endif
 
 			if (((Sample)DataContext).Data is AutoSuggestBoxSamplePageViewModel viewModel)
 			{
+				EnsureFluentResourcesForPopups(sender);
 				sender.ItemsSource = viewModel.GetSuggestedItems(sender.Text);
 			}
 		}
