@@ -80,6 +80,18 @@ namespace Uno.Gallery.Views.Samples
 				viewModel.SearchBoxSelectedItem = (Sample)args.SelectedItem;
 			}
 		}
+
+		// This workaround is necessary since the app's main theme is Material and we need to ensure it displays with Fluent styles
+		private void EnsureFluentResourcesForPopups(AutoSuggestBox sender)
+		{
+			if (sender.IsSuggestionListOpen)
+			{
+				var popup = VisualTreeHelper.GetOpenPopupsForXamlRoot(XamlRoot).FirstOrDefault();
+
+				popup.EnsureXamlControlsResources(true);
+				(popup.Child as Border).EnsureXamlControlsResources(true);
+			}
+		}
 	}
 
 	public class AutoSuggestBoxSamplePageViewModel : ViewModelBase
