@@ -64,7 +64,7 @@ namespace ShowMeTheXAML
 			"IgnorePath",
 			typeof(string),
 			typeof(XamlDisplayExtensions),
-			new PropertyMetadata(default, (d, e) => d.Maybe<XamlDisplay>(control => OnIgnorePathChanged(control, e))));
+			new PropertyMetadata(default, (d, e) => OnIgnorePathChanged(d, e)));
 
 		public static string GetIgnorePath(XamlDisplay obj) => (string)obj.GetValue(IgnorePathProperty);
 		public static void SetIgnorePath(XamlDisplay obj, string value) => obj.SetValue(IgnorePathProperty, value);
@@ -89,7 +89,7 @@ namespace ShowMeTheXAML
 			"ShowXaml",
 			typeof(bool),
 			typeof(XamlDisplayExtensions),
-			new PropertyMetadata(default(bool), (d, e) => d.Maybe<XamlDisplay>(control => OnShowXamlChanged(control, (bool)e.NewValue))));
+			new PropertyMetadata(default(bool), (d, e) => OnShowXamlChanged(d, (bool)e.NewValue)));
 
 		public static bool GetShowXaml(XamlDisplay obj) => (bool)obj.GetValue(ShowXamlProperty);
 		public static void SetShowXaml(XamlDisplay obj, bool value) => obj.SetValue(ShowXamlProperty, value);
@@ -120,16 +120,19 @@ namespace ShowMeTheXAML
 		public static void SetOptions(XamlDisplay obj, object value) => obj.SetValue(OptionsProperty, value);
 		#endregion
 
-		private static void OnIgnorePathChanged(XamlDisplay sender, DependencyPropertyChangedEventArgs e)
+		private static void OnIgnorePathChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
 		{
-			sender.RegisterPropertyChangedCallback(XamlDisplay.XamlProperty, OnXamlChanged);
-			if (sender.Xaml != null)
+			if (sender is XamlDisplay xamlDisplay)
 			{
-				OnXamlChanged(sender, XamlDisplay.XamlProperty);
+				xamlDisplay.RegisterPropertyChangedCallback(XamlDisplay.XamlProperty, OnXamlChanged);
+				if (xamlDisplay.Xaml != null)
+				{
+					OnXamlChanged(xamlDisplay, XamlDisplay.XamlProperty);
+				}
 			}
 		}
 
-		private static void OnShowXamlChanged(XamlDisplay sender, bool showXaml)
+		private static void OnShowXamlChanged(DependencyObject sender, bool showXaml)
 		{
 			if (showXaml && sender is XamlDisplay target)
 			{

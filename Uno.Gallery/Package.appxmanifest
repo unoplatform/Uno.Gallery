@@ -29,11 +29,6 @@
     <Application Id="App"
       Executable="$targetnametoken$.exe"
       EntryPoint="$targetentrypoint$">
-      <uap:VisualElements
-        DisplayName="Gallery"
-        Description="Gallery">
-        <uap:SplashScreen />
-      </uap:VisualElements>
     </Application>
   </Applications>
 
