@@ -17,7 +17,7 @@
   - template: templates/xcode-select.yml
     parameters:
       xCodeRoot: $(XCODE_ROOT)
-    
+
   - template: templates/canary-updater.yml
 
   - bash: |
@@ -49,6 +49,6 @@
     condition: always()
     retryCountOnTaskFailure: 3
     inputs:
-      PathtoPublish: $(build.sourcesdirectory)/Uno.Gallery/Uno.Gallery.Mobile/bin/Release/net8.0-ios/iossimulator-x64/Uno.Gallery.Mobile.app
+      PathtoPublish: $(build.sourcesdirectory)/Uno.Gallery/bin/Release/net8.0-ios/iossimulator-x64/Uno.Gallery.Mobile.app
       ArtifactName: uno-uitest-ios-bin
       ArtifactType: Container

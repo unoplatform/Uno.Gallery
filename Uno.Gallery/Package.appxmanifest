@@ -32,7 +32,7 @@
       <uap:VisualElements
         DisplayName="Gallery"
         Description="Gallery">
-        <uap:SplashScreen />
+        <uap:SplashScreen Image="Assets\SplashScreen.png" />
       </uap:VisualElements>
     </Application>
   </Applications>

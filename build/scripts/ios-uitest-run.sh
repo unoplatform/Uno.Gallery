@@ -3,11 +3,11 @@ set -euo pipefail
 IFS=$'\n\t'
 
 export UNO_UITEST_PLATFORM=iOS
-export UNO_UITEST_IOSBUNDLE_PATH=$BUILD_SOURCESDIRECTORY/Uno.Gallery/Uno.Gallery.Mobile/bin/Release/net8.0-ios/iossimulator-x64/Uno.Gallery.Mobile.app
+export UNO_UITEST_IOSBUNDLE_PATH=$BUILD_SOURCESDIRECTORY/Uno.Gallery/bin/Release/net8.0-ios/iossimulator-x64/Uno.Gallery.Mobile.app
 export UNO_UITEST_SCREENSHOT_PATH=$BUILD_ARTIFACTSTAGINGDIRECTORY/screenshots/ios
-export UNO_UITEST_PROJECT=$BUILD_SOURCESDIRECTORY/Uno.Gallery/Uno.Gallery.UITest
+export UNO_UITEST_PROJECT=$BUILD_SOURCESDIRECTORY/Uno.Gallery/Uno.Gallery.UITests
 export UNO_UITEST_LOGFILE=$BUILD_ARTIFACTSTAGINGDIRECTORY/screenshots/ios/nunit-log.txt
-export UNO_UITEST_IOS_PROJECT=$BUILD_SOURCESDIRECTORY/Uno.Gallery/Uno.Gallery.Mobile
+export UNO_UITEST_IOS_PROJECT=$BUILD_SOURCESDIRECTORY/Uno.Gallery
 export UITEST_TEST_TIMEOUT=60m
 
 export UNO_UITEST_SIMULATOR_VERSION="com.apple.CoreSimulator.SimRuntime.iOS-16-1"
@@ -22,7 +22,7 @@ xcrun simctl list devices --json
 mkdir -p $UNO_UITEST_SCREENSHOT_PATH/_logs
 
 cd $UNO_UITEST_IOS_PROJECT
-dotnet build -f net8.0-ios -r iossimulator-x64 -c Release -p:IsUiAutomationMappingEnabled=True -bl:$BUILD_ARTIFACTSTAGINGDIRECTORY/ios-app.binlog
+dotnet build -p:TargetFrameworkOverride=net8.0-ios -r iossimulator-x64 -c Release -p:IsUiAutomationMappingEnabled=True -bl:$BUILD_ARTIFACTSTAGINGDIRECTORY/ios-app.binlog
 
 ##
 ## Pre-install the application to avoid https://github.com/microsoft/appcenter/issues/2389
@@ -31,7 +31,7 @@ dotnet build -f net8.0-ios -r iossimulator-x64 -c Release -p:IsUiAutomationMappi
 ## Install iOS 16.1 simulators
 xcodes runtimes install --keep-archive 'iOS 16.1' || true
 
-# Wait while ios runtime 16.1 is not having simulators. The install process may 
+# Wait while ios runtime 16.1 is not having simulators. The install process may
 # take a few seconds and "simctl list devices" may not return devices.
 while true; do
 	export UITEST_IOSDEVICE_ID=`xcrun simctl list -j | jq -r --arg sim "$UNO_UITEST_SIMULATOR_VERSION" --arg name "$UNO_UITEST_SIMULATOR_NAME" '.devices[$sim] | .[] | select(.name==$name) | .udid'`

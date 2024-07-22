@@ -52,7 +52,7 @@
 		<key>UIApplicationSupportsIndirectInputEvents</key>
 		<true/>
 		<key>XSAppIconAssets</key>
-		<string>Media.xcassets/AppIcons.appiconset</string>
+		<string>Assets.xcassets/icon.appiconset</string>
 		<key>ITSAppUsesNonExemptEncryption</key>
 		<false/>
 		<key>NSMotionUsageDescription</key>

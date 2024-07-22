@@ -31,7 +31,7 @@
 			<string>UIInterfaceOrientationLandscapeRight</string>
 		</array>
 		<key>XSAppIconAssets</key>
-		<string>Media.xcassets/AppIcons.appiconset</string>
+		<string>Assets.xcassets/icon.appiconset</string>
 		<key>UIAppFonts</key>
 		<array>
 			<string>Fonts/SF-Pro-Text-Regular.otf</string>
