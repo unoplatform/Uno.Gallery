@@ -9,7 +9,6 @@
 		<PackageReference Include="Microsoft.NET.Test.Sdk" />
 		<PackageReference Include="NUnit" />
 		<PackageReference Include="NUnit3TestAdapter" />
-		<PackageReference Include="Uno.CommunityToolkit.WinUI.UI.Controls.DataGrid" />
 		<PackageReference Include="Uno.UITest.Helpers" />
 		<PackageReference Include="Xamarin.UITest" />
 		<PackageReference Include="NunitXml.TestLogger" />
