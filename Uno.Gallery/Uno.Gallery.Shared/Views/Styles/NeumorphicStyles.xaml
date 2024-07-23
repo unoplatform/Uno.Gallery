@@ -3142,7 +3142,8 @@
 		<Setter Property="ManipulationMode" Value="System,TranslateX" />
 		<Setter Property="FocusVisualMargin" Value="0" />
 		<Setter Property="UseSystemFocusVisuals" Value="False" />
-
+		<Setter Property="MinWidth" Value="0" />
+		
 		<Setter Property="OnContent" Value="{x:Null}" />
 		<Setter Property="OffContent" Value="{x:Null}" />
 
