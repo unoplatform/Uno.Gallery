@@ -41,15 +41,22 @@
 					<smtx:XamlDisplay UniqueKey="DatePickerSamplePage_Fluent"
 									  smtx:XamlDisplayExtensions.Header="Default"
 									  smtx:XamlDisplayExtensions.Description=" The DatePicker uses the Fluent style for the text button as well as the flyout picker (with UseNativeStyle set to False)."
-									  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
-						<StackPanel Spacing="20">
+									  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\Grid\StackPanel">
+						<Grid>
+							<Grid.Resources>
+								<ResourceDictionary.MergedDictionaries>
+									<XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
+								</ResourceDictionary.MergedDictionaries>
+							</Grid.Resources>
+							<StackPanel Spacing="20">
 
-							<DatePicker not_win:UseNativeStyle="False" />
-							<DatePicker Header="DatePicker Disabled"
+								<DatePicker not_win:UseNativeStyle="False" />
+								<DatePicker Header="DatePicker Disabled"
 										IsEnabled="False"
 										not_win:UseNativeStyle="False" />
 
-						</StackPanel>
+							</StackPanel>
+						</Grid>
 					</smtx:XamlDisplay>
 				</DataTemplate>
 			</local:SamplePageLayout.FluentTemplate>
