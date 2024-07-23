@@ -18,14 +18,18 @@
 						<StackPanel Spacing="20">
 
 							<ToggleSwitch Header="OFF"
+										  AutomationProperties.AutomationId="fluent_Off"
 										  Foreground="{ThemeResource OnBackgroundBrush}" />
 							<ToggleSwitch Header="ON"
+										  AutomationProperties.AutomationId="fluent_On"
 										  Foreground="{ThemeResource OnBackgroundBrush}"
 										  IsOn="True" />
 
 							<ToggleSwitch Header="DISABLED OFF"
+										  AutomationProperties.AutomationId="fluent_Disabled_Off"
 										  IsEnabled="False" />
 							<ToggleSwitch Header="DISABLED ON"
+										  AutomationProperties.AutomationId="fluent_Disabled_On"
 										  IsEnabled="False"
 										  IsOn="True" />
 						</StackPanel>
