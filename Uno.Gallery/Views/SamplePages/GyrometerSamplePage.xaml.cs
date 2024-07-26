@@ -12,7 +12,7 @@ namespace Uno.Gallery.Views.Samples
 		Description = "Represents a Gyrometer sensor that provides angular velocity values with respect to the x, y, and z axes.",
 		DocumentationLink = "https://platform.uno/docs/articles/features/gyrometer.html",
 		DataType = typeof(GyrometerSamplePageViewModel))]
-	[SampleConditional(SampleConditionals.Always ^ SampleConditionals.SkiaGtk, Reason = "Not supported")]
+	[SampleConditional(SampleConditionals.Always ^ SampleConditionals.SkiaDesktop, Reason = "Not supported")]
 	public sealed partial class GyrometerSamplePage : Page
 	{
 		public GyrometerSamplePage()
