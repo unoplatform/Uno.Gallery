@@ -17,14 +17,14 @@ steps:
     version: '8.0.100'
 
 - script: |
-    cd $(build.sourcesdirectory)/Uno.Gallery/Uno.Gallery.Windows
-    dotnet publish -c Release /p:Platform=$(ApplicationPlatform) /p:AppxPackageDir="Packages/" /p:AppxBundle=Never /p:UapAppxPackageBuildMode=SideloadOnly /p:GenerateAppxPackageOnBuild=true /bl:$(build.artifactstagingdirectory)/build.binlog "/p:InformationalVersion=$(GitVersion.InformationalVersion)"
+    cd $(build.sourcesdirectory)/Uno.Gallery
+    dotnet publish -c Release -f net8.0-windows10.0.19041 -p:TargetFrameworkOverride=net8.0-windows10.0.19041 /p:Platform=$(ApplicationPlatform) /p:AppxPackageDir="Packages/" /p:AppxBundle=Never /p:UapAppxPackageBuildMode=SideloadOnly /p:GenerateAppxPackageOnBuild=true /bl:$(build.artifactstagingdirectory)/build.binlog "/p:InformationalVersion=$(GitVersion.InformationalVersion)"
   displayName: Build project for Release
 
 - task: CopyFiles@2
   displayName: Copy Windows output
   inputs:
-    SourceFolder: $(build.sourcesdirectory)/Uno.Gallery/Uno.Gallery.Windows/Packages
+    SourceFolder: $(build.sourcesdirectory)/Uno.Gallery/Packages
     Contents: '**/*.*'
     TargetFolder: $(Build.ArtifactStagingDirectory)/
 

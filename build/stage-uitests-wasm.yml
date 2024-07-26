@@ -34,7 +34,7 @@
   - task: CopyFiles@2
     displayName: Copy Wasm output
     inputs:
-      SourceFolder: Uno.Gallery/Uno.Gallery.Wasm/bin/Release/net8.0/dist
+      SourceFolder: Uno.Gallery/bin/Release/net8.0-browserwasm/dist
       Contents: '**/*.*'
       TargetFolder: $(Build.ArtifactStagingDirectory)/bin
 

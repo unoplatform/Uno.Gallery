@@ -3,20 +3,17 @@ steps:
 - template: templates/gitversion.yml
 - template: templates/canary-updater.yml
 
-- task: MSBuild@1
-  displayName: Build project
-  inputs:
-    solution: Uno.Gallery\Uno.Gallery.Skia.Gtk\Uno.Gallery.Skia.Gtk.csproj
-    msbuildArguments: /ds /m /r /p:Configuration=Release "/p:InformationalVersion=$(GitVersion.InformationalVersion)" /bl:$(build.artifactstagingdirectory)/build.binlog
+- bash: |
+    dotnet build Uno.Gallery/Uno.Gallery.csproj -p:TargetFrameworkOverride=net8.0-desktop -c Release -p:InformationalVersion=$(GitVersion.InformationalVersion) -bl:$(build.artifactstagingdirectory)/build.binlog
 
 - task: CopyFiles@2
   displayName: Copy Skia output
   inputs:
-    SourceFolder: Uno.Gallery\Uno.Gallery.Skia.Gtk\bin\Release\net8.0
+    SourceFolder: Uno.Gallery/bin/Release/net8.0-desktop
     Contents: '**/*.*'
     TargetFolder: $(Build.ArtifactStagingDirectory)/bin
 
 - task: PublishBuildArtifacts@1
   retryCountOnTaskFailure: 3
   inputs:
-    ArtifactName: skia-gtk
+    ArtifactName: desktop
