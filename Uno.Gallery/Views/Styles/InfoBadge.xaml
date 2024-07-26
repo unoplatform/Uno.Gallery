@@ -6,25 +6,25 @@
 		   TargetType="muxc:InfoBadge">
 		<Setter Property="Margin" Value="5,0,0,0" />
 	</Style>
-	
+
 	<Style x:Key="InfoBadgeStyle_None"
 		   TargetType="muxc:InfoBadge"
 		   BasedOn="{StaticResource InfoBadgeStyle_Margin}">
 		<Setter Property="Background" Value="{StaticResource UnoPurpleColor}" />
 	</Style>
-	
+
 	<Style x:Key="InfoBadgeStyle_Attention"
 		   TargetType="muxc:InfoBadge"
 		   BasedOn="{StaticResource InfoBadgeStyle_Margin}">
 		<Setter Property="Background" Value="{StaticResource UnoBlueColor}" />
 	</Style>
-	
+
 	<Style x:Key="InfoBadgeStyle_Critical"
 		   TargetType="muxc:InfoBadge"
 		   BasedOn="{StaticResource InfoBadgeStyle_Margin}">
 		<Setter Property="Background" Value="{StaticResource UnoRedColor}" />
 	</Style>
-	
+
 	<Style x:Key="InfoBadgeStyle_Success"
 		   TargetType="muxc:InfoBadge"
 		   BasedOn="{StaticResource InfoBadgeStyle_Margin}">
@@ -36,11 +36,11 @@
 		   BasedOn="{StaticResource InfoBadgeStyle_Margin}">
 		<Setter Property="Background">
 			<Setter.Value>
-				<ImageBrush ImageSource="ms-appx:///Assets/unologo.png" />
+				<ImageBrush ImageSource="ms-appx:///Assets/UnoLogoImage.png" />
 			</Setter.Value>
 		</Setter>
 		<Setter Property="Width" Value="18" />
 		<Setter Property="Height" Value="18" />
 	</Style>
 
-</ResourceDictionary>    
+</ResourceDictionary>

@@ -18,7 +18,7 @@
 										  smtx:XamlDisplayExtensions.Header="BitmapIcon">
 
 							<!-- Bitmap Icon -->
-							<BitmapIcon UriSource="ms-appx:///Assets/unologo.png"
+							<BitmapIcon UriSource="ms-appx:///Assets/UnoLogoImage.png"
 										ShowAsMonochrome="False"
 										Height="50" />
 						</smtx:XamlDisplay>
@@ -35,7 +35,7 @@
 										  smtx:XamlDisplayExtensions.Header="PathIcon">
 
 							<!-- Path Icon -->
-							<PathIcon Data="M14 8 8 8 8 14 6 14 6 8 0 8 0 6 6 6 6 0 8 0 8 6 14 6z" 
+							<PathIcon Data="M14 8 8 8 8 14 6 14 6 8 0 8 0 6 6 6 6 0 8 0 8 6 14 6z"
 									  HorizontalAlignment="Center"/>
 						</smtx:XamlDisplay>
 
@@ -50,4 +50,4 @@
 			</local:SamplePageLayout.FluentTemplate>
 		</local:SamplePageLayout>
 	</Grid>
-</Page>			
+</Page>

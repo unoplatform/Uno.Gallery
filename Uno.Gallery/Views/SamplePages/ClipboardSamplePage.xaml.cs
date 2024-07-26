@@ -15,10 +15,10 @@ namespace Uno.Gallery.Views.Samples
 	[SamplePage(SampleCategory.NonUIFeatures, "Clipboard", Description = "The clipboard enables copy and paste support in Uno applications.", DocumentationLink = "https://learn.microsoft.com/en-us/windows/uwp/app-to-app/copy-and-paste")]
 	public sealed partial class ClipboardSamplePage : Page
 	{
-		private static readonly Uri _sampleBitmapUri = new Uri("ms-appx:///Assets/UnoLogo.png");
+		private static readonly Uri _sampleBitmapUri = new Uri("ms-appx:///Assets/UnoLogoImage.png");
 		private const string _sampleHtml = "<!DOCTYPE html><html><body><p>Hello World!</p></body></html>";
 		private const string _sampleRtf = @"{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
-{\*\generator Riched20 10.0.19041}\viewkind4\uc1 
+{\*\generator Riched20 10.0.19041}\viewkind4\uc1
 \pard\sa200\sl276\slmult1\b\f0\fs22\lang9 Hello World!\par
 }";
 
