@@ -24,7 +24,7 @@ steps:
 - task: CopyFiles@2
   displayName: Copy Windows output
   inputs:
-    SourceFolder: $(build.sourcesdirectory)/Uno.Gallery/Uno.Gallery.Windows/Packages
+    SourceFolder: $(build.sourcesdirectory)/Uno.Gallery/Packages
     Contents: '**/*.*'
     TargetFolder: $(Build.ArtifactStagingDirectory)/
 
