@@ -121,9 +121,9 @@ public sealed class SamplesGenerator : IIncrementalGenerator
 			{
 				return SampleConditionals.Wasm;
 			}
-			else if (preprocessorSymbol == "HAS_UNO_SKIA_GTK")
+			else if (preprocessorSymbol == "HAS_UNO_SKIA")
 			{
-				return SampleConditionals.SkiaGtk;
+				return SampleConditionals.SkiaDesktop;
 			}
 		}
 
