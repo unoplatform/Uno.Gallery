@@ -63,12 +63,44 @@
 		<PackageReference Include="Uno.Core.Extensions.Disposables" />
 		<PackageReference Include="Uno.Core.Extensions.Compatibility" />
 	</ItemGroup>
-	<ItemGroup Condition="'$(TargetFramework)'=='net8.0-ios' and ('$(Configuration)'=='Debug' or '$(IsUiAutomationMappingEnabled)'=='True')">
-		<PackageReference Include="Xamarin.TestCloud.Agent" />
-	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\Uno.Gallery.SourceGenerators\Uno.Gallery.SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" SetPlatform="Platform=AnyCPU" />
 	</ItemGroup>
+	<Choose>
+		
+		<When Condition="'$(TargetFramework)'=='net8.0-ios'">
+			<PropertyGroup Condition="'$(Configuration)'=='Release' and '$(System_PullRequest_IsFork)'!='True'">
+				<CodesignKey>iPhone Distribution</CodesignKey>
+				<RuntimeIdentifier>ios-arm64</RuntimeIdentifier>
+			</PropertyGroup>
+
+			<ItemGroup Condition="'$(Configuration)'=='Debug' or '$(IsUiAutomationMappingEnabled)'=='True'">
+				<PackageReference Include="Xamarin.TestCloud.Agent" />
+			</ItemGroup>
+		</When>
+		
+		<When Condition="'$(TargetFramework)'=='net8.0-maccatalyst'">
+			<PropertyGroup Condition="'$(Configuration)'=='Release' and '$(System_PullRequest_IsFork)'!='True'">
+				<MtouchUseLlvm>true</MtouchUseLlvm>
+				<CodeSigningKey>Apple Distribution: Uno Platform Inc. (PD74CHS9Z5)</CodeSigningKey>
+				<PackageSigningKey>3rd Party Mac Developer Installer</PackageSigningKey>
+				<CreatePackage>true</CreatePackage>
+				<EnablePackageSigning>true</EnablePackageSigning>
+				<EnableCodeSigning>true</EnableCodeSigning>
+				<CodeSignEntitlements>MacCatalyst\Entitlements.plist</CodeSignEntitlements>
+
+				<CodesignProvision>Uno Gallery (Catalyst)</CodesignProvision>
+				<CodesignProvision Condition="$(BUILD_SOURCEBRANCH.StartsWith('refs/heads/canaries'))">Uno Gallery Canary (Catalyst)</CodesignProvision>
+			</PropertyGroup>
+		</When>
+		
+		<When Condition="'$(TargetFramework)'=='net8.0-android'">
+			<PropertyGroup Condition="'$(Configuration)'=='Release'">
+				<RunAOTCompilation>true</RunAOTCompilation>
+			</PropertyGroup>
+		</When>
+	</Choose>
+
 	<Choose>
 		<When Condition="'$(TargetFramework)'!='net8.0-windows10.0.19041'">
 			<ItemGroup>
@@ -76,6 +108,7 @@
 				<PackageReference Include="Uno.CommunityToolkit.WinUI.UI.Controls.DataGrid" />
 			</ItemGroup>
 		</When>
+		
 		<When Condition="'$(TargetFramework)'=='net8.0-windows10.0.19041'">
 			<ItemGroup>
 				<PackageReference Include="CommunityToolkit.WinUI.Lottie" />
@@ -88,6 +121,7 @@
 				</PackageReference>
 			</ItemGroup>
 		</When>
+		
 		<When Condition="'$(TargetFramework)'=='net8.0-browserwasm'">
 			<ItemGroup>
 				<PackageReference Include="Microsoft.TypeScript.Compiler" />
