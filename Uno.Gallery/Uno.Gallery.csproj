@@ -99,7 +99,9 @@
 				<RunAOTCompilation>true</RunAOTCompilation>
 			</PropertyGroup>
 		</When>
+	</Choose>
 
+	<Choose>
 		<When Condition="'$(TargetFramework)'!='net8.0-windows10.0.19041'">
 			<ItemGroup>
 				<PackageReference Include="Uno.CommunityToolkit.WinUI.UI.Controls" />
