@@ -56,7 +56,7 @@
 
 		<PropertyGroup>
 			<_SourceBasePath>$(MSBuildThisFileDirectory)../$(AppName)</_SourceBasePath>
-			<_AppxManifestPath>$(_SourceBasePath)/Platforms/Windows/Package.appxmanifest</_AppxManifestPath>
+			<_AppxManifestPath>$(_SourceBasePath)/Package.appxmanifest</_AppxManifestPath>
 			<_MobileAndroidManifestPath>$(_SourceBasePath)/Platforms/Android/AndroidManifest.xml</_MobileAndroidManifestPath>
 			<_catalystPlistFilePath>$(_SourceBasePath)/Platforms/MacCatalyst/Info.plist</_catalystPlistFilePath>
 			<_MobileiOSPlistFilePath>$(_SourceBasePath)/Platforms/iOS/Info.plist</_MobileiOSPlistFilePath>
