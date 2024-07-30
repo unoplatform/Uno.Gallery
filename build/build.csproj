@@ -121,7 +121,7 @@
 		<!-- Not doing this makes it impossible to update a package unless the version is updated -->
 		<PropertyGroup>
 			<_WindowsVersion>@(_Major).@(_Minor).$(_BuildNumber).@(_Revision)</_WindowsVersion>
-		</PropertyGroup>`
+		</PropertyGroup>
 
 		<XmlPoke 
 			XmlInputPath="$(_AppxManifestPath)"
