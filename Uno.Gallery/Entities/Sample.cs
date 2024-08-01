@@ -23,11 +23,11 @@ namespace Uno.Gallery
 			{
 				DocumentationLink = new Uri(attribute.DocumentationLink);
 			}
+
+			ViewType = viewType;
 			Data = CreateData(attribute.DataType);
 			Source = attribute.Source;
 			SortOrder = attribute.SortOrder;
-
-			ViewType = viewType;
 		}
 
 		private object CreateData(Type dataType)
