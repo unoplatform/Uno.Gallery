@@ -40,7 +40,7 @@ namespace Uno.Gallery
 			}
 			catch (Exception e)
 			{
-				this.Log().Error($"Failed to initialize data for `{ViewType.Name}`:", e);
+				this.Log().Error($"Failed to initialize data for `{ViewType.Name}`. dataType: {dataType}. Exception: {e}");
 				return null;
 			}
 		}
