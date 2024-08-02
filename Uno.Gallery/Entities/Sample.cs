@@ -23,11 +23,11 @@ namespace Uno.Gallery
 			{
 				DocumentationLink = new Uri(attribute.DocumentationLink);
 			}
+
+			ViewType = viewType;
 			Data = CreateData(attribute.DataType);
 			Source = attribute.Source;
 			SortOrder = attribute.SortOrder;
-
-			ViewType = viewType;
 		}
 
 		private object CreateData(Type dataType)
@@ -40,7 +40,7 @@ namespace Uno.Gallery
 			}
 			catch (Exception e)
 			{
-				this.Log().Error($"Failed to initialize data for `{ViewType.Name}`:", e);
+				this.Log().Error($"Failed to initialize data for `{ViewType.Name}`. dataType: {dataType}. Exception: {e}");
 				return null;
 			}
 		}
