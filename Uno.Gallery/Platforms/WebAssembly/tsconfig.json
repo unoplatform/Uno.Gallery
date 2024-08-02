@@ -4,7 +4,7 @@
     "declaration": true,
     "diagnostics": true,
     "noImplicitAny": true,
-    "outFile": "WasmScripts/UnoGallery.js",
+    //"outFile": "WasmScripts/UnoGallery.js",
     //"inlineSourceMap": true,
     "locale": "en-US",
     "target": "es6"
