@@ -66,68 +66,78 @@
 	<ItemGroup>
 		<ProjectReference Include="..\Uno.Gallery.SourceGenerators\Uno.Gallery.SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" SetPlatform="Platform=AnyCPU" />
 	</ItemGroup>
-	<Choose>
-		
-		<When Condition="'$(TargetFramework)'=='net8.0-ios'">
-			<PropertyGroup Condition="'$(Configuration)'=='Release' and '$(System_PullRequest_IsFork)'!='True'">
-				<CodesignKey>iPhone Distribution</CodesignKey>
-				<RuntimeIdentifier>ios-arm64</RuntimeIdentifier>
-			</PropertyGroup>
 
-			<ItemGroup Condition="'$(Configuration)'=='Debug' or '$(IsUiAutomationMappingEnabled)'=='True'">
-				<PackageReference Include="Xamarin.TestCloud.Agent" />
-			</ItemGroup>
-		</When>
-		
-		<When Condition="'$(TargetFramework)'=='net8.0-maccatalyst'">
-			<PropertyGroup Condition="'$(Configuration)'=='Release' and '$(System_PullRequest_IsFork)'!='True'">
-				<MtouchUseLlvm>true</MtouchUseLlvm>
-				<CodeSigningKey>Apple Distribution: Uno Platform Inc. (PD74CHS9Z5)</CodeSigningKey>
-				<PackageSigningKey>3rd Party Mac Developer Installer</PackageSigningKey>
-				<CreatePackage>true</CreatePackage>
-				<EnablePackageSigning>true</EnablePackageSigning>
-				<EnableCodeSigning>true</EnableCodeSigning>
-				<CodeSignEntitlements>MacCatalyst\Entitlements.plist</CodeSignEntitlements>
+	<ItemGroup Condition="'$(TargetFramework)'=='net8.0-android' or '$(TargetFramework)'=='net8.0-ios' or '$(TargetFramework)'=='net8.0-maccatalyst'">
+		<IncludeXamlNamespaces Include="mobile" Visible="False" />
+		<ExcludeXamlNamespaces Include="not_mobile" Visible="False" />
+	</ItemGroup>
+	<ItemGroup Condition="'$(TargetFramework)'=='net8.0-desktop' OR '$(TargetFramework)'=='net8.0-browserwasm'">
+		<IncludeXamlNamespaces Include="not_mobile" Visible="False" />
+		<ExcludeXamlNamespaces Include="mobile" Visible="False" />
+	</ItemGroup>
 
-				<CodesignProvision>Uno Gallery (Catalyst)</CodesignProvision>
-				<CodesignProvision Condition="$(BUILD_SOURCEBRANCH.StartsWith('refs/heads/canaries'))">Uno Gallery Canary (Catalyst)</CodesignProvision>
-			</PropertyGroup>
-		</When>
-		
-		<When Condition="'$(TargetFramework)'=='net8.0-android'">
-			<PropertyGroup Condition="'$(Configuration)'=='Release'">
-				<RunAOTCompilation>true</RunAOTCompilation>
-			</PropertyGroup>
-		</When>
-	</Choose>
+	<PropertyGroup Condition="'$(TargetFramework)'=='net8.0-browserwasm'">
+		<CompileTypeScriptDependsOn>_UnoSetupTSCompilation;$(CompileTypeScriptDependsOn)</CompileTypeScriptDependsOn>
+	</PropertyGroup>
 
-	<Choose>
-		<When Condition="'$(TargetFramework)'!='net8.0-windows10.0.19041'">
-			<ItemGroup>
-				<PackageReference Include="Uno.CommunityToolkit.WinUI.UI.Controls" />
-				<PackageReference Include="Uno.CommunityToolkit.WinUI.UI.Controls.DataGrid" />
-			</ItemGroup>
-		</When>
-		
-		<When Condition="'$(TargetFramework)'=='net8.0-windows10.0.19041'">
-			<ItemGroup>
-				<PackageReference Include="CommunityToolkit.WinUI.Lottie" />
-				<PackageReference Include="CommunityToolkit.WinUI.UI.Controls" />
-				<PackageReference Include="CommunityToolkit.WinUI.UI.Controls.DataGrid" />
-				<PackageReference Include="VideoLAN.LibVLC.Windows" />
-				<PackageReference Include="nventive.Nimue.Application.Packaging">
-					<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-					<PrivateAssets>all</PrivateAssets>
-				</PackageReference>
-			</ItemGroup>
-		</When>
-		
-		<When Condition="'$(TargetFramework)'=='net8.0-browserwasm'">
-			<ItemGroup>
-				<PackageReference Include="Microsoft.TypeScript.Compiler" />
-				<PackageReference Include="Microsoft.TypeScript.MSBuild" />
-				<EmbeddedResource Include="$(WasmProjectFolder)WasmScripts\*.js" />
-			</ItemGroup>
-		</When>
-	</Choose>
+	<Target Name="_UnoSetupTSCompilation">
+		<PropertyGroup>
+			<TypeScriptConfigFileAdditionalFlags>$(TypeScriptConfigFileAdditionalFlags) --outFile $(OutputPath)/javascript/UnoGallery.js</TypeScriptConfigFileAdditionalFlags>
+		</PropertyGroup>
+		<MakeDir Directories="$(OutputPath)/javascript" />
+	</Target>
+
+	<PropertyGroup Condition="'$(Configuration)'=='Release' and '$(System_PullRequest_IsFork)'!='True' and '$(TargetFramework)'=='net8.0-ios'">
+		<CodesignKey>iPhone Distribution</CodesignKey>
+		<RuntimeIdentifier>ios-arm64</RuntimeIdentifier>
+	</PropertyGroup>
+
+	<ItemGroup Condition="('$(Configuration)'=='Debug' or '$(IsUiAutomationMappingEnabled)'=='True') and '$(TargetFramework)'=='net8.0-ios'">
+		<PackageReference Include="Xamarin.TestCloud.Agent" />
+	</ItemGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='Release' and '$(System_PullRequest_IsFork)'!='True' and '$(TargetFramework)'=='net8.0-maccatalyst'">
+		<MtouchUseLlvm>true</MtouchUseLlvm>
+		<CodeSigningKey>Apple Distribution: Uno Platform Inc. (PD74CHS9Z5)</CodeSigningKey>
+		<PackageSigningKey>3rd Party Mac Developer Installer</PackageSigningKey>
+		<CreatePackage>true</CreatePackage>
+		<EnablePackageSigning>true</EnablePackageSigning>
+		<EnableCodeSigning>true</EnableCodeSigning>
+		<CodeSignEntitlements>MacCatalyst\Entitlements.plist</CodeSignEntitlements>
+
+		<CodesignProvision>Uno Gallery (Catalyst)</CodesignProvision>
+		<CodesignProvision Condition="$(BUILD_SOURCEBRANCH.StartsWith('refs/heads/canaries'))">Uno Gallery Canary (Catalyst)</CodesignProvision>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='Release' and '$(TargetFramework)'=='net8.0-android'">
+		<RunAOTCompilation>true</RunAOTCompilation>
+	</PropertyGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)'!='net8.0-windows10.0.19041'">
+		<PackageReference Include="Uno.CommunityToolkit.WinUI.UI.Controls" />
+		<PackageReference Include="Uno.CommunityToolkit.WinUI.UI.Controls.DataGrid" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)'=='net8.0-windows10.0.19041'">
+		<PackageReference Include="CommunityToolkit.WinUI.Lottie" />
+		<PackageReference Include="CommunityToolkit.WinUI.UI.Controls" />
+		<PackageReference Include="CommunityToolkit.WinUI.UI.Controls.DataGrid" />
+		<PackageReference Include="VideoLAN.LibVLC.Windows" />
+		<PackageReference Include="nventive.Nimue.Application.Packaging">
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+			<PrivateAssets>all</PrivateAssets>
+		</PackageReference>
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)'=='net8.0-browserwasm'">
+		<PackageReference Include="Microsoft.TypeScript.Compiler">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.TypeScript.MSBuild">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+		</PackageReference>
+		<EmbeddedResource Include="Platforms\WebAssembly\WasmScripts\*.js" />
+	</ItemGroup>
 </Project>

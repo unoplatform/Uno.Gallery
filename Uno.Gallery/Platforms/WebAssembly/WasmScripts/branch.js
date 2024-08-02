@@ -35,7 +35,7 @@
 // init Branch
 branch.init("key_live_eg8jUSrrIb5TEDaviMJkXbccCDi0y7wn", {}, (err, data) => {
     if (data?.data_parsed["$deeplink_path"]) {
-        const onDeepLink = Module.mono_bind_static_method("[Uno.Gallery.Wasm] Uno.Gallery.App:TryNavigateToLaunchSample");
+        const onDeepLink = Module.mono_bind_static_method("[Uno.Gallery] Uno.Gallery.App:TryNavigateToLaunchSample");
         onDeepLink(data.data_parsed["$deeplink_path"], data.data_parsed["$design"] ?? "");
     }
 });

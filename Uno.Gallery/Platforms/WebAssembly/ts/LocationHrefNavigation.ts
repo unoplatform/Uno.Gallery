@@ -54,8 +54,8 @@
 				return; // already initialized.
 			}
 
-			const asm = MonoRuntime.assembly_load("Uno.Gallery.WASM");
-			const handlerClass = MonoRuntime.find_class(asm, "Uno.Gallery.Wasm", "LocationHrefHavigation");
+			const asm = MonoRuntime.assembly_load("Uno.Gallery");
+			const handlerClass = MonoRuntime.find_class(asm, "Uno.Gallery.Wasm", "LocationHrefNavigation");
 			this.notifyLocationHrefChangedMethod = MonoRuntime.find_method(handlerClass, "NotifyLocationHrefChanged", -1);
 		}
 	}

@@ -54,7 +54,7 @@
 				return; // already initialized.
 			}
 
-			const asm = MonoRuntime.assembly_load("Uno.Gallery.WASM");
+			const asm = MonoRuntime.assembly_load("Uno.Gallery");
 			const handlerClass = MonoRuntime.find_class(asm, "Uno.Gallery.Wasm", "FragmentNavigation");
 			this.notifyFragmentChangedMethod = MonoRuntime.find_method(handlerClass, "NotifyFragmentChanged", -1);
 		}
