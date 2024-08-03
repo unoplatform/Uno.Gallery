@@ -330,3 +330,6 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
+
+Uno.Gallery/Platforms/WebAssembly/WasmScripts/UnoGallery.js
+Uno.Gallery/Platforms/WebAssembly/WasmScripts/*.d.ts

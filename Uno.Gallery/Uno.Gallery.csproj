@@ -76,17 +76,6 @@
 		<ExcludeXamlNamespaces Include="mobile" Visible="False" />
 	</ItemGroup>
 
-	<PropertyGroup Condition="'$(TargetFramework)'=='net8.0-browserwasm'">
-		<CompileTypeScriptDependsOn>_UnoSetupTSCompilation;$(CompileTypeScriptDependsOn)</CompileTypeScriptDependsOn>
-	</PropertyGroup>
-
-	<Target Name="_UnoSetupTSCompilation">
-		<PropertyGroup>
-			<TypeScriptConfigFileAdditionalFlags>$(TypeScriptConfigFileAdditionalFlags) --outFile $(OutputPath)/javascript/UnoGallery.js</TypeScriptConfigFileAdditionalFlags>
-		</PropertyGroup>
-		<MakeDir Directories="$(OutputPath)/javascript" />
-	</Target>
-
 	<PropertyGroup Condition="'$(Configuration)'=='Release' and '$(System_PullRequest_IsFork)'!='True' and '$(TargetFramework)'=='net8.0-ios'">
 		<CodesignKey>iPhone Distribution</CodesignKey>
 		<RuntimeIdentifier>ios-arm64</RuntimeIdentifier>
