@@ -46,7 +46,8 @@
       testResultsFormat: 'NUnit'
       testResultsFiles: '$(build.sourcesdirectory)/build/TestResult.xml'
       failTaskOnFailedTests: true
-      failTaskOnMissingResultsFile: true
+      # https://github.com/unoplatform/Uno.Gallery/issues/1154
+      #failTaskOnMissingResultsFile: true
 
   - task: PublishBuildArtifacts@1
     retryCountOnTaskFailure: 3
