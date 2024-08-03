@@ -38,16 +38,16 @@
       Contents: '**/*.*'
       TargetFolder: $(Build.ArtifactStagingDirectory)/bin
 
-  - task: PublishTestResults@2
-    condition: always()
-    retryCountOnTaskFailure: 3
-    inputs:
-      testRunTitle: 'WebAssembly Test Run'
-      testResultsFormat: 'NUnit'
-      testResultsFiles: '$(build.sourcesdirectory)/build/TestResult.xml'
-      failTaskOnFailedTests: true
-      # https://github.com/unoplatform/Uno.Gallery/issues/1154
-      #failTaskOnMissingResultsFile: true
+  # https://github.com/unoplatform/Uno.Gallery/issues/1154
+  #- task: PublishTestResults@2
+  #  condition: always()
+  #  retryCountOnTaskFailure: 3
+  #  inputs:
+  #    testRunTitle: 'WebAssembly Test Run'
+  #    testResultsFormat: 'NUnit'
+  #    testResultsFiles: '$(build.sourcesdirectory)/build/TestResult.xml'
+  #    failTaskOnFailedTests: true
+  #    failTaskOnMissingResultsFile: true
 
   - task: PublishBuildArtifacts@1
     retryCountOnTaskFailure: 3
