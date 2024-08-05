@@ -102,7 +102,7 @@ namespace Uno.Gallery.Helpers
 #if __WASM__
 	static partial class Interop
 	{
-		[System.Runtime.InteropServices.JavaScript.JSImport("globalThis.Microsoft.UI.Xaml.Application.getDefaultSystemTheme")]
+		[System.Runtime.InteropServices.JavaScript.JSImport("globalThis.Uno.Helpers.Theming.SystemThemeHelper.getSystemTheme")]
 		internal static partial string GetDefaultSystemTheme();
 	}
 #endif
