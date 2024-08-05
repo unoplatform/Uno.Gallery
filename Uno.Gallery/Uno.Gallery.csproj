@@ -159,16 +159,17 @@
 				-->
 			</PropertyGroup>
 
-			<ItemGroup Condition="'$(Configuration)'=='Release' and '$(WasmShellMonoRuntimeExecutionMode)'=='InterpreterAndAOT'">
+				<!-- Uncomment once the profile is generated
+				<ItemGroup Condition="'$(Configuration)'=='Release' and '$(WasmShellMonoRuntimeExecutionMode)'=='InterpreterAndAOT'">
 				<WasmShellEnableAotProfile Condition="'$(IsUiAutomationMappingEnabled)'==''" Include="aot.profile" />
 
-				<!--
+				--><!--
 					Use smaller profile for UI tests to avoid the browser's memory
 					use to go higher than the Ci agent's availability
-				-->
+				--><!--
 
 				<WasmShellEnableAotProfile Condition="'$(IsUiAutomationMappingEnabled)'=='True'" Include="aot-uitests.profile" />
-			</ItemGroup>
+			</ItemGroup>-->
 			
 			<ItemGroup>
 				<WasmShellMonoEnvironment Include="MONO_GC_PARAMS" Value="soft-heap-limit=512m,nursery-size=64m,evacuation-threshold=66,major=marksweep" />
