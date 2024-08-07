@@ -127,6 +127,7 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
 		</PackageReference>
-		<EmbeddedResource Include="Platforms\WebAssembly\WasmScripts\*.js" />
+		<EmbeddedResource Include="Platforms\WebAssembly\WasmScripts\UnoGallery.js" />
+		<ConfigFiles Include="Platforms\WebAssembly\tsconfig.json" />
 	</ItemGroup>
 </Project>
