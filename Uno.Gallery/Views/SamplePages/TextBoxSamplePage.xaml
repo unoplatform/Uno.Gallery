@@ -138,6 +138,7 @@
 										 Style="{StaticResource OutlinedTextBoxStyle}"
 										 AutomationProperties.AutomationId="TextBox_Outlined_Material" />
 								<TextBox Text="Disabled"
+										 IsEnabled="False"
 										 Style="{StaticResource OutlinedTextBoxStyle}"
 										 AutomationProperties.AutomationId="TextBox_Outlined_Disabled_Material" />
 								<TextBox PlaceholderText="Placeholder"
