@@ -5,6 +5,8 @@
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	  xmlns:local="using:Uno.Gallery"
 	  xmlns:ut="using:Uno.Themes"
+	  xmlns:wct="using:CommunityToolkit.WinUI.UI.Controls"
+	  xmlns:utu="using:Uno.Toolkit.UI"
 	  xmlns:smtx="using:ShowMeTheXAML"
 	  mc:Ignorable="d">
 
@@ -225,36 +227,40 @@
 
 							<StackPanel Spacing="10"
 										Padding="20"
-										HorizontalAlignment="Center"
+										HorizontalAlignment="Stretch"
 										Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
 										Orientation="Vertical">
 								<TextBox Style="{StaticResource MaterialFilledTextBoxStyle}"
-										 x:Name="txtFilled"
-										 Width="270" />
+										 x:Name="txtFilled" />
 								<TextBox Style="{StaticResource MaterialOutlinedTextBoxStyle}"
-										 x:Name="txtOutlined"
-										 Width="270" />
-								<StackPanel HorizontalAlignment="Center"
-											Spacing="8"
-											Orientation="Horizontal">
+										 x:Name="txtOutlined" />
+								<wct:WrapPanel HorizontalAlignment="Center"
+											   VerticalAlignment="Center">
 									<Button Content="Add Header"
-											Click="AddHeader" />
+											Click="AddHeader"
+											Margin="4" />
 									<Button Content="Add Placeholder"
-											Click="AddPlaceholder" />
+											Click="AddPlaceholder"
+											Margin="4" />
 									<Button Content="Add Text"
-											Click="AddText" />
-								</StackPanel>
+											Click="AddText"
+											Margin="4" />
+								</wct:WrapPanel>
 
-								<StackPanel VerticalAlignment="Center"
-											Spacing="8"
-											Orientation="Horizontal">
+								<utu:Divider />
+
+								<wct:WrapPanel VerticalAlignment="Center"
+											   HorizontalAlignment="Center">
 									<Button Content="Remove Header"
-											Click="RemoveHeader" />
+											Click="RemoveHeader"
+											Margin="4" />
 									<Button Content="Remove Placeholder"
-											Click="RemovePlaceholder" />
+											Click="RemovePlaceholder"
+											Margin="4" />
 									<Button Content="Remove Text"
-											Click="RemoveText" />
-								</StackPanel>
+											Click="RemoveText"
+											Margin="4" />
+								</wct:WrapPanel>
 							</StackPanel>
 						</smtx:XamlDisplay>
 					</StackPanel>
