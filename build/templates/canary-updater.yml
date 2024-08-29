@@ -20,7 +20,7 @@ steps:
       summaryFile: '$(Build.ArtifactStagingDirectory)/Canary.md'
 
   - task: unoplatformCanaryUpdater@1
-    displayName: 'Canary Update (5x)'
+    displayName: 'Canary Update (skia-everywhere)'
     condition: startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries/skia-everywhere')
     inputs:
       solution: '$(build.sourcesdirectory)'
