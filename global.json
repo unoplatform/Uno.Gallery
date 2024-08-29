@@ -4,6 +4,6 @@
 	},
 	// To update the version of Uno please update the version of the Uno.Sdk here. See https://aka.platform.uno/upgrade-uno-packages for more information.
 	"msbuild-sdks": {
-		"Uno.Sdk": "5.3.96"
+		"Uno.Sdk.Private": "5.2.0-feature.skia-everywhere.5602"
 	}
 }
