@@ -43,6 +43,10 @@ steps:
 
 
   - powershell: |
+      cat global.json
+    condition: startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries')
+
+  - powershell: |
       dotnet tool uninstall uno.nuget.updater.tool --tool-path $(Agent.TempDirectory)
     condition: startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries')
 
