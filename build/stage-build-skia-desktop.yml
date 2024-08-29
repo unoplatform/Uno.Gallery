@@ -1,4 +1,7 @@
 steps:
+- checkout: self
+  clean: true
+  fetchDepth: 0
 
 - template: templates/gitversion.yml
 - template: templates/canary-updater.yml

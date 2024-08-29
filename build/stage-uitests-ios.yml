@@ -11,6 +11,7 @@
   steps:
   - checkout: self
     clean: true
+    fetchDepth: 0
 
   - template: templates/dotnet-install-mac.yml
 

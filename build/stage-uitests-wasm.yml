@@ -13,6 +13,7 @@
   steps:
   - checkout: self
     clean: true
+    fetchDepth: 0
 
   - task: UseDotNet@2
     displayName: 'Use .NET SDK'
