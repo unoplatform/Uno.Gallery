@@ -35,11 +35,11 @@ steps:
       resultFile: '$(Build.ArtifactStagingDirectory)/Results.json'
       additionalPublicSources: 'https://pkgs.dev.azure.com/uno-platform/1dd81cbd-cb35-41de-a570-b0df3571a196/_packaging/Features/nuget/v3/index.json'
 
-  - pwsh: |
-      cd $(build.sourcesdirectory)
-      dotnet nuget add source https://pkgs.dev.azure.com/uno-platform/1dd81cbd-cb35-41de-a570-b0df3571a196/_packaging/Features/nuget/v3/index.json -n unofeatures
-    condition: startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries/skia-everywhere')
-    displayName: 'Use uno features source'
+  #- pwsh: |
+  #    cd $(build.sourcesdirectory)
+  #    dotnet nuget add source https://pkgs.dev.azure.com/uno-platform/1dd81cbd-cb35-41de-a570-b0df3571a196/_packaging/Features/nuget/v3/index.json -n unofeatures
+  #  condition: startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries/skia-everywhere')
+  #  displayName: 'Use uno features source'
 
 
   - powershell: |
