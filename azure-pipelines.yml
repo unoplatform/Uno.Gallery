@@ -41,6 +41,7 @@ pr:
 variables:
   IsLightBuild: $[eq(variables['Build.Reason'], 'PullRequest')]
   IsCanaryBranch: $[startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries/')]
+  IsSkiaEverywhereCanaryBranch: $[startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries/skia-everywhere')]
 
   XCODE_ROOT: '/Applications/Xcode_15.4.app'
 

@@ -20,7 +20,12 @@
 - template: templates/canary-updater.yml
 
 - bash: |
+    dotnet build Uno.Gallery/Uno.Gallery.csproj -c Release -p:UseSkiaRendering=true -p:TargetFrameworkOverride=net8.0-browserwasm -p:InformationalVersion=$(GitVersion.InformationalVersion) -bl:$(Build.ArtifactStagingDirectory)/wasm.binlog
+  condition: eq(variables['IsSkiaEverywhereCanaryBranch'], true)
+
+- bash: |
     dotnet build Uno.Gallery/Uno.Gallery.csproj -c Release -p:TargetFrameworkOverride=net8.0-browserwasm -p:InformationalVersion=$(GitVersion.InformationalVersion) -bl:$(Build.ArtifactStagingDirectory)/wasm.binlog
+  condition: ne(variables['IsSkiaEverywhereCanaryBranch'], true)
 
 - task: CopyFiles@2
   displayName: Copy Wasm output

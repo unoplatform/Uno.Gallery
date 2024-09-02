@@ -49,6 +49,9 @@
 			Logging;
 			Extensions;
 		</UnoFeatures>
+		<UnoFeatures Condition="'$(UseSkiaRendering)'=='true'">
+			WebAssemblySkiaRenderer;
+		</UnoFeatures>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)'=='Debug' or '$(IsUiAutomationMappingEnabled)'=='True'">

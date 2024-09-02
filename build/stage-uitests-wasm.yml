@@ -14,13 +14,16 @@
   - checkout: self
     clean: true
     fetchDepth: 0
-
+    # Wasm UI tests are not supported when running on Skia.
+    condition: ne(variables['IsSkiaEverywhereCanaryBranch'], true)
   - task: UseDotNet@2
     displayName: 'Use .NET SDK'
     retryCountOnTaskFailure: 3
     inputs:
       packageType: sdk
       version: 8.0.100
+    # Wasm UI tests are not supported when running on Skia.
+    condition: ne(variables['IsSkiaEverywhereCanaryBranch'], true)
 
   - template: templates/canary-updater.yml
 
@@ -30,6 +33,8 @@
     env:
       BUILD_SOURCESDIRECTORY: "$(build.sourcesdirectory)"
       BUILD_ARTIFACTSTAGINGDIRECTORY: "$(build.artifactstagingdirectory)"
+    # Wasm UI tests are not supported when running on Skia.
+    condition: ne(variables['IsSkiaEverywhereCanaryBranch'], true)
     displayName: 'Running build'
 
   - task: CopyFiles@2
@@ -38,9 +43,11 @@
       SourceFolder: Uno.Gallery/bin/Release/net8.0-browserwasm/dist
       Contents: '**/*.*'
       TargetFolder: $(Build.ArtifactStagingDirectory)/bin
+    # Wasm UI tests are not supported when running on Skia.
+    condition: ne(variables['IsSkiaEverywhereCanaryBranch'], true)
 
   - task: PublishTestResults@2
-    condition: always()
+    condition: and(always(), ne(variables['IsSkiaEverywhereCanaryBranch'], true))
     retryCountOnTaskFailure: 3
     inputs:
       testRunTitle: 'WebAssembly Test Run'
@@ -51,7 +58,7 @@
 
   - task: PublishBuildArtifacts@1
     retryCountOnTaskFailure: 3
-    condition: always()
+    condition: and(always(), ne(variables['IsSkiaEverywhereCanaryBranch'], true))
     inputs:
       PathtoPublish: $(build.artifactstagingdirectory)
       ArtifactName: uno-uitest-tests
