@@ -35,5 +35,6 @@
     <PackageVersion Include="nventive.Nimue.Application.Packaging" Version="0.1.0-alpha.58" />
     <PackageVersion Include="Xamarin.TestCloud.Agent" Version="0.23.2" />
 
+	<PackageVersion Include="SkiaSharp.Skottie" Version="2.88.8" />
   </ItemGroup>
 </Project>
