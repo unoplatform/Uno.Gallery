@@ -38,9 +38,10 @@
 		UnoFeatures let's you quickly add and manage implicit package references based on the features you want to use.
 		https://aka.platform.uno/singleproject-features
 		-->
+		<IsSkiaWasm Condition="'$(UseSkiaRendering)'=='true' AND '$(TargetFramework)'=='net8.0-browserwasm'">true</IsSkiaWasm>
+		<IsSkiaWasm Condition="'$(IsSkiaWasm)'==''">false</IsSkiaWasm>
 		<UnoFeatures>
 			Material;
-			MediaElement;
 			Toolkit;
 			Cupertino;
 			Lottie;
@@ -49,8 +50,10 @@
 			Logging;
 			Extensions;
 		</UnoFeatures>
-		<UnoFeatures Condition="'$(UseSkiaRendering)'=='true' AND '$(TargetFramework)'=='net8.0-browserwasm'">$(UnoFeatures)WebAssemblySkiaRenderer;</UnoFeatures>
+		<UnoFeatures Condition="$(IsSkiaWasm)">$(UnoFeatures)WebAssemblySkiaRenderer;</UnoFeatures>
+		<UnoFeatures Condition="!$(IsSkiaWasm)">$(UnoFeatures)MediaElement;</UnoFeatures>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<DefaultItemExcludes Condition="$(IsSkiaWasm)">$(DefaultItemExcludes);**\MediaPlayer*.*</DefaultItemExcludes>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)'=='Debug' or '$(IsUiAutomationMappingEnabled)'=='True'">
 		<IsUiAutomationMappingEnabled>True</IsUiAutomationMappingEnabled>
