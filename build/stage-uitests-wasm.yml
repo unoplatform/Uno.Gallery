@@ -14,16 +14,13 @@
   - checkout: self
     clean: true
     fetchDepth: 0
-    # Wasm UI tests are not supported when running on Skia.
-    condition: ne(variables['IsSkiaEverywhereCanaryBranch'], true)
+
   - task: UseDotNet@2
     displayName: 'Use .NET SDK'
     retryCountOnTaskFailure: 3
     inputs:
       packageType: sdk
       version: 8.0.100
-    # Wasm UI tests are not supported when running on Skia.
-    condition: ne(variables['IsSkiaEverywhereCanaryBranch'], true)
 
   - template: templates/canary-updater.yml
 

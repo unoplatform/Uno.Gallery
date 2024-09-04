@@ -49,9 +49,7 @@
 			Logging;
 			Extensions;
 		</UnoFeatures>
-		<UnoFeatures Condition="'$(UseSkiaRendering)'=='true'">
-			WebAssemblySkiaRenderer;
-		</UnoFeatures>
+		<UnoFeatures Condition="'$(UseSkiaRendering)'=='true' AND '$(TargetFramework)'=='net8.0-browserwasm'">$(UnoFeatures)WebAssemblySkiaRenderer;</UnoFeatures>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)'=='Debug' or '$(IsUiAutomationMappingEnabled)'=='True'">
