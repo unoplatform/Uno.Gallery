@@ -5,6 +5,8 @@
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	  xmlns:local="using:Uno.Gallery"
 	  xmlns:ut="using:Uno.Themes"
+	  xmlns:wct="using:CommunityToolkit.WinUI.UI.Controls"
+	  xmlns:utu="using:Uno.Toolkit.UI"
 	  xmlns:smtx="using:ShowMeTheXAML"
 	  mc:Ignorable="d">
 
@@ -21,7 +23,7 @@
 	</Page.Resources>
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-		<local:SamplePageLayout>
+		<local:SamplePageLayout x:Name="SamplePageLayout">
 
 			<local:SamplePageLayout.FluentTemplate>
 				<DataTemplate>
@@ -138,6 +140,7 @@
 										 Style="{StaticResource OutlinedTextBoxStyle}"
 										 AutomationProperties.AutomationId="TextBox_Outlined_Material" />
 								<TextBox Text="Disabled"
+										 IsEnabled="False"
 										 Style="{StaticResource OutlinedTextBoxStyle}"
 										 AutomationProperties.AutomationId="TextBox_Outlined_Disabled_Material" />
 								<TextBox PlaceholderText="Placeholder"
@@ -215,6 +218,49 @@
 										 Style="{StaticResource OutlinedTextBoxStyle}"
 										 AutomationProperties.AutomationId="TextBox_Outlined_MultiLine_Disabled_Material" />
 
+							</StackPanel>
+						</smtx:XamlDisplay>
+
+						<smtx:XamlDisplay UniqueKey="TextBoxSamplePage_Material_Playground"
+										  smtx:XamlDisplayExtensions.Header="TextBox Playground"
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+
+							<StackPanel Spacing="10"
+										Padding="20"
+										HorizontalAlignment="Stretch"
+										Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+										Orientation="Vertical">
+								<TextBox Style="{StaticResource MaterialFilledTextBoxStyle}"
+										 x:Name="txtFilled" />
+								<TextBox Style="{StaticResource MaterialOutlinedTextBoxStyle}"
+										 x:Name="txtOutlined" />
+								<wct:WrapPanel HorizontalAlignment="Center"
+											   VerticalAlignment="Center">
+									<Button Content="Add Header"
+											Click="AddHeader"
+											Margin="4" />
+									<Button Content="Add Placeholder"
+											Click="AddPlaceholder"
+											Margin="4" />
+									<Button Content="Add Text"
+											Click="AddText"
+											Margin="4" />
+								</wct:WrapPanel>
+
+								<utu:Divider />
+
+								<wct:WrapPanel VerticalAlignment="Center"
+											   HorizontalAlignment="Center">
+									<Button Content="Remove Header"
+											Click="RemoveHeader"
+											Margin="4" />
+									<Button Content="Remove Placeholder"
+											Click="RemovePlaceholder"
+											Margin="4" />
+									<Button Content="Remove Text"
+											Click="RemoveText"
+											Margin="4" />
+								</wct:WrapPanel>
 							</StackPanel>
 						</smtx:XamlDisplay>
 					</StackPanel>

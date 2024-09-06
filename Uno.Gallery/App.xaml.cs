@@ -85,7 +85,7 @@ namespace Uno.Gallery
 
 			if (isFirstLaunch)
 			{
-#if __IOS__ && USE_UITESTS
+#if __IOS__ && USE_UITESTS && !__MACCATALYST__
 				// requires Xamarin Test Cloud Agent
 				Xamarin.Calabash.Start();
 #endif
