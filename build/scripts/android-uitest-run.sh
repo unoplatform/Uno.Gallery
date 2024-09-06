@@ -51,10 +51,10 @@ then
 
 	# based on https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/hosted?view=azure-devops&tabs=yaml#hardware
 	# >> Agents that run macOS images are provisioned on Mac pros with a 3 core CPU, 14 GB of RAM, and 14 GB of SSD disk space.
-	echo "hw.cpu.ncore=3" >> $AVD_CONFIG_FILE
+	#echo "hw.cpu.ncore=3" >> $AVD_CONFIG_FILE
 
 	# Bump the heap size as the tests are stressing the application
-	echo "vm.heapSize=256M" >> $AVD_CONFIG_FILE
+	#echo "vm.heapSize=256M" >> $AVD_CONFIG_FILE
 
 	echo $ANDROID_HOME/emulator/emulator -list-avds
 
