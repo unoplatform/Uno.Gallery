@@ -70,7 +70,6 @@ then
 		-no-snapshot \
 		-noaudio \
 		-no-boot-anim \
-		-prop ro.debuggable=1 \
 		> /dev/null 2>&1 &
 
 	touch "$UNO_EMULATOR_INSTALLED"
