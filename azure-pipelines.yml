@@ -176,7 +176,7 @@ jobs:
   variables:
     ArtifactName: WASM
     SkipUnknownFrameworks: true
-    UseSkiaRenderer: false
+    UseSkiaRendering: false
 
   steps:
     - template: build/stage-build-wasm.yml
@@ -195,7 +195,7 @@ jobs:
   variables:
     ArtifactName: WASM_SKIA
     SkipUnknownFrameworks: true
-    UseSkiaRenderer: true
+    UseSkiaRendering: true
 
   steps:
     - template: build/stage-build-wasm.yml
