@@ -41,7 +41,6 @@ pr:
 variables:
   IsLightBuild: $[eq(variables['Build.Reason'], 'PullRequest')]
   IsCanaryBranch: $[startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries/')]
-  IsSkiaEverywhereCanaryBranch: $[startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries/skia-everywhere')]
 
   XCODE_ROOT: '/Applications/Xcode_15.4.app'
 
@@ -177,6 +176,7 @@ jobs:
   variables:
     ArtifactName: WASM
     SkipUnknownFrameworks: true
+    UseSkiaRenderer: false
 
   steps:
     - template: build/stage-build-wasm.yml
@@ -184,3 +184,18 @@ jobs:
 - template: build/stage-uitests-wasm.yml
 - template: build/stage-uitests-ios.yml
 - template: build/stage-uitests-android.yml
+
+- job: Build_Wasm_Skia
+  timeoutInMinutes: 90
+  pool:
+    vmImage: ubuntu-latest
+
+  container: unoplatform/wasm-build:3.0
+
+  variables:
+    ArtifactName: WASM_SKIA
+    SkipUnknownFrameworks: true
+    UseSkiaRenderer: true
+
+  steps:
+    - template: build/stage-build-wasm.yml
