@@ -12,13 +12,13 @@ steps:
 
 - script: |
     cd $(build.sourcesdirectory)/Uno.Gallery
-    dotnet publish -f:net8.0-android -c:Release "/p:InformationalVersion=$(GitVersion.InformationalVersion)" /p:AndroidSigningKeyStore=$(keyStore.secureFilePath) /p:AndroidSigningStorePass=$(AndroidSigningStorePass) /p:AndroidSigningKeyPass=$(AndroidSigningKeyPass) /p:AndroidSigningKeyAlias=$(AndroidSigningKeyAlias) /p:AndroidKeyStore=true /bl:$(build.artifactstagingdirectory)/build-$(BuildForPlayStore).binlog
+    dotnet publish -f:net8.0-android -c:Release -p:UseSkiaRendering=$(UseSkiaRendering) "/p:InformationalVersion=$(GitVersion.InformationalVersion)" /p:AndroidSigningKeyStore=$(keyStore.secureFilePath) /p:AndroidSigningStorePass=$(AndroidSigningStorePass) /p:AndroidSigningKeyPass=$(AndroidSigningKeyPass) /p:AndroidSigningKeyAlias=$(AndroidSigningKeyAlias) /p:AndroidKeyStore=true /bl:$(build.artifactstagingdirectory)/build-$(BuildForPlayStore).binlog
   displayName: 'Build Android Package'
   condition: eq(variables['System.PullRequest.IsFork'],'False')
 
 - script: |
     cd $(build.sourcesdirectory)/Uno.Gallery
-    dotnet publish -f:net8.0-android -c:Release "/p:InformationalVersion=$(GitVersion.InformationalVersion)" /p:AndroidKeyStore=False /bl:$(build.artifactstagingdirectory)/build-$(BuildForPlayStore).binlog
+    dotnet publish -f:net8.0-android -c:Release -p:UseSkiaRendering=$(UseSkiaRendering) "/p:InformationalVersion=$(GitVersion.InformationalVersion)" /p:AndroidKeyStore=False /bl:$(build.artifactstagingdirectory)/build-$(BuildForPlayStore).binlog
   displayName: 'Build Android Package (Fork)'
   condition: eq(variables['System.PullRequest.IsFork'],'True')
 
@@ -40,4 +40,4 @@ steps:
   retryCountOnTaskFailure: 3
   condition: always()
   inputs:
-    ArtifactName: android-mobile
+    ArtifactName: android-mobile-is_skia_$(UseSkiaRendering)

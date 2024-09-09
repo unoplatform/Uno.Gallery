@@ -40,6 +40,8 @@
 		-->
 		<IsSkiaWasm Condition="'$(UseSkiaRendering)'=='true' AND '$(TargetFramework)'=='net8.0-browserwasm'">true</IsSkiaWasm>
 		<IsSkiaWasm Condition="'$(IsSkiaWasm)'==''">false</IsSkiaWasm>
+		<IsSkiaAndroid Condition="'$(UseSkiaRendering)'=='true' AND '$(TargetFramework)'=='net8.0-android'">true</IsSkiaAndroid>
+		<IsSkiaAndroid Condition="'$(IsSkiaAndroid)'==''">false</IsSkiaAndroid>
 		<UnoFeatures>
 			Material;
 			Toolkit;
@@ -51,10 +53,12 @@
 			Extensions;
 		</UnoFeatures>
 		<UnoFeatures Condition="$(IsSkiaWasm)">$(UnoFeatures)WebAssemblySkiaRenderer;</UnoFeatures>
-		<UnoFeatures Condition="!$(IsSkiaWasm)">$(UnoFeatures)MediaElement;</UnoFeatures>
+		<UnoFeatures Condition="$(IsSkiaAndroid)">$(UnoFeatures)AndroidSkiaRenderer;</UnoFeatures>
+		<UnoFeatures Condition="!$(IsSkiaWasm) AND !$(IsSkiaAndroid)">$(UnoFeatures)MediaElement;</UnoFeatures>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-		<DefaultItemExcludes Condition="$(IsSkiaWasm)">$(DefaultItemExcludes);**\MediaPlayer*.*</DefaultItemExcludes>
+		<DefaultItemExcludes Condition="$(IsSkiaWasm) OR $(IsSkiaAndroid)">$(DefaultItemExcludes);**\MediaPlayer*.*</DefaultItemExcludes>
 		<DefineConstants Condition="$(IsSkiaWasm)">$(DefineConstants);IS_WASM_SKIA</DefineConstants>
+		<DefineConstants Condition="$(IsSkiaAndroid)">$(DefineConstants);IS_ANDROID_SKIA</DefineConstants>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)'=='Debug' or '$(IsUiAutomationMappingEnabled)'=='True'">
 		<IsUiAutomationMappingEnabled>True</IsUiAutomationMappingEnabled>
@@ -67,7 +71,7 @@
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" />
 		<PackageReference Include="Uno.Core.Extensions.Disposables" />
 		<PackageReference Include="Uno.Core.Extensions.Compatibility" />
-		<PackageReference Include="SkiaSharp.Skottie" Condition="$(IsSkiaWasm)" />
+		<PackageReference Include="SkiaSharp.Skottie" Condition="$(IsSkiaWasm) OR $(IsSkiaAndroid)" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\Uno.Gallery.SourceGenerators\Uno.Gallery.SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" SetPlatform="Platform=AnyCPU" />
