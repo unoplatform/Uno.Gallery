@@ -82,7 +82,6 @@
 	</PropertyGroup>
 
 	<ItemGroup Condition="('$(Configuration)'=='Debug' or '$(IsUiAutomationMappingEnabled)'=='True') and '$(TargetFramework)'=='net8.0-ios'">
-		<PackageReference Include="Xamarin.TestCloud.Agent" />
 	</ItemGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='Release' and '$(System_PullRequest_IsFork)'!='True' and '$(TargetFramework)'=='net8.0-maccatalyst'">

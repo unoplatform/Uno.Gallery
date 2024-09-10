@@ -83,7 +83,7 @@ namespace Uno.Gallery
 			{
 #if __IOS__ && USE_UITESTS && !__MACCATALYST__
 				// requires Xamarin Test Cloud Agent
-				Xamarin.Calabash.Start();
+				//Xamarin.Calabash.Start();
 #endif
 
 				MainWindow.Content = _shell = BuildShell();

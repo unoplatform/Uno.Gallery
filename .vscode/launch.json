@@ -1,0 +1,17 @@
+{
+	// Use IntelliSense to learn about possible attributes.
+	// Hover to view descriptions of existing attributes.
+	// For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "Uno Platform Mobile",
+			"type": "Uno",
+			"request": "launch",
+			// any Uno* task will do, this is simply to satisfy vscode requirement when a launch.json is present
+			"preLaunchTask": "Uno: android | Debug | android-x64"
+		  },
+
+
+	]
+}
