@@ -5,7 +5,6 @@
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	  xmlns:local="using:Uno.Gallery"
 	  xmlns:ut="using:Uno.Themes"
-	  xmlns:wct="using:CommunityToolkit.WinUI.UI.Controls"
 	  xmlns:utu="using:Uno.Toolkit.UI"
 	  xmlns:smtx="using:ShowMeTheXAML"
 	  mc:Ignorable="d">
@@ -234,7 +233,7 @@
 										 x:Name="txtFilled" />
 								<TextBox Style="{StaticResource MaterialOutlinedTextBoxStyle}"
 										 x:Name="txtOutlined" />
-								<wct:WrapPanel HorizontalAlignment="Center"
+								<Grid HorizontalAlignment="Center"
 											   VerticalAlignment="Center">
 									<Button Content="Add Header"
 											Click="AddHeader"
@@ -245,11 +244,11 @@
 									<Button Content="Add Text"
 											Click="AddText"
 											Margin="4" />
-								</wct:WrapPanel>
+								</Grid>
 
 								<utu:Divider />
 
-								<wct:WrapPanel VerticalAlignment="Center"
+								<Grid VerticalAlignment="Center"
 											   HorizontalAlignment="Center">
 									<Button Content="Remove Header"
 											Click="RemoveHeader"
@@ -260,7 +259,7 @@
 									<Button Content="Remove Text"
 											Click="RemoveText"
 											Margin="4" />
-								</wct:WrapPanel>
+								</Grid>
 							</StackPanel>
 						</smtx:XamlDisplay>
 					</StackPanel>

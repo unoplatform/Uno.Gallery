@@ -4,7 +4,6 @@
 	  xmlns:local="using:Uno.Gallery"
 	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	  xmlns:lottie="using:CommunityToolkit.WinUI.Lottie"
 	  xmlns:smtx="using:ShowMeTheXAML"
 	  mc:Ignorable="d">
 
@@ -18,10 +17,6 @@
 										  smtx:XamlDisplayExtensions.Header="Default">
 							
 							<!-- Lottie Animation -->
-							<AnimatedVisualPlayer AutoPlay="true"
-														Height="120">
-								<lottie:LottieVisualSource UriSource="ms-appx:///Assets/Animations/loading_animation_data.json" />
-							</AnimatedVisualPlayer>
 						</smtx:XamlDisplay>
 					</StackPanel>
 				</DataTemplate>

@@ -5,7 +5,6 @@
 	  xmlns:helpers="using:Uno.Gallery.Helpers"
 	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	  xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"
 	  xmlns:utu="using:Uno.Toolkit.UI"
 	  xmlns:ut="using:Uno.Themes"
 	  xmlns:smtx="using:ShowMeTheXAML"
@@ -37,8 +36,8 @@
 				<smtx:XamlDisplay UniqueKey="ShadowContainerSamplePage_TextBox"
 								  Background="{ThemeResource SurfaceBrush}"
 								  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\WrapPanel\StackPanel">
-					<controls:WrapPanel HorizontalSpacing="16"
-										VerticalSpacing="16">
+					<Grid ColumnSpacing="16"
+										RowSpacing="16">
 
 						<StackPanel Spacing="20">
 							<!-- Enabled -->
@@ -78,7 +77,7 @@
 									 IsEnabled="False"
 									 Style="{StaticResource NeumorphicTextBoxStyle}" />
 						</StackPanel>
-					</controls:WrapPanel>
+					</Grid>
 				</smtx:XamlDisplay>
 			</DataTemplate>
 
@@ -86,8 +85,7 @@
 				<smtx:XamlDisplay UniqueKey="ShadowContainerSamplePage_PasswordBox"
 								  Background="{ThemeResource SurfaceBrush}"
 								  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\WrapPanel\StackPanel">
-					<controls:WrapPanel HorizontalSpacing="16"
-										VerticalSpacing="16">
+					<Grid>
 
 						<StackPanel Spacing="20">
 							<!-- Enabled -->
@@ -127,7 +125,7 @@
 										 IsEnabled="False"
 										 Style="{StaticResource NeumorphicPasswordBoxStyle}" />
 						</StackPanel>
-					</controls:WrapPanel>
+					</Grid>
 				</smtx:XamlDisplay>
 			</DataTemplate>
 
@@ -136,8 +134,7 @@
 								  Background="{ThemeResource SurfaceBrush}"
 								  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\WrapPanel">
 
-					<controls:WrapPanel HorizontalSpacing="16"
-										VerticalSpacing="16">
+					<Grid>
 
 						<ComboBox Width="328"
 								  PlaceholderText="Placeholder"
@@ -160,7 +157,7 @@
 								  Style="{StaticResource NeumorphicComboBoxStyle}"
 								  ItemsSource="{utu:AncestorBinding AncestorType=local:ContentPageLayout,
 																	Path=DataContext.Data.CbbItems}" />
-					</controls:WrapPanel>
+					</Grid>
 				</smtx:XamlDisplay>
 			</DataTemplate>
 
@@ -169,8 +166,7 @@
 								  Background="{ThemeResource SurfaceBrush}"
 								  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\WrapPanel\StackPanel">
 
-					<controls:WrapPanel HorizontalSpacing="16"
-										VerticalSpacing="16">
+					<Grid>
 						<StackPanel Spacing="20">
 							<!-- Elevated -->
 							<TextBlock Text="Elevated"
@@ -273,7 +269,7 @@
 								</Button>
 							</StackPanel>
 						</StackPanel>
-					</controls:WrapPanel>
+					</Grid>
 				</smtx:XamlDisplay>
 			</DataTemplate>
 
@@ -282,8 +278,7 @@
 								  Background="{ThemeResource SurfaceBrush}"
 								  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
 
-					<controls:WrapPanel HorizontalSpacing="16"
-										VerticalSpacing="16">
+					<Grid>
 						<Button Style="{StaticResource NeumorphicFabSmallStyle}"
 								Content="Small">
 							<ut:ControlExtensions.Icon>
@@ -303,7 +298,7 @@
 								<PathIcon Data="M24.334 13.7143H14.0483V24H10.6197V13.7143H0.333984V10.2857H10.6197V0H14.0483V10.2857H24.334V13.7143Z" />
 							</ut:ControlExtensions.Icon>
 						</Button>
-					</controls:WrapPanel>
+					</Grid>
 				</smtx:XamlDisplay>
 			</DataTemplate>
 
@@ -311,8 +306,7 @@
 				<smtx:XamlDisplay UniqueKey="ShadowContainerSamplePage_ToggleButton"
 								  Background="{ThemeResource SurfaceBrush}"
 								  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel\StackPanel">
-					<controls:WrapPanel HorizontalSpacing="16"
-										VerticalSpacing="16">
+					<Grid>
 						<StackPanel Spacing="20">
 							<!-- Enabled -->
 							<TextBlock Text="Enabled"
@@ -419,7 +413,7 @@
 								</StackPanel>
 							</StackPanel>
 						</StackPanel>
-					</controls:WrapPanel>
+					</Grid>
 				</smtx:XamlDisplay>
 			</DataTemplate>
 
@@ -566,8 +560,7 @@
 
 					<StackPanel Spacing="20">
 
-						<controls:WrapPanel HorizontalSpacing="16"
-											VerticalSpacing="16">
+						<Grid>
 							<!-- Enabled -->
 							<utu:Chip Style="{StaticResource NeumorphicChipStyle}"
 									  Content="Enabled" />
@@ -592,10 +585,9 @@
 									<PathIcon Data="M14 0H2C1.175 0 0.5075 0.675 0.5075 1.5L0.5 10.5C0.5 11.325 1.175 12 2 12H14C14.825 12 15.5 11.325 15.5 10.5V1.5C15.5 0.675 14.825 0 14 0ZM14 10.5H2V3L8 6.75L14 3V10.5ZM8 5.25L2 1.5H14L8 5.25Z" />
 								</utu:Chip.Icon>
 							</utu:Chip>
-						</controls:WrapPanel>
+						</Grid>
 
-						<controls:WrapPanel HorizontalSpacing="16"
-											VerticalSpacing="16">
+						<Grid>
 							<!-- Disabled -->
 							<utu:Chip Style="{StaticResource NeumorphicChipStyle}"
 									  Content="Enabled"
@@ -625,7 +617,7 @@
 									<PathIcon Data="M14 0H2C1.175 0 0.5075 0.675 0.5075 1.5L0.5 10.5C0.5 11.325 1.175 12 2 12H14C14.825 12 15.5 11.325 15.5 10.5V1.5C15.5 0.675 14.825 0 14 0ZM14 10.5H2V3L8 6.75L14 3V10.5ZM8 5.25L2 1.5H14L8 5.25Z" />
 								</utu:Chip.Icon>
 							</utu:Chip>
-						</controls:WrapPanel>
+						</Grid>
 					</StackPanel>
 				</smtx:XamlDisplay>
 			</DataTemplate>
@@ -679,8 +671,7 @@
 								  Background="{ThemeResource SurfaceBrush}"
 								  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\WrapPanel\StackPanel\StackPanel">
 
-					<controls:WrapPanel HorizontalSpacing="16"
-										VerticalSpacing="16">
+					<Grid>
 
 						<StackPanel Orientation="Horizontal"
 									Spacing="16">
@@ -732,7 +723,7 @@
 								</ToggleSwitch>
 							</StackPanel>
 						</StackPanel>
-					</controls:WrapPanel>
+					</Grid>
 				</smtx:XamlDisplay>
 			</DataTemplate>
 
@@ -741,8 +732,7 @@
 								  Background="{ThemeResource SurfaceBrush}"
 								  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\WrapPanel\StackPanel">
 
-					<controls:WrapPanel HorizontalSpacing="16"
-										VerticalSpacing="16">
+					<Grid>
 
 						<StackPanel Spacing="70"
 									Orientation="Vertical">
@@ -907,7 +897,7 @@
 								</utu:TabBar.Items>
 							</utu:TabBar>
 						</StackPanel>
-					</controls:WrapPanel>
+					</Grid>
 				</smtx:XamlDisplay>
 			</DataTemplate>
 			<!--#endregion-->
