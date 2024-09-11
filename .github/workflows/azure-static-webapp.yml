@@ -46,7 +46,7 @@ jobs:
       - run: |
           cd Uno.Gallery
           dotnet build -c Release -p:TargetFrameworkOverride=net8.0-browserwasm "/p:PackageVersion=${{ steps.gitversion.outputs.fullSemVer }}"
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         with:
           name: wasm-site
           path: ${{ env.DIST_PATH }}
