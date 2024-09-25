@@ -72,7 +72,7 @@ then
 		> /dev/null 2>&1 &
 
 	# Wait for the emulator to finish booting
-	source $BUILD_SOURCESDIRECTORY/build/workflow/scripts/android-uitest-wait-systemui.sh 500
+	source $BUILD_SOURCESDIRECTORY/build/scripts/android-uitest-wait-systemui.sh 500
 
 	touch "$UNO_EMULATOR_INSTALLED"
 else
@@ -80,7 +80,7 @@ else
 	$ANDROID_HOME/platform-tools/adb reboot
 
 	# Wait for the emulator to finish booting
-	source $BUILD_SOURCESDIRECTORY/build/workflow/scripts/android-uitest-wait-systemui.sh 500
+	source $BUILD_SOURCESDIRECTORY/build/scripts/android-uitest-wait-systemui.sh 500
 fi
 
 # Build the sample, while the emulator is starting
