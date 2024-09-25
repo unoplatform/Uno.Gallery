@@ -53,7 +53,7 @@ then
 	#echo "hw.cpu.ncore=3" >> $AVD_CONFIG_FILE
 
 	# Bump the heap size as the tests are stressing the application
-	#echo "vm.heapSize=256M" >> $AVD_CONFIG_FILE
+	echo "vm.heapSize=256M" >> $AVD_CONFIG_FILE
 
 	echo $ANDROID_HOME/emulator/emulator -list-avds
 
@@ -71,7 +71,16 @@ then
 		-no-boot-anim \
 		> /dev/null 2>&1 &
 
+	# Wait for the emulator to finish booting
+	source $BUILD_SOURCESDIRECTORY/build/workflow/scripts/android-uitest-wait-systemui.sh 500
+
 	touch "$UNO_EMULATOR_INSTALLED"
+else
+	# Restart the emulator to avoid running first-time tasks
+	$ANDROID_HOME/platform-tools/adb reboot
+
+	# Wait for the emulator to finish booting
+	source $BUILD_SOURCESDIRECTORY/build/workflow/scripts/android-uitest-wait-systemui.sh 500
 fi
 
 # Build the sample, while the emulator is starting
@@ -81,9 +90,6 @@ dotnet publish -f net8.0-android -p:TargetFrameworkOverride=net8.0-android -c Re
 mkdir -p $UNO_UITEST_SCREENSHOT_PATH
 
 cp $UNO_UITEST_ANDROIDAPK_PATH $UNO_UITEST_SCREENSHOT_PATH
-
-# Wait for the emulator to finish booting
-$ANDROID_HOME/platform-tools/adb wait-for-device shell 'while [[ -z $(getprop sys.boot_completed | tr -d '\r') ]]; do sleep 1; done; input keyevent 82'
 
 $ANDROID_HOME/platform-tools/adb devices
 
