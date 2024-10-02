@@ -76,8 +76,8 @@ then
 	fi
 
 	echo "CHANGE: vm.heapSize=$HEAP & hw.cpu.ncore=$CORES in $AVD_CONFIG_FILE"
-	$SED_I_CMD '/^hw.cpu.ncore/d' $AVD_CONFIG_FILE
-	$SED_I_CMD '/^vm.heapSize/d' $AVD_CONFIG_FILE
+	sed -i '' '/^hw.cpu.ncore/d' $AVD_CONFIG_FILE
+	sed -i '' '/^vm.heapSize/d' $AVD_CONFIG_FILE
 	echo "vm.heapSize=$HEAP" >> $AVD_CONFIG_FILE
 	echo "hw.cpu.ncore=$CORES" >> $AVD_CONFIG_FILE
 	cat $AVD_CONFIG_FILE | grep "hw.cpu.ncore"
