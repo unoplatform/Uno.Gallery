@@ -83,6 +83,9 @@ then
 	cat $AVD_CONFIG_FILE | grep "hw.cpu.ncore"
 	cat $AVD_CONFIG_FILE | grep "vm.heapSize"
 
+	cat $AVD_CONFIG_FILE
+
+	cat "~/.android/avd/$AVD_NAME.ini"
 	echo $ANDROID_HOME/emulator/emulator -list-avds
 
 	echo "Starting emulator"
