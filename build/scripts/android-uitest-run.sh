@@ -137,3 +137,5 @@ dotnet test \
 	--blame-hang-timeout $UITEST_TEST_TIMEOUT \
 	-v m \
 	|| true
+
+$ANDROID_HOME/platform-tools/adb shell logcat -d > $UNO_UITEST_SCREENSHOT_PATH/android-device-log.txt
