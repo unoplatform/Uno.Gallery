@@ -62,6 +62,8 @@
 		<IsSkiaWasm Condition="'$(IsSkiaWasm)'==''">false</IsSkiaWasm>
 		<IsSkiaAndroid Condition="'$(UseSkiaRendering)'=='true' AND '$(TargetFramework)'=='net9.0-android'">true</IsSkiaAndroid>
 		<IsSkiaAndroid Condition="'$(IsSkiaAndroid)'==''">false</IsSkiaAndroid>
+		<IsSkiaUIKit Condition="'$(UseSkiaRendering)'=='true' AND ('$(TargetFramework)'=='net8.0-ios' OR '$(TargetFramework)'=='net8.0-maccatalyst')">true</IsSkiaUIKit>
+		<IsSkiaUIKit Condition="'$(IsSkiaUIKit)'==''">false</IsSkiaUIKit>
 		<UnoFeatures>
 			Material;
 			Toolkit;
@@ -72,11 +74,13 @@
 		</UnoFeatures>
 		<UnoFeatures Condition="$(IsSkiaWasm)">$(UnoFeatures)WebAssemblySkiaRenderer;</UnoFeatures>
 		<UnoFeatures Condition="$(IsSkiaAndroid)">$(UnoFeatures)AndroidSkiaRenderer;</UnoFeatures>
+		<UnoFeatures Condition="$(IsSkiaUIKit)">$(UnoFeatures)AppleUIKitSkiaRenderer;</UnoFeatures>
 		<UnoFeatures Condition="!$(IsSkiaWasm) AND !$(IsSkiaAndroid)">$(UnoFeatures)MediaElement;</UnoFeatures>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<DefaultItemExcludes Condition="$(IsSkiaWasm) OR $(IsSkiaAndroid)">$(DefaultItemExcludes);**\MediaPlayer*.*</DefaultItemExcludes>
 		<DefineConstants Condition="$(IsSkiaWasm)">$(DefineConstants);IS_WASM_SKIA</DefineConstants>
 		<DefineConstants Condition="$(IsSkiaAndroid)">$(DefineConstants);IS_ANDROID_SKIA</DefineConstants>
+		<DefineConstants Condition="$(IsSkiaUIKit)">$(DefineConstants);IS_UIKIT_SKIA</DefineConstants>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)'=='Debug' or '$(IsUiAutomationMappingEnabled)'=='True'">
 		<IsUiAutomationMappingEnabled>True</IsUiAutomationMappingEnabled>
