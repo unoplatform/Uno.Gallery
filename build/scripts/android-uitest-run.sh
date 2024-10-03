@@ -7,7 +7,7 @@ set -x
 
 export UNO_UITEST_SCREENSHOT_PATH=$BUILD_ARTIFACTSTAGINGDIRECTORY/screenshots/android
 export UNO_UITEST_PLATFORM=Android
-export UNO_UITEST_ANDROIDAPK_PATH=$BUILD_SOURCESDIRECTORY/Uno.Gallery/bin/Release/net8.0-android/android-x64/com.nventive.uno.ui.demo-Signed.apk
+export UNO_UITEST_ANDROIDAPK_PATH=$BUILD_SOURCESDIRECTORY/Uno.Gallery/bin/Release/net8.0-android/com.nventive.uno.ui.demo-Signed.apk
 export UNO_UITEST_PROJECT=$BUILD_SOURCESDIRECTORY/Uno.Gallery.UITests
 export UNO_UITEST_ANDROID_PROJECT=$BUILD_SOURCESDIRECTORY/Uno.Gallery
 export UNO_UITEST_BINARY=$BUILD_SOURCESDIRECTORY/Uno.Gallery.UITests/bin/Release/net47/Uno.Gallery.UITests.dll
@@ -85,7 +85,7 @@ then
 
 	cat $AVD_CONFIG_FILE
 
-	cat "~/.android/avd/$AVD_NAME.ini"
+	cat "~/.android/avd/$AVD_NAME.info"
 	echo $ANDROID_HOME/emulator/emulator -list-avds
 
 	echo "Starting emulator"
