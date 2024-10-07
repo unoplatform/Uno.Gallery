@@ -64,6 +64,12 @@ then
 	# Bump the heap size as the tests are stressing the application
 	echo "vm.heapSize=256M" >> $AVD_CONFIG_FILE
 
+	# Force the orentation to landscape as most tests expect it to be this way
+	echo "hw.initialOrientation=landscape" >> $AVD_CONFIG_FILE
+
+	# Adjust for main keys: https://stackoverflow.com/a/16402304
+	echo "hw.mainKeys=yes" >> $AVD_CONFIG_FILE
+
 	$ANDROID_HOME/emulator/emulator -list-avds
 
 	echo "Starting emulator"
