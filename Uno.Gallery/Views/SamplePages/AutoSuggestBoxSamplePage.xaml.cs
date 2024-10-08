@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Uno.Gallery.ViewModels;
 using Microsoft.UI.Xaml.Controls;
+using Uno.Gallery.Helpers;
 
 namespace Uno.Gallery.Views.Samples
 {
@@ -12,17 +13,23 @@ namespace Uno.Gallery.Views.Samples
 		public AutoSuggestBoxSamplePage()
 		{
 			this.InitializeComponent();
+			Loaded += AutoSuggestBoxSamplePage_Loaded;
+		}
+
+		private void AutoSuggestBoxSamplePage_Loaded(object sender, RoutedEventArgs e)
+		{
+			// set Fluent styles for the AutoSuggestBox popup.
+			var border = GetTemplateChild("SuggestionsContainer") as Border;
+			border?.EnsureXamlControlsResources(true);
+			Loaded -= AutoSuggestBoxSamplePage_Loaded;
 		}
 
 		private void AutoSuggestBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
 		{
-			//This check can be removed when https://github.com/unoplatform/uno/issues/11635 is fixed
-#if !__ANDROID__ && !__IOS__
 			if (args.Reason != AutoSuggestionBoxTextChangeReason.UserInput)
 			{
 				return;
 			}
-#endif
 
 			if (string.IsNullOrEmpty(sender.Text))
 			{
@@ -31,7 +38,7 @@ namespace Uno.Gallery.Views.Samples
 
 			if (((Sample)DataContext).Data is AutoSuggestBoxSamplePageViewModel viewModel)
 			{
-				sender.ItemsSource = viewModel.GetSuggestedItems(sender.Text).Select(sample => sample.Title).ToList();
+				sender.ItemsSource = viewModel.GetSuggestedItems(sender.Text)?.Select(sample => sample.Title).ToList();
 			}
 		}
 
@@ -39,20 +46,17 @@ namespace Uno.Gallery.Views.Samples
 		{
 			if (((Sample)DataContext).Data is AutoSuggestBoxSamplePageViewModel viewModel)
 			{
-				viewModel.SelectedString = args.SelectedItem.ToString();
+				viewModel.SelectedString = args.SelectedItem.ToString() ?? string.Empty;
 			}
 
 		}
 
 		private void SearchBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
 		{
-			//This check can be removed when https://github.com/unoplatform/uno/issues/11635 is fixed
-#if !__ANDROID__ && !__IOS__
 			if (args.Reason != AutoSuggestionBoxTextChangeReason.UserInput)
 			{
 				return;
 			}
-#endif
 
 			if (((Sample)DataContext).Data is AutoSuggestBoxSamplePageViewModel viewModel)
 			{
@@ -88,7 +92,7 @@ namespace Uno.Gallery.Views.Samples
 
 		public Sample SearchBoxSelectedItem { get => GetProperty<Sample>(); set => SetProperty(value); }
 
-		public List<Sample> GetSuggestedItems(string searchQuery)
+		public List<Sample>? GetSuggestedItems(string searchQuery)
 		{
 			if (string.IsNullOrEmpty(searchQuery))
 			{
