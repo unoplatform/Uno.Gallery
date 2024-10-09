@@ -18,9 +18,14 @@ namespace Uno.Gallery.Views.Samples
 
 		private void AutoSuggestBoxSamplePage_Loaded(object sender, RoutedEventArgs e)
 		{
-			// set Fluent styles for the AutoSuggestBox popup.
-			var border = GetTemplateChild("SuggestionsContainer") as Border;
-			border?.EnsureXamlControlsResources(true);
+			var desc = VisualTreeHelperEx.GetDescendants(this).OfType<AutoSuggestBox>();
+
+			foreach (var item in desc)
+			{
+				var border = item.GetTemplateChild("SuggestionsContainer") as Border;
+				border?.EnsureXamlControlsResources(true);
+			}
+
 			Loaded -= AutoSuggestBoxSamplePage_Loaded;
 		}
 
