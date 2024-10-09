@@ -1,6 +1,7 @@
 ﻿jobs:
 - job: iOS_Tests
   displayName: 'iOS UI Tests'
+  timeoutInMinutes: 90
   variables:
     CI_Build: true
     SourceLinkEnabled: false
