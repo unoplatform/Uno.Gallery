@@ -24,12 +24,6 @@ namespace Uno.Gallery.Views.Samples
 
 			foreach (var item in desc)
 			{
-				// Windows specific 
-				//var popups = VisualTreeHelperEx.GetDescendants(item).OfType<Popup>();
-				//foreach (var popup in popups)
-				//{
-				//	popup.EnsureXamlControlsResources(true);
-				//}
 
 				var border = item.GetTemplateChild("SuggestionsContainer") as Border;
 				border?.EnsureXamlControlsResources(true);
