@@ -4,6 +4,7 @@ using System.Linq;
 using Uno.Gallery.ViewModels;
 using Microsoft.UI.Xaml.Controls;
 using Uno.Gallery.Helpers;
+using Microsoft.UI.Xaml.Controls.Primitives;
 
 namespace Uno.Gallery.Views.Samples
 {
@@ -18,14 +19,22 @@ namespace Uno.Gallery.Views.Samples
 
 		private void AutoSuggestBoxSamplePage_Loaded(object sender, RoutedEventArgs e)
 		{
+#if HAS_UNO
 			var desc = VisualTreeHelperEx.GetDescendants(this).OfType<AutoSuggestBox>();
 
 			foreach (var item in desc)
 			{
+				// Windows specific 
+				//var popups = VisualTreeHelperEx.GetDescendants(item).OfType<Popup>();
+				//foreach (var popup in popups)
+				//{
+				//	popup.EnsureXamlControlsResources(true);
+				//}
+
 				var border = item.GetTemplateChild("SuggestionsContainer") as Border;
 				border?.EnsureXamlControlsResources(true);
 			}
-
+#endif
 			Loaded -= AutoSuggestBoxSamplePage_Loaded;
 		}
 
