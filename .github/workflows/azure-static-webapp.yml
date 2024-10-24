@@ -14,7 +14,7 @@ on:
 jobs:
   build_and_deploy_job:
     env:
-      DIST_PATH: Uno.Gallery/bin/Release/net9.0-browserwasm/dist
+      DIST_PATH: Uno.Gallery/bin/Release/net9.0-browserwasm/publish/wwwroot
 
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
@@ -56,7 +56,7 @@ jobs:
 
       - run: |
           cd Uno.Gallery
-          dotnet build -c Release -p:TargetFrameworkOverride=net9.0-browserwasm "/p:PackageVersion=${{ steps.gitversion.outputs.fullSemVer }}"
+          dotnet publish -c Release -f net9.0-browserwasm -p:TargetFrameworkOverride=net9.0-browserwasm "/p:PackageVersion=${{ steps.gitversion.outputs.fullSemVer }}"
       - uses: actions/upload-artifact@v4
         with:
           name: wasm-site
