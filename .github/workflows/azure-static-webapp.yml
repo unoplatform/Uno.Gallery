@@ -56,7 +56,9 @@ jobs:
 
       - run: |
           cd Uno.Gallery
-          dotnet publish -c Release -f net9.0-browserwasm -p:TargetFrameworkOverride=net9.0-browserwasm "/p:PackageVersion=${{ steps.gitversion.outputs.fullSemVer }}"
+          dotnet publish -c Release -f net9.0-browserwasm "/p:PackageVersion=${{ steps.gitversion.outputs.fullSemVer }}"
+        name: Build Gallery
+
       - uses: actions/upload-artifact@v4
         with:
           name: wasm-site
