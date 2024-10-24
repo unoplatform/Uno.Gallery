@@ -33,7 +33,7 @@ jobs:
           include-prerelease: true
 
       - run: |
-          cd src
+          cd Uno.Gallery
           dotnet workload install wasm-tools
         name: Setup Workloads
 
