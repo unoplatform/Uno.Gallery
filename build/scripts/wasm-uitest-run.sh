@@ -11,12 +11,12 @@ export UNO_UITEST_PLATFORM=Browser
 export UNO_UITEST_PROJECT=$BUILD_SOURCESDIRECTORY/Uno.Gallery.UITests
 export UNO_UITEST_LOGFILE=$BUILD_ARTIFACTSTAGINGDIRECTORY/screenshots/wasm/nunit-log.txt
 export UNO_UITEST_WASM_PROJECT=$BUILD_SOURCESDIRECTORY/Uno.Gallery/Uno.Gallery.csproj
-export UNO_UITEST_WASM_OUTPUT_PATH=$BUILD_SOURCESDIRECTORY/Uno.Gallery/bin/Release/net8.0-browserwasm/dist/
+export UNO_UITEST_WASM_OUTPUT_PATH=$BUILD_SOURCESDIRECTORY/Uno.Gallery/bin/Release/net9.0-browserwasm/dist/
 export UITEST_TEST_TIMEOUT=60m
 
 cd $BUILD_SOURCESDIRECTORY
 
-dotnet build /r /p:Configuration=Release $UNO_UITEST_WASM_PROJECT -p:TargetFrameworkOverride=net8.0-browserwasm /p:IsUiAutomationMappingEnabled=True /bl:$UNO_UITEST_SCREENSHOT_PATH/msbuild.binlog
+dotnet build /r /p:Configuration=Release $UNO_UITEST_WASM_PROJECT -p:TargetFrameworkOverride=net9.0-browserwasm /p:IsUiAutomationMappingEnabled=True /bl:$UNO_UITEST_SCREENSHOT_PATH/msbuild.binlog
 
 cd $BUILD_SOURCESDIRECTORY/build
 mkdir -p tools

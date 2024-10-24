@@ -74,7 +74,7 @@ jobs:
   - name: ApplicationPlatform
     value: x86 # switch back to x64 once CommunityToolkit.WinUI.UI supports x64 (https://github.com/CommunityToolkit/Lottie-Windows/issues/515#issuecomment-1662305826)
   - name: BuildTargetFramework
-    value: net8.0-windows10.0.19041
+    value: net9.0-windows10.0.19041
   - name: ArtifactName
     value: Windows
   - name: VersionCodeOffset
@@ -100,12 +100,12 @@ jobs:
     maxParallel: 2
     matrix:
       iOS:
-        BuildTargetFramework: net8.0-ios
+        BuildTargetFramework: net9.0-ios
         ArtifactName: iOS-mobile
         ApplicationBuildNumberOffset: 50
         BuildCommand: publish
       Catalyst:
-        BuildTargetFramework: net8.0-maccatalyst
+        BuildTargetFramework: net9.0-maccatalyst
         ArtifactName: Catalyst
         ApplicationBuildNumberOffset: 50
         BuildCommand: build

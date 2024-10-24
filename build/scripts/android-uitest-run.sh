@@ -7,7 +7,7 @@ set -x
 
 export UNO_UITEST_SCREENSHOT_PATH=$BUILD_ARTIFACTSTAGINGDIRECTORY/screenshots/android
 export UNO_UITEST_PLATFORM=Android
-export UNO_UITEST_ANDROIDAPK_PATH=$BUILD_SOURCESDIRECTORY/Uno.Gallery/bin/Release/net8.0-android/android-x64/com.nventive.uno.ui.demo-Signed.apk
+export UNO_UITEST_ANDROIDAPK_PATH=$BUILD_SOURCESDIRECTORY/Uno.Gallery/bin/Release/net9.0-android/android-x64/com.nventive.uno.ui.demo-Signed.apk
 export UNO_UITEST_PROJECT=$BUILD_SOURCESDIRECTORY/Uno.Gallery.UITests
 export UNO_UITEST_ANDROID_PROJECT=$BUILD_SOURCESDIRECTORY/Uno.Gallery
 export UNO_UITEST_BINARY=$BUILD_SOURCESDIRECTORY/Uno.Gallery.UITests/bin/Release/net47/Uno.Gallery.UITests.dll
@@ -58,7 +58,7 @@ fi
 
 # Build the sample, while the emulator is starting
 cd $UNO_UITEST_ANDROID_PROJECT
-dotnet publish -f net8.0-android -p:TargetFrameworkOverride=net8.0-android -c Release -p:RuntimeIdentifier=android-x64 /p:IsUiAutomationMappingEnabled=True /p:AndroidUseSharedRuntime=false /p:AotAssemblies=false  -bl:$BUILD_ARTIFACTSTAGINGDIRECTORY/android-app.binlog
+dotnet publish -f net9.0-android -p:TargetFrameworkOverride=net9.0-android -c Release -p:RuntimeIdentifier=android-x64 /p:IsUiAutomationMappingEnabled=True /p:AndroidUseSharedRuntime=false /p:AotAssemblies=false  -bl:$BUILD_ARTIFACTSTAGINGDIRECTORY/android-app.binlog
 
 mkdir -p $UNO_UITEST_SCREENSHOT_PATH
 

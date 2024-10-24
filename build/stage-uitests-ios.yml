@@ -50,6 +50,6 @@
     condition: always()
     retryCountOnTaskFailure: 3
     inputs:
-      PathtoPublish: $(build.sourcesdirectory)/Uno.Gallery/bin/Release/net8.0-ios/iossimulator-x64/Uno.Gallery.app
+      PathtoPublish: $(build.sourcesdirectory)/Uno.Gallery/bin/Release/net9.0-ios/iossimulator-x64/Uno.Gallery.app
       ArtifactName: uno-uitest-ios-bin
       ArtifactType: Container

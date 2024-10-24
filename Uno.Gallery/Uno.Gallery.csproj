@@ -1,18 +1,17 @@
 ﻿<Project Sdk="Uno.Sdk">
 	<PropertyGroup>
-		<!-- Building with dotnet build -f net8.0-platform will still cause restore to happen for all TargetFrameworks -->
+		<!-- Building with dotnet build -f net9.0-platform will still cause restore to happen for all TargetFrameworks -->
 		<!-- which will force us to install all workloads even if not needed -->
-		<!-- To prevent that, we will pass TargetFrameworkOverride as a global property (i.e, dotnet build -p:TargetFrameworkOverride=net8.0-platform) -->
+		<!-- To prevent that, we will pass TargetFrameworkOverride as a global property (i.e, dotnet build -p:TargetFrameworkOverride=net9.0-platform) -->
 		<!-- That way, we set TargetFrameworks property to only the needed TargetFramework -->
-		<!-- NOTE: We cannot build with dotnet build -p:TargetFrameworks=net8.0-platform as that will flow to source generator project, which is incorrect -->
+		<!-- NOTE: We cannot build with dotnet build -p:TargetFrameworks=net9.0-platform as that will flow to source generator project, which is incorrect -->
 		<TargetFramework Condition="'$(TargetFrameworkOverride)'!=''">$(TargetFrameworkOverride)</TargetFramework>
 		<TargetFrameworks Condition="'$(TargetFrameworkOverride)'==''">
-			net8.0-android;
-			net8.0-ios;
-			net8.0-maccatalyst;
-			net8.0-windows10.0.19041;
-			net8.0-desktop;
-			net8.0-browserwasm;
+			net9.0-ios;
+			net9.0-maccatalyst;
+			net9.0-windows10.0.19041;
+			net9.0-desktop;
+			net9.0-browserwasm;
 		</TargetFrameworks>
 		<OutputType>Exe</OutputType>
 		<UnoSingleProject>true</UnoSingleProject>
@@ -68,25 +67,25 @@
 		<ProjectReference Include="..\Uno.Gallery.SourceGenerators\Uno.Gallery.SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" SetPlatform="Platform=AnyCPU" />
 	</ItemGroup>
 
-	<ItemGroup Condition="'$(TargetFramework)'=='net8.0-android' or '$(TargetFramework)'=='net8.0-ios' or '$(TargetFramework)'=='net8.0-maccatalyst'">
+	<ItemGroup Condition="'$(TargetFramework)'=='net9.0-android' or '$(TargetFramework)'=='net9.0-ios' or '$(TargetFramework)'=='net9.0-maccatalyst'">
 		<IncludeXamlNamespaces Include="mobile" Visible="False" />
 		<ExcludeXamlNamespaces Include="not_mobile" Visible="False" />
 	</ItemGroup>
-	<ItemGroup Condition="'$(TargetFramework)'=='net8.0-desktop' OR '$(TargetFramework)'=='net8.0-browserwasm'">
+	<ItemGroup Condition="'$(TargetFramework)'=='net9.0-desktop' OR '$(TargetFramework)'=='net9.0-browserwasm'">
 		<IncludeXamlNamespaces Include="not_mobile" Visible="False" />
 		<ExcludeXamlNamespaces Include="mobile" Visible="False" />
 	</ItemGroup>
 
-	<PropertyGroup Condition="'$(Configuration)'=='Release' and '$(System_PullRequest_IsFork)'!='True' and '$(TargetFramework)'=='net8.0-ios'">
+	<PropertyGroup Condition="'$(Configuration)'=='Release' and '$(System_PullRequest_IsFork)'!='True' and '$(TargetFramework)'=='net9.0-ios'">
 		<CodesignKey>iPhone Distribution</CodesignKey>
 		<RuntimeIdentifier>ios-arm64</RuntimeIdentifier>
 	</PropertyGroup>
 
-	<ItemGroup Condition="('$(Configuration)'=='Debug' or '$(IsUiAutomationMappingEnabled)'=='True') and '$(TargetFramework)'=='net8.0-ios'">
+	<ItemGroup Condition="('$(Configuration)'=='Debug' or '$(IsUiAutomationMappingEnabled)'=='True') and '$(TargetFramework)'=='net9.0-ios'">
 		<PackageReference Include="Xamarin.TestCloud.Agent" />
 	</ItemGroup>
 
-	<PropertyGroup Condition="'$(Configuration)'=='Release' and '$(System_PullRequest_IsFork)'!='True' and '$(TargetFramework)'=='net8.0-maccatalyst'">
+	<PropertyGroup Condition="'$(Configuration)'=='Release' and '$(System_PullRequest_IsFork)'!='True' and '$(TargetFramework)'=='net9.0-maccatalyst'">
 		<MtouchUseLlvm>true</MtouchUseLlvm>
 		<CodeSigningKey>Apple Distribution: Uno Platform Inc. (PD74CHS9Z5)</CodeSigningKey>
 		<PackageSigningKey>3rd Party Mac Developer Installer</PackageSigningKey>
@@ -99,16 +98,16 @@
 		<CodesignProvision Condition="$(BUILD_SOURCEBRANCH.StartsWith('refs/heads/canaries'))">Uno Gallery Canary (Catalyst)</CodesignProvision>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)'=='Release' and '$(TargetFramework)'=='net8.0-android'">
+	<PropertyGroup Condition="'$(Configuration)'=='Release' and '$(TargetFramework)'=='net9.0-android'">
 		<RunAOTCompilation>true</RunAOTCompilation>
 	</PropertyGroup>
 
-	<ItemGroup Condition="'$(TargetFramework)'!='net8.0-windows10.0.19041'">
+	<ItemGroup Condition="'$(TargetFramework)'!='net9.0-windows10.0.19041'">
 		<PackageReference Include="Uno.CommunityToolkit.WinUI.UI.Controls" />
 		<PackageReference Include="Uno.CommunityToolkit.WinUI.UI.Controls.DataGrid" />
 	</ItemGroup>
 
-	<ItemGroup Condition="'$(TargetFramework)'=='net8.0-windows10.0.19041'">
+	<ItemGroup Condition="'$(TargetFramework)'=='net9.0-windows10.0.19041'">
 		<PackageReference Include="CommunityToolkit.WinUI.Lottie" />
 		<PackageReference Include="CommunityToolkit.WinUI.UI.Controls" />
 		<PackageReference Include="CommunityToolkit.WinUI.UI.Controls.DataGrid" />
@@ -119,7 +118,9 @@
 		</PackageReference>
 	</ItemGroup>
 
-	<ItemGroup Condition="'$(TargetFramework)'=='net8.0-browserwasm'">
+	<ItemGroup Condition="'$(TargetFramework)'=='net9.0-browserwasm'">
+		<PackageReference Include="Uno.Wasm.Bootstrap" />
+		<PackageReference Include="Uno.Wasm.Bootstrap.DevServer" />
 		<PackageReference Include="Microsoft.TypeScript.Compiler">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
