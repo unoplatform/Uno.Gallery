@@ -3,7 +3,7 @@ set -euo pipefail
 IFS=$'\n\t'
 
 export UNO_UITEST_PLATFORM=iOS
-export UNO_UITEST_IOSBUNDLE_PATH=$BUILD_SOURCESDIRECTORY/Uno.Gallery/bin/Release/net8.0-ios/iossimulator-x64/Uno.Gallery.app
+export UNO_UITEST_IOSBUNDLE_PATH=$BUILD_SOURCESDIRECTORY/Uno.Gallery/bin/Release/net9.0-ios/iossimulator-x64/Uno.Gallery.app
 export UNO_UITEST_SCREENSHOT_PATH=$BUILD_ARTIFACTSTAGINGDIRECTORY/screenshots/ios
 export UNO_UITEST_PROJECT=$BUILD_SOURCESDIRECTORY/Uno.Gallery.UITests
 export UNO_UITEST_LOGFILE=$BUILD_ARTIFACTSTAGINGDIRECTORY/screenshots/ios/nunit-log.txt
@@ -22,7 +22,7 @@ xcrun simctl list devices --json
 mkdir -p $UNO_UITEST_SCREENSHOT_PATH/_logs
 
 cd $UNO_UITEST_IOS_PROJECT
-dotnet build -p:TargetFrameworkOverride=net8.0-ios -r iossimulator-x64 -c Release -p:IsUiAutomationMappingEnabled=True -bl:$BUILD_ARTIFACTSTAGINGDIRECTORY/ios-app.binlog
+dotnet build -p:TargetFrameworkOverride=net9.0-ios -r iossimulator-x64 -c Release -p:IsUiAutomationMappingEnabled=True -bl:$BUILD_ARTIFACTSTAGINGDIRECTORY/ios-app.binlog
 
 ##
 ## Pre-install the application to avoid https://github.com/microsoft/appcenter/issues/2389
