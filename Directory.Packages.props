@@ -35,8 +35,8 @@
 		<PackageVersion Include="nventive.Nimue.Application.Packaging" Version="0.1.0-alpha.58" />
 		<PackageVersion Include="Xamarin.TestCloud.Agent" Version="0.23.2" />
 
-		<PackageVersion Include="Uno.Wasm.Bootstrap" Version="9.0.1" />
-		<PackageVersion Include="Uno.Wasm.Bootstrap.DevServer" Version="9.0.1" />
+		<PackageVersion Include="Uno.Wasm.Bootstrap" Version="9.1.0-dev.41" />
+		<PackageVersion Include="Uno.Wasm.Bootstrap.DevServer" Version="9.1.0-dev.41" />
 
 	</ItemGroup>
 </Project>
