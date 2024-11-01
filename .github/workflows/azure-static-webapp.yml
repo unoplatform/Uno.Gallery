@@ -67,7 +67,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: logs
-          path: ../binlogs
+          path: binlogs
 
       - name: Publish to Azure Static WebApps
         id: builddeploy_uno
