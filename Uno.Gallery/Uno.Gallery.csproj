@@ -94,15 +94,14 @@
 		<WasmShellEmccLinkOptimization>false</WasmShellEmccLinkOptimization>
 		<WasmShellEnableEmccProfiling>true</WasmShellEnableEmccProfiling>
 		<UnoXamlResourcesTrimming>true</UnoXamlResourcesTrimming>
-		<WasmShellObfuscateAssemblies>true</WasmShellObfuscateAssemblies>
 
 		<!--
 		Uncomment this block to generate a profile
-		-->
 		<WasmShellGenerateAOTProfile>true</WasmShellGenerateAOTProfile>
 		<WasmShellILLinkerEnabled>false</WasmShellILLinkerEnabled>
 		<UnoXamlResourcesTrimming>false</UnoXamlResourcesTrimming>
 		<WasmShellEnableJiterpreter>false</WasmShellEnableJiterpreter>
+		-->
 	</PropertyGroup>
 	
 	<PropertyGroup Condition="'$(Configuration)'=='Release' and '$(System_PullRequest_IsFork)'!='True' and '$(TargetFramework)'=='net9.0-maccatalyst'">
