@@ -1,6 +1,7 @@
 steps:
 
 - template: templates/gitversion.yml
+- template: templates/dotnet-install-windows.yml
 - template: templates/canary-updater.yml
 
 - bash: |

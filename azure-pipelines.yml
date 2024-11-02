@@ -42,7 +42,7 @@ variables:
   IsLightBuild: $[eq(variables['Build.Reason'], 'PullRequest')]
   IsCanaryBranch: $[startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries/')]
 
-  XCODE_ROOT: '/Applications/Xcode_15.4.app'
+  XCODE_ROOT: '/Applications/Xcode_16.app'
 
 jobs:
 - job: Windows_Android_Mobile
