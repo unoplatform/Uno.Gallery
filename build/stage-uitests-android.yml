@@ -15,6 +15,11 @@
 
   - template: templates/dotnet-install-mac.yml
   - template: templates/canary-updater.yml
+  
+  - task: NodeTool@0
+    inputs:
+    versionSource: 'spec'
+    versionSpec: '20.x'
 
   - bash: |
       chmod +x $(build.sourcesdirectory)/build/scripts/android-uitest-run.sh
