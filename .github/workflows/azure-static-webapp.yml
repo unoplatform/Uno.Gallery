@@ -49,14 +49,9 @@ jobs:
           useConfigFile: true
           configFilePath: build/gitversion.yml
 
-      - name: Setup .NET SDK
-        uses: actions/setup-dotnet@v1.7.2
-        with:
-          dotnet-version: '9.0.100-rc.2.24474.11'
-
       - run: |
           cd Uno.Gallery
-          dotnet publish -c Release -f net9.0-browserwasm "/p:PackageVersion=${{ steps.gitversion.outputs.fullSemVer }}" /bl:../binlogs/output.binlog
+          dotnet publish -c Release -f net9.0-browserwasm -p:TargetFrameworkOverride=net9.0-browserwasm "/p:PackageVersion=${{ steps.gitversion.outputs.fullSemVer }}" /bl:../binlogs/output.binlog
         name: Build Gallery
 
       - uses: actions/upload-artifact@v4
