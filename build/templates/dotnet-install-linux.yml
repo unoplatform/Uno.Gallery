@@ -2,17 +2,6 @@ parameters:
   DotNetVersion: '9.0.100-rc.2.24474.11'
   UnoCheck_Version: '1.26.1'
 steps:
-  # Required until .NET 6 installs properly using UseDotnet
-  # using preview builds
-  #- bash: |
-  #    export PATH="${{ parameters.Dotnet_Root }}:${{ parameters.Dotnet_Tools }}:$PATH"
-  #    curl -L https://raw.githubusercontent.com/dotnet/install-scripts/11b4eebe23d871c074364940d301c3eb53e7c7ec/src/dotnet-install.sh > dotnet-install.sh
-  #    sh dotnet-install.sh --version ${{ parameters.DotNetVersion }} --install-dir $DOTNET_ROOT --verbose
-  #    dotnet --list-sdks
-  #    echo "##vso[task.setvariable variable=PATH]$PATH"
-  #  displayName: install .NET ${{ parameters.DotNetVersion }}
-  #  retryCountOnTaskFailure: 3
-  #  condition: eq(variables['Agent.OS'], 'Darwin')
 
   - task: UseDotNet@2
     displayName: 'Use .NET Core SDK ${{ parameters.DotNetVersion }}'

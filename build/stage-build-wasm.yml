@@ -7,12 +7,7 @@
 
 - template: templates/gitversion.yml
 
-- task: UseDotNet@2
-  retryCountOnTaskFailure: 3
-  inputs:
-    packageType: sdk
-    version: 9.0.100-rc.2.24474.11
-
+- template: templates/dotnet-install-linux.yml
 - template: templates/canary-updater.yml
 
 - bash: |
