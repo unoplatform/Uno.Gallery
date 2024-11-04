@@ -7,13 +7,16 @@
 		<!-- NOTE: We cannot build with dotnet build -p:TargetFrameworks=net9.0-platform as that will flow to source generator project, which is incorrect -->
 		<TargetFramework Condition="'$(TargetFrameworkOverride)'!=''">$(TargetFrameworkOverride)</TargetFramework>
 		<TargetFrameworks Condition="'$(TargetFrameworkOverride)'==''">
-			net9.0-android;
 			net9.0-ios;
 			net9.0-maccatalyst;
 			net9.0-windows10.0.19041;
 			net9.0-desktop;
 			net9.0-browserwasm;
 		</TargetFrameworks>
+
+		<!-- android is disable on linux until ci is fixed  -->
+		<TargetFrameworks Condition="'$(TargetFrameworkOverride)'=='' AND !$([MSBuild]::IsOSPlatform('linux'))">$(TargetFrameworks);net9.0-android;</TargetFrameworks>
+		
 		<OutputType>Exe</OutputType>
 		<UnoSingleProject>true</UnoSingleProject>
 		<!-- Display name -->

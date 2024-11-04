@@ -16,7 +16,7 @@ export UITEST_TEST_TIMEOUT=60m
 
 cd $BUILD_SOURCESDIRECTORY
 
-dotnet publish -f net9.0-browserwasm -p:Configuration=Release $UNO_UITEST_WASM_PROJECT -p:TargetFrameworkOverride=net9.0-browserwasm -p:IsUiAutomationMappingEnabled=True -bl:$UNO_UITEST_SCREENSHOT_PATH/msbuild.binlog
+dotnet publish -f net9.0-browserwasm -p:Configuration=Release $UNO_UITEST_WASM_PROJECT -p:IsUiAutomationMappingEnabled=True -bl:$UNO_UITEST_SCREENSHOT_PATH/msbuild.binlog
 
 cd $BUILD_SOURCESDIRECTORY/build
 mkdir -p tools
