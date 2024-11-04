@@ -11,7 +11,7 @@ export UNO_UITEST_PLATFORM=Browser
 export UNO_UITEST_PROJECT=$BUILD_SOURCESDIRECTORY/Uno.Gallery.UITests
 export UNO_UITEST_LOGFILE=$BUILD_ARTIFACTSTAGINGDIRECTORY/screenshots/wasm/nunit-log.txt
 export UNO_UITEST_WASM_PROJECT=$BUILD_SOURCESDIRECTORY/Uno.Gallery/Uno.Gallery.csproj
-export UNO_UITEST_WASM_OUTPUT_PATH=$BUILD_SOURCESDIRECTORY/Uno.Gallery/bin/Release/net9.0-browserwasm/dist/
+export UNO_UITEST_WASM_OUTPUT_PATH=$BUILD_SOURCESDIRECTORY/Uno.Gallery/bin/Release/net9.0-browserwasm/publish/wwwroot
 export UITEST_TEST_TIMEOUT=60m
 
 cd $BUILD_SOURCESDIRECTORY
