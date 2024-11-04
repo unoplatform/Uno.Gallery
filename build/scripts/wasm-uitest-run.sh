@@ -4,7 +4,7 @@ IFS=$'\n\t'
 
 export UNO_UITEST_TARGETURI=http://localhost:5000
 export UNO_UITEST_DRIVERPATH_CHROME=$BUILD_SOURCESDIRECTORY/build/node_modules/chromedriver/lib/chromedriver
-export UNO_UITEST_CHROME_BINARY_PATH=$BUILD_SOURCESDIRECTORY/build/node_modules/puppeteer/.local-chromium/linux-991974/chrome-linux/chrome
+export UNO_UITEST_CHROME_BINARY_PATH=~/.cache/puppeteer/chrome/linux-127.0.6533.72/chrome-linux64/chrome
 export UNO_UITEST_SCREENSHOT_PATH=$BUILD_ARTIFACTSTAGINGDIRECTORY/screenshots/wasm
 export UNO_UITEST_PLATFORM=Browser
 # export UNO_UITEST_CHROME_CONTAINER_MODE=true
@@ -21,8 +21,8 @@ dotnet publish -f net9.0-browserwasm -p:Configuration=Release $UNO_UITEST_WASM_P
 cd $BUILD_SOURCESDIRECTORY/build
 mkdir -p tools
 
-npm i chromedriver@102.0.0
-npm i puppeteer@14.1.0
+npm i chromedriver@127.0.0
+npm i puppeteer@22.14.0
 
 # install dotnet serve / Remove as needed
 dotnet tool uninstall dotnet-serve -g || true
