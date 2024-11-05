@@ -17,6 +17,11 @@
   - template: templates/dotnet-install-linux.yml
   - template: templates/canary-updater.yml
 
+  - task: NodeTool@0
+    inputs:
+      versionSource: 'spec'
+      versionSpec: '20.x'
+
   - bash: |
       chmod +x build/scripts/wasm-uitest-run.sh
       build/scripts/wasm-uitest-run.sh
