@@ -14,8 +14,9 @@
     clean: true
 
   - template: templates/dotnet-install-linux.yml
-    parameters:
-      UnoCheckParameters: '--tfm net9.0-browserwasm'
+    # Not working properly uno.check 1.26 
+    # parameters:
+    #   UnoCheckParameters: '--tfm net9.0-browserwasm'
 
   - template: templates/canary-updater.yml
 

@@ -45,7 +45,7 @@ variables:
   XCODE_ROOT: '/Applications/Xcode_16.app'
 
   # Required to about trashing azdo hosted agents
-  AotCompileMaxDegreeOfParallelism: 4
+  AotCompileMaxDegreeOfParallelism: 2
 
 stages:
 - stage: Android
