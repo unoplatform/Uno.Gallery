@@ -30,4 +30,4 @@ steps:
       dotnet tool update --global uno.check --version ${{ parameters.UnoCheck_Version }} --add-source https://api.nuget.org/v3/index.json
       uno-check --ci --non-interactive --fix --skip gtk3 --skip xcode --skip vswin --skip androidemulator --skip vsmac --pre-major
     displayName: Install .NET Workloads
-    condition: eq(variables['Agent.OS'], 'Darwin')
+    condition: and( eq(variables['Agent.OS'], 'Darwin'), eq('${{ parameters.installWorkloads }}', 'true') )
