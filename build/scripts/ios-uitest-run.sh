@@ -9,7 +9,7 @@ export UNO_UITEST_LOGFILE=$BUILD_ARTIFACTSTAGINGDIRECTORY/screenshots/ios/nunit-
 export UNO_UITEST_IOS_PROJECT=$BUILD_SOURCESDIRECTORY/Uno.Gallery
 export UITEST_TEST_TIMEOUT=60m
 
-export UNO_UITEST_SIMULATOR_VERSION="com.apple.CoreSimulator.SimRuntime.iOS-16-1"
+export UNO_UITEST_SIMULATOR_VERSION="com.apple.CoreSimulator.SimRuntime.iOS-17-5"
 export UNO_UITEST_SIMULATOR_NAME="iPad Pro (12.9-inch) (6th generation)"
 
 echo "Lising iOS simulators"
@@ -24,10 +24,6 @@ mkdir -p $UNO_UITEST_SCREENSHOT_PATH/_logs
 ##
 ## Pre-install the application to avoid https://github.com/microsoft/appcenter/issues/2389
 ##
-
-## Install iOS 16.1 simulators
-echo "Installing emulators"
-xcodes runtimes install --keep-archive 'iOS 16.1' || true
 
 # Wait while ios runtime 16.1 is not having simulators. The install process may
 # take a few seconds and "simctl list devices" may not return devices.
