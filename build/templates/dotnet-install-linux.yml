@@ -3,6 +3,7 @@ parameters:
   UnoCheck_Version: '1.26.1'
   installJava: true
   installWorkloads: true
+  UnoCheckParameters: ''
 
 steps:
   - task: UseDotNet@2
@@ -27,6 +28,6 @@ steps:
 
   - bash: |
       dotnet tool update --global uno.check --version ${{ parameters.UnoCheck_Version }} --add-source https://api.nuget.org/v3/index.json
-      uno-check --verbose --ci --non-interactive --fix --skip gtk3 --skip androidsdk --pre-major
+      uno-check --verbose --ci --non-interactive --fix --skip gtk3 --skip androidsdk --pre-major ${{ parameters.UnoCheckParameters }}
     displayName: Install .NET Workloads
     condition: and( eq(variables['Agent.OS'], 'Linux'), eq('${{ parameters.installWorkloads }}', 'true') )

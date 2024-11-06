@@ -8,6 +8,9 @@
 - template: templates/gitversion.yml
 
 - template: templates/dotnet-install-linux.yml
+  parameters:
+    UnoCheckParameters: '--tfm net9.0-browserwasm'
+
 - template: templates/canary-updater.yml
 
 - bash: |

@@ -1,6 +1,8 @@
 parameters:
   DotNetVersion: '9.0.100-rc.2.24474.11'
   UnoCheck_Version: '1.26.1'
+  UnoCheckParameters: ''
+
 steps:
 
   # Required until .NET 6 installs properly on Windows using UseDotnet
@@ -24,7 +26,7 @@ steps:
 
   - powershell: |
       & dotnet tool update --global uno.check --version ${{ parameters.UnoCheck_Version }} --add-source https://api.nuget.org/v3/index.json
-      & uno-check -v --ci --non-interactive --fix --skip xcode --skip gtk3 --skip vswin --skip androidemulator --skip androidsdk --skip vsmac --pre-major
+      & uno-check -v --ci --non-interactive --fix --skip xcode --skip gtk3 --skip vswin --skip androidemulator --skip androidsdk --skip vsmac --pre-major ${{ parameters.UnoCheckParameters }}
     displayName: Install .NET Workloads
     errorActionPreference: continue
     ignoreLASTEXITCODE: true

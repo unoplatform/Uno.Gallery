@@ -1,5 +1,8 @@
 steps:
 - template: templates/dotnet-install-windows.yml
+  parameters:
+    UnoCheckParameters: '--tfm net9.0-android'
+
 - template: templates/canary-updater.yml
 
 - task: DownloadSecureFile@1

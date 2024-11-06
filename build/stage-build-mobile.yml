@@ -1,6 +1,12 @@
 steps:
 - template: templates/dotnet-install-mac.yml
+  parameters:
+    UnoCheckParameters: '--tfm net9.0-ios --tfm net9.0-maccatalyst'
+
 - template: templates/dotnet-install-windows.yml
+  parameters:
+    UnoCheckParameters: '--tfm net9.0-ios --tfm net9.0-maccatalyst'
+
 - template: templates/canary-updater.yml
 
 - task: DownloadSecureFile@1
