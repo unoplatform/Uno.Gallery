@@ -59,14 +59,17 @@ else
 	echo "Using idb from:" `command -v idb`
 fi
 
+echo "Booting the simulator"
 xcrun simctl boot "$UITEST_IOSDEVICE_ID" || true
 
+echo "Installing the app"
 idb install --udid "$UITEST_IOSDEVICE_ID" "$UNO_UITEST_IOSBUNDLE_PATH"
-
 
 # Run the tests
 
 cd $UNO_UITEST_PROJECT
+
+echo "Running tests"
 
 dotnet test \
 	-c Release \

@@ -32,10 +32,16 @@
     displayName: Copy Build Output
     inputs:
       SourceFolder: $(build.sourcesdirectory)/Uno.Gallery/bin/Release/net9.0-ios/iossimulator-x64/Uno.Gallery.app
-      Contents: '**/*.*'
+      Contents: '**'
       TargetFolder: $(Build.ArtifactStagingDirectory)/Uno.Gallery.app
 
-  - publish: $(Build.ArtifactStagingDirectory)
+  - task: PublishPipelineArtifact@1
+    inputs:
+      targetPath: '$(Build.ArtifactStagingDirectory)'
+      artifact: iOS_UITest
+      parallel: true
+
+  - publish: 
     artifact: iOS_UITest
 
 - job: iOS_Tests
