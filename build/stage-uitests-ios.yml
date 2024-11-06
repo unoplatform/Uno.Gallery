@@ -59,6 +59,10 @@
   - download: current
     artifact: iOS_UITest
 
+  - template: templates/dotnet-install-linux.yml
+    parameters:
+      installWorkloads: false
+
   - bash: |
       export UNO_UITEST_IOSBUNDLE_PATH=$(Pipeline.Workspace)/iOS_UITest/Uno.Gallery.app
       chmod +x $(build.sourcesdirectory)/build/scripts/ios-uitest-run.sh

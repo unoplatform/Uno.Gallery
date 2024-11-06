@@ -3,8 +3,8 @@ parameters:
   UnoCheck_Version: '1.26.1'
   installJava: true
   installWorkloads: true
-steps:
 
+steps:
   - task: UseDotNet@2
     displayName: 'Use .NET Core SDK ${{ parameters.DotNetVersion }}'
     retryCountOnTaskFailure: 3
