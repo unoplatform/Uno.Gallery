@@ -15,6 +15,7 @@ export UNO_UITEST_SIMULATOR_NAME="iPad Pro (12.9-inch) (6th generation)"
 echo "Lising iOS simulators"
 xcrun simctl list devices --json
 
+echo "Starting simulator"
 /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app/Contents/MacOS/Simulator &
 
 # Prime the output directory
@@ -25,6 +26,7 @@ mkdir -p $UNO_UITEST_SCREENSHOT_PATH/_logs
 ##
 
 ## Install iOS 16.1 simulators
+echo "Installing emulators"
 xcodes runtimes install --keep-archive 'iOS 16.1' || true
 
 # Wait while ios runtime 16.1 is not having simulators. The install process may
