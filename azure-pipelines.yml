@@ -111,8 +111,8 @@ stages:
     steps:
     - template: build/stage-build-skia-desktop.yml
 
-- stage: Catalyst
-  displayName: 'Catalyst'
+- stage: Apple
+  displayName: 'Apple'
   dependsOn: []
   jobs:
   - job: macOS_netcore
