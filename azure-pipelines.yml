@@ -113,10 +113,10 @@ stages:
 
 - stage: Apple
   displayName: 'Apple'
-  timeoutInMinutes: 90
   dependsOn: []
   jobs:
   - job: macOS_netcore
+    timeoutInMinutes: 90
     strategy:
       maxParallel: 2
       matrix:
