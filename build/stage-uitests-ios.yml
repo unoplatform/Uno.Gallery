@@ -60,7 +60,7 @@
     artifact: iOS_UITest
 
   - bash: |
-      export UNO_UITEST_IOSBUNDLE_PATH=$(Pipeline.Workspace)/Uno.Gallery.app
+      export UNO_UITEST_IOSBUNDLE_PATH=$(Pipeline.Workspace)/iOS_UITest/Uno.Gallery.app
       chmod +x $(build.sourcesdirectory)/build/scripts/ios-uitest-run.sh
       $(build.sourcesdirectory)/build/scripts/ios-uitest-run.sh
     displayName: Run iOS Test

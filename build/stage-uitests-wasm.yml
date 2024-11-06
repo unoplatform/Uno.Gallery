@@ -39,8 +39,6 @@
   - checkout: self
     clean: true
 
-  - template: templates/dotnet-install-linux.yml
-
   - task: NodeTool@0
     inputs:
       versionSource: 'spec'
@@ -50,6 +48,7 @@
     artifact: Wasm_UITest
 
   - bash: |
+      export UNO_UITEST_WASM_OUTPUT_PATH=$(Pipeline.Workspace)/Wasm_UITest
       chmod +x build/scripts/wasm-uitest-run.sh
       build/scripts/wasm-uitest-run.sh
     env:
