@@ -1,6 +1,6 @@
 ﻿jobs:
-- job: iOS_Tests
-  displayName: 'iOS UI Tests'
+- job: iOS_Tests_Build
+  displayName: 'Build iOS UI Tests'
   variables:
     CI_Build: true
     SourceLinkEnabled: false
@@ -21,9 +21,49 @@
   - template: templates/canary-updater.yml
 
   - bash: |
+      chmod +x $(build.sourcesdirectory)/build/scripts/ios-uitest-build.sh
+      $(build.sourcesdirectory)/build/scripts/ios-uitest-build.sh
+    displayName: Build iOS Test
+    env:
+      BUILD_SOURCESDIRECTORY: "$(build.sourcesdirectory)"
+      BUILD_ARTIFACTSTAGINGDIRECTORY: "$(build.artifactstagingdirectory)"
+
+  - task: CopyFiles@2
+    displayName: Copy Build Output
+    inputs:
+      SourceFolder: $(build.sourcesdirectory)/Uno.Gallery/bin/Release/net9.0-ios/iossimulator-x64/Uno.Gallery.app
+      Contents: '**/*.*'
+      TargetFolder: $(Build.ArtifactStagingDirectory)/Uno.Gallery.app
+
+  - publish: $(Build.ArtifactStagingDirectory)
+    artifact: iOS_UITest
+
+- job: iOS_Tests
+  dependsOn: iOS_Tests_Build
+  displayName: 'Run iOS UI Tests'
+  variables:
+    CI_Build: true
+    SourceLinkEnabled: false
+
+  pool:
+    vmImage: 'macos-14'
+
+  steps:
+  - checkout: self
+    clean: true
+
+  - template: templates/xcode-select.yml
+    parameters:
+      xCodeRoot: $(XCODE_ROOT)
+
+  - download: current
+    artifact: iOS_UITest
+
+  - bash: |
+      export UNO_UITEST_IOSBUNDLE_PATH=$(Pipeline.Workspace)/Uno.Gallery.app
       chmod +x $(build.sourcesdirectory)/build/scripts/ios-uitest-run.sh
       $(build.sourcesdirectory)/build/scripts/ios-uitest-run.sh
-    displayName: Build and Run iOS Test
+    displayName: Run iOS Test
     env:
       BUILD_SOURCESDIRECTORY: "$(build.sourcesdirectory)"
       BUILD_ARTIFACTSTAGINGDIRECTORY: "$(build.artifactstagingdirectory)"
@@ -44,12 +84,4 @@
     inputs:
       PathtoPublish: $(build.artifactstagingdirectory)
       ArtifactName: uno-uitest-tests
-      ArtifactType: Container
-
-  - task: PublishBuildArtifacts@1
-    condition: always()
-    retryCountOnTaskFailure: 3
-    inputs:
-      PathtoPublish: $(build.sourcesdirectory)/Uno.Gallery/bin/Release/net9.0-ios/iossimulator-x64/Uno.Gallery.app
-      ArtifactName: uno-uitest-ios-bin
       ArtifactType: Container

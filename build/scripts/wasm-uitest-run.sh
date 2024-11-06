@@ -14,10 +14,6 @@ export UNO_UITEST_WASM_PROJECT=$BUILD_SOURCESDIRECTORY/Uno.Gallery/Uno.Gallery.c
 export UNO_UITEST_WASM_OUTPUT_PATH=$BUILD_SOURCESDIRECTORY/Uno.Gallery/bin/Release/net9.0-browserwasm/publish/wwwroot
 export UITEST_TEST_TIMEOUT=60m
 
-cd $BUILD_SOURCESDIRECTORY
-
-dotnet publish -f net9.0-browserwasm -p:Configuration=Release $UNO_UITEST_WASM_PROJECT -p:IsUiAutomationMappingEnabled=True -bl:$UNO_UITEST_SCREENSHOT_PATH/msbuild.binlog
-
 cd $BUILD_SOURCESDIRECTORY/build
 mkdir -p tools
 
@@ -34,11 +30,6 @@ mkdir -p $UNO_UITEST_SCREENSHOT_PATH
 
 # Start the server
 dotnet-serve -p 5000 -d "$UNO_UITEST_WASM_OUTPUT_PATH" &
-#dotnet run --project $UNO_UITEST_WASM_PROJECT -c Release --no-build &
-
-
-
-
 
 cd $UNO_UITEST_PROJECT
 

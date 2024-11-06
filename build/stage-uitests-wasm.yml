@@ -1,8 +1,7 @@
 ﻿jobs:
-- job: Wasm_UITests
+- job: Wasm_UITests_Build
+  displayName: 'Build WebAssembly UI Tests'
   timeoutInMinutes: 90
-  displayName: 'WebAssembly UI Tests'
-  container: unoplatform/wasm-build:3.0
 
   pool:
     vmImage: 'ubuntu-latest'
@@ -17,10 +16,38 @@
   - template: templates/dotnet-install-linux.yml
   - template: templates/canary-updater.yml
 
+  - bash: |
+      chmod +x build/scripts/wasm-uitest-build.sh
+      build/scripts/wasm-uitest-build.sh
+    env:
+      BUILD_SOURCESDIRECTORY: "$(build.sourcesdirectory)"
+      BUILD_ARTIFACTSTAGINGDIRECTORY: "$(build.artifactstagingdirectory)"
+    displayName: 'Running build'
+
+  - publish: $(System.DefaultWorkingDirectory)/Uno.Gallery/bin/Release/net9.0-browserwasm/publish/wwwroot
+    artifact: Wasm_UITest
+
+- job: Wasm_UITests
+  timeoutInMinutes: 90
+  dependsOn: Wasm_UITests_Build
+  displayName: 'Run WebAssembly UI Tests'
+
+  pool:
+    vmImage: 'ubuntu-latest'
+
+  steps:
+  - checkout: self
+    clean: true
+
+  - template: templates/dotnet-install-linux.yml
+
   - task: NodeTool@0
     inputs:
       versionSource: 'spec'
       versionSpec: '20.x'
+
+  - download: current
+    artifact: Wasm_UITest
 
   - bash: |
       chmod +x build/scripts/wasm-uitest-run.sh
@@ -28,14 +55,7 @@
     env:
       BUILD_SOURCESDIRECTORY: "$(build.sourcesdirectory)"
       BUILD_ARTIFACTSTAGINGDIRECTORY: "$(build.artifactstagingdirectory)"
-    displayName: 'Running build'
-
-  - task: CopyFiles@2
-    displayName: Copy Wasm output
-    inputs:
-      SourceFolder: Uno.Gallery/bin/Release/net9.0-browserwasm/publish/wwwroot
-      Contents: '**/*.*'
-      TargetFolder: $(Build.ArtifactStagingDirectory)/bin
+    displayName: 'Running tests'
 
   - task: PublishTestResults@2
     condition: always()
@@ -48,8 +68,8 @@
       failTaskOnMissingResultsFile: true
 
   - task: PublishBuildArtifacts@1
-    retryCountOnTaskFailure: 3
     condition: always()
+    retryCountOnTaskFailure: 3
     inputs:
       PathtoPublish: $(build.artifactstagingdirectory)
       ArtifactName: uno-uitest-tests
