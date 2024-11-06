@@ -41,9 +41,6 @@
       artifact: iOS_UITest
       parallel: true
 
-  - publish: 
-    artifact: iOS_UITest
-
 - job: iOS_Tests
   dependsOn: iOS_Tests_Build
   displayName: 'Run iOS UI Tests'
