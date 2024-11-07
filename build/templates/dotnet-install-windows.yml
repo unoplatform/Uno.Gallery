@@ -31,4 +31,4 @@ steps:
     errorActionPreference: continue
     ignoreLASTEXITCODE: true
     retryCountOnTaskFailure: 3
-    condition: and(suceeded(), eq(variables['Agent.OS'], 'Windows_NT'))
+    condition: and(succeeded(), eq(variables['Agent.OS'], 'Windows_NT'))
