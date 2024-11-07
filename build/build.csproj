@@ -131,7 +131,7 @@
 	</Target>
 
 	<UsingTask TaskName="_XmlUpdate"
-			   TaskFactory="CodeTaskFactory"
+			   TaskFactory="RoslynCodeTaskFactory"
 			   AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
 		<ParameterGroup>
 			<XmlFileName Required="True" />
