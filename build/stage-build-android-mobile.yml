@@ -17,13 +17,13 @@ steps:
     cd $(build.sourcesdirectory)/Uno.Gallery
     dotnet publish -f:net9.0-android -p:TargetFrameworkOverride=net9.0-android -c:Release "/p:InformationalVersion=$(GitVersion.InformationalVersion)" /p:AndroidSigningKeyStore=$(keyStore.secureFilePath) /p:AndroidSigningStorePass=$(AndroidSigningStorePass) /p:AndroidSigningKeyPass=$(AndroidSigningKeyPass) /p:AndroidSigningKeyAlias=$(AndroidSigningKeyAlias) /p:AndroidKeyStore=true /bl:$(build.artifactstagingdirectory)/build-$(BuildForPlayStore).binlog
   displayName: 'Build Android Package'
-  condition: eq(variables['System.PullRequest.IsFork'],'False')
+  condition: and(suceeded(), eq(variables['System.PullRequest.IsFork'],'False'))
 
 - script: |
     cd $(build.sourcesdirectory)/Uno.Gallery
     dotnet publish -f:net9.0-android -p:TargetFrameworkOverride=net9.0-android -c:Release "/p:InformationalVersion=$(GitVersion.InformationalVersion)" /p:AndroidKeyStore=False /bl:$(build.artifactstagingdirectory)/build-$(BuildForPlayStore).binlog
   displayName: 'Build Android Package (Fork)'
-  condition: eq(variables['System.PullRequest.IsFork'],'True')
+  condition: and(suceeded(), eq(variables['System.PullRequest.IsFork'],'True'))
 
 - task: CopyFiles@2
   displayName: 'Publish Android netcore Binaries'

@@ -139,8 +139,6 @@
 			<Value Required="True" />
 		</ParameterGroup>
 		<Task>
-			<Reference Include="System.Xml" />
-			<Reference Include="System.Xml.Linq" />
 			<Using Namespace="System"/>
 			<Using Namespace="System.Xml.XPath"/>
 			<!-- The following code is from the MSBuildTasks library (https://github.com/loresoft/msbuildtasks/blob/6196d43e7eb6807f306e9861b286fe61c8bb0993/Source/MSBuild.Community.Tasks/XmlUpdate.cs) -->
