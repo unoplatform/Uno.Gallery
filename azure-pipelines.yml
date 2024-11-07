@@ -43,6 +43,7 @@ variables:
   IsCanaryBranch: $[startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries/')]
 
   XCODE_ROOT: '/Applications/Xcode_16.app'
+  XCODE_ROOT_UITESTS: '/Applications/Xcode_15.3.app'
 
   # Required to about trashing azdo hosted agents
   AotCompileMaxDegreeOfParallelism: 2
