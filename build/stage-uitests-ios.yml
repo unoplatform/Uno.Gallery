@@ -60,7 +60,7 @@
 
   - template: templates/xcode-select.yml
     parameters:
-      xCodeRoot: $(XCODE_ROOT_UITEST)
+      xCodeRoot: $(XCODE_ROOT_UITESTS)
 
   - download: current
     artifact: iOS_UITest
