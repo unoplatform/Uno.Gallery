@@ -42,144 +42,184 @@ variables:
   IsLightBuild: $[eq(variables['Build.Reason'], 'PullRequest')]
   IsCanaryBranch: $[startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries/')]
 
-  XCODE_ROOT: '/Applications/Xcode_15.4.app'
+  XCODE_ROOT: '/Applications/Xcode_16.app'
+  XCODE_ROOT_UITESTS: '/Applications/Xcode_15.3.app'
 
-jobs:
-- job: Windows_Android_Mobile
-  strategy:
-    maxParallel: 3
-    matrix:
-      Android_Store:
-        ApplicationPlatform: AnyCPU
-        ArtifactName: Android
-        BuildForPlayStore: True
-        VersionCodeOffset: 1
+  # Required to about trashing azdo hosted agents
+  AotCompileMaxDegreeOfParallelism: 2
 
-  pool:
-    vmImage: windows-2022
+stages:
+- stage: Android
+  displayName: 'Android'
+  dependsOn: []
+  jobs:
+  - job: Windows_Android_Mobile
+    strategy:
+      maxParallel: 3
+      matrix:
+        Android_Store:
+          ApplicationPlatform: AnyCPU
+          ArtifactName: Android
+          BuildForPlayStore: True
+          VersionCodeOffset: 1
 
-  variables:
-  - group: 'UADO Keystore' # Import all variables for the signing from the library in azure devops
+    pool:
+      vmImage: windows-2022
 
-  steps:
-  - template: build/stage-build-android-mobile.yml
+    variables:
+    - group: 'UADO Keystore' # Import all variables for the signing from the library in azure devops
 
-- job: Windows_WinAppSDK
-  pool:
-    vmImage: windows-2022
+    steps:
+    - template: build/stage-build-android-mobile.yml
 
-  variables:
-  - group: 'UADO Keystore' # Import all variables for the Android signing from the library in azure devops
-  - group: 'Uno Platform authenticode signing' # Import all variables for the signing from the library in azure devops
-  - name: ApplicationPlatform
-    value: x86 # switch back to x64 once CommunityToolkit.WinUI.UI supports x64 (https://github.com/CommunityToolkit/Lottie-Windows/issues/515#issuecomment-1662305826)
-  - name: BuildTargetFramework
-    value: net8.0-windows10.0.19041
-  - name: ArtifactName
-    value: Windows
-  - name: VersionCodeOffset
-    value: 50
-  - name: PackageOutputPath
-    value: $(Build.ArtifactStagingDirectory)
 
-  steps:
-  - template: build/stage-build-windows.yml
+- stage: Windows
+  displayName: 'Windows'
+  dependsOn: []
+  jobs:
+  - job: Windows_WinAppSDK
+    pool:
+      vmImage: windows-2022
 
-- job: Windows_Desktop
-  pool:
-    vmImage: windows-2022
+    variables:
+    - group: 'UADO Keystore' # Import all variables for the Android signing from the library in azure devops
+    - group: 'Uno Platform authenticode signing' # Import all variables for the signing from the library in azure devops
+    - name: ApplicationPlatform
+      value: x86 # switch back to x64 once CommunityToolkit.WinUI.UI supports x64 (https://github.com/CommunityToolkit/Lottie-Windows/issues/515#issuecomment-1662305826)
+    - name: BuildTargetFramework
+      value: net9.0-windows10.0.19041
+    - name: ArtifactName
+      value: Windows
+    - name: VersionCodeOffset
+      value: 50
+    - name: PackageOutputPath
+      value: $(Build.ArtifactStagingDirectory)
 
-  variables:
-  - group: 'UADO Keystore' # Import all variables for the signing from the library in azure devops
+    steps:
+    - template: build/stage-build-windows.yml
 
-  steps:
-  - template: build/stage-build-skia-desktop.yml
+- stage: Skia_Desktop
+  displayName: 'Skia Desktop'
+  dependsOn: []
+  jobs:
+  - job: Windows_Desktop
+    pool:
+      vmImage: windows-2022
+  
+    variables:
+    - group: 'UADO Keystore' # Import all variables for the signing from the library in azure devops
+  
+    steps:
+    - template: build/stage-build-skia-desktop.yml
 
-- job: macOS_netcore
-  strategy:
-    maxParallel: 2
-    matrix:
-      iOS:
-        BuildTargetFramework: net8.0-ios
-        ArtifactName: iOS-mobile
-        ApplicationBuildNumberOffset: 50
-        BuildCommand: publish
-      Catalyst:
-        BuildTargetFramework: net8.0-maccatalyst
-        ArtifactName: Catalyst
-        ApplicationBuildNumberOffset: 50
-        BuildCommand: build
-  pool:
-    vmImage: macos-14
+- stage: Apple
+  displayName: 'Apple'
+  dependsOn: []
+  jobs:
+  - job: macOS_netcore
+    timeoutInMinutes: 90
+    strategy:
+      maxParallel: 2
+      matrix:
+        iOS:
+          BuildTargetFramework: net9.0-ios
+          ArtifactName: iOS-mobile
+          ApplicationBuildNumberOffset: 50
+          BuildCommand: publish
+        Catalyst:
+          BuildTargetFramework: net9.0-maccatalyst
+          ArtifactName: Catalyst
+          ApplicationBuildNumberOffset: 50
+          BuildCommand: build
+    pool:
+      vmImage: macos-14
+  
+    variables:
+    - name: SkipUnknownFrameworks
+      value: true # Used by TargetFrameworks.Filtering package
+    - group: unoplatform.apple.ios.appstore.distribution
+  
+    steps:
+    - task: InstallAppleCertificate@2
+      displayName: Install Certificate
+      inputs:
+        certSecureFile: UnoPlatform-Apple-Distribution.p12
+        certPwd: $(appleappstorecertificatepassword)
+        keychain: temp
+        # disabled because of azure devops failing to uninstall as of 2022-11-16
+        # deleteCert: true
+  
+    - task: InstallAppleCertificate@2
+      displayName: Install Certificate
+      inputs:
+        certSecureFile: UnoPlatform-MacInstaller.p12
+        certPwd: $(appleappstorecertificatepassword)
+        keychain: temp
+        # disabled because of azure devops failing to uninstall as of 2022-11-16
+        # deleteCert: true
+  
+    - task: InstallAppleProvisioningProfile@1
+      displayName: 'Install Apple Provisioning Profile'
+      inputs:
+        provisioningProfileLocation: 'secureFiles'
+        provProfileSecureFile: Uno_Gallery_Catalyst.provisionprofile
+  
+    - task: InstallAppleProvisioningProfile@1
+      displayName: 'Install Apple Provisioning Profile'
+      inputs:
+        provisioningProfileLocation: 'secureFiles'
+        provProfileSecureFile: Uno_Gallery_Canary_Catalyst.provisionprofile
+  
+    - task: InstallAppleProvisioningProfile@1
+      displayName: 'Install Apple Provisioning Profile'
+      inputs:
+        provisioningProfileLocation: 'secureFiles'
+        provProfileSecureFile: Uno_Gallery_iOS.mobileprovision
+  
+    - task: InstallAppleProvisioningProfile@1
+      displayName: 'Install Apple Provisioning Profile'
+      inputs:
+        provisioningProfileLocation: 'secureFiles'
+        provProfileSecureFile: Uno_Gallery_Canary_iOS.mobileprovision
+  
+    - template: build/templates/xcode-select.yml
+      parameters:
+        xCodeRoot: $(XCODE_ROOT)
+  
+    - template: build/stage-build-mobile.yml
 
-  variables:
-  - name: SkipUnknownFrameworks
-    value: true # Used by TargetFrameworks.Filtering package
-  - group: unoplatform.apple.ios.appstore.distribution
+- stage: WebAssembly
+  displayName: 'WebAssembly'
+  dependsOn: []
+  jobs:
+  - job: Linux
+    timeoutInMinutes: 60
+    pool:
+      vmImage: ubuntu-latest
+  
+    container: unoplatform/wasm-build:3.0
+  
+    variables:
+      ArtifactName: WASM
+      SkipUnknownFrameworks: true
+  
+    steps:
+      - template: build/stage-build-wasm.yml
 
-  steps:
-  - task: InstallAppleCertificate@2
-    displayName: Install Certificate
-    inputs:
-      certSecureFile: UnoPlatform-Apple-Distribution.p12
-      certPwd: $(appleappstorecertificatepassword)
-      keychain: temp
-      # disabled because of azure devops failing to uninstall as of 2022-11-16
-      # deleteCert: true
+- stage: WebAssembly_Tests
+  displayName: 'WebAssembly Tests'
+  dependsOn: []
+  jobs:
+  - template: build/stage-uitests-wasm.yml
 
-  - task: InstallAppleCertificate@2
-    displayName: Install Certificate
-    inputs:
-      certSecureFile: UnoPlatform-MacInstaller.p12
-      certPwd: $(appleappstorecertificatepassword)
-      keychain: temp
-      # disabled because of azure devops failing to uninstall as of 2022-11-16
-      # deleteCert: true
+- stage: iOS_Tests
+  displayName: 'iOS Tests'
+  dependsOn: []
+  jobs:
+  - template: build/stage-uitests-ios.yml
 
-  - task: InstallAppleProvisioningProfile@1
-    displayName: 'Install Apple Provisioning Profile'
-    inputs:
-      provisioningProfileLocation: 'secureFiles'
-      provProfileSecureFile: Uno_Gallery_Catalyst.provisionprofile
-
-  - task: InstallAppleProvisioningProfile@1
-    displayName: 'Install Apple Provisioning Profile'
-    inputs:
-      provisioningProfileLocation: 'secureFiles'
-      provProfileSecureFile: Uno_Gallery_Canary_Catalyst.provisionprofile
-
-  - task: InstallAppleProvisioningProfile@1
-    displayName: 'Install Apple Provisioning Profile'
-    inputs:
-      provisioningProfileLocation: 'secureFiles'
-      provProfileSecureFile: Uno_Gallery_iOS.mobileprovision
-
-  - task: InstallAppleProvisioningProfile@1
-    displayName: 'Install Apple Provisioning Profile'
-    inputs:
-      provisioningProfileLocation: 'secureFiles'
-      provProfileSecureFile: Uno_Gallery_Canary_iOS.mobileprovision
-
-  - template: build/templates/xcode-select.yml
-    parameters:
-      xCodeRoot: $(XCODE_ROOT)
-
-  - template: build/stage-build-mobile.yml
-
-- job: Linux
-  timeoutInMinutes: 60
-  pool:
-    vmImage: ubuntu-latest
-
-  container: unoplatform/wasm-build:3.0
-
-  variables:
-    ArtifactName: WASM
-    SkipUnknownFrameworks: true
-
-  steps:
-    - template: build/stage-build-wasm.yml
-
-- template: build/stage-uitests-wasm.yml
-- template: build/stage-uitests-ios.yml
-- template: build/stage-uitests-android.yml
+- stage: Android_Tests
+  displayName: 'Android Tests'
+  dependsOn: []
+  jobs:
+  - template: build/stage-uitests-android.yml

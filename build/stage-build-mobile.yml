@@ -1,6 +1,12 @@
 steps:
 - template: templates/dotnet-install-mac.yml
+  parameters:
+    UnoCheckParameters: '--tfm net9.0-ios --tfm net9.0-maccatalyst'
+
 - template: templates/dotnet-install-windows.yml
+  parameters:
+    UnoCheckParameters: '--tfm net9.0-ios --tfm net9.0-maccatalyst'
+
 - template: templates/canary-updater.yml
 
 - task: DownloadSecureFile@1
@@ -21,14 +27,14 @@ steps:
 - bash: |
     cd $(build.sourcesdirectory)/Uno.Gallery
     echo "BUILD_SOURCEBRANCH: $BUILD_SOURCEBRANCH"
-    dotnet $(BuildCommand) -f $(BuildTargetFramework) -c Release /p:ArchiveOnBuild=true /bl:$(build.artifactstagingdirectory)/build-$(BuildTargetFramework).binlog "/p:InformationalVersion=$(GitVersion.InformationalVersion)"
+    dotnet $(BuildCommand) -v:n -f $(BuildTargetFramework) -p:TargetFrameworkOverride=$(BuildTargetFramework) -c Release /p:ArchiveOnBuild=true /bl:$(build.artifactstagingdirectory)/build-$(BuildTargetFramework).binlog "/p:InformationalVersion=$(GitVersion.InformationalVersion)"
   displayName: Build project for Release - $(BuildTargetFramework)
   condition: eq(variables['System.PullRequest.IsFork'],'False')
 
 - bash: |
     cd $(build.sourcesdirectory)/Uno.Gallery
     echo "BUILD_SOURCEBRANCH: $BUILD_SOURCEBRANCH"
-    dotnet build -f $(BuildTargetFramework) -c Release /bl:$(build.artifactstagingdirectory)/build-$(BuildTargetFramework).binlog "/p:InformationalVersion=$(GitVersion.InformationalVersion)"
+    dotnet build -f $(BuildTargetFramework) -p:TargetFrameworkOverride=$(BuildTargetFramework) -c Release /bl:$(build.artifactstagingdirectory)/build-$(BuildTargetFramework).binlog "/p:InformationalVersion=$(GitVersion.InformationalVersion)"
   displayName: Build project for Release - $(BuildTargetFramework)
   condition: eq(variables['System.PullRequest.IsFork'],'True')
 

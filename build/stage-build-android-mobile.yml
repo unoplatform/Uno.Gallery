@@ -1,5 +1,8 @@
 steps:
 - template: templates/dotnet-install-windows.yml
+  parameters:
+    UnoCheckParameters: '--tfm net9.0-android'
+
 - template: templates/canary-updater.yml
 
 - task: DownloadSecureFile@1
@@ -12,13 +15,13 @@ steps:
 
 - script: |
     cd $(build.sourcesdirectory)/Uno.Gallery
-    dotnet publish -f:net8.0-android -c:Release "/p:InformationalVersion=$(GitVersion.InformationalVersion)" /p:AndroidSigningKeyStore=$(keyStore.secureFilePath) /p:AndroidSigningStorePass=$(AndroidSigningStorePass) /p:AndroidSigningKeyPass=$(AndroidSigningKeyPass) /p:AndroidSigningKeyAlias=$(AndroidSigningKeyAlias) /p:AndroidKeyStore=true /bl:$(build.artifactstagingdirectory)/build-$(BuildForPlayStore).binlog
+    dotnet publish -f:net9.0-android -p:TargetFrameworkOverride=net9.0-android -c:Release "/p:InformationalVersion=$(GitVersion.InformationalVersion)" /p:AndroidSigningKeyStore=$(keyStore.secureFilePath) /p:AndroidSigningStorePass=$(AndroidSigningStorePass) /p:AndroidSigningKeyPass=$(AndroidSigningKeyPass) /p:AndroidSigningKeyAlias=$(AndroidSigningKeyAlias) /p:AndroidKeyStore=true /bl:$(build.artifactstagingdirectory)/build-$(BuildForPlayStore).binlog
   displayName: 'Build Android Package'
   condition: eq(variables['System.PullRequest.IsFork'],'False')
 
 - script: |
     cd $(build.sourcesdirectory)/Uno.Gallery
-    dotnet publish -f:net8.0-android -c:Release "/p:InformationalVersion=$(GitVersion.InformationalVersion)" /p:AndroidKeyStore=False /bl:$(build.artifactstagingdirectory)/build-$(BuildForPlayStore).binlog
+    dotnet publish -f:net9.0-android -p:TargetFrameworkOverride=net9.0-android -c:Release "/p:InformationalVersion=$(GitVersion.InformationalVersion)" /p:AndroidKeyStore=False /bl:$(build.artifactstagingdirectory)/build-$(BuildForPlayStore).binlog
   displayName: 'Build Android Package (Fork)'
   condition: eq(variables['System.PullRequest.IsFork'],'True')
 
@@ -26,7 +29,7 @@ steps:
   displayName: 'Publish Android netcore Binaries'
   retryCountOnTaskFailure: 3
   inputs:
-    SourceFolder: $(build.sourcesdirectory)/Uno.Gallery/bin/Release/net8.0-android
+    SourceFolder: $(build.sourcesdirectory)/Uno.Gallery/bin/Release/net9.0-android
     Contents: |
       **/*.aab
       **/*.apk

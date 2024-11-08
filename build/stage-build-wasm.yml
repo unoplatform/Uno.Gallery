@@ -7,21 +7,19 @@
 
 - template: templates/gitversion.yml
 
-- task: UseDotNet@2
-  retryCountOnTaskFailure: 3
-  inputs:
-    packageType: sdk
-    version: 8.0.100
+- template: templates/dotnet-install-linux.yml
+  parameters:
+    UnoCheckParameters: '--tfm net9.0-browserwasm'
 
 - template: templates/canary-updater.yml
 
 - bash: |
-    dotnet build Uno.Gallery/Uno.Gallery.csproj -c Release -p:TargetFrameworkOverride=net8.0-browserwasm -p:InformationalVersion=$(GitVersion.InformationalVersion) -bl:$(Build.ArtifactStagingDirectory)/wasm.binlog
+    dotnet publish Uno.Gallery/Uno.Gallery.csproj -c Release -f net9.0-browserwasm -p:InformationalVersion=$(GitVersion.InformationalVersion) -bl:$(Build.ArtifactStagingDirectory)/wasm.binlog
 
 - task: CopyFiles@2
   displayName: Copy Wasm output
   inputs:
-    SourceFolder: Uno.Gallery/bin/Release/net8.0-browserwasm/dist
+    SourceFolder: Uno.Gallery/bin/Release/net9.0-browserwasm/publish/wwwroot
     Contents: '**/*.*'
     TargetFolder: $(Build.ArtifactStagingDirectory)
 
