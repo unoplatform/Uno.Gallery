@@ -45,6 +45,10 @@ namespace Uno.Gallery
 			InitializeLogging();
 			ConfigureXamlDisplay();
 
+#if HAS_UNO
+			global::Uno.UI.FeatureConfiguration.Font.DefaultTextFontFamily = "ms-appx:///Uno.Fonts.OpenSans/Fonts/OpenSans.ttf";
+#endif
+
 			this.InitializeComponent();
 
 #if !WINDOWS
