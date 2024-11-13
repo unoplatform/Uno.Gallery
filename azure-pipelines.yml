@@ -132,7 +132,7 @@ stages:
           ApplicationBuildNumberOffset: 50
           BuildCommand: build
     pool:
-      vmImage: macos-14
+      vmImage: macos-15
   
     variables:
     - name: SkipUnknownFrameworks
