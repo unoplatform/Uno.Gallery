@@ -62,7 +62,6 @@
 	<ItemGroup>
 		<PackageReference Include="Uno.ShowMeTheXAML" />
 		<PackageReference Include="Uno.ShowMeTheXAML.MSBuild" />
-		<PackageReference Include="Microsoft.Extensions.Logging" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" />
 		<PackageReference Include="Uno.Core.Extensions.Disposables" />
 		<PackageReference Include="Uno.Core.Extensions.Compatibility" />
