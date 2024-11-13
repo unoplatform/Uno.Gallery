@@ -75,3 +75,6 @@ dotnet test \
 	--blame-hang-timeout $UITEST_TEST_TIMEOUT \
 	-v m \
 	|| true
+
+## Dump the emulator's system log
+$ANDROID_HOME/platform-tools/adb shell logcat -d > $BUILD_ARTIFACTSTAGINGDIRECTORY/android-device-log.txt
