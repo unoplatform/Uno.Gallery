@@ -1,6 +1,6 @@
 parameters:
-  DotNetVersion: '9.0.100-rc.2.24474.11'
-  UnoCheck_Version: '1.27.0-dev.4'
+  DotNetVersion: '9.0.100'
+  UnoCheck_Version: '1.27.0-dev.8'
   UnoCheckParameters: ''
 
 steps:
@@ -31,4 +31,4 @@ steps:
     errorActionPreference: continue
     ignoreLASTEXITCODE: true
     retryCountOnTaskFailure: 3
-    condition: eq(variables['Agent.OS'], 'Windows_NT')
+    condition: and(succeeded(), eq(variables['Agent.OS'], 'Windows_NT'))

@@ -1,6 +1,6 @@
 parameters:
-  DotNetVersion: '9.0.100-rc.2.24474.11'
-  UnoCheck_Version: '1.27.0-dev.4'
+  DotNetVersion: '9.0.100'
+  UnoCheck_Version: '1.27.0-dev.8'
   installJava: true
   installWorkloads: true
   UnoCheckParameters: ''
@@ -24,10 +24,10 @@ steps:
       sudo update-java-alternatives --set msopenjdk-11-amd64
     displayName: Install OpenJDK 11
     retryCountOnTaskFailure: 3
-    condition: eq('${{ parameters.installJava }}', 'true')
+    condition: and(succeeded(), eq('${{ parameters.installJava }}', 'true'))
 
   - bash: |
       dotnet tool update --global uno.check --version ${{ parameters.UnoCheck_Version }} --add-source https://api.nuget.org/v3/index.json
       uno-check --verbose --ci --non-interactive --fix --skip gtk3 --skip androidsdk --pre-major ${{ parameters.UnoCheckParameters }}
     displayName: Install .NET Workloads
-    condition: and( eq(variables['Agent.OS'], 'Linux'), eq('${{ parameters.installWorkloads }}', 'true') )
+    condition: and(succeeded(), and( eq(variables['Agent.OS'], 'Linux'), eq('${{ parameters.installWorkloads }}', 'true') ))

@@ -14,7 +14,7 @@ steps:
   displayName: 'Use .NET'
   inputs:
     packageType: 'sdk'
-    version: '9.0.100-rc.2.24474.11'
+    version: '9.0.100'
     includePreviewVersions: true
 
 - script: |
