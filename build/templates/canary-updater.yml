@@ -6,7 +6,7 @@ steps:
       packageType: 'sdk'
       version: '9.0.100'
 
-  - task: nventiveCanaryUpdater@5
+  - task: unoplatformCanaryUpdater@1
     displayName: 'Canary Update (dev)'
     condition: startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries/dev')
     inputs:
@@ -15,11 +15,11 @@ steps:
       usePrivateFeed: false
       mergeBranch: true
       branchToMerge: master
-      nugetUpdaterVersion: '2.3.0-alpha.65'
+      nugetUpdaterVersion: '1.1.0'
       packageAuthor: 'nventive,uno platform'
       summaryFile: '$(Build.ArtifactStagingDirectory)/Canary.md'
 
-  - task: nventiveCanaryUpdater@5
+  - task: unoplatformCanaryUpdater@1
     displayName: 'Canary Update (5x)'
     condition: startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries/5x')
     inputs:
@@ -28,7 +28,7 @@ steps:
       useNuGetOrg: true
       mergeBranch: true
       branchToMerge: master
-      nugetUpdaterVersion: '2.3.0-alpha.65'
+      nugetUpdaterVersion: '1.1.0'
       nugetVersion: feature.5x,dev
       packageAuthor: 'nventive,unoplatform,uno platform'
       summaryFile: '$(Build.ArtifactStagingDirectory)/Summary.md'
@@ -43,7 +43,7 @@ steps:
 
 
   - powershell: |
-      dotnet tool uninstall nventive.nuget.updater.tool --tool-path $(Agent.TempDirectory)
+      dotnet tool uninstall uno.nuget.updater.tool --tool-path $(Agent.TempDirectory)
     condition: startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries')
 
   - pwsh: |
