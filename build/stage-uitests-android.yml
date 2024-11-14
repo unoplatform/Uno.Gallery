@@ -66,7 +66,7 @@
   - template: templates/canary-updater.yml
 
   - bash: |
-      export UNO_UITEST_ANDROIDAPK_PATH=$(Pipeline.Workspace)/Android_UITest/com.nventive.uno.ui.demo-Signed.apk
+      export UNO_UITEST_ANDROIDAPK_BASEPATH=$(Pipeline.Workspace)/Android_UITest
       chmod +x $(build.sourcesdirectory)/build/scripts/android-uitest-run.sh
       $(build.sourcesdirectory)/build/scripts/android-uitest-run.sh
     displayName: Run Android Tests

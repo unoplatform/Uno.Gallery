@@ -12,6 +12,7 @@ export UNO_UITEST_ANDROID_PROJECT=$BUILD_SOURCESDIRECTORY/Uno.Gallery
 export UNO_UITEST_BINARY=$BUILD_SOURCESDIRECTORY/Uno.Gallery.UITests/bin/Release/net47/Uno.Gallery.UITests.dll
 export UNO_EMULATOR_INSTALLED=$BUILD_SOURCESDIRECTORY/build/.emulator_started
 export UITEST_TEST_TIMEOUT=60m
+export UNO_UITEST_ANDROIDAPK_PATH=$UNO_UITEST_ANDROIDAPK_BASEPATH/com.nventive.uno.ui.demo-Signed.apk
 
 # Override Android SDK tooling
 export ANDROID_HOME=$BUILD_SOURCESDIRECTORY/build/android-sdk
