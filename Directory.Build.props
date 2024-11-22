@@ -13,7 +13,6 @@
     <NoWarn>$(NoWarn);NU1507;NETSDK1201;PRI257</NoWarn>
 	  
 	<SkiaSharpVersion>2.88.9-preview.2.2</SkiaSharpVersion>
-	<UnoWasmBootstrapVersion>9.1.0-dev.41</UnoWasmBootstrapVersion>
   </PropertyGroup>
 
 </Project>
