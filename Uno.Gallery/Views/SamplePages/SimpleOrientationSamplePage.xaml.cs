@@ -11,7 +11,8 @@ namespace Uno.Gallery.Views.Samples
 {
 	[SamplePage(
 		SampleCategory.NonUIFeatures,
-		"Simple Orientation", Description = "This sensor detects the current quadrant orientation of the specified device as well as its face-up or face-down status.", DocumentationLink = "https://learn.microsoft.com/en-us/uwp/api/windows.devices.sensors.simpleorientationsensor")]
+		"Simple Orientation", Description = "This sensor detects the current quadrant orientation of the specified device as well as its face-up or face-down status.",
+		DocumentationLink = "https://learn.microsoft.com/en-us/uwp/api/windows.devices.sensors.simpleorientationsensor")]
 	public sealed partial class SimpleOrientationSamplePage : Page
 	{
 		public SimpleOrientationSamplePage()
