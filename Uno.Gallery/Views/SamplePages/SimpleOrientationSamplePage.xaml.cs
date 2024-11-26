@@ -23,13 +23,13 @@ namespace Uno.Gallery.Views.Samples
 		{
 			if (sender is Button { DataContext: SimpleOrientationSamplePageViewModel viewModel })
 			{
-				if (!viewModel.ObservingReadingChange)
+				if (viewModel.ObservingReadingChange)
 				{
-					viewModel.StartObserveReadingChange();
+					viewModel.StopObservingReadingChange();
 				}
 				else
 				{
-					viewModel.StopObservingReadingChange();
+					viewModel.StartObserveReadingChange();
 				}
 			}
 		}
