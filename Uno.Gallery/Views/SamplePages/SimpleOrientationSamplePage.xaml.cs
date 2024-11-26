@@ -2,6 +2,8 @@
 using System.ComponentModel;
 using Uno.Gallery.ViewModels;
 using Windows.Devices.Sensors;
+using Windows.ApplicationModel.Core;
+using Windows.UI.Core;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 
@@ -84,10 +86,13 @@ namespace Uno.Gallery.Views.Samples
 			ObservingReadingChange = false;
 		}
 
-		private void SimpleOrientationSensor_OrientationChanged(SimpleOrientationSensor sender, SimpleOrientationSensorOrientationChangedEventArgs args)
+		private async void SimpleOrientationSensor_OrientationChanged(SimpleOrientationSensor sender, SimpleOrientationSensorOrientationChangedEventArgs args)
 		{
-			LastReadTimestamp = args.Timestamp;
-			Orientation = args.Orientation;
+			await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+			{
+				LastReadTimestamp = args.Timestamp;
+				Orientation = args.Orientation;
+			});
 		}
 	}
 }
