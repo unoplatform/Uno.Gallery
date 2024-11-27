@@ -145,7 +145,6 @@ stages:
       inputs:
         certSecureFile: UnoPlatform-Apple-Distribution.p12
         certPwd: $(appleappstorecertificatepassword)
-        opensslPkcsArgs: -legacy
         keychain: temp
         # disabled because of azure devops failing to uninstall as of 2022-11-16
         # deleteCert: true
@@ -155,7 +154,6 @@ stages:
       inputs:
         certSecureFile: UnoPlatform-MacInstaller.p12
         certPwd: $(appleappstorecertificatepassword)
-        opensslPkcsArgs: -legacy
         keychain: temp
         # disabled because of azure devops failing to uninstall as of 2022-11-16
         # deleteCert: true
