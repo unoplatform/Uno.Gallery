@@ -7,13 +7,16 @@
 		<!-- NOTE: We cannot build with dotnet build -p:TargetFrameworks=net9.0-platform as that will flow to source generator project, which is incorrect -->
 		<TargetFramework Condition="'$(TargetFrameworkOverride)'!=''">$(TargetFrameworkOverride)</TargetFramework>
 		<TargetFrameworks Condition="'$(TargetFrameworkOverride)'==''">
-			net9.0-android;
 			net9.0-ios;
 			net9.0-maccatalyst;
 			net9.0-windows10.0.19041;
 			net9.0-desktop;
 			net9.0-browserwasm;
 		</TargetFrameworks>
+
+		<!-- android is disable on linux until ci is fixed  -->
+		<TargetFrameworks Condition="'$(TargetFrameworkOverride)'=='' AND !$([MSBuild]::IsOSPlatform('linux'))">$(TargetFrameworks);net9.0-android;</TargetFrameworks>
+		
 		<OutputType>Exe</OutputType>
 		<UnoSingleProject>true</UnoSingleProject>
 		<!-- Display name -->
@@ -23,6 +26,7 @@
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
 		<ApplicationVersion>1</ApplicationVersion>
+		<WindowsSdkPackageVersion>10.0.19041.38</WindowsSdkPackageVersion> 
 		<!--
 		If you encounter this error message:
 
@@ -76,7 +80,10 @@
 		<ProjectReference Include="..\Uno.Gallery.SourceGenerators\Uno.Gallery.SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" SetPlatform="Platform=AnyCPU" />
 	</ItemGroup>
 
-	<ItemGroup Condition="'$(TargetFramework)'=='net9.0-android' or '$(TargetFramework)'=='net9.0-ios' or '$(TargetFramework)'=='net9.0-maccatalyst'">
+	<ItemGroup Condition="
+			   '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'android'
+			   or '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'ios'
+			   or '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'maccatayst'">
 		<IncludeXamlNamespaces Include="mobile" Visible="False" />
 		<ExcludeXamlNamespaces Include="not_mobile" Visible="False" />
 	</ItemGroup>
@@ -85,16 +92,35 @@
 		<ExcludeXamlNamespaces Include="mobile" Visible="False" />
 	</ItemGroup>
 
-	<PropertyGroup Condition="'$(Configuration)'=='Release' and '$(System_PullRequest_IsFork)'!='True' and '$(TargetFramework)'=='net9.0-ios'">
+	<PropertyGroup Condition="'$(Configuration)'=='Release' and '$(System_PullRequest_IsFork)'!='True' and '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'ios' ">
 		<CodesignKey>iPhone Distribution</CodesignKey>
 		<RuntimeIdentifier>ios-arm64</RuntimeIdentifier>
 	</PropertyGroup>
 
-	<ItemGroup Condition="('$(Configuration)'=='Debug' or '$(IsUiAutomationMappingEnabled)'=='True') and '$(TargetFramework)'=='net9.0-ios'">
+	<ItemGroup Condition="('$(Configuration)'=='Debug' or '$(IsUiAutomationMappingEnabled)'=='True') and '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'ios' ">
 		<PackageReference Include="Xamarin.TestCloud.Agent" />
 	</ItemGroup>
 
-	<PropertyGroup Condition="'$(Configuration)'=='Release' and '$(System_PullRequest_IsFork)'!='True' and '$(TargetFramework)'=='net9.0-maccatalyst'">
+	<PropertyGroup Condition=" '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'browserwasm' ">
+		<WasmShellWebAppBasePath>/</WasmShellWebAppBasePath>
+	</PropertyGroup>
+
+	<PropertyGroup Condition=" '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'browserwasm' AND '$(Configuration)' == 'Release' ">
+		<WasmShellMonoRuntimeExecutionMode>InterpreterAndAOT</WasmShellMonoRuntimeExecutionMode>
+		<WasmShellEmccLinkOptimization>false</WasmShellEmccLinkOptimization>
+		<WasmShellEnableEmccProfiling>true</WasmShellEnableEmccProfiling>
+		<UnoXamlResourcesTrimming>true</UnoXamlResourcesTrimming>
+
+		<!--
+		Uncomment this block to generate a profile
+		<WasmShellGenerateAOTProfile>true</WasmShellGenerateAOTProfile>
+		<WasmShellILLinkerEnabled>false</WasmShellILLinkerEnabled>
+		<UnoXamlResourcesTrimming>false</UnoXamlResourcesTrimming>
+		<WasmShellEnableJiterpreter>false</WasmShellEnableJiterpreter>
+		-->
+	</PropertyGroup>
+	
+	<PropertyGroup Condition="'$(Configuration)'=='Release' and '$(System_PullRequest_IsFork)'!='True' and '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'maccatalyst' ">
 		<MtouchUseLlvm>true</MtouchUseLlvm>
 		<CodeSigningKey>Apple Distribution: Uno Platform Inc. (PD74CHS9Z5)</CodeSigningKey>
 		<PackageSigningKey>3rd Party Mac Developer Installer</PackageSigningKey>
@@ -107,7 +133,7 @@
 		<CodesignProvision Condition="$(BUILD_SOURCEBRANCH.StartsWith('refs/heads/canaries'))">Uno Gallery Canary (Catalyst)</CodesignProvision>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)'=='Release' and '$(TargetFramework)'=='net9.0-android'">
+	<PropertyGroup Condition="'$(Configuration)'=='Release' and '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'android'">
 		<RunAOTCompilation>true</RunAOTCompilation>
 	</PropertyGroup>
 
@@ -127,7 +153,9 @@
 		</PackageReference>
 	</ItemGroup>
 
-	<ItemGroup Condition="'$(TargetFramework)'=='net9.0-browserwasm'">
+	<ItemGroup Condition=" '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'browserwasm' ">
+		<PackageReference Include="Uno.Wasm.Bootstrap" />
+		<PackageReference Include="Uno.Wasm.Bootstrap.DevServer" />
 		<PackageReference Include="Microsoft.TypeScript.Compiler">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
@@ -136,12 +164,28 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
 		</PackageReference>
+		
 		<EmbeddedResource Include="Platforms\WebAssembly\WasmScripts\UnoGallery.js" />
+		
 		<ConfigFiles Include="Platforms\WebAssembly\tsconfig.json" />
+		
+		<WasmShellMonoEnvironment Include="MONO_GC_PARAMS" Value="soft-heap-limit=512m,nursery-size=64m,evacuation-threshold=66,major=marksweep" />
 	</ItemGroup>
+	
+	<PropertyGroup Condition="'$(Configuration)'=='Release' and '$(WasmShellMonoRuntimeExecutionMode)'=='InterpreterAndAOT'">
+		<WasmAotFileName Condition="'$(IsUiAutomationMappingEnabled)'==''">aot.profile</WasmAotFileName>
+
+		<!--
+		Use smaller profile for UI tests to avoid the browser's memory
+		use to go higher than the Ci agent's availability
+		-->
+
+		<WasmAotFileName Condition="'$(IsUiAutomationMappingEnabled)'=='True'">aot-uitests.profile</WasmAotFileName>
+	</PropertyGroup>
+
 
 	<!-- https://github.com/dotnet/runtime/issues/109289 -->
-	<Target Name="Issue109289_Workaround" AfterTargets="_BrowserWasmWriteRspForLinking" Condition=" $(NETCoreSdkVersion.Contains('9.0.100')) ">
+	<Target Name="Issue109289_Workaround" AfterTargets="_BrowserWasmWriteRspForLinking" Condition=" $(NETCoreSdkVersion.Contains('rc.2')) ">
 		<ItemGroup>
 			<_WasmLinkStepArgs Remove="@(_EmccLinkStepArgs)" />
 			<_EmccLinkStepArgs Remove="&quot;%(_WasmNativeFileForLinking.Identity)&quot;" />
@@ -156,5 +200,4 @@
 			<_WasmLinkStepArgs Include="@(_EmccLinkStepArgs)" />
 		</ItemGroup>
 	</Target>
-	
 </Project>

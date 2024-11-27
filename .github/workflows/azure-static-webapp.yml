@@ -14,7 +14,7 @@ on:
 jobs:
   build_and_deploy_job:
     env:
-      DIST_PATH: Uno.Gallery/bin/Release/net8.0-browserwasm/dist
+      DIST_PATH: Uno.Gallery/bin/Release/net9.0-browserwasm/publish/wwwroot
 
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
@@ -25,6 +25,17 @@ jobs:
         with:
           fetch-depth: 0 # Required for gitversion
           submodules: true
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1.7.2
+        with:
+          dotnet-version: '9.0.100'
+          include-prerelease: true
+
+      - run: |
+          cd Uno.Gallery
+          dotnet workload install wasm-tools
+        name: Setup Workloads
 
       - name: Install GitVersion
         uses: gittools/actions/gitversion/setup@v0.9.7
@@ -38,18 +49,20 @@ jobs:
           useConfigFile: true
           configFilePath: build/gitversion.yml
 
-      - name: Setup .NET SDK
-        uses: actions/setup-dotnet@v1.7.2
-        with:
-          dotnet-version: '8.0.100'
-
       - run: |
           cd Uno.Gallery
-          dotnet build -c Release -p:TargetFrameworkOverride=net8.0-browserwasm "/p:PackageVersion=${{ steps.gitversion.outputs.fullSemVer }}"
-      - uses: actions/upload-artifact@v2
+          dotnet publish -c Release -f net9.0-browserwasm "/p:PackageVersion=${{ steps.gitversion.outputs.fullSemVer }}" /bl:../binlogs/output.binlog
+        name: Build Gallery
+
+      - uses: actions/upload-artifact@v4
         with:
           name: wasm-site
           path: ${{ env.DIST_PATH }}
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: logs
+          path: binlogs
 
       - name: Publish to Azure Static WebApps
         id: builddeploy_uno
@@ -68,7 +81,7 @@ jobs:
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  
     name: Close Pull Request Job
     steps:
       - name: Close Pull Request

@@ -4,25 +4,20 @@ IFS=$'\n\t'
 
 export UNO_UITEST_TARGETURI=http://localhost:5000
 export UNO_UITEST_DRIVERPATH_CHROME=$BUILD_SOURCESDIRECTORY/build/node_modules/chromedriver/lib/chromedriver
-export UNO_UITEST_CHROME_BINARY_PATH=$BUILD_SOURCESDIRECTORY/build/node_modules/puppeteer/.local-chromium/linux-991974/chrome-linux/chrome
+export UNO_UITEST_CHROME_BINARY_PATH=~/.cache/puppeteer/chrome/linux-127.0.6533.72/chrome-linux64/chrome
 export UNO_UITEST_SCREENSHOT_PATH=$BUILD_ARTIFACTSTAGINGDIRECTORY/screenshots/wasm
 export UNO_UITEST_PLATFORM=Browser
 # export UNO_UITEST_CHROME_CONTAINER_MODE=true
 export UNO_UITEST_PROJECT=$BUILD_SOURCESDIRECTORY/Uno.Gallery.UITests
 export UNO_UITEST_LOGFILE=$BUILD_ARTIFACTSTAGINGDIRECTORY/screenshots/wasm/nunit-log.txt
 export UNO_UITEST_WASM_PROJECT=$BUILD_SOURCESDIRECTORY/Uno.Gallery/Uno.Gallery.csproj
-export UNO_UITEST_WASM_OUTPUT_PATH=$BUILD_SOURCESDIRECTORY/Uno.Gallery/bin/Release/net8.0-browserwasm/dist/
 export UITEST_TEST_TIMEOUT=60m
-
-cd $BUILD_SOURCESDIRECTORY
-
-dotnet build /r /p:Configuration=Release $UNO_UITEST_WASM_PROJECT -p:TargetFrameworkOverride=net8.0-browserwasm /p:IsUiAutomationMappingEnabled=True /bl:$UNO_UITEST_SCREENSHOT_PATH/msbuild.binlog
 
 cd $BUILD_SOURCESDIRECTORY/build
 mkdir -p tools
 
-npm i chromedriver@102.0.0
-npm i puppeteer@14.1.0
+npm i chromedriver@127.0.0
+npm i puppeteer@22.14.0
 
 # install dotnet serve / Remove as needed
 dotnet tool uninstall dotnet-serve -g || true
@@ -34,11 +29,6 @@ mkdir -p $UNO_UITEST_SCREENSHOT_PATH
 
 # Start the server
 dotnet-serve -p 5000 -d "$UNO_UITEST_WASM_OUTPUT_PATH" &
-#dotnet run --project $UNO_UITEST_WASM_PROJECT -c Release --no-build &
-
-
-
-
 
 cd $UNO_UITEST_PROJECT
 

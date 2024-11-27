@@ -1,5 +1,5 @@
 ﻿jobs:
-- job: Android_Tests
+- job: Android_Tests_Build
   displayName: 'Android UI Tests'
   timeoutInMinutes: 60
   variables:
@@ -18,9 +18,52 @@
   - template: templates/canary-updater.yml
 
   - bash: |
+      chmod +x $(build.sourcesdirectory)/build/scripts/android-uitest-build.sh
+      $(build.sourcesdirectory)/build/scripts/android-uitest-build.sh
+    displayName: Build Android Tests
+    env:
+      BUILD_SOURCESDIRECTORY: "$(build.sourcesdirectory)"
+      BUILD_ARTIFACTSTAGINGDIRECTORY: "$(build.artifactstagingdirectory)"
+
+  - task: CopyFiles@2
+    displayName: Copy Build Output
+    inputs:
+      SourceFolder: $(build.sourcesdirectory)/Uno.Gallery/bin/Release/net8.0-android/android-x64
+      Contents: '**/*.apk'
+      TargetFolder: $(Build.ArtifactStagingDirectory)
+
+  - publish: $(Build.ArtifactStagingDirectory)
+    artifact: Android_UITest
+
+- job: Android_Tests
+  displayName: 'Android UI Tests'
+  dependsOn: Android_Tests_Build
+  timeoutInMinutes: 60
+  variables:
+    CI_Build: true
+    SourceLinkEnabled: false
+
+  pool:
+    vmImage: 'macos-14'
+
+  steps:
+  - checkout: self
+    clean: true
+
+  - download: current
+    artifact: Android_UITest
+
+  - template: templates/dotnet-install-mac.yml
+    parameters:
+      UnoCheckParameters: '--tfm net9.0-android'
+
+  - template: templates/canary-updater.yml
+
+  - bash: |
+      export UNO_UITEST_ANDROIDAPK_PATH=$(Pipeline.Workspace)/Android_UITest/com.nventive.uno.ui.demo-Signed.apk
       chmod +x $(build.sourcesdirectory)/build/scripts/android-uitest-run.sh
       $(build.sourcesdirectory)/build/scripts/android-uitest-run.sh
-    displayName: Build and Run Android Tests
+    displayName: Run Android Tests
     env:
       BUILD_SOURCESDIRECTORY: "$(build.sourcesdirectory)"
       BUILD_ARTIFACTSTAGINGDIRECTORY: "$(build.artifactstagingdirectory)"

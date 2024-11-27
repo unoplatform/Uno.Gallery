@@ -1,7 +1,4 @@
 steps:
 
-  - task: MSBuild@1
+  - pwsh: dotnet build $(Build.SourcesDirectory)/build/build.csproj /t:BuildVersion /bl:$(Build.ArtifactStagingDirectory)/set-version-build.binlog
     displayName: Update app versions
-    inputs:
-      solution: '$(build.sourcesdirectory)/build/build.csproj'
-      msbuildArguments: /r /t:BuildVersion /bl:$(build.artifactstagingdirectory)/set-version-build.binlog 
