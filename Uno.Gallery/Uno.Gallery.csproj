@@ -111,6 +111,8 @@
 		<WasmShellEnableEmccProfiling>true</WasmShellEnableEmccProfiling>
 		<UnoXamlResourcesTrimming>true</UnoXamlResourcesTrimming>
 
+		<!--<RunAOTCompilationAfterBuild>true</RunAOTCompilationAfterBuild>-->
+
 		<!--
 		Uncomment this block to generate a profile
 		<WasmShellGenerateAOTProfile>true</WasmShellGenerateAOTProfile>
@@ -118,6 +120,7 @@
 		<UnoXamlResourcesTrimming>false</UnoXamlResourcesTrimming>
 		<WasmShellEnableJiterpreter>false</WasmShellEnableJiterpreter>
 		-->
+		
 	</PropertyGroup>
 	
 	<PropertyGroup Condition="'$(Configuration)'=='Release' and '$(System_PullRequest_IsFork)'!='True' and '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'maccatalyst' ">
@@ -185,7 +188,7 @@
 
 
 	<!-- https://github.com/dotnet/runtime/issues/109289 -->
-	<Target Name="Issue109289_Workaround" AfterTargets="_BrowserWasmWriteRspForLinking" Condition=" $(NETCoreSdkVersion.Contains('rc.2')) ">
+	<Target Name="Issue109289_Workaround" AfterTargets="_BrowserWasmWriteRspForLinking" Condition=" $(NETCoreSdkVersion.Contains('9.0.100')) ">
 		<ItemGroup>
 			<_WasmLinkStepArgs Remove="@(_EmccLinkStepArgs)" />
 			<_EmccLinkStepArgs Remove="&quot;%(_WasmNativeFileForLinking.Identity)&quot;" />
