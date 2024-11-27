@@ -4,15 +4,16 @@ steps:
   fetchDepth: 0
 
 - template: templates/gitversion.yml
+- template: templates/dotnet-install-windows.yml
 - template: templates/canary-updater.yml
 
 - bash: |
-    dotnet build Uno.Gallery/Uno.Gallery.csproj -p:TargetFrameworkOverride=net8.0-desktop -c Release -p:InformationalVersion=$(GitVersion.InformationalVersion) -bl:$(build.artifactstagingdirectory)/build.binlog
+    dotnet build Uno.Gallery/Uno.Gallery.csproj -p:TargetFrameworkOverride=net9.0-desktop -c Release -p:InformationalVersion=$(GitVersion.InformationalVersion) -bl:$(build.artifactstagingdirectory)/build.binlog
 
 - task: CopyFiles@2
   displayName: Copy Skia output
   inputs:
-    SourceFolder: Uno.Gallery/bin/Release/net8.0-desktop
+    SourceFolder: Uno.Gallery/bin/Release/net9.0-desktop
     Contents: '**/*.*'
     TargetFolder: $(Build.ArtifactStagingDirectory)/bin
 
