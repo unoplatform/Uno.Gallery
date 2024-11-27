@@ -12,6 +12,7 @@
   - checkout: self
     clean: true
     fetchDepth: 0
+    persistCredentials: true
 
   - template: templates/dotnet-install-mac.yml
     parameters:
@@ -58,6 +59,7 @@
   steps:
   - checkout: self
     clean: true
+    persistCredentials: true
 
   - template: templates/xcode-select.yml
     parameters:

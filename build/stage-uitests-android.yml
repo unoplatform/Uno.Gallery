@@ -13,6 +13,7 @@
   - checkout: self
     clean: true
     fetchDepth: 0
+    persistCredentials: true
 
   - template: templates/dotnet-install-mac.yml
   - template: templates/canary-updater.yml
@@ -49,6 +50,7 @@
   steps:
   - checkout: self
     clean: true
+    persistCredentials: true
 
   - download: current
     artifact: Android_UITest

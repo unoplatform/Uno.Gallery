@@ -13,6 +13,7 @@
   - checkout: self
     clean: true
     fetchDepth: 0
+    persistCredentials: true
 
   - template: templates/dotnet-install-linux.yml
     parameters:
@@ -42,6 +43,7 @@
   steps:
   - checkout: self
     clean: true
+    persistCredentials: true
 
   - task: NodeTool@0
     inputs:
