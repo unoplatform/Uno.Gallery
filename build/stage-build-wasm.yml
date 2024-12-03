@@ -20,6 +20,7 @@
 
 - bash: |
     dotnet publish Uno.Gallery/Uno.Gallery.csproj -c Release -f net9.0-browserwasm -p:UseSkiaRendering=false -p:InformationalVersion=$(GitVersion.InformationalVersion) -bl:$(Build.ArtifactStagingDirectory)/wasm.binlog
+  displayName: 'Builds Wasm+DOM'
 
 - task: CopyFiles@2
   displayName: Copy Wasm output
@@ -36,6 +37,7 @@
 
 - bash: |
     dotnet publish Uno.Gallery/Uno.Gallery.csproj -c Release -f net9.0-browserwasm -p:UseSkiaRendering=true -p:InformationalVersion=$(GitVersion.InformationalVersion) -bl:$(Build.ArtifactStagingDirectory)/wasm.binlog
+  displayName: 'Builds Wasm+Skia'
 
 - task: CopyFiles@2
   displayName: Copy Wasm output
