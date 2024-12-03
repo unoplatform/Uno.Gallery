@@ -202,7 +202,7 @@ stages:
     variables:
       ArtifactName: WASM
       SkipUnknownFrameworks: true
-  
+
     steps:
       - template: build/stage-build-wasm.yml
 

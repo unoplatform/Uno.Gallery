@@ -18,7 +18,7 @@
 - template: templates/canary-updater.yml
 
 - bash: |
-    dotnet publish Uno.Gallery/Uno.Gallery.csproj -c Release -f net9.0-browserwasm -p:InformationalVersion=$(GitVersion.InformationalVersion) -bl:$(Build.ArtifactStagingDirectory)/wasm.binlog
+    dotnet publish Uno.Gallery/Uno.Gallery.csproj -c Release -f net9.0-browserwasm -p:UseSkiaRendering=false -p:InformationalVersion=$(GitVersion.InformationalVersion) -bl:$(Build.ArtifactStagingDirectory)/wasm.binlog
 
 - task: CopyFiles@2
   displayName: Copy Wasm output
@@ -32,3 +32,19 @@
   retryCountOnTaskFailure: 3
   inputs:
     ArtifactName: $(ArtifactName)
+
+- bash: |
+    dotnet publish Uno.Gallery/Uno.Gallery.csproj -c Release -f net9.0-browserwasm -p:UseSkiaRendering=true -p:InformationalVersion=$(GitVersion.InformationalVersion) -bl:$(Build.ArtifactStagingDirectory)/wasm.binlog
+
+- task: CopyFiles@2
+  displayName: Copy Wasm output
+  inputs:
+    SourceFolder: Uno.Gallery/bin/Release/net9.0-browserwasm/publish/wwwroot
+    Contents: '**/*.*'
+    TargetFolder: $(Build.ArtifactStagingDirectory)
+
+- task: PublishBuildArtifacts@1
+  condition: always()
+  retryCountOnTaskFailure: 3
+  inputs:
+    ArtifactName: $(ArtifactName)-skia
