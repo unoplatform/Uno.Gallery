@@ -26,7 +26,7 @@
   condition: always()
   retryCountOnTaskFailure: 3
   inputs:
-    PathtoPublish: '$(Agent.TempDirectory)/wasm-dom-publish'
+    PathtoPublish: '$(Agent.TempDirectory)/wasm-dom-publish/wwwroot'
     ArtifactName: $(ArtifactName)
 
 - bash: |
@@ -37,5 +37,5 @@
   condition: always()
   retryCountOnTaskFailure: 3
   inputs:
-    PathtoPublish: '$(Agent.TempDirectory)/wasm-skia-publish'
+    PathtoPublish: '$(Agent.TempDirectory)/wasm-skia-publish/wwwroot'
     ArtifactName: $(ArtifactName)-skia
