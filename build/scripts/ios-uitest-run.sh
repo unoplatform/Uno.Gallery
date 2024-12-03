@@ -39,9 +39,6 @@ while true; do
 	sleep 5
 done
 
-cd $UNO_UITEST_IOS_PROJECT
-dotnet build -f net8.0-ios -r iossimulator-x64 -c Release -p:IsUiAutomationMappingEnabled=True -bl:$BUILD_ARTIFACTSTAGINGDIRECTORY/ios-app.binlog
-
 echo "Simulator Data Path: $UITEST_IOSDEVICE_DATA_PATH"
 cp "$UITEST_IOSDEVICE_DATA_PATH/../device.plist" $UNO_UITEST_SCREENSHOT_PATH/_logs
 
