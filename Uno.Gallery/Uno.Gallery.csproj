@@ -47,7 +47,7 @@
 		Uncomment to use skia rendering
 		<UseSkiaRendering>true</UseSkiaRendering>
 		-->
-		
+	
 		<IsSkiaWasm Condition="'$(UseSkiaRendering)'=='true' AND '$(TargetFramework)'=='net9.0-browserwasm'">true</IsSkiaWasm>
 		<IsSkiaWasm Condition="'$(IsSkiaWasm)'==''">false</IsSkiaWasm>
 		<IsSkiaAndroid Condition="'$(UseSkiaRendering)'=='true' AND '$(TargetFramework)'=='net9.0-android'">true</IsSkiaAndroid>
