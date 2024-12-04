@@ -13,6 +13,7 @@ export UNO_UITEST_BINARY=$BUILD_SOURCESDIRECTORY/Uno.Gallery.UITests/bin/Release
 export UNO_EMULATOR_INSTALLED=$BUILD_SOURCESDIRECTORY/build/.emulator_started
 export UITEST_TEST_TIMEOUT=60m
 export UNO_UITEST_ANDROIDAPK_PATH=$UNO_UITEST_ANDROIDAPK_BASEPATH/com.nventive.uno.ui.demo-Signed.apk
+export AVD_NAME=xamarin_android_emulator
 
 # Override Android SDK tooling
 export ANDROID_HOME=$BUILD_SOURCESDIRECTORY/build/android-sdk
@@ -43,7 +44,7 @@ then
 	echo "y" | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --sdk_root=${ANDROID_HOME} --install 'system-images;android-34;google_apis_playstore;x86_64'
 
 	# Create emulator
-	echo "no" | $ANDROID_HOME/cmdline-tools/latest/bin/avdmanager create avd -n xamarin_android_emulator --abi "x86_64" -k 'system-images;android-34;google_apis_playstore;x86_64' --force
+	echo "no" | $ANDROID_HOME/cmdline-tools/latest/bin/avdmanager create avd -n $AVD_NAME --abi "x86_64" -k 'system-images;android-34;google_apis_playstore;x86_64' --force
 
 	echo $ANDROID_HOME/emulator/emulator -list-avds
 
