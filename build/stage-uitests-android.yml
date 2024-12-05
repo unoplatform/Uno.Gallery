@@ -16,6 +16,15 @@
     persistCredentials: true
 
   - bash: |
+      set -x
+      sudo apt update
+      sudo apt install qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils
+      lsmod | grep kvm
+      sudo modprobe kvm
+      sudo modprobe kvm_intel  # For Intel CPUs
+      sudo modprobe kvm_amd    # For AMD CPUs
+      sudo usermod -aG libvirt $(whoami)
+      sudo usermod -aG kvm $(whoami)
       echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
       sudo udevadm control --reload-rules
       sudo udevadm trigger --name-match=kvm
@@ -65,6 +74,15 @@
     artifact: Android_UITest
 
   - bash: |
+      set -x
+      sudo apt update
+      sudo apt install qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils
+      lsmod | grep kvm
+      sudo modprobe kvm
+      sudo modprobe kvm_intel  # For Intel CPUs
+      sudo modprobe kvm_amd    # For AMD CPUs
+      sudo usermod -aG libvirt $(whoami)
+      sudo usermod -aG kvm $(whoami)
       echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
       sudo udevadm control --reload-rules
       sudo udevadm trigger --name-match=kvm
