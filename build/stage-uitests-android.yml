@@ -1,7 +1,7 @@
 ﻿jobs:
 - job: Android_Tests_Build
   displayName: 'Android UI Tests'
-  timeoutInMinutes: 60
+  timeoutInMinutes: 90
   variables:
     CI_Build: true
     SourceLinkEnabled: false
@@ -20,6 +20,13 @@
       UnoCheckParameters: '--tfm net9.0-android'
 
   - template: templates/canary-updater.yml
+
+  - task: PowerShell@2
+    displayName: 'Install coreutils'
+    inputs:
+      targetType: inline
+      script: |
+        brew install coreutils
 
   - bash: |
       chmod +x $(build.sourcesdirectory)/build/scripts/android-uitest-build.sh
