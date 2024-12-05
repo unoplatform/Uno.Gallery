@@ -59,6 +59,7 @@ then
 		-skin 1280x800 \
 		-memory 1024 \
 		-no-window \
+		-gpu swiftshader_indirect \
 		-no-snapshot \
 		-noaudio \
 		-no-boot-anim \

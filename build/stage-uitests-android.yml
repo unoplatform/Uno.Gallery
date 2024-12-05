@@ -49,16 +49,24 @@
     SourceLinkEnabled: false
 
   pool:
-    vmImage: 'ubuntu-24.04'
+    vmImage: 'macos-14'
 
   steps:
   - checkout: self
     clean: true
+    persistCredentials: true
 
   - download: current
     artifact: Android_UITest
 
   - template: templates/canary-updater.yml
+
+  - task: PowerShell@2
+    displayName: 'Install coreutils'
+    inputs:
+      targetType: inline
+      script: |
+        brew install coreutils
 
   - bash: |
       export UNO_UITEST_ANDROIDAPK_BASEPATH=$(Pipeline.Workspace)/Android_UITest
