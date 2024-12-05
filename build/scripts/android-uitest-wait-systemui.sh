@@ -92,4 +92,18 @@ while [[ -z ${LAUNCHER_READY} ]]; do
     esac
 done
 
+# Unlock device
+adb shell input keyevent 82
+
+# Tap "Wait" to dismiss "Process System is not responding" dialog
+adb shell input tap 175 515
+
+# Tap "OK" to dismiss welcome screen
+adb shell input tap 400 355
+
+adb shell settings put global animator_duration_scale 0
+adb shell settings put global transition_animation_scale 0
+adb shell settings put global window_animation_scale 0
+
 echo "Launcher is ready!"
+
