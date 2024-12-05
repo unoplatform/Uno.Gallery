@@ -49,16 +49,6 @@ then
 	# Create emulator
 	echo "no" | $ANDROID_HOME/cmdline-tools/latest/bin/avdmanager create avd -n $AVD_NAME --abi "x86_64" -k "system-images;android-$ANDROID_SIMULATOR_APILEVEL;google_apis_playstore;x86_64" --force
 
-	# based on https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/hosted?view=azure-devops&tabs=yaml#hardware
-	# >> Agents that run macOS images are provisioned on Mac pros with a 3 core CPU, 14 GB of RAM, and 14 GB of SSD disk space.
-	echo "hw.cpu.ncore=2" >> $AVD_CONFIG_FILE
-
-	# Bump the heap size as the tests are stressing the application
-	echo "vm.heapSize=256M" >> $AVD_CONFIG_FILE
-
-	# Force the orentation to landscape as most tests expect it to be this way
-	echo "hw.initialOrientation=landscape" >> $AVD_CONFIG_FILE
-
 	echo $ANDROID_HOME/emulator/emulator -list-avds
 
 	echo "Starting emulator"
