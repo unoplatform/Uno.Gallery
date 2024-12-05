@@ -7,7 +7,7 @@
     SourceLinkEnabled: false
 
   pool:
-    vmImage: 'macos-14'
+    vmImage: 'ubuntu-24.04'
 
   steps:
   - checkout: self
@@ -15,7 +15,7 @@
     fetchDepth: 0
     persistCredentials: true
 
-  - template: templates/dotnet-install-mac.yml
+  - template: templates/dotnet-install-linux.yml
     parameters:
       UnoCheckParameters: '--tfm net9.0-android'
 
@@ -56,7 +56,7 @@
     SourceLinkEnabled: false
 
   pool:
-    vmImage: 'macos-14'
+    vmImage: 'ubuntu-24.04'
 
   steps:
   - checkout: self
@@ -65,7 +65,7 @@
   - download: current
     artifact: Android_UITest
 
-  - template: templates/dotnet-install-mac.yml
+  - template: templates/dotnet-install-linux.yml
     parameters:
       UnoCheckParameters: '--tfm net9.0-android'
 
