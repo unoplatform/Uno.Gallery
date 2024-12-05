@@ -62,7 +62,8 @@ then
 		-no-snapshot \
 		-noaudio \
 		-no-boot-anim \
-		-prop ro.debuggable=1 &
+		-prop ro.debuggable=1 \
+		> $BUILD_ARTIFACTSTAGINGDIRECTORY/android-emulator-log.txt 2>&1 &
 
 	touch "$UNO_EMULATOR_INSTALLED"
 fi
