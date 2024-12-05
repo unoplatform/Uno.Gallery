@@ -58,9 +58,11 @@
   - download: current
     artifact: Android_UITest
 
-  - template: templates/dotnet-install-linux.yml
-    parameters:
-      UnoCheckParameters: '--tfm net9.0-android'
+  - bash: |
+      echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+      sudo udevadm control --reload-rules
+      sudo udevadm trigger --name-match=kvm
+    displayName: Enable KVM
 
   - template: templates/canary-updater.yml
 
