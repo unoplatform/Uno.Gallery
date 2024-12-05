@@ -21,13 +21,6 @@
 
   - template: templates/canary-updater.yml
 
-  - task: PowerShell@2
-    displayName: 'Install coreutils'
-    inputs:
-      targetType: inline
-      script: |
-        brew install coreutils
-
   - bash: |
       chmod +x $(build.sourcesdirectory)/build/scripts/android-uitest-build.sh
       $(build.sourcesdirectory)/build/scripts/android-uitest-build.sh
