@@ -34,6 +34,9 @@ then
 	mv $ANDROID_HOME/platform-tools/platform-tools/* $ANDROID_HOME/platform-tools
 fi
 
+AVD_NAME=xamarin_android_emulator
+AVD_CONFIG_FILE=~/.android/avd/$AVD_NAME.avd/config.ini
+
 # Install Android SDK emulators and SDKs
 if [ ! -f "$UNO_EMULATOR_INSTALLED" ];
 then
@@ -47,7 +50,14 @@ then
 	echo "y" | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --sdk_root=${ANDROID_HOME} --install "system-images;android-$ANDROID_SIMULATOR_APILEVEL;google_apis_playstore;x86_64"
 
 	# Create emulator
-	echo "no" | $ANDROID_HOME/cmdline-tools/latest/bin/avdmanager create avd -n $AVD_NAME --abi "x86_64" -k "system-images;android-$ANDROID_SIMULATOR_APILEVEL;google_apis_playstore;x86_64" --force
+	echo "no" | $ANDROID_HOME/cmdline-tools/latest/bin/avdmanager create avd -n $AVD_NAME --abi "x86_64" -k 'system-images;android-28;google_apis_playstore;x86_64'  --sdcard 128M --force
+
+	# based on https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/hosted?view=azure-devops&tabs=yaml#hardware
+	# >> Agents that run macOS images are provisioned on Mac pros with a 3 core CPU, 14 GB of RAM, and 14 GB of SSD disk space.
+	echo "hw.cpu.ncore=3" >> $AVD_CONFIG_FILE
+
+	# Bump the heap size as the tests are stressing the application
+	echo "vm.heapSize=256M" >> $AVD_CONFIG_FILE
 
 	echo $ANDROID_HOME/emulator/emulator -list-avds
 
