@@ -57,7 +57,7 @@ then
 	nohup $ANDROID_HOME/emulator/emulator \
 		-avd $AVD_NAME \
 		-skin 1280x800 \
-		-memory 4096 \
+		-memory 1024 \
 		-no-window \
 		-no-snapshot \
 		-noaudio \
