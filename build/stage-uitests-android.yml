@@ -15,26 +15,6 @@
     fetchDepth: 0
     persistCredentials: true
 
-  - bash: |
-      set -x
-      grep -E --color 'vmx|svm' /proc/cpuinfo
-      grep -E --color 'svm' /proc/cpuinfo
-      ls -l /dev/kvm
-      lsmod | grep kvm
-      sudo apt update
-      sudo apt install cpu-checker libvirt-daemon-system libvirt-clients bridge-utils
-      sudo modprobe kvm
-      lsmod | grep kvm
-      sudo modprobe kvm_intel  # For Intel CPUs
-      sudo modprobe kvm_amd    # For AMD CPUs
-      sudo usermod -aG libvirt $(whoami)
-      sudo usermod -aG kvm $(whoami)
-      sudo kvm-ok
-      echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
-      sudo udevadm control --reload-rules
-      sudo udevadm trigger --name-match=kvm
-    displayName: Enable KVM
-
   - template: templates/dotnet-install-linux.yml
     parameters:
       UnoCheckParameters: '--tfm net9.0-android'
@@ -77,21 +57,6 @@
 
   - download: current
     artifact: Android_UITest
-
-  - bash: |
-      set -x
-      sudo apt update
-      sudo apt install qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils
-      lsmod | grep kvm
-      sudo modprobe kvm
-      sudo modprobe kvm_intel || true  # For Intel CPUs
-      sudo modprobe kvm_amd || true   # For AMD CPUs
-      sudo usermod -aG libvirt $(whoami)
-      sudo usermod -aG kvm $(whoami)
-      echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
-      sudo udevadm control --reload-rules
-      sudo udevadm trigger --name-match=kvm
-    displayName: Enable KVM
 
   - template: templates/canary-updater.yml
 
