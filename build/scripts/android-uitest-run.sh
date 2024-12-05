@@ -83,7 +83,7 @@ mkdir -p $UNO_UITEST_SCREENSHOT_PATH
 cp $UNO_UITEST_ANDROIDAPK_PATH $UNO_UITEST_SCREENSHOT_PATH
 
 # Wait for the emulator to finish booting
-$ANDROID_HOME/platform-tools/adb wait-for-device shell 'while [[ -z $(getprop sys.boot_completed | tr -d '\r') ]]; do sleep 1; done; input keyevent 82'
+source $BUILD_SOURCESDIRECTORY/build/scripts/android-uitest-wait-systemui.sh 500
 
 $ANDROID_HOME/platform-tools/adb devices
 
