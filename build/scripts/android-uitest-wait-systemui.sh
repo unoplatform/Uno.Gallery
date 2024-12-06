@@ -67,18 +67,18 @@ while [[ -z ${LAUNCHER_READY} ]]; do
     echo "(DEBUG $SECONDS) Current focus: ${UI_FOCUS}"
 
     case $UI_FOCUS in
+    *"Not Responding"*)
+        echo "Detected an ANR! Dismissing..."
+        $ANDROID_HOME/platform-tools/adb shell input keyevent KEYCODE_DPAD_DOWN
+        $ANDROID_HOME/platform-tools/adb shell input keyevent KEYCODE_DPAD_DOWN
+        $ANDROID_HOME/platform-tools/adb shell input keyevent KEYCODE_ENTER
+    ;;  
     *"Launcher"*)
         LAUNCHER_READY=true
     ;;
     "")
         echo "Waiting for window service..."
         sleep 3
-    ;;
-    *"Not Responding"*)
-        echo "Detected an ANR! Dismissing..."
-        $ANDROID_HOME/platform-tools/adb shell input keyevent KEYCODE_DPAD_DOWN
-        $ANDROID_HOME/platform-tools/adb shell input keyevent KEYCODE_DPAD_DOWN
-        $ANDROID_HOME/platform-tools/adb shell input keyevent KEYCODE_ENTER
     ;;
     *)
         echo "Waiting for launcher..."
@@ -91,18 +91,6 @@ while [[ -z ${LAUNCHER_READY} ]]; do
     ;;
     esac
 done
-
-# wait for the "Process System is not responding" to appear
-sleep 240
-
-# Unlock device
-adb shell input keyevent 82
-
-# Tap "Wait" to dismiss "Process System is not responding" dialog
-adb shell input tap 175 515
-
-# Tap "OK" to dismiss welcome screen
-adb shell input tap 400 355
 
 adb shell settings put global animator_duration_scale 0
 adb shell settings put global transition_animation_scale 0
