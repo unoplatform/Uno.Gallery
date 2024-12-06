@@ -69,8 +69,7 @@ while [[ -z ${LAUNCHER_READY} ]]; do
     case $UI_FOCUS in
     *"Not Responding"*)
         echo "Detected an ANR! Dismissing..."
-        $ANDROID_HOME/platform-tools/adb shell input keyevent KEYCODE_DPAD_DOWN
-        $ANDROID_HOME/platform-tools/adb shell input keyevent KEYCODE_DPAD_DOWN
+        $ANDROID_HOME/platform-tools/adb shell input keyevent KEYCODE_DPAD_RIGHT
         $ANDROID_HOME/platform-tools/adb shell input keyevent KEYCODE_ENTER
     ;;  
     *"Launcher"*)
