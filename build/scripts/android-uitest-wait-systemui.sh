@@ -92,6 +92,9 @@ while [[ -z ${LAUNCHER_READY} ]]; do
     esac
 done
 
+# wait for the "Process System is not responding" to appear
+sleep 240
+
 # Unlock device
 adb shell input keyevent 82
 
