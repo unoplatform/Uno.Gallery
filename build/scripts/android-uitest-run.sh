@@ -67,7 +67,7 @@ then
 	nohup $ANDROID_HOME/emulator/emulator \
 		-avd $AVD_NAME \
 		-skin 1280x800 \
-		-memory 1024 \
+		-memory 4096 \
 		-no-window \
 		-gpu swiftshader_indirect \
 		-no-snapshot \
