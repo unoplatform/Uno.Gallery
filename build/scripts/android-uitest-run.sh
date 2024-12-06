@@ -13,7 +13,7 @@ export UNO_UITEST_BINARY=$BUILD_SOURCESDIRECTORY/Uno.Gallery.UITests/bin/Release
 export UNO_EMULATOR_INSTALLED=$BUILD_SOURCESDIRECTORY/build/.emulator_started
 export UITEST_TEST_TIMEOUT=60m
 export UNO_UITEST_ANDROIDAPK_PATH=$UNO_UITEST_ANDROIDAPK_BASEPATH/com.nventive.uno.ui.demo-Signed.apk
-export ANDROID_SIMULATOR_APILEVEL=34
+export ANDROID_SIMULATOR_APILEVEL=28
 
 AVD_NAME=xamarin_android_emulator
 AVD_CONFIG_FILE=~/.android/avd/$AVD_NAME.avd/config.ini
