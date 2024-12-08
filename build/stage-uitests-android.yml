@@ -64,6 +64,13 @@
 
   - template: templates/canary-updater.yml
 
+  - task: PowerShell@2
+    displayName: 'Install coreutils'
+    inputs:
+      targetType: inline
+      script: |
+        brew install coreutils
+
   - bash: |
       export UNO_UITEST_ANDROIDAPK_BASEPATH=$(Pipeline.Workspace)/Android_UITest
       chmod +x $(build.sourcesdirectory)/build/scripts/android-uitest-run.sh
