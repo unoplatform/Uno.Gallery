@@ -42,6 +42,12 @@
 		UnoFeatures let's you quickly add and manage implicit package references based on the features you want to use.
 		https://aka.platform.uno/singleproject-features
 		-->
+
+		<!--
+		Uncomment to use skia rendering
+		<UseSkiaRendering>true</UseSkiaRendering>
+		-->
+	
 		<IsSkiaWasm Condition="'$(UseSkiaRendering)'=='true' AND '$(TargetFramework)'=='net9.0-browserwasm'">true</IsSkiaWasm>
 		<IsSkiaWasm Condition="'$(IsSkiaWasm)'==''">false</IsSkiaWasm>
 		<IsSkiaAndroid Condition="'$(UseSkiaRendering)'=='true' AND '$(TargetFramework)'=='net9.0-android'">true</IsSkiaAndroid>
@@ -53,8 +59,6 @@
 			Lottie;
 			Skia;
 			Svg;
-			Logging;
-			Extensions;
 		</UnoFeatures>
 		<UnoFeatures Condition="$(IsSkiaWasm)">$(UnoFeatures)WebAssemblySkiaRenderer;</UnoFeatures>
 		<UnoFeatures Condition="$(IsSkiaAndroid)">$(UnoFeatures)AndroidSkiaRenderer;</UnoFeatures>
@@ -68,13 +72,14 @@
 		<IsUiAutomationMappingEnabled>True</IsUiAutomationMappingEnabled>
 		<DefineConstants>$(DefineConstants);USE_UITESTS</DefineConstants>
 	</PropertyGroup>
+
 	<ItemGroup>
 		<PackageReference Include="Uno.ShowMeTheXAML" />
 		<PackageReference Include="Uno.ShowMeTheXAML.MSBuild" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" />
 		<PackageReference Include="Uno.Core.Extensions.Disposables" />
 		<PackageReference Include="Uno.Core.Extensions.Compatibility" />
-		<PackageReference Include="SkiaSharp.Skottie" Condition="$(IsSkiaWasm) OR $(IsSkiaAndroid)" />
+		<!--<PackageReference Include="SkiaSharp.Skottie" Condition="$(IsSkiaWasm) OR $(IsSkiaAndroid)" />-->
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\Uno.Gallery.SourceGenerators\Uno.Gallery.SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" SetPlatform="Platform=AnyCPU" />
@@ -174,9 +179,10 @@
 		
 		<WasmShellMonoEnvironment Include="MONO_GC_PARAMS" Value="soft-heap-limit=512m,nursery-size=64m,evacuation-threshold=66,major=marksweep" />
 	</ItemGroup>
-	
+
 	<PropertyGroup Condition="'$(Configuration)'=='Release' and '$(WasmShellMonoRuntimeExecutionMode)'=='InterpreterAndAOT'">
-		<WasmAotFileName Condition="'$(IsUiAutomationMappingEnabled)'==''">aot.profile</WasmAotFileName>
+		<WasmAotFileName Condition="'$(IsUiAutomationMappingEnabled)'=='' AND '$(UseSkiaRendering)' != 'true' ">aot.profile</WasmAotFileName>
+		<WasmAotFileName Condition="'$(IsUiAutomationMappingEnabled)'=='' AND '$(UseSkiaRendering)' == 'true' ">aot-skiawasm.profile</WasmAotFileName>
 
 		<!--
 		Use smaller profile for UI tests to avoid the browser's memory
@@ -185,7 +191,6 @@
 
 		<WasmAotFileName Condition="'$(IsUiAutomationMappingEnabled)'=='True'">aot-uitests.profile</WasmAotFileName>
 	</PropertyGroup>
-
 
 	<!-- https://github.com/dotnet/runtime/issues/109289 -->
 	<Target Name="Issue109289_Workaround" AfterTargets="_BrowserWasmWriteRspForLinking" Condition=" $(NETCoreSdkVersion.Contains('9.0.100')) ">

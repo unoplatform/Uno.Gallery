@@ -1,13 +1,13 @@
 ﻿jobs:
 - job: Android_Tests_Build
   displayName: 'Android UI Tests'
-  timeoutInMinutes: 60
+  timeoutInMinutes: 90
   variables:
     CI_Build: true
     SourceLinkEnabled: false
 
   pool:
-    vmImage: 'macos-14'
+    vmImage: 'ubuntu-24.04'
 
   steps:
   - checkout: self
@@ -15,7 +15,10 @@
     fetchDepth: 0
     persistCredentials: true
 
-  - template: templates/dotnet-install-mac.yml
+  - template: templates/dotnet-install-linux.yml
+    parameters:
+      UnoCheckParameters: '--tfm net9.0-android'
+
   - template: templates/canary-updater.yml
 
   - bash: |
@@ -36,6 +39,7 @@
   - publish: $(Build.ArtifactStagingDirectory)
     artifact: Android_UITest
 
+
 - job: Android_Tests
   displayName: 'Android UI Tests'
   dependsOn: Android_Tests_Build
@@ -55,14 +59,17 @@
   - download: current
     artifact: Android_UITest
 
-  - template: templates/dotnet-install-mac.yml
-    parameters:
-      UnoCheckParameters: '--tfm net9.0-android'
-
   - template: templates/canary-updater.yml
 
+  - task: PowerShell@2
+    displayName: 'Install coreutils'
+    inputs:
+      targetType: inline
+      script: |
+        brew install coreutils
+
   - bash: |
-      export UNO_UITEST_ANDROIDAPK_PATH=$(Pipeline.Workspace)/Android_UITest/com.nventive.uno.ui.demo-Signed.apk
+      export UNO_UITEST_ANDROIDAPK_BASEPATH=$(Pipeline.Workspace)/Android_UITest
       chmod +x $(build.sourcesdirectory)/build/scripts/android-uitest-run.sh
       $(build.sourcesdirectory)/build/scripts/android-uitest-run.sh
     displayName: Run Android Tests
