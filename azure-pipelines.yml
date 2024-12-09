@@ -218,8 +218,9 @@ stages:
   jobs:
   - template: build/stage-uitests-ios.yml
 
-- stage: Android_Tests
-  displayName: 'Android Tests'
-  dependsOn: []
-  jobs:
-  - template: build/stage-uitests-android.yml
+# Disable for System.UI kept in front
+# - stage: Android_Tests
+#   displayName: 'Android Tests'
+#   dependsOn: []
+#   jobs:
+#   - template: build/stage-uitests-android.yml
