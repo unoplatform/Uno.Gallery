@@ -55,14 +55,14 @@
 
 		<!--
 		Uncomment to use skia rendering
-		<UseSkiaRendering>true</UseSkiaRendering>
 		-->
+		<UseSkiaRendering>true</UseSkiaRendering>
 	
 		<IsSkiaWasm Condition="'$(UseSkiaRendering)'=='true' AND '$(TargetFramework)'=='net9.0-browserwasm'">true</IsSkiaWasm>
 		<IsSkiaWasm Condition="'$(IsSkiaWasm)'==''">false</IsSkiaWasm>
 		<IsSkiaAndroid Condition="'$(UseSkiaRendering)'=='true' AND '$(TargetFramework)'=='net9.0-android'">true</IsSkiaAndroid>
 		<IsSkiaAndroid Condition="'$(IsSkiaAndroid)'==''">false</IsSkiaAndroid>
-		<IsSkiaUIKit Condition="'$(UseSkiaRendering)'=='true' AND ('$(TargetFramework)'=='net8.0-ios' OR '$(TargetFramework)'=='net8.0-maccatalyst')">true</IsSkiaUIKit>
+		<IsSkiaUIKit Condition="'$(UseSkiaRendering)'=='true' AND ('$(TargetFramework)'=='net9.0-ios' OR '$(TargetFramework)'=='net9.0-maccatalyst')">true</IsSkiaUIKit>
 		<IsSkiaUIKit Condition="'$(IsSkiaUIKit)'==''">false</IsSkiaUIKit>
 		<UnoFeatures>
 			Material;
