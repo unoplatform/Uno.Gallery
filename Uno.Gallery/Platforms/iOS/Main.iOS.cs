@@ -1,5 +1,4 @@
 using UIKit;
-using Uno.UI.Runtime.Skia.AppleUIKit;
 
 namespace Uno.Gallery
 {
@@ -13,7 +12,7 @@ namespace Uno.Gallery
 			// you can specify it here.
 			UIApplication.Main(args, null, typeof(App));
 #else
-			var host = new PlatformHost(() => new App());
+			var host = new Uno.UI.Runtime.Skia.AppleUIKit.PlatformHost(() => new App());
 			await host.Run();
 #endif
 		}
