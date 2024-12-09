@@ -62,6 +62,13 @@ stages:
           ArtifactName: Android
           BuildForPlayStore: True
           VersionCodeOffset: 1
+          UseSkiaRendering: false
+        Android_Skia_Store:
+          ApplicationPlatform: AnyCPU
+          ArtifactName: Android
+          BuildForPlayStore: True
+          VersionCodeOffset: 1
+          UseSkiaRendering: true
 
     pool:
       vmImage: windows-2022
@@ -218,7 +225,7 @@ stages:
   jobs:
   - template: build/stage-uitests-ios.yml
 
-# Disabled for ANR issue on the hosted agents with System.UI
+# Disabled for ANR issue on the hosted agents with System.UI    
 # - stage: Android_Tests
 #   displayName: 'Android Tests'
 #   dependsOn: []
