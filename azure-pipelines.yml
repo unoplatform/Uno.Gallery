@@ -218,8 +218,9 @@ stages:
   jobs:
   - template: build/stage-uitests-ios.yml
 
-- stage: Android_Tests
-  displayName: 'Android Tests'
-  dependsOn: []
-  jobs:
-  - template: build/stage-uitests-android.yml
+# Disabled for ANR issue on the hosted agents with System.UI
+# - stage: Android_Tests
+#   displayName: 'Android Tests'
+#   dependsOn: []
+#   jobs:
+#   - template: build/stage-uitests-android.yml
