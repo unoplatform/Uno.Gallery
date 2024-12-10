@@ -8,8 +8,6 @@
 		<string>Uno.Gallery</string>
 		<key>CFBundleDisplayName</key>
 		<string>Uno.Gallery</string>
-		<key>CFBundleIdentifier</key>
-		<string>com.nventive.uno.gallery</string>
 		<key>CFBundleShortVersionString</key>
 		<string>1.0</string>
 		<key>CFBundleVersion</key>
