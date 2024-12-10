@@ -55,7 +55,6 @@ stages:
   jobs:
   - job: Windows_Android_Mobile
     strategy:
-      maxParallel: 3
       matrix:
         Android_Store:
           ApplicationPlatform: AnyCPU
@@ -126,7 +125,6 @@ stages:
   - job: macOS_netcore
     timeoutInMinutes: 90
     strategy:
-      maxParallel: 2
       matrix:
         iOS:
           BuildTargetFramework: net9.0-ios
