@@ -61,4 +61,4 @@ steps:
   retryCountOnTaskFailure: 3
   condition: always()
   inputs:
-    ArtifactName: $(ArtifactName)
+    ArtifactName: $(ArtifactName)-is_skia_$(UseSkiaRendering)
