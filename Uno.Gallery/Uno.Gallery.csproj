@@ -22,7 +22,17 @@
 		<!-- Display name -->
 		<ApplicationTitle>Gallery</ApplicationTitle>
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.Gallery</ApplicationId>
+		<ApplicationId>uno.platform.gallery</ApplicationId>
+
+		<ApplicationId Condition=" '$(TargetFramework)' == 'net9.0-android' AND '$(UseSkiaRendering)' != 'true' ">com.nventive.uno.ui.demo</ApplicationId>
+		<ApplicationId Condition=" '$(TargetFramework)' == 'net9.0-android' AND '$(UseSkiaRendering)' == 'true' ">uno.platform.gallery.skia</ApplicationId>
+
+		<ApplicationId Condition=" '$(TargetFramework)' == 'net9.0-ios' AND '$(UseSkiaRendering)' != 'true' ">com.nventive.uno.gallery</ApplicationId>
+		<ApplicationId Condition=" '$(TargetFramework)' == 'net9.0-ios' AND '$(UseSkiaRendering)' == 'true' ">uno.platform.gallery.skia</ApplicationId>
+
+		<ApplicationId Condition=" '$(TargetFramework)' == 'net9.0-maccatalyst' AND '$(UseSkiaRendering)' != 'true' ">com.nventive.uno.gallery</ApplicationId>
+		<ApplicationId Condition=" '$(TargetFramework)' == 'net9.0-maccatalyst' AND '$(UseSkiaRendering)' == 'true' ">uno.platform.gallery.skia</ApplicationId>
+
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
 		<ApplicationVersion>1</ApplicationVersion>
