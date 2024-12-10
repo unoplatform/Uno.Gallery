@@ -67,4 +67,3 @@ steps:
           set-content $a }
     displayName: 'Adjust info.plist bundle name'
     condition: startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries')
-=
