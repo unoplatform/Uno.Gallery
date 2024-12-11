@@ -153,6 +153,9 @@
 
 		<CodesignProvision>Uno Gallery (Catalyst)</CodesignProvision>
 		<CodesignProvision Condition="$(BUILD_SOURCEBRANCH.StartsWith('refs/heads/canaries'))">Uno Gallery Canary (Catalyst)</CodesignProvision>
+
+		<CodesignProvision Condition=" '$(UseSkiaRendering)' == 'true' ">Uno Gallery Skia (Catalyst)</CodesignProvision>
+		<CodesignProvision Condition=" '$(UseSkiaRendering)' == 'true' AND $(BUILD_SOURCEBRANCH.StartsWith('refs/heads/canaries'))">Uno Gallery Skia Canary (Catalyst)</CodesignProvision>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='Release' and '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'android'">
