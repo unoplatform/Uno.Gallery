@@ -8,8 +8,7 @@ steps:
   condition: eq(variables['IsCanaryBranch'], true)
   retryCountOnTaskFailure: 3
   inputs:
-    packageType: runtime
-    version: 6.0.0
+    version: 9.0.101
 
 - template: templates/canary-updater.yml
 - template: templates/gitversion.yml
