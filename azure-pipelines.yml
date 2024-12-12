@@ -245,13 +245,20 @@ stages:
   jobs:
   - job: WebAssembly
     timeoutInMinutes: 60
+
     pool:
       vmImage: ubuntu-latest
-  
-    container: unoplatform/wasm-build:3.0
-  
+
+    strategy:
+      matrix:
+        Skia:
+          ArtifactName: WASM-DOM
+          UseSkiaRendering: true
+        DOM:
+          ArtifactName: WASM-Skia
+          UseSkiaRendering: false
+
     variables:
-      ArtifactName: WASM
       SkipUnknownFrameworks: true
 
     steps:
