@@ -33,5 +33,5 @@
   condition: always()
   retryCountOnTaskFailure: 3
   inputs:
-    PathtoPublish: '$(Agent.ArtifactStagingDirectory)'
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: $(ArtifactName)-logs
