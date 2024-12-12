@@ -4,7 +4,6 @@ steps:
     retryCountOnTaskFailure: 3
     displayName: 'Use .NET Runtime'
     inputs:
-      packageType: runtime
       version: 9.0.101
 
   - task: gitversion/setup@0
