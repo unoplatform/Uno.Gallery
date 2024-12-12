@@ -116,7 +116,15 @@
 		<RuntimeIdentifier>ios-arm64</RuntimeIdentifier>
 	</PropertyGroup>
 
-	<ItemGroup Condition="('$(Configuration)'=='Debug' or '$(IsUiAutomationMappingEnabled)'=='True') and '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'ios' ">
+	<ItemGroup Condition=" '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'ios' ">
+		<TrimmerRootDescriptor Include="Platforms/iOS/LinkerConfig.xml"/>
+	</ItemGroup>
+
+	<ItemGroup Condition="
+			   ('$(Configuration)'=='Debug' or '$(IsUiAutomationMappingEnabled)'=='True')
+			   AND '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'ios'
+			   AND $([MSBuild]::VersionLessThan($([MSBuild]::GetTargetFrameworkVersion($(TargetFramework))), '9.0'))
+			   ">
 		<PackageReference Include="Xamarin.TestCloud.Agent" />
 	</ItemGroup>
 
