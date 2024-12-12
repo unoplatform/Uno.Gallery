@@ -253,10 +253,10 @@ stages:
       matrix:
         Skia:
           ArtifactName: WASM-DOM
-          UseSkiaRendering: true
+          UseSkiaRendering: false
         DOM:
           ArtifactName: WASM-Skia
-          UseSkiaRendering: false
+          UseSkiaRendering: true
 
     variables:
       SkipUnknownFrameworks: true

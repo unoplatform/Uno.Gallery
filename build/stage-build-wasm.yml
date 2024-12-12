@@ -20,7 +20,7 @@
 
 - bash: |
     dotnet publish Uno.Gallery/Uno.Gallery.csproj -c Release -f net9.0-browserwasm -p:UseSkiaRendering=$(UseSkiaRendering) -p:InformationalVersion=$(GitVersion.InformationalVersion) -o "$(Agent.TempDirectory)/wasm-publish" -bl:$(Build.ArtifactStagingDirectory)/wasm-dom.binlog
-  displayName: 'Builds Wasm+DOM'
+  displayName: 'Builds Wasm $(ArtifactName)'
 
 - task: PublishBuildArtifacts@1
   condition: always()
