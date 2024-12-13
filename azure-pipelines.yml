@@ -132,24 +132,28 @@ stages:
           ApplicationBuildNumberOffset: 50
           BuildCommand: publish
           UseSkiaRendering: false
+          VariantName: Native
         Catalyst:
           BuildTargetFramework: net9.0-maccatalyst
           ArtifactName: Catalyst
           ApplicationBuildNumberOffset: 50
           BuildCommand: build
           UseSkiaRendering: false
+          VariantName: Native
         iOS_Skia:
           BuildTargetFramework: net9.0-ios
           ArtifactName: iOS-mobile
           ApplicationBuildNumberOffset: 50
           BuildCommand: publish
           UseSkiaRendering: true
+          VariantName: Skia
         Catalyst_Skia:
           BuildTargetFramework: net9.0-maccatalyst
           ArtifactName: Catalyst
           ApplicationBuildNumberOffset: 50
           BuildCommand: build
           UseSkiaRendering: true
+          VariantName: Skia
     pool:
       vmImage: macos-15
   
