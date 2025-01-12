@@ -14,7 +14,11 @@ namespace Uno.Gallery.Wasm
 #endif
 		{
 			// Ask the browser to preload these fonts to avoid relayouting content
+#if IS_WASM_SKIA
+			FontFamilyHelper.PreloadAsync("Symbols", default, default, default);
+#else
 			FontFamilyHelper.PreloadAsync("Symbols");
+#endif
 
 #if IS_WASM_SKIA
 			var host = new Uno.UI.Runtime.Skia.WebAssembly.Browser.PlatformHost(() => _app = new App());
