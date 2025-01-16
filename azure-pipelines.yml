@@ -42,7 +42,7 @@ variables:
   IsLightBuild: $[eq(variables['Build.Reason'], 'PullRequest')]
   IsCanaryBranch: $[startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries/')]
 
-  XCODE_ROOT: '/Applications/Xcode_16.app'
+  XCODE_ROOT: '/Applications/Xcode_16.1.app'
   XCODE_ROOT_UITESTS: '/Applications/Xcode_15.3.app'
 
   # Required to about trashing azdo hosted agents
@@ -132,24 +132,28 @@ stages:
           ApplicationBuildNumberOffset: 50
           BuildCommand: publish
           UseSkiaRendering: false
+          VariantName: Native
         Catalyst:
           BuildTargetFramework: net9.0-maccatalyst
           ArtifactName: Catalyst
           ApplicationBuildNumberOffset: 50
           BuildCommand: build
           UseSkiaRendering: false
+          VariantName: Native
         iOS_Skia:
           BuildTargetFramework: net9.0-ios
           ArtifactName: iOS-mobile
           ApplicationBuildNumberOffset: 50
           BuildCommand: publish
           UseSkiaRendering: true
+          VariantName: Skia
         Catalyst_Skia:
           BuildTargetFramework: net9.0-maccatalyst
           ArtifactName: Catalyst
           ApplicationBuildNumberOffset: 50
           BuildCommand: build
           UseSkiaRendering: true
+          VariantName: Skia
     pool:
       vmImage: macos-15
   
@@ -245,13 +249,20 @@ stages:
   jobs:
   - job: WebAssembly
     timeoutInMinutes: 60
+
     pool:
       vmImage: ubuntu-latest
-  
-    container: unoplatform/wasm-build:3.0
-  
+
+    strategy:
+      matrix:
+        Skia:
+          ArtifactName: WASM-DOM
+          UseSkiaRendering: false
+        DOM:
+          ArtifactName: WASM-Skia
+          UseSkiaRendering: true
+
     variables:
-      ArtifactName: WASM
       SkipUnknownFrameworks: true
 
     steps:

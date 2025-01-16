@@ -19,23 +19,19 @@
 - template: templates/canary-updater.yml
 
 - bash: |
-    dotnet publish Uno.Gallery/Uno.Gallery.csproj -c Release -f net9.0-browserwasm -p:UseSkiaRendering=false -p:InformationalVersion=$(GitVersion.InformationalVersion) -o "$(Agent.TempDirectory)/wasm-dom-publish" -bl:$(Build.ArtifactStagingDirectory)/wasm.binlog
-  displayName: 'Builds Wasm+DOM'
+    dotnet publish Uno.Gallery/Uno.Gallery.csproj -c Release -f net9.0-browserwasm -p:UseSkiaRendering=$(UseSkiaRendering) -p:InformationalVersion=$(GitVersion.InformationalVersion) -o "$(Agent.TempDirectory)/wasm-publish" -bl:$(Build.ArtifactStagingDirectory)/wasm-dom.binlog
+  displayName: 'Builds Wasm $(ArtifactName)'
 
 - task: PublishBuildArtifacts@1
   condition: always()
   retryCountOnTaskFailure: 3
   inputs:
-    PathtoPublish: '$(Agent.TempDirectory)/wasm-dom-publish/wwwroot'
+    PathtoPublish: '$(Agent.TempDirectory)/wasm-publish/wwwroot'
     ArtifactName: $(ArtifactName)
 
-- bash: |
-    dotnet publish Uno.Gallery/Uno.Gallery.csproj -c Release -f net9.0-browserwasm -p:UseSkiaRendering=true -p:InformationalVersion=$(GitVersion.InformationalVersion) -o "$(Agent.TempDirectory)/wasm-skia-publish" -bl:$(Build.ArtifactStagingDirectory)/wasm.binlog
-  displayName: 'Builds Wasm+Skia'
-
 - task: PublishBuildArtifacts@1
   condition: always()
   retryCountOnTaskFailure: 3
   inputs:
-    PathtoPublish: '$(Agent.TempDirectory)/wasm-skia-publish/wwwroot'
-    ArtifactName: $(ArtifactName)-skia
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: $(ArtifactName)-logs

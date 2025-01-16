@@ -8,24 +8,7 @@ steps:
   parameters:
     UnoCheckParameters: '--tfm net9.0-ios --tfm net9.0-maccatalyst'
 
-- template: templates/dotnet-install-windows.yml
-  parameters:
-    UnoCheckParameters: '--tfm net9.0-ios --tfm net9.0-maccatalyst'
-
 - template: templates/canary-updater.yml
-
-- task: DownloadSecureFile@1
-  name: keyStore
-  displayName: "Download keystore from secure files"
-  inputs:
-    secureFile: nventive.jks
-
-- task: UseDotNet@2
-  condition: and(succeeded(), eq(variables['IsCanaryBranch'], true))
-  retryCountOnTaskFailure: 3
-  inputs:
-    packageType: runtime
-    version: 6.0.0
 
 - template: templates/gitversion.yml
 
@@ -59,6 +42,12 @@ steps:
 
 - task: PublishBuildArtifacts@1
   retryCountOnTaskFailure: 3
+  condition: succeeded()
+  inputs:
+    ArtifactName: $(ArtifactName)-$(VariantName)
+
+- task: PublishBuildArtifacts@1
+  retryCountOnTaskFailure: 3
   condition: always()
   inputs:
-    ArtifactName: $(ArtifactName)-is_skia_$(UseSkiaRendering)
+    ArtifactName: $(ArtifactName)-$(VariantName)-logs

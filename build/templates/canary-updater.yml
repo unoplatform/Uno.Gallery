@@ -1,11 +1,5 @@
 
 steps:
-  - task: UseDotNet@2
-    displayName: 'Use .NET'
-    inputs:
-      packageType: 'sdk'
-      version: '9.0.100'
-
   - task: unoplatformCanaryUpdater@1
     displayName: 'Canary Update (dev)'
     condition: startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries/dev')

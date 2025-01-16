@@ -1,3 +1,4 @@
+using Microsoft.UI.Text;
 using System;
 using Uno.UI.Xaml.Media;
 
@@ -14,8 +15,12 @@ namespace Uno.Gallery.Wasm
 #endif
 		{
 			// Ask the browser to preload these fonts to avoid relayouting content
+#if IS_WASM_SKIA
 			// Disabled https://github.com/unoplatform/uno-private/issues/777
-			// FontFamilyHelper.PreloadAsync("Symbols");
+			// FontFamilyHelper.PreloadAsync("Symbols", FontWeights.Normal, Windows.UI.Text.FontStretch.Normal, Windows.UI.Text.FontStyle.Normal);
+#else
+			FontFamilyHelper.PreloadAsync("Symbols");
+#endif
 
 #if IS_WASM_SKIA
 			var host = new Uno.UI.Runtime.Skia.WebAssembly.Browser.PlatformHost(() => _app = new App());

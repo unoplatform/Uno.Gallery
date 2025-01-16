@@ -1,6 +1,6 @@
 parameters:
-  DotNetVersion: '9.0.100'
-  UnoCheck_Version: '1.27.0-dev.8'
+  DotNetVersion: '9.0.101'
+  UnoCheck_Version: '1.28.0-dev.29'
   installWorkloads: true
   UnoCheckParameters: ''
 
