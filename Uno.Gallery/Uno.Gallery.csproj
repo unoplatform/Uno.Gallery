@@ -190,4 +190,13 @@
 			<_WasmLinkStepArgs Include="@(_EmccLinkStepArgs)" />
 		</ItemGroup>
 	</Target>
+
+	<Target Name="AdjustStrip" BeforeTargets="_WasmCommonPrepareForWasmBuildNative">
+		<PropertyGroup>
+			<!-- Enable debug symbols for release mode to profiling -->
+			<WasmNativeStrip>false</WasmNativeStrip>
+			<WasmNativeDebugSymbols>true</WasmNativeDebugSymbols>
+		</PropertyGroup>
+	</Target>
+
 </Project>
