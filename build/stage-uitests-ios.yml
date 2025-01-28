@@ -14,7 +14,7 @@
 
   - template: templates/dotnet-install-mac.yml
     parameters:
-      UnoCheckParameters: '--tfm net9.0-ios'
+      UnoCheckParameters: '--tfm net8.0-ios'
 
   - template: templates/xcode-select.yml
     parameters:
@@ -33,7 +33,7 @@
   - task: CopyFiles@2
     displayName: Copy Build Output
     inputs:
-      SourceFolder: $(build.sourcesdirectory)/Uno.Gallery/bin/Release/net9.0-ios/iossimulator-x64/Uno.Gallery.app
+      SourceFolder: $(build.sourcesdirectory)/Uno.Gallery/bin/Release/net8.0-ios/iossimulator-x64/Uno.Gallery.app
       Contents: '**'
       TargetFolder: $(Build.ArtifactStagingDirectory)/Uno.Gallery.app
 
