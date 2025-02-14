@@ -19,7 +19,7 @@
 - template: templates/canary-updater.yml
 
 - bash: |
-    dotnet publish Uno.Gallery/Uno.Gallery.csproj -c Release -f net9.0-browserwasm -p:UseSkiaRendering=$(UseSkiaRendering) -p:InformationalVersion=$(GitVersion.InformationalVersion) -o "$(Agent.TempDirectory)/wasm-publish" -bl:$(Build.ArtifactStagingDirectory)/wasm-dom.binlog
+    dotnet publish Uno.Gallery/Uno.Gallery.csproj -c Release -f net9.0-browserwasm -p:UseSkiaRendering=$(UseSkiaRendering) -p:InformationalVersion=$(GitVersion.InformationalVersion) -o "$(Agent.TempDirectory)/wasm-publish" -bl:$(Build.ArtifactStagingDirectory)/wasm-$(ArtifactName).binlog
   displayName: 'Builds Wasm $(ArtifactName)'
 
 - task: PublishBuildArtifacts@1

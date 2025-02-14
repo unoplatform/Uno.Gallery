@@ -255,10 +255,10 @@ stages:
 
     strategy:
       matrix:
-        Skia:
+        DOM:
           ArtifactName: WASM-DOM
           UseSkiaRendering: false
-        DOM:
+        Skia:
           ArtifactName: WASM-Skia
           UseSkiaRendering: true
 
