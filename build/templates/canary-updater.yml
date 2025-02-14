@@ -23,7 +23,7 @@ steps:
       mergeBranch: true
       branchToMerge: master
       nugetUpdaterVersion: '1.1.0'
-      nugetVersion: 'dev'
+      nugetVersion: 'feature.skia-everywhere'
       packageAuthor: 'unoplatform,uno platform'
       summaryFile: '$(Build.ArtifactStagingDirectory)/Summary.md'
       resultFile: '$(Build.ArtifactStagingDirectory)/Results.json'
