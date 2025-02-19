@@ -72,9 +72,9 @@
 			Skia;
 			Svg;
 		</UnoFeatures>
-		<UnoFeatures Condition="$(IsSkiaWasm)">$(UnoFeatures)WebAssemblySkiaRenderer;</UnoFeatures>
-		<UnoFeatures Condition="$(IsSkiaAndroid)">$(UnoFeatures)AndroidSkiaRenderer;</UnoFeatures>
-		<UnoFeatures Condition="$(IsSkiaUIKit)">$(UnoFeatures)AppleUIKitSkiaRenderer;</UnoFeatures>
+		<UnoFeatures Condition="$(IsSkiaWasm)">$(UnoFeatures)SkiaRenderer;</UnoFeatures>
+		<UnoFeatures Condition="$(IsSkiaAndroid)">$(UnoFeatures)SkiaRenderer;</UnoFeatures>
+		<UnoFeatures Condition="$(IsSkiaUIKit)">$(UnoFeatures)SkiaRenderer;</UnoFeatures>
 		<UnoFeatures Condition="!$(IsSkiaWasm) AND !$(IsSkiaAndroid)">$(UnoFeatures)MediaElement;</UnoFeatures>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<DefaultItemExcludes Condition="$(IsSkiaWasm) OR $(IsSkiaAndroid)">$(DefaultItemExcludes);**\MediaPlayer*.*</DefaultItemExcludes>
