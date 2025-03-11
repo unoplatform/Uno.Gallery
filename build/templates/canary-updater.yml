@@ -4,7 +4,7 @@ steps:
     displayName: 'Use .NET'
     inputs:
       packageType: 'sdk'
-      version: '9.0.100'
+      version: '9.0.200'
 
   - task: unoplatformCanaryUpdater@1
     displayName: 'Canary Update (dev)'
@@ -15,7 +15,7 @@ steps:
       usePrivateFeed: false
       mergeBranch: true
       branchToMerge: master
-      nugetUpdaterVersion: '1.1.0'
+      nugetUpdaterVersion: '1.2.10'
       packageAuthor: 'nventive,uno platform'
       summaryFile: '$(Build.ArtifactStagingDirectory)/Canary.md'
 
@@ -28,7 +28,7 @@ steps:
       useNuGetOrg: true
       mergeBranch: true
       branchToMerge: master
-      nugetUpdaterVersion: '1.1.0'
+      nugetUpdaterVersion: '1.2.10'
       nugetVersion: feature.5x,dev
       packageAuthor: 'nventive,unoplatform,uno platform'
       summaryFile: '$(Build.ArtifactStagingDirectory)/Summary.md'
