@@ -26,7 +26,6 @@
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
 		<ApplicationVersion>1</ApplicationVersion>
-		<WindowsSdkPackageVersion>10.0.19041.38</WindowsSdkPackageVersion> 
 		<!--
 		If you encounter this error message:
 
