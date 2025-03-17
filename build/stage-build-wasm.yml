@@ -4,17 +4,11 @@
   fetchDepth: 0
   persistCredentials: true
 
-- task: UseDotNet@2
-  condition: eq(variables['IsCanaryBranch'], true)
-  inputs:
-    packageType: runtime
-    version: 2.2.x
-
-- template: templates/gitversion.yml
-
 - template: templates/dotnet-install-linux.yml
   parameters:
     UnoCheckParameters: '--tfm net9.0-browserwasm'
+
+- template: templates/gitversion.yml
 
 - template: templates/canary-updater.yml
 
