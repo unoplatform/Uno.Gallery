@@ -1,11 +1,5 @@
 
 steps:
-  - task: UseDotNet@2
-    retryCountOnTaskFailure: 3
-    displayName: 'Use .NET Runtime'
-    inputs:
-      version: 9.0.201
-
   - task: gitversion/setup@0
     retryCountOnTaskFailure: 3
     inputs:
