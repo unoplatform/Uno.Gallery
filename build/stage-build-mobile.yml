@@ -20,14 +20,14 @@ steps:
 - bash: |
     cd $(build.sourcesdirectory)/Uno.Gallery
     echo "BUILD_SOURCEBRANCH: $BUILD_SOURCEBRANCH"
-    dotnet $(BuildCommand) -v:n -f $(BuildTargetFramework) -p:TargetFrameworkOverride=$(BuildTargetFramework) -c Release /p:ArchiveOnBuild=true /bl:$(build.artifactstagingdirectory)/build-$(BuildTargetFramework).binlog "/p:InformationalVersion=$(GitVersion.InformationalVersion)"
+    dotnet $(BuildCommand) -v:n -f $(BuildTargetFramework) -p:TargetFrameworkOverride=$(BuildTargetFramework) -c Release /p:ArchiveOnBuild=true /bl:$(build.artifactstagingdirectory)/build-$(BuildTargetFramework).binlog "/p:InformationalVersion=$(NBGV_InformationalVersion)"
   displayName: Build project for Release - $(BuildTargetFramework)
   condition: and(succeeded(), eq(variables['System.PullRequest.IsFork'],'False'))
 
 - bash: |
     cd $(build.sourcesdirectory)/Uno.Gallery
     echo "BUILD_SOURCEBRANCH: $BUILD_SOURCEBRANCH"
-    dotnet build -f $(BuildTargetFramework) -p:TargetFrameworkOverride=$(BuildTargetFramework) -c Release /bl:$(build.artifactstagingdirectory)/build-$(BuildTargetFramework).binlog "/p:InformationalVersion=$(GitVersion.InformationalVersion)"
+    dotnet build -f $(BuildTargetFramework) -p:TargetFrameworkOverride=$(BuildTargetFramework) -c Release /bl:$(build.artifactstagingdirectory)/build-$(BuildTargetFramework).binlog "/p:InformationalVersion=$(NBGV_InformationalVersion)"
   displayName: Build project for Release - $(BuildTargetFramework)
   condition: and(succeeded(), eq(variables['System.PullRequest.IsFork'],'True'))
 

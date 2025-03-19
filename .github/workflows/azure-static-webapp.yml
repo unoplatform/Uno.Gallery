@@ -37,21 +37,15 @@ jobs:
           dotnet workload install wasm-tools
         name: Setup Workloads
 
-      - name: Install GitVersion
-        uses: gittools/actions/gitversion/setup@v0.9.7
+      - uses: dotnet/nbgv@f088059084cb5d872e9d1a994433ca6440c2bf72 # v0.4.2
+        id: nbgv
         with:
-          versionSpec: '5.10.3'
-
-      - name: Determine Version
-        id: gitversion
-        uses: gittools/actions/gitversion/execute@v0.9.7
-        with:
-          useConfigFile: true
-          configFilePath: build/gitversion.yml
+          toolVersion: 3.6.139
+          setAllVars: true
 
       - run: |
           cd Uno.Gallery
-          dotnet publish -c Release -f net9.0-browserwasm "/p:PackageVersion=${{ steps.gitversion.outputs.fullSemVer }}" /bl:../binlogs/output.binlog
+          dotnet publish -c Release -f net9.0-browserwasm "/p:PackageVersion=${{ steps.nbgv.outputs.SemVer2 }}" /bl:../binlogs/output.binlog
         name: Build Gallery
 
       - uses: actions/upload-artifact@v4

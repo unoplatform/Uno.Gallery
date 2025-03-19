@@ -1,15 +1,18 @@
-
 steps:
-  - task: gitversion/setup@0
-    retryCountOnTaskFailure: 3
-    inputs:
-      versionSpec: '5.10.3'
+- pwsh: |
+    dotnet tool uninstall nbgv -g
+    dotnet tool install nbgv -g --version 3.6.139
+    nbgv cloud -a
+  displayName: Version with NBGV
+  name: NBGV
 
-  - task: gitversion/execute@0
-    inputs:
-      updateAssemblyInfo: 'False'
-      useConfigFile: true
-      configFilePath: build/gitversion.yml
-    displayName: Use GitVersion
+- pwsh: |
+    $InformationalVersion="$(NBGV_SemVer2)+$(NBGV_GitCommitId)-$(NBGV_BuildingRef)".Replace("refs/heads/","").Replace("/","-")
+    echo "##vso[task.setvariable variable=NBGV_InformationalVersion;]$InformationalVersion"
+    echo "##vso[task.setvariable variable=NBGV_InformationalVersion;isOutput=true;]$InformationalVersion"
+    echo "Informational Version: $InformationalVersion"
+
+  displayName: Generate Informational Version
+  name: NBGV_InformationalVersion
     
-  - template: set-app-versions.yml
+- template: set-app-versions.yml
