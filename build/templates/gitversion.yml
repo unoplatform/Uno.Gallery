@@ -1,4 +1,9 @@
 steps:
+- task: UseDotNet@2
+  inputs:
+    packageType: runtime
+    version: 9.0.1
+
 - pwsh: |
     dotnet tool uninstall nbgv -g
     dotnet tool install nbgv -g --version 3.6.139
