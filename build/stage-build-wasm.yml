@@ -1,10 +1,4 @@
 ﻿steps:
-- task: UseDotNet@2
-  condition: eq(variables['IsCanaryBranch'], true)
-  inputs:
-    packageType: runtime
-    version: 2.2.x
-
 - template: templates/gitversion.yml
 
 - template: templates/dotnet-install-linux.yml
