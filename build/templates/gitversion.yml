@@ -1,8 +1,8 @@
 steps:
 - task: UseDotNet@2
   inputs:
-    packageType: runtime
-    version: 9.0.1
+    packageType: sdk
+    version: 9.0.200
 
 - pwsh: |
     dotnet tool uninstall nbgv -g
