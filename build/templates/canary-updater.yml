@@ -35,6 +35,9 @@ steps:
   #  condition: startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries/skia-everywhere')
   #  displayName: 'Use uno features source'
 
+  - pwsh: |
+        dotnet nuget add source --name skia-eap "https://aka.ms/skiasharp-eap/index.json"
+    displayName: Add SkiaSharp EAP feed
 
   - powershell: |
       cat global.json
