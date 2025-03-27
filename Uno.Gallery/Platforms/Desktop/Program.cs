@@ -14,7 +14,11 @@ public class Program
             .UseX11()
             .UseLinuxFrameBuffer()
             .UseMacOS()
+#if HAS_SKIA_RENDERER
+            .UseWin32()
+#else
             .UseWindows()
+#endif
             .Build();
 
         host.Run();
