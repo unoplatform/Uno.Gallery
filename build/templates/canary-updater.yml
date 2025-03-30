@@ -23,11 +23,12 @@ steps:
       mergeBranch: true
       branchToMerge: master
       nugetUpdaterVersion: '1.1.0'
-      nugetVersion: 'feature.skia-everywhere'
+      #nugetVersion: 'feature.skia-everywhere'
+      nugetVersion: 'dev'
       packageAuthor: 'unoplatform,uno platform'
       summaryFile: '$(Build.ArtifactStagingDirectory)/Summary.md'
       resultFile: '$(Build.ArtifactStagingDirectory)/Results.json'
-      additionalPublicSources: 'https://pkgs.dev.azure.com/uno-platform/1dd81cbd-cb35-41de-a570-b0df3571a196/_packaging/Features/nuget/v3/index.json'
+      # additionalPublicSources: 'https://pkgs.dev.azure.com/uno-platform/1dd81cbd-cb35-41de-a570-b0df3571a196/_packaging/Features/nuget/v3/index.json'
 
   #- pwsh: |
   #    cd $(build.sourcesdirectory)
