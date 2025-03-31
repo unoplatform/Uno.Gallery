@@ -26,6 +26,11 @@ namespace Uno.Gallery.Views.GeneralPages
 		{
 			this.InitializeComponent();
 
+			Loaded += OverviewPage_Loaded;
+		}
+
+		private void OverviewPage_Loaded(object sender, RoutedEventArgs e)
+		{
 			if (FindName("version") is TextBlock tb)
 			{
 				tb.Text = GetAppVersion();
