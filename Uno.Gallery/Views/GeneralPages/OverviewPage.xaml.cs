@@ -25,6 +25,27 @@ namespace Uno.Gallery.Views.GeneralPages
 		public OverviewPage()
 		{
 			this.InitializeComponent();
+
+			if (FindName("version") is TextBlock tb)
+			{
+				tb.Text = GetAppVersion();
+			}
+		}
+
+		private string GetAppVersion()
+		{
+			var application = Application.Current;
+			var assembly = application.GetType().GetTypeInfo().Assembly;
+
+			if (assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>() is AssemblyInformationalVersionAttribute aiva)
+			{
+				return $"Uno Gallery Version {aiva.InformationalVersion}";
+			}
+			else
+			{
+				var version = Package.Current.Id.Version;
+				return $"Uno Gallery Version {version.Major}.{version.Minor}.{version.Build}.{version.Revision}";
+			}
 		}
 	}
 }

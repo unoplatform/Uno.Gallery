@@ -141,7 +141,6 @@
 
 						</StackPanel>
 					</local:OverviewSampleView>
-
 				</StackPanel>
 			</DataTemplate>
 		</local:SamplePageLayout.MaterialTemplate>
@@ -312,6 +311,11 @@
 
 						</StackPanel>
 					</local:OverviewSampleView>
+
+					<TextBlock x:Name="version"
+							   Margin="0,10,0,0"
+							   Foreground="LightGray"
+							   Text="local build" />
 
 				</StackPanel>
 			</DataTemplate>
