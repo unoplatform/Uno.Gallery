@@ -288,8 +288,9 @@ stages:
 #   dependsOn: []
 #   jobs:
 #   - template: build/stage-uitests-android.yml
-  
-- template: build/stage-publish-wasm.yml
-- template: build/stage-publish-ios.yml
-- template: build/stage-publish-catalyst.yml
-- template: build/stage-publish-android.yml
+
+- ${{ if startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries/dev') }}:
+  - template: build/stage-publish-wasm-canary.yml
+  - template: build/stage-publish-ios-canary.yml
+  - template: build/stage-publish-catalyst-canary.yml
+  - template: build/stage-publish-android-canary.yml
