@@ -80,6 +80,7 @@
 						</Grid>
 
 						<ScrollViewer x:Name="PART_ScrollViewer"
+									  IsTabStop="True"
 									  Grid.Row="1">
 							<Grid Padding="0,0,0,24">
 								<Grid.RowDefinitions>
@@ -112,7 +113,8 @@
 									<ScrollViewer HorizontalScrollMode="Enabled"
 												  HorizontalScrollBarVisibility="Hidden"
 												  VerticalScrollBarVisibility="Hidden"
-												  VerticalScrollMode="Disabled">
+												  VerticalScrollMode="Disabled"
+												  IsTabStop="True">
 										<StackPanel x:Name="PART_ScrollingTabs"
 													HorizontalAlignment="Stretch"
 													BorderBrush="{TemplateBinding BorderBrush}"
@@ -320,7 +322,8 @@
 							<ScrollViewer HorizontalScrollMode="Enabled"
 										  HorizontalScrollBarVisibility="Hidden"
 										  VerticalScrollBarVisibility="Hidden"
-										  VerticalScrollMode="Disabled">
+										  VerticalScrollMode="Disabled"
+										  IsTabStop="True">
 								<!-- This is the sticky tabs that appear when we scroll enough. -->
 								<StackPanel x:Name="PART_StickyTabs"
 											Margin="48,0"
