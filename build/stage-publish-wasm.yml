@@ -31,7 +31,7 @@
               is_static_export: false
               verbose: false
               azure_static_web_apps_api_token: '$(SWA_TOKEN)'
-              deployment_environment: 'gallery-dom-canary'
+              deployment_environment: 'canary-dom'
 
   - deployment: 'WebAssembly_Publish_SKIA'
     displayName: 'Publish WebAssembly Skia'
@@ -60,4 +60,4 @@
               is_static_export: false
               verbose: false
               azure_static_web_apps_api_token: '$(SWA_TOKEN)'
-              deployment_environment: 'gallery-skia-canary'
+              deployment_environment: 'canary-skia'
