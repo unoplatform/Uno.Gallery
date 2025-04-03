@@ -290,5 +290,6 @@ stages:
 #   - template: build/stage-uitests-android.yml
   
 - template: build/stage-publish-wasm.yml
-- template: build/stage-publish-apple.yml
+- template: build/stage-publish-ios.yml
+- template: build/stage-publish-catalyst.yml
 - template: build/stage-publish-android.yml
