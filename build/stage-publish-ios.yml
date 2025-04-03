@@ -1,7 +1,7 @@
 ﻿stages:
 - stage: iOS_Publish
   displayName: 'iOS Publish'
-  dependsOn: iOS
+  dependsOn: Apple
 
   jobs:
   - deployment: 'iOS_Publish_Native'

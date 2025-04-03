@@ -1,11 +1,11 @@
 ﻿stages:
-- stage: Apple_Publish
-  displayName: 'Apple Publish'
-  dependsOn: Apple
+- stage: Catalyst_Publish
+  displayName: 'Catalyst Publish'
+  dependsOn: Catalyst
 
   jobs:
-  - deployment: 'Apple_Publish_Native'
-    displayName: 'Publish Apple Native'
+  - deployment: 'Catalyst_Publish_Native'
+    displayName: 'Publish Catalyst Native'
     pool:
       vmImage: ubuntu-latest
 
@@ -31,8 +31,8 @@
               shouldSkipWaitingForProcessing: true
               appSpecificId: 1619130328
 
-  - deployment: 'Apple_Publish_Skia'
-    displayName: 'Publish Apple Skia'
+  - deployment: 'Catalyst_Publish_Skia'
+    displayName: 'Publish Catalyst Skia'
     environment: Uno Gallery
     pool:
       vmImage: ubuntu-latest
@@ -45,7 +45,7 @@
           - download: none
           - task: DownloadPipelineArtifact@2
             inputs:
-              artifactName: 'Apple-mobile-skia'
+              artifactName: 'Catalyst-mobile-skia'
               targetPath: '$(Pipeline.Workspace)/drop'
             displayName: Download artifacts
 
