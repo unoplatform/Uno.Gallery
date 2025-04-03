@@ -6,6 +6,7 @@
   jobs:
   - deployment: 'Android_Publish_Native'
     displayName: 'Publish Android Native'
+    environment: Uno Gallery
     pool:
       vmImage: ubuntu-latest
 
@@ -30,6 +31,7 @@
 
   - deployment: 'Android_Publish_Skia'
     displayName: 'Publish Android Skia'
+    environment: Uno Gallery
     pool:
       vmImage: ubuntu-latest
 

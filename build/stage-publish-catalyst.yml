@@ -33,6 +33,7 @@
 
   - deployment: 'Apple_Publish_Skia'
     displayName: 'Publish Apple Skia'
+    environment: Uno Gallery
     pool:
       vmImage: ubuntu-latest
 

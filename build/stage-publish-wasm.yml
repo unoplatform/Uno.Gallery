@@ -6,6 +6,7 @@
   jobs:
   - deployment: 'WebAssembly_Publish_DOM'
     displayName: 'Publish WebAssembly DOM'
+    environment: Uno Gallery
     pool:
       vmImage: ubuntu-latest
 
@@ -34,6 +35,7 @@
 
   - deployment: 'WebAssembly_Publish_SKIA'
     displayName: 'Publish WebAssembly Skia'
+    environment: Uno Gallery
     pool:
       vmImage: ubuntu-latest
 

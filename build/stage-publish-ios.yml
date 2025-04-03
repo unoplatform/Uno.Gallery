@@ -6,6 +6,7 @@
   jobs:
   - deployment: 'iOS_Publish_Native'
     displayName: 'Publish iOS Native'
+    environment: Uno Gallery
     pool:
       vmImage: ubuntu-latest
 
@@ -32,6 +33,7 @@
 
   - deployment: 'iOS_Publish_Skia'
     displayName: 'Publish iOS Skia'
+    environment: Uno Gallery
     pool:
       vmImage: ubuntu-latest
 
