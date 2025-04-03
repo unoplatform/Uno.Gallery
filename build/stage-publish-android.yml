@@ -25,7 +25,7 @@
           - task: ms-vsclient.google-play.google-play-release.GooglePlayRelease@4
             displayName: 'Play Store Publish'
             inputs:
-              serviceConnection: 'Google Play (Uno Platform)'
+              serviceConnection: 'Uno Platform Google Play'
               applicationId: 'uno.platform.gallery.canary'
               bundleFile: '$(System.DefaultWorkingDirectory)/drop/publish/uno.platform.gallery.canary-Signed.aab'
 
@@ -50,7 +50,7 @@
           - task: ms-vsclient.google-play.google-play-release.GooglePlayRelease@4
             displayName: 'Play Store Publish'
             inputs:
-              serviceConnection: 'Google Play (Uno Platform)'
+              serviceConnection: 'Uno Platform Google Play'
               applicationId: 'uno.platform.gallery.skia_canary'
               bundleFile: '$(System.DefaultWorkingDirectory)/drop/publish/uno.platform.gallery.skia_canary-Signed.aab'
 
