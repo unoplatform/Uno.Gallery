@@ -20,7 +20,7 @@ steps:
 
 - script: |
     cd $(build.sourcesdirectory)/Uno.Gallery
-    dotnet publish -f:net9.0-android -p:TargetFrameworkOverride=net9.0-android -c:Release -p:UseSkiaRendering=$(UseSkiaRendering) "/p:InformationalVersion=$(NBGV_InformationalVersion)" /p:AndroidSigningKeyStore=$(keyStore.secureFilePath) /p:AndroidSigningStorePass=$(AndroidSigningStorePass) /p:AndroidSigningKeyPass=$(AndroidSigningKeyPass) /p:AndroidSigningKeyAlias=$(AndroidSigningKeyAlias) /p:AndroidKeyStore=true /bl:$(build.artifactstagingdirectory)/build-$(BuildForPlayStore).binlog
+    dotnet publish -f:net9.0-android -p:TargetFrameworkOverride=net9.0-android -c:Release -p:UseSkiaRendering=$(UseSkiaRendering) "/p:InformationalVersion=$(NBGV_InformationalVersion)" /p:AndroidKeyStore=true /bl:$(build.artifactstagingdirectory)/build-$(BuildForPlayStore).binlog
   displayName: 'Build Android Package'
   condition: and(succeeded(), eq(variables['System.PullRequest.IsFork'],'False'))
 
