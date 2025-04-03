@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<linker>
+	<assembly fullname="Uno.Gallery" />
+
+	<!-- Begin Skia: required to avoid VTable setup of type microsoft.extensions.dependencyinjection.serviceprovider failed (TypeLoadException) -->
+	<assembly fullname="System.ComponentModel" />
+	<assembly fullname="Microsoft.Extensions.DependencyInjection" />
+	<!-- End Skia -->
+</linker>

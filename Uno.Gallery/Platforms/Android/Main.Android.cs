@@ -9,7 +9,9 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+#if !IS_ANDROID_SKIA
 using Com.Nostra13.Universalimageloader.Core;
+#endif
 using Microsoft.UI.Xaml.Media;
 
 namespace Uno.Gallery.Droid
@@ -27,9 +29,12 @@ namespace Uno.Gallery.Droid
 		public Application(IntPtr javaReference, JniHandleOwnership transfer)
 			: base(() => new App(), javaReference, transfer)
 		{
+#if !IS_ANDROID_SKIA
 			ConfigureUniversalImageLoader();
+#endif
 		}
 
+#if !IS_ANDROID_SKIA
 		private static void ConfigureUniversalImageLoader()
 		{
 			// Create global configuration and initialize ImageLoader with this config
@@ -41,5 +46,6 @@ namespace Uno.Gallery.Droid
 
 			ImageSource.DefaultImageLoader = ImageLoader.Instance.LoadImageAsync;
 		}
+#endif
 	}
 }
