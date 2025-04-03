@@ -1,0 +1,60 @@
+﻿stages:
+- stage: Apple_Publish
+  displayName: 'Apple Publish'
+  dependsOn: Apple
+
+  jobs:
+  - deployment: 'Apple_Publish_Native'
+    displayName: 'Publish Apple Native'
+    pool:
+      vmImage: ubuntu-latest
+
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          # https://github.com/microsoft/azure-pipelines-tasks/issues/17207
+          - download: none
+          - task: DownloadPipelineArtifact@2
+            inputs:
+              artifactName: 'catalyst-native'
+              targetPath: '$(Pipeline.Workspace)/drop'
+            displayName: Download artifacts
+
+          - task: ms-vsclient.app-store.app-store-release.AppStoreRelease@1
+            displayName: 'Publish to the App Store TestFlight track'
+            inputs:
+              serviceEndpoint: 'App Store (uno platform)'
+              appIdentifier: uno.platform.gallery
+              appType: macOS
+              ipaPath: '$(System.DefaultWorkingDirectory)/drop/net9.0-maccatalyst/Uno.Gallery-*.pkg'
+              shouldSkipWaitingForProcessing: true
+              appSpecificId: 1619130328
+
+  - deployment: 'Apple_Publish_Skia'
+    displayName: 'Publish Apple Skia'
+    pool:
+      vmImage: ubuntu-latest
+
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          # https://github.com/microsoft/azure-pipelines-tasks/issues/17207
+          - download: none
+          - task: DownloadPipelineArtifact@2
+            inputs:
+              artifactName: 'Apple-mobile-skia'
+              targetPath: '$(Pipeline.Workspace)/drop'
+            displayName: Download artifacts
+
+          - task: ms-vsclient.app-store.app-store-release.AppStoreRelease@1
+            displayName: 'Publish to the App Store TestFlight track'
+            inputs:
+              serviceEndpoint: 'App Store (uno platform)'
+              appIdentifier: uno.platform.gallery.skia
+              appType: macOS
+              ipaPath: '$(System.DefaultWorkingDirectory)/drop/net9.0-maccatalyst/Uno.Gallery-*.pkg'
+              shouldSkipWaitingForProcessing: true
+              appSpecificId: 6739235480
+

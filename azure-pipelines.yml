@@ -62,12 +62,14 @@ stages:
           BuildForPlayStore: True
           VersionCodeOffset: 1
           UseSkiaRendering: false
+          VariantName: Native
         Android_Skia_Store:
           ApplicationPlatform: AnyCPU
           ArtifactName: Android
           BuildForPlayStore: True
           VersionCodeOffset: 1
           UseSkiaRendering: true
+          VariantName: Skia
 
     pool:
       vmImage: windows-2022
@@ -267,7 +269,7 @@ stages:
 
     steps:
       - template: build/stage-build-wasm.yml
-
+ 
 - stage: WebAssembly_Tests
   displayName: 'WebAssembly Tests'
   dependsOn: []
@@ -286,3 +288,7 @@ stages:
 #   dependsOn: []
 #   jobs:
 #   - template: build/stage-uitests-android.yml
+  
+- template: build/stage-publish-wasm.yml
+- template: build/stage-publish-apple.yml
+- template: build/stage-publish-android.yml

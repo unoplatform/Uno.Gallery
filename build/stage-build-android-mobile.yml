@@ -48,4 +48,4 @@ steps:
   retryCountOnTaskFailure: 3
   condition: always()
   inputs:
-    ArtifactName: android-mobile-is_skia_$(UseSkiaRendering)
+    ArtifactName: android-mobile-$(VariantName)
