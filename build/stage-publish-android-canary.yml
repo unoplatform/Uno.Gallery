@@ -27,7 +27,7 @@
             inputs:
               serviceConnection: 'Uno Platform Google Play'
               applicationId: 'uno.platform.gallery.canary'
-              bundleFile: '$(System.DefaultWorkingDirectory)/drop/publish/uno.platform.gallery.canary-Signed.aab'
+              bundleFile: '$(Pipeline.Workspace)/drop/publish/com.nventive.uno.ui.demo-Signed.aab'
 
   - deployment: 'Android_Publish_Skia'
     displayName: 'Publish Android Skia'
@@ -52,5 +52,5 @@
             inputs:
               serviceConnection: 'Uno Platform Google Play'
               applicationId: 'uno.platform.gallery.skia_canary'
-              bundleFile: '$(System.DefaultWorkingDirectory)/drop/publish/uno.platform.gallery.skia_canary-Signed.aab'
+              bundleFile: '$(Pipeline.Workspace)/drop/publish/uno.platform.gallery.skia_canary-Signed.aab'
 
