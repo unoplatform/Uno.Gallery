@@ -1,11 +1,12 @@
 ﻿stages:
 - stage: Catalyst_Publish
   displayName: 'Catalyst Publish'
-  dependsOn: Catalyst
+  dependsOn: Apple
 
   jobs:
   - deployment: 'Catalyst_Publish_Native'
     displayName: 'Publish Catalyst Native'
+    environment: Uno Gallery
     pool:
       vmImage: ubuntu-latest
 
