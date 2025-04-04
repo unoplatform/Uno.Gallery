@@ -8,7 +8,7 @@
     displayName: 'Publish iOS Native'
     environment: Uno Gallery
     pool:
-      vmImage: ubuntu-latest
+      vmImage: macos-latest
 
     strategy:
       runOnce:
@@ -35,7 +35,7 @@
     displayName: 'Publish iOS Skia'
     environment: Uno Gallery
     pool:
-      vmImage: ubuntu-latest
+      vmImage: macos-latest
 
     strategy:
       runOnce:

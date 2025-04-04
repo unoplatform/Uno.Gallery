@@ -8,7 +8,7 @@
     displayName: 'Publish Catalyst Native'
     environment: Uno Gallery
     pool:
-      vmImage: ubuntu-latest
+      vmImage: macos-latest
 
     strategy:
       runOnce:
@@ -36,7 +36,7 @@
     displayName: 'Publish Catalyst Skia'
     environment: Uno Gallery
     pool:
-      vmImage: ubuntu-latest
+      vmImage: macos-latest
 
     strategy:
       runOnce:
