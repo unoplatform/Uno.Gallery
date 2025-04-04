@@ -74,6 +74,9 @@ stages:
     pool:
       vmImage: windows-2022
 
+    variables:
+    - group: 'UADO Keystore' # Import all variables for the signing from the library in azure devops
+
     steps:
     - template: build/stage-build-android-mobile.yml
 
