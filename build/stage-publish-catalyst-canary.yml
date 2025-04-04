@@ -28,7 +28,7 @@
               serviceEndpoint: 'App Store (uno platform)'
               appIdentifier: uno.platform.gallery
               appType: macOS
-              ipaPath: '$(System.DefaultWorkingDirectory)/drop/net9.0-maccatalyst/Uno.Gallery-*.pkg'
+              ipaPath: '$(Pipeline.Workspace)/drop/net9.0-maccatalyst/Uno.Gallery-*.pkg'
               shouldSkipWaitingForProcessing: true
               appSpecificId: 1619130328
 
@@ -46,7 +46,7 @@
           - download: none
           - task: DownloadPipelineArtifact@2
             inputs:
-              artifactName: 'Catalyst-mobile-skia'
+              artifactName: 'Catalyst-skia'
               targetPath: '$(Pipeline.Workspace)/drop'
             displayName: Download artifacts
 
@@ -56,7 +56,7 @@
               serviceEndpoint: 'App Store (uno platform)'
               appIdentifier: uno.platform.gallery.skia
               appType: macOS
-              ipaPath: '$(System.DefaultWorkingDirectory)/drop/net9.0-maccatalyst/Uno.Gallery-*.pkg'
+              ipaPath: '$(Pipeline.Workspace)/drop/net9.0-maccatalyst/Uno.Gallery-*.pkg'
               shouldSkipWaitingForProcessing: true
               appSpecificId: 6739235480
 
