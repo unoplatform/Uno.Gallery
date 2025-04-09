@@ -114,10 +114,6 @@
 	<PropertyGroup Condition="'$(Configuration)'=='Release' and '$(System_PullRequest_IsFork)'!='True' and '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'ios' ">
 		<CodesignKey>iPhone Distribution</CodesignKey>
 		<RuntimeIdentifier>ios-arm64</RuntimeIdentifier>
-
-		<!-- BEGIN Workaround - AOT fails currently uno-private #648 -->
-		<MtouchUseLlvm>false</MtouchUseLlvm>
-		<!-- END Workaround -->
 	</PropertyGroup>
 
 	<ItemGroup Condition=" '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'ios' ">
