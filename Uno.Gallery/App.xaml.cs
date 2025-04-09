@@ -7,7 +7,10 @@ using Microsoft.UI.Xaml.Controls;
 using ShowMeTheXAML;
 using System;
 using System.Linq;
+using System.Net.Sockets;
+using System.Net;
 using System.Reflection;
+using System.Text;
 using Uno.Extensions;
 using Uno.Gallery.Entities;
 using Uno.Gallery.Helpers;
@@ -22,6 +25,52 @@ using Window = Microsoft.UI.Xaml.Window;
 
 namespace Uno.Gallery
 {
+	public class ConsoleForwarder
+	{
+		public static void Enable(string ip, int port = 1234)
+		{
+			var client = new TcpClient { NoDelay = true };
+			client.Connect(IPAddress.Parse(ip), port);
+
+			var writer = new StreamWriter(client.GetStream(), Encoding.UTF8) { AutoFlush = true };
+			Console.SetOut(writer);
+			Console.SetError(writer);
+
+			Console.WriteLine($"Console forwarding to {ip}:{port} is active!");
+
+			var stayAlive = new Timer(_ =>
+			{
+				Console.WriteLine($"[[[ ALIVE ]]] {DateTime.Now:F} [[[ ALIVE ]]]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                .");
+				writer.Flush();
+			});
+			stayAlive.Change(30_000, 30_000);
+		}
+	}
+
+	public class ConsoleWriter
+	{
+		public static void Enable(string? path = null)
+		{
+			path ??= $"C:\\tmp\\log-{DateTime.Now:yy-MM-dd HH-mm-ss}.txt";
+			var file = File.Open(path, FileMode.CreateNew, FileAccess.Write, FileShare.ReadWrite);
+
+			var writer = new StreamWriter(file, Encoding.UTF8) { AutoFlush = true };
+			Console.SetOut(writer);
+			Console.SetError(writer);
+
+			Console.WriteLine($"Console writing to {path} is active!");
+
+			var stayAlive = new Timer(_ =>
+			{
+				Console.WriteLine($"[[[ ALIVE ]]] {DateTime.Now:F} [[[ ALIVE ]]]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                .");
+				writer.Flush();
+			});
+			stayAlive.Change(30_000, 30_000);
+		}
+	}
+
+
+
 	/// <summary>
 	/// Provides application-specific behavior to supplement the default Application class.
 	/// </summary>
@@ -39,6 +88,9 @@ namespace Uno.Gallery
 		/// </summary>
 		public App()
 		{
+			//ConsoleForwarder.Enable("172.20.100.242");
+			ConsoleWriter.Enable();
+
 			Instance = this;
 
 			ConfigureFeatureFlags();

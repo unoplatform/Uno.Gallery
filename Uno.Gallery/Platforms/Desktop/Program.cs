@@ -14,7 +14,7 @@ public class Program
             .UseX11()
             .UseLinuxFrameBuffer()
             .UseMacOS()
-#if HAS_SKIA_RENDERER
+#if HAS_SKIA_RENDERER || true
             .UseWin32()
 #else
             .UseWindows()

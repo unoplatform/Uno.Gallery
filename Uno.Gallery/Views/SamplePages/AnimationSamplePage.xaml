@@ -98,8 +98,8 @@
 								</VisualStateGroup>
 							</VisualStateManager.VisualStateGroups>
 
-							<smtx:XamlDisplay UniqueKey="AnimationSamplePage_Animation_1"
-											  smtx:XamlDisplayExtensions.Header="RotateTransform + Opacity">
+							<!--<smtx:XamlDisplay UniqueKey="AnimationSamplePage_Animation_1"
+											  smtx:XamlDisplayExtensions.Header="RotateTransform + Opacity">-->
 								<Grid>
 									<Grid.ColumnDefinitions>
 										<ColumnDefinition Width="Auto" />
@@ -140,10 +140,10 @@
 										</Rectangle.RenderTransform>
 									</Rectangle>
 								</Grid>
-							</smtx:XamlDisplay>
+							<!--</smtx:XamlDisplay>
 
 							<smtx:XamlDisplay UniqueKey="AnimationSamplePage_Animation_2"
-											  smtx:XamlDisplayExtensions.Header="ScaleTransform">
+											  smtx:XamlDisplayExtensions.Header="ScaleTransform">-->
 								<Grid>
 									<Grid.ColumnDefinitions>
 										<ColumnDefinition Width="Auto" />
@@ -190,10 +190,10 @@
 										</Rectangle.RenderTransform>
 									</Rectangle>
 								</Grid>
-							</smtx:XamlDisplay>
+							<!--</smtx:XamlDisplay>
 
 							<smtx:XamlDisplay UniqueKey="AnimationSamplePage_Animation_3"
-											  smtx:XamlDisplayExtensions.Header="TranslateTransform 1">
+											  smtx:XamlDisplayExtensions.Header="TranslateTransform 1">-->
 								<Grid>
 									<Grid.ColumnDefinitions>
 										<ColumnDefinition Width="Auto" />
@@ -229,10 +229,10 @@
 										</Rectangle.RenderTransform>
 									</Rectangle>
 								</Grid>
-							</smtx:XamlDisplay>
+							<!--</smtx:XamlDisplay>
 
 							<smtx:XamlDisplay UniqueKey="AnimationSamplePage_Animation_4"
-											  smtx:XamlDisplayExtensions.Header="TranslateTransform 2">
+											  smtx:XamlDisplayExtensions.Header="TranslateTransform 2">-->
 								<Grid>
 									<Grid.ColumnDefinitions>
 										<ColumnDefinition Width="Auto" />
@@ -268,7 +268,1390 @@
 										</Rectangle.RenderTransform>
 									</Rectangle>
 								</Grid>
-							</smtx:XamlDisplay>
+							<!--</smtx:XamlDisplay>-->
+
+
+
+
+
+
+
+
+
+
+
+
+							<!--<smtx:XamlDisplay UniqueKey="AnimationSamplePage_Animation_1"
+											  smtx:XamlDisplayExtensions.Header="RotateTransform + Opacity">-->
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="Auto" />
+									<ColumnDefinition Width="*" />
+								</Grid.ColumnDefinitions>
+
+								<!-- with the following VisualState code
+<VisualState x:Name="Animation_1">
+	<Storyboard>
+
+		<DoubleAnimation Storyboard.TargetName="RotateTransform1"
+							Storyboard.TargetProperty="Angle"
+							From="0"
+							To="360"
+							Duration="0:0:3" />
+
+		<DoubleAnimation Storyboard.TargetName="Rectangle1"
+							Storyboard.TargetProperty="Opacity"
+							From="1"
+							To="0.25"
+							Duration="0:0:2" />
+	</Storyboard>
+</VisualState>
+-->
+								<Button Content="Start"
+											Click="Button_Click_1"
+											Style="{StaticResource FilledButtonStyle}" />
+
+								<Rectangle    Fill="{StaticResource UnoGreenColor}"
+											   Width="40"
+											   Height="40"
+											   Opacity="1"
+											   Grid.Column="1"
+											   RenderTransformOrigin=".5,.5">
+									<Rectangle.RenderTransform>
+										<RotateTransform />
+									</Rectangle.RenderTransform>
+								</Rectangle>
+							</Grid>
+							<!--</smtx:XamlDisplay>
+
+							<smtx:XamlDisplay UniqueKey="AnimationSamplePage_Animation_2"
+											  smtx:XamlDisplayExtensions.Header="ScaleTransform">-->
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="Auto" />
+									<ColumnDefinition Width="*" />
+								</Grid.ColumnDefinitions>
+
+								<!-- with the following VisualState code
+<VisualState x:Name="Animation_2">
+	<Storyboard>
+
+		<DoubleAnimation Storyboard.TargetProperty="ScaleY"
+							Storyboard.TargetName="ScaleTransform1"
+							To="0.5"
+							Duration="0:0:2">
+			<DoubleAnimation.EasingFunction>
+				<BounceEase Bounces="2"
+							Bounciness="3" />
+			</DoubleAnimation.EasingFunction>
+		</DoubleAnimation>
+
+		<DoubleAnimation Storyboard.TargetProperty="ScaleX"
+							Storyboard.TargetName="ScaleTransform1"
+							To="0.5"
+							Duration="0:0:2">
+			<DoubleAnimation.EasingFunction>
+				<BounceEase Bounces="2"
+							Bounciness="3" />
+			</DoubleAnimation.EasingFunction>
+		</DoubleAnimation>
+	</Storyboard>
+</VisualState>
+-->
+								<Button Content="Start"
+											Click="Button_Click_2"
+											Style="{StaticResource FilledButtonStyle}" />
+
+								<Rectangle Fill="{StaticResource UnoBlueColor}"
+											   Width="40"
+											   Height="40"
+											   Grid.Column="1"
+											   RenderTransformOrigin=".5,.5">
+									<Rectangle.RenderTransform>
+										<ScaleTransform />
+									</Rectangle.RenderTransform>
+								</Rectangle>
+							</Grid>
+							<!--</smtx:XamlDisplay>
+
+							<smtx:XamlDisplay UniqueKey="AnimationSamplePage_Animation_3"
+											  smtx:XamlDisplayExtensions.Header="TranslateTransform 1">-->
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="Auto" />
+									<ColumnDefinition Width="*" />
+								</Grid.ColumnDefinitions>
+
+								<!-- with the following VisualState code
+<VisualState x:Name="Animation_3">
+	<Storyboard>
+
+		<DoubleAnimation Storyboard.TargetProperty="X"
+							Storyboard.TargetName="TranslateTransform1"
+							From="0"
+							To="50"
+							Duration="0:0:2">
+			<DoubleAnimation.EasingFunction>
+				<CubicEase EasingMode="EaseInOut" />
+			</DoubleAnimation.EasingFunction>
+		</DoubleAnimation>
+	</Storyboard>
+</VisualState>
+-->
+								<Button Content="Start"
+											Click="Button_Click_3"
+											Style="{StaticResource FilledButtonStyle}" />
+
+								<Rectangle Fill="{StaticResource UnoPurpleColor}"
+											   Width="40"
+											   Height="40"
+											   Grid.Column="1">
+									<Rectangle.RenderTransform>
+										<TranslateTransform />
+									</Rectangle.RenderTransform>
+								</Rectangle>
+							</Grid>
+							<!--</smtx:XamlDisplay>
+
+							<smtx:XamlDisplay UniqueKey="AnimationSamplePage_Animation_4"
+											  smtx:XamlDisplayExtensions.Header="TranslateTransform 2">-->
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="Auto" />
+									<ColumnDefinition Width="*" />
+								</Grid.ColumnDefinitions>
+
+								<!-- with the following VisualState code
+<VisualState x:Name="Animation_4">
+	<Storyboard>
+
+		<DoubleAnimation Storyboard.TargetProperty="Y"
+							Storyboard.TargetName="TranslateTransform2"
+							From="0"
+							To="150"
+							Duration="0:0:2">
+			<DoubleAnimation.EasingFunction>
+				<CubicEase EasingMode="EaseInOut" />
+			</DoubleAnimation.EasingFunction>
+		</DoubleAnimation>
+	</Storyboard>
+</VisualState>
+-->
+								<Button Content="Start"
+											Click="Button_Click_4"
+											Style="{StaticResource FilledButtonStyle}" />
+
+								<Rectangle Fill="{StaticResource UnoRedColor}"
+											   Width="40"
+											   Height="40"
+											   Grid.Column="1">
+									<Rectangle.RenderTransform>
+										<TranslateTransform />
+									</Rectangle.RenderTransform>
+								</Rectangle>
+							</Grid>
+							<!--</smtx:XamlDisplay>-->
+
+							<!--<smtx:XamlDisplay UniqueKey="AnimationSamplePage_Animation_1"
+											  smtx:XamlDisplayExtensions.Header="RotateTransform + Opacity">-->
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="Auto" />
+									<ColumnDefinition Width="*" />
+								</Grid.ColumnDefinitions>
+
+								<!-- with the following VisualState code
+<VisualState x:Name="Animation_1">
+	<Storyboard>
+
+		<DoubleAnimation Storyboard.TargetName="RotateTransform1"
+							Storyboard.TargetProperty="Angle"
+							From="0"
+							To="360"
+							Duration="0:0:3" />
+
+		<DoubleAnimation Storyboard.TargetName="Rectangle1"
+							Storyboard.TargetProperty="Opacity"
+							From="1"
+							To="0.25"
+							Duration="0:0:2" />
+	</Storyboard>
+</VisualState>
+-->
+								<Button Content="Start"
+											Click="Button_Click_1"
+											Style="{StaticResource FilledButtonStyle}" />
+
+								<Rectangle    Fill="{StaticResource UnoGreenColor}"
+											   Width="40"
+											   Height="40"
+											   Opacity="1"
+											   Grid.Column="1"
+											   RenderTransformOrigin=".5,.5">
+									<Rectangle.RenderTransform>
+										<RotateTransform />
+									</Rectangle.RenderTransform>
+								</Rectangle>
+							</Grid>
+							<!--</smtx:XamlDisplay>
+
+							<smtx:XamlDisplay UniqueKey="AnimationSamplePage_Animation_2"
+											  smtx:XamlDisplayExtensions.Header="ScaleTransform">-->
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="Auto" />
+									<ColumnDefinition Width="*" />
+								</Grid.ColumnDefinitions>
+
+								<!-- with the following VisualState code
+<VisualState x:Name="Animation_2">
+	<Storyboard>
+
+		<DoubleAnimation Storyboard.TargetProperty="ScaleY"
+							Storyboard.TargetName="ScaleTransform1"
+							To="0.5"
+							Duration="0:0:2">
+			<DoubleAnimation.EasingFunction>
+				<BounceEase Bounces="2"
+							Bounciness="3" />
+			</DoubleAnimation.EasingFunction>
+		</DoubleAnimation>
+
+		<DoubleAnimation Storyboard.TargetProperty="ScaleX"
+							Storyboard.TargetName="ScaleTransform1"
+							To="0.5"
+							Duration="0:0:2">
+			<DoubleAnimation.EasingFunction>
+				<BounceEase Bounces="2"
+							Bounciness="3" />
+			</DoubleAnimation.EasingFunction>
+		</DoubleAnimation>
+	</Storyboard>
+</VisualState>
+-->
+								<Button Content="Start"
+											Click="Button_Click_2"
+											Style="{StaticResource FilledButtonStyle}" />
+
+								<Rectangle Fill="{StaticResource UnoBlueColor}"
+											   Width="40"
+											   Height="40"
+											   Grid.Column="1"
+											   RenderTransformOrigin=".5,.5">
+									<Rectangle.RenderTransform>
+										<ScaleTransform />
+									</Rectangle.RenderTransform>
+								</Rectangle>
+							</Grid>
+							<!--</smtx:XamlDisplay>
+
+							<smtx:XamlDisplay UniqueKey="AnimationSamplePage_Animation_3"
+											  smtx:XamlDisplayExtensions.Header="TranslateTransform 1">-->
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="Auto" />
+									<ColumnDefinition Width="*" />
+								</Grid.ColumnDefinitions>
+
+								<!-- with the following VisualState code
+<VisualState x:Name="Animation_3">
+	<Storyboard>
+
+		<DoubleAnimation Storyboard.TargetProperty="X"
+							Storyboard.TargetName="TranslateTransform1"
+							From="0"
+							To="50"
+							Duration="0:0:2">
+			<DoubleAnimation.EasingFunction>
+				<CubicEase EasingMode="EaseInOut" />
+			</DoubleAnimation.EasingFunction>
+		</DoubleAnimation>
+	</Storyboard>
+</VisualState>
+-->
+								<Button Content="Start"
+											Click="Button_Click_3"
+											Style="{StaticResource FilledButtonStyle}" />
+
+								<Rectangle Fill="{StaticResource UnoPurpleColor}"
+											   Width="40"
+											   Height="40"
+											   Grid.Column="1">
+									<Rectangle.RenderTransform>
+										<TranslateTransform />
+									</Rectangle.RenderTransform>
+								</Rectangle>
+							</Grid>
+							<!--</smtx:XamlDisplay>
+
+							<smtx:XamlDisplay UniqueKey="AnimationSamplePage_Animation_4"
+											  smtx:XamlDisplayExtensions.Header="TranslateTransform 2">-->
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="Auto" />
+									<ColumnDefinition Width="*" />
+								</Grid.ColumnDefinitions>
+
+								<!-- with the following VisualState code
+<VisualState x:Name="Animation_4">
+	<Storyboard>
+
+		<DoubleAnimation Storyboard.TargetProperty="Y"
+							Storyboard.TargetName="TranslateTransform2"
+							From="0"
+							To="150"
+							Duration="0:0:2">
+			<DoubleAnimation.EasingFunction>
+				<CubicEase EasingMode="EaseInOut" />
+			</DoubleAnimation.EasingFunction>
+		</DoubleAnimation>
+	</Storyboard>
+</VisualState>
+-->
+								<Button Content="Start"
+											Click="Button_Click_4"
+											Style="{StaticResource FilledButtonStyle}" />
+
+								<Rectangle Fill="{StaticResource UnoRedColor}"
+											   Width="40"
+											   Height="40"
+											   Grid.Column="1">
+									<Rectangle.RenderTransform>
+										<TranslateTransform />
+									</Rectangle.RenderTransform>
+								</Rectangle>
+							</Grid>
+							<!--</smtx:XamlDisplay>-->
+
+							<!--<smtx:XamlDisplay UniqueKey="AnimationSamplePage_Animation_1"
+											  smtx:XamlDisplayExtensions.Header="RotateTransform + Opacity">-->
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="Auto" />
+									<ColumnDefinition Width="*" />
+								</Grid.ColumnDefinitions>
+
+								<!-- with the following VisualState code
+<VisualState x:Name="Animation_1">
+	<Storyboard>
+
+		<DoubleAnimation Storyboard.TargetName="RotateTransform1"
+							Storyboard.TargetProperty="Angle"
+							From="0"
+							To="360"
+							Duration="0:0:3" />
+
+		<DoubleAnimation Storyboard.TargetName="Rectangle1"
+							Storyboard.TargetProperty="Opacity"
+							From="1"
+							To="0.25"
+							Duration="0:0:2" />
+	</Storyboard>
+</VisualState>
+-->
+								<Button Content="Start"
+											Click="Button_Click_1"
+											Style="{StaticResource FilledButtonStyle}" />
+
+								<Rectangle    Fill="{StaticResource UnoGreenColor}"
+											   Width="40"
+											   Height="40"
+											   Opacity="1"
+											   Grid.Column="1"
+											   RenderTransformOrigin=".5,.5">
+									<Rectangle.RenderTransform>
+										<RotateTransform />
+									</Rectangle.RenderTransform>
+								</Rectangle>
+							</Grid>
+							<!--</smtx:XamlDisplay>
+
+							<smtx:XamlDisplay UniqueKey="AnimationSamplePage_Animation_2"
+											  smtx:XamlDisplayExtensions.Header="ScaleTransform">-->
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="Auto" />
+									<ColumnDefinition Width="*" />
+								</Grid.ColumnDefinitions>
+
+								<!-- with the following VisualState code
+<VisualState x:Name="Animation_2">
+	<Storyboard>
+
+		<DoubleAnimation Storyboard.TargetProperty="ScaleY"
+							Storyboard.TargetName="ScaleTransform1"
+							To="0.5"
+							Duration="0:0:2">
+			<DoubleAnimation.EasingFunction>
+				<BounceEase Bounces="2"
+							Bounciness="3" />
+			</DoubleAnimation.EasingFunction>
+		</DoubleAnimation>
+
+		<DoubleAnimation Storyboard.TargetProperty="ScaleX"
+							Storyboard.TargetName="ScaleTransform1"
+							To="0.5"
+							Duration="0:0:2">
+			<DoubleAnimation.EasingFunction>
+				<BounceEase Bounces="2"
+							Bounciness="3" />
+			</DoubleAnimation.EasingFunction>
+		</DoubleAnimation>
+	</Storyboard>
+</VisualState>
+-->
+								<Button Content="Start"
+											Click="Button_Click_2"
+											Style="{StaticResource FilledButtonStyle}" />
+
+								<Rectangle Fill="{StaticResource UnoBlueColor}"
+											   Width="40"
+											   Height="40"
+											   Grid.Column="1"
+											   RenderTransformOrigin=".5,.5">
+									<Rectangle.RenderTransform>
+										<ScaleTransform />
+									</Rectangle.RenderTransform>
+								</Rectangle>
+							</Grid>
+							<!--</smtx:XamlDisplay>
+
+							<smtx:XamlDisplay UniqueKey="AnimationSamplePage_Animation_3"
+											  smtx:XamlDisplayExtensions.Header="TranslateTransform 1">-->
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="Auto" />
+									<ColumnDefinition Width="*" />
+								</Grid.ColumnDefinitions>
+
+								<!-- with the following VisualState code
+<VisualState x:Name="Animation_3">
+	<Storyboard>
+
+		<DoubleAnimation Storyboard.TargetProperty="X"
+							Storyboard.TargetName="TranslateTransform1"
+							From="0"
+							To="50"
+							Duration="0:0:2">
+			<DoubleAnimation.EasingFunction>
+				<CubicEase EasingMode="EaseInOut" />
+			</DoubleAnimation.EasingFunction>
+		</DoubleAnimation>
+	</Storyboard>
+</VisualState>
+-->
+								<Button Content="Start"
+											Click="Button_Click_3"
+											Style="{StaticResource FilledButtonStyle}" />
+
+								<Rectangle Fill="{StaticResource UnoPurpleColor}"
+											   Width="40"
+											   Height="40"
+											   Grid.Column="1">
+									<Rectangle.RenderTransform>
+										<TranslateTransform />
+									</Rectangle.RenderTransform>
+								</Rectangle>
+							</Grid>
+							<!--</smtx:XamlDisplay>
+
+							<smtx:XamlDisplay UniqueKey="AnimationSamplePage_Animation_4"
+											  smtx:XamlDisplayExtensions.Header="TranslateTransform 2">-->
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="Auto" />
+									<ColumnDefinition Width="*" />
+								</Grid.ColumnDefinitions>
+
+								<!-- with the following VisualState code
+<VisualState x:Name="Animation_4">
+	<Storyboard>
+
+		<DoubleAnimation Storyboard.TargetProperty="Y"
+							Storyboard.TargetName="TranslateTransform2"
+							From="0"
+							To="150"
+							Duration="0:0:2">
+			<DoubleAnimation.EasingFunction>
+				<CubicEase EasingMode="EaseInOut" />
+			</DoubleAnimation.EasingFunction>
+		</DoubleAnimation>
+	</Storyboard>
+</VisualState>
+-->
+								<Button Content="Start"
+											Click="Button_Click_4"
+											Style="{StaticResource FilledButtonStyle}" />
+
+								<Rectangle Fill="{StaticResource UnoRedColor}"
+											   Width="40"
+											   Height="40"
+											   Grid.Column="1">
+									<Rectangle.RenderTransform>
+										<TranslateTransform />
+									</Rectangle.RenderTransform>
+								</Rectangle>
+							</Grid>
+							<!--</smtx:XamlDisplay>-->
+
+							<!--<smtx:XamlDisplay UniqueKey="AnimationSamplePage_Animation_1"
+											  smtx:XamlDisplayExtensions.Header="RotateTransform + Opacity">-->
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="Auto" />
+									<ColumnDefinition Width="*" />
+								</Grid.ColumnDefinitions>
+
+								<!-- with the following VisualState code
+<VisualState x:Name="Animation_1">
+	<Storyboard>
+
+		<DoubleAnimation Storyboard.TargetName="RotateTransform1"
+							Storyboard.TargetProperty="Angle"
+							From="0"
+							To="360"
+							Duration="0:0:3" />
+
+		<DoubleAnimation Storyboard.TargetName="Rectangle1"
+							Storyboard.TargetProperty="Opacity"
+							From="1"
+							To="0.25"
+							Duration="0:0:2" />
+	</Storyboard>
+</VisualState>
+-->
+								<Button Content="Start"
+											Click="Button_Click_1"
+											Style="{StaticResource FilledButtonStyle}" />
+
+								<Rectangle    Fill="{StaticResource UnoGreenColor}"
+											   Width="40"
+											   Height="40"
+											   Opacity="1"
+											   Grid.Column="1"
+											   RenderTransformOrigin=".5,.5">
+									<Rectangle.RenderTransform>
+										<RotateTransform />
+									</Rectangle.RenderTransform>
+								</Rectangle>
+							</Grid>
+							<!--</smtx:XamlDisplay>
+
+							<smtx:XamlDisplay UniqueKey="AnimationSamplePage_Animation_2"
+											  smtx:XamlDisplayExtensions.Header="ScaleTransform">-->
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="Auto" />
+									<ColumnDefinition Width="*" />
+								</Grid.ColumnDefinitions>
+
+								<!-- with the following VisualState code
+<VisualState x:Name="Animation_2">
+	<Storyboard>
+
+		<DoubleAnimation Storyboard.TargetProperty="ScaleY"
+							Storyboard.TargetName="ScaleTransform1"
+							To="0.5"
+							Duration="0:0:2">
+			<DoubleAnimation.EasingFunction>
+				<BounceEase Bounces="2"
+							Bounciness="3" />
+			</DoubleAnimation.EasingFunction>
+		</DoubleAnimation>
+
+		<DoubleAnimation Storyboard.TargetProperty="ScaleX"
+							Storyboard.TargetName="ScaleTransform1"
+							To="0.5"
+							Duration="0:0:2">
+			<DoubleAnimation.EasingFunction>
+				<BounceEase Bounces="2"
+							Bounciness="3" />
+			</DoubleAnimation.EasingFunction>
+		</DoubleAnimation>
+	</Storyboard>
+</VisualState>
+-->
+								<Button Content="Start"
+											Click="Button_Click_2"
+											Style="{StaticResource FilledButtonStyle}" />
+
+								<Rectangle Fill="{StaticResource UnoBlueColor}"
+											   Width="40"
+											   Height="40"
+											   Grid.Column="1"
+											   RenderTransformOrigin=".5,.5">
+									<Rectangle.RenderTransform>
+										<ScaleTransform />
+									</Rectangle.RenderTransform>
+								</Rectangle>
+							</Grid>
+							<!--</smtx:XamlDisplay>
+
+							<smtx:XamlDisplay UniqueKey="AnimationSamplePage_Animation_3"
+											  smtx:XamlDisplayExtensions.Header="TranslateTransform 1">-->
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="Auto" />
+									<ColumnDefinition Width="*" />
+								</Grid.ColumnDefinitions>
+
+								<!-- with the following VisualState code
+<VisualState x:Name="Animation_3">
+	<Storyboard>
+
+		<DoubleAnimation Storyboard.TargetProperty="X"
+							Storyboard.TargetName="TranslateTransform1"
+							From="0"
+							To="50"
+							Duration="0:0:2">
+			<DoubleAnimation.EasingFunction>
+				<CubicEase EasingMode="EaseInOut" />
+			</DoubleAnimation.EasingFunction>
+		</DoubleAnimation>
+	</Storyboard>
+</VisualState>
+-->
+								<Button Content="Start"
+											Click="Button_Click_3"
+											Style="{StaticResource FilledButtonStyle}" />
+
+								<Rectangle Fill="{StaticResource UnoPurpleColor}"
+											   Width="40"
+											   Height="40"
+											   Grid.Column="1">
+									<Rectangle.RenderTransform>
+										<TranslateTransform />
+									</Rectangle.RenderTransform>
+								</Rectangle>
+							</Grid>
+							<!--</smtx:XamlDisplay>
+
+							<smtx:XamlDisplay UniqueKey="AnimationSamplePage_Animation_4"
+											  smtx:XamlDisplayExtensions.Header="TranslateTransform 2">-->
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="Auto" />
+									<ColumnDefinition Width="*" />
+								</Grid.ColumnDefinitions>
+
+								<!-- with the following VisualState code
+<VisualState x:Name="Animation_4">
+	<Storyboard>
+
+		<DoubleAnimation Storyboard.TargetProperty="Y"
+							Storyboard.TargetName="TranslateTransform2"
+							From="0"
+							To="150"
+							Duration="0:0:2">
+			<DoubleAnimation.EasingFunction>
+				<CubicEase EasingMode="EaseInOut" />
+			</DoubleAnimation.EasingFunction>
+		</DoubleAnimation>
+	</Storyboard>
+</VisualState>
+-->
+								<Button Content="Start"
+											Click="Button_Click_4"
+											Style="{StaticResource FilledButtonStyle}" />
+
+								<Rectangle Fill="{StaticResource UnoRedColor}"
+											   Width="40"
+											   Height="40"
+											   Grid.Column="1">
+									<Rectangle.RenderTransform>
+										<TranslateTransform />
+									</Rectangle.RenderTransform>
+								</Rectangle>
+							</Grid>
+							<!--</smtx:XamlDisplay>-->
+
+							<!--<smtx:XamlDisplay UniqueKey="AnimationSamplePage_Animation_1"
+											  smtx:XamlDisplayExtensions.Header="RotateTransform + Opacity">-->
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="Auto" />
+									<ColumnDefinition Width="*" />
+								</Grid.ColumnDefinitions>
+
+								<!-- with the following VisualState code
+<VisualState x:Name="Animation_1">
+	<Storyboard>
+
+		<DoubleAnimation Storyboard.TargetName="RotateTransform1"
+							Storyboard.TargetProperty="Angle"
+							From="0"
+							To="360"
+							Duration="0:0:3" />
+
+		<DoubleAnimation Storyboard.TargetName="Rectangle1"
+							Storyboard.TargetProperty="Opacity"
+							From="1"
+							To="0.25"
+							Duration="0:0:2" />
+	</Storyboard>
+</VisualState>
+-->
+								<Button Content="Start"
+											Click="Button_Click_1"
+											Style="{StaticResource FilledButtonStyle}" />
+
+								<Rectangle    Fill="{StaticResource UnoGreenColor}"
+											   Width="40"
+											   Height="40"
+											   Opacity="1"
+											   Grid.Column="1"
+											   RenderTransformOrigin=".5,.5">
+									<Rectangle.RenderTransform>
+										<RotateTransform />
+									</Rectangle.RenderTransform>
+								</Rectangle>
+							</Grid>
+							<!--</smtx:XamlDisplay>
+
+							<smtx:XamlDisplay UniqueKey="AnimationSamplePage_Animation_2"
+											  smtx:XamlDisplayExtensions.Header="ScaleTransform">-->
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="Auto" />
+									<ColumnDefinition Width="*" />
+								</Grid.ColumnDefinitions>
+
+								<!-- with the following VisualState code
+<VisualState x:Name="Animation_2">
+	<Storyboard>
+
+		<DoubleAnimation Storyboard.TargetProperty="ScaleY"
+							Storyboard.TargetName="ScaleTransform1"
+							To="0.5"
+							Duration="0:0:2">
+			<DoubleAnimation.EasingFunction>
+				<BounceEase Bounces="2"
+							Bounciness="3" />
+			</DoubleAnimation.EasingFunction>
+		</DoubleAnimation>
+
+		<DoubleAnimation Storyboard.TargetProperty="ScaleX"
+							Storyboard.TargetName="ScaleTransform1"
+							To="0.5"
+							Duration="0:0:2">
+			<DoubleAnimation.EasingFunction>
+				<BounceEase Bounces="2"
+							Bounciness="3" />
+			</DoubleAnimation.EasingFunction>
+		</DoubleAnimation>
+	</Storyboard>
+</VisualState>
+-->
+								<Button Content="Start"
+											Click="Button_Click_2"
+											Style="{StaticResource FilledButtonStyle}" />
+
+								<Rectangle Fill="{StaticResource UnoBlueColor}"
+											   Width="40"
+											   Height="40"
+											   Grid.Column="1"
+											   RenderTransformOrigin=".5,.5">
+									<Rectangle.RenderTransform>
+										<ScaleTransform />
+									</Rectangle.RenderTransform>
+								</Rectangle>
+							</Grid>
+							<!--</smtx:XamlDisplay>
+
+							<smtx:XamlDisplay UniqueKey="AnimationSamplePage_Animation_3"
+											  smtx:XamlDisplayExtensions.Header="TranslateTransform 1">-->
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="Auto" />
+									<ColumnDefinition Width="*" />
+								</Grid.ColumnDefinitions>
+
+								<!-- with the following VisualState code
+<VisualState x:Name="Animation_3">
+	<Storyboard>
+
+		<DoubleAnimation Storyboard.TargetProperty="X"
+							Storyboard.TargetName="TranslateTransform1"
+							From="0"
+							To="50"
+							Duration="0:0:2">
+			<DoubleAnimation.EasingFunction>
+				<CubicEase EasingMode="EaseInOut" />
+			</DoubleAnimation.EasingFunction>
+		</DoubleAnimation>
+	</Storyboard>
+</VisualState>
+-->
+								<Button Content="Start"
+											Click="Button_Click_3"
+											Style="{StaticResource FilledButtonStyle}" />
+
+								<Rectangle Fill="{StaticResource UnoPurpleColor}"
+											   Width="40"
+											   Height="40"
+											   Grid.Column="1">
+									<Rectangle.RenderTransform>
+										<TranslateTransform />
+									</Rectangle.RenderTransform>
+								</Rectangle>
+							</Grid>
+							<!--</smtx:XamlDisplay>
+
+							<smtx:XamlDisplay UniqueKey="AnimationSamplePage_Animation_4"
+											  smtx:XamlDisplayExtensions.Header="TranslateTransform 2">-->
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="Auto" />
+									<ColumnDefinition Width="*" />
+								</Grid.ColumnDefinitions>
+
+								<!-- with the following VisualState code
+<VisualState x:Name="Animation_4">
+	<Storyboard>
+
+		<DoubleAnimation Storyboard.TargetProperty="Y"
+							Storyboard.TargetName="TranslateTransform2"
+							From="0"
+							To="150"
+							Duration="0:0:2">
+			<DoubleAnimation.EasingFunction>
+				<CubicEase EasingMode="EaseInOut" />
+			</DoubleAnimation.EasingFunction>
+		</DoubleAnimation>
+	</Storyboard>
+</VisualState>
+-->
+								<Button Content="Start"
+											Click="Button_Click_4"
+											Style="{StaticResource FilledButtonStyle}" />
+
+								<Rectangle Fill="{StaticResource UnoRedColor}"
+											   Width="40"
+											   Height="40"
+											   Grid.Column="1">
+									<Rectangle.RenderTransform>
+										<TranslateTransform />
+									</Rectangle.RenderTransform>
+								</Rectangle>
+							</Grid>
+							<!--</smtx:XamlDisplay>-->
+
+							<!--<smtx:XamlDisplay UniqueKey="AnimationSamplePage_Animation_1"
+											  smtx:XamlDisplayExtensions.Header="RotateTransform + Opacity">-->
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="Auto" />
+									<ColumnDefinition Width="*" />
+								</Grid.ColumnDefinitions>
+
+								<!-- with the following VisualState code
+<VisualState x:Name="Animation_1">
+	<Storyboard>
+
+		<DoubleAnimation Storyboard.TargetName="RotateTransform1"
+							Storyboard.TargetProperty="Angle"
+							From="0"
+							To="360"
+							Duration="0:0:3" />
+
+		<DoubleAnimation Storyboard.TargetName="Rectangle1"
+							Storyboard.TargetProperty="Opacity"
+							From="1"
+							To="0.25"
+							Duration="0:0:2" />
+	</Storyboard>
+</VisualState>
+-->
+								<Button Content="Start"
+											Click="Button_Click_1"
+											Style="{StaticResource FilledButtonStyle}" />
+
+								<Rectangle    Fill="{StaticResource UnoGreenColor}"
+											   Width="40"
+											   Height="40"
+											   Opacity="1"
+											   Grid.Column="1"
+											   RenderTransformOrigin=".5,.5">
+									<Rectangle.RenderTransform>
+										<RotateTransform />
+									</Rectangle.RenderTransform>
+								</Rectangle>
+							</Grid>
+							<!--</smtx:XamlDisplay>
+
+							<smtx:XamlDisplay UniqueKey="AnimationSamplePage_Animation_2"
+											  smtx:XamlDisplayExtensions.Header="ScaleTransform">-->
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="Auto" />
+									<ColumnDefinition Width="*" />
+								</Grid.ColumnDefinitions>
+
+								<!-- with the following VisualState code
+<VisualState x:Name="Animation_2">
+	<Storyboard>
+
+		<DoubleAnimation Storyboard.TargetProperty="ScaleY"
+							Storyboard.TargetName="ScaleTransform1"
+							To="0.5"
+							Duration="0:0:2">
+			<DoubleAnimation.EasingFunction>
+				<BounceEase Bounces="2"
+							Bounciness="3" />
+			</DoubleAnimation.EasingFunction>
+		</DoubleAnimation>
+
+		<DoubleAnimation Storyboard.TargetProperty="ScaleX"
+							Storyboard.TargetName="ScaleTransform1"
+							To="0.5"
+							Duration="0:0:2">
+			<DoubleAnimation.EasingFunction>
+				<BounceEase Bounces="2"
+							Bounciness="3" />
+			</DoubleAnimation.EasingFunction>
+		</DoubleAnimation>
+	</Storyboard>
+</VisualState>
+-->
+								<Button Content="Start"
+											Click="Button_Click_2"
+											Style="{StaticResource FilledButtonStyle}" />
+
+								<Rectangle Fill="{StaticResource UnoBlueColor}"
+											   Width="40"
+											   Height="40"
+											   Grid.Column="1"
+											   RenderTransformOrigin=".5,.5">
+									<Rectangle.RenderTransform>
+										<ScaleTransform />
+									</Rectangle.RenderTransform>
+								</Rectangle>
+							</Grid>
+							<!--</smtx:XamlDisplay>
+
+							<smtx:XamlDisplay UniqueKey="AnimationSamplePage_Animation_3"
+											  smtx:XamlDisplayExtensions.Header="TranslateTransform 1">-->
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="Auto" />
+									<ColumnDefinition Width="*" />
+								</Grid.ColumnDefinitions>
+
+								<!-- with the following VisualState code
+<VisualState x:Name="Animation_3">
+	<Storyboard>
+
+		<DoubleAnimation Storyboard.TargetProperty="X"
+							Storyboard.TargetName="TranslateTransform1"
+							From="0"
+							To="50"
+							Duration="0:0:2">
+			<DoubleAnimation.EasingFunction>
+				<CubicEase EasingMode="EaseInOut" />
+			</DoubleAnimation.EasingFunction>
+		</DoubleAnimation>
+	</Storyboard>
+</VisualState>
+-->
+								<Button Content="Start"
+											Click="Button_Click_3"
+											Style="{StaticResource FilledButtonStyle}" />
+
+								<Rectangle Fill="{StaticResource UnoPurpleColor}"
+											   Width="40"
+											   Height="40"
+											   Grid.Column="1">
+									<Rectangle.RenderTransform>
+										<TranslateTransform />
+									</Rectangle.RenderTransform>
+								</Rectangle>
+							</Grid>
+							<!--</smtx:XamlDisplay>
+
+							<smtx:XamlDisplay UniqueKey="AnimationSamplePage_Animation_4"
+											  smtx:XamlDisplayExtensions.Header="TranslateTransform 2">-->
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="Auto" />
+									<ColumnDefinition Width="*" />
+								</Grid.ColumnDefinitions>
+
+								<!-- with the following VisualState code
+<VisualState x:Name="Animation_4">
+	<Storyboard>
+
+		<DoubleAnimation Storyboard.TargetProperty="Y"
+							Storyboard.TargetName="TranslateTransform2"
+							From="0"
+							To="150"
+							Duration="0:0:2">
+			<DoubleAnimation.EasingFunction>
+				<CubicEase EasingMode="EaseInOut" />
+			</DoubleAnimation.EasingFunction>
+		</DoubleAnimation>
+	</Storyboard>
+</VisualState>
+-->
+								<Button Content="Start"
+											Click="Button_Click_4"
+											Style="{StaticResource FilledButtonStyle}" />
+
+								<Rectangle Fill="{StaticResource UnoRedColor}"
+											   Width="40"
+											   Height="40"
+											   Grid.Column="1">
+									<Rectangle.RenderTransform>
+										<TranslateTransform />
+									</Rectangle.RenderTransform>
+								</Rectangle>
+							</Grid>
+							<!--</smtx:XamlDisplay>-->
+
+							<!--<smtx:XamlDisplay UniqueKey="AnimationSamplePage_Animation_1"
+											  smtx:XamlDisplayExtensions.Header="RotateTransform + Opacity">-->
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="Auto" />
+									<ColumnDefinition Width="*" />
+								</Grid.ColumnDefinitions>
+
+								<!-- with the following VisualState code
+<VisualState x:Name="Animation_1">
+	<Storyboard>
+
+		<DoubleAnimation Storyboard.TargetName="RotateTransform1"
+							Storyboard.TargetProperty="Angle"
+							From="0"
+							To="360"
+							Duration="0:0:3" />
+
+		<DoubleAnimation Storyboard.TargetName="Rectangle1"
+							Storyboard.TargetProperty="Opacity"
+							From="1"
+							To="0.25"
+							Duration="0:0:2" />
+	</Storyboard>
+</VisualState>
+-->
+								<Button Content="Start"
+											Click="Button_Click_1"
+											Style="{StaticResource FilledButtonStyle}" />
+
+								<Rectangle    Fill="{StaticResource UnoGreenColor}"
+											   Width="40"
+											   Height="40"
+											   Opacity="1"
+											   Grid.Column="1"
+											   RenderTransformOrigin=".5,.5">
+									<Rectangle.RenderTransform>
+										<RotateTransform />
+									</Rectangle.RenderTransform>
+								</Rectangle>
+							</Grid>
+							<!--</smtx:XamlDisplay>
+
+							<smtx:XamlDisplay UniqueKey="AnimationSamplePage_Animation_2"
+											  smtx:XamlDisplayExtensions.Header="ScaleTransform">-->
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="Auto" />
+									<ColumnDefinition Width="*" />
+								</Grid.ColumnDefinitions>
+
+								<!-- with the following VisualState code
+<VisualState x:Name="Animation_2">
+	<Storyboard>
+
+		<DoubleAnimation Storyboard.TargetProperty="ScaleY"
+							Storyboard.TargetName="ScaleTransform1"
+							To="0.5"
+							Duration="0:0:2">
+			<DoubleAnimation.EasingFunction>
+				<BounceEase Bounces="2"
+							Bounciness="3" />
+			</DoubleAnimation.EasingFunction>
+		</DoubleAnimation>
+
+		<DoubleAnimation Storyboard.TargetProperty="ScaleX"
+							Storyboard.TargetName="ScaleTransform1"
+							To="0.5"
+							Duration="0:0:2">
+			<DoubleAnimation.EasingFunction>
+				<BounceEase Bounces="2"
+							Bounciness="3" />
+			</DoubleAnimation.EasingFunction>
+		</DoubleAnimation>
+	</Storyboard>
+</VisualState>
+-->
+								<Button Content="Start"
+											Click="Button_Click_2"
+											Style="{StaticResource FilledButtonStyle}" />
+
+								<Rectangle Fill="{StaticResource UnoBlueColor}"
+											   Width="40"
+											   Height="40"
+											   Grid.Column="1"
+											   RenderTransformOrigin=".5,.5">
+									<Rectangle.RenderTransform>
+										<ScaleTransform />
+									</Rectangle.RenderTransform>
+								</Rectangle>
+							</Grid>
+							<!--</smtx:XamlDisplay>
+
+							<smtx:XamlDisplay UniqueKey="AnimationSamplePage_Animation_3"
+											  smtx:XamlDisplayExtensions.Header="TranslateTransform 1">-->
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="Auto" />
+									<ColumnDefinition Width="*" />
+								</Grid.ColumnDefinitions>
+
+								<!-- with the following VisualState code
+<VisualState x:Name="Animation_3">
+	<Storyboard>
+
+		<DoubleAnimation Storyboard.TargetProperty="X"
+							Storyboard.TargetName="TranslateTransform1"
+							From="0"
+							To="50"
+							Duration="0:0:2">
+			<DoubleAnimation.EasingFunction>
+				<CubicEase EasingMode="EaseInOut" />
+			</DoubleAnimation.EasingFunction>
+		</DoubleAnimation>
+	</Storyboard>
+</VisualState>
+-->
+								<Button Content="Start"
+											Click="Button_Click_3"
+											Style="{StaticResource FilledButtonStyle}" />
+
+								<Rectangle Fill="{StaticResource UnoPurpleColor}"
+											   Width="40"
+											   Height="40"
+											   Grid.Column="1">
+									<Rectangle.RenderTransform>
+										<TranslateTransform />
+									</Rectangle.RenderTransform>
+								</Rectangle>
+							</Grid>
+							<!--</smtx:XamlDisplay>
+
+							<smtx:XamlDisplay UniqueKey="AnimationSamplePage_Animation_4"
+											  smtx:XamlDisplayExtensions.Header="TranslateTransform 2">-->
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="Auto" />
+									<ColumnDefinition Width="*" />
+								</Grid.ColumnDefinitions>
+
+								<!-- with the following VisualState code
+<VisualState x:Name="Animation_4">
+	<Storyboard>
+
+		<DoubleAnimation Storyboard.TargetProperty="Y"
+							Storyboard.TargetName="TranslateTransform2"
+							From="0"
+							To="150"
+							Duration="0:0:2">
+			<DoubleAnimation.EasingFunction>
+				<CubicEase EasingMode="EaseInOut" />
+			</DoubleAnimation.EasingFunction>
+		</DoubleAnimation>
+	</Storyboard>
+</VisualState>
+-->
+								<Button Content="Start"
+											Click="Button_Click_4"
+											Style="{StaticResource FilledButtonStyle}" />
+
+								<Rectangle Fill="{StaticResource UnoRedColor}"
+											   Width="40"
+											   Height="40"
+											   Grid.Column="1">
+									<Rectangle.RenderTransform>
+										<TranslateTransform />
+									</Rectangle.RenderTransform>
+								</Rectangle>
+							</Grid>
+							<!--</smtx:XamlDisplay>-->
+
+							<!--<smtx:XamlDisplay UniqueKey="AnimationSamplePage_Animation_1"
+											  smtx:XamlDisplayExtensions.Header="RotateTransform + Opacity">-->
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="Auto" />
+									<ColumnDefinition Width="*" />
+								</Grid.ColumnDefinitions>
+
+								<!-- with the following VisualState code
+<VisualState x:Name="Animation_1">
+	<Storyboard>
+
+		<DoubleAnimation Storyboard.TargetName="RotateTransform1"
+							Storyboard.TargetProperty="Angle"
+							From="0"
+							To="360"
+							Duration="0:0:3" />
+
+		<DoubleAnimation Storyboard.TargetName="Rectangle1"
+							Storyboard.TargetProperty="Opacity"
+							From="1"
+							To="0.25"
+							Duration="0:0:2" />
+	</Storyboard>
+</VisualState>
+-->
+								<Button Content="Start"
+											Click="Button_Click_1"
+											Style="{StaticResource FilledButtonStyle}" />
+
+								<Rectangle    Fill="{StaticResource UnoGreenColor}"
+											   Width="40"
+											   Height="40"
+											   Opacity="1"
+											   Grid.Column="1"
+											   RenderTransformOrigin=".5,.5">
+									<Rectangle.RenderTransform>
+										<RotateTransform />
+									</Rectangle.RenderTransform>
+								</Rectangle>
+							</Grid>
+							<!--</smtx:XamlDisplay>
+
+							<smtx:XamlDisplay UniqueKey="AnimationSamplePage_Animation_2"
+											  smtx:XamlDisplayExtensions.Header="ScaleTransform">-->
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="Auto" />
+									<ColumnDefinition Width="*" />
+								</Grid.ColumnDefinitions>
+
+								<!-- with the following VisualState code
+<VisualState x:Name="Animation_2">
+	<Storyboard>
+
+		<DoubleAnimation Storyboard.TargetProperty="ScaleY"
+							Storyboard.TargetName="ScaleTransform1"
+							To="0.5"
+							Duration="0:0:2">
+			<DoubleAnimation.EasingFunction>
+				<BounceEase Bounces="2"
+							Bounciness="3" />
+			</DoubleAnimation.EasingFunction>
+		</DoubleAnimation>
+
+		<DoubleAnimation Storyboard.TargetProperty="ScaleX"
+							Storyboard.TargetName="ScaleTransform1"
+							To="0.5"
+							Duration="0:0:2">
+			<DoubleAnimation.EasingFunction>
+				<BounceEase Bounces="2"
+							Bounciness="3" />
+			</DoubleAnimation.EasingFunction>
+		</DoubleAnimation>
+	</Storyboard>
+</VisualState>
+-->
+								<Button Content="Start"
+											Click="Button_Click_2"
+											Style="{StaticResource FilledButtonStyle}" />
+
+								<Rectangle Fill="{StaticResource UnoBlueColor}"
+											   Width="40"
+											   Height="40"
+											   Grid.Column="1"
+											   RenderTransformOrigin=".5,.5">
+									<Rectangle.RenderTransform>
+										<ScaleTransform />
+									</Rectangle.RenderTransform>
+								</Rectangle>
+							</Grid>
+							<!--</smtx:XamlDisplay>
+
+							<smtx:XamlDisplay UniqueKey="AnimationSamplePage_Animation_3"
+											  smtx:XamlDisplayExtensions.Header="TranslateTransform 1">-->
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="Auto" />
+									<ColumnDefinition Width="*" />
+								</Grid.ColumnDefinitions>
+
+								<!-- with the following VisualState code
+<VisualState x:Name="Animation_3">
+	<Storyboard>
+
+		<DoubleAnimation Storyboard.TargetProperty="X"
+							Storyboard.TargetName="TranslateTransform1"
+							From="0"
+							To="50"
+							Duration="0:0:2">
+			<DoubleAnimation.EasingFunction>
+				<CubicEase EasingMode="EaseInOut" />
+			</DoubleAnimation.EasingFunction>
+		</DoubleAnimation>
+	</Storyboard>
+</VisualState>
+-->
+								<Button Content="Start"
+											Click="Button_Click_3"
+											Style="{StaticResource FilledButtonStyle}" />
+
+								<Rectangle Fill="{StaticResource UnoPurpleColor}"
+											   Width="40"
+											   Height="40"
+											   Grid.Column="1">
+									<Rectangle.RenderTransform>
+										<TranslateTransform />
+									</Rectangle.RenderTransform>
+								</Rectangle>
+							</Grid>
+							<!--</smtx:XamlDisplay>
+
+							<smtx:XamlDisplay UniqueKey="AnimationSamplePage_Animation_4"
+											  smtx:XamlDisplayExtensions.Header="TranslateTransform 2">-->
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="Auto" />
+									<ColumnDefinition Width="*" />
+								</Grid.ColumnDefinitions>
+
+								<!-- with the following VisualState code
+<VisualState x:Name="Animation_4">
+	<Storyboard>
+
+		<DoubleAnimation Storyboard.TargetProperty="Y"
+							Storyboard.TargetName="TranslateTransform2"
+							From="0"
+							To="150"
+							Duration="0:0:2">
+			<DoubleAnimation.EasingFunction>
+				<CubicEase EasingMode="EaseInOut" />
+			</DoubleAnimation.EasingFunction>
+		</DoubleAnimation>
+	</Storyboard>
+</VisualState>
+-->
+								<Button Content="Start"
+											Click="Button_Click_4"
+											Style="{StaticResource FilledButtonStyle}" />
+
+								<Rectangle Fill="{StaticResource UnoRedColor}"
+											   Width="40"
+											   Height="40"
+											   Grid.Column="1">
+									<Rectangle.RenderTransform>
+										<TranslateTransform />
+									</Rectangle.RenderTransform>
+								</Rectangle>
+							</Grid>
+							<!--</smtx:XamlDisplay>-->
+
+
+
+
 						</StackPanel>
 					</UserControl>
 				</DataTemplate>
