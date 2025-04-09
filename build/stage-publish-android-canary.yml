@@ -27,7 +27,7 @@
             inputs:
               serviceConnection: 'Uno Platform Google Play'
               applicationId: 'uno.platform.gallery.canary'
-              bundleFile: '$(Pipeline.Workspace)/drop/publish/com.nventive.uno.ui.demo-Signed.aab'
+              bundleFile: '$(Pipeline.Workspace)/drop/publish/com.nventive.uno.ui.demo.canary-Signed.aab'
               track: 'alpha'
 
   - deployment: 'Android_Publish_Skia'
