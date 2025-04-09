@@ -66,7 +66,7 @@ steps:
       gci -r -include "Uno.Gallery.csproj" |
       foreach-object {
           $a = $_.fullname; ( get-content $a ) |
-          foreach-object { $_ -replace "com.nventive.uno.gallery","com.nventive.uno.gallery-canary" } |
+          foreach-object { $_ -replace "com.nventive.uno.ui.demo","com.nventive.uno.ui.demo.canary" } |
           set-content $a }
     displayName: 'Adjust info.plist bundle name'
     condition: startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries')
