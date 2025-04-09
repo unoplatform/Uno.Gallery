@@ -26,7 +26,7 @@
             displayName: 'Play Store Publish'
             inputs:
               serviceConnection: 'Uno Platform Google Play'
-              applicationId: 'uno.platform.gallery.canary'
+              applicationId: 'com.nventive.uno.ui.demo.canary'
               bundleFile: '$(Pipeline.Workspace)/drop/publish/com.nventive.uno.ui.demo.canary-Signed.aab'
               track: 'alpha'
 
