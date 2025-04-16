@@ -1,4 +1,4 @@
-﻿<Project Sdk="Uno.Sdk.Private">
+﻿<Project Sdk="Uno.Sdk">
 	<PropertyGroup>
 		<!-- Building with dotnet build -f net9.0-platform will still cause restore to happen for all TargetFrameworks -->
 		<!-- which will force us to install all workloads even if not needed -->
