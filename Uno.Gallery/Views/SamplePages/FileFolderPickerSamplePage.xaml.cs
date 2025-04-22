@@ -86,9 +86,12 @@ namespace Uno.Gallery.Views.Samples
 				foreach (var file in storageFiles)
 				{
 					var bitmap = new BitmapImage();
+					var memoryStream = new MemoryStream();
 					using (var stream = await file.OpenReadAsync())
 					{
-						await bitmap.SetSourceAsync(stream);
+						await stream.AsStreamForRead().CopyToAsync(memoryStream);
+						memoryStream.Position = 0;
+						await bitmap.SetSourceAsync(memoryStream);
 					}
 					stack.Children.Add(new Image() { Source = bitmap });
 				}
