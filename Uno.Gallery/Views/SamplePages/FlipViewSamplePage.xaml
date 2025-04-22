@@ -26,9 +26,10 @@
 											<TextBlock Text="Item 1"
 													   Style="{StaticResource HeadlineLarge}"
 													   Foreground="White"
+													   FontWeight="Bold"
 													   HorizontalAlignment="Center" />
 
-											<TextBlock Text="&#x2190; Swipe"
+											<TextBlock Text="&#xE72B; Swipe"
 													   Style="{StaticResource HeadlineLarge}"
 													   Foreground="White"
 													   HorizontalAlignment="Center"
@@ -44,9 +45,10 @@
 											<TextBlock Text="Item 2"
 													   Style="{StaticResource HeadlineLarge}"
 													   Foreground="White"
+													   FontWeight="Bold"
 													   HorizontalAlignment="Center" />
 
-											<TextBlock Text="&#x2190; Swipe &#x2192;"
+											<TextBlock Text="&#xE72B; Swipe &#xE72A;"
 													   Style="{StaticResource HeadlineLarge}"
 													   Foreground="White"
 													   HorizontalAlignment="Center" />
@@ -61,9 +63,10 @@
 											<TextBlock Text="Item 3"
 													   Style="{StaticResource HeadlineLarge}"
 													   Foreground="White"
+													   FontWeight="Bold"
 													   HorizontalAlignment="Center" />
 
-											<TextBlock Text="&#x2190; Swipe &#x2192;"
+											<TextBlock Text="&#xE72B; Swipe &#xE72A;"
 													   Style="{StaticResource HeadlineLarge}"
 													   Foreground="White"
 													   HorizontalAlignment="Center" />
@@ -78,9 +81,10 @@
 											<TextBlock Text="Item 4"
 													   Style="{StaticResource HeadlineLarge}"
 													   Foreground="White"
+													   FontWeight="Bold"
 													   HorizontalAlignment="Center" />
 
-											<TextBlock Text="Swipe &#x2192;"
+											<TextBlock Text="Swipe &#xE72A;"
 													   Style="{StaticResource HeadlineLarge}"
 													   Foreground="White"
 													   HorizontalAlignment="Center"
