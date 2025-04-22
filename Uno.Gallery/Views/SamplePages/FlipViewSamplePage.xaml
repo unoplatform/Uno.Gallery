@@ -28,12 +28,14 @@
 													   Foreground="White"
 													   FontWeight="Bold"
 													   HorizontalAlignment="Center" />
-
-											<TextBlock Text="&#xE72B; Swipe"
-													   Style="{StaticResource HeadlineLarge}"
-													   Foreground="White"
-													   HorizontalAlignment="Center"
-													   Margin="0,0,46,0" />
+											<StackPanel Spacing="8" HorizontalAlignment="Center" Orientation="Horizontal">
+												<FontIcon Glyph="&#xE72B;" Opacity="0.3" />
+												<TextBlock Text="Swipe"
+														   Style="{StaticResource HeadlineLarge}"
+														   Foreground="White"
+														   HorizontalAlignment="Center" />
+												<FontIcon Glyph="&#xE72A;" Opacity="1" />
+											</StackPanel>
 										</StackPanel>
 									</Grid>
 								</FlipViewItem>
@@ -48,10 +50,14 @@
 													   FontWeight="Bold"
 													   HorizontalAlignment="Center" />
 
-											<TextBlock Text="&#xE72B; Swipe &#xE72A;"
-													   Style="{StaticResource HeadlineLarge}"
-													   Foreground="White"
-													   HorizontalAlignment="Center" />
+											<StackPanel Spacing="8" HorizontalAlignment="Center" Orientation="Horizontal">
+												<FontIcon Glyph="&#xE72B;" Opacity="1" />
+												<TextBlock Text="Swipe"
+														   Style="{StaticResource HeadlineLarge}"
+														   Foreground="White"
+														   HorizontalAlignment="Center" />
+												<FontIcon Glyph="&#xE72A;" Opacity="1" />
+											</StackPanel>
 										</StackPanel>
 									</Grid>
 								</FlipViewItem>
@@ -65,11 +71,15 @@
 													   Foreground="White"
 													   FontWeight="Bold"
 													   HorizontalAlignment="Center" />
-
-											<TextBlock Text="&#xE72B; Swipe &#xE72A;"
-													   Style="{StaticResource HeadlineLarge}"
-													   Foreground="White"
-													   HorizontalAlignment="Center" />
+											
+											<StackPanel Spacing="8" HorizontalAlignment="Center" Orientation="Horizontal">
+												<FontIcon Glyph="&#xE72B;" Opacity="1" />
+												<TextBlock Text="Swipe"
+														   Style="{StaticResource HeadlineLarge}"
+														   Foreground="White"
+														   HorizontalAlignment="Center" />
+												<FontIcon Glyph="&#xE72A;" Opacity="1" />
+											</StackPanel>
 										</StackPanel>
 									</Grid>
 								</FlipViewItem>
@@ -81,14 +91,16 @@
 											<TextBlock Text="Item 4"
 													   Style="{StaticResource HeadlineLarge}"
 													   Foreground="White"
-													   FontWeight="Bold"
 													   HorizontalAlignment="Center" />
 
-											<TextBlock Text="Swipe &#xE72A;"
-													   Style="{StaticResource HeadlineLarge}"
-													   Foreground="White"
-													   HorizontalAlignment="Center"
-													   Margin="44,0,0,0" />
+											<StackPanel Spacing="8" HorizontalAlignment="Center" Orientation="Horizontal">
+												<FontIcon Glyph="&#xE72B;" Opacity="1" />
+												<TextBlock Text="Swipe"
+														   Style="{StaticResource HeadlineLarge}"
+														   Foreground="White"
+														   HorizontalAlignment="Center" />
+												<FontIcon Glyph="&#xE72A;" Opacity="0.3" />
+											</StackPanel>
 										</StackPanel>
 									</Grid>
 								</FlipViewItem>
