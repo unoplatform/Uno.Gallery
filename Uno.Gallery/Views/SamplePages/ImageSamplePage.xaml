@@ -65,7 +65,7 @@
 									Height="160"
 									HorizontalAlignment="Center">
 
-								<Image Source="ms-appx:///Assets/unologo.svg"
+								<Image Source="ms-appx:///Assets/svg/unologo.svg"
 									   Height="80"
 									   Width="80" />
 							</Border>
