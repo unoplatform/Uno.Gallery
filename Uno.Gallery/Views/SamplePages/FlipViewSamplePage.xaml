@@ -28,12 +28,12 @@
 													   FontWeight="Bold"
 													   HorizontalAlignment="Center" />
 											<StackPanel Spacing="8" HorizontalAlignment="Center" Orientation="Horizontal">
-												<FontIcon Glyph="&#xE72B;" Opacity="0.3" />
+												<FontIcon Foreground="White" Glyph="&#xE72B;" Opacity="0.3" />
 												<TextBlock Text="Swipe"
 														   Style="{StaticResource HeadlineMedium}"
 														   Foreground="White"
 														   HorizontalAlignment="Center" />
-												<FontIcon Glyph="&#xE72A;" Opacity="1" />
+												<FontIcon Foreground="White" Glyph="&#xE72A;" Opacity="1" />
 											</StackPanel>
 										</StackPanel>
 									</Grid>
@@ -50,12 +50,12 @@
 													   HorizontalAlignment="Center" />
 
 											<StackPanel Spacing="8" HorizontalAlignment="Center" Orientation="Horizontal">
-												<FontIcon Glyph="&#xE72B;" Opacity="1" />
+												<FontIcon Foreground="White" Glyph="&#xE72B;" Opacity="1" />
 												<TextBlock Text="Swipe"
 														   Style="{StaticResource HeadlineMedium}"
 														   Foreground="White"
 														   HorizontalAlignment="Center" />
-												<FontIcon Glyph="&#xE72A;" Opacity="1" />
+												<FontIcon Foreground="White" Glyph="&#xE72A;" Opacity="1" />
 											</StackPanel>
 										</StackPanel>
 									</Grid>
@@ -72,12 +72,12 @@
 													   HorizontalAlignment="Center" />
 											
 											<StackPanel Spacing="8" HorizontalAlignment="Center" Orientation="Horizontal">
-												<FontIcon Glyph="&#xE72B;" Opacity="1" />
+												<FontIcon Foreground="White" Glyph="&#xE72B;" Opacity="1" />
 												<TextBlock Text="Swipe"
 														   Style="{StaticResource HeadlineMedium}"
 														   Foreground="White"
 														   HorizontalAlignment="Center" />
-												<FontIcon Glyph="&#xE72A;" Opacity="1" />
+												<FontIcon Foreground="White" Glyph="&#xE72A;" Opacity="1" />
 											</StackPanel>
 										</StackPanel>
 									</Grid>
@@ -94,12 +94,12 @@
 													   HorizontalAlignment="Center" />
 
 											<StackPanel Spacing="8" HorizontalAlignment="Center" Orientation="Horizontal">
-												<FontIcon Glyph="&#xE72B;" Opacity="1" />
+												<FontIcon Foreground="White" Glyph="&#xE72B;" Opacity="1" />
 												<TextBlock Text="Swipe"
 														   Style="{StaticResource HeadlineMedium}"
 														   Foreground="White"
 														   HorizontalAlignment="Center" />
-												<FontIcon Glyph="&#xE72A;" Opacity="0.3" />
+												<FontIcon Foreground="White" Glyph="&#xE72A;" Opacity="0.3" />
 											</StackPanel>
 										</StackPanel>
 									</Grid>
