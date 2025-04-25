@@ -91,7 +91,7 @@ namespace Uno.Gallery.Views.Samples
 					{
 						await stream.AsStreamForRead().CopyToAsync(memoryStream);
 						memoryStream.Position = 0;
-						await bitmap.SetSourceAsync(memoryStream);
+						await bitmap.SetSourceAsync(memoryStream.AsRandomAccessStream());
 					}
 					stack.Children.Add(new Image() { Source = bitmap });
 				}
