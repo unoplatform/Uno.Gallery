@@ -7,10 +7,7 @@ using Windows.UI.Popups;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media.Imaging;
-
-#if WINDOWS
 using WinRT.Interop;
-#endif
 
 namespace Uno.Gallery.Views.Samples
 {
@@ -210,10 +207,8 @@ namespace Uno.Gallery.Views.Samples
 
 		private void InitForWin(object instance) // `object` here can be replaced by whatever type of 1st param of InitializeWithWindow.Initialize
 		{
-#if WINDOWS
 			var handle = WindowNative.GetWindowHandle(App.Instance.MainWindow);
 			InitializeWithWindow.Initialize(instance, handle);
-#endif
 		}
 	}
 }
