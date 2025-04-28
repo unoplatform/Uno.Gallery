@@ -66,7 +66,7 @@
 								   MaxLines="1"
 								   Style="{StaticResource HeadlineLarge}"
 								   Text="{TemplateBinding Title}"
-								   TextTrimming="CharacterEllipsis" />
+								   TextTrimming="CharacterEllipsis" Visibility="Collapsed" />
 
 						<!-- Top bar with Uno logo (visible on mobile) -->
 						<Grid x:Name="PART_MobileTopBar"
@@ -80,7 +80,7 @@
 						</Grid>
 
 						<ScrollViewer x:Name="PART_ScrollViewer"
-									  Grid.Row="1">
+									  Grid.Row="1" VerticalScrollMode="Disabled" HorizontalScrollMode="Disabled" VerticalScrollBarVisibility="Disabled" >
 							<Grid Padding="0,0,0,24">
 								<Grid.RowDefinitions>
 									<RowDefinition Height="*" />
@@ -109,10 +109,10 @@
 													  Content="{TemplateBinding Content}"
 													  ContentTemplate="{TemplateBinding HeaderTemplate}" />
 
-									<ScrollViewer HorizontalScrollMode="Enabled"
+									<!--<ScrollViewer HorizontalScrollMode="Enabled"
 												  HorizontalScrollBarVisibility="Hidden"
 												  VerticalScrollBarVisibility="Hidden"
-												  VerticalScrollMode="Disabled">
+												  VerticalScrollMode="Disabled">-->
 										<StackPanel x:Name="PART_ScrollingTabs"
 													HorizontalAlignment="Stretch"
 													BorderBrush="{TemplateBinding BorderBrush}"
@@ -208,7 +208,7 @@
 												</StackPanel>
 											</RadioButton>
 										</StackPanel>
-									</ScrollViewer>
+									<!--</ScrollViewer>-->
 									<Grid>
 
 										<!-- Material Content -->

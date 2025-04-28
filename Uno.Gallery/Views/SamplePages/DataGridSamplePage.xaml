@@ -10,14 +10,14 @@
 	  mc:Ignorable="d">
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-		<local:SamplePageLayout>
+		<!--<local:SamplePageLayout>
 			<local:SamplePageLayout.DesignAgnosticTemplate>
-				<DataTemplate>
-					<StackPanel>
+				<DataTemplate>-->
+					<Grid BorderBrush="Red" BorderThickness="5">
 
-						<smtx:XamlDisplay UniqueKey="DataGridSample_Default"
+						<!--<smtx:XamlDisplay UniqueKey="DataGridSample_Default"
 										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\"
-										  smtx:XamlDisplayExtensions.Header="DataGrid">
+										  smtx:XamlDisplayExtensions.Header="DataGrid">-->
 
 							<wct:DataGrid x:Name="dataGrid"
 										  ItemsSource="{Binding Data.DataGridItems, Mode=TwoWay}"
@@ -103,7 +103,7 @@
 								</wct:DataGrid.RowDetailsTemplate>
 							</wct:DataGrid>
 
-							<smtx:XamlDisplayExtensions.Options>
+							<!--<smtx:XamlDisplayExtensions.Options>
 								<ScrollViewer>
 									<StackPanel Spacing="4">
 										<StackPanel Orientation="Horizontal">
@@ -236,10 +236,10 @@
 									</StackPanel>
 								</ScrollViewer>
 							</smtx:XamlDisplayExtensions.Options>
-						</smtx:XamlDisplay>
-					</StackPanel>
-				</DataTemplate>
+						</smtx:XamlDisplay>-->
+					</Grid>
+				<!--</DataTemplate>
 			</local:SamplePageLayout.DesignAgnosticTemplate>
-		</local:SamplePageLayout>
+		</local:SamplePageLayout>-->
 	</Grid>
 </Page>
