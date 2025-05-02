@@ -1,5 +1,6 @@
 using Microsoft.UI.Text;
 using System;
+using Uno.UI.Hosting;
 using Uno.UI.Xaml.Media;
 
 namespace Uno.Gallery.Wasm
@@ -23,8 +24,12 @@ namespace Uno.Gallery.Wasm
 #endif
 
 #if IS_WASM_SKIA
-			var host = new Uno.UI.Runtime.Skia.WebAssembly.Browser.WebAssemblyBrowserHost(() => _app = new App());
-			await host.Run();
+			var host = UnoPlatformHostBuilder.Create()
+				.App(() => new App())
+				.UseWebAssembly()
+				.Build();
+
+			await host.RunAsync();
 #else
             Microsoft.UI.Xaml.Application.Start(_ => _app = new App());
 			return 0;
