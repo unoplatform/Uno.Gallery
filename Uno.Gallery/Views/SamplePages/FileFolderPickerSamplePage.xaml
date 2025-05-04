@@ -8,7 +8,7 @@
 	  mc:Ignorable="d">
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-		<local:SamplePageLayout IsDesignAgnostic="True">
+		<local:SamplePageLayout IsDesignAgnostic="True" x:Name="LocalSamplePageLayout">
 
 			<local:SamplePageLayout.DesignAgnosticTemplate>
 				<DataTemplate>
@@ -94,7 +94,7 @@ private async void PickSpecificFilesButton_Click(object sender, RoutedEventArgs 
 -->
 						</smtx:XamlDisplay>
 
-						<smtx:XamlDisplay UniqueKey="FileFolderPickerSamplePage_PickFolder"
+						<smtx:XamlDisplay x:Name="FolderPickerSample1" UniqueKey="FileFolderPickerSamplePage_PickFolder"
 										  smtx:XamlDisplayExtensions.Header="Pick a folder">
 							<Button Content="Open folder" Click="PickFolderButton_Click"/>
 							<!--
@@ -119,7 +119,7 @@ private async void PickFolderButton_Click(object sender, RoutedEventArgs e)
 -->
 						</smtx:XamlDisplay>
 
-						<smtx:XamlDisplay UniqueKey="FileFolderPickerSamplePage_PickSaveFile"
+						<smtx:XamlDisplay x:Name="FileSavePickerSample" UniqueKey="FileFolderPickerSamplePage_PickSaveFile"
 										  smtx:XamlDisplayExtensions.Header="Pick and save to file"
 										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
 							<StackPanel Spacing="10">
@@ -153,7 +153,7 @@ private async void SaveFileButton_Click(object sender, RoutedEventArgs e)
 							</StackPanel>
 						</smtx:XamlDisplay>
 
-						<smtx:XamlDisplay UniqueKey="FileFolderPickerSamplePage_PickSaveMultipleFiles"
+						<smtx:XamlDisplay x:Name="FolderPickerSample2" UniqueKey="FileFolderPickerSamplePage_PickSaveMultipleFiles"
 										  smtx:XamlDisplayExtensions.Header="Pick folder and save to files"
 										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
 							<StackPanel Spacing="10">

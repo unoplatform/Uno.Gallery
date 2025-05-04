@@ -17,6 +17,27 @@ namespace Uno.Gallery.Views.Samples
 		public FileFolderPickerSamplePage()
 		{
 			this.InitializeComponent();
+
+			Loaded += FileFolderPickerSamplePage_Loaded;
+		}
+
+		private void FileFolderPickerSamplePage_Loaded(object sender, RoutedEventArgs e)
+		{
+#if __WASM__
+			if (!Uno.Storage.Pickers.FileSystemAccessApiInformation.IsFolderPickerSupported)
+			{
+				var sample1 = (UIElement)LocalSamplePageLayout.FindName("FolderPickerSample1");
+				sample1.Visibility = Visibility.Collapsed;
+				var sample2 = (UIElement)LocalSamplePageLayout.FindName("FolderPickerSample2");
+				sample2.Visibility = Visibility.Collapsed;
+			}
+
+			if (!Uno.Storage.Pickers.FileSystemAccessApiInformation.IsSavePickerSupported)
+			{
+				var sample = (UIElement)LocalSamplePageLayout.FindName("FileSavePickerSample");
+				sample.Visibility = Visibility.Collapsed;
+			}
+#endif
 		}
 
 		private async void PickFileButton_Click(object sender, RoutedEventArgs e)
@@ -144,9 +165,9 @@ namespace Uno.Gallery.Views.Samples
 			InitForWin(picker);
 
 			var storageFile = await picker.PickSaveFileAsync();
-
 			if (storageFile != null)
 			{
+				CachedFileManager.DeferUpdates(storageFile);
 				var textBox = ((sender as Button).Parent as StackPanel)
 					.FindName("ContentTextBox") as TextBox;
 				using (var stream = await storageFile.OpenStreamForWriteAsync())
@@ -156,6 +177,8 @@ namespace Uno.Gallery.Views.Samples
 						tw.WriteLine(textBox?.Text);
 					}
 				}
+
+				await CachedFileManager.CompleteUpdatesAsync(storageFile);
 				await new AppDialog(storageFile.Path, "Successfully saved to file").ShowAsync();
 			}
 			else
