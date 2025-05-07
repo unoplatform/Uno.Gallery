@@ -184,7 +184,7 @@ stages:
         # deleteCert: true
 
     #
-    # Gallery native
+    # Gallery Skia
     #
     - task: InstallAppleProvisioningProfile@1
       displayName: 'Install Apple Provisioning Profile'
@@ -211,32 +211,32 @@ stages:
         provProfileSecureFile: Uno_Gallery_Canary_iOS.mobileprovision
 
     #
-    # Gallery Skia
+    # Gallery Native
     #
       
     - task: InstallAppleProvisioningProfile@1
       displayName: 'Install Apple Provisioning Profile'
       inputs:
         provisioningProfileLocation: 'secureFiles'
-        provProfileSecureFile: Uno_Gallery_Skia_Catalyst.provisionprofile
+        provProfileSecureFile: Uno_Gallery_Native_Catalyst.provisionprofile
   
     - task: InstallAppleProvisioningProfile@1
       displayName: 'Install Apple Provisioning Profile'
       inputs:
         provisioningProfileLocation: 'secureFiles'
-        provProfileSecureFile: Uno_Gallery_Skia_Canary_Catalyst.provisionprofile
+        provProfileSecureFile: Uno_Gallery_Native_Canary_Catalyst.provisionprofile
   
     - task: InstallAppleProvisioningProfile@1
       displayName: 'Install Apple Provisioning Profile'
       inputs:
         provisioningProfileLocation: 'secureFiles'
-        provProfileSecureFile: Uno_Gallery_Skia_iOS.mobileprovision
+        provProfileSecureFile: Uno_Gallery_Native_iOS.mobileprovision
   
     - task: InstallAppleProvisioningProfile@1
       displayName: 'Install Apple Provisioning Profile'
       inputs:
         provisioningProfileLocation: 'secureFiles'
-        provProfileSecureFile: Uno_Gallery_Skia_Canary_iOS.mobileprovision
+        provProfileSecureFile: Uno_Gallery_Native_Canary_iOS.mobileprovision
 
 
     - template: build/templates/xcode-select.yml

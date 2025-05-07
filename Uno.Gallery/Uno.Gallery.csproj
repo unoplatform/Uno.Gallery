@@ -160,11 +160,11 @@
 		<EnableCodeSigning>true</EnableCodeSigning>
 		<CodeSignEntitlements>MacCatalyst\Entitlements.plist</CodeSignEntitlements>
 
-		<CodesignProvision>Uno Gallery (Catalyst)</CodesignProvision>
-		<CodesignProvision Condition="$(BUILD_SOURCEBRANCH.StartsWith('refs/heads/canaries'))">Uno Gallery Canary (Catalyst)</CodesignProvision>
+		<CodesignProvision>Uno Gallery Native (Catalyst)</CodesignProvision>
+		<CodesignProvision Condition="$(BUILD_SOURCEBRANCH.StartsWith('refs/heads/canaries'))">Uno Gallery Native Canary (Catalyst)</CodesignProvision>
 
-		<CodesignProvision Condition=" '$(UseNativeRendering)' != 'true' ">Uno Gallery Skia (Catalyst)</CodesignProvision>
-		<CodesignProvision Condition=" '$(UseNativeRendering)' != 'true' AND $(BUILD_SOURCEBRANCH.StartsWith('refs/heads/canaries'))">Uno Gallery Skia Canary (Catalyst)</CodesignProvision>
+		<CodesignProvision Condition=" '$(UseNativeRendering)' != 'true' ">Uno Gallery (Catalyst)</CodesignProvision>
+		<CodesignProvision Condition=" '$(UseNativeRendering)' != 'true' AND $(BUILD_SOURCEBRANCH.StartsWith('refs/heads/canaries'))">Uno Gallery Canary (Catalyst)</CodesignProvision>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='Release' and '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'android'">
