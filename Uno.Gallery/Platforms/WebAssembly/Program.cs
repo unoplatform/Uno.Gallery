@@ -17,8 +17,7 @@ namespace Uno.Gallery.Wasm
 		{
 			// Ask the browser to preload these fonts to avoid relayouting content
 #if IS_WASM_SKIA
-			// Disabled https://github.com/unoplatform/uno-private/issues/777
-			// FontFamilyHelper.PreloadAsync("Symbols", FontWeights.Normal, Windows.UI.Text.FontStretch.Normal, Windows.UI.Text.FontStyle.Normal);
+			await FontFamilyHelper.PreloadAsync("ms-appx:///Uno.Fonts.Roboto/Fonts/Roboto-Regular.ttf#Roboto", FontWeights.Normal, Windows.UI.Text.FontStretch.Normal, Windows.UI.Text.FontStyle.Normal);
 #else
 			FontFamilyHelper.PreloadAsync("Symbols");
 #endif
