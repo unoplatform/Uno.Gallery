@@ -4,7 +4,7 @@
 	</PropertyGroup>
 	
 	<Target Name="BuildVersion"
-					Condition="'$(GITVERSION_InformationalVersion)'!=''">
+					Condition="'$(NBGV_InformationalVersion)'!=''">
 		<Message Text="%0A#### Running BuildVersion"
                      Importance="$(_MessageImportance)" />
 
@@ -23,9 +23,9 @@
 			<_VersionCode Condition="$(VersionCodeOffset) != ''">$([MSBuild]::Subtract($(_VersionCode), '2200000000'))</_VersionCode>
 			<_AppleBuildNumber Condition="$(_AppleBuildNumber) == ''">$([System.DateTime]::Now.ToString(`yyMMddHHmm`)).$(_BuildNumber)</_AppleBuildNumber>
 			<_InformationalVersion>$(PackageInformationalVersion)</_InformationalVersion>
-			<_InformationalVersion Condition="'$(_InformationalVersion)' == ''">$(GITVERSION_InformationalVersion)</_InformationalVersion>
+			<_InformationalVersion Condition="'$(_InformationalVersion)' == ''">$(NBGV_InformationalVersion)</_InformationalVersion>
 			<_AppVersion>$(_AppVersion)</_AppVersion>
-			<_AppVersion Condition="'$(_AppVersion)'==''">$(GitVersion_MajorMinorPatch)</_AppVersion>
+			<_AppVersion Condition="'$(_AppVersion)'==''">$(NBGV_SimpleVersion)</_AppVersion>
 		</PropertyGroup>
 
 		<Error Condition="'$(_InformationalVersion)'=='' Or '$(_AppVersion)'==''"
@@ -33,7 +33,7 @@
 
 		<!-- App version without revision -->
 		<PropertyGroup Condition="'$(IncludeBuildInVersion)' == 'True'">
-			<_AppVersion>$(GitVersion_Major).$(GitVersion_Minor).$(_BuildNumber)</_AppVersion>
+			<_AppVersion>$(NBGV_SimpleVersion)</_AppVersion>
 		</PropertyGroup>
 
 		<!-- Pad the version in case it's too short -->

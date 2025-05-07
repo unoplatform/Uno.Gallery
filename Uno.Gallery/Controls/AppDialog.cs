@@ -11,11 +11,13 @@ namespace Uno.Gallery
 	{
 		public AppDialog()
 		{
+			Style = App.Instance.Resources["DefaultContentDialogStyle"] as Style;
 			XamlRoot = App.Instance.MainWindow.Content.XamlRoot;
 		}
 
 		public AppDialog(string content, string title) : this()
 		{
+			Style = App.Instance.Resources["DefaultContentDialogStyle"] as Style;
 			Title = title;
 			Content = content;
 			PrimaryButtonText = "OK";

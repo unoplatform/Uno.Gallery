@@ -22,11 +22,20 @@
 		<!-- Display name -->
 		<ApplicationTitle>Gallery</ApplicationTitle>
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.Gallery</ApplicationId>
+		<ApplicationId>uno.platform.gallery</ApplicationId>
+
+		<ApplicationId Condition=" '$(TargetFramework)' == 'net9.0-android' AND '$(UseSkiaRendering)' != 'true' ">com.nventive.uno.ui.demo</ApplicationId>
+		<ApplicationId Condition=" '$(TargetFramework)' == 'net9.0-android' AND '$(UseSkiaRendering)' == 'true' ">uno.platform.gallery.skia</ApplicationId>
+
+		<ApplicationId Condition=" '$(TargetFramework)' == 'net9.0-ios' AND '$(UseSkiaRendering)' != 'true' ">com.nventive.uno.gallery</ApplicationId>
+		<ApplicationId Condition=" '$(TargetFramework)' == 'net9.0-ios' AND '$(UseSkiaRendering)' == 'true' ">uno.platform.gallery.skia</ApplicationId>
+
+		<ApplicationId Condition=" '$(TargetFramework)' == 'net9.0-maccatalyst' AND '$(UseSkiaRendering)' != 'true' ">com.nventive.uno.gallery</ApplicationId>
+		<ApplicationId Condition=" '$(TargetFramework)' == 'net9.0-maccatalyst' AND '$(UseSkiaRendering)' == 'true' ">uno.platform.gallery.skia</ApplicationId>
+
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
 		<ApplicationVersion>1</ApplicationVersion>
-		<WindowsSdkPackageVersion>10.0.19041.38</WindowsSdkPackageVersion> 
 		<!--
 		If you encounter this error message:
 
@@ -42,29 +51,51 @@
 		UnoFeatures let's you quickly add and manage implicit package references based on the features you want to use.
 		https://aka.platform.uno/singleproject-features
 		-->
+
+		<!--
+		Uncomment to use skia rendering
+		<UseSkiaRendering>true</UseSkiaRendering>
+		-->
+	
+		<IsSkiaWasm Condition="'$(UseSkiaRendering)'=='true' AND '$(TargetFramework)'=='net9.0-browserwasm'">true</IsSkiaWasm>
+		<IsSkiaWasm Condition="'$(IsSkiaWasm)'==''">false</IsSkiaWasm>
+		<IsSkiaAndroid Condition="'$(UseSkiaRendering)'=='true' AND '$(TargetFramework)'=='net9.0-android'">true</IsSkiaAndroid>
+		<IsSkiaAndroid Condition="'$(IsSkiaAndroid)'==''">false</IsSkiaAndroid>
+		<IsSkiaUIKit Condition="'$(UseSkiaRendering)'=='true' AND ('$(TargetFramework)'=='net9.0-ios' OR '$(TargetFramework)'=='net9.0-maccatalyst')">true</IsSkiaUIKit>
+		<IsSkiaUIKit Condition="'$(IsSkiaUIKit)'==''">false</IsSkiaUIKit>
 		<UnoFeatures>
 			Material;
-			MediaElement;
 			Toolkit;
 			Cupertino;
 			Lottie;
 			Skia;
 			Svg;
-			Logging;
-			Extensions;
 		</UnoFeatures>
+		<UnoFeatures Condition="$(IsSkiaWasm)">$(UnoFeatures)SkiaRenderer;</UnoFeatures>
+		<UnoFeatures Condition="$(IsSkiaAndroid)">$(UnoFeatures)SkiaRenderer;</UnoFeatures>
+		<UnoFeatures Condition="$(IsSkiaUIKit)">$(UnoFeatures)SkiaRenderer;</UnoFeatures>
+		<UnoFeatures Condition="!$(IsSkiaWasm) AND !$(IsSkiaAndroid)">$(UnoFeatures)MediaElement;</UnoFeatures>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<DefaultItemExcludes Condition="$(IsSkiaWasm) OR $(IsSkiaAndroid)">$(DefaultItemExcludes);**\MediaPlayer*.*</DefaultItemExcludes>
+		<DefineConstants Condition="$(IsSkiaWasm)">$(DefineConstants);IS_WASM_SKIA</DefineConstants>
+		<DefineConstants Condition="$(IsSkiaAndroid)">$(DefineConstants);IS_ANDROID_SKIA</DefineConstants>
+		<DefineConstants Condition="$(IsSkiaUIKit)">$(DefineConstants);IS_UIKIT_SKIA</DefineConstants>
+		<DefineConstants Condition="'$(UseSkiaRendering)'=='true'">$(DefineConstants);HAS_SKIA_RENDERER</DefineConstants>
+
+		<DefineConstants Condition="$(BUILD_SOURCEBRANCH.StartsWith('refs/heads/canaries'))">$(DefineConstants);IS_CANARY_BUILD</DefineConstants>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)'=='Debug' or '$(IsUiAutomationMappingEnabled)'=='True'">
 		<IsUiAutomationMappingEnabled>True</IsUiAutomationMappingEnabled>
 		<DefineConstants>$(DefineConstants);USE_UITESTS</DefineConstants>
 	</PropertyGroup>
+
 	<ItemGroup>
 		<PackageReference Include="Uno.ShowMeTheXAML" />
 		<PackageReference Include="Uno.ShowMeTheXAML.MSBuild" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" />
 		<PackageReference Include="Uno.Core.Extensions.Disposables" />
 		<PackageReference Include="Uno.Core.Extensions.Compatibility" />
+		<!--<PackageReference Include="SkiaSharp.Skottie" Condition="$(IsSkiaWasm) OR $(IsSkiaAndroid)" />-->
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\Uno.Gallery.SourceGenerators\Uno.Gallery.SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" SetPlatform="Platform=AnyCPU" />
@@ -87,7 +118,15 @@
 		<RuntimeIdentifier>ios-arm64</RuntimeIdentifier>
 	</PropertyGroup>
 
-	<ItemGroup Condition="('$(Configuration)'=='Debug' or '$(IsUiAutomationMappingEnabled)'=='True') and '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'ios' ">
+	<ItemGroup Condition=" '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'ios' ">
+		<TrimmerRootDescriptor Include="Platforms/iOS/LinkerConfig.xml"/>
+	</ItemGroup>
+
+	<ItemGroup Condition="
+			   ('$(Configuration)'=='Debug' or '$(IsUiAutomationMappingEnabled)'=='True')
+			   AND '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'ios'
+			   AND $([MSBuild]::VersionLessThan($([MSBuild]::GetTargetFrameworkVersion($(TargetFramework))), '9.0'))
+			   ">
 		<PackageReference Include="Xamarin.TestCloud.Agent" />
 	</ItemGroup>
 
@@ -107,7 +146,9 @@
 		<WasmShellILLinkerEnabled>false</WasmShellILLinkerEnabled>
 		<UnoXamlResourcesTrimming>false</UnoXamlResourcesTrimming>
 		<WasmShellEnableJiterpreter>false</WasmShellEnableJiterpreter>
+		<DefineConstants>$(DefineConstants);AOT_PROFILE_GEN</DefineConstants>
 		-->
+
 	</PropertyGroup>
 	
 	<PropertyGroup Condition="'$(Configuration)'=='Release' and '$(System_PullRequest_IsFork)'!='True' and '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'maccatalyst' ">
@@ -121,6 +162,9 @@
 
 		<CodesignProvision>Uno Gallery (Catalyst)</CodesignProvision>
 		<CodesignProvision Condition="$(BUILD_SOURCEBRANCH.StartsWith('refs/heads/canaries'))">Uno Gallery Canary (Catalyst)</CodesignProvision>
+
+		<CodesignProvision Condition=" '$(UseSkiaRendering)' == 'true' ">Uno Gallery Skia (Catalyst)</CodesignProvision>
+		<CodesignProvision Condition=" '$(UseSkiaRendering)' == 'true' AND $(BUILD_SOURCEBRANCH.StartsWith('refs/heads/canaries'))">Uno Gallery Skia Canary (Catalyst)</CodesignProvision>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='Release' and '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'android'">
@@ -144,8 +188,6 @@
 	</ItemGroup>
 
 	<ItemGroup Condition=" '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'browserwasm' ">
-		<PackageReference Include="Uno.Wasm.Bootstrap" />
-		<PackageReference Include="Uno.Wasm.Bootstrap.DevServer" />
 		<PackageReference Include="Microsoft.TypeScript.Compiler">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
@@ -161,9 +203,10 @@
 		
 		<WasmShellMonoEnvironment Include="MONO_GC_PARAMS" Value="soft-heap-limit=512m,nursery-size=64m,evacuation-threshold=66,major=marksweep" />
 	</ItemGroup>
-	
+
 	<PropertyGroup Condition="'$(Configuration)'=='Release' and '$(WasmShellMonoRuntimeExecutionMode)'=='InterpreterAndAOT'">
-		<WasmAotFileName Condition="'$(IsUiAutomationMappingEnabled)'==''">aot.profile</WasmAotFileName>
+		<WasmAotFileName Condition="'$(IsUiAutomationMappingEnabled)'=='' AND '$(UseSkiaRendering)' != 'true' ">aot.profile</WasmAotFileName>
+		<WasmAotFileName Condition="'$(IsUiAutomationMappingEnabled)'=='' AND '$(UseSkiaRendering)' == 'true' ">aot-skiawasm.profile</WasmAotFileName>
 
 		<!--
 		Use smaller profile for UI tests to avoid the browser's memory
@@ -173,9 +216,8 @@
 		<WasmAotFileName Condition="'$(IsUiAutomationMappingEnabled)'=='True'">aot-uitests.profile</WasmAotFileName>
 	</PropertyGroup>
 
-
 	<!-- https://github.com/dotnet/runtime/issues/109289 -->
-	<Target Name="Issue109289_Workaround" AfterTargets="_BrowserWasmWriteRspForLinking" Condition=" $(NETCoreSdkVersion.Contains('rc.2')) ">
+	<Target Name="Issue109289_Workaround" AfterTargets="_BrowserWasmWriteRspForLinking" Condition=" $(NETCoreSdkVersion.Contains('9.0.100')) ">
 		<ItemGroup>
 			<_WasmLinkStepArgs Remove="@(_EmccLinkStepArgs)" />
 			<_EmccLinkStepArgs Remove="&quot;%(_WasmNativeFileForLinking.Identity)&quot;" />

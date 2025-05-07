@@ -551,6 +551,7 @@
 		<!-- Nested frame for samples that needs to be fullscreen -->
 		<Frame x:Name="NestedSampleFrame"
 			   Grid.RowSpan="3"
+			   Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
 			   Visibility="Collapsed" />
 
 		<!-- Custom pane toggle button -->

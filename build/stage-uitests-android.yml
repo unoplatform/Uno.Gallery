@@ -7,24 +7,19 @@
     SourceLinkEnabled: false
 
   pool:
-    vmImage: 'macos-14'
+    vmImage: 'ubuntu-24.04'
 
   steps:
   - checkout: self
     clean: true
+    fetchDepth: 0
+    persistCredentials: true
 
-  - template: templates/dotnet-install-mac.yml
+  - template: templates/dotnet-install-linux.yml
     parameters:
       UnoCheckParameters: '--tfm net9.0-android'
 
   - template: templates/canary-updater.yml
-
-  - task: PowerShell@2
-    displayName: 'Install coreutils'
-    inputs:
-      targetType: inline
-      script: |
-        brew install coreutils
 
   - bash: |
       chmod +x $(build.sourcesdirectory)/build/scripts/android-uitest-build.sh
@@ -44,6 +39,7 @@
   - publish: $(Build.ArtifactStagingDirectory)
     artifact: Android_UITest
 
+
 - job: Android_Tests
   displayName: 'Android UI Tests'
   dependsOn: Android_Tests_Build
@@ -58,6 +54,7 @@
   steps:
   - checkout: self
     clean: true
+    persistCredentials: true
 
   - download: current
     artifact: Android_UITest

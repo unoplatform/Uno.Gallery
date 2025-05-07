@@ -6,7 +6,6 @@
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	  xmlns:smtx="using:ShowMeTheXAML"
 	  mc:Ignorable="d">
-
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 		<local:SamplePageLayout>
 
@@ -21,70 +20,87 @@
 									  SelectedIndex="0">
 								<FlipViewItem>
 									<Grid Background="{StaticResource UnoBlueColorBrush}">
-										<StackPanel VerticalAlignment="Center">
+										<StackPanel VerticalAlignment="Center" Spacing="16">
 
 											<TextBlock Text="Item 1"
-													   Style="{StaticResource HeadlineLarge}"
+													   Style="{StaticResource HeaderTextBlockStyle}"
 													   Foreground="White"
+													   FontWeight="Bold"
 													   HorizontalAlignment="Center" />
-
-											<TextBlock Text="&#x2190; Swipe"
-													   Style="{StaticResource HeadlineLarge}"
-													   Foreground="White"
-													   HorizontalAlignment="Center"
-													   Margin="0,0,46,0" />
+											<StackPanel Spacing="8" HorizontalAlignment="Center" Orientation="Horizontal">
+												<FontIcon Foreground="White" Glyph="&#xE72B;" Opacity="0.3" />
+												<TextBlock Text="Swipe"
+														   Style="{StaticResource HeadlineMedium}"
+														   Foreground="White"
+														   HorizontalAlignment="Center" />
+												<FontIcon Foreground="White" Glyph="&#xE72A;" Opacity="1" />
+											</StackPanel>
 										</StackPanel>
 									</Grid>
 								</FlipViewItem>
 
 								<FlipViewItem>
 									<Grid Background="{StaticResource UnoPurpleColorBrush}">
-										<StackPanel VerticalAlignment="Center">
+										<StackPanel VerticalAlignment="Center" Spacing="16">
 
 											<TextBlock Text="Item 2"
-													   Style="{StaticResource HeadlineLarge}"
+													   Style="{StaticResource HeaderTextBlockStyle}"
 													   Foreground="White"
+													   FontWeight="Bold"
 													   HorizontalAlignment="Center" />
 
-											<TextBlock Text="&#x2190; Swipe &#x2192;"
-													   Style="{StaticResource HeadlineLarge}"
-													   Foreground="White"
-													   HorizontalAlignment="Center" />
+											<StackPanel Spacing="8" HorizontalAlignment="Center" Orientation="Horizontal">
+												<FontIcon Foreground="White" Glyph="&#xE72B;" Opacity="1" />
+												<TextBlock Text="Swipe"
+														   Style="{StaticResource HeadlineMedium}"
+														   Foreground="White"
+														   HorizontalAlignment="Center" />
+												<FontIcon Foreground="White" Glyph="&#xE72A;" Opacity="1" />
+											</StackPanel>
 										</StackPanel>
 									</Grid>
 								</FlipViewItem>
 
 								<FlipViewItem>
 									<Grid Background="{StaticResource UnoGreenColorBrush}">
-										<StackPanel VerticalAlignment="Center">
+										<StackPanel VerticalAlignment="Center" Spacing="16">
 
 											<TextBlock Text="Item 3"
-													   Style="{StaticResource HeadlineLarge}"
+													   Style="{StaticResource HeaderTextBlockStyle}"
 													   Foreground="White"
+													   FontWeight="Bold"
 													   HorizontalAlignment="Center" />
-
-											<TextBlock Text="&#x2190; Swipe &#x2192;"
-													   Style="{StaticResource HeadlineLarge}"
-													   Foreground="White"
-													   HorizontalAlignment="Center" />
+											
+											<StackPanel Spacing="8" HorizontalAlignment="Center" Orientation="Horizontal">
+												<FontIcon Foreground="White" Glyph="&#xE72B;" Opacity="1" />
+												<TextBlock Text="Swipe"
+														   Style="{StaticResource HeadlineMedium}"
+														   Foreground="White"
+														   HorizontalAlignment="Center" />
+												<FontIcon Foreground="White" Glyph="&#xE72A;" Opacity="1" />
+											</StackPanel>
 										</StackPanel>
 									</Grid>
 								</FlipViewItem>
 
 								<FlipViewItem>
 									<Grid Background="{StaticResource UnoRedColorBrush}">
-										<StackPanel VerticalAlignment="Center">
+										<StackPanel VerticalAlignment="Center" Spacing="16">
 
 											<TextBlock Text="Item 4"
-													   Style="{StaticResource HeadlineLarge}"
+													   Style="{StaticResource HeaderTextBlockStyle}"
 													   Foreground="White"
+													   FontWeight="Bold"
 													   HorizontalAlignment="Center" />
 
-											<TextBlock Text="Swipe &#x2192;"
-													   Style="{StaticResource HeadlineLarge}"
-													   Foreground="White"
-													   HorizontalAlignment="Center"
-													   Margin="44,0,0,0" />
+											<StackPanel Spacing="8" HorizontalAlignment="Center" Orientation="Horizontal">
+												<FontIcon Foreground="White" Glyph="&#xE72B;" Opacity="1" />
+												<TextBlock Text="Swipe"
+														   Style="{StaticResource HeadlineMedium}"
+														   Foreground="White"
+														   HorizontalAlignment="Center" />
+												<FontIcon Foreground="White" Glyph="&#xE72A;" Opacity="0.3" />
+											</StackPanel>
 										</StackPanel>
 									</Grid>
 								</FlipViewItem>

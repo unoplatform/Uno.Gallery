@@ -14,4 +14,4 @@
 	<Style TargetType="TextBlock"
 		   BasedOn="{StaticResource DefaultTextBlockStyle}" />
 
-</ResourceDictionary>    
+</ResourceDictionary>

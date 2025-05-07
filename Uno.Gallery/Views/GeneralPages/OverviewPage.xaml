@@ -16,7 +16,7 @@
 	  xmlns:todo="what should be done"
 	  mc:Ignorable="d todo android ios wasm xamarin"
 	  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-	<local:SamplePageLayout>
+	<local:SamplePageLayout x:Name="sampleLayout">
 
 		<local:SamplePageLayout.HeaderTemplate>
 			<DataTemplate>
@@ -141,6 +141,12 @@
 
 						</StackPanel>
 					</local:OverviewSampleView>
+
+					<TextBlock x:Name="version"
+							   Margin="0,10,0,0"
+							   Foreground="LightGray"
+							   FontSize="8"
+							   Text="local build" />
 
 				</StackPanel>
 			</DataTemplate>
@@ -312,7 +318,6 @@
 
 						</StackPanel>
 					</local:OverviewSampleView>
-
 				</StackPanel>
 			</DataTemplate>
 		</local:SamplePageLayout.CupertinoTemplate>

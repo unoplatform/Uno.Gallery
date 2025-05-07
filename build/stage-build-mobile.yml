@@ -1,9 +1,10 @@
 steps:
-- template: templates/dotnet-install-mac.yml
-  parameters:
-    UnoCheckParameters: '--tfm net9.0-ios --tfm net9.0-maccatalyst'
+- checkout: self
+  clean: true
+  fetchDepth: 0
+  persistCredentials: true
 
-- template: templates/dotnet-install-windows.yml
+- template: templates/dotnet-install-mac.yml
   parameters:
     UnoCheckParameters: '--tfm net9.0-ios --tfm net9.0-maccatalyst'
 
@@ -15,26 +16,19 @@ steps:
   inputs:
     secureFile: nventive.jks
 
-- task: UseDotNet@2
-  condition: and(succeeded(), eq(variables['IsCanaryBranch'], true))
-  retryCountOnTaskFailure: 3
-  inputs:
-    packageType: runtime
-    version: 6.0.0
-
 - template: templates/gitversion.yml
 
 - bash: |
     cd $(build.sourcesdirectory)/Uno.Gallery
     echo "BUILD_SOURCEBRANCH: $BUILD_SOURCEBRANCH"
-    dotnet $(BuildCommand) -v:n -f $(BuildTargetFramework) -p:TargetFrameworkOverride=$(BuildTargetFramework) -c Release /p:ArchiveOnBuild=true /bl:$(build.artifactstagingdirectory)/build-$(BuildTargetFramework).binlog "/p:InformationalVersion=$(GitVersion.InformationalVersion)"
+    dotnet $(BuildCommand) -v:n -f $(BuildTargetFramework) -p:TargetFrameworkOverride=$(BuildTargetFramework) -c Release -p:UseSkiaRendering=$(UseSkiaRendering) /p:ArchiveOnBuild=true /bl:$(build.artifactstagingdirectory)/build-$(BuildTargetFramework).binlog "/p:InformationalVersion=$(NBGV_InformationalVersion)"
   displayName: Build project for Release - $(BuildTargetFramework)
   condition: and(succeeded(), eq(variables['System.PullRequest.IsFork'],'False'))
 
 - bash: |
     cd $(build.sourcesdirectory)/Uno.Gallery
     echo "BUILD_SOURCEBRANCH: $BUILD_SOURCEBRANCH"
-    dotnet build -f $(BuildTargetFramework) -p:TargetFrameworkOverride=$(BuildTargetFramework) -c Release /bl:$(build.artifactstagingdirectory)/build-$(BuildTargetFramework).binlog "/p:InformationalVersion=$(GitVersion.InformationalVersion)"
+    dotnet build -f $(BuildTargetFramework) -p:TargetFrameworkOverride=$(BuildTargetFramework) -c Release -p:UseSkiaRendering=$(UseSkiaRendering) /bl:$(build.artifactstagingdirectory)/build-$(BuildTargetFramework).binlog "/p:InformationalVersion=$(NBGV_InformationalVersion)"
   displayName: Build project for Release - $(BuildTargetFramework)
   condition: and(succeeded(), eq(variables['System.PullRequest.IsFork'],'True'))
 
@@ -54,6 +48,12 @@ steps:
 
 - task: PublishBuildArtifacts@1
   retryCountOnTaskFailure: 3
+  condition: succeeded()
+  inputs:
+    ArtifactName: $(ArtifactName)-$(VariantName)
+
+- task: PublishBuildArtifacts@1
+  retryCountOnTaskFailure: 3
   condition: always()
   inputs:
-    ArtifactName: $(ArtifactName)
+    ArtifactName: $(ArtifactName)-$(VariantName)-logs

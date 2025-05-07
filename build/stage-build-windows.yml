@@ -1,12 +1,4 @@
 steps:
-
-- task: UseDotNet@2
-  condition: eq(variables['IsCanaryBranch'], true)
-  retryCountOnTaskFailure: 3
-  inputs:
-    packageType: runtime
-    version: 6.0.0
-
 - template: templates/canary-updater.yml
 - template: templates/gitversion.yml
 
@@ -14,12 +6,12 @@ steps:
   displayName: 'Use .NET'
   inputs:
     packageType: 'sdk'
-    version: '9.0.100'
+    version: '9.0.200'
     includePreviewVersions: true
 
 - script: |
     cd $(build.sourcesdirectory)/Uno.Gallery
-    dotnet publish -c Release -f net9.0-windows10.0.19041 -p:TargetFrameworkOverride=net9.0-windows10.0.19041 /p:Platform=$(ApplicationPlatform) /p:AppxPackageDir="Packages/" /p:AppxBundle=Never /p:UapAppxPackageBuildMode=SideloadOnly /p:GenerateAppxPackageOnBuild=true /bl:$(build.artifactstagingdirectory)/build.binlog "/p:InformationalVersion=$(GitVersion.InformationalVersion)"
+    dotnet publish -c Release -f net9.0-windows10.0.19041 -p:TargetFrameworkOverride=net9.0-windows10.0.19041 /p:Platform=$(ApplicationPlatform) /p:AppxPackageDir="Packages/" /p:AppxBundle=Never /p:UapAppxPackageBuildMode=SideloadOnly /p:GenerateAppxPackageOnBuild=true /bl:$(build.artifactstagingdirectory)/build.binlog "/p:InformationalVersion=$(NBGV_InformationalVersion)"
   displayName: Build project for Release
 
 - task: CopyFiles@2
