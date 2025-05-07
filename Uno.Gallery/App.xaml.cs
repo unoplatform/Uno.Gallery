@@ -12,6 +12,7 @@ using Uno.Extensions;
 using Uno.Gallery.Entities;
 using Uno.Gallery.Helpers;
 using Uno.Gallery.Views.GeneralPages;
+using Uno.Gallery.Views.Samples;
 using Uno.Logging;
 using Uno.UI;
 using Windows.ApplicationModel;
@@ -320,6 +321,13 @@ namespace Uno.Gallery
 				.OrderByDescending(x => x.SortOrder.HasValue)
 				.ThenBy(x => x.SortOrder)
 				.ThenBy(x => x.Title)
+				.Where(x =>
+#if AOT_PROFILE_GEN || IS_CANARY_BUILD || DEBUG
+					true
+#else
+					x.Category != SampleCategory.Canary
+#endif
+				)
 				.GroupBy(x => x.Category);
 
 			foreach (var category in categories.OrderBy(x => x.Key))
@@ -371,6 +379,26 @@ namespace Uno.Gallery
 					}
 				});
 			}
+		}
+
+		internal async Task NavigateToAllPages()
+		{
+			var samples = GetSamples();
+
+			foreach (var sample in samples)
+			{
+				ShellNavigateTo(sample);
+
+				var tcs = new TaskCompletionSource();
+
+				DispatcherQueue.GetForCurrentThread().TryEnqueue(DispatcherQueuePriority.Low, () => tcs.TrySetResult());
+
+				await tcs.Task;
+
+				GC.WaitForPendingFinalizers();
+			}
+
+			ShellNavigateTo<CanarySamplePage>();
 		}
 
 		/// <summary>

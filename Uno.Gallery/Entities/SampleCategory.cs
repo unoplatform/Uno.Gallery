@@ -26,5 +26,9 @@ namespace Uno.Gallery
 
 		[SampleCategoryInfo("\uE821", "Community Toolkit")]
 		CommunityToolkit,
+
+		// Hidden for non-canary builds
+		[SampleCategoryInfo("\uE115", "Canary")]
+		Canary,
 	}
 }

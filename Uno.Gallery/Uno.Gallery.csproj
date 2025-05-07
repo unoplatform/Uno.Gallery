@@ -81,6 +81,8 @@
 		<DefineConstants Condition="$(IsSkiaAndroid)">$(DefineConstants);IS_ANDROID_SKIA</DefineConstants>
 		<DefineConstants Condition="$(IsSkiaUIKit)">$(DefineConstants);IS_UIKIT_SKIA</DefineConstants>
 		<DefineConstants Condition="'$(UseSkiaRendering)'=='true'">$(DefineConstants);HAS_SKIA_RENDERER</DefineConstants>
+
+		<DefineConstants Condition="$(BUILD_SOURCEBRANCH.StartsWith('refs/heads/canaries'))">$(DefineConstants);IS_CANARY_BUILD</DefineConstants>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)'=='Debug' or '$(IsUiAutomationMappingEnabled)'=='True'">
 		<IsUiAutomationMappingEnabled>True</IsUiAutomationMappingEnabled>
@@ -138,16 +140,15 @@
 		<WasmShellEnableEmccProfiling>true</WasmShellEnableEmccProfiling>
 		<UnoXamlResourcesTrimming>true</UnoXamlResourcesTrimming>
 
-		<!--<RunAOTCompilationAfterBuild>true</RunAOTCompilationAfterBuild>-->
-
 		<!--
 		Uncomment this block to generate a profile
 		<WasmShellGenerateAOTProfile>true</WasmShellGenerateAOTProfile>
 		<WasmShellILLinkerEnabled>false</WasmShellILLinkerEnabled>
 		<UnoXamlResourcesTrimming>false</UnoXamlResourcesTrimming>
 		<WasmShellEnableJiterpreter>false</WasmShellEnableJiterpreter>
+		<DefineConstants>$(DefineConstants);AOT_PROFILE_GEN</DefineConstants>
 		-->
-		
+
 	</PropertyGroup>
 	
 	<PropertyGroup Condition="'$(Configuration)'=='Release' and '$(System_PullRequest_IsFork)'!='True' and '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'maccatalyst' ">
