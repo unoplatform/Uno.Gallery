@@ -26,7 +26,7 @@
             displayName: 'Publish to the App Store TestFlight track'
             inputs:
               serviceEndpoint: 'App Store (uno platform)'
-              appIdentifier: uno.platform.gallery.skia
+              appIdentifier: uno.platform.gallery.native
               ipaPath: '$(Pipeline.Workspace)/drop/net9.0-ios/ios-arm64/publish/Uno.Gallery.ipa'
               shouldSkipWaitingForProcessing: true
               appSpecificId: 6739235480
@@ -53,7 +53,7 @@
             displayName: 'Publish to the App Store TestFlight track'
             inputs:
               serviceEndpoint: 'App Store (uno platform)'
-              appIdentifier: uno.platform.gallery
+              appIdentifier: com.nventive.uno.gallery
               ipaPath: '$(Pipeline.Workspace)/drop/net9.0-ios/ios-arm64/publish/Uno.Gallery.ipa'
               shouldSkipWaitingForProcessing: true
               appSpecificId: 1619130328

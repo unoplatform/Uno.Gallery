@@ -26,7 +26,7 @@
             displayName: 'Publish to the App Store TestFlight track'
             inputs:
               serviceEndpoint: 'App Store (uno platform)'
-              appIdentifier: uno.platform.gallery
+              appIdentifier: uno.platform.gallery.native_canary
               appType: macOS
               ipaPath: '$(Pipeline.Workspace)/drop/net9.0-maccatalyst/Uno.Gallery-*.pkg'
               shouldSkipWaitingForProcessing: true
@@ -54,7 +54,7 @@
             displayName: 'Publish to the App Store TestFlight track'
             inputs:
               serviceEndpoint: 'App Store (uno platform)'
-              appIdentifier: uno.platform.gallery.skia
+              appIdentifier: com.nventive.uno.gallery-canary
               appType: macOS
               ipaPath: '$(Pipeline.Workspace)/drop/net9.0-maccatalyst/Uno.Gallery-*.pkg'
               shouldSkipWaitingForProcessing: true

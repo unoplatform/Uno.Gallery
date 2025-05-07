@@ -16,6 +16,11 @@
 
 		<!-- android is disable on linux until ci is fixed  -->
 		<TargetFrameworks Condition="'$(TargetFrameworkOverride)'=='' AND !$([MSBuild]::IsOSPlatform('linux'))">$(TargetFrameworks);net9.0-android;</TargetFrameworks>
+
+		<!--
+		Uncomment to use Native rendering for iOS/Android/Wasm
+		<UseNativeRendering>true</UseNativeRendering>
+		-->
 		
 		<OutputType>Exe</OutputType>
 		<UnoSingleProject>true</UnoSingleProject>
@@ -24,14 +29,14 @@
 		<!-- App Identifier -->
 		<ApplicationId>uno.platform.gallery</ApplicationId>
 
-		<ApplicationId Condition=" '$(TargetFramework)' == 'net9.0-android' AND '$(UseSkiaRendering)' != 'true' ">com.nventive.uno.ui.demo</ApplicationId>
-		<ApplicationId Condition=" '$(TargetFramework)' == 'net9.0-android' AND '$(UseSkiaRendering)' == 'true' ">uno.platform.gallery.skia</ApplicationId>
+		<ApplicationId Condition=" '$(TargetFramework)' == 'net9.0-android' AND '$(UseNativeRendering)' != 'true' ">com.nventive.uno.ui.demo</ApplicationId>
+		<ApplicationId Condition=" '$(TargetFramework)' == 'net9.0-android' AND '$(UseNativeRendering)' == 'true' ">uno.platform.gallery.native</ApplicationId>
 
-		<ApplicationId Condition=" '$(TargetFramework)' == 'net9.0-ios' AND '$(UseSkiaRendering)' != 'true' ">com.nventive.uno.gallery</ApplicationId>
-		<ApplicationId Condition=" '$(TargetFramework)' == 'net9.0-ios' AND '$(UseSkiaRendering)' == 'true' ">uno.platform.gallery.skia</ApplicationId>
+		<ApplicationId Condition=" '$(TargetFramework)' == 'net9.0-ios' AND '$(UseNativeRendering)' != 'true' ">com.nventive.uno.gallery</ApplicationId>
+		<ApplicationId Condition=" '$(TargetFramework)' == 'net9.0-ios' AND '$(UseNativeRendering)' == 'true' ">uno.platform.gallery.native</ApplicationId>
 
-		<ApplicationId Condition=" '$(TargetFramework)' == 'net9.0-maccatalyst' AND '$(UseSkiaRendering)' != 'true' ">com.nventive.uno.gallery</ApplicationId>
-		<ApplicationId Condition=" '$(TargetFramework)' == 'net9.0-maccatalyst' AND '$(UseSkiaRendering)' == 'true' ">uno.platform.gallery.skia</ApplicationId>
+		<ApplicationId Condition=" '$(TargetFramework)' == 'net9.0-maccatalyst' AND '$(UseNativeRendering)' != 'true' ">com.nventive.uno.gallery</ApplicationId>
+		<ApplicationId Condition=" '$(TargetFramework)' == 'net9.0-maccatalyst' AND '$(UseNativeRendering)' == 'true' ">uno.platform.gallery.native</ApplicationId>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
@@ -51,17 +56,12 @@
 		UnoFeatures let's you quickly add and manage implicit package references based on the features you want to use.
 		https://aka.platform.uno/singleproject-features
 		-->
-
-		<!--
-		Uncomment to use skia rendering
-		<UseSkiaRendering>true</UseSkiaRendering>
-		-->
 	
-		<IsSkiaWasm Condition="'$(UseSkiaRendering)'=='true' AND '$(TargetFramework)'=='net9.0-browserwasm'">true</IsSkiaWasm>
+		<IsSkiaWasm Condition="'$(UseNativeRendering)'!='true' AND '$(TargetFramework)'=='net9.0-browserwasm'">true</IsSkiaWasm>
 		<IsSkiaWasm Condition="'$(IsSkiaWasm)'==''">false</IsSkiaWasm>
-		<IsSkiaAndroid Condition="'$(UseSkiaRendering)'=='true' AND '$(TargetFramework)'=='net9.0-android'">true</IsSkiaAndroid>
+		<IsSkiaAndroid Condition="'$(UseNativeRendering)'!='true' AND '$(TargetFramework)'=='net9.0-android'">true</IsSkiaAndroid>
 		<IsSkiaAndroid Condition="'$(IsSkiaAndroid)'==''">false</IsSkiaAndroid>
-		<IsSkiaUIKit Condition="'$(UseSkiaRendering)'=='true' AND ('$(TargetFramework)'=='net9.0-ios' OR '$(TargetFramework)'=='net9.0-maccatalyst')">true</IsSkiaUIKit>
+		<IsSkiaUIKit Condition="'$(UseNativeRendering)'!='true' AND ('$(TargetFramework)'=='net9.0-ios' OR '$(TargetFramework)'=='net9.0-maccatalyst')">true</IsSkiaUIKit>
 		<IsSkiaUIKit Condition="'$(IsSkiaUIKit)'==''">false</IsSkiaUIKit>
 		<UnoFeatures>
 			Material;
@@ -80,7 +80,7 @@
 		<DefineConstants Condition="$(IsSkiaWasm)">$(DefineConstants);IS_WASM_SKIA</DefineConstants>
 		<DefineConstants Condition="$(IsSkiaAndroid)">$(DefineConstants);IS_ANDROID_SKIA</DefineConstants>
 		<DefineConstants Condition="$(IsSkiaUIKit)">$(DefineConstants);IS_UIKIT_SKIA</DefineConstants>
-		<DefineConstants Condition="'$(UseSkiaRendering)'=='true'">$(DefineConstants);HAS_SKIA_RENDERER</DefineConstants>
+		<DefineConstants Condition="'$(UseNativeRendering)'!='true'">$(DefineConstants);HAS_SKIA_RENDERER</DefineConstants>
 
 		<DefineConstants Condition="$(BUILD_SOURCEBRANCH.StartsWith('refs/heads/canaries'))">$(DefineConstants);IS_CANARY_BUILD</DefineConstants>
 	</PropertyGroup>
@@ -163,8 +163,8 @@
 		<CodesignProvision>Uno Gallery (Catalyst)</CodesignProvision>
 		<CodesignProvision Condition="$(BUILD_SOURCEBRANCH.StartsWith('refs/heads/canaries'))">Uno Gallery Canary (Catalyst)</CodesignProvision>
 
-		<CodesignProvision Condition=" '$(UseSkiaRendering)' == 'true' ">Uno Gallery Skia (Catalyst)</CodesignProvision>
-		<CodesignProvision Condition=" '$(UseSkiaRendering)' == 'true' AND $(BUILD_SOURCEBRANCH.StartsWith('refs/heads/canaries'))">Uno Gallery Skia Canary (Catalyst)</CodesignProvision>
+		<CodesignProvision Condition=" '$(UseNativeRendering)' != 'true' ">Uno Gallery Skia (Catalyst)</CodesignProvision>
+		<CodesignProvision Condition=" '$(UseNativeRendering)' != 'true' AND $(BUILD_SOURCEBRANCH.StartsWith('refs/heads/canaries'))">Uno Gallery Skia Canary (Catalyst)</CodesignProvision>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='Release' and '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'android'">
@@ -205,8 +205,8 @@
 	</ItemGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='Release' and '$(WasmShellMonoRuntimeExecutionMode)'=='InterpreterAndAOT'">
-		<WasmAotFileName Condition="'$(IsUiAutomationMappingEnabled)'=='' AND '$(UseSkiaRendering)' != 'true' ">aot.profile</WasmAotFileName>
-		<WasmAotFileName Condition="'$(IsUiAutomationMappingEnabled)'=='' AND '$(UseSkiaRendering)' == 'true' ">aot-skiawasm.profile</WasmAotFileName>
+		<WasmAotFileName Condition="'$(IsUiAutomationMappingEnabled)'=='' AND '$(UseNativeRendering)' == 'true' ">aot.profile</WasmAotFileName>
+		<WasmAotFileName Condition="'$(IsUiAutomationMappingEnabled)'=='' AND '$(UseNativeRendering)' != 'true' ">aot-skiawasm.profile</WasmAotFileName>
 
 		<!--
 		Use smaller profile for UI tests to avoid the browser's memory
