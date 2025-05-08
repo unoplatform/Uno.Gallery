@@ -138,7 +138,7 @@
 		<WasmShellMonoRuntimeExecutionMode>InterpreterAndAOT</WasmShellMonoRuntimeExecutionMode>
 		<WasmShellEmccLinkOptimization>false</WasmShellEmccLinkOptimization>
 		<WasmShellEnableEmccProfiling>true</WasmShellEnableEmccProfiling>
-		<UnoXamlResourcesTrimming>true</UnoXamlResourcesTrimming>
+		<!-- <UnoXamlResourcesTrimming>true</UnoXamlResourcesTrimming> -->
 
 		<!--
 		Uncomment this block to generate a profile
