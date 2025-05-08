@@ -30,7 +30,7 @@
 		<ApplicationId>uno.platform.gallery</ApplicationId>
 
 		<ApplicationId Condition=" '$(TargetFramework)' == 'net9.0-android' AND '$(UseNativeRendering)' != 'true' ">com.nventive.uno.ui.demo</ApplicationId>
-		<ApplicationId Condition=" '$(TargetFramework)' == 'net9.0-android' AND '$(UseNativeRendering)' == 'true' ">uno.platform.gallery.native</ApplicationId>
+		<ApplicationId Condition=" '$(TargetFramework)' == 'net9.0-android' AND '$(UseNativeRendering)' == 'true' ">uno.platform.gallery_native</ApplicationId>
 
 		<ApplicationId Condition=" '$(TargetFramework)' == 'net9.0-ios' AND '$(UseNativeRendering)' != 'true' ">com.nventive.uno.gallery</ApplicationId>
 		<ApplicationId Condition=" '$(TargetFramework)' == 'net9.0-ios' AND '$(UseNativeRendering)' == 'true' ">uno.platform.gallery.native</ApplicationId>
