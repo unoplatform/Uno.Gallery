@@ -1,6 +1,6 @@
 ﻿stages:
 - stage: Catalyst_Publish
-  displayName: 'Catalyst Publish'
+  displayName: 'Catalyst Publish (Canary)'
   dependsOn: Apple
 
   jobs:
