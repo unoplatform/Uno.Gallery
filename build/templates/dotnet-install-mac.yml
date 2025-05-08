@@ -5,6 +5,18 @@ parameters:
   UnoCheckParameters: ''
 
 steps:
+  # Required for caching
+  - pwsh: |
+      echo "##vso[task.setvariable variable=DOTNET_INSTALL_DIR;]$(Build.SourcesDirectory)/.dotnet"
+    displayName: "Set DOTNET_INSTALL_DIR for macOS/Linux"
+    condition: or(eq(variables['Agent.OS'], 'Linux'), eq(variables['Agent.OS'], 'Darwin'))
+
+  - task: Cache@2
+    inputs:
+      key: dotnet | "$(Agent.OS)" | "$(Agent.JobName)" | "${{ parameters.UnoCheck_Version }}" | "${{ parameters.UnoCheckParameters }}"
+      path: $(DOTNET_INSTALL_DIR)
+    displayName: Set Cache for dotnet install
+
   # Required until .NET 6 installs properly using UseDotnet
   # using preview builds
   #- bash: |
@@ -24,6 +36,7 @@ steps:
       packageType: sdk
       version: ${{ parameters.DotNetVersion }}
       includePreviewVersions: true
+      installationPath: $(DOTNET_INSTALL_DIR)
 
   - template: jdk-setup.yml
 

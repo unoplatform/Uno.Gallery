@@ -4,6 +4,17 @@ parameters:
   UnoCheckParameters: ''
 
 steps:
+  # Required for caching
+  - pwsh: |
+      echo "##vso[task.setvariable variable=DOTNET_INSTALL_DIR;]$(Build.SourcesDirectory)\.dotnet"
+    displayName: "Set DOTNET_INSTALL_DIR for Windows"
+    condition: eq(variables['Agent.OS'], 'Windows_NT')
+
+  - task: Cache@2
+    inputs:
+      key: dotnet | "$(Agent.OS)" | "$(Agent.JobName)" | "${{ parameters.UnoCheck_Version }}" | "${{ parameters.UnoCheckParameters }}"
+      path: $(DOTNET_INSTALL_DIR)
+    displayName: Set Cache for dotnet install
 
   # Required until .NET 6 installs properly on Windows using UseDotnet
   # using preview builds
@@ -16,6 +27,7 @@ steps:
   #  errorActionPreference: stop
   #  retryCountOnTaskFailure: 3
   #  condition: eq(variables['Agent.OS'], 'Windows_NT')
+
   - task: UseDotNet@2
     displayName: 'Use .NET Core SDK ${{ parameters.DotNetVersion }}'
     retryCountOnTaskFailure: 3
@@ -23,6 +35,7 @@ steps:
       packageType: sdk
       version: ${{ parameters.DotNetVersion }}
       includePreviewVersions: true
+      installationPath: $(DOTNET_INSTALL_DIR)
 
   - powershell: |
       & dotnet tool update --global uno.check --version ${{ parameters.UnoCheck_Version }} --add-source https://api.nuget.org/v3/index.json
