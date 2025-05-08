@@ -1,11 +1,23 @@
 parameters:
-  DotNetVersion: '9.0.200'
-  UnoCheck_Version: '1.31.0-dev.12'
+  DotNetVersion: '9.0.203'
+  UnoCheck_Version: '1.32.0-dev.3'
   installJava: true
   installWorkloads: true
   UnoCheckParameters: ''
 
 steps:
+  # Required for caching
+  - pwsh: |
+      echo "##vso[task.setvariable variable=DOTNET_INSTALL_DIR;]$(Build.SourcesDirectory)/.dotnet"
+    displayName: "Set DOTNET_INSTALL_DIR for macOS/Linux"
+    condition: or(eq(variables['Agent.OS'], 'Linux'), eq(variables['Agent.OS'], 'Darwin'))
+
+  - task: Cache@2
+    inputs:
+      key: dotnet | "$(Agent.OS)" | "$(Agent.JobName)" | "${{ parameters.UnoCheck_Version }}" | "${{ parameters.UnoCheckParameters }}"
+      path: $(DOTNET_INSTALL_DIR)
+    displayName: Set Cache for dotnet install
+
   - task: UseDotNet@2
     displayName: 'Use .NET Core SDK ${{ parameters.DotNetVersion }}'
     retryCountOnTaskFailure: 3
@@ -13,6 +25,7 @@ steps:
       packageType: sdk
       version: ${{ parameters.DotNetVersion }}
       includePreviewVersions: true
+      installationPath: $(DOTNET_INSTALL_DIR)
 
   - bash: |
       ubuntu_release=`lsb_release -rs`
@@ -28,6 +41,6 @@ steps:
 
   - bash: |
       dotnet tool update --global uno.check --version ${{ parameters.UnoCheck_Version }} --add-source https://api.nuget.org/v3/index.json
-      uno-check --verbose --ci --non-interactive --fix --skip gtk3 --skip androidsdk --skip maui --skip unosdk --pre-major ${{ parameters.UnoCheckParameters }}
+      uno-check --verbose --ci --non-interactive --fix --skip gtk3 --skip androidsdk --skip androidemulator --skip maui --skip unosdk ${{ parameters.UnoCheckParameters }}
     displayName: Install .NET Workloads
     condition: and(succeeded(), and( eq(variables['Agent.OS'], 'Linux'), eq('${{ parameters.installWorkloads }}', 'true') ))

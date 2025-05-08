@@ -1,0 +1,97 @@
+﻿stages:
+- stage: WebAssembly_Staging_Publish
+  displayName: 'WebAssembly Staging'
+  dependsOn: WebAssembly
+
+  jobs:
+  - deployment: 'WebAssembly_Publish_DOM'
+    displayName: 'Publish WebAssembly DOM'
+    environment: Uno Gallery Wasm Staging
+
+    pool:
+      vmImage: ubuntu-latest
+
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          # https://github.com/microsoft/azure-pipelines-tasks/issues/17207
+          - download: none
+          - task: DownloadPipelineArtifact@2
+            inputs:
+              artifactName: 'WASM-DOM'
+              targetPath: '$(Pipeline.Workspace)/WASM-DOM'
+            displayName: Download artifacts
+
+          - task: AzureStaticWebApp@0
+            displayName: 'Deploy to azure static app'
+            inputs:
+              workingDirectory: '$(Pipeline.Workspace)/WASM-DOM'
+              skip_app_build: true
+              skip_api_build: true
+              is_static_export: false
+              verbose: false
+              azure_static_web_apps_api_token: '$(PRODUCTION_SWA_TOKEN)'
+              deployment_environment: 'staging-dom'
+
+  - deployment: 'WebAssembly_Publish_SKIA'
+    displayName: 'Publish WebAssembly Skia'
+    environment: Uno Gallery Wasm Staging
+    pool:
+      vmImage: ubuntu-latest
+
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          # https://github.com/microsoft/azure-pipelines-tasks/issues/17207
+          - download: none
+          - task: DownloadPipelineArtifact@2
+            inputs:
+              artifactName: 'WASM-Skia'
+              targetPath: '$(Pipeline.Workspace)/WASM-Skia'
+            displayName: Download artifacts
+
+          - task: AzureStaticWebApp@0
+            displayName: 'Deploy to azure static app'
+            inputs:
+              workingDirectory: '$(Pipeline.Workspace)/WASM-Skia'
+              skip_app_build: true
+              skip_api_build: true
+              is_static_export: false
+              verbose: false
+              azure_static_web_apps_api_token: '$(PRODUCTION_SWA_TOKEN)'
+              deployment_environment: 'staging'
+
+- stage: WebAssembly_Production_Publish
+  displayName: 'Uno Gallery Wasm Production'
+  dependsOn: WebAssembly_Staging_Publish
+  jobs:
+
+  - deployment: 'WebAssembly_Publish_SKIA'
+    displayName: 'Publish WebAssembly Skia'
+    environment: Uno Gallery Wasm Production
+    pool:
+      vmImage: ubuntu-latest
+
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          # https://github.com/microsoft/azure-pipelines-tasks/issues/17207
+          - download: none
+          - task: DownloadPipelineArtifact@2
+            inputs:
+              artifactName: 'WASM-Skia'
+              targetPath: '$(Pipeline.Workspace)/WASM-Skia'
+            displayName: Download artifacts
+
+          - task: AzureStaticWebApp@0
+            displayName: 'Deploy to azure static app'
+            inputs:
+              workingDirectory: '$(Pipeline.Workspace)/WASM-Skia'
+              skip_app_build: true
+              skip_api_build: true
+              is_static_export: false
+              verbose: false
+              azure_static_web_apps_api_token: '$(PRODUCTION_SWA_TOKEN)'

@@ -1,0 +1,58 @@
+﻿stages:
+- stage: Android_Publish
+  displayName: 'Android Publish'
+  dependsOn: Android
+
+  jobs:
+  - deployment: 'Android_Publish_Native'
+    displayName: 'Publish Android Native'
+    environment: Uno Gallery
+    pool:
+      vmImage: ubuntu-latest
+
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          # https://github.com/microsoft/azure-pipelines-tasks/issues/17207
+          - download: none
+          - task: DownloadPipelineArtifact@2
+            inputs:
+              artifactName: 'android-mobile-native'
+              targetPath: '$(Pipeline.Workspace)/drop'
+            displayName: Download artifacts
+
+          - task: ms-vsclient.google-play.google-play-release.GooglePlayRelease@4
+            displayName: 'Play Store Publish'
+            inputs:
+              serviceConnection: 'Uno Platform Google Play'
+              applicationId: 'uno.platform.gallery.native_canary'
+              bundleFile: '$(Pipeline.Workspace)/drop/publish/uno.platform.gallery.skia_canary-Signed.aab'
+              track: 'alpha'
+
+  - deployment: 'Android_Publish_Skia'
+    displayName: 'Publish Android Skia'
+    environment: Uno Gallery
+    pool:
+      vmImage: ubuntu-latest
+
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          # https://github.com/microsoft/azure-pipelines-tasks/issues/17207
+          - download: none
+          - task: DownloadPipelineArtifact@2
+            inputs:
+              artifactName: 'android-mobile-skia'
+              targetPath: '$(Pipeline.Workspace)/drop'
+            displayName: Download artifacts
+
+          - task: ms-vsclient.google-play.google-play-release.GooglePlayRelease@4
+            displayName: 'Play Store Publish'
+            inputs:
+              serviceConnection: 'Uno Platform Google Play'
+              applicationId: 'com.nventive.uno.ui.demo.canary'
+              bundleFile: '$(Pipeline.Workspace)/drop/publish/com.nventive.uno.ui.demo.canary-Signed.aab'
+              track: 'alpha'
+

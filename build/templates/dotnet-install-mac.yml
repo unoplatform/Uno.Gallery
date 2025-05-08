@@ -5,6 +5,18 @@ parameters:
   UnoCheckParameters: ''
 
 steps:
+  # Required for caching
+  - pwsh: |
+      echo "##vso[task.setvariable variable=DOTNET_INSTALL_DIR;]$(Build.SourcesDirectory)/.dotnet"
+    displayName: "Set DOTNET_INSTALL_DIR for macOS/Linux"
+    condition: or(eq(variables['Agent.OS'], 'Linux'), eq(variables['Agent.OS'], 'Darwin'))
+
+  - task: Cache@2
+    inputs:
+      key: dotnet | "$(Agent.OS)" | "$(Agent.JobName)" | "${{ parameters.UnoCheck_Version }}" | "${{ parameters.UnoCheckParameters }}"
+      path: $(DOTNET_INSTALL_DIR)
+    displayName: Set Cache for dotnet install
+
   # Required until .NET 6 installs properly using UseDotnet
   # using preview builds
   #- bash: |
@@ -24,11 +36,12 @@ steps:
       packageType: sdk
       version: ${{ parameters.DotNetVersion }}
       includePreviewVersions: true
+      installationPath: $(DOTNET_INSTALL_DIR)
 
   - template: jdk-setup.yml
 
   - bash: |
       dotnet tool update --global uno.check --version ${{ parameters.UnoCheck_Version }} --add-source https://api.nuget.org/v3/index.json
-      uno-check --ci --non-interactive --fix --skip gtk3 --skip xcode --skip vswin --skip androidemulator --skip maui --skip unosdk --skip vsmac --pre-major ${{ parameters.UnoCheckParameters }}
+      uno-check --ci --non-interactive --fix --skip gtk3 --skip xcode --skip vswin --skip androidemulator --skip maui --skip unosdk --skip vsmac ${{ parameters.UnoCheckParameters }}
     displayName: Install .NET Workloads
     condition: and(succeeded(), and( eq(variables['Agent.OS'], 'Darwin'), eq('${{ parameters.installWorkloads }}', 'true') ))

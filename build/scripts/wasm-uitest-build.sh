@@ -7,4 +7,4 @@ export UNO_UITEST_WASM_PROJECT=$BUILD_SOURCESDIRECTORY/Uno.Gallery/Uno.Gallery.c
 
 cd $BUILD_SOURCESDIRECTORY
 
-dotnet publish -f net9.0-browserwasm -p:Configuration=Release $UNO_UITEST_WASM_PROJECT -p:IsUiAutomationMappingEnabled=True -bl:$UNO_UITEST_SCREENSHOT_PATH/msbuild.binlog
+dotnet publish -f net9.0-browserwasm -p:Configuration=Release $UNO_UITEST_WASM_PROJECT -p:UseNativeRendering=true -p:IsUiAutomationMappingEnabled=True -bl:$UNO_UITEST_SCREENSHOT_PATH/msbuild.binlog
