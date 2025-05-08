@@ -15,6 +15,7 @@ jobs:
   build_and_deploy_job:
     env:
       DIST_PATH: Uno.Gallery/bin/Release/net9.0-browserwasm/publish/wwwroot
+      DotnetVersion: '9.0.203'
 
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
@@ -26,10 +27,43 @@ jobs:
           fetch-depth: 0 # Required for gitversion
           submodules: true
 
+      # When running on macos, set the DOTNET_INSTALL_DIR so a workspace local folder
+      # is used to install the SDK. This is required for the Uno.Sdk.Updater to work
+      - name: Set DOTNET_INSTALL_DIR
+        if: runner.os == 'macos' || runner.os == 'linux'
+        shell: bash
+        run: echo "DOTNET_INSTALL_DIR=$GITHUB_WORKSPACE/.dotnet" >> $GITHUB_ENV
+
+      - name: 'Set Wasm cache path'
+        shell: pwsh
+        run: echo "WasmCachePath=${{ github.workspace }}/.emscripten-cache" >> $env:GITHUB_ENV
+
+      - name: Cache EMSDK
+        id: cache-emsdk
+        uses: actions/cache@v4
+        env:
+            cache-name: cache-emsdk-modules
+        with:
+            path: ${{ env.WasmCachePath }}
+            key: ${{ runner.os }}-build-emsdk-${{ env.ValidationUnoCheckVersion }}
+            restore-keys: |
+              ${{ runner.os }}-build-emsdk-${{ env.ValidationUnoCheckVersion }}
+
+      - name: Cache .NET
+        id: cache-dotnet
+        uses: actions/cache@v4
+        env:
+            cache-name: cache-dotnet-install
+        with:
+            path: ${{ github.workspace }}/.dotnet
+            key: ${{ runner.os }}-build-dotnet-${{ env.DotnetVersion }}
+            restore-keys: |
+              ${{ runner.os }}-build-dotnet-${{ env.DotnetVersion }}
+
       - name: Setup .NET
         uses: actions/setup-dotnet@v1.7.2
         with:
-          dotnet-version: '9.0.200'
+          dotnet-version: ${{ env.DotnetVersion }}
           include-prerelease: true
 
       - run: |
