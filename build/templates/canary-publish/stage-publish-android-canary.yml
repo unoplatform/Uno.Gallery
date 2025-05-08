@@ -1,6 +1,6 @@
 ﻿stages:
 - stage: Android_Publish
-  displayName: 'Android Publish'
+  displayName: 'Android Publish (Canary)'
   dependsOn: Android
 
   jobs:
@@ -27,7 +27,7 @@
             inputs:
               serviceConnection: 'Uno Platform Google Play'
               applicationId: 'uno.platform.gallery.native_canary'
-              bundleFile: '$(Pipeline.Workspace)/drop/publish/uno.platform.gallery.skia_canary-Signed.aab'
+              bundleFile: '$(Pipeline.Workspace)/drop/publish/uno.platform.gallery_native-canary-Signed.aab'
               track: 'alpha'
 
   - deployment: 'Android_Publish_Skia'
