@@ -13,22 +13,6 @@ steps:
       packageAuthor: 'nventive,uno platform'
       summaryFile: '$(Build.ArtifactStagingDirectory)/Canary.md'
 
-  - task: unoplatformCanaryUpdater@1
-    displayName: 'Canary Update (skia-everywhere)'
-    condition: startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries/skia-everywhere')
-    inputs:
-      solution: '$(build.sourcesdirectory)'
-      usePrivateFeed: false
-      useNuGetOrg: true
-      mergeBranch: true
-      branchToMerge: master
-      nugetUpdaterVersion: '1.2.10'
-      nugetVersion: dev
-      packageAuthor: 'nventive,unoplatform,uno platform'
-      summaryFile: '$(Build.ArtifactStagingDirectory)/Summary.md'
-      resultFile: '$(Build.ArtifactStagingDirectory)/Results.json'
-      # additionalPublicSources: 'https://pkgs.dev.azure.com/uno-platform/1dd81cbd-cb35-41de-a570-b0df3571a196/_packaging/Features/nuget/v3/index.json'
-
   #- pwsh: |
   #    cd $(build.sourcesdirectory)
   #    dotnet nuget add source https://pkgs.dev.azure.com/uno-platform/1dd81cbd-cb35-41de-a570-b0df3571a196/_packaging/Features/nuget/v3/index.json -n unofeatures
@@ -51,7 +35,7 @@ steps:
       gci -r -include "Uno.Gallery.csproj" |
       foreach-object {
           $a = $_.fullname; ( get-content $a ) |
-          foreach-object { $_ -replace "uno.platform.gallery.native","uno.platform.gallery.native-canary" } |
+          foreach-object { $_ -replace "uno\.platform\.gallery\.native","uno.platform.gallery.native-canary" } |
           set-content $a }
     displayName: 'Adjust App ID (skia)'
     condition: startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries')
@@ -59,7 +43,7 @@ steps:
       gci -r -include "Uno.Gallery.csproj" |
       foreach-object {
           $a = $_.fullname; ( get-content $a ) |
-          foreach-object { $_ -replace "uno.platform.gallery_native","uno.platform.gallery_native-canary" } |
+          foreach-object { $_ -replace "uno\.platform\.gallery_native","uno.platform.gallery_native-canary" } |
           set-content $a }
     displayName: 'Adjust App ID (Android Native)'
     condition: startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries')
@@ -68,7 +52,7 @@ steps:
       gci -r -include "Uno.Gallery.csproj" |
       foreach-object {
           $a = $_.fullname; ( get-content $a ) |
-          foreach-object { $_ -replace "com.nventive.uno.ui.demo","com.nventive.uno.ui.demo.canary" } |
+          foreach-object { $_ -replace "com\.nventive\.uno\.ui\.demo","com.nventive.uno.ui.demo.canary" } |
           set-content $a }
     displayName: 'Adjust App ID (Android Skia)'
     condition: startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries')
@@ -77,7 +61,7 @@ steps:
       gci -r -include "Uno.Gallery.csproj" |
       foreach-object {
           $a = $_.fullname; ( get-content $a ) |
-          foreach-object { $_ -replace "com.nventive.uno.gallery","com.nventive.uno.gallery-canary" } |
+          foreach-object { $_ -replace "com\.nventive\.uno\.gallery","com.nventive.uno.gallery-canary" } |
           set-content $a }
     displayName: 'Adjust App ID (Catalyst)'
     condition: startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries')
