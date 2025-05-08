@@ -1,6 +1,6 @@
 ﻿stages:
 - stage: iOS_Publish
-  displayName: 'iOS Publish'
+  displayName: 'iOS Publish (Canary)'
   dependsOn: Apple
 
   jobs:
