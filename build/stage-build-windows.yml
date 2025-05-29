@@ -14,10 +14,6 @@ steps:
     dotnet publish -c Release -f net9.0-windows10.0.19041 -p:TargetFrameworkOverride=net9.0-windows10.0.19041 /p:Platform=$(ApplicationPlatform) /p:AppxPackageDir="Packages/" /p:AppxBundle=Never /p:UapAppxPackageBuildMode=SideloadOnly /p:GenerateAppxPackageOnBuild=true /bl:$(build.artifactstagingdirectory)/build.binlog "/p:InformationalVersion=$(NBGV_InformationalVersion)"
   displayName: Build project for Release
 
-- script: |
-    du -sh --block-size=1M $(build.sourcesdirectory)/Uno.Gallery/Packages
-  displayName: Display Release package size # Will change so we can collect it later
-
 - task: CopyFiles@2
   displayName: Copy Windows output
   inputs:
