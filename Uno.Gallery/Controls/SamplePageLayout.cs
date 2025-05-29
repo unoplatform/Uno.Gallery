@@ -12,6 +12,7 @@ using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Documents;
 using Microsoft.UI.Xaml.Media;
+using Uno.UI.Extensions;
 
 namespace Uno.Gallery
 {
@@ -38,6 +39,7 @@ namespace Uno.Gallery
 		private const string StickyTabsPartName = "PART_StickyTabs";
 		private const string ScrollViewerPartName = "PART_ScrollViewer";
 		private const string TopPartName = "PART_MobileTopBar";
+		private const string ScrollingContentName = "ScrollingContent";
 		private const string ShareHyperlinkPartName = "PART_ShareHyperlink";
 
 		private static Design _design = Design.Material;
@@ -69,6 +71,7 @@ namespace Uno.Gallery
 		private FrameworkElement _stickyTabs;
 		private FrameworkElement _top;
 		private ScrollViewer _scrollViewer;
+		private FrameworkElement _scrollingContent;
 
 		private readonly SerialDisposable _subscriptions = new SerialDisposable();
 
@@ -112,6 +115,7 @@ namespace Uno.Gallery
 			_stickyTabs = (FrameworkElement)GetTemplateChild(StickyTabsPartName);
 			_scrollViewer = (ScrollViewer)GetTemplateChild(ScrollViewerPartName);
 			_top = (FrameworkElement)GetTemplateChild(TopPartName);
+			_scrollingContent = (FrameworkElement)GetTemplateChild(ScrollingContentName);
 			var shareHyperlink = (Hyperlink)GetTemplateChild(ShareHyperlinkPartName);
 
 			// ensure previous subscriptions is removed before adding new ones, in case OnApplyTemplate is called multiple times
@@ -241,7 +245,7 @@ namespace Uno.Gallery
 		private double GetRelativeOffset()
 		{
 #if WINDOWS
-			// On UWP we can count on finding a ScrollContentPresenter. 
+			// On UWP we can count on finding a ScrollContentPresenter.
 			var scp = VisualTreeHelperEx.GetFirstDescendant<ScrollContentPresenter>(_scrollViewer);
 			var content = scp?.Content as FrameworkElement;
 			var transform = _scrollingTabs.TransformToVisual(content);
@@ -250,8 +254,8 @@ namespace Uno.Gallery
 			var transform = _scrollingTabs.TransformToVisual(_scrollViewer);
 			return transform.TransformPoint(new Point(0, 0)).Y;
 #else
-			var transform = _scrollingTabs.TransformToVisual(this);
-			return transform.TransformPoint(new Point(0, 0)).Y - _top.ActualHeight;
+			var transform = _scrollingTabs.TransformToVisual(_scrollingContent);
+			return transform.TransformPoint(new Point(0, 0)).Y - _scrollViewer.VerticalOffset;
 #endif
 		}
 
