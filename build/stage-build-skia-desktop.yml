@@ -11,16 +11,16 @@ steps:
 - bash: |
     dotnet build Uno.Gallery/Uno.Gallery.csproj -p:TargetFrameworkOverride=net9.0-desktop -c Release -p:InformationalVersion=$(NBGV_InformationalVersion) -bl:$(build.artifactstagingdirectory)/build.binlog
 
-- bash: |
-    du -sh --block-size=1M Uno.Gallery/bin/Release/net9.0-desktop/publish
-  displayName: Display publish folder size
-
 - task: CopyFiles@2
   displayName: Copy Skia output
   inputs:
     SourceFolder: Uno.Gallery/bin/Release/net9.0-desktop
     Contents: '**/*.*'
     TargetFolder: $(Build.ArtifactStagingDirectory)/bin
+
+- script: |
+    du -sh --block-size=1M $(Build.ArtifactStagingDirectory)/bin
+  displayName: Log bin folder size
 
 - task: PublishBuildArtifacts@1
   retryCountOnTaskFailure: 3
