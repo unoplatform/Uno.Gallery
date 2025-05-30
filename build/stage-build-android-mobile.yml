@@ -44,8 +44,8 @@ steps:
     flattenFolders: false
 
 - bash: |
-    chmod +x $(build.sourcesdirectory)/build/scripts/collect-metrics-build.sh
-    $(build.sourcesdirectory)/build/scripts/collect-metrics-build.sh $(build.artifactstagingdirectory)
+    chmod +x build/scripts/collect-metrics-build.sh
+    build/scripts/collect-metrics-build.sh $(build.artifactstagingdirectory)
   displayName: Generate metrics JSON
 
 - task: PublishBuildArtifacts@1
