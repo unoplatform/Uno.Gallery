@@ -22,7 +22,7 @@ steps:
     Contents: '**/*.*'
     TargetFolder: $(Build.ArtifactStagingDirectory)/bin
 
-- script: |
+- bash: |
     folder_size=$(du -sh --block-size=1M $(Build.ArtifactStagingDirectory)/bin | cut -f1)
 
     cat <<EOF > $(Build.ArtifactStagingDirectory)/bin/metrics.json
