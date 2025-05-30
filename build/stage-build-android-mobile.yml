@@ -43,9 +43,21 @@ steps:
     OverWrite: false
     flattenFolders: false
 
+- bash: |
+    chmod +x $(build.sourcesdirectory)/build/scripts/collect-metrics-build.sh
+    $(build.sourcesdirectory)/build/scripts/collect-metrics-build.sh $(build.artifactstagingdirectory)
+  displayName: Generate metrics JSON
 
 - task: PublishBuildArtifacts@1
   retryCountOnTaskFailure: 3
   condition: always()
   inputs:
     ArtifactName: android-mobile-$(VariantName)
+
+- task: PublishBuildArtifacts@1
+  displayName: Publish build metrics
+  inputs:
+    PathtoPublish: $(Build.ArtifactStagingDirectory)/metrics
+    ArtifactName: build-metrics-skia-desktop
+  condition: succeededOrFailed()
+

@@ -22,31 +22,10 @@ steps:
     Contents: '**/*.*'
     TargetFolder: $(Build.ArtifactStagingDirectory)/bin
 
-- script: |
-    du -sh --block-size=1M $(Build.ArtifactStagingDirectory)/bin
-  displayName: Log bin folder size
-
 - bash: |
-    bin_path="$(Build.ArtifactStagingDirectory)/bin"
-    folder_size=$(du -sh --block-size=1M "$bin_path" | cut -f1)
-    timestamp=$(date +"%T")
-
-    mkdir -p "$bin_path"
-
-    touch "$bin_path/metrics.json"
-    
-    cat <<EOF > "$bin_path/metrics.json"
-    {
-      "buildId": "$(Build.BuildId)",
-      "commit": "$(Build.SourceVersion)",
-      "size": "${folder_size}",
-      "isTrimmed": false,
-      "timeStamp": "${timestamp}"
-    }
-    EOF
-  displayName: Add metrics to artifact (JSON)
-
-
+    chmod +x $(build.sourcesdirectory)/build/scripts/collect-metrics-build.sh
+    $(build.sourcesdirectory)/build/scripts/collect-metrics-build.sh $(build.artifactstagingdirectory)/bin
+  displayName: Generate metrics JSON
 
 - task: PublishBuildArtifacts@1
   displayName: Publish desktop artifacts
@@ -54,3 +33,11 @@ steps:
   inputs:
     pathToPublish: $(Build.ArtifactStagingDirectory)/bin
     ArtifactName: desktop
+
+- task: PublishBuildArtifacts@1
+  displayName: Publish build metrics
+  inputs:
+    PathtoPublish: $(Build.ArtifactStagingDirectory)/metrics
+    ArtifactName: build-metrics-skia-desktop
+  condition: succeededOrFailed()
+

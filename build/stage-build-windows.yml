@@ -21,6 +21,11 @@ steps:
     Contents: '**/*.*'
     TargetFolder: $(Build.ArtifactStagingDirectory)/
 
+- bash: |
+    chmod +x $(build.sourcesdirectory)/build/scripts/collect-metrics-build.sh
+    $(build.sourcesdirectory)/build/scripts/collect-metrics-build.sh $(build.artifactstagingdirectory)
+  displayName: Generate metrics JSON
+
 - task: PowerShell@2
   displayName: Authenticode Sign Packages
   inputs:
@@ -38,3 +43,11 @@ steps:
   retryCountOnTaskFailure: 3
   inputs:
     ArtifactName: windows
+
+- task: PublishBuildArtifacts@1
+  displayName: Publish build metrics
+  inputs:
+    PathtoPublish: $(Build.ArtifactStagingDirectory)/metrics
+    ArtifactName: build-metrics-skia-desktop
+  condition: succeededOrFailed()
+
