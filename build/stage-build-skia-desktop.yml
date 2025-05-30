@@ -22,17 +22,30 @@ steps:
     Contents: '**/*.*'
     TargetFolder: $(Build.ArtifactStagingDirectory)/bin
 
-- bash: |
-    folder_size=$(du -sh --block-size=1M $(Build.ArtifactStagingDirectory)/bin | cut -f1)
+- script: |
+    du -sh --block-size=1M $(Build.ArtifactStagingDirectory)/bin
+  displayName: Log bin folder size
 
-    cat <<EOF > $(Build.ArtifactStagingDirectory)/bin/metrics.json
+- bash: |
+    bin_path="$(Build.ArtifactStagingDirectory)/bin"
+    folder_size=$(du -sh --block-size=1M "$bin_path" | cut -f1)
+    timestamp=$(date +"%T")
+
+    mkdir -p "$bin_path"
+
+    touch "$bin_path/metrics.json"
+    
+    cat <<EOF > "$bin_path/metrics.json"
     {
       "buildId": "$(Build.BuildId)",
       "commit": "$(Build.SourceVersion)",
-      "binArtifactSize": "${folder_size}"
+      "size": "${folder_size}",
+      "isTrimmed": false,
+      "timeStamp": "${timestamp}"
     }
     EOF
   displayName: Add metrics to artifact (JSON)
+
 
 
 - task: PublishBuildArtifacts@1
