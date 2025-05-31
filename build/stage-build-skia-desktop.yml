@@ -22,10 +22,10 @@ steps:
     Contents: '**/*.*'
     TargetFolder: $(Build.ArtifactStagingDirectory)/bin
 
-- bash: |
-    chmod +x build/scripts/collect-metrics-build.sh
-    build/scripts/collect-metrics-build.sh $(build.artifactstagingdirectory)/bin
-  displayName: Generate metrics JSON
+- template: templates/performance/collect-performance-metrics.yml
+  parameters:
+    TargetFolder: $(Build.ArtifactStagingDirectory)/
+    ScriptPath: $(build.sourcesdirectory)/build/scripts/collect-metrics-build.sh
 
 - task: PublishBuildArtifacts@1
   displayName: Publish desktop artifacts
@@ -34,10 +34,10 @@ steps:
     pathToPublish: $(Build.ArtifactStagingDirectory)/bin
     ArtifactName: desktop
 
-- task: PublishBuildArtifacts@1
-  displayName: Publish build metrics
-  inputs:
-    PathtoPublish: $(Build.ArtifactStagingDirectory)/metrics
-    ArtifactName: build-metrics-skia-desktop
-  condition: succeededOrFailed()
+# - task: PublishBuildArtifacts@1
+#   displayName: Publish build metrics
+#   inputs:
+#     PathtoPublish: $(Build.ArtifactStagingDirectory)/metrics
+#     ArtifactName: build-metrics-skia-desktop
+#   condition: succeededOrFailed()
 

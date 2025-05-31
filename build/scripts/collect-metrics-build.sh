@@ -6,7 +6,8 @@ if [ -z "$1" ]; then
 fi
 
 TARGET_FOLDER="$1"
-METRICS_FOLDER="$(Build.ArtifactStagingDirectory)/metrics"
+METRICS_FOLDER="$TARGET_FOLDER/metrics"
+
 
 mkdir -p "$METRICS_FOLDER"
 
@@ -20,8 +21,8 @@ echo "[] Writing output to metrics.json in $METRICS_FOLDER"
 
 cat <<EOF > "$METRICS_FOLDER/metrics.json"
 {
-    "buildId": "$(Build.BuildId)",
-    "commit": "$(Build.SourceVersion)",
+    "buildId": "${BUILD_ID:-unknown}",
+    "commit": "${SOURCE_VERSION:-unknown}",
     "size": "${folder_size}",
     "isTrimmed": false,
     "timeStamp": "${timestamp}"

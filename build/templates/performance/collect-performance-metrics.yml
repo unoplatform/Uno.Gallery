@@ -1,0 +1,14 @@
+parameters:
+  TargetFolder: ''
+  ScriptPath: ''
+
+steps:
+- bash: |
+    chmod +x ${{ parameters.scriptPath }}
+    BUILD_ID=$(Build.BuildId) \
+    SOURCE_VERSION=$(Build.SourceVersion) \
+    ${{ parameters.ScriptPath }} ${{ parameters.TargetFolder }}
+  displayName: Generate metrics JSON
+  env:
+    BUILD_ID: $(Build.BuildId)
+    SOURCE_VERSION: $(Build.SourceVersion)

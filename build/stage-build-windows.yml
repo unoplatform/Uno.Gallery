@@ -21,13 +21,10 @@ steps:
     Contents: '**/*.*'
     TargetFolder: $(Build.ArtifactStagingDirectory)/
 
-- bash: |
-    ls
-    
-    chmod +x build/scripts/collect-metrics-build.sh
-
-    build/scripts/collect-metrics-build.sh $(build.artifactstagingdirectory)
-  displayName: Generate metrics JSON
+- template: templates/performance/collect-performance-metrics.yml
+  parameters:
+    TargetFolder: $(Build.ArtifactStagingDirectory)/
+    ScriptPath: $(build.sourcesdirectory)/build/scripts/collect-metrics-build.sh
 
 - task: PowerShell@2
   displayName: Authenticode Sign Packages
