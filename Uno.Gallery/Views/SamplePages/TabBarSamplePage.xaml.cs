@@ -33,17 +33,17 @@ namespace Uno.Gallery.Views.SamplePages
 
 		private void ShowMaterialTopBarSampleInNestedFrame(object sender, RoutedEventArgs e)
 		{
-			Shell.GetForCurrentView()?.ShowNestedSample<MaterialTopBarSampleNestedPage>(clearStack: true);
+			Shell.GetForElement(this)?.ShowNestedSample<MaterialTopBarSampleNestedPage>(clearStack: true);
 		}
 
 		//private void ShowMaterialBottomBarSampleInNestedFrame(object sender, RoutedEventArgs e)
 		//{
-		//	Shell.GetForCurrentView()?.ShowNestedSample<MaterialBottomBarSampleNestedPage>(clearStack: true);
+		//	Shell.GetForElement(this)?.ShowNestedSample<MaterialBottomBarSampleNestedPage>(clearStack: true);
 		//}
 
 		private void ShowCupertinoBottomBarSampleInNestedFrame(object sender, RoutedEventArgs e)
 		{
-			Shell.GetForCurrentView()?.ShowNestedSample<CupertinoBottomBarSampleNestedPage>(clearStack: true);
+			Shell.GetForElement(this)?.ShowNestedSample<CupertinoBottomBarSampleNestedPage>(clearStack: true);
 		}
 	}
 

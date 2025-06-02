@@ -1,9 +1,4 @@
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Uno.Extensions;
 using Uno.Extensions.Specialized;
 using Uno.Gallery.Helpers;
@@ -40,7 +35,7 @@ public sealed partial class Shell : UserControl
 		NestedSampleFrame.RegisterPropertyChangedCallback(ContentControl.ContentProperty, OnNestedSampleFrameChanged);
 	}
 
-	public static Shell GetForCurrentView() => (Shell)App.Instance.MainWindow.Content;
+	public static Shell GetForElement(FrameworkElement element) => VisualTreeHelperEx.FindAncestor<Shell>(element);
 
 	public MUXC.NavigationView NavigationView => NavigationViewControl;
 
@@ -94,8 +89,8 @@ public sealed partial class Shell : UserControl
 
 		void Adjust()
 		{
-                var full = App.Instance.MainWindow.Bounds;
-                var bounds = ApplicationView.GetForCurrentView().VisibleBounds;
+			var full = App.Instance.MainWindow.Bounds;
+			var bounds = ApplicationView.GetForCurrentView().VisibleBounds;
 			var topPadding = Math.Abs(full.Top - bounds.Top);
 
 			if (topPadding > 0)
@@ -106,7 +101,7 @@ public sealed partial class Shell : UserControl
 	}
 #endif
 
-        private void ToggleButton_Click(object sender, RoutedEventArgs e)
+	private void ToggleButton_Click(object sender, RoutedEventArgs e)
 	{
 		// Set theme for window root.
 		if (App.Instance.MainWindow.Content is FrameworkElement root)
@@ -222,7 +217,7 @@ public sealed partial class Shell : UserControl
 
 	private void SamplesSearchBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
 	{
-		if(args.Reason != AutoSuggestionBoxTextChangeReason.UserInput)
+		if (args.Reason != AutoSuggestionBoxTextChangeReason.UserInput)
 		{
 			return;
 		}
@@ -282,7 +277,7 @@ public sealed partial class Shell : UserControl
 
 	private async void OnAppBarButtonClick(object sender, RoutedEventArgs e)
 	{
-		if (sender is FrameworkElement { Tag: string { Length: >0 } url })
+		if (sender is FrameworkElement { Tag: string { Length: > 0 } url })
 		{
 			await Launcher.LaunchUriAsync(new Uri(url));
 		}

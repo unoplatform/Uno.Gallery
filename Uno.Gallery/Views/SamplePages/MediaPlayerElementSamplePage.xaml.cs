@@ -31,27 +31,27 @@ namespace Uno.Gallery.Views.Samples
 
 		private void LaunchMediaPlayerElementSample1(object sender, RoutedEventArgs e)
 		{
-			Shell.GetForCurrentView().ShowNestedSample<MediaPlayerElementSample_NestedPage1>(clearStack: true);
+			Shell.GetForElement(this).ShowNestedSample<MediaPlayerElementSample_NestedPage1>(clearStack: true);
 		}
 
 		private void LaunchMediaPlayerElementSample2(object sender, RoutedEventArgs e)
 		{
-			Shell.GetForCurrentView().ShowNestedSample<MediaPlayerElementSample_NestedPage2>(clearStack: true);
+			Shell.GetForElement(this).ShowNestedSample<MediaPlayerElementSample_NestedPage2>(clearStack: true);
 		}
 
 		private void LaunchMediaPlayerElementSample3(object sender, RoutedEventArgs e)
 		{
-			Shell.GetForCurrentView().ShowNestedSample<MediaPlayerElementSample_NestedPage3>(clearStack: true);
+			Shell.GetForElement(this).ShowNestedSample<MediaPlayerElementSample_NestedPage3>(clearStack: true);
 		}
 
 		private void LaunchMediaPlayerElementSample4(object sender, RoutedEventArgs e)
 		{
-			Shell.GetForCurrentView().ShowNestedSample<MediaPlayerElementSample_NestedPage4>(clearStack: true);
+			Shell.GetForElement(this).ShowNestedSample<MediaPlayerElementSample_NestedPage4>(clearStack: true);
 		}
 
 		private void LaunchMediaPlayerElementSample5(object sender, RoutedEventArgs e)
 		{
-			Shell.GetForCurrentView().ShowNestedSample<MediaPlayerElementSample_NestedPage5>(clearStack: true);
+			Shell.GetForElement(this).ShowNestedSample<MediaPlayerElementSample_NestedPage5>(clearStack: true);
 		}
 	}
 }
