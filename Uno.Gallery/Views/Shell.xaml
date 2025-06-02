@@ -515,7 +515,7 @@
 							   Height="100"
 							   HorizontalAlignment="Left" />
 
-						<Button Click="OpenNewWindow_Click" Width="60" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Top">
+						<Button Click="OpenNewWindow_Click" Style="{StaticResource OutlinedButtonStyle}" Width="60" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Top">
 							<FontIcon Glyph="&#xE8A7;" />
 						</Button>
 						<!-- Dark/Light Toggle -->
