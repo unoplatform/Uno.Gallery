@@ -57,7 +57,7 @@ namespace Uno.Gallery
 #endif
 
 #if __WASM__
-			_ = Window.Current.DispatcherQueue?.TryEnqueue(DispatcherQueuePriority.Low, () => AnalyticsService.Initialize());
+			_ = DispatcherQueue.GetForCurrentThread().TryEnqueue(DispatcherQueuePriority.Low, () => AnalyticsService.Initialize());
 #endif
 		}
 
@@ -77,11 +77,8 @@ namespace Uno.Gallery
 
 		private void OnLaunchedOrActivated()
 		{
-#if WINDOWS && !HAS_UNO
 			MainWindow = new Window();
-#else
-			MainWindow = Microsoft.UI.Xaml.Window.Current;
-#endif
+
 			var isFirstLaunch = !(MainWindow.Content is Shell);
 
 			if (isFirstLaunch)
@@ -175,7 +172,7 @@ namespace Uno.Gallery
 				page.DataContext = sample;
 
 #if __WASM__
-				_ = Window.Current.DispatcherQueue?.TryEnqueue(DispatcherQueuePriority.Low, () => AnalyticsService.TrackView(sample?.Title ?? page.GetType().Name));
+				_ = DispatcherQueue.GetForCurrentThread()?.TryEnqueue(DispatcherQueuePriority.Low, () => AnalyticsService.TrackView(sample?.Title ?? page.GetType().Name));
 #endif
 
 				_shell.NavigationView.Content = page;
@@ -221,7 +218,7 @@ namespace Uno.Gallery
 			page.DataContext = sample;
 
 #if __WASM__
-			_ = Window.Current.DispatcherQueue?.TryEnqueue(DispatcherQueuePriority.Low, () => AnalyticsService.TrackView(sample?.Title ?? page.GetType().Name));
+			_ = DispatcherQueue.GetForCurrentThread()?.TryEnqueue(DispatcherQueuePriority.Low, () => AnalyticsService.TrackView(sample?.Title ?? page.GetType().Name));
 #endif
 
 			_shell.NavigationView.Content = page;
