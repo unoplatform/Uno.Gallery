@@ -515,13 +515,18 @@
 							   Height="100"
 							   HorizontalAlignment="Left" />
 
-						<!-- Dark/Light Toggle -->
-						<ToggleButton x:Name="DarkLightModeToggle"
-									  Content="Light and Dark"
-									  Style="{StaticResource DarkLightToggleTheme}"
-									  Click="ToggleButton_Click"
-									  HorizontalAlignment="Right"
-									  VerticalAlignment="Bottom" />
+						<StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom" Spacing="8">
+
+							<Button Click="OpenNewWindow_Click" HorizontalAlignment="Right">
+								<FontIcon Glyph="&#xE8A7;" />
+							</Button>
+							
+							<!-- Dark/Light Toggle -->
+							<ToggleButton x:Name="DarkLightModeToggle"
+										  Content="Light and Dark"
+										  Style="{StaticResource DarkLightToggleTheme}"
+										  Click="ToggleButton_Click" />
+						</StackPanel>
 					</Grid>
 
 					<!-- Samples Search Box -->
