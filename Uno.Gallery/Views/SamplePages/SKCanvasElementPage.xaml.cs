@@ -10,9 +10,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
-using UnexpectedApis.Views;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+#if HAS_UNO_SKIA
+using Uno.Gallery.Helpers.Canvas;
+#endif
 
 namespace Uno.Gallery.Views.SamplePages;
 
