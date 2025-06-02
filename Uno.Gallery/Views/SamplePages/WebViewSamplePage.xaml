@@ -15,7 +15,7 @@
 			<local:SamplePageLayout.FluentTemplate>
 				<DataTemplate>
 					<Grid>
-						<win:Grid>
+						<Grid>
 
 							<!-- WebView -->
 							<smtx:XamlDisplay UniqueKey="WebViewSamplePage_WebView_Win"
@@ -24,17 +24,7 @@
 											  Height="400" />
 							</smtx:XamlDisplay>
 
-						</win:Grid>
-						<not_win:Grid>
-
-							<!-- WebView -->
-							<smtx:XamlDisplay UniqueKey="WebViewSamplePage_WebView_Not_Win"
-											  smtx:XamlDisplayExtensions.Header="WebView">
-								<WebView Source="https://platform.uno/"
-												 Height="400" />
-							</smtx:XamlDisplay>
-
-						</not_win:Grid>
+						</Grid>
 					</Grid>
 				</DataTemplate>
 			</local:SamplePageLayout.FluentTemplate>
