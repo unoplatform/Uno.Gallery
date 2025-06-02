@@ -365,10 +365,16 @@ namespace Uno.Gallery
 
 				foreach (var sample in category)
 				{
+					IconElement? icon = !string.IsNullOrEmpty(sample.Glyph) ? new FontIcon() { Glyph = sample.Glyph } : null;
+					if (icon is null)
+					{
+						var sampleName = sample.ViewType.Name.Replace("SamplePage", string.Empty);
+						icon = new BitmapIcon() { UriSource = new Uri($"ms-appx:///Assets/SampleImages/{sampleName}.png"), ShowAsMonochrome = false };
+					}
 					var item = new MUXC.NavigationViewItem
 					{
 						Content = sample.Title,
-						Icon = !string.IsNullOrEmpty(sample.Glyph) ? new FontIcon() { Glyph = sample.Glyph } : null,
+						Icon = icon,
 						DataContext = sample,
 						Style = (Style)Resources[$"T{tier}NavigationViewItemStyle"]
 					}.Apply(NavViewItemVisualStateFix);
