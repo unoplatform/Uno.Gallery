@@ -32,8 +32,6 @@ namespace Uno.Gallery
 
 		public Window MainWindow { get; private set; }
 
-		private Shell _shell;
-
 		/// <summary>
 		/// Initializes the singleton application object.  This is the first line of authored code
 		/// executed, and as such is the logical equivalent of main() or WinMain().
@@ -79,6 +77,10 @@ namespace Uno.Gallery
 		{
 			MainWindow = new Window();
 
+#if DEBUG
+			MainWindow.UseStudio();
+#endif
+
 			var isFirstLaunch = !(MainWindow.Content is Shell);
 
 			if (isFirstLaunch)
@@ -88,12 +90,20 @@ namespace Uno.Gallery
 				Xamarin.Calabash.Start();
 #endif
 
-				MainWindow.Content = _shell = BuildShell();
+				InitializeWindow(MainWindow);
 			}
 
 			// Ensure the current window is active
 			MainWindow.Activate();
 		}
+
+		public void InitializeWindow(Window window)
+		{
+			window.Content = BuildShell();
+		}
+
+		private Shell GetWindowShell(Window window) =>
+			window.Content as Shell ?? throw new InvalidOperationException("Window content is not a Shell.");
 
 		/// <summary>
 		/// This method is invoked from JavaScript within the branch.js file.
@@ -117,7 +127,8 @@ namespace Uno.Gallery
 					SamplePageLayout.SetPreferredDesign(designType);
 				}
 
-				(Application.Current as App)?.ShellNavigateTo(sample);
+				var shell = App.Instance.GetWindowShell(App.Instance.MainWindow);
+				(Application.Current as App)?.ShellNavigateTo(shell, sample);
 			}
 
 			bool HasValue(string val) =>
@@ -141,21 +152,21 @@ namespace Uno.Gallery
 		}
 #endif
 
-		public void ShellNavigateTo(Sample sample) => ShellNavigateTo(sample, trySynchronizeCurrentItem: true);
+		public void ShellNavigateTo(Shell shell, Sample sample) => ShellNavigateTo(shell, sample, trySynchronizeCurrentItem: true);
 
-		private void ShellNavigateTo<TPage>(bool trySynchronizeCurrentItem = true) where TPage : Page
+		private void ShellNavigateTo<TPage>(Shell shell, bool trySynchronizeCurrentItem = true) where TPage : Page
 		{
 			var pageType = typeof(TPage);
 			var attribute = pageType.GetCustomAttribute<SamplePageAttribute>()
 				?? throw new NotSupportedException($"{pageType} isn't tagged with [{nameof(SamplePageAttribute)}].");
 			var sample = new Sample(attribute, pageType);
 
-			ShellNavigateTo(sample, trySynchronizeCurrentItem);
+			ShellNavigateTo(shell, sample, trySynchronizeCurrentItem);
 		}
 
-		private void ShellNavigateTo(Sample sample, bool trySynchronizeCurrentItem)
+		private void ShellNavigateTo(Shell shell, Sample sample, bool trySynchronizeCurrentItem)
 		{
-			var nv = _shell.NavigationView;
+			var nv = shell.NavigationView;
 			if (nv.Content?.GetType() != sample.ViewType)
 			{
 				var selected = trySynchronizeCurrentItem
@@ -175,13 +186,13 @@ namespace Uno.Gallery
 				_ = DispatcherQueue.GetForCurrentThread()?.TryEnqueue(DispatcherQueuePriority.Low, () => AnalyticsService.TrackView(sample?.Title ?? page.GetType().Name));
 #endif
 
-				_shell.NavigationView.Content = page;
+				shell.NavigationView.Content = page;
 			}
 		}
 
-		public void SearchShellNavigateTo(Sample sample)
+		public void SearchShellNavigateTo(Shell shell, Sample sample)
 		{
-			var nv = _shell.NavigationView;
+			var nv = shell.NavigationView;
 			if (nv.Content?.GetType() == sample.ViewType)
 			{
 				return;
@@ -221,25 +232,26 @@ namespace Uno.Gallery
 			_ = DispatcherQueue.GetForCurrentThread()?.TryEnqueue(DispatcherQueuePriority.Low, () => AnalyticsService.TrackView(sample?.Title ?? page.GetType().Name));
 #endif
 
-			_shell.NavigationView.Content = page;
+			shell.NavigationView.Content = page;
 		}
 
 		private Shell BuildShell()
 		{
-			_shell = new Shell();
-			AutomationProperties.SetAutomationId(_shell, "AppShell");
-			_shell.RegisterPropertyChangedCallback(Shell.CurrentSampleBackdoorProperty, OnCurrentSampleBackdoorChanged);
-			var nv = _shell.NavigationView;
+			var shell = new Shell();
+			AutomationProperties.SetAutomationId(shell, "AppShell");
+			shell.RegisterPropertyChangedCallback(Shell.CurrentSampleBackdoorProperty, OnCurrentSampleBackdoorChanged);
+			var nv = shell.NavigationView;
 			AddNavigationItems(nv);
 #if __WASM__
-			if (!IsThereSampleFilteredByArgs(nv))
+			if (!IsThereSampleFilteredByArgs(shell, nv))
 #endif
 			{
 				// landing navigation
 				ShellNavigateTo<OverviewPage>(
+					shell
 #if !WINDOWS
 					// workaround for uno#5069: setting NavView.SelectedItem at launch bricks it
-					trySynchronizeCurrentItem: false
+					, trySynchronizeCurrentItem: false
 #endif
 				);
 			}
@@ -247,10 +259,10 @@ namespace Uno.Gallery
 			// navigation + setting handler
 			nv.ItemInvoked += OnNavigationItemInvoked;
 
-			return _shell;
+			return shell;
 		}
 #if __WASM__
-		private bool IsThereSampleFilteredByArgs(MUXC.NavigationView nv)
+		private bool IsThereSampleFilteredByArgs(Shell shell, MUXC.NavigationView nv)
 		{
 			var argumentsHash = Wasm.FragmentNavigationHandler.CurrentFragment;
 			if (argumentsHash.Contains("#"))
@@ -259,13 +271,14 @@ namespace Uno.Gallery
 
 				foreach (MUXC.NavigationViewItem item in nv.MenuItems)
 				{
-					MUXC.NavigationViewItem sampleItem = item.MenuItems
+					MUXC.NavigationViewItem? sampleItem = item.MenuItems
 						.Cast<MUXC.NavigationViewItem>()
-						.FirstOrDefault(i => i.Content.ToString().Contains(searchTerm, StringComparison.InvariantCultureIgnoreCase));
+						.FirstOrDefault(i => i.Content?.ToString()?.Contains(searchTerm, StringComparison.InvariantCultureIgnoreCase) == true);
 
 					if (sampleItem != null)
 					{
 						ShellNavigateTo(
+							shell,
 							(Uno.Gallery.Sample)sampleItem.DataContext
 							, trySynchronizeCurrentItem: false
 						);
@@ -281,7 +294,8 @@ namespace Uno.Gallery
 
 		private void OnCurrentSampleBackdoorChanged(DependencyObject sender, DependencyProperty dp)
 		{
-			var backdoorParts = _shell.CurrentSampleBackdoor.Split("-");
+			var shell = sender as Shell ?? throw new InvalidOperationException("CurrentSampleBackdoor changed on a non-Shell object.");
+			var backdoorParts = shell.CurrentSampleBackdoor.Split("-");
 			var title = backdoorParts.FirstOrDefault();
 			var designName = backdoorParts.Length > 1 ? backdoorParts[1] : string.Empty;
 
@@ -290,7 +304,7 @@ namespace Uno.Gallery
 
 			if (sample == null)
 			{
-				this.Log().Warn($"No SampleAttribute found with a Title that matches: {_shell.CurrentSampleBackdoor}");
+				this.Log().Warn($"No SampleAttribute found with a Title that matches: {shell.CurrentSampleBackdoor}");
 				return;
 			}
 
@@ -299,8 +313,8 @@ namespace Uno.Gallery
 				SamplePageLayout.SetPreferredDesign(design);
 			}
 
-			ShellNavigateTo<OverviewPage>();
-			ShellNavigateTo(sample);
+			ShellNavigateTo<OverviewPage>(shell);
+			ShellNavigateTo(shell, sample);
 		}
 
 
@@ -308,7 +322,9 @@ namespace Uno.Gallery
 		{
 			if (e.InvokedItemContainer.DataContext is Sample sample)
 			{
-				ShellNavigateTo(sample, trySynchronizeCurrentItem: false);
+				var shell = VisualTreeHelperEx.FindAncestor<Shell>(sender)
+					?? throw new InvalidOperationException("NavigationView is not inside a Shell.");
+				ShellNavigateTo(shell, sample, trySynchronizeCurrentItem: false);
 			}
 		}
 
@@ -380,11 +396,12 @@ namespace Uno.Gallery
 
 		internal async Task NavigateToAllPages()
 		{
+			var shell = GetWindowShell(MainWindow);
 			var samples = GetSamples();
 
 			foreach (var sample in samples)
 			{
-				ShellNavigateTo(sample);
+				ShellNavigateTo(shell, sample);
 
 				var tcs = new TaskCompletionSource();
 
@@ -395,7 +412,7 @@ namespace Uno.Gallery
 				GC.WaitForPendingFinalizers();
 			}
 
-			ShellNavigateTo<CanarySamplePage>();
+			ShellNavigateTo<CanarySamplePage>(shell);
 		}
 
 		/// <summary>
