@@ -32,7 +32,7 @@ steps:
 - template: templates/performance/collect-performance-metrics.yml
   parameters:
     ArtifactDirectory: $(Build.ArtifactStagingDirectory)/
-    PackageFolder: $(Build.ArtifactStagingDirectory)/Uno.Gallery/bin/Release/net9.0-desktop
+    PackageFolder: $(Build.sourcesdirectory)/Uno.Gallery/bin/Release/net9.0-desktop
     ScriptPath: $(build.sourcesdirectory)/build/scripts/collect-metrics-build.sh
 
 - task: PublishBuildArtifacts@1
