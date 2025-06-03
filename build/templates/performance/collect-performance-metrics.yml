@@ -8,7 +8,7 @@ steps:
     chmod +x "${{ parameters.ScriptPath }}"
     BUILD_ID=$(Build.BuildId)
     SOURCE_VERSION=$(Build.SourceVersion)
-    "${{ parameters.ScriptPath }}" "${{ parameters.ArtifactDirectory }}" "{{ parameters.PackageFolder }}"
+    "${{ parameters.ScriptPath }}" "${{ parameters.ArtifactDirectory }}" "${{ parameters.PackageFolder }}"
   displayName: Generate metrics JSON
   env:
     BUILD_ID: $(Build.BuildId)

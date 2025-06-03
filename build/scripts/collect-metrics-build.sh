@@ -5,7 +5,7 @@ if [ -z "$1" ]; then
     exit 1
 fi
 
-if [ -z "$1" ]; then
+if [ -z "$2" ]; then
     echo "Usage: $0 <ARTIFACTS FOLDER>"
     exit 1
 fi
