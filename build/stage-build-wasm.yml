@@ -34,6 +34,6 @@
 - task: PublishBuildArtifacts@1
   displayName: Publish build metrics
   inputs:
-    pathToPublish: $(Build.ArtifactStagingDirectory)/metrics
+    pathToPublish: $(Agent.TempDirectory)/metrics
     ArtifactName: build-metrics-wasm
   condition: succeededOrFailed()
