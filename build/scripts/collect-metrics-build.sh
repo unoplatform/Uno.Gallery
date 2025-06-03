@@ -21,7 +21,7 @@ echo "[] Target folder: $ARTIFACT_DIRECTORY exists"
 echo "[] Measuring package size..."
 
 folder_size=$(du -sh --block-size=1M "$PACKAGE_FOLDER" | cut -f1)
-timestamp=$(date + date '+%d/%m/%Y %H:%M:%S')
+timestamp=$(date '+%d/%m/%Y %H:%M:%S')
 
 echo "[] Writing output to metrics.json in $METRICS_FOLDER"
 

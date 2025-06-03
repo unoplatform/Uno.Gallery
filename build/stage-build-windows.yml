@@ -42,7 +42,7 @@ steps:
 - template: templates/performance/collect-performance-metrics.yml
   parameters:
     ArtifactDirectory: $(Build.ArtifactStagingDirectory)/
-    PackageFolder: $(Build.ArtifactStagingDirectory)/Uno.Gallery/Packages
+    PackageFolder: $(Build.ArtifactStagingDirectory)/
     ScriptPath: $(build.sourcesdirectory)/build/scripts/collect-metrics-build.sh
 
 - task: PublishBuildArtifacts@1

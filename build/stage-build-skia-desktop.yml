@@ -38,7 +38,7 @@ steps:
 - task: PublishBuildArtifacts@1
   displayName: Publish build metrics
   inputs:
-    PathtoPublish: $(Build.ArtifactStagingDirectory)/metrics
+    pathToPublish: $(Build.ArtifactStagingDirectory)/metrics
     ArtifactName: build-metrics-skia-desktop
   condition: succeededOrFailed()
 
