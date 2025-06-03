@@ -10,8 +10,14 @@ if [ -z "$2" ]; then
     exit 1
 fi
 
+if [ -z "$3" ]; then
+    echo "Usage: $0 <PLATFORM>"
+    exit 1
+fi
+
 ARTIFACT_DIRECTORY="$1"
 PACKAGE_FOLDER="$2"
+PLATFORM="$3"
 METRICS_FOLDER="$ARTIFACT_DIRECTORY/metrics"
 
 
@@ -29,6 +35,8 @@ echo "[] Writing output to metrics.json in $METRICS_FOLDER"
 
 cat <<EOF > "$METRICS_FOLDER/metrics.json"
 {
+    "app": "Uno.Gallery",
+    "platform": "WebAssembly",
     "buildId": "${BUILD_ID:-unknown}",
     "commit": "${SOURCE_VERSION:-unknown}",
     "size": "${size_mib}",

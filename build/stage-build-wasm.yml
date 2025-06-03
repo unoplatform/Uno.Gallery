@@ -30,6 +30,7 @@
     ArtifactDirectory: $(Agent.TempDirectory)/
     PackageFolder: $(Agent.TempDirectory)/wasm-publish/wwwroot/
     ScriptPath: $(build.sourcesdirectory)/build/scripts/collect-metrics-build.sh
+    Platform: browserwasm
 
 - task: PublishBuildArtifacts@1
   displayName: Publish build metrics

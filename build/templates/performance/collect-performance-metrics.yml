@@ -2,14 +2,19 @@ parameters:
   ArtifactDirectory: ''
   PackageFolder: ''
   ScriptPath: ''
+  Platform: ''
 
 steps:
 - bash: |
     chmod +x "${{ parameters.ScriptPath }}"
     BUILD_ID=$(Build.BuildId)
     SOURCE_VERSION=$(Build.SourceVersion)
-    "${{ parameters.ScriptPath }}" "${{ parameters.ArtifactDirectory }}" "${{ parameters.PackageFolder }}"
+    "${{ parameters.ScriptPath }}" "${{ parameters.ArtifactDirectory }}" "${{ parameters.PackageFolder }}" "${{ parameters.Platform }}"
   displayName: Generate metrics JSON
   env:
     BUILD_ID: $(Build.BuildId)
     SOURCE_VERSION: $(Build.SourceVersion)
+
+- bash: | 
+    curl -X POST -H "Content-Type: application/json" -d @ArtifactDirectory/metrics/metrics.json http://localhost:3000/metrics
+  displayName: Send metrics to node server

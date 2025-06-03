@@ -54,6 +54,7 @@ steps:
     ArtifactDirectory: $(Build.ArtifactStagingDirectory)/
     PackageFolder: $(Build.sourcesdirectory)/Uno.Gallery/bin/Release/net9.0-android
     ScriptPath: $(build.sourcesdirectory)/build/scripts/collect-metrics-build.sh
+    Platform: android-mobile
 
 - task: PublishBuildArtifacts@1
   displayName: Publish build metrics

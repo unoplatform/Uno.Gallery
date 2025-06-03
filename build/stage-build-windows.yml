@@ -44,6 +44,7 @@ steps:
     ArtifactDirectory: $(Build.ArtifactStagingDirectory)/
     PackageFolder: $(build.sourcesdirectory)/Uno.Gallery/Packages/
     ScriptPath: $(build.sourcesdirectory)/build/scripts/collect-metrics-build.sh
+    Platform: windows
 
 - task: PublishBuildArtifacts@1
   displayName: Publish build metrics
