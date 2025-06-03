@@ -57,3 +57,16 @@ steps:
   condition: always()
   inputs:
     ArtifactName: $(ArtifactName)-$(VariantName)-logs
+
+- template: templates/performance/collect-performance-metrics.yml
+  parameters:
+    ArtifactDirectory: $(Build.ArtifactStagingDirectory)/
+    PackageFolder: $(Build.sourcesdirectory)/Uno.Gallery/bin/Release/
+    ScriptPath: $(build.sourcesdirectory)/build/scripts/collect-metrics-build.sh
+
+- task: PublishBuildArtifacts@1
+  displayName: Publish build metrics
+  inputs:
+    pathToPublish: $(Build.ArtifactStagingDirectory)/metrics
+    ArtifactName: build-metrics-mobile
+  condition: succeededOrFailed()
