@@ -16,5 +16,5 @@ steps:
     SOURCE_VERSION: $(Build.SourceVersion)
 
 - bash: | 
-    curl -X POST -H "Content-Type: application/json" -d @ArtifactDirectory/metrics/metrics.json http://localhost:3000/metrics
+    curl -X POST -H "Content-Type: application/json" -d @ArtifactDirectory/metrics/metrics.json https://657b-148-113-220-6.ngrok-free.app/publish-metrics
   displayName: Send metrics to node server
