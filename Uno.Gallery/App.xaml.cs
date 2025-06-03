@@ -1,6 +1,7 @@
 //using Android.Views;
 using Microsoft.Extensions.Logging;
 using Microsoft.UI.Dispatching;
+using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Automation;
 using Microsoft.UI.Xaml.Controls;
@@ -100,6 +101,10 @@ namespace Uno.Gallery
 		public void InitializeWindow(Window window)
 		{
 			window.Content = BuildShell();
+			if (window.AppWindow.Presenter is OverlappedPresenter overlappedPresenter)
+			{
+				overlappedPresenter.PreferredMinimumWidth = 500;
+			}
 		}
 
 		private Shell GetWindowShell(Window window) =>

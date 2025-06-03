@@ -17,29 +17,33 @@
 	<Thickness x:Key="ConsecutiveItemMargin">12,12,12,0</Thickness>
 
 	<DataTemplate x:Key="DefaultSamplePageLayoutHeaderTemplate">
-		<StackPanel>
+		<Grid Margin="0,0,0,16" ColumnSpacing="16">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="Auto" />
+			</Grid.ColumnDefinitions>
 			<!-- Description -->
-			<TextBlock Margin="0,16,0,0"
-					   Foreground="{ThemeResource OnBackgroundBrush}"
+			<TextBlock Foreground="{ThemeResource OnBackgroundBrush}"
 					   Opacity="0.8"
-					   Style="{StaticResource TitleLarge}"
+					   Style="{StaticResource BodySmall}"
 					   Text="{Binding Description}"
+					   VerticalAlignment="Top"
 					   Visibility="{Binding Description, Converter={StaticResource IsNullOrEmptyToCollapsed}, FallbackValue=Collapsed}" />
 
-			<!-- Source label -->
-			<TextBlock Margin="0,30,0,0"
-					   Foreground="{ThemeResource OnBackgroundBrush}"
+			<StackPanel Grid.Column="1">
+				<!-- Source label -->
+				<TextBlock Foreground="{ThemeResource OnBackgroundBrush}"
 					   Opacity="0.45"
 					   Style="{StaticResource BodySmall}"
-					   Text="SOURCE" />
+					   Text="Source" />
 
-			<!-- Source value -->
-			<TextBlock Margin="0,0,0,16"
-					   Foreground="{ThemeResource OnBackgroundBrush}"
+				<!-- Source value -->
+				<TextBlock Foreground="{ThemeResource OnBackgroundBrush}"
 					   Opacity="0.8"
-					   Style="{StaticResource BodyMedium}"
+					   Style="{StaticResource BodySmall}"
 					   Text="{Binding Source, Converter={StaticResource EnumToDescription}}" />
-		</StackPanel>
+			</StackPanel>
+		</Grid>
 	</DataTemplate>
 
 	<Style x:Key="DefaultSamplePageLayoutStyle"
@@ -65,6 +69,7 @@
 								   Margin="48,24,0,6"
 								   MaxLines="1"
 								   Style="{StaticResource HeadlineLarge}"
+								   FontWeight="Light"
 								   Text="{TemplateBinding Title}"
 								   TextTrimming="CharacterEllipsis" />
 
@@ -221,7 +226,6 @@
 														  Content="{TemplateBinding Content}"
 														  ContentTemplate="{TemplateBinding MaterialTemplate}"
 														  Visibility="Collapsed" />
-
 
 										<!-- Fluent Content -->
 										<ContentPresenter x:Name="FluentContentPresenter"

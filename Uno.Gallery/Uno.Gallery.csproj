@@ -101,10 +101,7 @@
 		<ProjectReference Include="..\Uno.Gallery.SourceGenerators\Uno.Gallery.SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" SetPlatform="Platform=AnyCPU" />
 	</ItemGroup>
 
-	<ItemGroup Condition="
-			   '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'android'
-			   or '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'ios'
-			   or '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'maccatayst'">
+	<ItemGroup Condition="&#xD;&#xA;			   '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'android'&#xD;&#xA;			   or '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'ios'&#xD;&#xA;			   or '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'maccatayst'">
 		<IncludeXamlNamespaces Include="mobile" Visible="False" />
 		<ExcludeXamlNamespaces Include="not_mobile" Visible="False" />
 	</ItemGroup>
@@ -119,14 +116,10 @@
 	</PropertyGroup>
 
 	<ItemGroup Condition=" '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'ios' ">
-		<TrimmerRootDescriptor Include="Platforms/iOS/LinkerConfig.xml"/>
+		<TrimmerRootDescriptor Include="Platforms/iOS/LinkerConfig.xml" />
 	</ItemGroup>
 
-	<ItemGroup Condition="
-			   ('$(Configuration)'=='Debug' or '$(IsUiAutomationMappingEnabled)'=='True')
-			   AND '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'ios'
-			   AND $([MSBuild]::VersionLessThan($([MSBuild]::GetTargetFrameworkVersion($(TargetFramework))), '9.0'))
-			   ">
+	<ItemGroup Condition="&#xD;&#xA;			   ('$(Configuration)'=='Debug' or '$(IsUiAutomationMappingEnabled)'=='True')&#xD;&#xA;			   AND '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'ios'&#xD;&#xA;			   AND $([MSBuild]::VersionLessThan($([MSBuild]::GetTargetFrameworkVersion($(TargetFramework))), '9.0'))&#xD;&#xA;			   ">
 		<PackageReference Include="Xamarin.TestCloud.Agent" />
 	</ItemGroup>
 
