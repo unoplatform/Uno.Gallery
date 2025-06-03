@@ -61,7 +61,7 @@ steps:
 - template: templates/performance/collect-performance-metrics.yml
   parameters:
     ArtifactDirectory: $(Build.ArtifactStagingDirectory)/
-    PackageFolder: $(Build.ArtifactStagingDirectory)/com.nventive,uno.uni.demo-Signed.apk
+    PackageFolder: $(Build.ArtifactStagingDirectory)/com.nventive.uno.ui.demo-Signed.apk
     ScriptPath: $(build.sourcesdirectory)/build/scripts/collect-metrics-build.sh
 
 - task: PublishBuildArtifacts@1
