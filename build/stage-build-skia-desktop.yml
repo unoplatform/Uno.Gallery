@@ -22,17 +22,18 @@ steps:
     Contents: '**/*.*'
     TargetFolder: $(Build.ArtifactStagingDirectory)/bin
 
-- template: templates/performance/collect-performance-metrics.yml
-  parameters:
-    TargetFolder: $(Build.ArtifactStagingDirectory)/
-    ScriptPath: $(build.sourcesdirectory)/build/scripts/collect-metrics-build.sh
-
 - task: PublishBuildArtifacts@1
   displayName: Publish desktop artifacts
   retryCountOnTaskFailure: 3
   inputs:
     pathToPublish: $(Build.ArtifactStagingDirectory)/bin
     ArtifactName: desktop
+
+- template: templates/performance/collect-performance-metrics.yml
+  parameters:
+    ArtifactDirectory: $(Build.ArtifactStagingDirectory)/
+    PackageFolder: $(Build.ArtifactStagingDirectory)/bin
+    ScriptPath: $(build.sourcesdirectory)/build/scripts/collect-metrics-build.sh
 
 - task: PublishBuildArtifacts@1
   displayName: Publish build metrics

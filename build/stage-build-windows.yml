@@ -21,11 +21,6 @@ steps:
     Contents: '**/*.*'
     TargetFolder: $(Build.ArtifactStagingDirectory)/
 
-- template: templates/performance/collect-performance-metrics.yml
-  parameters:
-    TargetFolder: $(Build.ArtifactStagingDirectory)/
-    ScriptPath: $(build.sourcesdirectory)/build/scripts/collect-metrics-build.sh
-
 - task: PowerShell@2
   displayName: Authenticode Sign Packages
   inputs:
@@ -44,10 +39,16 @@ steps:
   inputs:
     ArtifactName: windows
 
+- template: templates/performance/collect-performance-metrics.yml
+  parameters:
+    ArtifactDirectory: $(Build.ArtifactStagingDirectory)/
+    PackageFolder: $(Build.ArtifactStagingDirectory)/Uno.Gallery/Packages
+    ScriptPath: $(build.sourcesdirectory)/build/scripts/collect-metrics-build.sh
+
 - task: PublishBuildArtifacts@1
   displayName: Publish build metrics
   inputs:
     PathtoPublish: $(Build.ArtifactStagingDirectory)/metrics
-    ArtifactName: build-metrics-skia-desktop
+    ArtifactName: build-metrics-windows
   condition: succeededOrFailed()
 
