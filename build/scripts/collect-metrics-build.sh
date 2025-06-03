@@ -20,7 +20,9 @@ mkdir -p "$METRICS_FOLDER"
 echo "[] Target folder: $ARTIFACT_DIRECTORY exists"
 echo "[] Measuring package size..."
 
-folder_size=$(du -sh --block-size=1M "$PACKAGE_FOLDER" | cut -f1)
+size_bytes=$(du -sb "$PACKAGE_FOLDER" | cut -f1)
+size_mib=$((size_bytes / 1024 / 1024))
+
 timestamp=$(date '+%d/%m/%Y %H:%M:%S')
 
 echo "[] Writing output to metrics.json in $METRICS_FOLDER"
@@ -29,7 +31,7 @@ cat <<EOF > "$METRICS_FOLDER/metrics.json"
 {
     "buildId": "${BUILD_ID:-unknown}",
     "commit": "${SOURCE_VERSION:-unknown}",
-    "size": "${folder_size}",
+    "size": "${size_mib}",
     "isTrimmed": false,
     "timeStamp": "${timestamp}"
 }
