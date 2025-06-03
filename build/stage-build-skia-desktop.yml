@@ -21,7 +21,7 @@ steps:
     SourceFolder: Uno.Gallery/bin/Release/net9.0-desktop
     Contents: '**/*.*'
     TargetFolder: $(Build.ArtifactStagingDirectory)/bin
-
+    
 - template: templates/performance/collect-performance-metrics.yml
   parameters:
     TargetFolder: $(Build.ArtifactStagingDirectory)/

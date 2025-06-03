@@ -4,11 +4,14 @@ parameters:
 
 steps:
 - bash: |
-    ls \
-    chmod +x ${{ parameters.scriptPath }}
-    BUILD_ID=$(Build.BuildId) \
-    SOURCE_VERSION=$(Build.SourceVersion) \
-    ${{ parameters.ScriptPath }} ${{ parameters.TargetFolder }}
+    echo "ScriptPath is: ${{ parameters.ScriptPath }}"
+  displayName: Logging script path
+
+- bash: |
+    chmod +x "${{ parameters.ScriptPath }}"
+    BUILD_ID=$(Build.BuildId)
+    SOURCE_VERSION=$(Build.SourceVersion)
+    "${{ parameters.ScriptPath }}" "${{ parameters.TargetFolder }}"
   displayName: Generate metrics JSON
   env:
     BUILD_ID: $(Build.BuildId)
