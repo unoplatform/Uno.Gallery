@@ -21,7 +21,7 @@ steps:
     SourceFolder: Uno.Gallery/bin/Release/net9.0-desktop
     Contents: '**/*.*'
     TargetFolder: $(Build.ArtifactStagingDirectory)/bin
-    
+
 - template: templates/performance/collect-performance-metrics.yml
   parameters:
     TargetFolder: $(Build.ArtifactStagingDirectory)/
@@ -34,10 +34,10 @@ steps:
     pathToPublish: $(Build.ArtifactStagingDirectory)/bin
     ArtifactName: desktop
 
-# - task: PublishBuildArtifacts@1
-#   displayName: Publish build metrics
-#   inputs:
-#     PathtoPublish: $(Build.ArtifactStagingDirectory)/metrics
-#     ArtifactName: build-metrics-skia-desktop
-#   condition: succeededOrFailed()
+- task: PublishBuildArtifacts@1
+  displayName: Publish build metrics
+  inputs:
+    PathtoPublish: $(Build.ArtifactStagingDirectory)/metrics
+    ArtifactName: build-metrics-skia-desktop
+  condition: succeededOrFailed()
 

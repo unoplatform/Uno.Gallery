@@ -2,11 +2,6 @@ parameters:
   TargetFolder: ''
   ScriptPath: ''
 
-steps:
-- bash: |
-    echo "ScriptPath is: ${{ parameters.ScriptPath }}"
-  displayName: Logging script path
-
 - bash: |
     chmod +x "${{ parameters.ScriptPath }}"
     BUILD_ID=$(Build.BuildId)
