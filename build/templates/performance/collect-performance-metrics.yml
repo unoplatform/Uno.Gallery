@@ -2,6 +2,7 @@ parameters:
   TargetFolder: ''
   ScriptPath: ''
 
+steps:
 - bash: |
     chmod +x "${{ parameters.ScriptPath }}"
     BUILD_ID=$(Build.BuildId)
