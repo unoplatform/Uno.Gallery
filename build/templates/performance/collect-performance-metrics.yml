@@ -4,6 +4,7 @@ parameters:
 
 steps:
 - bash: |
+    ls \
     chmod +x ${{ parameters.scriptPath }}
     BUILD_ID=$(Build.BuildId) \
     SOURCE_VERSION=$(Build.SourceVersion) \
