@@ -4,10 +4,6 @@ steps:
   fetchDepth: 0
   persistCredentials: true
 
-- template: templates/gitversion.yml
-- template: templates/dotnet-install-windows.yml
-- template: templates/canary-updater.yml
-
 - download: none
 
 - script: |
