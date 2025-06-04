@@ -45,7 +45,7 @@ steps:
 
 - download: none
 
-- script: |
+- bash: |
     dotnet tool install --global dotnet-counters
     export PATH="$PATH:~/.dotnet/tools"
   displayName: Install dotnet-counters
@@ -56,7 +56,7 @@ steps:
     targetPath: '$(Pipeline.Workspace)/drop'
   displayName: Download artifact
 
-- script: |
+- bash: |
     export PATH="$PATH:~/.dotnet/tools"
     APP_PATH="$(Pipeline.Workspace)/drop/desktop/bin/Uno.Gallery.exe"
 
