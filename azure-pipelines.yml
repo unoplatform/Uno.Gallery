@@ -119,7 +119,6 @@ stages:
   
     steps:
     - template: build/stage-build-skia-desktop.yml
-    - template: build/stage-diagnostic-skia-desktop-canary.yml
 
 - stage: Apple
   displayName: 'Apple'

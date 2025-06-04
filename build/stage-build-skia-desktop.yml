@@ -43,3 +43,48 @@ steps:
     ArtifactName: build-metrics-skia-desktop
   condition: succeededOrFailed()
 
+
+ --- Profiling step using dotnet-counters ---
+
+- download: none
+
+- script: |
+    dotnet tool install --global dotnet-counters
+    export PATH="$PATH:~/.dotnet/tools"
+  displayName: Install dotnet-counters
+
+- task: DownloadPipelineArtifact@2
+  inputs:
+    artifactName: 'desktop'
+    targetPath: '$(Pipeline.Workspace)/drop'
+  displayName: Download artifact
+
+- script: |
+    export PATH="$PATH:~/.dotnet/tools"
+    APP_PATH="$(Pipeline.Workspace)/drop/desktop/bin/Uno.Gallery.exe"
+
+    chmod +x "$APP_PATH"
+
+    # Run app in background
+    "$APP_PATH" &
+    APP_PID=$!
+
+    echo "App started with PID $APP_PID"
+    sleep 5
+
+    # Run dotnet-counters
+    dotnet-counters collect \
+      -p $APP_PID \
+      --duration 10 \
+      --output $(Pipeline.Workspace)/counters.csv
+
+    # Kill the app after profiling
+    kill $APP_PID
+  displayName: Run and profile app
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Pipeline.Workspace)/counters.csv'
+    ArtifactName: 'performance-counters'
+    publishLocation: 'Container'
+  displayName: Publish performance counters
