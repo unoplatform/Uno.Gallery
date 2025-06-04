@@ -73,7 +73,7 @@ steps:
     dotnet-counters collect \
       -p $APP_PID \
       --duration 10 \
-      --output $(Pipeline.Workspace)/counters.csv
+      --output $(Build.ArtifactStagingDirectory)/metrics/counters.csv
 
     # Kill the app after profiling
     kill $APP_PID
@@ -81,7 +81,7 @@ steps:
 
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '$(Pipeline.Workspace)/counters.csv'
+    PathtoPublish: $(Build.ArtifactStagingDirectory)/metrics/counters.csv
     ArtifactName: 'performance-counters'
     publishLocation: 'Container'
   displayName: Publish performance counters
