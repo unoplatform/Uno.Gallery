@@ -58,7 +58,7 @@ steps:
 
 - bash: |
     export PATH="$PATH:~/.dotnet/tools"
-    APP_PATH="$(Pipeline.Workspace)/drop/desktop/bin/Uno.Gallery.exe"
+    APP_PATH="$(Pipeline.Workspace)/drop/Uno.Gallery.exe"
 
     chmod +x "$APP_PATH"
 
