@@ -29,6 +29,6 @@ namespace Uno.Gallery.Views.NestedPages
 
 		private void NavigateToNextPage(object sender, RoutedEventArgs e) => Frame.Navigate(typeof(CommandBarSample_NestedMaterialPage2));
 
-		private void NavigateBack(object sender, RoutedEventArgs e) => Shell.GetForCurrentView().BackNavigateFromNestedSample();
+		private void NavigateBack(object sender, RoutedEventArgs e) => Shell.GetForElement(this).BackNavigateFromNestedSample();
 	}
 }

@@ -49,7 +49,7 @@ namespace Uno.Gallery.Views.NestedPages
 		private void NavigateBack(object sender, RoutedEventArgs e)
 		{
 			MediaPlayerElementSample5.MediaPlayer.Pause();
-			Shell.GetForCurrentView().BackNavigateFromNestedSample();
+			Shell.GetForElement(this).BackNavigateFromNestedSample();
 		}
 
 		private void MediaPlayerElementSample_NestedPage5_Unloaded(object sender, RoutedEventArgs e)
