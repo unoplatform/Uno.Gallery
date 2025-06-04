@@ -36,7 +36,7 @@ echo "[] Writing output to metrics.json in $METRICS_FOLDER"
 cat <<EOF > "$METRICS_FOLDER/metrics.json"
 {
     "app": "Uno.Gallery",
-    "platform": "WebAssembly",
+    "platform": "${PLATFORM: -unknown}",
     "buildId": "${BUILD_ID:-unknown}",
     "commit": "${SOURCE_VERSION:-unknown}",
     "size": "${size_mib}",
