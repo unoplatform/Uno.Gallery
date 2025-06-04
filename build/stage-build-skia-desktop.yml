@@ -43,9 +43,6 @@ steps:
     ArtifactName: build-metrics-skia-desktop
   condition: succeededOrFailed()
 
-
- --- Profiling step using dotnet-counters ---
-
 - download: none
 
 - script: |
