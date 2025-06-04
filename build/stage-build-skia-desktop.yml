@@ -36,12 +36,12 @@ steps:
     ScriptPath: $(build.sourcesdirectory)/build/scripts/collect-metrics-build.sh
     Platform: skia-desktop
 
-- task: PublishBuildArtifacts@1
-  displayName: Publish build metrics
-  inputs:
-    pathToPublish: $(Build.ArtifactStagingDirectory)/metrics
-    ArtifactName: build-metrics-skia-desktop
-  condition: succeededOrFailed()
+# - task: PublishBuildArtifacts@1
+#   displayName: Publish build metrics
+#   inputs:
+#     pathToPublish: $(Build.ArtifactStagingDirectory)/metrics
+#     ArtifactName: build-metrics-skia-desktop
+#   condition: succeededOrFailed()
 
 - download: none
 
@@ -73,7 +73,7 @@ steps:
     dotnet-counters collect \
       -p $APP_PID \
       --duration 10 \
-      --output $(Build.ArtifactStagingDirectory)/metrics/counters.csv
+      --output "$(Build.ArtifactStagingDirectory)/metrics"
 
     # Kill the app after profiling
     kill $APP_PID
@@ -81,7 +81,7 @@ steps:
 
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: $(Build.ArtifactStagingDirectory)/metrics/counters.csv
+    PathtoPublish: $(Build.ArtifactStagingDirectory)/metrics
     ArtifactName: 'performance-counters'
     publishLocation: 'Container'
   displayName: Publish performance counters
