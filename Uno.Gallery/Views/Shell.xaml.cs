@@ -33,6 +33,10 @@ public sealed partial class Shell : UserControl
 		this.Loaded += OnLoaded;
 
 		NestedSampleFrame.RegisterPropertyChangedCallback(ContentControl.ContentProperty, OnNestedSampleFrameChanged);
+
+#if __DESKTOP__ || WINDOWS
+		NewWindowButton.Visibility = Visibility.Visible;
+#endif
 	}
 
 	public static Shell GetForElement(FrameworkElement element) => VisualTreeHelperEx.FindAncestor<Shell>(element);
