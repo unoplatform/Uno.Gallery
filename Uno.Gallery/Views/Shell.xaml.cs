@@ -17,7 +17,7 @@ namespace Uno.Gallery;
 
 public sealed partial class Shell : UserControl
 {
-	private const string NoSuggestionsFoundText = "No suggestions found";
+	private const string NoSuggestionsFoundText = "TEST";
 
 	private static IEnumerable<Sample> SearchSamples(string query)
 		=> App.GetSamples()
