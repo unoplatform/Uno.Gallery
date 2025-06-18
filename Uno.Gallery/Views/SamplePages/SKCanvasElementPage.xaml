@@ -1,46 +1,49 @@
-﻿<Page
-    x:Class="Uno.Gallery.Views.SamplePages.SKCanvasElementPage"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:Uno.Gallery"
-	xmlns:samples="using:Uno.Gallery.Views.Samples"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	xmlns:smtx="using:ShowMeTheXAML"
-    mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+﻿<Page x:Class="Uno.Gallery.Views.SamplePages.SKCanvasElementPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:Uno.Gallery"
+      xmlns:samples="using:Uno.Gallery.Views.Samples"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:smtx="using:ShowMeTheXAML"
+      mc:Ignorable="d"
+      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-		<local:SamplePageLayout IsDesignAgnostic="True">
-			<local:SamplePageLayout.DesignAgnosticTemplate>
-				<DataTemplate>
-					<smtx:XamlDisplay
-						UniqueKey="SKCanvasElementPage_Basic"
-						smtx:XamlDisplayExtensions.Header="Basic SKCanvasElement">
-						<Grid>
-							<Grid RowSpacing="20">
-								<Grid.RowDefinitions>
-									<RowDefinition Height="Auto" />
-									<RowDefinition Height="*" />
-								</Grid.RowDefinitions>
-								<Button HorizontalAlignment="Center" Click="NextSample_Click">Next sample</Button>
-								<Grid Height="140" Grid.Row="1" x:Name="SKContainer">
-								</Grid>
-							</Grid>
-						</Grid>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <local:SamplePageLayout IsDesignAgnostic="True">
+            <local:SamplePageLayout.DesignAgnosticTemplate>
+                <DataTemplate>
+                    <smtx:XamlDisplay UniqueKey="SKCanvasElementPage_Basic"
+                                      smtx:XamlDisplayExtensions.Header="Basic SKCanvasElement">
+                        <Grid>
+                            <Grid RowSpacing="20">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Button HorizontalAlignment="Center"
+                                        Click="NextSample_Click">
+                                    Next sample
+                                </Button>
+                                <Grid Height="140"
+                                      Grid.Row="1"
+                                      x:Name="SKContainer" />
+                            </Grid>
+                        </Grid>
 
-						<!-- C# code
-public class SampleSKCanvasElement : SKCanvasElement
-{
-    protected override void RenderOverride(SKCanvas canvas, Size area)
-    {
-        // Custom rendering logic goes here
-    }
-}
-						-->
-					</smtx:XamlDisplay>
-				</DataTemplate>
-			</local:SamplePageLayout.DesignAgnosticTemplate>
-		</local:SamplePageLayout>
-	</Grid>
+                        <!--
+                            C# code
+                            public class SampleSKCanvasElement : SKCanvasElement
+                            {
+                            protected override void RenderOverride(SKCanvas canvas, Size area)
+                            {
+                            // Custom rendering logic goes here
+                            }
+                            }
+                        -->
+                    </smtx:XamlDisplay>
+                </DataTemplate>
+            </local:SamplePageLayout.DesignAgnosticTemplate>
+        </local:SamplePageLayout>
+    </Grid>
 </Page>

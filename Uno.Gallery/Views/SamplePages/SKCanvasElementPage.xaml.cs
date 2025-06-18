@@ -18,7 +18,9 @@ using Uno.Gallery.Helpers.Canvas;
 
 namespace Uno.Gallery.Views.SamplePages;
 
+#if HAS_UNO_SKIA
 [SamplePage(SampleCategory.UIComponents, "SKCanvasElement", Description = "Represents a 2D graphics canvas.", DocumentationLink = "https://platform.uno/docs/articles/controls/SKCanvasElement.html")]
+#endif
 public sealed partial class SKCanvasElementPage : Page
 {
 #if HAS_UNO_SKIA
