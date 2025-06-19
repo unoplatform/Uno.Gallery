@@ -51,7 +51,7 @@ namespace Uno.Gallery
 			// Cupertino is disabled as it is not up to date.
 			// new LayoutModeMapping(Design.Cupertino, () => !IsDesignAgnostic, _cupertinoRadioButton, _stickyCupertinoRadioButton, VisualStateCupertino, CupertinoTemplate),
 			new LayoutModeMapping(Design.Agnostic, () => IsDesignAgnostic, null, null, VisualStateAgnostic, DesignAgnosticTemplate),
-#if __IOS__ || __MACOS__ || __ANDROID__
+#if __IOS__ || __MACOS__ || __ANDROID__ && !HAS_UNO_SKIA
 			// native tab is only shown when applicable
 			new LayoutModeMapping(Design.Native, () => !IsDesignAgnostic, _nativeRadioButton, _stickyNativeRadioButton, VisualStateNative, NativeTemplate),
 #else
