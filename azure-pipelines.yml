@@ -90,6 +90,7 @@ stages:
       vmImage: windows-2022
 
     variables:
+    - group: uno-codesign-vault
     - group: 'UADO Keystore' # Import all variables for the Android signing from the library in azure devops
     - group: 'Uno Platform authenticode signing' # Import all variables for the signing from the library in azure devops
     - name: ApplicationPlatform
