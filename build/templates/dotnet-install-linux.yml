@@ -28,9 +28,6 @@ steps:
       installationPath: $(DOTNET_INSTALL_DIR)
 
   - bash: |
-      ubuntu_release=`lsb_release -rs`
-      wget https://packages.microsoft.com/config/ubuntu/${ubuntu_release}/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
-      sudo dpkg -i packages-microsoft-prod.deb
       sudo apt-get install apt-transport-https
       sudo apt-get update
       sudo apt-get install -y msopenjdk-11
