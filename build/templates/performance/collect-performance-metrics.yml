@@ -1,0 +1,23 @@
+parameters:
+  ArtifactDirectory: ''
+  PackageFolder: ''
+  ScriptPath: ''
+  Platform: ''
+
+steps:
+- bash: |
+    chmod +x "${{ parameters.ScriptPath }}"
+    BUILD_ID=$(Build.BuildId)
+    SOURCE_VERSION=$(Build.SourceVersion)
+    "${{ parameters.ScriptPath }}" "${{ parameters.ArtifactDirectory }}" "${{ parameters.PackageFolder }}" "${{ parameters.Platform }}"
+  displayName: Generate metrics JSON
+  env:
+    BUILD_ID: $(Build.BuildId)
+    SOURCE_VERSION: $(Build.SourceVersion)
+
+- bash: | 
+    curl -X POST -H "Content-Type: application/json" \
+      -d "@${{ parameters.ArtifactDirectory }}/metrics/metrics.json" \
+      https://657b-148-113-220-6.ngrok-free.app/publish-metrics
+  displayName: Send metrics to node server
+
