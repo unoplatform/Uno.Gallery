@@ -17,12 +17,13 @@ using Microsoft.UI.Xaml.Navigation;
 
 namespace Uno.Gallery.Views.GeneralPages
 {
+	// Cupertino theme is disabled as it is not actively supported.
 	/// <summary>
 	/// An empty page that can be used on its own or navigated to within a Frame.
 	/// </summary>
-	[SamplePage(SampleCategory.Theming, "Cupertino Palette",
-		SortOrder = 3,
-		Description = "Uno.Cupertino comes with a built-in set of named Color and Brush resources. They are used in most control styles provided by Uno.Cupertino, meaning that you can easily style most controls just by changing a few colors.")]
+	// [SamplePage(SampleCategory.Theming, "Cupertino Palette",
+	// 	SortOrder = 3,
+	// 	Description = "Uno.Cupertino comes with a built-in set of named Color and Brush resources. They are used in most control styles provided by Uno.Cupertino, meaning that you can easily style most controls just by changing a few colors.")]
 	public sealed partial class CupertinoPalettePage : Page
 	{
 		public CupertinoPalettePage()
