@@ -14,6 +14,7 @@ using Microsoft.UI.Xaml;
 
 namespace ShowMeTheXAML
 {
+	// note: The XamlDisplay.Formatter on the is completely replaced by these attached DPs.
 	public static class XamlDisplayExtensions
 	{
 		/* Header, Description: [optional] texts for display
@@ -150,7 +151,6 @@ namespace ShowMeTheXAML
 			}
 		}
 
-
 		private static void OnXamlChanged(DependencyObject sender, DependencyProperty dp)
 		{
 			if (sender is XamlDisplay target)
@@ -227,7 +227,7 @@ namespace ShowMeTheXAML
 			private int _currentElementAttributeIndentLength = 0;
 
 			// align attributes to the first one, remove XamlDisplay element, but leave nested elements intact
-			public NiceXmlWriter(StringBuilder buffer) : base(buffer, GetSettings())
+			public NiceXmlWriter(StringBuilder buffer, XmlWriterSettings settings = null) : base(buffer, settings ?? GetSettings())
 			{
 			}
 			private static XmlWriterSettings GetSettings()
@@ -235,9 +235,9 @@ namespace ShowMeTheXAML
 				return new XmlWriterSettings
 				{
 					Indent = true,
-					IndentChars = "   ",
+					IndentChars = "    ",
 					NamespaceHandling = NamespaceHandling.OmitDuplicates,
-					NewLineOnAttributes = false,
+					NewLineOnAttributes = false, // NiceXmlWriter has its own attribute alignment impl; setting this flag adds additional empty line...
 					OmitXmlDeclaration = true,
 					NewLineHandling = NewLineHandling.Replace,
 					NewLineChars = Environment.NewLine,
@@ -341,7 +341,7 @@ namespace ShowMeTheXAML
 			protected virtual string RewriteXaml(string xaml)
 			{
 				var buffer = new StringBuilder();
-				using (var rewriter = CreateRewriter(buffer))
+				using (var rewriter = CreateRewriter(buffer, CreateSettings()))
 				{
 					var element = XElement.Parse(xaml);
 					element.WriteTo(rewriter);
@@ -352,8 +352,9 @@ namespace ShowMeTheXAML
 			}
 			protected virtual string PostprocessXaml(string xaml) => xaml;
 			protected virtual string HandleException(Exception e, string xaml) => xaml;
-
-			protected virtual XmlWriter CreateRewriter(StringBuilder buffer) => XmlWriter.Create(buffer);
+			
+			protected virtual XmlWriter CreateRewriter(StringBuilder buffer, XmlWriterSettings settings) => XmlWriter.Create(buffer, settings);
+			protected virtual XmlWriterSettings CreateSettings() => new XmlWriterSettings();
 		}
 
 		private class PrettyXamlFormatter : CustomXamlFormatterBase
@@ -363,11 +364,12 @@ namespace ShowMeTheXAML
 			/// <summary>Ignore everything except descendent(s) of this path, eg: XamlDisplay>StackPanel </summary>
 			/// <remarks>This path is the local-name of elements joined by <see cref="PathSeparator"/>.</remarks>
 			public string IgnorePath { get; set; } = "XamlDisplay";
-
-			protected override XmlWriter CreateRewriter(StringBuilder buffer)
+			
+			protected override XmlWriter CreateRewriter(StringBuilder buffer, XmlWriterSettings settings)
 			{
 				return new PrettyXmlWriter(
 					buffer,
+					settings,
 					stack => // return true to ignore current element
 						!string.IsNullOrEmpty(IgnorePath) && stack.Any() &&
 						(
@@ -375,6 +377,63 @@ namespace ShowMeTheXAML
 							!string.Join(PathSeparator, stack.Reverse().Select(x => x.LocalName)).StartsWith(IgnorePath)
 						)
 				);
+			}
+			protected override XmlWriterSettings CreateSettings()
+			{
+				return new()
+				{
+					// NiceXmlWriter settings
+					Indent = true,
+					IndentChars = "    ",
+					NamespaceHandling = NamespaceHandling.OmitDuplicates,
+					NewLineOnAttributes = false, // NiceXmlWriter has its own attribute alignment rule; setting this flag adds additional empty line...
+					OmitXmlDeclaration = true,
+					NewLineHandling = NewLineHandling.Replace,
+					NewLineChars = Environment.NewLine,
+					ConformanceLevel = ConformanceLevel.Fragment,
+				};
+			}
+			
+			protected override string PreprocessXaml(string xaml)
+			{
+				var settings = CreateSettings();
+				var element = XElement.Parse(xaml);
+		
+				// note: the original depth information is already lost from the SMTX generation
+				// so the best we can do is to extract from the existing node depth.
+		
+				foreach (var textNode in element.DescendantNodes().OfType<XText>().ToArray())
+				{
+					if (string.IsNullOrEmpty(textNode.Value)) continue;
+			
+					var multiline = textNode.Value.Split('\n', 2).Length > 1;
+					if (multiline)
+					{
+						var depth = Math.Max(0, textNode.Parent?.Ancestors().Count() ?? 0);
+						var trailingIndentDepth = textNode.NodesAfterSelf().Any()
+							// if there is sibling after this node, indent the sibling to the same level
+							? depth 
+							// if this node is the last, the following closing tab should be on 1 level higher
+							: Math.Max(0, depth - 1);
+						// 0<Example>
+						// ___1text (!NodesAfterSelf)
+						// ___1<TrailingSibling />
+						// ___1text (NodesAfterSelf)
+						// 0</Example>
+			
+						var replacement = string.Concat([
+							settings.NewLineChars,
+							..Enumerable.Repeat(settings.IndentChars, depth),
+							textNode.Value.Trim(),
+							settings.NewLineChars,
+							..Enumerable.Repeat(settings.IndentChars, trailingIndentDepth),
+						]);
+
+						textNode.ReplaceWith(replacement);
+					}
+				}
+
+				return element.ToString();
 			}
 			protected override string PostprocessXaml(string xaml)
 			{
@@ -422,7 +481,6 @@ namespace ShowMeTheXAML
 
 				return xaml;
 			}
-
 			private static string RemoveOptions(string xaml)
 			{
 				string startString = "<smtx:XamlDisplayExtensions.Options";
@@ -445,8 +503,9 @@ namespace ShowMeTheXAML
 
 				public PrettyXmlWriter(
 					StringBuilder buffer,
+					XmlWriterSettings settings,
 					Func<IReadOnlyCollection<(string Prefix, string LocalName, string NS)>, bool> noopInnerCallImpl)
-					: base(buffer)
+					: base(buffer, settings)
 				{
 					_noopInnerCallImpl = noopInnerCallImpl;
 				}

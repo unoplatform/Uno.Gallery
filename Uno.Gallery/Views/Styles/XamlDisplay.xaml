@@ -4,6 +4,8 @@
 					xmlns:smtx="using:ShowMeTheXAML"
 					xmlns:local="using:Uno.Gallery">
 
+	<!-- note: The XamlDisplay.Formatter on the is completely replaced by XamlDisplayExtensions attached DPs. -->
+
 	<Style x:Key="ExpanderXamlDisplayStyle"
 		   TargetType="smtx:XamlDisplay">
 

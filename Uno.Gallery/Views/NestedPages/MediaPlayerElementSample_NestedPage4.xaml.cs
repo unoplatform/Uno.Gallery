@@ -14,7 +14,7 @@ namespace Uno.Gallery.Views.NestedPages
 		private void NavigateBack(object sender, RoutedEventArgs e)
 		{
 			MediaPlayerElementSample4.MediaPlayer.Pause();
-			Shell.GetForCurrentView().BackNavigateFromNestedSample();
+			Shell.GetForElement(this).BackNavigateFromNestedSample();
 		}
 
 		private void MediaPlayerElementSample_NestedPage4_Unloaded(object sender, RoutedEventArgs e)

@@ -4,6 +4,7 @@ using System.Reflection;
 using System.Text;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Uno.Gallery.Helpers;
 
 namespace Uno.Gallery
 {
@@ -49,7 +50,8 @@ namespace Uno.Gallery
 
 			void OnViewClicked(object sender, RoutedEventArgs e)
 			{
-				(Application.Current as App)?.ShellNavigateTo(Sample);
+				var shell = VisualTreeHelperEx.FindAncestor<Shell>(this);
+				(Application.Current as App)?.ShellNavigateTo(shell, Sample);
 			}
 		}
 	}
