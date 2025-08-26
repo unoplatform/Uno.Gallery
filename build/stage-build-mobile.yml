@@ -57,3 +57,17 @@ steps:
   condition: always()
   inputs:
     ArtifactName: $(ArtifactName)-$(VariantName)-logs
+
+- template: templates/performance/collect-performance-metrics.yml
+  parameters:
+    ArtifactDirectory: $(Build.ArtifactStagingDirectory)/
+    PackageFolder: $(Build.ArtifactStagingDirectory)/com.nventive.uno.ui.demo-Signed.apk
+    ScriptPath: $(build.sourcesdirectory)/build/scripts/collect-metrics-build.sh
+    Platform: mobile
+
+- task: PublishBuildArtifacts@1
+  displayName: Publish build metrics
+  inputs:
+    pathToPublish: $(Build.ArtifactStagingDirectory)/metrics
+    ArtifactName: build-metrics-mobile
+  condition: succeededOrFailed()
