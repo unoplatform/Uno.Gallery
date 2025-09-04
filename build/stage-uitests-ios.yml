@@ -16,7 +16,7 @@
 
   - template: templates/dotnet-install-mac.yml
     parameters:
-      UnoCheckParameters: '--tfm net8.0-ios'
+      UnoCheckParameters: '--tfm net9.0-ios'
 
   - template: templates/xcode-select.yml
     parameters:
@@ -35,7 +35,7 @@
   - task: CopyFiles@2
     displayName: Copy Build Output
     inputs:
-      SourceFolder: $(build.sourcesdirectory)/Uno.Gallery/bin/Release/net8.0-ios/iossimulator-x64/Uno.Gallery.app
+      SourceFolder: $(build.sourcesdirectory)/Uno.Gallery/bin/Release/net9.0-ios/iossimulator-x64/Uno.Gallery.app
       Contents: '**'
       TargetFolder: $(Build.ArtifactStagingDirectory)/Uno.Gallery.app
 
@@ -53,8 +53,7 @@
     SourceLinkEnabled: false
 
   pool:
-    # Keep an older version to avoid https://github.com/actions/runner-images/issues/10925
-    vmImage: 'macos-14'
+    vmImage: 'macos-15'
 
   steps:
   - checkout: self
@@ -80,6 +79,7 @@
     env:
       BUILD_SOURCESDIRECTORY: "$(build.sourcesdirectory)"
       BUILD_ARTIFACTSTAGINGDIRECTORY: "$(build.artifactstagingdirectory)"
+      PIPELINE_WORKSPACE: "$(Pipeline.Workspace)"
 
   - task: PublishTestResults@2
     condition: always()

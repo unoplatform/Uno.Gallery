@@ -42,8 +42,8 @@ variables:
   IsLightBuild: $[eq(variables['Build.Reason'], 'PullRequest')]
   IsCanaryBranch: $[startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries/')]
 
-  XCODE_ROOT: '/Applications/Xcode_16.3.app'
-  XCODE_ROOT_UITESTS: '/Applications/Xcode_15.3.app'
+  XCODE_ROOT: '/Applications/Xcode_16.4.app'
+  XCODE_ROOT_UITESTS: '/Applications/Xcode_16.4.app'
 
   # Required to about trashing azdo hosted agents
   AotCompileMaxDegreeOfParallelism: 3
@@ -283,12 +283,11 @@ stages:
   jobs:
   - template: build/stage-uitests-ios.yml
 
-# Disabled for ANR issue on the hosted agents with System.UI    
-# - stage: Android_Tests
-#   displayName: 'Android Tests'
-#   dependsOn: []
-#   jobs:
-#   - template: build/stage-uitests-android.yml
+- stage: Android_Tests
+  displayName: 'Android Tests'
+  dependsOn: []
+  jobs:
+  - template: build/stage-uitests-android.yml
 
 - ${{ if startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries/dev') }}:
   - template: build/templates/canary-publish/stage-publish-wasm-canary.yml

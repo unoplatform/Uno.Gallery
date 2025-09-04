@@ -1,12 +1,12 @@
 parameters:
-  DotNetVersion: '9.0.203'
-  UnoCheck_Version: '1.32.0-dev.3'
+  DotNetVersion: '9.0.300'
+  UnoCheck_Version: '1.31.13'
   installJava: true
   installWorkloads: true
   UnoCheckParameters: ''
 
 steps:
-  # Required for caching
+  #Required for caching
   - pwsh: |
       echo "##vso[task.setvariable variable=DOTNET_INSTALL_DIR;]$(Build.SourcesDirectory)/.dotnet"
     displayName: "Set DOTNET_INSTALL_DIR for macOS/Linux"
@@ -28,9 +28,8 @@ steps:
       installationPath: $(DOTNET_INSTALL_DIR)
 
   - bash: |
-      sudo apt-get install apt-transport-https
       sudo apt-get update
-      sudo apt-get install -y msopenjdk-11
+      sudo apt-get install -y apt-transport-https msopenjdk-11
       sudo update-java-alternatives --set msopenjdk-11-amd64
     displayName: Install OpenJDK 11
     retryCountOnTaskFailure: 3
@@ -38,6 +37,8 @@ steps:
 
   - bash: |
       dotnet tool update --global uno.check --version ${{ parameters.UnoCheck_Version }} --add-source https://api.nuget.org/v3/index.json
-      uno-check --verbose --ci --non-interactive --fix --skip gtk3 --skip androidsdk --skip androidemulator --skip maui --skip unosdk ${{ parameters.UnoCheckParameters }}
+      uno-check --verbose --ci --non-interactive --fix --skip gtk3 --skip androidemulator --skip androidsdk --skip dotnetnewunotemplates --skip unosdk ${{ parameters.UnoCheckParameters }}
     displayName: Install .NET Workloads
-    condition: and(succeeded(), and( eq(variables['Agent.OS'], 'Linux'), eq('${{ parameters.installWorkloads }}', 'true') ))
+    continueOnError: true
+    retryCountOnTaskFailure: 3
+    condition: and(succeeded(), and(eq(variables['Agent.OS'], 'Linux'), eq('${{ parameters.installWorkloads }}', 'true')))

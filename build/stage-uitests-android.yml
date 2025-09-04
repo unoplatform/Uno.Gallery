@@ -7,7 +7,7 @@
     SourceLinkEnabled: false
 
   pool:
-    vmImage: 'ubuntu-24.04'
+    vmImage: 'ubuntu-latest'
 
   steps:
   - checkout: self
@@ -29,10 +29,22 @@
       BUILD_SOURCESDIRECTORY: "$(build.sourcesdirectory)"
       BUILD_ARTIFACTSTAGINGDIRECTORY: "$(build.artifactstagingdirectory)"
 
+  - bash: |
+      echo "Publish output:"
+      ls -la $(build.sourcesdirectory)/Uno.Gallery/bin/Release/net9.0-android/android-x64/publish || true
+      APK="$(ls $(build.sourcesdirectory)/Uno.Gallery/bin/Release/net9.0-android/android-x64/publish/*.apk | head -n 1 || true)"
+      if [ ! -f "$APK" ]; then
+        echo "ERROR: No APK produced (verify AndroidPackageFormat=apk)"; exit 1; fi
+      echo "Check APK contains .dll and no assemblies.blob (we inject assemblies.blob at run):"
+      unzip -l "$APK" | grep -E '\.dll|assemblies\.blob' || true
+      if ! unzip -l "$APK" | grep -q '\.dll'; then
+        echo "ERROR: No .dll in APK. Disable AOT/trim and set AndroidUseAssemblyStore=false"; exit 1; fi
+    displayName: Sanity check UITest APK contents
+
   - task: CopyFiles@2
     displayName: Copy Build Output
     inputs:
-      SourceFolder: $(build.sourcesdirectory)/Uno.Gallery/bin/Release/net8.0-android/android-x64
+      SourceFolder: $(build.sourcesdirectory)/Uno.Gallery/bin/Release/net9.0-android/android-x64
       Contents: '**/*.apk'
       TargetFolder: $(Build.ArtifactStagingDirectory)
 
