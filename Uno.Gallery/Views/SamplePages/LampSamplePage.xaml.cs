@@ -4,6 +4,9 @@ using Uno.Gallery.ViewModels;
 using Windows.Devices.Lights;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+#if __IOS__
+using Uno.Gallery.Platforms.iOS;
+#endif
 
 namespace Uno.Gallery.Views.Samples
 {
@@ -39,7 +42,9 @@ namespace Uno.Gallery.Views.Samples
 		private const string _enable = "Enable flashlight";
 		private const string _disable = "Disable flashlight";
 		private const string _unavailable = "Flashlight is not available on this device or platform";
-		private Lamp _lamp;
+#if !__IOS__
+		private Lamp? _lamp;
+#endif
 
 		public string ButtonContent
 		{
@@ -78,47 +83,157 @@ namespace Uno.Gallery.Views.Samples
 			IsBrightnessSupported = false;
 			BrightnessLevel = 1;
 #if __IOS__
-IsBrightnessSupported = true;
-#endif
+			IsBrightnessSupported = true;
 			Task.Run(async () =>
 			{
-				_lamp = await Lamp.GetDefaultAsync();
-				IsAvailable = _lamp != null;
-				if (!IsAvailable)
+				try
+				{
+					var available = await FlashlightHelper.IsFlashlightAvailableAsync();
+					IsAvailable = available;
+					if (!available)
+					{
+						ButtonContent = _unavailable;
+					}
+				}
+				catch (Exception ex)
+				{
+					IsAvailable = false;
 					ButtonContent = _unavailable;
+					System.Diagnostics.Debug.WriteLine($"Failed to check flashlight availability: {ex.Message}");
+				}
 			});
+#else
+			Task.Run(async () =>
+			{
+				try
+				{
+					_lamp = await Lamp.GetDefaultAsync();
+					IsAvailable = _lamp != null;
+					if (!IsAvailable)
+					{
+						ButtonContent = _unavailable;
+					}
+				}
+				catch (Exception ex)
+				{
+					// Handle exceptions that might occur due to permission denial or other issues
+					IsAvailable = false;
+					ButtonContent = _unavailable;
+					System.Diagnostics.Debug.WriteLine($"Failed to initialize lamp: {ex.Message}");
+				}
+			});
+#endif
 		}
 
-		public void Enable()
+		public async void Enable()
 		{
-			if (_lamp != null)
+#if __IOS__
+			try
 			{
-				ButtonContent = _disable;
-				_lamp.BrightnessLevel = BrightnessLevel;
-				_lamp.IsEnabled = true;
-				IsEnabled = true;
+				var success = await FlashlightHelper.SetFlashlightAsync(true, BrightnessLevel);
+				if (success)
+				{
+					ButtonContent = _disable;
+					IsEnabled = true;
+				}
+				else
+				{
+					IsAvailable = false;
+					ButtonContent = _unavailable;
+					IsEnabled = false;
+				}
 			}
-			else
+			catch (Exception ex)
 			{
 				IsAvailable = false;
 				ButtonContent = _unavailable;
+				IsEnabled = false;
+				System.Diagnostics.Debug.WriteLine($"Failed to enable flashlight: {ex.Message}");
 			}
+#else
+			await Task.Run(() =>
+			{
+				if (_lamp != null)
+				{
+					try
+					{
+						ButtonContent = _disable;
+						// Note: These APIs are not implemented in Uno Platform yet
+						// _lamp.BrightnessLevel = BrightnessLevel;
+						// _lamp.IsEnabled = true;
+						IsEnabled = true;
+					}
+					catch (Exception ex)
+					{
+						// Handle exceptions that might occur when enabling the lamp
+						IsAvailable = false;
+						ButtonContent = _unavailable;
+						IsEnabled = false;
+						System.Diagnostics.Debug.WriteLine($"Failed to enable lamp: {ex.Message}");
+					}
+				}
+				else
+				{
+					IsAvailable = false;
+					ButtonContent = _unavailable;
+				}
+			});
+#endif
 		}
 
-		public void Disable()
+		public async void Disable()
 		{
-			if (_lamp != null)
+#if __IOS__
+			try
 			{
-				_lamp.IsEnabled = false;
-				IsEnabled = false;
-				ButtonContent = _enable;
+				var success = await FlashlightHelper.SetFlashlightAsync(false);
+				if (success)
+				{
+					IsEnabled = false;
+					ButtonContent = _enable;
+				}
 			}
+			catch (Exception ex)
+			{
+				System.Diagnostics.Debug.WriteLine($"Failed to disable flashlight: {ex.Message}");
+			}
+#else
+			await Task.Run(() =>
+			{
+				if (_lamp != null)
+				{
+					try
+					{
+						// Note: This API is not implemented in Uno Platform yet
+						// _lamp.IsEnabled = false;
+						IsEnabled = false;
+						ButtonContent = _enable;
+					}
+					catch (Exception ex)
+					{
+						System.Diagnostics.Debug.WriteLine($"Failed to disable lamp: {ex.Message}");
+					}
+				}
+			});
+#endif
 		}
 
 		public void Dispose()
 		{
+#if !__IOS__
 			if (_lamp != null)
-				_lamp.Dispose();
+			{
+				try
+				{
+					// Note: This API is not implemented in Uno Platform yet
+					// _lamp.Dispose();
+				}
+				catch (Exception ex)
+				{
+					System.Diagnostics.Debug.WriteLine($"Failed to dispose lamp: {ex.Message}");
+				}
+			}
+#endif
 		}
 	}
 }

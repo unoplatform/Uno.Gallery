@@ -57,6 +57,8 @@
 		<string>This app requires motion tracking for the Pedometer sample to work.</string>
 		<key>NSLocationWhenInUseUsageDescription</key>
 		<string>This app requires location for the Geolocator sample to work. The data is not shared.</string>
+		<key>NSCameraUsageDescription</key>
+		<string>This app needs access to camera to control the flashlight.</string>
 		<key>LSApplicationQueriesSchemes</key>
 		<array>
 			<string>tel</string>
