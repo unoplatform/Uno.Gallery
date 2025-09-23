@@ -16,8 +16,6 @@
     persistCredentials: true
 
   - template: templates/dotnet-install-linux.yml
-    parameters:
-      UnoCheckParameters: '--tfm net9.0-browserwasm'
 
   - template: templates/canary-updater.yml
 
@@ -31,6 +29,9 @@
 
   - publish: $(System.DefaultWorkingDirectory)/Uno.Gallery/bin/Release/net9.0-browserwasm/publish/wwwroot
     artifact: Wasm_UITest
+
+  - publish: $(build.artifactstagingdirectory)/screenshots/wasm
+    artifact: wasm-uitest-binlog
 
 - job: Wasm_UITests
   timeoutInMinutes: 90

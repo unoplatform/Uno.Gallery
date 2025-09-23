@@ -1,6 +1,6 @@
 parameters:
-  DotNetVersion: '9.0.201'
-  UnoCheck_Version: '1.31.0-dev.12'
+  DotNetVersion: '9.0.300'
+  UnoCheck_Version: '1.31.13'
   installWorkloads: true
   UnoCheckParameters: ''
 
@@ -17,18 +17,6 @@ steps:
       path: $(DOTNET_INSTALL_DIR)
     displayName: Set Cache for dotnet install
 
-  # Required until .NET 6 installs properly using UseDotnet
-  # using preview builds
-  #- bash: |
-  #    export PATH="${{ parameters.Dotnet_Root }}:${{ parameters.Dotnet_Tools }}:$PATH"
-  #    curl -L https://raw.githubusercontent.com/dotnet/install-scripts/11b4eebe23d871c074364940d301c3eb53e7c7ec/src/dotnet-install.sh > dotnet-install.sh
-  #    sh dotnet-install.sh --version ${{ parameters.DotNetVersion }} --install-dir $DOTNET_ROOT --verbose
-  #    dotnet --list-sdks
-  #    echo "##vso[task.setvariable variable=PATH]$PATH"
-  #  displayName: install .NET ${{ parameters.DotNetVersion }}
-  #  retryCountOnTaskFailure: 3
-  #  condition: eq(variables['Agent.OS'], 'Darwin')
-
   - task: UseDotNet@2
     displayName: 'Use .NET Core SDK ${{ parameters.DotNetVersion }}'
     retryCountOnTaskFailure: 3
@@ -42,6 +30,8 @@ steps:
 
   - bash: |
       dotnet tool update --global uno.check --version ${{ parameters.UnoCheck_Version }} --add-source https://api.nuget.org/v3/index.json
-      uno-check --ci --non-interactive --fix --skip gtk3 --skip xcode --skip vswin --skip androidemulator --skip maui --skip unosdk --skip vsmac ${{ parameters.UnoCheckParameters }}
+      uno-check --verbose --ci --non-interactive --fix --skip androidemulator --skip gtk3 --skip xcode --skip vswin --skip maui --skip unosdk --skip vsmac --skip dotnetnewunotemplates ${{ parameters.UnoCheckParameters }}
     displayName: Install .NET Workloads
-    condition: and(succeeded(), and( eq(variables['Agent.OS'], 'Darwin'), eq('${{ parameters.installWorkloads }}', 'true') ))
+    condition: and(succeeded(), and(eq(variables['Agent.OS'], 'Darwin'), eq('${{ parameters.installWorkloads }}', 'true')))
+    continueOnError: true
+    retryCountOnTaskFailure: 3

@@ -2,8 +2,6 @@
 - template: templates/gitversion.yml
 
 - template: templates/dotnet-install-linux.yml
-  parameters:
-    UnoCheckParameters: '--tfm net9.0-browserwasm'
 
 - template: templates/canary-updater.yml
 
@@ -15,7 +13,7 @@
   condition: always()
   retryCountOnTaskFailure: 3
   inputs:
-    PathtoPublish: '$(Agent.TempDirectory)/wasm-publish/wwwroot'
+    PathtoPublish: '$(Agent.TempDirectory)/wasm-publish'
     ArtifactName: $(ArtifactName)
 
 - task: PublishBuildArtifacts@1
