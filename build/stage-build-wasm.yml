@@ -13,7 +13,7 @@
   condition: always()
   retryCountOnTaskFailure: 3
   inputs:
-    PathtoPublish: '$(Agent.TempDirectory)/wasm-publish'
+    PathtoPublish: '$(Agent.TempDirectory)/wasm-publish/wwwroot'
     ArtifactName: $(ArtifactName)
 
 - task: PublishBuildArtifacts@1
