@@ -530,8 +530,8 @@
 
 					<!-- FPS indicator Toggle -->
 					<skia:CheckBox x:Name="FPSIndicatorCheckBox"
-					          Content="FPS indicator"
-					          Click="FPSIndicatorCheckBox_Click" />
+								   Content="FPS indicator"
+								   Click="FPSIndicatorCheckBox_Click" />
 
 					<!-- Samples Search Box -->
 					<AutoSuggestBox x:Name="SamplesSearchBox"
