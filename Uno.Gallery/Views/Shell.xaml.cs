@@ -105,6 +105,13 @@ public sealed partial class Shell : UserControl
 	}
 #endif
 
+#if __UNO_SKIA__
+	private void FPSIndicatorCheckBox_Click(object sender, RoutedEventArgs e)
+	{
+		Application.Current.DebugSettings.EnableFrameRateCounter = FPSIndicatorCheckBox.IsChecked ?? false;
+	}
+#endif
+
 	private void ToggleButton_Click(object sender, RoutedEventArgs e)
 	{
 		// Set theme for window root.
