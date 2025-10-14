@@ -60,6 +60,10 @@ public sealed partial class Shell : UserControl
 		this.Log().Debug("Loaded Shell.");
 		Uno.Gallery.Deeplinking.BranchService.Instance.SetIsAppReady();
 #endif
+
+#if DEBUG || IS_CANARY_BUILD
+		FindName("FPSIndicatorCheckBox"); // materialize x:Load=false element
+#endif
 	}
 
 	private void SetDarkLightToggleInitialState()
@@ -102,6 +106,13 @@ public sealed partial class Shell : UserControl
 				TopPaddingRow.Height = new GridLength(topPadding);
 			}
 		}
+	}
+#endif
+
+#if __UNO_SKIA__
+	private void FPSIndicatorCheckBox_Click(object sender, RoutedEventArgs e)
+	{
+		Application.Current.DebugSettings.EnableFrameRateCounter = FPSIndicatorCheckBox.IsChecked ?? false;
 	}
 #endif
 

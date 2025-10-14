@@ -9,8 +9,9 @@
 			 xmlns:win="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 			 xmlns:wasm="http://uno.ui/wasm"
 			 xmlns:xamarin="http://uno.ui/xamarin"
+			 xmlns:skia="http://uno.ui/skia"
 			 xmlns:todo="what should be done"
-			 mc:Ignorable="wasm xamarin todo">
+			 mc:Ignorable="wasm xamarin todo skia">
 
 	<UserControl.Resources>
 		<Style x:Key="AppBarButtonStyle"
@@ -526,6 +527,12 @@
 							Style="{StaticResource DarkLightToggleTheme}"
 							Click="ToggleButton_Click" />
 					</Grid>
+
+					<!-- FPS indicator Toggle -->
+					<skia:CheckBox x:Name="FPSIndicatorCheckBox"
+					               x:Load="False"
+								   Content="FPS indicator"
+								   Click="FPSIndicatorCheckBox_Click" />
 
 					<!-- Samples Search Box -->
 					<AutoSuggestBox x:Name="SamplesSearchBox"
