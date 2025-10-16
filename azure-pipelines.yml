@@ -136,13 +136,6 @@ stages:
           BuildCommand: publish
           UseNativeRendering: true
           VariantName: Native
-        Catalyst:
-          BuildTargetFramework: net9.0-maccatalyst
-          ArtifactName: Catalyst
-          ApplicationBuildNumberOffset: 50
-          BuildCommand: build
-          UseNativeRendering: true
-          VariantName: Native
         iOS_Skia:
           BuildTargetFramework: net9.0-ios
           ArtifactName: iOS-mobile
@@ -150,9 +143,9 @@ stages:
           BuildCommand: publish
           UseNativeRendering: false
           VariantName: Skia
-        Catalyst_Skia:
-          BuildTargetFramework: net9.0-maccatalyst
-          ArtifactName: Catalyst
+        macOS_Skia:
+          BuildTargetFramework: net9.0-desktop
+          ArtifactName: desktop
           ApplicationBuildNumberOffset: 50
           BuildCommand: build
           UseNativeRendering: false
@@ -245,6 +238,7 @@ stages:
         xCodeRoot: $(XCODE_ROOT)
   
     - template: build/stage-build-mobile.yml
+    - template: build/stage-build-skia-desktop-mac.yml
 
 - stage: WebAssembly
   displayName: 'WebAssembly'
@@ -293,11 +287,11 @@ stages:
 - ${{ if startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries/dev') }}:
   - template: build/templates/canary-publish/stage-publish-wasm-canary.yml
   - template: build/templates/canary-publish/stage-publish-ios-canary.yml
-  - template: build/templates/canary-publish/stage-publish-catalyst-canary.yml
+  - template: build/templates/canary-publish/stage-publish-macos-canary.yml
   - template: build/templates/canary-publish/stage-publish-android-canary.yml
 
 - ${{ if startsWith(variables['Build.SourceBranch'], 'refs/heads/master') }}:
   - template: build/templates/master-publish/stage-publish-wasm.yml
   - template: build/templates/master-publish/stage-publish-ios.yml
-  - template: build/templates/master-publish/stage-publish-catalyst.yml
+  - template: build/templates/master-publish/stage-publish-macos.yml
   - template: build/templates/master-publish/stage-publish-android.yml

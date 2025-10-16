@@ -71,5 +71,5 @@ steps:
           $a = $_.fullname; ( get-content $a ) |
           foreach-object { $_ -replace "com.nventive.uno.gallery","com.nventive.uno.gallery-canary" } |
           set-content $a }
-    displayName: 'Adjust info.plist bundle name (Catalyst)'
+    displayName: 'Adjust info.plist bundle name (macOS)'
     condition: startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries')
