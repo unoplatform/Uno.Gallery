@@ -9,7 +9,6 @@
 		<TargetFrameworks Condition="'$(TargetFrameworkOverride)'==''">
 			net9.0-android;
 			net9.0-ios;
-			net9.0-maccatalyst;
 			net9.0-windows10.0.19041;
 			net9.0-desktop;
 			net9.0-browserwasm;
@@ -33,8 +32,8 @@
 		<ApplicationId Condition=" '$(TargetFramework)' == 'net9.0-ios' AND '$(UseNativeRendering)' != 'true' ">com.nventive.uno.gallery</ApplicationId>
 		<ApplicationId Condition=" '$(TargetFramework)' == 'net9.0-ios' AND '$(UseNativeRendering)' == 'true' ">uno.platform.gallery.native</ApplicationId>
 
-		<ApplicationId Condition=" '$(TargetFramework)' == 'net9.0-maccatalyst' AND '$(UseNativeRendering)' != 'true' ">com.nventive.uno.gallery</ApplicationId>
-		<ApplicationId Condition=" '$(TargetFramework)' == 'net9.0-maccatalyst' AND '$(UseNativeRendering)' == 'true' ">uno.platform.gallery.native</ApplicationId>
+		<ApplicationId Condition=" '$(TargetFramework)' == 'net9.0-desktop' AND '$(UseNativeRendering)' != 'true' ">com.nventive.uno.gallery</ApplicationId>
+		<ApplicationId Condition=" '$(TargetFramework)' == 'net9.0-desktop' AND '$(UseNativeRendering)' == 'true' ">uno.platform.gallery.native</ApplicationId>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
@@ -59,7 +58,7 @@
 		<IsSkiaWasm Condition="'$(IsSkiaWasm)'==''">false</IsSkiaWasm>
 		<IsSkiaAndroid Condition="'$(UseNativeRendering)'!='true' AND '$(TargetFramework)'=='net9.0-android'">true</IsSkiaAndroid>
 		<IsSkiaAndroid Condition="'$(IsSkiaAndroid)'==''">false</IsSkiaAndroid>
-		<IsSkiaUIKit Condition="'$(UseNativeRendering)'!='true' AND ('$(TargetFramework)'=='net9.0-ios' OR '$(TargetFramework)'=='net9.0-maccatalyst')">true</IsSkiaUIKit>
+		<IsSkiaUIKit Condition="'$(UseNativeRendering)'!='true' AND '$(TargetFramework)'=='net9.0-ios'">true</IsSkiaUIKit>
 		<IsSkiaUIKit Condition="'$(IsSkiaUIKit)'==''">false</IsSkiaUIKit>
 		<UnoFeatures>
 			Material;
@@ -155,7 +154,7 @@
 		<CreatePackage>true</CreatePackage>
 		<EnablePackageSigning>true</EnablePackageSigning>
 		<EnableCodeSigning>true</EnableCodeSigning>
-		<CodeSignEntitlements>MacCatalyst\Entitlements.plist</CodeSignEntitlements>
+		<UnoMacOSEntitlements>MacCatalyst\Entitlements.plist</UnoMacOSEntitlements>
 
 		<CodesignProvision>Uno Gallery Native (Catalyst)</CodesignProvision>
 		<CodesignProvision Condition="$(BUILD_SOURCEBRANCH.StartsWith('refs/heads/canaries'))">Uno Gallery Native Canary (Catalyst)</CodesignProvision>

@@ -1,0 +1,34 @@
+﻿stages:
+- stage: macOS_Publish
+  displayName: 'macOS Publish'
+  dependsOn: Apple
+
+  jobs:
+  - deployment: 'MacOS_Publish_Skia'
+    displayName: 'Publish macOS Skia'
+    environment: Uno Gallery
+    pool:
+      vmImage: macos-latest
+
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          # https://github.com/microsoft/azure-pipelines-tasks/issues/17207
+          - download: none
+          - task: DownloadPipelineArtifact@2
+            inputs:
+              artifactName: 'macOS-skia'
+              targetPath: '$(Pipeline.Workspace)/drop'
+            displayName: Download artifacts
+
+          - task: ms-vsclient.app-store.app-store-release.AppStoreRelease@1
+            displayName: 'Publish to the App Store TestFlight track'
+            inputs:
+              serviceEndpoint: 'App Store (uno platform)'
+              appIdentifier: com.nventive.uno.gallery
+              appType: macOS
+              ipaPath: '$(Pipeline.Workspace)/drop/net9.0-desktop/Uno.Gallery-*.pkg'
+              shouldSkipWaitingForProcessing: true
+              appSpecificId: 1619130328
+
