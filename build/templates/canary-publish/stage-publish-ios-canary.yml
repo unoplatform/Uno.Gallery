@@ -27,7 +27,7 @@
             inputs:
               serviceEndpoint: 'App Store (uno platform)'
               appIdentifier: uno.platform.gallery.native-canary
-              ipaPath: '$(Pipeline.Workspace)/drop/net9.0-ios/ios-arm64/publish/Uno.Gallery.ipa'
+              ipaPath: '$(Pipeline.Workspace)/drop/net10.0-ios/ios-arm64/publish/Uno.Gallery.ipa'
               shouldSkipWaitingForProcessing: true
               appSpecificId: 1619130328
 
@@ -54,6 +54,6 @@
             inputs:
               serviceEndpoint: 'App Store (uno platform)'
               appIdentifier: uno.platform.gallery
-              ipaPath: '$(Pipeline.Workspace)/drop/net9.0-ios/ios-arm64/publish/Uno.Gallery.ipa'
+              ipaPath: '$(Pipeline.Workspace)/drop/net10.0-ios/ios-arm64/publish/Uno.Gallery.ipa'
               shouldSkipWaitingForProcessing: true
               appSpecificId: 6739235480

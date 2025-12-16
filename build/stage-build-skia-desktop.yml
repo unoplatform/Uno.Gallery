@@ -9,12 +9,12 @@ steps:
 - template: templates/canary-updater.yml
 
 - bash: |
-    dotnet build Uno.Gallery/Uno.Gallery.csproj -p:TargetFrameworkOverride=net9.0-desktop -c Release -p:InformationalVersion=$(NBGV_InformationalVersion) -bl:$(build.artifactstagingdirectory)/build.binlog
+    dotnet publish Uno.Gallery/Uno.Gallery.csproj -p:TargetFrameworkOverride=net10.0-desktop -c Release -p:InformationalVersion=$(NBGV_InformationalVersion) -bl:$(build.artifactstagingdirectory)/build.binlog
 
 - task: CopyFiles@2
   displayName: Copy Skia output
   inputs:
-    SourceFolder: Uno.Gallery/bin/Release/net9.0-desktop
+    SourceFolder: Uno.Gallery/bin/Release/net10.0-desktop/publish
     Contents: '**/*.*'
     TargetFolder: $(Build.ArtifactStagingDirectory)/bin
 

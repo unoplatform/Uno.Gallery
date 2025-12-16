@@ -6,7 +6,7 @@ steps:
 
 - template: templates/dotnet-install-mac.yml
   parameters:
-    UnoCheckParameters: '--tfm net9.0-ios --tfm net9.0-maccatalyst'
+    UnoCheckParameters: '--tfm net10.0-ios'
 
 - template: templates/canary-updater.yml
 

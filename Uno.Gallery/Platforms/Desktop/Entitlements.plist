@@ -2,10 +2,15 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 	<dict>
+		<!-- App Sandbox (required for Mac App Store distribution) -->
 		<key>com.apple.security.app-sandbox</key>
 		<true/>
+		
+		<!-- Network access (for web content, APIs, etc.) -->
 		<key>com.apple.security.network.client</key>
 		<true/>
+		
+		<!-- Disable library validation (allows loading of unsigned dylibs from Uno/Skia) -->
 		<key>com.apple.security.cs.disable-library-validation</key>
 		<true/>
 	</dict>

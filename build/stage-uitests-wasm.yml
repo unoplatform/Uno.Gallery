@@ -27,7 +27,14 @@
       BUILD_ARTIFACTSTAGINGDIRECTORY: "$(build.artifactstagingdirectory)"
     displayName: 'Running build'
 
-  - publish: $(System.DefaultWorkingDirectory)/Uno.Gallery/bin/Release/net9.0-browserwasm/publish/wwwroot
+  - bash: |
+      find $(System.DefaultWorkingDirectory) -type d -name "obj" -exec rm -rf {} + 2>/dev/null || true
+      find $(System.DefaultWorkingDirectory) -type d -name "bin" -not -path "*/Uno.Gallery/bin/Release/net10.0-browserwasm/publish/*" -exec rm -rf {} + 2>/dev/null || true
+      df -h
+    displayName: 'Clean build artifacts'
+    continueOnError: true
+
+  - publish: $(System.DefaultWorkingDirectory)/Uno.Gallery/bin/Release/net10.0-browserwasm/publish/wwwroot
     artifact: Wasm_UITest
 
   - publish: $(build.artifactstagingdirectory)/screenshots/wasm

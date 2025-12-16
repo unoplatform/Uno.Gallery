@@ -42,8 +42,8 @@ variables:
   IsLightBuild: $[eq(variables['Build.Reason'], 'PullRequest')]
   IsCanaryBranch: $[startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries/')]
 
-  XCODE_ROOT: '/Applications/Xcode_16.4.app'
-  XCODE_ROOT_UITESTS: '/Applications/Xcode_16.4.app'
+  XCODE_ROOT: '/Applications/Xcode_26.0.1.app'
+  XCODE_ROOT_UITESTS: '/Applications/Xcode_26.0.1.app'
 
   # Required to about trashing azdo hosted agents
   AotCompileMaxDegreeOfParallelism: 3
@@ -96,7 +96,7 @@ stages:
     - name: ApplicationPlatform
       value: x86 # switch back to x64 once CommunityToolkit.WinUI.UI supports x64 (https://github.com/CommunityToolkit/Lottie-Windows/issues/515#issuecomment-1662305826)
     - name: BuildTargetFramework
-      value: net9.0-windows10.0.19041
+      value: net10.0-windows10.0.19041
     - name: ArtifactName
       value: Windows
     - name: VersionCodeOffset
@@ -130,29 +130,22 @@ stages:
     strategy:
       matrix:
         iOS:
-          BuildTargetFramework: net9.0-ios
+          BuildTargetFramework: net10.0-ios
           ArtifactName: iOS-mobile
           ApplicationBuildNumberOffset: 50
           BuildCommand: publish
           UseNativeRendering: true
           VariantName: Native
-        Catalyst:
-          BuildTargetFramework: net9.0-maccatalyst
-          ArtifactName: Catalyst
-          ApplicationBuildNumberOffset: 50
-          BuildCommand: build
-          UseNativeRendering: true
-          VariantName: Native
         iOS_Skia:
-          BuildTargetFramework: net9.0-ios
+          BuildTargetFramework: net10.0-ios
           ArtifactName: iOS-mobile
           ApplicationBuildNumberOffset: 50
           BuildCommand: publish
           UseNativeRendering: false
           VariantName: Skia
-        Catalyst_Skia:
-          BuildTargetFramework: net9.0-maccatalyst
-          ArtifactName: Catalyst
+        macOS_Desktop:
+          BuildTargetFramework: net10.0-desktop
+          ArtifactName: macOS-desktop
           ApplicationBuildNumberOffset: 50
           BuildCommand: build
           UseNativeRendering: false
@@ -176,29 +169,18 @@ stages:
         # deleteCert: true
   
     - task: InstallAppleCertificate@2
-      displayName: Install Certificate
+      displayName: Install Certificate (Mac Installer)
       inputs:
         certSecureFile: UnoPlatform-MacInstaller.p12
         certPwd: $(appleappstorecertificatepassword)
-        keychain: temp
+        keychain: default
         # disabled because of azure devops failing to uninstall as of 2022-11-16
         # deleteCert: true
+      condition: and(succeeded(), eq(variables['BuildTargetFramework'], 'net10.0-desktop'))
 
     #
-    # Gallery Skia
+    # iOS Provisioning Profiles (Skia variant)
     #
-    - task: InstallAppleProvisioningProfile@1
-      displayName: 'Install Apple Provisioning Profile'
-      inputs:
-        provisioningProfileLocation: 'secureFiles'
-        provProfileSecureFile: Uno_Gallery_Catalyst.provisionprofile
-  
-    - task: InstallAppleProvisioningProfile@1
-      displayName: 'Install Apple Provisioning Profile'
-      inputs:
-        provisioningProfileLocation: 'secureFiles'
-        provProfileSecureFile: Uno_Gallery_Canary_Catalyst.provisionprofile
-  
     - task: InstallAppleProvisioningProfile@1
       displayName: 'Install Apple Provisioning Profile'
       inputs:
@@ -212,21 +194,24 @@ stages:
         provProfileSecureFile: Uno_Gallery_Canary_iOS.mobileprovision
 
     #
-    # Gallery Native
+    # macOS Desktop Provisioning Profiles (Skia variant)
+    #
+    - task: InstallAppleProvisioningProfile@1
+      displayName: 'Install Apple Provisioning Profile'
+      inputs:
+        provisioningProfileLocation: 'secureFiles'
+        provProfileSecureFile: Uno_Gallery_macOS_Desktop.provisionprofile
+
+    - task: InstallAppleProvisioningProfile@1
+      displayName: 'Install Apple Provisioning Profile'
+      inputs:
+        provisioningProfileLocation: 'secureFiles'
+        provProfileSecureFile: Uno_Gallery_Canary_macOS_Desktop.provisionprofile
+
+    #
+    # iOS Provisioning Profiles (Native variant)
     #
       
-    - task: InstallAppleProvisioningProfile@1
-      displayName: 'Install Apple Provisioning Profile'
-      inputs:
-        provisioningProfileLocation: 'secureFiles'
-        provProfileSecureFile: Uno_Gallery_Native_Catalyst.provisionprofile
-  
-    - task: InstallAppleProvisioningProfile@1
-      displayName: 'Install Apple Provisioning Profile'
-      inputs:
-        provisioningProfileLocation: 'secureFiles'
-        provProfileSecureFile: Uno_Gallery_Native_Canary_Catalyst.provisionprofile
-  
     - task: InstallAppleProvisioningProfile@1
       displayName: 'Install Apple Provisioning Profile'
       inputs:
@@ -244,7 +229,10 @@ stages:
       parameters:
         xCodeRoot: $(XCODE_ROOT)
   
-    - template: build/stage-build-mobile.yml
+    - ${{ if eq(variables['BuildTargetFramework'], 'net10.0-desktop') }}:
+      - template: build/stage-build-macos-desktop.yml
+    - ${{ else }}:
+      - template: build/stage-build-mobile.yml
 
 - stage: WebAssembly
   displayName: 'WebAssembly'
@@ -292,11 +280,11 @@ stages:
 - ${{ if startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries/dev') }}:
   - template: build/templates/canary-publish/stage-publish-wasm-canary.yml
   - template: build/templates/canary-publish/stage-publish-ios-canary.yml
-  - template: build/templates/canary-publish/stage-publish-catalyst-canary.yml
+  - template: build/templates/canary-publish/stage-publish-macos-desktop-canary.yml
   - template: build/templates/canary-publish/stage-publish-android-canary.yml
 
 - ${{ if startsWith(variables['Build.SourceBranch'], 'refs/heads/master') }}:
   - template: build/templates/master-publish/stage-publish-wasm.yml
   - template: build/templates/master-publish/stage-publish-ios.yml
-  - template: build/templates/master-publish/stage-publish-catalyst.yml
+  - template: build/templates/master-publish/stage-publish-macos-desktop.yml
   - template: build/templates/master-publish/stage-publish-android.yml

@@ -1,0 +1,39 @@
+﻿stages:
+- stage: macOS_Desktop_Publish
+  displayName: 'macOS Desktop Publish'
+  dependsOn: Apple
+
+  jobs:
+  - deployment: 'macOS_Desktop_Publish_Skia'
+    displayName: 'Publish macOS Desktop Skia'
+    environment: Uno Gallery
+    pool:
+      vmImage: macos-latest
+
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          # https://github.com/microsoft/azure-pipelines-tasks/issues/17207
+          - download: none
+          - task: DownloadPipelineArtifact@2
+            inputs:
+              artifactName: 'macOS-desktop'
+              targetPath: '$(Pipeline.Workspace)/drop'
+            displayName: Download artifacts
+
+          - script: |
+              echo "macOS Desktop artifacts downloaded successfully"
+              ls -la "$(Pipeline.Workspace)/drop"
+            displayName: 'Verify macOS Desktop artifacts'
+
+          - task: ms-vsclient.app-store.app-store-release.AppStoreRelease@1
+            displayName: 'Publish to the App Store TestFlight track'
+            inputs:
+              serviceEndpoint: 'App Store (uno platform)'
+              appIdentifier: com.nventive.uno.gallery
+              appType: macOS
+              ipaPath: '$(Pipeline.Workspace)/drop/net10.0-desktop/**/*.pkg'
+              shouldSkipWaitingForProcessing: true
+              appSpecificId: 1619130328
+

@@ -1,0 +1,54 @@
+steps:
+# NOTE: This template currently builds osx-x64 only and relies on Rosetta for arm64 execution.
+# When Uno.Sdk includes fat bundle support (UnoMergeBundles task from uno.sdk.extras),
+# this should be updated to build both osx-x64 and osx-arm64, then merge them into a universal binary.
+# See: https://github.com/unoplatform/uno.sdk.extras/pull/84
+#      https://github.com/unoplatform/uno/pull/21744/
+- checkout: self
+  clean: true
+  fetchDepth: 0
+  persistCredentials: true
+
+- template: templates/gitversion.yml
+
+- template: templates/dotnet-install-mac.yml
+
+- template: templates/canary-updater.yml
+
+- bash: |
+    cd $(build.sourcesdirectory)/Uno.Gallery
+    echo "BUILD_SOURCEBRANCH: $BUILD_SOURCEBRANCH"
+    dotnet publish -f net10.0-desktop -r osx-x64 -c Release \
+      -p:TargetFrameworkOverride=net10.0-desktop \
+      -p:PackageFormat=pkg \
+      -p:InformationalVersion=$(NBGV_InformationalVersion) \
+      -p:CodesignKey="$(MacOS_Certificate_Identity)" \
+      -bl:$(build.artifactstagingdirectory)/pkg-$(BuildTargetFramework).binlog
+  displayName: Create installer (.pkg)
+  env:
+    XCODE_ROOT: $(XCODE_ROOT)
+
+- task: CopyFiles@2
+  displayName: 'Publish Binaries'
+  inputs:
+    SourceFolder: $(build.sourcesdirectory)/Uno.Gallery/bin/Release/net10.0-desktop/osx-x64/publish/
+    Contents:  |
+      **/*.pkg
+    TargetFolder: $(build.artifactstagingdirectory)
+    CleanTargetFolder: false
+    OverWrite: false
+    flattenFolders: false
+
+- task: PublishBuildArtifacts@1
+  retryCountOnTaskFailure: 3
+  condition: succeeded()
+  inputs:
+    ArtifactName: $(ArtifactName)
+    PathtoPublish: $(build.artifactstagingdirectory)
+
+- task: PublishBuildArtifacts@1
+  retryCountOnTaskFailure: 3
+  condition: always()
+  inputs:
+    PathtoPublish: $(build.artifactstagingdirectory)
+    ArtifactName: $(ArtifactName)-logs
