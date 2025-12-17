@@ -1,7 +1,7 @@
 ﻿stages:
 - stage: macOS_Desktop_Publish
   displayName: 'macOS Desktop Publish'
-  dependsOn: Apple
+  dependsOn: Skia_Desktop
 
   jobs:
   - deployment: 'macOS_Desktop_Publish_Skia'
@@ -33,7 +33,7 @@
               serviceEndpoint: 'App Store (uno platform)'
               appIdentifier: com.nventive.uno.gallery
               appType: macOS
-              ipaPath: '$(Pipeline.Workspace)/drop/net10.0-desktop/**/*.pkg'
+              ipaPath: '$(Pipeline.Workspace)/drop/net10.0-desktop/osx-x64/publish/*.pkg'
               shouldSkipWaitingForProcessing: true
-              appSpecificId: 1619130328
+              appSpecificId: 1380984680
 

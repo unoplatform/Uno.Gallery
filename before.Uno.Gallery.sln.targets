@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <!-- This file is imported very early, before any SDK imports -->
+  <!-- Allow NuGet to resolve the best available runtime pack version automatically -->
+  <!-- The .NET 10 SDK will find appropriate versions from configured feeds -->
+</Project>

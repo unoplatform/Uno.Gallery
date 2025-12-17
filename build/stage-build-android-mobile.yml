@@ -36,8 +36,8 @@ steps:
   inputs:
     SourceFolder: $(build.sourcesdirectory)/Uno.Gallery/bin/Release/net10.0-android
     Contents: |
-      **/*.aab
-      **/*.apk
+      publish/**/*.aab
+      publish/**/*.apk
     TargetFolder: $(build.artifactstagingdirectory)
     CleanTargetFolder: false
     OverWrite: false

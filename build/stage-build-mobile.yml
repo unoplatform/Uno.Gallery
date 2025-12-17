@@ -37,10 +37,10 @@ steps:
   inputs:
     SourceFolder: $(build.sourcesdirectory)/Uno.Gallery/bin/Release/
     Contents:  |
-      **/*.apk
-      **/*.ipa
-      **/*.dSym/**
-      **/*.pkg
+      **/publish/**/*.apk
+      **/publish/**/*.ipa
+      **/publish/**/*.dSym/**
+      **/publish/**/*.pkg
     TargetFolder: $(build.artifactstagingdirectory)
     CleanTargetFolder: false
     OverWrite: false

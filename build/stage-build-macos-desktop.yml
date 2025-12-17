@@ -14,41 +14,130 @@ steps:
 - template: templates/dotnet-install-mac.yml
 
 - template: templates/canary-updater.yml
-
+ 
 - bash: |
     cd $(build.sourcesdirectory)/Uno.Gallery
-    echo "BUILD_SOURCEBRANCH: $BUILD_SOURCEBRANCH"
-    dotnet publish -f net10.0-desktop -r osx-x64 -c Release \
-      -p:TargetFrameworkOverride=net10.0-desktop \
-      -p:PackageFormat=pkg \
-      -p:InformationalVersion=$(NBGV_InformationalVersion) \
-      -p:CodesignKey="$(MacOS_Certificate_Identity)" \
+    
+    # Debug: Check certificates and variables
+    echo "=== Code signing identities ==="
+    security find-identity -v -p codesigning
+    echo "=== All identities (installer certs) ==="
+    security find-identity -v
+    echo "=== Variables ==="
+    echo "MACOS_CERT_IDENTITY: $MACOS_CERT_IDENTITY"
+    echo "MACOS_INSTALLER_CERT_IDENTITY: $MACOS_INSTALLER_CERT_IDENTITY"
+    echo "=== Environment ==="
+    uname -a || true
+    sw_vers || true
+    which codesign && codesign --version || true
+    xcode-select -p || true
+    dotnet --info || true
+    echo "DOTNET_INSTALL_DIR: $DOTNET_INSTALL_DIR"
+    echo "PATH: $PATH"
+    echo "=== .NET SDKs ==="
+    ls -la /Users/runner/.dotnet/sdk || true
+    # Remove extended attributes from source and build output (common in CI from git clones)
+    echo "=== Cleaning extended attributes from source ==="
+    xattr -cr $(build.sourcesdirectory) 2>/dev/null || true
+    
+    # Check for any remaining attributes in source (quarantine specifically)
+    echo "=== Checking for com.apple.quarantine in source ==="
+    find $(build.sourcesdirectory)/Uno.Gallery -type f -print0 | xargs -0 -n 100 xattr -p com.apple.quarantine 2>/dev/null | head -n 50 || echo "None found"
+    
+    echo "=== MSBuild binlog will be written to ==="
+    echo "$(build.artifactstagingdirectory)/pkg-$(BuildTargetFramework).binlog"
+    
+    # Remove extended attributes from source
+    xattr -cr $(build.sourcesdirectory) 2>/dev/null || true
+    
+    # Restore entire solution first (all projects and frameworks)
+    # Then publish specific framework with explicit runtime version for Mono runtime
+    dotnet restore $(build.sourcesdirectory)/Uno.Gallery.sln \
+      -nologo --verbosity quiet
+    
+    dotnet publish $(build.sourcesdirectory)/Uno.Gallery/Uno.Gallery.csproj \
+      -f net10.0-desktop -r osx-x64 -c Release --no-restore \
+      /p:PackageFormat=pkg \
+      /p:InformationalVersion="$NBGV_InformationalVersion" \
+      /p:CodesignKey="$MACOS_CERT_IDENTITY" \
+      /p:PackageSigningKey="$MACOS_INSTALLER_CERT_IDENTITY" \
+      /p:RuntimeFrameworkVersion=10.0.1-servicing.25554.104 \
+      -nologo --verbosity normal \
       -bl:$(build.artifactstagingdirectory)/pkg-$(BuildTargetFramework).binlog
-  displayName: Create installer (.pkg)
+    
+    # Post-publish diagnostics
+    PUBLISH_DIR="$(build.sourcesdirectory)/Uno.Gallery/bin/Release/net10.0-desktop/osx-x64/publish"
+    echo "=== Publish dir contents ==="
+    ls -la "$PUBLISH_DIR" || true
+
+    # Check for .pkg file created by Uno
+    PKG_PATH="$(find "$PUBLISH_DIR" -maxdepth 1 -name "*.pkg" -print -quit)"
+    if [ -z "$PKG_PATH" ]; then
+      echo "❌ No .pkg found in $PUBLISH_DIR"; exit 1
+    fi
+    echo "✅ .pkg created by Uno Platform: $PKG_PATH"
+    echo "=== Validating .pkg contents ==="
+    xar -tf "$PKG_PATH" | head -20 || true
+  displayName: Publish with Uno Platform .pkg creation
   env:
     XCODE_ROOT: $(XCODE_ROOT)
+    MACOS_CERT_IDENTITY: $(MacOS_Certificate_Identity)
+    MACOS_INSTALLER_CERT_IDENTITY: $(MacOS_Installer_Certificate_Identity)
 
-- task: CopyFiles@2
-  displayName: 'Publish Binaries'
-  inputs:
-    SourceFolder: $(build.sourcesdirectory)/Uno.Gallery/bin/Release/net10.0-desktop/osx-x64/publish/
-    Contents:  |
-      **/*.pkg
-    TargetFolder: $(build.artifactstagingdirectory)
-    CleanTargetFolder: false
-    OverWrite: false
-    flattenFolders: false
+- bash: |
+    ART_DIR="$(build.artifactstagingdirectory)"
+    echo "=== Normalizing artifacts layout in $ART_DIR ==="
+    
+    # Create target directory structure to match iOS/Android patterns
+    mkdir -p "$ART_DIR/net10.0-desktop/osx-x64/publish" "$ART_DIR/logs"
+    
+    # Move all .pkg files from publish dir to the structured path
+    echo "Moving *.pkg to net10.0-desktop/osx-x64/publish/ ..."
+    find "$ART_DIR" -name "*.pkg" -not -path "*/net10.0-desktop/*" -exec mv -f {} "$ART_DIR/net10.0-desktop/osx-x64/publish/" \; 2>/dev/null || true
+    
+    # Move binlogs to logs/
+    echo "Moving *.binlog to logs/ ..."
+    find "$ART_DIR" -maxdepth 1 -name "*.binlog" -exec mv -f {} "$ART_DIR/logs/" \; 2>/dev/null || true
+    
+    # Move other log files to logs/
+    echo "Moving *.log and *.txt to logs/ ..."
+    find "$ART_DIR" -maxdepth 1 -name "*.log" -o -name "*.txt" | xargs -I{} mv -f {} "$ART_DIR/logs/" 2>/dev/null || true
+    
+    # CRITICAL: Ensure logs/ contains ZERO pkg files (recursive check)
+    echo "Ensuring no .pkg files in logs/ (recursive cleanup) ..."
+    find "$ART_DIR/logs" -type f -name "*.pkg" -delete 2>/dev/null || true
+    
+    # Final verification
+    echo "=== Final artifacts layout ==="
+    echo "Staging root:"
+    ls -lah "$ART_DIR" | grep -v "^d" | head -20 || true
+    echo ""
+    echo "net10.0-desktop/ structure:"
+    ls -lahR "$ART_DIR/net10.0-desktop" || true
+    echo ""
+    echo "logs/ contents:"
+    ls -lah "$ART_DIR/logs" || true
+    echo ""
+    echo "Verification: Checking for ANY .pkg in logs/ ..."
+    if find "$ART_DIR/logs" -name "*.pkg" | grep -q .; then
+      echo "❌ ERROR: .pkg files still found in logs/"
+      find "$ART_DIR/logs" -name "*.pkg"
+      exit 1
+    else
+      echo "✅ No .pkg files in logs/ - verified clean"
+    fi
+  displayName: Normalize artifacts layout
 
 - task: PublishBuildArtifacts@1
   retryCountOnTaskFailure: 3
   condition: succeeded()
   inputs:
-    ArtifactName: $(ArtifactName)
+    ArtifactName: macOS-desktop
     PathtoPublish: $(build.artifactstagingdirectory)
 
 - task: PublishBuildArtifacts@1
   retryCountOnTaskFailure: 3
   condition: always()
   inputs:
-    PathtoPublish: $(build.artifactstagingdirectory)
-    ArtifactName: $(ArtifactName)-logs
+    PathtoPublish: $(build.artifactstagingdirectory)/logs
+    ArtifactName: macos-logs

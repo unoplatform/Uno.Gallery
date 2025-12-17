@@ -29,7 +29,7 @@
               appIdentifier: uno.platform.gallery.native-canary
               ipaPath: '$(Pipeline.Workspace)/drop/net10.0-ios/ios-arm64/publish/Uno.Gallery.ipa'
               shouldSkipWaitingForProcessing: true
-              appSpecificId: 1619130328
+              appSpecificId: 6745625865
 
   - deployment: 'iOS_Publish_Skia'
     displayName: 'Publish iOS Skia'
@@ -53,7 +53,7 @@
             displayName: 'Publish to the App Store TestFlight track'
             inputs:
               serviceEndpoint: 'App Store (uno platform)'
-              appIdentifier: uno.platform.gallery
+              appIdentifier: com.nventive.uno.gallery-canary
               ipaPath: '$(Pipeline.Workspace)/drop/net10.0-ios/ios-arm64/publish/Uno.Gallery.ipa'
               shouldSkipWaitingForProcessing: true
-              appSpecificId: 6739235480
+              appSpecificId: 1619130328

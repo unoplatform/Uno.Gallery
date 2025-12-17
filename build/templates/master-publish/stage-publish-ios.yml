@@ -29,7 +29,7 @@
               appIdentifier: uno.platform.gallery.native
               ipaPath: '$(Pipeline.Workspace)/drop/net10.0-ios/ios-arm64/publish/Uno.Gallery.ipa'
               shouldSkipWaitingForProcessing: true
-              appSpecificId: 6739235480
+              appSpecificId: 6745625441
 
   - deployment: 'iOS_Publish_Skia'
     displayName: 'Publish iOS Skia'
@@ -56,4 +56,4 @@
               appIdentifier: com.nventive.uno.gallery
               ipaPath: '$(Pipeline.Workspace)/drop/net10.0-ios/ios-arm64/publish/Uno.Gallery.ipa'
               shouldSkipWaitingForProcessing: true
-              appSpecificId: 1619130328
+              appSpecificId: 1380984680

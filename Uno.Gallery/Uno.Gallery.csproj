@@ -27,7 +27,7 @@
 		<ApplicationId>uno.platform.gallery</ApplicationId>
 
 		<ApplicationId Condition=" '$(TargetFramework)' == 'net10.0-android' AND '$(UseNativeRendering)' != 'true' ">com.nventive.uno.ui.demo</ApplicationId>
-		<ApplicationId Condition=" '$(TargetFramework)' == 'net10.0-android' AND '$(UseNativeRendering)' == 'true' ">uno.platform.gallery_native</ApplicationId>
+		<ApplicationId Condition=" '$(TargetFramework)' == 'net10.0-android' AND '$(UseNativeRendering)' == 'true' ">uno.platform.gallery.native</ApplicationId>
 
 		<ApplicationId Condition=" '$(TargetFramework)' == 'net10.0-ios' AND '$(UseNativeRendering)' != 'true' ">com.nventive.uno.gallery</ApplicationId>
 		<ApplicationId Condition=" '$(TargetFramework)' == 'net10.0-ios' AND '$(UseNativeRendering)' == 'true' ">uno.platform.gallery.native</ApplicationId>
@@ -220,5 +220,10 @@
 			<WasmNativeDebugSymbols>true</WasmNativeDebugSymbols>
 		</PropertyGroup>
 	</Target>
+
+	<PropertyGroup>
+		<!-- Temporarily disable extended attributes check to bypass UNOB0018 in CI macOS builds -->
+		<UnoDisableExtendedAttributesCheck>true</UnoDisableExtendedAttributesCheck>
+	</PropertyGroup>
 
 </Project>

@@ -49,113 +49,152 @@ variables:
   AotCompileMaxDegreeOfParallelism: 3
 
 stages:
-- stage: Android
-  displayName: 'Android'
-  dependsOn: []
-  jobs:
-  - job: Windows_Android_Mobile
-    strategy:
-      matrix:
-        Android_Store:
-          ApplicationPlatform: AnyCPU
-          ArtifactName: Android
-          BuildForPlayStore: True
-          VersionCodeOffset: 1
-          UseNativeRendering: true
-          VariantName: Native
-        Android_Skia_Store:
-          ApplicationPlatform: AnyCPU
-          ArtifactName: Android
-          BuildForPlayStore: True
-          VersionCodeOffset: 1
-          UseNativeRendering: false
-          VariantName: Skia
-
-    pool:
-      vmImage: windows-2022
-
-    variables:
-    - group: 'UADO Keystore' # Import all variables for the signing from the library in azure devops
-
-    steps:
-    - template: build/stage-build-android-mobile.yml
-
-
-- stage: Windows
-  displayName: 'Windows'
-  dependsOn: []
-  jobs:
-  - job: Windows_WinAppSDK
-    pool:
-      vmImage: windows-2022
-
-    variables:
-    - group: uno-codesign-vault
-    - group: 'UADO Keystore' # Import all variables for the Android signing from the library in azure devops
-    - group: 'Uno Platform authenticode signing' # Import all variables for the signing from the library in azure devops
-    - name: ApplicationPlatform
-      value: x86 # switch back to x64 once CommunityToolkit.WinUI.UI supports x64 (https://github.com/CommunityToolkit/Lottie-Windows/issues/515#issuecomment-1662305826)
-    - name: BuildTargetFramework
-      value: net10.0-windows10.0.19041
-    - name: ArtifactName
-      value: Windows
-    - name: VersionCodeOffset
-      value: 50
-    - name: PackageOutputPath
-      value: $(Build.ArtifactStagingDirectory)
-
-    steps:
-    - template: build/stage-build-windows.yml
+# - stage: Android
+#   displayName: 'Android'
+#   dependsOn: []
+#   jobs:
+#   - job: Windows_Android_Mobile
+#     displayName: 'Windows Android Mobile'
+#     strategy:
+#       matrix:
+#         Android_Store:
+#           ApplicationPlatform: AnyCPU
+#           ArtifactName: Android
+#           BuildForPlayStore: True
+#           VersionCodeOffset: 1
+#           UseNativeRendering: true
+#           VariantName: Native
+#         Android_Skia_Store:
+#           ApplicationPlatform: AnyCPU
+#           ArtifactName: Android
+#           BuildForPlayStore: True
+#           VersionCodeOffset: 1
+#           UseNativeRendering: false
+#           VariantName: Skia
+#
+#     pool:
+#       vmImage: windows-2022
+#
+#     variables:
+#     - group: 'UADO Keystore' # Import all variables for the signing from the library in azure devops
+#
+#     steps:
+#     - template: build/stage-build-android-mobile.yml
+#
+#
+# - stage: Windows
+#   displayName: 'Windows'
+#   dependsOn: []
+#   jobs:
+#   - job: Windows_WinAppSDK
+#     displayName: 'Windows WinAppSDK'
+#     pool:
+#       vmImage: windows-2022
+#
+#     variables:
+#     - group: uno-codesign-vault
+#     - group: 'UADO Keystore' # Import all variables for the Android signing from the library in azure devops
+#     - group: 'Uno Platform authenticode signing' # Import all variables for the signing from the library in azure devops
+#     - name: ApplicationPlatform
+#       value: x86 # switch back to x64 once CommunityToolkit.WinUI.UI supports x64 (https://github.com/CommunityToolkit/Lottie-Windows/issues/515#issuecomment-1662305826)
+#     - name: BuildTargetFramework
+#       value: net10.0-windows10.0.19041
+#     - name: ArtifactName
+#       value: Windows
+#     - name: VersionCodeOffset
+#       value: 50
+#     - name: PackageOutputPath
+#       value: $(Build.ArtifactStagingDirectory)
+#
+#     steps:
+#     - template: build/stage-build-windows.yml
+#
+# - stage: Skia_Desktop
+#   displayName: 'Skia Desktop'
+#   dependsOn: []
+#   jobs:
+#   - job: Windows_Desktop
+#     displayName: 'Windows Desktop'
+#     pool:
+#       vmImage: windows-2022
+#   
+#     variables:
+#     - group: 'UADO Keystore' # Import all variables for the signing from the library in azure devops
+#   
+#     steps:
+#     - template: build/stage-build-skia-desktop.yml
+#
+#   - job: macOS_Desktop
+#     displayName: 'macOS Desktop'
+#     timeoutInMinutes: 90
+#     pool:
+#       vmImage: macos-15
+#   
+#     variables:
+#     - name: BuildTargetFramework
+#       value: net10.0-desktop
+#     - name: ArtifactName
+#       value: macOS-desktop
+#     - name: ApplicationBuildNumberOffset
+#       value: 50
+#     - name: SkipUnknownFrameworks
+#       value: true
+#     - group: unoplatform.apple.ios.appstore.distribution
+#   
+#     steps:
+#     - task: InstallAppleCertificate@2
+#       displayName: Install Certificate
+#       inputs:
+#         certSecureFile: UnoPlatform-Apple-Distribution.p12
+#         certPwd: $(appleappstorecertificatepassword)
+#         keychain: temp
+#   
+#     - task: InstallAppleCertificate@2
+#       displayName: Install Certificate (Mac Installer)
+#       inputs:
+#         certSecureFile: UnoPlatform-MacInstaller.p12
+#         certPwd: $(appleappstorecertificatepassword)
+#         keychain: temp
+#       continueOnError: true
+#
+#     # macOS Desktop Provisioning Profiles
+#     - task: InstallAppleProvisioningProfile@1
+#       displayName: 'Install Apple Provisioning Profile'
+#       inputs:
+#         provisioningProfileLocation: 'secureFiles'
+#         provProfileSecureFile: Uno_Gallery_macOS_Desktop.provisionprofile
+#
+#     - task: InstallAppleProvisioningProfile@1
+#       displayName: 'Install Apple Provisioning Profile'
+#       inputs:
+#         provisioningProfileLocation: 'secureFiles'
+#         provProfileSecureFile: Uno_Gallery_Canary_macOS_Desktop.provisionprofile
+#
+#     - template: build/templates/xcode-select.yml
+#       parameters:
+#         xCodeRoot: $(XCODE_ROOT)
+#   
+#     - template: build/stage-build-macos-desktop.yml
 
 - stage: Skia_Desktop
   displayName: 'Skia Desktop'
   dependsOn: []
   jobs:
-  - job: Windows_Desktop
-    pool:
-      vmImage: windows-2022
-  
-    variables:
-    - group: 'UADO Keystore' # Import all variables for the signing from the library in azure devops
-  
-    steps:
-    - template: build/stage-build-skia-desktop.yml
-
-- stage: Apple
-  displayName: 'Apple'
-  dependsOn: []
-  jobs:
-  - job: macOS_netcore
+  - job: macOS_Desktop
+    displayName: 'macOS Desktop'
     timeoutInMinutes: 90
-    strategy:
-      matrix:
-        iOS:
-          BuildTargetFramework: net10.0-ios
-          ArtifactName: iOS-mobile
-          ApplicationBuildNumberOffset: 50
-          BuildCommand: publish
-          UseNativeRendering: true
-          VariantName: Native
-        iOS_Skia:
-          BuildTargetFramework: net10.0-ios
-          ArtifactName: iOS-mobile
-          ApplicationBuildNumberOffset: 50
-          BuildCommand: publish
-          UseNativeRendering: false
-          VariantName: Skia
-        macOS_Desktop:
-          BuildTargetFramework: net10.0-desktop
-          ArtifactName: macOS-desktop
-          ApplicationBuildNumberOffset: 50
-          BuildCommand: build
-          UseNativeRendering: false
-          VariantName: Skia
     pool:
       vmImage: macos-15
   
     variables:
+    - name: BuildTargetFramework
+      value: net10.0-desktop
+    - name: ArtifactName
+      value: macOS-desktop
+    - name: ApplicationBuildNumberOffset
+      value: 50
     - name: SkipUnknownFrameworks
-      value: true # Used by TargetFrameworks.Filtering package
+      value: true
     - group: unoplatform.apple.ios.appstore.distribution
   
     steps:
@@ -165,37 +204,16 @@ stages:
         certSecureFile: UnoPlatform-Apple-Distribution.p12
         certPwd: $(appleappstorecertificatepassword)
         keychain: temp
-        # disabled because of azure devops failing to uninstall as of 2022-11-16
-        # deleteCert: true
   
     - task: InstallAppleCertificate@2
       displayName: Install Certificate (Mac Installer)
       inputs:
         certSecureFile: UnoPlatform-MacInstaller.p12
         certPwd: $(appleappstorecertificatepassword)
-        keychain: default
-        # disabled because of azure devops failing to uninstall as of 2022-11-16
-        # deleteCert: true
-      condition: and(succeeded(), eq(variables['BuildTargetFramework'], 'net10.0-desktop'))
+        keychain: temp
+      continueOnError: true
 
-    #
-    # iOS Provisioning Profiles (Skia variant)
-    #
-    - task: InstallAppleProvisioningProfile@1
-      displayName: 'Install Apple Provisioning Profile'
-      inputs:
-        provisioningProfileLocation: 'secureFiles'
-        provProfileSecureFile: Uno_Gallery_iOS.mobileprovision
-  
-    - task: InstallAppleProvisioningProfile@1
-      displayName: 'Install Apple Provisioning Profile'
-      inputs:
-        provisioningProfileLocation: 'secureFiles'
-        provProfileSecureFile: Uno_Gallery_Canary_iOS.mobileprovision
-
-    #
-    # macOS Desktop Provisioning Profiles (Skia variant)
-    #
+    # macOS Desktop Provisioning Profiles
     - task: InstallAppleProvisioningProfile@1
       displayName: 'Install Apple Provisioning Profile'
       inputs:
@@ -208,83 +226,141 @@ stages:
         provisioningProfileLocation: 'secureFiles'
         provProfileSecureFile: Uno_Gallery_Canary_macOS_Desktop.provisionprofile
 
-    #
-    # iOS Provisioning Profiles (Native variant)
-    #
-      
-    - task: InstallAppleProvisioningProfile@1
-      displayName: 'Install Apple Provisioning Profile'
-      inputs:
-        provisioningProfileLocation: 'secureFiles'
-        provProfileSecureFile: Uno_Gallery_Native_iOS.mobileprovision
-  
-    - task: InstallAppleProvisioningProfile@1
-      displayName: 'Install Apple Provisioning Profile'
-      inputs:
-        provisioningProfileLocation: 'secureFiles'
-        provProfileSecureFile: Uno_Gallery_Native_Canary_iOS.mobileprovision
-
-
     - template: build/templates/xcode-select.yml
       parameters:
         xCodeRoot: $(XCODE_ROOT)
   
-    - ${{ if eq(variables['BuildTargetFramework'], 'net10.0-desktop') }}:
-      - template: build/stage-build-macos-desktop.yml
-    - ${{ else }}:
-      - template: build/stage-build-mobile.yml
+    - template: build/stage-build-macos-desktop.yml
 
-- stage: WebAssembly
-  displayName: 'WebAssembly'
-  dependsOn: []
-  jobs:
-  - job: WebAssembly
-    timeoutInMinutes: 60
+# - stage: iOS
+#   displayName: 'iOS'
+#   dependsOn: []
+#   jobs:
+#   - job: iOS_Mobile
+#     displayName: 'iOS Mobile'
+#     timeoutInMinutes: 90
+#     strategy:
+#       matrix:
+#         iOS:
+#           BuildTargetFramework: net10.0-ios
+#           ArtifactName: iOS-mobile
+#           ApplicationBuildNumberOffset: 50
+#           BuildCommand: publish
+#           UseNativeRendering: true
+#           VariantName: Native
+#         iOS_Skia:
+#           BuildTargetFramework: net10.0-ios
+#           ArtifactName: iOS-mobile
+#           ApplicationBuildNumberOffset: 50
+#           BuildCommand: publish
+#           UseNativeRendering: false
+#           VariantName: Skia
+#     pool:
+#       vmImage: macos-15
+#   
+#     variables:
+#     - name: SkipUnknownFrameworks
+#       value: true # Used by TargetFrameworks.Filtering package
+#     - group: unoplatform.apple.ios.appstore.distribution
+#
+#     steps:
+#     - task: InstallAppleCertificate@2
+#       displayName: Install Certificate
+#       inputs:
+#         certSecureFile: UnoPlatform-Apple-Distribution.p12
+#         certPwd: $(appleappstorecertificatepassword)
+#         keychain: temp
+#         # disabled because of azure devops failing to uninstall as of 2022-11-16
+#         # deleteCert: true
+#
+#     # iOS Provisioning Profiles (Skia variant)
+#     - task: InstallAppleProvisioningProfile@1
+#       displayName: 'Install Apple Provisioning Profile'
+#       inputs:
+#         provisioningProfileLocation: 'secureFiles'
+#         provProfileSecureFile: Uno_Gallery_iOS.mobileprovision
+#   
+#     - task: InstallAppleProvisioningProfile@1
+#       displayName: 'Install Apple Provisioning Profile'
+#       inputs:
+#         provisioningProfileLocation: 'secureFiles'
+#         provProfileSecureFile: Uno_Gallery_Canary_iOS.mobileprovision
+#
+#     # iOS Provisioning Profiles (Native variant)
+#     - task: InstallAppleProvisioningProfile@1
+#       displayName: 'Install Apple Provisioning Profile'
+#       inputs:
+#         provisioningProfileLocation: 'secureFiles'
+#         provProfileSecureFile: Uno_Gallery_Native_iOS.mobileprovision
+#   
+#     - task: InstallAppleProvisioningProfile@1
+#       displayName: 'Install Apple Provisioning Profile'
+#       inputs:
+#         provisioningProfileLocation: 'secureFiles'
+#         provProfileSecureFile: Uno_Gallery_Native_Canary_iOS.mobileprovision
+#
+#     - template: build/templates/xcode-select.yml
+#       parameters:
+#         xCodeRoot: $(XCODE_ROOT)
+#   
+#     - template: build/stage-build-mobile.yml
+#
+# - stage: WebAssembly
+#   displayName: 'WebAssembly'
+#   dependsOn: []
+#   jobs:
+#   - job: WebAssembly
+#     timeoutInMinutes: 60
+#
+#     pool:
+#       vmImage: ubuntu-latest
+#
+#     strategy:
+#       matrix:
+#         DOM:
+#           ArtifactName: WASM-DOM
+#           UseNativeRendering: true
+#         Skia:
+#           ArtifactName: WASM-Skia
+#           UseNativeRendering: false
+#
+#     variables:
+#       SkipUnknownFrameworks: true
+#
+#     steps:
+#       - template: build/stage-build-wasm.yml
+#  
+# - stage: WebAssembly_Tests
+#   displayName: 'WebAssembly Tests'
+#   dependsOn: []
+#   jobs:
+#   - template: build/stage-uitests-wasm.yml
+#
+# - stage: iOS_Tests
+#   displayName: 'iOS Tests'
+#   dependsOn: []
+#   jobs:
+#   - template: build/stage-uitests-ios.yml
+#
+# - stage: Android_Tests
+#   displayName: 'Android Tests'
+#   dependsOn: []
+#   jobs:
+#   - template: build/stage-uitests-android.yml
+# TEMPORARY: Enable TestFlight push for PR testing only
+# TODO: REMOVE THIS BLOCK after TestFlight validation - restore the commented sections below
+- template: build/templates/master-publish/stage-publish-macos-desktop.yml
 
-    pool:
-      vmImage: ubuntu-latest
-
-    strategy:
-      matrix:
-        DOM:
-          ArtifactName: WASM-DOM
-          UseNativeRendering: true
-        Skia:
-          ArtifactName: WASM-Skia
-          UseNativeRendering: false
-
-    variables:
-      SkipUnknownFrameworks: true
-
-    steps:
-      - template: build/stage-build-wasm.yml
- 
-- stage: WebAssembly_Tests
-  displayName: 'WebAssembly Tests'
-  dependsOn: []
-  jobs:
-  - template: build/stage-uitests-wasm.yml
-
-- stage: iOS_Tests
-  displayName: 'iOS Tests'
-  dependsOn: []
-  jobs:
-  - template: build/stage-uitests-ios.yml
-
-- stage: Android_Tests
-  displayName: 'Android Tests'
-  dependsOn: []
-  jobs:
-  - template: build/stage-uitests-android.yml
-
-- ${{ if startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries/dev') }}:
-  - template: build/templates/canary-publish/stage-publish-wasm-canary.yml
-  - template: build/templates/canary-publish/stage-publish-ios-canary.yml
-  - template: build/templates/canary-publish/stage-publish-macos-desktop-canary.yml
-  - template: build/templates/canary-publish/stage-publish-android-canary.yml
-
-- ${{ if startsWith(variables['Build.SourceBranch'], 'refs/heads/master') }}:
-  - template: build/templates/master-publish/stage-publish-wasm.yml
-  - template: build/templates/master-publish/stage-publish-ios.yml
-  - template: build/templates/master-publish/stage-publish-macos-desktop.yml
-  - template: build/templates/master-publish/stage-publish-android.yml
+# ORIGINAL PUBLISHING STAGES - RESTORE THESE AFTER PR TESTING:
+#
+# - ${{ if startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries/dev') }}:
+#   - template: build/templates/canary-publish/stage-publish-wasm-canary.yml
+#   - template: build/templates/canary-publish/stage-publish-ios-canary.yml
+#   - template: build/templates/canary-publish/stage-publish-macos-desktop-canary.yml
+#   - template: build/templates/canary-publish/stage-publish-android-canary.yml
+#
+# - ${{ if startsWith(variables['Build.SourceBranch'], 'refs/heads/master') }}:
+#   - template: build/templates/master-publish/stage-publish-wasm.yml
+#   - template: build/templates/master-publish/stage-publish-ios.yml
+#   - template: build/templates/master-publish/stage-publish-macos-desktop.yml
+#   - template: build/templates/master-publish/stage-publish-android.yml
