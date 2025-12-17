@@ -50,9 +50,10 @@ steps:
     # Remove extended attributes from source
     xattr -cr $(build.sourcesdirectory) 2>/dev/null || true
     
-    # Restore entire solution first (all projects and frameworks)
+    # Restore the Gallery project with RID to download osx-x64 runtime pack
     # Then publish specific framework with explicit runtime version for Mono runtime
-    dotnet restore $(build.sourcesdirectory)/Uno.Gallery.sln \
+    dotnet restore $(build.sourcesdirectory)/Uno.Gallery/Uno.Gallery.csproj \
+      -r osx-x64 \
       -nologo --verbosity quiet
     
     dotnet publish $(build.sourcesdirectory)/Uno.Gallery/Uno.Gallery.csproj \
