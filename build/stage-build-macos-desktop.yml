@@ -50,10 +50,11 @@ steps:
     # Remove extended attributes from source
     xattr -cr $(build.sourcesdirectory) 2>/dev/null || true
     
-    # Restore the Gallery project with RID to download osx-x64 runtime pack
-    # Then publish specific framework with explicit runtime version for Mono runtime
+    # Restore the Gallery project with RID and explicit runtime version for Mono runtime
+    # The servicing version 10.0.1-servicing.25554.104 is required because 10.0.0 doesn't exist
     dotnet restore $(build.sourcesdirectory)/Uno.Gallery/Uno.Gallery.csproj \
       -r osx-x64 \
+      /p:RuntimeFrameworkVersion=10.0.1-servicing.25554.104 \
       -nologo --verbosity quiet
     
     dotnet publish $(build.sourcesdirectory)/Uno.Gallery/Uno.Gallery.csproj \
