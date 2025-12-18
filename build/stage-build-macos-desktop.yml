@@ -50,11 +50,10 @@ steps:
     # Remove extended attributes from source
     xattr -cr $(build.sourcesdirectory) 2>/dev/null || true
     
-    # Restore the Gallery project with RID and explicit runtime version for Mono runtime
-    # The servicing version 10.0.1-servicing.25554.104 is required because 10.0.0 doesn't exist
+    # Restore and publish - macOS desktop uses CoreCLR (not Mono), same as Windows
+    # Let SDK use default runtime pack versions (should resolve to 10.0.1 for CoreCLR)
     dotnet restore $(build.sourcesdirectory)/Uno.Gallery/Uno.Gallery.csproj \
       -r osx-x64 \
-      /p:RuntimeFrameworkVersion=10.0.1-servicing.25554.104 \
       -nologo --verbosity quiet
     
     dotnet publish $(build.sourcesdirectory)/Uno.Gallery/Uno.Gallery.csproj \
@@ -63,7 +62,6 @@ steps:
       /p:InformationalVersion="$NBGV_InformationalVersion" \
       /p:CodesignKey="$MACOS_CERT_IDENTITY" \
       /p:PackageSigningKey="$MACOS_INSTALLER_CERT_IDENTITY" \
-      /p:RuntimeFrameworkVersion=10.0.1-servicing.25554.104 \
       -nologo --verbosity normal \
       -bl:$(build.artifactstagingdirectory)/pkg-$(BuildTargetFramework).binlog
     
