@@ -51,18 +51,27 @@ steps:
       gci -r -include "Uno.Gallery.csproj" |
       foreach-object {
           $a = $_.fullname; ( get-content $a ) |
-          foreach-object { $_ -replace "uno.platform.gallery.skia","uno.platform.gallery.skia-canary" } |
+          foreach-object { $_ -replace "com.nventive.uno.ui.demo","com.nventive.uno.ui.demo.canary" } |
           set-content $a }
-    displayName: 'Adjust info.plist bundle name (skia)'
+    displayName: 'Adjust ApplicationId (Android Skia)'
     condition: startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries')
 
   - pwsh: |
       gci -r -include "Uno.Gallery.csproj" |
       foreach-object {
           $a = $_.fullname; ( get-content $a ) |
-          foreach-object { $_ -replace "com.nventive.uno.ui.demo","com.nventive.uno.ui.demo.canary" } |
+          foreach-object { $_ -replace "'net10.0-android' AND '\$\(UseNativeRendering\)' == 'true' \">uno\.platform\.gallery\.native","'net10.0-android' AND '\$\(UseNativeRendering\)' == 'true' \">uno.platform.gallery.native_canary" } |
           set-content $a }
-    displayName: 'Adjust info.plist bundle name (Android)'
+    displayName: 'Adjust ApplicationId (Android Native)'
+    condition: startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries')
+
+  - pwsh: |
+      gci -r -include "Uno.Gallery.csproj" |
+      foreach-object {
+          $a = $_.fullname; ( get-content $a ) |
+          foreach-object { $_ -replace "'net10.0-ios' AND '\$\(UseNativeRendering\)' == 'true' \">uno\.platform\.gallery\.native","'net10.0-ios' AND '\$\(UseNativeRendering\)' == 'true' \">uno.platform.gallery.native-canary" } |
+          set-content $a }
+    displayName: 'Adjust ApplicationId (iOS Native)'
     condition: startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries')
 
   - pwsh: |
@@ -71,5 +80,5 @@ steps:
           $a = $_.fullname; ( get-content $a ) |
           foreach-object { $_ -replace "com.nventive.uno.gallery","com.nventive.uno.gallery-canary" } |
           set-content $a }
-    displayName: 'Adjust info.plist bundle name (Catalyst)'
+    displayName: 'Adjust ApplicationId (iOS Skia and macOS Desktop)'
     condition: startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries')

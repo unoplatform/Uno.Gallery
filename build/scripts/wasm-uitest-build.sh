@@ -7,14 +7,15 @@ export UNO_UITEST_WASM_PROJECT=$BUILD_SOURCESDIRECTORY/Uno.Gallery/Uno.Gallery.c
 
 cd $BUILD_SOURCESDIRECTORY
 
-dotnet publish -f net9.0-browserwasm -p:Configuration=Release $UNO_UITEST_WASM_PROJECT -p:UseNativeRendering=true -p:IsUiAutomationMappingEnabled=True -bl:$UNO_UITEST_SCREENSHOT_PATH/msbuild.binlog
+dotnet publish -f net10.0-browserwasm -p:Configuration=Release $UNO_UITEST_WASM_PROJECT -p:UseNativeRendering=true -p:IsUiAutomationMappingEnabled=True -bl:$UNO_UITEST_SCREENSHOT_PATH/msbuild.binlog
 
-WASM_OUT="$BUILD_SOURCESDIRECTORY/Uno.Gallery/bin/Release/net9.0-browserwasm/publish"
+WASM_OUT="$BUILD_SOURCESDIRECTORY/Uno.Gallery/bin/Release/net10.0-browserwasm/publish"
 if [ ! -d "$WASM_OUT" ]; then
-  WASM_OUT="$BUILD_SOURCESDIRECTORY/Uno.Gallery/bin/Release/net9.0-browserwasm/publish"
+  echo "Error: WASM output directory '$WASM_OUT' does not exist."
+  exit 1
 fi
 
 echo "Contents of WASM output folder:"
-ls -la "$BUILD_SOURCESDIRECTORY/Uno.Gallery/bin/Release/net9.0-browserwasm/publish"
+ls -la "$BUILD_SOURCESDIRECTORY/Uno.Gallery/bin/Release/net10.0-browserwasm/publish"
 
 echo "##vso[task.setvariable variable=UNO_UITEST_WASM_OUTPUT_PATH]$WASM_OUT"

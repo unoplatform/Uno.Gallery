@@ -27,7 +27,7 @@
             inputs:
               serviceConnection: 'Uno Platform Google Play'
               applicationId: 'uno.platform.gallery.native_canary'
-              bundleFile: '$(Pipeline.Workspace)/drop/publish/uno.platform.gallery.skia_canary-Signed.aab'
+              bundleFile: '$(Pipeline.Workspace)/drop/publish/uno.platform.gallery.native_canary-Signed.aab'
               track: 'alpha'
 
   - deployment: 'Android_Publish_Skia'

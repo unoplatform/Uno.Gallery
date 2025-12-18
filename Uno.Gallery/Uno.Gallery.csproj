@@ -1,18 +1,17 @@
 ﻿<Project Sdk="Uno.Sdk">
 	<PropertyGroup>
-		<!-- Building with dotnet build -f net9.0-platform will still cause restore to happen for all TargetFrameworks -->
+		<!-- Building with dotnet build -f net10.0-platform will still cause restore to happen for all TargetFrameworks -->
 		<!-- which will force us to install all workloads even if not needed -->
-		<!-- To prevent that, we will pass TargetFrameworkOverride as a global property (i.e, dotnet build -p:TargetFrameworkOverride=net9.0-platform) -->
+		<!-- To prevent that, we will pass TargetFrameworkOverride as a global property (i.e, dotnet build -p:TargetFrameworkOverride=net10.0-platform) -->
 		<!-- That way, we set TargetFrameworks property to only the needed TargetFramework -->
-		<!-- NOTE: We cannot build with dotnet build -p:TargetFrameworks=net9.0-platform as that will flow to source generator project, which is incorrect -->
+		<!-- NOTE: We cannot build with dotnet build -p:TargetFrameworks=net10.0-platform as that will flow to source generator project, which is incorrect -->
 		<TargetFramework Condition="'$(TargetFrameworkOverride)'!=''">$(TargetFrameworkOverride)</TargetFramework>
 		<TargetFrameworks Condition="'$(TargetFrameworkOverride)'==''">
-			net9.0-android;
-			net9.0-ios;
-			net9.0-maccatalyst;
-			net9.0-windows10.0.19041;
-			net9.0-desktop;
-			net9.0-browserwasm;
+			net10.0-android;
+			net10.0-ios;
+			net10.0-windows10.0.19041;
+			net10.0-desktop;
+			net10.0-browserwasm;
 		</TargetFrameworks>
 
 		<!--
@@ -27,14 +26,13 @@
 		<!-- App Identifier -->
 		<ApplicationId>uno.platform.gallery</ApplicationId>
 
-		<ApplicationId Condition=" '$(TargetFramework)' == 'net9.0-android' AND '$(UseNativeRendering)' != 'true' ">com.nventive.uno.ui.demo</ApplicationId>
-		<ApplicationId Condition=" '$(TargetFramework)' == 'net9.0-android' AND '$(UseNativeRendering)' == 'true' ">uno.platform.gallery_native</ApplicationId>
+		<ApplicationId Condition=" '$(TargetFramework)' == 'net10.0-android' AND '$(UseNativeRendering)' != 'true' ">com.nventive.uno.ui.demo</ApplicationId>
+		<ApplicationId Condition=" '$(TargetFramework)' == 'net10.0-android' AND '$(UseNativeRendering)' == 'true' ">uno.platform.gallery.native</ApplicationId>
 
-		<ApplicationId Condition=" '$(TargetFramework)' == 'net9.0-ios' AND '$(UseNativeRendering)' != 'true' ">com.nventive.uno.gallery</ApplicationId>
-		<ApplicationId Condition=" '$(TargetFramework)' == 'net9.0-ios' AND '$(UseNativeRendering)' == 'true' ">uno.platform.gallery.native</ApplicationId>
+		<ApplicationId Condition=" '$(TargetFramework)' == 'net10.0-ios' AND '$(UseNativeRendering)' != 'true' ">com.nventive.uno.gallery</ApplicationId>
+		<ApplicationId Condition=" '$(TargetFramework)' == 'net10.0-ios' AND '$(UseNativeRendering)' == 'true' ">uno.platform.gallery.native</ApplicationId>
 
-		<ApplicationId Condition=" '$(TargetFramework)' == 'net9.0-maccatalyst' AND '$(UseNativeRendering)' != 'true' ">com.nventive.uno.gallery</ApplicationId>
-		<ApplicationId Condition=" '$(TargetFramework)' == 'net9.0-maccatalyst' AND '$(UseNativeRendering)' == 'true' ">uno.platform.gallery.native</ApplicationId>
+		<ApplicationId Condition=" '$(TargetFramework)' == 'net10.0-desktop' AND '$(UseNativeRendering)' != 'true' ">com.nventive.uno.gallery</ApplicationId>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
@@ -55,11 +53,11 @@
 		https://aka.platform.uno/singleproject-features
 		-->
 	
-		<IsSkiaWasm Condition="'$(UseNativeRendering)'!='true' AND '$(TargetFramework)'=='net9.0-browserwasm'">true</IsSkiaWasm>
+		<IsSkiaWasm Condition="'$(UseNativeRendering)'!='true' AND '$(TargetFramework)'=='net10.0-browserwasm'">true</IsSkiaWasm>
 		<IsSkiaWasm Condition="'$(IsSkiaWasm)'==''">false</IsSkiaWasm>
-		<IsSkiaAndroid Condition="'$(UseNativeRendering)'!='true' AND '$(TargetFramework)'=='net9.0-android'">true</IsSkiaAndroid>
+		<IsSkiaAndroid Condition="'$(UseNativeRendering)'!='true' AND '$(TargetFramework)'=='net10.0-android'">true</IsSkiaAndroid>
 		<IsSkiaAndroid Condition="'$(IsSkiaAndroid)'==''">false</IsSkiaAndroid>
-		<IsSkiaUIKit Condition="'$(UseNativeRendering)'!='true' AND ('$(TargetFramework)'=='net9.0-ios' OR '$(TargetFramework)'=='net9.0-maccatalyst')">true</IsSkiaUIKit>
+		<IsSkiaUIKit Condition="'$(UseNativeRendering)'!='true' AND '$(TargetFramework)'=='net10.0-ios'">true</IsSkiaUIKit>
 		<IsSkiaUIKit Condition="'$(IsSkiaUIKit)'==''">false</IsSkiaUIKit>
 		<UnoFeatures>
 			Material;
@@ -101,12 +99,11 @@
 
 	<ItemGroup Condition="
 			   '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'android'
-			   or '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'ios'
-			   or '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'maccatayst'">
+			   or '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'ios'">
 		<IncludeXamlNamespaces Include="mobile" Visible="False" />
 		<ExcludeXamlNamespaces Include="not_mobile" Visible="False" />
 	</ItemGroup>
-	<ItemGroup Condition="'$(TargetFramework)'=='net9.0-desktop' OR '$(TargetFramework)'=='net9.0-browserwasm'">
+	<ItemGroup Condition="'$(TargetFramework)'=='net10.0-desktop' OR '$(TargetFramework)'=='net10.0-browserwasm'">
 		<IncludeXamlNamespaces Include="not_mobile" Visible="False" />
 		<ExcludeXamlNamespaces Include="mobile" Visible="False" />
 	</ItemGroup>
@@ -148,32 +145,18 @@
 
 	</PropertyGroup>
 	
-	<PropertyGroup Condition="'$(Configuration)'=='Release' and '$(System_PullRequest_IsFork)'!='True' and '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'maccatalyst' ">
-		<MtouchUseLlvm>true</MtouchUseLlvm>
-		<CodeSigningKey>Apple Distribution: Uno Platform Inc. (PD74CHS9Z5)</CodeSigningKey>
-		<PackageSigningKey>3rd Party Mac Developer Installer</PackageSigningKey>
-		<CreatePackage>true</CreatePackage>
-		<EnablePackageSigning>true</EnablePackageSigning>
-		<EnableCodeSigning>true</EnableCodeSigning>
-		<CodeSignEntitlements>MacCatalyst\Entitlements.plist</CodeSignEntitlements>
 
-		<CodesignProvision>Uno Gallery Native (Catalyst)</CodesignProvision>
-		<CodesignProvision Condition="$(BUILD_SOURCEBRANCH.StartsWith('refs/heads/canaries'))">Uno Gallery Native Canary (Catalyst)</CodesignProvision>
-
-		<CodesignProvision Condition=" '$(UseNativeRendering)' != 'true' ">Uno Gallery (Catalyst)</CodesignProvision>
-		<CodesignProvision Condition=" '$(UseNativeRendering)' != 'true' AND $(BUILD_SOURCEBRANCH.StartsWith('refs/heads/canaries'))">Uno Gallery Canary (Catalyst)</CodesignProvision>
-	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='Release' and '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'android'">
 		<RunAOTCompilation>true</RunAOTCompilation>
 	</PropertyGroup>
 
-	<ItemGroup Condition="'$(TargetFramework)'!='net9.0-windows10.0.19041'">
+	<ItemGroup Condition="'$(TargetFramework)'!='net10.0-windows10.0.19041'">
 		<PackageReference Include="Uno.CommunityToolkit.WinUI.UI.Controls" />
 		<PackageReference Include="Uno.CommunityToolkit.WinUI.UI.Controls.DataGrid" />
 	</ItemGroup>
 
-	<ItemGroup Condition="'$(TargetFramework)'=='net9.0-windows10.0.19041'">
+	<ItemGroup Condition="'$(TargetFramework)'=='net10.0-windows10.0.19041'">
 		<PackageReference Include="CommunityToolkit.WinUI.Lottie" />
 		<PackageReference Include="CommunityToolkit.WinUI.UI.Controls" />
 		<PackageReference Include="CommunityToolkit.WinUI.UI.Controls.DataGrid" />
@@ -237,5 +220,10 @@
 			<WasmNativeDebugSymbols>true</WasmNativeDebugSymbols>
 		</PropertyGroup>
 	</Target>
+
+	<PropertyGroup>
+		<!-- Temporarily disable extended attributes check to bypass UNOB0018 in CI macOS builds -->
+		<UnoDisableExtendedAttributesCheck>true</UnoDisableExtendedAttributesCheck>
+	</PropertyGroup>
 
 </Project>

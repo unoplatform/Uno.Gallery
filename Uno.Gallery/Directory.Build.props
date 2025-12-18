@@ -1,0 +1,12 @@
+<Project>
+  <!-- Import the root Directory.Build.props to preserve CPM and other settings -->
+  <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)../'))" />
+  
+  <PropertyGroup>
+    <!-- .NET 10 SDK defaults to runtime pack version 10.0.0, but dotnet10-transport feed
+         only contains servicing builds. The MicrosoftNETCoreAppRuntimeVersion property
+         is set in the root Directory.Build.props and should apply to all frameworks. -->
+    <SelfContained>true</SelfContained>
+    <DisableImplicitFrameworkReferences>false</DisableImplicitFrameworkReferences>
+  </PropertyGroup>
+</Project>

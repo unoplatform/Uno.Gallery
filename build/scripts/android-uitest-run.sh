@@ -16,7 +16,7 @@ export UITEST_TEST_TIMEOUT=60m
 # Prefer the signed APK from build artifacts (Windows job) when available,
 # otherwise fall back to the unsigned APK published locally by the UITest job (macOS agent).
 APK_FROM_ARTIFACT="$(ls "$UNO_UITEST_ANDROIDAPK_BASEPATH"/*.apk 2>/dev/null | head -n 1 || true)"
-APK_FROM_LOCAL="$(ls $BUILD_SOURCESDIRECTORY/Uno.Gallery/bin/Release/net9.0-android/android-x64/publish/*.apk 2>/dev/null | head -n 1 || true)"
+APK_FROM_LOCAL="$(ls $BUILD_SOURCESDIRECTORY/Uno.Gallery/bin/Release/net10.0-android/android-x64/publish/*.apk 2>/dev/null | head -n 1 || true)"
 
 if [ -f "$APK_FROM_ARTIFACT" ]; then
   export UNO_UITEST_ANDROIDAPK_PATH="$APK_FROM_ARTIFACT"

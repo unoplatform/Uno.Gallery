@@ -27,7 +27,7 @@
             inputs:
               serviceConnection: 'Uno Platform Google Play'
               applicationId: 'uno.platform.gallery.native'
-              bundleFile: '$(Pipeline.Workspace)/drop/publish/uno.platform.gallery_native-Signed.aab'
+              bundleFile: '$(Pipeline.Workspace)/drop/publish/uno.platform.gallery.native-Signed.aab'
               track: 'alpha'
 
   - deployment: 'Android_Publish_Skia'

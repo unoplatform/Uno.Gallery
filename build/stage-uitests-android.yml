@@ -17,7 +17,7 @@
 
   - template: templates/dotnet-install-linux.yml
     parameters:
-      UnoCheckParameters: '--tfm net9.0-android'
+      UnoCheckParameters: '--tfm net10.0-android'
 
   - template: templates/canary-updater.yml
 
@@ -31,8 +31,8 @@
 
   - bash: |
       echo "Publish output:"
-      ls -la $(build.sourcesdirectory)/Uno.Gallery/bin/Release/net9.0-android/android-x64/publish || true
-      APK="$(ls $(build.sourcesdirectory)/Uno.Gallery/bin/Release/net9.0-android/android-x64/publish/*.apk | head -n 1 || true)"
+      ls -la $(build.sourcesdirectory)/Uno.Gallery/bin/Release/net10.0-android/android-x64/publish || true
+      APK="$(ls $(build.sourcesdirectory)/Uno.Gallery/bin/Release/net10.0-android/android-x64/publish/*.apk | head -n 1 || true)"
       if [ ! -f "$APK" ]; then
         echo "ERROR: No APK produced (verify AndroidPackageFormat=apk)"; exit 1; fi
       echo "Check APK contains .dll and no assemblies.blob (we inject assemblies.blob at run):"
@@ -44,7 +44,7 @@
   - task: CopyFiles@2
     displayName: Copy Build Output
     inputs:
-      SourceFolder: $(build.sourcesdirectory)/Uno.Gallery/bin/Release/net9.0-android/android-x64
+      SourceFolder: $(build.sourcesdirectory)/Uno.Gallery/bin/Release/net10.0-android/android-x64
       Contents: '**/*.apk'
       TargetFolder: $(Build.ArtifactStagingDirectory)
 
