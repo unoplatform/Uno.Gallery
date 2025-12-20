@@ -48,6 +48,7 @@
 - job: iOS_Tests
   dependsOn: iOS_Tests_Build
   displayName: 'Run iOS UI Tests'
+  timeoutInMinutes: 90
   variables:
     CI_Build: true
     SourceLinkEnabled: false
