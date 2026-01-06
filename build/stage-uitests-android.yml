@@ -21,6 +21,8 @@
 
   - template: templates/canary-updater.yml
 
+  - template: templates/host-cleanup-linux.yml
+
   - bash: |
       chmod +x $(build.sourcesdirectory)/build/scripts/android-uitest-build.sh
       $(build.sourcesdirectory)/build/scripts/android-uitest-build.sh

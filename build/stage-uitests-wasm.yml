@@ -19,6 +19,8 @@
 
   - template: templates/canary-updater.yml
 
+  - template: templates/host-cleanup-linux.yml
+
   - bash: |
       chmod +x build/scripts/wasm-uitest-build.sh
       build/scripts/wasm-uitest-build.sh
@@ -58,6 +60,8 @@
     parameters:
       installJava: false
       installWorkloads: false
+
+  - template: templates/host-cleanup-linux.yml
 
   - bash: |
       export UNO_UITEST_WASM_OUTPUT_PATH=$(Pipeline.Workspace)/Wasm_UITest

@@ -5,6 +5,8 @@
 
 - template: templates/canary-updater.yml
 
+- template: templates/host-cleanup-linux.yml
+
 - bash: |
     dotnet publish Uno.Gallery/Uno.Gallery.csproj -c Release -f net9.0-browserwasm -p:UseNativeRendering=$(UseNativeRendering) -p:InformationalVersion=$(NBGV_InformationalVersion) -o "$(Agent.TempDirectory)/wasm-publish" -bl:$(Build.ArtifactStagingDirectory)/wasm-publish.binlog
   displayName: 'Builds Wasm $(ArtifactName)'
