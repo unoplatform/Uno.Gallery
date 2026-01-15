@@ -73,6 +73,14 @@
   - download: current
     artifact: Android_UITest
 
+  - task: UseDotNet@2
+    displayName: 'Ensure .NET SDK 9.0.300 for canary'
+    condition: startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries')
+    inputs:
+      packageType: 'sdk'
+      version: '9.0.300'
+      includePreviewVersions: true
+
   - template: templates/canary-updater.yml
 
   - task: PowerShell@2
