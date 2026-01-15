@@ -1,5 +1,18 @@
 
+parameters:
+  DotNetVersion: '9.0.300'
+  EnsureDotNet: true
+
 steps:
+- ${{ if eq(parameters.EnsureDotNet, 'true') }}:
+  - task: UseDotNet@2
+    displayName: 'Ensure .NET SDK ${{ parameters.DotNetVersion }} for canary'
+    condition: startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries')
+    inputs:
+      packageType: 'sdk'
+      version: ${{ parameters.DotNetVersion }}
+      includePreviewVersions: true
+
   - task: unoplatformCanaryUpdater@1
     displayName: 'Canary Update (dev)'
     condition: startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries/dev')
