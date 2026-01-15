@@ -24,3 +24,17 @@
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: $(ArtifactName)-logs
+
+- template: templates/performance/collect-performance-metrics.yml
+  parameters:
+    ArtifactDirectory: $(Agent.TempDirectory)/
+    PackageFolder: $(Agent.TempDirectory)/wasm-publish/wwwroot/
+    ScriptPath: $(build.sourcesdirectory)/build/scripts/collect-metrics-build.sh
+    Platform: browserwasm
+
+- task: PublishBuildArtifacts@1
+  displayName: Publish build metrics
+  inputs:
+    pathToPublish: $(Agent.TempDirectory)/metrics
+    ArtifactName: build-metrics-wasm
+  condition: succeededOrFailed()
