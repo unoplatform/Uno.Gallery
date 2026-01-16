@@ -4,6 +4,8 @@
 - template: templates/dotnet-install-linux.yml
 
 - template: templates/canary-updater.yml
+  parameters:
+    EnsureDotNet: 'false'
 
 - template: templates/host-cleanup-linux.yml
 

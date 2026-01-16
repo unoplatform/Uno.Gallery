@@ -20,6 +20,8 @@
       UnoCheckParameters: '--tfm net9.0-android'
 
   - template: templates/canary-updater.yml
+    parameters:
+      EnsureDotNet: 'false'
 
   - template: templates/host-cleanup-linux.yml
 
@@ -73,15 +75,9 @@
   - download: current
     artifact: Android_UITest
 
-  - task: UseDotNet@2
-    displayName: 'Ensure .NET SDK 9.0.300 for canary'
-    condition: startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries')
-    inputs:
-      packageType: 'sdk'
-      version: '9.0.300'
-      includePreviewVersions: true
-
   - template: templates/canary-updater.yml
+    parameters:
+      EnsureDotNet: 'false'
 
   - task: PowerShell@2
     displayName: 'Install coreutils'

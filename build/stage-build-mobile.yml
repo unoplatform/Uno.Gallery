@@ -9,6 +9,8 @@ steps:
     UnoCheckParameters: '--tfm net9.0-ios --tfm net9.0-maccatalyst'
 
 - template: templates/canary-updater.yml
+  parameters:
+    EnsureDotNet: 'false'
 
 - task: DownloadSecureFile@1
   name: keyStore

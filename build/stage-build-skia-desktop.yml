@@ -7,6 +7,8 @@ steps:
 - template: templates/gitversion.yml
 - template: templates/dotnet-install-windows.yml
 - template: templates/canary-updater.yml
+  parameters:
+    EnsureDotNet: 'false'
 
 - bash: |
     dotnet build Uno.Gallery/Uno.Gallery.csproj -p:TargetFrameworkOverride=net9.0-desktop -c Release -p:InformationalVersion=$(NBGV_InformationalVersion) -bl:$(build.artifactstagingdirectory)/build.binlog
