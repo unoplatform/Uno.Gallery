@@ -1,3 +1,6 @@
 {
-	"dotnet.defaultSolution": "Uno.Gallery.sln"
+	"dotnet.defaultSolution": "Uno.Gallery.csproj",
+	"[yaml]": {
+		"editor.formatOnSave": false
+	}
 }

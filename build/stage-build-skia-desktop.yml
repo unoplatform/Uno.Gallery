@@ -9,7 +9,11 @@ steps:
 - template: templates/canary-updater.yml
 
 - bash: |
-    dotnet build Uno.Gallery/Uno.Gallery.csproj -p:TargetFrameworkOverride=net9.0-desktop -c Release -p:InformationalVersion=$(NBGV_InformationalVersion) -bl:$(build.artifactstagingdirectory)/build.binlog
+    dotnet build Uno.Gallery/Uno.Gallery.csproj \
+      -p:TargetFrameworkOverride=net9.0-desktop \
+      -c Release \
+      -p:InformationalVersion=$(NBGV_InformationalVersion) \
+      -bl:$(Build.ArtifactStagingDirectory)/build.binlog
 
 - task: CopyFiles@2
   displayName: Copy Skia output
@@ -19,6 +23,65 @@ steps:
     TargetFolder: $(Build.ArtifactStagingDirectory)/bin
 
 - task: PublishBuildArtifacts@1
+  displayName: Publish desktop artifacts
   retryCountOnTaskFailure: 3
   inputs:
+    pathToPublish: $(Build.ArtifactStagingDirectory)/bin
     ArtifactName: desktop
+
+- template: templates/performance/collect-performance-metrics.yml
+  parameters:
+    ArtifactDirectory: $(Build.ArtifactStagingDirectory)/
+    PackageFolder: $(Build.sourcesdirectory)/Uno.Gallery/bin/Release/net9.0-desktop
+    ScriptPath: $(build.sourcesdirectory)/build/scripts/collect-metrics-build.sh
+    Platform: skia-desktop
+
+# - task: PublishBuildArtifacts@1
+#   displayName: Publish build metrics
+#   inputs:
+#     pathToPublish: $(Build.ArtifactStagingDirectory)/metrics
+#     ArtifactName: build-metrics-skia-desktop
+#   condition: succeededOrFailed()
+
+- download: none
+
+- bash: |
+    dotnet tool install --global dotnet-counters
+    export PATH="$PATH:~/.dotnet/tools"
+  displayName: Install dotnet-counters
+
+- task: DownloadPipelineArtifact@2
+  inputs:
+    artifactName: 'desktop'
+    targetPath: '$(Pipeline.Workspace)/drop'
+  displayName: Download artifact
+
+- bash: |
+    export PATH="$PATH:~/.dotnet/tools"
+    APP_PATH="$(Pipeline.Workspace)/drop/Uno.Gallery.exe"
+
+    chmod +x "$APP_PATH"
+
+    # Run app in background
+    "$APP_PATH" &
+    APP_PID=$!
+
+    echo "App started with PID $APP_PID"
+    sleep 5
+
+    # Run dotnet-counters
+    dotnet-counters collect \
+      -p $APP_PID \
+      --duration 10 \
+      --output "$(Build.ArtifactStagingDirectory)/metrics"
+
+    # Kill the app after profiling
+    kill $APP_PID
+  displayName: Run and profile app
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: $(Build.ArtifactStagingDirectory)/metrics
+    ArtifactName: 'performance-counters'
+    publishLocation: 'Container'
+  displayName: Publish performance counters

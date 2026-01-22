@@ -43,9 +43,22 @@ steps:
     OverWrite: false
     flattenFolders: false
 
-
 - task: PublishBuildArtifacts@1
   retryCountOnTaskFailure: 3
   condition: always()
   inputs:
     ArtifactName: android-mobile-$(VariantName)
+
+- template: templates/performance/collect-performance-metrics.yml
+  parameters:
+    ArtifactDirectory: $(Build.ArtifactStagingDirectory)/
+    PackageFolder: $(Build.sourcesdirectory)/Uno.Gallery/bin/Release/net9.0-android
+    ScriptPath: $(build.sourcesdirectory)/build/scripts/collect-metrics-build.sh
+    Platform: android-mobile
+
+- task: PublishBuildArtifacts@1
+  displayName: Publish build metrics
+  inputs:
+    pathToPublish: $(Build.ArtifactStagingDirectory)/metrics
+    ArtifactName: build-metrics-android-mobile
+  condition: succeededOrFailed()
