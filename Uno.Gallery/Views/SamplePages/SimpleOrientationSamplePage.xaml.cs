@@ -36,6 +36,7 @@ namespace Uno.Gallery.Views.Samples
 		}
 	}
 
+	[Microsoft.UI.Xaml.Data.Bindable]
 	public class SimpleOrientationSamplePageViewModel : ViewModelBase
 	{
 		private const string _startObservingContent = "Start observing orientation changes";

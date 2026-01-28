@@ -14,6 +14,12 @@
 			net10.0-browserwasm;
 		</TargetFrameworks>
 
+		<PublishAot Condition=" '$(SkiaPublishAot)' == 'true' And $([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios' ">true</PublishAot>
+		<PublishAot Condition=" '$(SkiaPublishAot)' == 'true' And $([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst' ">true</PublishAot>
+		<PublishAot Condition=" '$(PublishAot)' == '' And '$(SkiaPublishAot)' != '' ">$(SkiaPublishAot)</PublishAot>
+		<IsAotCompatible Condition=" '$(IsAotCompatible)' != '' ">$(IsAotCompatible)</IsAotCompatible>
+		<IsAotCompatible Condition=" '$(IsAotCompatible)' == '' And '$(PublishAot)' == 'true' ">true</IsAotCompatible>
+
 		<!--
 		Uncomment to use Native rendering for iOS/Android/Wasm
 		<UseNativeRendering>true</UseNativeRendering>
@@ -22,7 +28,9 @@
 		<OutputType>Exe</OutputType>
 		<UnoSingleProject>true</UnoSingleProject>
 		<!-- Display name -->
-		<ApplicationTitle>Gallery</ApplicationTitle>
+		<ApplicationTitle Condition=" '$(ApplicationTitle)' == '' And $([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios' ">Uno.Gallery</ApplicationTitle>
+		<ApplicationTitle Condition=" '$(ApplicationTitle)' == '' ">Gallery</ApplicationTitle>
+		<ApplicationTitle>$(ApplicationTitle)$(ApplicationTitleVendorSuffix)</ApplicationTitle>
 		<!-- App Identifier -->
 		<ApplicationId>uno.platform.gallery</ApplicationId>
 
@@ -31,6 +39,8 @@
 
 		<ApplicationId Condition=" '$(TargetFramework)' == 'net10.0-ios' AND '$(UseNativeRendering)' != 'true' ">com.nventive.uno.gallery</ApplicationId>
 		<ApplicationId Condition=" '$(TargetFramework)' == 'net10.0-ios' AND '$(UseNativeRendering)' == 'true' ">uno.platform.gallery.native</ApplicationId>
+
+		<ApplicationId Condition=" '$(ApplicationIdVendorSuffix)' != '' ">$(ApplicationId)$(ApplicationIdVendorSuffix)</ApplicationId>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
@@ -144,10 +154,6 @@
 
 	</PropertyGroup>
 	
-	<PropertyGroup Condition="'$(Configuration)'=='Release' and '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'android'">
-		<RunAOTCompilation>true</RunAOTCompilation>
-	</PropertyGroup>
-
 	<ItemGroup Condition="'$(TargetFramework)'!='net10.0-windows10.0.19041'">
 		<PackageReference Include="Uno.CommunityToolkit.WinUI.UI.Controls" />
 		<PackageReference Include="Uno.CommunityToolkit.WinUI.UI.Controls.DataGrid" />
@@ -158,6 +164,8 @@
 		<PackageReference Include="CommunityToolkit.WinUI.UI.Controls" />
 		<PackageReference Include="CommunityToolkit.WinUI.UI.Controls.DataGrid" />
 		<PackageReference Include="VideoLAN.LibVLC.Windows" />
+		<PackageReference Include="Microsoft.WindowsAppSDK" />
+		<PackageReference Include="Microsoft.Windows.SDK.BuildTools" />
 		<PackageReference Include="nventive.Nimue.Application.Packaging">
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 			<PrivateAssets>all</PrivateAssets>

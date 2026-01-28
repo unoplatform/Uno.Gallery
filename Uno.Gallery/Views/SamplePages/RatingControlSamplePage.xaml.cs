@@ -16,6 +16,7 @@ namespace Uno.Gallery.Views.Samples
 		}
 	}
 
+	[Microsoft.UI.Xaml.Data.Bindable]
 	public class RatingControlSamplePageViewModel : ViewModelBase
 	{
 		public int MaxRating { get => GetProperty<int>(); set => SetProperty(value); }

@@ -32,6 +32,7 @@ namespace Uno.Gallery.Views.Samples
 		}
 	}
 
+	[Microsoft.UI.Xaml.Data.Bindable]
 	public class AccelerometerSamplePageViewModel: INotifyPropertyChanged
 	{
 		private const string _startObservingContent = "Start observing accelerometer reading changes";
