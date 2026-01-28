@@ -43,6 +43,34 @@ steps:
     OverWrite: false
     flattenFolders: false
 
+# NativeAOT builds run `git clean -xdf` so that previous build outputs don't interfere with the build.
+# Avoids "bizarre" build errors such as ``Internal.TypeSystem.TypeSystemException+TypeLoadException: Failed to load type 'System.Convert' from assembly 'System.Runtime,…'``
+- script: |
+    cd $(build.sourcesdirectory)/Uno.Gallery
+    git clean -xdf .
+    dotnet publish -m:1 -f:net10.0-android -p:TargetFrameworkOverride=net10.0-android -c:Release -r android-x64 -p:SkiaPublishAot=true "-p:ApplicationTitleVendorSuffix= (NAOT)" -p:ApplicationIdVendorSuffix=.naot -p:UseNativeRendering=$(UseNativeRendering) "/p:InformationalVersion=$(NBGV_InformationalVersion)" /p:AndroidSigningKeyStore=$(keyStore.secureFilePath) /p:AndroidSigningStorePass=$(AndroidSigningStorePass) /p:AndroidSigningKeyPass=$(AndroidSigningKeyPass) /p:AndroidSigningKeyAlias=$(AndroidSigningKeyAlias) /p:AndroidKeyStore=true /bl:$(build.artifactstagingdirectory)/build-naot-$(BuildForPlayStore).binlog
+  displayName: 'Build Android+NativeAOT Package'
+  condition: and(succeeded(), eq(variables['System.PullRequest.IsFork'],'False'))
+
+- script: |
+    cd $(build.sourcesdirectory)/Uno.Gallery
+    git clean -xdf .
+    dotnet publish -m:1 -f:net10.0-android -p:TargetFrameworkOverride=net10.0-android -c:Release -r android-x64 -p:SkiaPublishAot=true "-p:ApplicationTitleVendorSuffix= (NAOT)" -p:ApplicationIdVendorSuffix=.naot -p:UseNativeRendering=$(UseNativeRendering) "/p:InformationalVersion=$(NBGV_InformationalVersion)" /p:AndroidKeyStore=False /bl:$(build.artifactstagingdirectory)/build-naot-$(BuildForPlayStore).binlog
+  displayName: 'Build Android+NativeAOT Package (Fork)'
+  condition: and(succeeded(), eq(variables['System.PullRequest.IsFork'],'True'))
+
+- task: CopyFiles@2
+  displayName: 'Publish Android+NativeAOT netcore Binaries'
+  retryCountOnTaskFailure: 3
+  inputs:
+    SourceFolder: $(build.sourcesdirectory)/Uno.Gallery/bin/Release/net10.0-android
+    Contents: |
+      **/*.aab
+      **/*.apk
+    TargetFolder: $(build.artifactstagingdirectory)
+    CleanTargetFolder: false
+    OverWrite: false
+    flattenFolders: false
 
 - task: PublishBuildArtifacts@1
   retryCountOnTaskFailure: 3

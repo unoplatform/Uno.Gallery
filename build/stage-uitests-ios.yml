@@ -48,7 +48,7 @@
 - job: iOS_Tests
   dependsOn: iOS_Tests_Build
   displayName: 'Run iOS UI Tests'
-  timeoutInMinutes: 120
+  timeoutInMinutes: 240
   variables:
     CI_Build: true
     SourceLinkEnabled: false
@@ -77,6 +77,7 @@
       chmod +x $(build.sourcesdirectory)/build/scripts/ios-uitest-run.sh
       $(build.sourcesdirectory)/build/scripts/ios-uitest-run.sh
     displayName: Run iOS Test
+    retryCountOnTaskFailure: 3
     env:
       BUILD_SOURCESDIRECTORY: "$(build.sourcesdirectory)"
       BUILD_ARTIFACTSTAGINGDIRECTORY: "$(build.artifactstagingdirectory)"

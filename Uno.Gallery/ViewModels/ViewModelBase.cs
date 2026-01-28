@@ -9,6 +9,7 @@ using System.Windows.Input;
 
 namespace Uno.Gallery.ViewModels
 {
+	[Microsoft.UI.Xaml.Data.Bindable]
 	public abstract class ViewModelBase : INotifyPropertyChanged
 	{
 		public event PropertyChangedEventHandler PropertyChanged;

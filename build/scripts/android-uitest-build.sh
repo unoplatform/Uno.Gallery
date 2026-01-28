@@ -34,8 +34,27 @@ then
 	echo "y" | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --sdk_root=${ANDROID_HOME} --install 'platforms;android-35' | tr '\r' '\n' | uniq
 	echo "y" | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --sdk_root=${ANDROID_HOME} --install 'platforms;android-36' | tr '\r' '\n' | uniq
 	echo "y" | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --sdk_root=${ANDROID_HOME} --install 'extras;android;m2repository' | tr '\r' '\n' | uniq
+
+	if [ "${NAOT:-0}" = "1" ]; then
+		# NDK r27+ is required for NativeAOT builds
+		echo "y" | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --sdk_root=${ANDROID_HOME} --install 'ndk;28.2.13676358' | tr '\r' '\n' | uniq
+	fi
 fi
 
 # Build the sample, while the emulator is starting
 cd $UNO_UITEST_ANDROID_PROJECT
-dotnet publish -f net10.0-android -p:TargetFrameworkOverride=net10.0-android -p:UseNativeRendering=true -c Release /p:AndroidPackageFormat=apk /p:RuntimeIdentifier=android-x64 /p:IsUiAutomationMappingEnabled=true /p:AndroidUseSharedRuntime=false /p:AndroidUseAssemblyStore=false /p:RunAOTCompilation=false /p:PublishTrimmed=false /p:AndroidStripILAfterAOT=false -bl:"$BUILD_ARTIFACTSTAGINGDIRECTORY/android-app.binlog"
+
+publish_extra=(-c Release)
+BINLOG_SUFFIX=""
+if [ "${NAOT:-0}" = "1" ]; then
+	# Build the sample with NativeAOT enabled
+	publish_extra+=("-m:1" "-p:SkiaPublishAot=true" "-p:ApplicationTitleVendorSuffix= (NAOT)" "-p:ApplicationIdVendorSuffix=.naot")
+	BINLOG_SUFFIX="-naot"
+else
+	# Build the sample without NativeAOT
+	publish_extra+=("/p:AndroidUseAssemblyStore=false" "/p:RunAOTCompilation=false" "/p:PublishTrimmed=false" "/p:AndroidUseSharedRuntime=false")
+fi
+
+dotnet publish -f net10.0-android -p:TargetFrameworkOverride=net10.0-android -p:UseNativeRendering=true "${publish_extra[@]}" \
+	/p:AndroidPackageFormat=apk /p:RuntimeIdentifier=android-x64 /p:IsUiAutomationMappingEnabled=true \
+	-bl:"$BUILD_ARTIFACTSTAGINGDIRECTORY/android-app${BINLOG_SUFFIX}.binlog"
