@@ -32,6 +32,7 @@ namespace Uno.Gallery.Views.Samples
 		}
 	}
 
+	[Microsoft.UI.Xaml.Data.Bindable]
 	public class HingeAngleSensorSamplePageViewModel : ViewModelBase
 	{
 		private const string _startObservingContent = "Start observing hinge angle sensor reading changes";

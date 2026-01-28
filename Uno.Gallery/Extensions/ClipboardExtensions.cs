@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using Uno.Extensions;
 using Uno.Logging;
@@ -25,7 +26,12 @@ namespace Uno.Gallery
 
 		#region Property: CopyTrigger
 
-		public static DependencyProperty CopyTriggerProperty { get; } = DependencyProperty.RegisterAttached(
+		public static DependencyProperty CopyTriggerProperty
+		{
+			[DynamicDependency(nameof(GetCopyTrigger))]
+			[DynamicDependency(nameof(SetCopyTrigger))]
+			get;
+		} = DependencyProperty.RegisterAttached(
 			"CopyTrigger",
 			typeof(CopyTrigger),
 			typeof(ClipboardExtensions),
@@ -37,7 +43,12 @@ namespace Uno.Gallery
 		#endregion
 		#region Property: CopyContent
 
-		public static DependencyProperty CopyContentProperty { get; } = DependencyProperty.RegisterAttached(
+		public static DependencyProperty CopyContentProperty
+		{
+			[DynamicDependency(nameof(GetCopyContent))]
+			[DynamicDependency(nameof(SetCopyContent))]
+			get;
+		} = DependencyProperty.RegisterAttached(
 			"CopyContent",
 			typeof(string),
 			typeof(ClipboardExtensions),
@@ -49,7 +60,12 @@ namespace Uno.Gallery
 		#endregion
 		#region Property: CopySubscription (private)
 
-		private static DependencyProperty CopySubscriptionProperty { get; } = DependencyProperty.RegisterAttached(
+		private static DependencyProperty CopySubscriptionProperty
+		{
+			[DynamicDependency(nameof(GetCopySubscription))]
+			[DynamicDependency(nameof(SetCopySubscription))]
+			get;
+		} = DependencyProperty.RegisterAttached(
 			"CopySubscription",
 			typeof(IDisposable),
 			typeof(ClipboardExtensions),

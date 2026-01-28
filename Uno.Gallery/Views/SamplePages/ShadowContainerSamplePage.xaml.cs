@@ -69,6 +69,7 @@ namespace Uno.Gallery.Views.SamplePages
 			_shadows.RemoveAt(_shadows.Count - 1);
 		}
 
+		[Microsoft.UI.Xaml.Data.Bindable]
 		public class ShadowContainerViewModel : ViewModelBase
 		{
 			public ObservableCollection<string> CbbItems { get; } = new ObservableCollection<string>

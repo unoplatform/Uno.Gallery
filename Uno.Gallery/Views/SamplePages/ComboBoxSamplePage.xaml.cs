@@ -25,6 +25,7 @@ namespace Uno.Gallery.Views.Samples
 		}
 	}
 
+	[Microsoft.UI.Xaml.Data.Bindable]
 	public class ComboBoxSampleViewModel : ViewModelBase
 	{
 		public string[] Items { get => GetProperty<string[]>(); set => SetProperty(value); }

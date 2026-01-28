@@ -26,6 +26,7 @@ namespace Uno.Gallery.Views.Samples
 		}
 	}
 
+	[Microsoft.UI.Xaml.Data.Bindable]
 	public class ColorPickerSamplePageViewModel : ViewModelBase
 	{
 		public bool IsColorSliderVisible { get => GetProperty<bool>(); set => SetProperty(value); }

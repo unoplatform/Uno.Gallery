@@ -32,6 +32,7 @@ namespace Uno.Gallery.Views.Samples
 		}
 	}
 
+	[Microsoft.UI.Xaml.Data.Bindable]
 	public class MagnetometerSamplePageViewModel : ViewModelBase
 	{
 		private const string _startObservingContent = "Start observing magnetometer reading changes";

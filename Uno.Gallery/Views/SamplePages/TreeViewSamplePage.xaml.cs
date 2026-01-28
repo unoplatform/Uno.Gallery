@@ -17,6 +17,7 @@ namespace Uno.Gallery.Views.Samples
 		}
 	}
 
+	[Microsoft.UI.Xaml.Data.Bindable]
 	public class TreeViewSamplePageViewModel : ViewModelBase
 	{
 		public ObservableCollection<TreeItem> Items { get => GetProperty<ObservableCollection<TreeItem>>(); set => SetProperty(value); }

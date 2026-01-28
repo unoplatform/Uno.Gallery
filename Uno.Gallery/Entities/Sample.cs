@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +14,11 @@ namespace Uno.Gallery
 	[Bindable]
 	public class Sample
 	{
-		public Sample(SamplePageAttribute attribute, Type viewType)
+		internal const DynamicallyAccessedMemberTypes ViewRequirements =
+			  DynamicallyAccessedMemberTypes.PublicConstructors
+			| DynamicallyAccessedMemberTypes.PublicProperties;
+
+		public Sample(SamplePageAttribute attribute, [DynamicallyAccessedMembers(ViewRequirements)] Type viewType)
 		{
 			Category = attribute.Category;
 			Title = attribute.Title;

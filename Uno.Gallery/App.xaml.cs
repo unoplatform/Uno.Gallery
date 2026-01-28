@@ -71,6 +71,11 @@ namespace Uno.Gallery
 
 			this.Log().Debug("Launched app.");
 			OnLaunchedOrActivated();
+
+			if (e.Arguments?.Contains("--exit") ?? false)
+			{
+				Exit();
+			}
 		}
 
 		private void OnLaunchedOrActivated()
@@ -486,7 +491,11 @@ namespace Uno.Gallery
 
 		private void ConfigureXamlDisplay()
 		{
+#if WINDOWS
 			XamlDisplay.Init(GetType().Assembly);
+#else   // !WINDOWS
+			XamlDictionary.Init();
+#endif  // WINDOWS
 		}
 
 		private void ConfigureFeatureFlags()

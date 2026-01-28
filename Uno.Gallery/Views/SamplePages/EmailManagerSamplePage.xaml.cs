@@ -20,6 +20,7 @@ namespace Uno.Gallery.Views.Samples
 		}
 	}
 
+	[Microsoft.UI.Xaml.Data.Bindable]
 	public class EmailManagerSamplePageViewModel : ViewModelBase
 	{
 		// EmailManager only supports the ShowComposeNewEmailInternalAsync, with the properties: To (only addresses, without names), CC (only addresses, without names), BCC (only addresses, without names), Subject, Body

@@ -31,6 +31,7 @@ namespace Uno.Gallery.Views.Samples
 		}
 	}
 
+	[Microsoft.UI.Xaml.Data.Bindable]
 	public class LightSensorSamplePageViewModel : ViewModelBase
 	{
 		private const string _startObservingContent = "Start observing light sensor reading changes";

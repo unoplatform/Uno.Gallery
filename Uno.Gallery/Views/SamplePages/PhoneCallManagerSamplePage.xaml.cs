@@ -40,6 +40,7 @@ namespace Uno.Gallery.Views.Samples
 		}
 	}
 
+	[Microsoft.UI.Xaml.Data.Bindable]
 	public class PhoneCallManagerSamplePageViewModel : ViewModelBase
 	{
 		public bool IsSettingsUISupported { get; set; }
