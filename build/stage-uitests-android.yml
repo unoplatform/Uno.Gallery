@@ -17,7 +17,7 @@
 
   - template: templates/dotnet-install-linux.yml
     parameters:
-      UnoCheckParameters: '--tfm net9.0-android'
+      UnoCheckParameters: '--tfm net10.0-android'
 
   - template: templates/canary-updater.yml
 
@@ -33,8 +33,8 @@
 
   - bash: |
       echo "Publish output:"
-      ls -la $(build.sourcesdirectory)/Uno.Gallery/bin/Release/net9.0-android/android-x64/publish || true
-      APK="$(ls $(build.sourcesdirectory)/Uno.Gallery/bin/Release/net9.0-android/android-x64/publish/*.apk | head -n 1 || true)"
+      ls -la $(build.sourcesdirectory)/Uno.Gallery/bin/Release/net10.0-android/android-x64/publish || true
+      APK="$(ls $(build.sourcesdirectory)/Uno.Gallery/bin/Release/net10.0-android/android-x64/publish/*.apk | head -n 1 || true)"
       if [ ! -f "$APK" ]; then
         echo "ERROR: No APK produced (verify AndroidPackageFormat=apk)"; exit 1; fi
       echo "Check APK contains .dll and no assemblies.blob (we inject assemblies.blob at run):"
@@ -46,7 +46,7 @@
   - task: CopyFiles@2
     displayName: Copy Build Output
     inputs:
-      SourceFolder: $(build.sourcesdirectory)/Uno.Gallery/bin/Release/net9.0-android/android-x64
+      SourceFolder: $(build.sourcesdirectory)/Uno.Gallery/bin/Release/net10.0-android/android-x64
       Contents: '**/*.apk'
       TargetFolder: $(Build.ArtifactStagingDirectory)
 
@@ -57,7 +57,7 @@
 - job: Android_Tests
   displayName: 'Android UI Tests'
   dependsOn: Android_Tests_Build
-  timeoutInMinutes: 60
+  timeoutInMinutes: 90
   variables:
     CI_Build: true
     SourceLinkEnabled: false
@@ -74,11 +74,11 @@
     artifact: Android_UITest
 
   - task: UseDotNet@2
-    displayName: 'Ensure .NET SDK 9.0.300 for canary'
+    displayName: 'Ensure .NET SDK 10.0.102 for canary'
     condition: startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries')
     inputs:
       packageType: 'sdk'
-      version: '9.0.300'
+      version: '10.0.102'
       includePreviewVersions: true
 
   - template: templates/canary-updater.yml

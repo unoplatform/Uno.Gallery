@@ -87,18 +87,18 @@ xcrun simctl boot "$UITEST_IOSDEVICE_ID" || true
 # Try publish/, then non-publish, then the downloaded artifact
 if [ -z "${UNO_UITEST_IOSBUNDLE_PATH:-}" ]; then
   echo "iOS app bundle path not found, trying publish"
-  UNO_UITEST_IOSBUNDLE_PATH="$(ls "$BUILD_SOURCESDIRECTORY/Uno.Gallery/bin/Release/net9.0-ios/iossimulator-x64/publish/"*.app 2>/dev/null | head -n 1)"
+  UNO_UITEST_IOSBUNDLE_PATH="$(ls "$BUILD_SOURCESDIRECTORY/Uno.Gallery/bin/Release/net10.0-ios/iossimulator-x64/publish/"*.app 2>/dev/null | head -n 1)"
 fi
 if [ -z "${UNO_UITEST_IOSBUNDLE_PATH:-}" ]; then
   echo "iOS app bundle (publish) not found, trying non-publish"
-  UNO_UITEST_IOSBUNDLE_PATH="$(ls "$BUILD_SOURCESDIRECTORY/Uno.Gallery/bin/Release/net9.0-ios/iossimulator-x64/"*.app 2>/dev/null | head -n 1)"
+  UNO_UITEST_IOSBUNDLE_PATH="$(ls "$BUILD_SOURCESDIRECTORY/Uno.Gallery/bin/Release/net10.0-ios/iossimulator-x64/"*.app 2>/dev/null | head -n 1)"
 fi
 if [ -z "${UNO_UITEST_IOSBUNDLE_PATH:-}" ]; then
   echo "iOS app bundle (non-publish) not found, trying artifact download"
   UNO_UITEST_IOSBUNDLE_PATH="$(ls "$PIPELINE_WORKSPACE/iOS_UITest/"*.app 2>/dev/null | head -n 1)"
 fi
 if [ -z "${UNO_UITEST_IOSBUNDLE_PATH:-}" ] || [ ! -d "$UNO_UITEST_IOSBUNDLE_PATH" ]; then
-  echo "ERROR: iOS app bundle not found in publish/, net9.0-ios/, or under \$PIPELINE_WORKSPACE/iOS_UITest"
+  echo "ERROR: iOS app bundle not found in publish/, net10.0-ios/, or under \$PIPELINE_WORKSPACE/iOS_UITest"
   exit 1
 fi
 

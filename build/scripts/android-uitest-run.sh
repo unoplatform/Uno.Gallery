@@ -16,7 +16,7 @@ export UITEST_TEST_TIMEOUT=60m
 # Prefer the signed APK from build artifacts (Windows job) when available,
 # otherwise fall back to the unsigned APK published locally by the UITest job (macOS agent).
 APK_FROM_ARTIFACT="$(ls "$UNO_UITEST_ANDROIDAPK_BASEPATH"/*.apk 2>/dev/null | head -n 1 || true)"
-APK_FROM_LOCAL="$(ls $BUILD_SOURCESDIRECTORY/Uno.Gallery/bin/Release/net9.0-android/android-x64/publish/*.apk 2>/dev/null | head -n 1 || true)"
+APK_FROM_LOCAL="$(ls $BUILD_SOURCESDIRECTORY/Uno.Gallery/bin/Release/net10.0-android/android-x64/publish/*.apk 2>/dev/null | head -n 1 || true)"
 
 if [ -f "$APK_FROM_ARTIFACT" ]; then
   export UNO_UITEST_ANDROIDAPK_PATH="$APK_FROM_ARTIFACT"
@@ -82,7 +82,7 @@ install_android_sdk() {
 
 		echo "y" | $LATEST_CMDLINE_TOOLS_PATH/bin/sdkmanager --sdk_root=${ANDROID_HOME} --install 'tools'| tr '\r' '\n' | uniq
 		echo "y" | $LATEST_CMDLINE_TOOLS_PATH/bin/sdkmanager --sdk_root=${ANDROID_HOME} --install 'platform-tools'  | tr '\r' '\n' | uniq
-		echo "y" | $LATEST_CMDLINE_TOOLS_PATH/bin/sdkmanager --sdk_root=${ANDROID_HOME} --install 'build-tools;35.0.0' | tr '\r' '\n' | uniq
+		echo "y" | $LATEST_CMDLINE_TOOLS_PATH/bin/sdkmanager --sdk_root=${ANDROID_HOME} --install 'build-tools;36.0.0' | tr '\r' '\n' | uniq
 		echo "y" | $LATEST_CMDLINE_TOOLS_PATH/bin/sdkmanager --sdk_root=${ANDROID_HOME} --install 'extras;android;m2repository' | tr '\r' '\n' | uniq
 	fi
 	
@@ -102,6 +102,7 @@ then
 	install_android_sdk $ANDROID_SIMULATOR_APILEVEL
 	install_android_sdk 34
 	install_android_sdk 35
+	install_android_sdk 36
 
 	if [[ -f $ANDROID_HOME/platform-tools/platform-tools/adb ]]
 	then
