@@ -3,8 +3,25 @@ parameters:
 
 steps:
   - bash: |
+      echo '# Available Xcode versions:'
+      ls -ld /Applications/Xcode*.app
+      if test -L "${{parameters.xCodeRoot}}"; then
+        echo "Xcode root is a symlink; this may result in 'weird' build errors."
+      fi
       echo 'Xcode Root to ${{parameters.xCodeRoot}}'
       echo '##vso[task.setvariable variable=MD_APPLE_SDK_ROOT;]'${{parameters.xCodeRoot}}
+      echo xcode-select --switch ${{parameters.xCodeRoot}}/Contents/Developer
       sudo xcode-select --switch ${{parameters.xCodeRoot}}/Contents/Developer
 
     displayName: Select Xcode
+
+  # `xcodebuild -downloadPlatform` occasionally fails with "Unable to connect to simulator"
+  # `xcrun simctl list` is mentioned as a possible workaround
+  # See also: https://github.com/actions/runner-images/issues/13459
+  - bash: |
+      xcodebuild -runFirstLaunch
+      echo "# Available Xcode devices, device types, runtimes, device pairs"
+      xcrun simctl list
+      echo "# Installing iOS Platform"
+      xcodebuild -downloadPlatform iOS
+    displayName: Download Xcode iOS Platform

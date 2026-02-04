@@ -42,8 +42,8 @@ variables:
   IsLightBuild: $[eq(variables['Build.Reason'], 'PullRequest')]
   IsCanaryBranch: $[startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries/')]
 
-  XCODE_ROOT: '/Applications/Xcode_16.4.app'
-  XCODE_ROOT_UITESTS: '/Applications/Xcode_16.4.app'
+  XCODE_ROOT: '/Applications/Xcode_26.0.1.app'
+  XCODE_ROOT_UITESTS: '/Applications/Xcode_26.0.1.app'
 
   # Required to about trashing azdo hosted agents
   AotCompileMaxDegreeOfParallelism: 3
@@ -96,7 +96,7 @@ stages:
     - name: ApplicationPlatform
       value: x86 # switch back to x64 once CommunityToolkit.WinUI.UI supports x64 (https://github.com/CommunityToolkit/Lottie-Windows/issues/515#issuecomment-1662305826)
     - name: BuildTargetFramework
-      value: net9.0-windows10.0.19041
+      value: net10.0-windows10.0.19041
     - name: ArtifactName
       value: Windows
     - name: VersionCodeOffset
@@ -130,14 +130,14 @@ stages:
     strategy:
       matrix:
         iOS:
-          BuildTargetFramework: net9.0-ios
+          BuildTargetFramework: net10.0-ios
           ArtifactName: iOS-mobile
           ApplicationBuildNumberOffset: 50
           BuildCommand: publish
           UseNativeRendering: true
           VariantName: Native
         iOS_Skia:
-          BuildTargetFramework: net9.0-ios
+          BuildTargetFramework: net10.0-ios
           ArtifactName: iOS-mobile
           ApplicationBuildNumberOffset: 50
           BuildCommand: publish

@@ -1,6 +1,6 @@
 
 parameters:
-  DotNetVersion: '9.0.300'
+  DotNetVersion: '10.0.102'
   EnsureDotNet: true
 
 steps:
