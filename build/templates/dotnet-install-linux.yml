@@ -29,9 +29,9 @@ steps:
 
   - bash: |
       sudo apt-get update
-      sudo apt-get install -y apt-transport-https msopenjdk-11
-      sudo update-java-alternatives --set msopenjdk-11-amd64
-    displayName: Install OpenJDK 11
+      sudo apt-get install -y apt-transport-https msopenjdk-17
+      sudo update-java-alternatives --set msopenjdk-17-amd64
+    displayName: Install OpenJDK 17
     retryCountOnTaskFailure: 3
     condition: and(succeeded(), eq('${{ parameters.installJava }}', 'true'))
 
