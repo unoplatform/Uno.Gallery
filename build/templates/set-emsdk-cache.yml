@@ -1,13 +1,6 @@
 parameters:
   UnoCheck_Version: '1.34.1'
 
-variables:
-- name: UnoCheckCacheKey
-  ${{ if startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries/') }}:
-    value: dev-latest
-  ${{ else }}:
-    value: ${{ parameters.UnoCheck_Version }}
-
 steps:
   - pwsh: |
       echo "##vso[task.setvariable variable=WasmCachePath;]$(Build.SourcesDirectory)\.emsdk-cache"
@@ -21,6 +14,6 @@ steps:
 
   - task: Cache@2
     inputs:
-      key: emsdk-cache | "$(Agent.OS)" | "$(Agent.JobName)" | "$(UnoCheckCacheKey)"
+      key: emsdk-cache | "$(Agent.OS)" | "$(Agent.JobName)" | "$(Build.SourceBranch)"
       path: $(DOTNET_INSTALL_DIR)
     displayName: Set Cache for EMSDK
