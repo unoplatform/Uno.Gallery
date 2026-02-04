@@ -1,7 +1,14 @@
 parameters:
   DotNetVersion: '10.0.102'
-  UnoCheck_Version: '1.33.1'
+  UnoCheck_Version: '1.34.1'
   UnoCheckParameters: ''
+
+variables:
+- name: UnoCheckCacheKey
+  ${{ if startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries/') }}:
+    value: dev-latest
+  ${{ else }}:
+    value: ${{ parameters.UnoCheck_Version }}
 
 steps:
   # Required for caching
@@ -12,7 +19,7 @@ steps:
 
   - task: Cache@2
     inputs:
-      key: dotnet | "$(Agent.OS)" | "$(Agent.JobName)" | "${{ parameters.UnoCheck_Version }}" | "${{ parameters.UnoCheckParameters }}"
+      key: dotnet | "$(Agent.OS)" | "$(Agent.JobName)" | "$(UnoCheckCacheKey)" | "${{ parameters.UnoCheckParameters }}"
       path: $(DOTNET_INSTALL_DIR)
     displayName: Set Cache for dotnet install
 
@@ -26,7 +33,11 @@ steps:
       installationPath: $(DOTNET_INSTALL_DIR)
 
   - powershell: |
-      & dotnet tool update --global uno.check --version ${{ parameters.UnoCheck_Version }} --add-source https://api.nuget.org/v3/index.json
+      if ("$(Build.SourceBranch)" -like "refs/heads/canaries/*") {
+        & dotnet tool update --global uno.check --prerelease --add-source https://api.nuget.org/v3/index.json
+      } else {
+        & dotnet tool update --global uno.check --version ${{ parameters.UnoCheck_Version }} --add-source https://api.nuget.org/v3/index.json
+      }
       & uno-check --verbose --ci --non-interactive --fix --skip xcode --skip gtk3 --skip vswin --skip androidemulator --skip unosdk --skip vsmac --skip dotnetnewunotemplates ${{ parameters.UnoCheckParameters }}
     displayName: Install .NET Workloads
     errorActionPreference: continue
