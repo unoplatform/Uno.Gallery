@@ -88,6 +88,7 @@ private async void UpdateGamepads()
 }
 
 
+[Microsoft.UI.Xaml.Data.Bindable]
 public class GamepadViewModel : ViewModelBase
 {
 	public GamepadViewModel(Gamepad gamepad)
