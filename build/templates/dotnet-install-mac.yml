@@ -1,6 +1,6 @@
 parameters:
   DotNetVersion: '10.0.102'
-  UnoCheck_Version: '1.33.1'
+  UnoCheck_Version: '1.34.1'
   installWorkloads: true
   UnoCheckParameters: ''
 
@@ -13,7 +13,7 @@ steps:
 
   - task: Cache@2
     inputs:
-      key: dotnet | "$(Agent.OS)" | "$(Agent.JobName)" | "${{ parameters.UnoCheck_Version }}" | "${{ parameters.UnoCheckParameters }}"
+      key: dotnet | "$(Agent.OS)" | "$(Agent.JobName)" | "$(Build.SourceBranch)" | "${{ parameters.UnoCheckParameters }}"
       path: $(DOTNET_INSTALL_DIR)
     displayName: Set Cache for dotnet install
 
@@ -29,7 +29,11 @@ steps:
   - template: jdk-setup.yml
 
   - bash: |
-      dotnet tool update --global uno.check --version ${{ parameters.UnoCheck_Version }} --add-source https://api.nuget.org/v3/index.json
+      if [[ "$(Build.SourceBranch)" == refs/heads/canaries/* ]]; then
+        dotnet tool update --global uno.check --prerelease --add-source https://api.nuget.org/v3/index.json
+      else
+        dotnet tool update --global uno.check --version ${{ parameters.UnoCheck_Version }} --add-source https://api.nuget.org/v3/index.json
+      fi
       uno-check --verbose --ci --non-interactive --fix --skip androidemulator --skip gtk3 --skip xcode --skip vswin --skip maui --skip unosdk --skip vsmac --skip dotnetnewunotemplates ${{ parameters.UnoCheckParameters }}
     displayName: Install .NET Workloads
     condition: and(succeeded(), and(eq(variables['Agent.OS'], 'Darwin'), eq('${{ parameters.installWorkloads }}', 'true')))

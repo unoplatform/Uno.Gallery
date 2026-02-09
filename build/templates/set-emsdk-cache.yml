@@ -1,5 +1,5 @@
 parameters:
-  UnoCheck_Version: '1.31.0-dev.12'
+  UnoCheck_Version: '1.34.1'
 
 steps:
   - pwsh: |
@@ -14,6 +14,6 @@ steps:
 
   - task: Cache@2
     inputs:
-      key: emsdk-cache | "$(Agent.OS)" | "$(Agent.JobName)" | "${{ parameters.UnoCheck_Version }}"
+      key: emsdk-cache | "$(Agent.OS)" | "$(Agent.JobName)" | "$(Build.SourceBranch)"
       path: $(DOTNET_INSTALL_DIR)
     displayName: Set Cache for EMSDK
