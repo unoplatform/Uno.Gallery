@@ -8,7 +8,7 @@
 - template: templates/host-cleanup-linux.yml
 
 - bash: |
-    dotnet publish Uno.Gallery/Uno.Gallery.csproj -c Release -f net10.0-browserwasm -p:UseNativeRendering=$(UseNativeRendering) -p:InformationalVersion=$(NBGV_InformationalVersion) -o "$(Agent.TempDirectory)/wasm-publish" -bl:$(Build.ArtifactStagingDirectory)/wasm-publish.binlog
+    dotnet publish Uno.Gallery/Uno.Gallery.csproj -c Release -f net10.0-browserwasm -r browser-wasm -p:TargetFrameworkOverride=net10.0-browserwasm -p:UseNativeRendering=$(UseNativeRendering) -p:InformationalVersion=$(NBGV_InformationalVersion) -o "$(Agent.TempDirectory)/wasm-publish" -bl:$(Build.ArtifactStagingDirectory)/wasm-publish.binlog
   displayName: 'Builds Wasm $(ArtifactName)'
 
 - task: PublishBuildArtifacts@1
