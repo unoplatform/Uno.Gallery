@@ -52,6 +52,13 @@ steps:
   - bash: |
       uno-check --verbose --ci --non-interactive --fix --skip gtk3 --skip androidemulator --skip dotnetnewunotemplates --skip unosdk ${{ parameters.UnoCheckParameters }}
     displayName: Install .NET Workloads
+    continueOnError: false
+    condition: and(succeeded(), and(eq(variables['Agent.OS'], 'Linux'), and(eq('${{ parameters.installWorkloads }}', 'true'), startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries/'))))
+    retryCountOnTaskFailure: 3
+
+  - bash: |
+      uno-check --verbose --ci --non-interactive --fix --skip gtk3 --skip androidemulator --skip dotnetnewunotemplates --skip unosdk ${{ parameters.UnoCheckParameters }}
+    displayName: Install .NET Workloads (non-canary)
     continueOnError: true
     retryCountOnTaskFailure: 3
-    condition: and(succeeded(), and(eq(variables['Agent.OS'], 'Linux'), eq('${{ parameters.installWorkloads }}', 'true')))
+    condition: and(succeeded(), and(eq(variables['Agent.OS'], 'Linux'), and(eq('${{ parameters.installWorkloads }}', 'true'), not(startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries/')))))
