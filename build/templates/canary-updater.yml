@@ -7,7 +7,16 @@ steps:
 - ${{ if eq(parameters.EnsureDotNet, 'true') }}:
   - task: UseDotNet@2
     displayName: 'Ensure .NET SDK ${{ parameters.DotNetVersion }} for canary'
-    condition: startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries')
+    condition: and(startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries'), ne(variables['DOTNET_INSTALL_DIR'], ''))
+    inputs:
+      packageType: 'sdk'
+      version: ${{ parameters.DotNetVersion }}
+      includePreviewVersions: true
+      installationPath: $(DOTNET_INSTALL_DIR)
+
+  - task: UseDotNet@2
+    displayName: 'Ensure .NET SDK ${{ parameters.DotNetVersion }} for canary'
+    condition: and(startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries'), eq(variables['DOTNET_INSTALL_DIR'], ''))
     inputs:
       packageType: 'sdk'
       version: ${{ parameters.DotNetVersion }}

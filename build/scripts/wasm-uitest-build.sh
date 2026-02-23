@@ -7,7 +7,7 @@ export UNO_UITEST_WASM_PROJECT=$BUILD_SOURCESDIRECTORY/Uno.Gallery/Uno.Gallery.c
 
 cd $BUILD_SOURCESDIRECTORY
 
-dotnet publish -f net10.0-browserwasm -p:Configuration=Release $UNO_UITEST_WASM_PROJECT -p:UseNativeRendering=true -p:IsUiAutomationMappingEnabled=True -bl:$UNO_UITEST_SCREENSHOT_PATH/msbuild.binlog
+dotnet publish -f net10.0-browserwasm -r browser-wasm -c Release $UNO_UITEST_WASM_PROJECT -p:TargetFrameworkOverride=net10.0-browserwasm -p:UseNativeRendering=true -p:IsUiAutomationMappingEnabled=True -bl:$UNO_UITEST_SCREENSHOT_PATH/msbuild.binlog
 
 WASM_OUT="$BUILD_SOURCESDIRECTORY/Uno.Gallery/bin/Release/net10.0-browserwasm/publish"
 if [ ! -d "$WASM_OUT" ]; then
