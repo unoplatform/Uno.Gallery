@@ -12,6 +12,7 @@ steps:
       packageType: 'sdk'
       version: ${{ parameters.DotNetVersion }}
       includePreviewVersions: true
+      installationPath: $(DOTNET_INSTALL_DIR)
 
   - task: unoplatformCanaryUpdater@1
     displayName: 'Canary Update (dev)'
