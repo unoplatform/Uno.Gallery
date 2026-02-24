@@ -29,7 +29,7 @@
       BUILD_ARTIFACTSTAGINGDIRECTORY: "$(build.artifactstagingdirectory)"
     displayName: 'Running build'
 
-  - publish: $(System.DefaultWorkingDirectory)/Uno.Gallery/bin/Release/net10.0-browserwasm/publish/wwwroot
+  - publish: $(UNO_UITEST_WASM_OUTPUT_PATH)
     artifact: Wasm_UITest
 
   - publish: $(build.artifactstagingdirectory)/screenshots/wasm
