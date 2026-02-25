@@ -4,6 +4,7 @@ using System.Text;
 
 namespace Uno.Gallery.Entities.Data
 {
+	[Microsoft.UI.Xaml.Data.Bindable]
 	public class Record
 	{
 		public Record(string compositionName, string artistName, string color)

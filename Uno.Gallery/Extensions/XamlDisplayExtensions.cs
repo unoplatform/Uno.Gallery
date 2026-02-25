@@ -1,6 +1,7 @@
 ﻿#pragma warning disable
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -28,7 +29,12 @@ namespace ShowMeTheXAML
 
 		#region Property: Header
 
-		public static DependencyProperty HeaderProperty { get; } = DependencyProperty.RegisterAttached(
+		public static DependencyProperty HeaderProperty
+		{
+			[DynamicDependency(nameof(GetHeader))]
+			[DynamicDependency(nameof(SetHeader))]
+			get;
+		} = DependencyProperty.RegisterAttached(
 			"Header",
 			typeof(string),
 			typeof(XamlDisplayExtensions),
@@ -40,7 +46,12 @@ namespace ShowMeTheXAML
 		#endregion
 		#region Property: Description
 
-		public static DependencyProperty DescriptionProperty { get; } = DependencyProperty.RegisterAttached(
+		public static DependencyProperty DescriptionProperty
+		{
+			[DynamicDependency(nameof(GetDescription))]
+			[DynamicDependency(nameof(SetDescription))]
+			get;
+		} = DependencyProperty.RegisterAttached(
 			"Description",
 			typeof(string),
 			typeof(XamlDisplayExtensions),
@@ -49,7 +60,12 @@ namespace ShowMeTheXAML
 		public static string GetDescription(XamlDisplay obj) => (string)obj.GetValue(DescriptionProperty);
 		public static void SetDescription(XamlDisplay obj, string value) => obj.SetValue(DescriptionProperty, value);
 
-		public static DependencyProperty DocumentationLinkProperty { get; } = DependencyProperty.RegisterAttached(
+		public static DependencyProperty DocumentationLinkProperty
+		{
+			[DynamicDependency(nameof(GetDocumentationLink))]
+			[DynamicDependency(nameof(SetDocumentationLink))]
+			get;
+		} = DependencyProperty.RegisterAttached(
 			"DocumentationLink",
 			typeof(string),
 			typeof(XamlDisplayExtensions),
@@ -61,7 +77,12 @@ namespace ShowMeTheXAML
 		#endregion
 		#region Property: IgnorePath
 
-		public static DependencyProperty IgnorePathProperty { get; } = DependencyProperty.RegisterAttached(
+		public static DependencyProperty IgnorePathProperty
+		{
+			[DynamicDependency(nameof(GetIgnorePath))]
+			[DynamicDependency(nameof(SetIgnorePath))]
+			get;
+		} = DependencyProperty.RegisterAttached(
 			"IgnorePath",
 			typeof(string),
 			typeof(XamlDisplayExtensions),
@@ -73,7 +94,12 @@ namespace ShowMeTheXAML
 		#endregion
 		#region Property: PrettyXaml
 
-		public static DependencyProperty PrettyXamlProperty { get; } = DependencyProperty.RegisterAttached(
+		public static DependencyProperty PrettyXamlProperty
+		{
+			[DynamicDependency(nameof(GetPrettyXaml))]
+			[DynamicDependency(nameof(SetPrettyXaml))]
+			get;
+		} = DependencyProperty.RegisterAttached(
 			"PrettyXaml",
 			typeof(string),
 			typeof(XamlDisplayExtensions),
@@ -86,7 +112,12 @@ namespace ShowMeTheXAML
 
 		#region Property: ShowXaml
 
-		public static DependencyProperty ShowXamlProperty { get; } = DependencyProperty.RegisterAttached(
+		public static DependencyProperty ShowXamlProperty
+		{
+			[DynamicDependency(nameof(GetShowXaml))]
+			[DynamicDependency(nameof(SetShowXaml))]
+			get;
+		} = DependencyProperty.RegisterAttached(
 			"ShowXaml",
 			typeof(bool),
 			typeof(XamlDisplayExtensions),
@@ -99,7 +130,12 @@ namespace ShowMeTheXAML
 
 		#region Property: IsXamlDirty
 
-		public static DependencyProperty IsXamlDirtyProperty { get; } = DependencyProperty.RegisterAttached(
+		public static DependencyProperty IsXamlDirtyProperty
+		{
+			[DynamicDependency(nameof(GetIsXamlDirty))]
+			[DynamicDependency(nameof(SetIsXamlDirty))]
+			get;
+		} = DependencyProperty.RegisterAttached(
 			"IsXamlDirty",
 			typeof(bool),
 			typeof(XamlDisplayExtensions),
@@ -111,7 +147,12 @@ namespace ShowMeTheXAML
 		#endregion
 
 		#region Property: Options
-		public static DependencyProperty OptionsProperty { get; } = DependencyProperty.RegisterAttached(
+		public static DependencyProperty OptionsProperty
+		{
+			[DynamicDependency(nameof(GetOptions))]
+			[DynamicDependency(nameof(SetOptions))]
+			get;
+		} = DependencyProperty.RegisterAttached(
 			"Options",
 			typeof(object),
 			typeof(XamlDisplayExtensions),

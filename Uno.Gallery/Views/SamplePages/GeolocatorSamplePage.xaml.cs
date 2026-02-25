@@ -35,6 +35,7 @@ namespace Uno.Gallery.Views.Samples
         }
     }
 
+    [Microsoft.UI.Xaml.Data.Bindable]
     public class GeolocatorSamplePageViewModel : INotifyPropertyChanged
     {
         private Geolocator _geolocator;

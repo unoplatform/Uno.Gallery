@@ -40,6 +40,7 @@ namespace Uno.Gallery.Views.Samples
 		}
 	}
 
+	[Microsoft.UI.Xaml.Data.Bindable]
 	public class NetworkInformationSamplePageViewModel : ViewModelBase
 	{
 		private const string _startObservingContent = "Start observing connectivity changes";

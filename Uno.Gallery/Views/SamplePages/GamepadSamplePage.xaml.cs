@@ -34,6 +34,7 @@ namespace Uno.Gallery.Views.Samples
 		}
 	}
 
+	[Microsoft.UI.Xaml.Data.Bindable]
 	public class GamepadSamplePageViewModel : ViewModelBase
 	{
 		private const string _startObservingContent = "Start observing gamepad changes";
@@ -121,6 +122,7 @@ namespace Uno.Gallery.Views.Samples
 		}
 	}
 
+	[Microsoft.UI.Xaml.Data.Bindable]
 	public class GamepadViewModel : ViewModelBase
 	{
 		public GamepadViewModel(Gamepad gamepad)

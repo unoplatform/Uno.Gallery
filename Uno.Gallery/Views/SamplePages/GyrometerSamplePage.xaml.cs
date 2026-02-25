@@ -37,6 +37,7 @@ namespace Uno.Gallery.Views.Samples
 		}
 	}
 
+	[Microsoft.UI.Xaml.Data.Bindable]
 	public class GyrometerSamplePageViewModel : ViewModelBase
 	{
 		private const string _startObservingContent = "Start observing gyrometer reading changes";

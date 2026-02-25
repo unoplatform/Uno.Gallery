@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 
 namespace Uno.Gallery.Entities.Data
 {
+	[Microsoft.UI.Xaml.Data.Bindable]
 	public class Folder
 	{
 		public Folder(string name, int itemCount, string description)

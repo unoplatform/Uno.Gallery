@@ -34,6 +34,7 @@ namespace Uno.Gallery.Views.Samples
 		}
 	}
 
+	[Microsoft.UI.Xaml.Data.Bindable]
 	public class LauncherSamplePageViewModel : ViewModelBase
 	{
 		public string SettingsButtonContent { get => GetProperty<string>(); set => SetProperty(value); }

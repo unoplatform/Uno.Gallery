@@ -240,6 +240,7 @@ namespace Uno.Gallery.Views.Samples
 		}
 	}
 
+	[Microsoft.UI.Xaml.Data.Bindable]
 	public class ClipboardSamplePageViewModel : INotifyPropertyChanged
 	{
 		public event PropertyChangedEventHandler PropertyChanged;
