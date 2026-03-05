@@ -21,7 +21,7 @@ echo "Listing iOS simulators"
 xcrun simctl list devices --json
 
 echo "Starting simulator"
-/Applications/Xcode.app/Contents/Developer/Applications/Simulator.app/Contents/MacOS/Simulator &
+open -g -a Simulator
 
 # Prime the output directory
 mkdir -p $UNO_UITEST_SCREENSHOT_PATH/_logs
