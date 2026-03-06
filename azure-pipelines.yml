@@ -42,8 +42,8 @@ variables:
   IsLightBuild: $[eq(variables['Build.Reason'], 'PullRequest')]
   IsCanaryBranch: $[startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries/')]
 
-  XCODE_ROOT: $[iif(startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries/'), '/Applications/Xcode_26.2.app', '/Applications/Xcode_26.1.1.app')]
-  XCODE_ROOT_UITESTS: $[iif(startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries/'), '/Applications/Xcode_26.2.app', '/Applications/Xcode_26.1.1.app')]
+  XCODE_ROOT: '/Applications/Xcode_26.1.1.app'
+  XCODE_ROOT_UITESTS: '/Applications/Xcode_26.1.1.app'
 
   # Required to about trashing azdo hosted agents
   AotCompileMaxDegreeOfParallelism: 3
