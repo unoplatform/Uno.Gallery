@@ -26,11 +26,7 @@ steps:
       installationPath: $(DOTNET_INSTALL_DIR)
 
   - powershell: |
-      if ("$(Build.SourceBranch)" -like "refs/heads/canaries/*") {
-        & dotnet tool update --global uno.check --prerelease --add-source https://api.nuget.org/v3/index.json
-      } else {
-        & dotnet tool update --global uno.check --version ${{ parameters.UnoCheck_Version }} --add-source https://api.nuget.org/v3/index.json
-      }
+      & dotnet tool update --global uno.check --version ${{ parameters.UnoCheck_Version }} --add-source https://api.nuget.org/v3/index.json
       & uno-check --verbose --ci --non-interactive --fix --skip xcode --skip gtk3 --skip vswin --skip androidemulator --skip unosdk --skip vsmac --skip dotnetnewunotemplates ${{ parameters.UnoCheckParameters }}
     displayName: Install .NET Workloads
     errorActionPreference: continue
