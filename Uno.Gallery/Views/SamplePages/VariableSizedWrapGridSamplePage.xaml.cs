@@ -12,6 +12,7 @@ namespace Uno.Gallery.Views.Samples
 			DataContext = new VariableSizedWrapGridViewModel();
 		}
 
+		[Microsoft.UI.Xaml.Data.Bindable]
 		public class VariableSizedWrapGridViewModel : INotifyPropertyChanged
 		{
 			public event PropertyChangedEventHandler PropertyChanged;

@@ -149,6 +149,7 @@ public sealed partial class DataGridSamplePage : Page
 	}
 }
 
+[Microsoft.UI.Xaml.Data.Bindable]
 public class DataGridSamplePageViewModel : ViewModelBase
 {
 	public int ColumnHeaderHeight { get => GetProperty<int>(); set => SetProperty(value); }

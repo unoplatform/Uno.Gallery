@@ -35,6 +35,7 @@ namespace Uno.Gallery.Views.Samples
 		}
 	}
 
+	[Microsoft.UI.Xaml.Data.Bindable]
 	public class PowerManagerSamplePageViewModel : INotifyPropertyChanged
 	{
 		private bool _monitoringPowerStatus;

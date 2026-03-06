@@ -36,6 +36,7 @@ namespace Uno.Gallery.Views.Samples
 		}
 	}
 
+	[Microsoft.UI.Xaml.Data.Bindable]
 	public class PedometerSamplePageViewModel : ViewModelBase
 	{
 		private const string StartObservingPedometerLabel = "Start observing pedometer reading changes";

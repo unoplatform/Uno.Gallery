@@ -94,6 +94,7 @@ namespace Uno.Gallery.Views.Samples
 		}
 	}
 
+	[Microsoft.UI.Xaml.Data.Bindable]
 	public class AutoSuggestBoxSamplePageViewModel : ViewModelBase
 	{
 		public string SelectedString { get => GetProperty<string>(); set => SetProperty(value); }

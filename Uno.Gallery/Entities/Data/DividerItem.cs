@@ -5,6 +5,7 @@ using System.Text;
 
 namespace Uno.Gallery.Entities.Data
 {
+	[Microsoft.UI.Xaml.Data.Bindable]
 	public class DividerItem
 	{
 		public DividerItem(int i)

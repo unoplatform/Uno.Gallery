@@ -35,6 +35,7 @@ namespace Uno.Gallery.Views.Samples
 	}
 }
 
+[Microsoft.UI.Xaml.Data.Bindable]
 public class BarometerSamplePageViewModel : ViewModelBase
 {
 	private const string _startObservingContent = "Start observing barometer reading changes";

@@ -47,6 +47,7 @@ namespace Uno.Gallery.Views.SamplePages
 		}
 	}
 
+	[Microsoft.UI.Xaml.Data.Bindable]
 	public class TabBarViewModel : ViewModelBase
 	{
 		public List<string> Items { get; }
