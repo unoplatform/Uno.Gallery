@@ -1,0 +1,23 @@
+{
+  "name": "uno-gallery-playwright-tests",
+  "version": "1.0.0",
+  "description": "Playwright UI automated tests for Uno Gallery (WASM / Chrome)",
+  "scripts": {
+    "test": "playwright test",
+    "test:parallel": "playwright test --workers=4",
+    "test:headed": "playwright test --headed",
+    "test:headed:parallel": "playwright test --headed --workers=4",
+    "test:ui": "playwright test --ui",
+    "test:debug": "playwright test --debug",
+    "report": "playwright show-report",
+    "upload:testquality": "node testquality/upload-run-with-metadata.mjs --linked --xml results/playwright-results.xml",
+    "upload:testquality:linked": "node testquality/upload-run-with-metadata.mjs --linked --xml results/playwright-results.xml",
+    "upload:testquality:linked:by-folder": "node testquality/upload-linked-by-folder.mjs",
+    "upload:testquality:linked:by-folder:file": "node testquality/upload-linked-by-folder.mjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.50.0",
+    "@testquality/cli": "^1.2.10",
+    "typescript": "^5.9.3"
+  }
+}

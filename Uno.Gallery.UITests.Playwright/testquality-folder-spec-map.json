@@ -1,0 +1,42 @@
+[
+  {
+    "folderKey": 97,
+    "folderName": "00-aria-probe.spec",
+    "specFile": "tests/00-aria-probe.spec.ts"
+  },
+  {
+    "folderKey": 98,
+    "folderName": "Shell & Global Features",
+    "specFile": "tests/01-shell.spec.ts"
+  },
+  {
+    "folderKey": 99,
+    "folderName": "Theming",
+    "specFile": "tests/02-theming.spec.ts"
+  },
+  {
+    "folderKey": 100,
+    "folderName": "UI Components - Smoke Tests (page loads)",
+    "specFile": "tests/03-ui-components.spec.ts"
+  },
+  {
+    "folderKey": 101,
+    "folderName": "UI Features",
+    "specFile": "tests/04-ui-features.spec.ts"
+  },
+  {
+    "folderKey": 102,
+    "folderName": "Non-UI Features - Smoke Tests",
+    "specFile": "tests/05-non-ui-features.spec.ts"
+  },
+  {
+    "folderKey": 103,
+    "folderName": "Uno Toolkit",
+    "specFile": "tests/06-toolkit.spec.ts"
+  },
+  {
+    "folderKey": 104,
+    "folderName": "Community Toolkit - DataGrid",
+    "specFile": "tests/07-community-toolkit.spec.ts"
+  }
+]
