@@ -8,10 +8,12 @@ public class Program
     [STAThread]
     public static void Main(string[] args)
     {
+        var exit = args.Any(a => a == "--exit");
+
         App.InitializeLogging();
 
         var host = UnoPlatformHostBuilder.Create()
-            .App(() => new App())
+            .App(() => new App(exit))
             .UseX11()
             .UseLinuxFrameBuffer()
             .UseMacOS()

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -30,6 +31,7 @@ namespace Uno.Gallery
 
 		public string DocumentationLink { get; set; }
 
+		[DynamicallyAccessedMembers(Sample.ViewRequirements)]
 		public Type DataType { get; set; }
 
 		public SourceSdk Source { get; }

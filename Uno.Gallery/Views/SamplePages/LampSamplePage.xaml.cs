@@ -34,6 +34,7 @@ namespace Uno.Gallery.Views.Samples
 		}
 	}
 
+	[Microsoft.UI.Xaml.Data.Bindable]
 	public class LampSamplePageViewModel : ViewModelBase, IDisposable
 	{
 		private const string _enable = "Enable flashlight";

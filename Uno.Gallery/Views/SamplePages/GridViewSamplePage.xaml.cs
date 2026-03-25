@@ -24,6 +24,8 @@ namespace Uno.Gallery.Views.Samples
 			this.InitializeComponent();
 		}
 	}
+
+	[Microsoft.UI.Xaml.Data.Bindable]
 	public class GridViewSampleViewModel : ViewModelBase
 	{
 		public char[] Items { get => GetProperty<char[]>(); set => SetProperty(value); }
