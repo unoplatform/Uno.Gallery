@@ -63,10 +63,12 @@ steps:
 
   - powershell: |
       cat global.json
+    displayName: 'Print current global.json'
     condition: startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries')
 
   - powershell: |
       dotnet tool uninstall uno.nuget.updater.tool --tool-path $(Agent.TempDirectory)
+    displayName: 'Uninstall uno.nuget.updater.tool'
     condition: startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries')
 
   - pwsh: |

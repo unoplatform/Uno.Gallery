@@ -5,6 +5,7 @@ using static Uno.Gallery.Entities.Data.Plant;
 
 namespace Uno.Gallery.Entities.Data;
 
+[Microsoft.UI.Xaml.Data.Bindable]
 public class Plant : IComparable
 {
 	public Plant(

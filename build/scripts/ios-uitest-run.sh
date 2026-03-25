@@ -1,5 +1,5 @@
 #!/bin/bash
-set -euo pipefail
+set -euox pipefail
 IFS=$'\n\t'
 
 # Ensure this script has no BOM even if it ever gets committed with one again
