@@ -42,6 +42,7 @@ namespace Uno.Gallery.Entities.Data
 			}
 		}
 
+		[Microsoft.UI.Xaml.Data.Bindable]
 		public class SelectableData : InpcObject
 		{
 			public int Index { get => GetProperty<int>(); set => SetProperty(value); }
@@ -51,6 +52,7 @@ namespace Uno.Gallery.Entities.Data
 			public override string ToString() => $"Item #{Index}";
 		}
 
+		[Microsoft.UI.Xaml.Data.Bindable]
 		public class InpcObject : INotifyPropertyChanged
 		{
 			public event PropertyChangedEventHandler PropertyChanged;

@@ -17,6 +17,7 @@ namespace Uno.Gallery.Views.Samples
 		}
 	}
 
+	[Microsoft.UI.Xaml.Data.Bindable]
 	public class InfoBadgeSamplePageViewModel : ViewModelBase
 	{
 		public bool AreBadgesVisible { get => GetProperty<bool>(); set => SetProperty(value); }

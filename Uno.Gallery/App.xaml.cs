@@ -28,6 +28,8 @@ namespace Uno.Gallery
 	/// </summary>
 	public partial class App : Application
 	{
+		private readonly bool _exitAfterLaunching;
+
 		public static App Instance { get; private set; }
 
 		public Window MainWindow { get; private set; }
@@ -37,7 +39,13 @@ namespace Uno.Gallery
 		/// executed, and as such is the logical equivalent of main() or WinMain().
 		/// </summary>
 		public App()
+			: this(false)
 		{
+		}
+
+		public App(bool exitAfterLaunching)
+		{
+			_exitAfterLaunching = exitAfterLaunching;
 			Instance = this;
 
 			ConfigureFeatureFlags();
@@ -71,6 +79,11 @@ namespace Uno.Gallery
 
 			this.Log().Debug("Launched app.");
 			OnLaunchedOrActivated();
+
+			if (_exitAfterLaunching)
+			{
+				Exit();
+			}
 		}
 
 		private void OnLaunchedOrActivated()
@@ -486,7 +499,11 @@ namespace Uno.Gallery
 
 		private void ConfigureXamlDisplay()
 		{
+#if WINDOWS
 			XamlDisplay.Init(GetType().Assembly);
+#else   // !WINDOWS
+			XamlDictionary.Init();
+#endif  // WINDOWS
 		}
 
 		private void ConfigureFeatureFlags()
