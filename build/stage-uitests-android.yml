@@ -167,7 +167,7 @@
       ArtifactType: Container
 
 - job: Android_Tests_NativeAOT
-  displayName: 'Run Android+NativeAOT UI Tests'
+  displayName: 'Run Android+Skia+NativeAOT Instrumentation Test'
   dependsOn: Android_Tests_Build_NativeAOT
   timeoutInMinutes: 90
   variables:
@@ -203,23 +203,13 @@
         brew install coreutils
 
   - bash: |
-      export UNO_UITEST_ANDROIDAPK_BASEPATH=$(Pipeline.Workspace)/Android_UITest_NativeAOT
-      chmod +x $(build.sourcesdirectory)/build/scripts/android-uitest-run.sh
-      $(build.sourcesdirectory)/build/scripts/android-uitest-run.sh
-    displayName: 'Run Android+NativeAOT Tests'
+      export NAOT_APK_BASEPATH=$(Pipeline.Workspace)/Android_UITest_NativeAOT
+      chmod +x $(build.sourcesdirectory)/build/scripts/android-naot-instrumentation-run.sh
+      $(build.sourcesdirectory)/build/scripts/android-naot-instrumentation-run.sh
+    displayName: 'Run Android+Skia+NativeAOT Instrumentation Test'
     env:
       BUILD_SOURCESDIRECTORY: "$(build.sourcesdirectory)"
       BUILD_ARTIFACTSTAGINGDIRECTORY: "$(build.artifactstagingdirectory)"
-
-  - task: PublishTestResults@2
-    condition: always()
-    retryCountOnTaskFailure: 3
-    inputs:
-      testRunTitle: 'Android+NativeAOT Test Run'
-      testResultsFormat: 'NUnit'
-      testResultsFiles: '$(build.sourcesdirectory)/build/TestResult.xml'
-      failTaskOnFailedTests: true
-      failTaskOnMissingResultsFile: true
 
   - task: PublishBuildArtifacts@1
     condition: always()

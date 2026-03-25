@@ -46,15 +46,17 @@ cd $UNO_UITEST_ANDROID_PROJECT
 
 publish_extra=(-c Release)
 BINLOG_SUFFIX=""
+USE_NATIVE_RENDERING=true
 if [ "${NAOT:-0}" = "1" ]; then
-	# Build the sample with NativeAOT enabled
+	# Build the sample with Skia+NativeAOT enabled (no native rendering)
 	publish_extra+=("-m:1" "-p:SkiaPublishAot=true" "-p:ApplicationTitleVendorSuffix= (NAOT)" "-p:ApplicationIdVendorSuffix=.naot")
 	BINLOG_SUFFIX="-naot"
+	USE_NATIVE_RENDERING=false
 else
 	# Build the sample without NativeAOT
 	publish_extra+=("/p:AndroidUseAssemblyStore=false" "/p:RunAOTCompilation=false" "/p:PublishTrimmed=false" "/p:AndroidUseSharedRuntime=false")
 fi
 
-dotnet publish -f net10.0-android -p:TargetFrameworkOverride=net10.0-android -p:UseNativeRendering=true "${publish_extra[@]}" \
+dotnet publish -f net10.0-android -p:TargetFrameworkOverride=net10.0-android -p:UseNativeRendering=$USE_NATIVE_RENDERING "${publish_extra[@]}" \
 	/p:AndroidPackageFormat=apk /p:RuntimeIdentifier=android-x64 /p:IsUiAutomationMappingEnabled=true \
 	-bl:"$BUILD_ARTIFACTSTAGINGDIRECTORY/android-app${BINLOG_SUFFIX}.binlog"
