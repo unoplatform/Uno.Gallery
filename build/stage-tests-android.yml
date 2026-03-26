@@ -1,0 +1,103 @@
+jobs:
+- job: Android_NativeAOT_Instrumentation_Build
+  displayName: 'Build Android+Skia+NativeAOT Instrumentation APK'
+  timeoutInMinutes: 90
+  variables:
+    CI_Build: true
+    SourceLinkEnabled: false
+
+  pool:
+    vmImage: 'ubuntu-latest'
+
+  steps:
+  - checkout: self
+    clean: true
+    fetchDepth: 0
+    persistCredentials: true
+
+  - template: templates/dotnet-install-linux.yml
+    parameters:
+      UnoCheckParameters: '--tfm net10.0-android'
+
+  - template: templates/canary-updater.yml
+
+  - template: templates/host-cleanup-linux.yml
+
+  - bash: |
+      chmod +x $(build.sourcesdirectory)/build/scripts/android-uitest-build.sh
+      NAOT=1 USE_NATIVE_RENDERING=false $(build.sourcesdirectory)/build/scripts/android-uitest-build.sh
+    displayName: 'Build Android+Skia+NativeAOT APK'
+    env:
+      BUILD_SOURCESDIRECTORY: "$(build.sourcesdirectory)"
+      BUILD_ARTIFACTSTAGINGDIRECTORY: "$(build.artifactstagingdirectory)"
+
+  - bash: |
+      echo "Publish output:"
+      ls -la $(build.sourcesdirectory)/Uno.Gallery/bin/Release/net10.0-android/android-x64/publish || true
+      APK="$(ls $(build.sourcesdirectory)/Uno.Gallery/bin/Release/net10.0-android/android-x64/publish/*.apk | head -n 1 || true)"
+      if [ ! -f "$APK" ]; then
+        echo "ERROR: No APK produced (verify AndroidPackageFormat=apk)"; exit 1; fi
+    displayName: Sanity check NativeAOT APK
+
+  - task: CopyFiles@2
+    displayName: Copy Build Output
+    inputs:
+      SourceFolder: $(build.sourcesdirectory)/Uno.Gallery/bin/Release/net10.0-android/android-x64
+      Contents: '**/*.apk'
+      TargetFolder: $(Build.ArtifactStagingDirectory)
+
+  - publish: $(Build.ArtifactStagingDirectory)
+    artifact: Android_NativeAOT_Instrumentation
+
+- job: Android_NativeAOT_Instrumentation_Run
+  displayName: 'Run Android+Skia+NativeAOT Instrumentation Test'
+  dependsOn: Android_NativeAOT_Instrumentation_Build
+  timeoutInMinutes: 90
+  variables:
+    CI_Build: true
+    SourceLinkEnabled: false
+
+  pool:
+    vmImage: 'macos-14'
+
+  steps:
+  - checkout: self
+    clean: true
+    persistCredentials: true
+
+  - download: current
+    artifact: Android_NativeAOT_Instrumentation
+
+  - task: UseDotNet@2
+    displayName: 'Ensure .NET SDK 10.0.102 for canary'
+    condition: startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries')
+    inputs:
+      packageType: 'sdk'
+      version: '10.0.102'
+      includePreviewVersions: true
+
+  - template: templates/canary-updater.yml
+
+  - task: PowerShell@2
+    displayName: 'Install coreutils'
+    inputs:
+      targetType: inline
+      script: |
+        brew install coreutils
+
+  - bash: |
+      export NAOT_APK_BASEPATH=$(Pipeline.Workspace)/Android_NativeAOT_Instrumentation
+      chmod +x $(build.sourcesdirectory)/build/scripts/android-naot-instrumentation-run.sh
+      $(build.sourcesdirectory)/build/scripts/android-naot-instrumentation-run.sh
+    displayName: 'Run Android+Skia+NativeAOT Instrumentation Test'
+    env:
+      BUILD_SOURCESDIRECTORY: "$(build.sourcesdirectory)"
+      BUILD_ARTIFACTSTAGINGDIRECTORY: "$(build.artifactstagingdirectory)"
+
+  - task: PublishBuildArtifacts@1
+    condition: always()
+    retryCountOnTaskFailure: 3
+    inputs:
+      PathtoPublish: $(build.artifactstagingdirectory)
+      ArtifactName: uno-naot-instrumentation-tests
+      ArtifactType: Container
