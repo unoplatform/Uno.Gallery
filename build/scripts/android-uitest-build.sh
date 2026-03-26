@@ -46,12 +46,11 @@ cd $UNO_UITEST_ANDROID_PROJECT
 
 publish_extra=(-c Release)
 BINLOG_SUFFIX=""
-USE_NATIVE_RENDERING=true
+USE_NATIVE_RENDERING=${USE_NATIVE_RENDERING:-true}
 if [ "${NAOT:-0}" = "1" ]; then
-	# Build the sample with Skia+NativeAOT enabled (no native rendering)
+	# Build the sample with Skia+NativeAOT enabled
 	publish_extra+=("-m:1" "-p:SkiaPublishAot=true" "-p:ApplicationTitleVendorSuffix= (NAOT)" "-p:ApplicationIdVendorSuffix=.naot")
 	BINLOG_SUFFIX="-naot"
-	USE_NATIVE_RENDERING=false
 else
 	# Build the sample without NativeAOT
 	publish_extra+=("/p:AndroidUseAssemblyStore=false" "/p:RunAOTCompilation=false" "/p:PublishTrimmed=false" "/p:AndroidUseSharedRuntime=false")

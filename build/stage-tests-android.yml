@@ -25,7 +25,7 @@ jobs:
 
   - bash: |
       chmod +x $(build.sourcesdirectory)/build/scripts/android-uitest-build.sh
-      NAOT=1 $(build.sourcesdirectory)/build/scripts/android-uitest-build.sh
+      NAOT=1 USE_NATIVE_RENDERING=false $(build.sourcesdirectory)/build/scripts/android-uitest-build.sh
     displayName: 'Build Android+Skia+NativeAOT APK'
     env:
       BUILD_SOURCESDIRECTORY: "$(build.sourcesdirectory)"
