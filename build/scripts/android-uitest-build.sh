@@ -55,6 +55,13 @@ else
 	publish_extra+=("/p:AndroidUseAssemblyStore=false" "/p:RunAOTCompilation=false" "/p:PublishTrimmed=false" "/p:AndroidUseSharedRuntime=false")
 fi
 
-dotnet publish -f net10.0-android -p:TargetFrameworkOverride=net10.0-android -p:UseNativeRendering=true "${publish_extra[@]}" \
-	/p:AndroidPackageFormat=apk /p:RuntimeIdentifier=android-x64 /p:IsUiAutomationMappingEnabled=true \
+if [ "${SKIA:-0}" = "1" ]; then
+	publish_extra+=("-p:UseSkiaRendering=true")
+else
+	publish_extra+=("-p:UseNativeRendering=true" "/p:IsUiAutomationMappingEnabled=true")
+
+fi
+
+dotnet publish -f net10.0-android -p:TargetFrameworkOverride=net10.0-android "${publish_extra[@]}" \
+	/p:AndroidPackageFormat=apk /p:RuntimeIdentifier=android-x64 \
 	-bl:"$BUILD_ARTIFACTSTAGINGDIRECTORY/android-app${BINLOG_SUFFIX}.binlog"
