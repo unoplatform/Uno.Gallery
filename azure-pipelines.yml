@@ -251,6 +251,12 @@ stages:
   jobs:
   - template: build/stage-uitests-android.yml
 
+- stage: Android_Skia_NativeAOT_Instrumentation_Tests
+  displayName: 'Android+Skia+NativeAOT Instrumentation Tests'
+  dependsOn: []
+  jobs:
+  - template: build/stage-tests-android.yml
+
 - ${{ if startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries/dev') }}:
   - template: build/templates/canary-publish/stage-publish-wasm-canary.yml
   - template: build/templates/canary-publish/stage-publish-ios-canary.yml
