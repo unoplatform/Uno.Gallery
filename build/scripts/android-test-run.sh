@@ -23,7 +23,22 @@ export ANDROID_SIMULATOR_APILEVEL=34
 
 source "$BUILD_SOURCESDIRECTORY/build/scripts/android-sdk-emu.inc.sh"
 
-"$ANDROID_HOME/platform-tools/adb" install -r "$UNO_TEST_ANDROIDAPK_PATH"
+# Retry adb install — the emulator may be transiently unresponsive right after boot.
+adb_install_ok=false
+for i in 1 2 3; do
+	if "$ANDROID_HOME/platform-tools/adb" install -r "$UNO_TEST_ANDROIDAPK_PATH"; then
+		adb_install_ok=true
+		break
+	fi
+	if [ "$i" -lt 3 ]; then
+		echo "adb install failed (attempt $i/3), retrying in ${i}s..."
+		sleep "$i"
+	fi
+done
+if [ "$adb_install_ok" = false ]; then
+	echo "ERROR: adb install failed after 3 attempts."
+	exit 1
+fi
 
 package_name=$("$LATEST_CMDLINE_TOOLS_PATH/bin/apkanalyzer" manifest application-id "$UNO_TEST_ANDROIDAPK_PATH")
 

@@ -74,20 +74,40 @@ EMU_UPDATE_FILE="$HOME/.android/emu-update-last-check.ini"
 
 mkdir -p "$UNO_UITEST_SCREENSHOT_PATH"
 
+# Retry wrapper for sdkmanager --install to handle transient network/unzip failures.
+# Retries up to 3 times with increasing back-off (1s, 2s).
+sdkmanager_install() {
+	local max_attempts=3
+	local attempt=1
+	while (( attempt <= max_attempts )); do
+		if echo "y" | "$LATEST_CMDLINE_TOOLS_PATH/bin/sdkmanager" \
+			"--sdk_root=${ANDROID_HOME}" --install "$@" | tr '\r' '\n' | uniq; then
+			return 0
+		fi
+		if (( attempt < max_attempts )); then
+			echo "sdkmanager --install $* failed (attempt $attempt/$max_attempts), retrying in ${attempt}s..."
+			sleep "$attempt"
+		fi
+		((attempt++))
+	done
+	echo "sdkmanager --install $* failed after $max_attempts attempts"
+	return 1
+}
+
 install_android_sdk() {
 	SIMULATOR_APILEVEL="$1"
 
 	if [[ ! -f "$SDK_MGR_TOOLS_FLAG" ]]; then
 		touch "$SDK_MGR_TOOLS_FLAG"
 
-		echo "y" | "$LATEST_CMDLINE_TOOLS_PATH/bin/sdkmanager" "--sdk_root=${ANDROID_HOME}" --install 'tools'| tr '\r' '\n' | uniq
-		echo "y" | "$LATEST_CMDLINE_TOOLS_PATH/bin/sdkmanager" "--sdk_root=${ANDROID_HOME}" --install 'platform-tools'  | tr '\r' '\n' | uniq
-		echo "y" | "$LATEST_CMDLINE_TOOLS_PATH/bin/sdkmanager" "--sdk_root=${ANDROID_HOME}" --install 'build-tools;36.0.0' | tr '\r' '\n' | uniq
-		echo "y" | "$LATEST_CMDLINE_TOOLS_PATH/bin/sdkmanager" "--sdk_root=${ANDROID_HOME}" --install 'extras;android;m2repository' | tr '\r' '\n' | uniq
+		sdkmanager_install 'tools'
+		sdkmanager_install 'platform-tools'
+		sdkmanager_install 'build-tools;36.0.0'
+		sdkmanager_install 'extras;android;m2repository'
 	fi
 
-	echo "y" | "$LATEST_CMDLINE_TOOLS_PATH/bin/sdkmanager" "--sdk_root=${ANDROID_HOME}" --install "platforms;android-$SIMULATOR_APILEVEL" | tr '\r' '\n' | uniq
-	echo "y" | "$LATEST_CMDLINE_TOOLS_PATH/bin/sdkmanager" "--sdk_root=${ANDROID_HOME}" --install "system-images;android-$SIMULATOR_APILEVEL;google_apis_playstore;$ANDROID_SIMULATOR_ABI" | tr '\r' '\n' | uniq
+	sdkmanager_install "platforms;android-$SIMULATOR_APILEVEL"
+	sdkmanager_install "system-images;android-$SIMULATOR_APILEVEL;google_apis_playstore;$ANDROID_SIMULATOR_ABI"
 }
 
 if [[ ! -f "$EMU_UPDATE_FILE" ]]; then
@@ -102,7 +122,10 @@ if [[ -f "$AVD_CONFIG_FILE" ]]; then
 else
 	# Install AVD files
 	install_android_sdk "$ANDROID_SIMULATOR_APILEVEL"
-	install_android_sdk 36
+
+	# API-36 platform is needed for build-tools/apkanalyzer, but the full
+	# system image (~1.5 GB) is not used for the emulator — skip it.
+	sdkmanager_install "platforms;android-36"
 
 	if [[ -f "$ANDROID_HOME/platform-tools/platform-tools/adb" ]]; then
 		# It appears that the platform-tools 29.0.6 are extracting into an incorrect path
