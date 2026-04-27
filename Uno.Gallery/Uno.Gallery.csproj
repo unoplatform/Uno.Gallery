@@ -98,6 +98,7 @@
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" />
 		<PackageReference Include="Uno.Core.Extensions.Disposables" />
 		<PackageReference Include="Uno.Core.Extensions.Compatibility" />
+		<PackageReference Include="Uno.Core.Extensions.Logging.Singleton" />
 		<!--<PackageReference Include="SkiaSharp.Skottie" Condition="$(IsSkiaWasm) OR $(IsSkiaAndroid)" />-->
 	</ItemGroup>
 	<ItemGroup>

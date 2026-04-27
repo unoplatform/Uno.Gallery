@@ -22,6 +22,7 @@
 		<PackageVersion Include="Uno.CommunityToolkit.WinUI.UI.Controls.DataGrid" Version="7.1.200" />
 		<PackageVersion Include="Uno.Core.Extensions.Compatibility" Version="4.0.1" />
 		<PackageVersion Include="Uno.Core.Extensions.Disposables" Version="4.0.1" />
+		<PackageVersion Include="Uno.Core.Extensions.Logging.Singleton" Version="4.1.1" />
 		<PackageVersion Include="CommunityToolkit.WinUI.Lottie" Version="8.0.280225" />
 		<PackageVersion Include="CommunityToolkit.WinUI.UI.Controls" Version="7.1.2" />
 		<PackageVersion Include="CommunityToolkit.WinUI.UI.Controls.DataGrid" Version="7.1.2" />
@@ -33,7 +34,7 @@
 		<PackageVersion Include="Microsoft.TypeScript.Compiler" Version="3.1.5" />
 		<PackageVersion Include="Microsoft.TypeScript.MSBuild" Version="4.6.4" />
 		<PackageVersion Include="Microsoft.WindowsAppSDK" Version="1.8.260101001" />
-		<PackageVersion Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.28000.1-RTM" />
+		<PackageVersion Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.28000.1721" />
 		<PackageVersion Include="nventive.Nimue.Application.Packaging" Version="0.1.0-alpha.58" />
 		<PackageVersion Include="Xamarin.TestCloud.Agent" Version="0.23.2" />
 	</ItemGroup>
