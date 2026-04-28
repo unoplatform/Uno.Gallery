@@ -69,8 +69,10 @@ while [[ -z ${LAUNCHER_READY} ]]; do
     case $UI_FOCUS in
     *"Not Responding"*)
         echo "Detected an ANR! Dismissing..."
-        $ANDROID_HOME/platform-tools/adb shell input keyevent KEYCODE_DPAD_RIGHT
-        $ANDROID_HOME/platform-tools/adb shell input keyevent KEYCODE_ENTER
+        # Guard keyevent calls: adb can transiently return 255 when the
+        # emulator is still settling, and set -e would kill the script.
+        $ANDROID_HOME/platform-tools/adb shell input keyevent KEYCODE_DPAD_RIGHT || true
+        $ANDROID_HOME/platform-tools/adb shell input keyevent KEYCODE_ENTER || true
     ;;  
     *"Launcher"*)
         LAUNCHER_READY=true
@@ -86,17 +88,17 @@ while [[ -z ${LAUNCHER_READY} ]]; do
         # For some reason the messaging app can be brought up in front
         # (DEBUG) Current focus:   mCurrentFocus=Window{1170051 u0 com.google.android.apps.messaging/com.google.android.apps.messaging.ui.ConversationListActivity}
         # Try bringing back the home screen to check on the launcher.
-        $ANDROID_HOME/platform-tools/adb shell input keyevent KEYCODE_HOME
+        $ANDROID_HOME/platform-tools/adb shell input keyevent KEYCODE_HOME || true
     ;;
     esac
 done
 
 # Force terminate system UI to restart clean
-"$ANDROID_HOME/platform-tools/adb" shell am force-stop com.android.systemui
+"$ANDROID_HOME/platform-tools/adb" shell am force-stop com.android.systemui || true
 
-"$ANDROID_HOME/platform-tools/adb" shell settings put global animator_duration_scale 0
-"$ANDROID_HOME/platform-tools/adb" shell settings put global transition_animation_scale 0
-"$ANDROID_HOME/platform-tools/adb" shell settings put global window_animation_scale 0
+"$ANDROID_HOME/platform-tools/adb" shell settings put global animator_duration_scale 0 || true
+"$ANDROID_HOME/platform-tools/adb" shell settings put global transition_animation_scale 0 || true
+"$ANDROID_HOME/platform-tools/adb" shell settings put global window_animation_scale 0 || true
 
 echo "Launcher is ready!"
 
