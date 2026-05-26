@@ -11,6 +11,10 @@
       PRI257: Ignore default language (en) not being one of the included resources (eg en-us, en-uk)
     -->
 		<NoWarn>$(NoWarn);NU1507;NETSDK1201;PRI257</NoWarn>
+
+		<!-- TEMP: validate iOS managed-static-registrar regression on canary
+		     (SkiaSharp.Views.Windows.SKSwapChainPanel / MT0099). Remove after triage. -->
+		<SkiaSharpVersion>3.119.2</SkiaSharpVersion>
 	</PropertyGroup>
 
 </Project>
