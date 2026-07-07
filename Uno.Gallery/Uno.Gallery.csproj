@@ -121,6 +121,17 @@
 		<RuntimeIdentifier>ios-arm64</RuntimeIdentifier>
 	</PropertyGroup>
 
+	<!--
+	SkiaSharp 3.119.4 (pinned by Uno.Sdk dev) ships its iOS assets as net10.0-ios26.2, which cannot be
+	consumed when targeting iOS 26.1 or lower. NuGet then falls back to the platform-neutral net10.0
+	assembly, whose SKSwapChainPanel is not ObjC-registered, and the managed-static registrar fails with
+	MT0099 on native-rendering iOS Release builds. Override to a SkiaSharp version shipping iOS 26.0
+	assets until the Uno.Sdk moves off 3.119.4. See https://github.com/unoplatform/Uno.Gallery/issues/1253.
+	-->
+	<PropertyGroup Condition="'$(UseNativeRendering)'=='true' and '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'ios' and $(BUILD_SOURCEBRANCH.StartsWith('refs/heads/canaries'))">
+		<SkiaSharpVersion>4.148.0</SkiaSharpVersion>
+	</PropertyGroup>
+
 	<ItemGroup Condition=" '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'ios' ">
 		<TrimmerRootDescriptor Include="Platforms/iOS/LinkerConfig.xml"/>
 	</ItemGroup>
