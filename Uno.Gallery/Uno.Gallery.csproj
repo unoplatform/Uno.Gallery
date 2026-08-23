@@ -186,6 +186,9 @@
 		<ConfigFiles Include="Platforms\WebAssembly\tsconfig.json" />
 		
 		<WasmShellMonoEnvironment Include="MONO_GC_PARAMS" Value="soft-heap-limit=512m,nursery-size=64m,evacuation-threshold=66,major=marksweep" />
+
+		<!-- CommonServiceLocator 2.0.5's netcoreapp3.0 asset references System.Diagnostics.Debug 4.1.1.0 (old PCL facade, absent from .NET 10 AOT); keep it in interpreter mode. -->
+		<MonoRuntimeMixedModeExcludedAssembly Include="CommonServiceLocator" />
 	</ItemGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='Release' and '$(WasmShellMonoRuntimeExecutionMode)'=='InterpreterAndAOT'">
