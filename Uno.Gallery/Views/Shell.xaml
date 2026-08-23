@@ -556,6 +556,15 @@
 					</AutoSuggestBox>
 				</StackPanel>
 			</muxc:NavigationView.PaneHeader>
+			<muxc:NavigationView.PaneFooter>
+				<TextBlock x:Name="BuildIdentityLabel"
+						   AutomationProperties.AutomationId="BuildIdentityLabel"
+						   Margin="16,8"
+						   TextTrimming="CharacterEllipsis"
+						   IsTabStop="False"
+						   FontSize="11"
+						   Opacity="0.6" />
+			</muxc:NavigationView.PaneFooter>
 		</muxc:NavigationView>
 
 		<!-- Nested frame for samples that needs to be fullscreen -->

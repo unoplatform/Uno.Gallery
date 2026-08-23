@@ -56,6 +56,8 @@ public sealed partial class Shell : UserControl
 	{
 		SetDarkLightToggleInitialState();
 
+		BuildIdentityLabel.Text = BuildInfo.Label;
+
 #if (__IOS__ || __ANDROID__) && !NET6_0_OR_GREATER
 		this.Log().Debug("Loaded Shell.");
 		Uno.Gallery.Deeplinking.BranchService.Instance.SetIsAppReady();
