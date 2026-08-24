@@ -110,6 +110,25 @@
         https://storage.googleapis.com/chrome-for-testing-public  (binary ZIPs)
     No offline checksum verification is available from the official metadata API.
 
+    EXCLUSIVE EXECUTION — the script acquires a per-user Windows named mutex
+        Global\UnoGallery-WasmUITest-ChromeCache-<SID>
+    (where <SID> is the current user's Windows security identifier) for its
+    entire run before touching the shared Chrome cache.  A concurrent
+    invocation by the same user fails immediately with an actionable message
+    rather than corrupting the cache or producing spurious 'session not created'
+    Selenium failures.  Different OS users each hold their own lock and never
+    contend with each other.  If a previous run crashed, PowerShell abandons
+    the mutex automatically on process exit; the next invocation recovers it
+    and logs a warning.
+
+    TARGETED PROCESS CLEANUP — stale chrome.exe / chromedriver.exe processes
+    left by a prior crash are stopped by exact PID before tests start and
+    again after tests finish.  Identification is path-based: only processes
+    whose full executable path begins with the script-managed cache root
+    ($env:LOCALAPPDATA\uno-uitest-chrome\) are stopped.  System or user Chrome
+    instances at any other path are never touched.  Stop-Process -Name and
+    taskkill by image name are not used.
+
     IMPORTANT — execute this script with pwsh -File; do NOT dot-source it.
     The script sets environment variables that are intentionally process-local
     so they do not leak back into the calling shell:
@@ -194,6 +213,133 @@ Write-Host "  Artifacts     : $ArtifactPath"
 if ($TestFilter) { Write-Host "  Filter        : $TestFilter" }
 
 # ============================================================
+# 2b. Browser-cache root (resolved unconditionally so the lock,
+#     the pre/post-run cleanup, and the download step all use
+#     the same path regardless of whether a download is needed).
+# ============================================================
+if (-not $env:LOCALAPPDATA) {
+    Write-Error ('$env:LOCALAPPDATA is not set or is empty. ' +
+                 'This variable is required to locate the Chrome-for-Testing cache directory. ' +
+                 'Ensure the script runs in a user session with a valid LOCALAPPDATA path.') -ErrorAction Continue
+    exit 1
+}
+$CacheRoot = Join-Path $env:LOCALAPPDATA 'uno-uitest-chrome'
+
+# ============================================================
+# Helper — stop chrome.exe / chromedriver.exe whose full
+# executable path begins under the script-managed cache root.
+# Process identification is strictly path-based; processes at
+# other locations (system or user browser installs) are never
+# stopped.  Stop-Process -Name and taskkill by image name are
+# intentionally avoided.
+# ============================================================
+function Stop-CachedBrowserProcess {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory)]
+        [string] $CacheRoot,
+        [string] $Label = 'stale'
+    )
+
+    # Canonical prefix with a trailing separator for a reliable StartsWith check.
+    $resolvedRoot = [System.IO.Path]::GetFullPath($CacheRoot)
+    if (-not $resolvedRoot.EndsWith('\')) { $resolvedRoot += '\' }
+
+    $stopped = 0
+    foreach ($proc in (Get-Process -ErrorAction SilentlyContinue)) {
+        # Pre-filter by executable name to skip the expensive path reads for
+        # the vast majority of running processes.
+        if ($proc.Name -notin @('chrome', 'chromedriver')) { continue }
+
+        $exePath = $null
+        try {
+            # Works for same-bitness, same-user processes we have read access to.
+            $exePath = $proc.MainModule.FileName
+        }
+        catch {
+            # Access-denied is common for sandboxed/child processes; fall back to CIM.
+            try {
+                $cim = Get-CimInstance -ClassName Win32_Process `
+                    -Filter "ProcessId = $($proc.Id)" `
+                    -Property ExecutablePath `
+                    -ErrorAction Stop
+                $exePath = $cim.ExecutablePath
+            }
+            catch {
+                # Cannot determine path (process may have already exited); skip.
+            }
+        }
+
+        if (-not $exePath) { continue }
+
+        # Normalise the path before comparison: collapses relative segments
+        # and standardises separators so path representations compare correctly.
+        try { $exePath = [System.IO.Path]::GetFullPath($exePath) }
+        catch { continue }   # Malformed path; cannot compare safely.
+
+        if ($exePath.StartsWith($resolvedRoot, [System.StringComparison]::OrdinalIgnoreCase)) {
+            Write-Host "  Stopping $Label PID $($proc.Id): $exePath" -ForegroundColor Yellow
+            Stop-Process -Id $proc.Id -Force -ErrorAction SilentlyContinue
+            $stopped++
+        }
+    }
+
+    if ($stopped -gt 0) {
+        Write-Host "  Stopped $stopped $Label cached-browser process(es)." -ForegroundColor Yellow
+    }
+    else {
+        Write-Host "  No $Label cached-browser processes found under cache root."
+    }
+}
+
+# ============================================================
+# 2c. Acquire an exclusive named mutex for the full script run.
+#     Two concurrent invocations by the same OS user share the
+#     same cache root and would race to clean/launch the cached
+#     browser; this lock prevents that.  The mutex name is
+#     suffixed with the current user's Windows SID so the lock
+#     protects the same per-user cache across sessions without
+#     blocking other users.  The try/finally below wraps
+#     sections 3-6 and releases the mutex in all exit paths.
+# ============================================================
+$currentUserSid = $null
+try {
+    $currentUserSid = ([System.Security.Principal.WindowsIdentity]::GetCurrent()).User.Value
+}
+catch {
+    Write-Error ("Cannot resolve current user SID: $_`n" +
+                 "A stable SID is required to construct a per-user mutex name. " +
+                 "Ensure the script runs in a valid Windows user context.") -ErrorAction Continue
+    exit 1
+}
+$cacheLockName  = "Global\UnoGallery-WasmUITest-ChromeCache-$currentUserSid"
+$cacheLock      = [System.Threading.Mutex]::new($false, $cacheLockName)
+$cacheLockOwned = $false
+
+try {
+    try   { $cacheLockOwned = $cacheLock.WaitOne(0) }
+    catch [System.Threading.AbandonedMutexException] {
+        # The previous holder crashed; .NET automatically grants us ownership.
+        $cacheLockOwned = $true
+        Write-Host ('  WARNING: recovered abandoned lock — previous run may have crashed ' +
+                    'without releasing the mutex.') -ForegroundColor Yellow
+    }
+
+    if (-not $cacheLockOwned) {
+        $lockMsg  = "EXCLUSIVE LOCK UNAVAILABLE: another instance of"
+        $lockMsg += " wasm-uitest-run-windows.ps1 is already running`n"
+        $lockMsg += "and holds the Chrome-cache lock.`n`n"
+        $lockMsg += "  Mutex : $cacheLockName`n"
+        $lockMsg += "  Cache : $CacheRoot`n`n"
+        $lockMsg += "Wait for the other run to finish.  If it has crashed, the mutex is`n"
+        $lockMsg += "released automatically when its pwsh process exits — wait for that`n"
+        $lockMsg += "process to exit (or terminate it), then re-run this script."
+        Write-Error $lockMsg -ErrorAction Continue
+        exit 1
+    }
+    Write-Host "  Exclusive lock acquired ($cacheLockName)." -ForegroundColor Green
+
+# ============================================================
 # 3. Resolve Chrome for Testing binaries
 #    Honour pre-set env vars; download only the missing piece(s).
 # ============================================================
@@ -203,7 +349,6 @@ $ChromeBinaryPath = $env:UNO_UITEST_CHROME_BINARY_PATH
 if (-not $ChromeDriverDir -or -not $ChromeBinaryPath) {
     Write-Host "`n--- Chrome for Testing: resolving from official JSON ---" -ForegroundColor Yellow
 
-    $CacheRoot  = Join-Path $env:LOCALAPPDATA 'uno-uitest-chrome'
     $CftJsonUri = 'https://googlechromelabs.github.io/chrome-for-testing/last-known-good-versions-with-downloads.json'
 
     Write-Host "  Querying: $CftJsonUri"
@@ -314,6 +459,13 @@ else {
 
 Write-Host "  ChromeDriver dir : $ChromeDriverDir"
 Write-Host "  Chrome binary    : $ChromeBinaryPath"
+
+# ============================================================
+# 3b. Pre-run: stop stale cached-browser processes left by a
+#     prior crash, before the tests spin up new ones.
+# ============================================================
+Write-Host "`n--- Pre-run: stopping stale cached-browser processes ---" -ForegroundColor Yellow
+Stop-CachedBrowserProcess -CacheRoot $CacheRoot -Label 'stale (pre-run)'
 
 # ============================================================
 # 4. Export Uno UITest environment variables
@@ -451,6 +603,31 @@ finally {
         Stop-Process -Id $serverProcess.Id -Force -ErrorAction SilentlyContinue
         Write-Host "  Server stopped."
     }
+
+    # Post-run: stop cached-browser processes leaked by this test run.
+    # Wrapped in try/catch so any cleanup exception is surfaced as a warning
+    # without masking the original test failure or its exit code.
+    Write-Host "`n--- Post-run: stopping leaked cached-browser processes ---" -ForegroundColor Yellow
+    try {
+        Stop-CachedBrowserProcess -CacheRoot $CacheRoot -Label 'leaked (post-run)'
+    }
+    catch {
+        Write-Host "  WARNING: post-run cleanup threw an exception: $_" -ForegroundColor Yellow
+    }
+}
+
+}   # end of outer mutex try (section 2c)
+finally {
+    # Release the exclusive Chrome-cache lock in all exit paths.
+    # ReleaseMutex and Dispose are each individually wrapped so neither
+    # can mask the other or any in-flight exception from the protected body.
+    if ($cacheLockOwned) {
+        try   { $cacheLock.ReleaseMutex() }
+        catch { Write-Host "  WARNING: mutex release failed: $_" -ForegroundColor Yellow }
+        Write-Host "`n--- Exclusive lock released. ---" -ForegroundColor DarkGray
+    }
+    try   { $cacheLock.Dispose() }
+    catch { Write-Host "  WARNING: mutex dispose failed: $_" -ForegroundColor Yellow }
 }
 
 # ============================================================
