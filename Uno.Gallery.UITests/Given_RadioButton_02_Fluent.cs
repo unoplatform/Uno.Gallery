@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,15 +15,8 @@ namespace Uno.Gallery.UITests
 		/* This one is used to test the Unchecked option which we have in fluent */
 
 		[Test]
-		[Ignore("Failing in CI")]
 		public void WhenRadioButtonFluentClick_01_Unchecked()
 		{
-			if (AppInitializer.GetLocalPlatform() == Platform.Browser)
-			{
-				// The entered text fails to show more than one character
-				Assert.Ignore("Randomly not passing on Wasm");
-			}
-
 			NavigateToSample("RadioButton", "Fluent");
 
 			var fluentUncheckRadioButton = new QueryEx(x => x.All().Marked("RadioButton_Fluent_Unchecked"));

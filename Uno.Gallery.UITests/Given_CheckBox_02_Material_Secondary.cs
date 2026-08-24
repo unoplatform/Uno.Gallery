@@ -9,7 +9,7 @@ using Uno.UITests.Helpers;
 
 namespace Uno.Gallery.UITests
 {
-	[Ignore("WIP: M3 Migration")]
+	[Ignore("M3 Migration: the Material Secondary checkbox sample elements (Material_Secondary_Unchecked, Material_Secondary_Checked, etc.) are not yet present in the M3-updated CheckBox sample page — their x:Name markers are missing so every test in this class will fail to locate the controls. https://github.com/unoplatform/Uno.Gallery/issues/1117 | review-date: 2026-11-23")]
 	public class Given_CheckBox_02_Material_Secondary : TestBase
 	{		    
         /*This function is to test the Unchecked option  in checkbox for material Secondary. */        
