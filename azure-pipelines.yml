@@ -49,6 +49,23 @@ variables:
   AotCompileMaxDegreeOfParallelism: 3
 
 stages:
+- stage: Validation
+  displayName: 'Validation'
+  dependsOn: []
+  jobs:
+  - job: Lint_Test_Ignores
+    displayName: 'Lint ignored tests'
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+    - checkout: self
+      clean: true
+    - task: PowerShell@2
+      displayName: 'Lint: ignored-test tracking policy'
+      inputs:
+        filePath: 'build/scripts/lint-test-ignores.ps1'
+        pwsh: true
+
 - stage: Android
   displayName: 'Android'
   dependsOn: []
