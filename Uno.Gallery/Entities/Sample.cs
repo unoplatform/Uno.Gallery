@@ -18,6 +18,16 @@ namespace Uno.Gallery
 			  DynamicallyAccessedMemberTypes.PublicConstructors
 			| DynamicallyAccessedMemberTypes.PublicProperties;
 
+		// Sentinel object: distinguishes "not yet created" from a cached null/failure result.
+		private static readonly object _noData = new();
+
+		[DynamicallyAccessedMembers(ViewRequirements)]
+		private readonly Type? _dataType;
+
+		// Access is UI-thread-only (driven by the XAML binding engine), so no lock or volatile is needed.
+		// Starts as _noData for DataType-backed samples; null for no-data samples (fast path).
+		private object? _data;
+
 		public Sample(SamplePageAttribute attribute, [DynamicallyAccessedMembers(ViewRequirements)] Type viewType)
 		{
 			Category = attribute.Category;
@@ -30,7 +40,8 @@ namespace Uno.Gallery
 			}
 
 			ViewType = viewType;
-			Data = CreateData(attribute.DataType);
+			_dataType = attribute.DataType;
+			_data = _dataType is null ? null : _noData;
 			Source = attribute.Source;
 			SortOrder = attribute.SortOrder;
 		}
@@ -60,7 +71,22 @@ namespace Uno.Gallery
 
 		public Uri DocumentationLink { get; }
 
-		public object? Data { get; }
+		/// <summary>
+		/// Lazily-constructed instance of <see cref="SamplePageAttribute.DataType"/>.
+		/// Created on first access and cached afterwards (including a null result on failure).
+		/// Repeated accesses return the same cached reference; no-data samples always return null cheaply.
+		/// </summary>
+		public object? Data
+		{
+			get
+			{
+				if (ReferenceEquals(_data, _noData))
+				{
+					_data = CreateData(_dataType);
+				}
+				return _data;
+			}
+		}
 
 		public int? SortOrder { get; }
 
