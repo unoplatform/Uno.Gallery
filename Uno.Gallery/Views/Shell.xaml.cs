@@ -14,11 +14,11 @@ public sealed partial class Shell : UserControl
 {
 	private const string NoSuggestionsFoundText = "No suggestions found";
 
-	private static IEnumerable<Sample> SearchSamples(string query)
-		=> App.GetSamples()
-			.OrderByDescending(x => x.SortOrder.HasValue)
-			.ThenBy(x => x.SortOrder)
-			.ThenBy(x => x.Title)
+	/// <summary>Window-scoped sorted sample catalog. Assigned once by <see cref="App"/>.<c>BuildShell</c>.</summary>
+	internal IReadOnlyList<Sample> Samples { get; init; } = Array.Empty<Sample>();
+
+	private IEnumerable<Sample> SearchSamples(string query)
+		=> Samples
 			.Where(sample => query.ToLower().Split(" ").All(key => sample.Title.Contains(key, StringComparison.OrdinalIgnoreCase)));
 
 	public Shell()

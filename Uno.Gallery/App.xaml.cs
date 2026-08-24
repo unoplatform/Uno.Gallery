@@ -219,11 +219,17 @@ namespace Uno.Gallery
 
 		private Shell BuildShell()
 		{
-			var shell = new Shell();
+			var sortedSamples = GetSamples()
+				.OrderByDescending(x => x.SortOrder.HasValue)
+				.ThenBy(x => x.SortOrder)
+				.ThenBy(x => x.Title)
+				.ToArray();
+
+			var shell = new Shell { Samples = sortedSamples };
 			AutomationProperties.SetAutomationId(shell, "AppShell");
 			shell.RegisterPropertyChangedCallback(Shell.CurrentSampleBackdoorProperty, OnCurrentSampleBackdoorChanged);
 			var nv = shell.NavigationView;
-			AddNavigationItems(nv);
+			AddNavigationItems(nv, sortedSamples);
 #if __WASM__
 			if (!IsThereSampleFilteredByArgs(shell, nv))
 #endif
@@ -303,7 +309,7 @@ namespace Uno.Gallery
 			var title = backdoorParts.FirstOrDefault();
 			var designName = backdoorParts.Length > 1 ? backdoorParts[1] : string.Empty;
 
-			var sample = GetSamples()
+			var sample = shell.Samples
 				.FirstOrDefault(x => string.Equals(x.Title, title, StringComparison.OrdinalIgnoreCase));
 
 			if (sample == null)
@@ -332,12 +338,9 @@ namespace Uno.Gallery
 			}
 		}
 
-		private void AddNavigationItems(MUXC.NavigationView nv)
+		private void AddNavigationItems(MUXC.NavigationView nv, IReadOnlyList<Sample> samples)
 		{
-			var categories = GetSamples()
-				.OrderByDescending(x => x.SortOrder.HasValue)
-				.ThenBy(x => x.SortOrder)
-				.ThenBy(x => x.Title)
+			var categories = samples
 				.Where(x =>
 #if AOT_PROFILE_GEN || IS_CANARY_BUILD || DEBUG
 					true
@@ -401,7 +404,7 @@ namespace Uno.Gallery
 		internal async Task NavigateToAllPages()
 		{
 			var shell = GetWindowShell(MainWindow);
-			var samples = GetSamples();
+			var samples = shell.Samples;
 
 			foreach (var sample in samples)
 			{
