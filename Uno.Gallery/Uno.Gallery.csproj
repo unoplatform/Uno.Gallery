@@ -134,12 +134,14 @@
 
 	<PropertyGroup Condition=" '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'browserwasm' ">
 		<WasmShellWebAppBasePath>/</WasmShellWebAppBasePath>
+		<!-- Opt-in: pass -p:EnableWasmProfiling=true at publish time to enable emcc profiling and disable post-link stripping. -->
+		<EnableWasmProfiling Condition="'$(EnableWasmProfiling)'==''">false</EnableWasmProfiling>
 	</PropertyGroup>
 
 	<PropertyGroup Condition=" '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'browserwasm' AND '$(Configuration)' == 'Release' ">
 		<WasmShellMonoRuntimeExecutionMode>InterpreterAndAOT</WasmShellMonoRuntimeExecutionMode>
-		<WasmShellEmccLinkOptimization>false</WasmShellEmccLinkOptimization>
-		<WasmShellEnableEmccProfiling>true</WasmShellEnableEmccProfiling>
+		<!-- Production disables emcc profiling/name data and strips native debug data post-link; -p:EnableWasmProfiling=true retains profiling information. -->
+		<WasmShellEnableEmccProfiling>$(EnableWasmProfiling)</WasmShellEnableEmccProfiling>
 		<!-- <UnoXamlResourcesTrimming>true</UnoXamlResourcesTrimming> -->
 
 		<!--
@@ -222,9 +224,13 @@
 
 	<Target Name="AdjustStrip" BeforeTargets="_WasmCommonPrepareForWasmBuildNative">
 		<PropertyGroup>
-			<!-- Enable debug symbols for release mode to profiling -->
-			<WasmNativeStrip>false</WasmNativeStrip>
+			<!-- Debug-symbol generation stays enabled: nodebug AOT fails on current net6/net8 dependencies. -->
 			<WasmNativeDebugSymbols>true</WasmNativeDebugSymbols>
+			<!-- Release strips final native debug data from the output binary for a leaner artifact. -->
+			<!-- Stripping is disabled in Release when profiling so symbolicated stacks remain usable. -->
+			<!-- Pass -p:EnableWasmProfiling=true to disable stripping (no source change needed). -->
+			<WasmNativeStrip Condition="'$(Configuration)'=='Release'">true</WasmNativeStrip>
+			<WasmNativeStrip Condition="'$(Configuration)'=='Release' AND '$(EnableWasmProfiling)'=='true'">false</WasmNativeStrip>
 		</PropertyGroup>
 	</Target>
 
