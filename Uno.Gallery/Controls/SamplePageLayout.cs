@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Uno.Disposables;
 using Uno.Extensions;
 using Uno.Gallery.Helpers;
+using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -73,6 +74,11 @@ namespace Uno.Gallery
 		private ScrollViewer _scrollViewer;
 		private FrameworkElement _scrollingContent;
 
+#if __IOS__ || __ANDROID__
+		private DataTransferManager? _shareManager;
+		private Sample? _shareSample;
+#endif
+
 		private readonly SerialDisposable _subscriptions = new SerialDisposable();
 
 		public SamplePageLayout()
@@ -90,7 +96,7 @@ namespace Uno.Gallery
 
 #if __IOS__ || __ANDROID__
 					IsFooterVisible = true;
-					IsShareVisible = true;
+					IsShareVisible = DataTransferManager.IsSupported();
 #else
 					IsFooterVisible = sample.DocumentationLink != null;
 					IsShareVisible = false;
@@ -170,11 +176,57 @@ namespace Uno.Gallery
 
 		private void OnShareClicked(Hyperlink sender, HyperlinkClickEventArgs args)
 		{
-#if (__IOS__ || __ANDROID__) && !NET6_0_OR_GREATER
-			var sample = DataContext as Sample;
-			_ = Deeplinking.BranchService.Instance.ShareSample(sample, _design);
+#if __IOS__ || __ANDROID__
+			if (DataContext is not Sample sample || !DataTransferManager.IsSupported())
+			{
+				return;
+			}
+
+			var manager = DataTransferManager.GetForCurrentView();
+			if (_shareManager != null)
+			{
+				_shareManager.DataRequested -= OnShareDataRequested;
+			}
+
+			_shareManager = manager;
+			_shareSample = sample;
+			manager.DataRequested += OnShareDataRequested;
+
+			try
+			{
+				DataTransferManager.ShowShareUI();
+			}
+			catch
+			{
+				manager.DataRequested -= OnShareDataRequested;
+				_shareManager = null;
+				_shareSample = null;
+				throw;
+			}
 #endif
 		}
+
+#if __IOS__ || __ANDROID__
+		private void OnShareDataRequested(DataTransferManager sender, DataRequestedEventArgs e)
+		{
+			sender.DataRequested -= OnShareDataRequested;
+			var sample = _shareSample;
+			_shareManager = null;
+			_shareSample = null;
+
+			var shareUri = GetShareUri(sample?.Title ?? string.Empty);
+			e.Request.Data.Properties.Title = sample?.Title ?? "Uno Gallery";
+			e.Request.Data.Properties.Description = "Check out this control in Uno Gallery";
+			e.Request.Data.SetText(shareUri);
+			e.Request.Data.SetWebLink(new Uri(shareUri));
+		}
+#endif
+
+		/// <summary>
+		/// Returns a deep-link URL for the given sample title using the gallery hash-fragment convention.
+		/// </summary>
+		internal static string GetShareUri(string sampleTitle)
+			=> "https://gallery.platform.uno/#" + Uri.EscapeDataString(sampleTitle);
 
 		/// <summary>
 		/// Changes the preferred design.

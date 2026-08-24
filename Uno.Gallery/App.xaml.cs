@@ -118,37 +118,6 @@ namespace Uno.Gallery
 		private Shell GetWindowShell(Window window) =>
 			window.Content as Shell ?? throw new InvalidOperationException("Window content is not a Shell.");
 
-		/// <summary>
-		/// This method is invoked from JavaScript within the branch.js file.
-		/// </summary>
-		/// <param name="title"></param>
-		/// <param name="design"></param>
-		public static void TryNavigateToLaunchSample(string title, string design)
-		{
-			const string UndefinedValue = "undefined";
-
-			if (!HasValue(title))
-			{
-				return;
-			}
-
-			var sample = GetSamples().FirstOrDefault(s => s.ViewType.Name.ToLowerInvariant() == title.ToLowerInvariant());
-			if (sample != null)
-			{
-				if (HasValue(design) && Enum.TryParse<Design>(design, out var designType))
-				{
-					SamplePageLayout.SetPreferredDesign(designType);
-				}
-
-				var shell = App.Instance.GetWindowShell(App.Instance.MainWindow);
-				(Application.Current as App)?.ShellNavigateTo(shell, sample);
-			}
-
-			bool HasValue(string val) =>
-				!string.IsNullOrWhiteSpace(val) && !string.Equals(UndefinedValue, val, StringComparison.OrdinalIgnoreCase);
-
-		}
-
 #if !WINDOWS
 		/// <summary>
 		/// Invoked when application execution is being suspended. Application state is saved
@@ -280,23 +249,45 @@ namespace Uno.Gallery
 			var argumentsHash = Wasm.FragmentNavigationHandler.CurrentFragment;
 			if (argumentsHash.Contains("#"))
 			{
-				string searchTerm = (argumentsHash + string.Empty).Replace("#", string.Empty);
+				var rawFragment = (argumentsHash + string.Empty).Replace("#", string.Empty);
+				var searchTerm = Uri.UnescapeDataString(rawFragment);
 
+				if (string.IsNullOrWhiteSpace(searchTerm))
+				{
+					return false;
+				}
+
+				MUXC.NavigationViewItem? sampleItem = null;
+
+				// 1. Try exact title match first (supports percent-encoded multi-word titles)
 				foreach (MUXC.NavigationViewItem item in nv.MenuItems)
 				{
-					MUXC.NavigationViewItem? sampleItem = item.MenuItems
+					sampleItem = item.MenuItems
 						.Cast<MUXC.NavigationViewItem>()
-						.FirstOrDefault(i => i.Content?.ToString()?.Contains(searchTerm, StringComparison.InvariantCultureIgnoreCase) == true);
+						.FirstOrDefault(i => string.Equals(i.Content?.ToString(), searchTerm, StringComparison.OrdinalIgnoreCase));
+					if (sampleItem != null) break;
+				}
 
-					if (sampleItem != null)
+				// 2. Fall back to case-insensitive Contains for backwards compatibility
+				if (sampleItem == null)
+				{
+					foreach (MUXC.NavigationViewItem item in nv.MenuItems)
 					{
-						ShellNavigateTo(
-							shell,
-							(Uno.Gallery.Sample)sampleItem.DataContext
-							, trySynchronizeCurrentItem: false
-						);
-						return true;
+						sampleItem = item.MenuItems
+							.Cast<MUXC.NavigationViewItem>()
+							.FirstOrDefault(i => i.Content?.ToString()?.Contains(searchTerm, StringComparison.InvariantCultureIgnoreCase) == true);
+						if (sampleItem != null) break;
 					}
+				}
+
+				if (sampleItem != null)
+				{
+					ShellNavigateTo(
+						shell,
+						(Uno.Gallery.Sample)sampleItem.DataContext
+						, trySynchronizeCurrentItem: false
+					);
+					return true;
 				}
 				//If there is a Hash that is not valid, redirect it to the root of the site.
 				Wasm.LocationHrefNavigationHandler.CurrentLocationHref = "/";
