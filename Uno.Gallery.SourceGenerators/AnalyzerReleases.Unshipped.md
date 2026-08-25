@@ -6,3 +6,7 @@ UGG0001 | SamplesGenerator | Error | Unexpected SamplePageAttribute constructor 
 UGG0002 | SamplesGenerator | Error | SamplePageAttribute applied to non-class target
 UGG0003 | SamplesGenerator | Error | Unexpected SampleConditionalAttribute constructor shape
 UGG0004 | SamplesGenerator | Warning | Duplicate sample title in generated catalog
+UGG0005 | SamplesGenerator | Error | Invalid explicit slug (not lowercase ASCII alphanumeric with interior hyphens only)
+UGG0006 | SamplesGenerator | Warning | Duplicate final slug (case-insensitive); both samples emit
+UGG0007 | SamplesGenerator | Warning | RelatedSamples entry references an unknown final slug (ordinal match required)
+UGG0008 | SamplesGenerator | Error | Null or empty element in metadata string array (Tags, RelatedSamples)

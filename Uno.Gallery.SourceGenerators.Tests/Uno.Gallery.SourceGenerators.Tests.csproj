@@ -18,7 +18,9 @@
 		<!-- Reference the generator to instantiate SamplesGenerator in driver tests.
 		     ReferenceOutputAssembly=true (default) exposes its public/internal types;
 		     we do NOT set OutputItemType=Analyzer here — tests drive the generator via
-		     CSharpGeneratorDriver, not through the MSBuild compilation pipeline. -->
+		     CSharpGeneratorDriver, not through the MSBuild compilation pipeline.
+		     InternalsVisibleTo on the generator grants access to internal types including
+		     SlugHelper and IsValidSlugPublicForTest. -->
 		<ProjectReference Include="..\Uno.Gallery.SourceGenerators\Uno.Gallery.SourceGenerators.csproj" />
 	</ItemGroup>
 

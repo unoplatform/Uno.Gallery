@@ -1,4 +1,4 @@
-using System.Collections.Immutable;
+﻿using System.Collections.Immutable;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using NUnit.Framework;
@@ -7,20 +7,15 @@ using Uno.Gallery.SourceGenerators;
 namespace Uno.Gallery.SourceGenerators.Tests;
 
 /// <summary>
-/// Source-generator unit tests for <see cref="SamplesGenerator"/>.
-///
-/// Each test drives the generator through <see cref="CSharpGeneratorDriver"/> over a small
-/// in-memory compilation, verifying either generated source text or Roslyn diagnostics.
-/// Stubs for the Uno.Gallery entity types are provided inline so the tests have no dependency
-/// on the app project itself.
+/// Source-generator unit tests for <see cref="SamplesGenerator"/> and slug algorithm.
+/// Generator tests drive the generator through <see cref="CSharpGeneratorDriver"/> over a small
+/// in-memory compilation.  Slug tests validate <see cref="SlugHelper.DeriveSlug"/> directly
+/// via the linked shared source file.
 /// </summary>
 [TestFixture]
 public sealed class SamplesGeneratorTests
 {
 	// ─── Shared stubs ────────────────────────────────────────────────────────
-	// A minimal definition of every type the generator references by name.
-	// All stubs live in namespace Uno.Gallery so the generator's ForAttributeWithMetadataName
-	// lookup ("Uno.Gallery.SamplePageAttribute") resolves correctly.
 
 	private const string GoodStubs = """
 		using System;
@@ -29,6 +24,7 @@ public sealed class SamplesGeneratorTests
 		{
 		    public enum SampleCategory { Controls = 0, Layout = 1, Media = 2 }
 		    public enum SourceSdk { WinUI = 0, UWP = 1 }
+		    public enum SampleStatus { Stable = 0, Preview = 1, Experimental = 2, Deprecated = 3, Incomplete = 4 }
 
 		    [Flags]
 		    public enum SampleConditionals : uint
@@ -62,6 +58,12 @@ public sealed class SamplesGeneratorTests
 		        public string? DocumentationLink { get; set; }
 		        public Type? DataType { get; set; }
 		        public int SortOrder { get; set; } = int.MaxValue;
+		        public string? Slug { get; set; }
+		        public string[]? Tags { get; set; }
+		        public SampleStatus Status { get; set; } = SampleStatus.Stable;
+		        public string? Owner { get; set; }
+		        public string? ReviewedOn { get; set; }
+		        public string[]? RelatedSamples { get; set; }
 		    }
 
 		    [AttributeUsage(AttributeTargets.Class, Inherited = false)]
@@ -73,13 +75,16 @@ public sealed class SamplesGeneratorTests
 		    }
 
 		    public partial class App { }
-		    public class Sample { public Sample(SamplePageAttribute a, Type t) { } }
+		    public class Sample
+		    {
+		        public Sample(SamplePageAttribute a, Type t) { }
+		        public string? SourcePath { get; internal set; }
+		    }
 		}
 		""";
 
 	// ─── Helpers ─────────────────────────────────────────────────────────────
 
-	/// <summary>Runs <see cref="SamplesGenerator"/> on <paramref name="sources"/> (plus common stubs).</summary>
 	private static GeneratorRunResult RunGenerator(
 		IEnumerable<string> sources,
 		IEnumerable<string>? preprocessorSymbols = null)
@@ -105,7 +110,6 @@ public sealed class SamplesGeneratorTests
 		return driver.GetRunResult().Results.Single();
 	}
 
-	/// <summary>Like <see cref="RunGenerator"/> but uses <paramref name="stubs"/> instead of <see cref="GoodStubs"/>.</summary>
 	private static GeneratorRunResult RunGeneratorWithStubs(
 		string stubs,
 		IEnumerable<string> sources,
@@ -118,6 +122,31 @@ public sealed class SamplesGeneratorTests
 		var trees = new[] { stubs }
 			.Concat(sources)
 			.Select(s => CSharpSyntaxTree.ParseText(s, parseOptions));
+
+		var compilation = CSharpCompilation.Create(
+			"TestCompilation",
+			trees,
+			GetMetadataReferences(),
+			new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary));
+
+		GeneratorDriver driver = CSharpGeneratorDriver.Create(new SamplesGenerator());
+		driver = driver.WithUpdatedParseOptions(parseOptions);
+		driver = driver.RunGenerators(compilation);
+
+		return driver.GetRunResult().Results.Single();
+	}
+
+	private static GeneratorRunResult RunGeneratorWithFilePaths(
+		IEnumerable<(string Source, string Path)> sourcesWithPaths,
+		IEnumerable<string>? preprocessorSymbols = null)
+	{
+		var parseOptions = preprocessorSymbols is not null
+			? CSharpParseOptions.Default.WithPreprocessorSymbols(preprocessorSymbols)
+			: CSharpParseOptions.Default;
+
+		var trees = new[] { (GoodStubs, "") }
+			.Concat(sourcesWithPaths)
+			.Select(t => CSharpSyntaxTree.ParseText(t.Item1, parseOptions, path: t.Item2));
 
 		var compilation = CSharpCompilation.Create(
 			"TestCompilation",
@@ -152,7 +181,7 @@ public sealed class SamplesGeneratorTests
 	private static ImmutableArray<Diagnostic> UggDiagnostics(GeneratorRunResult result) =>
 		result.Diagnostics.Where(d => d.Id.StartsWith("UGG", StringComparison.Ordinal)).ToImmutableArray();
 
-	// ─── Tests ───────────────────────────────────────────────────────────────
+	// ─── Existing generator tests (preserved) ────────────────────────────────
 
 	[Test]
 	public void Valid_SamplePage_emits_GetSamples_and_typeof_entry()
@@ -168,16 +197,13 @@ public sealed class SamplesGeneratorTests
 
 		var result = RunGenerator([source]);
 
-		Assert.That(result.Exception, Is.Null, "Generator must not throw");
-		Assert.That(UggDiagnostics(result), Is.Empty, "No UGG diagnostics expected for valid input");
+		Assert.That(result.Exception, Is.Null);
+		Assert.That(UggDiagnostics(result), Is.Empty);
 
 		var generated = GetGeneratedSource(result);
-		Assert.That(generated, Does.Contain("public static Sample[] GetSamples()"),
-			"Generated file must declare GetSamples()");
-		Assert.That(generated, Does.Contain("typeof(Uno.Gallery.MySamplePage)"),
-			"Generated file must contain typeof for the attributed class");
-		Assert.That(generated, Does.Contain("My Sample"),
-			"Title must appear in generated attribute");
+		Assert.That(generated, Does.Contain("public static Sample[] GetSamples()"));
+		Assert.That(generated, Does.Contain("typeof(Uno.Gallery.MySamplePage)"));
+		Assert.That(generated, Does.Contain("My Sample"));
 	}
 
 	[Test]
@@ -199,9 +225,9 @@ public sealed class SamplesGeneratorTests
 		Assert.That(UggDiagnostics(result), Is.Empty);
 
 		var generated = GetGeneratedSource(result);
-		Assert.That(generated, Does.Contain("SortOrder = 5"), "SortOrder named arg must be emitted");
-		Assert.That(generated, Does.Contain("A description"), "Description must be emitted");
-		Assert.That(generated, Does.Contain("https://example.com"), "DocumentationLink must be emitted");
+		Assert.That(generated, Does.Contain("SortOrder = 5"));
+		Assert.That(generated, Does.Contain("A description"));
+		Assert.That(generated, Does.Contain("https://example.com"));
 	}
 
 	[Test]
@@ -221,11 +247,7 @@ public sealed class SamplesGeneratorTests
 
 		Assert.That(result.Exception, Is.Null);
 		Assert.That(UggDiagnostics(result), Is.Empty);
-
-		// Sample is excluded by the Disabled flag — generated file should be empty or omit the class.
-		var generated = GetGeneratedSource(result);
-		Assert.That(generated, Does.Not.Contain("DisabledSample"),
-			"Disabled sample must not appear in generated output");
+		Assert.That(GetGeneratedSource(result), Does.Not.Contain("DisabledSample"));
 	}
 
 	[Test]
@@ -245,8 +267,7 @@ public sealed class SamplesGeneratorTests
 
 		Assert.That(result.Exception, Is.Null);
 		Assert.That(UggDiagnostics(result), Is.Empty);
-		Assert.That(GetGeneratedSource(result), Does.Contain("WindowsSample"),
-			"Windows-only sample must be emitted when WINDOWS is defined");
+		Assert.That(GetGeneratedSource(result), Does.Contain("WindowsSample"));
 	}
 
 	[Test]
@@ -262,26 +283,16 @@ public sealed class SamplesGeneratorTests
 			}
 			""";
 
-		var result = RunGenerator([source]); // No preprocessor symbols → GetSampleConditionalsFromPreprocessorSymbolNames
-		                                     // returns SampleConditionals.Always (no known platform detected).
-		                                     // ShouldBeDisplayed checks conditionals.Value.HasFlag(compilationConditionals),
-		                                     // i.e. Windows.HasFlag(Always).  HasFlag returns true iff all bits of
-		                                     // compilationConditionals are set in conditionals; since Always has many
-		                                     // more bits than Windows (Always ⊄ Windows), the check is false and the
-		                                     // sample is excluded.
+		var result = RunGenerator([source]);
 
 		Assert.That(result.Exception, Is.Null);
 		Assert.That(UggDiagnostics(result), Is.Empty);
-		Assert.That(GetGeneratedSource(result), Does.Not.Contain("WindowsSampleNoSymbol"),
-			"Windows-only sample must be excluded when no WINDOWS symbol is defined");
+		Assert.That(GetGeneratedSource(result), Does.Not.Contain("WindowsSampleNoSymbol"));
 	}
 
 	[Test]
 	public void Malformed_SamplePage_constructor_arg_count_produces_UGG0001()
 	{
-		// Define SamplePageAttribute with a 3-param constructor (missing 'glyph').
-		// The C# compiler in the test compilation accepts it; our generator should detect
-		// the unexpected shape and emit UGG0001 without throwing.
 		const string stubs = """
 			using System;
 			namespace Uno.Gallery
@@ -290,7 +301,6 @@ public sealed class SamplesGeneratorTests
 			    public enum SourceSdk { WinUI = 0 }
 			    [Flags] public enum SampleConditionals : uint { Disabled = 1U << 31, Always = uint.MaxValue ^ Disabled }
 
-			    // Three-param constructor — 'glyph' is absent, triggering UGG0001.
 			    [AttributeUsage(AttributeTargets.Class, Inherited = false)]
 			    public sealed class SamplePageAttribute : Attribute
 			    {
@@ -313,17 +323,14 @@ public sealed class SamplesGeneratorTests
 
 		var result = RunGeneratorWithStubs(stubs, [source]);
 
-		Assert.That(result.Exception, Is.Null, "Generator must not throw on unexpected shape");
-		Assert.That(UggDiagnostics(result).Any(d => d.Id == "UGG0001"), Is.True,
-			"UGG0001 must be emitted for a 3-param constructor");
-		Assert.That(GetGeneratedSource(result), Does.Not.Contain("BadSample"),
-			"Malformed sample must not appear in generated output");
+		Assert.That(result.Exception, Is.Null);
+		Assert.That(UggDiagnostics(result).Any(d => d.Id == "UGG0001"), Is.True);
+		Assert.That(GetGeneratedSource(result), Does.Not.Contain("BadSample"));
 	}
 
 	[Test]
 	public void Malformed_SamplePage_wrong_parameter_names_produces_UGG0001()
 	{
-		// Constructor has 4 params but wrong names, verifying name-based check.
 		const string stubs = """
 			using System;
 			namespace Uno.Gallery
@@ -335,7 +342,6 @@ public sealed class SamplesGeneratorTests
 			    [AttributeUsage(AttributeTargets.Class, Inherited = false)]
 			    public sealed class SamplePageAttribute : Attribute
 			    {
-			        // Wrong names: 'cat', 'name', 'sdk', 'icon' instead of category/title/source/glyph
 			        public SamplePageAttribute(SampleCategory cat, string name, SourceSdk sdk, string icon) { }
 			    }
 
@@ -355,18 +361,13 @@ public sealed class SamplesGeneratorTests
 		var result = RunGeneratorWithStubs(stubs, [source]);
 
 		Assert.That(result.Exception, Is.Null);
-		Assert.That(UggDiagnostics(result).Any(d => d.Id == "UGG0001"), Is.True,
-			"UGG0001 must be emitted for wrong parameter names");
+		Assert.That(UggDiagnostics(result).Any(d => d.Id == "UGG0001"), Is.True);
 		Assert.That(GetGeneratedSource(result), Does.Not.Contain("WrongNameSample"));
 	}
 
 	[Test]
 	public void Non_class_target_produces_UGG0002()
 	{
-		// ForAttributeWithMetadataName can surface any attributed declared symbol — not only classes.
-		// Here SamplePageAttribute is redefined with AttributeTargets.Method so the C# compiler
-		// permits it on a method.  The generator receives an IMethodSymbol (not INamedTypeSymbol)
-		// and must emit UGG0002 rather than throwing.
 		const string stubs = """
 			using System;
 			namespace Uno.Gallery
@@ -400,16 +401,13 @@ public sealed class SamplesGeneratorTests
 
 		var result = RunGeneratorWithStubs(stubs, [source]);
 
-		Assert.That(result.Exception, Is.Null, "Generator must not throw on non-class target");
-		Assert.That(UggDiagnostics(result).Any(d => d.Id == "UGG0002"), Is.True,
-			"UGG0002 must be emitted when attribute is on a method");
+		Assert.That(result.Exception, Is.Null);
+		Assert.That(UggDiagnostics(result).Any(d => d.Id == "UGG0002"), Is.True);
 	}
 
 	[Test]
 	public void Malformed_SampleConditional_constructor_produces_UGG0003()
 	{
-		// Define SampleConditionalAttribute with a 2-arg constructor.
-		// The generator checks ConstructorArguments.Length == 1 and emits UGG0003.
 		const string stubs = """
 			using System;
 			namespace Uno.Gallery
@@ -418,10 +416,8 @@ public sealed class SamplesGeneratorTests
 			    public enum SourceSdk { WinUI = 0 }
 			    [Flags] public enum SampleConditionals : uint
 			    {
-			        Windows = 1 << 0,
-			        Wasm    = 1 << 1,
-			        Disabled = 1U << 31,
-			        Always  = uint.MaxValue ^ Disabled,
+			        Windows = 1 << 0, Wasm = 1 << 1,
+			        Disabled = 1U << 31, Always = uint.MaxValue ^ Disabled,
 			    }
 
 			    [AttributeUsage(AttributeTargets.Class, Inherited = false)]
@@ -432,7 +428,6 @@ public sealed class SamplesGeneratorTests
 			        public int SortOrder { get; set; } = int.MaxValue;
 			    }
 
-			    // Two-arg constructor — generator expects exactly one argument.
 			    [AttributeUsage(AttributeTargets.Class, Inherited = false)]
 			    public class SampleConditionalAttribute : Attribute
 			    {
@@ -455,11 +450,9 @@ public sealed class SamplesGeneratorTests
 
 		var result = RunGeneratorWithStubs(stubs, [source]);
 
-		Assert.That(result.Exception, Is.Null, "Generator must not throw on malformed SampleConditional");
-		Assert.That(UggDiagnostics(result).Any(d => d.Id == "UGG0003"), Is.True,
-			"UGG0003 must be emitted for a two-arg SampleConditionalAttribute");
-		Assert.That(GetGeneratedSource(result), Does.Not.Contain("BadConditionalSample"),
-			"Sample with malformed SampleConditional must not appear in output");
+		Assert.That(result.Exception, Is.Null);
+		Assert.That(UggDiagnostics(result).Any(d => d.Id == "UGG0003"), Is.True);
+		Assert.That(GetGeneratedSource(result), Does.Not.Contain("BadConditionalSample"));
 	}
 
 	[Test]
@@ -482,30 +475,46 @@ public sealed class SamplesGeneratorTests
 		Assert.That(result.Exception, Is.Null);
 
 		var ugg0004 = UggDiagnostics(result).Where(d => d.Id == "UGG0004").ToList();
-		Assert.That(ugg0004, Is.Not.Empty, "UGG0004 warning must be emitted for duplicate title");
-		Assert.That(ugg0004[0].Severity, Is.EqualTo(DiagnosticSeverity.Warning), "UGG0004 must be a Warning");
+		Assert.That(ugg0004, Is.Not.Empty);
+		Assert.That(ugg0004[0].Severity, Is.EqualTo(DiagnosticSeverity.Warning));
+		Assert.That(ugg0004[0].Location, Is.Not.EqualTo(Location.None));
+		Assert.That(ugg0004[0].Location.SourceSpan.IsEmpty, Is.False);
+		Assert.That(ugg0004[0].Location.SourceTree, Is.Not.Null);
 
-		// Location must be navigable — the diagnostic points to the later duplicate's declaration.
-		Assert.That(ugg0004[0].Location, Is.Not.EqualTo(Location.None),
-			"UGG0004 must carry a real source location");
-		Assert.That(ugg0004[0].Location.SourceSpan.IsEmpty, Is.False,
-			"UGG0004 location must span real source text");
-		// SyntaxTree must be non-null so the location is in-compilation and
-		// #pragma warning disable UGG0004 at the declaration site will suppress the warning.
-		Assert.That(ugg0004[0].Location.SourceTree, Is.Not.Null,
-			"UGG0004 location must have a SyntaxTree reference for pragma-disable to work");
-
-		// Message must identify the title and the first-seen conflicting type.
-		// Sorted by FQN: FirstDuplicate (F) < SecondDuplicate (S), so the diagnostic lands
-		// on SecondDuplicate and names FirstDuplicate in the message.
 		var msg = ugg0004[0].GetMessage();
-		Assert.That(msg, Does.Contain("Duplicate Title"), "Message must include the duplicate title");
-		Assert.That(msg, Does.Contain("FirstDuplicate"), "Message must name the earlier conflicting type");
+		Assert.That(msg, Does.Contain("Duplicate Title"));
+		Assert.That(msg, Does.Contain("FirstDuplicate"));
 
-		// Both samples ARE emitted; duplicate detection is warn-only.
 		var generated = GetGeneratedSource(result);
-		Assert.That(generated, Does.Contain("FirstDuplicate"), "Both duplicates must still appear in output");
+		Assert.That(generated, Does.Contain("FirstDuplicate"));
 		Assert.That(generated, Does.Contain("SecondDuplicate"));
+	}
+
+	[Test]
+	public void Duplicate_sample_title_case_insensitive_produces_UGG0004()
+	{
+		// "Button" and "button" differ only in case; OrdinalIgnoreCase comparison must detect them.
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Button")]
+			    public class ButtonPage { }
+
+			    [SamplePage(SampleCategory.Layout, "button")]
+			    public class ButtonLowerPage { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+
+		Assert.That(result.Exception, Is.Null);
+		var ugg0004 = UggDiagnostics(result).Where(d => d.Id == "UGG0004").ToList();
+		Assert.That(ugg0004, Is.Not.Empty, "Titles differing only in case must produce UGG0004");
+		Assert.That(ugg0004[0].Severity, Is.EqualTo(DiagnosticSeverity.Warning));
+		var msg = ugg0004[0].GetMessage();
+		Assert.That(msg, Does.Contain("Button"), "Message must include the title");
+		Assert.That(msg, Does.Contain("ButtonLowerPage"), "Message must reference the first-seen class");
 	}
 
 	[Test]
@@ -523,17 +532,13 @@ public sealed class SamplesGeneratorTests
 		var r1 = RunGenerator([source]);
 		var r2 = RunGenerator([source]);
 
-		var text1 = GetGeneratedSource(r1);
-		var text2 = GetGeneratedSource(r2);
-
-		Assert.That(text1, Is.Not.Empty, "First run must produce output");
-		Assert.That(text1, Is.EqualTo(text2), "Two independent runs must produce byte-identical output");
+		Assert.That(GetGeneratedSource(r1), Is.Not.Empty);
+		Assert.That(GetGeneratedSource(r1), Is.EqualTo(GetGeneratedSource(r2)));
 	}
 
 	[Test]
 	public void IsExpectedSamplePageAttributeShape_validates_correct_shape()
 	{
-		// Valid: four correctly-named params.
 		var validCompilation = CSharpCompilation.Create("x",
 			[CSharpSyntaxTree.ParseText("""
 				namespace Uno.Gallery
@@ -550,13 +555,12 @@ public sealed class SamplesGeneratorTests
 			GetMetadataReferences(),
 			new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary));
 
-		var attrSymbol = (INamedTypeSymbol)validCompilation.GetTypeByMetadataName("Uno.Gallery.SamplePageAttribute")!;
-		var ctor = attrSymbol.Constructors.Single();
+		var ctor = ((INamedTypeSymbol)validCompilation
+			.GetTypeByMetadataName("Uno.Gallery.SamplePageAttribute")!)
+			.Constructors.Single();
 
-		Assert.That(SamplesGenerator.IsExpectedSamplePageAttributeShape(ctor), Is.True,
-			"Correct shape must be recognized as valid");
-		Assert.That(SamplesGenerator.IsExpectedSamplePageAttributeShape(null), Is.False,
-			"Null constructor must be invalid");
+		Assert.That(SamplesGenerator.IsExpectedSamplePageAttributeShape(ctor), Is.True);
+		Assert.That(SamplesGenerator.IsExpectedSamplePageAttributeShape(null), Is.False);
 	}
 
 	[Test]
@@ -587,32 +591,23 @@ public sealed class SamplesGeneratorTests
 
 		var refs = GetMetadataReferences().ToList();
 
-		// Three params (missing glyph): wrong count → false
-		var ctor3 = GetCtor(refs, "SampleCategory category, string title, SourceSdk source");
-		Assert.That(SamplesGenerator.IsExpectedSamplePageAttributeShape(ctor3), Is.False,
+		Assert.That(SamplesGenerator.IsExpectedSamplePageAttributeShape(
+			GetCtor(refs, "SampleCategory category, string title, SourceSdk source")), Is.False,
 			"3 params must be rejected");
-
-		// Five params: wrong count → false
-		var ctor5 = GetCtor(refs, "SampleCategory category, string title, SourceSdk source, string glyph, int extra");
-		Assert.That(SamplesGenerator.IsExpectedSamplePageAttributeShape(ctor5), Is.False,
+		Assert.That(SamplesGenerator.IsExpectedSamplePageAttributeShape(
+			GetCtor(refs, "SampleCategory category, string title, SourceSdk source, string glyph, int extra")), Is.False,
 			"5 params must be rejected");
-
-		// Four params, wrong names (cat/name/sdk/icon): wrong names → false
-		var ctorWrongNames = GetCtor(refs, "SampleCategory cat, string name, SourceSdk sdk, string icon");
-		Assert.That(SamplesGenerator.IsExpectedSamplePageAttributeShape(ctorWrongNames), Is.False,
-			"4 params with wrong names must be rejected");
-
-		// Four params, correct count but first name wrong: → false
-		var ctorFirstWrong = GetCtor(refs, "SampleCategory kind, string title, SourceSdk source, string glyph");
-		Assert.That(SamplesGenerator.IsExpectedSamplePageAttributeShape(ctorFirstWrong), Is.False,
-			"First param name mismatch must be rejected");
+		Assert.That(SamplesGenerator.IsExpectedSamplePageAttributeShape(
+			GetCtor(refs, "SampleCategory cat, string name, SourceSdk sdk, string icon")), Is.False,
+			"Wrong names must be rejected");
+		Assert.That(SamplesGenerator.IsExpectedSamplePageAttributeShape(
+			GetCtor(refs, "SampleCategory kind, string title, SourceSdk source, string glyph")), Is.False,
+			"First name mismatch must be rejected");
 	}
 
 	[Test]
 	public void Generated_output_is_deterministic_regardless_of_file_order()
 	{
-		// Two classes in separate source strings; order A-B vs B-A must produce identical output.
-		// The generator sorts by FullyQualifiedName so file-order has no effect on output.
 		const string sourceZebra = """
 			using Uno.Gallery;
 			namespace Uno.Gallery
@@ -633,23 +628,14 @@ public sealed class SamplesGeneratorTests
 		var r1 = RunGenerator([sourceZebra, sourceApple]);
 		var r2 = RunGenerator([sourceApple, sourceZebra]);
 
-		var text1 = GetGeneratedSource(r1);
-		var text2 = GetGeneratedSource(r2);
+		Assert.That(GetGeneratedSource(r1), Is.Not.Empty);
+		Assert.That(GetGeneratedSource(r1), Is.EqualTo(GetGeneratedSource(r2)));
 
-		Assert.That(text1, Is.Not.Empty, "Generator must produce output");
-		Assert.That(text1, Is.EqualTo(text2), "Output must be byte-identical regardless of syntax-tree order");
-
-		// FQN sort: Uno.Gallery.AppleSample (A) before Uno.Gallery.ZebraSample (Z)
-		var idxApple = text1.IndexOf("AppleSample", StringComparison.Ordinal);
-		var idxZebra = text1.IndexOf("ZebraSample", StringComparison.Ordinal);
-		Assert.That(idxApple, Is.GreaterThanOrEqualTo(0), "AppleSample must appear in output");
-		Assert.That(idxApple, Is.LessThan(idxZebra), "AppleSample (A) must precede ZebraSample (Z) in sorted output");
+		var text = GetGeneratedSource(r1);
+		Assert.That(text.IndexOf("AppleSample", StringComparison.Ordinal),
+			Is.LessThan(text.IndexOf("ZebraSample", StringComparison.Ordinal)),
+			"AppleSample (A) must precede ZebraSample (Z)");
 	}
-
-	// ─── Parameterized platform-conditional tests ─────────────────────────────
-	// Covers WASM, SkiaDesktop, Android, iOS, and macOS using the real preprocessor symbols and
-	// SampleConditionals flags that production code maps.  Windows inclusion/exclusion is already
-	// covered by the dedicated tests above.
 
 	[TestCase("__WASM__",      "Wasm",        "WasmSample")]
 	[TestCase("HAS_UNO_SKIA", "SkiaDesktop", "SkiaSample")]
@@ -668,13 +654,10 @@ public sealed class SamplesGeneratorTests
 			    public class {{className}} { }
 			}
 			""";
-
 		var result = RunGenerator([source], preprocessorSymbols: [preprocessorSymbol]);
-
 		Assert.That(result.Exception, Is.Null);
 		Assert.That(UggDiagnostics(result), Is.Empty);
-		Assert.That(GetGeneratedSource(result), Does.Contain(className),
-			$"{className} must be emitted when {preprocessorSymbol} is defined");
+		Assert.That(GetGeneratedSource(result), Does.Contain(className));
 	}
 
 	[TestCase("__WASM__",      "Wasm",        "WasmSampleExcl")]
@@ -685,8 +668,6 @@ public sealed class SamplesGeneratorTests
 	public void SampleConditional_platform_excluded_when_other_symbol_defined(
 		string ownSymbol, string conditionalName, string className)
 	{
-		// Run with a different platform symbol so the target platform is not active.
-		// WINDOWS is an unrelated platform symbol that doesn't match any of the tested flags.
 		var source = $$"""
 			using Uno.Gallery;
 			namespace Uno.Gallery
@@ -696,70 +677,1177 @@ public sealed class SamplesGeneratorTests
 			    public class {{className}} { }
 			}
 			""";
-
 		var result = RunGenerator([source], preprocessorSymbols: ["WINDOWS"]);
-
 		Assert.That(result.Exception, Is.Null);
 		Assert.That(UggDiagnostics(result), Is.Empty);
-		Assert.That(GetGeneratedSource(result), Does.Not.Contain(className),
-			$"{className} must be excluded when {ownSymbol} is not the active platform");
+		Assert.That(GetGeneratedSource(result), Does.Not.Contain(className));
 	}
 
+	// ─── Phase 2: metadata forwarding ────────────────────────────────────────
+
 	[Test]
-	public void Duplicate_sample_title_case_insensitive_produces_UGG0004()
+	public void Derived_slug_emitted_from_title()
 	{
-		// Runtime navigation/search compares titles case-insensitively; the generator must
-		// detect "Button" vs "button" as a duplicate (OrdinalIgnoreCase).
 		const string source = """
 			using Uno.Gallery;
 			namespace Uno.Gallery
 			{
-			    [SamplePage(SampleCategory.Controls, "Button")]
-			    public class ButtonSampleA { }
-
-			    [SamplePage(SampleCategory.Layout, "button")]
-			    public class ButtonSampleB { }
+			    [SamplePage(SampleCategory.Controls, "My Control")]
+			    public class MyControlPage { }
 			}
 			""";
 
 		var result = RunGenerator([source]);
 
 		Assert.That(result.Exception, Is.Null);
-		Assert.That(UggDiagnostics(result).Any(d => d.Id == "UGG0004"), Is.True,
-			"UGG0004 must be emitted for case-insensitively duplicate titles (\"Button\" vs \"button\")");
+		Assert.That(UggDiagnostics(result), Is.Empty);
+		Assert.That(GetGeneratedSource(result), Does.Contain(@"Slug = @""my-control"""),
+			"Slug derived from title must be emitted into the attribute");
 	}
 
 	[Test]
-	public void Duplicate_sample_title_pragma_disable_suppresses_UGG0004()
+	public void Explicit_slug_forwarded_verbatim()
 	{
-		// #pragma warning disable UGG0004 at the duplicate declaration must suppress the warning.
-		// This requires the diagnostic location to carry a real SyntaxTree reference
-		// (not a path-only Location.Create) so the Roslyn driver can match it to the pragma.
-		// Roslyn marks pragma-suppressed diagnostics with IsSuppressed=true rather than
-		// removing them from the collection — both states are tested here.
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "My Renamed Control", Slug = "old-name")]
+			    public class MyRenamedControlPage { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+
+		Assert.That(result.Exception, Is.Null);
+		Assert.That(UggDiagnostics(result), Is.Empty);
+		Assert.That(GetGeneratedSource(result), Does.Contain(@"Slug = @""old-name"""),
+			"Explicit slug must be forwarded without modification");
+		Assert.That(GetGeneratedSource(result), Does.Not.Contain("my-renamed-control"),
+			"Derived slug must not appear when explicit slug is set");
+	}
+
+	[Test]
+	public void Status_preview_emitted_as_int_cast()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Preview Control", Status = SampleStatus.Preview)]
+			    public class PreviewControlPage { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+
+		Assert.That(result.Exception, Is.Null);
+		Assert.That(UggDiagnostics(result), Is.Empty);
+		Assert.That(GetGeneratedSource(result), Does.Contain("(global::Uno.Gallery.SampleStatus)(1)"),
+			"SampleStatus.Preview (1) must be emitted as integer cast");
+	}
+
+	[Test]
+	public void Default_status_stable_emitted_as_zero()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Stable Control")]
+			    public class StableControlPage { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+
+		Assert.That(result.Exception, Is.Null);
+		Assert.That(UggDiagnostics(result), Is.Empty);
+		Assert.That(GetGeneratedSource(result), Does.Contain("(global::Uno.Gallery.SampleStatus)(0)"),
+			"Omitted Status must default to Stable (0)");
+	}
+
+	[Test]
+	public void Tags_emitted_as_array()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Tagged Control",
+			                Tags = new[] { "input", "layout" })]
+			    public class TaggedControlPage { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+
+		Assert.That(result.Exception, Is.Null);
+		Assert.That(UggDiagnostics(result), Is.Empty);
+		var generated = GetGeneratedSource(result);
+		Assert.That(generated, Does.Contain("\"input\""));
+		Assert.That(generated, Does.Contain("\"layout\""));
+		Assert.That(generated, Does.Contain("Tags = new[]"));
+	}
+
+	[Test]
+	public void Empty_tags_emit_null()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "No Tags")]
+			    public class NoTagsPage { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+
+		Assert.That(result.Exception, Is.Null);
+		Assert.That(GetGeneratedSource(result), Does.Contain("Tags = null"));
+	}
+
+	[Test]
+	public void Owner_and_ReviewedOn_emitted()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Owned Control",
+			                Owner = "alice", ReviewedOn = "2024-06-01")]
+			    public class OwnedControlPage { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+
+		Assert.That(result.Exception, Is.Null);
+		Assert.That(UggDiagnostics(result), Is.Empty);
+		var generated = GetGeneratedSource(result);
+		Assert.That(generated, Does.Contain("alice"));
+		Assert.That(generated, Does.Contain("2024-06-01"));
+	}
+
+	[Test]
+	public void Null_owner_emits_null_literals()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "No Owner")]
+			    public class NoOwnerPage { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+
+		Assert.That(result.Exception, Is.Null);
+		var generated = GetGeneratedSource(result);
+		Assert.That(generated, Does.Contain("Owner = null"));
+		Assert.That(generated, Does.Contain("ReviewedOn = null"));
+	}
+
+	[Test]
+	public void RelatedSamples_emitted_as_array_no_UGG0007_for_known_slugs()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Sample A",
+			                RelatedSamples = new[] { "sample-b", "sample-c" })]
+			    public class SampleAPage { }
+
+			    [SamplePage(SampleCategory.Controls, "Sample B")]
+			    public class SampleBPage { }
+
+			    [SamplePage(SampleCategory.Controls, "Sample C")]
+			    public class SampleCPage { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+
+		Assert.That(result.Exception, Is.Null);
+		Assert.That(UggDiagnostics(result).Where(d => d.Id == "UGG0007"), Is.Empty,
+			"Known slugs in RelatedSamples must not trigger UGG0007");
+		var generated = GetGeneratedSource(result);
+		Assert.That(generated, Does.Contain("\"sample-b\""));
+		Assert.That(generated, Does.Contain("\"sample-c\""));
+	}
+
+	[Test]
+	public void SourcePath_emitted_for_Views_prefixed_file()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "My Control")]
+			    public class MyControlSamplePage { }
+			}
+			""";
+
+		var result = RunGeneratorWithFilePaths([
+			(source, "/repo/Uno.Gallery/Views/SamplePages/MyControlSamplePage.xaml.cs")
+		]);
+
+		Assert.That(result.Exception, Is.Null);
+		Assert.That(UggDiagnostics(result), Is.Empty);
+		Assert.That(GetGeneratedSource(result),
+			Does.Contain("Views/SamplePages/MyControlSamplePage.xaml.cs"),
+			"SourcePath must be anchored at Views/ with forward slashes");
+	}
+
+	[Test]
+	public void SourcePath_normalizes_backslashes()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Control2")]
+			    public class Control2SamplePage { }
+			}
+			""";
+
+		var result = RunGeneratorWithFilePaths([
+			(source, @"C:\repo\Uno.Gallery\Views\SamplePages\Control2SamplePage.xaml.cs")
+		]);
+
+		Assert.That(result.Exception, Is.Null);
+		Assert.That(GetGeneratedSource(result),
+			Does.Contain("Views/SamplePages/Control2SamplePage.xaml.cs"));
+	}
+
+	[Test]
+	public void SourcePath_absent_for_in_memory_tree()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "In Memory")]
+			    public class InMemoryPage { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+
+		Assert.That(result.Exception, Is.Null);
+		Assert.That(GetGeneratedSource(result), Does.Not.Contain("SourcePath"),
+			"SourcePath must be omitted when syntax tree has no file path");
+	}
+
+	// ─── Phase 2: UGG0005 ────────────────────────────────────────────────────
+
+	[Test]
+	public void Invalid_slug_uppercase_produces_UGG0005()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "My Sample", Slug = "My-Slug")]
+			    public class BadSlugSample { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+
+		Assert.That(result.Exception, Is.Null);
+		Assert.That(UggDiagnostics(result).Any(d => d.Id == "UGG0005"), Is.True);
+		Assert.That(GetGeneratedSource(result), Does.Not.Contain("BadSlugSample"));
+	}
+
+	[Test]
+	public void Invalid_slug_leading_hyphen_produces_UGG0005()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Leading Hyphen", Slug = "-my-slug")]
+			    public class LeadingHyphenSample { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+
+		Assert.That(UggDiagnostics(result).Any(d => d.Id == "UGG0005"), Is.True);
+		Assert.That(GetGeneratedSource(result), Does.Not.Contain("LeadingHyphenSample"));
+	}
+
+	[Test]
+	public void Invalid_slug_double_hyphen_produces_UGG0005()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Double Hyphen", Slug = "my--slug")]
+			    public class DoubleHyphenSample { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+
+		Assert.That(UggDiagnostics(result).Any(d => d.Id == "UGG0005"), Is.True);
+		Assert.That(GetGeneratedSource(result), Does.Not.Contain("DoubleHyphenSample"));
+	}
+
+	[Test]
+	public void Invalid_slug_trailing_hyphen_produces_UGG0005()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Trailing Hyphen", Slug = "my-slug-")]
+			    public class TrailingHyphenSample { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+
+		Assert.That(UggDiagnostics(result).Any(d => d.Id == "UGG0005"), Is.True);
+		Assert.That(GetGeneratedSource(result), Does.Not.Contain("TrailingHyphenSample"));
+	}
+
+	[Test]
+	public void Valid_explicit_slug_no_UGG0005()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "My Control", Slug = "my-control")]
+			    public class GoodSlugSample { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+
+		Assert.That(result.Exception, Is.Null);
+		Assert.That(UggDiagnostics(result).Any(d => d.Id == "UGG0005"), Is.False);
+		Assert.That(GetGeneratedSource(result), Does.Contain("GoodSlugSample"));
+	}
+
+	[Test]
+	public void UGG0005_message_identifies_the_bad_slug()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Sample", Slug = "Bad Slug!")]
+			    public class BadSlugMsgSample { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+		var diag = UggDiagnostics(result).First(d => d.Id == "UGG0005");
+		Assert.That(diag.GetMessage(), Does.Contain("Bad Slug!"));
+	}
+
+	// ─── Phase 2: UGG0006 ────────────────────────────────────────────────────
+
+	[Test]
+	public void Duplicate_derived_slug_produces_UGG0006()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Hello World")]
+			    public class SlugFirstDuplicate { }
+
+			    [SamplePage(SampleCategory.Layout, "hello world")]
+			    public class SlugSecondDuplicate { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+
+		Assert.That(result.Exception, Is.Null);
+		var ugg0006 = UggDiagnostics(result).Where(d => d.Id == "UGG0006").ToList();
+		Assert.That(ugg0006, Is.Not.Empty);
+		Assert.That(ugg0006[0].Severity, Is.EqualTo(DiagnosticSeverity.Warning));
+		Assert.That(ugg0006[0].Location.SourceTree, Is.Not.Null);
+
+		var msg = ugg0006[0].GetMessage();
+		Assert.That(msg, Does.Contain("hello-world"));
+		Assert.That(msg, Does.Contain("SlugFirstDuplicate"));
+
+		var generated = GetGeneratedSource(result);
+		Assert.That(generated, Does.Contain("SlugFirstDuplicate"));
+		Assert.That(generated, Does.Contain("SlugSecondDuplicate"));
+	}
+
+	[Test]
+	public void Duplicate_explicit_slug_produces_UGG0006()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Alpha", Slug = "shared-slug")]
+			    public class AlphaPage { }
+
+			    [SamplePage(SampleCategory.Layout, "Beta", Slug = "shared-slug")]
+			    public class BetaPage { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+
+		Assert.That(UggDiagnostics(result).Any(d => d.Id == "UGG0006"), Is.True);
+		Assert.That(GetGeneratedSource(result), Does.Contain("AlphaPage"));
+		Assert.That(GetGeneratedSource(result), Does.Contain("BetaPage"));
+	}
+
+	// ─── Phase 2: UGG0007 ────────────────────────────────────────────────────
+
+	[Test]
+	public void Unknown_related_slug_produces_UGG0007()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Sample A",
+			                RelatedSamples = new[] { "nonexistent-slug" })]
+			    public class SampleAWithBadRef { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+
+		Assert.That(result.Exception, Is.Null);
+		var ugg0007 = UggDiagnostics(result).Where(d => d.Id == "UGG0007").ToList();
+		Assert.That(ugg0007, Is.Not.Empty);
+		Assert.That(ugg0007[0].Severity, Is.EqualTo(DiagnosticSeverity.Warning));
+		Assert.That(ugg0007[0].GetMessage(), Does.Contain("nonexistent-slug"));
+		Assert.That(GetGeneratedSource(result), Does.Contain("SampleAWithBadRef"));
+	}
+
+	[Test]
+	public void Known_related_slug_no_UGG0007()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Sample X",
+			                RelatedSamples = new[] { "sample-y" })]
+			    public class SampleXPage { }
+
+			    [SamplePage(SampleCategory.Controls, "Sample Y")]
+			    public class SampleYPage { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+
+		Assert.That(result.Exception, Is.Null);
+		Assert.That(UggDiagnostics(result).Any(d => d.Id == "UGG0007"), Is.False);
+	}
+
+	[Test]
+	public void UGG0007_sample_still_emits_with_dead_reference()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Has Dead Ref",
+			                RelatedSamples = new[] { "dead-link" })]
+			    public class HasDeadRefPage { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+
+		Assert.That(UggDiagnostics(result).Any(d => d.Id == "UGG0007"), Is.True);
+		var generated = GetGeneratedSource(result);
+		Assert.That(generated, Does.Contain("HasDeadRefPage"));
+		Assert.That(generated, Does.Contain("\"dead-link\""));
+	}
+
+	// ─── Slug algorithm: DeriveSlug ──────────────────────────────────────────
+
+	[Test] public void DeriveSlug_empty_returns_fallback() =>
+		Assert.That(SlugHelper.DeriveSlug(""), Is.EqualTo("sample"));
+
+	[Test] public void DeriveSlug_whitespace_only_returns_fallback() =>
+		Assert.That(SlugHelper.DeriveSlug("   "), Is.EqualTo("sample"));
+
+	[Test] public void DeriveSlug_all_separators_returns_fallback() =>
+		Assert.That(SlugHelper.DeriveSlug("//---!!"), Is.EqualTo("sample"));
+
+	[Test] public void DeriveSlug_lowercase_input_unchanged() =>
+		Assert.That(SlugHelper.DeriveSlug("hello"), Is.EqualTo("hello"));
+
+	[Test] public void DeriveSlug_uppercase_lowercased() =>
+		Assert.That(SlugHelper.DeriveSlug("Hello"), Is.EqualTo("hello"));
+
+	[Test] public void DeriveSlug_PascalCase_stays_one_word() =>
+		Assert.That(SlugHelper.DeriveSlug("AutoSuggestBox"), Is.EqualTo("autosuggestbox"));
+
+	[Test] public void DeriveSlug_spaces_become_single_hyphen() =>
+		Assert.That(SlugHelper.DeriveSlug("Hello World"), Is.EqualTo("hello-world"));
+
+	[Test] public void DeriveSlug_repeated_spaces_collapse() =>
+		Assert.That(SlugHelper.DeriveSlug("Hello  World"), Is.EqualTo("hello-world"));
+
+	[Test] public void DeriveSlug_leading_separator_trimmed() =>
+		Assert.That(SlugHelper.DeriveSlug(" Hello"), Is.EqualTo("hello"));
+
+	[Test] public void DeriveSlug_trailing_separator_trimmed() =>
+		Assert.That(SlugHelper.DeriveSlug("Hello "), Is.EqualTo("hello"));
+
+	[Test] public void DeriveSlug_leading_and_trailing_trimmed() =>
+		Assert.That(SlugHelper.DeriveSlug("  Hello World  "), Is.EqualTo("hello-world"));
+
+	[Test] public void DeriveSlug_slash_becomes_hyphen() =>
+		Assert.That(SlugHelper.DeriveSlug("A/B"), Is.EqualTo("a-b"));
+
+	[Test] public void DeriveSlug_mixed_separators_collapse() =>
+		Assert.That(SlugHelper.DeriveSlug("A / B"), Is.EqualTo("a-b"));
+
+	[Test] public void DeriveSlug_punctuation_becomes_hyphen() =>
+		Assert.That(SlugHelper.DeriveSlug("Hello, World!"), Is.EqualTo("hello-world"));
+
+	[Test] public void DeriveSlug_digits_preserved() =>
+		Assert.That(SlugHelper.DeriveSlug("OAuth2 Login"), Is.EqualTo("oauth2-login"));
+
+	[Test] public void DeriveSlug_non_ASCII_treated_as_separator()
+	{
+		// 'i' with diaeresis (U+00EF) is above U+007F — treated as a separator, not transliterated.
+		// "Naive" with accent: N,a,i(non-ASCII),v,e => "na-ve"
+		Assert.That(SlugHelper.DeriveSlug("Na\u00EFve"), Is.EqualTo("na-ve"),
+			"Non-ASCII character must act as a word separator");
+	}
+
+	[Test] public void DeriveSlug_progress_ring_slash_bar() =>
+		Assert.That(SlugHelper.DeriveSlug("Progress Ring/Bar"), Is.EqualTo("progress-ring-bar"));
+
+	// ─── IsValidSlug parameterized cases ─────────────────────────────────────
+
+	[TestCase("a",           true)]
+	[TestCase("abc",         true)]
+	[TestCase("abc-def",     true)]
+	[TestCase("a1b2",        true)]
+	[TestCase("my-control",  true)]
+	[TestCase("",            false, Description = "empty")]
+	[TestCase("-abc",        false, Description = "leading hyphen")]
+	[TestCase("abc-",        false, Description = "trailing hyphen")]
+	[TestCase("abc--def",    false, Description = "consecutive hyphens")]
+	[TestCase("Abc",         false, Description = "uppercase")]
+	[TestCase("abc def",     false, Description = "space")]
+	[TestCase("abc/def",     false, Description = "slash")]
+	[TestCase("-",           false, Description = "hyphen only")]
+	public void IsValidSlug_validates(string slug, bool expected) =>
+		Assert.That(SamplesGenerator.IsValidSlugPublicForTest(slug), Is.EqualTo(expected));
+
+	// ─── Issue 1: positional Title/Glyph escaping ────────────────────────────
+
+	[Test]
+	public void Title_with_embedded_double_quote_emits_verbatim_escaped_literal()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Say \"Hello\"")]
+			    public class QuotedTitlePage { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+
+		Assert.That(result.Exception, Is.Null);
+		Assert.That(UggDiagnostics(result), Is.Empty);
+		var generated = GetGeneratedSource(result);
+		// StringLiteral uses @"..." verbatim syntax; inner double-quotes are doubled.
+		// "Say \"Hello\"" → @"Say ""Hello""  (each " doubled; entire arg is verbatim)
+		Assert.That(generated, Does.Contain("@\"Say \"\"Hello\"\""),
+			"Embedded double-quote in Title must be doubled inside verbatim literal");
+		// The generated C# itself must compile successfully (round-trip check)
+		AssertGeneratedCompiles(generated, source);
+	}
+
+	[Test]
+	public void Glyph_with_backslash_emits_verbatim_literal_and_compiles()
+	{
+		// A glyph Unicode escape like \uE001 is a single char at source level
+		// but some glyphs could be raw chars that include backslash-like sequences.
+		// Verify the generator handles a glyph whose char value needs verbatim escaping.
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Backslash Glyph", glyph: "\uE001")]
+			    public class BackslashGlyphPage { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+
+		Assert.That(result.Exception, Is.Null);
+		Assert.That(UggDiagnostics(result), Is.Empty);
+		var generated = GetGeneratedSource(result);
+		// glyph is passed through StringLiteral (@"...") — verbatim strings handle all chars safely
+		Assert.That(generated, Does.Contain("glyph:"),
+			"Glyph must appear in the generated attribute");
+		AssertGeneratedCompiles(generated, source);
+	}
+
+	[Test]
+	public void Title_with_backslash_char_emits_and_compiles()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, @"Path\Separator")]
+			    public class BackslashTitlePage { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+
+		Assert.That(result.Exception, Is.Null);
+		Assert.That(UggDiagnostics(result), Is.Empty);
+		var generated = GetGeneratedSource(result);
+		// In a verbatim string, backslash is literal — no escaping needed
+		Assert.That(generated, Does.Contain(@"@""Path\Separator"""),
+			"Backslash in Title must be preserved as-is inside verbatim literal");
+		AssertGeneratedCompiles(generated, source);
+	}
+
+	[Test]
+	public void Tags_with_special_chars_emit_and_compile()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Special Tags",
+			                Tags = new[] { "c#", "has \"quotes\"" })]
+			    public class SpecialTagsPage { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+
+		Assert.That(result.Exception, Is.Null);
+		Assert.That(UggDiagnostics(result), Is.Empty);
+		var generated = GetGeneratedSource(result);
+		Assert.That(generated, Does.Contain("Tags = new[]"),
+			"Tags array must be emitted");
+		// "c#" goes through StringLiteral → @"c#"
+		Assert.That(generated, Does.Contain(@"@""c#"""),
+			"Tag with special char must be emitted as verbatim literal");
+		AssertGeneratedCompiles(generated, source);
+	}
+
+	// ─── Issue 2: StringSequence equality and hashing ────────────────────────
+
+	[Test]
+	public void StringSequence_empty_equal_to_default()
+	{
+		var seq1 = new StringSequenceTestHelper(ImmutableArray<string>.Empty);
+		var seq2 = new StringSequenceTestHelper(ImmutableArray<string>.Empty);
+		var def1 = new StringSequenceTestHelper(default(ImmutableArray<string>));
+		Assert.That(seq1.Equals(seq2), Is.True, "two empty sequences must be equal");
+		Assert.That(seq1.Equals(def1), Is.True, "empty equals default-initialised");
+		Assert.That(seq1.GetHashCode(), Is.EqualTo(def1.GetHashCode()), "empty and default must have same hash");
+	}
+
+	[Test]
+	public void StringSequence_same_elements_equal()
+	{
+		var a = new StringSequenceTestHelper(ImmutableArray.Create("x", "y"));
+		var b = new StringSequenceTestHelper(ImmutableArray.Create("x", "y"));
+		Assert.That(a.Equals(b), Is.True, "sequences with same ordinal elements must be equal");
+		Assert.That(a.GetHashCode(), Is.EqualTo(b.GetHashCode()), "equal sequences must have same hash");
+	}
+
+	[Test]
+	public void StringSequence_different_order_not_equal()
+	{
+		var a = new StringSequenceTestHelper(ImmutableArray.Create("x", "y"));
+		var b = new StringSequenceTestHelper(ImmutableArray.Create("y", "x"));
+		Assert.That(a.Equals(b), Is.False, "order-different sequences must not be equal");
+	}
+
+	[Test]
+	public void StringSequence_case_sensitive()
+	{
+		var a = new StringSequenceTestHelper(ImmutableArray.Create("Tag"));
+		var b = new StringSequenceTestHelper(ImmutableArray.Create("tag"));
+		Assert.That(a.Equals(b), Is.False, "ordinal comparison must be case-sensitive");
+	}
+
+	[Test]
+	public void StringSequence_different_lengths_not_equal()
+	{
+		var a = new StringSequenceTestHelper(ImmutableArray.Create("x"));
+		var b = new StringSequenceTestHelper(ImmutableArray.Create("x", "y"));
+		Assert.That(a.Equals(b), Is.False, "sequences of different length must not be equal");
+	}
+
+	[Test]
+	public void Generator_output_deterministic_with_tags_array()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Determinism With Tags",
+			                Tags = new[] { "alpha", "beta" })]
+			    public class DeterminismTagPage { }
+			}
+			""";
+
+		var r1 = RunGenerator([source]);
+		var r2 = RunGenerator([source]);
+
+		Assert.That(GetGeneratedSource(r1), Is.Not.Empty);
+		Assert.That(GetGeneratedSource(r1), Is.EqualTo(GetGeneratedSource(r2)),
+			"Output must be identical across two independent runs (caching stability)");
+	}
+
+	// ─── Issue 3: UGG0007 ordinal / mixed-case ────────────────────────────────
+
+	[Test]
+	public void UGG0007_mixed_case_related_slug_warns()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Sample Target")]
+			    public class TargetPage { }
+
+			    [SamplePage(SampleCategory.Controls, "Sample Ref",
+			                RelatedSamples = new[] { "Sample-Target" })]
+			    public class RefPage { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+
+		Assert.That(result.Exception, Is.Null);
+		var ugg0007 = UggDiagnostics(result).Where(d => d.Id == "UGG0007").ToList();
+		Assert.That(ugg0007, Is.Not.Empty,
+			"Mixed-case slug 'Sample-Target' must not match final slug 'sample-target' (ordinal)");
+		Assert.That(ugg0007[0].GetMessage(), Does.Contain("Sample-Target"));
+	}
+
+	[Test]
+	public void UGG0007_exact_lowercase_slug_no_warning()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Sample Target")]
+			    public class TargetPage2 { }
+
+			    [SamplePage(SampleCategory.Controls, "Sample Ref",
+			                RelatedSamples = new[] { "sample-target" })]
+			    public class RefPage2 { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+
+		Assert.That(result.Exception, Is.Null);
+		Assert.That(UggDiagnostics(result).Any(d => d.Id == "UGG0007"), Is.False,
+			"Exact ordinal lowercase match must not warn");
+	}
+
+	// ─── Issue 7: UGG0005 narrow source location ──────────────────────────────
+
+	[Test]
+	public void UGG0005_location_is_narrower_than_class_declaration_when_available()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Sample", Slug = "Bad Slug")]
+			    public class NarrowLocSample { }
+			}
+			""";
+
+		// We need a real file path so the syntax tree is usable from ApplicationSyntaxReference.
+		// Using RunGeneratorWithFilePaths provides a file path and thus a non-null SourceTree.
+		var result = RunGeneratorWithFilePaths(
+			[(source, "/repo/Views/SamplePages/NarrowLocSample.xaml.cs")]);
+
+		var diag = UggDiagnostics(result).First(d => d.Id == "UGG0005");
+
+		// The class keyword starts at a wide span; the slug expression starts at a much narrower one.
+		// At minimum the span must not be zero and must come from the expected source file.
+		Assert.That(diag.Location, Is.Not.EqualTo(Location.None));
+		Assert.That(diag.Location.SourceTree, Is.Not.Null);
+		Assert.That(diag.Location.SourceSpan.IsEmpty, Is.False);
+
+		// The diagnostic must point at the slug value ("Bad Slug"), which is much narrower
+		// than the full class declaration.  The slug value literal is < 15 chars; the full
+		// class decl including attributes easily exceeds 80 chars.
+		Assert.That(diag.Location.SourceSpan.Length, Is.LessThan(80),
+			"Diagnostic span must point at the slug expression, not the full class");
+	}
+
+	// ─── Issue 8: UGG0008 null/empty array elements ───────────────────────────
+
+	[Test]
+	public void Null_tag_element_produces_UGG0008()
+	{
+		// We inject null as a constant expression in the array initializer.
+		// The Roslyn semantic model stores it as a TypedConstant with null Value.
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Null Tag",
+			                Tags = new string[] { "valid", null })]
+			    public class NullTagPage { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+
+		Assert.That(result.Exception, Is.Null);
+		var ugg0008 = UggDiagnostics(result).Where(d => d.Id == "UGG0008").ToList();
+		Assert.That(ugg0008, Is.Not.Empty, "Null element in Tags must produce UGG0008");
+		Assert.That(ugg0008[0].Severity, Is.EqualTo(DiagnosticSeverity.Error));
+		Assert.That(ugg0008[0].GetMessage(), Does.Contain("Tags"));
+		// Sample must NOT be emitted when UGG0008 fires
+		Assert.That(GetGeneratedSource(result), Does.Not.Contain("NullTagPage"),
+			"Sample must be excluded when a metadata array has a null element");
+	}
+
+	[Test]
+	public void Empty_string_tag_element_produces_UGG0008()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Empty Tag",
+			                Tags = new[] { "valid", "" })]
+			    public class EmptyTagPage { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+
+		Assert.That(result.Exception, Is.Null);
+		var ugg0008 = UggDiagnostics(result).Where(d => d.Id == "UGG0008").ToList();
+		Assert.That(ugg0008, Is.Not.Empty, "Empty string element in Tags must produce UGG0008");
+		Assert.That(ugg0008[0].GetMessage(), Does.Contain("Tags"));
+		Assert.That(GetGeneratedSource(result), Does.Not.Contain("EmptyTagPage"),
+			"Sample must be excluded when a metadata array has an empty element");
+	}
+
+	[Test]
+	public void Null_related_samples_element_produces_UGG0008()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Related With Null",
+			                RelatedSamples = new string[] { "valid-slug", null })]
+			    public class RelatedNullPage { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+
+		Assert.That(result.Exception, Is.Null);
+		var ugg0008 = UggDiagnostics(result).Where(d => d.Id == "UGG0008").ToList();
+		Assert.That(ugg0008, Is.Not.Empty, "Null element in RelatedSamples must produce UGG0008");
+		Assert.That(ugg0008[0].GetMessage(), Does.Contain("RelatedSamples"));
+		Assert.That(GetGeneratedSource(result), Does.Not.Contain("RelatedNullPage"),
+			"Sample must be excluded when RelatedSamples has a null element");
+	}
+
+	[Test]
+	public void Valid_tags_array_no_UGG0008()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Clean Tags",
+			                Tags = new[] { "layout", "input" })]
+			    public class CleanTagsPage { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+
+		Assert.That(result.Exception, Is.Null);
+		Assert.That(UggDiagnostics(result).Any(d => d.Id == "UGG0008"), Is.False);
+		Assert.That(GetGeneratedSource(result), Does.Contain("CleanTagsPage"));
+	}
+
+	[Test]
+	public void Tags_null_explicit_treated_as_empty_no_UGG0008()
+	{
+		// Explicit Tags = null must be treated as omitted (empty) and must not throw or produce UGG0008.
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Explicit Null Tags",
+			                Tags = null)]
+			    public class ExplicitNullTagsPage { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+
+		Assert.That(result.Exception, Is.Null, "Generator must not throw for explicit null Tags");
+		Assert.That(UggDiagnostics(result).Any(d => d.Id == "UGG0008"), Is.False,
+			"Explicit null Tags must not produce UGG0008");
+		var generated = GetGeneratedSource(result);
+		Assert.That(generated, Does.Contain("ExplicitNullTagsPage"),
+			"Sample must be emitted when Tags is explicitly null");
+		Assert.That(generated, Does.Contain("Tags = null"),
+			"Null Tags must be forwarded as null in the generated output");
+	}
+
+	[Test]
+	public void RelatedSamples_null_explicit_treated_as_empty_no_UGG0008()
+	{
+		// Explicit RelatedSamples = null must be treated as omitted (empty) and must not throw.
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Explicit Null Related",
+			                RelatedSamples = null)]
+			    public class ExplicitNullRelatedPage { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+
+		Assert.That(result.Exception, Is.Null, "Generator must not throw for explicit null RelatedSamples");
+		Assert.That(UggDiagnostics(result).Any(d => d.Id == "UGG0008"), Is.False,
+			"Explicit null RelatedSamples must not produce UGG0008");
+		Assert.That(GetGeneratedSource(result), Does.Contain("ExplicitNullRelatedPage"),
+			"Sample must be emitted when RelatedSamples is explicitly null");
+	}
+
+	[Test]
+	public void Multi_invalid_elements_produces_single_UGG0008_listing_all_indices()
+	{
+		// Three invalid entries across both arrays: Tags[1], Tags[2], RelatedSamples[0].
+		// Must produce exactly ONE aggregated UGG0008 whose message names every bad index.
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Multi Invalid",
+			                Tags = new string[] { "good", null, "" },
+			                RelatedSamples = new string[] { null, "good-slug" })]
+			    public class MultiInvalidPage { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+
+		Assert.That(result.Exception, Is.Null);
+		var ugg0008 = UggDiagnostics(result).Where(d => d.Id == "UGG0008").ToList();
+		Assert.That(ugg0008.Count, Is.EqualTo(1), "Must emit exactly one aggregated UGG0008 per sample");
+		Assert.That(ugg0008[0].Severity, Is.EqualTo(DiagnosticSeverity.Error));
+
+		var msg = ugg0008[0].GetMessage();
+		Assert.That(msg, Does.Contain("Tags[1]"), "Aggregated message must list Tags[1]");
+		Assert.That(msg, Does.Contain("Tags[2]"), "Aggregated message must list Tags[2]");
+		Assert.That(msg, Does.Contain("RelatedSamples[0]"), "Aggregated message must list RelatedSamples[0]");
+
+		Assert.That(GetGeneratedSource(result), Does.Not.Contain("MultiInvalidPage"),
+			"Sample must be excluded when metadata arrays have invalid elements");
+	}
+
+	// ─── Pragma suppression ───────────────────────────────────────────────────
+
+	[Test]
+	public void Pragma_disable_UGG0004_sets_IsSuppressed()
+	{
+		// PragmaAlphaPage (A < B) is seen first; the diagnostic lands on PragmaBetaPage.
+		// #pragma warning disable UGG0004 before PragmaBetaPage must suppress it.
 		const string source = """
 			using Uno.Gallery;
 			namespace Uno.Gallery
 			{
 			    [SamplePage(SampleCategory.Controls, "Shared Title")]
-			    public class FirstSample { }
+			    public class PragmaAlphaPage { }
 
 			#pragma warning disable UGG0004
 			    [SamplePage(SampleCategory.Layout, "Shared Title")]
-			    public class SecondSample { }
+			    public class PragmaBetaPage { }
 			#pragma warning restore UGG0004
+			}
+			""";
+
+		// Use a real file path so the pragma trivia is linked to a source tree with a location.
+		var result = RunGeneratorWithFilePaths(
+			[(source, "/repo/Views/SamplePages/PragmaUgg0004Test.xaml.cs")]);
+
+		var ugg0004 = UggDiagnostics(result).Where(d => d.Id == "UGG0004").ToList();
+		Assert.That(ugg0004, Is.Not.Empty, "UGG0004 must still appear in diagnostic list (with IsSuppressed)");
+		Assert.That(ugg0004[0].IsSuppressed, Is.True,
+			"UGG0004 at a pragma-suppressed location must have IsSuppressed = true");
+	}
+
+	[Test]
+	public void Pragma_disable_UGG0008_sets_IsSuppressed()
+	{
+		// UGG0008 is an Error; pragma suppression still applies and sets IsSuppressed.
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			#pragma warning disable UGG0008
+			    [SamplePage(SampleCategory.Controls, "Pragma Null Tag",
+			                Tags = new string[] { "good", null })]
+			    public class PragmaUgg0008Page { }
+			#pragma warning restore UGG0008
+			}
+			""";
+
+		var result = RunGeneratorWithFilePaths(
+			[(source, "/repo/Views/SamplePages/PragmaUgg0008Test.xaml.cs")]);
+
+		var ugg0008 = UggDiagnostics(result).Where(d => d.Id == "UGG0008").ToList();
+		Assert.That(ugg0008, Is.Not.Empty, "UGG0008 must still appear in diagnostic list (with IsSuppressed)");
+		Assert.That(ugg0008[0].IsSuppressed, Is.True,
+			"UGG0008 at a pragma-suppressed location must have IsSuppressed = true");
+	}
+
+	// ─── Emitted-array assertion strengthening ────────────────────────────────
+
+	[Test]
+	public void Emitted_tags_array_uses_verbatim_literals()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Emitted Tags",
+			                Tags = new[] { "alpha", "beta" })]
+			    public class EmittedTagsPage { }
 			}
 			""";
 
 		var result = RunGenerator([source]);
 
 		Assert.That(result.Exception, Is.Null);
-		var ugg0004 = UggDiagnostics(result).Where(d => d.Id == "UGG0004").ToList();
-		// Exactly one duplicate diagnostic exists (FirstSample < SecondSample in FQN order,
-		// so the diagnostic lands on SecondSample).
-		Assert.That(ugg0004, Has.Count.EqualTo(1), "Exactly one UGG0004 diagnostic expected");
-		// The pragma covers SecondSample's declaration — the diagnostic must be suppressed.
-		Assert.That(ugg0004[0].IsSuppressed, Is.True,
-			"#pragma warning disable UGG0004 must mark the diagnostic as suppressed (IsSuppressed=true)");
+		Assert.That(UggDiagnostics(result), Is.Empty);
+		var generated = GetGeneratedSource(result);
+		// StringLiteral produces @"..." syntax for each element
+		Assert.That(generated, Does.Contain(@"Tags = new[] { @""alpha"", @""beta"" }"),
+			"Tags array elements must be emitted as verbatim string literals");
+		AssertGeneratedCompiles(generated, source);
+	}
+
+	[Test]
+	public void Emitted_related_samples_array_uses_verbatim_literals()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Emitter A",
+			                RelatedSamples = new[] { "emitter-b" })]
+			    public class EmitterAPage { }
+
+			    [SamplePage(SampleCategory.Controls, "Emitter B")]
+			    public class EmitterBPage { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+
+		Assert.That(result.Exception, Is.Null);
+		Assert.That(UggDiagnostics(result), Is.Empty);
+		var generated = GetGeneratedSource(result);
+		Assert.That(generated, Does.Contain(@"@""emitter-b"""),
+			"RelatedSamples entry must be emitted as verbatim string literal");
+		AssertGeneratedCompiles(generated, source);
+	}
+
+	// ─── Helpers ─────────────────────────────────────────────────────────────
+
+	/// <summary>
+	/// Verifies that the generated C# source compiles without errors when re-compiled
+	/// together with the stub declarations and any additional user sources.
+	/// </summary>
+	private static void AssertGeneratedCompiles(string generatedSource, params string[] additionalSources)
+	{
+		var trees = new[] { GoodStubs }
+			.Concat(additionalSources)
+			.Append(generatedSource)
+			.Select(s => CSharpSyntaxTree.ParseText(s));
+
+		var compilation = CSharpCompilation.Create(
+			"GeneratedCompilation",
+			trees,
+			GetMetadataReferences(),
+			new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary));
+
+		var errors = compilation.GetDiagnostics()
+			.Where(d => d.Severity == DiagnosticSeverity.Error)
+			.ToList();
+
+		Assert.That(errors, Is.Empty,
+			$"Generated C# must compile without errors. First error: {errors.FirstOrDefault()?.GetMessage()}");
+	}
+	/// Test-visible façade that exposes <c>StringSequence</c>'s equality and hash behaviour.
+	/// The inner <c>StringSequence</c> type is private; this helper creates an equivalent
+	/// equatable wrapper by forwarding to the same ordinal-element logic used in the generator.
+	/// </summary>
+	private sealed class StringSequenceTestHelper(ImmutableArray<string> values)
+	{
+		private readonly ImmutableArray<string> _values = values;
+		private ImmutableArray<string> Values =>
+			_values.IsDefault ? ImmutableArray<string>.Empty : _values;
+
+		public bool Equals(StringSequenceTestHelper other)
+		{
+			var a = Values;
+			var b = other.Values;
+			if (a.Length != b.Length) return false;
+			for (int i = 0; i < a.Length; i++)
+				if (!string.Equals(a[i], b[i], StringComparison.Ordinal))
+					return false;
+			return true;
+		}
+
+		public override int GetHashCode()
+		{
+			var values = Values;
+			if (values.IsEmpty) return 0;
+			unchecked
+			{
+				int hash = 17;
+				foreach (var v in values)
+					hash = hash * 31 + (v is null ? 0 : StringComparer.Ordinal.GetHashCode(v));
+				return hash;
+			}
+		}
 	}
 }

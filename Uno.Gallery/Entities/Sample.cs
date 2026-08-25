@@ -44,6 +44,17 @@ namespace Uno.Gallery
 			_data = _dataType is null ? null : _noData;
 			Source = attribute.Source;
 			SortOrder = attribute.SortOrder;
+
+			Slug = attribute.Slug ?? SlugHelper.DeriveSlug(attribute.Title);
+			Status = attribute.Status;
+			Tags = attribute.Tags is { Length: > 0 } t
+				? Array.AsReadOnly(t)
+				: (IReadOnlyList<string>)Array.Empty<string>();
+			RelatedSamples = attribute.RelatedSamples is { Length: > 0 } rs
+				? Array.AsReadOnly(rs)
+				: (IReadOnlyList<string>)Array.Empty<string>();
+			Owner = attribute.Owner;
+			ReviewedOn = attribute.ReviewedOn;
 		}
 
 		private object? CreateData([DynamicallyAccessedMembers(ViewRequirements)] Type? dataType)
@@ -94,5 +105,40 @@ namespace Uno.Gallery
 
 		[DynamicallyAccessedMembers(ViewRequirements)]
 		public Type ViewType { get; }
+
+		/// <summary>
+		/// URL-friendly identifier derived from <see cref="Title"/> when
+		/// <see cref="SamplePageAttribute.Slug"/> is not set.
+		/// Always non-null; all-separator or empty titles fall back to <c>"sample"</c>.
+		/// </summary>
+		public string Slug { get; }
+
+		/// <summary>
+		/// Source file path relative to the repository root.
+		/// Populated by the source generator for generator-created (attribute-decorated) samples.
+		/// Reflection-based and manually registered samples may be null until catalog lookup
+		/// migration is complete; do not assume parity with attribute-registered samples.
+		/// Kept internal so the WinUI XAML type-info generator does not emit a public setter.
+		/// </summary>
+		public string? SourcePath { get; internal set; }
+
+		/// <summary>Production-readiness indicator for this sample.</summary>
+		public SampleStatus Status { get; }
+
+		/// <summary>Categorization tags; never null.</summary>
+		public IReadOnlyList<string> Tags { get; }
+
+		/// <summary>Titles of related samples for cross-linking in the catalog; never null.</summary>
+		public IReadOnlyList<string> RelatedSamples { get; }
+
+		/// <summary>
+		/// GitHub user or team slug of the owner responsible for this sample, or null if unset.
+		/// </summary>
+		public string? Owner { get; }
+
+		/// <summary>
+		/// Date of the last quality review in ISO 8601 format (<c>YYYY-MM-DD</c>), or null if not reviewed.
+		/// </summary>
+		public string? ReviewedOn { get; }
 	}
 }

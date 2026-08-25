@@ -155,6 +155,29 @@ public sealed partial class MyControlSamplePage : Page { }
 | `DataType` | — | ViewModel type; the sample receives an instance via `DataContext` |
 | `Source` | — | Defaults to `SourceSdk.WinUI`; use `UnoMaterial`, `UnoToolkit`, `WCT`, etc. |
 | `SortOrder` | — | Display order within the same category (lower = earlier; default = last) |
+| `Slug` | — | URL-friendly identifier. Derived from `Title` if not set (spaces/punctuation → hyphens, uppercase → lowercase; e.g. `"My Control"` → `"my-control"`). Must be lowercase ASCII alphanumeric with interior hyphens only (`^[a-z0-9]+(-[a-z0-9]+)*$`). **Set this when renaming a sample to keep its URL stable** (see below). |
+| `Tags` | — | String array of categorization tags for filtering/search, e.g. `new[] { "layout", "input" }` |
+| `Status` | — | Production-readiness indicator. Defaults to `SampleStatus.Stable`. Other values: `Preview`, `Experimental`, `Deprecated`, `Incomplete`. |
+| `Owner` | — | GitHub user or team slug of the maintainer, e.g. `"username"` or `"org/team-name"` |
+| `ReviewedOn` | — | Date of the last quality review in ISO 8601 format (`YYYY-MM-DD`) |
+| `RelatedSamples` | — | Slugs of related samples for cross-linking, e.g. `new[] { "button", "hyperlink-button" }`. Each entry is validated at build time (UGG0007) — use the final slug, not the display title. |
+
+### Renaming a sample — keeping the old URL
+
+When you rename a sample's `Title`, the source generator derives a new slug from the new title,
+breaking any existing bookmarks or deep links.  Set `Slug` to the **old** slug to preserve the URL:
+
+```csharp
+// Before rename:
+[SamplePage(SampleCategory.Controls, "AutoCompleteBox")]
+// Derived slug: "autocomplete-box"
+
+// After rename — keep old slug so the URL doesn't change:
+[SamplePage(SampleCategory.Controls, "AutoSuggestBox", Slug = "autocomplete-box")]
+```
+
+The build emits **UGG0005** (error) if the explicit slug is not lowercase ASCII alphanumeric with
+interior hyphens only, and **UGG0006** (warning) if the final slug collides with another sample.
 
 ### Design system templates
 

@@ -12,6 +12,7 @@
 		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" />
 		<PackageReference Include="Microsoft.CodeAnalysis.Analyzers" />
 		<Compile Include="../Uno.Gallery/Entities/SampleConditionals.cs" />
+		<Compile Include="../Uno.Gallery/Entities/SlugHelper.cs" />
 	</ItemGroup>
 
 	<ItemGroup>

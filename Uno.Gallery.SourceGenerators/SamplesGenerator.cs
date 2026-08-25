@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Text;
 using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Text;
 
 namespace Uno.Gallery.SourceGenerators;
@@ -14,6 +15,10 @@ public sealed class SamplesGenerator : IIncrementalGenerator
 	// UGG0002  Error    SamplePageAttribute applied to a non-named-type target
 	// UGG0003  Error    Unexpected SampleConditionalAttribute constructor shape
 	// UGG0004  Warning  Duplicate sample title found in the generated catalog
+	// UGG0005  Error    Invalid explicit slug (not lowercase ASCII alphanumeric + interior hyphens)
+	// UGG0006  Warning  Duplicate final slug, case-insensitive; both samples emit
+	// UGG0007  Warning  RelatedSamples entry references an unknown final slug (ordinal match)
+	// UGG0008  Error    Null or empty element in a string metadata array (Tags, RelatedSamples)
 
 	private static class Diagnostics
 	{
@@ -58,6 +63,107 @@ public sealed class SamplesGenerator : IIncrementalGenerator
 			defaultSeverity: DiagnosticSeverity.Warning,
 			isEnabledByDefault: true,
 			description: "Each sample title should be unique across the catalog.  Rename the later duplicate so navigation and search remain unambiguous.");
+
+		public static readonly DiagnosticDescriptor InvalidSlug = new(
+			id: "UGG0005",
+			title: "Invalid explicit slug on SamplePageAttribute",
+			messageFormat: "SamplePageAttribute.Slug '{1}' on '{0}' is not a valid slug (expected lowercase ASCII " +
+						   "alphanumeric with interior hyphens only, e.g. \"my-control\"). Code generation skipped.",
+			category: "SamplesGenerator",
+			defaultSeverity: DiagnosticSeverity.Error,
+			isEnabledByDefault: true,
+			description: "Slugs must contain only lowercase ASCII letters (a-z), digits (0-9), and interior hyphens. " +
+						 "They must not start or end with a hyphen and must not contain consecutive hyphens. " +
+						 "Remove or correct the Slug property value.");
+
+		public static readonly DiagnosticDescriptor DuplicateSlug = new(
+			id: "UGG0006",
+			title: "Duplicate final slug in generated catalog",
+			messageFormat: "Sample slug '{0}' on '{1}' is also the final slug of '{2}'. Set an explicit unique Slug to avoid navigation ambiguity.",
+			category: "SamplesGenerator",
+			defaultSeverity: DiagnosticSeverity.Warning,
+			isEnabledByDefault: true,
+			description: "Each sample must have a unique URL slug. Two samples sharing the same final slug cannot " +
+						 "both be navigated to by URL.  Set SamplePageAttribute.Slug explicitly on one of them.");
+
+		public static readonly DiagnosticDescriptor UnknownRelatedSlug = new(
+			id: "UGG0007",
+			title: "RelatedSamples entry references an unknown slug",
+			messageFormat: "RelatedSamples entry '{0}' on '{1}' does not match any known sample slug (ordinal comparison). The entry will be emitted but may produce a dead cross-link.",
+			category: "SamplesGenerator",
+			defaultSeverity: DiagnosticSeverity.Warning,
+			isEnabledByDefault: true,
+			description: "Each entry in RelatedSamples must exactly match (ordinal, lowercase) the final slug of " +
+						 "another sample in the catalog. " +
+						 "Verify the slug value or set SamplePageAttribute.Slug explicitly on the referenced sample.");
+
+		public static readonly DiagnosticDescriptor NullOrEmptyArrayElement = new(
+			id: "UGG0008",
+			title: "Null or empty element in metadata string array",
+			messageFormat: "'{0}' has null or empty metadata array elements: {1}. Null and empty entries are not meaningful; the sample has been excluded from the generated output.",
+			category: "SamplesGenerator",
+			defaultSeverity: DiagnosticSeverity.Error,
+			isEnabledByDefault: true,
+			description: "Null or empty strings in Tags or RelatedSamples arrays are never meaningful and indicate " +
+						 "a likely authoring error. Remove or fill in the empty entries.");
+	}
+
+	// ─── StringSequence ──────────────────────────────────────────────────────
+
+	/// <summary>
+	/// Ordinal-sequence-equatable wrapper around <see cref="ImmutableArray{T}">ImmutableArray&lt;string&gt;</see>
+	/// suitable for use as an incremental-generator pipeline value on netstandard2.0.
+	/// <para>
+	/// <see cref="ImmutableArray{T}"/> uses reference equality on its backing array, so two
+	/// independently-constructed arrays with identical contents compare unequal, causing Roslyn's
+	/// incremental cache to re-execute downstream steps even when nothing has changed.
+	/// This wrapper compares element-by-element with <see cref="StringComparison.Ordinal"/> and
+	/// computes a stable hash from the same.
+	/// </para>
+	/// <para>
+	/// Default/empty safety: a default-initialised <c>StringSequence</c> (field not yet set) is
+	/// treated as an empty sequence and compares equal to any other empty sequence.
+	/// </para>
+	/// </summary>
+	private readonly struct StringSequence : IEquatable<StringSequence>
+	{
+		private readonly ImmutableArray<string> _values;
+
+		public StringSequence(ImmutableArray<string> values) => _values = values;
+
+		public ImmutableArray<string> Values =>
+			_values.IsDefault ? ImmutableArray<string>.Empty : _values;
+
+		public bool IsEmpty => _values.IsDefaultOrEmpty;
+
+		public bool Equals(StringSequence other)
+		{
+			var a = Values;
+			var b = other.Values;
+			if (a.Length != b.Length) return false;
+			for (int i = 0; i < a.Length; i++)
+				if (!string.Equals(a[i], b[i], StringComparison.Ordinal))
+					return false;
+			return true;
+		}
+
+		public override bool Equals(object? obj) => obj is StringSequence other && Equals(other);
+
+		public override int GetHashCode()
+		{
+			var values = Values;
+			if (values.IsEmpty) return 0;
+			unchecked
+			{
+				int hash = 17;
+				foreach (var v in values)
+					hash = hash * 31 + (v is null ? 0 : StringComparer.Ordinal.GetHashCode(v));
+				return hash;
+			}
+		}
+
+		public static bool operator ==(StringSequence left, StringSequence right) => left.Equals(right);
+		public static bool operator !=(StringSequence left, StringSequence right) => !left.Equals(right);
 	}
 
 	// ─── Pipeline models ──────────────────────────────────────────────────────
@@ -73,22 +179,22 @@ public sealed class SamplesGenerator : IIncrementalGenerator
 		string SourceSdk,
 		string Glyph,
 		int SortOrder,
-		// Stores the real SyntaxNode location so UGG0004 points into the actual source tree
-		// and #pragma warning disable UGG0004 works at the declaration site.
-		// Location equality in Roslyn is (SyntaxTree reference, TextSpan): two Location
-		// values are equal iff they share the same SyntaxTree object and span.  Roslyn
-		// reuses SyntaxTree objects for unchanged sources between incremental pipeline runs,
-		// so this reference-equality is stable for caching purposes.
-		Location DeclarationLocation);
+		// Stores the real SyntaxNode location so diagnostics point into the actual source tree.
+		// Location equality in Roslyn is (SyntaxTree reference, TextSpan): two Location values
+		// are equal iff they share the same SyntaxTree object and span.  Roslyn reuses SyntaxTree
+		// objects for unchanged sources between incremental pipeline runs.
+		Location DeclarationLocation,
+		// Phase 2 metadata fields
+		string FinalSlug,
+		StringSequence Tags,
+		int StatusValue,
+		string? Owner,
+		string? ReviewedOn,
+		StringSequence RelatedSamples,
+		string? SourcePath);
 
 	/// <summary>
 	/// Lightweight, value-comparable diagnostic carrier used inside the incremental pipeline.
-	/// <see cref="DiagnosticDescriptor"/> is a static singleton so reference equality is correct.
-	/// <see cref="Location"/> equality in Roslyn is SyntaxTree-reference plus TextSpan: two
-	/// <see cref="Location"/> objects compare equal only when they share the same (reference-identical)
-	/// <see cref="SyntaxTree"/> and an identical span — content-structural equality is not guaranteed
-	/// across incremental steps that rebuild the tree.  These diagnostics are used only in the error
-	/// branch, which does not participate in cross-step value caching that would require stable equality.
 	/// Declared as <c>record struct</c> (not <c>readonly record struct</c>) so it compiles on
 	/// netstandard2.0 without an IsExternalInit polyfill.
 	/// </summary>
@@ -96,12 +202,17 @@ public sealed class SamplesGenerator : IIncrementalGenerator
 		DiagnosticDescriptor Descriptor,
 		Location Location,
 		string MessageArg0,
-		string? MessageArg1 = null)
+		string? MessageArg1 = null,
+		string? MessageArg2 = null)
 	{
-		public Diagnostic ToDiagnostic() =>
-			MessageArg1 is null
-				? Diagnostic.Create(Descriptor, Location, MessageArg0)
-				: Diagnostic.Create(Descriptor, Location, MessageArg0, MessageArg1);
+		public Diagnostic ToDiagnostic()
+		{
+			if (MessageArg2 is not null)
+				return Diagnostic.Create(Descriptor, Location, MessageArg0, MessageArg1, MessageArg2);
+			if (MessageArg1 is not null)
+				return Diagnostic.Create(Descriptor, Location, MessageArg0, MessageArg1);
+			return Diagnostic.Create(Descriptor, Location, MessageArg0);
+		}
 	}
 
 	private record struct TransformResult(SamplesModel? Model, DiagnosticInfo? Error)
@@ -122,14 +233,12 @@ public sealed class SamplesGenerator : IIncrementalGenerator
 			predicate: (_, _) => true,
 			transform: Transform);
 
-		// Branch A: surface Roslyn diagnostics from the error path
 		var errorDiagnostics = transformResults
 			.Where(r => r.Error is not null)
 			.Select((r, _) => r.Error!.Value)
 			.Collect();
 		context.RegisterSourceOutput(errorDiagnostics, ReportDiagnostics);
 
-		// Branch B: generate source from valid models only
 		var validModels = transformResults
 			.Where(r => r.Model is not null)
 			.Select((r, _) => r.Model!.Value);
@@ -153,16 +262,11 @@ public sealed class SamplesGenerator : IIncrementalGenerator
 
 	private static void GenerateCode(SourceProductionContext context, ImmutableArray<SamplesModel?> samples)
 	{
-		// Sort by FullyQualifiedName so generated output is deterministic regardless of syntax-tree
-		// or file order.  Runtime UI order is controlled separately via SamplePageAttribute.SortOrder.
 		var sorted = samples
 			.OrderBy(m => m!.Value.FullyQualifiedName, StringComparer.Ordinal)
 			.ToList();
 
-		// UGG0004: warn when two samples share the same title (case-insensitive, matching
-		// runtime navigation/search which also compares case-insensitively); report on the
-		// later duplicate with the first-seen type's FQN in the message so the warning is
-		// actionable and navigable.
+		// UGG0004: warn on duplicate title (case-insensitive); report on later duplicate.
 		var seenTitles = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
 		foreach (var sample in sorted)
 		{
@@ -170,14 +274,45 @@ public sealed class SamplesGenerator : IIncrementalGenerator
 			if (seenTitles.TryGetValue(s.Title, out var firstFqn))
 			{
 				context.ReportDiagnostic(Diagnostic.Create(
-					Diagnostics.DuplicateSampleTitle,
-					s.DeclarationLocation,
-					s.Title,
-					firstFqn));
+					Diagnostics.DuplicateSampleTitle, s.DeclarationLocation, s.Title, firstFqn));
 			}
 			else
 			{
 				seenTitles[s.Title] = s.FullyQualifiedName;
+			}
+		}
+
+		// UGG0006: warn on duplicate final slug (case-insensitive); both samples still emit.
+		var seenSlugs = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+		foreach (var sample in sorted)
+		{
+			var s = sample!.Value;
+			if (seenSlugs.TryGetValue(s.FinalSlug, out var firstFqn))
+			{
+				context.ReportDiagnostic(Diagnostic.Create(
+					Diagnostics.DuplicateSlug, s.DeclarationLocation,
+					s.FinalSlug, s.FullyQualifiedName, firstFqn));
+			}
+			else
+			{
+				seenSlugs[s.FinalSlug] = s.FullyQualifiedName;
+			}
+		}
+
+		// UGG0007: warn when a RelatedSamples entry has no exact ordinal/lowercase match; entry still emits.
+		// Final slugs are always lowercase (from IsValidSlug or DeriveSlug), so ordinal comparison
+		// is the correct choice: a mixed-case related slug such as "Sample-B" must warn.
+		var allSlugs = new HashSet<string>(seenSlugs.Keys, StringComparer.Ordinal);
+		foreach (var sample in sorted)
+		{
+			var s = sample!.Value;
+			foreach (var relSlug in s.RelatedSamples.Values)
+			{
+				if (!allSlugs.Contains(relSlug))
+				{
+					context.ReportDiagnostic(Diagnostic.Create(
+						Diagnostics.UnknownRelatedSlug, s.DeclarationLocation, relSlug, s.FullyQualifiedName));
+				}
 			}
 		}
 
@@ -195,8 +330,8 @@ public sealed class SamplesGenerator : IIncrementalGenerator
 
 		foreach (var sample in sorted)
 		{
-			var fullyQualifiedName = sample!.Value.FullyQualifiedName;
-			builder.AppendLine($"\t\t\t\tnew global::Uno.Gallery.Sample({CreateSamplePageAttribute(sample!.Value)}, typeof({fullyQualifiedName})),");
+			var s = sample!.Value;
+			builder.AppendLine($"\t\t\t\tnew global::Uno.Gallery.Sample({CreateSamplePageAttribute(s)}, typeof({s.FullyQualifiedName})){CreateSampleObjectInitializer(s)},");
 		}
 
 		builder.AppendLine("""
@@ -212,12 +347,42 @@ public sealed class SamplesGenerator : IIncrementalGenerator
 	private static string CreateSamplePageAttribute(SamplesModel model)
 	{
 		var dataType = model.DataType is null ? "null" : $"typeof(global::{model.DataType})";
-		var documentationLink = model.DocumentationLink is null ? "null" : $@"""{model.DocumentationLink}""";
-		var description = model.Description is null ? "null" : $@"@""{model.Description.Replace(@"""", @"""""")}""";
+		var tagsLiteral = model.Tags.IsEmpty
+			? "null"
+			: $"new[] {{ {string.Join(", ", model.Tags.Values.Select(StringLiteral))} }}";
+		var relatedLiteral = model.RelatedSamples.IsEmpty
+			? "null"
+			: $"new[] {{ {string.Join(", ", model.RelatedSamples.Values.Select(StringLiteral))} }}";
 
-		return $$"""
-			new global::Uno.Gallery.SamplePageAttribute(category: {{model.Category}}, title: "{{model.Title}}", source: {{model.SourceSdk}}, glyph: "{{model.Glyph}}") { Description = {{description}}, DocumentationLink = {{documentationLink}}, DataType = {{dataType}}, SortOrder = {{model.SortOrder.ToString(CultureInfo.InvariantCulture)}} }
-			""";
+		// Title and Glyph are positional constructor args; use StringLiteral so that embedded
+		// double-quotes, backslashes, and any other characters round-trip correctly through the
+		// generated verbatim string literal.
+		return $"new global::Uno.Gallery.SamplePageAttribute(category: {model.Category}," +
+			   $" title: {StringLiteral(model.Title)}," +
+			   $" source: {model.SourceSdk}," +
+			   $" glyph: {StringLiteral(model.Glyph)})" +
+			   $" {{ Description = {StringLiteral(model.Description)}," +
+			   $" DocumentationLink = {StringLiteral(model.DocumentationLink)}," +
+			   $" DataType = {dataType}," +
+			   $" SortOrder = {model.SortOrder.ToString(CultureInfo.InvariantCulture)}," +
+			   $" Slug = {StringLiteral(model.FinalSlug)}," +
+			   $" Tags = {tagsLiteral}," +
+			   $" Status = (global::Uno.Gallery.SampleStatus)({model.StatusValue.ToString(CultureInfo.InvariantCulture)})," +
+			   $" Owner = {StringLiteral(model.Owner)}," +
+			   $" ReviewedOn = {StringLiteral(model.ReviewedOn)}," +
+			   $" RelatedSamples = {relatedLiteral} }}";
+	}
+
+	private static string CreateSampleObjectInitializer(SamplesModel model)
+	{
+		if (model.SourcePath is null) return string.Empty;
+		return $" {{ SourcePath = {StringLiteral(model.SourcePath)} }}";
+	}
+
+	private static string StringLiteral(string? value)
+	{
+		if (value is null) return "null";
+		return $@"@""{value.Replace(@"""", @"""""")}""";
 	}
 
 	// ─── Filtering ────────────────────────────────────────────────────────────
@@ -310,6 +475,41 @@ public sealed class SamplesGenerator : IIncrementalGenerator
 		var sortOrder = GetNamedArgumentOrDefault<int>(samplePageAttribute, "SortOrder", int.MaxValue);
 
 		var declLoc = context.TargetNode.GetLocation();
+
+		// Phase 2: validate explicit slug (UGG0005) and compute FinalSlug.
+		// Report on the Slug argument expression (narrower span) when obtainable from the syntax tree;
+		// fall back to the class declaration location.
+		var explicitSlug = GetNamedArgumentOrDefault<string>(samplePageAttribute, "Slug", null);
+		if (explicitSlug is not null && !IsValidSlug(explicitSlug))
+		{
+			var slugLoc = GetNamedArgumentExpressionLocation(
+				samplePageAttribute, "Slug", cancellationToken) ?? declLoc;
+			return TransformResult.Fail(new DiagnosticInfo(
+				Diagnostics.InvalidSlug, slugLoc,
+				attributedSymbol.ToDisplayString(), explicitSlug));
+		}
+		var finalSlug = explicitSlug ?? SlugHelper.DeriveSlug(title);
+
+		// Phase 2: remaining metadata.
+		// UGG0008 from GetNamedStringArray is accumulated and returned as the first error found;
+		// the model is not emitted when any array element is null/empty.
+		var invalidElements = new List<(string ArrayName, int Index)>();
+		var tags = GetNamedStringArray(samplePageAttribute, "Tags", invalidElements);
+		var relatedSamples = GetNamedStringArray(samplePageAttribute, "RelatedSamples", invalidElements);
+		if (invalidElements.Count > 0)
+		{
+			var parts = string.Join(", ", invalidElements.Select(e => $"{e.ArrayName}[{e.Index}]"));
+			return TransformResult.Fail(new DiagnosticInfo(
+				Diagnostics.NullOrEmptyArrayElement,
+				declLoc,
+				attributedSymbol.ToDisplayString(), parts));
+		}
+
+		var statusValue = GetNamedEnumIntOrDefault(samplePageAttribute, "Status", 0);
+		var owner = GetNamedArgumentOrDefault<string>(samplePageAttribute, "Owner", null);
+		var reviewedOn = GetNamedArgumentOrDefault<string>(samplePageAttribute, "ReviewedOn", null);
+		var sourcePath = ComputeSourcePath(declLoc.SourceTree?.FilePath);
+
 		return TransformResult.Ok(new SamplesModel(
 			conditionals,
 			attributedSymbol.ToDisplayString(),
@@ -321,7 +521,14 @@ public sealed class SamplesGenerator : IIncrementalGenerator
 			source,
 			glyph,
 			sortOrder,
-			declLoc));
+			declLoc,
+			finalSlug,
+			tags,
+			statusValue,
+			owner,
+			reviewedOn,
+			relatedSamples,
+			sourcePath));
 	}
 
 	/// <summary>
@@ -342,8 +549,122 @@ public sealed class SamplesGenerator : IIncrementalGenerator
 		foreach (var namedArgument in samplePageAttribute.NamedArguments)
 		{
 			if (namedArgument.Key == argumentName)
-				return (T)namedArgument.Value.Value!;
+			{
+				var rawValue = namedArgument.Value.Value;
+				if (rawValue is null) return defaultValue;
+				return (T)rawValue;
+			}
 		}
 		return defaultValue;
+	}
+
+	private static int GetNamedEnumIntOrDefault(AttributeData attr, string name, int defaultValue)
+	{
+		foreach (var named in attr.NamedArguments)
+		{
+			if (named.Key != name) continue;
+			if (named.Value.Value is null) return defaultValue;
+			// Convert.ToInt32 handles both a boxed-int and a boxed-enum-type value safely.
+			return Convert.ToInt32(named.Value.Value);
+		}
+		return defaultValue;
+	}
+
+	/// <summary>
+	/// Returns the <see cref="Location"/> of the value expression for a named attribute argument,
+	/// obtained by walking the <see cref="AttributeSyntax"/>.
+	/// This produces a span narrower than the class declaration, enabling precise pragma suppressions
+	/// and IDE click-through.  Returns <c>null</c> when the syntax reference is unavailable.
+	/// </summary>
+	private static Location? GetNamedArgumentExpressionLocation(
+		AttributeData attr,
+		string name,
+		CancellationToken cancellationToken)
+	{
+		if (attr.ApplicationSyntaxReference?.GetSyntax(cancellationToken) is not AttributeSyntax attrSyntax)
+			return null;
+		if (attrSyntax.ArgumentList is null) return null;
+		foreach (var arg in attrSyntax.ArgumentList.Arguments)
+		{
+			if (arg.NameEquals?.Name.Identifier.Text == name && arg.Expression is not null)
+				return arg.Expression.GetLocation();
+		}
+		return null;
+	}
+
+	/// <summary>
+	/// Reads a named string-array argument.  Null or empty element strings append
+	/// <c>(arrayName, index)</c> pairs to <paramref name="invalidElementsOut"/>; such elements are
+	/// excluded from the returned sequence.  An explicitly-null array (<c>Tags = null</c>) is
+	/// treated as omitted/empty and never throws.
+	/// Returns an empty <see cref="StringSequence"/> when the argument is absent or null.
+	/// </summary>
+	private static StringSequence GetNamedStringArray(
+		AttributeData attr,
+		string name,
+		List<(string ArrayName, int Index)> invalidElementsOut)
+	{
+		foreach (var named in attr.NamedArguments)
+		{
+			if (named.Key != name) continue;
+			if (named.Value.Kind != TypedConstantKind.Array || named.Value.IsNull) return default;
+			var builder = ImmutableArray.CreateBuilder<string>(named.Value.Values.Length);
+			for (int i = 0; i < named.Value.Values.Length; i++)
+			{
+				var item = named.Value.Values[i];
+				if (item.Kind == TypedConstantKind.Primitive && item.Value is string s && s.Length > 0)
+					builder.Add(s);
+				else
+					invalidElementsOut.Add((name, i));
+			}
+			return new StringSequence(builder.ToImmutable());
+		}
+		return default;
+	}
+
+	/// <summary>
+	/// Validates the slug format: lowercase ASCII alphanumeric with interior hyphens only.
+	/// No leading/trailing hyphens, no consecutive hyphens, no uppercase or non-ASCII.
+	/// Internal for unit-test accessibility.
+	/// </summary>
+	internal static bool IsValidSlugPublicForTest(string slug) => IsValidSlug(slug);
+
+	private static bool IsValidSlug(string slug)
+	{
+		if (string.IsNullOrEmpty(slug)) return false;
+		bool expectAlnum = true;
+		for (int i = 0; i < slug.Length; i++)
+		{
+			var c = slug[i];
+			if (expectAlnum)
+			{
+				if (!IsLowerAsciiAlnum(c)) return false;
+				expectAlnum = false;
+			}
+			else
+			{
+				if (IsLowerAsciiAlnum(c)) continue;
+				if (c == '-') { expectAlnum = true; continue; }
+				return false;
+			}
+		}
+		return !expectAlnum; // no trailing hyphen
+	}
+
+	private static bool IsLowerAsciiAlnum(char c) =>
+		(c >= 'a' && c <= 'z') || (c >= '0' && c <= '9');
+
+	/// <summary>
+	/// Returns a repo-relative path anchored at the first <c>/Views/</c> segment,
+	/// or the bare filename as a fallback.  Returns <c>null</c> for empty or in-memory paths.
+	/// </summary>
+	private static string? ComputeSourcePath(string? filePath)
+	{
+		if (filePath is null || filePath.Length == 0) return null;
+		var normalized = filePath.Replace('\\', '/');
+		var idx = normalized.IndexOf("/Views/", StringComparison.OrdinalIgnoreCase);
+		if (idx >= 0) return normalized.Substring(idx + 1);
+		var lastSlash = normalized.LastIndexOf('/');
+		return lastSlash >= 0 ? normalized.Substring(lastSlash + 1) : normalized;
 	}
 }
