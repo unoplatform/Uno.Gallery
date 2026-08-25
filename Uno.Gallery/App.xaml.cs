@@ -223,7 +223,10 @@ namespace Uno.Gallery
 				.OrderByDescending(x => x.SortOrder.HasValue)
 				.ThenBy(x => x.SortOrder)
 				.ThenBy(x => x.Title)
-				.ToArray();
+#if !AOT_PROFILE_GEN && !IS_CANARY_BUILD && !DEBUG && !USE_UITESTS
+					.Where(x => x.Category != SampleCategory.Canary)
+#endif
+					.ToArray();
 
 			var shell = new Shell { Samples = sortedSamples };
 			AutomationProperties.SetAutomationId(shell, "AppShell");
@@ -341,14 +344,7 @@ namespace Uno.Gallery
 		private void AddNavigationItems(MUXC.NavigationView nv, IReadOnlyList<Sample> samples)
 		{
 			var categories = samples
-				.Where(x =>
-#if AOT_PROFILE_GEN || IS_CANARY_BUILD || DEBUG
-					true
-#else
-					x.Category != SampleCategory.Canary
-#endif
-				)
-				.GroupBy(x => x.Category);
+					.GroupBy(x => x.Category);
 
 			foreach (var category in categories.OrderBy(x => x.Key))
 			{

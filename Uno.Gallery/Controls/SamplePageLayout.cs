@@ -49,7 +49,14 @@ namespace Uno.Gallery
 		{
 			new LayoutModeMapping(Design.Material, () => !IsDesignAgnostic, _materialRadioButton, _stickyMaterialRadioButton, VisualStateMaterial, MaterialTemplate),
 			new LayoutModeMapping(Design.Fluent, () => !IsDesignAgnostic, _fluentRadioButton, _stickyFluentRadioButton, VisualStateFluent, FluentTemplate),
-			new LayoutModeMapping(Design.Cupertino, () => !IsDesignAgnostic, _cupertinoRadioButton, _stickyCupertinoRadioButton, VisualStateCupertino, CupertinoTemplate),
+			// Cupertino tab hidden in stable Release; visible in debug/canary/UI-test builds — see https://github.com/unoplatform/uno.gallery/issues/1210
+			new LayoutModeMapping(Design.Cupertino, () => !IsDesignAgnostic, _cupertinoRadioButton, _stickyCupertinoRadioButton, VisualStateCupertino,
+#if DEBUG || IS_CANARY_BUILD || USE_UITESTS || AOT_PROFILE_GEN
+				CupertinoTemplate
+#else
+				default
+#endif
+			),
 			new LayoutModeMapping(Design.Agnostic, () => IsDesignAgnostic, null, null, VisualStateAgnostic, DesignAgnosticTemplate),
 #if __IOS__ || __MACOS__ || __ANDROID__
 			// native tab is only shown when applicable
@@ -107,6 +114,11 @@ namespace Uno.Gallery
 
 		protected override void OnApplyTemplate()
 		{
+#if !DEBUG && !IS_CANARY_BUILD && !USE_UITESTS && !AOT_PROFILE_GEN
+			// Null the DP before the control template is applied so the Cupertino ContentPresenter
+			// never receives or instantiates the sample DataTemplate in stable Release builds.
+			CupertinoTemplate = null;
+#endif
 			base.OnApplyTemplate();
 
 			_materialRadioButton = (RadioButton)GetTemplateChild(MaterialRadioButtonPartName);
