@@ -178,17 +178,23 @@ namespace Uno.Gallery
 
 			shell.RegisterPropertyChangedCallback(Shell.CurrentSampleBackdoorProperty, OnCurrentSampleBackdoorChanged);
 #if __WASM__
-			if (!IsThereSampleFilteredByArgs(shell, nv))
-#endif
+			if (!IsThereSampleFilteredByArgs(shell))
 			{
-				// landing navigation
-				navigator.NavigateToOverview(
-#if !WINDOWS
-					// workaround for uno#5069: setting NavView.SelectedItem at launch bricks it
-					NavigationOptions.SkipNavSync
-#endif
-				);
+				navigator.NavigateToOverview(NavigationOptions.SkipNavSync | NavigationOptions.SkipHistory);
+				Wasm.BrowserHistoryHandler.ReplaceState("overview", SamplePageLayout.CurrentDesign.ToString());
 			}
+			// Subscribe after initial navigation so back/forward callbacks don't fire during startup.
+			var uiQueue = DispatcherQueue.GetForCurrentThread()
+				?? throw new InvalidOperationException("BuildShell must run on the UI thread.");
+			Wasm.BrowserHistoryHandler.Subscribe(state => OnBrowserNavigated(uiQueue, navigator, state));
+#else
+			navigator.NavigateToOverview(
+#if !WINDOWS
+				// workaround for uno#5069: setting NavView.SelectedItem at launch bricks it
+				NavigationOptions.SkipNavSync
+#endif
+			);
+#endif
 
 			// navigation + setting handler
 			nv.ItemInvoked += OnNavigationItemInvoked;
@@ -196,54 +202,84 @@ namespace Uno.Gallery
 			return shell;
 		}
 #if __WASM__
-		private bool IsThereSampleFilteredByArgs(Shell shell, MUXC.NavigationView nv)
+		/// <summary>
+		/// Reads the initial URL state (hash + design query), resolves the target sample via
+		/// navigator lookup, navigates with <see cref="NavigationOptions.SkipHistory"/>, then
+		/// canonicalizes the URL with <c>replaceState</c>.
+		/// </summary>
+		/// <returns>
+		/// <see langword="true"/> when a non-overview sample was navigated to (caller must not
+		/// issue a separate NavigateToOverview call); <see langword="false"/> when the URL is
+		/// empty, is the canonical overview hash, or contains an unknown fragment (caller
+		/// should navigate to overview and canonicalize).
+		/// </returns>
+		private bool IsThereSampleFilteredByArgs(Shell shell)
 		{
-			var argumentsHash = Wasm.FragmentNavigationHandler.CurrentFragment;
-			if (argumentsHash.Contains("#"))
+			var rawHash = Wasm.BrowserHistoryHandler.GetHash();
+			var designStr = Wasm.BrowserHistoryHandler.GetDesign();
+
+			// Apply design preference before the first page is created so SamplePageLayout picks it up.
+			if (Enum.TryParse<Design>(designStr, ignoreCase: true, out var parsedDesign))
+				SamplePageLayout.SetPreferredDesign(parsedDesign);
+
+			if (string.IsNullOrWhiteSpace(rawHash) || rawHash == "overview")
+				return false;
+
+			var decoded = Uri.UnescapeDataString(rawHash);
+
+			// 1. Exact slug match — canonical new-format (#button) and case variations (#Button).
+			var sample = shell.Navigator!.FindBySlug(rawHash);
+
+			// 2. Decoded slug match — handles percent-encoded slugs (rare but safe).
+			if (sample is null && decoded != rawHash)
+				sample = shell.Navigator!.FindBySlug(decoded);
+
+			// 3. Exact title match — legacy share links use the sample title verbatim (#Text%20Box).
+			sample ??= shell.Navigator!.FindByTitle(decoded);
+
+			// 4. Case-insensitive Contains fallback — partial/legacy fragments (#Tex → "Text Box").
+			sample ??= shell.Samples.FirstOrDefault(s =>
+				s.Title.Contains(decoded, StringComparison.InvariantCultureIgnoreCase));
+
+			if (sample is not null)
 			{
-				var rawFragment = (argumentsHash + string.Empty).Replace("#", string.Empty);
-				var searchTerm = Uri.UnescapeDataString(rawFragment);
-
-				if (string.IsNullOrWhiteSpace(searchTerm))
-				{
-					return false;
-				}
-
-				MUXC.NavigationViewItem? sampleItem = null;
-
-				// 1. Try exact title match first (supports percent-encoded multi-word titles)
-				foreach (MUXC.NavigationViewItem item in nv.MenuItems)
-				{
-					sampleItem = item.MenuItems
-						.Cast<MUXC.NavigationViewItem>()
-						.FirstOrDefault(i => string.Equals(i.Content?.ToString(), searchTerm, StringComparison.OrdinalIgnoreCase));
-					if (sampleItem != null) break;
-				}
-
-				// 2. Fall back to case-insensitive Contains for backwards compatibility
-				if (sampleItem == null)
-				{
-					foreach (MUXC.NavigationViewItem item in nv.MenuItems)
-					{
-						sampleItem = item.MenuItems
-							.Cast<MUXC.NavigationViewItem>()
-							.FirstOrDefault(i => i.Content?.ToString()?.Contains(searchTerm, StringComparison.InvariantCultureIgnoreCase) == true);
-						if (sampleItem != null) break;
-					}
-				}
-
-				if (sampleItem != null)
-				{
-					shell.Navigator!.NavigateTo(
-						(Sample)sampleItem.DataContext,
-						NavigationOptions.SkipNavSync
-					);
-					return true;
-				}
-				//If there is a Hash that is not valid, redirect it to the root of the site.
-				Wasm.LocationHrefNavigationHandler.CurrentLocationHref = "/";
+				shell.Navigator!.NavigateTo(sample, NavigationOptions.SkipNavSync | NavigationOptions.SkipHistory);
+				// Canonicalize: replace legacy title-fragment with slug, add missing design query.
+				Wasm.BrowserHistoryHandler.ReplaceState(sample.Slug, SamplePageLayout.CurrentDesign.ToString());
+				return true;
 			}
+
+			// Unknown fragment: let caller navigate to overview and canonicalize.
 			return false;
+		}
+
+		/// <summary>
+		/// Handles popstate/hashchange callbacks dispatched from <c>BrowserHistory.ts</c>.
+		/// Invoked on the UI thread by the browser event loop; <paramref name="uiQueue"/> was
+		/// captured on the UI thread at subscription time.
+		/// </summary>
+		private static void OnBrowserNavigated(DispatcherQueue uiQueue, ShellNavigator navigator, string state)
+		{
+			var nl = state.IndexOf('\n');
+			var slug = nl >= 0 ? state.Substring(0, nl) : state;
+			var designStr = nl >= 0 ? state.Substring(nl + 1) : string.Empty;
+
+			uiQueue.TryEnqueue(() =>
+			{
+				if (Enum.TryParse<Design>(designStr, ignoreCase: true, out var design))
+					SamplePageLayout.SetPreferredDesign(design);
+
+				if (string.IsNullOrWhiteSpace(slug) || slug == "overview")
+				{
+					navigator.NavigateToOverview(NavigationOptions.SkipNavSync | NavigationOptions.SkipHistory);
+				}
+				else if (!navigator.NavigateToSlug(slug, NavigationOptions.SkipNavSync | NavigationOptions.SkipHistory))
+				{
+					// Unknown slug from browser history — canonicalize to overview.
+					navigator.NavigateToOverview(NavigationOptions.SkipNavSync | NavigationOptions.SkipHistory);
+					Wasm.BrowserHistoryHandler.ReplaceState("overview", SamplePageLayout.CurrentDesign.ToString());
+				}
+			});
 		}
 #endif
 

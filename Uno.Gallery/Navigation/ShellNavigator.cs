@@ -129,5 +129,14 @@ internal sealed class ShellNavigator : IGalleryNavigator
 		Current = canonical;
 		nv.Content = page;
 		Navigated?.Invoke(this, new SampleNavigatedEventArgs(previous, Current));
+
+#if __WASM__
+		if (!options.HasFlag(NavigationOptions.SkipHistory))
+		{
+			var slug = canonical.Slug; // "overview" for OverviewPage
+			var design = SamplePageLayout.CurrentDesign.ToString();
+			Wasm.BrowserHistoryHandler.PushState(slug, design);
+		}
+#endif
 	}
 }

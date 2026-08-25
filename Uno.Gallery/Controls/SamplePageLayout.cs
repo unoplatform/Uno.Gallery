@@ -226,7 +226,8 @@ namespace Uno.Gallery
 			_shareManager = null;
 			_shareSample = null;
 
-			var shareUri = GetShareUri(sample?.Title ?? string.Empty);
+			if (sample is null) { return; }
+			var shareUri = GetShareUri(sample.Slug);
 			e.Request.Data.Properties.Title = sample?.Title ?? "Uno Gallery";
 			e.Request.Data.Properties.Description = "Check out this control in Uno Gallery";
 			e.Request.Data.SetText(shareUri);
@@ -235,10 +236,11 @@ namespace Uno.Gallery
 #endif
 
 		/// <summary>
-		/// Returns a deep-link URL for the given sample title using the gallery hash-fragment convention.
+		/// Returns the canonical deep-link URL for a sample using its slug.
+		/// Format: <c>https://gallery.platform.uno/#&lt;slug&gt;</c>.
 		/// </summary>
-		internal static string GetShareUri(string sampleTitle)
-			=> "https://gallery.platform.uno/#" + Uri.EscapeDataString(sampleTitle);
+		internal static string GetShareUri(string sampleSlug)
+			=> "https://gallery.platform.uno/#" + Uri.EscapeDataString(sampleSlug);
 
 		/// <summary>
 		/// Changes the preferred design.
@@ -249,6 +251,9 @@ namespace Uno.Gallery
 		{
 			_design = design;
 		}
+
+		/// <summary>Returns the currently preferred design.</summary>
+		public static Design CurrentDesign => _design;
 
 		private void RegisterEvent(RoutedEventHandler click)
 		{
@@ -289,6 +294,10 @@ namespace Uno.Gallery
 			{
 				_design = mapping.Design;
 				UpdateLayoutMode();
+#if __WASM__
+				// Update ?design= query param in the current URL without adding a history entry.
+				Wasm.BrowserHistoryHandler.ReplaceDesign(_design.ToString());
+#endif
 			}
 		}
 

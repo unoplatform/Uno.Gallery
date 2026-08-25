@@ -18,4 +18,11 @@ internal enum NavigationOptions
 	/// Required on the search path so collapsed nested items are materialized before selection.
 	/// </summary>
 	ExpandCategory = 1 << 1,
+
+	/// <summary>
+	/// Skip browser history push on WASM.
+	/// Use for startup navigation and browser back/forward callbacks to avoid double-recording entries.
+	/// No-op on non-WASM targets.
+	/// </summary>
+	SkipHistory = 1 << 2,
 }
