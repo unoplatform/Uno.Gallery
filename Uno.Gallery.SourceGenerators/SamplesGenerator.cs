@@ -19,6 +19,7 @@ public sealed class SamplesGenerator : IIncrementalGenerator
 	// UGG0006  Warning  Duplicate final slug, case-insensitive; both samples emit
 	// UGG0007  Warning  RelatedSamples entry references an unknown final slug (ordinal match)
 	// UGG0008  Error    Null or empty element in a string metadata array (Tags, RelatedSamples)
+	// UGG0009  Error    Page type or DataType is abstract or has no accessible parameterless constructor
 
 	private static class Diagnostics
 	{
@@ -106,6 +107,21 @@ public sealed class SamplesGenerator : IIncrementalGenerator
 			isEnabledByDefault: true,
 			description: "Null or empty strings in Tags or RelatedSamples arrays are never meaningful and indicate " +
 						 "a likely authoring error. Remove or fill in the empty entries.");
+
+		public static readonly DiagnosticDescriptor AbstractOrNoAccessibleCtor = new(
+			id: "UGG0009",
+			title: "Page or DataType target cannot be instantiated",
+			messageFormat: "{0} '{1}' is abstract or has no accessible (public, internal, or protected-internal) " +
+						   "parameterless constructor; the generated factory cannot instantiate it. " +
+						   "The sample has been skipped.",
+			category: "SamplesGenerator",
+			defaultSeverity: DiagnosticSeverity.Error,
+			isEnabledByDefault: true,
+			description: "The source generator emits `static () => new T()` factory lambdas for the page type and any " +
+						 "configured DataType. Both must be concrete (non-abstract) and have a parameterless constructor " +
+						 "that is accessible from the same assembly (public, internal, or protected-internal) so the " +
+						 "factory lambda compiles and executes correctly. Mark or add a suitable constructor, or remove " +
+						 "the SamplePageAttribute from an instantiation-unsafe type.");
 	}
 
 	// ─── StringSequence ──────────────────────────────────────────────────────
@@ -331,7 +347,7 @@ public sealed class SamplesGenerator : IIncrementalGenerator
 		foreach (var sample in sorted)
 		{
 			var s = sample!.Value;
-			builder.AppendLine($"\t\t\t\tnew global::Uno.Gallery.Sample({CreateSamplePageAttribute(s)}, typeof({s.FullyQualifiedName})){CreateSampleObjectInitializer(s)},");
+			builder.AppendLine($"\t\t\t\tnew global::Uno.Gallery.Sample({CreateSamplePageAttribute(s)}, typeof({s.FullyQualifiedName}), static () => new global::{s.FullyQualifiedName}(), {CreateDataFactory(s)}){CreateSampleObjectInitializer(s)},");
 		}
 
 		builder.AppendLine("""
@@ -378,6 +394,9 @@ public sealed class SamplesGenerator : IIncrementalGenerator
 		if (model.SourcePath is null) return string.Empty;
 		return $" {{ SourcePath = {StringLiteral(model.SourcePath)} }}";
 	}
+
+	private static string CreateDataFactory(SamplesModel model) =>
+		model.DataType is null ? "null" : $"static () => new global::{model.DataType}()";
 
 	private static string StringLiteral(string? value)
 	{
@@ -471,7 +490,8 @@ public sealed class SamplesGenerator : IIncrementalGenerator
 
 		var description = GetNamedArgumentOrDefault<string>(samplePageAttribute, "Description", null);
 		var documentationLink = GetNamedArgumentOrDefault<string>(samplePageAttribute, "DocumentationLink", null);
-		var dataType = GetNamedArgumentOrDefault<ISymbol>(samplePageAttribute, "DataType", null)?.ToDisplayString();
+		var dataTypeSymbol = GetNamedArgumentOrDefault<ISymbol>(samplePageAttribute, "DataType", null) as INamedTypeSymbol;
+		var dataType = dataTypeSymbol?.ToDisplayString();
 		var sortOrder = GetNamedArgumentOrDefault<int>(samplePageAttribute, "SortOrder", int.MaxValue);
 
 		var declLoc = context.TargetNode.GetLocation();
@@ -503,6 +523,23 @@ public sealed class SamplesGenerator : IIncrementalGenerator
 				Diagnostics.NullOrEmptyArrayElement,
 				declLoc,
 				attributedSymbol.ToDisplayString(), parts));
+		}
+
+		// UGG0009: page type must be concrete and have an accessible parameterless constructor.
+		if (!IsInstantiable(attributedSymbol))
+		{
+			return TransformResult.Fail(new DiagnosticInfo(
+				Diagnostics.AbstractOrNoAccessibleCtor, declLoc,
+				"Page type", attributedSymbol.ToDisplayString()));
+		}
+
+		// UGG0009: DataType, when specified, must be concrete and have an accessible parameterless constructor.
+		if (dataTypeSymbol is not null && !IsInstantiable(dataTypeSymbol))
+		{
+			var dataTypeLoc = GetNamedArgumentExpressionLocation(samplePageAttribute, "DataType", cancellationToken) ?? declLoc;
+			return TransformResult.Fail(new DiagnosticInfo(
+				Diagnostics.AbstractOrNoAccessibleCtor, dataTypeLoc,
+				"DataType", dataTypeSymbol.ToDisplayString()));
 		}
 
 		var statusValue = GetNamedEnumIntOrDefault(samplePageAttribute, "Status", 0);
@@ -667,4 +704,31 @@ public sealed class SamplesGenerator : IIncrementalGenerator
 		var lastSlash = normalized.LastIndexOf('/');
 		return lastSlash >= 0 ? normalized.Substring(lastSlash + 1) : normalized;
 	}
+
+	/// <summary>
+	/// Returns <c>true</c> when <paramref name="type"/> is not abstract and has at least one
+	/// parameterless constructor accessible from the same assembly (public, internal, or
+	/// protected-internal).  The generated factory lambda <c>static () => new T()</c> requires
+	/// exactly this — it does not subclass <c>T</c>, so <c>protected</c>-only constructors are
+	/// not reachable.
+	/// </summary>
+	private static bool IsInstantiable(INamedTypeSymbol type) =>
+		!type.IsAbstract && HasAccessibleParameterlessCtor(type);
+
+	private static bool HasAccessibleParameterlessCtor(INamedTypeSymbol type)
+	{
+		foreach (var ctor in type.Constructors)
+		{
+			if (ctor.Parameters.Length == 0 && IsAccessibleFromSameAssembly(ctor.DeclaredAccessibility))
+				return true;
+		}
+		return false;
+	}
+
+	// Accessible from the same assembly: public, internal, or protected-internal (C# `protected internal`).
+	// `protected` alone and `private protected` require a subclass context that the generated lambda lacks.
+	private static bool IsAccessibleFromSameAssembly(Accessibility accessibility) =>
+		accessibility is Accessibility.Public
+			or Accessibility.Internal
+			or Accessibility.ProtectedOrInternal;
 }

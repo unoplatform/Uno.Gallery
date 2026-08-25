@@ -136,12 +136,12 @@ namespace Uno.Gallery
 
 		public void ShellNavigateTo(Shell shell, Sample sample) => ShellNavigateTo(shell, sample, trySynchronizeCurrentItem: true);
 
-		private void ShellNavigateTo<TPage>(Shell shell, bool trySynchronizeCurrentItem = true) where TPage : Page
+		private void ShellNavigateTo<TPage>(Shell shell, bool trySynchronizeCurrentItem = true) where TPage : Page, new()
 		{
 			var pageType = typeof(TPage);
 			var attribute = pageType.GetCustomAttribute<SamplePageAttribute>()
 				?? throw new NotSupportedException($"{pageType} isn't tagged with [{nameof(SamplePageAttribute)}].");
-			var sample = new Sample(attribute, pageType);
+			var sample = new Sample(attribute, pageType, () => new TPage(), null);
 
 			ShellNavigateTo(shell, sample, trySynchronizeCurrentItem);
 		}
@@ -161,7 +161,7 @@ namespace Uno.Gallery
 					nv.SelectedItem = selected;
 				}
 
-				var page = (Page)Activator.CreateInstance(sample.ViewType);
+				var page = sample.CreatePage();
 				page.DataContext = sample;
 
 #if __WASM__
@@ -207,7 +207,7 @@ namespace Uno.Gallery
 				nv.SelectedItem = selectedItem;
 			}
 
-			var page = (Page)Activator.CreateInstance(sample.ViewType);
+			var page = sample.CreatePage();
 			page.DataContext = sample;
 
 #if __WASM__

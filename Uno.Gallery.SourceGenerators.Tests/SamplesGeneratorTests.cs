@@ -74,10 +74,15 @@ public sealed class SamplesGeneratorTests
 		        public SampleConditionals Conditionals { get; }
 		    }
 
+		    public class Page { }
 		    public partial class App { }
 		    public class Sample
 		    {
 		        public Sample(SamplePageAttribute a, Type t) { }
+		        // Public here because the stubs compile in a separate test assembly; the production ctor is
+		        // internal — generated code and the real Sample type share the Uno.Gallery assembly, so the
+		        // internal ctor is always reachable from generated output in production.
+		        public Sample(SamplePageAttribute a, Type t, Func<Page> pageFactory, Func<object?>? dataFactory) { }
 		        public string? SourcePath { get; internal set; }
 		    }
 		}
@@ -191,7 +196,7 @@ public sealed class SamplesGeneratorTests
 			namespace Uno.Gallery
 			{
 			    [SamplePage(SampleCategory.Controls, "My Sample", SourceSdk.WinUI, "\uE8FA")]
-			    public class MySamplePage { }
+			    public class MySamplePage : Page { }
 			}
 			""";
 
@@ -204,6 +209,7 @@ public sealed class SamplesGeneratorTests
 		Assert.That(generated, Does.Contain("public static Sample[] GetSamples()"));
 		Assert.That(generated, Does.Contain("typeof(Uno.Gallery.MySamplePage)"));
 		Assert.That(generated, Does.Contain("My Sample"));
+		AssertGeneratedCompiles(generated, source);
 	}
 
 	[Test]
@@ -215,7 +221,7 @@ public sealed class SamplesGeneratorTests
 			{
 			    [SamplePage(SampleCategory.Controls, "Named Args Sample", SortOrder = 5,
 			                Description = "A description", DocumentationLink = "https://example.com")]
-			    public class NamedArgSample { }
+			    public class NamedArgSample : Page { }
 			}
 			""";
 
@@ -228,6 +234,7 @@ public sealed class SamplesGeneratorTests
 		Assert.That(generated, Does.Contain("SortOrder = 5"));
 		Assert.That(generated, Does.Contain("A description"));
 		Assert.That(generated, Does.Contain("https://example.com"));
+		AssertGeneratedCompiles(generated, source);
 	}
 
 	[Test]
@@ -259,7 +266,7 @@ public sealed class SamplesGeneratorTests
 			{
 			    [SamplePage(SampleCategory.Controls, "Windows Only")]
 			    [SampleConditional(SampleConditionals.Windows)]
-			    public class WindowsSample { }
+			    public class WindowsSample : Page { }
 			}
 			""";
 
@@ -1263,7 +1270,7 @@ public sealed class SamplesGeneratorTests
 			namespace Uno.Gallery
 			{
 			    [SamplePage(SampleCategory.Controls, "Say \"Hello\"")]
-			    public class QuotedTitlePage { }
+			    public class QuotedTitlePage : Page { }
 			}
 			""";
 
@@ -1291,7 +1298,7 @@ public sealed class SamplesGeneratorTests
 			namespace Uno.Gallery
 			{
 			    [SamplePage(SampleCategory.Controls, "Backslash Glyph", glyph: "\uE001")]
-			    public class BackslashGlyphPage { }
+			    public class BackslashGlyphPage : Page { }
 			}
 			""";
 
@@ -1314,7 +1321,7 @@ public sealed class SamplesGeneratorTests
 			namespace Uno.Gallery
 			{
 			    [SamplePage(SampleCategory.Controls, @"Path\Separator")]
-			    public class BackslashTitlePage { }
+			    public class BackslashTitlePage : Page { }
 			}
 			""";
 
@@ -1338,7 +1345,7 @@ public sealed class SamplesGeneratorTests
 			{
 			    [SamplePage(SampleCategory.Controls, "Special Tags",
 			                Tags = new[] { "c#", "has \"quotes\"" })]
-			    public class SpecialTagsPage { }
+			    public class SpecialTagsPage : Page { }
 			}
 			""";
 
@@ -1749,7 +1756,7 @@ public sealed class SamplesGeneratorTests
 			{
 			    [SamplePage(SampleCategory.Controls, "Emitted Tags",
 			                Tags = new[] { "alpha", "beta" })]
-			    public class EmittedTagsPage { }
+			    public class EmittedTagsPage : Page { }
 			}
 			""";
 
@@ -1773,10 +1780,10 @@ public sealed class SamplesGeneratorTests
 			{
 			    [SamplePage(SampleCategory.Controls, "Emitter A",
 			                RelatedSamples = new[] { "emitter-b" })]
-			    public class EmitterAPage { }
+			    public class EmitterAPage : Page { }
 
 			    [SamplePage(SampleCategory.Controls, "Emitter B")]
-			    public class EmitterBPage { }
+			    public class EmitterBPage : Page { }
 			}
 			""";
 
@@ -1791,6 +1798,441 @@ public sealed class SamplesGeneratorTests
 	}
 
 	// ─── Helpers ─────────────────────────────────────────────────────────────
+
+	// ─── AOT factory lambdas ─────────────────────────────────────────────────
+
+	[Test]
+	public void Generated_entry_contains_static_page_factory_lambda()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Factory Page")]
+			    public class FactoryPage : Page { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+
+		Assert.That(result.Exception, Is.Null);
+		Assert.That(UggDiagnostics(result), Is.Empty);
+
+		var generated = GetGeneratedSource(result);
+		Assert.That(generated, Does.Contain("static () => new global::Uno.Gallery.FactoryPage()"),
+			"Generated entry must include a static page factory lambda");
+	}
+
+	[Test]
+	public void Generated_entry_has_null_data_factory_when_no_DataType()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "No Data")]
+			    public class NoDataPage : Page { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+
+		Assert.That(result.Exception, Is.Null);
+		Assert.That(UggDiagnostics(result), Is.Empty);
+
+		var generated = GetGeneratedSource(result);
+		// Page factory lambda is followed by ", null)" for no-data samples.
+		Assert.That(generated, Does.Contain(", null)"),
+			"Generated entry must pass null as the data factory when DataType is absent");
+	}
+
+	[Test]
+	public void Generated_entry_has_static_data_factory_lambda_when_DataType_set()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    public class MyViewModel { }
+			    [SamplePage(SampleCategory.Controls, "With Data", DataType = typeof(MyViewModel))]
+			    public class WithDataPage : Page { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+
+		Assert.That(result.Exception, Is.Null);
+		Assert.That(UggDiagnostics(result), Is.Empty);
+
+		var generated = GetGeneratedSource(result);
+		Assert.That(generated, Does.Contain("static () => new global::Uno.Gallery.MyViewModel()"),
+			"Generated entry must include a static data factory lambda when DataType is set");
+	}
+
+	[Test]
+	public void Generated_factories_compile_no_DataType()
+	{
+		// Verifies that the page factory lambda is valid C# in a fresh compilation.
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Compile Factory")]
+			    public class CompileFactoryPage : Page { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+
+		Assert.That(result.Exception, Is.Null);
+		Assert.That(UggDiagnostics(result), Is.Empty);
+
+		AssertGeneratedCompiles(GetGeneratedSource(result), source);
+	}
+
+	[Test]
+	public void Generated_factories_compile_with_DataType()
+	{
+		// Verifies that both page and data factory lambdas produce valid C#.
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    public class CompileDataModel { }
+			    [SamplePage(SampleCategory.Controls, "Compile Factory Data",
+			                DataType = typeof(CompileDataModel))]
+			    public class CompileFactoryDataPage : Page { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+
+		Assert.That(result.Exception, Is.Null);
+		Assert.That(UggDiagnostics(result), Is.Empty);
+
+		AssertGeneratedCompiles(GetGeneratedSource(result), source);
+	}
+
+	[Test]
+	public void Generated_output_still_deterministic_with_factories()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Factory Determinism")]
+			    public class FactoryDeterminismPage : Page { }
+			}
+			""";
+
+		var r1 = RunGenerator([source]);
+		var r2 = RunGenerator([source]);
+
+		Assert.That(GetGeneratedSource(r1), Is.Not.Empty);
+		Assert.That(GetGeneratedSource(r1), Is.EqualTo(GetGeneratedSource(r2)),
+			"Factory-bearing output must remain deterministic across independent runs");
+	}
+
+	// ─── UGG0009: abstract or no-accessible-ctor ─────────────────────────────
+
+	[Test]
+	public void Abstract_page_produces_UGG0009()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Abstract Page")]
+			    public abstract class AbstractPage : Page { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+
+		Assert.That(result.Exception, Is.Null);
+		var diag = UggDiagnostics(result).Where(d => d.Id == "UGG0009").ToList();
+		Assert.That(diag, Is.Not.Empty, "Abstract page type must produce UGG0009");
+		Assert.That(diag[0].Severity, Is.EqualTo(DiagnosticSeverity.Error));
+		Assert.That(diag[0].GetMessage(), Does.Contain("Page type"));
+		Assert.That(diag[0].GetMessage(), Does.Contain("AbstractPage"));
+		Assert.That(GetGeneratedSource(result), Does.Not.Contain("AbstractPage"),
+			"Abstract page sample must be excluded from generated output");
+	}
+
+	[Test]
+	public void Page_with_only_parameterized_ctor_produces_UGG0009()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Param Ctor Page")]
+			    public class ParamCtorPage : Page
+			    {
+			        public ParamCtorPage(string name) { }
+			    }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+
+		Assert.That(result.Exception, Is.Null);
+		var diag = UggDiagnostics(result).Where(d => d.Id == "UGG0009").ToList();
+		Assert.That(diag, Is.Not.Empty, "Page with only a parameterized ctor must produce UGG0009");
+		Assert.That(GetGeneratedSource(result), Does.Not.Contain("ParamCtorPage"));
+	}
+
+	[Test]
+	public void Page_with_only_private_ctor_produces_UGG0009()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Private Ctor Page")]
+			    public class PrivateCtorPage : Page
+			    {
+			        private PrivateCtorPage() { }
+			    }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+
+		Assert.That(result.Exception, Is.Null);
+		var diag = UggDiagnostics(result).Where(d => d.Id == "UGG0009").ToList();
+		Assert.That(diag, Is.Not.Empty, "Page with only a private parameterless ctor must produce UGG0009");
+		Assert.That(GetGeneratedSource(result), Does.Not.Contain("PrivateCtorPage"));
+	}
+
+	[Test]
+	public void Page_with_internal_ctor_no_UGG0009()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Internal Ctor Page")]
+			    public class InternalCtorPage : Page
+			    {
+			        internal InternalCtorPage() { }
+			    }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+
+		Assert.That(result.Exception, Is.Null);
+		Assert.That(UggDiagnostics(result).Any(d => d.Id == "UGG0009"), Is.False,
+			"Page with an internal parameterless ctor must not produce UGG0009");
+		Assert.That(GetGeneratedSource(result), Does.Contain("InternalCtorPage"),
+			"Page with accessible internal ctor must be emitted");
+	}
+
+	[Test]
+	public void Page_with_protected_internal_ctor_no_UGG0009()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "ProtectedInternal Ctor Page")]
+			    public class ProtectedInternalCtorPage : Page
+			    {
+			        protected internal ProtectedInternalCtorPage() { }
+			    }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+
+		Assert.That(result.Exception, Is.Null);
+		Assert.That(UggDiagnostics(result).Any(d => d.Id == "UGG0009"), Is.False,
+			"Page with a protected-internal parameterless ctor must not produce UGG0009");
+		Assert.That(GetGeneratedSource(result), Does.Contain("ProtectedInternalCtorPage"),
+			"Page with accessible protected-internal ctor must be emitted");
+	}
+
+	[Test]
+	public void Page_with_only_protected_ctor_produces_UGG0009()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Protected Ctor Page")]
+			    public class ProtectedCtorPage : Page
+			    {
+			        protected ProtectedCtorPage() { }
+			    }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+
+		Assert.That(result.Exception, Is.Null);
+		var diag = UggDiagnostics(result).Where(d => d.Id == "UGG0009").ToList();
+		Assert.That(diag, Is.Not.Empty, "Page with only a protected parameterless ctor must produce UGG0009");
+		Assert.That(diag[0].Severity, Is.EqualTo(DiagnosticSeverity.Error));
+		Assert.That(GetGeneratedSource(result), Does.Not.Contain("ProtectedCtorPage"),
+			"Protected-ctor-only page sample must be excluded from generated output");
+	}
+
+	[Test]
+	public void Abstract_DataType_produces_UGG0009()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    public abstract class AbstractViewModel { }
+			    [SamplePage(SampleCategory.Controls, "Abstract DataType",
+			                DataType = typeof(AbstractViewModel))]
+			    public class AbstractDataTypePage : Page { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+
+		Assert.That(result.Exception, Is.Null);
+		var diag = UggDiagnostics(result).Where(d => d.Id == "UGG0009").ToList();
+		Assert.That(diag, Is.Not.Empty, "Abstract DataType must produce UGG0009");
+		Assert.That(diag[0].Severity, Is.EqualTo(DiagnosticSeverity.Error));
+		Assert.That(diag[0].GetMessage(), Does.Contain("DataType"));
+		Assert.That(diag[0].GetMessage(), Does.Contain("AbstractViewModel"));
+		Assert.That(GetGeneratedSource(result), Does.Not.Contain("AbstractDataTypePage"),
+			"Sample with abstract DataType must be excluded from generated output");
+	}
+
+	[Test]
+	public void DataType_with_only_private_ctor_produces_UGG0009()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    public class PrivateCtorViewModel
+			    {
+			        private PrivateCtorViewModel() { }
+			    }
+			    [SamplePage(SampleCategory.Controls, "Private DataType",
+			                DataType = typeof(PrivateCtorViewModel))]
+			    public class PrivateDataTypePage : Page { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+
+		Assert.That(result.Exception, Is.Null);
+		var diag = UggDiagnostics(result).Where(d => d.Id == "UGG0009").ToList();
+		Assert.That(diag, Is.Not.Empty, "DataType with only a private ctor must produce UGG0009");
+		Assert.That(GetGeneratedSource(result), Does.Not.Contain("PrivateDataTypePage"));
+	}
+
+	[Test]
+	public void DataType_with_internal_ctor_no_UGG0009()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    public class InternalCtorViewModel
+			    {
+			        internal InternalCtorViewModel() { }
+			    }
+			    [SamplePage(SampleCategory.Controls, "Internal DataType",
+			                DataType = typeof(InternalCtorViewModel))]
+			    public class InternalDataTypePage : Page { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+
+		Assert.That(result.Exception, Is.Null);
+		Assert.That(UggDiagnostics(result).Any(d => d.Id == "UGG0009"), Is.False,
+			"DataType with an internal parameterless ctor must not produce UGG0009");
+		Assert.That(GetGeneratedSource(result), Does.Contain("InternalDataTypePage"),
+			"Sample with accessible internal DataType ctor must be emitted");
+	}
+
+	[Test]
+	public void DataType_with_protected_internal_ctor_no_UGG0009()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    public class ProtectedInternalCtorViewModel
+			    {
+			        protected internal ProtectedInternalCtorViewModel() { }
+			    }
+			    [SamplePage(SampleCategory.Controls, "ProtectedInternal DataType",
+			                DataType = typeof(ProtectedInternalCtorViewModel))]
+			    public class ProtectedInternalDataTypePage : Page { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+
+		Assert.That(result.Exception, Is.Null);
+		Assert.That(UggDiagnostics(result).Any(d => d.Id == "UGG0009"), Is.False,
+			"DataType with a protected-internal parameterless ctor must not produce UGG0009");
+		Assert.That(GetGeneratedSource(result), Does.Contain("ProtectedInternalDataTypePage"),
+			"Sample with accessible protected-internal DataType ctor must be emitted");
+	}
+
+	[Test]
+	public void DataType_with_protected_ctor_produces_UGG0009()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    public class ProtectedCtorViewModel
+			    {
+			        protected ProtectedCtorViewModel() { }
+			    }
+			    [SamplePage(SampleCategory.Controls, "Protected DataType",
+			                DataType = typeof(ProtectedCtorViewModel))]
+			    public class ProtectedDataTypePage : Page { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+
+		Assert.That(result.Exception, Is.Null);
+		var diag = UggDiagnostics(result).Where(d => d.Id == "UGG0009").ToList();
+		Assert.That(diag, Is.Not.Empty, "DataType with only a protected ctor must produce UGG0009");
+		Assert.That(diag[0].Severity, Is.EqualTo(DiagnosticSeverity.Error));
+		Assert.That(GetGeneratedSource(result), Does.Not.Contain("ProtectedDataTypePage"),
+			"Sample with protected-ctor-only DataType must be excluded from generated output");
+	}
+
+	// ─── Sentinel null-viewType path ─────────────────────────────────────────
+
+	[Test]
+	public void Two_arg_ctor_null_viewType_sentinel_compiles()
+	{
+		// Verifies that the no-suggestions sentinel construction used by Shell compiles.
+		// Shell creates: new Sample(new SamplePageAttribute(category, "No suggestions found"), null)
+		// The null viewType must be accepted at the call site — the ctor must not throw at construction.
+		const string shellLike = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    class ShellSearchBox
+			    {
+			        static readonly string NoSuggestionsFoundText = "No suggestions found";
+			        static Sample CreateSentinel() =>
+			            new(new SamplePageAttribute(SampleCategory.Controls, NoSuggestionsFoundText), null);
+			    }
+			}
+			""";
+
+		// AssertGeneratedCompiles compiles with GoodStubs which has Sample(SamplePageAttribute, Type).
+		// Passing null for a reference-type parameter is not a compile error; only a nullable warning.
+		AssertGeneratedCompiles(string.Empty, shellLike);
+	}
 
 	/// <summary>
 	/// Verifies that the generated C# source compiles without errors when re-compiled

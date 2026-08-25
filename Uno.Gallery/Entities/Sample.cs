@@ -24,12 +24,37 @@ namespace Uno.Gallery
 		[DynamicallyAccessedMembers(ViewRequirements)]
 		private readonly Type? _dataType;
 
+		private readonly Func<Page> _pageFactory;
+		private readonly Func<object?>? _dataFactory;
+
 		// Access is UI-thread-only (driven by the XAML binding engine), so no lock or volatile is needed.
-		// Starts as _noData for DataType-backed samples; null for no-data samples (fast path).
+		// Starts as _noData when any configured data source/factory is present; null otherwise (fast path).
 		private object? _data;
 
+		/// <summary>
+		/// Legacy public constructor preserved for reflection-created callers such as
+		/// <see cref="OverviewSampleView"/> and rollback paths.
+		/// Uses <see cref="Activator.CreateInstance"/> internally; not AOT-safe.
+		/// </summary>
 		public Sample(SamplePageAttribute attribute, [DynamicallyAccessedMembers(ViewRequirements)] Type viewType)
+			: this(attribute, viewType, CreateLegacyPageFactory(viewType), null)
 		{
+		}
+
+		/// <summary>
+		/// Factory constructor used by the source-generated catalog.
+		/// <paramref name="pageFactory"/> and <paramref name="dataFactory"/> are static,
+		/// AOT-safe lambdas emitted at compile time by <c>SamplesGenerator</c>.
+		/// </summary>
+		internal Sample(
+			SamplePageAttribute attribute,
+			[DynamicallyAccessedMembers(ViewRequirements)] Type viewType,
+			Func<Page> pageFactory,
+			Func<object?>? dataFactory)
+		{
+			ArgumentNullException.ThrowIfNull(attribute);
+			ArgumentNullException.ThrowIfNull(pageFactory);
+
 			Category = attribute.Category;
 			Title = attribute.Title;
 			Description = attribute.Description;
@@ -41,7 +66,10 @@ namespace Uno.Gallery
 
 			ViewType = viewType;
 			_dataType = attribute.DataType;
-			_data = _dataType is null ? null : _noData;
+			_pageFactory = pageFactory;
+			_dataFactory = dataFactory;
+			// Start with sentinel when any data source is present; null otherwise (fast path).
+			_data = (_dataType is not null || _dataFactory is not null) ? _noData : null;
 			Source = attribute.Source;
 			SortOrder = attribute.SortOrder;
 
@@ -56,6 +84,15 @@ namespace Uno.Gallery
 			Owner = attribute.Owner;
 			ReviewedOn = attribute.ReviewedOn;
 		}
+
+		// Wraps Activator for the legacy reflection path so the DynamicallyAccessedMembers
+		// annotation flows from the calling constructor's viewType parameter into this method.
+		// A null viewType (the Shell "no suggestions" sentinel) produces a factory that throws
+		// on invocation — the sentinel is never navigated to, so CreatePage is never called on it.
+		private static Func<Page> CreateLegacyPageFactory([DynamicallyAccessedMembers(ViewRequirements)] Type? viewType)
+			=> viewType is null
+				? static () => throw new InvalidOperationException("Cannot navigate to a null-viewType sentinel sample.")
+				: () => (Page)Activator.CreateInstance(viewType)!;
 
 		private object? CreateData([DynamicallyAccessedMembers(ViewRequirements)] Type? dataType)
 		{
@@ -72,6 +109,22 @@ namespace Uno.Gallery
 			}
 		}
 
+		private object? TryInvokeDataFactory()
+		{
+			try
+			{
+				return _dataFactory!();
+			}
+			catch (Exception e)
+			{
+				this.Log().Error($"Failed to initialize data for `{ViewType?.Name ?? "(null)"}`. _dataType: {_dataType}. Exception: {e}");
+				return null;
+			}
+		}
+
+		/// <summary>Creates a fresh page instance for navigation.</summary>
+		internal Page CreatePage() => _pageFactory();
+
 		public SampleCategory Category { get; set; }
 
 		public string Title { get; }
@@ -86,6 +139,8 @@ namespace Uno.Gallery
 		/// Lazily-constructed instance of <see cref="SamplePageAttribute.DataType"/>.
 		/// Created on first access and cached afterwards (including a null result on failure).
 		/// Repeated accesses return the same cached reference; no-data samples always return null cheaply.
+		/// Generated-catalog samples use the injected <c>dataFactory</c>; legacy-constructor samples
+		/// fall back to <see cref="Activator.CreateInstance"/>.
 		/// </summary>
 		public object? Data
 		{
@@ -93,7 +148,7 @@ namespace Uno.Gallery
 			{
 				if (ReferenceEquals(_data, _noData))
 				{
-					_data = CreateData(_dataType);
+					_data = _dataFactory is not null ? TryInvokeDataFactory() : CreateData(_dataType);
 				}
 				return _data;
 			}
