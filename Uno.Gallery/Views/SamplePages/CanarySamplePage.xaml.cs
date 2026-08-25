@@ -10,7 +10,7 @@ using System.Reflection;
 
 namespace Uno.Gallery.Views.Samples
 {
-	[SamplePage(SampleCategory.Canary, "Diagnostics")]
+	[SamplePage(SampleCategory.Canary, "Diagnostics", Status = SampleStatus.Experimental)]
 	public sealed partial class CanarySamplePage : Page
 	{
 		public CanarySamplePage()

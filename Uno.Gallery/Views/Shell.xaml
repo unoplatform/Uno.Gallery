@@ -552,10 +552,36 @@
 							<DataTemplate x:DataType="local:Sample">
 								<!-- Slug is always non-null, lowercase-hyphenated (e.g. "checkbox"), and
 								     unique across registered samples (enforced by UGG0006). It has no
-								     collision with nav-item IDs which are all prefixed "Section_". -->
-								<TextBlock AutomationProperties.AutomationId="{x:Bind Slug}"
-										   Text="{x:Bind Title}"
-										   Margin="20,0,0,0" />
+								     collision with nav-item IDs which are all prefixed "Section_".
+								     AutomationId is bound to Slug for UI-test addressing; Name is bound
+								     to Title for screen-reader identification. -->
+								<Grid AutomationProperties.AutomationId="{x:Bind Slug}"
+									  AutomationProperties.Name="{x:Bind SearchAccessibleName}">
+									<Grid.RowDefinitions>
+										<RowDefinition Height="Auto" />
+										<RowDefinition Height="Auto" />
+									</Grid.RowDefinitions>
+									<!-- Row 0: title + optional non-Stable status label -->
+									<StackPanel Grid.Row="0"
+												Orientation="Horizontal"
+												Spacing="6">
+										<TextBlock Text="{x:Bind Title}"
+												   Margin="20,0,4,0"
+												   VerticalAlignment="Center" />
+										<TextBlock Text="{x:Bind StatusLabel, Mode=OneTime}"
+												   Visibility="{x:Bind IsNotStable, Mode=OneTime, Converter={StaticResource TrueToVisible}}"
+												   FontSize="10"
+												   Opacity="0.65"
+												   VerticalAlignment="Center" />
+									</StackPanel>
+									<!-- Row 1: category caption, hidden for SampleCategory.None -->
+									<TextBlock Grid.Row="1"
+											   Text="{x:Bind CategoryCaption, Mode=OneTime}"
+											   Visibility="{x:Bind IsCategorized, Mode=OneTime, Converter={StaticResource TrueToVisible}}"
+											   FontSize="11"
+											   Opacity="0.6"
+											   Margin="20,0,0,2" />
+								</Grid>
 							</DataTemplate>
 						</AutoSuggestBox.ItemTemplate>
 					</AutoSuggestBox>

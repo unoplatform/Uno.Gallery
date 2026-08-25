@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Uno.Extensions;
 using Uno.Logging;
+using Uno.Gallery.Entities;
 using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Controls;
 
@@ -75,6 +76,15 @@ namespace Uno.Gallery
 
 			Slug = attribute.Slug ?? SlugHelper.DeriveSlug(attribute.Title);
 			Status = attribute.Status;
+
+			// Computed-once display/search helpers — no per-call reflection.
+			CategoryCaption = attribute.Category.GetAttribute<SampleCategoryInfoAttribute>()?.Caption ?? string.Empty;
+			IsCategorized = attribute.Category != SampleCategory.None;
+			SourceDescription = attribute.Source.GetDescription() ?? string.Empty;
+			IsNotStable = attribute.Status != SampleStatus.Stable;
+			StatusLabel = attribute.Status != SampleStatus.Stable ? attribute.Status.ToString() : string.Empty;
+			SearchAccessibleName = BuildSearchAccessibleName(Title, CategoryCaption, StatusLabel);
+
 			Tags = attribute.Tags is { Length: > 0 } t
 				? Array.AsReadOnly(t)
 				: (IReadOnlyList<string>)Array.Empty<string>();
@@ -93,6 +103,21 @@ namespace Uno.Gallery
 			=> viewType is null
 				? static () => throw new InvalidOperationException("Cannot navigate to a null-viewType sentinel sample.")
 				: () => (Page)Activator.CreateInstance(viewType)!;
+
+		/// <summary>
+		/// Builds the accessible name: "Title[, CategoryCaption][, StatusLabel]".
+		/// Called once in the constructor after all three parts are set.
+		/// </summary>
+		private static string BuildSearchAccessibleName(string title, string categoryCaption, string statusLabel)
+		{
+			if (categoryCaption.Length > 0 && statusLabel.Length > 0)
+				return $"{title}, {categoryCaption}, {statusLabel}";
+			if (categoryCaption.Length > 0)
+				return $"{title}, {categoryCaption}";
+			if (statusLabel.Length > 0)
+				return $"{title}, {statusLabel}";
+			return title;
+		}
 
 		private object? CreateData([DynamicallyAccessedMembers(ViewRequirements)] Type? dataType)
 		{
@@ -179,6 +204,39 @@ namespace Uno.Gallery
 
 		/// <summary>Production-readiness indicator for this sample.</summary>
 		public SampleStatus Status { get; }
+
+		/// <summary>
+		/// Display caption for <see cref="Category"/> from <see cref="SampleCategoryInfoAttribute"/>.
+		/// Empty string for <see cref="SampleCategory.None"/> (which has no attribute).
+		/// Computed once in the constructor; no per-keystroke reflection.
+		/// </summary>
+		public string CategoryCaption { get; }
+
+		/// <summary>Whether this sample has a non-<see cref="SampleCategory.None"/> category.</summary>
+		public bool IsCategorized { get; }
+
+		/// <summary>
+		/// Display description for <see cref="Source"/> from <see cref="System.ComponentModel.DescriptionAttribute"/>.
+		/// Computed once in the constructor; no per-keystroke reflection.
+		/// </summary>
+		public string SourceDescription { get; }
+
+		/// <summary>Whether <see cref="Status"/> is not <see cref="SampleStatus.Stable"/>.</summary>
+		public bool IsNotStable { get; }
+
+		/// <summary>
+		/// Short status label for non-Stable statuses (e.g. "Preview", "Experimental").
+		/// Empty string when <see cref="Status"/> is <see cref="SampleStatus.Stable"/>.
+		/// </summary>
+		public string StatusLabel { get; }
+
+		/// <summary>
+		/// Screen-reader accessible name for the search suggestion.
+		/// Format: "Title[, CategoryCaption][, StatusLabel]".
+		/// Sentinel/Overview samples (no category, Stable) return Title only.
+		/// Computed once in the constructor; never null.
+		/// </summary>
+		public string SearchAccessibleName { get; }
 
 		/// <summary>Categorization tags; never null.</summary>
 		public IReadOnlyList<string> Tags { get; }

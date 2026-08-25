@@ -24,8 +24,7 @@ public sealed partial class Shell : UserControl
 	internal IGalleryNavigator? Navigator { get; set; }
 
 	private IEnumerable<Sample> SearchSamples(string query)
-		=> Samples
-			.Where(sample => query.ToLower().Split(" ").All(key => sample.Title.Contains(key, StringComparison.OrdinalIgnoreCase)));
+		=> SampleSearchHelper.RankAndFilter(Samples, query);
 
 	public Shell()
 	{

@@ -22,6 +22,10 @@
 		     InternalsVisibleTo on the generator grants access to internal types including
 		     SlugHelper and IsValidSlugPublicForTest. -->
 		<ProjectReference Include="..\Uno.Gallery.SourceGenerators\Uno.Gallery.SourceGenerators.csproj" />
+		<!-- Link pure scorer (no WinUI/Sample dependency) for focused unit testing. -->
+		<Compile Include="..\Uno.Gallery\Helpers\SampleSearchScorer.cs" />
+		<!-- Link helper (depends on Sample stub below) for RankAndFilter unit testing. -->
+		<Compile Include="..\Uno.Gallery\Helpers\SampleSearchHelper.cs" />
 	</ItemGroup>
 
 </Project>

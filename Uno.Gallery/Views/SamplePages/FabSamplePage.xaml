@@ -34,6 +34,7 @@
 								<Button Grid.Row="0"
 										Grid.Column="0"
 										ToolTipService.ToolTip="Create"
+										AutomationProperties.AutomationId="Material_FAB_Create"
 										Style="{StaticResource FabStyle}">
 									<ut:ControlExtensions.Icon>
 										<SymbolIcon Symbol="Add" />
