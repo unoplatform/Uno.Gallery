@@ -1,0 +1,71 @@
+<!--
+  Fill in the relevant sections. Delete sections that do not apply.
+  Link the issue this PR addresses before requesting review.
+-->
+
+## Summary
+
+<!-- What does this PR change and why? -->
+
+## Linked issue
+
+<!-- Required for non-trivial changes. -->
+Fixes # <!-- issue number -->
+
+## Change type
+
+<!-- Check all that apply. -->
+
+- [ ] Bug fix
+- [ ] New sample / updated sample
+- [ ] Refactor / code quality
+- [ ] Build / CI
+- [ ] Documentation
+- [ ] Other (describe below)
+
+## Supported platforms / renderers
+
+<!-- Mark every combination you verified. Leave unchecked if not applicable. -->
+
+| Platform | Native / DOM | Skia |
+|---|---|---|
+| Windows (WinAppSDK) | | |
+| Android | | |
+| iOS | | |
+| macOS (Catalyst) | | |
+| Linux (Skia Desktop) | | |
+| WebAssembly | | |
+
+## Sample page checklist
+
+<!-- Complete this section when adding or modifying a sample page. -->
+
+- [ ] `[SamplePage]` attribute is filled (category, title, description)
+- [ ] `DocumentationLink` is set (if official docs exist)
+- [ ] `[SampleConditional]` reflects actual platform support
+- [ ] Cupertino samples use `SampleCategory.Canary`
+      (hidden in stable Release — see [ADR 0001](docs/decisions/0001-cupertino-containment.md))
+- [ ] Design templates are provided for each supported design system
+- [ ] Automation IDs (`x:Name` / `AutomationProperties.AutomationId`) are set on
+      interactive elements that UITests need to locate
+
+## Test evidence
+
+<!-- Describe how you verified this change works. Attach screenshots or recordings. -->
+
+## Visual / accessibility / performance impact
+
+<!-- Note any visual regressions, accessibility concerns, or performance impact. -->
+
+## Intentional skipped tests
+
+<!-- If you added or retained a [Ignore] / Assert.Ignore, confirm it carries a
+     valid GitHub issue URL and a non-past review-date, or explain why it was skipped. -->
+
+- [ ] No new test ignores added
+- [ ] New ignores: all carry `https://github.com/unoplatform/Uno.Gallery/issues/<n>`
+      and a non-past `review-date: YYYY-MM-DD`
+
+## Lint
+
+- [ ] `pwsh build/scripts/lint-test-ignores.ps1` exits 0
