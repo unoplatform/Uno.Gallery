@@ -11,3 +11,4 @@ UGG0006 | SamplesGenerator | Warning | Duplicate final slug (case-insensitive); 
 UGG0007 | SamplesGenerator | Warning | RelatedSamples entry references an unknown final slug (ordinal match required)
 UGG0008 | SamplesGenerator | Error | Null or empty element in metadata string array (Tags, RelatedSamples)
 UGG0009 | SamplesGenerator | Error | Page type or DataType is abstract or has no accessible parameterless constructor
+UGG0010 | SamplesGenerator | Error | Route constant identifier collision after PascalCase transformation; two different slugs produce the same C# identifier — conflicting constants are omitted from SampleRoutes

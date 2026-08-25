@@ -122,6 +122,21 @@ public sealed class SamplesGenerator : IIncrementalGenerator
 						 "that is accessible from the same assembly (public, internal, or protected-internal) so the " +
 						 "factory lambda compiles and executes correctly. Mark or add a suitable constructor, or remove " +
 						 "the SamplePageAttribute from an instantiation-unsafe type.");
+
+		public static readonly DiagnosticDescriptor IdentifierCollision = new(
+			id: "UGG0010",
+			title: "Route constant identifier collision after PascalCase transformation",
+			messageFormat: "Identifier '{0}' derived from slug '{1}' on '{2}' collides with the identifier derived " +
+						   "from the different slug '{3}'. Both route constants are omitted from SampleRoutes. " +
+						   "Set an explicit Slug that avoids the collision after PascalCase transformation.",
+			category: "SamplesGenerator",
+			defaultSeverity: DiagnosticSeverity.Error,
+			isEnabledByDefault: true,
+			description: "SamplesGenerator derives a PascalCase C# identifier for each sample slug by uppercasing " +
+						 "the first character of each hyphen-separated segment and joining them. " +
+						 "When two different slugs produce the same identifier (e.g. 'a1b' and 'a-1b' both yield 'A1b'), " +
+						 "neither constant can be emitted. " +
+						 "Set an explicit Slug on one of the samples so their derived identifiers are distinct.");
 	}
 
 	// ─── StringSequence ──────────────────────────────────────────────────────
@@ -207,7 +222,14 @@ public sealed class SamplesGenerator : IIncrementalGenerator
 		string? Owner,
 		string? ReviewedOn,
 		StringSequence RelatedSamples,
-		string? SourcePath);
+		string? SourcePath,
+		// ─── Manifest fields ─────────────────────────────────────────────────
+		// Numeric values + member names for the manifest JSON (resolved via Roslyn during Transform).
+		int CategoryNumericValue,
+		string CategoryName,
+		int SourceSdkNumericValue,
+		string SourceSdkName,
+		string StatusName);
 
 	/// <summary>
 	/// Lightweight, value-comparable diagnostic carrier used inside the incremental pipeline.
@@ -358,6 +380,8 @@ public sealed class SamplesGenerator : IIncrementalGenerator
 			""");
 
 		context.AddSource("App.Samples.g.cs", SourceText.From(builder.ToString(), Encoding.UTF8));
+		GenerateRoutes(context, sorted);
+		GenerateManifest(context, sorted);
 	}
 
 	private static string CreateSamplePageAttribute(SamplesModel model)
@@ -484,8 +508,12 @@ public sealed class SamplesGenerator : IIncrementalGenerator
 		}
 
 		var category = $"(global::Uno.Gallery.SampleCategory)({((int)samplePageAttribute.ConstructorArguments[0].Value!).ToString(CultureInfo.InvariantCulture)})";
+		var categoryNumericValue = (int)samplePageAttribute.ConstructorArguments[0].Value!;
+		var categoryName = GetEnumMemberName(samplePageAttribute.ConstructorArguments[0]);
 		var title = (string)samplePageAttribute.ConstructorArguments[1].Value!;
 		var source = $"(global::Uno.Gallery.SourceSdk)({((int)samplePageAttribute.ConstructorArguments[2].Value!).ToString(CultureInfo.InvariantCulture)})";
+		var sourceNumericValue = (int)samplePageAttribute.ConstructorArguments[2].Value!;
+		var sourceSdkName = GetEnumMemberName(samplePageAttribute.ConstructorArguments[2]);
 		var glyph = (string)samplePageAttribute.ConstructorArguments[3].Value!;
 
 		var description = GetNamedArgumentOrDefault<string>(samplePageAttribute, "Description", null);
@@ -542,7 +570,7 @@ public sealed class SamplesGenerator : IIncrementalGenerator
 				"DataType", dataTypeSymbol.ToDisplayString()));
 		}
 
-		var statusValue = GetNamedEnumIntOrDefault(samplePageAttribute, "Status", 0);
+		var (statusValue, statusName) = GetNamedEnumWithName(samplePageAttribute, "Status", 0, "Stable");
 		var owner = GetNamedArgumentOrDefault<string>(samplePageAttribute, "Owner", null);
 		var reviewedOn = GetNamedArgumentOrDefault<string>(samplePageAttribute, "ReviewedOn", null);
 		var sourcePath = ComputeSourcePath(declLoc.SourceTree?.FilePath);
@@ -565,7 +593,12 @@ public sealed class SamplesGenerator : IIncrementalGenerator
 			owner,
 			reviewedOn,
 			relatedSamples,
-			sourcePath));
+			sourcePath,
+			categoryNumericValue,
+			categoryName,
+			sourceNumericValue,
+			sourceSdkName,
+			statusName));
 	}
 
 	/// <summary>
@@ -581,6 +614,433 @@ public sealed class SamplesGenerator : IIncrementalGenerator
 		&& ctor.Parameters[2].Name == "source"
 		&& ctor.Parameters[3].Name == "glyph";
 
+	/// <summary>
+	/// Returns the enum member name for a <see cref="TypedConstant"/> of enum kind.
+	/// Iterates the enum type's fields, matching by value. Returns the numeric string as fallback.
+	/// </summary>
+	private static string GetEnumMemberName(TypedConstant constant)
+	{
+		if (constant.Type is INamedTypeSymbol enumType && !constant.IsNull && constant.Value is not null)
+		{
+			var intValue = Convert.ToInt32(constant.Value, CultureInfo.InvariantCulture);
+			foreach (var member in enumType.GetMembers())
+			{
+				if (member is IFieldSymbol field && field.HasConstantValue && field.ConstantValue is not null)
+				{
+					try
+					{
+						if (Convert.ToInt32(field.ConstantValue, CultureInfo.InvariantCulture) == intValue)
+							return field.Name;
+					}
+					catch (OverflowException) { /* skip large flag values */ }
+				}
+			}
+			return intValue.ToString(CultureInfo.InvariantCulture);
+		}
+		return constant.Value?.ToString() ?? "0";
+	}
+
+	/// <summary>
+	/// Reads a named enum argument, returning both the integer value and the enum member name.
+	/// Falls back to <paramref name="defaultValue"/> / <paramref name="defaultName"/> when absent.
+	/// </summary>
+	private static (int Value, string Name) GetNamedEnumWithName(
+		AttributeData attr, string name, int defaultValue, string defaultName)
+	{
+		foreach (var named in attr.NamedArguments)
+		{
+			if (named.Key != name) continue;
+			if (named.Value.Value is null) return (defaultValue, defaultName);
+			var intValue = Convert.ToInt32(named.Value.Value, CultureInfo.InvariantCulture);
+			var memberName = GetEnumMemberName(named.Value);
+			return (intValue, memberName);
+		}
+		return (defaultValue, defaultName);
+	}
+
+	// ─── Route constants generation ───────────────────────────────────────────
+
+	/// <summary>
+	/// Converts a validated slug to a PascalCase C# identifier.
+	/// Each hyphen-delimited segment has its first character uppercased; segments are joined.
+	/// A leading underscore is prepended when the result starts with a digit.
+	/// </summary>
+	/// <remarks>
+	/// Collision scenario: slugs containing digit-start segments after a hyphen produce the same
+	/// identifier as the equivalent single-segment slug.  Example: <c>a1b</c> → <c>A1b</c> and
+	/// <c>a-1b</c> → <c>A</c> + <c>1b</c> = <c>A1b</c>.  Such collisions are reported as UGG0010.
+	/// </remarks>
+	internal static string SlugToPascalIdentifier(string slug)
+	{
+		var segments = slug.Split('-');
+		var sb = new StringBuilder();
+		foreach (var seg in segments)
+		{
+			if (seg.Length == 0) continue;
+			var first = seg[0];
+			sb.Append(first >= 'a' && first <= 'z' ? (char)(first - 32) : first);
+			if (seg.Length > 1)
+				sb.Append(seg, 1, seg.Length - 1);
+		}
+		if (sb.Length == 0) return "_Sample";
+		return sb[0] >= '0' && sb[0] <= '9' ? "_" + sb : sb.ToString();
+	}
+
+	/// <summary>
+	/// Emits <c>SampleRoutes.g.cs</c> — one <c>public const string</c> per unique slug.
+	/// Detects identifier collisions (UGG0010) across <em>different</em> slugs and omits both
+	/// constants when a collision is found, without affecting <c>GetSamples</c> output.
+	/// UGG0006 slug-duplicate pairs share the same slug and thus the same identifier;
+	/// one constant is emitted for the shared value.
+	/// </summary>
+	private static void GenerateRoutes(SourceProductionContext context, List<SamplesModel?> sorted)
+	{
+		// First pass: detect identifier collisions (different slug → same identifier).
+		// UGG0010 fires on the first declaration (once, when the first collision is detected)
+		// and on every later colliding declaration.
+		var identifierToFirstSlug = new Dictionary<string, string>(StringComparer.Ordinal);
+		var identifierToFirstInfo = new Dictionary<string, (string Fqn, Location Loc)>(StringComparer.Ordinal);
+		var collidingIdentifiers = new HashSet<string>(StringComparer.Ordinal);
+		// Track which first-declarations have already received a UGG0010 (report once per identifier).
+		var firstDeclReported = new HashSet<string>(StringComparer.Ordinal);
+
+		foreach (var item in sorted)
+		{
+			var s = item!.Value;
+			var id = SlugToPascalIdentifier(s.FinalSlug);
+			if (identifierToFirstSlug.TryGetValue(id, out var firstSlug))
+			{
+				// Same identifier from a different slug → UGG0010 collision.
+				// Identical slug (UGG0006 pair) with same identifier is expected, not a collision.
+				if (!string.Equals(firstSlug, s.FinalSlug, StringComparison.OrdinalIgnoreCase))
+				{
+					collidingIdentifiers.Add(id);
+					var (firstFqn, firstLoc) = identifierToFirstInfo[id];
+
+					// Report on the first declaration exactly once.
+					if (firstDeclReported.Add(id))
+					{
+						context.ReportDiagnostic(Diagnostic.Create(
+							Diagnostics.IdentifierCollision,
+							firstLoc,
+							id, firstSlug, firstFqn, s.FinalSlug));
+					}
+					// Report on this (later) colliding declaration.
+					context.ReportDiagnostic(Diagnostic.Create(
+						Diagnostics.IdentifierCollision,
+						s.DeclarationLocation,
+						id, s.FinalSlug, s.FullyQualifiedName, firstSlug));
+				}
+			}
+			else
+			{
+				identifierToFirstSlug[id] = s.FinalSlug;
+				identifierToFirstInfo[id] = (s.FullyQualifiedName, s.DeclarationLocation);
+			}
+		}
+
+		// Build the file.
+		var sb = new StringBuilder();
+		sb.AppendLine("// <auto-generated/>");
+		sb.AppendLine("namespace Uno.Gallery");
+		sb.AppendLine("{");
+		sb.AppendLine("\t/// <summary>");
+		sb.AppendLine("\t/// Generated route constants — one <c>public const string</c> per unique sample slug.");
+		sb.AppendLine("\t/// These are the stable internal contract for sample-navigation identifiers.");
+		sb.AppendLine("\t/// </summary>");
+		sb.AppendLine("\t/// <remarks>");
+		sb.AppendLine("\t/// Generated by <c>SamplesGenerator</c>; do not edit manually.");
+		sb.AppendLine("\t/// Identifier collisions (UGG0010) are omitted; slug duplicates (UGG0006)");
+		sb.AppendLine("\t/// emit a single shared constant because their slug value is identical.");
+		sb.AppendLine("\t/// </remarks>");
+		sb.AppendLine("\tinternal static class SampleRoutes");
+		sb.AppendLine("\t{");
+
+		var emittedIdentifiers = new HashSet<string>(StringComparer.Ordinal);
+		foreach (var item in sorted)
+		{
+			var s = item!.Value;
+			var id = SlugToPascalIdentifier(s.FinalSlug);
+			if (collidingIdentifiers.Contains(id)) continue;       // omit collisions
+			if (!emittedIdentifiers.Add(id)) continue;             // already emitted (UGG0006 pair)
+			sb.AppendLine($"\t\tpublic const string {id} = @\"{s.FinalSlug.Replace("\"", "\"\"")}\";");
+		}
+
+		sb.AppendLine("\t}");
+		sb.AppendLine("}");
+
+		context.AddSource("SampleRoutes.g.cs", SourceText.From(sb.ToString(), Encoding.UTF8));
+	}
+
+	// ─── Manifest generation ──────────────────────────────────────────────────
+
+	/// <summary>
+	/// Emits <c>SampleManifest.g.cs</c> — a deterministic JSON catalog of all samples in the
+	/// current compilation target, sorted by FQN and wrapped in a <c>GetJson()</c> method.
+	/// No file I/O or external packages are used; escaping is implemented inline.
+	/// Schema version 1.
+	/// </summary>
+	private static void GenerateManifest(SourceProductionContext context, List<SamplesModel?> sorted)
+	{
+		// Each JSON chunk is emitted as a separate sb.Append() statement so that no single generated
+		// string literal exceeds 8,000 *escaped* characters.  Without escaped-length bounding, a
+		// sequence of control characters or non-ASCII could expand up to 6× per raw char, producing
+		// literals large enough to stress IL toolchains.
+		// Two-stage escaping: AppendJsonString (JSON layer) pre-encodes surrogate pairs and control
+		// characters as JSON \uXXXX sequences; any remaining non-ASCII characters in the resulting
+		// JSON string are then re-escaped to \uXXXX by EmitCSharpStringAppendSafe (C#-literal layer),
+		// so the final generated C# source contains only printable ASCII.
+		// EmitCSharpStringAppendSafe also measures escaped length and flushes a new Append call
+		// before crossing the 8,000-character limit.
+
+		var file = new StringBuilder();
+		file.AppendLine("// <auto-generated/>");
+		file.AppendLine("namespace Uno.Gallery");
+		file.AppendLine("{");
+		file.AppendLine("\t/// <summary>");
+		file.AppendLine("\t/// Deterministic JSON catalog of samples compiled into this target.");
+		file.AppendLine("\t/// Schema version 1. Entries are sorted by fully-qualified type name.");
+		file.AppendLine("\t/// This is the stable internal contract; physical file export is a future step.");
+		file.AppendLine("\t/// </summary>");
+		file.AppendLine("\t/// <remarks>Generated by <c>SamplesGenerator</c>; do not edit manually.</remarks>");
+		file.AppendLine("\tinternal static class SampleManifest");
+		file.AppendLine("\t{");
+		file.AppendLine("\t\t/// <summary>Returns the deterministic JSON catalog (schema version 1).</summary>");
+		file.AppendLine("\t\tpublic static string GetJson()");
+		file.AppendLine("\t\t{");
+		file.AppendLine("\t\t\tvar sb = new global::System.Text.StringBuilder();");
+
+		EmitCSharpStringAppendSafe(file, "{\"schemaVersion\":1,\"samples\":[", 3);
+
+		bool firstSample = true;
+		foreach (var item in sorted)
+		{
+			var sampleJson = BuildSampleJson(item!.Value).ToString();
+			if (!firstSample)
+				EmitCSharpStringAppendSafe(file, ",", 3);
+			firstSample = false;
+			EmitCSharpStringAppendSafe(file, sampleJson, 3);
+		}
+
+		EmitCSharpStringAppendSafe(file, "]}", 3);
+		file.AppendLine("\t\t\treturn sb.ToString();");
+		file.AppendLine("\t\t}");
+		file.AppendLine("\t}");
+		file.AppendLine("}");
+
+		context.AddSource("SampleManifest.g.cs", SourceText.From(file.ToString(), Encoding.UTF8));
+	}
+
+	/// <summary>
+	/// Appends one or more <c>sb.Append("...");</c> statements for <paramref name="value"/>,
+	/// splitting into multiple calls so that no single generated string literal contains more
+	/// than <c>8,000</c> escaped characters.  Each source character may expand to up to six
+	/// escaped characters (e.g. a lone control char → <c>\u001F</c>); raw-length chunking alone
+	/// cannot bound the literal size.  Escape sequences are never split across chunk boundaries.
+	/// </summary>
+	private static void EmitCSharpStringAppendSafe(StringBuilder file, string value, int indentTabs)
+	{
+		const int MaxEscapedChunkLen = 8_000;
+		var indent = new string('\t', indentTabs);
+		var chunk = new StringBuilder();
+
+		void Flush()
+		{
+			if (chunk.Length == 0) return;
+			file.Append(indent);
+			file.Append("sb.Append(\"");
+			file.Append(chunk);
+			file.AppendLine("\");");
+			chunk.Clear();
+		}
+
+		foreach (var c in value)
+		{
+			string? esc = c switch
+			{
+				'"' => "\\\"",
+				'\\' => "\\\\",
+				'\r' => "\\r",
+				'\n' => "\\n",
+				'\t' => "\\t",
+				'\b' => "\\b",
+				'\f' => "\\f",
+				_ => null
+			};
+			if (esc is null && (c < 0x20 || c > 0x7E))
+				esc = "\\u" + ((int)c).ToString("X4", CultureInfo.InvariantCulture);
+
+			var escapedLen = esc?.Length ?? 1;
+			if (chunk.Length + escapedLen > MaxEscapedChunkLen)
+				Flush();
+
+			if (esc is not null)
+				chunk.Append(esc);
+			else
+				chunk.Append(c);
+		}
+		Flush();
+	}
+
+	/// <summary>
+	/// Builds the compact JSON object for a single sample.
+	/// All string values are JSON-escaped via <see cref="AppendJsonString"/>.
+	/// </summary>
+	private static StringBuilder BuildSampleJson(in SamplesModel s)
+	{
+		var sb = new StringBuilder();
+		sb.Append('{');
+
+		AppendJsonField(sb, "fqn", s.FullyQualifiedName);
+		sb.Append(',');
+		AppendJsonField(sb, "slug", s.FinalSlug);
+		sb.Append(',');
+		AppendJsonField(sb, "title", s.Title);
+		sb.Append(',');
+
+		// category: {"value":N,"name":"Controls"}
+		sb.Append("\"category\":{");
+		AppendJsonFieldInt(sb, "value", s.CategoryNumericValue);
+		sb.Append(',');
+		AppendJsonField(sb, "name", s.CategoryName);
+		sb.Append('}');
+		sb.Append(',');
+
+		AppendJsonField(sb, "description", s.Description);
+		sb.Append(',');
+		AppendJsonField(sb, "glyph", s.Glyph);
+		sb.Append(',');
+		AppendJsonField(sb, "documentationLink", s.DocumentationLink);
+		sb.Append(',');
+
+		// sourceSdk: {"value":N,"name":"WinUI"}
+		sb.Append("\"sourceSdk\":{");
+		AppendJsonFieldInt(sb, "value", s.SourceSdkNumericValue);
+		sb.Append(',');
+		AppendJsonField(sb, "name", s.SourceSdkName);
+		sb.Append('}');
+		sb.Append(',');
+
+		AppendJsonFieldInt(sb, "sortOrder", s.SortOrder);
+		sb.Append(',');
+
+		// status: {"value":N,"name":"Stable"}
+		sb.Append("\"status\":{");
+		AppendJsonFieldInt(sb, "value", s.StatusValue);
+		sb.Append(',');
+		AppendJsonField(sb, "name", s.StatusName);
+		sb.Append('}');
+		sb.Append(',');
+
+		// tags: [...] or []
+		sb.Append("\"tags\":[");
+		var tags = s.Tags.Values;
+		for (int i = 0; i < tags.Length; i++)
+		{
+			if (i > 0) sb.Append(',');
+			AppendJsonString(sb, tags[i]);
+		}
+		sb.Append(']');
+		sb.Append(',');
+
+		AppendJsonField(sb, "owner", s.Owner);
+		sb.Append(',');
+		AppendJsonField(sb, "reviewedOn", s.ReviewedOn);
+		sb.Append(',');
+
+		// relatedSamples: [...] or []
+		sb.Append("\"relatedSamples\":[");
+		var related = s.RelatedSamples.Values;
+		for (int i = 0; i < related.Length; i++)
+		{
+			if (i > 0) sb.Append(',');
+			AppendJsonString(sb, related[i]);
+		}
+		sb.Append(']');
+		sb.Append(',');
+
+		AppendJsonField(sb, "sourcePath", s.SourcePath);
+		sb.Append(',');
+
+		// platformConditionals: null when no SampleConditionalAttribute, numeric value otherwise
+		sb.Append("\"platformConditionals\":");
+		if (s.Conditionals is null)
+			sb.Append("null");
+		else
+			sb.Append(((uint)s.Conditionals.Value).ToString(CultureInfo.InvariantCulture));
+
+		sb.Append('}');
+		return sb;
+	}
+
+	private static void AppendJsonField(StringBuilder sb, string key, string? value)
+	{
+		sb.Append('"');
+		sb.Append(key);
+		sb.Append("\":");
+		AppendJsonString(sb, value);
+	}
+
+	private static void AppendJsonFieldInt(StringBuilder sb, string key, int value)
+	{
+		sb.Append('"');
+		sb.Append(key);
+		sb.Append("\":");
+		sb.Append(value.ToString(CultureInfo.InvariantCulture));
+	}
+
+	/// <summary>
+	/// Appends a JSON string value (with surrounding double-quotes) or <c>null</c> literal.
+	/// Control characters are escaped as <c>\uXXXX</c>; <c>"</c> and <c>\</c> are escaped.
+	/// Valid surrogate pairs are emitted as two consecutive <c>\uHHHH\uLLLL</c> JSON escapes so
+	/// that JSON parsers reconstruct the original code point.  Lone surrogates (high or low)
+	/// are replaced with <c>\uFFFD</c> (replacement character) to produce valid JSON.
+	/// Non-ASCII BMP characters are passed through as UTF-8 (valid JSON).
+	/// </summary>
+	private static void AppendJsonString(StringBuilder sb, string? value)
+	{
+		if (value is null) { sb.Append("null"); return; }
+		sb.Append('"');
+		for (int i = 0; i < value.Length; i++)
+		{
+			var c = value[i];
+
+			// Valid surrogate pair → emit as \uHHHH\uLLLL so any JSON parser reconstructs the codepoint.
+			if (char.IsHighSurrogate(c) && i + 1 < value.Length && char.IsLowSurrogate(value[i + 1]))
+			{
+				sb.Append("\\u").Append(((int)c).ToString("X4", CultureInfo.InvariantCulture));
+				i++;
+				sb.Append("\\u").Append(((int)value[i]).ToString("X4", CultureInfo.InvariantCulture));
+				continue;
+			}
+			// Lone surrogate (high without following low, or unpaired low) → replacement character.
+			if (char.IsSurrogate(c))
+			{
+				sb.Append("\\uFFFD");
+				continue;
+			}
+
+			switch (c)
+			{
+				case '"': sb.Append("\\\""); break;
+				case '\\': sb.Append("\\\\"); break;
+				case '\b': sb.Append("\\b"); break;
+				case '\f': sb.Append("\\f"); break;
+				case '\n': sb.Append("\\n"); break;
+				case '\r': sb.Append("\\r"); break;
+				case '\t': sb.Append("\\t"); break;
+				default:
+					if (c < 0x20)
+						sb.Append("\\u").Append(((int)c).ToString("X4", CultureInfo.InvariantCulture));
+					else
+						sb.Append(c);
+					break;
+			}
+		}
+		sb.Append('"');
+	}
+
+
 	private static T? GetNamedArgumentOrDefault<T>(AttributeData samplePageAttribute, string argumentName, T? defaultValue)
 	{
 		foreach (var namedArgument in samplePageAttribute.NamedArguments)
@@ -591,18 +1051,6 @@ public sealed class SamplesGenerator : IIncrementalGenerator
 				if (rawValue is null) return defaultValue;
 				return (T)rawValue;
 			}
-		}
-		return defaultValue;
-	}
-
-	private static int GetNamedEnumIntOrDefault(AttributeData attr, string name, int defaultValue)
-	{
-		foreach (var named in attr.NamedArguments)
-		{
-			if (named.Key != name) continue;
-			if (named.Value.Value is null) return defaultValue;
-			// Convert.ToInt32 handles both a boxed-int and a boxed-enum-type value safely.
-			return Convert.ToInt32(named.Value.Value);
 		}
 		return defaultValue;
 	}

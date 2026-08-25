@@ -2292,4 +2292,845 @@ public sealed class SamplesGeneratorTests
 			}
 		}
 	}
+
+	// ─── SampleRoutes: SlugToPascalIdentifier ────────────────────────────────
+
+	[TestCase("button",        "Button")]
+	[TestCase("my-control",    "MyControl")]
+	[TestCase("oauth2-login",  "Oauth2Login")]
+	[TestCase("a1b",           "A1b",  Description = "digit-mid: no prefix needed")]
+	[TestCase("a-1b",          "A1b",  Description = "same as a1b — the collision case")]
+	[TestCase("2cool",         "_2cool", Description = "digit-start gets _ prefix")]
+	[TestCase("2-cool",        "_2Cool", Description = "digit-start segment + letter segment")]
+	[TestCase("sample",        "Sample")]
+	[TestCase("progress-ring-bar", "ProgressRingBar")]
+	public void SlugToPascalIdentifier_converts_correctly(string slug, string expected) =>
+		Assert.That(SamplesGenerator.SlugToPascalIdentifier(slug), Is.EqualTo(expected));
+
+	[Test]
+	public void SampleRoutes_emits_PascalCase_constant_for_derived_slug()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "My Control")]
+			    public class MyControlPage : Page { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+
+		Assert.That(result.Exception, Is.Null);
+		Assert.That(UggDiagnostics(result), Is.Empty);
+
+		var routes = GetRoutesSource(result);
+		Assert.That(routes, Is.Not.Empty, "SampleRoutes.g.cs must be emitted");
+		Assert.That(routes, Does.Contain("class SampleRoutes"));
+		Assert.That(routes, Does.Contain("public const string MyControl = @\"my-control\";"),
+			"Derived slug 'my-control' → identifier 'MyControl'");
+	}
+
+	[Test]
+	public void SampleRoutes_emits_explicit_slug_constant()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Renamed Sample", Slug = "old-name")]
+			    public class RenamedPage : Page { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+
+		Assert.That(result.Exception, Is.Null);
+		Assert.That(UggDiagnostics(result), Is.Empty);
+
+		var routes = GetRoutesSource(result);
+		Assert.That(routes, Does.Contain("public const string OldName = @\"old-name\";"),
+			"Explicit slug 'old-name' → identifier 'OldName'");
+	}
+
+	[Test]
+	public void SampleRoutes_digit_start_slug_gets_underscore_prefix()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "My Sample", Slug = "2cool")]
+			    public class TwoCoolPage : Page { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+
+		Assert.That(result.Exception, Is.Null);
+
+		var routes = GetRoutesSource(result);
+		Assert.That(routes, Does.Contain("public const string _2cool = @\"2cool\";"),
+			"Digit-start slug must get _ prefix on identifier");
+	}
+
+	[Test]
+	public void SampleRoutes_ugg0006_pair_emits_single_constant()
+	{
+		// Two samples share the same slug (UGG0006) but should still produce one route constant.
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Hello World")]
+			    public class SlugDupFirst : Page { }
+
+			    [SamplePage(SampleCategory.Layout, "hello world")]
+			    public class SlugDupSecond : Page { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+
+		Assert.That(result.Exception, Is.Null);
+		Assert.That(UggDiagnostics(result).Any(d => d.Id == "UGG0006"), Is.True, "Expect UGG0006");
+		Assert.That(UggDiagnostics(result).Any(d => d.Id == "UGG0010"), Is.False, "No UGG0010 — same slug");
+
+		var routes = GetRoutesSource(result);
+		// One constant for the shared slug value
+		var count = CountOccurrences(routes, "HelloWorld");
+		Assert.That(count, Is.EqualTo(1), "Exactly one HelloWorld constant for a UGG0006 pair");
+	}
+
+	// ─── UGG0010: identifier collision ───────────────────────────────────────
+
+	[Test]
+	public void UGG0010_fires_when_different_slugs_produce_same_identifier()
+	{
+		// 'a1b' → A1b  and  'a-1b' → A + 1b = A1b  (digit-start segment prevents disambiguation)
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Alpha", Slug = "a1b")]
+			    public class AlphaCollide : Page { }
+
+			    [SamplePage(SampleCategory.Layout, "Beta", Slug = "a-1b")]
+			    public class BetaCollide : Page { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+
+		Assert.That(result.Exception, Is.Null);
+
+		// Two-way collision → two UGG0010 diagnostics: one for each colliding declaration.
+		var ugg0010 = UggDiagnostics(result).Where(d => d.Id == "UGG0010").ToList();
+		Assert.That(ugg0010, Has.Count.EqualTo(2),
+			"Two-way slug collision must produce exactly two UGG0010 diagnostics (one per declaration)");
+
+		// Locate each diagnostic by the type name it mentions — order-independent.
+		var alphaDiag = ugg0010.Single(d => d.GetMessage().Contains("AlphaCollide"));
+		var betaDiag  = ugg0010.Single(d => d.GetMessage().Contains("BetaCollide"));
+
+		Assert.That(alphaDiag.Severity, Is.EqualTo(DiagnosticSeverity.Error));
+		Assert.That(betaDiag.Severity,  Is.EqualTo(DiagnosticSeverity.Error));
+		Assert.That(alphaDiag.Location, Is.Not.EqualTo(Location.None));
+		Assert.That(betaDiag.Location,  Is.Not.EqualTo(Location.None));
+
+		var msgAlpha = alphaDiag.GetMessage();
+		Assert.That(msgAlpha, Does.Contain("A1b"),  "AlphaCollide diagnostic must name the colliding identifier");
+		Assert.That(msgAlpha, Does.Contain("a1b"),  "AlphaCollide diagnostic must name its own slug");
+		Assert.That(msgAlpha, Does.Contain("a-1b"), "AlphaCollide diagnostic must name the colliding slug");
+
+		var msgBeta = betaDiag.GetMessage();
+		Assert.That(msgBeta, Does.Contain("A1b"),  "BetaCollide diagnostic must name the colliding identifier");
+		Assert.That(msgBeta, Does.Contain("a-1b"), "BetaCollide diagnostic must name its own slug");
+		Assert.That(msgBeta, Does.Contain("a1b"),  "BetaCollide diagnostic must name the other slug");
+
+		// Both samples must still appear in GetSamples — UGG0010 does NOT corrupt App output.
+		var appSource = GetGeneratedSource(result);
+		Assert.That(appSource, Does.Contain("AlphaCollide"), "AlphaCollide must remain in GetSamples");
+		Assert.That(appSource, Does.Contain("BetaCollide"),  "BetaCollide must remain in GetSamples");
+
+		// Neither route constant may be emitted.
+		var routes = GetRoutesSource(result);
+		Assert.That(routes, Does.Not.Contain("A1b"),
+			"Colliding identifier A1b must be omitted from SampleRoutes");
+	}
+
+	[Test]
+	public void UGG0010_omits_both_colliding_constants_leaves_others_intact()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Alpha", Slug = "a1b")]
+			    public class AlphaCollide2 : Page { }
+
+			    [SamplePage(SampleCategory.Layout, "Beta", Slug = "a-1b")]
+			    public class BetaCollide2 : Page { }
+
+			    [SamplePage(SampleCategory.Controls, "Gamma", Slug = "gamma")]
+			    public class GammaPage : Page { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+
+		Assert.That(result.Exception, Is.Null);
+		Assert.That(UggDiagnostics(result).Any(d => d.Id == "UGG0010"), Is.True);
+
+		var routes = GetRoutesSource(result);
+		Assert.That(routes, Does.Not.Contain("A1b"), "Colliding A1b must be absent");
+		Assert.That(routes, Does.Contain("Gamma"),    "Non-colliding Gamma must still be present");
+	}
+
+	[Test]
+	public void UGG0010_diagnostic_has_source_location()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Alpha", Slug = "a1b")]
+			    public class LocAlpha : Page { }
+
+			    [SamplePage(SampleCategory.Layout, "Beta", Slug = "a-1b")]
+			    public class LocBeta : Page { }
+			}
+			""";
+
+		var result = RunGeneratorWithFilePaths(
+			[(source, "/repo/Views/SamplePages/LocAlphaBeta.xaml.cs")]);
+
+		// Both declarations get a diagnostic; verify all have source locations.
+		var diags = UggDiagnostics(result).Where(d => d.Id == "UGG0010").ToList();
+		Assert.That(diags, Has.Count.EqualTo(2), "Two-way collision must produce two UGG0010 diagnostics");
+		foreach (var diag in diags)
+		{
+			Assert.That(diag.Location.SourceTree, Is.Not.Null,
+				"UGG0010 must be source-located");
+			Assert.That(diag.Location.SourceSpan.IsEmpty, Is.False,
+				"Span must not be empty");
+		}
+	}
+
+	[Test]
+	public void UGG0010_three_way_collision_first_reported_once_each_later_reported()
+	{
+		// a1b2c, a1b-2c, a-1b2c all produce identifier "A1b2c".
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "First",  Slug = "a1b2c")]
+			    public class ThreewayFirst  : Page { }
+
+			    [SamplePage(SampleCategory.Layout,   "Second", Slug = "a1b-2c")]
+			    public class ThreewaySecond : Page { }
+
+			    [SamplePage(SampleCategory.Media,    "Third",  Slug = "a-1b2c")]
+			    public class ThreewayThird  : Page { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+
+		Assert.That(result.Exception, Is.Null);
+
+		var ugg0010 = UggDiagnostics(result).Where(d => d.Id == "UGG0010").ToList();
+		// First declaration reported once (when second collision is detected), then second and third.
+		Assert.That(ugg0010, Has.Count.EqualTo(3),
+			"3-way collision: first declaration once + two later declarations = 3 UGG0010 diagnostics");
+
+		// All three messages must name the shared identifier.
+		Assert.That(ugg0010.All(d => d.GetMessage().Contains("A1b2c")), Is.True,
+			"All three diagnostics must name the colliding identifier A1b2c");
+
+		// The colliding identifier must be absent from routes.
+		var routes = GetRoutesSource(result);
+		Assert.That(routes, Does.Not.Contain("A1b2c"),
+			"Colliding identifier must be omitted from SampleRoutes");
+
+		// All three samples must remain in GetSamples.
+		var appSource = GetGeneratedSource(result);
+		Assert.That(appSource, Does.Contain("ThreewayFirst"),  "ThreewayFirst must remain in GetSamples");
+		Assert.That(appSource, Does.Contain("ThreewaySecond"), "ThreewaySecond must remain in GetSamples");
+		Assert.That(appSource, Does.Contain("ThreewayThird"),  "ThreewayThird must remain in GetSamples");
+	}
+
+	[Test]
+	public void Pragma_disable_UGG0010_on_later_declaration_sets_IsSuppressed()
+	{
+		// #pragma warning disable UGG0010 before BetaCollide suppresses the later diagnostic
+		// but leaves the first declaration's diagnostic unsuppressed.
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Alpha", Slug = "a1b")]
+			    public class PragmaAlphaCollide : Page { }
+
+			#pragma warning disable UGG0010
+			    [SamplePage(SampleCategory.Layout, "Beta", Slug = "a-1b")]
+			    public class PragmaBetaCollide : Page { }
+			#pragma warning restore UGG0010
+			}
+			""";
+
+		var result = RunGeneratorWithFilePaths(
+			[(source, "/repo/Views/SamplePages/PragmaUgg0010Test.xaml.cs")]);
+
+		var ugg0010 = UggDiagnostics(result).Where(d => d.Id == "UGG0010").ToList();
+		Assert.That(ugg0010, Has.Count.EqualTo(2), "Both declarations must get UGG0010");
+
+		// Exactly one must be suppressed (the one on PragmaBetaCollide).
+		Assert.That(ugg0010.Count(d => d.IsSuppressed), Is.EqualTo(1),
+			"Exactly the later declaration's UGG0010 must be suppressed by the pragma");
+		Assert.That(ugg0010.Count(d => !d.IsSuppressed), Is.EqualTo(1),
+			"The first declaration's UGG0010 must remain unsuppressed");
+
+		var suppressed = ugg0010.Single(d => d.IsSuppressed);
+		Assert.That(suppressed.GetMessage(), Does.Contain("PragmaBetaCollide"),
+			"Suppressed diagnostic must name the pragma-covered declaration");
+	}
+
+	// ─── SampleManifest ───────────────────────────────────────────────────────
+
+	[Test]
+	public void SampleManifest_emits_valid_json_with_schema_version_1()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "My Sample", SourceSdk.WinUI, "\uE8FA")]
+			    public class ManifestSamplePage : Page { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+
+		Assert.That(result.Exception, Is.Null);
+		Assert.That(UggDiagnostics(result), Is.Empty);
+
+		var manifestSource = GetManifestSource(result);
+		Assert.That(manifestSource, Is.Not.Empty, "SampleManifest.g.cs must be emitted");
+		Assert.That(manifestSource, Does.Contain("class SampleManifest"));
+		Assert.That(manifestSource, Does.Contain("GetJson()"));
+
+		// Compile the manifest together with App.Samples.g.cs and verify GetJson() is invokable.
+		var json = InvokeGetJson(result, source);
+		Assert.That(json, Is.Not.Null.And.Not.Empty, "GetJson() must return a non-empty string");
+
+		// Parse with System.Text.Json.
+		using var doc = System.Text.Json.JsonDocument.Parse(json!);
+		var root = doc.RootElement;
+		Assert.That(root.GetProperty("schemaVersion").GetInt32(), Is.EqualTo(1),
+			"schemaVersion must be 1");
+
+		var samples = root.GetProperty("samples");
+		Assert.That(samples.GetArrayLength(), Is.EqualTo(1), "Exactly one sample in catalog");
+	}
+
+	[Test]
+	public void SampleManifest_all_required_fields_present()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "My Sample",
+			                Description = "A description.",
+			                DocumentationLink = "https://example.com",
+			                SortOrder = 5,
+			                Status = SampleStatus.Preview,
+			                Owner = "alice",
+			                ReviewedOn = "2024-06-01",
+			                Tags = new[] { "input", "layout" },
+			                RelatedSamples = new[] { "my-sample" })]
+			    public class FullFieldsPage : Page { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+		Assert.That(result.Exception, Is.Null);
+
+		var json = InvokeGetJson(result, source)!;
+		using var doc = System.Text.Json.JsonDocument.Parse(json);
+		var s = doc.RootElement.GetProperty("samples")[0];
+
+		Assert.That(s.GetProperty("fqn").GetString(), Is.EqualTo("Uno.Gallery.FullFieldsPage"));
+		Assert.That(s.GetProperty("slug").GetString(), Is.EqualTo("my-sample"));
+		Assert.That(s.GetProperty("title").GetString(), Is.EqualTo("My Sample"));
+		Assert.That(s.GetProperty("description").GetString(), Is.EqualTo("A description."));
+		Assert.That(s.GetProperty("documentationLink").GetString(), Is.EqualTo("https://example.com"));
+		Assert.That(s.GetProperty("sortOrder").GetInt32(), Is.EqualTo(5));
+		Assert.That(s.GetProperty("owner").GetString(), Is.EqualTo("alice"));
+		Assert.That(s.GetProperty("reviewedOn").GetString(), Is.EqualTo("2024-06-01"));
+
+		// category
+		var cat = s.GetProperty("category");
+		Assert.That(cat.GetProperty("value").GetInt32(), Is.EqualTo(0)); // Controls = 0
+		Assert.That(cat.GetProperty("name").GetString(), Is.EqualTo("Controls"));
+
+		// sourceSdk
+		var sdk = s.GetProperty("sourceSdk");
+		Assert.That(sdk.GetProperty("value").GetInt32(), Is.EqualTo(0)); // WinUI = 0
+		Assert.That(sdk.GetProperty("name").GetString(), Is.EqualTo("WinUI"));
+
+		// status
+		var status = s.GetProperty("status");
+		Assert.That(status.GetProperty("value").GetInt32(), Is.EqualTo(1)); // Preview = 1
+		Assert.That(status.GetProperty("name").GetString(), Is.EqualTo("Preview"));
+
+		// tags
+		var tags = s.GetProperty("tags");
+		Assert.That(tags.GetArrayLength(), Is.EqualTo(2));
+		Assert.That(tags[0].GetString(), Is.EqualTo("input"));
+		Assert.That(tags[1].GetString(), Is.EqualTo("layout"));
+
+		// relatedSamples
+		var related = s.GetProperty("relatedSamples");
+		Assert.That(related.GetArrayLength(), Is.EqualTo(1));
+		Assert.That(related[0].GetString(), Is.EqualTo("my-sample"));
+	}
+
+	[Test]
+	public void SampleManifest_null_fields_represented_as_json_null()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Minimal")]
+			    public class MinimalPage : Page { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+		var json = InvokeGetJson(result, source)!;
+		using var doc = System.Text.Json.JsonDocument.Parse(json);
+		var s = doc.RootElement.GetProperty("samples")[0];
+
+		Assert.That(s.GetProperty("description").ValueKind, Is.EqualTo(System.Text.Json.JsonValueKind.Null));
+		Assert.That(s.GetProperty("documentationLink").ValueKind, Is.EqualTo(System.Text.Json.JsonValueKind.Null));
+		Assert.That(s.GetProperty("owner").ValueKind, Is.EqualTo(System.Text.Json.JsonValueKind.Null));
+		Assert.That(s.GetProperty("reviewedOn").ValueKind, Is.EqualTo(System.Text.Json.JsonValueKind.Null));
+		Assert.That(s.GetProperty("sourcePath").ValueKind, Is.EqualTo(System.Text.Json.JsonValueKind.Null));
+		Assert.That(s.GetProperty("platformConditionals").ValueKind, Is.EqualTo(System.Text.Json.JsonValueKind.Null));
+
+		// Empty arrays, not null
+		Assert.That(s.GetProperty("tags").GetArrayLength(), Is.EqualTo(0));
+		Assert.That(s.GetProperty("relatedSamples").GetArrayLength(), Is.EqualTo(0));
+
+		// Default sourceSdk when unspecified is WinUI (value 0, name "WinUI").
+		var sdk = s.GetProperty("sourceSdk");
+		Assert.That(sdk.GetProperty("value").GetInt32(), Is.EqualTo(0),
+			"Default SourceSdk must be WinUI (0)");
+		Assert.That(sdk.GetProperty("name").GetString(), Is.EqualTo("WinUI"),
+			"Default SourceSdk name must be 'WinUI'");
+	}
+
+	[Test]
+	public void SampleManifest_platformConditionals_emitted_as_number_when_set()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Windows Only")]
+			    [SampleConditional(SampleConditionals.Windows)]
+			    public class WindowsOnlyPage : Page { }
+			}
+			""";
+
+		var result = RunGenerator([source], preprocessorSymbols: ["WINDOWS"]);
+		Assert.That(result.Exception, Is.Null);
+
+		var json = InvokeGetJson(result, source, ["WINDOWS"])!;
+		using var doc = System.Text.Json.JsonDocument.Parse(json);
+		var s = doc.RootElement.GetProperty("samples")[0];
+
+		var conditionals = s.GetProperty("platformConditionals");
+		Assert.That(conditionals.ValueKind, Is.EqualTo(System.Text.Json.JsonValueKind.Number),
+			"platformConditionals must be a number when SampleConditionalAttribute is present");
+		Assert.That(conditionals.GetUInt32(), Is.EqualTo(1u), // SampleConditionals.Windows = 1
+			"Windows flag value is 1");
+	}
+
+	[Test]
+	public void SampleManifest_special_chars_in_title_and_description_survive_round_trip()
+	{
+		// Title with embedded double-quote, description with backslash.
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Say \"Hello\"",
+			                Description = "Path\\Separator")]
+			    public class SpecialCharPage : Page { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+		Assert.That(result.Exception, Is.Null);
+		Assert.That(UggDiagnostics(result), Is.Empty);
+
+		var json = InvokeGetJson(result, source)!;
+		using var doc = System.Text.Json.JsonDocument.Parse(json);
+		var s = doc.RootElement.GetProperty("samples")[0];
+
+		Assert.That(s.GetProperty("title").GetString(), Is.EqualTo("Say \"Hello\""),
+			"Embedded double-quote must survive JSON round-trip");
+		Assert.That(s.GetProperty("description").GetString(), Is.EqualTo("Path\\Separator"),
+			"Backslash must survive JSON round-trip");
+	}
+
+	[Test]
+	public void SampleManifest_control_char_in_title_is_escaped()
+	{
+		// Embed a tab (U+0009) in the title — must be emitted as \t in JSON.
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Tab\tChar")]
+			    public class TabCharPage : Page { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+		Assert.That(result.Exception, Is.Null);
+
+		var json = InvokeGetJson(result, source)!;
+		using var doc = System.Text.Json.JsonDocument.Parse(json);
+		var s = doc.RootElement.GetProperty("samples")[0];
+		// System.Text.Json unescapes \t → actual tab char
+		Assert.That(s.GetProperty("title").GetString(), Is.EqualTo("Tab\tChar"),
+			"Tab character must survive JSON round-trip via \\t escape");
+	}
+
+	[Test]
+	public void SampleManifest_deterministic_across_reversed_file_order()
+	{
+		const string sourceApple = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Apple")]
+			    public class AppleManifestPage : Page { }
+			}
+			""";
+		const string sourceZebra = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Layout, "Zebra")]
+			    public class ZebraManifestPage : Page { }
+			}
+			""";
+
+		var r1 = RunGenerator([sourceApple, sourceZebra]);
+		var r2 = RunGenerator([sourceZebra, sourceApple]);
+
+		var json1 = InvokeGetJson(r1, sourceApple, null, sourceZebra)!;
+		var json2 = InvokeGetJson(r2, sourceZebra, null, sourceApple)!;
+
+		Assert.That(json1, Is.EqualTo(json2),
+			"Manifest JSON must be identical regardless of source file order");
+
+		// Apple (A) must precede Zebra (Z) — FQN-sorted
+		using var doc = System.Text.Json.JsonDocument.Parse(json1);
+		var samples = doc.RootElement.GetProperty("samples");
+		Assert.That(samples.GetArrayLength(), Is.EqualTo(2));
+		Assert.That(samples[0].GetProperty("fqn").GetString(), Does.Contain("Apple"),
+			"Apple (lower FQN) must appear first");
+		Assert.That(samples[1].GetProperty("fqn").GetString(), Does.Contain("Zebra"),
+			"Zebra must appear second");
+	}
+
+	[Test]
+	public void SampleManifest_default_sortOrder_is_MaxValue()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Default Order")]
+			    public class DefaultOrderPage : Page { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+		var json = InvokeGetJson(result, source)!;
+		using var doc = System.Text.Json.JsonDocument.Parse(json);
+		var s = doc.RootElement.GetProperty("samples")[0];
+		Assert.That(s.GetProperty("sortOrder").GetInt32(), Is.EqualTo(int.MaxValue),
+			"Default sortOrder must be int.MaxValue");
+	}
+
+	[Test]
+	public void SampleManifest_sample_count_matches_GetSamples_for_platform()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "A")]
+			    public class PageA : Page { }
+
+			    [SamplePage(SampleCategory.Layout, "B")]
+			    public class PageB : Page { }
+
+			    [SamplePage(SampleCategory.Controls, "C")]
+			    [SampleConditional(SampleConditionals.Disabled)]
+			    public class PageC : Page { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+		Assert.That(result.Exception, Is.Null);
+
+		var json = InvokeGetJson(result, source)!;
+		using var doc = System.Text.Json.JsonDocument.Parse(json);
+		var manifestCount = doc.RootElement.GetProperty("samples").GetArrayLength();
+
+		// PageC is Disabled so GetSamples has 2 entries; manifest must match.
+		Assert.That(manifestCount, Is.EqualTo(2),
+			"Manifest count must match GetSamples filtered count");
+
+		var appSource = GetGeneratedSource(result);
+		Assert.That(appSource, Does.Not.Contain("PageC"), "PageC must be absent from GetSamples");
+	}
+
+	[Test]
+	public void SampleManifest_sourcePath_absent_for_in_memory_tree()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "In Memory")]
+			    public class InMemoryManifestPage : Page { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+		var json = InvokeGetJson(result, source)!;
+		using var doc = System.Text.Json.JsonDocument.Parse(json);
+		var s = doc.RootElement.GetProperty("samples")[0];
+		Assert.That(s.GetProperty("sourcePath").ValueKind,
+			Is.EqualTo(System.Text.Json.JsonValueKind.Null),
+			"sourcePath must be null for in-memory trees");
+	}
+
+	[Test]
+	public void SampleManifest_sourcePath_emitted_for_file_backed_tree()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "File Backed")]
+			    public class FileBackedManifestPage : Page { }
+			}
+			""";
+
+		// Supply an explicit file path so ComputeSourcePath can anchor at Views/.
+		var result = RunGeneratorWithFilePaths([
+			(source, @"C:\repo\Uno.Gallery\Views\SamplePages\FileBackedManifestPage.xaml.cs")
+		]);
+
+		Assert.That(result.Exception, Is.Null);
+		Assert.That(UggDiagnostics(result), Is.Empty);
+
+		var json = InvokeGetJson(result, source)!;
+		using var doc = System.Text.Json.JsonDocument.Parse(json);
+		var s = doc.RootElement.GetProperty("samples")[0];
+
+		Assert.That(s.GetProperty("sourcePath").GetString(),
+			Is.EqualTo("Views/SamplePages/FileBackedManifestPage.xaml.cs"),
+			"sourcePath in manifest must be repo-relative with forward slashes, anchored at Views/");
+	}
+
+	[Test]
+	public void SampleManifest_control_heavy_title_compiles_and_chunks_safely()
+	{
+		// 1,400 repetitions of \\u0001 (Roslyn parses each as U+0001).
+		// Each U+0001 expands to 6 C#-escaped chars (\\u0001).
+		// Total ≈ 1,400 × 6 = 8,400 > MaxEscapedChunkLen (8,000), so the generated manifest
+		// must split into at least two sb.Append() calls for this sample's JSON fragment.
+		var controlEscapes = string.Concat(Enumerable.Repeat("\\u0001", 1400));
+		var source = "using Uno.Gallery;\nnamespace Uno.Gallery\n{\n" +
+		             "    [SamplePage(SampleCategory.Controls, \"X:" + controlEscapes + "\")]\n" +
+		             "    public class ControlHeavyPage : Page { }\n}";
+
+		var result = RunGenerator([source]);
+
+		Assert.That(result.Exception, Is.Null);
+		Assert.That(UggDiagnostics(result), Is.Empty);
+
+		// Must compile and produce parseable JSON.
+		var json = InvokeGetJson(result, source)!;
+		Assert.That(json, Is.Not.Empty);
+		using var doc = System.Text.Json.JsonDocument.Parse(json);
+		var s = doc.RootElement.GetProperty("samples")[0];
+		// Title has 1,402 chars: "X:" + 1,400 × U+0001.
+		var expectedTitle = "X:" + new string('\x01', 1400);
+		Assert.That(s.GetProperty("title").GetString(), Is.EqualTo(expectedTitle),
+			"Control-char title must survive manifest JSON round-trip");
+
+		// Verify no single sb.Append("...") literal exceeds 8,000 escaped chars.
+		var manifestSource = GetManifestSource(result);
+		int maxLiteralLen = 0;
+		int searchPos = 0;
+		const string appendPrefix = "sb.Append(\"";
+		while (true)
+		{
+			int start = manifestSource.IndexOf(appendPrefix, searchPos, StringComparison.Ordinal);
+			if (start < 0) break;
+			start += appendPrefix.Length;
+			int end = start;
+			while (end < manifestSource.Length)
+			{
+				if (manifestSource[end] == '\\') { end += 2; continue; }
+				if (manifestSource[end] == '"') break;
+				end++;
+			}
+			maxLiteralLen = Math.Max(maxLiteralLen, end - start);
+			searchPos = end + 1;
+		}
+		Assert.That(maxLiteralLen, Is.LessThanOrEqualTo(8_000),
+			"No generated sb.Append() literal must exceed 8,000 escaped characters");
+	}
+
+	[Test]
+	public void SampleManifest_valid_surrogate_pair_emoji_survives_json_round_trip()
+	{
+		// \\uD83D\\uDD0E in the source → Roslyn parses as surrogate pair (emoji U+1F50E 🔎).
+		// AppendJsonString must emit \\uD83D\\uDD0E JSON escapes; System.Text.Json decodes the emoji.
+		var source = "using Uno.Gallery;\nnamespace Uno.Gallery\n{\n" +
+		             "    [SamplePage(SampleCategory.Controls, \"Search: \\uD83D\\uDD0E\")]\n" +
+		             "    public class EmojiManifestPage : Page { }\n}";
+
+		var result = RunGenerator([source]);
+
+		Assert.That(result.Exception, Is.Null);
+		Assert.That(UggDiagnostics(result), Is.Empty);
+
+		var json = InvokeGetJson(result, source)!;
+		using var doc = System.Text.Json.JsonDocument.Parse(json);
+		var s = doc.RootElement.GetProperty("samples")[0];
+
+		// System.Text.Json decodes \uD83D\uDD0E → the actual emoji char pair.
+		var expected = "Search: \uD83D\uDD0E"; // valid surrogate pair in C# string
+		Assert.That(s.GetProperty("title").GetString(), Is.EqualTo(expected),
+			"Valid surrogate-pair emoji must survive JSON round-trip unchanged");
+	}
+
+	[Test]
+	public void SampleManifest_lone_high_surrogate_replaced_with_replacement_char()
+	{
+		// \\uD83D alone → Roslyn parses as lone high surrogate (no following low surrogate).
+		// AppendJsonString must replace it with \\uFFFD so the output is valid JSON.
+		var source = "using Uno.Gallery;\nnamespace Uno.Gallery\n{\n" +
+		             "    [SamplePage(SampleCategory.Controls, \"Lone: \\uD83D\")]\n" +
+		             "    public class LoneSurrogateManifestPage : Page { }\n}";
+
+		var result = RunGenerator([source]);
+
+		Assert.That(result.Exception, Is.Null);
+
+		var json = InvokeGetJson(result, source)!;
+		Assert.That(json, Is.Not.Empty, "GetJson() must not throw for a lone-surrogate title");
+		using var doc = System.Text.Json.JsonDocument.Parse(json);
+		var s = doc.RootElement.GetProperty("samples")[0];
+
+		var title = s.GetProperty("title").GetString()!;
+		Assert.That(title, Does.Contain("\uFFFD"),
+			"Lone surrogate must be replaced with U+FFFD in the JSON output");
+		Assert.That(title, Does.Not.Contain("\uD83D"),
+			"The lone high surrogate must not appear in the parsed title");
+	}
+
+	// ─── Helpers ─────────────────────────────────────────────────────────────
+
+	private static string GetRoutesSource(GeneratorRunResult result)
+	{
+		var entry = result.GeneratedSources
+			.FirstOrDefault(s => s.HintName == "SampleRoutes.g.cs");
+		return entry.SourceText?.ToString() ?? string.Empty;
+	}
+
+	private static string GetManifestSource(GeneratorRunResult result)
+	{
+		var entry = result.GeneratedSources
+			.FirstOrDefault(s => s.HintName == "SampleManifest.g.cs");
+		return entry.SourceText?.ToString() ?? string.Empty;
+	}
+
+	/// <summary>
+	/// Compiles the generator outputs together with the stubs, then locates and invokes
+	/// <c>SampleManifest.GetJson()</c> via reflection to get the runtime JSON value.
+	/// </summary>
+	private static string? InvokeGetJson(
+		GeneratorRunResult result,
+		string primarySource,
+		IEnumerable<string>? preprocessorSymbols = null,
+		params string[] extraSources)
+	{
+		var generated = result.GeneratedSources
+			.Select(s => s.SourceText.ToString())
+			.ToArray();
+
+		var allSources = new[] { GoodStubs, primarySource }
+			.Concat(extraSources)
+			.Concat(generated);
+
+		var parseOptions = preprocessorSymbols is not null
+			? CSharpParseOptions.Default.WithPreprocessorSymbols(preprocessorSymbols)
+			: CSharpParseOptions.Default;
+
+		var trees = allSources.Select(s => CSharpSyntaxTree.ParseText(s, parseOptions));
+
+		var compilation = CSharpCompilation.Create(
+			"InvokeCompilation",
+			trees,
+			GetMetadataReferences(),
+			new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary));
+
+		using var ms = new System.IO.MemoryStream();
+		var emitResult = compilation.Emit(ms);
+		if (!emitResult.Success)
+		{
+			var errs = emitResult.Diagnostics
+				.Where(d => d.Severity == DiagnosticSeverity.Error)
+				.Select(d => d.GetMessage())
+				.Take(3);
+			Assert.Fail($"Compilation for InvokeGetJson failed: {string.Join("; ", errs)}");
+			return null;
+		}
+
+		ms.Seek(0, System.IO.SeekOrigin.Begin);
+		var asm = System.Reflection.Assembly.Load(ms.ToArray());
+		var type = asm.GetType("Uno.Gallery.SampleManifest");
+		Assert.That(type, Is.Not.Null, "SampleManifest type must exist in compiled assembly");
+		var method = type!.GetMethod("GetJson", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static);
+		Assert.That(method, Is.Not.Null, "GetJson() method must be accessible");
+		return (string?)method!.Invoke(null, null);
+	}
+
+	private static int CountOccurrences(string text, string needle)
+	{
+		int count = 0, pos = 0;
+		while ((pos = text.IndexOf(needle, pos, StringComparison.Ordinal)) >= 0)
+		{
+			count++;
+			pos += needle.Length;
+		}
+		return count;
+	}
 }
