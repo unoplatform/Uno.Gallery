@@ -536,6 +536,7 @@
 
 					<!-- Samples Search Box -->
 					<AutoSuggestBox x:Name="SamplesSearchBox"
+									AutomationProperties.AutomationId="SamplesSearchBox"
 									TextMemberPath="Title"
 									PlaceholderText="Search"
 									QueryIcon="Find"
@@ -549,7 +550,11 @@
 						</AutoSuggestBox.KeyboardAccelerators>
 						<AutoSuggestBox.ItemTemplate>
 							<DataTemplate x:DataType="local:Sample">
-								<TextBlock Text="{x:Bind Title}"
+								<!-- Slug is always non-null, lowercase-hyphenated (e.g. "checkbox"), and
+								     unique across registered samples (enforced by UGG0006). It has no
+								     collision with nav-item IDs which are all prefixed "Section_". -->
+								<TextBlock AutomationProperties.AutomationId="{x:Bind Slug}"
+										   Text="{x:Bind Title}"
 										   Margin="20,0,0,0" />
 							</DataTemplate>
 						</AutoSuggestBox.ItemTemplate>

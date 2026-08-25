@@ -17,6 +17,12 @@ public sealed partial class Shell : UserControl
 	/// <summary>Window-scoped sorted sample catalog. Assigned once by <see cref="App"/>.<c>BuildShell</c>.</summary>
 	internal IReadOnlyList<Sample> Samples { get; init; } = Array.Empty<Sample>();
 
+	/// <summary>
+	/// Typed navigator assigned by <see cref="App"/>.<c>BuildShell</c> after nav items are added.
+	/// Non-null once the shell enters the visual tree under normal startup.
+	/// </summary>
+	internal IGalleryNavigator? Navigator { get; set; }
+
 	private IEnumerable<Sample> SearchSamples(string query)
 		=> Samples
 			.Where(sample => query.ToLower().Split(" ").All(key => sample.Title.Contains(key, StringComparison.OrdinalIgnoreCase)));
@@ -256,12 +262,12 @@ public sealed partial class Shell : UserControl
 	{
 		var sample = args.SelectedItem as Sample;
 
-		if (sample.Title.Contains(NoSuggestionsFoundText))
+		if (sample is null || sample.Title.Contains(NoSuggestionsFoundText))
 		{
 			return;
 		}
 
-		(Application.Current as App)?.SearchShellNavigateTo(this, sample);
+		Navigator?.NavigateTo(sample, NavigationOptions.ExpandCategory);
 	}
 
 	private void CtrlF_Invoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
@@ -274,15 +280,16 @@ public sealed partial class Shell : UserControl
 		if (args.ChosenSuggestion is Sample sample)
 		{
 			// User selected an item, take an action
-			(Application.Current as App)?.SearchShellNavigateTo(this, sample);
+			Navigator?.NavigateTo(sample, NavigationOptions.ExpandCategory);
 		}
 		else if (!string.IsNullOrEmpty(args.QueryText))
 		{
 			//Do a fuzzy search based on the text
 			var suggestions = SearchSamples(sender.Text);
-			if (Enumerable.Count(suggestions) > 0)
+			var first = suggestions.FirstOrDefault();
+			if (first is not null)
 			{
-				(Application.Current as App)?.SearchShellNavigateTo(this, suggestions.FirstOrDefault());
+				Navigator?.NavigateTo(first, NavigationOptions.ExpandCategory);
 			}
 		}
 	}

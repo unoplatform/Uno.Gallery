@@ -134,88 +134,27 @@ namespace Uno.Gallery
 		}
 #endif
 
-		public void ShellNavigateTo(Shell shell, Sample sample) => ShellNavigateTo(shell, sample, trySynchronizeCurrentItem: true);
+		public void ShellNavigateTo(Shell shell, Sample sample) => shell.Navigator?.NavigateTo(sample);
 
 		private void ShellNavigateTo<TPage>(Shell shell, bool trySynchronizeCurrentItem = true) where TPage : Page, new()
 		{
 			var pageType = typeof(TPage);
-			var attribute = pageType.GetCustomAttribute<SamplePageAttribute>()
-				?? throw new NotSupportedException($"{pageType} isn't tagged with [{nameof(SamplePageAttribute)}].");
-			var sample = new Sample(attribute, pageType, () => new TPage(), null);
-
-			ShellNavigateTo(shell, sample, trySynchronizeCurrentItem);
+			var sample = shell.Samples.FirstOrDefault(s => s.ViewType == pageType)
+				?? CreateLegacySample<TPage>();
+			shell.Navigator!.NavigateTo(sample,
+				trySynchronizeCurrentItem ? NavigationOptions.None : NavigationOptions.SkipNavSync);
 		}
 
-		private void ShellNavigateTo(Shell shell, Sample sample, bool trySynchronizeCurrentItem)
+		private static Sample CreateLegacySample<TPage>() where TPage : Page, new()
 		{
-			var nv = shell.NavigationView;
-			if (nv.Content?.GetType() != sample.ViewType)
-			{
-				var selected = trySynchronizeCurrentItem
-					? nv.MenuItems
-						.OfType<MUXC.NavigationViewItem>()
-						.FirstOrDefault(x => (x.DataContext as Sample)?.ViewType == sample.ViewType)
-					: default;
-				if (selected != null)
-				{
-					nv.SelectedItem = selected;
-				}
-
-				var page = sample.CreatePage();
-				page.DataContext = sample;
-
-#if __WASM__
-				_ = DispatcherQueue.GetForCurrentThread()?.TryEnqueue(DispatcherQueuePriority.Low, () => AnalyticsService.TrackView(sample?.Title ?? page.GetType().Name));
-#endif
-
-				shell.NavigationView.Content = page;
-			}
+			var pageType = typeof(TPage);
+			var attribute = pageType.GetCustomAttribute<SamplePageAttribute>()
+				?? throw new NotSupportedException($"{pageType} isn't tagged with [{nameof(SamplePageAttribute)}].");
+			return new Sample(attribute, pageType, () => new TPage(), null);
 		}
 
 		public void SearchShellNavigateTo(Shell shell, Sample sample)
-		{
-			var nv = shell.NavigationView;
-			if (nv.Content?.GetType() == sample.ViewType)
-			{
-				return;
-			}
-
-			MUXC.NavigationViewItem selectedItem = null;
-			MUXC.NavigationViewItem selectedCategory = null;
-
-			foreach (MUXC.NavigationViewItem category in nv.MenuItems)
-			{
-				selectedItem = category.MenuItems.OfType<MUXC.NavigationViewItem>()
-					.FirstOrDefault(item => item.DataContext is Sample s && s.ViewType == sample.ViewType);
-
-				if (selectedItem != null)
-				{
-					selectedCategory = category;
-					break;
-				}
-			}
-
-			if (selectedItem is null)
-			{
-				nv.SelectedItem = nv.MenuItems[0];
-			}
-			else
-			{
-				selectedCategory.IsExpanded = true;
-				nv.UpdateLayout();
-
-				nv.SelectedItem = selectedItem;
-			}
-
-			var page = sample.CreatePage();
-			page.DataContext = sample;
-
-#if __WASM__
-			_ = DispatcherQueue.GetForCurrentThread()?.TryEnqueue(DispatcherQueuePriority.Low, () => AnalyticsService.TrackView(sample?.Title ?? page.GetType().Name));
-#endif
-
-			shell.NavigationView.Content = page;
-		}
+			=> shell.Navigator?.NavigateTo(sample, NavigationOptions.ExpandCategory);
 
 		private Shell BuildShell()
 		{
@@ -230,19 +169,23 @@ namespace Uno.Gallery
 
 			var shell = new Shell { Samples = sortedSamples };
 			AutomationProperties.SetAutomationId(shell, "AppShell");
-			shell.RegisterPropertyChangedCallback(Shell.CurrentSampleBackdoorProperty, OnCurrentSampleBackdoorChanged);
 			var nv = shell.NavigationView;
 			AddNavigationItems(nv, sortedSamples);
+
+			// Navigator must be assigned before the backdoor callback fires and before initial navigation.
+			var navigator = new ShellNavigator(shell);
+			shell.Navigator = navigator;
+
+			shell.RegisterPropertyChangedCallback(Shell.CurrentSampleBackdoorProperty, OnCurrentSampleBackdoorChanged);
 #if __WASM__
 			if (!IsThereSampleFilteredByArgs(shell, nv))
 #endif
 			{
 				// landing navigation
-				ShellNavigateTo<OverviewPage>(
-					shell
+				navigator.NavigateToOverview(
 #if !WINDOWS
 					// workaround for uno#5069: setting NavView.SelectedItem at launch bricks it
-					, trySynchronizeCurrentItem: false
+					NavigationOptions.SkipNavSync
 #endif
 				);
 			}
@@ -291,10 +234,9 @@ namespace Uno.Gallery
 
 				if (sampleItem != null)
 				{
-					ShellNavigateTo(
-						shell,
-						(Uno.Gallery.Sample)sampleItem.DataContext
-						, trySynchronizeCurrentItem: false
+					shell.Navigator!.NavigateTo(
+						(Sample)sampleItem.DataContext,
+						NavigationOptions.SkipNavSync
 					);
 					return true;
 				}
@@ -326,8 +268,8 @@ namespace Uno.Gallery
 				SamplePageLayout.SetPreferredDesign(design);
 			}
 
-			ShellNavigateTo<OverviewPage>(shell);
-			ShellNavigateTo(shell, sample);
+			shell.Navigator!.NavigateToOverview();
+			shell.Navigator!.NavigateTo(sample);
 		}
 
 
@@ -337,7 +279,7 @@ namespace Uno.Gallery
 			{
 				var shell = VisualTreeHelperEx.FindAncestor<Shell>(sender)
 					?? throw new InvalidOperationException("NavigationView is not inside a Shell.");
-				ShellNavigateTo(shell, sample, trySynchronizeCurrentItem: false);
+				shell.Navigator!.NavigateTo(sample, NavigationOptions.SkipNavSync);
 			}
 		}
 
@@ -404,7 +346,7 @@ namespace Uno.Gallery
 
 			foreach (var sample in samples)
 			{
-				ShellNavigateTo(shell, sample);
+				shell.Navigator!.NavigateTo(sample);
 
 				var tcs = new TaskCompletionSource();
 
