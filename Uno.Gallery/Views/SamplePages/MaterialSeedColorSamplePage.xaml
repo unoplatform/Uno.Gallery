@@ -46,6 +46,32 @@
 											 IsAlphaTextInputVisible="False"
 											 Color="{Binding Data.CurrentSeedColor, Mode=TwoWay}"
 											 HorizontalAlignment="Left" />
+
+								<!-- Applied seed hex — visible to users and readable by UITests -->
+								<StackPanel Orientation="Horizontal"
+											Spacing="4">
+									<TextBlock Style="{StaticResource BodySmall}"
+											   Foreground="{ThemeResource OnSurfaceVariantBrush}"
+											   Text="Applied: " />
+									<TextBlock AutomationProperties.AutomationId="CurrentSeedHex"
+											   Style="{StaticResource BodySmall}"
+											   Foreground="{ThemeResource OnSurfaceVariantBrush}"
+											   Text="{Binding Data.CurrentSeedHex}" />
+								</StackPanel>
+
+								<!-- Hex quick-entry: type any #RRGGBB value and tap Apply -->
+								<StackPanel Orientation="Horizontal"
+											Spacing="8">
+									<TextBox AutomationProperties.AutomationId="SeedHexTextBox"
+											 PlaceholderText="#RRGGBB"
+											 Text="{Binding Data.SeedHexInput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+											 Width="140"
+											 HorizontalAlignment="Left" />
+									<Button AutomationProperties.AutomationId="ApplySeedHexButton"
+											Content="Apply Hex"
+											Command="{Binding Data.ApplySeedHexCommand}"
+											Style="{StaticResource MaterialOutlinedButtonStyle}" />
+								</StackPanel>
 							</StackPanel>
 
 							<!-- Reset button -->

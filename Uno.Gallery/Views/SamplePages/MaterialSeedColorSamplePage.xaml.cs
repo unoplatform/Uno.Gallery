@@ -32,33 +32,22 @@ namespace Uno.Gallery.Views.Samples
 		public MaterialSeedColorSamplePage()
 		{
 			this.InitializeComponent();
+			// Wire once: Loaded/Unloaded always fire when NavigationView.Content swaps pages
+			// (direct content assignment, not Frame navigation), so these are the correct hooks.
+			Loaded += OnPageLoaded;
+			Unloaded += OnPageUnloaded;
 		}
 
-		protected override void OnNavigatedTo(Microsoft.UI.Xaml.Navigation.NavigationEventArgs e)
+		private void OnPageLoaded(object sender, RoutedEventArgs e)
 		{
-			base.OnNavigatedTo(e);
 			if (DataContext is Sample { Data: MaterialSeedColorSamplePageViewModel vm })
 			{
 				vm.CaptureOriginalSeed();
 			}
-			Unloaded += OnPageUnloaded;
 		}
 
-		protected override void OnNavigatedFrom(Microsoft.UI.Xaml.Navigation.NavigationEventArgs e)
+		private void OnPageUnloaded(object sender, RoutedEventArgs e)
 		{
-			base.OnNavigatedFrom(e);
-			Unloaded -= OnPageUnloaded;
-			if (DataContext is Sample { Data: MaterialSeedColorSamplePageViewModel vm })
-			{
-				vm.RestoreOriginalSeed();
-			}
-		}
-
-		private void OnPageUnloaded(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
-		{
-			Unloaded -= OnPageUnloaded;
-			// Fallback for force-close (window killed without navigation). RestoreOriginalSeed
-			// is idempotent — the _isOwner guard makes a second call a no-op.
 			if (DataContext is Sample { Data: MaterialSeedColorSamplePageViewModel vm })
 			{
 				vm.RestoreOriginalSeed();
@@ -97,7 +86,27 @@ namespace Uno.Gallery.Views.Samples
 				var opaque = Color.FromArgb(0xFF, value.R, value.G, value.B);
 				SemanticThemeHelper.PrimarySeed = opaque;
 				_appliedSeed = opaque;
+				CurrentSeedHex = FormatHex(opaque);
 			}
+		}
+
+		/// <summary>
+		/// Current seed color as an uppercase "#RRGGBB" hex string.
+		/// Displayed in-page so users (and UITests) can observe the applied seed value.
+		/// </summary>
+		public string CurrentSeedHex
+		{
+			get => GetProperty<string>() ?? FormatHex(DefaultDisplaySeed);
+			private set => SetProperty(value);
+		}
+
+		/// <summary>
+		/// Two-way bound to the hex-entry TextBox; consumed by <see cref="ApplySeedHexCommand"/>.
+		/// </summary>
+		public string SeedHexInput
+		{
+			get => GetProperty<string>() ?? string.Empty;
+			set => SetProperty(value);
 		}
 
 		/// <summary>
@@ -111,19 +120,21 @@ namespace Uno.Gallery.Views.Samples
 		}
 
 		public Command ResetCommand { get; }
+		public Command ApplySeedHexCommand { get; }
 
 		public MaterialSeedColorSamplePageViewModel()
 		{
 			ResetCommand = new Command(Reset);
+			ApplySeedHexCommand = new Command(_ => ApplySeedHex());
 			// Initialise the picker display without writing to the global seed.
-			// CaptureOriginalSeed() (called from OnNavigatedTo) is the authoritative
+			// CaptureOriginalSeed() (called from OnPageLoaded) is the authoritative
 			// capture point; doing it here would corrupt the value we want to restore.
-			SetProperty(SemanticThemeHelper.PrimarySeed ?? DefaultDisplaySeed, nameof(CurrentSeedColor));
+			SyncPickerDisplay(SemanticThemeHelper.PrimarySeed ?? DefaultDisplaySeed);
 		}
 
 		/// <summary>
 		/// Captures the global original seed (once, on first open) and registers this
-		/// instance as an active owner.  Called from <c>OnNavigatedTo</c>.
+		/// instance as an active owner.  Called from <c>OnPageLoaded</c>.
 		/// </summary>
 		public void CaptureOriginalSeed()
 		{
@@ -143,14 +154,15 @@ namespace Uno.Gallery.Views.Samples
 			_appliedSeed = null;
 
 			// Sync picker display without triggering a global write.
-			SetProperty(SemanticThemeHelper.PrimarySeed ?? DefaultDisplaySeed, nameof(CurrentSeedColor));
+			SyncPickerDisplay(SemanticThemeHelper.PrimarySeed ?? DefaultDisplaySeed);
 
 			s_pageCountChanged?.Invoke(this, EventArgs.Empty);
 		}
 
 		/// <summary>
 		/// Restores the original app seed when the LAST active page closes.
-		/// Idempotent — safe to call from both <c>OnNavigatedFrom</c> and <c>Unloaded</c>.
+		/// Idempotent — safe to call from <c>OnPageUnloaded</c>; the <c>_isOwner</c> guard
+		/// makes every call after the first a no-op.
 		/// </summary>
 		public void RestoreOriginalSeed()
 		{
@@ -182,8 +194,34 @@ namespace Uno.Gallery.Views.Samples
 			var target = s_globalOriginalSeed;
 			SemanticThemeHelper.PrimarySeed = target;
 			_appliedSeed = target;
-			SetProperty(target ?? DefaultDisplaySeed, nameof(CurrentSeedColor));
+			SyncPickerDisplay(target ?? DefaultDisplaySeed);
 		}
+
+		private void ApplySeedHex()
+		{
+			var hex = (SeedHexInput ?? string.Empty).Trim().TrimStart('#').ToUpperInvariant();
+			if (hex.Length != 6) return;
+			try
+			{
+				var r = Convert.ToByte(hex.Substring(0, 2), 16);
+				var g = Convert.ToByte(hex.Substring(2, 2), 16);
+				var b = Convert.ToByte(hex.Substring(4, 2), 16);
+				CurrentSeedColor = Color.FromArgb(0xFF, r, g, b);
+			}
+			catch { /* invalid hex — ignore */ }
+		}
+
+		/// <summary>
+		/// Updates <see cref="CurrentSeedColor"/> and <see cref="CurrentSeedHex"/> together
+		/// without writing to <see cref="SemanticThemeHelper.PrimarySeed"/>.
+		/// </summary>
+		private void SyncPickerDisplay(Color seed)
+		{
+			SetProperty(seed, nameof(CurrentSeedColor));
+			CurrentSeedHex = FormatHex(seed);
+		}
+
+		private static string FormatHex(Color c) => $"#{c.R:X2}{c.G:X2}{c.B:X2}";
 	}
 }
 
