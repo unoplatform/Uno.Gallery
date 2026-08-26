@@ -1,0 +1,109 @@
+<Page x:Class="Uno.Gallery.Views.Samples.ItemsRepeaterSamplePage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:local="using:Uno.Gallery"
+	  xmlns:data="using:Uno.Gallery.Entities.Data"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  xmlns:smtx="using:ShowMeTheXAML"
+	  mc:Ignorable="d">
+
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<local:SamplePageLayout>
+
+			<local:SamplePageLayout.FluentTemplate>
+				<DataTemplate>
+					<StackPanel Spacing="16"
+								Padding="0,8">
+
+						<!-- StackLayout -->
+						<smtx:XamlDisplay UniqueKey="ItemsRepeaterSamplePage_Stack"
+										  smtx:XamlDisplayExtensions.Header="StackLayout (vertical list)"
+										  smtx:XamlDisplayExtensions.Description="ItemsRepeater with StackLayout — no built-in scrolling, wrap in ScrollViewer.">
+							<ScrollViewer MaxHeight="300"
+										  AutomationProperties.Name="ItemsRepeater_Stack_ScrollViewer">
+								<ItemsRepeater x:Name="StackRepeater"
+											   AutomationProperties.Name="ItemsRepeater_Stack"
+											   ItemsSource="{Binding Data}">
+									<ItemsRepeater.Layout>
+										<StackLayout Orientation="Vertical"
+													 Spacing="4" />
+									</ItemsRepeater.Layout>
+									<ItemsRepeater.ItemTemplate>
+										<DataTemplate x:DataType="data:GalleryItem">
+											<Grid Height="56"
+												  Padding="12,0"
+												  CornerRadius="4"
+												  Background="{ThemeResource CardBackgroundFillColorDefaultBrush}">
+												<Grid.ColumnDefinitions>
+													<ColumnDefinition Width="Auto" />
+													<ColumnDefinition Width="*" />
+												</Grid.ColumnDefinitions>
+												<Border Width="36"
+														Height="36"
+														CornerRadius="4"
+														Background="{Binding Accent}"
+														VerticalAlignment="Center" />
+												<StackPanel Grid.Column="1"
+															Margin="12,0,0,0"
+															VerticalAlignment="Center">
+													<TextBlock Text="{Binding Title}"
+															   Style="{StaticResource BodyStrong}"
+															   TextTrimming="CharacterEllipsis" />
+													<TextBlock Text="{Binding Subtitle}"
+															   Style="{ThemeResource CaptionTextBlockStyle}"
+															   TextTrimming="CharacterEllipsis" />
+												</StackPanel>
+											</Grid>
+										</DataTemplate>
+									</ItemsRepeater.ItemTemplate>
+								</ItemsRepeater>
+							</ScrollViewer>
+						</smtx:XamlDisplay>
+
+						<!-- UniformGridLayout -->
+						<smtx:XamlDisplay UniqueKey="ItemsRepeaterSamplePage_Grid"
+										  smtx:XamlDisplayExtensions.Header="UniformGridLayout (tile grid)"
+										  smtx:XamlDisplayExtensions.Description="ItemsRepeater with UniformGridLayout — equal-sized tiles in a wrapping grid.">
+							<ScrollViewer MaxHeight="300"
+										  AutomationProperties.Name="ItemsRepeater_Grid_ScrollViewer">
+								<ItemsRepeater x:Name="GridRepeater"
+											   AutomationProperties.Name="ItemsRepeater_Grid"
+											   ItemsSource="{Binding Data}">
+									<ItemsRepeater.Layout>
+										<UniformGridLayout MinItemWidth="120"
+														   MinItemHeight="120"
+														   MinColumnSpacing="8"
+														   MinRowSpacing="8"
+														   ItemsJustification="Start" />
+									</ItemsRepeater.Layout>
+									<ItemsRepeater.ItemTemplate>
+										<DataTemplate x:DataType="data:GalleryItem">
+											<Grid Width="120"
+												  Height="120"
+												  CornerRadius="8"
+												  Background="{Binding Accent}">
+												<StackPanel VerticalAlignment="Bottom"
+															Padding="8"
+															Background="#88000000"
+															CornerRadius="0,0,8,8">
+													<TextBlock Text="{Binding Title}"
+															   Foreground="White"
+															   Style="{StaticResource CaptionTextBlockStyle}"
+															   TextTrimming="CharacterEllipsis"
+															   TextWrapping="NoWrap" />
+												</StackPanel>
+											</Grid>
+										</DataTemplate>
+									</ItemsRepeater.ItemTemplate>
+								</ItemsRepeater>
+							</ScrollViewer>
+						</smtx:XamlDisplay>
+
+					</StackPanel>
+				</DataTemplate>
+			</local:SamplePageLayout.FluentTemplate>
+
+		</local:SamplePageLayout>
+	</Grid>
+</Page>

@@ -1,0 +1,43 @@
+using NUnit.Framework;
+using Uno.UITest.Helpers.Queries;
+
+namespace Uno.Gallery.UITests;
+
+public class Given_ItemsView : TestBase
+{
+	[Test]
+	public void When_ItemsView_Loads()
+	{
+		NavigateToSample("ItemsView", "Fluent");
+		TakeScreenshot("Loaded");
+		App.WaitForElement("ItemsView_Single");
+		App.WaitForElement("ItemsView_Multiple");
+	}
+
+	[Test]
+	public void When_ItemsView_Single_SelectionUpdatesDisplay()
+	{
+		NavigateToSample("ItemsView", "Fluent");
+		App.WaitForElement("ItemsView_Single");
+
+		// Tap first item (The Great Gatsby)
+		App.WaitThenTap("The Great Gatsby");
+		TakeScreenshot("After first tap");
+
+		var display = new QueryEx(x => x.All().Marked("ItemsView_SelectedTitle"));
+		var text = display.GetDependencyPropertyValue<string>("Text");
+		StringAssert.Contains("The Great Gatsby", text);
+	}
+
+	[Test]
+	public void When_ItemsView_Multiple_SelectsItems()
+	{
+		NavigateToSample("ItemsView", "Fluent");
+		App.WaitForElement("ItemsView_Multiple");
+
+		// Tap two items
+		App.WaitThenTap("The Great Gatsby");
+		App.WaitThenTap("1984");
+		TakeScreenshot("After two selections");
+	}
+}

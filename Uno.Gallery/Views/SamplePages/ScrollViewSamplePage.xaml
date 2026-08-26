@@ -1,0 +1,101 @@
+<Page x:Class="Uno.Gallery.Views.Samples.ScrollViewSamplePage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:local="using:Uno.Gallery"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  xmlns:smtx="using:ShowMeTheXAML"
+	  mc:Ignorable="d">
+
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<local:SamplePageLayout>
+
+			<local:SamplePageLayout.FluentTemplate>
+				<DataTemplate>
+					<StackPanel Spacing="16"
+								Padding="0,8">
+
+						<!-- Vertical scroll -->
+						<smtx:XamlDisplay UniqueKey="ScrollViewSamplePage_Vertical"
+										  smtx:XamlDisplayExtensions.Header="Vertical ScrollView"
+										  smtx:XamlDisplayExtensions.Description="ScrollView replaces ScrollViewer in WinUI 3. It exposes a ScrollPresenter via ScrollView.ScrollPresenter for advanced composition scenarios.">
+							<ScrollView x:Name="VerticalScrollView"
+										AutomationProperties.Name="ScrollView_Vertical"
+										Height="240"
+										ContentOrientation="Vertical"
+										HorizontalScrollBarVisibility="Hidden"
+										VerticalScrollBarVisibility="Auto">
+								<StackPanel Padding="8"
+											Spacing="4">
+									<!-- 20 items is enough to demonstrate scrolling without startup cost -->
+									<Border Height="48" Background="{ThemeResource SystemFillColorSuccessBackgroundBrush}" CornerRadius="4"><TextBlock Text="Row 1" VerticalAlignment="Center" Margin="12,0" /></Border>
+									<Border Height="48" Background="{ThemeResource SystemFillColorSuccessBackgroundBrush}" CornerRadius="4"><TextBlock Text="Row 2" VerticalAlignment="Center" Margin="12,0" /></Border>
+									<Border Height="48" Background="{ThemeResource SystemFillColorSuccessBackgroundBrush}" CornerRadius="4"><TextBlock Text="Row 3" VerticalAlignment="Center" Margin="12,0" /></Border>
+									<Border Height="48" Background="{ThemeResource SystemFillColorSuccessBackgroundBrush}" CornerRadius="4"><TextBlock Text="Row 4" VerticalAlignment="Center" Margin="12,0" /></Border>
+									<Border Height="48" Background="{ThemeResource SystemFillColorSuccessBackgroundBrush}" CornerRadius="4"><TextBlock Text="Row 5" VerticalAlignment="Center" Margin="12,0" /></Border>
+									<Border Height="48" Background="{ThemeResource SystemFillColorSuccessBackgroundBrush}" CornerRadius="4"><TextBlock Text="Row 6" VerticalAlignment="Center" Margin="12,0" /></Border>
+									<Border Height="48" Background="{ThemeResource SystemFillColorSuccessBackgroundBrush}" CornerRadius="4"><TextBlock Text="Row 7" VerticalAlignment="Center" Margin="12,0" /></Border>
+									<Border Height="48" Background="{ThemeResource SystemFillColorSuccessBackgroundBrush}" CornerRadius="4"><TextBlock Text="Row 8" VerticalAlignment="Center" Margin="12,0" /></Border>
+									<Border Height="48" Background="{ThemeResource SystemFillColorSuccessBackgroundBrush}" CornerRadius="4"><TextBlock Text="Row 9" VerticalAlignment="Center" Margin="12,0" /></Border>
+									<Border Height="48" Background="{ThemeResource SystemFillColorSuccessBackgroundBrush}" CornerRadius="4"><TextBlock Text="Row 10" VerticalAlignment="Center" Margin="12,0" /></Border>
+									<Border Height="48" Background="{ThemeResource SystemFillColorSuccessBackgroundBrush}" CornerRadius="4"><TextBlock Text="Row 11" VerticalAlignment="Center" Margin="12,0" /></Border>
+									<Border Height="48" Background="{ThemeResource SystemFillColorSuccessBackgroundBrush}" CornerRadius="4"><TextBlock Text="Row 12" VerticalAlignment="Center" Margin="12,0" /></Border>
+									<Border Height="48" Background="{ThemeResource SystemFillColorSuccessBackgroundBrush}" CornerRadius="4"><TextBlock Text="Row 13" VerticalAlignment="Center" Margin="12,0" /></Border>
+									<Border Height="48" Background="{ThemeResource SystemFillColorSuccessBackgroundBrush}" CornerRadius="4"><TextBlock Text="Row 14" VerticalAlignment="Center" Margin="12,0" /></Border>
+									<Border Height="48" Background="{ThemeResource SystemFillColorSuccessBackgroundBrush}" CornerRadius="4"><TextBlock Text="Row 15" VerticalAlignment="Center" Margin="12,0" /></Border>
+									<Border Height="48" Background="{ThemeResource SystemFillColorSuccessBackgroundBrush}" CornerRadius="4"><TextBlock Text="Row 16" VerticalAlignment="Center" Margin="12,0" /></Border>
+									<Border Height="48" Background="{ThemeResource SystemFillColorSuccessBackgroundBrush}" CornerRadius="4"><TextBlock Text="Row 17" VerticalAlignment="Center" Margin="12,0" /></Border>
+									<Border Height="48" Background="{ThemeResource SystemFillColorSuccessBackgroundBrush}" CornerRadius="4"><TextBlock Text="Row 18" VerticalAlignment="Center" Margin="12,0" /></Border>
+									<Border Height="48" Background="{ThemeResource SystemFillColorSuccessBackgroundBrush}" CornerRadius="4"><TextBlock Text="Row 19" VerticalAlignment="Center" Margin="12,0" /></Border>
+									<Border Height="48" Background="{ThemeResource SystemFillColorSuccessBackgroundBrush}" CornerRadius="4"><TextBlock Text="Row 20" VerticalAlignment="Center" Margin="12,0" /></Border>
+								</StackPanel>
+							</ScrollView>
+						</smtx:XamlDisplay>
+
+						<!-- Horizontal scroll -->
+						<smtx:XamlDisplay UniqueKey="ScrollViewSamplePage_Horizontal"
+										  smtx:XamlDisplayExtensions.Header="Horizontal ScrollView"
+										  smtx:XamlDisplayExtensions.Description="Set ContentOrientation=&quot;Horizontal&quot; for a horizontally scrolling surface.">
+							<ScrollView x:Name="HorizontalScrollView"
+										AutomationProperties.Name="ScrollView_Horizontal"
+										Height="120"
+										ContentOrientation="Horizontal"
+										HorizontalScrollBarVisibility="Auto"
+										VerticalScrollBarVisibility="Hidden">
+								<StackPanel Orientation="Horizontal"
+											Spacing="8"
+											Padding="8">
+									<Border Width="120" Height="96" CornerRadius="8" Background="{StaticResource UnoBlueColorBrush}"><TextBlock Text="Card 1" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" /></Border>
+									<Border Width="120" Height="96" CornerRadius="8" Background="{StaticResource UnoPurpleColorBrush}"><TextBlock Text="Card 2" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" /></Border>
+									<Border Width="120" Height="96" CornerRadius="8" Background="{StaticResource UnoGreenColorBrush}"><TextBlock Text="Card 3" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" /></Border>
+									<Border Width="120" Height="96" CornerRadius="8" Background="{StaticResource UnoRedColorBrush}"><TextBlock Text="Card 4" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" /></Border>
+									<Border Width="120" Height="96" CornerRadius="8" Background="{StaticResource UnoBlueColorBrush}"><TextBlock Text="Card 5" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" /></Border>
+									<Border Width="120" Height="96" CornerRadius="8" Background="{StaticResource UnoPurpleColorBrush}"><TextBlock Text="Card 6" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" /></Border>
+									<Border Width="120" Height="96" CornerRadius="8" Background="{StaticResource UnoGreenColorBrush}"><TextBlock Text="Card 7" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" /></Border>
+									<Border Width="120" Height="96" CornerRadius="8" Background="{StaticResource UnoRedColorBrush}"><TextBlock Text="Card 8" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" /></Border>
+								</StackPanel>
+							</ScrollView>
+						</smtx:XamlDisplay>
+
+						<!-- ScrollPresenter access note -->
+						<smtx:XamlDisplay UniqueKey="ScrollViewSamplePage_Offset"
+										  smtx:XamlDisplayExtensions.Header="Scroll Offset via ScrollPresenter"
+										  smtx:XamlDisplayExtensions.Description="ScrollView.ScrollPresenter exposes the underlying ScrollPresenter. Scroll the view above and press the button to read the current vertical offset.">
+							<StackPanel Spacing="8">
+								<Button x:Name="ReadOffsetButton"
+										AutomationProperties.Name="ScrollView_ReadOffset"
+										Content="Read vertical offset"
+										Click="ReadOffset_Click" />
+								<TextBlock x:Name="OffsetDisplay"
+										   AutomationProperties.Name="ScrollView_OffsetDisplay"
+										   Text="Vertical offset: 0" />
+							</StackPanel>
+						</smtx:XamlDisplay>
+
+					</StackPanel>
+				</DataTemplate>
+			</local:SamplePageLayout.FluentTemplate>
+
+		</local:SamplePageLayout>
+	</Grid>
+</Page>
