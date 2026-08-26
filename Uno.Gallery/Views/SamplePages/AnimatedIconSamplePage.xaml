@@ -1,0 +1,60 @@
+<Page x:Class="Uno.Gallery.Views.Samples.AnimatedIconSamplePage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:animated="using:Microsoft.UI.Xaml.Controls.AnimatedVisuals"
+	  xmlns:local="using:Uno.Gallery"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  xmlns:smtx="using:ShowMeTheXAML"
+	  mc:Ignorable="d">
+
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<local:SamplePageLayout x:Name="SamplePageLayoutRoot" IsDesignAgnostic="True">
+			<local:SamplePageLayout.DesignAgnosticTemplate>
+				<DataTemplate>
+					<smtx:XamlDisplay UniqueKey="AnimatedIcon_StateTransitions"
+									  smtx:XamlDisplayExtensions.Header="State-driven accept icon"
+									  smtx:XamlDisplayExtensions.Description="AnimatedIcon transitions between named marker states. If the animated source cannot render, FallbackIconSource keeps the action understandable."
+									  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+						<StackPanel Spacing="12">
+							<AnimatedIcon x:Name="AcceptIcon"
+										  AutomationProperties.AutomationId="AnimatedIcon_Accept"
+										  AutomationProperties.Name="Animated accept icon"
+										  Width="72"
+										  Height="72"
+										  HorizontalAlignment="Left"
+										  Loaded="AnimatedIcon_Loaded">
+								<AnimatedIcon.Source>
+									<animated:AnimatedAcceptVisualSource />
+								</AnimatedIcon.Source>
+								<AnimatedIcon.FallbackIconSource>
+									<SymbolIconSource Symbol="Accept" />
+								</AnimatedIcon.FallbackIconSource>
+							</AnimatedIcon>
+
+							<StackPanel Orientation="Horizontal" Spacing="8">
+								<Button AutomationProperties.AutomationId="AnimatedIcon_AcceptButton"
+										AutomationProperties.Name="Set accepted state"
+										Content="Accept"
+										Click="SetAccepted_Click" />
+								<Button AutomationProperties.AutomationId="AnimatedIcon_ResetButton"
+										AutomationProperties.Name="Reset accept icon"
+										Content="Reset"
+										Click="Reset_Click" />
+							</StackPanel>
+
+							<TextBlock x:Name="AnimatedIconStatus"
+									   AutomationProperties.AutomationId="AnimatedIcon_Status"
+									   AutomationProperties.LiveSetting="Polite"
+									   Text="State: NormalOff; transitions: 0"
+									   Style="{StaticResource BodyMedium}" />
+							<TextBlock Text="Source: AnimatedAcceptVisualSource from Microsoft.UI.Xaml.Controls.AnimatedVisuals. States use the source markers NormalOff and NormalOn."
+									   TextWrapping="WrapWholeWords"
+									   Style="{StaticResource BodySmall}" />
+						</StackPanel>
+					</smtx:XamlDisplay>
+				</DataTemplate>
+			</local:SamplePageLayout.DesignAgnosticTemplate>
+		</local:SamplePageLayout>
+	</Grid>
+</Page>
