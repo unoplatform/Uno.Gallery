@@ -62,6 +62,16 @@
       "reason": ""
     },
     {
+      "id": "animated-icon",
+      "disposition": "covered-core",
+      "gallerySlugs": [
+        "animated-icon"
+      ],
+      "owner": "unoplatform",
+      "issue": null,
+      "reason": ""
+    },
+    {
       "id": "auto-layout",
       "disposition": "covered-core",
       "gallerySlugs": [
@@ -86,6 +96,76 @@
       "disposition": "covered-core",
       "gallerySlugs": [
         "loadingview"
+      ],
+      "owner": "unoplatform",
+      "issue": null,
+      "reason": ""
+    },
+    {
+      "id": "card-content-control",
+      "disposition": "covered-core",
+      "gallerySlugs": [
+        "card-content-control"
+      ],
+      "owner": "unoplatform",
+      "issue": null,
+      "reason": ""
+    },
+    {
+      "id": "toolkit-input-extensions",
+      "disposition": "covered-core",
+      "gallerySlugs": [
+        "toolkit-extensions"
+      ],
+      "owner": "unoplatform",
+      "issue": null,
+      "reason": ""
+    },
+    {
+      "id": "toolkit-command-extensions",
+      "disposition": "covered-core",
+      "gallerySlugs": [
+        "toolkit-extensions"
+      ],
+      "owner": "unoplatform",
+      "issue": null,
+      "reason": ""
+    },
+    {
+      "id": "toolkit-resource-extensions",
+      "disposition": "covered-core",
+      "gallerySlugs": [
+        "toolkit-extensions"
+      ],
+      "owner": "unoplatform",
+      "issue": null,
+      "reason": ""
+    },
+    {
+      "id": "toolkit-visual-state-manager-extensions",
+      "disposition": "covered-core",
+      "gallerySlugs": [
+        "toolkit-extensions"
+      ],
+      "owner": "unoplatform",
+      "issue": null,
+      "reason": ""
+    },
+    {
+      "id": "toolkit-selector-extensions",
+      "disposition": "covered-core",
+      "gallerySlugs": [
+        "toolkit-extensions"
+      ],
+      "owner": "unoplatform",
+      "issue": null,
+      "reason": ""
+    },
+    {
+      "id": "toolkit-tabbar-selector-behavior",
+      "disposition": "covered-core",
+      "gallerySlugs": [
+        "toolkit-extensions"
       ],
       "owner": "unoplatform",
       "issue": null,

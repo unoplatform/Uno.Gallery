@@ -76,6 +76,15 @@
       "documentation": "https://learn.microsoft.com/windows/communitytoolkit/animations/lottie"
     },
     {
+      "id": "animated-icon",
+      "repository": "unoplatform/uno",
+      "name": "AnimatedIcon",
+      "status": "stable",
+      "package": "Uno.WinUI",
+      "minimalSamplePath": "src/Uno.UI.RuntimeTests/Tests/Microsoft_UI_Xaml_Controls/AnimatedVisuals/Given_AnimatedAcceptVisualSource.cs",
+      "documentation": "https://learn.microsoft.com/windows/apps/design/controls/animated-icon"
+    },
+    {
       "id": "auto-layout",
       "repository": "unoplatform/uno.toolkit.ui",
       "name": "AutoLayout",
@@ -101,6 +110,69 @@
       "package": "Uno.Toolkit.WinUI",
       "minimalSamplePath": "samples/Uno.Toolkit.Samples/Content/Controls/LoadingViewSample.xaml",
       "documentation": "https://platform.uno/docs/articles/external/uno.toolkit.ui/doc/controls/LoadingView.html"
+    },
+    {
+      "id": "card-content-control",
+      "repository": "unoplatform/uno.toolkit.ui",
+      "name": "CardContentControl",
+      "status": "stable",
+      "package": "Uno.Toolkit.WinUI",
+      "minimalSamplePath": "samples/Uno.Toolkit.Samples/Content/Controls/CardContentControlSamplePage.xaml",
+      "documentation": "https://platform.uno/docs/articles/external/uno.toolkit.ui/doc/controls/CardAndCardContentControl.html"
+    },
+    {
+      "id": "toolkit-input-extensions",
+      "repository": "unoplatform/uno.toolkit.ui",
+      "name": "InputExtensions",
+      "status": "stable",
+      "package": "Uno.Toolkit.WinUI",
+      "minimalSamplePath": "samples/Uno.Toolkit.Samples/Content/Controls/InputExtensionsSamplePage.xaml",
+      "documentation": "https://platform.uno/docs/articles/external/uno.toolkit.ui/doc/helpers/input-extensions.html"
+    },
+    {
+      "id": "toolkit-command-extensions",
+      "repository": "unoplatform/uno.toolkit.ui",
+      "name": "CommandExtensions",
+      "status": "stable",
+      "package": "Uno.Toolkit.WinUI",
+      "minimalSamplePath": "samples/Uno.Toolkit.Samples/Content/Controls/CommandExtensionsSamplePage.xaml",
+      "documentation": "https://platform.uno/docs/articles/external/uno.toolkit.ui/doc/helpers/command-extensions.html"
+    },
+    {
+      "id": "toolkit-resource-extensions",
+      "repository": "unoplatform/uno.toolkit.ui",
+      "name": "ResourceExtensions",
+      "status": "stable",
+      "package": "Uno.Toolkit.WinUI",
+      "minimalSamplePath": "samples/Uno.Toolkit.Samples/Content/Controls/ResourceExtensionsSamplePage.xaml",
+      "documentation": "https://platform.uno/docs/articles/external/uno.toolkit.ui/doc/helpers/resource-extensions.html"
+    },
+    {
+      "id": "toolkit-visual-state-manager-extensions",
+      "repository": "unoplatform/uno.toolkit.ui",
+      "name": "VisualStateManagerExtensions",
+      "status": "stable",
+      "package": "Uno.Toolkit.WinUI",
+      "minimalSamplePath": "src/Uno.Toolkit.UI/Behaviors/VisualStateManagerExtensions.cs",
+      "documentation": "https://platform.uno/docs/articles/external/uno.toolkit.ui/doc/helpers/visual-state-manager-extensions.html"
+    },
+    {
+      "id": "toolkit-selector-extensions",
+      "repository": "unoplatform/uno.toolkit.ui",
+      "name": "SelectorExtensions",
+      "status": "stable",
+      "package": "Uno.Toolkit.WinUI",
+      "minimalSamplePath": "src/Uno.Toolkit.UI/Behaviors/SelectorExtensions.cs",
+      "documentation": "https://platform.uno/docs/articles/external/uno.toolkit.ui/doc/controls/TabBar.html"
+    },
+    {
+      "id": "toolkit-tabbar-selector-behavior",
+      "repository": "unoplatform/uno.toolkit.ui",
+      "name": "TabBarSelectorBehavior",
+      "status": "stable",
+      "package": "Uno.Toolkit.WinUI",
+      "minimalSamplePath": "samples/Uno.Toolkit.Samples/Content/Controls/TabBarBehaviorSamplePage.xaml",
+      "documentation": "https://platform.uno/docs/articles/external/uno.toolkit.ui/doc/controls/TabBar.html"
     },
     {
       "id": "material-seed-color",
