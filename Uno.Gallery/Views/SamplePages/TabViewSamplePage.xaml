@@ -56,30 +56,36 @@
 						<smtx:XamlDisplay UniqueKey="TabViewSamplePage_Dynamic"
 										  smtx:XamlDisplayExtensions.Header="Dynamic Tabs (Add &amp; Close)"
 										  smtx:XamlDisplayExtensions.Description="IsAddTabButtonVisible=True shows the + button. Handle AddTabButtonClick to create a new tab. Handle TabCloseRequested to remove tabs.">
-							<TabView x:Name="DynamicTabView"
-									 AutomationProperties.Name="TabView_Dynamic"
-									 IsAddTabButtonVisible="True"
-									 AddTabButtonClick="DynamicTabView_AddTabButtonClick"
-									 TabCloseRequested="DynamicTabView_TabCloseRequested"
-									 SelectedIndex="0"
-									 HorizontalAlignment="Stretch">
-								<TabViewItem Header="Tab 1"
-											 AutomationProperties.Name="TabView_Dynamic_Tab1"
-											 IsClosable="False">
-									<TextBlock Text="Pin this tab — it cannot be closed."
-											   Margin="16" />
-								</TabViewItem>
-								<TabViewItem Header="Tab 2"
-											 AutomationProperties.Name="TabView_Dynamic_Tab2">
-									<TextBlock Text="Close this tab using the × button."
-											   Margin="16" />
-								</TabViewItem>
-								<TabViewItem Header="Tab 3"
-											 AutomationProperties.Name="TabView_Dynamic_Tab3">
-									<TextBlock Text="Close this tab using the × button."
-											   Margin="16" />
-								</TabViewItem>
-							</TabView>
+							<StackPanel Spacing="8">
+								<TextBlock AutomationProperties.AutomationId="TabView_Dynamic_TabCount"
+										   Text="3"
+										   Style="{ThemeResource CaptionTextBlockStyle}" />
+								<TabView x:Name="DynamicTabView"
+										 AutomationProperties.Name="TabView_Dynamic"
+										 IsAddTabButtonVisible="True"
+										 AddTabButtonClick="DynamicTabView_AddTabButtonClick"
+										 TabCloseRequested="DynamicTabView_TabCloseRequested"
+										 Loaded="DynamicTabView_Loaded"
+										 SelectedIndex="0"
+										 HorizontalAlignment="Stretch">
+									<TabViewItem Header="Tab 1"
+												 AutomationProperties.Name="TabView_Dynamic_Tab1"
+												 IsClosable="False">
+										<TextBlock Text="Pin this tab — it cannot be closed."
+												   Margin="16" />
+									</TabViewItem>
+									<TabViewItem Header="Tab 2"
+												 AutomationProperties.AutomationId="TabView_Dynamic_Tab2">
+										<TextBlock Text="Close this tab using the × button."
+												   Margin="16" />
+									</TabViewItem>
+									<TabViewItem Header="Tab 3"
+												 AutomationProperties.AutomationId="TabView_Dynamic_Tab3">
+										<TextBlock Text="Close this tab using the × button."
+												   Margin="16" />
+									</TabViewItem>
+								</TabView>
+							</StackPanel>
 						</smtx:XamlDisplay>
 
 					</StackPanel>

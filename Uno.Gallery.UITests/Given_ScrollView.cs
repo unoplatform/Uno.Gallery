@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using Uno.UITest;
 using Uno.UITest.Helpers.Queries;
 
 namespace Uno.Gallery.UITests;
@@ -19,7 +20,7 @@ public class Given_ScrollView : TestBase
 	{
 		NavigateToSample("ScrollView", "Fluent");
 		App.WaitForElement("ScrollView_Vertical");
-		App.ScrollDown("ScrollView_Vertical", 200);
+		App.ScrollDown("ScrollView_Vertical", ScrollStrategy.Gesture);
 		TakeScreenshot("After scroll down");
 	}
 

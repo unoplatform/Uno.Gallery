@@ -7,7 +7,7 @@ namespace Uno.Gallery.Views.Samples;
 	Description = "The WinUI 3 replacement for ScrollViewer. Exposes a ScrollPresenter for direct access to scroll state and inertia. Supports vertical, horizontal, and zoom modes.",
 	DocumentationLink = "https://learn.microsoft.com/en-us/windows/windows-app-sdk/api/winrt/microsoft.ui.xaml.controls.scrollview",
 	Tags = new[] { "scroll", "scrollpresenter", "layout", "content" },
-	RelatedSamples = new[] { "ItemsRepeater", "ItemsView" },
+	RelatedSamples = new[] { "itemsrepeater", "itemsview" },
 	Owner = "t-dotitl",
 	ReviewedOn = "2026-08-26")]
 public sealed partial class ScrollViewSamplePage : Page

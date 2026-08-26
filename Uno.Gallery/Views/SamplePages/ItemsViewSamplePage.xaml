@@ -72,15 +72,13 @@
 										  smtx:XamlDisplayExtensions.Header="Multiple Selection"
 										  smtx:XamlDisplayExtensions.Description="ItemsView with SelectionMode=Multiple. Each ItemContainer handles its own checked state.">
 							<StackPanel Spacing="8">
-								<TextBlock>
-									<Run Text="Selected count: " />
-									<Run x:Name="MultiSelectionCount"
-										 Text="{Binding SelectedItems.Count, ElementName=ItemsViewMultiple, TargetNullValue='0'}" />
-								</TextBlock>
+								<TextBlock AutomationProperties.AutomationId="ItemsView_MultiSelectionCount"
+										   Text="Selected count: 0" />
 								<ItemsView x:Name="ItemsViewMultiple"
 										   AutomationProperties.Name="ItemsView_Multiple"
 										   ItemsSource="{Binding Data}"
 										   SelectionMode="Multiple"
+										   SelectionChanged="ItemsViewMultiple_SelectionChanged"
 										   MaxHeight="200">
 									<ItemsView.Layout>
 										<UniformGridLayout MinItemWidth="140"

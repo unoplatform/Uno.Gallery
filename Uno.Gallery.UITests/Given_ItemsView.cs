@@ -39,5 +39,9 @@ public class Given_ItemsView : TestBase
 		App.WaitThenTap("The Great Gatsby");
 		App.WaitThenTap("1984");
 		TakeScreenshot("After two selections");
+
+		var countDisplay = new QueryEx(x => x.All().Marked("ItemsView_MultiSelectionCount"));
+		var text = countDisplay.GetDependencyPropertyValue<string>("Text");
+		StringAssert.Contains("2", text, $"Count display should show 2 selected items; actual: '{text}'");
 	}
 }

@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using Uno.UITest;
 using Uno.UITest.Helpers.Queries;
 
 namespace Uno.Gallery.UITests;
@@ -19,8 +20,16 @@ public class Given_ItemsRepeater : TestBase
 	{
 		NavigateToSample("ItemsRepeater", "Fluent");
 		App.WaitForElement("ItemsRepeater_Stack_ScrollViewer");
-		App.ScrollDownTo("ItemsRepeater_Grid_ScrollViewer", withinMarked: "ItemsRepeater_Stack_ScrollViewer");
-		TakeScreenshot("Scrolled");
+
+		var sv = new QueryEx(x => x.All().Marked("ItemsRepeater_Stack_ScrollViewer"));
+		var offsetBefore = sv.GetDependencyPropertyValue<double>("VerticalOffset");
+
+		// Scroll the Stack ScrollViewer directly (not a sibling element).
+		App.ScrollDown("ItemsRepeater_Stack_ScrollViewer", ScrollStrategy.Gesture);
+		TakeScreenshot("After scroll");
+
+		var offsetAfter = sv.GetDependencyPropertyValue<double>("VerticalOffset");
+		Assert.Greater(offsetAfter, offsetBefore, "Scrolling down must increase VerticalOffset");
 	}
 
 	[Test]

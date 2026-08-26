@@ -8,7 +8,7 @@ namespace Uno.Gallery.Views.Samples;
 	DocumentationLink = "https://learn.microsoft.com/en-us/windows/windows-app-sdk/api/winrt/microsoft.ui.xaml.controls.itemsrepeater",
 	DataType = typeof(GalleryItemCollection),
 	Tags = new[] { "collection", "layout", "repeater", "virtualization" },
-	RelatedSamples = new[] { "ListView", "GridView", "ItemsView" },
+	RelatedSamples = new[] { "listview", "gridview", "itemsview" },
 	Owner = "t-dotitl",
 	ReviewedOn = "2026-08-26")]
 public sealed partial class ItemsRepeaterSamplePage : Page

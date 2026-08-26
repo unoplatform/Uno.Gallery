@@ -1,26 +1,38 @@
 using System;
 using System.Collections.Generic;
+using Microsoft.UI.Xaml.Media;
+using Windows.UI;
 
 namespace Uno.Gallery.Entities.Data;
 
 [Microsoft.UI.Xaml.Data.Bindable]
 public class GalleryItem
 {
-	public GalleryItem(string title, string subtitle, string accent, bool isEnabled = true)
+	public GalleryItem(string title, string subtitle, string accentHex, bool isEnabled = true)
 	{
 		Title = title;
 		Subtitle = subtitle;
-		Accent = accent;
+		Accent = new SolidColorBrush(ParseHexColor(accentHex));
 		IsEnabled = isEnabled;
 	}
 
 	public string Title { get; }
 	public string Subtitle { get; }
-	/// <summary>Hex accent color for the cover tile.</summary>
-	public string Accent { get; }
+	/// <summary>Accent brush for the cover tile; parsed from hex at construction time.</summary>
+	public SolidColorBrush Accent { get; }
 	public bool IsEnabled { get; }
+
+	private static Color ParseHexColor(string hex)
+	{
+		var s = hex.TrimStart('#');
+		if (s.Length == 6)
+			s = "FF" + s;
+		var v = Convert.ToUInt32(s, 16);
+		return Color.FromArgb((byte)(v >> 24), (byte)(v >> 16), (byte)(v >> 8), (byte)v);
+	}
 }
 
+[Microsoft.UI.Xaml.Data.Bindable]
 public class GalleryItemCollection : List<GalleryItem>
 {
 	public GalleryItemCollection() : base(GetItems()) { }

@@ -1,5 +1,9 @@
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Automation;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media;
 using Uno.Gallery.Entities.Data;
+using Uno.Gallery.Helpers;
 
 namespace Uno.Gallery.Views.Samples;
 
@@ -8,7 +12,7 @@ namespace Uno.Gallery.Views.Samples;
 	DocumentationLink = "https://learn.microsoft.com/en-us/windows/windows-app-sdk/api/winrt/microsoft.ui.xaml.controls.itemsview",
 	DataType = typeof(GalleryItemCollection),
 	Tags = new[] { "collection", "selection", "itemcontainer", "layout" },
-	RelatedSamples = new[] { "ListView", "GridView", "ItemsRepeater" },
+	RelatedSamples = new[] { "listview", "gridview", "itemsrepeater" },
 	Owner = "t-dotitl",
 	ReviewedOn = "2026-08-26")]
 public sealed partial class ItemsViewSamplePage : Page
@@ -16,5 +20,15 @@ public sealed partial class ItemsViewSamplePage : Page
 	public ItemsViewSamplePage()
 	{
 		this.InitializeComponent();
+	}
+
+	private void ItemsViewMultiple_SelectionChanged(ItemsView sender, ItemsViewSelectionChangedEventArgs e)
+	{
+		var parent = Microsoft.UI.Xaml.Media.VisualTreeHelper.GetParent(sender) as DependencyObject;
+		if (parent is null) return;
+		var display = VisualTreeHelperEx.GetFirstDescendant<TextBlock>(parent,
+			t => AutomationProperties.GetAutomationId(t) == "ItemsView_MultiSelectionCount");
+		if (display is not null)
+			display.Text = $"Selected count: {sender.SelectedItems.Count}";
 	}
 }
