@@ -21,15 +21,14 @@
 										  smtx:XamlDisplayExtensions.Header="Single Selection"
 										  smtx:XamlDisplayExtensions.Description="ItemsView with SelectionMode=Single. Each item is wrapped in an ItemContainer which manages selection state and keyboard/pointer input.">
 							<StackPanel Spacing="8">
-								<TextBlock AutomationProperties.Name="ItemsView_SelectedTitle"
-										   x:Name="SelectedTitle_Single">
-									<Run Text="Selected: " />
-									<Run Text="{Binding SelectedItem.Title, ElementName=ItemsViewSingle, TargetNullValue='(none)'}" />
-								</TextBlock>
+								<TextBlock AutomationProperties.AutomationId="ItemsView_SelectedTitle"
+										   x:Name="SelectedTitle_Single"
+										   Text="Selected: (none)" />
 								<ItemsView x:Name="ItemsViewSingle"
 										   AutomationProperties.Name="ItemsView_Single"
 										   ItemsSource="{Binding Data}"
 										   SelectionMode="Single"
+										   SelectionChanged="ItemsViewSingle_SelectionChanged"
 										   MaxHeight="260">
 									<ItemsView.Layout>
 										<StackLayout Spacing="4" />
@@ -89,7 +88,8 @@
 									<ItemsView.ItemTemplate>
 										<DataTemplate x:DataType="data:GalleryItem">
 											<ItemContainer Padding="8,4"
-														   IsEnabled="{Binding IsEnabled}">
+																   IsEnabled="{Binding IsEnabled}"
+																   Loaded="MultipleItemContainer_Loaded">
 												<TextBlock Text="{Binding Title}"
 														   Style="{StaticResource BodyStrong}"
 														   TextTrimming="CharacterEllipsis"

@@ -22,6 +22,14 @@ public sealed partial class ItemsViewSamplePage : Page
 		this.InitializeComponent();
 	}
 
+	private void ItemsViewSingle_SelectionChanged(ItemsView sender, ItemsViewSelectionChangedEventArgs e)
+	{
+		var display = sender.FindName("SelectedTitle_Single") as TextBlock;
+		if (display is null) return;
+		var title = (sender.SelectedItem as GalleryItem)?.Title ?? "(none)";
+		display.Text = $"Selected: {title}";
+	}
+
 	private void ItemsViewMultiple_SelectionChanged(ItemsView sender, ItemsViewSelectionChangedEventArgs e)
 	{
 		var parent = Microsoft.UI.Xaml.Media.VisualTreeHelper.GetParent(sender) as DependencyObject;
@@ -30,5 +38,11 @@ public sealed partial class ItemsViewSamplePage : Page
 			t => AutomationProperties.GetAutomationId(t) == "ItemsView_MultiSelectionCount");
 		if (display is not null)
 			display.Text = $"Selected count: {sender.SelectedItems.Count}";
+	}
+
+	private void MultipleItemContainer_Loaded(object sender, RoutedEventArgs e)
+	{
+		if (sender is ItemContainer container && container.DataContext is GalleryItem item)
+			AutomationProperties.SetName(container, $"ItemsView_Multiple_{item.Title}");
 	}
 }

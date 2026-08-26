@@ -32,5 +32,15 @@ public class Given_ScrollView : TestBase
 		App.WaitThenTap("ScrollView_ReadOffset");
 		TakeScreenshot("After read offset");
 		App.WaitForElement("ScrollView_OffsetDisplay");
+
+		var display = new QueryEx(x => x.All().Marked("ScrollView_OffsetDisplay"));
+		var text = display.GetDependencyPropertyValue<string>("Text");
+		Assert.IsNotNull(text, "ScrollView_OffsetDisplay Text must not be null after button tap");
+		StringAssert.StartsWith("Vertical offset:", text,
+			$"Expected text starting with 'Vertical offset:'; actual: '{text}'");
+
+		var valueStr = text["Vertical offset:".Length..].Trim();
+		if (double.TryParse(valueStr, out var offset))
+			Assert.GreaterOrEqual(offset, 0.0, $"Scroll offset '{valueStr}' must be non-negative");
 	}
 }

@@ -35,9 +35,9 @@ public class Given_ItemsView : TestBase
 		NavigateToSample("ItemsView", "Fluent");
 		App.WaitForElement("ItemsView_Multiple");
 
-		// Tap two items
-		App.WaitThenTap("The Great Gatsby");
-		App.WaitThenTap("1984");
+		// Tap two items (prefixed to avoid ambiguity with the Single-section items)
+		App.WaitThenTap("ItemsView_Multiple_The Great Gatsby");
+		App.WaitThenTap("ItemsView_Multiple_1984");
 		TakeScreenshot("After two selections");
 
 		var countDisplay = new QueryEx(x => x.All().Marked("ItemsView_MultiSelectionCount"));

@@ -1,4 +1,5 @@
 using System.Linq;
+using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Automation;
 using Microsoft.UI.Xaml.Controls;
@@ -28,15 +29,35 @@ public sealed partial class TabViewSamplePage : Page
 	{
 		var tabView = (TabView)sender;
 
-		// Expose a stable AutomationId on the add-tab button (template part "AddButton").
-		var addBtn = VisualTreeHelperEx.GetFirstDescendant<ButtonBase>(tabView,
-			b => (b as FrameworkElement)?.Name == "AddButton");
-		if (addBtn is not null)
-			AutomationProperties.SetAutomationId(addBtn, "TabView_AddTabButton");
+		// Try to tag the add-button immediately; template parts are usually available by Loaded.
+		// If not (deferred/lazy template apply), retry at low priority on the dispatcher queue.
+		if (!TryTagAddButton(tabView))
+		{
+			tabView.DispatcherQueue.TryEnqueue(DispatcherQueuePriority.Low, () =>
+			{
+				if (!TryTagAddButton(tabView))
+					System.Diagnostics.Debug.WriteLine(
+						"[TabViewSamplePage] AddButton template part not found after deferral; " +
+						"AutomationId 'TabView_AddTabButton' was not set. " +
+						"Expected part name: 'AddButton' or 'PART_AddButton'.");
+			});
+		}
 
-		// Tag close buttons on initial closable tabs.
+		// Tag close buttons on initial closable tabs; fall back to item.Loaded if template is pending.
 		foreach (var item in tabView.TabItems.OfType<TabViewItem>())
-			TagCloseButton(item);
+		{
+			if (!TagCloseButton(item))
+				item.Loaded += (s, _) => TagCloseButton((TabViewItem)s);
+		}
+	}
+
+	private static bool TryTagAddButton(TabView tabView)
+	{
+		var addBtn = VisualTreeHelperEx.GetFirstDescendant<ButtonBase>(tabView,
+			b => b is FrameworkElement fe && (fe.Name is "AddButton" or "PART_AddButton"));
+		if (addBtn is null) return false;
+		AutomationProperties.SetAutomationId(addBtn, "TabView_AddTabButton");
+		return true;
 	}
 
 	private void DynamicTabView_AddTabButtonClick(TabView sender, object e)
@@ -64,16 +85,26 @@ public sealed partial class TabViewSamplePage : Page
 	/// <summary>
 	/// Sets a stable AutomationId on the close button of a closable tab item.
 	/// The button has template-part name "CloseButton" in the WinUI3 TabViewItem template.
+	/// Returns true when the button was found and tagged, or when no tagging is needed.
+	/// Returns false when the tab is closable but the template part is not yet in the visual tree.
 	/// </summary>
-	private static void TagCloseButton(TabViewItem item)
+	private static bool TagCloseButton(TabViewItem item)
 	{
-		if (!item.IsClosable) return;
+		if (!item.IsClosable) return true;
 		var id = AutomationProperties.GetAutomationId(item);
-		if (string.IsNullOrEmpty(id)) return;
+		if (string.IsNullOrEmpty(id)) return true;
 		var closeBtn = VisualTreeHelperEx.GetFirstDescendant<Button>(item,
-			b => (b as FrameworkElement)?.Name == "CloseButton");
-		if (closeBtn is not null)
-			AutomationProperties.SetAutomationId(closeBtn, id + "_Close");
+			b => b is FrameworkElement fe && (fe.Name is "CloseButton" or "PART_CloseButton"));
+		if (closeBtn is null)
+		{
+			System.Diagnostics.Debug.WriteLine(
+				$"[TabViewSamplePage] CloseButton template part not found on {id}; " +
+				$"AutomationId '{id}_Close' was not set. " +
+				"Expected part name: 'CloseButton' or 'PART_CloseButton'.");
+			return false;
+		}
+		AutomationProperties.SetAutomationId(closeBtn, id + "_Close");
+		return true;
 	}
 
 	/// <summary>
