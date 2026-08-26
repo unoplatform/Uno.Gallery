@@ -1,35 +1,55 @@
 ﻿using System;
 using System.ComponentModel;
-using Windows.ApplicationModel.Core;
-using Windows.Devices.Sensors;
-using Windows.UI.Core;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.Loader;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using System.Runtime.Loader;
-using System.Reflection;
 
 namespace Uno.Gallery.Views.Samples
 {
-	[SamplePage(SampleCategory.Canary, "Diagnostics", Status = SampleStatus.Experimental)]
+	public sealed class AssemblyInfoItem
+	{
+		public string Name { get; }
+		public string Version { get; }
+		public string DisplayVersion { get; }
+
+		public AssemblyInfoItem(string name, string version, string displayVersion)
+		{
+			Name = name;
+			Version = version;
+			DisplayVersion = displayVersion;
+		}
+	}
+
+	[SamplePage(SampleCategory.Canary, "Diagnostics",
+		Status = SampleStatus.Experimental,
+		Owner = "unoplatform/maintainers",
+		ReviewedOn = "2026-08-25")]
 	public sealed partial class CanarySamplePage : Page
 	{
+		private bool _assembliesLoaded;
+
 		public CanarySamplePage()
 		{
 			this.InitializeComponent();
+		}
 
-			assembliesList.ItemsSource =
-				AssemblyLoadContext.Default
-				.Assemblies
-				.Select(a =>
-				{
-					var asmVersion = GetAssemblyVersionString(a);
-					return new {
-						Name = asmVersion.name,
-						Version = asmVersion.version,
-						DisplayVersion = asmVersion.displayVersion
-					};
-				})
-				.OrderBy(n => n.Name)
+		private void NavigateAllPages_Click(object sender, RoutedEventArgs e)
+		{
+			_ = App.Instance.NavigateToAllPages();
+		}
+
+		private void AssembliesList_Loaded(object sender, RoutedEventArgs e)
+		{
+			if (_assembliesLoaded || sender is not ItemsControl control)
+				return;
+
+			_assembliesLoaded = true;
+			control.ItemsSource = AssemblyLoadContext.Default.Assemblies
+				.Select(GetAssemblyVersionString)
+				.OrderBy(t => t.name)
+				.Select(t => new AssemblyInfoItem(t.name, t.version, t.displayVersion))
 				.ToArray();
 		}
 
@@ -43,11 +63,6 @@ namespace Uno.Gallery.Views.Samples
 			{
 				return ("0.0.0.0", "0.0.0.0", "0.0.0.0");
 			}
-		}
-
-		private void OnNavigateAllPages()
-		{
-			_ = App.Instance.NavigateToAllPages();
 		}
 	}
 }

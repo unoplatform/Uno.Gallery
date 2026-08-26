@@ -100,14 +100,29 @@ namespace Uno.Gallery
 					Description = sample.Description;
 					DocumentationLink = sample.DocumentationLink;
 					Source = sample.Source;
+					ShareUri = sample.ShareUri;
+					IsSourceLinkVisible = sample.SourceLink is not null;
 
 #if __IOS__ || __ANDROID__
 					IsFooterVisible = true;
 					IsShareVisible = DataTransferManager.IsSupported();
 #else
-					IsFooterVisible = sample.DocumentationLink != null;
+					IsFooterVisible = sample.DocumentationLink != null
+						|| sample.SourceLink != null
+						|| !string.IsNullOrEmpty(sample.ShareUri);
 					IsShareVisible = false;
 #endif
+				}
+				else
+				{
+					Title = null;
+					Description = null;
+					DocumentationLink = null;
+					Source = null;
+					ShareUri = null;
+					IsSourceLinkVisible = false;
+					IsFooterVisible = false;
+					IsShareVisible = false;
 				}
 			}
 		}
@@ -227,20 +242,12 @@ namespace Uno.Gallery
 			_shareSample = null;
 
 			if (sample is null) { return; }
-			var shareUri = GetShareUri(sample.Slug);
 			e.Request.Data.Properties.Title = sample?.Title ?? "Uno Gallery";
 			e.Request.Data.Properties.Description = "Check out this control in Uno Gallery";
-			e.Request.Data.SetText(shareUri);
-			e.Request.Data.SetWebLink(new Uri(shareUri));
+			e.Request.Data.SetText(sample.ShareUri);
+			e.Request.Data.SetWebLink(new Uri(sample.ShareUri));
 		}
 #endif
-
-		/// <summary>
-		/// Returns the canonical deep-link URL for a sample using its slug.
-		/// Format: <c>https://gallery.platform.uno/#&lt;slug&gt;</c>.
-		/// </summary>
-		internal static string GetShareUri(string sampleSlug)
-			=> "https://gallery.platform.uno/#" + Uri.EscapeDataString(sampleSlug);
 
 		/// <summary>
 		/// Changes the preferred design.

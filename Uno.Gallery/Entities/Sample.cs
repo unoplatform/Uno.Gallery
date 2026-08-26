@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Uno.Extensions;
 using Uno.Logging;
 using Uno.Gallery.Entities;
+using Uno.Gallery.Helpers;
 using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Controls;
 
@@ -75,6 +76,7 @@ namespace Uno.Gallery
 			SortOrder = attribute.SortOrder;
 
 			Slug = attribute.Slug ?? SlugHelper.DeriveSlug(attribute.Title);
+			ShareUri = "https://gallery.platform.uno/#" + Uri.EscapeDataString(Slug);
 			Status = attribute.Status;
 
 			// Computed-once display/search helpers — no per-call reflection.
@@ -194,13 +196,58 @@ namespace Uno.Gallery
 		public string Slug { get; }
 
 		/// <summary>
-		/// Source file path relative to the repository root.
+		/// Source file path relative to the repository root (e.g. <c>Views/SamplePages/ButtonSamplePage.xaml.cs</c>).
 		/// Populated by the source generator for generator-created (attribute-decorated) samples.
 		/// Reflection-based and manually registered samples may be null until catalog lookup
 		/// migration is complete; do not assume parity with attribute-registered samples.
 		/// Kept internal so the WinUI XAML type-info generator does not emit a public setter.
+		/// Setting this property also computes <see cref="SourceLink"/>.
 		/// </summary>
-		public string? SourcePath { get; internal set; }
+		public string? SourcePath
+		{
+			get => _sourcePath;
+			internal set
+			{
+				_sourcePath = value;
+				SourceLink = value is not null ? BuildSourceLink(value) : null;
+			}
+		}
+
+		private string? _sourcePath;
+
+		/// <summary>
+		/// Canonical deep-link URL for sharing this sample.
+		/// Format: <c>https://gallery.platform.uno/#&lt;slug&gt;</c>.
+		/// Computed once in the constructor from <see cref="Slug"/>.
+		/// Never null.
+		/// </summary>
+		public string ShareUri { get; }
+
+		/// <summary>
+		/// Direct link to this sample's source file on GitHub.
+		/// <c>https://github.com/unoplatform/Uno.Gallery/blob/{revision}/Uno.Gallery/{SourcePath}</c>
+		/// where <c>revision</c> is <see cref="BuildInfo.CommitSha"/> when available,
+		/// or <c>"master"</c> for local developer builds without a commit SHA in the
+		/// <c>AssemblyInformationalVersion</c> (e.g. builds from source without NBGV tagging).
+		/// Null when <see cref="SourcePath"/> is null (manually-registered or sentinel samples).
+		/// </summary>
+		public Uri? SourceLink { get; private set; }
+
+		/// <summary>
+		/// Builds the GitHub blob URL for a repo-relative <paramref name="sourcePath"/>.
+		/// Uses <see cref="BuildInfo.CommitSha"/> as the revision; falls back to <c>"master"</c>
+		/// for local builds where no commit SHA is embedded in the assembly version metadata.
+		/// Each path segment is percent-encoded individually; forward-slash separators are preserved.
+		/// </summary>
+		private static Uri BuildSourceLink(string sourcePath)
+		{
+			var revision = string.IsNullOrEmpty(BuildInfo.CommitSha) ? "master" : BuildInfo.CommitSha;
+			var safeRevision = Uri.EscapeDataString(revision);
+			// Normalize Windows backslashes before splitting so local dev builds on Windows
+			// produce the same forward-slash GitHub URL as CI builds on Linux/macOS.
+			var safePath = string.Join("/", sourcePath.Replace('\\', '/').Split('/').Select(Uri.EscapeDataString));
+			return new Uri("https://github.com/unoplatform/Uno.Gallery/blob/" + safeRevision + "/Uno.Gallery/" + safePath);
+		}
 
 		/// <summary>Production-readiness indicator for this sample.</summary>
 		public SampleStatus Status { get; }

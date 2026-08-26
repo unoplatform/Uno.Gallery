@@ -196,5 +196,37 @@ namespace Uno.Gallery
 		public static readonly DependencyProperty IsShareVisibleProperty =
 			DependencyProperty.Register("IsShareVisible", typeof(bool), typeof(SamplePageLayout), new PropertyMetadata(false));
 		#endregion
+
+		#region Property: ShareUri
+
+		public static DependencyProperty ShareUriProperty { get; } = DependencyProperty.Register(
+			nameof(ShareUri),
+			typeof(string),
+			typeof(SamplePageLayout),
+			new PropertyMetadata(default(string)));
+
+		public string ShareUri
+		{
+			get => (string)GetValue(ShareUriProperty);
+			set => SetValue(ShareUriProperty, value);
+		}
+
+		#endregion
+
+		#region Property: IsSourceLinkVisible
+
+		public static DependencyProperty IsSourceLinkVisibleProperty { get; } = DependencyProperty.Register(
+			nameof(IsSourceLinkVisible),
+			typeof(bool),
+			typeof(SamplePageLayout),
+			new PropertyMetadata(false));
+
+		public bool IsSourceLinkVisible
+		{
+			get => (bool)GetValue(IsSourceLinkVisibleProperty);
+			set => SetValue(IsSourceLinkVisibleProperty, value);
+		}
+
+		#endregion
 	}
 }

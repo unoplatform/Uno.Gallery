@@ -1,4 +1,4 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 					xmlns:android="http://uno.ui/android"
 					xmlns:ios="http://uno.ui/ios"
@@ -26,6 +26,22 @@
 					   Text="{Binding Description}"
 					   Visibility="{Binding Description, Converter={StaticResource IsNullOrEmptyToCollapsed}, FallbackValue=Collapsed}" />
 
+			<!-- Status badge: compact outlined label for non-Stable samples -->
+			<Border AutomationProperties.AutomationId="PART_StatusBadge"
+					Margin="0,8,0,0"
+					Padding="6,2"
+					HorizontalAlignment="Left"
+					BorderBrush="{ThemeResource OnBackgroundBrush}"
+					BorderThickness="1"
+					CornerRadius="4"
+					Visibility="{Binding IsNotStable, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}">
+				<TextBlock AutomationProperties.AutomationId="PART_StatusLabel"
+						   Foreground="{ThemeResource OnBackgroundBrush}"
+						   Opacity="0.8"
+						   Style="{StaticResource BodySmall}"
+						   Text="{Binding StatusLabel}" />
+			</Border>
+
 			<!-- Source label -->
 			<TextBlock Margin="0,30,0,0"
 					   Foreground="{ThemeResource OnBackgroundBrush}"
@@ -34,11 +50,43 @@
 					   Text="SOURCE" />
 
 			<!-- Source value -->
-			<TextBlock Margin="0,0,0,16"
+			<TextBlock Margin="0,0,0,8"
 					   Foreground="{ThemeResource OnBackgroundBrush}"
 					   Opacity="0.8"
 					   Style="{StaticResource BodyMedium}"
 					   Text="{Binding Source, Converter={StaticResource EnumToDescription}}" />
+
+			<!-- Owner row (optional) -->
+			<StackPanel AutomationProperties.AutomationId="PART_OwnerRow"
+						Margin="0,8,0,0"
+						Orientation="Horizontal"
+						Visibility="{Binding Owner, Converter={StaticResource IsNullOrEmptyToCollapsed}, FallbackValue=Collapsed}">
+				<TextBlock Foreground="{ThemeResource OnBackgroundBrush}"
+						   Opacity="0.45"
+						   Style="{StaticResource BodySmall}"
+						   Text="OWNER  " />
+				<TextBlock AutomationProperties.AutomationId="PART_OwnerText"
+						   Foreground="{ThemeResource OnBackgroundBrush}"
+						   Opacity="0.8"
+						   Style="{StaticResource BodySmall}"
+						   Text="{Binding Owner}" />
+			</StackPanel>
+
+			<!-- ReviewedOn row (optional) -->
+			<StackPanel AutomationProperties.AutomationId="PART_ReviewedOnRow"
+						Margin="0,4,0,16"
+						Orientation="Horizontal"
+						Visibility="{Binding ReviewedOn, Converter={StaticResource IsNullOrEmptyToCollapsed}, FallbackValue=Collapsed}">
+				<TextBlock Foreground="{ThemeResource OnBackgroundBrush}"
+						   Opacity="0.45"
+						   Style="{StaticResource BodySmall}"
+						   Text="REVIEWED  " />
+				<TextBlock AutomationProperties.AutomationId="PART_ReviewedOnText"
+						   Foreground="{ThemeResource OnBackgroundBrush}"
+						   Opacity="0.8"
+						   Style="{StaticResource BodySmall}"
+						   Text="{Binding ReviewedOn}" />
+			</StackPanel>
 		</StackPanel>
 	</DataTemplate>
 
@@ -312,6 +360,35 @@
 
 											<Run Text="this page." />
 										</TextBlock>
+
+										<!-- View source hyperlink -->
+										<TextBlock AutomationProperties.AutomationId="PART_SourceLinkText"
+												   Visibility="{Binding IsSourceLinkVisible, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
+												   Margin="0,0,0,16"
+												   Foreground="{ThemeResource OnBackgroundBrush}"
+												   Opacity="0.8"
+												   Style="{StaticResource BodyMedium}">
+											<Run Text="View " />
+											<Hyperlink NavigateUri="{Binding SourceLink}">
+												<Run Text="source" />
+											</Hyperlink>
+											<Run Text=" on GitHub." />
+										</TextBlock>
+
+										<!-- Copy direct link button -->
+										<!--
+											Tag mirrors ShareUri so UI-automation tests can read the canonical
+											share URL via GetDependencyPropertyValue("Tag") without clicking.
+											No behavior effect — ClipboardExtensions.CopyContent drives the copy.
+										-->
+										<Button AutomationProperties.AutomationId="PART_DirectLinkCopyButton"
+												Margin="0,0,0,16"
+												Tag="{Binding ShareUri}"
+													Visibility="{Binding ShareUri, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource IsNullOrEmptyToCollapsed}, FallbackValue=Collapsed}"
+												local:ClipboardExtensions.CopyTrigger="ButtonClicked"
+												local:ClipboardExtensions.CopyContent="{Binding ShareUri}">
+											<TextBlock Text="Copy direct link" />
+										</Button>
 									</StackPanel>
 								</StackPanel>
 							</Grid>
