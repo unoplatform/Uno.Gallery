@@ -20,6 +20,8 @@ namespace Uno.Gallery.Views.Samples
 			"such as a Lottie JSON animation. It supports manual play/stop via PlayAsync, looped and one-shot " +
 			"playback, and position control. AnimatedIcon builds on top of it to add state-driven transitions.";
 
+		private int _animationPlayCount;
+
 		public AnimatedVisualPlayerSamplePage()
 		{
 			this.InitializeComponent();
@@ -36,6 +38,7 @@ namespace Uno.Gallery.Views.Samples
 
 			// AnimationStatusText is a sibling of the Button in the outer StackPanel.
 			var statusText = (btn.Parent as FrameworkElement)?.FindName("AnimationStatusText") as TextBlock;
+			var countText = (btn.Parent as FrameworkElement)?.FindName("AnimPlayCount") as TextBlock;
 
 			if (player.IsPlaying)
 			{
@@ -46,6 +49,8 @@ namespace Uno.Gallery.Views.Samples
 			{
 				if (statusText != null) statusText.Text = "Status: Playing\u2026";
 				await player.PlayAsync(0, 1, looped: false);
+				_animationPlayCount++;
+				if (countText != null) countText.Text = $"PlayCount: {_animationPlayCount}";
 				if (statusText != null) statusText.Text = "Status: Stopped";
 			}
 		}
