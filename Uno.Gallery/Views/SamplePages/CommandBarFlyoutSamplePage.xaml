@@ -1,0 +1,105 @@
+<Page x:Class="Uno.Gallery.Views.Samples.CommandBarFlyoutSamplePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:Uno.Gallery"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:smtx="using:ShowMeTheXAML"
+      mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <local:SamplePageLayout>
+            <local:SamplePageLayout.FluentTemplate>
+                <DataTemplate>
+                    <StackPanel Spacing="12">
+
+                        <!-- CommandBarFlyout: collapsed (icons only) -->
+                        <smtx:XamlDisplay UniqueKey="CommandBarFlyout_Fluent_Default"
+                                          smtx:XamlDisplayExtensions.Header="CommandBarFlyout"
+                                          smtx:XamlDisplayExtensions.Description="CommandBarFlyout shows primary commands as icon buttons. Tapping the overflow button reveals secondary commands as a menu."
+                                          smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+                            <StackPanel Spacing="8">
+                                <Button AutomationProperties.AutomationId="CommandBarFlyout_Trigger"
+                                        Content="Show context bar">
+                                    <Button.Flyout>
+                                        <CommandBarFlyout>
+                                            <AppBarButton Icon="Share"
+                                                          Label="Share"
+                                                          AutomationProperties.AutomationId="CommandBarFlyout_Share" />
+                                            <AppBarButton Icon="Copy"
+                                                          Label="Copy" />
+                                            <AppBarButton Icon="Edit"
+                                                          Label="Edit" />
+                                            <CommandBarFlyout.SecondaryCommands>
+                                                <AppBarButton Icon="Delete"
+                                                              Label="Delete"
+                                                              AutomationProperties.AutomationId="CommandBarFlyout_Delete" />
+                                                <AppBarButton Icon="Rename"
+                                                              Label="Rename" />
+                                                <AppBarSeparator />
+                                                <AppBarButton Icon="Help"
+                                                              Label="Help" />
+                                            </CommandBarFlyout.SecondaryCommands>
+                                        </CommandBarFlyout>
+                                    </Button.Flyout>
+                                </Button>
+                            </StackPanel>
+                        </smtx:XamlDisplay>
+
+                        <!-- CommandBarFlyout: AlwaysExpanded -->
+                        <smtx:XamlDisplay UniqueKey="CommandBarFlyout_Fluent_AlwaysExpanded"
+                                          smtx:XamlDisplayExtensions.Header="CommandBarFlyout — AlwaysExpanded"
+                                          smtx:XamlDisplayExtensions.Description="Setting AlwaysExpanded=True keeps the secondary command menu permanently visible alongside the primary icon buttons."
+                                          smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+                            <StackPanel Spacing="8">
+                                <Button AutomationProperties.AutomationId="CommandBarFlyout_AlwaysExpanded_Trigger"
+                                        Content="Show expanded bar">
+                                    <Button.Flyout>
+                                        <CommandBarFlyout AlwaysExpanded="True">
+                                            <AppBarButton Icon="Bold"
+                                                          Label="Bold" />
+                                            <AppBarButton Icon="Italic"
+                                                          Label="Italic" />
+                                            <AppBarButton Icon="Underline"
+                                                          Label="Underline" />
+                                            <CommandBarFlyout.SecondaryCommands>
+                                                <AppBarButton Label="Highlight" />
+                                                <AppBarButton Label="Strikethrough" />
+                                            </CommandBarFlyout.SecondaryCommands>
+                                        </CommandBarFlyout>
+                                    </Button.Flyout>
+                                </Button>
+                            </StackPanel>
+                        </smtx:XamlDisplay>
+
+                        <!-- CommandBarFlyout on TextBox (right-click context) -->
+                        <smtx:XamlDisplay UniqueKey="CommandBarFlyout_Fluent_TextContext"
+                                          smtx:XamlDisplayExtensions.Header="CommandBarFlyout — text context"
+                                          smtx:XamlDisplayExtensions.Description="Right-click (or long-press on touch) to show a CommandBarFlyout with Cut, Copy, and Paste actions."
+                                          smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+                            <StackPanel Spacing="8">
+                                <TextBox AutomationProperties.AutomationId="CommandBarFlyout_TextBox"
+                                         PlaceholderText="Right-click or long-press to see the context bar"
+                                         Width="320"
+                                         HorizontalAlignment="Left">
+                                    <TextBox.ContextFlyout>
+                                        <CommandBarFlyout>
+                                            <AppBarButton Icon="Cut"
+                                                          Label="Cut"
+                                                          AutomationProperties.AutomationId="CommandBarFlyout_Cut" />
+                                            <AppBarButton Icon="Copy"
+                                                          Label="Copy" />
+                                            <AppBarButton Icon="Paste"
+                                                          Label="Paste" />
+                                        </CommandBarFlyout>
+                                    </TextBox.ContextFlyout>
+                                </TextBox>
+                            </StackPanel>
+                        </smtx:XamlDisplay>
+
+                    </StackPanel>
+                </DataTemplate>
+            </local:SamplePageLayout.FluentTemplate>
+        </local:SamplePageLayout>
+    </Grid>
+</Page>
