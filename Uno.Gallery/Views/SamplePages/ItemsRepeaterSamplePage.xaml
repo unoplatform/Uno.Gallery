@@ -6,6 +6,7 @@
 	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	  xmlns:smtx="using:ShowMeTheXAML"
+	  xmlns:utu="using:Uno.Toolkit.UI"
 	  mc:Ignorable="d">
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -72,6 +73,83 @@
 									   Text="Offset: 0.0"
 									   Style="{ThemeResource CaptionTextBlockStyle}" />
 						</StackPanel>
+
+						<!-- Toolkit selection -->
+						<smtx:XamlDisplay UniqueKey="ItemsRepeaterSamplePage_ToolkitSelection"
+										  smtx:XamlDisplayExtensions.Header="Toolkit single selection"
+										  smtx:XamlDisplayExtensions.Description="ItemsRepeaterExtensions adds selector-style state to ItemsRepeater without changing its layout or item source."
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+							<StackPanel Spacing="8">
+								<ItemsRepeater x:Name="SelectionRepeater"
+											   AutomationProperties.AutomationId="ItemsRepeater_Selection"
+											   ItemsSource="{Binding Data}"
+											   utu:ItemsRepeaterExtensions.SelectionMode="Single"
+											   utu:ItemsRepeaterExtensions.SelectedIndex="0">
+									<ItemsRepeater.Layout>
+										<StackLayout Orientation="Horizontal" Spacing="8" />
+									</ItemsRepeater.Layout>
+									<ItemsRepeater.ItemTemplate>
+										<DataTemplate x:DataType="data:GalleryItem">
+											<ToggleButton Content="{Binding Title}"
+														  MinWidth="120" />
+										</DataTemplate>
+									</ItemsRepeater.ItemTemplate>
+								</ItemsRepeater>
+								<Button AutomationProperties.AutomationId="ItemsRepeater_Selection_Next"
+										AutomationProperties.Name="Select next repeater item"
+										Content="Select next item"
+										Click="SelectNext_Click" />
+								<TextBlock x:Name="SelectionStatus"
+										   AutomationProperties.AutomationId="ItemsRepeater_Selection_Status"
+										   AutomationProperties.LiveSetting="Polite"
+										   Text="Selected index: 0"
+										   Style="{StaticResource BodyMedium}" />
+							</StackPanel>
+						</smtx:XamlDisplay>
+
+						<!-- Toolkit incremental loading -->
+						<smtx:XamlDisplay UniqueKey="ItemsRepeaterSamplePage_IncrementalLoading"
+										  smtx:XamlDisplayExtensions.Header="Toolkit incremental loading"
+										  smtx:XamlDisplayExtensions.Description="SupportsIncrementalLoading observes the effective viewport and requests another local batch when the scroll position approaches the end."
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+							<StackPanel Spacing="8">
+								<ScrollViewer x:Name="IncrementalScrollViewer"
+											  AutomationProperties.AutomationId="ItemsRepeater_Incremental_ScrollViewer"
+											  MaxHeight="220">
+									<ItemsRepeater x:Name="IncrementalRepeater"
+												   AutomationProperties.AutomationId="ItemsRepeater_Incremental"
+												   Loaded="IncrementalRepeater_Loaded"
+												   utu:ItemsRepeaterExtensions.SupportsIncrementalLoading="True"
+												   utu:ItemsRepeaterExtensions.DataFetchSize="1"
+												   utu:ItemsRepeaterExtensions.IncrementalLoadingThreshold="0">
+										<ItemsRepeater.Layout>
+											<StackLayout Orientation="Vertical" Spacing="4" />
+										</ItemsRepeater.Layout>
+										<ItemsRepeater.ItemTemplate>
+											<DataTemplate>
+												<Border Height="44"
+														Padding="12,0"
+														CornerRadius="4"
+														Background="{ThemeResource CardBackgroundFillColorDefaultBrush}">
+													<TextBlock Text="{Binding}"
+															   VerticalAlignment="Center"
+															   Style="{StaticResource BodyMedium}" />
+												</Border>
+											</DataTemplate>
+										</ItemsRepeater.ItemTemplate>
+									</ItemsRepeater>
+								</ScrollViewer>
+								<Button AutomationProperties.AutomationId="ItemsRepeater_Incremental_LoadNext"
+										AutomationProperties.Name="Scroll to request the next local batch"
+										Content="Scroll to next batch"
+										Click="LoadNextBatch_Click" />
+								<TextBlock x:Name="IncrementalStatus"
+										   AutomationProperties.AutomationId="ItemsRepeater_Incremental_Status"
+										   AutomationProperties.LiveSetting="Polite"
+										   Text="Items loaded: 12; batches: 0"
+										   Style="{StaticResource BodyMedium}" />
+							</StackPanel>
+						</smtx:XamlDisplay>
 
 						<!-- UniformGridLayout -->
 						<smtx:XamlDisplay UniqueKey="ItemsRepeaterSamplePage_Grid"

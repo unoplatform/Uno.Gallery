@@ -25,11 +25,11 @@ public class Given_ItemsRepeater : TestBase
 
 		App.WaitThenTap("ItemsRepeater_Stack_ScrollDown");
 		TakeScreenshot("After scroll button");
-		App.Wait(TimeSpan.FromMilliseconds(400)); // allow disableAnimation ChangeView to settle
 
 		var sv = new QueryEx(x => x.All().Marked("ItemsRepeater_Stack_ScrollViewer"));
-		var offsetAfter = sv.GetDependencyPropertyValue<double>("VerticalOffset");
-		Assert.Greater(offsetAfter, 0.0, "Scrolling down must produce a positive VerticalOffset");
+		Assert.IsTrue(
+			PollForPositiveDouble(sv, "VerticalOffset", TimeSpan.FromSeconds(5)),
+			"Scrolling down must produce a positive VerticalOffset");
 	}
 
 	[Test]
@@ -44,5 +44,66 @@ public class Given_ItemsRepeater : TestBase
 		Assert.AreEqual(1, realizedTiles.Length, "The first grid tile must be realized exactly once.");
 		Assert.Greater(realizedTiles[0].Rect.Width, 0, "The realized grid tile must have a rendered width.");
 		Assert.Greater(realizedTiles[0].Rect.Height, 0, "The realized grid tile must have a rendered height.");
+	}
+
+	[Test]
+	public void When_ToolkitSelectionAdvances_SelectedIndexAndStatusAgree()
+	{
+		NavigateToSample("ItemsRepeater", "Fluent");
+		App.ScrollDownTo("ItemsRepeater_Selection_Next");
+
+		App.WaitThenTap("ItemsRepeater_Selection_Next");
+
+		Assert.AreEqual(
+			"Selected index: 1",
+			new QueryEx(x => x.All().Marked("ItemsRepeater_Selection_Status")).GetDependencyPropertyValue<string>("Text"));
+	}
+
+	[Test]
+	public void When_ScrolledToEnd_ToolkitLoadsAnotherOfflineBatch()
+	{
+		NavigateToSample("ItemsRepeater", "Fluent");
+		App.ScrollDownTo("ItemsRepeater_Incremental_LoadNext");
+
+		var status = new QueryEx(x => x.All().Marked("ItemsRepeater_Incremental_Status"));
+		var before = status.GetDependencyPropertyValue<string>("Text");
+		App.WaitThenTap("ItemsRepeater_Incremental_LoadNext");
+
+		Assert.IsTrue(
+			PollForChangedText(status, before, TimeSpan.FromSeconds(5)),
+			"Scrolling to the end must cause SupportsIncrementalLoading to request a local batch.");
+		StringAssert.Contains("batches: 1", status.GetDependencyPropertyValue<string>("Text"));
+	}
+
+	private bool PollForChangedText(QueryEx element, string before, TimeSpan timeout)
+	{
+		var deadline = DateTime.UtcNow + timeout;
+		while (DateTime.UtcNow < deadline)
+		{
+			if (element.GetDependencyPropertyValue<string>("Text") != before)
+			{
+				return true;
+			}
+
+			App.Wait(TimeSpan.FromMilliseconds(100));
+		}
+
+		return false;
+	}
+
+	private bool PollForPositiveDouble(QueryEx element, string property, TimeSpan timeout)
+	{
+		var deadline = DateTime.UtcNow + timeout;
+		while (DateTime.UtcNow < deadline)
+		{
+			if (element.GetDependencyPropertyValue<double>(property) > 0)
+			{
+				return true;
+			}
+
+			App.Wait(TimeSpan.FromMilliseconds(100));
+		}
+
+		return false;
 	}
 }
