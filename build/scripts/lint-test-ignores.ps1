@@ -95,26 +95,35 @@ function Select-BestSdk([string[]]$lines) {
 # ---------------------------------------------------------------------------
 # Locate Roslyn binaries
 # ---------------------------------------------------------------------------
-if (-not $RoslynDir) {
-    $sdkLines = & dotnet --list-sdks 2>&1
-    if ($LASTEXITCODE -ne 0) {
-        Write-Host "[ERROR] 'dotnet --list-sdks' failed — ensure a .NET SDK is installed.`n$sdkLines"
-        exit 1
+if ($null -eq ('Microsoft.CodeAnalysis.CSharp.CSharpSyntaxTree' -as [type])) {
+    if (-not $RoslynDir) {
+        $sdkLines = & dotnet --list-sdks 2>&1
+        if ($LASTEXITCODE -ne 0) {
+            Write-Host "[ERROR] 'dotnet --list-sdks' failed — ensure a .NET SDK is installed.`n$sdkLines"
+            exit 1
+        }
+        $best = Select-BestSdk $sdkLines
+        if (-not $best) { Write-Host "[ERROR] No .NET SDKs found via 'dotnet --list-sdks'"; exit 1 }
+        $RoslynDir = Join-Path $best.Base $best.VersionStr 'Roslyn' 'bincore'
     }
-    $best = Select-BestSdk $sdkLines
-    if (-not $best) { Write-Host "[ERROR] No .NET SDKs found via 'dotnet --list-sdks'"; exit 1 }
-    $RoslynDir = Join-Path $best.Base $best.VersionStr 'Roslyn' 'bincore'
-}
 
-foreach ($dll in @(
-    (Join-Path $RoslynDir 'Microsoft.CodeAnalysis.dll'),
-    (Join-Path $RoslynDir 'Microsoft.CodeAnalysis.CSharp.dll')
-)) {
-    if (-not (Test-Path $dll)) {
-        Write-Host "[ERROR] Roslyn assembly not found: '$dll'`nPass -RoslynDir or install a .NET SDK."
-        exit 1
+    foreach ($dll in @(
+        (Join-Path $RoslynDir 'Microsoft.CodeAnalysis.dll'),
+        (Join-Path $RoslynDir 'Microsoft.CodeAnalysis.CSharp.dll')
+    )) {
+        if (-not (Test-Path $dll)) {
+            Write-Host "[ERROR] Roslyn assembly not found: '$dll'`nPass -RoslynDir or install a .NET SDK."
+            exit 1
+        }
+        try {
+            Add-Type -Path $dll -ErrorAction Stop
+        } catch {
+            if ($null -eq ('Microsoft.CodeAnalysis.CSharp.CSharpSyntaxTree' -as [type])) {
+                throw
+            }
+            break
+        }
     }
-    Add-Type -Path $dll -ErrorAction Stop
 }
 
 # ---------------------------------------------------------------------------

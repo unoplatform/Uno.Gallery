@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "targets": {
+    "Desktop": {
+      "minimumSampleCount": 111,
+      "requiredSlugs": [
+        "overview",
+        "button",
+        "itemsrepeater",
+        "accessibility",
+        "localization-rtl"
+      ]
+    },
+    "WASM-DOM": {
+      "minimumSampleCount": 111,
+      "requiredSlugs": [
+        "overview",
+        "button",
+        "itemsrepeater",
+        "accessibility",
+        "localization-rtl"
+      ]
+    },
+    "WASM-Skia": {
+      "minimumSampleCount": 109,
+      "requiredSlugs": [
+        "overview",
+        "button",
+        "itemsrepeater",
+        "accessibility",
+        "localization-rtl"
+      ]
+    }
+  }
+}

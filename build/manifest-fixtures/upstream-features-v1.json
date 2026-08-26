@@ -1,0 +1,133 @@
+{
+  "schemaVersion": 1,
+  "scope": "pinned-fixture",
+  "complete": false,
+  "sources": [
+    {
+      "repository": "unoplatform/uno",
+      "commit": "7b58a4712ca0fb64395d455dd19c634d2d7126d5"
+    },
+    {
+      "repository": "unoplatform/uno.toolkit.ui",
+      "commit": "b7a1a3ea2b0092d23aecda90b5d23e73728e43b3"
+    },
+    {
+      "repository": "unoplatform/Uno.Themes",
+      "commit": "0438da0347594090448dd2c9ea923745aa3d7f8e"
+    },
+    {
+      "repository": "unoplatform/uno.extensions",
+      "commit": "32faf32b5d44b518401c92965be18e312c3ce3b5"
+    }
+  ],
+  "features": [
+    {
+      "id": "items-repeater",
+      "repository": "unoplatform/uno",
+      "name": "ItemsRepeater",
+      "status": "stable",
+      "package": "Uno.WinUI",
+      "minimalSamplePath": "src/SamplesApp/SamplesApp.Samples/Windows_UI_Xaml_Controls/Repeater",
+      "documentation": "https://learn.microsoft.com/windows/windows-app-sdk/api/winrt/microsoft.ui.xaml.controls.itemsrepeater"
+    },
+    {
+      "id": "items-view",
+      "repository": "unoplatform/uno",
+      "name": "ItemsView",
+      "status": "stable",
+      "package": "Uno.WinUI",
+      "minimalSamplePath": "src/SamplesApp/SamplesApp.Samples/Microsoft_UI_Xaml_Controls/ItemsViewTests",
+      "documentation": "https://learn.microsoft.com/windows/windows-app-sdk/api/winrt/microsoft.ui.xaml.controls.itemsview"
+    },
+    {
+      "id": "tab-view",
+      "repository": "unoplatform/uno",
+      "name": "TabView",
+      "status": "stable",
+      "package": "Uno.WinUI",
+      "minimalSamplePath": "src/SamplesApp/SamplesApp.Samples/Microsoft_UI_Xaml_Controls/TabViewTests",
+      "documentation": "https://learn.microsoft.com/windows/apps/design/controls/tab-view"
+    },
+    {
+      "id": "scroll-view",
+      "repository": "unoplatform/uno",
+      "name": "ScrollView",
+      "status": "stable",
+      "package": "Uno.WinUI",
+      "minimalSamplePath": "src/SamplesApp/SamplesApp.Samples/Microsoft_UI_Xaml_Controls/ScrollViewTests",
+      "documentation": "https://learn.microsoft.com/windows/windows-app-sdk/api/winrt/microsoft.ui.xaml.controls.scrollview"
+    },
+    {
+      "id": "selector-bar",
+      "repository": "unoplatform/uno",
+      "name": "SelectorBar",
+      "status": "stable",
+      "package": "Uno.WinUI",
+      "minimalSamplePath": "src/SamplesApp/SamplesApp.Samples/Microsoft_UI_Xaml_Controls/SelectorBarTests",
+      "documentation": "https://learn.microsoft.com/windows/apps/design/controls/selector-bar"
+    },
+    {
+      "id": "animated-visual-player",
+      "repository": "unoplatform/uno",
+      "name": "AnimatedVisualPlayer",
+      "status": "stable",
+      "package": "Uno.WinUI.Lottie",
+      "minimalSamplePath": "src/SamplesApp/SamplesApp.Samples/Lottie",
+      "documentation": "https://learn.microsoft.com/windows/communitytoolkit/animations/lottie"
+    },
+    {
+      "id": "auto-layout",
+      "repository": "unoplatform/uno.toolkit.ui",
+      "name": "AutoLayout",
+      "status": "stable",
+      "package": "Uno.Toolkit.WinUI",
+      "minimalSamplePath": "samples/Uno.Toolkit.Samples/Content/Controls/AutoLayoutPage.xaml",
+      "documentation": "https://platform.uno/docs/articles/external/uno.toolkit.ui/doc/controls/AutoLayout.html"
+    },
+    {
+      "id": "drawer-control",
+      "repository": "unoplatform/uno.toolkit.ui",
+      "name": "DrawerControl",
+      "status": "stable",
+      "package": "Uno.Toolkit.WinUI",
+      "minimalSamplePath": "samples/Uno.Toolkit.Samples/Content/Controls/DrawerControlSamplePage.xaml",
+      "documentation": "https://platform.uno/docs/articles/external/uno.toolkit.ui/doc/controls/DrawerControl.html"
+    },
+    {
+      "id": "loading-view",
+      "repository": "unoplatform/uno.toolkit.ui",
+      "name": "LoadingView",
+      "status": "stable",
+      "package": "Uno.Toolkit.WinUI",
+      "minimalSamplePath": "samples/Uno.Toolkit.Samples/Content/Controls/LoadingViewSample.xaml",
+      "documentation": "https://platform.uno/docs/articles/external/uno.toolkit.ui/doc/controls/LoadingView.html"
+    },
+    {
+      "id": "material-seed-color",
+      "repository": "unoplatform/Uno.Themes",
+      "name": "Material seed color",
+      "status": "stable",
+      "package": "Uno.Themes.WinUI",
+      "minimalSamplePath": "src/library/Uno.Material/MaterialTheme.cs",
+      "documentation": "https://platform.uno/docs/articles/external/uno.themes/doc/material-getting-started.html"
+    },
+    {
+      "id": "extensions-localization",
+      "repository": "unoplatform/uno.extensions",
+      "name": "Localization service",
+      "status": "stable",
+      "package": "Uno.Extensions.Localization",
+      "minimalSamplePath": "src/Uno.Extensions.Localization/ILocalizationService.cs",
+      "documentation": "https://platform.uno/docs/articles/external/uno.extensions/doc/Learn/Localization/LocalizationOverview.html"
+    },
+    {
+      "id": "extensions-authentication",
+      "repository": "unoplatform/uno.extensions",
+      "name": "Authentication",
+      "status": "stable",
+      "package": "Uno.Extensions.Authentication",
+      "minimalSamplePath": null,
+      "documentation": "https://platform.uno/docs/articles/external/uno.extensions/doc/Learn/Authentication/AuthenticationOverview.html"
+    }
+  ]
+}

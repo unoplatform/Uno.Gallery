@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "features": [
+    {
+      "id": "items-repeater",
+      "disposition": "covered-core",
+      "gallerySlugs": [
+        "itemsrepeater"
+      ],
+      "owner": "unoplatform",
+      "issue": null,
+      "reason": ""
+    },
+    {
+      "id": "items-view",
+      "disposition": "covered-core",
+      "gallerySlugs": [
+        "itemsview"
+      ],
+      "owner": "unoplatform",
+      "issue": null,
+      "reason": ""
+    },
+    {
+      "id": "tab-view",
+      "disposition": "covered-core",
+      "gallerySlugs": [
+        "tabview"
+      ],
+      "owner": "unoplatform",
+      "issue": null,
+      "reason": ""
+    },
+    {
+      "id": "scroll-view",
+      "disposition": "covered-core",
+      "gallerySlugs": [
+        "scrollview"
+      ],
+      "owner": "unoplatform",
+      "issue": null,
+      "reason": ""
+    },
+    {
+      "id": "selector-bar",
+      "disposition": "covered-core",
+      "gallerySlugs": [
+        "selector-bar"
+      ],
+      "owner": "unoplatform",
+      "issue": null,
+      "reason": ""
+    },
+    {
+      "id": "animated-visual-player",
+      "disposition": "covered-core",
+      "gallerySlugs": [
+        "animated-visual-player"
+      ],
+      "owner": "unoplatform",
+      "issue": null,
+      "reason": ""
+    },
+    {
+      "id": "auto-layout",
+      "disposition": "covered-core",
+      "gallerySlugs": [
+        "autolayout"
+      ],
+      "owner": "unoplatform",
+      "issue": null,
+      "reason": ""
+    },
+    {
+      "id": "drawer-control",
+      "disposition": "covered-core",
+      "gallerySlugs": [
+        "drawer"
+      ],
+      "owner": "unoplatform",
+      "issue": null,
+      "reason": ""
+    },
+    {
+      "id": "loading-view",
+      "disposition": "covered-core",
+      "gallerySlugs": [
+        "loadingview"
+      ],
+      "owner": "unoplatform",
+      "issue": null,
+      "reason": ""
+    },
+    {
+      "id": "material-seed-color",
+      "disposition": "covered-core",
+      "gallerySlugs": [
+        "material-seed-color"
+      ],
+      "owner": "unoplatform",
+      "issue": null,
+      "reason": ""
+    },
+    {
+      "id": "extensions-localization",
+      "disposition": "optional-flavor",
+      "gallerySlugs": [],
+      "owner": "unoplatform",
+      "issue": null,
+      "reason": "The core Gallery demonstrates platform resource localization; the Uno.Extensions service belongs in the contained offline app-pattern flavor."
+    },
+    {
+      "id": "extensions-authentication",
+      "disposition": "external-companion",
+      "gallerySlugs": [],
+      "owner": "unoplatform",
+      "issue": null,
+      "reason": "Authentication requires provider credentials and remains an external companion rather than a core Gallery dependency."
+    }
+  ]
+}
