@@ -66,6 +66,80 @@ namespace Uno.Gallery.UITests
 		}
 
 		/// <summary>
+		/// Validates that a short (3-character) hex value — e.g. "#F00" — does not mutate the
+		/// applied seed when the Apply button is tapped.  The ViewModel's ApplySeedHex guard
+		/// requires exactly 6 hex digits and silently ignores shorter strings.
+		///
+		/// Navigates away at the end so that RestoreOriginalSeed fires and no global seed
+		/// mutation persists for subsequent tests.
+		/// </summary>
+		[Test]
+		public void When_ShortHex_IsRejected()
+		{
+			NavigateToSample("Material Seed Color", "Material");
+			App.WaitForElement("CurrentSeedHex");
+
+			var initialHex = new QueryEx(x => x.All().Marked("CurrentSeedHex"))
+				.GetDependencyPropertyValue<string>("Text");
+
+			App.WaitThenTap("SeedHexTextBox");
+			App.ClearText("SeedHexTextBox");
+			App.EnterText("SeedHexTextBox", "#F00");
+			App.Tap("ApplySeedHexButton");
+
+			App.WaitForElement("CurrentSeedHex");
+
+			var afterHex = new QueryEx(x => x.All().Marked("CurrentSeedHex"))
+				.GetDependencyPropertyValue<string>("Text");
+
+			Assert.That(afterHex, Is.EqualTo(initialHex),
+				$"Short hex '#F00' must be rejected; CurrentSeedHex must remain '{initialHex}' but got '{afterHex}'.");
+
+			TakeScreenshot("ShortHex_Rejected");
+
+			// Navigate away to trigger RestoreOriginalSeed — no global seed mutation after this test.
+			NavigateToSample("Button", "Material");
+			App.WaitForElement("Material_FilledButton");
+		}
+
+		/// <summary>
+		/// Validates that a hex string containing invalid characters — e.g. "#GGGGGG" — does not
+		/// mutate the applied seed when the Apply button is tapped.  The ViewModel catches the
+		/// FormatException from Convert.ToByte and silently ignores the input.
+		///
+		/// Navigates away at the end so that RestoreOriginalSeed fires and no global seed
+		/// mutation persists for subsequent tests.
+		/// </summary>
+		[Test]
+		public void When_InvalidCharacters_AreRejected()
+		{
+			NavigateToSample("Material Seed Color", "Material");
+			App.WaitForElement("CurrentSeedHex");
+
+			var initialHex = new QueryEx(x => x.All().Marked("CurrentSeedHex"))
+				.GetDependencyPropertyValue<string>("Text");
+
+			App.WaitThenTap("SeedHexTextBox");
+			App.ClearText("SeedHexTextBox");
+			App.EnterText("SeedHexTextBox", "#GGGGGG");
+			App.Tap("ApplySeedHexButton");
+
+			App.WaitForElement("CurrentSeedHex");
+
+			var afterHex = new QueryEx(x => x.All().Marked("CurrentSeedHex"))
+				.GetDependencyPropertyValue<string>("Text");
+
+			Assert.That(afterHex, Is.EqualTo(initialHex),
+				$"Invalid hex '#GGGGGG' must be rejected; CurrentSeedHex must remain '{initialHex}' but got '{afterHex}'.");
+
+			TakeScreenshot("InvalidChars_Rejected");
+
+			// Navigate away to trigger RestoreOriginalSeed — no global seed mutation after this test.
+			NavigateToSample("Button", "Material");
+			App.WaitForElement("Material_FilledButton");
+		}
+
+		/// <summary>
 		/// Lifecycle restore test: verifies that navigating away from the seed page
 		/// restores the original app seed so the rest of the gallery is unaffected.
 		///
