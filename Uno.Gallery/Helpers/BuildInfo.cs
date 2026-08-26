@@ -87,6 +87,8 @@ internal static class BuildInfo
 		{
 #if WINDOWS
 			Renderer = "WinAppSDK";
+#elif __WASM__ && !HAS_SKIA_RENDERER
+			Renderer = "DOM";
 #elif HAS_SKIA_RENDERER
 			Renderer = "Skia";
 #else

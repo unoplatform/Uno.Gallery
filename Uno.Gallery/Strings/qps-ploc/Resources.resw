@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!--
     Microsoft ResX Schema
@@ -118,327 +118,327 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ApplicationName" xml:space="preserve">
-    <value>Uno.Gallery</value>
+    <value>[!! Üñö.Ğáľľëřÿ ~~~~ !!]</value>
   </data>
   <data name="ShellNavPlatforms.Content" xml:space="preserve">
-    <value>PLATFORMS</value>
+    <value>[!! ÞĽÁŦƑÖŘⱮŠ ~~~ !!]</value>
   </data>
   <data name="ShellTargetPlatforms.Text" xml:space="preserve">
-    <value>Target Platforms</value>
+    <value>[!! Ŧářğëŧ Þľáŧƒöřɱš ~~~~~ !!]</value>
   </data>
   <data name="ShellIosAndroid.Text" xml:space="preserve">
-    <value>iOS and Android</value>
+    <value>[!! ïÖŠ áñð Áñðřöïð ~~~~~ !!]</value>
   </data>
   <data name="ShellWebAssembly.Text" xml:space="preserve">
-    <value>Web (WebAssembly)</value>
+    <value>[!! Ŵëƀ (ŴëƀÁššëɱƀľÿ) ~~~~~~ !!]</value>
   </data>
   <data name="ShellWindowsModern.Text" xml:space="preserve">
-    <value>Windows 10-11</value>
+    <value>[!! Ŵïñðöŵš 10-11 ~~~~ !!]</value>
   </data>
   <data name="ShellWindowsLegacy.Text" xml:space="preserve">
-    <value>Windows 7</value>
+    <value>[!! Ŵïñðöŵš 7 ~~~ !!]</value>
   </data>
   <data name="ShellLinux.Text" xml:space="preserve">
-    <value>Linux</value>
+    <value>[!! Ľïñüẋ ~~~ !!]</value>
   </data>
   <data name="ShellMacOS.Text" xml:space="preserve">
-    <value>macOS</value>
+    <value>[!! ɱáçÖŠ ~~~ !!]</value>
   </data>
   <data name="ShellMigration.Text" xml:space="preserve">
-    <value>Migration</value>
+    <value>[!! Ɱïğřáŧïöñ ~~~ !!]</value>
   </data>
   <data name="ShellWpfDevelopers.Text" xml:space="preserve">
-    <value>WPF Developers</value>
+    <value>[!! ŴÞƑ Ðëṽëľöþëřš ~~~~~ !!]</value>
   </data>
   <data name="ShellSilverlight.Text" xml:space="preserve">
-    <value>Silverlight</value>
+    <value>[!! Šïľṽëřľïğħŧ ~~~~ !!]</value>
   </data>
   <data name="ShellXamarinForms.Text" xml:space="preserve">
-    <value>Xamarin Forms</value>
+    <value>[!! Ẋáɱářïñ Ƒöřɱš ~~~~ !!]</value>
   </data>
   <data name="ShellNavDevelop.Content" xml:space="preserve">
-    <value>DEVELOP</value>
+    <value>[!! ÐËṼËĽÖÞ ~~~ !!]</value>
   </data>
   <data name="ShellIde.Text" xml:space="preserve">
-    <value>IDE</value>
+    <value>[!! ÏÐË ~~~ !!]</value>
   </data>
   <data name="ShellVisualStudio.Text" xml:space="preserve">
-    <value>Visual Studio</value>
+    <value>[!! Ṽïšüáľ Šŧüðïö ~~~~ !!]</value>
   </data>
   <data name="ShellVsCode.Text" xml:space="preserve">
-    <value>VS Code</value>
+    <value>[!! ṼŠ Çöðë ~~~ !!]</value>
   </data>
   <data name="ShellRider.Text" xml:space="preserve">
-    <value>Rider</value>
+    <value>[!! Řïðëř ~~~ !!]</value>
   </data>
   <data name="ShellTools.Text" xml:space="preserve">
-    <value>TOOLS</value>
+    <value>[!! ŦÖÖĽŠ ~~~ !!]</value>
   </data>
   <data name="ShellReactiveMvux.Text" xml:space="preserve">
-    <value>Reactive/MVUX</value>
+    <value>[!! Řëáçŧïṽë/ⱮṼÜẊ ~~~~ !!]</value>
   </data>
   <data name="ShellMauiEmbedding.Text" xml:space="preserve">
-    <value>MAUI Embedding</value>
+    <value>[!! ⱮÁÜÏ Ëɱƀëððïñğ ~~~~~ !!]</value>
   </data>
   <data name="ShellCSharpMarkup.Text" xml:space="preserve">
-    <value>C# Markup</value>
+    <value>[!! Ç# Ɱářķüþ ~~~ !!]</value>
   </data>
   <data name="ShellExtensions.Text" xml:space="preserve">
-    <value>Extensions</value>
+    <value>[!! Ëẋŧëñšïöñš ~~~ !!]</value>
   </data>
   <data name="ShellThemes.Text" xml:space="preserve">
-    <value>Themes</value>
+    <value>[!! Ŧħëɱëš ~~~ !!]</value>
   </data>
   <data name="ShellToolkit.Text" xml:space="preserve">
-    <value>Toolkit</value>
+    <value>[!! Ŧööľķïŧ ~~~ !!]</value>
   </data>
   <data name="ShellNavDesign.Content" xml:space="preserve">
-    <value>DESIGN</value>
+    <value>[!! ÐËŠÏĞÑ ~~~ !!]</value>
   </data>
   <data name="ShellFigmaPlugin.Text" xml:space="preserve">
-    <value>Uno Platform Figma Plugin</value>
+    <value>[!! Üñö Þľáŧƒöřɱ Ƒïğɱá Þľüğïñ ~~~~~~~~ !!]</value>
   </data>
   <data name="ShellMaterialToolkit.Text" xml:space="preserve">
-    <value>Uno Platform Material Toolkit</value>
+    <value>[!! Üñö Þľáŧƒöřɱ Ɱáŧëřïáľ Ŧööľķïŧ ~~~~~~~~~ !!]</value>
   </data>
   <data name="ShellNavCommunity.Content" xml:space="preserve">
-    <value>COMMUNITY</value>
+    <value>[!! ÇÖⱮⱮÜÑÏŦŸ ~~~ !!]</value>
   </data>
   <data name="ShellGitHub.Text" xml:space="preserve">
-    <value>GitHub</value>
+    <value>[!! ĞïŧĦüƀ ~~~ !!]</value>
   </data>
   <data name="ShellDiscord.Text" xml:space="preserve">
-    <value>Discord</value>
+    <value>[!! Ðïšçöřð ~~~ !!]</value>
   </data>
   <data name="ShellBlog.Text" xml:space="preserve">
-    <value>Blog</value>
+    <value>[!! Ƀľöğ ~~~ !!]</value>
   </data>
   <data name="ShellNavDocs.Content" xml:space="preserve">
-    <value>DOCS</value>
+    <value>[!! ÐÖÇŠ ~~~ !!]</value>
   </data>
   <data name="ShellNavResources.Content" xml:space="preserve">
-    <value>RESOURCES</value>
+    <value>[!! ŘËŠÖÜŘÇËŠ ~~~ !!]</value>
   </data>
   <data name="ShellWorkshopSimpleCalc.Text" xml:space="preserve">
-    <value>Workshop - Simple Calc</value>
+    <value>[!! Ŵöřķšħöþ - Šïɱþľë Çáľç ~~~~~~~ !!]</value>
   </data>
   <data name="ShellWorkshopTubePlayer.Text" xml:space="preserve">
-    <value>Workshop - Tube player</value>
+    <value>[!! Ŵöřķšħöþ - Ŧüƀë þľáÿëř ~~~~~~~ !!]</value>
   </data>
   <data name="ShellCodeSamples.Text" xml:space="preserve">
-    <value>Code Samples</value>
+    <value>[!! Çöðë Šáɱþľëš ~~~~ !!]</value>
   </data>
   <data name="ShellCaseStudies.Text" xml:space="preserve">
-    <value>Case Studies</value>
+    <value>[!! Çášë Šŧüðïëš ~~~~ !!]</value>
   </data>
   <data name="ShellUnoGallery.Text" xml:space="preserve">
-    <value>Uno Gallery</value>
+    <value>[!! Üñö Ğáľľëřÿ ~~~~ !!]</value>
   </data>
   <data name="ShellUnoPlayground.Text" xml:space="preserve">
-    <value>Uno Playground</value>
+    <value>[!! Üñö Þľáÿğřöüñð ~~~~~ !!]</value>
   </data>
   <data name="ShellSupport.Text" xml:space="preserve">
-    <value>Support</value>
+    <value>[!! Šüþþöřŧ ~~~ !!]</value>
   </data>
   <data name="ShellContactUs.Text" xml:space="preserve">
-    <value>Contact Us</value>
+    <value>[!! Çöñŧáçŧ Üš ~~~ !!]</value>
   </data>
   <data name="ShellGetStarted.Content" xml:space="preserve">
-    <value>GET STARTED</value>
+    <value>[!! ĞËŦ ŠŦÁŘŦËÐ ~~~~ !!]</value>
   </data>
   <data name="ShellThemeToggle.Content" xml:space="preserve">
-    <value>Light and Dark</value>
+    <value>[!! Ľïğħŧ áñð Ðářķ ~~~~~ !!]</value>
   </data>
   <data name="ShellFpsIndicator.Content" xml:space="preserve">
-    <value>FPS indicator</value>
+    <value>[!! ƑÞŠ ïñðïçáŧöř ~~~~ !!]</value>
   </data>
   <data name="ShellSamplesSearchBox.PlaceholderText" xml:space="preserve">
-    <value>Search</value>
+    <value>[!! Šëářçħ ~~~ !!]</value>
   </data>
   <data name="ShellNewWindowButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
-    <value>New window</value>
+    <value>[!! Ñëŵ ŵïñðöŵ ~~~ !!]</value>
   </data>
   <data name="NoSuggestionsFound" xml:space="preserve">
-    <value>No suggestions found</value>
+    <value>[!! Ñö šüğğëšŧïöñš ƒöüñð ~~~~~~ !!]</value>
   </data>
   <data name="SampleSourceLabel.Text" xml:space="preserve">
-    <value>SOURCE</value>
+    <value>[!! ŠÖÜŘÇË ~~~ !!]</value>
   </data>
   <data name="SampleOwnerLabel.Text" xml:space="preserve">
-    <value>OWNER  </value>
+    <value>[!! ÖŴÑËŘ   ~~~ !!]</value>
   </data>
   <data name="SampleReviewedLabel.Text" xml:space="preserve">
-    <value>REVIEWED  </value>
+    <value>[!! ŘËṼÏËŴËÐ   ~~~ !!]</value>
   </data>
   <data name="DesignMaterial.Text" xml:space="preserve">
-    <value>Material</value>
+    <value>[!! Ɱáŧëřïáľ ~~~ !!]</value>
   </data>
   <data name="DesignFluent.Text" xml:space="preserve">
-    <value>Fluent</value>
+    <value>[!! Ƒľüëñŧ ~~~ !!]</value>
   </data>
   <data name="DesignCupertino.Text" xml:space="preserve">
-    <value>Cupertino</value>
+    <value>[!! Çüþëřŧïñö ~~~ !!]</value>
   </data>
   <data name="DesignNative.Text" xml:space="preserve">
-    <value>Native</value>
+    <value>[!! Ñáŧïṽë ~~~ !!]</value>
   </data>
   <data name="SampleDocumentationAction.Text" xml:space="preserve">
-    <value>Open the official documentation.</value>
+    <value>[!! Öþëñ ŧħë öƒƒïçïáľ ðöçüɱëñŧáŧïöñ. ~~~~~~~~~~ !!]</value>
   </data>
   <data name="SampleShareAction.Text" xml:space="preserve">
-    <value>Share this page.</value>
+    <value>[!! Šħářë ŧħïš þáğë. ~~~~~ !!]</value>
   </data>
   <data name="SampleSourceAction.Text" xml:space="preserve">
-    <value>View source on GitHub.</value>
+    <value>[!! Ṽïëŵ šöüřçë öñ ĞïŧĦüƀ. ~~~~~~~ !!]</value>
   </data>
   <data name="SampleCopyDirectLink.Text" xml:space="preserve">
-    <value>Copy direct link</value>
+    <value>[!! Çöþÿ ðïřëçŧ ľïñķ ~~~~~ !!]</value>
   </data>
   <data name="CategoryTheming" xml:space="preserve">
-    <value>Theming</value>
+    <value>[!! Ŧħëɱïñğ ~~~ !!]</value>
   </data>
   <data name="CategoryUIComponents" xml:space="preserve">
-    <value>UI components</value>
+    <value>[!! ÜÏ çöɱþöñëñŧš ~~~~ !!]</value>
   </data>
   <data name="CategoryUIFeatures" xml:space="preserve">
-    <value>UI features</value>
+    <value>[!! ÜÏ ƒëáŧüřëš ~~~~ !!]</value>
   </data>
   <data name="CategoryAccessibility" xml:space="preserve">
-    <value>Accessibility</value>
+    <value>[!! Áççëššïƀïľïŧÿ ~~~~ !!]</value>
   </data>
   <data name="CategoryNonUIFeatures" xml:space="preserve">
-    <value>Non-UI features</value>
+    <value>[!! Ñöñ-ÜÏ ƒëáŧüřëš ~~~~~ !!]</value>
   </data>
   <data name="CategoryToolkit" xml:space="preserve">
-    <value>Toolkit</value>
+    <value>[!! Ŧööľķïŧ ~~~ !!]</value>
   </data>
   <data name="CategoryCommunityToolkit" xml:space="preserve">
-    <value>Community Toolkit</value>
+    <value>[!! Çöɱɱüñïŧÿ Ŧööľķïŧ ~~~~~~ !!]</value>
   </data>
   <data name="CategoryCanary" xml:space="preserve">
-    <value>Canary</value>
+    <value>[!! Çáñářÿ ~~~ !!]</value>
   </data>
   <data name="LocalizationLongText.Text" xml:space="preserve">
-    <value>This deliberately long localized sentence checks expansion, wrapping, clipping, and resilient layout at narrow widths.</value>
+    <value>[!! Ŧħïš ðëľïƀëřáŧëľÿ ľöñğ ľöçáľïžëð šëñŧëñçë çħëçķš ëẋþáñšïöñ, ŵřáþþïñğ, çľïþþïñğ, áñð řëšïľïëñŧ ľáÿöüŧ áŧ ñářřöŵ ŵïðŧħš. ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ !!]</value>
   </data>
   <data name="LocalizationResolvedText.Text" xml:space="preserve">
-    <value>Localized text should expand without clipping.</value>
+    <value>[!! Ľöçáľïžëð ŧëẋŧ šħöüľð ëẋþáñð ŵïŧħöüŧ çľïþþïñğ. ~~~~~~~~~~~~~~ !!]</value>
   </data>
   <data name="AccessibilityEmail.Header" xml:space="preserve">
-    <value>Email</value>
+    <value>[!! Ëɱáïľ ~~~ !!]</value>
   </data>
   <data name="AccessibilityEmail.PlaceholderText" xml:space="preserve">
-    <value>name@example.com</value>
+    <value>[!! ñáɱë@ëẋáɱþľë.çöɱ ~~~~~ !!]</value>
   </data>
   <data name="AccessibilityEmail.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
-    <value>Email address</value>
+    <value>[!! Ëɱáïľ áððřëšš ~~~~ !!]</value>
   </data>
   <data name="AccessibilityEmail.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.HelpText" xml:space="preserve">
-    <value>Enter the address used for Gallery update notifications.</value>
+    <value>[!! Ëñŧëř ŧħë áððřëšš üšëð ƒöř Ğáľľëřÿ üþðáŧë ñöŧïƒïçáŧïöñš. ~~~~~~~~~~~~~~~~~ !!]</value>
   </data>
   <data name="AccessibilityNotifications.Header" xml:space="preserve">
-    <value>Notifications</value>
+    <value>[!! Ñöŧïƒïçáŧïöñš ~~~~ !!]</value>
   </data>
   <data name="AccessibilityNotifications.OffContent" xml:space="preserve">
-    <value>Off</value>
+    <value>[!! Öƒƒ ~~~ !!]</value>
   </data>
   <data name="AccessibilityNotifications.OnContent" xml:space="preserve">
-    <value>On</value>
+    <value>[!! Öñ ~~~ !!]</value>
   </data>
   <data name="AccessibilityNotifications.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
-    <value>Gallery update notifications</value>
+    <value>[!! Ğáľľëřÿ üþðáŧë ñöŧïƒïçáŧïöñš ~~~~~~~~~ !!]</value>
   </data>
   <data name="AccessibilityNotifications.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.HelpText" xml:space="preserve">
-    <value>Controls whether update notifications are enabled.</value>
+    <value>[!! Çöñŧřöľš ŵħëŧħëř üþðáŧë ñöŧïƒïçáŧïöñš ářë ëñáƀľëð. ~~~~~~~~~~~~~~~ !!]</value>
   </data>
   <data name="AccessibilitySave.Content" xml:space="preserve">
-    <value>Save accessibility profile</value>
+    <value>[!! Šáṽë áççëššïƀïľïŧÿ þřöƒïľë ~~~~~~~~ !!]</value>
   </data>
   <data name="AccessibilitySave.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
-    <value>Save accessibility profile</value>
+    <value>[!! Šáṽë áççëššïƀïľïŧÿ þřöƒïľë ~~~~~~~~ !!]</value>
   </data>
   <data name="AccessibilitySave.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.HelpText" xml:space="preserve">
-    <value>Saves the example values and announces completion.</value>
+    <value>[!! Šáṽëš ŧħë ëẋáɱþľë ṽáľüëš áñð áññöüñçëš çöɱþľëŧïöñ. ~~~~~~~~~~~~~~~ !!]</value>
   </data>
   <data name="AccessibilityAnnouncement.Text" xml:space="preserve">
-    <value>No announcement has been sent.</value>
+    <value>[!! Ñö áññöüñçëɱëñŧ ħáš ƀëëñ šëñŧ. ~~~~~~~~~ !!]</value>
   </data>
   <data name="AccessibilityContrastPass.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
-    <value>Passing contrast example, twenty one to one</value>
+    <value>[!! Þáššïñğ çöñŧřášŧ ëẋáɱþľë, ŧŵëñŧÿ öñë ŧö öñë ~~~~~~~~~~~~~ !!]</value>
   </data>
   <data name="AccessibilityContrastPassText.Text" xml:space="preserve">
-    <value>Pass: white on black - 21.0:1</value>
+    <value>[!! Þášš: ŵħïŧë öñ ƀľáçķ - 21.0:1 ~~~~~~~~~ !!]</value>
   </data>
   <data name="AccessibilityContrastFail.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
-    <value>Failing contrast example, one point six one to one</value>
+    <value>[!! Ƒáïľïñğ çöñŧřášŧ ëẋáɱþľë, öñë þöïñŧ šïẋ öñë ŧö öñë ~~~~~~~~~~~~~~~ !!]</value>
   </data>
   <data name="AccessibilityContrastFailText.Text" xml:space="preserve">
-    <value>Fail: light gray on white - 1.61:1</value>
+    <value>[!! Ƒáïľ: ľïğħŧ ğřáÿ öñ ŵħïŧë - 1.61:1 ~~~~~~~~~~~ !!]</value>
   </data>
   <data name="AccessibilityReduceMotion.Header" xml:space="preserve">
-    <value>Reduce motion</value>
+    <value>[!! Řëðüçë ɱöŧïöñ ~~~~ !!]</value>
   </data>
   <data name="AccessibilityReduceMotion.OffContent" xml:space="preserve">
-    <value>Animate</value>
+    <value>[!! Áñïɱáŧë ~~~ !!]</value>
   </data>
   <data name="AccessibilityReduceMotion.OnContent" xml:space="preserve">
-    <value>Update instantly</value>
+    <value>[!! Üþðáŧë ïñšŧáñŧľÿ ~~~~~ !!]</value>
   </data>
   <data name="AccessibilityReduceMotion.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
-    <value>Reduce motion</value>
+    <value>[!! Řëðüçë ɱöŧïöñ ~~~~ !!]</value>
   </data>
   <data name="AccessibilityMoveTarget.Content" xml:space="preserve">
-    <value>Move target</value>
+    <value>[!! Ɱöṽë ŧářğëŧ ~~~~ !!]</value>
   </data>
   <data name="AccessibilityMotionTarget.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
-    <value>Motion demonstration target</value>
+    <value>[!! Ɱöŧïöñ ðëɱöñšŧřáŧïöñ ŧářğëŧ ~~~~~~~~~ !!]</value>
   </data>
   <data name="AccessibilityMotionStatus.Text" xml:space="preserve">
-    <value>Motion has not run.</value>
+    <value>[!! Ɱöŧïöñ ħáš ñöŧ řüñ. ~~~~~~ !!]</value>
   </data>
   <data name="AccessibilityHighContrastGuidance.Text" xml:space="preserve">
-    <value>High-contrast mode must replace decorative colors with renderer-supported system resources; verify the release matrix on each target.</value>
+    <value>[!! Ħïğħ-çöñŧřášŧ ɱöðë ɱüšŧ řëþľáçë ðëçöřáŧïṽë çöľöřš ŵïŧħ řëñðëřëř-šüþþöřŧëð šÿšŧëɱ řëšöüřçëš; ṽëřïƒÿ ŧħë řëľëášë ɱáŧřïẋ öñ ëáçħ ŧářğëŧ. ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ !!]</value>
   </data>
   <data name="AccessibilityAnnouncementSaved" xml:space="preserve">
-    <value>Profile saved. Announcement {0}.</value>
+    <value>[!! Þřöƒïľë šáṽëð. Áññöüñçëɱëñŧ {0}. ~~~~~~~~~~ !!]</value>
   </data>
   <data name="AccessibilityMotionReduced" xml:space="preserve">
-    <value>Motion reduced: target updated instantly to {0:0}.</value>
+    <value>[!! Ɱöŧïöñ řëðüçëð: ŧářğëŧ üþðáŧëð ïñšŧáñŧľÿ ŧö {0:0}. ~~~~~~~~~~~~~~~ !!]</value>
   </data>
   <data name="AccessibilityMotionEnabled" xml:space="preserve">
-    <value>Motion enabled: target animating to {0:0}.</value>
+    <value>[!! Ɱöŧïöñ ëñáƀľëð: ŧářğëŧ áñïɱáŧïñğ ŧö {0:0}. ~~~~~~~~~~~~~ !!]</value>
   </data>
   <data name="LocalizationToggleRtl.Content" xml:space="preserve">
-    <value>Toggle right-to-left</value>
+    <value>[!! Ŧöğğľë řïğħŧ-ŧö-ľëƒŧ ~~~~~~ !!]</value>
   </data>
   <data name="LocalizationStart.Text" xml:space="preserve">
-    <value>Start</value>
+    <value>[!! Šŧářŧ ~~~ !!]</value>
   </data>
   <data name="LocalizationStatefulInput.Header" xml:space="preserve">
-    <value>Stateful input</value>
+    <value>[!! Šŧáŧëƒüľ ïñþüŧ ~~~~~ !!]</value>
   </data>
   <data name="LocalizationStatefulInput.Text" xml:space="preserve">
-    <value>State survives direction changes</value>
+    <value>[!! Šŧáŧë šüřṽïṽëš ðïřëçŧïöñ çħáñğëš ~~~~~~~~~~ !!]</value>
   </data>
   <data name="LocalizationBidiText.Text" xml:space="preserve">
-    <value>English 123 | العربية ١٢٣ | עברית 123</value>
+    <value>[!! Ëñğľïšħ 123 | العربية ١٢٣ | עברית 123 ~~~~~~~~~~~~ !!]</value>
   </data>
   <data name="LocalizationEnd.Text" xml:space="preserve">
-    <value>End</value>
+    <value>[!! Ëñð ~~~ !!]</value>
   </data>
   <data name="LocalizationDirectionStatus.Text" xml:space="preserve">
-    <value>Direction: LeftToRight</value>
+    <value>[!! Ðïřëçŧïöñ: ĽëƒŧŦöŘïğħŧ ~~~~~~~ !!]</value>
   </data>
   <data name="LocalizationTogglePseudo.Content" xml:space="preserve">
-    <value>Toggle pseudo-localization preview</value>
+    <value>[!! Ŧöğğľë þšëüðö-ľöçáľïžáŧïöñ þřëṽïëŵ ~~~~~~~~~~~ !!]</value>
   </data>
   <data name="LocalizationPseudoPreview.Text" xml:space="preserve">
-    <value>Pseudo-localization preview is off.</value>
+    <value>[!! Þšëüðö-ľöçáľïžáŧïöñ þřëṽïëŵ ïš öƒƒ. ~~~~~~~~~~~ !!]</value>
   </data>
   <data name="LocalizationDirectionStatusFormat" xml:space="preserve">
-    <value>Direction: {0}</value>
+    <value>[!! Ðïřëçŧïöñ: {0} ~~~~~ !!]</value>
   </data>
   <data name="LocalizationPseudoPreviewOff" xml:space="preserve">
-    <value>Pseudo-localization preview is off.</value>
+    <value>[!! Þšëüðö-ľöçáľïžáŧïöñ þřëṽïëŵ ïš öƒƒ. ~~~~~~~~~~~ !!]</value>
   </data>
 </root>

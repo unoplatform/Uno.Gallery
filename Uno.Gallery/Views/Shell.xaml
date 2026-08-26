@@ -300,188 +300,230 @@
 
 				<!--#region platform.uno nav mimic (ctrl+f: BANNER_SOURCE_GEN)-->
 				<!-- GENERATED CODE, see scripts\wasm banner source-gen.linq -->
-				<Button Content="PLATFORMS"
+				<Button x:Uid="ShellNavPlatforms"
+						Content="PLATFORMS"
 						Style="{StaticResource AppBarDropdownButtonStyle}">
 					<Button.Flyout>
 						<MenuBarItemFlyout Placement="Bottom"
 										   MenuFlyoutPresenterStyle="{StaticResource AppBarMenuFlyoutPresenterStyle}">
-							<MenuFlyoutItem Text="Target Platforms"
+							<MenuFlyoutItem x:Uid="ShellTargetPlatforms"
+											Text="Target Platforms"
 											Click="OnAppBarButtonClick"
 											Tag="https://platform.uno/platforms/"
 											Style="{StaticResource AppBarHeaderMenuFlyoutItemStyle}" />
-							<MenuFlyoutItem Text="iOS and Android"
+							<MenuFlyoutItem x:Uid="ShellIosAndroid"
+											Text="iOS and Android"
 											Click="OnAppBarButtonClick"
 											Tag="https://platform.uno/ios-and-android/"
 											Style="{StaticResource AppBarMenuFlyoutItemStyle}" />
-							<MenuFlyoutItem Text="Web (WebAssembly)"
+							<MenuFlyoutItem x:Uid="ShellWebAssembly"
+											Text="Web (WebAssembly)"
 											Click="OnAppBarButtonClick"
 											Tag="https://platform.uno/uno-platform-for-web-webassembly/"
 											Style="{StaticResource AppBarMenuFlyoutItemStyle}" />
-							<MenuFlyoutItem Text="Windows 10-11"
+							<MenuFlyoutItem x:Uid="ShellWindowsModern"
+											Text="Windows 10-11"
 											Click="OnAppBarButtonClick"
 											Tag="https://platform.uno/windows-10-11/"
 											Style="{StaticResource AppBarMenuFlyoutItemStyle}" />
-							<MenuFlyoutItem Text="Windows 7"
+							<MenuFlyoutItem x:Uid="ShellWindowsLegacy"
+											Text="Windows 7"
 											Click="OnAppBarButtonClick"
 											Tag="https://platform.uno/windows7/"
 											Style="{StaticResource AppBarMenuFlyoutItemStyle}" />
-							<MenuFlyoutItem Text="Linux"
+							<MenuFlyoutItem x:Uid="ShellLinux"
+											Text="Linux"
 											Click="OnAppBarButtonClick"
 											Tag="https://platform.uno/uno-platform-for-linux/"
 											Style="{StaticResource AppBarMenuFlyoutItemStyle}" />
-							<MenuFlyoutItem Text="MacOS"
+							<MenuFlyoutItem x:Uid="ShellMacOS"
+											Text="macOS"
 											Click="OnAppBarButtonClick"
 											Tag="https://platform.uno/uno-platform-for-macos/"
 											Style="{StaticResource AppBarMenuFlyoutItemStyle}" />
-							<MenuFlyoutItem Text="Migration"
+							<MenuFlyoutItem x:Uid="ShellMigration"
+											Text="Migration"
 											IsEnabled="False"
 											Style="{StaticResource AppBarHeaderMenuFlyoutItemStyle}" />
-							<MenuFlyoutItem Text="WPF Developers"
+							<MenuFlyoutItem x:Uid="ShellWpfDevelopers"
+											Text="WPF Developers"
 											Click="OnAppBarButtonClick"
 											Tag="https://platform.uno/wpf/"
 											Style="{StaticResource AppBarMenuFlyoutItemStyle}" />
-							<MenuFlyoutItem Text="Silverlight"
+							<MenuFlyoutItem x:Uid="ShellSilverlight"
+											Text="Silverlight"
 											Click="OnAppBarButtonClick"
 											Tag="https://platform.uno/silverlight/"
 											Style="{StaticResource AppBarMenuFlyoutItemStyle}" />
-							<MenuFlyoutItem Text="Xamarin Forms"
+							<MenuFlyoutItem x:Uid="ShellXamarinForms"
+											Text="Xamarin Forms"
 											Click="OnAppBarButtonClick"
 											Tag="https://platform.uno/xamarin-forms/"
 											Style="{StaticResource AppBarMenuFlyoutItemStyle}" />
 						</MenuBarItemFlyout>
 					</Button.Flyout>
 				</Button>
-				<Button Content="DEVELOP"
+				<Button x:Uid="ShellNavDevelop"
+						Content="DEVELOP"
 						Style="{StaticResource AppBarDropdownButtonStyle}">
 					<Button.Flyout>
 						<MenuBarItemFlyout Placement="Bottom"
 										   MenuFlyoutPresenterStyle="{StaticResource AppBarMenuFlyoutPresenterStyle}">
-							<MenuFlyoutItem Text="IDE"
+							<MenuFlyoutItem x:Uid="ShellIde"
+											Text="IDE"
 											IsEnabled="False"
 											Style="{StaticResource AppBarHeaderMenuFlyoutItemStyle}" />
-							<MenuFlyoutItem Text="Visual Studio"
+							<MenuFlyoutItem x:Uid="ShellVisualStudio"
+											Text="Visual Studio"
 											Click="OnAppBarButtonClick"
 											Tag="https://platform.uno/visual-studio/"
 											Style="{StaticResource AppBarMenuFlyoutItemStyle}" />
-							<MenuFlyoutItem Text="VS Code"
+							<MenuFlyoutItem x:Uid="ShellVsCode"
+											Text="VS Code"
 											Click="OnAppBarButtonClick"
 											Tag="https://platform.uno/vs-code/"
 											Style="{StaticResource AppBarMenuFlyoutItemStyle}" />
-							<MenuFlyoutItem Text="Rider"
+							<MenuFlyoutItem x:Uid="ShellRider"
+											Text="Rider"
 											Click="OnAppBarButtonClick"
 											Tag="https://platform.uno/docs/articles/get-started-rider.html?tabs=windows"
 											Style="{StaticResource AppBarMenuFlyoutItemStyle}" />
-							<MenuFlyoutItem Text="TOOLS"
+							<MenuFlyoutItem x:Uid="ShellTools"
+											Text="TOOLS"
 											IsEnabled="False"
 											Style="{StaticResource AppBarHeaderMenuFlyoutItemStyle}" />
-							<MenuFlyoutItem Text="Reactive/MVUX"
+							<MenuFlyoutItem x:Uid="ShellReactiveMvux"
+											Text="Reactive/MVUX"
 											Click="OnAppBarButtonClick"
 											Tag="https://platform.uno/reactive/"
 											Style="{StaticResource AppBarMenuFlyoutItemStyle}" />
-							<MenuFlyoutItem Text="MAUI Embedding"
+							<MenuFlyoutItem x:Uid="ShellMauiEmbedding"
+											Text="MAUI Embedding"
 											Click="OnAppBarButtonClick"
 											Tag="https://platform.uno/net-maui-embedding/"
 											Style="{StaticResource AppBarMenuFlyoutItemStyle}" />
-							<MenuFlyoutItem Text="C# Markup"
+							<MenuFlyoutItem x:Uid="ShellCSharpMarkup"
+											Text="C# Markup"
 											Click="OnAppBarButtonClick"
 											Tag="https://platform.uno/c-markup/"
 											Style="{StaticResource AppBarMenuFlyoutItemStyle}" />
-							<MenuFlyoutItem Text="Extensions"
+							<MenuFlyoutItem x:Uid="ShellExtensions"
+											Text="Extensions"
 											Click="OnAppBarButtonClick"
 											Tag="https://platform.uno/uno-extensions/"
 											Style="{StaticResource AppBarMenuFlyoutItemStyle}" />
-							<MenuFlyoutItem Text="Themes"
+							<MenuFlyoutItem x:Uid="ShellThemes"
+											Text="Themes"
 											Click="OnAppBarButtonClick"
 											Tag="https://platform.uno/uno-themes/"
 											Style="{StaticResource AppBarMenuFlyoutItemStyle}" />
-							<MenuFlyoutItem Text="Toolkit"
+							<MenuFlyoutItem x:Uid="ShellToolkit"
+											Text="Toolkit"
 											Click="OnAppBarButtonClick"
 											Tag="https://platform.uno/uno-toolkit/"
 											Style="{StaticResource AppBarMenuFlyoutItemStyle}" />
 						</MenuBarItemFlyout>
 					</Button.Flyout>
 				</Button>
-				<Button Content="DESIGN"
+				<Button x:Uid="ShellNavDesign"
+						Content="DESIGN"
 						Style="{StaticResource AppBarDropdownButtonStyle}">
 					<Button.Flyout>
 						<MenuBarItemFlyout Placement="Bottom"
 										   MenuFlyoutPresenterStyle="{StaticResource AppBarMenuFlyoutPresenterStyle}">
-							<MenuFlyoutItem Text="Uno Platform Figma Plugin"
+							<MenuFlyoutItem x:Uid="ShellFigmaPlugin"
+											Text="Uno Platform Figma Plugin"
 											Click="OnAppBarButtonClick"
 											Tag="https://platform.uno/unofigma/"
 											Style="{StaticResource AppBarMenuFlyoutItemStyle}" />
-							<MenuFlyoutItem Text="Uno Platform Material Toolkit"
+							<MenuFlyoutItem x:Uid="ShellMaterialToolkit"
+											Text="Uno Platform Material Toolkit"
 											Click="OnAppBarButtonClick"
 											Tag="https://platform.uno/uno-material-toolkit-for-figma/"
 											Style="{StaticResource AppBarMenuFlyoutItemStyle}" />
 						</MenuBarItemFlyout>
 					</Button.Flyout>
 				</Button>
-				<Button Content="COMMUNITY"
+				<Button x:Uid="ShellNavCommunity"
+						Content="COMMUNITY"
 						Style="{StaticResource AppBarDropdownButtonStyle}">
 					<Button.Flyout>
 						<MenuBarItemFlyout Placement="Bottom"
 										   MenuFlyoutPresenterStyle="{StaticResource AppBarMenuFlyoutPresenterStyle}">
-							<MenuFlyoutItem Text="GitHub"
+							<MenuFlyoutItem x:Uid="ShellGitHub"
+											Text="GitHub"
 											Click="OnAppBarButtonClick"
 											Tag="https://github.com/unoplatform/uno"
 											Style="{StaticResource AppBarMenuFlyoutItemStyle}" />
-							<MenuFlyoutItem Text="Discord"
+							<MenuFlyoutItem x:Uid="ShellDiscord"
+											Text="Discord"
 											Click="OnAppBarButtonClick"
 											Tag="https://platform.uno/discord"
 											Style="{StaticResource AppBarMenuFlyoutItemStyle}" />
-							<MenuFlyoutItem Text="Blog"
+							<MenuFlyoutItem x:Uid="ShellBlog"
+											Text="Blog"
 											Click="OnAppBarButtonClick"
 											Tag="https://platform.uno/blog/"
 											Style="{StaticResource AppBarMenuFlyoutItemStyle}" />
 						</MenuBarItemFlyout>
 					</Button.Flyout>
 				</Button>
-				<Button Content="DOCS"
+				<Button x:Uid="ShellNavDocs"
+						Content="DOCS"
 						Click="OnAppBarButtonClick"
 						Tag="https://platform.uno/docs/articles/intro.html"
 						Style="{StaticResource AppBarButtonStyle}" />
-				<Button Content="RESOURCES"
+				<Button x:Uid="ShellNavResources"
+						Content="RESOURCES"
 						Style="{StaticResource AppBarDropdownButtonStyle}">
 					<Button.Flyout>
 						<MenuBarItemFlyout Placement="Bottom"
 										   MenuFlyoutPresenterStyle="{StaticResource AppBarMenuFlyoutPresenterStyle}">
-							<MenuFlyoutItem Text="Workshop - Simple Calc"
+							<MenuFlyoutItem x:Uid="ShellWorkshopSimpleCalc"
+											Text="Workshop - Simple Calc"
 											Click="OnAppBarButtonClick"
 											Tag="https://platform.uno/simple-calc/"
 											Style="{StaticResource AppBarMenuFlyoutItemStyle}" />
-							<MenuFlyoutItem Text="Workshop - Tube player"
+							<MenuFlyoutItem x:Uid="ShellWorkshopTubePlayer"
+											Text="Workshop - Tube player"
 											Click="OnAppBarButtonClick"
 											Tag="https://platform.uno/tube-player/"
 											Style="{StaticResource AppBarMenuFlyoutItemStyle}" />
-							<MenuFlyoutItem Text="Code Samples"
+							<MenuFlyoutItem x:Uid="ShellCodeSamples"
+											Text="Code Samples"
 											Click="OnAppBarButtonClick"
 											Tag="https://platform.uno/code-samples/"
 											Style="{StaticResource AppBarMenuFlyoutItemStyle}" />
-							<MenuFlyoutItem Text="Case Studies"
+							<MenuFlyoutItem x:Uid="ShellCaseStudies"
+											Text="Case Studies"
 											Click="OnAppBarButtonClick"
 											Tag="https://platform.uno/case-studies/"
 											Style="{StaticResource AppBarMenuFlyoutItemStyle}" />
-							<MenuFlyoutItem Text="Uno Gallery"
+							<MenuFlyoutItem x:Uid="ShellUnoGallery"
+											Text="Uno Gallery"
 											Click="OnAppBarButtonClick"
 											Tag="https://gallery.platform.uno/"
 											Style="{StaticResource AppBarMenuFlyoutItemStyle}" />
-							<MenuFlyoutItem Text="Uno Playground"
+							<MenuFlyoutItem x:Uid="ShellUnoPlayground"
+											Text="Uno Playground"
 											Click="OnAppBarButtonClick"
 											Tag="https://playground.platform.uno/#wasm-start"
 											Style="{StaticResource AppBarMenuFlyoutItemStyle}" />
-							<MenuFlyoutItem Text="Support"
+							<MenuFlyoutItem x:Uid="ShellSupport"
+											Text="Support"
 											Click="OnAppBarButtonClick"
 											Tag="https://platform.uno/support/"
 											Style="{StaticResource AppBarMenuFlyoutItemStyle}" />
-							<MenuFlyoutItem Text="Contact Us"
+							<MenuFlyoutItem x:Uid="ShellContactUs"
+											Text="Contact Us"
 											Click="OnAppBarButtonClick"
 											Tag="https://platform.uno/contact/"
 											Style="{StaticResource AppBarMenuFlyoutItemStyle}" />
 						</MenuBarItemFlyout>
 					</Button.Flyout>
 				</Button>
-				<Button Content="GET STARTED"
+				<Button x:Uid="ShellGetStarted"
+						Content="GET STARTED"
 						Click="OnAppBarButtonClick"
 						Tag="https://marketplace.visualstudio.com/items?itemName=unoplatform.uno-platform-addin-2022"
 						Style="{StaticResource AppBarCtaButtonStyle}" />
@@ -516,11 +558,12 @@
 							   Height="100"
 							   HorizontalAlignment="Left" />
 
-						<Button x:Name="NewWindowButton" Visibility="Collapsed" Click="OpenNewWindow_Click" ToolTipService.ToolTip="New window" Style="{StaticResource OutlinedButtonStyle}" Width="60" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Top">
+						<Button x:Name="NewWindowButton" x:Uid="ShellNewWindowButton" Visibility="Collapsed" Click="OpenNewWindow_Click" ToolTipService.ToolTip="New window" Style="{StaticResource OutlinedButtonStyle}" Width="60" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Top">
 							<FontIcon Glyph="&#xE8A7;" />
 						</Button>
 						<!-- Dark/Light Toggle -->
 						<ToggleButton x:Name="DarkLightModeToggle"
+							x:Uid="ShellThemeToggle"
 							VerticalAlignment="Bottom"
 							HorizontalAlignment="Right"
 							Content="Light and Dark"
@@ -530,12 +573,14 @@
 
 					<!-- FPS indicator Toggle -->
 					<skia:CheckBox x:Name="FPSIndicatorCheckBox"
+					               x:Uid="ShellFpsIndicator"
 					               x:Load="False"
 								   Content="FPS indicator"
 								   Click="FPSIndicatorCheckBox_Click" />
 
 					<!-- Samples Search Box -->
 					<AutoSuggestBox x:Name="SamplesSearchBox"
+									x:Uid="ShellSamplesSearchBox"
 									AutomationProperties.AutomationId="SamplesSearchBox"
 									TextMemberPath="Title"
 									PlaceholderText="Search"

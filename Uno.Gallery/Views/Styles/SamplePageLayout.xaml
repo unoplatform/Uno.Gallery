@@ -43,7 +43,8 @@
 			</Border>
 
 			<!-- Source label -->
-			<TextBlock Margin="0,30,0,0"
+			<TextBlock x:Uid="SampleSourceLabel"
+					   Margin="0,30,0,0"
 					   Foreground="{ThemeResource OnBackgroundBrush}"
 					   Opacity="0.45"
 					   Style="{StaticResource BodySmall}"
@@ -61,7 +62,8 @@
 						Margin="0,8,0,0"
 						Orientation="Horizontal"
 						Visibility="{Binding Owner, Converter={StaticResource IsNullOrEmptyToCollapsed}, FallbackValue=Collapsed}">
-				<TextBlock Foreground="{ThemeResource OnBackgroundBrush}"
+				<TextBlock x:Uid="SampleOwnerLabel"
+						   Foreground="{ThemeResource OnBackgroundBrush}"
 						   Opacity="0.45"
 						   Style="{StaticResource BodySmall}"
 						   Text="OWNER  " />
@@ -77,7 +79,8 @@
 						Margin="0,4,0,16"
 						Orientation="Horizontal"
 						Visibility="{Binding ReviewedOn, Converter={StaticResource IsNullOrEmptyToCollapsed}, FallbackValue=Collapsed}">
-				<TextBlock Foreground="{ThemeResource OnBackgroundBrush}"
+				<TextBlock x:Uid="SampleReviewedLabel"
+						   Foreground="{ThemeResource OnBackgroundBrush}"
 						   Opacity="0.45"
 						   Style="{StaticResource BodySmall}"
 						   Text="REVIEWED  " />
@@ -178,7 +181,8 @@
 												<StackPanel Orientation="Horizontal">
 
 													<!-- Label -->
-													<TextBlock Style="{StaticResource TitleLarge}"
+													<TextBlock x:Uid="DesignMaterial"
+															   Style="{StaticResource TitleLarge}"
 															   Text="Material" />
 
 													<!-- Icon -->
@@ -200,7 +204,8 @@
 												<StackPanel Orientation="Horizontal">
 
 													<!-- Label -->
-													<TextBlock Style="{StaticResource TitleLarge}"
+													<TextBlock x:Uid="DesignFluent"
+															   Style="{StaticResource TitleLarge}"
 															   Text="Fluent" />
 
 													<!-- Icon -->
@@ -222,7 +227,8 @@
 												<StackPanel Orientation="Horizontal">
 
 													<!-- Label -->
-													<TextBlock Style="{StaticResource TitleLarge}"
+													<TextBlock x:Uid="DesignCupertino"
+															   Style="{StaticResource TitleLarge}"
 															   Text="Cupertino" />
 
 													<!-- Icon -->
@@ -244,7 +250,8 @@
 												<StackPanel Orientation="Horizontal">
 
 													<!-- Label -->
-													<TextBlock Style="{StaticResource TitleLarge}"
+													<TextBlock x:Uid="DesignNative"
+															   Style="{StaticResource TitleLarge}"
 															   Text="Native" />
 
 													<!-- Icon -->
@@ -339,10 +346,9 @@
 												   Foreground="{ThemeResource OnBackgroundBrush}"
 												   Opacity="0.8"
 												   Style="{StaticResource BodyMedium}">
-											<Run Text="For more information refer to the " />
-
 											<Hyperlink NavigateUri="{Binding DocumentationLink}">
-												<Run Text="official documentation." />
+												<Run x:Uid="SampleDocumentationAction"
+													 Text="Open the official documentation." />
 											</Hyperlink>
 										</TextBlock>
 
@@ -352,13 +358,10 @@
 														   Foreground="{ThemeResource OnBackgroundBrush}"
 														   Opacity="0.8"
 														   Style="{StaticResource BodyMedium}">
-											<Run Text="You can" />
-
 											<Hyperlink x:Name="PART_ShareHyperlink">
-												<Run Text="share" />
+												<Run x:Uid="SampleShareAction"
+													 Text="Share this page." />
 											</Hyperlink>
-
-											<Run Text="this page." />
 										</TextBlock>
 
 										<!-- View source hyperlink -->
@@ -368,11 +371,10 @@
 												   Foreground="{ThemeResource OnBackgroundBrush}"
 												   Opacity="0.8"
 												   Style="{StaticResource BodyMedium}">
-											<Run Text="View " />
 											<Hyperlink NavigateUri="{Binding SourceLink}">
-												<Run Text="source" />
+												<Run x:Uid="SampleSourceAction"
+													 Text="View source on GitHub." />
 											</Hyperlink>
-											<Run Text=" on GitHub." />
 										</TextBlock>
 
 										<!-- Copy direct link button -->
@@ -387,7 +389,8 @@
 													Visibility="{Binding ShareUri, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource IsNullOrEmptyToCollapsed}, FallbackValue=Collapsed}"
 												local:ClipboardExtensions.CopyTrigger="ButtonClicked"
 												local:ClipboardExtensions.CopyContent="{Binding ShareUri}">
-											<TextBlock Text="Copy direct link" />
+											<TextBlock x:Uid="SampleCopyDirectLink"
+													   Text="Copy direct link" />
 										</Button>
 									</StackPanel>
 								</StackPanel>
@@ -420,7 +423,8 @@
 										<StackPanel Orientation="Horizontal">
 
 											<!-- Label -->
-											<TextBlock Style="{StaticResource TitleLarge}"
+											<TextBlock x:Uid="DesignMaterial"
+													   Style="{StaticResource TitleLarge}"
 													   Text="Material" />
 
 											<!-- Icon -->
@@ -441,7 +445,8 @@
 										<StackPanel Orientation="Horizontal">
 
 											<!-- Label -->
-											<TextBlock Style="{StaticResource TitleLarge}"
+											<TextBlock x:Uid="DesignFluent"
+													   Style="{StaticResource TitleLarge}"
 													   Text="Fluent" />
 
 											<!-- Icon -->
@@ -462,7 +467,8 @@
 										<StackPanel Orientation="Horizontal">
 
 											<!-- Label -->
-											<TextBlock Style="{StaticResource TitleLarge}"
+											<TextBlock x:Uid="DesignCupertino"
+													   Style="{StaticResource TitleLarge}"
 													   Text="Cupertino" />
 
 											<!-- Icon -->
@@ -483,7 +489,8 @@
 										<StackPanel Orientation="Horizontal">
 
 											<!-- Label -->
-											<TextBlock Style="{StaticResource TitleLarge}"
+											<TextBlock x:Uid="DesignNative"
+													   Style="{StaticResource TitleLarge}"
 													   Text="Native" />
 
 											<!-- Icon -->

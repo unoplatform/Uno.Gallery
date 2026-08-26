@@ -80,7 +80,10 @@ namespace Uno.Gallery
 			Status = attribute.Status;
 
 			// Computed-once display/search helpers — no per-call reflection.
-			CategoryCaption = attribute.Category.GetAttribute<SampleCategoryInfoAttribute>()?.Caption ?? string.Empty;
+			var categoryInfo = attribute.Category.GetAttribute<SampleCategoryInfoAttribute>();
+			CategoryCaption = categoryInfo is null
+				? string.Empty
+				: LocalizationHelper.GetString(categoryInfo.ResourceKey, categoryInfo.Caption);
 			IsCategorized = attribute.Category != SampleCategory.None;
 			SourceDescription = attribute.Source.GetDescription() ?? string.Empty;
 			IsNotStable = attribute.Status != SampleStatus.Stable;

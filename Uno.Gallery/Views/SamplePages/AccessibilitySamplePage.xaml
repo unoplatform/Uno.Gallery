@@ -1,0 +1,130 @@
+<Page x:Class="Uno.Gallery.Views.Samples.AccessibilitySamplePage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:local="using:Uno.Gallery"
+	  xmlns:smtx="using:ShowMeTheXAML">
+
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<local:SamplePageLayout x:Name="SamplePageLayoutRoot"
+								IsDesignAgnostic="True">
+			<local:SamplePageLayout.DesignAgnosticTemplate>
+				<DataTemplate>
+					<StackPanel Spacing="16">
+						<smtx:XamlDisplay UniqueKey="Accessibility_NamesFocus"
+										  smtx:XamlDisplayExtensions.Header="Names, help text, and focus order"
+										  smtx:XamlDisplayExtensions.Description="Native controls expose their roles and states. Add a concise accessible name and help text when the visible label is not sufficient."
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+							<StackPanel Spacing="8">
+								<TextBox x:Uid="AccessibilityEmail"
+										 AutomationProperties.AutomationId="Accessibility_Email"
+										 AutomationProperties.Name="Email address"
+										 AutomationProperties.HelpText="Enter the address used for Gallery update notifications."
+										 Header="Email"
+										 PlaceholderText="name@example.com"
+										 TabIndex="1" />
+								<ToggleSwitch x:Name="NotificationToggle"
+											  x:Uid="AccessibilityNotifications"
+											  AutomationProperties.AutomationId="Accessibility_Notifications"
+											  AutomationProperties.Name="Gallery update notifications"
+											  AutomationProperties.HelpText="Controls whether update notifications are enabled."
+											  Header="Notifications"
+											  OffContent="Off"
+											  OnContent="On"
+											  TabIndex="2" />
+								<Button x:Uid="AccessibilitySave"
+										AutomationProperties.AutomationId="Accessibility_Save"
+										AutomationProperties.Name="Save accessibility profile"
+										AutomationProperties.HelpText="Saves the example values and announces completion."
+										Content="Save accessibility profile"
+										Click="SaveProfile_Click"
+										TabIndex="3" />
+								<TextBlock x:Name="AnnouncementStatus"
+										   x:Uid="AccessibilityAnnouncement"
+										   AutomationProperties.AutomationId="Accessibility_Announcement"
+										   AutomationProperties.LiveSetting="Polite"
+										   Text="No announcement has been sent."
+										   TextWrapping="Wrap" />
+							</StackPanel>
+						</smtx:XamlDisplay>
+
+						<smtx:XamlDisplay UniqueKey="Accessibility_Contrast"
+										  smtx:XamlDisplayExtensions.Header="Contrast and high-contrast resources"
+										  smtx:XamlDisplayExtensions.Description="Use theme and system resources instead of fixed foreground/background pairs. Ratios shown here use the WCAG relative-luminance calculation."
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+							<StackPanel Spacing="8">
+								<Border x:Uid="AccessibilityContrastPass"
+										AutomationProperties.AutomationId="Accessibility_ContrastPass"
+										AutomationProperties.Name="Passing contrast example, twenty one to one"
+										Padding="12"
+										Background="Black">
+									<TextBlock x:Uid="AccessibilityContrastPassText"
+											   Foreground="White"
+											   Text="Pass: white on black - 21.0:1" />
+								</Border>
+								<Border x:Uid="AccessibilityContrastFail"
+										AutomationProperties.AutomationId="Accessibility_ContrastFail"
+										AutomationProperties.Name="Failing contrast example, one point six one to one"
+										Padding="12"
+										Background="#FFFFFFFF">
+									<TextBlock x:Uid="AccessibilityContrastFailText"
+											   Foreground="#FFCCCCCC"
+											   Text="Fail: light gray on white - 1.61:1" />
+								</Border>
+								<TextBlock x:Uid="AccessibilityHighContrastGuidance"
+										   Text="High-contrast mode must replace decorative colors with renderer-supported system resources; verify the release matrix on each target."
+										   TextWrapping="Wrap" />
+							</StackPanel>
+						</smtx:XamlDisplay>
+
+						<smtx:XamlDisplay UniqueKey="Accessibility_ReducedMotion"
+										  smtx:XamlDisplayExtensions.Header="App-owned reduced motion"
+										  smtx:XamlDisplayExtensions.Description="The system animation preference is read-only. App-owned animations need an equivalent non-animated state transition."
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+							<StackPanel Spacing="8">
+								<ToggleSwitch x:Name="ReduceMotionToggle"
+											  x:Uid="AccessibilityReduceMotion"
+											  AutomationProperties.AutomationId="Accessibility_ReduceMotion"
+											  AutomationProperties.Name="Reduce motion"
+											  Header="Reduce motion"
+											  OffContent="Animate"
+											  OnContent="Update instantly" />
+								<Button x:Uid="AccessibilityMoveTarget"
+										AutomationProperties.AutomationId="Accessibility_MoveTarget"
+										Content="Move target"
+										Click="MoveTarget_Click" />
+								<Border x:Name="MotionTarget"
+										x:Uid="AccessibilityMotionTarget"
+										AutomationProperties.AutomationId="Accessibility_MotionTarget"
+										AutomationProperties.Name="Motion demonstration target"
+										Width="48"
+										Height="48"
+										HorizontalAlignment="Left"
+										Background="{ThemeResource AccentFillColorDefaultBrush}"
+										CornerRadius="8">
+									<Border.RenderTransform>
+										<TranslateTransform />
+									</Border.RenderTransform>
+								</Border>
+								<TextBlock x:Name="MotionStatus"
+										   x:Uid="AccessibilityMotionStatus"
+										   AutomationProperties.AutomationId="Accessibility_MotionStatus"
+										   Text="Motion has not run."
+										   TextWrapping="Wrap" />
+							</StackPanel>
+						</smtx:XamlDisplay>
+
+						<smtx:XamlDisplay UniqueKey="Accessibility_Renderer"
+										  smtx:XamlDisplayExtensions.Header="Current renderer"
+										  smtx:XamlDisplayExtensions.Description="Accessibility capability differs by platform and renderer. This value identifies the running target; it is not a parity claim."
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\TextBlock">
+							<TextBlock x:Name="RendererStatus"
+									   AutomationProperties.AutomationId="Accessibility_RendererStatus"
+									   Loaded="RendererStatus_Loaded"
+									   TextWrapping="Wrap" />
+						</smtx:XamlDisplay>
+					</StackPanel>
+				</DataTemplate>
+			</local:SamplePageLayout.DesignAgnosticTemplate>
+		</local:SamplePageLayout>
+	</Grid>
+</Page>

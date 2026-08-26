@@ -16,6 +16,7 @@ using Uno.Gallery.Views.Samples;
 using Uno.Logging;
 using Uno.UI;
 using Windows.ApplicationModel;
+using Windows.Globalization;
 using LaunchActivatedEventArgs = Microsoft.UI.Xaml.LaunchActivatedEventArgs;
 using MUXC = Microsoft.UI.Xaml.Controls;
 using MUXCP = Microsoft.UI.Xaml.Controls.Primitives;
@@ -48,6 +49,10 @@ namespace Uno.Gallery
 			PerformanceMarks.Record(PerformanceMarks.Constructed);
 			_exitAfterLaunching = exitAfterLaunching;
 			Instance = this;
+
+#if PSEUDO_LOCALIZATION
+			ApplicationLanguages.PrimaryLanguageOverride = "qps-ploc";
+#endif
 
 			ConfigureFeatureFlags();
 			InitializeLogging();
@@ -172,6 +177,9 @@ namespace Uno.Gallery
 					.ToArray();
 
 			var shell = new Shell { Samples = sortedSamples };
+#if RTL_TEST_MODE
+			shell.FlowDirection = FlowDirection.RightToLeft;
+#endif
 			PerformanceMarks.Record(PerformanceMarks.ShellBuilt);
 			AutomationProperties.SetAutomationId(shell, "AppShell");
 			var nv = shell.NavigationView;
@@ -330,7 +338,8 @@ namespace Uno.Gallery
 			var categories = samples
 					.GroupBy(x => x.Category);
 
-			foreach (var category in categories.OrderBy(x => x.Key))
+			foreach (var category in categories.OrderBy(x =>
+				x.Key == SampleCategory.Canary ? int.MaxValue : (int)x.Key))
 			{
 				var tier = 1;
 
@@ -341,11 +350,13 @@ namespace Uno.Gallery
 					parentItem = new MUXC.NavigationViewItem
 					{
 						Icon = categoryInfo != null ? new FontIcon() { Glyph = categoryInfo.Glyph } : null,
-						Content = categoryInfo != null ? categoryInfo.Caption : category.Key.ToString(),
+						Content = categoryInfo != null
+							? LocalizationHelper.GetString(categoryInfo.ResourceKey, categoryInfo.Caption)
+							: category.Key.ToString(),
 						SelectsOnInvoked = false,
 						Style = (Style)Resources[$"T{tier++}NavigationViewItemStyle"]
 					}.Apply(NavViewItemVisualStateFix);
-					AutomationProperties.SetAutomationId(parentItem, "Section_" + parentItem.Content);
+					AutomationProperties.SetAutomationId(parentItem, "Category_" + category.Key);
 
 					nv.MenuItems.Add(parentItem);
 				}

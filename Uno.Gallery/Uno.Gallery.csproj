@@ -110,6 +110,12 @@
 	<PropertyGroup Condition="'$(EnablePerformanceMeasurements)'=='true'">
 		<DefineConstants>$(DefineConstants);PERF_MEASUREMENTS</DefineConstants>
 	</PropertyGroup>
+	<PropertyGroup Condition="'$(EnablePseudoLocalization)'=='true'">
+		<DefineConstants>$(DefineConstants);PSEUDO_LOCALIZATION</DefineConstants>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(EnableRtlTestMode)'=='true'">
+		<DefineConstants>$(DefineConstants);RTL_TEST_MODE</DefineConstants>
+	</PropertyGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Uno.ShowMeTheXAML" />

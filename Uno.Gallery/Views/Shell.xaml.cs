@@ -12,7 +12,19 @@ namespace Uno.Gallery;
 
 public sealed partial class Shell : UserControl
 {
-	private const string NoSuggestionsFoundText = "No suggestions found";
+#if PSEUDO_LOCALIZATION
+	private const bool IsPseudoLocalizationEnabled = true;
+#else
+	private const bool IsPseudoLocalizationEnabled = false;
+#endif
+#if RTL_TEST_MODE
+	private const bool IsRtlTestModeEnabled = true;
+#else
+	private const bool IsRtlTestModeEnabled = false;
+#endif
+
+	private static string NoSuggestionsFoundText
+		=> LocalizationHelper.GetString("NoSuggestionsFound", "No suggestions found");
 
 	/// <summary>Window-scoped sorted sample catalog. Assigned once by <see cref="App"/>.<c>BuildShell</c>.</summary>
 	internal IReadOnlyList<Sample> Samples { get; init; } = Array.Empty<Sample>();
@@ -71,6 +83,8 @@ public sealed partial class Shell : UserControl
 		SetDarkLightToggleInitialState();
 
 		BuildIdentityLabel.Text = BuildInfo.Label;
+		BuildIdentityLabel.Tag =
+			$"Pseudo={IsPseudoLocalizationEnabled};Rtl={IsRtlTestModeEnabled}";
 
 #if DEBUG || IS_CANARY_BUILD
 		FindName("FPSIndicatorCheckBox"); // materialize x:Load=false element
