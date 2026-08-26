@@ -57,6 +57,23 @@ Fixes # <!-- issue number -->
 
 <!-- Note any visual regressions, accessibility concerns, or performance impact. -->
 
+## Maintainer classification
+
+<!-- Maintainers: complete before merge for non-trivial changes. -->
+
+- [ ] Kind, area, and priority labels are applied
+- [ ] Platform, renderer, and design-system scope is recorded
+- [ ] Owner and milestone (or explicit backlog disposition) are assigned
+- [ ] Upstream issue is linked when Gallery does not own the root cause
+- [ ] Dependency exceptions include an issue and next review date
+
+## Release impact
+
+- [ ] Compatibility matrix remains accurate
+- [ ] Stable/canary exposure is intentional
+- [ ] Rollout and rollback implications are documented
+- [ ] No store credential, certificate, token, or signing material is committed
+
 ## Intentional skipped tests
 
 <!-- If you added or retained a [Ignore] / Assert.Ignore, confirm it carries a

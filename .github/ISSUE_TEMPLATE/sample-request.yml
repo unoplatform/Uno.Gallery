@@ -73,3 +73,25 @@ body:
       placeholder: "https://learn.microsoft.com/en-us/windows/apps/design/controls/..."
     validations:
       required: false
+
+  - type: dropdown
+    id: coverage_disposition
+    attributes:
+      label: Preferred coverage
+      description: Where should this scenario live?
+      options:
+        - Core Gallery
+        - Optional Gallery flavor
+        - External companion sample
+        - Documentation only
+        - Not sure
+    validations:
+      required: true
+
+  - type: textarea
+    id: requirements
+    attributes:
+      label: Runtime requirements and limitations
+      description: Note permissions, credentials, network access, platform restrictions, renderer restrictions, or package impact.
+    validations:
+      required: false

@@ -58,6 +58,34 @@ body:
     validations:
       required: false
 
+  - type: dropdown
+    id: release_channel
+    attributes:
+      label: Release channel
+      options:
+        - Stable web deployment
+        - Canary build
+        - Play alpha
+        - TestFlight
+        - Local source build
+        - Not sure
+    validations:
+      required: true
+
+  - type: dropdown
+    id: impact
+    attributes:
+      label: Impact
+      options:
+        - App cannot start or data is lost
+        - Core navigation or a stable sample is unusable
+        - Behavior is incorrect but a workaround exists
+        - Visual, accessibility, localization, or performance regression
+        - Minor or cosmetic issue
+        - Not sure
+    validations:
+      required: true
+
   - type: textarea
     id: description
     attributes:
@@ -102,5 +130,14 @@ body:
       description: >
         Attach relevant logs, screenshots, or recordings.
         You can drag and drop files directly into this field.
+    validations:
+      required: false
+
+  - type: input
+    id: upstream_issue
+    attributes:
+      label: Related upstream issue
+      description: Link an Uno, Toolkit, Themes, Extensions, WinUI, or dependency issue if the root cause may be upstream.
+      placeholder: "https://github.com/unoplatform/uno/issues/..."
     validations:
       required: false
