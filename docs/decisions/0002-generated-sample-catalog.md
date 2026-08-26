@@ -129,16 +129,23 @@ those remain in `App.Samples.g.cs`.
 
 ---
 
-## No Physical File Yet
+## Physical Build Artifact
 
 `SampleManifest.g.cs` exposes `GetJson()` as the stable internal contract.
-A physical `catalog.json` export (for CI tooling, documentation site, or search
-index) is deferred to a future step. That step will:
+A physical JSON export is produced by WebAssembly CI without adding file I/O to
+the generator:
 
-1. Run the app with a backdoor or invoke `SampleManifest.GetJson()` via reflection
-   in a post-build target.
-2. Write the result to `build/artifacts/catalog.json`.
-3. Add an MSBuild target to hash the output for change detection.
+1. The normal compiler emits generated C# into a job-local intermediate folder.
+2. `build/scripts/export-sample-manifest.ps1` parses `SampleManifest.g.cs` with
+   Roslyn and reconstructs the exact `GetJson()` content.
+3. The script validates ordering and unique slugs, then writes
+   `sample-manifest.json` and its SHA-256 sidecar.
+4. CI validates schema-v1 and target-specific minimum/required-slug baselines,
+   then publishes separate DOM and Skia catalog artifacts.
+
+The app is not launched, target assemblies are not loaded through reflection,
+and no catalog file is committed as a second source of truth. ADR 0006 defines
+the separate upstream feature-classification and drift policy.
 
 No app UI change was made as part of this ADR.
 

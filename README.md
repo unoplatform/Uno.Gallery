@@ -41,6 +41,7 @@ sample page, and the PR / commit expectations.
 - [Native store delivery plan](docs/releases/native-store-delivery-plan.md)
 - [Accessibility renderer matrix](docs/accessibility/renderer-matrix.md)
 - [Localization and RTL testing](docs/localization/testing.md)
+- [Generated catalog and feature coverage](docs/catalog/README.md)
 
 ## Acknowledgments
 
