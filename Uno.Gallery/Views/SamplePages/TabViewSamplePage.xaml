@@ -20,13 +20,13 @@
 										  smtx:XamlDisplayExtensions.Header="Basic TabView"
 										  smtx:XamlDisplayExtensions.Description="TabView renders a row of tabs. The first tab has IsClosable=False (e.g. a Home tab). Others are closable by default.">
 							<TabView x:Name="StaticTabView"
-									 AutomationProperties.Name="TabView_Basic"
+									 AutomationProperties.AutomationId="TabView_Basic"
 									 IsAddTabButtonVisible="False"
 									 SelectedIndex="0"
 									 HorizontalAlignment="Stretch">
 								<TabViewItem Header="Home"
 											 IsClosable="False"
-											 AutomationProperties.Name="TabView_Tab_Home">
+											 AutomationProperties.AutomationId="TabView_Tab_Home">
 									<TabViewItem.IconSource>
 										<SymbolIconSource Symbol="Home" />
 									</TabViewItem.IconSource>
@@ -34,7 +34,7 @@
 											   Margin="16" />
 								</TabViewItem>
 								<TabViewItem Header="Documents"
-											 AutomationProperties.Name="TabView_Tab_Documents">
+											 AutomationProperties.AutomationId="TabView_Tab_Documents">
 									<TabViewItem.IconSource>
 										<SymbolIconSource Symbol="Document" />
 									</TabViewItem.IconSource>
@@ -42,7 +42,7 @@
 											   Margin="16" />
 								</TabViewItem>
 								<TabViewItem Header="Settings"
-											 AutomationProperties.Name="TabView_Tab_Settings">
+											 AutomationProperties.AutomationId="TabView_Tab_Settings">
 									<TabViewItem.IconSource>
 										<SymbolIconSource Symbol="Setting" />
 									</TabViewItem.IconSource>
@@ -61,7 +61,7 @@
 										   Text="3"
 										   Style="{ThemeResource CaptionTextBlockStyle}" />
 								<TabView x:Name="DynamicTabView"
-										 AutomationProperties.Name="TabView_Dynamic"
+										 AutomationProperties.AutomationId="TabView_Dynamic"
 										 IsAddTabButtonVisible="True"
 										 AddTabButtonClick="DynamicTabView_AddTabButtonClick"
 										 TabCloseRequested="DynamicTabView_TabCloseRequested"
@@ -69,7 +69,7 @@
 										 SelectedIndex="0"
 										 HorizontalAlignment="Stretch">
 									<TabViewItem Header="Tab 1"
-												 AutomationProperties.Name="TabView_Dynamic_Tab1"
+												 AutomationProperties.AutomationId="TabView_Dynamic_Tab1"
 												 IsClosable="False">
 										<TextBlock Text="Pin this tab — it cannot be closed."
 												   Margin="16" />

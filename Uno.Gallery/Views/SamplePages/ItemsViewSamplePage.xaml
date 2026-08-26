@@ -25,7 +25,7 @@
 										   x:Name="SelectedTitle_Single"
 										   Text="Selected: (none)" />
 								<ItemsView x:Name="ItemsViewSingle"
-										   AutomationProperties.Name="ItemsView_Single"
+										   AutomationProperties.AutomationId="ItemsView_Single"
 										   ItemsSource="{Binding Data}"
 										   SelectionMode="Single"
 										   SelectionChanged="ItemsViewSingle_SelectionChanged"
@@ -35,7 +35,8 @@
 									</ItemsView.Layout>
 									<ItemsView.ItemTemplate>
 										<DataTemplate x:DataType="data:GalleryItem">
-											<ItemContainer AutomationProperties.Name="{Binding Title}"
+											<ItemContainer AutomationProperties.AutomationId="{Binding Title}"
+														   AutomationProperties.Name="{Binding Title}"
 														   IsEnabled="{Binding IsEnabled}"
 														   Padding="12,8">
 												<Grid>
@@ -74,7 +75,7 @@
 								<TextBlock AutomationProperties.AutomationId="ItemsView_MultiSelectionCount"
 										   Text="Selected count: 0" />
 								<ItemsView x:Name="ItemsViewMultiple"
-										   AutomationProperties.Name="ItemsView_Multiple"
+										   AutomationProperties.AutomationId="ItemsView_Multiple"
 										   ItemsSource="{Binding Data}"
 										   SelectionMode="Multiple"
 										   SelectionChanged="ItemsViewMultiple_SelectionChanged"
@@ -88,8 +89,9 @@
 									<ItemsView.ItemTemplate>
 										<DataTemplate x:DataType="data:GalleryItem">
 											<ItemContainer Padding="8,4"
-																   AutomationProperties.Name="{Binding MultipleAutomationName}"
-																   IsEnabled="{Binding IsEnabled}">
+																		   AutomationProperties.AutomationId="{Binding MultipleAutomationName}"
+																		   AutomationProperties.Name="{Binding Title}"
+																		   IsEnabled="{Binding IsEnabled}">
 												<TextBlock Text="{Binding Title}"
 														   Style="{StaticResource BodyStrong}"
 														   TextTrimming="CharacterEllipsis"

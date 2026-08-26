@@ -19,10 +19,11 @@ namespace Uno.Gallery.UITests
 		public void WhenSelectorBarItem_Selected_UpdatesResult()
 		{
 			NavigateToSample("SelectorBar", "Fluent");
-			App.WaitForElement("SelectorBar_Item_Unread");
+			App.WaitForElement("SelectorBar_Default");
 
 			TakeScreenshot("Before selection");
-			App.Tap("SelectorBar_Item_Unread");
+			// SelectorBarItem.AutomationId does not propagate on all platforms; use visible text.
+			App.WaitThenTap(q => q.All().Text("Unread"));
 			TakeScreenshot("After Unread selected");
 
 			var result = new QueryEx(q => q.All().Marked("SelectorBar_Result"));

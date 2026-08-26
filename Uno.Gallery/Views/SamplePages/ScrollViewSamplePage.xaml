@@ -8,7 +8,7 @@
 	  mc:Ignorable="d">
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-		<local:SamplePageLayout>
+		<local:SamplePageLayout x:Name="SamplePageLayoutRoot">
 
 			<local:SamplePageLayout.FluentTemplate>
 				<DataTemplate>
@@ -20,7 +20,8 @@
 										  smtx:XamlDisplayExtensions.Header="Vertical ScrollView"
 										  smtx:XamlDisplayExtensions.Description="ScrollView replaces ScrollViewer in WinUI 3. It exposes a ScrollPresenter via ScrollView.ScrollPresenter for advanced composition scenarios.">
 							<ScrollView x:Name="VerticalScrollView"
-										AutomationProperties.Name="ScrollView_Vertical"
+										AutomationProperties.AutomationId="ScrollView_Vertical"
+										AutomationProperties.Name="Vertical scroll view"
 										Height="240"
 										ContentOrientation="Vertical"
 										HorizontalScrollBarVisibility="Hidden"
@@ -57,7 +58,8 @@
 										  smtx:XamlDisplayExtensions.Header="Horizontal ScrollView"
 										  smtx:XamlDisplayExtensions.Description="Set ContentOrientation=&quot;Horizontal&quot; for a horizontally scrolling surface.">
 							<ScrollView x:Name="HorizontalScrollView"
-										AutomationProperties.Name="ScrollView_Horizontal"
+										AutomationProperties.AutomationId="ScrollView_Horizontal"
+										AutomationProperties.Name="Horizontal scroll view"
 										Height="120"
 										ContentOrientation="Horizontal"
 										HorizontalScrollBarVisibility="Auto"
@@ -83,11 +85,11 @@
 										  smtx:XamlDisplayExtensions.Description="ScrollView.ScrollPresenter exposes the underlying ScrollPresenter. Scroll the view above and press the button to read the current vertical offset.">
 							<StackPanel Spacing="8">
 								<Button x:Name="ReadOffsetButton"
-										AutomationProperties.Name="ScrollView_ReadOffset"
+										AutomationProperties.AutomationId="ScrollView_ReadOffset"
 										Content="Read vertical offset"
 										Click="ReadOffset_Click" />
 								<TextBlock x:Name="OffsetDisplay"
-										   AutomationProperties.Name="ScrollView_OffsetDisplay"
+										   AutomationProperties.AutomationId="ScrollView_OffsetDisplay"
 										   Text="Vertical offset: 0" />
 							</StackPanel>
 						</smtx:XamlDisplay>

@@ -20,11 +20,8 @@ public sealed partial class ScrollViewSamplePage : Page
 
 	private void ReadOffset_Click(object sender, RoutedEventArgs e)
 	{
-		// Named elements inside a DataTemplate share one namescope instance.
-		// FindName on any element within the instantiated template finds siblings by name.
-		var btn = (FrameworkElement)sender;
-		var sv = btn.FindName("VerticalScrollView") as ScrollView;
-		var display = btn.FindName("OffsetDisplay") as TextBlock;
+		var sv = SamplePageLayoutRoot.GetSampleChild<ScrollView>(Design.Fluent, "VerticalScrollView");
+		var display = SamplePageLayoutRoot.GetSampleChild<TextBlock>(Design.Fluent, "OffsetDisplay");
 		if (sv is not null && display is not null)
 		{
 			var offset = sv.ScrollPresenter?.VerticalOffset ?? 0;

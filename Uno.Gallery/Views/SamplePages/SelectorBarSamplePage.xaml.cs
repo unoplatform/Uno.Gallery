@@ -25,11 +25,13 @@ namespace Uno.Gallery.Views.Samples
 
 		private void OnSelectorBarSelectionChanged(SelectorBar sender, SelectorBarSelectionChangedEventArgs e)
 		{
-			if (sender.SelectedItem is SelectorBarItem item &&
-				sender.Parent is FrameworkElement parent &&
-				parent.FindName("SelectorBarResult") is TextBlock result)
+			if (sender.SelectedItem is SelectorBarItem item)
 			{
-				result.Text = $"Selected: {item.Text}";
+				// FindName does not cross XamlDisplay/DataTemplate scope boundaries.
+				// Use GetSampleChild which walks the visual tree from the ContentPresenter.
+				var result = SamplePageLayoutRoot.GetSampleChild<TextBlock>(Design.Fluent, "SelectorBarResult");
+				if (result is not null)
+					result.Text = $"Selected: {item.Text}";
 			}
 		}
 	}

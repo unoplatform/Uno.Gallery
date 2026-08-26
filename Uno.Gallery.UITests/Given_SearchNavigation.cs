@@ -67,10 +67,9 @@ public class Given_SearchNavigation : TestBase
 		OpenNavView();
 		App.WaitThenTap("SamplesSearchBox");
 		App.ClearText("SamplesSearchBox");
-		// "Uno.Toolkit" is the SourceDescription for SourceSdk.UnoToolkit.
-		// The dot in "uno.toolkit" makes this query unique to SourceDescription — no sample
-		// title contains a dot — so suggestions that appear are Toolkit samples.
-		App.EnterText("SamplesSearchBox", "uno.toolkit");
+		// "uno.toolkit" matches SourceDescription; adding "tabbar" makes the result unique
+		// (slug-exact match) so the single suggestion is always in the visible viewport.
+		App.EnterText("SamplesSearchBox", "tabbar uno.toolkit");
 
 		// "tabbar" is the stable slug for "TabBar" (SourceSdk.UnoToolkit, SampleCategory.Toolkit)
 		App.WaitForElement("tabbar");

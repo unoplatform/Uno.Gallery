@@ -21,9 +21,9 @@
 										  smtx:XamlDisplayExtensions.Header="StackLayout (vertical list)"
 										  smtx:XamlDisplayExtensions.Description="ItemsRepeater with StackLayout — no built-in scrolling, wrap in ScrollViewer.">
 							<ScrollViewer MaxHeight="300"
-										  AutomationProperties.Name="ItemsRepeater_Stack_ScrollViewer">
+										  AutomationProperties.AutomationId="ItemsRepeater_Stack_ScrollViewer">
 								<ItemsRepeater x:Name="StackRepeater"
-											   AutomationProperties.Name="ItemsRepeater_Stack"
+											   AutomationProperties.AutomationId="ItemsRepeater_Stack"
 											   ItemsSource="{Binding Data}">
 									<ItemsRepeater.Layout>
 										<StackLayout Orientation="Vertical"
@@ -66,9 +66,9 @@
 										  smtx:XamlDisplayExtensions.Header="UniformGridLayout (tile grid)"
 										  smtx:XamlDisplayExtensions.Description="ItemsRepeater with UniformGridLayout — equal-sized tiles in a wrapping grid.">
 							<ScrollViewer MaxHeight="300"
-										  AutomationProperties.Name="ItemsRepeater_Grid_ScrollViewer">
+										  AutomationProperties.AutomationId="ItemsRepeater_Grid_ScrollViewer">
 								<ItemsRepeater x:Name="GridRepeater"
-											   AutomationProperties.Name="ItemsRepeater_Grid"
+											   AutomationProperties.AutomationId="ItemsRepeater_Grid"
 											   ItemsSource="{Binding Data}">
 									<ItemsRepeater.Layout>
 										<UniformGridLayout MinItemWidth="120"

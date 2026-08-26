@@ -36,9 +36,10 @@ namespace Uno.Gallery.Views.Samples
 			var player = contentPanel?.Children.OfType<AnimatedVisualPlayer>().FirstOrDefault();
 			if (player is null) return;
 
-			// AnimationStatusText is a sibling of the Button in the outer StackPanel.
-			var statusText = (btn.Parent as FrameworkElement)?.FindName("AnimationStatusText") as TextBlock;
-			var countText = (btn.Parent as FrameworkElement)?.FindName("AnimPlayCount") as TextBlock;
+			// FindName does not cross XamlDisplay/DataTemplate scope boundaries.
+			// Use GetSampleChild which walks the visual tree from the ContentPresenter.
+			var statusText = SamplePageLayoutRoot.GetSampleChild<TextBlock>(Design.Agnostic, "AnimationStatusText");
+			var countText = SamplePageLayoutRoot.GetSampleChild<TextBlock>(Design.Agnostic, "AnimPlayCount");
 
 			if (player.IsPlaying)
 			{
