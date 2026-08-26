@@ -1,3 +1,4 @@
+using System.Globalization;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 
@@ -26,7 +27,8 @@ public sealed partial class ScrollViewSamplePage : Page
 		var display = btn.FindName("OffsetDisplay") as TextBlock;
 		if (sv is not null && display is not null)
 		{
-			display.Text = $"Vertical offset: {sv.ScrollPresenter?.VerticalOffset ?? 0:F1}";
+			var offset = sv.ScrollPresenter?.VerticalOffset ?? 0;
+			display.Text = "Vertical offset: " + offset.ToString("F1", CultureInfo.InvariantCulture);
 		}
 	}
 }

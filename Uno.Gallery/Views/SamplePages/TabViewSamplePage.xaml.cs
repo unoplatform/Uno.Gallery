@@ -43,11 +43,23 @@ public sealed partial class TabViewSamplePage : Page
 			});
 		}
 
-		// Tag close buttons on initial closable tabs; fall back to item.Loaded if template is pending.
+		// Tag close buttons on initial closable tabs.
+		// At TabView.Loaded the item visual tree may still be pending; use a low-priority
+		// dispatcher retry rather than item.Loaded (which fires only once and may already
+		// have been missed if the template was applied before this handler ran).
 		foreach (var item in tabView.TabItems.OfType<TabViewItem>())
 		{
 			if (!TagCloseButton(item))
-				item.Loaded += (s, _) => TagCloseButton((TabViewItem)s);
+			{
+				var capturedItem = item;
+				tabView.DispatcherQueue.TryEnqueue(DispatcherQueuePriority.Low, () =>
+				{
+					if (!TagCloseButton(capturedItem))
+						System.Diagnostics.Debug.WriteLine(
+							$"[TabViewSamplePage] CloseButton template part not found after deferral on initial tab '{AutomationProperties.GetAutomationId(capturedItem)}'; " +
+							$"AutomationId '_Close' suffix was not set.");
+				});
+			}
 		}
 	}
 

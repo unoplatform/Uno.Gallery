@@ -1,3 +1,4 @@
+using System.Globalization;
 using NUnit.Framework;
 using Uno.UITest;
 using Uno.UITest.Helpers.Queries;
@@ -28,6 +29,13 @@ public class Given_ScrollView : TestBase
 	public void When_ScrollView_ReadOffset_Button_Works()
 	{
 		NavigateToSample("ScrollView", "Fluent");
+
+		// Scroll the vertical view first so the offset is guaranteed to be > 0.
+		App.WaitForElement("ScrollView_Vertical");
+		App.ScrollDown("ScrollView_Vertical", ScrollStrategy.Gesture);
+		TakeScreenshot("After scroll");
+
+		// Now read the offset.
 		App.WaitForElement("ScrollView_ReadOffset");
 		App.WaitThenTap("ScrollView_ReadOffset");
 		TakeScreenshot("After read offset");
@@ -40,7 +48,9 @@ public class Given_ScrollView : TestBase
 			$"Expected text starting with 'Vertical offset:'; actual: '{text}'");
 
 		var valueStr = text["Vertical offset:".Length..].Trim();
-		if (double.TryParse(valueStr, out var offset))
-			Assert.GreaterOrEqual(offset, 0.0, $"Scroll offset '{valueStr}' must be non-negative");
+		Assert.IsTrue(
+			double.TryParse(valueStr, NumberStyles.Float, CultureInfo.InvariantCulture, out var offset),
+			$"Could not parse '{valueStr}' as a double (invariant culture)");
+		Assert.Greater(offset, 0.0, $"Scroll offset must be > 0 after scrolling; actual: '{valueStr}'");
 	}
 }

@@ -39,10 +39,4 @@ public sealed partial class ItemsViewSamplePage : Page
 		if (display is not null)
 			display.Text = $"Selected count: {sender.SelectedItems.Count}";
 	}
-
-	private void MultipleItemContainer_Loaded(object sender, RoutedEventArgs e)
-	{
-		if (sender is ItemContainer container && container.DataContext is GalleryItem item)
-			AutomationProperties.SetName(container, $"ItemsView_Multiple_{item.Title}");
-	}
 }

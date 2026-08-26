@@ -88,8 +88,8 @@
 									<ItemsView.ItemTemplate>
 										<DataTemplate x:DataType="data:GalleryItem">
 											<ItemContainer Padding="8,4"
-																   IsEnabled="{Binding IsEnabled}"
-																   Loaded="MultipleItemContainer_Loaded">
+																   AutomationProperties.Name="{Binding MultipleAutomationName}"
+																   IsEnabled="{Binding IsEnabled}">
 												<TextBlock Text="{Binding Title}"
 														   Style="{StaticResource BodyStrong}"
 														   TextTrimming="CharacterEllipsis"

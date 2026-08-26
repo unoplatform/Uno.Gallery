@@ -21,6 +21,8 @@ public class GalleryItem
 	/// <summary>Accent brush for the cover tile; parsed from hex at construction time.</summary>
 	public SolidColorBrush Accent { get; }
 	public bool IsEnabled { get; }
+	/// <summary>Stable automation name for ItemsView multiple-selection containers: "ItemsView_Multiple_{Title}".</summary>
+	public string MultipleAutomationName => $"ItemsView_Multiple_{Title}";
 
 	private static Color ParseHexColor(string hex)
 	{

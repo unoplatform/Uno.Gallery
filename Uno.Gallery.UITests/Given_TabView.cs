@@ -36,11 +36,12 @@ public class Given_TabView : TestBase
 		var countBefore = int.Parse(countDisplay.GetDependencyPropertyValue<string>("Text"));
 
 		App.WaitThenTap("TabView_AddTabButton");
+		// Wait for the new tab element before reading the count so the UI has settled.
+		App.WaitForElement("TabView_Dynamic_Tab4");
 		TakeScreenshot("After add tab");
 
 		var countAfter = int.Parse(countDisplay.GetDependencyPropertyValue<string>("Text"));
 		Assert.AreEqual(countBefore + 1, countAfter, "Adding a tab must increment tab count");
-		App.WaitForElement("TabView_Dynamic_Tab4");
 	}
 
 	[Test]
@@ -53,10 +54,11 @@ public class Given_TabView : TestBase
 		var countBefore = int.Parse(countDisplay.GetDependencyPropertyValue<string>("Text"));
 
 		App.WaitThenTap("TabView_Dynamic_Tab2_Close");
+		// Wait for the tab to disappear before reading the count so the UI has settled.
+		App.WaitForNoElement("TabView_Dynamic_Tab2");
 		TakeScreenshot("After close tab");
 
 		var countAfter = int.Parse(countDisplay.GetDependencyPropertyValue<string>("Text"));
 		Assert.AreEqual(countBefore - 1, countAfter, "Closing a tab must decrement tab count");
-		App.WaitForNoElement("TabView_Dynamic_Tab2");
 	}
 }
