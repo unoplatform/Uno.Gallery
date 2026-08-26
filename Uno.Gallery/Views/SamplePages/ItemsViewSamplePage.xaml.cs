@@ -1,9 +1,6 @@
 using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Automation;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Media;
 using Uno.Gallery.Entities.Data;
-using Uno.Gallery.Helpers;
 
 namespace Uno.Gallery.Views.Samples;
 
@@ -24,7 +21,8 @@ public sealed partial class ItemsViewSamplePage : Page
 
 	private void ItemsViewSingle_SelectionChanged(ItemsView sender, ItemsViewSelectionChangedEventArgs e)
 	{
-		var display = sender.FindName("SelectedTitle_Single") as TextBlock;
+		// GetSampleChild is more reliable than FindName across XamlDisplay namescope boundaries.
+		var display = SamplePageLayoutRoot.GetSampleChild<TextBlock>(Design.Fluent, "SelectedTitle_Single");
 		if (display is null) return;
 		var title = (sender.SelectedItem as GalleryItem)?.Title ?? "(none)";
 		display.Text = $"Selected: {title}";
@@ -32,11 +30,30 @@ public sealed partial class ItemsViewSamplePage : Page
 
 	private void ItemsViewMultiple_SelectionChanged(ItemsView sender, ItemsViewSelectionChangedEventArgs e)
 	{
-		var parent = Microsoft.UI.Xaml.Media.VisualTreeHelper.GetParent(sender) as DependencyObject;
-		if (parent is null) return;
-		var display = VisualTreeHelperEx.GetFirstDescendant<TextBlock>(parent,
-			t => AutomationProperties.GetAutomationId(t) == "ItemsView_MultiSelectionCount");
+		var display = SamplePageLayoutRoot.GetSampleChild<TextBlock>(Design.Fluent, "MultiSelectionCountDisplay");
 		if (display is not null)
 			display.Text = $"Selected count: {sender.SelectedItems.Count}";
+	}
+
+	private void SelectFirst_Click(object sender, RoutedEventArgs e)
+	{
+		var iv = SamplePageLayoutRoot.GetSampleChild<ItemsView>(Design.Fluent, "ItemsViewSingle");
+		if (iv is null) return;
+		iv.Select(0);
+		// Belt-and-suspenders: update display directly in case SelectionChanged hasn't propagated yet.
+		var display = SamplePageLayoutRoot.GetSampleChild<TextBlock>(Design.Fluent, "SelectedTitle_Single");
+		if (display is not null)
+			display.Text = $"Selected: {(iv.SelectedItem as GalleryItem)?.Title ?? "(none)"}";
+	}
+
+	private void SelectFirstTwo_Click(object sender, RoutedEventArgs e)
+	{
+		var iv = SamplePageLayoutRoot.GetSampleChild<ItemsView>(Design.Fluent, "ItemsViewMultiple");
+		if (iv is null) return;
+		iv.Select(0);
+		iv.Select(1);
+		var display = SamplePageLayoutRoot.GetSampleChild<TextBlock>(Design.Fluent, "MultiSelectionCountDisplay");
+		if (display is not null)
+			display.Text = $"Selected count: {iv.SelectedItems.Count}";
 	}
 }

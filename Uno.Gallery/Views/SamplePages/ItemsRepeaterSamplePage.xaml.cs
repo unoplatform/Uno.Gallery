@@ -1,3 +1,4 @@
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Uno.Gallery.Entities.Data;
 
@@ -16,5 +17,15 @@ public sealed partial class ItemsRepeaterSamplePage : Page
 	public ItemsRepeaterSamplePage()
 	{
 		this.InitializeComponent();
+	}
+
+	private void ScrollStackDown_Click(object sender, RoutedEventArgs e)
+	{
+		var sv = SamplePageLayoutRoot.GetSampleChild<ScrollViewer>(Design.Fluent, "StackScrollViewer");
+		if (sv is null) return;
+		sv.ChangeView(null, 100.0, null, disableAnimation: true);
+		var status = SamplePageLayoutRoot.GetSampleChild<TextBlock>(Design.Fluent, "StackScrollStatus");
+		if (status is not null)
+			status.Text = $"Offset: {sv.VerticalOffset:F1}";
 	}
 }

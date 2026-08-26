@@ -82,8 +82,11 @@
 						<!-- ScrollPresenter access note -->
 						<smtx:XamlDisplay UniqueKey="ScrollViewSamplePage_Offset"
 										  smtx:XamlDisplayExtensions.Header="Scroll Offset via ScrollPresenter"
-										  smtx:XamlDisplayExtensions.Description="ScrollView.ScrollPresenter exposes the underlying ScrollPresenter. Scroll the view above and press the button to read the current vertical offset.">
+										  smtx:XamlDisplayExtensions.Description="ScrollView.ScrollPresenter exposes the underlying ScrollPresenter. Use the first button to scroll programmatically, then press Read to confirm the current vertical offset.">
 							<StackPanel Spacing="8">
+								<Button AutomationProperties.AutomationId="ScrollView_ScrollDown"
+										Content="Scroll down"
+										Click="ScrollDown_Click" />
 								<Button x:Name="ReadOffsetButton"
 										AutomationProperties.AutomationId="ScrollView_ReadOffset"
 										Content="Read vertical offset"

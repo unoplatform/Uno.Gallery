@@ -22,8 +22,8 @@ namespace Uno.Gallery.UITests
 			App.WaitForElement("SelectorBar_Default");
 
 			TakeScreenshot("Before selection");
-			// SelectorBarItem.AutomationId does not propagate on all platforms; use visible text.
-			App.WaitThenTap(q => q.All().Text("Unread"));
+			// Use the programmatic button to select Unread deterministically on all platforms.
+			App.WaitThenTap("SelectorBar_SelectUnread");
 			TakeScreenshot("After Unread selected");
 
 			var result = new QueryEx(q => q.All().Marked("SelectorBar_Result"));

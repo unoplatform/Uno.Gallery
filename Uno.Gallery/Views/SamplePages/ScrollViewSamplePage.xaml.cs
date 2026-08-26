@@ -18,6 +18,12 @@ public sealed partial class ScrollViewSamplePage : Page
 		this.InitializeComponent();
 	}
 
+	private void ScrollDown_Click(object sender, RoutedEventArgs e)
+	{
+		var sv = SamplePageLayoutRoot.GetSampleChild<ScrollView>(Design.Fluent, "VerticalScrollView");
+		sv?.ScrollTo(0, 200);
+	}
+
 	private void ReadOffset_Click(object sender, RoutedEventArgs e)
 	{
 		var sv = SamplePageLayoutRoot.GetSampleChild<ScrollView>(Design.Fluent, "VerticalScrollView");

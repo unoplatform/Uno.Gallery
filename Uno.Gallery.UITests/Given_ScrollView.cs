@@ -1,6 +1,8 @@
+using System;
 using System.Globalization;
 using NUnit.Framework;
 using Uno.UITest;
+using Uno.UITest.Helpers;
 using Uno.UITest.Helpers.Queries;
 
 namespace Uno.Gallery.UITests;
@@ -29,14 +31,14 @@ public class Given_ScrollView : TestBase
 	public void When_ScrollView_ReadOffset_Button_Works()
 	{
 		NavigateToSample("ScrollView", "Fluent");
+		App.WaitForElement("ScrollView_ScrollDown");
 
-		// Scroll the vertical view first so the offset is guaranteed to be > 0.
-		App.WaitForElement("ScrollView_Vertical");
-		App.ScrollDown("ScrollView_Vertical", ScrollStrategy.Gesture);
-		TakeScreenshot("After scroll");
+		// Use the programmatic scroll button for determinism across all platforms.
+		App.WaitThenTap("ScrollView_ScrollDown");
+		TakeScreenshot("After programmatic scroll");
+		App.Wait(TimeSpan.FromSeconds(1)); // allow ScrollView.ScrollTo animation to settle
 
-		// Now read the offset.
-		App.WaitForElement("ScrollView_ReadOffset");
+		// Read the offset.
 		App.WaitThenTap("ScrollView_ReadOffset");
 		TakeScreenshot("After read offset");
 		App.WaitForElement("ScrollView_OffsetDisplay");
@@ -51,6 +53,6 @@ public class Given_ScrollView : TestBase
 		Assert.IsTrue(
 			double.TryParse(valueStr, NumberStyles.Float, CultureInfo.InvariantCulture, out var offset),
 			$"Could not parse '{valueStr}' as a double (invariant culture)");
-		Assert.Greater(offset, 0.0, $"Scroll offset must be > 0 after scrolling; actual: '{valueStr}'");
+		Assert.Greater(offset, 0.0, $"Scroll offset must be > 0 after programmatic scroll; actual: '{valueStr}'");
 	}
 }

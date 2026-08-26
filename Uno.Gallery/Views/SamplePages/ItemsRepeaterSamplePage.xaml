@@ -9,7 +9,7 @@
 	  mc:Ignorable="d">
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-		<local:SamplePageLayout>
+		<local:SamplePageLayout x:Name="SamplePageLayoutRoot">
 
 			<local:SamplePageLayout.FluentTemplate>
 				<DataTemplate>
@@ -21,6 +21,7 @@
 										  smtx:XamlDisplayExtensions.Header="StackLayout (vertical list)"
 										  smtx:XamlDisplayExtensions.Description="ItemsRepeater with StackLayout — no built-in scrolling, wrap in ScrollViewer.">
 							<ScrollViewer MaxHeight="300"
+										  x:Name="StackScrollViewer"
 										  AutomationProperties.AutomationId="ItemsRepeater_Stack_ScrollViewer">
 								<ItemsRepeater x:Name="StackRepeater"
 											   AutomationProperties.AutomationId="ItemsRepeater_Stack"
@@ -60,6 +61,17 @@
 								</ItemsRepeater>
 							</ScrollViewer>
 						</smtx:XamlDisplay>
+
+						<!-- Programmatic scroll — tap to set a deterministic positive offset via ChangeView -->
+						<StackPanel Spacing="4">
+							<Button AutomationProperties.AutomationId="ItemsRepeater_Stack_ScrollDown"
+									Content="Scroll stack down"
+									Click="ScrollStackDown_Click" />
+							<TextBlock x:Name="StackScrollStatus"
+									   AutomationProperties.AutomationId="ItemsRepeater_Stack_ScrollStatus"
+									   Text="Offset: 0.0"
+									   Style="{ThemeResource CaptionTextBlockStyle}" />
+						</StackPanel>
 
 						<!-- UniformGridLayout -->
 						<smtx:XamlDisplay UniqueKey="ItemsRepeaterSamplePage_Grid"

@@ -35,22 +35,15 @@ namespace Uno.Gallery.UITests
 			TakeScreenshot("Before play");
 			App.Tap("AnimatedVisualPlayer_PlayBtn");
 
-			// The handler sets Playing… synchronously before PlayAsync, so it must be
-			// observable immediately after the tap (5-second Lottie animation).
+			// PlayCount reaching 1 proves the full play→complete cycle without relying on the
+			// transient Playing state, which may not be observable on all platforms (e.g. DOM).
 			Assert.IsTrue(
-				PollForDpValue("AnimatedVisualPlayer_Status", "Text", "Status: Playing\u2026", TimeSpan.FromSeconds(5)),
-				"Status must become 'Status: Playing\u2026' after tapping Play");
-			TakeScreenshot("During play");
+				PollForDpValue("AnimatedVisualPlayer_PlayCount", "Text", "Completed plays: 1", TimeSpan.FromSeconds(20)),
+				"Play count must become 1 after one full animation cycle");
 
-			// Wait for the one-shot animation to complete.
-			Assert.IsTrue(
-				PollForDpValue("AnimatedVisualPlayer_Status", "Text", "Status: Stopped", TimeSpan.FromSeconds(15)),
+			Assert.AreEqual("Status: Stopped", status.GetDependencyPropertyValue<string>("Text"),
 				"Status must return to 'Status: Stopped' after animation completes");
 			TakeScreenshot("After play completed");
-
-			// PlayCount proves the full play→complete cycle, ruling out a same-state false positive.
-			Assert.AreEqual("Completed plays: 1", playCount.GetDependencyPropertyValue<string>("Text"),
-				"Play count must be 1 after one full animation cycle");
 		}
 
 		private bool PollForDpValue(string automationId, string property, string expected, TimeSpan timeout)

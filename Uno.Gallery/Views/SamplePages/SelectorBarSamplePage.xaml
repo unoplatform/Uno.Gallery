@@ -19,7 +19,8 @@
                                           smtx:XamlDisplayExtensions.Description="SelectorBar provides a row of mutually exclusive items that navigate or filter content, similar to a tab strip but styled as a selection bar."
                                           smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
                             <StackPanel Spacing="8">
-                                <SelectorBar AutomationProperties.AutomationId="SelectorBar_Default"
+                                <SelectorBar x:Name="SelectorBarDefault"
+                                             AutomationProperties.AutomationId="SelectorBar_Default"
                                              SelectionChanged="OnSelectorBarSelectionChanged">
                                     <SelectorBarItem AutomationProperties.AutomationId="SelectorBar_Item_All"
                                                      Text="All" />
@@ -33,6 +34,9 @@
                                            AutomationProperties.AutomationId="SelectorBar_Result"
                                            Text="Selected: All"
                                            Style="{StaticResource BodyMedium}" />
+                                <Button AutomationProperties.AutomationId="SelectorBar_SelectUnread"
+                                        Content="Select Unread"
+                                        Click="SelectUnread_Click" />
                             </StackPanel>
                         </smtx:XamlDisplay>
 

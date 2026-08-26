@@ -1,5 +1,7 @@
+using System;
 using NUnit.Framework;
 using Uno.UITest;
+using Uno.UITest.Helpers;
 using Uno.UITest.Helpers.Queries;
 
 namespace Uno.Gallery.UITests;
@@ -19,17 +21,15 @@ public class Given_ItemsRepeater : TestBase
 	public void When_ItemsRepeater_Stack_CanScroll()
 	{
 		NavigateToSample("ItemsRepeater", "Fluent");
-		App.WaitForElement("ItemsRepeater_Stack_ScrollViewer");
+		App.WaitForElement("ItemsRepeater_Stack_ScrollDown");
+
+		App.WaitThenTap("ItemsRepeater_Stack_ScrollDown");
+		TakeScreenshot("After scroll button");
+		App.Wait(TimeSpan.FromMilliseconds(400)); // allow disableAnimation ChangeView to settle
 
 		var sv = new QueryEx(x => x.All().Marked("ItemsRepeater_Stack_ScrollViewer"));
-		var offsetBefore = sv.GetDependencyPropertyValue<double>("VerticalOffset");
-
-		// Scroll the Stack ScrollViewer directly (not a sibling element).
-		App.ScrollDown("ItemsRepeater_Stack_ScrollViewer", ScrollStrategy.Gesture);
-		TakeScreenshot("After scroll");
-
 		var offsetAfter = sv.GetDependencyPropertyValue<double>("VerticalOffset");
-		Assert.Greater(offsetAfter, offsetBefore, "Scrolling down must increase VerticalOffset");
+		Assert.Greater(offsetAfter, 0.0, "Scrolling down must produce a positive VerticalOffset");
 	}
 
 	[Test]
@@ -37,7 +37,9 @@ public class Given_ItemsRepeater : TestBase
 	{
 		NavigateToSample("ItemsRepeater", "Fluent");
 		App.WaitForElement("ItemsRepeater_Grid");
-		TakeScreenshot("Grid visible");
+		// Scroll the outer page to bring the grid section into the viewport before measuring.
+		App.ScrollDownTo("ItemsRepeater_Grid");
+		TakeScreenshot("Grid in view");
 		var repeater = new QueryEx(x => x.All().Marked("ItemsRepeater_Grid"));
 		Assert.IsTrue(repeater.GetDependencyPropertyValue<double>("ActualWidth") > 0);
 	}

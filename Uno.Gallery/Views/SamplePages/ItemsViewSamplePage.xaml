@@ -9,7 +9,7 @@
 	  mc:Ignorable="d">
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-		<local:SamplePageLayout>
+		<local:SamplePageLayout x:Name="SamplePageLayoutRoot">
 
 			<local:SamplePageLayout.FluentTemplate>
 				<DataTemplate>
@@ -64,6 +64,9 @@
 								<TextBlock Text="Note: &quot;Dune&quot; is disabled (IsEnabled=False on its ItemContainer)."
 										   Style="{ThemeResource CaptionTextBlockStyle}"
 										   Foreground="{ThemeResource SystemFillColorCautionBrush}" />
+								<Button AutomationProperties.AutomationId="ItemsView_SelectFirst"
+										Content="Select first"
+										Click="SelectFirst_Click" />
 							</StackPanel>
 						</smtx:XamlDisplay>
 
@@ -72,7 +75,8 @@
 										  smtx:XamlDisplayExtensions.Header="Multiple Selection"
 										  smtx:XamlDisplayExtensions.Description="ItemsView with SelectionMode=Multiple. Each ItemContainer handles its own checked state.">
 							<StackPanel Spacing="8">
-								<TextBlock AutomationProperties.AutomationId="ItemsView_MultiSelectionCount"
+								<TextBlock x:Name="MultiSelectionCountDisplay"
+										   AutomationProperties.AutomationId="ItemsView_MultiSelectionCount"
 										   Text="Selected count: 0" />
 								<ItemsView x:Name="ItemsViewMultiple"
 										   AutomationProperties.AutomationId="ItemsView_Multiple"
@@ -100,6 +104,9 @@
 										</DataTemplate>
 									</ItemsView.ItemTemplate>
 								</ItemsView>
+								<Button AutomationProperties.AutomationId="ItemsView_SelectFirstTwo"
+										Content="Select first two"
+										Click="SelectFirstTwo_Click" />
 							</StackPanel>
 						</smtx:XamlDisplay>
 

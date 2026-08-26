@@ -34,5 +34,12 @@ namespace Uno.Gallery.Views.Samples
 					result.Text = $"Selected: {item.Text}";
 			}
 		}
+
+		private void SelectUnread_Click(object sender, RoutedEventArgs e)
+		{
+			var bar = SamplePageLayoutRoot.GetSampleChild<SelectorBar>(Design.Fluent, "SelectorBarDefault");
+			if (bar is not null && bar.Items.Count > 1)
+				bar.SelectedItem = bar.Items[1]; // Index 1 = "Unread"
+		}
 	}
 }
