@@ -1,0 +1,189 @@
+<!-- Adapted from unoplatform/uno.toolkit.ui samples/Uno.Toolkit.Samples/Content/Controls/DrawerControlSamplePage.xaml
+     and DrawerFlyoutSamplePage.xaml (MIT) -->
+<Page x:Class="Uno.Gallery.Views.SamplePages.DrawerSamplePage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  xmlns:local="using:Uno.Gallery"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  xmlns:smtx="using:ShowMeTheXAML"
+	  xmlns:utu="using:Uno.Toolkit.UI"
+	  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+	  mc:Ignorable="d">
+
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<local:SamplePageLayout IsDesignAgnostic="True">
+			<local:SamplePageLayout.DesignAgnosticTemplate>
+				<DataTemplate>
+					<ScrollViewer HorizontalScrollMode="Disabled">
+						<StackPanel Padding="0,20"
+									Spacing="24">
+
+							<!-- ── DrawerControl ──────────────────────────────── -->
+							<TextBlock Style="{StaticResource TitleTextBlockStyle}"
+									   Text="DrawerControl" />
+							<TextBlock Style="{StaticResource BodyTextBlockStyle}"
+									   Text="Displays an off-canvas pane that can be revealed by swipe gesture or programmatically. Normally used at full-window size so the closed edge aligns with the screen border." />
+
+							<smtx:XamlDisplay UniqueKey="DrawerSamplePage_DrawerControl"
+											  smtx:XamlDisplayExtensions.Header="DrawerControl — left drawer">
+								<Grid>
+									<utu:DrawerControl x:Name="SampleDrawerControl"
+													   IsOpen="{Binding ElementName=DrawerOpenToggle, Path=IsChecked, Mode=TwoWay}"
+													   OpenDirection="Left"
+													   IsGestureEnabled="True"
+													   IsLightDismissEnabled="True"
+													   FitToDrawerContent="True"
+													   MinHeight="240"
+													   AutomationProperties.AutomationId="Drawer_DrawerControl">
+
+										<!-- Main content -->
+										<Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+												CornerRadius="8"
+												Padding="16">
+											<StackPanel Spacing="12">
+												<TextBlock Style="{StaticResource BodyLarge}"
+														   Text="Main content area" />
+												<TextBlock Style="{StaticResource BodyTextBlockStyle}"
+														   Text="Swipe from the left edge or press the button below to open the drawer." />
+												<ToggleButton x:Name="DrawerOpenToggle"
+																AutomationProperties.AutomationId="Drawer_OpenToggle"
+																Content="Open drawer"
+																IsChecked="False" />
+											</StackPanel>
+										</Border>
+
+										<utu:DrawerControl.DrawerContent>
+											<Border Background="{ThemeResource SurfaceVariantBrush}"
+													Padding="16"
+													Width="240">
+												<StackPanel Spacing="12">
+													<TextBlock Style="{StaticResource TitleTextBlockStyle}"
+															   Text="Drawer" />
+													<TextBlock Style="{StaticResource BodyTextBlockStyle}"
+															   Text="Swipe back or tap outside to dismiss." />
+													<Button AutomationProperties.AutomationId="Drawer_CloseButton"
+															Command="{Binding ElementName=DrawerOpenToggle, Path=Command}"
+															Content="Close"
+															Style="{StaticResource FilledButtonStyle}" />
+												</StackPanel>
+											</Border>
+										</utu:DrawerControl.DrawerContent>
+									</utu:DrawerControl>
+								</Grid>
+							</smtx:XamlDisplay>
+
+							<!-- ── DrawerFlyoutPresenter ──────────────────────── -->
+							<TextBlock Style="{StaticResource TitleTextBlockStyle}"
+									   Text="DrawerFlyoutPresenter" />
+							<TextBlock Style="{StaticResource BodyTextBlockStyle}"
+									   Text="Use a Flyout with Placement=Full and a *DrawerFlyoutPresenterStyle to get gesture-enabled drawers as flyouts." />
+
+							<smtx:XamlDisplay UniqueKey="DrawerSamplePage_FlyoutLeft"
+											  smtx:XamlDisplayExtensions.Header="Left drawer flyout">
+								<Button AutomationProperties.AutomationId="Drawer_FlyoutLeft"
+										Content="Left Drawer Flyout">
+									<Button.Flyout>
+										<Flyout FlyoutPresenterStyle="{StaticResource LeftDrawerFlyoutPresenterStyle}"
+												Placement="Full">
+											<StackPanel utu:SafeArea.Insets="VisibleBounds"
+														Background="{ThemeResource SurfaceBrush}"
+														Padding="16"
+														Width="280">
+												<TextBlock Style="{StaticResource TitleTextBlockStyle}"
+														   Text="Left drawer" />
+												<TextBlock Style="{StaticResource BodyTextBlockStyle}"
+														   Text="Content inside the flyout drawer." />
+											</StackPanel>
+										</Flyout>
+									</Button.Flyout>
+								</Button>
+							</smtx:XamlDisplay>
+
+							<smtx:XamlDisplay UniqueKey="DrawerSamplePage_FlyoutBottom"
+											  smtx:XamlDisplayExtensions.Header="Bottom drawer flyout with custom DrawerLength">
+								<StackPanel Spacing="8">
+									<Button AutomationProperties.AutomationId="Drawer_FlyoutBottom_Half"
+											Content="Bottom — half screen (0.5*)">
+										<Button.Flyout>
+											<Flyout Placement="Full">
+												<Flyout.FlyoutPresenterStyle>
+													<Style BasedOn="{StaticResource BottomDrawerFlyoutPresenterStyle}"
+														   TargetType="FlyoutPresenter">
+														<Setter Property="utu:DrawerFlyoutPresenter.DrawerLength"
+																Value="0.5*" />
+													</Style>
+												</Flyout.FlyoutPresenterStyle>
+												<StackPanel utu:SafeArea.Insets="VisibleBounds"
+															Background="{ThemeResource SurfaceBrush}"
+															Padding="16">
+													<TextBlock Style="{StaticResource TitleTextBlockStyle}"
+															   Text="Half-screen bottom drawer" />
+													<TextBlock Style="{StaticResource BodyTextBlockStyle}"
+															   Text="DrawerLength=&quot;0.5*&quot; — half the available height." />
+												</StackPanel>
+											</Flyout>
+										</Button.Flyout>
+									</Button>
+
+									<Button AutomationProperties.AutomationId="Drawer_FlyoutBottom_Fit"
+											Content="Bottom — fit to content (Auto)">
+										<Button.Flyout>
+											<Flyout Placement="Full">
+												<Flyout.FlyoutPresenterStyle>
+													<Style BasedOn="{StaticResource BottomDrawerFlyoutPresenterStyle}"
+														   TargetType="FlyoutPresenter">
+														<Setter Property="utu:DrawerFlyoutPresenter.DrawerLength"
+																Value="Auto" />
+													</Style>
+												</Flyout.FlyoutPresenterStyle>
+												<StackPanel utu:SafeArea.Insets="VisibleBounds"
+															Background="{ThemeResource SurfaceBrush}"
+															Padding="16">
+													<TextBlock Style="{StaticResource TitleTextBlockStyle}"
+															   Text="Fit-to-content drawer" />
+													<TextBlock Style="{StaticResource BodyTextBlockStyle}"
+															   Text="DrawerLength=&quot;Auto&quot; — fits the content." />
+												</StackPanel>
+											</Flyout>
+										</Button.Flyout>
+									</Button>
+								</StackPanel>
+							</smtx:XamlDisplay>
+
+							<smtx:XamlDisplay UniqueKey="DrawerSamplePage_FlyoutCustom"
+											  smtx:XamlDisplayExtensions.Header="Rounded corner drawer with custom overlay">
+								<Button AutomationProperties.AutomationId="Drawer_FlyoutCustom"
+										Content="Rounded Bottom Drawer">
+									<Button.Flyout>
+										<Flyout Placement="Full">
+											<Flyout.FlyoutPresenterStyle>
+												<Style BasedOn="{StaticResource DrawerFlyoutPresenterStyle}"
+													   TargetType="FlyoutPresenter">
+													<Setter Property="CornerRadius"
+															Value="16,16,0,0" />
+													<Setter Property="utu:DrawerFlyoutPresenter.LightDismissOverlayBackground"
+															Value="#80000000" />
+													<Setter Property="utu:DrawerFlyoutPresenter.IsGestureEnabled"
+															Value="True" />
+												</Style>
+											</Flyout.FlyoutPresenterStyle>
+											<StackPanel Background="{ThemeResource SurfaceBrush}"
+														Padding="16">
+												<TextBlock Style="{StaticResource TitleTextBlockStyle}"
+														   Text="Rounded drawer" />
+												<TextBlock Style="{StaticResource BodyTextBlockStyle}"
+														   Text="CornerRadius=16 and custom dark overlay." />
+											</StackPanel>
+										</Flyout>
+									</Button.Flyout>
+								</Button>
+							</smtx:XamlDisplay>
+
+						</StackPanel>
+					</ScrollViewer>
+				</DataTemplate>
+			</local:SamplePageLayout.DesignAgnosticTemplate>
+		</local:SamplePageLayout>
+	</Grid>
+</Page>
