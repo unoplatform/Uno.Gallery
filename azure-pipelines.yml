@@ -53,8 +53,8 @@ stages:
   displayName: 'Validation'
   dependsOn: []
   jobs:
-  - job: Lint_Test_Ignores
-    displayName: 'Lint ignored tests'
+  - job: Validation_Policies
+    displayName: 'Validate repository policies'
     pool:
       vmImage: ubuntu-latest
     steps:
@@ -64,6 +64,11 @@ stages:
       displayName: 'Lint: ignored-test tracking policy'
       inputs:
         filePath: 'build/scripts/lint-test-ignores.ps1'
+        pwsh: true
+    - task: PowerShell@2
+      displayName: 'Lint: localization and accessibility'
+      inputs:
+        filePath: 'build/scripts/lint-localization-accessibility.ps1'
         pwsh: true
     - task: PowerShell@2
       displayName: 'Generate release metadata fixture'

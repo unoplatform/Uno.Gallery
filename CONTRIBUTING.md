@@ -17,6 +17,7 @@ environment, build the project, and submit well-formed changes.
 - [Issue Claiming](#issue-claiming)
 - [Generated Files and Build Outputs](#generated-files-and-build-outputs)
 - [Cupertino Design System](#cupertino-design-system)
+- [Localization and Accessibility](#localization-and-accessibility)
 - [Maintenance and Release Policy](#maintenance-and-release-policy)
 
 ---
@@ -376,6 +377,30 @@ When adding a Cupertino-specific sample, use `SampleCategory.Canary` in
 `[SamplePage]` to prevent it from appearing in stable Release builds.
 
 Full rationale: [docs/decisions/0001-cupertino-containment.md](docs/decisions/0001-cupertino-containment.md)
+
+---
+
+## Localization and Accessibility
+
+Shell and sample-detail chrome use `x:Uid` resources from
+`Uno.Gallery/Strings/en/Resources.resw`. After changing those strings, regenerate
+and validate the pseudo-locale:
+
+```powershell
+pwsh build/scripts/generate-pseudo-resources.ps1
+pwsh build/scripts/lint-localization-accessibility.ps1
+```
+
+Do not hand-edit `Strings/qps-ploc/Resources.resw`; it is generated from English
+with expansion and diacritics. Build with `EnablePseudoLocalization=true` and
+`EnableRtlTestMode=true` to validate the actual resource and right-to-left paths.
+See [localization testing](docs/localization/testing.md).
+
+Interactive controls must retain invariant automation IDs. Localize visible
+labels, `AutomationProperties.Name`, and `AutomationProperties.HelpText`.
+Live-region text changes must raise `AutomationEvents.LiveRegionChanged`.
+Renderer-specific automated and manual expectations are documented in the
+[accessibility matrix](docs/accessibility/renderer-matrix.md).
 
 ---
 

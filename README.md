@@ -39,6 +39,8 @@ sample page, and the PR / commit expectations.
 - [Stable quality checklist](docs/releases/stable-quality-checklist.md)
 - [Compatibility matrix](docs/releases/compatibility-matrix.md)
 - [Native store delivery plan](docs/releases/native-store-delivery-plan.md)
+- [Accessibility renderer matrix](docs/accessibility/renderer-matrix.md)
+- [Localization and RTL testing](docs/localization/testing.md)
 
 ## Acknowledgments
 
