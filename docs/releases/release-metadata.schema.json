@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gallery.platform.uno/schemas/release-metadata-v1.json",
+  "title": "Uno Gallery release metadata",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "generatedAtUtc",
+    "version",
+    "informationalVersion",
+    "commit",
+    "unoSdk",
+    "evidence"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "generatedAtUtc": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "informationalVersion": {
+      "type": "string",
+      "minLength": 1
+    },
+    "commit": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "sourceBranch": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "buildId": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "buildUri": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "unoSdk": {
+      "type": "string",
+      "minLength": 1
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "compatibilityMatrix",
+        "qualityChecklist",
+        "performanceBaseline",
+        "releaseNotesTemplate"
+      ],
+      "properties": {
+        "compatibilityMatrix": {
+          "type": "string"
+        },
+        "qualityChecklist": {
+          "type": "string"
+        },
+        "performanceBaseline": {
+          "type": "string"
+        },
+        "releaseNotesTemplate": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

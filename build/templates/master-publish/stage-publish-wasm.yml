@@ -1,7 +1,9 @@
 ﻿stages:
 - stage: WebAssembly_Staging_Publish
   displayName: 'WebAssembly Staging'
-  dependsOn: WebAssembly
+  dependsOn:
+  - WebAssembly
+  - WebAssembly_Tests
 
   jobs:
   - deployment: 'WebAssembly_Publish_DOM'
@@ -65,7 +67,9 @@
 
 - stage: WebAssembly_Production_Publish
   displayName: 'Uno Gallery Wasm Production'
-  dependsOn: WebAssembly_Staging_Publish
+  dependsOn:
+  - WebAssembly_Staging_Publish
+  - Release_Validation
   jobs:
 
   - deployment: 'WebAssembly_Publish_SKIA'

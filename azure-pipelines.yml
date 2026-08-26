@@ -65,6 +65,22 @@ stages:
       inputs:
         filePath: 'build/scripts/lint-test-ignores.ps1'
         pwsh: true
+    - task: PowerShell@2
+      displayName: 'Generate release metadata fixture'
+      inputs:
+        targetType: filePath
+        filePath: 'build/scripts/write-release-metadata.ps1'
+        pwsh: true
+        arguments: >
+          -OutputPath "$(Agent.TempDirectory)/release-metadata.json"
+          -Version "0.0.0-ci"
+          -InformationalVersion "0.0.0-ci"
+    - pwsh: |
+        $json = Get-Content "$(Agent.TempDirectory)/release-metadata.json" -Raw
+        if (-not ($json | Test-Json -SchemaFile "docs/releases/release-metadata.schema.json")) {
+          throw "Release metadata fixture does not match schema version 1."
+        }
+      displayName: 'Validate release metadata fixture'
 
 - stage: Android
   displayName: 'Android'
@@ -279,7 +295,74 @@ stages:
   - template: build/templates/canary-publish/stage-publish-ios-canary.yml
   - template: build/templates/canary-publish/stage-publish-android-canary.yml
 
-- ${{ if startsWith(variables['Build.SourceBranch'], 'refs/heads/master') }}:
+- ${{ if or(eq(variables['Build.SourceBranch'], 'refs/heads/master'), startsWith(variables['Build.SourceBranch'], 'refs/heads/release/stable/')) }}:
+  - stage: Release_Validation
+    displayName: 'Release Validation'
+    dependsOn:
+    - Validation
+    - Android
+    - Windows
+    - Skia_Desktop
+    - Apple
+    - WebAssembly
+    - WebAssembly_Tests
+    - iOS_Tests
+    - Android_Tests
+    - Android_Skia_NativeAOT_Instrumentation_Tests
+    condition: succeeded()
+    jobs:
+    - job: Publish_Release_Metadata
+      displayName: 'Publish release metadata'
+      pool:
+        vmImage: ubuntu-latest
+      steps:
+      - checkout: self
+        fetchDepth: 0
+      - task: UseDotNet@2
+        displayName: 'Use .NET'
+        inputs:
+          packageType: sdk
+          version: '10.0.102'
+          includePreviewVersions: true
+      - pwsh: |
+          $toolPath = "$(Agent.TempDirectory)/nbgv"
+          dotnet tool install nbgv --tool-path $toolPath --version 3.6.139
+          if ($LASTEXITCODE -ne 0) {
+            throw "Unable to install NBGV."
+          }
+          & "$toolPath/nbgv" cloud -a
+          if ($LASTEXITCODE -ne 0) {
+            throw "Unable to set NBGV cloud build variables."
+          }
+        displayName: 'Version with NBGV'
+      - pwsh: |
+          $informationalVersion = "$(NBGV_SemVer2)+$(NBGV_GitCommitId)-$(NBGV_BuildingRef)".Replace("refs/heads/", "").Replace("/", "-")
+          Write-Host "##vso[task.setvariable variable=NBGV_InformationalVersion;]$informationalVersion"
+          Write-Host "Informational Version: $informationalVersion"
+        displayName: 'Generate informational version'
+      - task: PowerShell@2
+        displayName: 'Generate release metadata'
+        inputs:
+          targetType: filePath
+          pwsh: true
+          filePath: 'build/scripts/write-release-metadata.ps1'
+          arguments: >
+            -OutputPath "$(Build.ArtifactStagingDirectory)/release-metadata.json"
+            -Version "$(NBGV_SemVer2)"
+            -InformationalVersion "$(NBGV_InformationalVersion)"
+      - pwsh: |
+          $json = Get-Content "$(Build.ArtifactStagingDirectory)/release-metadata.json" -Raw
+          if (-not ($json | Test-Json -SchemaFile "docs/releases/release-metadata.schema.json")) {
+            throw "Release metadata does not match schema version 1."
+          }
+        displayName: 'Validate release metadata'
+      - task: PublishPipelineArtifact@1
+        displayName: 'Publish release metadata'
+        inputs:
+          targetPath: '$(Build.ArtifactStagingDirectory)/release-metadata.json'
+          artifactName: 'release-metadata'
+
+- ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/master') }}:
   - template: build/templates/master-publish/stage-publish-wasm.yml
   - template: build/templates/master-publish/stage-publish-ios.yml
   - template: build/templates/master-publish/stage-publish-android.yml

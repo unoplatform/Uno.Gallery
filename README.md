@@ -32,6 +32,14 @@ sample page, and the PR / commit expectations.
 > [docs/decisions/0001-cupertino-containment.md](docs/decisions/0001-cupertino-containment.md)
 > for the rationale and limitations.
 
+## Maintenance and releases
+
+- [Backlog triage](docs/maintainers/backlog-triage.md)
+- [Dependency freshness policy](docs/maintainers/dependency-policy.md)
+- [Stable quality checklist](docs/releases/stable-quality-checklist.md)
+- [Compatibility matrix](docs/releases/compatibility-matrix.md)
+- [Native store delivery plan](docs/releases/native-store-delivery-plan.md)
+
 ## Acknowledgments
 
 - [Uno Platform](https://platform.uno)

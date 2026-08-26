@@ -17,6 +17,7 @@ environment, build the project, and submit well-formed changes.
 - [Issue Claiming](#issue-claiming)
 - [Generated Files and Build Outputs](#generated-files-and-build-outputs)
 - [Cupertino Design System](#cupertino-design-system)
+- [Maintenance and Release Policy](#maintenance-and-release-policy)
 
 ---
 
@@ -375,3 +376,26 @@ When adding a Cupertino-specific sample, use `SampleCategory.Canary` in
 `[SamplePage]` to prevent it from appearing in stable Release builds.
 
 Full rationale: [docs/decisions/0001-cupertino-containment.md](docs/decisions/0001-cupertino-containment.md)
+
+---
+
+## Maintenance and Release Policy
+
+Maintainers classify every issue using the process in
+[docs/maintainers/backlog-triage.md](docs/maintainers/backlog-triage.md).
+The issue-classification and pull-request first-response targets are monitored
+by the scheduled `Triage SLA` workflow; automation reports breaches but does not
+infer priority, assign owners, or close work. Critical-issue investigation is a
+manual maintainer gate.
+
+Dependency updates follow
+[docs/maintainers/dependency-policy.md](docs/maintainers/dependency-policy.md).
+Stable release candidates must complete
+[docs/releases/stable-quality-checklist.md](docs/releases/stable-quality-checklist.md)
+and publish the current
+[compatibility matrix](docs/releases/compatibility-matrix.md).
+
+Store credentials, certificates, provisioning profiles, and service-connection
+secrets must remain in protected CI environments. See
+[docs/releases/native-store-delivery-plan.md](docs/releases/native-store-delivery-plan.md)
+for channel, promotion, and rollback responsibilities.
