@@ -91,9 +91,9 @@ namespace Uno.Gallery.Views.Samples
 			{
 				double value = 0;
 				if (resources.TryGetValue(name, out var raw))
-					value = raw is double d ? d
+					value = raw is Microsoft.UI.Xaml.CornerRadius cr ? cr.TopLeft
+						  : raw is double d ? d
 						  : raw is float f ? (double)f
-						  : raw is Microsoft.UI.Xaml.CornerRadius cr ? cr.TopLeft
 						  : 0;
 
 				var valueText = value >= 9999 ? "∞ (pill)" : value > 0 ? $"{value:0.#} px" : "—";
@@ -106,16 +106,19 @@ namespace Uno.Gallery.Views.Samples
 		}
 
 		// ─── Token name tables ─────────────────────────────────────────────────
+		// Keys verified against Uno.Themes 7.0.3 BaseTheme.ScaleGeneration.cs.
+		// Space* values are doubles; Radius*CornerRadius values are CornerRadius structs.
 
 		private static readonly string[] SpacingTokenNames =
 		{
-			"Space100", "Space200", "Space300", "Space400",
-			"Space500", "Space600", "Space700", "Space800",
+			"Space050", "Space100", "Space200", "Space300",
+			"Space400", "Space500", "Space600", "Space800",
 		};
 
 		private static readonly string[] ShapeTokenNames =
 		{
-			"Radius100", "Radius200", "Radius300", "Radius400", "RadiusFull",
+			"Radius050CornerRadius", "Radius100CornerRadius", "Radius300CornerRadius",
+			"Radius400CornerRadius", "Radius500CornerRadius", "RadiusFullCornerRadius",
 		};
 	}
 
@@ -128,6 +131,9 @@ namespace Uno.Gallery.Views.Samples
 		public string ValueText { get; }
 		public double BarWidth { get; }
 		public Microsoft.UI.Xaml.CornerRadius CornerRadiusPreview { get; }
+
+		// Used by UITests to assert the resolved value displayed in the Value column.
+		public string ValueAutomationId => AutomationId + "_Value";
 
 		public TokenRow(string name, string automationId, string valueText,
 			double barWidth, Microsoft.UI.Xaml.CornerRadius cornerRadiusPreview)

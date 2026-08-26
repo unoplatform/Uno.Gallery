@@ -181,18 +181,19 @@
 													   Style="{StaticResource TokenLabelStyle}" />
 											<TextBlock Grid.Column="1"
 													   Text="{Binding ValueText}"
-													   Style="{StaticResource TokenValueStyle}" />
-											<Border Grid.Column="2"
-													Background="{ThemeResource PrimaryBrush}"
-													Height="6"
-													CornerRadius="3"
-													VerticalAlignment="Center"
-													Width="{Binding BarWidth}"
-													HorizontalAlignment="Left" />
-										</Grid>
-									</DataTemplate>
-								</ItemsControl.ItemTemplate>
-							</ItemsControl>
+														   AutomationProperties.AutomationId="{Binding ValueAutomationId}"
+														   Style="{StaticResource TokenValueStyle}" />
+												<Border Grid.Column="2"
+														Background="{ThemeResource PrimaryBrush}"
+														Height="6"
+														CornerRadius="3"
+														VerticalAlignment="Center"
+														Width="{Binding BarWidth}"
+														HorizontalAlignment="Left" />
+											</Grid>
+										</DataTemplate>
+									</ItemsControl.ItemTemplate>
+								</ItemsControl>
 
 							<!-- SHAPE TOKENS -->
 							<TextBlock Text="Shape Tokens (Radius*)"
@@ -201,7 +202,7 @@
 							<TextBlock Style="{StaticResource BodySmall}"
 									   Foreground="{ThemeResource OnSurfaceVariantBrush}"
 									   TextWrapping="WrapWholeWords"
-									   Text="Shape tokens derive from DefaultCornerRadius (default 4 px). Radius200 = 2x base, Radius400 = 4x base. RadiusFull = 9999 (pill)." />
+										   Text="Shape tokens derive from DefaultCornerRadius (default 4 px). Each Radius*CornerRadius key is a CornerRadius struct — Radius100CornerRadius = 1× base. RadiusFullCornerRadius = 9999 (pill)." />
 
 							<ItemsControl AutomationProperties.AutomationId="ShapeTokensList"
 										  ItemsSource="{Binding Data.ShapeTokens}">
@@ -210,7 +211,7 @@
 										<Grid ColumnSpacing="16"
 											  Margin="0,4">
 											<Grid.ColumnDefinitions>
-												<ColumnDefinition Width="120" />
+													<ColumnDefinition Width="180" />
 												<ColumnDefinition Width="64" />
 												<ColumnDefinition />
 											</Grid.ColumnDefinitions>
@@ -220,17 +221,18 @@
 													   Style="{StaticResource TokenLabelStyle}" />
 											<TextBlock Grid.Column="1"
 													   Text="{Binding ValueText}"
-													   Style="{StaticResource TokenValueStyle}" />
-											<Border Grid.Column="2"
-													Background="{ThemeResource SecondaryContainerBrush}"
-													Height="24"
-													Width="80"
-													CornerRadius="{Binding CornerRadiusPreview}"
-													HorizontalAlignment="Left" />
-										</Grid>
-									</DataTemplate>
-								</ItemsControl.ItemTemplate>
-							</ItemsControl>
+														   AutomationProperties.AutomationId="{Binding ValueAutomationId}"
+														   Style="{StaticResource TokenValueStyle}" />
+												<Border Grid.Column="2"
+														Background="{ThemeResource SecondaryContainerBrush}"
+														Height="24"
+														Width="80"
+														CornerRadius="{Binding CornerRadiusPreview}"
+														HorizontalAlignment="Left" />
+											</Grid>
+										</DataTemplate>
+									</ItemsControl.ItemTemplate>
+								</ItemsControl>
 
 							<!-- TYPOGRAPHY TOKENS -->
 							<TextBlock Text="Typography Scale"

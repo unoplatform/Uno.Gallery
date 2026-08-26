@@ -33,7 +33,7 @@
 										 IsClosable="False"
 										 Severity="Warning"
 										 AutomationProperties.AutomationId="MultiWindowWarning"
-										 Message="Multiple windows have this page open. Only the window that last changed the seed will restore it on leave; other windows will keep the new seed." />
+											 Message="Multiple windows have this page open. Seed changes apply globally across all windows. The original seed is restored when all windows leave this page." />
 
 							<!-- Seed color picker -->
 							<StackPanel Spacing="8">
