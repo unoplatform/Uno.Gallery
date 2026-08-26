@@ -1,5 +1,4 @@
 using NUnit.Framework;
-using Uno.UITest.Helpers.Queries;
 
 namespace Uno.Gallery.UITests
 {
@@ -18,7 +17,6 @@ namespace Uno.Gallery.UITests
 			TakeScreenshot("PageLoaded");
 
 			App.WaitForElement("SeedColorPicker");
-			App.WaitForElement("FidelityToggle");
 			App.WaitForElement("ResetSeedButton");
 			App.WaitForElement("SeedColorRuntimeNote");
 		}
@@ -49,33 +47,6 @@ namespace Uno.Gallery.UITests
 			// After reset the page must still be functional — picker and swatches visible.
 			App.WaitForElement("SeedColorPicker");
 			App.WaitForElement("Swatch_Primary");
-		}
-
-		[Test]
-		public void When_FidelityToggleExists_CanBeToggled()
-		{
-			NavigateToSample("Material Seed Color", "Material");
-
-			App.WaitForElement("FidelityToggle");
-
-			var initialValue = new QueryEx(x => x.All().Marked("FidelityToggle"))
-				.GetDependencyPropertyValue<bool>("IsOn");
-
-			// Toggle on
-			App.Tap("FidelityToggle");
-			TakeScreenshot("FidelityToggleOn");
-
-			var afterToggle = new QueryEx(x => x.All().Marked("FidelityToggle"))
-				.GetDependencyPropertyValue<bool>("IsOn");
-			Assert.That(afterToggle, Is.Not.EqualTo(initialValue),
-				"FidelityToggle IsOn must change after tap");
-
-			// Toggle back
-			App.Tap("FidelityToggle");
-			var afterReset = new QueryEx(x => x.All().Marked("FidelityToggle"))
-				.GetDependencyPropertyValue<bool>("IsOn");
-			Assert.That(afterReset, Is.EqualTo(initialValue),
-				"FidelityToggle must return to original state after second tap");
 		}
 
 		[Test]

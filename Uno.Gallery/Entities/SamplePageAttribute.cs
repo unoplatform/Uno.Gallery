@@ -70,7 +70,9 @@ namespace Uno.Gallery
 		public string? ReviewedOn { get; set; }
 
 		/// <summary>
-		/// Titles of related samples for cross-linking in the catalog.
+		/// URL-friendly slugs of related samples for cross-linking in the catalog.
+		/// Each entry must exactly match (ordinal, lowercase) the final slug of another
+		/// sample — either the slug derived from its title or its explicit <see cref="Slug"/>.
 		/// </summary>
 		public string[]? RelatedSamples { get; set; }
 	}

@@ -28,7 +28,8 @@ namespace Uno.Gallery.Views.Samples
 		DataType = typeof(DesignTokensSamplePageViewModel),
 		Tags = new[] { "material", "tokens", "spacing", "shape", "density", "typography" },
 		Status = SampleStatus.Stable,
-		SortOrder = 11)]
+		SortOrder = 11,
+		RelatedSamples = new[] { "material-seed-color" })]
 	public sealed partial class DesignTokensSamplePage : Page
 	{
 		public DesignTokensSamplePage()

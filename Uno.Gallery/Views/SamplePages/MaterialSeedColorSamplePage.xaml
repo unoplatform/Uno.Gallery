@@ -28,6 +28,13 @@
 									 AutomationProperties.AutomationId="SeedColorRuntimeNote"
 									 Message="Seed color changes apply app-wide and are reset on leaving this page." />
 
+								<!-- Multi-window warning: only visible when multiple instances of this page are live -->
+								<InfoBar IsOpen="{Binding Data.IsMultiWindowWarningVisible}"
+										 IsClosable="False"
+										 Severity="Warning"
+										 AutomationProperties.AutomationId="MultiWindowWarning"
+										 Message="Multiple windows have this page open. Only the window that last changed the seed will restore it on leave; other windows will keep the new seed." />
+
 							<!-- Seed color picker -->
 							<StackPanel Spacing="8">
 								<TextBlock Style="{StaticResource LabelLarge}"
@@ -43,7 +50,7 @@
 
 							<!-- Reset button -->
 							<Button AutomationProperties.AutomationId="ResetSeedButton"
-									Content="Reset to Default Seed"
+									Content="Reset to App Seed"
 									Command="{Binding Data.ResetCommand}"
 									Style="{StaticResource MaterialOutlinedButtonStyle}" />
 
