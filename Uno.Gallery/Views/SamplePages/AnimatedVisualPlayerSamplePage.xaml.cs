@@ -50,7 +50,7 @@ namespace Uno.Gallery.Views.Samples
 				if (statusText != null) statusText.Text = "Status: Playing\u2026";
 				await player.PlayAsync(0, 1, looped: false);
 				_animationPlayCount++;
-				if (countText != null) countText.Text = $"PlayCount: {_animationPlayCount}";
+				if (countText != null) countText.Text = $"Completed plays: {_animationPlayCount}";
 				if (statusText != null) statusText.Text = "Status: Stopped";
 			}
 		}

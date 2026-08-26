@@ -9,8 +9,7 @@ namespace Uno.Gallery.Views.Samples
 		Tags = new[] { "layout", "disclosure", "toggle", "container" },
 		Status = SampleStatus.Stable,
 		Owner = "unoplatform",
-		ReviewedOn = "2026-08-26",
-		RelatedSamples = new[] { "teachingtip" })]
+		ReviewedOn = "2026-08-26")]
 	public sealed partial class ExpanderSamplePage : Page
 	{
 		private const string Description =

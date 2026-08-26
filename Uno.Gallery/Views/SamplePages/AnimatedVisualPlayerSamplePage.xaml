@@ -40,11 +40,10 @@
                                            AutomationProperties.AutomationId="AnimatedVisualPlayer_Status"
                                            Text="Status: Stopped"
                                            Style="{StaticResource BodyMedium}" />
-                                <!-- Hidden counter for UITest deterministic transition proof -->
                                 <TextBlock x:Name="AnimPlayCount"
                                            AutomationProperties.AutomationId="AnimatedVisualPlayer_PlayCount"
-                                           Text="PlayCount: 0"
-                                           Visibility="Collapsed" />
+                                           Text="Completed plays: 0"
+                                           Style="{StaticResource BodySmall}" />
                             </StackPanel>
                         </smtx:XamlDisplay>
 

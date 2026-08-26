@@ -29,7 +29,7 @@ namespace Uno.Gallery.UITests
 
 			Assert.AreEqual("Status: Stopped", status.GetDependencyPropertyValue<string>("Text"),
 				"Initial status must be Stopped before play");
-			Assert.AreEqual("PlayCount: 0", playCount.GetDependencyPropertyValue<string>("Text"),
+			Assert.AreEqual("Completed plays: 0", playCount.GetDependencyPropertyValue<string>("Text"),
 				"Initial play count must be zero");
 
 			TakeScreenshot("Before play");
@@ -49,8 +49,8 @@ namespace Uno.Gallery.UITests
 			TakeScreenshot("After play completed");
 
 			// PlayCount proves the full play→complete cycle, ruling out a same-state false positive.
-			Assert.AreEqual("PlayCount: 1", playCount.GetDependencyPropertyValue<string>("Text"),
-				"PlayCount must be 1 after one full animation cycle");
+			Assert.AreEqual("Completed plays: 1", playCount.GetDependencyPropertyValue<string>("Text"),
+				"Play count must be 1 after one full animation cycle");
 		}
 
 		private bool PollForDpValue(string automationId, string property, string expected, TimeSpan timeout)
