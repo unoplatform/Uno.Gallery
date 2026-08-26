@@ -51,7 +51,9 @@ namespace Uno.Gallery.UITests
 		{
 			NavigateToSample("Drawer");
 
-			// The DrawerControl should start closed
+			// Wait for the DrawerControl to be present before reading its DP
+			App.WaitForElement(q => q.All().Marked("Drawer_DrawerControl"));
+
 			var drawer = new QueryEx(x => x.All().Marked("Drawer_DrawerControl"));
 			Assert.IsFalse(drawer.GetDependencyPropertyValue<bool>("IsOpen"),
 				"DrawerControl should be closed initially");
@@ -66,6 +68,32 @@ namespace Uno.Gallery.UITests
 
 			Assert.IsTrue(drawer.GetDependencyPropertyValue<bool>("IsOpen"),
 				"DrawerControl should be open after tapping the toggle");
+		}
+
+		[Test]
+		public void When_CloseButton_Clicked_DrawerCloses()
+		{
+			NavigateToSample("Drawer");
+
+			// Open the drawer first
+			App.WaitForElement(q => q.All().Marked("Drawer_DrawerControl"));
+			App.WaitThenTap("Drawer_OpenToggle");
+			App.Wait(TimeSpan.FromSeconds(1));
+
+			var drawer = new QueryEx(x => x.All().Marked("Drawer_DrawerControl"));
+			Assert.IsTrue(drawer.GetDependencyPropertyValue<bool>("IsOpen"),
+				"DrawerControl should be open before testing close");
+
+			TakeScreenshot("Drawer open");
+
+			// Click the close button inside the drawer pane
+			App.WaitThenTap("Drawer_CloseButton");
+			App.Wait(TimeSpan.FromSeconds(1));
+
+			TakeScreenshot("After close");
+
+			Assert.IsFalse(drawer.GetDependencyPropertyValue<bool>("IsOpen"),
+				"DrawerControl should be closed after tapping the Close button");
 		}
 	}
 
@@ -82,7 +110,7 @@ namespace Uno.Gallery.UITests
 		}
 
 		[Test]
-		public void When_LoadButton_Clicked_ProgressRing_Appears()
+		public void When_LoadButton_Clicked_PageDoesNotCrash()
 		{
 			NavigateToSample("LoadingView");
 
@@ -92,9 +120,9 @@ namespace Uno.Gallery.UITests
 			App.WaitThenTap("LoadingView_LoadButton");
 			App.Wait(TimeSpan.FromMilliseconds(500));
 
-			TakeScreenshot("During load (progress ring expected)");
+			TakeScreenshot("During load");
 
-			// After the 2-second delay the ring disappears; just verify page didn't crash
+			// After the 2-second delay the loading overlay clears; verify the page is still alive
 			App.WaitForElement(q => q.All().Marked("LoadingView_Basic"), timeout: TimeSpan.FromSeconds(10));
 		}
 	}
@@ -158,6 +186,8 @@ namespace Uno.Gallery.UITests
 		{
 			NavigateToSample("ZoomContentControl");
 
+			App.WaitForElement(q => q.All().Marked("ZoomContentControl_Basic"));
+
 			var zoomControl = new QueryEx(x => x.All().Marked("ZoomContentControl_Basic"));
 			var initialZoom = zoomControl.GetDependencyPropertyValue<double>("ZoomLevel");
 
@@ -178,7 +208,8 @@ namespace Uno.Gallery.UITests
 		{
 			NavigateToSample("ZoomContentControl");
 
-			// Zoom in first, then reset
+			// Wait for buttons before tapping, then zoom in first and reset
+			App.WaitForElement(q => q.All().Marked("ZoomContentControl_ZoomIn"));
 			App.WaitThenTap("ZoomContentControl_ZoomIn");
 			App.Wait(TimeSpan.FromMilliseconds(300));
 			App.WaitThenTap("ZoomContentControl_Reset");
@@ -186,6 +217,7 @@ namespace Uno.Gallery.UITests
 
 			TakeScreenshot("After reset");
 
+			App.WaitForElement(q => q.All().Marked("ZoomContentControl_Basic"));
 			var zoomControl = new QueryEx(x => x.All().Marked("ZoomContentControl_Basic"));
 			var zoom = zoomControl.GetDependencyPropertyValue<double>("ZoomLevel");
 			Assert.AreEqual(1.0, zoom, delta: 0.01, "ZoomLevel should return to 1 after reset");

@@ -12,7 +12,8 @@
 	  mc:Ignorable="d">
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-		<local:SamplePageLayout IsDesignAgnostic="True">
+		<local:SamplePageLayout x:Name="SamplePageLayout"
+								IsDesignAgnostic="True">
 			<local:SamplePageLayout.DesignAgnosticTemplate>
 				<DataTemplate>
 					<ScrollViewer HorizontalScrollMode="Disabled">
@@ -62,8 +63,8 @@
 															   Text="Drawer" />
 													<TextBlock Style="{StaticResource BodyTextBlockStyle}"
 															   Text="Swipe back or tap outside to dismiss." />
-													<Button AutomationProperties.AutomationId="Drawer_CloseButton"
-															Command="{Binding ElementName=DrawerOpenToggle, Path=Command}"
+													<Button x:Name="DrawerCloseButton"
+																AutomationProperties.AutomationId="Drawer_CloseButton"
 															Content="Close"
 															Style="{StaticResource FilledButtonStyle}" />
 												</StackPanel>

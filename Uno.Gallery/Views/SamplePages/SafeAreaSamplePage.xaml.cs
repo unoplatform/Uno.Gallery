@@ -11,7 +11,7 @@ namespace Uno.Gallery.Views.SamplePages
 		Status = SampleStatus.Stable,
 		Owner = "unoplatform",
 		ReviewedOn = "2026-08-26",
-		RelatedSamples = new[] { "Drawer" },
+		RelatedSamples = new[] { "drawer" },
 		SortOrder = 50)]
 	public sealed partial class SafeAreaSamplePage : Page
 	{

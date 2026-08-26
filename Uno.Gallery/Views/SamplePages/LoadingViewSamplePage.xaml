@@ -11,7 +11,8 @@
 	  mc:Ignorable="d">
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-		<local:SamplePageLayout IsDesignAgnostic="True">
+		<local:SamplePageLayout x:Name="SamplePageLayout"
+								IsDesignAgnostic="True">
 			<local:SamplePageLayout.DesignAgnosticTemplate>
 				<DataTemplate>
 					<ScrollViewer HorizontalScrollMode="Disabled">
@@ -22,7 +23,8 @@
 							<smtx:XamlDisplay UniqueKey="LoadingViewSamplePage_Basic"
 											  smtx:XamlDisplayExtensions.Header="LoadingView with ILoadable source">
 								<StackPanel Spacing="12">
-									<utu:LoadingView AutomationProperties.AutomationId="LoadingView_Basic"
+									<utu:LoadingView x:Name="BasicLoadingView"
+												 AutomationProperties.AutomationId="LoadingView_Basic"
 													 LoadingContent="Fetching data…">
 										<utu:LoadingView.Source>
 											<utu:CompositeLoadableSource>
@@ -64,7 +66,8 @@
 											HorizontalAlignment="Center"
 											Style="{StaticResource FilledButtonStyle}" />
 
-									<ToggleSwitch AutomationProperties.AutomationId="LoadingView_TransitionsToggle"
+									<ToggleSwitch x:Name="TransitionsToggle"
+												  AutomationProperties.AutomationId="LoadingView_TransitionsToggle"
 												  Header="UseTransitions" />
 								</StackPanel>
 							</smtx:XamlDisplay>
@@ -105,16 +108,10 @@
 										</Border>
 									</utu:LoadingView>
 
-									<StackPanel Orientation="Horizontal"
-												Spacing="8"
-												HorizontalAlignment="Center">
-										<Button AutomationProperties.AutomationId="LoadingView_ReloadFast"
-												Command="{Binding Data.LoadCommand}"
-												Content="Fast (2 s)" />
-										<Button AutomationProperties.AutomationId="LoadingView_ReloadSlow"
-												Command="{Binding Data.SlowLoadCommand}"
-												Content="Slow (4 s)" />
-									</StackPanel>
+									<Button AutomationProperties.AutomationId="LoadingView_ReloadAll"
+											Command="{Binding Data.LoadAllCommand}"
+											Content="Load All (fast 2 s + slow 4 s)"
+											HorizontalAlignment="Center" />
 								</StackPanel>
 							</smtx:XamlDisplay>
 

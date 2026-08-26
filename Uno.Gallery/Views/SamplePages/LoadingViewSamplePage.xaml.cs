@@ -2,9 +2,11 @@
 using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Uno.Gallery;
 using Uno.Gallery.ViewModels;
+using Uno.Toolkit.UI;
 
 namespace Uno.Gallery.Views.SamplePages
 {
@@ -20,9 +22,31 @@ namespace Uno.Gallery.Views.SamplePages
 		SortOrder = 30)]
 	public sealed partial class LoadingViewSamplePage : Page
 	{
+		private LoadingView? _basicLoadingView;
+		private ToggleSwitch? _transitionsToggle;
+
 		public LoadingViewSamplePage()
 		{
 			this.InitializeComponent();
+			this.Loaded += OnLoaded;
+		}
+
+		private void OnLoaded(object sender, RoutedEventArgs e)
+		{
+			_basicLoadingView = SamplePageLayout.GetSampleChild<LoadingView>(Design.Agnostic, "BasicLoadingView");
+			_transitionsToggle = SamplePageLayout.GetSampleChild<ToggleSwitch>(Design.Agnostic, "TransitionsToggle");
+
+			if (_transitionsToggle is not null && _basicLoadingView is not null)
+			{
+				_transitionsToggle.IsOn = _basicLoadingView.UseTransitions;
+				_transitionsToggle.Toggled += OnTransitionsToggled;
+			}
+		}
+
+		private void OnTransitionsToggled(object sender, RoutedEventArgs e)
+		{
+			if (_basicLoadingView is not null && _transitionsToggle is not null)
+				_basicLoadingView.UseTransitions = _transitionsToggle.IsOn;
 		}
 	}
 
@@ -34,11 +58,17 @@ namespace Uno.Gallery.Views.SamplePages
 
 		public LoadingAsyncCommand LoadCommand { get; }
 		public LoadingAsyncCommand SlowLoadCommand { get; }
+		public ICommand LoadAllCommand { get; }
 
 		public LoadingViewSampleViewModel()
 		{
 			LoadCommand = new LoadingAsyncCommand(() => SimulateLoad(2_000, t => ResultText = $"Loaded at {t:HH:mm:ss}"));
 			SlowLoadCommand = new LoadingAsyncCommand(() => SimulateLoad(4_000, t => SlowResultText = $"Slow-loaded at {t:HH:mm:ss}"));
+			LoadAllCommand = new RelayCommand(() =>
+			{
+				if (LoadCommand.CanExecute(null)) LoadCommand.Execute(null);
+				if (SlowLoadCommand.CanExecute(null)) SlowLoadCommand.Execute(null);
+			});
 		}
 
 		private static async Task SimulateLoad(int delayMs, Action<DateTime> onCompleted)
@@ -91,6 +121,19 @@ namespace Uno.Gallery.Views.SamplePages
 					IsExecuting = false;
 				}
 			}
+		}
+
+		private sealed class RelayCommand : ICommand
+		{
+			private readonly Action _execute;
+
+			public event EventHandler? CanExecuteChanged;
+
+			public RelayCommand(Action execute) => _execute = execute;
+
+			public bool CanExecute(object? parameter) => true;
+
+			public void Execute(object? parameter) => _execute();
 		}
 	}
 }
