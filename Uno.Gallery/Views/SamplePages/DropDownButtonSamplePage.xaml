@@ -70,7 +70,8 @@
                                                 IsEnabled="False">
                                     <DropDownButton.Flyout>
                                         <MenuFlyout>
-                                            <MenuFlyoutItem Text="PDF" />
+                                            <MenuFlyoutItem AutomationProperties.AutomationId="DropDownButton_Disabled_FlyoutItem_PDF"
+                                                            Text="PDF" />
                                             <MenuFlyoutItem Text="CSV" />
                                         </MenuFlyout>
                                     </DropDownButton.Flyout>

@@ -27,13 +27,13 @@ namespace Uno.Gallery.UITests
 			TakeScreenshot("IsExpanded = True");
 			Assert.IsTrue(expander.GetDependencyPropertyValue<bool>("IsExpanded"));
 
-			// Collapse it
-			App.Tap("Expander_Default");
+			// Collapse it via the stable header element (not the control center)
+			App.Tap("Expander_DefaultHeader");
 			TakeScreenshot("After collapse");
 			Assert.IsFalse(expander.GetDependencyPropertyValue<bool>("IsExpanded"));
 
 			// Re-expand
-			App.Tap("Expander_Default");
+			App.Tap("Expander_DefaultHeader");
 			TakeScreenshot("After re-expand");
 			Assert.IsTrue(expander.GetDependencyPropertyValue<bool>("IsExpanded"));
 		}

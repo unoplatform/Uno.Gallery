@@ -10,7 +10,7 @@ namespace Uno.Gallery.Views.Samples
 		Status = SampleStatus.Stable,
 		Owner = "unoplatform",
 		ReviewedOn = "2026-08-26",
-		RelatedSamples = new[] { "TeachingTip", "InfoBar" })]
+		RelatedSamples = new[] { "teachingtip" })]
 	public sealed partial class ExpanderSamplePage : Page
 	{
 		private const string Description =

@@ -11,7 +11,7 @@ namespace Uno.Gallery.Views.Samples
 		Status = SampleStatus.Stable,
 		Owner = "unoplatform",
 		ReviewedOn = "2026-08-26",
-		RelatedSamples = new[] { "TabBar", "SegmentedControl" })]
+		RelatedSamples = new[] { "tabbar", "segmentedcontrol" })]
 	public sealed partial class SelectorBarSamplePage : Page
 	{
 		private const string Description =

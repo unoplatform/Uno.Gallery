@@ -22,7 +22,8 @@ namespace Uno.Gallery.UITests
 			App.WaitForElement("SplitButton_Default");
 
 			TakeScreenshot("Before click");
-			App.Tap("SplitButton_Default");
+			// Tap the primary content area (left side) to avoid the dropdown chevron
+			App.Tap("SplitButton_PrimaryContent");
 			TakeScreenshot("After primary click");
 
 			var result = new QueryEx(q => q.All().Marked("SplitButton_Result"));
@@ -36,13 +37,14 @@ namespace Uno.Gallery.UITests
 			App.WaitForElement("ToggleSplitButton_Default");
 
 			TakeScreenshot("Before toggle");
-			App.Tap("ToggleSplitButton_Default");
+			// Tap the primary content area (left side) to avoid the dropdown chevron
+			App.Tap("ToggleSplitButton_PrimaryContent");
 			TakeScreenshot("After toggle On");
 
 			var result = new QueryEx(q => q.All().Marked("ToggleSplitButton_Result"));
 			StringAssert.Contains("On", result.GetDependencyPropertyValue<string>("Text"));
 
-			App.Tap("ToggleSplitButton_Default");
+			App.Tap("ToggleSplitButton_PrimaryContent");
 			TakeScreenshot("After toggle Off");
 			StringAssert.Contains("Off", result.GetDependencyPropertyValue<string>("Text"));
 		}

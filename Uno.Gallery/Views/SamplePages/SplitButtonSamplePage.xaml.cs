@@ -11,7 +11,7 @@ namespace Uno.Gallery.Views.Samples
 		Status = SampleStatus.Stable,
 		Owner = "unoplatform",
 		ReviewedOn = "2026-08-26",
-		RelatedSamples = new[] { "Button", "DropDownButton", "CommandBarFlyout" })]
+		RelatedSamples = new[] { "button", "drop-down-button", "command-bar-flyout" })]
 	public sealed partial class SplitButtonSamplePage : Page
 	{
 		private const string Description =

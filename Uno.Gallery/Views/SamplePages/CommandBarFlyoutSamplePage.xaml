@@ -35,10 +35,12 @@
                                                               Label="Delete"
                                                               AutomationProperties.AutomationId="CommandBarFlyout_Delete" />
                                                 <AppBarButton Icon="Rename"
-                                                              Label="Rename" />
+                                                              Label="Rename"
+                                                              AutomationProperties.AutomationId="CommandBarFlyout_Rename" />
                                                 <AppBarSeparator />
                                                 <AppBarButton Icon="Help"
-                                                              Label="Help" />
+                                                              Label="Help"
+                                                              AutomationProperties.AutomationId="CommandBarFlyout_Help" />
                                             </CommandBarFlyout.SecondaryCommands>
                                         </CommandBarFlyout>
                                     </Button.Flyout>
@@ -63,8 +65,10 @@
                                             <AppBarButton Icon="Underline"
                                                           Label="Underline" />
                                             <CommandBarFlyout.SecondaryCommands>
-                                                <AppBarButton Label="Highlight" />
-                                                <AppBarButton Label="Strikethrough" />
+                                                <AppBarButton Label="Highlight"
+                                                              AutomationProperties.AutomationId="CommandBarFlyout_AlwaysExpanded_Highlight" />
+                                                <AppBarButton Label="Strikethrough"
+                                                              AutomationProperties.AutomationId="CommandBarFlyout_AlwaysExpanded_Strikethrough" />
                                             </CommandBarFlyout.SecondaryCommands>
                                         </CommandBarFlyout>
                                     </Button.Flyout>

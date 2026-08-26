@@ -20,8 +20,9 @@
                                           smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
                             <StackPanel Spacing="8">
                                 <SplitButton AutomationProperties.AutomationId="SplitButton_Default"
-                                             Content="New"
                                              Click="OnSplitButtonPrimaryClick">
+                                    <TextBlock AutomationProperties.AutomationId="SplitButton_PrimaryContent"
+                                               Text="New" />
                                     <SplitButton.Flyout>
                                         <MenuFlyout Placement="Bottom">
                                             <MenuFlyoutItem Text="Plain Text Document"
@@ -64,7 +65,9 @@
                                 <ToggleSplitButton AutomationProperties.AutomationId="ToggleSplitButton_Default"
                                                    IsCheckedChanged="OnToggleSplitButtonCheckedChanged">
                                     <ToggleSplitButton.Content>
-                                        <SymbolIcon Symbol="Bold" />
+                                        <Grid AutomationProperties.AutomationId="ToggleSplitButton_PrimaryContent">
+                                            <SymbolIcon Symbol="Bold" />
+                                        </Grid>
                                     </ToggleSplitButton.Content>
                                     <ToggleSplitButton.Flyout>
                                         <MenuFlyout Placement="Bottom">

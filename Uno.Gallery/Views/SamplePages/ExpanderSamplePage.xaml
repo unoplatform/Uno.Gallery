@@ -20,8 +20,11 @@
                                           smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
                             <StackPanel Spacing="8">
                                 <Expander AutomationProperties.AutomationId="Expander_Default"
-                                          Header="Advanced settings"
                                           IsExpanded="True">
+                                    <Expander.Header>
+                                        <TextBlock AutomationProperties.AutomationId="Expander_DefaultHeader"
+                                                   Text="Advanced settings" />
+                                    </Expander.Header>
                                     <StackPanel Spacing="8"
                                                 Padding="0,4,0,4">
                                         <CheckBox Content="Enable telemetry" />
