@@ -36,11 +36,13 @@ public class Given_ItemsRepeater : TestBase
 	public void When_ItemsRepeater_Grid_IsVisible()
 	{
 		NavigateToSample("ItemsRepeater", "Fluent");
-		App.WaitForElement("ItemsRepeater_Grid");
-		// Scroll the outer page to bring the grid section into the viewport before measuring.
 		App.ScrollDownTo("ItemsRepeater_Grid");
+		App.WaitForElement("ItemsRepeater_Grid_The Great Gatsby");
 		TakeScreenshot("Grid in view");
-		var repeater = new QueryEx(x => x.All().Marked("ItemsRepeater_Grid"));
-		Assert.IsTrue(repeater.GetDependencyPropertyValue<double>("ActualWidth") > 0);
+
+		var realizedTiles = App.Query(x => x.All().Marked("ItemsRepeater_Grid_The Great Gatsby"));
+		Assert.AreEqual(1, realizedTiles.Length, "The first grid tile must be realized exactly once.");
+		Assert.Greater(realizedTiles[0].Rect.Width, 0, "The realized grid tile must have a rendered width.");
+		Assert.Greater(realizedTiles[0].Rect.Height, 0, "The realized grid tile must have a rendered height.");
 	}
 }

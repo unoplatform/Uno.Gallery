@@ -93,6 +93,7 @@
 										<DataTemplate x:DataType="data:GalleryItem">
 											<Grid Width="120"
 												  Height="120"
+												  AutomationProperties.AutomationId="{Binding ItemsRepeaterGridAutomationId}"
 												  CornerRadius="8"
 												  Background="{Binding Accent}">
 												<StackPanel VerticalAlignment="Bottom"

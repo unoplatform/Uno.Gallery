@@ -23,6 +23,8 @@ public class GalleryItem
 	public bool IsEnabled { get; }
 	/// <summary>Stable automation name for ItemsView multiple-selection containers: "ItemsView_Multiple_{Title}".</summary>
 	public string MultipleAutomationName => $"ItemsView_Multiple_{Title}";
+	/// <summary>Stable automation identifier for ItemsRepeater grid tiles.</summary>
+	public string ItemsRepeaterGridAutomationId => $"ItemsRepeater_Grid_{Title}";
 
 	private static Color ParseHexColor(string hex)
 	{

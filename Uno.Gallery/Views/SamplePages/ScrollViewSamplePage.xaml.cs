@@ -13,25 +13,49 @@ namespace Uno.Gallery.Views.Samples;
 	ReviewedOn = "2026-08-26")]
 public sealed partial class ScrollViewSamplePage : Page
 {
+	private ScrollView? _verticalScrollView;
+
 	public ScrollViewSamplePage()
 	{
 		this.InitializeComponent();
 	}
 
+	private void VerticalScrollView_Loaded(object sender, RoutedEventArgs e)
+		=> _verticalScrollView = (ScrollView)sender;
+
+	private void VerticalScrollView_ViewChanged(ScrollView sender, object args)
+		=> UpdateOffsetDisplay(sender);
+
 	private void ScrollDown_Click(object sender, RoutedEventArgs e)
 	{
-		var sv = SamplePageLayoutRoot.GetSampleChild<ScrollView>(Design.Fluent, "VerticalScrollView");
-		sv?.ScrollTo(0, 200);
+		var display = GetOffsetDisplay();
+		if (_verticalScrollView is not { } scrollView)
+		{
+			if (display is not null)
+				display.Text = "Vertical scroll view is not loaded.";
+			return;
+		}
+
+		scrollView.UpdateLayout();
+		scrollView.ScrollTo(
+			0,
+			200,
+			new ScrollingScrollOptions(ScrollingAnimationMode.Disabled, ScrollingSnapPointsMode.Ignore));
 	}
 
 	private void ReadOffset_Click(object sender, RoutedEventArgs e)
 	{
-		var sv = SamplePageLayoutRoot.GetSampleChild<ScrollView>(Design.Fluent, "VerticalScrollView");
-		var display = SamplePageLayoutRoot.GetSampleChild<TextBlock>(Design.Fluent, "OffsetDisplay");
-		if (sv is not null && display is not null)
-		{
-			var offset = sv.ScrollPresenter?.VerticalOffset ?? 0;
-			display.Text = "Vertical offset: " + offset.ToString("F1", CultureInfo.InvariantCulture);
-		}
+		if (_verticalScrollView is { } scrollView)
+			UpdateOffsetDisplay(scrollView);
 	}
+
+	private void UpdateOffsetDisplay(ScrollView scrollView)
+	{
+		if (GetOffsetDisplay() is { } display)
+			display.Text = "Vertical offset: " +
+				(scrollView.ScrollPresenter?.VerticalOffset ?? 0).ToString("F1", CultureInfo.InvariantCulture);
+	}
+
+	private TextBlock? GetOffsetDisplay()
+		=> SamplePageLayoutRoot.GetSampleChild<TextBlock>(Design.Fluent, "OffsetDisplay");
 }

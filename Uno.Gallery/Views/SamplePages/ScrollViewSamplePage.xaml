@@ -25,7 +25,9 @@
 										Height="240"
 										ContentOrientation="Vertical"
 										HorizontalScrollBarVisibility="Hidden"
-										VerticalScrollBarVisibility="Auto">
+										VerticalScrollBarVisibility="Auto"
+										Loaded="VerticalScrollView_Loaded"
+										ViewChanged="VerticalScrollView_ViewChanged">
 								<StackPanel Padding="8"
 											Spacing="4">
 									<!-- 20 items is enough to demonstrate scrolling without startup cost -->
