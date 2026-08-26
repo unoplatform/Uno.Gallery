@@ -124,6 +124,7 @@ namespace Uno.Gallery.Views.Samples
 
 	// ─── Display model ─────────────────────────────────────────────────────────
 
+	[Microsoft.UI.Xaml.Data.Bindable]
 	public sealed class TokenRow
 	{
 		public string Name { get; }
