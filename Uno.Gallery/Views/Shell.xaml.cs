@@ -54,17 +54,39 @@ public sealed partial class Shell : UserControl
 		set { SetValue(CurrentSampleBackdoorProperty, value); }
 	}
 
+#if PERF_MEASUREMENTS
+	// Stored delegate instances required for correct AddHandler/RemoveHandler identity matching.
+	private bool _firstInputSubscribed;
+	private PointerEventHandler? _firstPointerHandler;
+	private KeyEventHandler? _firstKeyHandler;
+#endif
+
 	public static readonly DependencyProperty CurrentSampleBackdoorProperty =
 		DependencyProperty.Register(nameof(CurrentSampleBackdoor), typeof(string), typeof(Shell), new PropertyMetadata(null));
 
 	private void OnLoaded(object sender, RoutedEventArgs e)
 	{
+		PerformanceMarks.Record(PerformanceMarks.ShellLoaded);
+
 		SetDarkLightToggleInitialState();
 
 		BuildIdentityLabel.Text = BuildInfo.Label;
 
 #if DEBUG || IS_CANARY_BUILD
 		FindName("FPSIndicatorCheckBox"); // materialize x:Load=false element
+#endif
+
+#if PERF_MEASUREMENTS
+		// Guard against repeated Loaded (e.g. visual-tree re-parenting): subscribe once only.
+		if (!_firstInputSubscribed)
+		{
+			_firstInputSubscribed = true;
+			_firstPointerHandler = OnFirstPointerInput;
+			_firstKeyHandler     = OnFirstKeyInput;
+			// handledEventsToo=true ensures we catch taps/keys already marked Handled by child controls.
+			AddHandler(PointerPressedEvent, _firstPointerHandler, handledEventsToo: true);
+			AddHandler(KeyDownEvent,        _firstKeyHandler,     handledEventsToo: true);
+		}
 #endif
 	}
 
@@ -307,4 +329,37 @@ public sealed partial class Shell : UserControl
 		App.Instance.InitializeWindow(secondaryWindow);
 		secondaryWindow.Activate();
 	}
+
+#if PERF_MEASUREMENTS
+	private void OnFirstPointerInput(object sender, PointerRoutedEventArgs e)
+	{
+		PerformanceMarks.Record(PerformanceMarks.FirstInput);
+		RemoveFirstInputHandlers();
+	}
+
+	private void OnFirstKeyInput(object sender, KeyRoutedEventArgs e)
+	{
+		PerformanceMarks.Record(PerformanceMarks.FirstInput);
+		RemoveFirstInputHandlers();
+	}
+
+	/// <summary>
+	/// Removes both first-input handlers and clears the subscription flag so that
+	/// repeated Loaded events can safely re-guard without leaking handler references.
+	/// </summary>
+	private void RemoveFirstInputHandlers()
+	{
+		if (_firstPointerHandler is { } ph)
+		{
+			RemoveHandler(PointerPressedEvent, ph);
+			_firstPointerHandler = null;
+		}
+		if (_firstKeyHandler is { } kh)
+		{
+			RemoveHandler(KeyDownEvent, kh);
+			_firstKeyHandler = null;
+		}
+		_firstInputSubscribed = false;
+	}
+#endif
 }

@@ -45,6 +45,7 @@ namespace Uno.Gallery
 
 		public App(bool exitAfterLaunching)
 		{
+			PerformanceMarks.Record(PerformanceMarks.Constructed);
 			_exitAfterLaunching = exitAfterLaunching;
 			Instance = this;
 
@@ -57,6 +58,7 @@ namespace Uno.Gallery
 #endif
 
 			this.InitializeComponent();
+			PerformanceMarks.Record(PerformanceMarks.ResourcesInitialized);
 
 #if !WINDOWS
 			this.Suspending += OnSuspending;
@@ -108,6 +110,8 @@ namespace Uno.Gallery
 
 			// Ensure the current window is active
 			MainWindow.Activate();
+			// Recorded after Activate() so the timestamp reflects the window being live.
+			PerformanceMarks.Record(PerformanceMarks.WindowActivated);
 		}
 
 		public void InitializeWindow(Window window)
@@ -168,9 +172,11 @@ namespace Uno.Gallery
 					.ToArray();
 
 			var shell = new Shell { Samples = sortedSamples };
+			PerformanceMarks.Record(PerformanceMarks.ShellBuilt);
 			AutomationProperties.SetAutomationId(shell, "AppShell");
 			var nv = shell.NavigationView;
 			AddNavigationItems(nv, sortedSamples);
+			PerformanceMarks.Record(PerformanceMarks.CatalogReady);
 
 			// Navigator must be assigned before the backdoor callback fires and before initial navigation.
 			var navigator = new ShellNavigator(shell);

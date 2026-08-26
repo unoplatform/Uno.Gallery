@@ -16,6 +16,21 @@
 						<Button Content="Navigate to all pages"
 								Click="NavigateAllPages_Click" />
 
+						<TextBlock Text="Performance Marks"
+								   FontSize="20"
+								   Margin="0,20,0,0" />
+						<Button Content="Refresh"
+								Click="RefreshMarks_Click"
+								AutomationProperties.AutomationId="PerfMarks_RefreshButton" />
+						<TextBox Loaded="PerfMarksTextBox_Loaded"
+								 IsReadOnly="True"
+								 AcceptsReturn="True"
+								 TextWrapping="Wrap"
+								 FontFamily="Courier New"
+								 MinHeight="100"
+								 Margin="0,4,0,0"
+								 AutomationProperties.AutomationId="PerfMarksOutput" />
+
 						<TextBlock Text="Loaded assemblies"
 								   FontSize="20"
 								   Margin="0,20,0,0" />

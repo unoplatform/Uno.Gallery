@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Runtime.Loader;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Uno.Gallery.Helpers;
 
 namespace Uno.Gallery.Views.Samples
 {
@@ -29,6 +30,7 @@ namespace Uno.Gallery.Views.Samples
 	public sealed partial class CanarySamplePage : Page
 	{
 		private bool _assembliesLoaded;
+		private TextBox? _perfMarksTextBox;
 
 		public CanarySamplePage()
 		{
@@ -38,6 +40,19 @@ namespace Uno.Gallery.Views.Samples
 		private void NavigateAllPages_Click(object sender, RoutedEventArgs e)
 		{
 			_ = App.Instance.NavigateToAllPages();
+		}
+
+		private void PerfMarksTextBox_Loaded(object sender, RoutedEventArgs e)
+		{
+			if (sender is not TextBox tb) return;
+			_perfMarksTextBox = tb;
+			tb.Text = PerformanceMarks.ExportJson();
+		}
+
+		private void RefreshMarks_Click(object sender, RoutedEventArgs e)
+		{
+			if (_perfMarksTextBox is { } tb)
+				tb.Text = PerformanceMarks.ExportJson();
 		}
 
 		private void AssembliesList_Loaded(object sender, RoutedEventArgs e)
