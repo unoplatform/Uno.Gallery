@@ -1,0 +1,143 @@
+﻿<Page x:Class="Uno.Gallery.Views.Samples.MaterialSeedColorSamplePage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:local="using:Uno.Gallery"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  xmlns:smtx="using:ShowMeTheXAML"
+	  mc:Ignorable="d">
+
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<local:SamplePageLayout>
+			<local:SamplePageLayout.MaterialTemplate>
+				<DataTemplate>
+					<smtx:XamlDisplay UniqueKey="MaterialSeedColorSamplePage_Material"
+									  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\XX">
+						<StackPanel Spacing="16"
+									Padding="0,8,0,16">
+
+							<!-- Header note -->
+							<TextBlock Style="{StaticResource BodyMedium}"
+									   TextWrapping="WrapWholeWords"
+									   Text="Pick a primary seed — M3 algorithmically derives the full tonal palette. Reset restores the original app seed." />
+
+							<!-- Runtime note -->
+							<InfoBar IsOpen="True"
+									 IsClosable="False"
+									 Severity="Informational"
+									 AutomationProperties.AutomationId="SeedColorRuntimeNote"
+									 Message="Seed color changes apply app-wide and are reset on leaving this page." />
+
+							<!-- Seed color picker -->
+							<StackPanel Spacing="8">
+								<TextBlock Style="{StaticResource LabelLarge}"
+										   Text="Primary Seed Color" />
+								<ColorPicker AutomationProperties.AutomationId="SeedColorPicker"
+											 IsAlphaEnabled="False"
+											 IsMoreButtonVisible="False"
+											 IsAlphaSliderVisible="False"
+											 IsAlphaTextInputVisible="False"
+											 Color="{Binding Data.CurrentSeedColor, Mode=TwoWay}"
+											 HorizontalAlignment="Left" />
+							</StackPanel>
+
+							<!-- Reset button -->
+							<Button AutomationProperties.AutomationId="ResetSeedButton"
+									Content="Reset to Default Seed"
+									Command="{Binding Data.ResetCommand}"
+									Style="{StaticResource MaterialOutlinedButtonStyle}" />
+
+							<!-- Color role swatches -->
+							<StackPanel Spacing="4">
+								<TextBlock Style="{StaticResource LabelLarge}"
+										   Text="Live M3 Color Roles" />
+								<TextBlock Style="{StaticResource BodySmall}"
+										   Foreground="{ThemeResource OnSurfaceVariantBrush}"
+										   Text="These ThemeResource brushes update automatically when the seed changes." />
+							</StackPanel>
+
+							<!-- Primary roles -->
+							<TextBlock Style="{StaticResource TitleSmall}"
+									   Text="Primary" />
+							<StackPanel Orientation="Horizontal"
+										Spacing="4">
+								<local:ColorPaletteView AutomationProperties.AutomationId="Swatch_Primary"
+														ColorName="PrimaryBrush"
+														ColorBrush="{ThemeResource PrimaryBrush}"
+														OnColorBrush="{ThemeResource OnPrimaryBrush}"
+														Style="{StaticResource MaterialColorPaletteViewStyle}" />
+								<local:ColorPaletteView AutomationProperties.AutomationId="Swatch_OnPrimary"
+														ColorName="OnPrimaryBrush"
+														ColorBrush="{ThemeResource OnPrimaryBrush}"
+														OnColorBrush="{ThemeResource PrimaryBrush}"
+														Style="{StaticResource MaterialColorPaletteViewStyle}" />
+								<local:ColorPaletteView AutomationProperties.AutomationId="Swatch_PrimaryContainer"
+														ColorName="PrimaryContainerBrush"
+														ColorBrush="{ThemeResource PrimaryContainerBrush}"
+														OnColorBrush="{ThemeResource OnPrimaryContainerBrush}"
+														Style="{StaticResource MaterialColorPaletteViewStyle}" />
+								<local:ColorPaletteView AutomationProperties.AutomationId="Swatch_OnPrimaryContainer"
+														ColorName="OnPrimaryContainerBrush"
+														ColorBrush="{ThemeResource OnPrimaryContainerBrush}"
+														OnColorBrush="{ThemeResource PrimaryContainerBrush}"
+														Style="{StaticResource MaterialColorPaletteViewStyle}" />
+							</StackPanel>
+
+							<!-- Secondary roles -->
+							<TextBlock Style="{StaticResource TitleSmall}"
+									   Text="Secondary" />
+							<StackPanel Orientation="Horizontal"
+										Spacing="4">
+								<local:ColorPaletteView AutomationProperties.AutomationId="Swatch_Secondary"
+														ColorName="SecondaryBrush"
+														ColorBrush="{ThemeResource SecondaryBrush}"
+														OnColorBrush="{ThemeResource OnSecondaryBrush}"
+														Style="{StaticResource MaterialColorPaletteViewStyle}" />
+								<local:ColorPaletteView AutomationProperties.AutomationId="Swatch_SecondaryContainer"
+														ColorName="SecondaryContainerBrush"
+														ColorBrush="{ThemeResource SecondaryContainerBrush}"
+														OnColorBrush="{ThemeResource OnSecondaryContainerBrush}"
+														Style="{StaticResource MaterialColorPaletteViewStyle}" />
+							</StackPanel>
+
+							<!-- Tertiary roles -->
+							<TextBlock Style="{StaticResource TitleSmall}"
+									   Text="Tertiary" />
+							<StackPanel Orientation="Horizontal"
+										Spacing="4">
+								<local:ColorPaletteView AutomationProperties.AutomationId="Swatch_Tertiary"
+														ColorName="TertiaryBrush"
+														ColorBrush="{ThemeResource TertiaryBrush}"
+														OnColorBrush="{ThemeResource OnTertiaryBrush}"
+														Style="{StaticResource MaterialColorPaletteViewStyle}" />
+								<local:ColorPaletteView AutomationProperties.AutomationId="Swatch_TertiaryContainer"
+														ColorName="TertiaryContainerBrush"
+														ColorBrush="{ThemeResource TertiaryContainerBrush}"
+														OnColorBrush="{ThemeResource OnTertiaryContainerBrush}"
+														Style="{StaticResource MaterialColorPaletteViewStyle}" />
+							</StackPanel>
+
+							<!-- Surface/Neutral roles -->
+							<TextBlock Style="{StaticResource TitleSmall}"
+									   Text="Surface / Neutral" />
+							<StackPanel Orientation="Horizontal"
+										Spacing="4">
+								<local:ColorPaletteView AutomationProperties.AutomationId="Swatch_Surface"
+														ColorName="SurfaceBrush"
+														ColorBrush="{ThemeResource SurfaceBrush}"
+														OnColorBrush="{ThemeResource OnSurfaceBrush}"
+														Style="{StaticResource MaterialColorPaletteViewStyle}" />
+								<local:ColorPaletteView AutomationProperties.AutomationId="Swatch_SurfaceVariant"
+														ColorName="SurfaceVariantBrush"
+														ColorBrush="{ThemeResource SurfaceVariantBrush}"
+														OnColorBrush="{ThemeResource OnSurfaceVariantBrush}"
+														Style="{StaticResource MaterialColorPaletteViewStyle}" />
+							</StackPanel>
+
+						</StackPanel>
+					</smtx:XamlDisplay>
+				</DataTemplate>
+			</local:SamplePageLayout.MaterialTemplate>
+		</local:SamplePageLayout>
+	</Grid>
+</Page>
