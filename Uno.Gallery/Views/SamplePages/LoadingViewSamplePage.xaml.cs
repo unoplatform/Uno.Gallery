@@ -127,7 +127,8 @@ namespace Uno.Gallery.Views.SamplePages
 		{
 			private readonly Action _execute;
 
-			public event EventHandler? CanExecuteChanged;
+			// CanExecute always returns true; no state changes, so CanExecuteChanged is never raised.
+			public event EventHandler? CanExecuteChanged { add { } remove { } }
 
 			public RelayCommand(Action execute) => _execute = execute;
 

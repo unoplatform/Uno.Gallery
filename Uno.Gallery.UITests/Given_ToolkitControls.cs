@@ -1,5 +1,6 @@
 using System;
 using NUnit.Framework;
+using Uno.UITest.Helpers;
 using Uno.UITest.Helpers.Queries;
 
 namespace Uno.Gallery.UITests
