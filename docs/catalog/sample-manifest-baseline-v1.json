@@ -30,6 +30,39 @@
         "accessibility",
         "localization-rtl"
       ]
+    },
+    "Desktop-ExtensionsPatterns": {
+      "minimumSampleCount": 119,
+      "requiredSlugs": [
+        "overview",
+        "extensions-mvux-feedview",
+        "extensions-localization",
+        "extensions-storage",
+        "extensions-configuration",
+        "extensions-validation"
+      ]
+    },
+    "WASM-DOM-ExtensionsPatterns": {
+      "minimumSampleCount": 119,
+      "requiredSlugs": [
+        "overview",
+        "extensions-mvux-feedview",
+        "extensions-localization",
+        "extensions-storage",
+        "extensions-configuration",
+        "extensions-validation"
+      ]
+    },
+    "WASM-Skia-ExtensionsPatterns": {
+      "minimumSampleCount": 117,
+      "requiredSlugs": [
+        "overview",
+        "extensions-mvux-feedview",
+        "extensions-localization",
+        "extensions-storage",
+        "extensions-configuration",
+        "extensions-validation"
+      ]
     }
   }
 }

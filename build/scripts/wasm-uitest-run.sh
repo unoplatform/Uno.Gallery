@@ -21,8 +21,8 @@ else
 	TEST_TIER="Interaction"
 fi
 
-if [[ "$TEST_TIER" != "Smoke" && "$TEST_TIER" != "Interaction" && "$TEST_TIER" != "All" ]]; then
-	echo "UNO_UITEST_TEST_TIER must be Smoke, Interaction, or All (got '$TEST_TIER')." >&2
+if [[ "$TEST_TIER" != "Smoke" && "$TEST_TIER" != "Interaction" && "$TEST_TIER" != "ExtensionsPatterns" && "$TEST_TIER" != "All" ]]; then
+	echo "UNO_UITEST_TEST_TIER must be Smoke, Interaction, ExtensionsPatterns, or All (got '$TEST_TIER')." >&2
 	exit 2
 fi
 
@@ -60,6 +60,10 @@ TEST_ARGS=(
 	--blame-hang-timeout "$UITEST_TEST_TIMEOUT"
 	-v m
 )
+
+if [[ "${ENABLE_EXTENSIONS_PATTERNS:-false}" == "true" ]]; then
+	TEST_ARGS+=("-p:EnableExtensionsPatterns=true")
+fi
 
 if [[ "$TEST_TIER" != "All" ]]; then
 	TEST_ARGS+=(--filter "TestCategory=$TEST_TIER")

@@ -2,16 +2,14 @@
 	<PropertyGroup>
 		<TargetFramework>net10.0</TargetFramework>
 		<IsTestProject>true</IsTestProject>
-		<DefineConstants Condition="'$(EnableExtensionsPatterns)'=='true'">$(DefineConstants);EXTENSIONS_PATTERNS</DefineConstants>
 	</PropertyGroup>
+	<ItemGroup>
+		<Compile Include="..\Uno.Gallery.ExtensionsPatterns\Core\PatternLogic.cs" Link="PatternLogic.cs" />
+	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="FluentAssertions" />
 		<PackageReference Include="Microsoft.NET.Test.Sdk" />
-		<PackageReference Include="Newtonsoft.Json" />
-		<PackageReference Include="NunitXml.TestLogger" />
 		<PackageReference Include="NUnit" />
 		<PackageReference Include="NUnit3TestAdapter" />
-		<PackageReference Include="Uno.UITest.Helpers" />
-		<PackageReference Include="Xamarin.UITest" />
 	</ItemGroup>
 </Project>

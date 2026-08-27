@@ -78,8 +78,11 @@ foreach ($entry in $coverage.features) {
                 $errors.Add("Feature '$id' references missing Gallery slug '$slug'.")
             }
         }
-    } elseif ($slugs.Count -gt 0) {
+    } elseif ($disposition -notin @('optional-flavor') -and $slugs.Count -gt 0) {
         $errors.Add("Non-core feature '$id' must not claim Gallery slugs.")
+    }
+    if ($disposition -eq 'optional-flavor' -and $slugs.Count -eq 0) {
+        $errors.Add("Optional-flavor feature '$id' must identify the slugs supplied by that flavor.")
     }
     if ($disposition -in @('blocked', 'external-companion', 'docs-only', 'not-applicable', 'optional-flavor') -and
         [string]::IsNullOrWhiteSpace([string]$entry.reason)) {

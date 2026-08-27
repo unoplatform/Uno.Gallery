@@ -1,0 +1,45 @@
+<Page
+	x:Class="Uno.Gallery.ExtensionsPatterns.ConfigurationPatternPage"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:local="using:Uno.Gallery.ExtensionsPatterns">
+	<ScrollViewer>
+		<StackPanel Padding="24" Spacing="16" MaxWidth="900" HorizontalAlignment="Left">
+			<local:PatternInfoHeader
+				PackageName="Uno.Extensions.Configuration 7.2.3"
+				Requirements="EnableExtensionsPatterns=true. Values come from an embedded deterministic JSON file; environment variables and remote providers are not used."
+				AccessibilityStatus="Typed values have semantic labels and the live status reports reload/reset actions."
+				DocumentationUri="https://platform.uno/docs/articles/external/uno.extensions/doc/Learn/Configuration/ConfigurationOverview.html"
+				SourceUri="https://github.com/unoplatform/Uno.Gallery/tree/master/Uno.Gallery.ExtensionsPatterns" />
+			<TextBlock Text="Configuration and typed options" Style="{StaticResource TitleTextBlockStyle}" />
+			<TextBlock Text="AddEmbeddedConfigurationFile loads local defaults. Explicit mapping to IOptions is deterministic and friendly to trimmed/AOT builds." TextWrapping="Wrap" />
+			<Grid ColumnSpacing="16" RowSpacing="8">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto" />
+					<ColumnDefinition Width="*" />
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+				</Grid.RowDefinitions>
+				<TextBlock Text="Environment" FontWeight="SemiBold" />
+				<TextBlock x:Name="EnvironmentValue" Grid.Column="1" AutomationProperties.AutomationId="ExtensionsConfiguration_Environment" />
+				<TextBlock Grid.Row="1" Text="Page size" FontWeight="SemiBold" />
+				<TextBlock x:Name="PageSizeValue" Grid.Row="1" Grid.Column="1" />
+				<TextBlock Grid.Row="2" Text="Diagnostics" FontWeight="SemiBold" />
+				<TextBlock x:Name="DiagnosticsValue" Grid.Row="2" Grid.Column="1" />
+			</Grid>
+			<StackPanel Orientation="Horizontal" Spacing="8">
+				<Button Content="Reload embedded defaults" AutomationProperties.AutomationId="ExtensionsConfiguration_Reload" Click="Reload_Click" />
+				<Button Content="Reset" AutomationProperties.AutomationId="ExtensionsConfiguration_Reset" Click="Reset_Click" />
+			</StackPanel>
+			<TextBlock
+				x:Name="ConfigurationStatus"
+				AutomationProperties.AutomationId="ExtensionsConfiguration_Status"
+				AutomationProperties.LiveSetting="Polite"
+				Text="Embedded defaults loaded."
+				TextWrapping="Wrap" />
+		</StackPanel>
+	</ScrollViewer>
+</Page>

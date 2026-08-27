@@ -345,6 +345,135 @@ stages:
   jobs:
   - template: build/stage-uitests-wasm.yml
 
+- stage: Extensions_Patterns
+  displayName: 'Optional Uno.Extensions app patterns'
+  dependsOn: []
+  jobs:
+  - job: Extensions_Patterns_Windows
+    displayName: 'Logic, Desktop, Android, Windows x86, and manifest gating'
+    timeoutInMinutes: 90
+    pool:
+      vmImage: windows-2022
+    steps:
+    - checkout: self
+      clean: true
+    - template: build/templates/dotnet-install-windows.yml
+    - pwsh: |
+        dotnet test Uno.Gallery.ExtensionsPatterns.Tests/Uno.Gallery.ExtensionsPatterns.Tests.csproj -c Release
+        if ($LASTEXITCODE -ne 0) { throw "Extensions pattern logic tests failed." }
+        dotnet build Uno.Gallery/Uno.Gallery.csproj -c Release -p:TargetFrameworkOverride=net10.0-desktop -p:EnableExtensionsPatterns=true
+        if ($LASTEXITCODE -ne 0) { throw "Extensions pattern Desktop build failed." }
+        dotnet build Uno.Gallery/Uno.Gallery.csproj -c Release -p:TargetFrameworkOverride=net10.0-android -p:EnableExtensionsPatterns=true
+        if ($LASTEXITCODE -ne 0) { throw "Extensions pattern Android build failed." }
+        dotnet build Uno.Gallery/Uno.Gallery.csproj -c Release -p:TargetFrameworkOverride=net10.0-windows10.0.19041 -p:EnableExtensionsPatterns=true -p:Platform=x86
+        if ($LASTEXITCODE -ne 0) { throw "Extensions pattern Windows x86 build failed." }
+      displayName: 'Build optional Windows-hosted matrix'
+    - pwsh: |
+        dotnet build Uno.Gallery/Uno.Gallery.csproj -c Release -p:TargetFrameworkOverride=net10.0-desktop -p:EmitCompilerGeneratedFiles=true -p:CompilerGeneratedFilesOutputPath="$(Agent.TempDirectory)/generated-default"
+        if ($LASTEXITCODE -ne 0) { throw "Default manifest source build failed." }
+        dotnet build Uno.Gallery/Uno.Gallery.csproj -c Release -p:TargetFrameworkOverride=net10.0-desktop -p:EnableExtensionsPatterns=true -p:EmitCompilerGeneratedFiles=true -p:CompilerGeneratedFilesOutputPath="$(Agent.TempDirectory)/generated-optional"
+        if ($LASTEXITCODE -ne 0) { throw "Optional manifest source build failed." }
+        ./build/scripts/test-extensions-patterns-manifest.ps1 `
+          -DefaultGeneratedSourcePath "$(Agent.TempDirectory)/generated-default" `
+          -OptionalGeneratedSourcePath "$(Agent.TempDirectory)/generated-optional" `
+          -OutputDirectory "$(Agent.TempDirectory)/extensions-patterns-manifests"
+      displayName: 'Verify generated manifest gating'
+
+  - job: Extensions_Patterns_Wasm
+    displayName: 'DOM and Skia WebAssembly AOT'
+    timeoutInMinutes: 90
+    strategy:
+      matrix:
+        DOM:
+          UseNativeRendering: true
+          CatalogTargetName: WASM-DOM-ExtensionsPatterns
+        Skia:
+          UseNativeRendering: false
+          CatalogTargetName: WASM-Skia-ExtensionsPatterns
+    variables:
+      SkipUnknownFrameworks: true
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+    - checkout: self
+      clean: true
+    - template: build/templates/dotnet-install-linux.yml
+    - template: build/templates/host-cleanup-linux.yml
+    - bash: |
+        dotnet publish Uno.Gallery/Uno.Gallery.csproj -c Release -f net10.0-browserwasm \
+          -p:EnableExtensionsPatterns=true \
+          -p:UseNativeRendering=$(UseNativeRendering) \
+          -p:WasmGenerateAppBundle=true \
+          -p:EmitCompilerGeneratedFiles=true \
+          -p:CompilerGeneratedFilesOutputPath="$(Agent.TempDirectory)/generated-optional-wasm" \
+          -o "$(Agent.TempDirectory)/extensions-patterns-wasm"
+      displayName: 'Publish optional WebAssembly AOT'
+    - task: PowerShell@2
+      displayName: 'Validate optional catalog'
+      inputs:
+        targetType: filePath
+        filePath: 'build/scripts/validate-manifest-contract.ps1'
+        pwsh: true
+        arguments: >
+          -GeneratedSourcePath "$(Agent.TempDirectory)/generated-optional-wasm"
+          -OutputDirectory "$(Agent.TempDirectory)/extensions-patterns-catalog"
+          -TargetName "$(CatalogTargetName)"
+
+  - job: Extensions_Patterns_DOM_UITests_Build
+    displayName: 'Build optional DOM interactions'
+    timeoutInMinutes: 90
+    pool:
+      vmImage: ubuntu-latest
+    variables:
+      NUGET_PACKAGES: $(build.sourcesdirectory)/.nuget
+    steps:
+    - checkout: self
+      clean: true
+      fetchDepth: 0
+    - template: build/templates/dotnet-install-linux.yml
+    - template: build/templates/host-cleanup-linux.yml
+    - bash: |
+        chmod +x build/scripts/wasm-uitest-build.sh
+        build/scripts/wasm-uitest-build.sh
+      env:
+        BUILD_SOURCESDIRECTORY: "$(build.sourcesdirectory)"
+        BUILD_ARTIFACTSTAGINGDIRECTORY: "$(build.artifactstagingdirectory)"
+        ENABLE_EXTENSIONS_PATTERNS: "true"
+      displayName: 'Build optional DOM test app'
+    - publish: $(UNO_UITEST_WASM_OUTPUT_PATH)
+      artifact: ExtensionsPatterns_Wasm_UITest
+
+  - job: Extensions_Patterns_DOM_UITests
+    displayName: 'Run optional DOM interactions'
+    timeoutInMinutes: 90
+    dependsOn: Extensions_Patterns_DOM_UITests_Build
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+    - checkout: self
+      clean: true
+    - task: NodeTool@0
+      inputs:
+        versionSource: spec
+        versionSpec: 20.x
+    - download: current
+      artifact: ExtensionsPatterns_Wasm_UITest
+    - template: build/templates/dotnet-install-linux.yml
+      parameters:
+        installJava: false
+        installWorkloads: false
+    - template: build/templates/host-cleanup-linux.yml
+    - bash: |
+        export UNO_UITEST_WASM_OUTPUT_PATH=$(Pipeline.Workspace)/ExtensionsPatterns_Wasm_UITest
+        chmod +x build/scripts/wasm-uitest-run.sh
+        build/scripts/wasm-uitest-run.sh
+      env:
+        BUILD_SOURCESDIRECTORY: "$(build.sourcesdirectory)"
+        BUILD_ARTIFACTSTAGINGDIRECTORY: "$(build.artifactstagingdirectory)"
+        ENABLE_EXTENSIONS_PATTERNS: "true"
+        UNO_UITEST_TEST_TIER: "ExtensionsPatterns"
+      displayName: 'Run targeted optional DOM interactions'
+
 - stage: iOS_Tests
   displayName: 'iOS Tests'
   dependsOn: []
@@ -382,6 +511,7 @@ stages:
     - iOS_Tests
     - Android_Tests
     - Android_Skia_NativeAOT_Instrumentation_Tests
+    - Extensions_Patterns
     condition: succeeded()
     jobs:
     - job: Publish_Release_Metadata
