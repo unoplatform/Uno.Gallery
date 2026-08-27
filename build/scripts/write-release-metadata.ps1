@@ -20,6 +20,12 @@ $ErrorActionPreference = 'Stop'
 
 $repoRoot = (Resolve-Path (Join-Path $PSScriptRoot '..\..')).Path
 $globalJson = Get-Content (Join-Path $repoRoot 'global.json') -Raw | ConvertFrom-Json
+$performanceBudgetPath = Join-Path $repoRoot 'docs\performance\performance-budget-v1.json'
+$performanceBudgetJson = Get-Content $performanceBudgetPath -Raw
+if (-not ($performanceBudgetJson | Test-Json -SchemaFile (Join-Path $repoRoot 'docs\performance\performance-budget-v1.schema.json'))) {
+    throw 'Performance budget does not match schema version 1.'
+}
+$performanceBudget = $performanceBudgetJson | ConvertFrom-Json
 $commitOutput = & git -C $repoRoot rev-parse HEAD
 if ($LASTEXITCODE -ne 0 -or $null -eq $commitOutput) {
     throw 'Unable to resolve the release commit SHA.'
@@ -33,6 +39,7 @@ $evidence = [ordered]@{
     compatibilityMatrix = 'docs/releases/compatibility-matrix.md'
     qualityChecklist = 'docs/releases/stable-quality-checklist.md'
     performanceBaseline = 'docs/releases/performance-baseline.md'
+    performanceBudget = 'docs/performance/performance-budget-v1.json'
     releaseNotesTemplate = 'docs/releases/release-notes-template.md'
 }
 foreach ($relativePath in $evidence.Values) {
@@ -51,6 +58,8 @@ $metadata = [ordered]@{
     buildId = $BuildId
     buildUri = $BuildUri
     unoSdk = $globalJson.'msbuild-sdks'.'Uno.Sdk'
+    performanceBudgetVersion = [int]$performanceBudget.budgetVersion
+    performanceBudgetStatus = [string]$performanceBudget.status
     evidence = $evidence
 }
 

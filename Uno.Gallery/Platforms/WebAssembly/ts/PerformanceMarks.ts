@@ -14,5 +14,18 @@ namespace Uno.Gallery.Wasm {
 				performance.mark(name);
 			}
 		}
+
+		/**
+		 * Adds an app-owned duration ending at the current browser timestamp.
+		 */
+		public static measure(name: string, durationMs: number): void {
+			if (typeof performance !== "undefined" && typeof performance.measure === "function") {
+				const duration = Math.max(0, durationMs);
+				performance.measure(name, {
+					start: Math.max(0, performance.now() - duration),
+					duration
+				});
+			}
+		}
 	}
 }

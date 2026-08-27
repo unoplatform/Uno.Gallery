@@ -11,6 +11,8 @@
     "informationalVersion",
     "commit",
     "unoSdk",
+    "performanceBudgetVersion",
+    "performanceBudgetStatus",
     "evidence"
   ],
   "properties": {
@@ -55,6 +57,16 @@
       "type": "string",
       "minLength": 1
     },
+    "performanceBudgetVersion": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "performanceBudgetStatus": {
+      "enum": [
+        "advisory",
+        "blocking"
+      ]
+    },
     "evidence": {
       "type": "object",
       "additionalProperties": false,
@@ -62,6 +74,7 @@
         "compatibilityMatrix",
         "qualityChecklist",
         "performanceBaseline",
+        "performanceBudget",
         "releaseNotesTemplate"
       ],
       "properties": {
@@ -72,6 +85,9 @@
           "type": "string"
         },
         "performanceBaseline": {
+          "type": "string"
+        },
+        "performanceBudget": {
           "type": "string"
         },
         "releaseNotesTemplate": {

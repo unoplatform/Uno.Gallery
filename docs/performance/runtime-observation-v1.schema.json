@@ -1,0 +1,279 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gallery.platform.uno/schemas/performance/runtime-observation-v1.schema.json",
+  "title": "Uno Gallery runtime performance observation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "suiteVersion",
+    "generatedAt",
+    "buildCommit",
+    "target",
+    "configuration",
+    "browser",
+    "host",
+    "runs",
+    "summaries"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "suiteVersion": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "generatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "buildCommit": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[0-9a-f]{7,40}$"
+    },
+    "target": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$"
+    },
+    "configuration": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "configSha256",
+        "toolSha256",
+        "viewport"
+      ],
+      "properties": {
+        "configSha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "toolSha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "viewport": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "width",
+            "height",
+            "deviceScaleFactor"
+          ],
+          "properties": {
+            "width": {
+              "type": "integer",
+              "minimum": 320
+            },
+            "height": {
+              "type": "integer",
+              "minimum": 320
+            },
+            "deviceScaleFactor": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            }
+          }
+        }
+      }
+    },
+    "browser": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "version",
+        "headless",
+        "softwareRendering",
+        "locale",
+        "timezone"
+      ],
+      "properties": {
+        "version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "headless": {
+          "type": "boolean"
+        },
+        "softwareRendering": {
+          "type": "boolean"
+        },
+        "locale": {
+          "type": "string",
+          "minLength": 1
+        },
+        "timezone": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "host": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "platform",
+        "release",
+        "architecture",
+        "nodeVersion"
+      ],
+      "properties": {
+        "platform": {
+          "type": "string",
+          "minLength": 1
+        },
+        "release": {
+          "type": "string",
+          "minLength": 1
+        },
+        "architecture": {
+          "type": "string",
+          "minLength": 1
+        },
+        "nodeVersion": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "runs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "cold",
+        "warm"
+      ],
+      "properties": {
+        "cold": {
+          "$ref": "#/$defs/runList"
+        },
+        "warm": {
+          "$ref": "#/$defs/runList"
+        }
+      }
+    },
+    "summaries": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "cold",
+        "warm"
+      ],
+      "properties": {
+        "cold": {
+          "$ref": "#/$defs/summary"
+        },
+        "warm": {
+          "$ref": "#/$defs/summary"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "run": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "firstContentfulPaintMs",
+        "shellReadyMs",
+        "firstInputLatencyMs",
+        "searchRenderedMs",
+        "navigationRenderedMs"
+      ],
+      "properties": {
+        "firstContentfulPaintMs": {
+          "type": "number",
+          "minimum": 0
+        },
+        "shellReadyMs": {
+          "type": "number",
+          "minimum": 0
+        },
+        "firstInputLatencyMs": {
+          "type": "number",
+          "minimum": 0
+        },
+        "searchRenderedMs": {
+          "type": "number",
+          "minimum": 0
+        },
+        "navigationRenderedMs": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "runList": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/run"
+      }
+    },
+    "statistic": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "minimum",
+        "p50",
+        "p75",
+        "maximum"
+      ],
+      "properties": {
+        "minimum": {
+          "type": "number",
+          "minimum": 0
+        },
+        "p50": {
+          "type": "number",
+          "minimum": 0
+        },
+        "p75": {
+          "type": "number",
+          "minimum": 0
+        },
+        "maximum": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "observationCount",
+        "firstContentfulPaintMs",
+        "shellReadyMs",
+        "firstInputLatencyMs",
+        "searchRenderedMs",
+        "navigationRenderedMs"
+      ],
+      "properties": {
+        "observationCount": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "firstContentfulPaintMs": {
+          "$ref": "#/$defs/statistic"
+        },
+        "shellReadyMs": {
+          "$ref": "#/$defs/statistic"
+        },
+        "firstInputLatencyMs": {
+          "$ref": "#/$defs/statistic"
+        },
+        "searchRenderedMs": {
+          "$ref": "#/$defs/statistic"
+        },
+        "navigationRenderedMs": {
+          "$ref": "#/$defs/statistic"
+        }
+      }
+    }
+  }
+}

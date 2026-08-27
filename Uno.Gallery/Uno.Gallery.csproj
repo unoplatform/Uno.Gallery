@@ -88,7 +88,7 @@
 		<EnableExtensionsPatterns Condition="'$(EnableExtensionsPatterns)'==''">false</EnableExtensionsPatterns>
 		<DefineConstants Condition="'$(EnableExtensionsPatterns)'=='true'">$(DefineConstants);EXTENSIONS_PATTERNS</DefineConstants>
 		<DefineConstants Condition="'$(TargetFramework)'=='net10.0-browserwasm' AND '$(Configuration)'=='Release'">$(DefineConstants);WASM_INTERPRETER_AOT</DefineConstants>
-		<DefineConstants Condition="'$(TargetFramework)'=='net10.0-browserwasm' AND '$(Configuration)'=='Release' AND '$(EnableVisualRegression)'!='true' AND '$(EnableExtensionsPatterns)'!='true'">$(DefineConstants);WASM_PROFILED_AOT</DefineConstants>
+		<DefineConstants Condition="'$(TargetFramework)'=='net10.0-browserwasm' AND '$(Configuration)'=='Release' AND '$(UseNativeRendering)'=='true' AND '$(EnableVisualRegression)'!='true' AND '$(EnableExtensionsPatterns)'!='true'">$(DefineConstants);WASM_PROFILED_AOT</DefineConstants>
 		<DefineConstants Condition="'$(TargetFramework)'=='net10.0-browserwasm' AND '$(Configuration)'!='Release'">$(DefineConstants);WASM_INTERPRETER</DefineConstants>
 		<DefineConstants Condition="'$(PublishAot)'=='true'">$(DefineConstants);NATIVE_AOT</DefineConstants>
 		<DefineConstants>$(DefineConstants);ENFORCE_SAMPLE_CONTRACT</DefineConstants>
@@ -255,7 +255,8 @@
 
 	<PropertyGroup Condition="'$(Configuration)'=='Release' and '$(WasmShellMonoRuntimeExecutionMode)'=='InterpreterAndAOT'">
 		<WasmAotFileName Condition="'$(EnableVisualRegression)'!='true' AND '$(IsUiAutomationMappingEnabled)'=='' AND '$(UseNativeRendering)' == 'true' ">aot.profile</WasmAotFileName>
-		<WasmAotFileName Condition="'$(EnableVisualRegression)'!='true' AND '$(IsUiAutomationMappingEnabled)'=='' AND '$(UseNativeRendering)' != 'true' ">aot-skiawasm.profile</WasmAotFileName>
+		<!-- The historical Skia profile leaves generated theme-resource getters in an unsupported interpreter path. -->
+		<WasmAotFileName Condition="'$(EnableVisualRegression)'!='true' AND '$(IsUiAutomationMappingEnabled)'=='' AND '$(UseNativeRendering)' != 'true' ">production-skia-full-aot.profile</WasmAotFileName>
 
 		<!--
 		Use smaller profile for UI tests to avoid the browser's memory
