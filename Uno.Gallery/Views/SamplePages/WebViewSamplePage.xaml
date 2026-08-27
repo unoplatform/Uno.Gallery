@@ -10,7 +10,7 @@
 	  mc:Ignorable="d not_win">
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-		<local:SamplePageLayout>
+		<local:SamplePageLayout x:Name="LocalSamplePageLayout">
 
 			<local:SamplePageLayout.FluentTemplate>
 				<DataTemplate>
@@ -20,8 +20,17 @@
 							<!-- WebView -->
 							<smtx:XamlDisplay UniqueKey="WebViewSamplePage_WebView_Win"
 											  smtx:XamlDisplayExtensions.Header="WebView">
-								<WebView2 Source="https://platform.uno/"
-											  Height="400" />
+								<StackPanel Spacing="8">
+									<WebView2 Loaded="WebView_Loaded"
+											  NavigationCompleted="WebView_NavigationCompleted"
+											  Height="400"
+											  AutomationProperties.Name="Offline WebView content" />
+									<TextBlock x:Name="WebViewStatus"
+											   Text="WebView has not initialized."
+											   AutomationProperties.AutomationId="WebView_Status"
+											   AutomationProperties.LiveSetting="Polite"
+											   AutomationProperties.Name="WebView status" />
+								</StackPanel>
 							</smtx:XamlDisplay>
 
 						</Grid>
