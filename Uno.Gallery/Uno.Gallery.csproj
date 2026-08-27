@@ -116,6 +116,12 @@
 	<PropertyGroup Condition="'$(EnableRtlTestMode)'=='true'">
 		<DefineConstants>$(DefineConstants);RTL_TEST_MODE</DefineConstants>
 	</PropertyGroup>
+	<PropertyGroup Condition="'$(EnableVisualRegression)'=='true'">
+		<EnablePerformanceMeasurements>true</EnablePerformanceMeasurements>
+		<WasmShellEnableDotnetJsFingerprinting>false</WasmShellEnableDotnetJsFingerprinting>
+		<WasmAppDir>$(MSBuildProjectDirectory)/obj/$(Configuration)/$(TargetFramework)/visual-appbundle/</WasmAppDir>
+		<DefineConstants>$(DefineConstants);VISUAL_REGRESSION;PERF_MEASUREMENTS</DefineConstants>
+	</PropertyGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Uno.ShowMeTheXAML" />
@@ -216,6 +222,10 @@
 
 		<!-- CommonServiceLocator 2.0.5's netcoreapp3.0 asset references System.Diagnostics.Debug 4.1.1.0 (old PCL facade, absent from .NET 10 AOT); keep it in interpreter mode. -->
 		<MonoRuntimeMixedModeExcludedAssembly Include="CommonServiceLocator" />
+		<!-- Newtonsoft.Json's transitive net6 asset references System.Collections 6.0 and cannot be profile-AOT compiled by the .NET 10 toolchain. -->
+		<MonoRuntimeMixedModeExcludedAssembly Include="Newtonsoft.Json" Condition="'$(EnableVisualRegression)'=='true'" />
+		<_AOT_InternalForceInterpretAssemblies Include="CommonServiceLocator.dll;Newtonsoft.Json.dll"
+											 Condition="'$(EnableVisualRegression)'=='true'" />
 	</ItemGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='Release' and '$(WasmShellMonoRuntimeExecutionMode)'=='InterpreterAndAOT'">
@@ -257,6 +267,33 @@
 			<WasmNativeStrip Condition="'$(Configuration)'=='Release'">true</WasmNativeStrip>
 			<WasmNativeStrip Condition="'$(Configuration)'=='Release' AND '$(EnableWasmProfiling)'=='true'">false</WasmNativeStrip>
 		</PropertyGroup>
+	</Target>
+
+	<Target Name="ValidateVisualRegressionConfiguration"
+			BeforeTargets="PrepareForBuild"
+			Condition="'$(EnableVisualRegression)'=='true'">
+		<Error Condition="'$(TargetFramework)'!='net10.0-browserwasm'"
+			   Text="EnableVisualRegression=true is supported only for net10.0-browserwasm." />
+		<Error Condition="'$(UseNativeRendering)'=='true'"
+			   Text="EnableVisualRegression=true requires the Skia-WASM renderer (UseNativeRendering=false)." />
+	</Target>
+	<Target Name="ExcludeVisualRegressionBuildToolAssemblies"
+			BeforeTargets="_WasmAotCompileApp;_GenerateManagedToNative"
+			Condition="'$(EnableVisualRegression)'=='true'">
+		<ItemGroup>
+			<_WasmAssembliesInternal Remove="@(_WasmAssembliesInternal)"
+				Condition="$([System.String]::Copy('%(_WasmAssembliesInternal.Identity)').Contains('uno.ai.xamlgeneration.assets'))" />
+		</ItemGroup>
+	</Target>
+	<Target Name="CopyVisualRegressionWasmRuntime"
+			AfterTargets="WasmTriggerPublishApp"
+			Condition="'$(EnableVisualRegression)'=='true' AND Exists('$(WasmAppDir)_framework/dotnet.boot.js')">
+		<ItemGroup>
+			<_VisualWasmRuntime Include="$(WasmAppDir)**/*" />
+		</ItemGroup>
+		<Copy SourceFiles="@(_VisualWasmRuntime)"
+			  DestinationFiles="@(_VisualWasmRuntime->'$(PublishDir)wwwroot/%(RecursiveDir)%(Filename)%(Extension)')"
+			  SkipUnchangedFiles="true" />
 	</Target>
 
 </Project>

@@ -10,7 +10,7 @@
 - bash: |
     # CompilerGeneratedFilesOutputPath is job-local. Keep it scoped if another
     # project starts running SamplesGenerator in this build graph.
-    dotnet publish Uno.Gallery/Uno.Gallery.csproj -c Release -f net10.0-browserwasm -p:UseNativeRendering=$(UseNativeRendering) -p:InformationalVersion=$(NBGV_InformationalVersion) -p:EmitCompilerGeneratedFiles=true -p:CompilerGeneratedFilesOutputPath="$(Agent.TempDirectory)/generated-sources" -o "$(Agent.TempDirectory)/wasm-publish" -bl:$(Build.ArtifactStagingDirectory)/wasm-publish.binlog
+    dotnet publish Uno.Gallery/Uno.Gallery.csproj -c Release -f net10.0-browserwasm -p:UseNativeRendering=$(UseNativeRendering) -p:EnableVisualRegression=$(EnableVisualRegression) -p:WasmGenerateAppBundle=$(EnableVisualRegression) -p:InformationalVersion=$(NBGV_InformationalVersion) -p:EmitCompilerGeneratedFiles=true -p:CompilerGeneratedFilesOutputPath="$(Agent.TempDirectory)/generated-sources" -o "$(Agent.TempDirectory)/wasm-publish" -bl:$(Build.ArtifactStagingDirectory)/wasm-publish.binlog
   displayName: 'Builds Wasm $(ArtifactName)'
 
 - task: PowerShell@2

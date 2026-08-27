@@ -73,7 +73,9 @@ namespace Uno.Gallery
 #endif
 
 #if __WASM__
+#if !VISUAL_REGRESSION
 			_ = DispatcherQueue.GetForCurrentThread().TryEnqueue(DispatcherQueuePriority.Low, () => AnalyticsService.Initialize());
+#endif
 #endif
 		}
 
@@ -179,7 +181,13 @@ namespace Uno.Gallery
 #endif
 					.ToArray();
 
-			var shell = new Shell { Samples = sortedSamples };
+			var shell = new Shell
+			{
+				Samples = sortedSamples,
+#if VISUAL_REGRESSION
+				RequestedTheme = ElementTheme.Light,
+#endif
+			};
 #if RTL_TEST_MODE
 			shell.FlowDirection = FlowDirection.RightToLeft;
 #endif

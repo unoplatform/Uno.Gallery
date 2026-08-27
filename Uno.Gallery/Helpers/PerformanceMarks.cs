@@ -34,6 +34,7 @@ internal static class PerformanceMarks
 	public const string CatalogReady         = "app.catalog_ready";
 	public const string WindowActivated      = "app.window_activated";
 	public const string ShellLoaded          = "app.shell_loaded";
+	public const string VisualReady          = "app.visual_ready";
 	public const string FirstInput           = "app.first_input";
 
 #if PERF_MEASUREMENTS
@@ -45,9 +46,12 @@ internal static class PerformanceMarks
 	private static readonly string[] _names =
 	[
 		Constructed, ResourcesInitialized, ShellBuilt, CatalogReady,
-		WindowActivated, ShellLoaded, FirstInput,
+		WindowActivated, ShellLoaded, VisualReady, FirstInput,
 	];
 	private static readonly double?[] _ms = new double?[_names.Length];
+#if VISUAL_REGRESSION
+	private static int _visualReadySequence;
+#endif
 
 	/// <summary>
 	/// Records a mark by name with the elapsed time relative to helper initialization.
@@ -63,12 +67,23 @@ internal static class PerformanceMarks
 			return;
 		lock (_lock)
 		{
-			if (_ms[idx].HasValue)
+			if (_ms[idx].HasValue
+#if VISUAL_REGRESSION
+				&& name != VisualReady
+#endif
+			)
 				return;
 			_ms[idx] = elapsedMs;
 		}
 #if __WASM__
+#if VISUAL_REGRESSION
+		Wasm.PerformanceMarksInterop.Mark(
+			name == VisualReady
+				? $"{VisualReady}.{System.Threading.Interlocked.Increment(ref _visualReadySequence)}"
+				: name);
+#else
 		Wasm.PerformanceMarksInterop.Mark(name);
+#endif
 #endif
 	}
 

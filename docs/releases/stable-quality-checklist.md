@@ -22,6 +22,11 @@
 - [ ] Stable all-sample smoke passes for each declared primary target.
 - [ ] Curated interaction suite passes with only issue-tracked, unexpired skips.
 - [ ] Visual pilot matches approved baselines.
+- [ ] Visual report records the pinned browser, viewport, per-sample mismatch
+      count, and five clean-session runs; current/diff/report artifacts are
+      retained with release evidence.
+- [ ] Baseline changes include fresh visual-mode Skia-WASM publish evidence,
+      metadata/config digest updates, and two-person image approval.
 - [ ] Pseudo-localization, long-string, bidi, and RTL checks pass.
 - [ ] Accessibility automation passes and manual AT checks are recorded where
       automation is partial.

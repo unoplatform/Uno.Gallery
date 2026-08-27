@@ -89,6 +89,12 @@ public sealed partial class Shell : UserControl
 		BuildIdentityLabel.Text = BuildInfo.Label;
 		BuildIdentityLabel.Tag =
 			$"Pseudo={IsPseudoLocalizationEnabled};Rtl={IsRtlTestModeEnabled}";
+#if VISUAL_REGRESSION
+		if (FindName("WebBanner") is FrameworkElement webBanner)
+		{
+			webBanner.Visibility = Visibility.Collapsed;
+		}
+#endif
 
 #if DEBUG || IS_CANARY_BUILD
 		FindName("FPSIndicatorCheckBox"); // materialize x:Load=false element

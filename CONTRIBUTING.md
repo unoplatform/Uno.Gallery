@@ -11,6 +11,7 @@ environment, build the project, and submit well-formed changes.
 - [Fast Desktop Build](#fast-desktop-build)
 - [WebAssembly Builds](#webassembly-builds)
 - [Windows WASM UI Tests](#windows-wasm-ui-tests)
+- [Visual Regression Pilot](#visual-regression-pilot)
 - [Adding or Updating a Sample Page](#adding-or-updating-a-sample-page)
 - [Tests and Checklist](#tests-and-checklist)
 - [Commit and PR Expectations](#commit-and-pr-expectations)
@@ -133,6 +134,24 @@ Linux / CI pipeline: `build/stage-uitests-wasm.yml`
 (runs `build/scripts/wasm-uitest-build.sh` then `build/scripts/wasm-uitest-run.sh`).
 Pull requests select `Smoke`; branch/nightly builds select `Interaction`. Set
 `UNO_UITEST_TEST_TIER=All` to run both in an ad-hoc CI invocation.
+
+---
+
+## Visual Regression Pilot
+
+The 14-route Windows/Skia-WASM pilot is documented in
+`build/visual/README.md` and
+`docs/decisions/0004-deterministic-visual-regression-pilot.md`. It uses canonical
+`?design=...#slug` URLs and canvas screenshots; do not add Skia automation-ID
+navigation. Normal builds must not enable the mode.
+
+Before changing a pilot surface, run a fresh Release publish with
+`-p:UseNativeRendering=false -p:EnableVisualRegression=true`, then run
+`npm ci`, `npm test`, and `npm run compare` from `build/visual`. Baseline updates
+are local-only, require both the `update` command and
+`VISUAL_ACCEPT_BASELINES=1`, five clean comparisons, and two-person visual
+review. Do not add LFS, external snapshot storage, broad masks, animated/media/
+network/device pages, or ignore entries for failures.
 
 ---
 

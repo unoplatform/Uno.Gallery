@@ -261,15 +261,63 @@ stages:
         DOM:
           ArtifactName: WASM-DOM
           UseNativeRendering: true
+          EnableVisualRegression: false
         Skia:
           ArtifactName: WASM-Skia
           UseNativeRendering: false
+          EnableVisualRegression: true
 
     variables:
       SkipUnknownFrameworks: true
 
     steps:
       - template: build/stage-build-wasm.yml
+
+- stage: Visual_Regression
+  displayName: 'Visual Regression'
+  dependsOn: WebAssembly
+  jobs:
+  - job: Windows_Skia_WASM_Visual_Pilot
+    displayName: 'Windows / Chromium / Skia-WASM pilot (advisory)'
+    timeoutInMinutes: 45
+    pool:
+      vmImage: windows-latest
+    variables:
+      PUPPETEER_CACHE_DIR: $(Pipeline.Workspace)\puppeteer
+    steps:
+    - checkout: self
+      clean: true
+    - task: NodeTool@0
+      displayName: 'Use Node.js 22'
+      inputs:
+        versionSource: spec
+        versionSpec: 22.x
+    - task: DownloadBuildArtifacts@1
+      displayName: 'Download visual-mode WASM-Skia artifact'
+      inputs:
+        buildType: current
+        downloadType: single
+        artifactName: WASM-Skia
+        downloadPath: $(Pipeline.Workspace)
+    - pwsh: |
+        New-Item -ItemType Directory -Path 'build/visual/artifacts/current' -Force | Out-Null
+        New-Item -ItemType Directory -Path 'build/visual/artifacts/diff' -Force | Out-Null
+        '{"passed":false,"error":"visual comparison did not start","results":[]}' |
+          Set-Content 'build/visual/artifacts/report.json'
+      displayName: 'Prepare visual report directory'
+    - script: npm ci --no-audit --no-fund
+      displayName: 'Install pinned visual tool and Chromium'
+      workingDirectory: build/visual
+    - script: npm run compare -- --wasm "$(Pipeline.Workspace)\WASM-Skia"
+      displayName: 'Compare visual pilot (advisory)'
+      workingDirectory: build/visual
+      continueOnError: true
+    - task: PublishPipelineArtifact@1
+      displayName: 'Publish visual current, diff, and report'
+      condition: always()
+      inputs:
+        targetPath: build/visual/artifacts
+        artifactName: visual-regression
  
 - stage: WebAssembly_Tests
   displayName: 'WebAssembly Tests'

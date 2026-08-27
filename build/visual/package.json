@@ -1,0 +1,23 @@
+{
+  "name": "uno-gallery-visual-regression",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "scripts": {
+    "compare": "node src/cli.mjs compare",
+    "test": "node --test test/*.test.mjs",
+    "update": "node src/cli.mjs update",
+    "validate": "node src/cli.mjs validate"
+  },
+  "dependencies": {
+    "pixelmatch": "7.2.0",
+    "pngjs": "7.0.0",
+    "puppeteer": "25.8.0"
+  },
+  "allowScripts": {
+    "puppeteer@25.8.0": true
+  }
+}

@@ -328,7 +328,15 @@ namespace Uno.Gallery
 				current.RadioButton?.Apply(x => x.IsChecked = true);
 				current.StickyRadioButton?.Apply(x => x.IsChecked = true);
 
-				VisualStateManager.GoToState(this, current.VisualStateName, useTransitions: true);
+				VisualStateManager.GoToState(
+					this,
+					current.VisualStateName,
+#if VISUAL_REGRESSION
+					useTransitions: false
+#else
+					useTransitions: true
+#endif
+				);
 			}
 		}
 

@@ -1,5 +1,6 @@
 using System.Reflection;
 using Microsoft.UI.Dispatching;
+using Microsoft.UI.Xaml.Media;
 using Uno.Gallery.Helpers;
 using Uno.Gallery.Views.GeneralPages;
 using MUXC = Microsoft.UI.Xaml.Controls;
@@ -120,6 +121,23 @@ internal sealed class ShellNavigator : IGalleryNavigator
 
 		var page = canonical.CreatePage();
 		page.DataContext = canonical;
+#if VISUAL_REGRESSION
+		page.Loaded += (_, _) =>
+		{
+			var renderedFrames = 0;
+			EventHandler<object>? rendering = null;
+			rendering = (_, _) =>
+			{
+				if (++renderedFrames < 4)
+				{
+					return;
+				}
+				CompositionTarget.Rendering -= rendering;
+				PerformanceMarks.Record(PerformanceMarks.VisualReady);
+			};
+			CompositionTarget.Rendering += rendering;
+		};
+#endif
 #if USE_UITESTS
 		page.Loaded += (_, _) =>
 		{
@@ -131,8 +149,10 @@ internal sealed class ShellNavigator : IGalleryNavigator
 #endif
 
 #if __WASM__
+#if !VISUAL_REGRESSION
 		_ = DispatcherQueue.GetForCurrentThread()?.TryEnqueue(DispatcherQueuePriority.Low,
 			() => AnalyticsService.TrackView(canonical.Title ?? page.GetType().Name));
+#endif
 #endif
 
 		var previous = Current;

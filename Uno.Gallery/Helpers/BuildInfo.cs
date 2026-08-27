@@ -102,9 +102,13 @@ internal static class BuildInfo
 		// Avoid a trailing empty renderer segment.
 		string rendererSegment = string.IsNullOrEmpty(Renderer) ? string.Empty : " | " + Renderer;
 
+#if VISUAL_REGRESSION
+		Label = "visual-regression | Skia-WASM";
+#else
 		Label = string.IsNullOrEmpty(ShortSha)
 			? SemVer + " | local" + rendererSegment
 			: "v" + SemVer + " | " + ShortSha + rendererSegment;
+#endif
 	}
 
 	private static bool IsHexChar(char c)
