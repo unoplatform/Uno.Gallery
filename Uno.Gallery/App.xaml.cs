@@ -57,6 +57,9 @@ namespace Uno.Gallery
 			ConfigureFeatureFlags();
 			InitializeLogging();
 			ConfigureXamlDisplay();
+#if USE_UITESTS
+			InitializeUITestHooks();
+#endif
 
 #if HAS_UNO
 			global::Uno.UI.FeatureConfiguration.Font.DefaultTextFontFamily = "ms-appx:///Uno.Fonts.OpenSans/Fonts/OpenSans.ttf";
@@ -300,6 +303,12 @@ namespace Uno.Gallery
 		private void OnCurrentSampleBackdoorChanged(DependencyObject sender, DependencyProperty dp)
 		{
 			var shell = sender as Shell ?? throw new InvalidOperationException("CurrentSampleBackdoor changed on a non-Shell object.");
+#if USE_UITESTS
+			if (TryHandleUITestBackdoor(shell))
+			{
+				return;
+			}
+#endif
 			var backdoorParts = shell.CurrentSampleBackdoor.Split("-");
 			var title = backdoorParts.FirstOrDefault();
 			var designName = backdoorParts.Length > 1 ? backdoorParts[1] : string.Empty;

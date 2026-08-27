@@ -119,6 +119,11 @@ internal sealed class ShellNavigator : IGalleryNavigator
 
 		var page = canonical.CreatePage();
 		page.DataContext = canonical;
+#if USE_UITESTS
+		page.Loaded += (_, _) =>
+			_shell.UITestSampleHostLoadedState =
+				canonical.Slug + "\n" + SamplePageLayout.CurrentDesign;
+#endif
 
 #if __WASM__
 		_ = DispatcherQueue.GetForCurrentThread()?.TryEnqueue(DispatcherQueuePriority.Low,

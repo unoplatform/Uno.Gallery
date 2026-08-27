@@ -2907,6 +2907,39 @@ public sealed class SamplesGeneratorTests
 	}
 
 	[Test]
+	public void SampleManifest_contains_only_samples_compatible_with_compilation_target()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Wasm")]
+			    [SampleConditional(SampleConditionals.Wasm)]
+			    public class WasmPage : Page { }
+
+			    [SamplePage(SampleCategory.Controls, "Windows")]
+			    [SampleConditional(SampleConditionals.Windows)]
+			    public class WindowsPage : Page { }
+
+			    [SamplePage(SampleCategory.Controls, "Everywhere")]
+			    public class EverywherePage : Page { }
+			}
+			""";
+
+		var result = RunGenerator([source], preprocessorSymbols: ["__WASM__"]);
+		var json = InvokeGetJson(result, source, ["__WASM__"])!;
+		using var doc = System.Text.Json.JsonDocument.Parse(json);
+		var fqns = doc.RootElement.GetProperty("samples")
+			.EnumerateArray()
+			.Select(sample => sample.GetProperty("fqn").GetString())
+			.ToArray();
+
+		Assert.That(fqns, Does.Contain("Uno.Gallery.WasmPage"));
+		Assert.That(fqns, Does.Contain("Uno.Gallery.EverywherePage"));
+		Assert.That(fqns, Does.Not.Contain("Uno.Gallery.WindowsPage"));
+	}
+
+	[Test]
 	public void SampleManifest_sourcePath_absent_for_in_memory_tree()
 	{
 		const string source = """

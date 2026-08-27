@@ -656,5 +656,14 @@
 				HorizontalAlignment="Left"
 				AutomationProperties.AutomationId="NavToggle"
 				Style="{StaticResource PaneToggleButtonStyle}" />
+
+		<!-- Made visible only by USE_UITESTS code; absent from the normal Release accessibility tree. -->
+		<TextBox x:Name="UITestBackdoorResponse"
+				 Width="1"
+				 Height="1"
+				 Opacity="1"
+				 IsHitTestVisible="False"
+				 Visibility="Collapsed"
+				 AutomationProperties.AutomationId="UITestBackdoorResponse" />
 	</Grid>
 </UserControl>

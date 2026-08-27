@@ -80,6 +80,10 @@ public sealed partial class Shell : UserControl
 	{
 		PerformanceMarks.Record(PerformanceMarks.ShellLoaded);
 
+#if USE_UITESTS
+		InitializeUITestResponse();
+#endif
+
 		SetDarkLightToggleInitialState();
 
 		BuildIdentityLabel.Text = BuildInfo.Label;

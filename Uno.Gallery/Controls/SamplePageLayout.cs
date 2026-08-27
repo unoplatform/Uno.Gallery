@@ -91,6 +91,9 @@ namespace Uno.Gallery
 		public SamplePageLayout()
 		{
 			DataContextChanged += OnDataContextChanged;
+#if USE_UITESTS
+			InitializeUITestMarker();
+#endif
 
 			void OnDataContextChanged(object sender, DataContextChangedEventArgs args)
 			{
