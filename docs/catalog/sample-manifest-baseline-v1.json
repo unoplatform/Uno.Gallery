@@ -2,33 +2,41 @@
   "schemaVersion": 1,
   "targets": {
     "Desktop": {
-      "minimumSampleCount": 114,
+      "minimumSampleCount": 117,
       "requiredSlugs": [
         "overview",
         "button",
         "itemsrepeater",
         "accessibility",
-        "localization-rtl"
+        "localization-rtl",
+        "skia-canvas",
+        "composition-visuals",
+        "drag-drop"
       ]
     },
     "WASM-DOM": {
-      "minimumSampleCount": 114,
+      "minimumSampleCount": 116,
       "requiredSlugs": [
         "overview",
         "button",
         "itemsrepeater",
         "accessibility",
-        "localization-rtl"
+        "localization-rtl",
+        "composition-visuals",
+        "drag-drop"
       ]
     },
     "WASM-Skia": {
-      "minimumSampleCount": 112,
+      "minimumSampleCount": 117,
       "requiredSlugs": [
         "overview",
         "button",
         "itemsrepeater",
         "accessibility",
-        "localization-rtl"
+        "localization-rtl",
+        "skia-canvas",
+        "composition-visuals",
+        "drag-drop"
       ]
     }
   }

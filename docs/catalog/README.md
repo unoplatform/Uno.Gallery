@@ -39,3 +39,6 @@ The intended handoff is:
 
 Until step 1 is accepted cross-repository, CI compares the local fixture only
 and labels its report accordingly.
+
+Phase-specific decisions and measured deltas are recorded in
+`phase-4-wave-ab-dispositions.md` and `phase-4-wave-c-dispositions.md`.

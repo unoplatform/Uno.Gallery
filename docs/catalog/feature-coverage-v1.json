@@ -196,6 +196,90 @@
       "owner": "unoplatform",
       "issue": null,
       "reason": "Authentication requires provider credentials and remains an external companion rather than a core Gallery dependency."
+    },
+    {
+      "id": "skcanvas-element",
+      "disposition": "optional-flavor",
+      "gallerySlugs": [],
+      "owner": "unoplatform",
+      "issue": null,
+      "reason": "The skia-canvas page is compile-gated to Skia desktop and Skia WebAssembly and reports completed RenderOverride calls without claiming pixel verification; cross-target fixture comparison cannot reference a renderer-only slug."
+    },
+    {
+      "id": "composition-visuals",
+      "disposition": "covered-core",
+      "gallerySlugs": [
+        "composition-visuals"
+      ],
+      "owner": "unoplatform",
+      "issue": null,
+      "reason": "The sample creates and attaches a SpriteVisual, then applies deterministic offset, opacity, and scale values."
+    },
+    {
+      "id": "drag-drop",
+      "disposition": "covered-core",
+      "gallerySlugs": [
+        "drag-drop"
+      ],
+      "owner": "unoplatform",
+      "issue": null,
+      "reason": "The sample transfers app-owned text through XAML drag/drop and exposes the same transfer path through a deterministic automation action."
+    },
+    {
+      "id": "system-backdrop",
+      "disposition": "optional-flavor",
+      "gallerySlugs": [],
+      "owner": "unoplatform",
+      "issue": null,
+      "reason": "The windows-backdrops page is emitted only in the Windows platform catalog and applies supported Mica or Desktop Acrylic to the existing Gallery window, clearing it on unload; cross-target fixture comparison cannot reference a platform-only slug."
+    },
+    {
+      "id": "glcanvas-element",
+      "disposition": "docs-only",
+      "gallerySlugs": [],
+      "owner": "unoplatform",
+      "issue": null,
+      "reason": "Uno source marks its samples manual and hardware-acceleration-dependent; Gallery does not currently resolve Uno.WinUI.Graphics3DGL, so adding the feature would be a speculative package and bundle increase."
+    },
+    {
+      "id": "camera-capture",
+      "disposition": "external-companion",
+      "gallerySlugs": [],
+      "owner": "unoplatform",
+      "issue": null,
+      "reason": "A truthful camera sample requires a physical camera, runtime permission, and device automation; no deterministic device-independent Gallery result is available."
+    },
+    {
+      "id": "map-control",
+      "disposition": "external-companion",
+      "gallerySlugs": [],
+      "owner": "unoplatform",
+      "issue": null,
+      "reason": "The upstream Android sample manifest explicitly requires a Google Maps API key. Credentialed map content is outside the offline core Gallery."
+    },
+    {
+      "id": "printing",
+      "disposition": "docs-only",
+      "gallerySlugs": [],
+      "owner": "unoplatform",
+      "issue": null,
+      "reason": "The pinned source exposes PrintManager as not implemented on Android, iOS, WebAssembly, and Skia, while Windows printing needs an OS print UI and installed printer."
+    },
+    {
+      "id": "vulkan-backend",
+      "disposition": "not-applicable",
+      "gallerySlugs": [],
+      "owner": "unoplatform",
+      "issue": null,
+      "reason": "Vulkan is an experimental internal Skia host renderer backend rather than a page-level public control; renderer identity belongs in Diagnostics."
+    },
+    {
+      "id": "native-view-embedding",
+      "disposition": "external-companion",
+      "gallerySlugs": [],
+      "owner": "unoplatform",
+      "issue": null,
+      "reason": "Embedding requires target-specific native source types and separate Android/iOS heads; the current shared multi-target Gallery page cannot demonstrate one truthful common contract."
     }
   ]
 }
