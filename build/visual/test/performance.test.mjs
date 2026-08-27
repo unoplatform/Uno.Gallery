@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { nearestRank, summarizeRuns } from "../src/performance-metrics.mjs";
+import { nearestRank, summarizeRuns } from "../src/performance/performance-metrics.mjs";
 
 test("nearestRank uses the documented discrete percentile", () => {
   assert.equal(nearestRank([9, 1, 7, 3], 0.5), 3);

@@ -75,3 +75,17 @@ Exact default-versus-optional bundle and startup deltas are emitted by the
 versioned performance-budget workflow. Earlier ad-hoc outputs used a different
 AOT profile and artifact-counting method and are intentionally not treated as a
 release baseline.
+
+The fresh DOM release artifacts measured:
+
+| Metric | Core | Extensions flavor | Delta |
+|---|---:|---:|---:|
+| Raw payload | 90,869,680 B | 162,686,702 B | +71,817,022 B |
+| Estimated Brotli transfer | 38,738,942 B | 46,385,581 B | +7,646,639 B |
+| `dotnet.native.wasm.br` | 5,066,241 B | 13,343,344 B | +8,277,103 B |
+| Managed WebCIL | 30,894,555 B | 31,869,882 B | +975,327 B |
+
+Most of the native delta is the flavor's deliberate unprofiled-AOT policy,
+which prevents stale profiles from routing new Extensions startup code through
+unsupported interpreter paths. The managed dependency delta is reported
+separately so package cost is not confused with AOT strategy.

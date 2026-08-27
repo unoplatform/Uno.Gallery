@@ -202,10 +202,12 @@
     {
       "id": "skcanvas-element",
       "disposition": "optional-flavor",
-      "gallerySlugs": [],
+      "gallerySlugs": [
+        "skia-canvas"
+      ],
       "owner": "unoplatform",
       "issue": null,
-      "reason": "The skia-canvas page is compile-gated to Skia desktop and Skia WebAssembly and reports completed RenderOverride calls without claiming pixel verification; cross-target fixture comparison cannot reference a renderer-only slug."
+      "reason": "The skia-canvas page is compile-gated to Skia desktop and Skia WebAssembly and reports completed RenderOverride calls without claiming pixel verification."
     },
     {
       "id": "composition-visuals",
@@ -230,10 +232,12 @@
     {
       "id": "system-backdrop",
       "disposition": "optional-flavor",
-      "gallerySlugs": [],
+      "gallerySlugs": [
+        "windows-backdrops"
+      ],
       "owner": "unoplatform",
       "issue": null,
-      "reason": "The windows-backdrops page is emitted only in the Windows platform catalog and applies supported Mica or Desktop Acrylic to the existing Gallery window, clearing it on unload; cross-target fixture comparison cannot reference a platform-only slug."
+      "reason": "The windows-backdrops page is emitted only in the Windows platform catalog and applies supported Mica or Desktop Acrylic to the existing Gallery window, clearing it on unload."
     },
     {
       "id": "glcanvas-element",

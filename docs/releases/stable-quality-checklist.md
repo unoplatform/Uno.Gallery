@@ -36,6 +36,8 @@
 
 - [ ] Fingerprinted WASM assets retain immutable caching; HTML and service worker
       remain revalidated.
+- [ ] Production DOM and Skia artifacts pass the pinned-browser startup probe
+      without interpreter assertions or local asset failures.
 - [ ] Raw and compressed bundle deltas are within the approved budget.
 - [ ] Startup, first-input, search, and navigation p75 results are attached.
 - [ ] Known regressions, rollout stage, owner, and rollback decision are recorded.

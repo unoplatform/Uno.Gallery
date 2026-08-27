@@ -8,7 +8,7 @@ import { join } from "node:path";
 
 test("performance server models Brotli and immutable cache headers", async () => {
   const root = await mkdtemp(join(tmpdir(), "uno-gallery-performance-server-"));
-  const serverPath = new URL("../src/performance-server.mjs", import.meta.url);
+  const serverPath = new URL("../src/performance/performance-server.mjs", import.meta.url);
   let child;
   try {
     const index = Buffer.from("<html>fixture</html>");
