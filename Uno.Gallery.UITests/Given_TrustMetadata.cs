@@ -171,5 +171,31 @@ namespace Uno.Gallery.UITests
 					"PART_ReviewedOnRow Visibility must be Collapsed when ReviewedOn is null");
 			}
 		}
+
+		[Test]
+		public void When_ContractV1Sample_DetailMetadataIsVisible()
+		{
+			NavigateToSample("Accessibility");
+
+			App.WaitForElement("PART_CompatibilitySection");
+			App.WaitForElement("PART_RequirementsText");
+			App.WaitForElement("PART_AccessibilityNotesText");
+			App.WaitForElement("PART_VariantsText");
+			App.WaitForElement("PART_ResetBehaviorText");
+
+			var requirements = new QueryEx(x => x.All().Marked("PART_RequirementsText"))
+				.GetDependencyPropertyValue<string>("Text");
+			var accessibility = new QueryEx(x => x.All().Marked("PART_AccessibilityNotesText"))
+				.GetDependencyPropertyValue<string>("Text");
+			var variants = new QueryEx(x => x.All().Marked("PART_VariantsText"))
+				.GetDependencyPropertyValue<string>("Text");
+
+			Assert.Multiple(() =>
+			{
+				Assert.That(requirements, Does.Contain("No permissions"));
+				Assert.That(accessibility, Does.Contain("screen reader"));
+				Assert.That(variants, Does.Contain("Live announcements"));
+			});
+		}
 	}
 }

@@ -9,6 +9,13 @@ namespace Uno.Gallery.Views.SamplePages
 		DocumentationLink = "https://platform.uno/docs/articles/external/uno.toolkit.ui/doc/controls/AutoLayout.html",
 		Tags = new[] { "layout", "panel", "figma" },
 		Status = SampleStatus.Stable,
+		ContractVersion = 1,
+		SupportedDesigns = SampleDesigns.Agnostic,
+		SupportedRenderers = SampleRenderers.Native | SampleRenderers.Skia | SampleRenderers.DOM,
+		Requirements = new[] { SampleContractDefaults.NoExternalRequirements },
+		AccessibilityNotes = new[] { "The examples are static layout demonstrations with text labels describing each arrangement." },
+		ResetBehavior = SampleContractDefaults.ReloadToReset,
+		Variants = new[] { "Vertical and horizontal stacking", "Primary alignment", "Negative spacing", "Independent overlay layout" },
 		Owner = "unoplatform",
 		ReviewedOn = "2026-08-26",
 		SortOrder = 10)]

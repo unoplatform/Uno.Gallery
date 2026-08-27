@@ -20,7 +20,9 @@
         "additionalProperties": false,
         "required": [
           "minimumSampleCount",
-          "requiredSlugs"
+          "requiredSlugs",
+          "minimumContractV1Count",
+          "requiredContractV1Slugs"
         ],
         "properties": {
           "minimumSampleCount": {
@@ -28,6 +30,19 @@
             "minimum": 1
           },
           "requiredSlugs": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+            }
+          },
+          "minimumContractV1Count": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "requiredContractV1Slugs": {
             "type": "array",
             "minItems": 1,
             "uniqueItems": true,

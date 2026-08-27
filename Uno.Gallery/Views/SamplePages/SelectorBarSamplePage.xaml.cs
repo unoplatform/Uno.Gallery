@@ -9,6 +9,13 @@ namespace Uno.Gallery.Views.Samples
 		Slug = "selector-bar",
 		Tags = new[] { "navigation", "selection", "tab", "filter" },
 		Status = SampleStatus.Stable,
+		ContractVersion = 1,
+		SupportedDesigns = SampleDesigns.Fluent,
+		SupportedRenderers = SampleRenderers.Native | SampleRenderers.Skia | SampleRenderers.DOM,
+		Requirements = new[] { SampleContractDefaults.NoExternalRequirements },
+		AccessibilityNotes = new[] { "Selector items and the Select Unread action are keyboard accessible, and the current selection is repeated as text." },
+		ResetBehavior = SampleContractDefaults.ReloadToReset,
+		Variants = new[] { "Text-only items", "Icon and text items", "Programmatic selection" },
 		Owner = "unoplatform",
 		ReviewedOn = "2026-08-26",
 		RelatedSamples = new[] { "tabbar", "segmentedcontrol" })]

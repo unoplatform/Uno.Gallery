@@ -13,6 +13,13 @@ namespace Uno.Gallery.Views.Samples;
 	Slug = "localization-rtl",
 	Tags = new[] { "localization", "rtl", "bidi", "pseudo-localization", "resources" },
 	Status = SampleStatus.Stable,
+	ContractVersion = 1,
+	SupportedDesigns = SampleDesigns.Agnostic,
+	SupportedRenderers = SampleRenderers.Native | SampleRenderers.Skia | SampleRenderers.DOM,
+	Requirements = new[] { SampleContractDefaults.NoExternalRequirements },
+	AccessibilityNotes = new[] { "Direction and pseudo-localization toggles are named, text remains readable in bidi layouts, and state is preserved while direction changes." },
+	ResetBehavior = SampleContractDefaults.ReloadToReset,
+	Variants = new[] { "Left-to-right and right-to-left layout", "Mixed English, Arabic, and Hebrew text", "Long-string expansion", "Pseudo-localization preview" },
 	Owner = "unoplatform",
 	ReviewedOn = "2026-08-26",
 	RelatedSamples = new[] { "accessibility" })]

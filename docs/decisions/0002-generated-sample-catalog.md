@@ -87,6 +87,17 @@ no new runtime packages are needed.
       "tags":              [],
       "owner":             null,
       "reviewedOn":        null,
+      "contractVersion":   0,
+      "supportedDesigns":  { "value": 0, "name": "None" },
+      "supportedRenderers": { "value": 0, "name": "None" },
+      "requirements":      [],
+      "accessibilityNotes": [],
+      "resetBehavior":     null,
+      "variants":          [],
+      "knownLimitations":  [],
+      "issueLink":         null,
+      "apiLink":           null,
+      "statusExplicit":    false,
       "relatedSamples":    [],
       "sourcePath":        null,
       "platformConditionals": null
@@ -104,6 +115,11 @@ Field notes:
 | `slug` | `string` | Final slug (explicit or derived) |
 | `category` / `sourceSdk` / `status` | `{value, name}` | Numeric enum value + member name |
 | `tags` / `relatedSamples` | `string[]` | Never `null`; empty array when absent |
+| `contractVersion` | `int` | `0` for legacy metadata; `1` for the enforced detail contract |
+| `supportedDesigns` / `supportedRenderers` | `{value, name}` | Deterministic numeric flags plus comma-separated member names |
+| `requirements` / `accessibilityNotes` / `variants` / `knownLimitations` | `string[]` | Never `null`; contract-v1 requires the first three to be nonempty |
+| `resetBehavior` / `issueLink` / `apiLink` | `string \| null` | Reset is required by contract v1; links are optional |
+| `statusExplicit` | `bool` | Distinguishes authored Stable from the legacy implicit default |
 | `sourcePath` | `string \| null` | Repo-relative path anchored at `Views/`, or `null` for in-memory trees |
 | `platformConditionals` | `uint \| null` | Raw `SampleConditionals` flag value; `null` when no `[SampleConditional]` |
 

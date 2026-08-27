@@ -9,11 +9,15 @@ reconstructs the exact schema-v1 JSON returned by `SampleManifest.GetJson()`,
 checks deterministic FQN ordering and unique slugs, then writes:
 
 - `sample-manifest.json`;
-- `sample-manifest.json.sha256`.
+- `sample-manifest.json.sha256`;
+- `sample-contract-report.json`.
 
 `validate-manifest-contract.ps1` validates the committed schemas, checks the
-minimum count and required-slug baseline, and proves the comparator rejects a
-missing Gallery slug. The exported JSON and SHA are published for the DOM and Skia WebAssembly build
+sample and contract-v1 count/slug baselines, and proves the comparator rejects a
+missing Gallery slug. It also hard-fails if a contract-v1 entry is incomplete or
+an explicitly Stable entry escaped generator enforcement. The report keeps the
+legacy backlog count and slugs visible; it does not claim that migration is
+complete. The exported JSON, SHA, and report are published for the DOM and Skia WebAssembly build
 targets. The Desktop baseline is available for local validation but is not yet
 published by CI.
 The DOM build also produces an advisory `feature-coverage-report.json`.

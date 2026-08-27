@@ -17,6 +17,13 @@ namespace Uno.Gallery.Views.Samples;
 	DataType = typeof(ToolkitExtensionsViewModel),
 	Tags = new[] { "attached-properties", "input", "command", "resources", "visual-state", "selector", "tabbar" },
 	Status = SampleStatus.Stable,
+	ContractVersion = 1,
+	SupportedDesigns = SampleDesigns.Agnostic,
+	SupportedRenderers = SampleRenderers.Native | SampleRenderers.Skia | SampleRenderers.DOM,
+	Requirements = new[] { SampleContractDefaults.NoExternalRequirements },
+	AccessibilityNotes = new[] { "Input, toggle, resource, state, and selection examples provide named controls plus deterministic text status." },
+	ResetBehavior = SampleContractDefaults.ReloadToReset,
+	Variants = new[] { "Input and command helpers", "Scoped resources", "Attached visual states", "Selector synchronization" },
 	Owner = "unoplatform",
 	ReviewedOn = "2026-08-27",
 	RelatedSamples = new[] { "itemsrepeater", "tabbar", "textbox" })]

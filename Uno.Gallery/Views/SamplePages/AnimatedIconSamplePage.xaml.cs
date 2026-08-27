@@ -11,6 +11,13 @@ namespace Uno.Gallery.Views.Samples;
 	Slug = "animated-icon",
 	Tags = new[] { "animation", "icon", "state", "fallback" },
 	Status = SampleStatus.Stable,
+	ContractVersion = 1,
+	SupportedDesigns = SampleDesigns.Agnostic,
+	SupportedRenderers = SampleRenderers.Native | SampleRenderers.Skia | SampleRenderers.DOM,
+	Requirements = new[] { "The animated visual source is bundled with the Gallery; no network access is required." },
+	AccessibilityNotes = new[] { "Accept and Reset are keyboard-focusable and the current semantic state is exposed as text." },
+	ResetBehavior = "Choose Reset to return the icon to NormalOff and clear the transition count.",
+	Variants = new[] { "NormalOff to NormalOn transition", "NormalOn to NormalOff transition", "Static fallback icon" },
 	Owner = "unoplatform",
 	ReviewedOn = "2026-08-27",
 	RelatedSamples = new[] { "animated-visual-player", "icon" })]

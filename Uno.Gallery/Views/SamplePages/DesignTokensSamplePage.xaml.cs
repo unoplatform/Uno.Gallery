@@ -28,6 +28,16 @@ namespace Uno.Gallery.Views.Samples
 		DataType = typeof(DesignTokensSamplePageViewModel),
 		Tags = new[] { "material", "tokens", "spacing", "shape", "density", "typography" },
 		Status = SampleStatus.Stable,
+		ContractVersion = 1,
+		SupportedDesigns = SampleDesigns.Material,
+		SupportedRenderers = SampleRenderers.Native | SampleRenderers.Skia | SampleRenderers.DOM,
+		Requirements = new[] { "The active Material theme must be initialized; no network access is required." },
+		AccessibilityNotes = new[] { "Every token row includes a text name and resolved value; color and shape previews are supplementary." },
+		ResetBehavior = "This reference is read-only and reflects the theme configured at application startup.",
+		Variants = new[] { "Density presets", "Spacing tokens", "Shape tokens", "Typography scale" },
+		KnownLimitations = new[] { "Construction-time density and corner-radius settings cannot be changed by this page." },
+		Owner = "unoplatform",
+		ReviewedOn = "2026-08-27",
 		SortOrder = 11,
 		RelatedSamples = new[] { "material-seed-color" })]
 	public sealed partial class DesignTokensSamplePage : Page
@@ -147,4 +157,3 @@ namespace Uno.Gallery.Views.Samples
 		}
 	}
 }
-

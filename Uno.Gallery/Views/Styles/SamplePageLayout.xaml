@@ -76,7 +76,7 @@
 
 			<!-- ReviewedOn row (optional) -->
 			<StackPanel AutomationProperties.AutomationId="PART_ReviewedOnRow"
-						Margin="0,4,0,16"
+						Margin="0,4,0,0"
 						Orientation="Horizontal"
 						Visibility="{Binding ReviewedOn, Converter={StaticResource IsNullOrEmptyToCollapsed}, FallbackValue=Collapsed}">
 				<TextBlock x:Uid="SampleReviewedLabel"
@@ -90,6 +90,109 @@
 						   Style="{StaticResource BodySmall}"
 						   Text="{Binding ReviewedOn}" />
 			</StackPanel>
+
+			<StackPanel AutomationProperties.AutomationId="PART_CompatibilitySection"
+						Margin="0,16,0,0"
+						Visibility="{Binding SupportedDesignsDisplay, Converter={StaticResource IsNullOrEmptyToCollapsed}, FallbackValue=Collapsed}">
+				<TextBlock x:Uid="SampleCompatibilityLabel"
+						   Foreground="{ThemeResource OnBackgroundBrush}"
+						   Opacity="0.45"
+						   Style="{StaticResource BodySmall}"
+						   Text="COMPATIBILITY" />
+				<TextBlock Margin="0,4,0,0"
+						   Foreground="{ThemeResource OnBackgroundBrush}"
+						   Opacity="0.8"
+						   Style="{StaticResource BodySmall}">
+					<Run x:Uid="SampleDesignsLabel"
+						 Text="Designs: " />
+					<Run Text="{Binding SupportedDesignsDisplay}" />
+				</TextBlock>
+				<TextBlock Foreground="{ThemeResource OnBackgroundBrush}"
+						   Opacity="0.8"
+						   Style="{StaticResource BodySmall}">
+					<Run x:Uid="SampleRenderersLabel"
+						 Text="Renderers: " />
+					<Run Text="{Binding SupportedRenderersDisplay}" />
+				</TextBlock>
+			</StackPanel>
+
+			<StackPanel AutomationProperties.AutomationId="PART_RequirementsSection"
+						Margin="0,16,0,0"
+						Visibility="{Binding RequirementsDisplay, Converter={StaticResource IsNullOrEmptyToCollapsed}, FallbackValue=Collapsed}">
+				<TextBlock x:Uid="SampleRequirementsLabel"
+						   Foreground="{ThemeResource OnBackgroundBrush}"
+						   Opacity="0.45"
+						   Style="{StaticResource BodySmall}"
+						   Text="REQUIREMENTS" />
+				<TextBlock AutomationProperties.AutomationId="PART_RequirementsText"
+						   Margin="0,4,0,0"
+						   Foreground="{ThemeResource OnBackgroundBrush}"
+						   Opacity="0.8"
+						   Style="{StaticResource BodySmall}"
+						   Text="{Binding RequirementsDisplay}"
+						   TextWrapping="Wrap" />
+			</StackPanel>
+
+			<StackPanel AutomationProperties.AutomationId="PART_AccessibilitySection"
+						Margin="0,16,0,0"
+						Visibility="{Binding AccessibilityNotesDisplay, Converter={StaticResource IsNullOrEmptyToCollapsed}, FallbackValue=Collapsed}">
+				<TextBlock x:Uid="SampleAccessibilityNotesLabel"
+						   Foreground="{ThemeResource OnBackgroundBrush}"
+						   Opacity="0.45"
+						   Style="{StaticResource BodySmall}"
+						   Text="ACCESSIBILITY" />
+				<TextBlock AutomationProperties.AutomationId="PART_AccessibilityNotesText"
+						   Margin="0,4,0,0"
+						   Foreground="{ThemeResource OnBackgroundBrush}"
+						   Opacity="0.8"
+						   Style="{StaticResource BodySmall}"
+						   Text="{Binding AccessibilityNotesDisplay}"
+						   TextWrapping="Wrap" />
+			</StackPanel>
+
+			<StackPanel AutomationProperties.AutomationId="PART_VariantsSection"
+						Margin="0,16,0,0"
+						Visibility="{Binding VariantsDisplay, Converter={StaticResource IsNullOrEmptyToCollapsed}, FallbackValue=Collapsed}">
+				<TextBlock x:Uid="SampleVariantsLabel"
+						   Foreground="{ThemeResource OnBackgroundBrush}"
+						   Opacity="0.45"
+						   Style="{StaticResource BodySmall}"
+						   Text="VARIANTS AND RESET" />
+				<TextBlock AutomationProperties.AutomationId="PART_VariantsText"
+						   Margin="0,4,0,0"
+						   Foreground="{ThemeResource OnBackgroundBrush}"
+						   Opacity="0.8"
+						   Style="{StaticResource BodySmall}"
+						   Text="{Binding VariantsDisplay}"
+						   TextWrapping="Wrap" />
+				<TextBlock AutomationProperties.AutomationId="PART_ResetBehaviorText"
+						   Margin="0,4,0,0"
+						   Foreground="{ThemeResource OnBackgroundBrush}"
+						   Opacity="0.8"
+						   Style="{StaticResource BodySmall}"
+						   Text="{Binding ResetBehavior}"
+						   TextWrapping="Wrap"
+						   Visibility="{Binding ResetBehavior, Converter={StaticResource IsNullOrEmptyToCollapsed}, FallbackValue=Collapsed}" />
+			</StackPanel>
+
+			<StackPanel AutomationProperties.AutomationId="PART_KnownLimitationsSection"
+						Margin="0,16,0,0"
+						Visibility="{Binding KnownLimitationsDisplay, Converter={StaticResource IsNullOrEmptyToCollapsed}, FallbackValue=Collapsed}">
+				<TextBlock x:Uid="SampleKnownLimitationsLabel"
+						   Foreground="{ThemeResource OnBackgroundBrush}"
+						   Opacity="0.45"
+						   Style="{StaticResource BodySmall}"
+						   Text="KNOWN LIMITATIONS" />
+				<TextBlock AutomationProperties.AutomationId="PART_KnownLimitationsText"
+						   Margin="0,4,0,0"
+						   Foreground="{ThemeResource OnBackgroundBrush}"
+						   Opacity="0.8"
+						   Style="{StaticResource BodySmall}"
+						   Text="{Binding KnownLimitationsDisplay}"
+						   TextWrapping="Wrap" />
+			</StackPanel>
+
+			<Border Height="16" />
 		</StackPanel>
 	</DataTemplate>
 
@@ -341,7 +444,7 @@
 														  Style="{StaticResource DividerStyle}" />
 
 										<!-- Optional link to documentation -->
-										<TextBlock Visibility="{Binding DocumentationLink, Converter={StaticResource IsNullOrEmptyToCollapsed}}"
+										<TextBlock Visibility="{Binding DocumentationLink, Converter={StaticResource NullToCollapsed}, FallbackValue=Collapsed}"
 												   Margin="0,0,0,32"
 												   Foreground="{ThemeResource OnBackgroundBrush}"
 												   Opacity="0.8"
@@ -349,6 +452,28 @@
 											<Hyperlink NavigateUri="{Binding DocumentationLink}">
 												<Run x:Uid="SampleDocumentationAction"
 													 Text="Open the official documentation." />
+											</Hyperlink>
+										</TextBlock>
+
+										<TextBlock Visibility="{Binding ApiLink, Converter={StaticResource NullToCollapsed}, FallbackValue=Collapsed}"
+												   Margin="0,0,0,16"
+												   Foreground="{ThemeResource OnBackgroundBrush}"
+												   Opacity="0.8"
+												   Style="{StaticResource BodyMedium}">
+											<Hyperlink NavigateUri="{Binding ApiLink}">
+												<Run x:Uid="SampleApiAction"
+													 Text="Open the API reference." />
+											</Hyperlink>
+										</TextBlock>
+
+										<TextBlock Visibility="{Binding IssueLink, Converter={StaticResource NullToCollapsed}, FallbackValue=Collapsed}"
+												   Margin="0,0,0,16"
+												   Foreground="{ThemeResource OnBackgroundBrush}"
+												   Opacity="0.8"
+												   Style="{StaticResource BodyMedium}">
+											<Hyperlink NavigateUri="{Binding IssueLink}">
+												<Run x:Uid="SampleIssueAction"
+													 Text="View the known issue." />
 											</Hyperlink>
 										</TextBlock>
 

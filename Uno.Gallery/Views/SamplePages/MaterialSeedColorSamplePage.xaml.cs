@@ -25,6 +25,16 @@ namespace Uno.Gallery.Views.Samples
 		DataType = typeof(MaterialSeedColorSamplePageViewModel),
 		Tags = new[] { "material", "color", "seed", "palette", "tokens" },
 		Status = SampleStatus.Stable,
+		ContractVersion = 1,
+		SupportedDesigns = SampleDesigns.Material,
+		SupportedRenderers = SampleRenderers.Native | SampleRenderers.Skia | SampleRenderers.DOM,
+		Requirements = new[] { "The active Material theme must be initialized; no network access is required." },
+		AccessibilityNotes = new[] { "The picker has a visible label, hexadecimal input provides a non-visual alternative, and every swatch exposes its color-role name." },
+		ResetBehavior = "Choose Reset to App Seed, or leave the page; the original application seed is restored after the last open instance closes.",
+		Variants = new[] { "ColorPicker seed selection", "Hexadecimal seed entry", "Generated primary, secondary, tertiary, and surface roles" },
+		KnownLimitations = new[] { "Seed changes are application-wide, so simultaneous windows share the live palette until every instance closes." },
+		Owner = "unoplatform",
+		ReviewedOn = "2026-08-27",
 		SortOrder = 10,
 		RelatedSamples = new[] { "design-tokens" })]
 	public sealed partial class MaterialSeedColorSamplePage : Page
@@ -224,4 +234,3 @@ namespace Uno.Gallery.Views.Samples
 		private static string FormatHex(Color c) => $"#{c.R:X2}{c.G:X2}{c.B:X2}";
 	}
 }
-
