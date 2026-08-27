@@ -111,7 +111,8 @@ dotnet publish Uno.Gallery\Uno.Gallery.csproj `
 
 ```powershell
 pwsh build/scripts/wasm-uitest-run-windows.ps1 `
-    -WasmOutputPath out\wasm-uitest\wwwroot
+    -WasmOutputPath out\wasm-uitest\wwwroot `
+    -TestTier Smoke
 ```
 
 The script:
@@ -122,10 +123,16 @@ The script:
   then stops only that server process (by PID)
 
 Pass `-WasmOutputPath` to point at your published `wwwroot/`.
+Use `-TestTier Smoke` for the generated-catalog, target-aware stable-sample batch,
+`-TestTier Interaction` for the existing curated interaction suite, or
+`-TestTier All` for both. The smoke batch intentionally uses one browser session
+and aggregates per-sample errors while still attaching one screenshot per sample.
 See the script header for the full parameter and environment-variable reference.
 
 Linux / CI pipeline: `build/stage-uitests-wasm.yml`  
-(runs `build/scripts/wasm-uitest-build.sh` then `build/scripts/wasm-uitest-run.sh`)
+(runs `build/scripts/wasm-uitest-build.sh` then `build/scripts/wasm-uitest-run.sh`).
+Pull requests select `Smoke`; branch/nightly builds select `Interaction`. Set
+`UNO_UITEST_TEST_TIER=All` to run both in an ad-hoc CI invocation.
 
 ---
 

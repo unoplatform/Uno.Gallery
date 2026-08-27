@@ -8,7 +8,7 @@ export UNO_UITEST_WASM_PUBLISH_OUT=$BUILD_ARTIFACTSTAGINGDIRECTORY/wasm-uitest-p
 
 cd $BUILD_SOURCESDIRECTORY
 
-dotnet publish -f net10.0-browserwasm -c Release $UNO_UITEST_WASM_PROJECT -p:UseNativeRendering=true -p:IsUiAutomationMappingEnabled=True -o "$UNO_UITEST_WASM_PUBLISH_OUT" -bl:$UNO_UITEST_SCREENSHOT_PATH/msbuild.binlog
+dotnet publish -f net10.0-browserwasm -c Debug $UNO_UITEST_WASM_PROJECT -p:UseNativeRendering=true -p:IsUiAutomationMappingEnabled=True -o "$UNO_UITEST_WASM_PUBLISH_OUT" -bl:$UNO_UITEST_SCREENSHOT_PATH/msbuild.binlog
 
 WASM_OUT="$UNO_UITEST_WASM_PUBLISH_OUT/wwwroot"
 

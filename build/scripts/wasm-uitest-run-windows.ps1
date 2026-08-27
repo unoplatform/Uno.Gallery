@@ -77,6 +77,11 @@
     Optional VSTest / NUnit filter expression passed verbatim to dotnet test --filter.
     Leave empty to run the full UITest suite.
 
+.PARAMETER TestTier
+    Named test tier: Smoke, Interaction, or All. Smoke runs the generated-catalog
+    batch plus its contract tests. Interaction runs the existing curated suite.
+    Defaults to All. When TestFilter is also supplied, both filters must match.
+
 .PARAMETER ArtifactPath
     Root directory for screenshots, NUnit XML results, and the nunit-log.txt.
     Defaults to <repo-root>\build\artifacts\wasm-uitests.
@@ -89,9 +94,10 @@
         -c Debug -p:UseNativeRendering=true `
         --ignore-failed-sources -p:NoWarn=NU1301 -o C:\tmp\gallery-uitest
 
-    # Run the full UITest suite against the built output:
+    # Run target-aware catalog smoke against the built output:
     pwsh -File build\scripts\wasm-uitest-run-windows.ps1 `
-        -WasmOutputPath "C:\tmp\gallery-uitest\wwwroot"
+        -WasmOutputPath "C:\tmp\gallery-uitest\wwwroot" `
+        -TestTier Smoke
 
 .EXAMPLE
     # Filtered Given_MainPage smoke test with a custom artifact directory:
@@ -151,6 +157,9 @@ param(
 
     [string] $TestFilter,
 
+    [ValidateSet('Smoke', 'Interaction', 'All')]
+    [string] $TestTier = 'All',
+
     [string] $ArtifactPath
 )
 
@@ -209,6 +218,7 @@ Write-Host "  Repo root     : $RepoRoot"
 Write-Host "  WASM output   : $WasmOutputPath"
 Write-Host "  Port          : $Port"
 Write-Host "  Configuration : $Configuration"
+Write-Host "  Test tier     : $TestTier"
 Write-Host "  Artifacts     : $ArtifactPath"
 if ($TestFilter) { Write-Host "  Filter        : $TestFilter" }
 
@@ -581,8 +591,15 @@ try {
         '--blame-hang-timeout', '60m',
         '-v', 'm'
     )
-    if ($TestFilter) {
+    $categoryFilter = if ($TestTier -eq 'All') { $null } else { "TestCategory=$TestTier" }
+    if ($TestFilter -and $categoryFilter) {
+        $testArgs += '--filter', "($TestFilter)&$categoryFilter"
+    }
+    elseif ($TestFilter) {
         $testArgs += '--filter', $TestFilter
+    }
+    elseif ($categoryFilter) {
+        $testArgs += '--filter', $categoryFilter
     }
 
     Write-Host "`n--- Running dotnet test ---" -ForegroundColor Yellow

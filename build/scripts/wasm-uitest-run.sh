@@ -13,6 +13,19 @@ export UNO_UITEST_LOGFILE=$BUILD_ARTIFACTSTAGINGDIRECTORY/screenshots/wasm/nunit
 export UNO_UITEST_WASM_PROJECT=$BUILD_SOURCESDIRECTORY/Uno.Gallery/Uno.Gallery.csproj
 export UITEST_TEST_TIMEOUT=60m
 
+if [[ -n "${UNO_UITEST_TEST_TIER:-}" ]]; then
+	TEST_TIER="$UNO_UITEST_TEST_TIER"
+elif [[ "${BUILD_REASON:-}" == "PullRequest" ]]; then
+	TEST_TIER="Smoke"
+else
+	TEST_TIER="Interaction"
+fi
+
+if [[ "$TEST_TIER" != "Smoke" && "$TEST_TIER" != "Interaction" && "$TEST_TIER" != "All" ]]; then
+	echo "UNO_UITEST_TEST_TIER must be Smoke, Interaction, or All (got '$TEST_TIER')." >&2
+	exit 2
+fi
+
 cd $BUILD_SOURCESDIRECTORY/build
 mkdir -p tools
 
@@ -32,12 +45,20 @@ dotnet-serve -p 5000 -d "$UNO_UITEST_WASM_OUTPUT_PATH" &
 
 cd $UNO_UITEST_PROJECT
 
-dotnet test \
-	-c Release \
-	-l:"console;verbosity=normal" \
-	--logger "nunit;LogFileName=$BUILD_SOURCESDIRECTORY/build/TestResult.xml" \
-	--blame-hang-timeout $UITEST_TEST_TIMEOUT \
-	-v m \
+TEST_ARGS=(
+	-c Release
+	-l "console;verbosity=normal"
+	--logger "nunit;LogFileName=$BUILD_SOURCESDIRECTORY/build/TestResult.xml"
+	--blame-hang-timeout "$UITEST_TEST_TIMEOUT"
+	-v m
+)
+
+if [[ "$TEST_TIER" != "All" ]]; then
+	TEST_ARGS+=(--filter "TestCategory=$TEST_TIER")
+fi
+
+echo "Running $TEST_TIER UITest tier"
+dotnet test "${TEST_ARGS[@]}" \
 	|| true
 
 kill %%
