@@ -70,8 +70,19 @@ if [[ "$TEST_TIER" != "All" ]]; then
 fi
 
 echo "Running $TEST_TIER UITest tier"
+RESULT_PATH="$BUILD_SOURCESDIRECTORY/build/TestResult.xml"
+rm -f "$RESULT_PATH"
 set +e
 dotnet test "${TEST_ARGS[@]}"
 TEST_EXIT=$?
 set -e
+if [[ "$TEST_EXIT" -eq 0 ]]; then
+	if [[ ! -f "$RESULT_PATH" ]]; then
+		echo "dotnet test succeeded without producing $RESULT_PATH." >&2
+		TEST_EXIT=1
+	elif grep -Eq '<test-run[^>]+total="0"' "$RESULT_PATH"; then
+		echo "dotnet test matched zero tests." >&2
+		TEST_EXIT=1
+	fi
+fi
 exit "$TEST_EXIT"

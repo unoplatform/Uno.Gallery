@@ -106,7 +106,7 @@ public sealed class PatternLocalizationCatalog
 public sealed class RegistrationForm
 {
 	[Required(ErrorMessage = "Name is required.")]
-	[MinLength(2, ErrorMessage = "Name must contain at least 2 characters.")]
+	[StringLength(80, MinimumLength = 2, ErrorMessage = "Name must contain at least 2 characters.")]
 	public string Name { get; set; } = "";
 
 	[Required(ErrorMessage = "Email is required.")]

@@ -40,7 +40,10 @@
 					</reactive:FeedView.ProgressTemplate>
 					<reactive:FeedView.ErrorTemplate>
 						<DataTemplate>
-							<TextBlock Foreground="{ThemeResource SystemFillColorCriticalBrush}" Text="Deterministic offline feed failure." TextWrapping="Wrap" />
+							<TextBlock AutomationProperties.AutomationId="ExtensionsFeed_ErrorContent"
+									   Foreground="{ThemeResource SystemFillColorCriticalBrush}"
+									   Text="Deterministic offline feed failure."
+									   TextWrapping="Wrap" />
 						</DataTemplate>
 					</reactive:FeedView.ErrorTemplate>
 					<reactive:FeedView.ValueTemplate>

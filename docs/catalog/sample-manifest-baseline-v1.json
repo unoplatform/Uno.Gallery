@@ -203,6 +203,10 @@
       ]
     },
     "Desktop-ExtensionsPatterns": {
+      "additionalAllowedLegacySlugs": [
+        "flipview",
+        "passwordvault"
+      ],
       "minimumSampleCount": 119,
       "requiredSlugs": [
         "overview",
@@ -211,9 +215,41 @@
         "extensions-storage",
         "extensions-configuration",
         "extensions-validation"
+      ],
+      "minimumContractV1Count": 25,
+      "requiredContractV1Slugs": [
+        "accessibility",
+        "animated-icon",
+        "animated-visual-player",
+        "autolayout",
+        "card-content-control",
+        "command-bar-flyout",
+        "design-tokens",
+        "drawer",
+        "drop-down-button",
+        "expander",
+        "extensions-configuration",
+        "extensions-localization",
+        "extensions-mvux-feedview",
+        "extensions-storage",
+        "extensions-validation",
+        "itemsrepeater",
+        "loadingview",
+        "localization-rtl",
+        "material-seed-color",
+        "responsiveview",
+        "safearea",
+        "selector-bar",
+        "split-button",
+        "toolkit-extensions",
+        "zoomcontentcontrol"
       ]
     },
     "WASM-DOM-ExtensionsPatterns": {
+      "additionalAllowedLegacySlugs": [
+        "gyrometer",
+        "phonecallmanager"
+      ],
       "minimumSampleCount": 119,
       "requiredSlugs": [
         "overview",
@@ -222,9 +258,38 @@
         "extensions-storage",
         "extensions-configuration",
         "extensions-validation"
+      ],
+      "minimumContractV1Count": 25,
+      "requiredContractV1Slugs": [
+        "accessibility",
+        "animated-icon",
+        "animated-visual-player",
+        "autolayout",
+        "card-content-control",
+        "command-bar-flyout",
+        "design-tokens",
+        "drawer",
+        "drop-down-button",
+        "expander",
+        "extensions-configuration",
+        "extensions-localization",
+        "extensions-mvux-feedview",
+        "extensions-storage",
+        "extensions-validation",
+        "itemsrepeater",
+        "loadingview",
+        "localization-rtl",
+        "material-seed-color",
+        "responsiveview",
+        "safearea",
+        "selector-bar",
+        "split-button",
+        "toolkit-extensions",
+        "zoomcontentcontrol"
       ]
     },
     "WASM-Skia-ExtensionsPatterns": {
+      "additionalAllowedLegacySlugs": [],
       "minimumSampleCount": 117,
       "requiredSlugs": [
         "overview",
@@ -233,6 +298,34 @@
         "extensions-storage",
         "extensions-configuration",
         "extensions-validation"
+      ],
+      "minimumContractV1Count": 25,
+      "requiredContractV1Slugs": [
+        "accessibility",
+        "animated-icon",
+        "animated-visual-player",
+        "autolayout",
+        "card-content-control",
+        "command-bar-flyout",
+        "design-tokens",
+        "drawer",
+        "drop-down-button",
+        "expander",
+        "extensions-configuration",
+        "extensions-localization",
+        "extensions-mvux-feedview",
+        "extensions-storage",
+        "extensions-validation",
+        "itemsrepeater",
+        "loadingview",
+        "localization-rtl",
+        "material-seed-color",
+        "responsiveview",
+        "safearea",
+        "selector-bar",
+        "split-button",
+        "toolkit-extensions",
+        "zoomcontentcontrol"
       ]
     }
   }

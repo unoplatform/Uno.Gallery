@@ -78,9 +78,11 @@
     Leave empty to run the full UITest suite.
 
 .PARAMETER TestTier
-    Named test tier: Smoke, Interaction, or All. Smoke runs the generated-catalog
-    batch plus its contract tests. Interaction runs the existing curated suite.
-    Defaults to All. When TestFilter is also supplied, both filters must match.
+    Named test tier: Smoke, Interaction, ExtensionsPatterns, or All. Smoke runs
+    the generated-catalog batch plus its contract tests. Interaction runs the
+    existing curated suite. ExtensionsPatterns runs the optional flavor's
+    targeted interactions. Defaults to All. When TestFilter is also supplied,
+    both filters must match.
 
 .PARAMETER ArtifactPath
     Root directory for screenshots, NUnit XML results, and the nunit-log.txt.
@@ -157,7 +159,7 @@ param(
 
     [string] $TestFilter,
 
-    [ValidateSet('Smoke', 'Interaction', 'All')]
+    [ValidateSet('Smoke', 'Interaction', 'ExtensionsPatterns', 'All')]
     [string] $TestTier = 'All',
 
     [string] $ArtifactPath
@@ -601,10 +603,14 @@ try {
     elseif ($categoryFilter) {
         $testArgs += '--filter', $categoryFilter
     }
+    if ($env:ENABLE_EXTENSIONS_PATTERNS -ieq 'true') {
+        $testArgs += '-p:EnableExtensionsPatterns=true'
+    }
 
     Write-Host "`n--- Running dotnet test ---" -ForegroundColor Yellow
     Write-Host "  dotnet $($testArgs -join ' ')"
     Write-Host ''
+    Remove-Item $NUnitResultXml -Force -ErrorAction SilentlyContinue
 
     # Run tests.  Use a local $ErrorActionPreference so a non-zero exit code does
     # not throw before the finally block can clean up the server process.
@@ -655,6 +661,21 @@ Write-Host '=== Results ===' -ForegroundColor Cyan
 Write-Host "  NUnit XML   : $NUnitResultXml"
 Write-Host "  Screenshots : $ScreenshotPath"
 Write-Host "  Log file    : $env:UNO_UITEST_LOGFILE"
+
+if ($testExitCode -eq 0) {
+    if (-not (Test-Path $NUnitResultXml -PathType Leaf)) {
+        $testExitCode = 1
+        Write-Error "dotnet test succeeded without producing '$NUnitResultXml'." -ErrorAction Continue
+    }
+    else {
+        [xml]$testResult = Get-Content $NUnitResultXml -Raw
+        if ([int]$testResult.'test-run'.total -eq 0) {
+            $testExitCode = 1
+            Write-Error 'dotnet test matched zero tests.' -ErrorAction Continue
+        }
+    }
+}
+
 Write-Host "  Exit code   : $testExitCode"
 
 if ($testExitCode -ne 0) {

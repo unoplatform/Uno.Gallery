@@ -7,12 +7,12 @@
 		<StackPanel Padding="24" Spacing="16" MaxWidth="900" HorizontalAlignment="Left">
 			<local:PatternInfoHeader
 				PackageName="Uno.Extensions.Storage.WinUI 7.2.3"
-				Requirements="EnableExtensionsPatterns=true. Uses the platform-local ApplicationData key-value provider; no credentials or remote storage."
+				Requirements="EnableExtensionsPatterns=true. Uses the named ApplicationData local provider. No credentials or remote storage."
 				AccessibilityStatus="The note field is labelled, operations are keyboard reachable, and results/errors use a polite live region."
 				DocumentationUri="https://platform.uno/docs/articles/external/uno.extensions/doc/Learn/Storage/StorageOverview.html"
 				SourceUri="https://github.com/unoplatform/Uno.Gallery/tree/master/Uno.Gallery.ExtensionsPatterns" />
 			<TextBlock Text="Local storage abstraction" Style="{StaticResource TitleTextBlockStyle}" />
-			<TextBlock Text="The sample resolves IKeyValueStorage from a page-local host. Save, load, and clear stay in the app's local settings container." TextWrapping="Wrap" />
+			<TextBlock Text="The sample resolves the ApplicationData IKeyValueStorage from a page-local UnoHost. Values survive page re-entry under the current app identity." TextWrapping="Wrap" />
 			<TextBox
 				x:Name="NoteInput"
 				Header="Offline note"

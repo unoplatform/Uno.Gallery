@@ -103,6 +103,12 @@ namespace Uno.Gallery
 		public string? ApiLink { get; set; }
 
 		/// <summary>
+		/// Optional repository-relative source path for files linked from outside the
+		/// <c>Uno.Gallery</c> project directory.
+		/// </summary>
+		public string? SourceRepositoryPath { get; set; }
+
+		/// <summary>
 		/// URL-friendly slugs of related samples for cross-linking in the catalog.
 		/// Each entry must exactly match (ordinal, lowercase) the final slug of another
 		/// sample — either the slug derived from its title or its explicit <see cref="Slug"/>.

@@ -409,6 +409,14 @@ stages:
           -o "$(Agent.TempDirectory)/extensions-patterns-wasm"
       displayName: 'Publish optional WebAssembly AOT'
     - task: PowerShell@2
+      displayName: 'Verify linked validation properties'
+      inputs:
+        targetType: filePath
+        filePath: 'build/scripts/test-extensions-patterns-linked.ps1'
+        pwsh: true
+        arguments: >
+          -SearchRoot "$(Build.SourcesDirectory)/Uno.Gallery/obj/Release/net10.0-browserwasm"
+    - task: PowerShell@2
       displayName: 'Validate optional catalog'
       inputs:
         targetType: filePath

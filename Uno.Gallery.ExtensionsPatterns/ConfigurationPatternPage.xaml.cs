@@ -4,6 +4,7 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Uno.Extensions.Configuration;
 using Uno.Gallery.ExtensionsPatterns.Core;
+using Uno.Gallery.Helpers;
 
 namespace Uno.Gallery.ExtensionsPatterns;
 
@@ -13,6 +14,14 @@ namespace Uno.Gallery.ExtensionsPatterns;
 	Slug = "extensions-configuration",
 	Tags = new[] { "extensions", "configuration", "options", "embedded", "offline", "aot", "optional-flavor" },
 	Status = SampleStatus.Stable,
+	ContractVersion = 1,
+	SupportedDesigns = SampleDesigns.Agnostic,
+	SupportedRenderers = SampleRenderers.Native | SampleRenderers.Skia | SampleRenderers.DOM,
+	Requirements = new[] { "Build with EnableExtensionsPatterns=true. Configuration is embedded in the assembly and uses no external files or services." },
+	AccessibilityNotes = new[] { "Typed option names and values are exposed as text and reload/reset actions are keyboard reachable." },
+	ResetBehavior = "Choose Reset to restore the typed options captured when the page was constructed.",
+	Variants = new[] { "Embedded JSON reload", "Typed IOptions projection", "Reset to captured defaults" },
+	SourceRepositoryPath = "Uno.Gallery.ExtensionsPatterns/ConfigurationPatternPage.xaml.cs",
 	Owner = "unoplatform",
 	ReviewedOn = "2026-08-27",
 	RelatedSamples = new[] { "extensions-storage", "extensions-localization", "extensions-validation" })]
@@ -45,12 +54,12 @@ public sealed partial class ConfigurationPatternPage : Page
 	private void Reload_Click(object sender, RoutedEventArgs e)
 	{
 		Display(LoadOptions().Value);
-		ConfigurationStatus.Text = "Embedded defaults reloaded.";
+		AccessibilityHelper.Announce(ConfigurationStatus, "Embedded defaults reloaded.");
 	}
 
 	private void Reset_Click(object sender, RoutedEventArgs e)
 	{
 		Display(_defaults.Value);
-		ConfigurationStatus.Text = "Typed options reset.";
+		AccessibilityHelper.Announce(ConfigurationStatus, "Typed options reset.");
 	}
 }

@@ -79,7 +79,7 @@
 		<UnoFeatures Condition="$(IsSkiaWasm)">$(UnoFeatures)SkiaRenderer;</UnoFeatures>
 		<UnoFeatures Condition="$(IsSkiaAndroid)">$(UnoFeatures)SkiaRenderer;</UnoFeatures>
 		<UnoFeatures Condition="$(IsSkiaUIKit)">$(UnoFeatures)SkiaRenderer;</UnoFeatures>
-		<UnoFeatures Condition="'$(EnableExtensionsPatterns)'=='true'">$(UnoFeatures)Mvux;Localization;Storage;Configuration;</UnoFeatures>
+		<UnoFeatures Condition="'$(EnableExtensionsPatterns)'=='true'">$(UnoFeatures)Mvux;Hosting;Localization;Storage;Configuration;</UnoFeatures>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<DefineConstants Condition="$(IsSkiaWasm)">$(DefineConstants);IS_WASM_SKIA</DefineConstants>
 		<DefineConstants Condition="$(IsSkiaAndroid)">$(DefineConstants);IS_ANDROID_SKIA</DefineConstants>
@@ -259,6 +259,8 @@
 		-->
 
 		<WasmAotFileName Condition="'$(IsUiAutomationMappingEnabled)'=='True'">aot-uitests.profile</WasmAotFileName>
+		<!-- The historical profiles predate Uno.Extensions and leave required startup methods in an unsupported interpreter path. -->
+		<WasmAotFileName Condition="'$(EnableExtensionsPatterns)'=='true'">extensions-patterns-full-aot.profile</WasmAotFileName>
 	</PropertyGroup>
 
 	<!-- https://github.com/dotnet/runtime/issues/109289 -->
@@ -299,8 +301,7 @@
 			   Text="EnableVisualRegression=true requires the Skia-WASM renderer (UseNativeRendering=false)." />
 	</Target>
 	<Target Name="RemoveExtensionsPatternsReactiveGlobalUsing"
-			BeforeTargets="GenerateGlobalUsings"
-			Condition="'$(EnableExtensionsPatterns)'=='true'">
+			BeforeTargets="GenerateGlobalUsings">
 		<ItemGroup>
 			<Using Remove="Uno.Extensions.Reactive" />
 		</ItemGroup>
