@@ -78,6 +78,7 @@ public sealed class SamplesGeneratorTests
 		        public string[]? KnownLimitations { get; set; }
 		        public string? IssueLink { get; set; }
 		        public string? ApiLink { get; set; }
+		        public string? SourceRepositoryPath { get; set; }
 		    }
 
 		    [AttributeUsage(AttributeTargets.Class, Inherited = false)]
@@ -937,7 +938,7 @@ public sealed class SamplesGeneratorTests
 	}
 
 	[Test]
-	public void SourcePath_emitted_for_Views_prefixed_file()
+	public void SourcePath_emitted_as_repository_relative_file()
 	{
 		const string source = """
 			using Uno.Gallery;
@@ -955,8 +956,8 @@ public sealed class SamplesGeneratorTests
 		Assert.That(result.Exception, Is.Null);
 		Assert.That(UggDiagnostics(result), Is.Empty);
 		Assert.That(GetGeneratedSource(result),
-			Does.Contain("Views/SamplePages/MyControlSamplePage.xaml.cs"),
-			"SourcePath must be anchored at Views/ with forward slashes");
+			Does.Contain("Uno.Gallery/Views/SamplePages/MyControlSamplePage.xaml.cs"),
+			"SourcePath must be repository-relative with forward slashes");
 	}
 
 	[Test]
@@ -977,7 +978,7 @@ public sealed class SamplesGeneratorTests
 
 		Assert.That(result.Exception, Is.Null);
 		Assert.That(GetGeneratedSource(result),
-			Does.Contain("Views/SamplePages/Control2SamplePage.xaml.cs"));
+			Does.Contain("Uno.Gallery/Views/SamplePages/Control2SamplePage.xaml.cs"));
 	}
 
 	[Test]
@@ -3232,7 +3233,7 @@ public sealed class SamplesGeneratorTests
 			}
 			""";
 
-		// Supply an explicit file path so ComputeSourcePath can anchor at Views/.
+		// Supply an explicit file path so ComputeSourcePath can anchor at Uno.Gallery/.
 		var result = RunGeneratorWithFilePaths([
 			(source, @"C:\repo\Uno.Gallery\Views\SamplePages\FileBackedManifestPage.xaml.cs")
 		]);
@@ -3245,8 +3246,70 @@ public sealed class SamplesGeneratorTests
 		var s = doc.RootElement.GetProperty("samples")[0];
 
 		Assert.That(s.GetProperty("sourcePath").GetString(),
-			Is.EqualTo("Views/SamplePages/FileBackedManifestPage.xaml.cs"),
-			"sourcePath in manifest must be repo-relative with forward slashes, anchored at Views/");
+			Is.EqualTo("Uno.Gallery/Views/SamplePages/FileBackedManifestPage.xaml.cs"),
+			"sourcePath in manifest must be repository-relative with forward slashes");
+	}
+
+	[Test]
+	public void SampleManifest_sourcePath_override_supports_linked_repository_module()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Linked",
+			        SourceRepositoryPath = "Uno.Gallery.ExtensionsPatterns/LinkedPage.xaml.cs")]
+			    public class LinkedManifestPage : Page { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+		var json = InvokeGetJson(result, source)!;
+		using var doc = System.Text.Json.JsonDocument.Parse(json);
+
+		Assert.That(
+			doc.RootElement.GetProperty("samples")[0].GetProperty("sourcePath").GetString(),
+			Is.EqualTo("Uno.Gallery.ExtensionsPatterns/LinkedPage.xaml.cs"));
+	}
+
+	[Test]
+	public void UGG0011_rejects_parent_traversal_in_source_path_override()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Linked",
+			        SourceRepositoryPath = "../outside.cs")]
+			    public class LinkedManifestPage : Page { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+
+		Assert.That(
+			UggDiagnostics(result).Single(diagnostic => diagnostic.Id == "UGG0011").GetMessage(),
+			Does.Contain("SourceRepositoryPath"));
+	}
+
+	[Test]
+	public void UGG0011_rejects_source_path_override_outside_known_repository_projects()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Linked",
+			        SourceRepositoryPath = "external/LinkedPage.xaml.cs")]
+			    public class LinkedManifestPage : Page { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+
+		Assert.That(
+			UggDiagnostics(result).Single(diagnostic => diagnostic.Id == "UGG0011").GetMessage(),
+			Does.Contain("SourceRepositoryPath"));
 	}
 
 	[Test]

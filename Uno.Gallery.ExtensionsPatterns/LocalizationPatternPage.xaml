@@ -1,0 +1,38 @@
+<Page
+	x:Class="Uno.Gallery.ExtensionsPatterns.LocalizationPatternPage"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:local="using:Uno.Gallery.ExtensionsPatterns">
+	<ScrollViewer>
+		<StackPanel Padding="24" Spacing="16" MaxWidth="900" HorizontalAlignment="Left">
+			<local:PatternInfoHeader
+				PackageName="Uno.Extensions.Localization.WinUI 7.2.3"
+				Requirements="EnableExtensionsPatterns=true. Local culture adapter only; it does not replace the Gallery x:Uid sample or reload the shell."
+				AccessibilityStatus="Culture choices have visible labels and changes are announced politely."
+				DocumentationUri="https://platform.uno/docs/articles/external/uno.extensions/doc/Learn/Localization/LocalizationOverview.html"
+				SourceUri="https://github.com/unoplatform/Uno.Gallery/tree/master/Uno.Gallery.ExtensionsPatterns" />
+			<TextBlock Text="Localization service" Style="{StaticResource TitleTextBlockStyle}" />
+			<TextBlock Text="ILocalizationService selects deterministic resources contained in this optional module. Core x:Uid and RTL behavior remains documented by Localization and RTL." TextWrapping="Wrap" />
+			<ComboBox
+				x:Name="CulturePicker"
+				Header="Preview culture"
+				AutomationProperties.AutomationId="ExtensionsLocalization_Culture"
+				DisplayMemberPath="DisplayName"
+				SelectionChanged="CulturePicker_SelectionChanged" />
+			<TextBlock x:Name="GreetingText" AutomationProperties.AutomationId="ExtensionsLocalization_Greeting" FontSize="20" TextWrapping="Wrap" />
+			<TextBlock
+				x:Name="LocalizationStatus"
+				AutomationProperties.AutomationId="ExtensionsLocalization_Status"
+				AutomationProperties.LiveSetting="Polite"
+				TextWrapping="Wrap" />
+			<StackPanel Orientation="Horizontal" Spacing="8">
+				<Button Content="Select French"
+						AutomationProperties.AutomationId="ExtensionsLocalization_SelectFrench"
+						Click="SelectFrench_Click" />
+				<Button Content="Reset"
+						AutomationProperties.AutomationId="ExtensionsLocalization_Reset"
+						Click="Reset_Click" />
+			</StackPanel>
+		</StackPanel>
+	</ScrollViewer>
+</Page>

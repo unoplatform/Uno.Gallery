@@ -286,7 +286,7 @@ namespace Uno.Gallery
 
 		/// <summary>
 		/// Direct link to this sample's source file on GitHub.
-		/// <c>https://github.com/unoplatform/Uno.Gallery/blob/{revision}/Uno.Gallery/{SourcePath}</c>
+		/// <c>https://github.com/unoplatform/Uno.Gallery/blob/{revision}/{SourcePath}</c>
 		/// where <c>revision</c> is <see cref="BuildInfo.CommitSha"/> when available,
 		/// or <c>"master"</c> for local developer builds without a commit SHA in the
 		/// <c>AssemblyInformationalVersion</c> (e.g. builds from source without NBGV tagging).
@@ -306,8 +306,9 @@ namespace Uno.Gallery
 			var safeRevision = Uri.EscapeDataString(revision);
 			// Normalize Windows backslashes before splitting so local dev builds on Windows
 			// produce the same forward-slash GitHub URL as CI builds on Linux/macOS.
-			var safePath = string.Join("/", sourcePath.Replace('\\', '/').Split('/').Select(Uri.EscapeDataString));
-			return new Uri("https://github.com/unoplatform/Uno.Gallery/blob/" + safeRevision + "/Uno.Gallery/" + safePath);
+			var repositoryPath = sourcePath.Replace('\\', '/');
+			var safePath = string.Join("/", repositoryPath.Split('/').Select(Uri.EscapeDataString));
+			return new Uri("https://github.com/unoplatform/Uno.Gallery/blob/" + safeRevision + "/" + safePath);
 		}
 
 		/// <summary>Production-readiness indicator for this sample.</summary>

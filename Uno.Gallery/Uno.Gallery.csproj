@@ -79,11 +79,14 @@
 		<UnoFeatures Condition="$(IsSkiaWasm)">$(UnoFeatures)SkiaRenderer;</UnoFeatures>
 		<UnoFeatures Condition="$(IsSkiaAndroid)">$(UnoFeatures)SkiaRenderer;</UnoFeatures>
 		<UnoFeatures Condition="$(IsSkiaUIKit)">$(UnoFeatures)SkiaRenderer;</UnoFeatures>
+		<UnoFeatures Condition="'$(EnableExtensionsPatterns)'=='true'">$(UnoFeatures)Mvux;Hosting;Localization;Storage;Configuration;</UnoFeatures>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<DefineConstants Condition="$(IsSkiaWasm)">$(DefineConstants);IS_WASM_SKIA</DefineConstants>
 		<DefineConstants Condition="$(IsSkiaAndroid)">$(DefineConstants);IS_ANDROID_SKIA</DefineConstants>
 		<DefineConstants Condition="$(IsSkiaUIKit)">$(DefineConstants);IS_UIKIT_SKIA</DefineConstants>
 		<DefineConstants Condition="'$(UseNativeRendering)'!='true'">$(DefineConstants);HAS_SKIA_RENDERER</DefineConstants>
+		<EnableExtensionsPatterns Condition="'$(EnableExtensionsPatterns)'==''">false</EnableExtensionsPatterns>
+		<DefineConstants Condition="'$(EnableExtensionsPatterns)'=='true'">$(DefineConstants);EXTENSIONS_PATTERNS</DefineConstants>
 		<DefineConstants>$(DefineConstants);ENFORCE_SAMPLE_CONTRACT</DefineConstants>
 
 		<DefineConstants Condition="$(BUILD_SOURCEBRANCH.StartsWith('refs/heads/canaries'))">$(DefineConstants);IS_CANARY_BUILD</DefineConstants>
@@ -130,10 +133,24 @@
 	<ItemGroup>
 		<PackageReference Include="Uno.ShowMeTheXAML" />
 		<PackageReference Include="Uno.ShowMeTheXAML.MSBuild" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Debug" />
-		<PackageReference Include="Uno.Core.Extensions.Disposables" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug">
+			<VersionOverride Condition="'$(EnableExtensionsPatterns)'=='true'">9.0.14</VersionOverride>
+		</PackageReference>
+		<PackageReference Include="Uno.Core.Extensions.Disposables">
+			<VersionOverride Condition="'$(EnableExtensionsPatterns)'=='true'">4.1.1</VersionOverride>
+		</PackageReference>
 		<PackageReference Include="Uno.Core.Extensions.Compatibility" />
 		<!--<PackageReference Include="SkiaSharp.Skottie" Condition="$(IsSkiaWasm) OR $(IsSkiaAndroid)" />-->
+		<PackageReference Include="Uno.Extensions.Validation" Condition="'$(EnableExtensionsPatterns)'=='true'" />
+	</ItemGroup>
+	<ItemGroup Condition="'$(EnableExtensionsPatterns)'=='true'">
+		<Compile Include="..\Uno.Gallery.ExtensionsPatterns\**\*.cs"
+				 Link="ExtensionsPatterns\%(RecursiveDir)%(Filename)%(Extension)" />
+		<Page Include="..\Uno.Gallery.ExtensionsPatterns\**\*.xaml"
+			  Link="ExtensionsPatterns\%(RecursiveDir)%(Filename)%(Extension)" />
+		<EmbeddedResource Include="..\Uno.Gallery.ExtensionsPatterns\appsettings.extensionspatterns.json"
+						  LogicalName="Uno.Gallery.ExtensionsPatterns.appsettings.extensionspatterns.json" />
+		<Using Remove="Uno.Extensions.Reactive" Condition="'$(EnableExtensionsPatterns)'=='true'" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\Uno.Gallery.SourceGenerators\Uno.Gallery.SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" SetPlatform="Platform=AnyCPU" />
@@ -242,6 +259,8 @@
 		-->
 
 		<WasmAotFileName Condition="'$(IsUiAutomationMappingEnabled)'=='True'">aot-uitests.profile</WasmAotFileName>
+		<!-- The historical profiles predate Uno.Extensions and leave required startup methods in an unsupported interpreter path. -->
+		<WasmAotFileName Condition="'$(EnableExtensionsPatterns)'=='true'">extensions-patterns-full-aot.profile</WasmAotFileName>
 	</PropertyGroup>
 
 	<!-- https://github.com/dotnet/runtime/issues/109289 -->
@@ -280,6 +299,12 @@
 			   Text="EnableVisualRegression=true is supported only for net10.0-browserwasm." />
 		<Error Condition="'$(UseNativeRendering)'=='true'"
 			   Text="EnableVisualRegression=true requires the Skia-WASM renderer (UseNativeRendering=false)." />
+	</Target>
+	<Target Name="RemoveExtensionsPatternsReactiveGlobalUsing"
+			BeforeTargets="GenerateGlobalUsings">
+		<ItemGroup>
+			<Using Remove="Uno.Extensions.Reactive" />
+		</ItemGroup>
 	</Target>
 	<Target Name="ExcludeVisualRegressionBuildToolAssemblies"
 			BeforeTargets="_WasmAotCompileApp;_GenerateManagedToNative"

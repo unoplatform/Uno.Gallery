@@ -308,7 +308,15 @@
           "uniqueItems": true
         },
         "sourcePath": {
-          "$ref": "#/$defs/nullableString"
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^Uno\\.Gallery(?:\\.ExtensionsPatterns)?/"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "platformConditionals": {
           "type": [

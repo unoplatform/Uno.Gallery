@@ -750,6 +750,21 @@ public sealed class SamplesGenerator : IIncrementalGenerator
 		var resetBehavior = GetNamedArgumentOrDefault<string>(samplePageAttribute, "ResetBehavior", null);
 		var issueLink = GetNamedArgumentOrDefault<string>(samplePageAttribute, "IssueLink", null);
 		var apiLink = GetNamedArgumentOrDefault<string>(samplePageAttribute, "ApiLink", null);
+		var sourceRepositoryPath = GetNamedArgumentOrDefault<string>(samplePageAttribute, "SourceRepositoryPath", null);
+		if (sourceRepositoryPath is not null &&
+			(sourceRepositoryPath.Length == 0 ||
+			 sourceRepositoryPath.Contains('\\') ||
+			 sourceRepositoryPath.StartsWith("/", StringComparison.Ordinal) ||
+			 (!sourceRepositoryPath.StartsWith("Uno.Gallery/", StringComparison.Ordinal) &&
+			  !sourceRepositoryPath.StartsWith("Uno.Gallery.ExtensionsPatterns/", StringComparison.Ordinal)) ||
+			 sourceRepositoryPath.Split('/').Any(segment => segment is "" or "." or "..")))
+		{
+			return TransformResult.Fail(new DiagnosticInfo(
+				Diagnostics.IncompleteSampleContract,
+				declLoc,
+				attributedSymbol.ToDisplayString(),
+				"SourceRepositoryPath (expected normalized repository-relative path)"));
+		}
 
 		var requiresContractV1 = statusValue == 0
 			&& (statusExplicit ||
@@ -783,7 +798,7 @@ public sealed class SamplesGenerator : IIncrementalGenerator
 					string.Join(", ", invalidContractFields)));
 			}
 		}
-		var sourcePath = ComputeSourcePath(declLoc.SourceTree?.FilePath);
+		var sourcePath = sourceRepositoryPath ?? ComputeSourcePath(declLoc.SourceTree?.FilePath);
 
 		return TransformResult.Ok(new SamplesModel(
 			conditionals,
@@ -1500,17 +1515,18 @@ public sealed class SamplesGenerator : IIncrementalGenerator
 		(c >= 'a' && c <= 'z') || (c >= '0' && c <= '9');
 
 	/// <summary>
-	/// Returns a repo-relative path anchored at the first <c>/Views/</c> segment,
-	/// or the bare filename as a fallback.  Returns <c>null</c> for empty or in-memory paths.
+	/// Returns a repository-relative path anchored at the <c>/Uno.Gallery/</c> project segment.
+	/// Returns <c>null</c> when the path is empty, in-memory, or outside the application project.
 	/// </summary>
 	private static string? ComputeSourcePath(string? filePath)
 	{
 		if (filePath is null || filePath.Length == 0) return null;
 		var normalized = filePath.Replace('\\', '/');
-		var idx = normalized.IndexOf("/Views/", StringComparison.OrdinalIgnoreCase);
+		var idx = normalized.IndexOf("/Uno.Gallery/", StringComparison.OrdinalIgnoreCase);
 		if (idx >= 0) return normalized.Substring(idx + 1);
-		var lastSlash = normalized.LastIndexOf('/');
-		return lastSlash >= 0 ? normalized.Substring(lastSlash + 1) : normalized;
+		if (normalized.StartsWith("Uno.Gallery/", StringComparison.Ordinal))
+			return normalized;
+		return null;
 	}
 
 	/// <summary>
