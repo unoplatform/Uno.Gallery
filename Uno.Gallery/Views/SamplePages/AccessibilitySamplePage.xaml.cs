@@ -14,6 +14,13 @@ namespace Uno.Gallery.Views.Samples;
 	Slug = "accessibility",
 	Tags = new[] { "accessibility", "keyboard", "screen-reader", "contrast", "reduced-motion" },
 	Status = SampleStatus.Stable,
+	ContractVersion = 1,
+	SupportedDesigns = SampleDesigns.Agnostic,
+	SupportedRenderers = SampleRenderers.Native | SampleRenderers.Skia | SampleRenderers.DOM,
+	Requirements = new[] { SampleContractDefaults.NoExternalRequirements },
+	AccessibilityNotes = new[] { "Use the keyboard, a screen reader, high contrast, and reduced-motion settings to exercise the documented semantics." },
+	ResetBehavior = SampleContractDefaults.ReloadToReset,
+	Variants = new[] { "Focus order and accessible naming", "Live announcements", "Contrast and high contrast", "Reduced motion" },
 	Owner = "unoplatform",
 	ReviewedOn = "2026-08-26",
 	RelatedSamples = new[] { "localization-rtl" })]

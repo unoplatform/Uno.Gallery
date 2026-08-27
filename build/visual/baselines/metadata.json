@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "suiteVersion": 1,
-  "generatedAtUtc": "2026-08-27T06:35:27.797Z",
+  "generatedAtUtc": "2026-08-27T13:26:22.993Z",
   "host": {
     "os": "win32",
     "architecture": "x64"
@@ -21,7 +21,7 @@
   ],
   "configDigest": "107bbee62472bbd73e2ea8a78e70d653b22e444102b804ba055475abda1e7260",
   "lockDigest": "e331b3d9d27e89eac15b64af35a5aad631704c6ed04eea0ebce90c02ef5878ca",
-  "toolDigest": "4b7d0317dd06f2758a1785df067be5a2677e07586119e9eeebc34b7d93263cdc",
+  "toolDigest": "784842fd88dfcc66765a6bd6a75e59aff593686042195793db369bc5038c6a3e",
   "samples": [
     {
       "id": "overview-material",
@@ -45,7 +45,7 @@
       "design": "Material",
       "area": "Material control",
       "masks": [],
-      "sha256": "1ed04e164c09895ab429ac5ba6f427d577760c1f41419a8bee114036e5a1a918"
+      "sha256": "63bf51a81e1becc208a4de2d1a64c037ab24aab69694c6a82e1fbabd7c95b6bd"
     },
     {
       "id": "button-fluent",
@@ -53,7 +53,7 @@
       "design": "Fluent",
       "area": "Fluent control",
       "masks": [],
-      "sha256": "484817258df91b46f4eb094bededf4ae73c0ca50892091bfd90d2c6d6f148770"
+      "sha256": "9c2408524f19bd724037c863a35b39ca8032d3982883f1a4e5322c4018b73a6a"
     },
     {
       "id": "text-box-fluent",
@@ -61,7 +61,7 @@
       "design": "Fluent",
       "area": "Fluent input",
       "masks": [],
-      "sha256": "da947f3ce43c4bf6c1bf6da3bd2f28587867c5471b8862b076d2310b0eb6626b"
+      "sha256": "951b3a8e833d0f7279cbb2dca739a826d39ce8631ccfe1574b447b49bbf80ed2"
     },
     {
       "id": "design-tokens-material",
@@ -69,7 +69,7 @@
       "design": "Material",
       "area": "design tokens",
       "masks": [],
-      "sha256": "54fd8cbbe2dcb18068f7e704f035e5de7f7893d4c6bdcfda57054c130ced8cc0"
+      "sha256": "6d93bbbb3b8f93e276247448dcc8773bfb8405b42898588132d4e3873f77626e"
     },
     {
       "id": "material-palette",
@@ -93,7 +93,7 @@
       "design": "Fluent",
       "area": "layout",
       "masks": [],
-      "sha256": "f2782adf555d0026d67d232dc5e9aea3acb53d744286443c512954b30f02a182"
+      "sha256": "52709f1ce739adc50a252640d69d6ca49c10b630fd5eb773db6923b274bc753a"
     },
     {
       "id": "list-view-fluent",
@@ -101,7 +101,7 @@
       "design": "Fluent",
       "area": "collection",
       "masks": [],
-      "sha256": "35b0d4b06f88e6ad88037cb59740ba372973392b5356b4aed57dc913622a22dd"
+      "sha256": "8be1ce829791f8b32c1bf59fec8bf3b4a418a82d1d7b2f306bf7ca2b6a5ddfcc"
     },
     {
       "id": "auto-layout-agnostic",
@@ -109,7 +109,7 @@
       "design": "Agnostic",
       "area": "Toolkit layout",
       "masks": [],
-      "sha256": "1aeadb73bf4a217b83b47f99c3b3282384a576b8c6c8bb29ed9020c7cb22a146"
+      "sha256": "818c5843606e46e951e52cf027bb8e6213a88a833e4d14dab7f4bb19953102fa"
     },
     {
       "id": "card-content-control-material",
@@ -117,7 +117,7 @@
       "design": "Material",
       "area": "Toolkit control",
       "masks": [],
-      "sha256": "187f98a2fcc7bc4f2eff2840d2d0ebc89950020eba2a65611f534ff140103630"
+      "sha256": "3cc6ee2f6194ac5338030160ef17df6ce94cca32f9c1a76077b9cbb81d8d6e7c"
     },
     {
       "id": "accessibility-agnostic",
@@ -125,7 +125,7 @@
       "design": "Agnostic",
       "area": "accessibility",
       "masks": [],
-      "sha256": "0301ce96177ae06cb72481c1c4b0dbf80481cf2984378d88bc575495006b676d"
+      "sha256": "84d350aa00c1a98c3f13bcbf036d661c9323f689ac515e4765e0007024e2d2a6"
     },
     {
       "id": "localization-rtl-agnostic",
@@ -133,7 +133,7 @@
       "design": "Agnostic",
       "area": "localization",
       "masks": [],
-      "sha256": "e3dfb2e949c2ad0cf7ed839f9878bd9d454025281ed99ca2320889cb4ccb8e4c"
+      "sha256": "c623951ecb8157d8923a3cedb8ea6dcfccd3eddaccdc459a5918cf8690b43403"
     }
   ]
 }

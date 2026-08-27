@@ -8,6 +8,13 @@ namespace Uno.Gallery.Views.Samples
 		Slug = "expander",
 		Tags = new[] { "layout", "disclosure", "toggle", "container" },
 		Status = SampleStatus.Stable,
+		ContractVersion = 1,
+		SupportedDesigns = SampleDesigns.Fluent,
+		SupportedRenderers = SampleRenderers.Native | SampleRenderers.Skia | SampleRenderers.DOM,
+		Requirements = new[] { SampleContractDefaults.NoExternalRequirements },
+		AccessibilityNotes = new[] { "Enabled headers are keyboard-focusable and expose expanded or collapsed state; the disabled variant cannot be invoked." },
+		ResetBehavior = SampleContractDefaults.ReloadToReset,
+		Variants = new[] { "Expanded and collapsed", "Custom header", "Expand upward", "Disabled" },
 		Owner = "unoplatform",
 		ReviewedOn = "2026-08-26")]
 	public sealed partial class ExpanderSamplePage : Page

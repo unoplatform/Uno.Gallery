@@ -46,9 +46,9 @@ namespace Uno.Gallery
 			typeof(SamplePageLayout),
 			new PropertyMetadata(default));
 
-		public Uri DocumentationLink
+		public Uri? DocumentationLink
 		{
-			get => (Uri)GetValue(DocumentationLinkProperty);
+			get => (Uri?)GetValue(DocumentationLinkProperty);
 			set => SetValue(DocumentationLinkProperty, value);
 		}
 

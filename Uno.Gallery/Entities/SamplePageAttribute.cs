@@ -70,10 +70,50 @@ namespace Uno.Gallery
 		public string? ReviewedOn { get; set; }
 
 		/// <summary>
+		/// Version of the enforceable sample-detail contract authored by this sample.
+		/// Zero identifies legacy metadata that has not yet been reviewed.
+		/// </summary>
+		public int ContractVersion { get; set; }
+
+		/// <summary>Design systems intentionally demonstrated by this sample.</summary>
+		public SampleDesigns SupportedDesigns { get; set; }
+
+		/// <summary>Rendering backends on which this sample is intentionally supported.</summary>
+		public SampleRenderers SupportedRenderers { get; set; }
+
+		/// <summary>Permissions, network access, hardware, or setup required to use the sample.</summary>
+		public string[]? Requirements { get; set; }
+
+		/// <summary>Keyboard, screen-reader, contrast, motion, or other accessibility guidance.</summary>
+		public string[]? AccessibilityNotes { get; set; }
+
+		/// <summary>How a user restores the sample to its initial state.</summary>
+		public string? ResetBehavior { get; set; }
+
+		/// <summary>Distinct states, configurations, or interaction paths demonstrated by the sample.</summary>
+		public string[]? Variants { get; set; }
+
+		/// <summary>Known platform, renderer, or behavior limitations. Empty when none are known.</summary>
+		public string[]? KnownLimitations { get; set; }
+
+		/// <summary>Optional issue tracking a known limitation or follow-up.</summary>
+		public string? IssueLink { get; set; }
+
+		/// <summary>Optional API reference when <see cref="DocumentationLink"/> is broader guidance.</summary>
+		public string? ApiLink { get; set; }
+
+		/// <summary>
 		/// URL-friendly slugs of related samples for cross-linking in the catalog.
 		/// Each entry must exactly match (ordinal, lowercase) the final slug of another
 		/// sample — either the slug derived from its title or its explicit <see cref="Slug"/>.
 		/// </summary>
 		public string[]? RelatedSamples { get; set; }
+	}
+
+	/// <summary>Reusable contract text for facts that are identical across multiple samples.</summary>
+	public static class SampleContractDefaults
+	{
+		public const string NoExternalRequirements = "No permissions, network access, external services, or additional setup are required.";
+		public const string ReloadToReset = "Navigate away and reopen the sample to restore its initial state.";
 	}
 }

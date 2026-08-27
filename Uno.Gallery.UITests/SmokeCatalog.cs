@@ -14,10 +14,10 @@ internal static class SmokeCatalog
 		var manifest = JsonConvert.DeserializeObject<SmokeManifest>(json)
 			?? throw new InvalidDataException("The running app returned an invalid sample manifest.");
 
-		if (manifest.SchemaVersion != 1)
+		if (manifest.SchemaVersion is not 1 and not 2)
 		{
 			throw new InvalidDataException(
-				$"Unsupported sample manifest schema {manifest.SchemaVersion}; expected 1.");
+				$"Unsupported sample manifest schema {manifest.SchemaVersion}; expected 1 or 2.");
 		}
 
 		if (manifest.Samples is null)
@@ -49,8 +49,23 @@ internal static class SmokeCatalog
 				throw new InvalidDataException($"Duplicate target manifest slug '{sample.Slug}'.");
 			}
 
-			if (sample.Status?.Value == 0 &&
-				string.Equals(sample.Status.Name, "Stable", StringComparison.Ordinal))
+			var expectedStatusName = sample.Status?.Value switch
+			{
+				0 => "Stable",
+				1 => "Preview",
+				2 => "Experimental",
+				3 => "Deprecated",
+				4 => "Incomplete",
+				_ => null,
+			};
+			if (expectedStatusName is null ||
+				!string.Equals(sample.Status!.Name, expectedStatusName, StringComparison.Ordinal))
+			{
+				throw new InvalidDataException(
+					$"Sample '{sample.Slug}' has an unknown or inconsistent status value/name.");
+			}
+
+			if (sample.Status.Value == 0)
 			{
 				stable.Add(sample);
 			}

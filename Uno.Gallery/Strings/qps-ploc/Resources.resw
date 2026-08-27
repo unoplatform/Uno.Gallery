@@ -270,6 +270,51 @@
   <data name="SampleReviewedLabel.Text" xml:space="preserve">
     <value>[!! ŘËṼÏËŴËÐ   ~~~ !!]</value>
   </data>
+  <data name="SampleCompatibilityLabel.Text" xml:space="preserve">
+    <value>[!! ÇÖⱮÞÁŦÏɃÏĽÏŦŸ ~~~~ !!]</value>
+  </data>
+  <data name="SampleDesignsLabel.Text" xml:space="preserve">
+    <value>[!! Ðëšïğñš:  ~~~ !!]</value>
+  </data>
+  <data name="SampleRenderersLabel.Text" xml:space="preserve">
+    <value>[!! Řëñðëřëřš:  ~~~~ !!]</value>
+  </data>
+  <data name="SampleRequirementsLabel.Text" xml:space="preserve">
+    <value>[!! ŘËʠÜÏŘËⱮËÑŦŠ ~~~~ !!]</value>
+  </data>
+  <data name="SampleAccessibilityNotesLabel.Text" xml:space="preserve">
+    <value>[!! ÁÇÇËŠŠÏɃÏĽÏŦŸ ~~~~ !!]</value>
+  </data>
+  <data name="SampleVariantsLabel.Text" xml:space="preserve">
+    <value>[!! ṼÁŘÏÁÑŦŠ ÁÑÐ ŘËŠËŦ ~~~~~~ !!]</value>
+  </data>
+  <data name="SampleKnownLimitationsLabel.Text" xml:space="preserve">
+    <value>[!! ĶÑÖŴÑ ĽÏⱮÏŦÁŦÏÖÑŠ ~~~~~~ !!]</value>
+  </data>
+  <data name="SampleContractDesignMaterial" xml:space="preserve">
+    <value>[!! Ɱáŧëřïáľ ~~~ !!]</value>
+  </data>
+  <data name="SampleContractDesignFluent" xml:space="preserve">
+    <value>[!! Ƒľüëñŧ ~~~ !!]</value>
+  </data>
+  <data name="SampleContractDesignCupertino" xml:space="preserve">
+    <value>[!! Çüþëřŧïñö ~~~ !!]</value>
+  </data>
+  <data name="SampleContractDesignNative" xml:space="preserve">
+    <value>[!! Ñáŧïṽë ~~~ !!]</value>
+  </data>
+  <data name="SampleContractDesignAgnostic" xml:space="preserve">
+    <value>[!! Ðëšïğñ áğñöšŧïç ~~~~~ !!]</value>
+  </data>
+  <data name="SampleContractRendererNative" xml:space="preserve">
+    <value>[!! Ñáŧïṽë ~~~ !!]</value>
+  </data>
+  <data name="SampleContractRendererSkia" xml:space="preserve">
+    <value>[!! Šķïá ~~~ !!]</value>
+  </data>
+  <data name="SampleContractRendererDom" xml:space="preserve">
+    <value>[!! ÐÖⱮ ~~~ !!]</value>
+  </data>
   <data name="DesignMaterial.Text" xml:space="preserve">
     <value>[!! Ɱáŧëřïáľ ~~~ !!]</value>
   </data>
@@ -284,6 +329,12 @@
   </data>
   <data name="SampleDocumentationAction.Text" xml:space="preserve">
     <value>[!! Öþëñ ŧħë öƒƒïçïáľ ðöçüɱëñŧáŧïöñ. ~~~~~~~~~~ !!]</value>
+  </data>
+  <data name="SampleApiAction.Text" xml:space="preserve">
+    <value>[!! Öþëñ ŧħë ÁÞÏ řëƒëřëñçë. ~~~~~~~ !!]</value>
+  </data>
+  <data name="SampleIssueAction.Text" xml:space="preserve">
+    <value>[!! Ṽïëŵ ŧħë ķñöŵñ ïššüë. ~~~~~~~ !!]</value>
   </data>
   <data name="SampleShareAction.Text" xml:space="preserve">
     <value>[!! Šħářë ŧħïš þáğë. ~~~~~ !!]</value>

@@ -270,6 +270,51 @@
   <data name="SampleReviewedLabel.Text" xml:space="preserve">
     <value>REVIEWED  </value>
   </data>
+  <data name="SampleCompatibilityLabel.Text" xml:space="preserve">
+    <value>COMPATIBILITY</value>
+  </data>
+  <data name="SampleDesignsLabel.Text" xml:space="preserve">
+    <value>Designs: </value>
+  </data>
+  <data name="SampleRenderersLabel.Text" xml:space="preserve">
+    <value>Renderers: </value>
+  </data>
+  <data name="SampleRequirementsLabel.Text" xml:space="preserve">
+    <value>REQUIREMENTS</value>
+  </data>
+  <data name="SampleAccessibilityNotesLabel.Text" xml:space="preserve">
+    <value>ACCESSIBILITY</value>
+  </data>
+  <data name="SampleVariantsLabel.Text" xml:space="preserve">
+    <value>VARIANTS AND RESET</value>
+  </data>
+  <data name="SampleKnownLimitationsLabel.Text" xml:space="preserve">
+    <value>KNOWN LIMITATIONS</value>
+  </data>
+  <data name="SampleContractDesignMaterial" xml:space="preserve">
+    <value>Material</value>
+  </data>
+  <data name="SampleContractDesignFluent" xml:space="preserve">
+    <value>Fluent</value>
+  </data>
+  <data name="SampleContractDesignCupertino" xml:space="preserve">
+    <value>Cupertino</value>
+  </data>
+  <data name="SampleContractDesignNative" xml:space="preserve">
+    <value>Native</value>
+  </data>
+  <data name="SampleContractDesignAgnostic" xml:space="preserve">
+    <value>Design agnostic</value>
+  </data>
+  <data name="SampleContractRendererNative" xml:space="preserve">
+    <value>Native</value>
+  </data>
+  <data name="SampleContractRendererSkia" xml:space="preserve">
+    <value>Skia</value>
+  </data>
+  <data name="SampleContractRendererDom" xml:space="preserve">
+    <value>DOM</value>
+  </data>
   <data name="DesignMaterial.Text" xml:space="preserve">
     <value>Material</value>
   </data>
@@ -284,6 +329,12 @@
   </data>
   <data name="SampleDocumentationAction.Text" xml:space="preserve">
     <value>Open the official documentation.</value>
+  </data>
+  <data name="SampleApiAction.Text" xml:space="preserve">
+    <value>Open the API reference.</value>
+  </data>
+  <data name="SampleIssueAction.Text" xml:space="preserve">
+    <value>View the known issue.</value>
   </data>
   <data name="SampleShareAction.Text" xml:space="preserve">
     <value>Share this page.</value>

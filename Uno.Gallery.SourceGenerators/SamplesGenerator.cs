@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Text;
 using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Text;
 
@@ -10,6 +11,105 @@ namespace Uno.Gallery.SourceGenerators;
 [Generator]
 public sealed class SamplesGenerator : IIncrementalGenerator
 {
+	private static readonly HashSet<string> FrozenLegacyStableSlugs = new(StringComparer.Ordinal)
+	{
+		"accelerometer",
+		"acrylic",
+		"animation",
+		"autosuggestbox",
+		"barometer",
+		"binding",
+		"breadcrumbbar",
+		"brush",
+		"button",
+		"calendardatepicker",
+		"calendarview",
+		"card",
+		"checkbox",
+		"chip",
+		"chipgroup",
+		"clipboard",
+		"colorpicker",
+		"combobox",
+		"commandbar",
+		"contentdialog",
+		"cupertino-palette",
+		"datagrid",
+		"datepicker",
+		"display-request",
+		"divider",
+		"elevatedview",
+		"email-manager",
+		"file-and-folder-pickers",
+		"flipview",
+		"floating-action-button",
+		"fluent-palette",
+		"flyout",
+		"gamepad",
+		"geolocator",
+		"grid",
+		"gridview",
+		"gyrometer",
+		"hyperlinkbutton",
+		"icon",
+		"image",
+		"infobadge",
+		"itemsview",
+		"lamp",
+		"launcher",
+		"light-sensor",
+		"lightweight-styling",
+		"listview",
+		"local-settings",
+		"lottie",
+		"magnetometer",
+		"material-palette",
+		"mediaplayerelement",
+		"menubar",
+		"navigationbar",
+		"navigationview",
+		"network-information",
+		"numberbox",
+		"overview",
+		"panel",
+		"passwordbox",
+		"passwordvault",
+		"path",
+		"pedometer",
+		"personpicture",
+		"phonecallmanager",
+		"pipspager",
+		"progress-ring-bar",
+		"radiobutton",
+		"ratingcontrol",
+		"refreshcontainer",
+		"relativepanel",
+		"scrollview",
+		"segmentedcontrol",
+		"shadowcontainer",
+		"shape",
+		"sharing",
+		"simple-orientation",
+		"slider",
+		"stackpanel",
+		"swipecontrol",
+		"tabbar",
+		"tabview",
+		"teachingtip",
+		"textblock",
+		"textbox",
+		"timepicker",
+		"toggleswitch",
+		"transforms",
+		"treeview",
+		"twopaneview",
+		"typography",
+		"variablesizedwrapgrid",
+		"vibration",
+		"viewbox",
+		"webview",
+	};
+
 	// ─── Diagnostics ──────────────────────────────────────────────────────────
 	// UGG0001  Error    Unexpected SamplePageAttribute constructor shape (param count or names)
 	// UGG0002  Error    SamplePageAttribute applied to a non-named-type target
@@ -20,6 +120,8 @@ public sealed class SamplesGenerator : IIncrementalGenerator
 	// UGG0007  Warning  RelatedSamples entry references an unknown final slug (ordinal match)
 	// UGG0008  Error    Null or empty element in a string metadata array (Tags, RelatedSamples)
 	// UGG0009  Error    Page type or DataType is abstract or has no accessible parameterless constructor
+	// UGG0010  Error    Route constant identifier collision
+	// UGG0011  Error    Explicit Stable or contract-v1 sample has incomplete contract metadata
 
 	private static class Diagnostics
 	{
@@ -137,6 +239,17 @@ public sealed class SamplesGenerator : IIncrementalGenerator
 						 "When two different slugs produce the same identifier (e.g. 'a1b' and 'a-1b' both yield 'A1b'), " +
 						 "neither constant can be emitted. " +
 						 "Set an explicit Slug on one of the samples so their derived identifiers are distinct.");
+
+		public static readonly DiagnosticDescriptor IncompleteSampleContract = new(
+			id: "UGG0011",
+			title: "Sample detail contract is incomplete",
+			messageFormat: "Sample detail contract on '{0}' has missing or invalid fields: {1}. " +
+						   "Stable samples outside the frozen legacy set must author ContractVersion = 1 and a complete contract.",
+			category: "SamplesGenerator",
+			defaultSeverity: DiagnosticSeverity.Error,
+			isEnabledByDefault: true,
+			description: "Contract-v1 and non-grandfathered Stable samples must provide complete, reviewed detail metadata. " +
+						 "Fill every listed field rather than suppressing this diagnostic.");
 	}
 
 	// ─── StringSequence ──────────────────────────────────────────────────────
@@ -222,6 +335,19 @@ public sealed class SamplesGenerator : IIncrementalGenerator
 		string? Owner,
 		string? ReviewedOn,
 		StringSequence RelatedSamples,
+		int ContractVersion,
+		int SupportedDesignsValue,
+		string SupportedDesignsName,
+		int SupportedRenderersValue,
+		string SupportedRenderersName,
+		StringSequence Requirements,
+		StringSequence AccessibilityNotes,
+		string? ResetBehavior,
+		StringSequence Variants,
+		StringSequence KnownLimitations,
+		string? IssueLink,
+		string? ApiLink,
+		bool StatusExplicit,
 		string? SourcePath,
 		// ─── Manifest fields ─────────────────────────────────────────────────
 		// Numeric values + member names for the manifest JSON (resolved via Roslyn during Transform).
@@ -393,6 +519,10 @@ public sealed class SamplesGenerator : IIncrementalGenerator
 		var relatedLiteral = model.RelatedSamples.IsEmpty
 			? "null"
 			: $"new[] {{ {string.Join(", ", model.RelatedSamples.Values.Select(StringLiteral))} }}";
+		var requirementsLiteral = StringArrayLiteral(model.Requirements);
+		var accessibilityNotesLiteral = StringArrayLiteral(model.AccessibilityNotes);
+		var variantsLiteral = StringArrayLiteral(model.Variants);
+		var knownLimitationsLiteral = StringArrayLiteral(model.KnownLimitations);
 
 		// Title and Glyph are positional constructor args; use StringLiteral so that embedded
 		// double-quotes, backslashes, and any other characters round-trip correctly through the
@@ -410,8 +540,23 @@ public sealed class SamplesGenerator : IIncrementalGenerator
 			   $" Status = (global::Uno.Gallery.SampleStatus)({model.StatusValue.ToString(CultureInfo.InvariantCulture)})," +
 			   $" Owner = {StringLiteral(model.Owner)}," +
 			   $" ReviewedOn = {StringLiteral(model.ReviewedOn)}," +
+			   $" ContractVersion = {model.ContractVersion.ToString(CultureInfo.InvariantCulture)}," +
+			   $" SupportedDesigns = (global::Uno.Gallery.SampleDesigns)({model.SupportedDesignsValue.ToString(CultureInfo.InvariantCulture)})," +
+			   $" SupportedRenderers = (global::Uno.Gallery.SampleRenderers)({model.SupportedRenderersValue.ToString(CultureInfo.InvariantCulture)})," +
+			   $" Requirements = {requirementsLiteral}," +
+			   $" AccessibilityNotes = {accessibilityNotesLiteral}," +
+			   $" ResetBehavior = {StringLiteral(model.ResetBehavior)}," +
+			   $" Variants = {variantsLiteral}," +
+			   $" KnownLimitations = {knownLimitationsLiteral}," +
+			   $" IssueLink = {StringLiteral(model.IssueLink)}," +
+			   $" ApiLink = {StringLiteral(model.ApiLink)}," +
 			   $" RelatedSamples = {relatedLiteral} }}";
 	}
+
+	private static string StringArrayLiteral(StringSequence values) =>
+		values.IsEmpty
+			? "null"
+			: $"new[] {{ {string.Join(", ", values.Values.Select(StringLiteral))} }}";
 
 	private static string CreateSampleObjectInitializer(SamplesModel model)
 	{
@@ -544,6 +689,10 @@ public sealed class SamplesGenerator : IIncrementalGenerator
 		var invalidElements = new List<(string ArrayName, int Index)>();
 		var tags = GetNamedStringArray(samplePageAttribute, "Tags", invalidElements);
 		var relatedSamples = GetNamedStringArray(samplePageAttribute, "RelatedSamples", invalidElements);
+		var requirements = GetNamedStringArray(samplePageAttribute, "Requirements", invalidElements);
+		var accessibilityNotes = GetNamedStringArray(samplePageAttribute, "AccessibilityNotes", invalidElements);
+		var variants = GetNamedStringArray(samplePageAttribute, "Variants", invalidElements);
+		var knownLimitations = GetNamedStringArray(samplePageAttribute, "KnownLimitations", invalidElements);
 		if (invalidElements.Count > 0)
 		{
 			var parts = string.Join(", ", invalidElements.Select(e => $"{e.ArrayName}[{e.Index}]"));
@@ -571,8 +720,69 @@ public sealed class SamplesGenerator : IIncrementalGenerator
 		}
 
 		var (statusValue, statusName) = GetNamedEnumWithName(samplePageAttribute, "Status", 0, "Stable");
+		var statusExplicit = HasNamedArgument(samplePageAttribute, "Status");
+		var enforceFrozenLegacySet = context.TargetNode.SyntaxTree.Options is CSharpParseOptions parseOptions
+			&& parseOptions.PreprocessorSymbolNames.Contains("ENFORCE_SAMPLE_CONTRACT");
+		var expectedStatusName = statusValue switch
+		{
+			0 => "Stable",
+			1 => "Preview",
+			2 => "Experimental",
+			3 => "Deprecated",
+			4 => "Incomplete",
+			_ => null,
+		};
+		if (expectedStatusName is null || !string.Equals(statusName, expectedStatusName, StringComparison.Ordinal))
+		{
+			return TransformResult.Fail(new DiagnosticInfo(
+				Diagnostics.IncompleteSampleContract,
+				declLoc,
+				attributedSymbol.ToDisplayString(),
+				$"Status (undefined or inconsistent value {statusValue}/{statusName})"));
+		}
 		var owner = GetNamedArgumentOrDefault<string>(samplePageAttribute, "Owner", null);
 		var reviewedOn = GetNamedArgumentOrDefault<string>(samplePageAttribute, "ReviewedOn", null);
+		var contractVersion = GetNamedArgumentOrDefault<int>(samplePageAttribute, "ContractVersion", 0);
+		var (supportedDesignsValue, supportedDesignsName) =
+			GetNamedFlagsWithName(samplePageAttribute, "SupportedDesigns", 0, "None");
+		var (supportedRenderersValue, supportedRenderersName) =
+			GetNamedFlagsWithName(samplePageAttribute, "SupportedRenderers", 0, "None");
+		var resetBehavior = GetNamedArgumentOrDefault<string>(samplePageAttribute, "ResetBehavior", null);
+		var issueLink = GetNamedArgumentOrDefault<string>(samplePageAttribute, "IssueLink", null);
+		var apiLink = GetNamedArgumentOrDefault<string>(samplePageAttribute, "ApiLink", null);
+
+		var requiresContractV1 = statusValue == 0
+			&& (statusExplicit ||
+				(enforceFrozenLegacySet &&
+				 conditionals?.HasFlag(SampleConditionals.Disabled) != true &&
+				 !FrozenLegacyStableSlugs.Contains(finalSlug)));
+		if (requiresContractV1 || contractVersion != 0)
+		{
+			var invalidContractFields = GetInvalidContractFields(
+				requiresContractV1,
+				contractVersion,
+				description,
+				documentationLink,
+				tags,
+				owner,
+				reviewedOn,
+				supportedDesignsValue,
+				supportedRenderersValue,
+				requirements,
+				accessibilityNotes,
+				resetBehavior,
+				variants,
+				issueLink,
+				apiLink);
+			if (invalidContractFields.Count > 0)
+			{
+				return TransformResult.Fail(new DiagnosticInfo(
+					Diagnostics.IncompleteSampleContract,
+					declLoc,
+					attributedSymbol.ToDisplayString(),
+					string.Join(", ", invalidContractFields)));
+			}
+		}
 		var sourcePath = ComputeSourcePath(declLoc.SourceTree?.FilePath);
 
 		return TransformResult.Ok(new SamplesModel(
@@ -593,6 +803,19 @@ public sealed class SamplesGenerator : IIncrementalGenerator
 			owner,
 			reviewedOn,
 			relatedSamples,
+			contractVersion,
+			supportedDesignsValue,
+			supportedDesignsName,
+			supportedRenderersValue,
+			supportedRenderersName,
+			requirements,
+			accessibilityNotes,
+			resetBehavior,
+			variants,
+			knownLimitations,
+			issueLink,
+			apiLink,
+			statusExplicit,
 			sourcePath,
 			categoryNumericValue,
 			categoryName,
@@ -600,6 +823,62 @@ public sealed class SamplesGenerator : IIncrementalGenerator
 			sourceSdkName,
 			statusName));
 	}
+
+	private static List<string> GetInvalidContractFields(
+		bool requiresContractV1,
+		int contractVersion,
+		string? description,
+		string? documentationLink,
+		StringSequence tags,
+		string? owner,
+		string? reviewedOn,
+		int supportedDesigns,
+		int supportedRenderers,
+		StringSequence requirements,
+		StringSequence accessibilityNotes,
+		string? resetBehavior,
+		StringSequence variants,
+		string? issueLink,
+		string? apiLink)
+	{
+		var invalid = new List<string>();
+		if (contractVersion is not 0 and not 1) invalid.Add("ContractVersion (supported values are 0 and 1)");
+		if (requiresContractV1 && contractVersion != 1) invalid.Add("ContractVersion (must be 1)");
+		if (string.IsNullOrWhiteSpace(description)) invalid.Add("Description");
+		if (!IsValidAbsoluteUri(documentationLink)) invalid.Add("DocumentationLink (expected absolute URI)");
+		if (!HasNonWhiteSpaceValues(tags)) invalid.Add("Tags");
+		if (string.IsNullOrWhiteSpace(owner)) invalid.Add("Owner");
+		if (!IsValidReviewedOn(reviewedOn)) invalid.Add("ReviewedOn (expected YYYY-MM-DD)");
+		if (supportedDesigns == 0 || (supportedDesigns & ~0x1F) != 0) invalid.Add("SupportedDesigns");
+		if (supportedRenderers == 0 || (supportedRenderers & ~0x07) != 0) invalid.Add("SupportedRenderers");
+		if (!HasNonWhiteSpaceValues(requirements)) invalid.Add("Requirements");
+		if (!HasNonWhiteSpaceValues(accessibilityNotes)) invalid.Add("AccessibilityNotes");
+		if (string.IsNullOrWhiteSpace(resetBehavior)) invalid.Add("ResetBehavior");
+		if (!HasNonWhiteSpaceValues(variants)) invalid.Add("Variants");
+		if (issueLink is not null && !IsValidAbsoluteUri(issueLink)) invalid.Add("IssueLink (expected absolute URI)");
+		if (apiLink is not null && !IsValidAbsoluteUri(apiLink)) invalid.Add("ApiLink (expected absolute URI)");
+		return invalid;
+	}
+
+	private static bool HasNonWhiteSpaceValues(StringSequence values) =>
+		!values.IsEmpty && values.Values.All(value => !string.IsNullOrWhiteSpace(value));
+
+	private static bool IsValidReviewedOn(string? value) =>
+		value is not null
+		&& DateTime.TryParseExact(
+			value,
+			"yyyy-MM-dd",
+			CultureInfo.InvariantCulture,
+			DateTimeStyles.None,
+			out _);
+
+	private static bool IsValidAbsoluteUri(string? value) =>
+		!string.IsNullOrWhiteSpace(value)
+		&& Uri.TryCreate(value, UriKind.Absolute, out var uri)
+		&& (uri.Scheme == Uri.UriSchemeHttp || uri.Scheme == Uri.UriSchemeHttps);
+
+	private static bool HasNamedArgument(AttributeData attribute, string name) =>
+		attribute.NamedArguments.Any(argument => argument.Key == name);
 
 	/// <summary>
 	/// Returns <c>true</c> when the resolved constructor has the four positional parameters the
@@ -654,6 +933,32 @@ public sealed class SamplesGenerator : IIncrementalGenerator
 			var intValue = Convert.ToInt32(named.Value.Value, CultureInfo.InvariantCulture);
 			var memberName = GetEnumMemberName(named.Value);
 			return (intValue, memberName);
+		}
+		return (defaultValue, defaultName);
+	}
+
+	private static (int Value, string Name) GetNamedFlagsWithName(
+		AttributeData attr, string name, int defaultValue, string defaultName)
+	{
+		foreach (var named in attr.NamedArguments)
+		{
+			if (named.Key != name) continue;
+			if (named.Value.Value is null) return (defaultValue, defaultName);
+
+			var value = Convert.ToInt32(named.Value.Value, CultureInfo.InvariantCulture);
+			if (value == 0) return (0, defaultName);
+			if (named.Value.Type is not INamedTypeSymbol enumType)
+				return (value, value.ToString(CultureInfo.InvariantCulture));
+
+			var names = enumType.GetMembers()
+				.OfType<IFieldSymbol>()
+				.Where(field => field.HasConstantValue && field.ConstantValue is not null)
+				.Select(field => (field.Name, Value: Convert.ToInt32(field.ConstantValue, CultureInfo.InvariantCulture)))
+				.Where(field => field.Value != 0 && (field.Value & (field.Value - 1)) == 0 && (value & field.Value) != 0)
+				.OrderBy(field => field.Value)
+				.Select(field => field.Name)
+				.ToArray();
+			return (value, names.Length == 0 ? value.ToString(CultureInfo.InvariantCulture) : string.Join(", ", names));
 		}
 		return (defaultValue, defaultName);
 	}
@@ -778,7 +1083,7 @@ public sealed class SamplesGenerator : IIncrementalGenerator
 	/// Emits <c>SampleManifest.g.cs</c> — a deterministic JSON catalog of all samples in the
 	/// current compilation target, sorted by FQN and wrapped in a <c>GetJson()</c> method.
 	/// No file I/O or external packages are used; escaping is implemented inline.
-	/// Schema version 1.
+	/// Schema version 2.
 	/// </summary>
 	private static void GenerateManifest(SourceProductionContext context, List<SamplesModel?> sorted)
 	{
@@ -799,18 +1104,18 @@ public sealed class SamplesGenerator : IIncrementalGenerator
 		file.AppendLine("{");
 		file.AppendLine("\t/// <summary>");
 		file.AppendLine("\t/// Deterministic JSON catalog of samples compiled into this target.");
-		file.AppendLine("\t/// Schema version 1. Entries are sorted by fully-qualified type name.");
+		file.AppendLine("\t/// Schema version 2. Entries are sorted by fully-qualified type name.");
 		file.AppendLine("\t/// This is the stable internal contract; physical file export is a future step.");
 		file.AppendLine("\t/// </summary>");
 		file.AppendLine("\t/// <remarks>Generated by <c>SamplesGenerator</c>; do not edit manually.</remarks>");
 		file.AppendLine("\tinternal static class SampleManifest");
 		file.AppendLine("\t{");
-		file.AppendLine("\t\t/// <summary>Returns the deterministic JSON catalog (schema version 1).</summary>");
+		file.AppendLine("\t\t/// <summary>Returns the deterministic JSON catalog (schema version 2).</summary>");
 		file.AppendLine("\t\tpublic static string GetJson()");
 		file.AppendLine("\t\t{");
 		file.AppendLine("\t\t\tvar sb = new global::System.Text.StringBuilder();");
 
-		EmitCSharpStringAppendSafe(file, "{\"schemaVersion\":1,\"samples\":[", 3);
+		EmitCSharpStringAppendSafe(file, "{\"schemaVersion\":2,\"samples\":[", 3);
 
 		bool firstSample = true;
 		foreach (var item in sorted)
@@ -947,6 +1252,39 @@ public sealed class SamplesGenerator : IIncrementalGenerator
 		sb.Append(',');
 		AppendJsonField(sb, "reviewedOn", s.ReviewedOn);
 		sb.Append(',');
+		AppendJsonFieldInt(sb, "contractVersion", s.ContractVersion);
+		sb.Append(',');
+
+		sb.Append("\"supportedDesigns\":{");
+		AppendJsonFieldInt(sb, "value", s.SupportedDesignsValue);
+		sb.Append(',');
+		AppendJsonField(sb, "name", s.SupportedDesignsName);
+		sb.Append('}');
+		sb.Append(',');
+
+		sb.Append("\"supportedRenderers\":{");
+		AppendJsonFieldInt(sb, "value", s.SupportedRenderersValue);
+		sb.Append(',');
+		AppendJsonField(sb, "name", s.SupportedRenderersName);
+		sb.Append('}');
+		sb.Append(',');
+
+		AppendJsonArrayField(sb, "requirements", s.Requirements);
+		sb.Append(',');
+		AppendJsonArrayField(sb, "accessibilityNotes", s.AccessibilityNotes);
+		sb.Append(',');
+		AppendJsonField(sb, "resetBehavior", s.ResetBehavior);
+		sb.Append(',');
+		AppendJsonArrayField(sb, "variants", s.Variants);
+		sb.Append(',');
+		AppendJsonArrayField(sb, "knownLimitations", s.KnownLimitations);
+		sb.Append(',');
+		AppendJsonField(sb, "issueLink", s.IssueLink);
+		sb.Append(',');
+		AppendJsonField(sb, "apiLink", s.ApiLink);
+		sb.Append(',');
+		AppendJsonFieldBoolean(sb, "statusExplicit", s.StatusExplicit);
+		sb.Append(',');
 
 		// relatedSamples: [...] or []
 		sb.Append("\"relatedSamples\":[");
@@ -973,6 +1311,20 @@ public sealed class SamplesGenerator : IIncrementalGenerator
 		return sb;
 	}
 
+	private static void AppendJsonArrayField(StringBuilder sb, string key, StringSequence values)
+	{
+		sb.Append('"');
+		sb.Append(key);
+		sb.Append("\":[");
+		var items = values.Values;
+		for (int i = 0; i < items.Length; i++)
+		{
+			if (i > 0) sb.Append(',');
+			AppendJsonString(sb, items[i]);
+		}
+		sb.Append(']');
+	}
+
 	private static void AppendJsonField(StringBuilder sb, string key, string? value)
 	{
 		sb.Append('"');
@@ -987,6 +1339,14 @@ public sealed class SamplesGenerator : IIncrementalGenerator
 		sb.Append(key);
 		sb.Append("\":");
 		sb.Append(value.ToString(CultureInfo.InvariantCulture));
+	}
+
+	private static void AppendJsonFieldBoolean(StringBuilder sb, string key, bool value)
+	{
+		sb.Append('"');
+		sb.Append(key);
+		sb.Append("\":");
+		sb.Append(value ? "true" : "false");
 	}
 
 	/// <summary>

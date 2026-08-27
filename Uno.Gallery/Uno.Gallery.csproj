@@ -87,6 +87,7 @@
 		<DefineConstants Condition="'$(UseNativeRendering)'!='true'">$(DefineConstants);HAS_SKIA_RENDERER</DefineConstants>
 		<EnableExtensionsPatterns Condition="'$(EnableExtensionsPatterns)'==''">false</EnableExtensionsPatterns>
 		<DefineConstants Condition="'$(EnableExtensionsPatterns)'=='true'">$(DefineConstants);EXTENSIONS_PATTERNS</DefineConstants>
+		<DefineConstants>$(DefineConstants);ENFORCE_SAMPLE_CONTRACT</DefineConstants>
 
 		<DefineConstants Condition="$(BUILD_SOURCEBRANCH.StartsWith('refs/heads/canaries'))">$(DefineConstants);IS_CANARY_BUILD</DefineConstants>
 	</PropertyGroup>
@@ -121,6 +122,9 @@
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(EnableVisualRegression)'=='true'">
 		<EnablePerformanceMeasurements>true</EnablePerformanceMeasurements>
+		<!-- Visual pages evolve independently of the historical production profile.
+		     A non-existent filename leaves WasmAotProfilePath empty and selects full AOT. -->
+		<WasmAotFileName>visual-full-aot.profile</WasmAotFileName>
 		<WasmShellEnableDotnetJsFingerprinting>false</WasmShellEnableDotnetJsFingerprinting>
 		<WasmAppDir>$(MSBuildProjectDirectory)/obj/$(Configuration)/$(TargetFramework)/visual-appbundle/</WasmAppDir>
 		<DefineConstants>$(DefineConstants);VISUAL_REGRESSION;PERF_MEASUREMENTS</DefineConstants>
@@ -246,8 +250,8 @@
 	</ItemGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='Release' and '$(WasmShellMonoRuntimeExecutionMode)'=='InterpreterAndAOT'">
-		<WasmAotFileName Condition="'$(IsUiAutomationMappingEnabled)'=='' AND '$(UseNativeRendering)' == 'true' ">aot.profile</WasmAotFileName>
-		<WasmAotFileName Condition="'$(IsUiAutomationMappingEnabled)'=='' AND '$(UseNativeRendering)' != 'true' ">aot-skiawasm.profile</WasmAotFileName>
+		<WasmAotFileName Condition="'$(EnableVisualRegression)'!='true' AND '$(IsUiAutomationMappingEnabled)'=='' AND '$(UseNativeRendering)' == 'true' ">aot.profile</WasmAotFileName>
+		<WasmAotFileName Condition="'$(EnableVisualRegression)'!='true' AND '$(IsUiAutomationMappingEnabled)'=='' AND '$(UseNativeRendering)' != 'true' ">aot-skiawasm.profile</WasmAotFileName>
 
 		<!--
 		Use smaller profile for UI tests to avoid the browser's memory

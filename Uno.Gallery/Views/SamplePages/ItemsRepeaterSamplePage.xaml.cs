@@ -23,7 +23,14 @@ namespace Uno.Gallery.Views.Samples;
 	RelatedSamples = new[] { "listview", "gridview", "itemsview" },
 	Owner = "t-dotitl",
 	ReviewedOn = "2026-08-27",
-	Status = SampleStatus.Stable)]
+	Status = SampleStatus.Stable,
+	ContractVersion = 1,
+	SupportedDesigns = SampleDesigns.Fluent,
+	SupportedRenderers = SampleRenderers.Native | SampleRenderers.Skia | SampleRenderers.DOM,
+	Requirements = new[] { SampleContractDefaults.NoExternalRequirements },
+	AccessibilityNotes = new[] { "Selection controls expose the selected index, focus can be moved explicitly, and loading progress is reported as text." },
+	ResetBehavior = SampleContractDefaults.ReloadToReset,
+	Variants = new[] { "Vertical StackLayout", "UniformGridLayout", "Toolkit single selection", "Incremental loading" })]
 public sealed partial class ItemsRepeaterSamplePage : Page
 {
 	private readonly LocalIncrementalSource _incrementalItems;

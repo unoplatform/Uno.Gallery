@@ -14,6 +14,13 @@ namespace Uno.Gallery.Views.Samples;
 	Slug = "card-content-control",
 	Tags = new[] { "card", "content", "elevation", "shadow", "clickable" },
 	Status = SampleStatus.Stable,
+	ContractVersion = 1,
+	SupportedDesigns = SampleDesigns.Material,
+	SupportedRenderers = SampleRenderers.Native | SampleRenderers.Skia | SampleRenderers.DOM,
+	Requirements = new[] { SampleContractDefaults.NoExternalRequirements },
+	AccessibilityNotes = new[] { "The interactive card is wrapped in a Button to provide keyboard focus and Invoke semantics; configuration state is announced as text." },
+	ResetBehavior = "Choose Reset to restore elevation, shadow color, clickability, and activation count.",
+	Variants = new[] { "Flexible non-interactive content", "Interactive card", "Elevation, shadow color, and clickability configuration" },
 	Owner = "unoplatform",
 	ReviewedOn = "2026-08-27",
 	RelatedSamples = new[] { "card" })]
