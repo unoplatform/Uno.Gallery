@@ -87,6 +87,10 @@
 		<DefineConstants Condition="'$(UseNativeRendering)'!='true'">$(DefineConstants);HAS_SKIA_RENDERER</DefineConstants>
 		<EnableExtensionsPatterns Condition="'$(EnableExtensionsPatterns)'==''">false</EnableExtensionsPatterns>
 		<DefineConstants Condition="'$(EnableExtensionsPatterns)'=='true'">$(DefineConstants);EXTENSIONS_PATTERNS</DefineConstants>
+		<DefineConstants Condition="'$(TargetFramework)'=='net10.0-browserwasm' AND '$(Configuration)'=='Release'">$(DefineConstants);WASM_INTERPRETER_AOT</DefineConstants>
+		<DefineConstants Condition="'$(TargetFramework)'=='net10.0-browserwasm' AND '$(Configuration)'=='Release' AND '$(EnableVisualRegression)'!='true' AND '$(EnableExtensionsPatterns)'!='true'">$(DefineConstants);WASM_PROFILED_AOT</DefineConstants>
+		<DefineConstants Condition="'$(TargetFramework)'=='net10.0-browserwasm' AND '$(Configuration)'!='Release'">$(DefineConstants);WASM_INTERPRETER</DefineConstants>
+		<DefineConstants Condition="'$(PublishAot)'=='true'">$(DefineConstants);NATIVE_AOT</DefineConstants>
 		<DefineConstants>$(DefineConstants);ENFORCE_SAMPLE_CONTRACT</DefineConstants>
 
 		<DefineConstants Condition="$(BUILD_SOURCEBRANCH.StartsWith('refs/heads/canaries'))">$(DefineConstants);IS_CANARY_BUILD</DefineConstants>
@@ -101,9 +105,8 @@
 	<!--
 	    NOTE: When EnablePerformanceMeasurements=true in an otherwise normal Release build (no DEBUG /
 	    IS_CANARY_BUILD / USE_UITESTS), PERF_MEASUREMENTS is defined so marks are recorded and forwarded
-	    to the browser PerformanceTimeline, but the Diagnostics/Canary UI page remains hidden (the Canary
-	    category is filtered out in App.BuildShell for such configurations). Consume marks externally:
-	        performance.getEntriesByType('mark').filter(e => e.name.startsWith('app.'))
+	    to the browser PerformanceTimeline and the production-visible Diagnostics page can export them.
+	    They remain externally consumable through performance.getEntriesByType('mark').filter(e => e.name.startsWith('app.'))
 	-->
 	<PropertyGroup Condition="'$(EnablePerformanceMeasurements)'=='true' or '$(Configuration)'=='Debug' or '$(IsUiAutomationMappingEnabled)'=='True'">
 		<EnablePerformanceMeasurements>true</EnablePerformanceMeasurements>
@@ -131,6 +134,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<AssemblyMetadata Include="UnoGalleryTargetFramework" Value="$(TargetFramework)" />
 		<PackageReference Include="Uno.ShowMeTheXAML" />
 		<PackageReference Include="Uno.ShowMeTheXAML.MSBuild" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug">

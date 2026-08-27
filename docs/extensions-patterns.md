@@ -56,10 +56,11 @@ serialization is disabled by AOT.
 
 Package discovery was performed before source edits. The Uno development feed exposes stable 7.2.3 for all five packages, and targeted restore placed the exact packages in the NuGet cache. NuGet.org TLS negotiation failed on the measurement host, but the configured Uno feed and cache completed the restore.
 
-The default and optional generated Desktop manifests contain 114 and 119
-entries respectively; all five `extensions-*` slugs are absent from default and
-present only in the optional schema-v2 manifest. Each optional sample uses
-contract v1 and an explicit repository-relative source path into
+The default and optional generated Desktop manifests contain 117 and 122
+entries respectively, with 29 and 34 contract-v1 samples. DOM contains 116/121
+and Skia WebAssembly contains 117/122. All five `extensions-*` slugs are absent
+from default and present only in the optional schema-v2 manifest. Each optional
+sample uses contract v1 and an explicit repository-relative source path into
 `Uno.Gallery.ExtensionsPatterns`.
 
 The linked-assembly gate verifies that trimmed builds retain all

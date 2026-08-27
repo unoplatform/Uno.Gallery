@@ -9,7 +9,7 @@
 	  mc:Ignorable="d">
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-		<local:SamplePageLayout IsDesignAgnostic="True">
+		<local:SamplePageLayout x:Name="LocalSamplePageLayout" IsDesignAgnostic="True">
 
 			<local:SamplePageLayout.DesignAgnosticTemplate>
 				<DataTemplate>
@@ -18,10 +18,18 @@
 										  smtx:XamlDisplayExtensions.Header="Default">
 							
 							<!-- Lottie Animation -->
+							<StackPanel Spacing="8">
 							<AnimatedVisualPlayer AutoPlay="true"
+														Loaded="LottiePlayer_Loaded"
 														Height="120">
 								<lottie:LottieVisualSource UriSource="ms-appx:///Assets/Animations/loading_animation_data.json" />
 							</AnimatedVisualPlayer>
+							<TextBlock x:Name="LottieStatus"
+									   Text="Local Lottie asset has not initialized."
+									   AutomationProperties.AutomationId="Lottie_Status"
+									   AutomationProperties.LiveSetting="Polite"
+									   AutomationProperties.Name="Lottie status" />
+							</StackPanel>
 						</smtx:XamlDisplay>
 					</StackPanel>
 				</DataTemplate>

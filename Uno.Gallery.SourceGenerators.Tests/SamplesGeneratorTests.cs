@@ -39,9 +39,12 @@ public sealed class SamplesGeneratorTests
 		        Droid      = 1 << 3,
 		        iOS        = 1 << 4,
 		        macOS      = 1 << 5,
+		        SkiaRenderer = 1 << 6,
+		        NativeRenderer = 1 << 7,
 		        Desktop    = Windows | Wasm | SkiaDesktop | macOS,
 		        Mobile     = Droid | iOS,
 		        SkiaBased  = Wasm | SkiaDesktop,
+		        Renderer   = SkiaRenderer | NativeRenderer,
 		        Disabled   = 1U << 31,
 		        Always     = uint.MaxValue ^ Disabled,
 		    }
@@ -703,6 +706,57 @@ public sealed class SamplesGeneratorTests
 		Assert.That(result.Exception, Is.Null);
 		Assert.That(UggDiagnostics(result), Is.Empty);
 		Assert.That(GetGeneratedSource(result), Does.Not.Contain(className));
+	}
+
+	[TestCase(new[] { "__WASM__", "HAS_SKIA_RENDERER" }, true)]
+	[TestCase(new[] { "__WASM__" }, false)]
+	[TestCase(new[] { "HAS_UNO_SKIA", "HAS_SKIA_RENDERER" }, true)]
+	[TestCase(new[] { "WINDOWS", "HAS_SKIA_RENDERER" }, false)]
+	public void SampleConditional_SkiaRenderer_requires_supported_platform_and_renderer(
+		string[] preprocessorSymbols,
+		bool shouldBeIncluded)
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Skia renderer")]
+			    [SampleConditional(SampleConditionals.SkiaBased | SampleConditionals.SkiaRenderer)]
+			    public class SkiaRendererSample { }
+			}
+			""";
+
+		var result = RunGenerator([source], preprocessorSymbols);
+		var generated = GetGeneratedSource(result);
+
+		Assert.That(result.Exception, Is.Null);
+		Assert.That(UggDiagnostics(result), Is.Empty);
+		Assert.That(generated.Contains("SkiaRendererSample"), Is.EqualTo(shouldBeIncluded));
+	}
+
+	[TestCase(new[] { "__WASM__", "HAS_SKIA_RENDERER" }, true)]
+	[TestCase(new[] { "__WASM__" }, false)]
+	[TestCase(new[] { "__ANDROID__", "HAS_SKIA_RENDERER" }, true)]
+	public void SampleConditional_renderer_only_applies_across_platforms(
+		string[] preprocessorSymbols,
+		bool shouldBeIncluded)
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Skia renderer")]
+			    [SampleConditional(SampleConditionals.SkiaRenderer)]
+			    public class SkiaRendererSample { }
+			}
+			""";
+
+		var result = RunGenerator([source], preprocessorSymbols);
+
+		Assert.That(result.Exception, Is.Null);
+		Assert.That(
+			GetGeneratedSource(result).Contains("SkiaRendererSample"),
+			Is.EqualTo(shouldBeIncluded));
 	}
 
 	// ─── Phase 2: metadata forwarding ────────────────────────────────────────

@@ -6,8 +6,7 @@ namespace Uno.Gallery.UITests
 {
 	/// <summary>
 	/// Trust-metadata integration tests: source links, status badges, owner/review text,
-	/// and the direct-link copy button.  These tests require a UITest build where the Canary
-	/// category is included in the sample catalog (<c>USE_UITESTS</c> preprocessor symbol).
+	/// and the direct-link copy button.
 	/// </summary>
 	public class Given_TrustMetadata : TestBase
 	{
@@ -87,7 +86,7 @@ namespace Uno.Gallery.UITests
 			// On native renderers, Collapsed elements are absent from the a11y tree — correct behavior.
 		}
 
-		// ─── Status badge: Experimental (Diagnostics canary) ─────────────────
+		// ─── Status badge: Experimental (Diagnostics) ────────────────────────
 
 		/// <summary>
 		/// The Diagnostics sample is annotated Experimental with owner/review metadata.
@@ -95,12 +94,11 @@ namespace Uno.Gallery.UITests
 		/// <list type="bullet">
 		///   <item><c>PART_StatusBadge</c> visible with label "Experimental"</item>
 		///   <item><c>PART_OwnerText</c> = "unoplatform/maintainers"</item>
-		///   <item><c>PART_ReviewedOnText</c> = "2026-08-25"</item>
+		///   <item><c>PART_ReviewedOnText</c> = "2026-08-27"</item>
 		/// </list>
-		/// This test requires a USE_UITESTS build so the Canary category is not filtered.
 		/// </summary>
 		[Test]
-		public void When_DiagnosticsCanary_ExperimentalBadgeAndOwnerReviewAreVisible()
+		public void When_Diagnostics_ExperimentalBadgeAndOwnerReviewAreVisible()
 		{
 			NavigateToSample("Diagnostics");
 
@@ -111,7 +109,7 @@ namespace Uno.Gallery.UITests
 			var statusText = new QueryEx(x => x.All().Marked("PART_StatusLabel"))
 				.GetDependencyPropertyValue<string>("Text");
 			Assert.That(statusText, Is.EqualTo("Experimental"),
-				"Status label must read 'Experimental' for the Diagnostics canary sample");
+				"Status label must read 'Experimental' for the Diagnostics sample");
 
 			App.WaitForElement("PART_OwnerText");
 			var ownerText = new QueryEx(x => x.All().Marked("PART_OwnerText"))
@@ -122,7 +120,7 @@ namespace Uno.Gallery.UITests
 			App.WaitForElement("PART_ReviewedOnText");
 			var reviewedText = new QueryEx(x => x.All().Marked("PART_ReviewedOnText"))
 				.GetDependencyPropertyValue<string>("Text");
-			Assert.That(reviewedText, Is.EqualTo("2026-08-25"),
+			Assert.That(reviewedText, Is.EqualTo("2026-08-27"),
 				"ReviewedOn text must match the annotation on CanarySamplePage");
 		}
 
