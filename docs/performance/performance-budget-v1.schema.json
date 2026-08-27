@@ -1,0 +1,154 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gallery.platform.uno/schemas/performance/performance-budget-v1.schema.json",
+  "title": "Uno Gallery performance budget",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "budgetVersion",
+    "status",
+    "approvedOn",
+    "minimumRuntimeObservations",
+    "targets"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "budgetVersion": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "status": {
+      "enum": [
+        "advisory",
+        "blocking"
+      ]
+    },
+    "approvedOn": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date"
+    },
+    "minimumRuntimeObservations": {
+      "type": "integer",
+      "minimum": 5
+    },
+    "targets": {
+      "type": "object",
+      "minProperties": 1,
+      "patternProperties": {
+        "^[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$": {
+          "$ref": "#/$defs/targetBudget"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "$defs": {
+    "limit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "baseline",
+        "maximum"
+      ],
+      "properties": {
+        "baseline": {
+          "type": "number",
+          "minimum": 0
+        },
+        "maximum": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        }
+      }
+    },
+    "bundleBudget": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "rawPayloadBytes",
+        "estimatedBrotliTransferBytes",
+        "dotnetNativeWasmBytes",
+        "dotnetNativeBrotliBytes"
+      ],
+      "properties": {
+        "rawPayloadBytes": {
+          "$ref": "#/$defs/limit"
+        },
+        "estimatedBrotliTransferBytes": {
+          "$ref": "#/$defs/limit"
+        },
+        "dotnetNativeWasmBytes": {
+          "$ref": "#/$defs/limit"
+        },
+        "dotnetNativeBrotliBytes": {
+          "$ref": "#/$defs/limit"
+        }
+      }
+    },
+    "runtimeBudget": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "firstContentfulPaintMs",
+        "shellReadyMs",
+        "firstInputLatencyMs",
+        "searchRenderedMs",
+        "navigationRenderedMs"
+      ],
+      "properties": {
+        "firstContentfulPaintMs": {
+          "$ref": "#/$defs/limit"
+        },
+        "shellReadyMs": {
+          "$ref": "#/$defs/limit"
+        },
+        "firstInputLatencyMs": {
+          "$ref": "#/$defs/limit"
+        },
+        "searchRenderedMs": {
+          "$ref": "#/$defs/limit"
+        },
+        "navigationRenderedMs": {
+          "$ref": "#/$defs/limit"
+        }
+      }
+    },
+    "targetBudget": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "bundle"
+      ],
+      "properties": {
+        "bundle": {
+          "$ref": "#/$defs/bundleBudget"
+        },
+        "runtime": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": false,
+          "required": [
+            "cold",
+            "warm"
+          ],
+          "properties": {
+            "cold": {
+              "$ref": "#/$defs/runtimeBudget"
+            },
+            "warm": {
+              "$ref": "#/$defs/runtimeBudget"
+            }
+          }
+        }
+      }
+    }
+  }
+}

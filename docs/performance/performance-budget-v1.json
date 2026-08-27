@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 1,
+  "budgetVersion": 1,
+  "status": "advisory",
+  "approvedOn": null,
+  "minimumRuntimeObservations": 10,
+  "targets": {
+    "WASM-DOM": {
+      "bundle": {
+        "rawPayloadBytes": {
+          "baseline": 117379749,
+          "maximum": 123248737
+        },
+        "estimatedBrotliTransferBytes": {
+          "baseline": 48990444,
+          "maximum": 51439966
+        },
+        "dotnetNativeWasmBytes": {
+          "baseline": 25013733,
+          "maximum": 26264420
+        },
+        "dotnetNativeBrotliBytes": {
+          "baseline": 5184710,
+          "maximum": 5443946
+        }
+      },
+      "runtime": {
+        "cold": {
+          "firstContentfulPaintMs": {
+            "baseline": 1104,
+            "maximum": 2000
+          },
+          "shellReadyMs": {
+            "baseline": 4960.2,
+            "maximum": 8000
+          },
+          "firstInputLatencyMs": {
+            "baseline": 48.4,
+            "maximum": 150
+          },
+          "searchRenderedMs": {
+            "baseline": 743.5,
+            "maximum": 1200
+          },
+          "navigationRenderedMs": {
+            "baseline": 1402.9,
+            "maximum": 2200
+          }
+        },
+        "warm": {
+          "firstContentfulPaintMs": {
+            "baseline": 176,
+            "maximum": 500
+          },
+          "shellReadyMs": {
+            "baseline": 4019.3,
+            "maximum": 6500
+          },
+          "firstInputLatencyMs": {
+            "baseline": 32,
+            "maximum": 150
+          },
+          "searchRenderedMs": {
+            "baseline": 726.4,
+            "maximum": 1200
+          },
+          "navigationRenderedMs": {
+            "baseline": 1176.1,
+            "maximum": 2000
+          }
+        }
+      }
+    },
+    "WASM-Skia": {
+      "bundle": {
+        "rawPayloadBytes": {
+          "baseline": 100993674,
+          "maximum": 106043358
+        },
+        "estimatedBrotliTransferBytes": {
+          "baseline": 42320387,
+          "maximum": 44436406
+        },
+        "dotnetNativeWasmBytes": {
+          "baseline": 26863061,
+          "maximum": 28206214
+        },
+        "dotnetNativeBrotliBytes": {
+          "baseline": 5723302,
+          "maximum": 6009468
+        }
+      },
+      "runtime": null
+    }
+  }
+}

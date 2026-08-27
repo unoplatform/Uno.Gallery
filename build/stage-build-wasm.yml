@@ -10,7 +10,7 @@
 - bash: |
     # CompilerGeneratedFilesOutputPath is job-local. Keep it scoped if another
     # project starts running SamplesGenerator in this build graph.
-    dotnet publish Uno.Gallery/Uno.Gallery.csproj -c Release -f net10.0-browserwasm -p:UseNativeRendering=$(UseNativeRendering) -p:EnableVisualRegression=$(EnableVisualRegression) -p:WasmGenerateAppBundle=true -p:InformationalVersion=$(NBGV_InformationalVersion) -p:EmitCompilerGeneratedFiles=true -p:CompilerGeneratedFilesOutputPath="$(Agent.TempDirectory)/generated-sources" -o "$(Agent.TempDirectory)/wasm-publish" -bl:$(Build.ArtifactStagingDirectory)/wasm-publish.binlog
+    dotnet publish Uno.Gallery/Uno.Gallery.csproj -c Release -f net10.0-browserwasm -p:UseNativeRendering=$(UseNativeRendering) -p:EnableVisualRegression=$(EnableVisualRegression) -p:EnablePerformanceMeasurements=$(EnablePerformanceMeasurements) -p:WasmGenerateAppBundle=true -p:InformationalVersion=$(NBGV_InformationalVersion) -p:EmitCompilerGeneratedFiles=true -p:CompilerGeneratedFilesOutputPath="$(Agent.TempDirectory)/generated-sources" -o "$(Agent.TempDirectory)/wasm-publish" -bl:$(Build.ArtifactStagingDirectory)/wasm-publish.binlog
   displayName: 'Builds Wasm $(ArtifactName)'
 
 - task: PowerShell@2
@@ -34,6 +34,31 @@
     arguments: >
       -GalleryManifestPath "$(Agent.TempDirectory)/catalog/sample-manifest.json"
       -OutputPath "$(Agent.TempDirectory)/catalog/feature-coverage-report.json"
+
+- task: PowerShell@2
+  displayName: 'Measure WebAssembly bundle'
+  inputs:
+    targetType: filePath
+    filePath: 'build/scripts/measure-wasm-bundle.ps1'
+    pwsh: true
+    arguments: >
+      -WasmRoot "$(Agent.TempDirectory)/wasm-publish/wwwroot"
+      -TargetName "$(CatalogTargetName)"
+      -Flavor "$(PerformanceFlavor)"
+      -BuildCommit "$(Build.SourceVersion)"
+      -OutputPath "$(Agent.TempDirectory)/catalog/wasm-bundle-metrics.json"
+
+- task: PowerShell@2
+  displayName: 'Compare WebAssembly bundle budget (advisory)'
+  condition: eq(variables['PerformanceFlavor'], 'core')
+  inputs:
+    targetType: filePath
+    filePath: 'build/scripts/compare-performance-budget.ps1'
+    pwsh: true
+    arguments: >
+      -BudgetPath "docs/performance/performance-budget-v1.json"
+      -BundleMetricsPath "$(Agent.TempDirectory)/catalog/wasm-bundle-metrics.json"
+      -OutputPath "$(Agent.TempDirectory)/catalog/performance-report.json"
 
 - task: PublishBuildArtifacts@1
   retryCountOnTaskFailure: 3

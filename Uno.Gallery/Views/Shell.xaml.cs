@@ -291,9 +291,12 @@ public sealed partial class Shell : UserControl
 			return;
 		}
 
-		var filteredSamples = SearchSamples(sender.Text);
+#if PERF_MEASUREMENTS
+		var searchStarted = System.Diagnostics.Stopwatch.GetTimestamp();
+#endif
+		var filteredSamples = SearchSamples(sender.Text).ToArray();
 
-		if (!filteredSamples.Any())
+		if (filteredSamples.Length == 0)
 		{
 			sender.ItemsSource = new List<Sample>() { new(new SamplePageAttribute(SampleCategory.None, NoSuggestionsFoundText), null) };
 		}
@@ -301,7 +304,23 @@ public sealed partial class Shell : UserControl
 		{
 			sender.ItemsSource = filteredSamples;
 		}
+#if PERF_MEASUREMENTS
+		RecordDurationAfterNextRender(PerformanceMarks.SearchRendered, searchStarted);
+#endif
 	}
+
+#if PERF_MEASUREMENTS
+	private static void RecordDurationAfterNextRender(string name, long started)
+	{
+		EventHandler<object>? rendering = null;
+		rendering = (_, _) =>
+		{
+			Microsoft.UI.Xaml.Media.CompositionTarget.Rendering -= rendering;
+			PerformanceMarks.RecordDuration(name, started);
+		};
+		Microsoft.UI.Xaml.Media.CompositionTarget.Rendering += rendering;
+	}
+#endif
 
 	private void SamplesSearchBox_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
 	{

@@ -74,6 +74,9 @@ internal sealed class ShellNavigator : IGalleryNavigator
 			return;
 		}
 
+#if PERF_MEASUREMENTS
+		var navigationStarted = System.Diagnostics.Stopwatch.GetTimestamp();
+#endif
 		if (!options.HasFlag(NavigationOptions.SkipNavSync))
 		{
 			if (options.HasFlag(NavigationOptions.ExpandCategory))
@@ -121,6 +124,23 @@ internal sealed class ShellNavigator : IGalleryNavigator
 
 		var page = canonical.CreatePage();
 		page.DataContext = canonical;
+#if PERF_MEASUREMENTS
+		page.Loaded += (_, _) =>
+		{
+			var renderedFrames = 0;
+			EventHandler<object>? rendering = null;
+			rendering = (_, _) =>
+			{
+				if (++renderedFrames < 2)
+				{
+					return;
+				}
+				CompositionTarget.Rendering -= rendering;
+				PerformanceMarks.RecordDuration(PerformanceMarks.NavigationRendered, navigationStarted);
+			};
+			CompositionTarget.Rendering += rendering;
+		};
+#endif
 #if VISUAL_REGRESSION
 		page.Loaded += (_, _) =>
 		{

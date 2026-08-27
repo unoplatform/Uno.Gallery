@@ -36,6 +36,8 @@ internal static class PerformanceMarks
 	public const string ShellLoaded          = "app.shell_loaded";
 	public const string VisualReady          = "app.visual_ready";
 	public const string FirstInput           = "app.first_input";
+	public const string SearchRendered       = "app.search_rendered";
+	public const string NavigationRendered   = "app.navigation_rendered";
 
 #if PERF_MEASUREMENTS
 	// Stopwatch is started when the type is first accessed (typically at App ctor time).
@@ -75,6 +77,7 @@ internal static class PerformanceMarks
 				return;
 			_ms[idx] = elapsedMs;
 		}
+
 #if __WASM__
 #if VISUAL_REGRESSION
 		Wasm.PerformanceMarksInterop.Mark(
@@ -84,6 +87,24 @@ internal static class PerformanceMarks
 #else
 		Wasm.PerformanceMarksInterop.Mark(name);
 #endif
+#endif
+	}
+
+	/// <summary>
+	/// Records a duration in the browser PerformanceTimeline. Duration entries are
+	/// intentionally not added to <see cref="ExportJson"/>, whose ordered startup-mark
+	/// contract is consumed by existing diagnostics and tests.
+	/// </summary>
+	public static void RecordDuration(string name, long startTimestamp)
+	{
+		if (name is not SearchRendered and not NavigationRendered)
+		{
+			return;
+		}
+
+		var durationMs = System.Diagnostics.Stopwatch.GetElapsedTime(startTimestamp).TotalMilliseconds;
+#if __WASM__
+		Wasm.PerformanceMarksInterop.Measure(name, durationMs);
 #endif
 	}
 

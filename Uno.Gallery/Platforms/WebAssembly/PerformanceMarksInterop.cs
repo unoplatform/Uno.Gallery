@@ -19,5 +19,8 @@ internal static partial class PerformanceMarksInterop
 
 	[JSImport($"{JsType}.mark")]
 	internal static partial void Mark(string name);
+
+	[JSImport($"{JsType}.measure")]
+	internal static partial void Measure(string name, double durationMs);
 }
 #endif

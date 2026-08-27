@@ -71,6 +71,11 @@ stages:
         filePath: 'build/scripts/lint-localization-accessibility.ps1'
         pwsh: true
     - task: PowerShell@2
+      displayName: 'Validate performance contracts'
+      inputs:
+        filePath: 'build/scripts/test-performance-contract.ps1'
+        pwsh: true
+    - task: PowerShell@2
       displayName: 'Generate release metadata fixture'
       inputs:
         targetType: filePath
@@ -263,14 +268,27 @@ stages:
           CatalogTargetName: WASM-DOM
           UseNativeRendering: true
           EnableVisualRegression: false
+          EnablePerformanceMeasurements: false
+          PerformanceFlavor: core
         Skia:
           ArtifactName: WASM-Skia
           CatalogTargetName: WASM-Skia
           UseNativeRendering: false
           EnableVisualRegression: false
+          EnablePerformanceMeasurements: false
+          PerformanceFlavor: core
+        DOM_Performance:
+          ArtifactName: WASM-DOM-Performance
+          CatalogTargetName: WASM-DOM
+          UseNativeRendering: true
+          EnableVisualRegression: false
+          EnablePerformanceMeasurements: true
+          PerformanceFlavor: instrumented
 
     variables:
       SkipUnknownFrameworks: true
+
+    condition: or(ne(variables['Build.Reason'], 'PullRequest'), ne(variables['PerformanceFlavor'], 'instrumented'))
 
     steps:
       - template: build/stage-build-wasm.yml
@@ -290,6 +308,8 @@ stages:
       CatalogTargetName: WASM-Skia
       UseNativeRendering: false
       EnableVisualRegression: true
+      EnablePerformanceMeasurements: true
+      PerformanceFlavor: visual
       SkipUnknownFrameworks: true
     steps:
       - template: build/stage-build-wasm.yml
@@ -328,6 +348,9 @@ stages:
     - script: npm ci --no-audit --no-fund
       displayName: 'Install pinned visual tool and Chromium'
       workingDirectory: build/visual
+    - script: npm test
+      displayName: 'Test visual and performance tooling'
+      workingDirectory: build/visual
     - script: npm run compare -- --wasm "$(Pipeline.Workspace)\WASM-Skia-Visual"
       displayName: 'Compare visual pilot (advisory)'
       workingDirectory: build/visual
@@ -338,6 +361,78 @@ stages:
       inputs:
         targetPath: build/visual/artifacts
         artifactName: visual-regression
+
+- stage: Performance
+  displayName: 'Performance Budgets'
+  dependsOn: WebAssembly
+  condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
+  jobs:
+  - job: Windows_DOM_Performance
+    displayName: 'Pinned Chromium DOM runtime trends (advisory)'
+    timeoutInMinutes: 60
+    continueOnError: true
+    pool:
+      vmImage: windows-latest
+    variables:
+      PUPPETEER_CACHE_DIR: $(Pipeline.Workspace)\puppeteer
+    steps:
+    - checkout: self
+      clean: true
+    - task: NodeTool@0
+      displayName: 'Use Node.js 22'
+      inputs:
+        versionSource: spec
+        versionSpec: 22.x
+    - task: DownloadBuildArtifacts@1
+      displayName: 'Download instrumented WASM-DOM artifact'
+      inputs:
+        buildType: current
+        downloadType: single
+        artifactName: WASM-DOM-Performance
+        downloadPath: $(Pipeline.Workspace)
+    - task: DownloadBuildArtifacts@1
+      displayName: 'Download production WASM-DOM metrics'
+      inputs:
+        buildType: current
+        downloadType: single
+        artifactName: WASM-DOM-catalog
+        downloadPath: $(Pipeline.Workspace)
+    - pwsh: |
+        New-Item -ItemType Directory -Path 'build/performance/artifacts' -Force | Out-Null
+      displayName: 'Prepare performance artifacts'
+    - script: npm ci --no-audit --no-fund
+      displayName: 'Install pinned Chromium harness'
+      workingDirectory: build/visual
+    - script: >
+        npm run performance --
+        --wasm "$(Pipeline.Workspace)\WASM-DOM-Performance"
+        --config "$(Build.SourcesDirectory)\build\performance\performance.config.json"
+        --output "$(Build.SourcesDirectory)\build\performance\artifacts\runtime-observation.json"
+        --commit "$(Build.SourceVersion)"
+      displayName: 'Collect ten cold and ten warm observations'
+      workingDirectory: build/visual
+    - task: PowerShell@2
+      displayName: 'Validate and compare runtime budget (advisory)'
+      inputs:
+        targetType: inline
+        pwsh: true
+        script: |
+          $runtimePath = "build/performance/artifacts/runtime-observation.json"
+          $runtimeJson = Get-Content $runtimePath -Raw
+          if (-not ($runtimeJson | Test-Json -SchemaFile "docs/performance/runtime-observation-v1.schema.json")) {
+            throw "Runtime performance observation failed schema validation."
+          }
+          ./build/scripts/compare-performance-budget.ps1 `
+            -BudgetPath "docs/performance/performance-budget-v1.json" `
+            -BundleMetricsPath "$(Pipeline.Workspace)/WASM-DOM-catalog/wasm-bundle-metrics.json" `
+            -RuntimeObservationPath $runtimePath `
+            -OutputPath "build/performance/artifacts/performance-report.json"
+    - task: PublishPipelineArtifact@1
+      displayName: 'Publish performance observations and report'
+      condition: always()
+      inputs:
+        targetPath: build/performance/artifacts
+        artifactName: performance
  
 - stage: WebAssembly_Tests
   displayName: 'WebAssembly Tests'
@@ -378,6 +473,7 @@ stages:
     - Skia_Desktop
     - Apple
     - WebAssembly
+    - Performance
     - WebAssembly_Tests
     - iOS_Tests
     - Android_Tests
