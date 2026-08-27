@@ -127,7 +127,7 @@
       "status": "stable",
       "package": "Uno.Toolkit.WinUI",
       "minimalSamplePath": "samples/Uno.Toolkit.Samples/Content/Controls/InputExtensionsSamplePage.xaml",
-      "documentation": "https://platform.uno/docs/articles/external/uno.toolkit.ui/doc/helpers/input-extensions.html"
+      "documentation": "https://platform.uno/docs/articles/external/uno.toolkit.ui/doc/helpers/Input-extensions.html"
     },
     {
       "id": "toolkit-command-extensions",
@@ -154,7 +154,7 @@
       "status": "stable",
       "package": "Uno.Toolkit.WinUI",
       "minimalSamplePath": "src/Uno.Toolkit.UI/Behaviors/VisualStateManagerExtensions.cs",
-      "documentation": "https://platform.uno/docs/articles/external/uno.toolkit.ui/doc/helpers/visual-state-manager-extensions.html"
+      "documentation": "https://platform.uno/docs/articles/external/uno.toolkit.ui/doc/helpers/VisualStateManager-extensions.html"
     },
     {
       "id": "toolkit-selector-extensions",
@@ -163,7 +163,7 @@
       "status": "stable",
       "package": "Uno.Toolkit.WinUI",
       "minimalSamplePath": "src/Uno.Toolkit.UI/Behaviors/SelectorExtensions.cs",
-      "documentation": "https://platform.uno/docs/articles/external/uno.toolkit.ui/doc/controls/TabBar.html"
+      "documentation": "https://platform.uno/docs/articles/external/uno.toolkit.ui/doc/helpers/Selector-extensions.html"
     },
     {
       "id": "toolkit-tabbar-selector-behavior",
@@ -172,7 +172,7 @@
       "status": "stable",
       "package": "Uno.Toolkit.WinUI",
       "minimalSamplePath": "samples/Uno.Toolkit.Samples/Content/Controls/TabBarBehaviorSamplePage.xaml",
-      "documentation": "https://platform.uno/docs/articles/external/uno.toolkit.ui/doc/controls/TabBar.html"
+      "documentation": "https://platform.uno/docs/articles/external/uno.toolkit.ui/doc/controls/TabBarAndTabBarItem.html"
     },
     {
       "id": "material-seed-color",

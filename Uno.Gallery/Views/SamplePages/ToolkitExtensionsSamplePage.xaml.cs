@@ -1,6 +1,9 @@
+using System;
 using System.Windows.Input;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media;
+using Uno.Gallery.Helpers;
 using Uno.Gallery.ViewModels;
 using Uno.Toolkit.UI;
 
@@ -20,101 +23,117 @@ namespace Uno.Gallery.Views.Samples;
 public sealed partial class ToolkitExtensionsSamplePage : Page
 {
 	private bool _accentState;
+	private ToolkitExtensionsViewModel? _viewModel;
 
 	public ToolkitExtensionsSamplePage()
 	{
 		InitializeComponent();
+		Loaded += OnPageLoaded;
+		Unloaded += OnPageUnloaded;
 	}
+
+	private void OnPageLoaded(object sender, RoutedEventArgs e)
+	{
+		if (DataContext is Sample { Data: ToolkitExtensionsViewModel viewModel } &&
+			!ReferenceEquals(_viewModel, viewModel))
+		{
+			if (_viewModel is not null)
+			{
+				_viewModel.AnnouncementRequested -= OnAnnouncementRequested;
+			}
+			_viewModel = viewModel;
+			_viewModel.AnnouncementRequested += OnAnnouncementRequested;
+		}
+	}
+
+	private void OnPageUnloaded(object sender, RoutedEventArgs e)
+	{
+		if (_viewModel is not null)
+		{
+			_viewModel.AnnouncementRequested -= OnAnnouncementRequested;
+			_viewModel = null;
+		}
+	}
+
+	private void OnAnnouncementRequested(string targetName, string text)
+		=> AccessibilityHelper.Announce(GetRequiredChild<TextBlock>(targetName), text);
 
 	private void VerifyInput_Click(object sender, RoutedEventArgs e)
 	{
-		var first = GetSampleChild<TextBox>("NextInput");
-		var submit = GetSampleChild<TextBox>("SubmitInput");
-		var status = GetSampleChild<TextBlock>("InputStatus");
-		if (first is null || submit is null || status is null)
-		{
-			return;
-		}
-
-		status.Text =
+		var first = GetRequiredChild<TextBox>("NextInput");
+		var submit = GetRequiredChild<TextBox>("SubmitInput");
+		var status = GetRequiredChild<TextBlock>("InputStatus");
+		AccessibilityHelper.Announce(status,
 			$"First: {InputExtensions.GetReturnType(first)}, focus next: {InputExtensions.GetAutoFocusNextElement(first) == submit}; " +
-			$"Submit: {InputExtensions.GetReturnType(submit)}, dismiss: {InputExtensions.GetAutoDismiss(submit)}";
+			$"Submit: {InputExtensions.GetReturnType(submit)}, dismiss: {InputExtensions.GetAutoDismiss(submit)}");
 	}
 
 	private void ToggleProgrammatically_Click(object sender, RoutedEventArgs e)
 	{
-		var toggle = GetSampleChild<ToggleSwitch>("CommandToggle");
-		if (toggle is not null)
-		{
-			toggle.IsOn = !toggle.IsOn;
-		}
+		var toggle = GetRequiredChild<ToggleSwitch>("CommandToggle");
+		toggle.IsOn = !toggle.IsOn;
 	}
 
 	private void VerifyResources_Click(object sender, RoutedEventArgs e)
 	{
-		var button = GetSampleChild<Button>("ScopedResourceButton");
-		var status = GetSampleChild<TextBlock>("ResourceStatus");
-		if (button is null || status is null)
+		var button = GetRequiredChild<Button>("ScopedResourceButton");
+		var status = GetRequiredChild<TextBlock>("ResourceStatus");
+		button.ApplyTemplate();
+		button.UpdateLayout();
+		if (button.Background is not SolidColorBrush brush)
 		{
-			return;
+			throw new InvalidOperationException("ResourceExtensions did not resolve the button background brush.");
 		}
 
-		var resources = ResourceExtensions.GetResources(button);
-		status.Text = resources?.ContainsKey("ButtonBackground") == true
-			? "Scoped resource ButtonBackground: #FF0063B1"
-			: "Scoped resource unavailable";
+		AccessibilityHelper.Announce(status, $"Resolved background: {brush.Color}");
 	}
 
 	private void ToggleState_Click(object sender, RoutedEventArgs e)
 	{
-		var button = GetSampleChild<Button>("StateButton");
-		var status = GetSampleChild<TextBlock>("StateStatus");
-		if (button is null || status is null)
-		{
-			return;
-		}
+		var button = GetRequiredChild<Button>("StateButton");
+		var status = GetRequiredChild<TextBlock>("StateStatus");
 
 		_accentState = !_accentState;
 		var state = _accentState ? "Accent" : "Quiet";
 		VisualStateManagerExtensions.SetStates(button, state);
-		status.Text = $"State: {VisualStateManagerExtensions.GetStates(button)}";
+		button.UpdateLayout();
+		var stateRoot = GetRequiredChild<Grid>("StateRoot");
+		if (stateRoot.Background is not SolidColorBrush brush)
+		{
+			throw new InvalidOperationException("The attached visual state did not resolve a background brush.");
+		}
+		AccessibilityHelper.Announce(
+			status,
+			$"State: {VisualStateManagerExtensions.GetStates(button)}; background: {brush.Color}");
 	}
 
 	private void NextSelection_Click(object sender, RoutedEventArgs e)
 	{
-		var flipView = GetSampleChild<FlipView>("ExtensionsFlipView");
-		if (flipView is not null)
-		{
-			flipView.SelectedIndex = (flipView.SelectedIndex + 1) % flipView.Items.Count;
-			UpdateSelectionStatus(flipView);
-		}
+		var flipView = GetRequiredChild<FlipView>("ExtensionsFlipView");
+		flipView.SelectedIndex = (flipView.SelectedIndex + 1) % flipView.Items.Count;
 	}
 
 	private void ExtensionsFlipView_SelectionChanged(object sender, SelectionChangedEventArgs e)
 	{
 		if (sender is FlipView flipView)
 		{
-			UpdateSelectionStatus(flipView);
+			DispatcherQueue.TryEnqueue(() => UpdateSelectionStatus(flipView));
 		}
 	}
 
 	private void UpdateSelectionStatus(FlipView flipView)
 	{
-		var tabBar = GetSampleChild<TabBar>("ExtensionsTabBar");
-		var pager = GetSampleChild<PipsPager>("ExtensionsPager");
-		var status = GetSampleChild<TextBlock>("SelectionStatus");
-		if (tabBar is null || pager is null || status is null)
-		{
-			return;
-		}
-
-		status.Text =
+		var tabBar = GetRequiredChild<TabBar>("ExtensionsTabBar");
+		var pager = GetRequiredChild<PipsPager>("ExtensionsPager");
+		var status = GetRequiredChild<TextBlock>("SelectionStatus");
+		AccessibilityHelper.Announce(status,
 			$"FlipView: {flipView.SelectedIndex}; TabBar: {tabBar.SelectedIndex}; " +
-			$"PipsPager: {pager.SelectedPageIndex}; offset: {SelectorExtensions.GetSelectionOffset(flipView):F2}";
+			$"PipsPager: {pager.SelectedPageIndex}");
 	}
 
-	private T? GetSampleChild<T>(string name) where T : FrameworkElement
-		=> SamplePageLayoutRoot.GetSampleChild<T>(Design.Agnostic, name);
+	private T GetRequiredChild<T>(string name) where T : FrameworkElement
+		=> SamplePageLayoutRoot.GetSampleChild<T>(Design.Agnostic, name)
+			?? throw new InvalidOperationException($"Toolkit extensions sample child '{name}' is not loaded.");
 }
 
 [Microsoft.UI.Xaml.Data.Bindable]
@@ -124,9 +143,19 @@ public sealed class ToolkitExtensionsViewModel : ViewModelBase
 	{
 		SubmitStatus = "Submitted: (none)";
 		ToggleStatus = "Toggle command value: False";
-		SubmitCommand = new Command(parameter => SubmitStatus = $"Submitted: {parameter}");
-		ToggleCommand = new Command(parameter => ToggleStatus = $"Toggle command value: {parameter}");
+		SubmitCommand = new Command(parameter =>
+		{
+			SubmitStatus = $"Submitted: {parameter}";
+			AnnouncementRequested?.Invoke("SubmitStatusText", SubmitStatus);
+		});
+		ToggleCommand = new Command(parameter =>
+		{
+			ToggleStatus = $"Toggle command value: {parameter}";
+			AnnouncementRequested?.Invoke("CommandStatusText", ToggleStatus);
+		});
 	}
+
+	public event Action<string, string>? AnnouncementRequested;
 
 	public ICommand SubmitCommand { get; }
 

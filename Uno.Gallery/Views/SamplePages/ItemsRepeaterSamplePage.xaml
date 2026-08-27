@@ -82,6 +82,7 @@
 							<StackPanel Spacing="8">
 								<ItemsRepeater x:Name="SelectionRepeater"
 											   AutomationProperties.AutomationId="ItemsRepeater_Selection"
+											   Loaded="SelectionRepeater_Loaded"
 											   ItemsSource="{Binding Data}"
 											   utu:ItemsRepeaterExtensions.SelectionMode="Single"
 											   utu:ItemsRepeaterExtensions.SelectedIndex="0">
@@ -91,6 +92,8 @@
 									<ItemsRepeater.ItemTemplate>
 										<DataTemplate x:DataType="data:GalleryItem">
 											<ToggleButton Content="{Binding Title}"
+														  AutomationProperties.AutomationId="{Binding ItemsRepeaterSelectionAutomationId}"
+														  Click="SelectionItem_Click"
 														  MinWidth="120" />
 										</DataTemplate>
 									</ItemsRepeater.ItemTemplate>
@@ -99,6 +102,10 @@
 										AutomationProperties.Name="Select next repeater item"
 										Content="Select next item"
 										Click="SelectNext_Click" />
+								<Button AutomationProperties.AutomationId="ItemsRepeater_Selection_FocusSecond"
+										AutomationProperties.Name="Focus the second repeater item"
+										Content="Focus second item"
+										Click="FocusSecondSelectionItem_Click" />
 								<TextBlock x:Name="SelectionStatus"
 										   AutomationProperties.AutomationId="ItemsRepeater_Selection_Status"
 										   AutomationProperties.LiveSetting="Polite"

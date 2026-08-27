@@ -80,7 +80,8 @@
 										   AutomationProperties.LiveSetting="Polite"
 										   Text="Input settings not checked"
 										   Style="{StaticResource BodyMedium}" />
-								<TextBlock AutomationProperties.AutomationId="ToolkitExtensions_SubmitStatus"
+								<TextBlock x:Name="SubmitStatusText"
+										   AutomationProperties.AutomationId="ToolkitExtensions_SubmitStatus"
 										   AutomationProperties.LiveSetting="Polite"
 										   Text="{Binding Data.SubmitStatus}"
 										   Style="{StaticResource BodyMedium}" />
@@ -93,7 +94,8 @@
 										AutomationProperties.Name="Toggle command source"
 										Content="Toggle with deterministic action"
 										Click="ToggleProgrammatically_Click" />
-								<TextBlock AutomationProperties.AutomationId="ToolkitExtensions_CommandStatus"
+								<TextBlock x:Name="CommandStatusText"
+										   AutomationProperties.AutomationId="ToolkitExtensions_CommandStatus"
 										   AutomationProperties.LiveSetting="Polite"
 										   Text="{Binding Data.ToggleStatus}"
 										   Style="{StaticResource BodyMedium}" />
@@ -115,6 +117,7 @@
 										Click="VerifyResources_Click" />
 								<TextBlock x:Name="ResourceStatus"
 										   AutomationProperties.AutomationId="ToolkitExtensions_ResourceStatus"
+										   AutomationProperties.LiveSetting="Polite"
 										   Text="Scoped resources not checked"
 										   Style="{StaticResource BodyMedium}" />
 
@@ -169,7 +172,7 @@
 								<TextBlock x:Name="SelectionStatus"
 										   AutomationProperties.AutomationId="ToolkitExtensions_SelectionStatus"
 										   AutomationProperties.LiveSetting="Polite"
-										   Text="FlipView: 0; TabBar: 0; PipsPager: 0; offset: 0.00"
+										   Text="FlipView: 0; TabBar: 0; PipsPager: 0"
 										   Style="{StaticResource BodyMedium}" />
 							</StackPanel>
 						</smtx:XamlDisplay>

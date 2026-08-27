@@ -3,10 +3,13 @@ using System.Collections.ObjectModel;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Data;
 using Uno.Gallery.Entities.Data;
+using Uno.Gallery.Helpers;
 using Uno.Toolkit.UI;
 using Windows.Foundation;
 
@@ -23,12 +26,34 @@ namespace Uno.Gallery.Views.Samples;
 	Status = SampleStatus.Stable)]
 public sealed partial class ItemsRepeaterSamplePage : Page
 {
-	private readonly LocalIncrementalSource _incrementalItems = new();
+	private readonly LocalIncrementalSource _incrementalItems;
+	private bool _batchHandlerAttached;
 
 	public ItemsRepeaterSamplePage()
 	{
 		this.InitializeComponent();
-		_incrementalItems.BatchLoaded += OnBatchLoaded;
+		_incrementalItems = new LocalIncrementalSource(
+			DispatcherQueue ?? throw new InvalidOperationException("ItemsRepeater sample requires a UI DispatcherQueue."));
+		Loaded += OnPageLoaded;
+		Unloaded += OnPageUnloaded;
+	}
+
+	private void OnPageLoaded(object sender, RoutedEventArgs e)
+	{
+		if (!_batchHandlerAttached)
+		{
+			_incrementalItems.BatchLoaded += OnBatchLoaded;
+			_batchHandlerAttached = true;
+		}
+	}
+
+	private void OnPageUnloaded(object sender, RoutedEventArgs e)
+	{
+		if (_batchHandlerAttached)
+		{
+			_incrementalItems.BatchLoaded -= OnBatchLoaded;
+			_batchHandlerAttached = false;
+		}
 	}
 
 	private void ScrollStackDown_Click(object sender, RoutedEventArgs e)
@@ -43,16 +68,59 @@ public sealed partial class ItemsRepeaterSamplePage : Page
 
 	private void SelectNext_Click(object sender, RoutedEventArgs e)
 	{
-		var repeater = SamplePageLayoutRoot.GetSampleChild<ItemsRepeater>(Design.Fluent, "SelectionRepeater");
-		var status = SamplePageLayoutRoot.GetSampleChild<TextBlock>(Design.Fluent, "SelectionStatus");
-		if (repeater is null || status is null || repeater.ItemsSourceView.Count == 0)
+		var repeater = GetRequiredChild<ItemsRepeater>("SelectionRepeater");
+		if (repeater.ItemsSourceView.Count == 0)
 		{
-			return;
+			throw new InvalidOperationException("The selection repeater has no items.");
 		}
 
 		var next = (ItemsRepeaterExtensions.GetSelectedIndex(repeater) + 1) % repeater.ItemsSourceView.Count;
 		ItemsRepeaterExtensions.SetSelectedIndex(repeater, next);
-		status.Text = $"Selected index: {ItemsRepeaterExtensions.GetSelectedIndex(repeater)}";
+		UpdateSelectionStatus(repeater);
+	}
+
+	private void SelectionRepeater_Loaded(object sender, RoutedEventArgs e)
+		=> DispatcherQueue.TryEnqueue(() => SynchronizeSelectionVisuals((ItemsRepeater)sender));
+
+	private void SelectionItem_Click(object sender, RoutedEventArgs e)
+	{
+		var repeater = GetRequiredChild<ItemsRepeater>("SelectionRepeater");
+		var index = repeater.GetElementIndex((UIElement)sender);
+		if (index < 0)
+		{
+			throw new InvalidOperationException("The activated selection item is not realized by the repeater.");
+		}
+		ItemsRepeaterExtensions.SetSelectedIndex(repeater, index);
+		DispatcherQueue.TryEnqueue(() => UpdateSelectionStatus(repeater));
+	}
+
+	private void FocusSecondSelectionItem_Click(object sender, RoutedEventArgs e)
+	{
+		var repeater = GetRequiredChild<ItemsRepeater>("SelectionRepeater");
+		if (repeater.TryGetElement(1) is not Control item || !item.Focus(FocusState.Programmatic))
+		{
+			throw new InvalidOperationException("The second selection item could not receive keyboard focus.");
+		}
+	}
+
+	private void UpdateSelectionStatus(ItemsRepeater repeater)
+	{
+		SynchronizeSelectionVisuals(repeater);
+		AccessibilityHelper.Announce(
+			GetRequiredChild<TextBlock>("SelectionStatus"),
+			$"Selected index: {ItemsRepeaterExtensions.GetSelectedIndex(repeater)}");
+	}
+
+	private static void SynchronizeSelectionVisuals(ItemsRepeater repeater)
+	{
+		var selectedIndex = ItemsRepeaterExtensions.GetSelectedIndex(repeater);
+		for (var index = 0; index < repeater.ItemsSourceView.Count; index++)
+		{
+			if (repeater.TryGetElement(index) is ToggleButton item)
+			{
+				item.IsChecked = index == selectedIndex;
+			}
+		}
 	}
 
 	private void IncrementalRepeater_Loaded(object sender, RoutedEventArgs e)
@@ -81,17 +149,25 @@ public sealed partial class ItemsRepeaterSamplePage : Page
 			var status = SamplePageLayoutRoot.GetSampleChild<TextBlock>(Design.Fluent, "IncrementalStatus");
 			if (status is not null)
 			{
-				status.Text = $"Items loaded: {_incrementalItems.Count}; batches: {_incrementalItems.BatchCount}";
+				AccessibilityHelper.Announce(
+					status,
+					$"Items loaded: {_incrementalItems.Count}; batches: {_incrementalItems.BatchCount}");
 			}
 		});
 	}
 
+	private T GetRequiredChild<T>(string name) where T : FrameworkElement
+		=> SamplePageLayoutRoot.GetSampleChild<T>(Design.Fluent, name)
+			?? throw new InvalidOperationException($"ItemsRepeater sample child '{name}' is not loaded.");
+
 	private sealed class LocalIncrementalSource : ObservableCollection<string>, ISupportIncrementalLoading
 	{
 		private const int MaximumItems = 60;
+		private readonly DispatcherQueue _dispatcherQueue;
 
-		public LocalIncrementalSource()
+		public LocalIncrementalSource(DispatcherQueue dispatcherQueue)
 		{
+			_dispatcherQueue = dispatcherQueue;
 			for (var index = 1; index <= 12; index++)
 			{
 				Add($"Offline item {index}");
@@ -110,15 +186,37 @@ public sealed partial class ItemsRepeaterSamplePage : Page
 		private Task<LoadMoreItemsResult> LoadMoreItemsCoreAsync(uint requestedCount, CancellationToken cancellationToken)
 		{
 			cancellationToken.ThrowIfCancellationRequested();
-			var batchSize = Math.Min(Math.Max(1, (int)requestedCount), Math.Min(6, MaximumItems - Count));
-			for (var index = 0; index < batchSize; index++)
+			var completion = new TaskCompletionSource<LoadMoreItemsResult>(
+				TaskCreationOptions.RunContinuationsAsynchronously);
+			if (!_dispatcherQueue.TryEnqueue(() =>
 			{
-				Add($"Offline item {Count + 1}");
+				try
+				{
+					cancellationToken.ThrowIfCancellationRequested();
+					var batchSize = Math.Min(Math.Max(1, (int)requestedCount), Math.Min(6, MaximumItems - Count));
+					for (var index = 0; index < batchSize; index++)
+					{
+						Add($"Offline item {Count + 1}");
+					}
+
+					BatchCount++;
+					BatchLoaded?.Invoke(this, EventArgs.Empty);
+					completion.TrySetResult(new LoadMoreItemsResult { Count = (uint)batchSize });
+				}
+				catch (OperationCanceledException)
+				{
+					completion.TrySetCanceled(cancellationToken);
+				}
+				catch (Exception error)
+				{
+					completion.TrySetException(error);
+				}
+			}))
+			{
+				throw new InvalidOperationException("Unable to enqueue incremental loading on the UI thread.");
 			}
 
-			BatchCount++;
-			BatchLoaded?.Invoke(this, EventArgs.Empty);
-			return Task.FromResult(new LoadMoreItemsResult { Count = (uint)batchSize });
+			return completion.Task;
 		}
 	}
 }

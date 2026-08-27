@@ -12,7 +12,7 @@ does not claim that the fixture is an authoritative inventory of Uno or Toolkit.
 | `ItemsRepeaterExtensions` | `itemsrepeater` | Single selection plus viewport-driven offline `ISupportIncrementalLoading` |
 | `InputExtensions` and `CommandExtensions` | `toolkit-extensions` | Return-key/focus/dismiss settings and meaningful command parameters |
 | `ResourceExtensions` and `VisualStateManagerExtensions` | `toolkit-extensions` | Locally scoped lightweight resources and attached named states |
-| `SelectorExtensions` and `TabBarSelectorBehavior` | `toolkit-extensions` | `PipsPager`, `SelectionOffset`, `FlipView`, and `TabBar` synchronization |
+| `SelectorExtensions` and `TabBarSelectorBehavior` | `toolkit-extensions` | `PipsPager`, `FlipView`, and `TabBar` synchronization |
 
 `GridExtensions` is not present in Uno.Toolkit.WinUI 9.0.3 and is therefore not
 classified as covered.

@@ -8,6 +8,7 @@ $ErrorActionPreference = 'Stop'
 $repoRoot = (Resolve-Path (Join-Path $PSScriptRoot '..\..')).Path
 $pagePath = Join-Path $repoRoot 'Uno.Gallery\Views\SamplePages\AccessibilitySamplePage.xaml'
 $codeBehindPath = "$pagePath.cs"
+$helperPath = Join-Path $repoRoot 'Uno.Gallery\Helpers\AccessibilityHelper.cs'
 $document = [System.Xml.Linq.XDocument]::Load($pagePath)
 $requirements = @{
     'Accessibility_Email' = @('AutomationProperties.Name', 'AutomationProperties.HelpText')
@@ -52,8 +53,23 @@ $liveSetting = if ($null -ne $announcement) {
 if ($null -eq $liveSetting -or $liveSetting.Value -ne 'Polite') {
     $errors.Add("Accessibility_Announcement must use the Polite live setting.")
 }
-if ((Get-Content $codeBehindPath -Raw) -notmatch 'RaiseAutomationEvent\(AutomationEvents\.LiveRegionChanged\)') {
-    $errors.Add("The live-region sample must raise AutomationEvents.LiveRegionChanged.")
+if ((Get-Content $codeBehindPath -Raw) -notmatch 'AccessibilityHelper\.Announce') {
+    $errors.Add("The live-region sample must use AccessibilityHelper.Announce.")
+}
+if ((Get-Content $helperPath -Raw) -notmatch 'RaiseAutomationEvent\(AutomationEvents\.LiveRegionChanged\)') {
+    $errors.Add("AccessibilityHelper must raise AutomationEvents.LiveRegionChanged.")
+}
+
+$sampleRoot = Join-Path $repoRoot 'Uno.Gallery\Views\SamplePages'
+foreach ($xamlFile in Get-ChildItem $sampleRoot -File -Filter '*.xaml') {
+    if ((Get-Content $xamlFile.FullName -Raw) -notmatch 'AutomationProperties\.LiveSetting="Polite"') {
+        continue
+    }
+    $codeBehind = "$($xamlFile.FullName).cs"
+    if (-not (Test-Path $codeBehind -PathType Leaf) -or
+        (Get-Content $codeBehind -Raw) -notmatch 'AccessibilityHelper\.Announce') {
+        $errors.Add("$($xamlFile.Name) declares a polite live region without AccessibilityHelper.Announce.")
+    }
 }
 
 if ($errors.Count -gt 0) {

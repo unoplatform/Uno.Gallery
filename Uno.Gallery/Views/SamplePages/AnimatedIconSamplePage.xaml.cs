@@ -1,5 +1,7 @@
+using System;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Uno.Gallery.Helpers;
 
 namespace Uno.Gallery.Views.Samples;
 
@@ -23,37 +25,43 @@ public sealed partial class AnimatedIconSamplePage : Page
 
 	private void AnimatedIcon_Loaded(object sender, RoutedEventArgs e)
 	{
-		if (sender is AnimatedIcon icon)
-		{
-			_transitionCount = 0;
-			AnimatedIcon.SetState(icon, "NormalOff");
-			var status = SamplePageLayoutRoot.GetSampleChild<TextBlock>(Design.Agnostic, "AnimatedIconStatus");
-			if (status is not null)
-			{
-				status.Text = "State: NormalOff; transitions: 0";
-			}
-		}
+		var icon = (AnimatedIcon)sender;
+		_transitionCount = 0;
+		AnimatedIcon.SetState(icon, "NormalOff");
+		UpdateStatus(icon);
 	}
 
 	private void SetAccepted_Click(object sender, RoutedEventArgs e) => SetIconState("NormalOn");
 
 	private void Reset_Click(object sender, RoutedEventArgs e)
 	{
-		_transitionCount = -1;
-		SetIconState("NormalOff");
+		var icon = GetRequiredChild<AnimatedIcon>("AcceptIcon");
+		if (AnimatedIcon.GetState(icon) != "NormalOff")
+		{
+			AnimatedIcon.SetState(icon, "NormalOff");
+		}
+		_transitionCount = 0;
+		UpdateStatus(icon);
 	}
 
 	private void SetIconState(string state)
 	{
-		var icon = SamplePageLayoutRoot.GetSampleChild<AnimatedIcon>(Design.Agnostic, "AcceptIcon");
-		var status = SamplePageLayoutRoot.GetSampleChild<TextBlock>(Design.Agnostic, "AnimatedIconStatus");
-		if (icon is null || status is null)
+		var icon = GetRequiredChild<AnimatedIcon>("AcceptIcon");
+		if (AnimatedIcon.GetState(icon) != state)
 		{
-			return;
+			AnimatedIcon.SetState(icon, state);
+			_transitionCount++;
 		}
 
-		AnimatedIcon.SetState(icon, state);
-		_transitionCount++;
-		status.Text = $"State: {AnimatedIcon.GetState(icon)}; transitions: {_transitionCount}";
+		UpdateStatus(icon);
 	}
+
+	private void UpdateStatus(AnimatedIcon icon)
+		=> AccessibilityHelper.Announce(
+			GetRequiredChild<TextBlock>("AnimatedIconStatus"),
+			$"State: {AnimatedIcon.GetState(icon)}; transitions: {_transitionCount}");
+
+	private T GetRequiredChild<T>(string name) where T : FrameworkElement
+		=> SamplePageLayoutRoot.GetSampleChild<T>(Design.Agnostic, name)
+			?? throw new InvalidOperationException($"AnimatedIcon sample child '{name}' is not loaded.");
 }

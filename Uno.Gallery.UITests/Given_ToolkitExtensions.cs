@@ -1,4 +1,6 @@
+using System;
 using NUnit.Framework;
+using Uno.UITest.Helpers;
 using Uno.UITest.Helpers.Queries;
 
 namespace Uno.Gallery.UITests;
@@ -68,10 +70,10 @@ public class Given_ToolkitExtensions : TestBase
 
 		App.ScrollDownTo("ToolkitExtensions_VerifyResources");
 		App.WaitThenTap("ToolkitExtensions_VerifyResources");
-		Assert.AreEqual("Scoped resource ButtonBackground: #FF0063B1", GetText("ToolkitExtensions_ResourceStatus"));
+		Assert.AreEqual("Resolved background: #FF0063B1", GetText("ToolkitExtensions_ResourceStatus"));
 
 		App.WaitThenTap("ToolkitExtensions_ToggleState");
-		Assert.AreEqual("State: Accent", GetText("ToolkitExtensions_StateStatus"));
+		Assert.AreEqual("State: Accent; background: #FFFF8C00", GetText("ToolkitExtensions_StateStatus"));
 	}
 
 	[Test]
@@ -81,9 +83,28 @@ public class Given_ToolkitExtensions : TestBase
 
 		App.ScrollDownTo("ToolkitExtensions_NextSelection");
 		App.WaitThenTap("ToolkitExtensions_NextSelection");
-		Assert.AreEqual(
-			"FlipView: 1; TabBar: 1; PipsPager: 1; offset: 0.00",
-			GetText("ToolkitExtensions_SelectionStatus"));
+		const string expected = "FlipView: 1; TabBar: 1; PipsPager: 1";
+		var synchronized = PollForText(
+			"ToolkitExtensions_SelectionStatus",
+			expected,
+			TimeSpan.FromSeconds(5));
+		var actual = GetText("ToolkitExtensions_SelectionStatus");
+		Assert.IsTrue(synchronized, $"FlipView, TabBar, and PipsPager did not synchronize. Last status: '{actual}'.");
+	}
+
+	private bool PollForText(string automationId, string expected, TimeSpan timeout)
+	{
+		var deadline = DateTime.UtcNow + timeout;
+		while (DateTime.UtcNow < deadline)
+		{
+			if (GetText(automationId) == expected)
+			{
+				return true;
+			}
+			App.Wait(TimeSpan.FromMilliseconds(100));
+		}
+
+		return false;
 	}
 
 	private static string GetText(string automationId)

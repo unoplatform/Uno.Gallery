@@ -25,6 +25,8 @@ public class GalleryItem
 	public string MultipleAutomationName => $"ItemsView_Multiple_{Title}";
 	/// <summary>Stable automation identifier for ItemsRepeater grid tiles.</summary>
 	public string ItemsRepeaterGridAutomationId => $"ItemsRepeater_Grid_{Title}";
+	/// <summary>Stable automation identifier for Toolkit ItemsRepeater selection items.</summary>
+	public string ItemsRepeaterSelectionAutomationId => $"ItemsRepeater_Selection_{Title}";
 
 	private static Color ParseHexColor(string hex)
 	{

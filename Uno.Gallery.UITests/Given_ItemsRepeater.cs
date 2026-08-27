@@ -60,6 +60,37 @@ public class Given_ItemsRepeater : TestBase
 	}
 
 	[Test]
+	public void When_ToolkitSelectionItemIsTapped_SelectedIndexAndStatusAgree()
+	{
+		NavigateToSample("ItemsRepeater", "Fluent");
+		App.ScrollDownTo("ItemsRepeater_Selection_To Kill a Mockingbird");
+
+		App.WaitThenTap("ItemsRepeater_Selection_To Kill a Mockingbird");
+
+		var status = new QueryEx(x => x.All().Marked("ItemsRepeater_Selection_Status"));
+		Assert.IsTrue(
+			PollForText(status, "Selected index: 1", TimeSpan.FromSeconds(5)),
+			"Direct item selection must update the attached selected index and visible status.");
+	}
+
+	[Test]
+	public void When_ToolkitSelectionItemUsesKeyboard_SelectedIndexAndStatusAgree()
+	{
+		NavigateToSample("ItemsRepeater", "Fluent");
+		App.ScrollDownTo("ItemsRepeater_Selection_FocusSecond");
+
+		App.WaitThenTap("ItemsRepeater_Selection_FocusSecond");
+		App.PressEnter();
+
+		var status = new QueryEx(x => x.All().Marked("ItemsRepeater_Selection_Status"));
+		Assert.IsTrue(
+			PollForText(status, "Selected index: 1", TimeSpan.FromSeconds(5)),
+			"Keyboard activation must update Toolkit single selection and visible status.");
+		var second = new QueryEx(x => x.All().Marked("ItemsRepeater_Selection_To Kill a Mockingbird"));
+		Assert.IsTrue(second.GetDependencyPropertyValue<bool>("IsChecked"));
+	}
+
+	[Test]
 	public void When_ScrolledToEnd_ToolkitLoadsAnotherOfflineBatch()
 	{
 		NavigateToSample("ItemsRepeater", "Fluent");
@@ -88,6 +119,20 @@ public class Given_ItemsRepeater : TestBase
 			App.Wait(TimeSpan.FromMilliseconds(100));
 		}
 
+		return false;
+	}
+
+	private bool PollForText(QueryEx element, string expected, TimeSpan timeout)
+	{
+		var deadline = DateTime.UtcNow + timeout;
+		while (DateTime.UtcNow < deadline)
+		{
+			if (element.GetDependencyPropertyValue<string>("Text") == expected)
+			{
+				return true;
+			}
+			App.Wait(TimeSpan.FromMilliseconds(100));
+		}
 		return false;
 	}
 

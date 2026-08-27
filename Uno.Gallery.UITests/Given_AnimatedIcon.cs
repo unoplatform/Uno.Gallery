@@ -27,6 +27,12 @@ public class Given_AnimatedIcon : TestBase
 		App.WaitThenTap("AnimatedIcon_AcceptButton");
 		Assert.AreEqual("State: NormalOn; transitions: 1", GetStatus());
 
+		App.WaitThenTap("AnimatedIcon_AcceptButton");
+		Assert.AreEqual("State: NormalOn; transitions: 1", GetStatus());
+
+		App.WaitThenTap("AnimatedIcon_ResetButton");
+		Assert.AreEqual("State: NormalOff; transitions: 0", GetStatus());
+
 		App.WaitThenTap("AnimatedIcon_ResetButton");
 		Assert.AreEqual("State: NormalOff; transitions: 0", GetStatus());
 	}

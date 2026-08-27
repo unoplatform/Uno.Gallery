@@ -14,27 +14,34 @@
 				<DataTemplate>
 					<smtx:XamlDisplay UniqueKey="CardContentControl_Interactive"
 									  smtx:XamlDisplayExtensions.Header="Interactive custom-content card"
-									  smtx:XamlDisplayExtensions.Description="CardContentControl provides a flexible content surface with toolkit elevation, shadow color, and clickable interaction states."
+									  smtx:XamlDisplayExtensions.Description="CardContentControl provides elevation, shadow, and interaction visuals. A Button wrapper supplies keyboard and automation Invoke semantics."
 									  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
 						<StackPanel Spacing="12">
-							<utu:CardContentControl x:Name="InteractiveCard"
-													AutomationProperties.AutomationId="CardContentControl_Card"
-													AutomationProperties.Name="Toolkit extension summary card"
-													AutomationProperties.HelpText="A clickable card with configurable elevation and shadow color"
-													Style="{StaticResource ElevatedCardContentControlStyle}"
-													Elevation="8"
-													ShadowColor="DarkSlateBlue"
-													IsClickable="True"
-													Tapped="InteractiveCard_Tapped"
-													MaxWidth="420"
-													HorizontalAlignment="Left">
-								<StackPanel Padding="20" Spacing="8">
-									<TextBlock Text="Flexible card content" Style="{StaticResource TitleMedium}" />
-									<TextBlock Text="This content is not constrained to Card header, media, or action slots."
-											   TextWrapping="WrapWholeWords"
-											   Style="{StaticResource BodyMedium}" />
-								</StackPanel>
-							</utu:CardContentControl>
+							<Button x:Name="InteractiveCardButton"
+									AutomationProperties.AutomationId="CardContentControl_CardButton"
+									AutomationProperties.Name="Toolkit extension summary card"
+									AutomationProperties.HelpText="Activates a card with configurable elevation and shadow color"
+									HorizontalAlignment="Left"
+									Padding="0"
+									BorderThickness="0"
+									Background="Transparent"
+									Click="InteractiveCard_Click">
+								<utu:CardContentControl x:Name="InteractiveCard"
+														AutomationProperties.AutomationId="CardContentControl_Card"
+														IsTabStop="False"
+														Style="{StaticResource ElevatedCardContentControlStyle}"
+														Elevation="8"
+														ShadowColor="DarkSlateBlue"
+														IsClickable="True"
+														MaxWidth="420">
+									<StackPanel Padding="20" Spacing="8">
+										<TextBlock Text="Flexible card content" Style="{StaticResource TitleMedium}" />
+										<TextBlock Text="This content is not constrained to Card header, media, or action slots."
+												   TextWrapping="WrapWholeWords"
+												   Style="{StaticResource BodyMedium}" />
+									</StackPanel>
+								</utu:CardContentControl>
+							</Button>
 
 							<StackPanel Orientation="Horizontal" Spacing="8">
 								<Button AutomationProperties.AutomationId="CardContentControl_Reset"
@@ -45,10 +52,6 @@
 										AutomationProperties.Name="Toggle card configuration"
 										Content="Toggle configuration"
 										Click="ToggleConfiguration_Click" />
-								<Button AutomationProperties.AutomationId="CardContentControl_Activate"
-										AutomationProperties.Name="Activate card"
-										Content="Activate"
-										Click="Activate_Click" />
 							</StackPanel>
 
 							<TextBlock x:Name="CardStatus"

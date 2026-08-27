@@ -1,8 +1,6 @@
 using System;
 using System.Globalization;
 using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Automation;
-using Microsoft.UI.Xaml.Automation.Peers;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Media.Animation;
@@ -34,15 +32,12 @@ public sealed partial class AccessibilitySamplePage : Page
 		if (SamplePageLayoutRoot.GetSampleChild<TextBlock>(Design.Agnostic, "AnnouncementStatus") is { } status)
 		{
 			_announcementCount++;
-			status.Text = string.Format(
+			AccessibilityHelper.Announce(status, string.Format(
 				CultureInfo.CurrentCulture,
 				LocalizationHelper.GetString(
 					"AccessibilityAnnouncementSaved",
 					"Profile saved. Announcement {0}."),
-				_announcementCount);
-			var peer = FrameworkElementAutomationPeer.FromElement(status)
-				?? FrameworkElementAutomationPeer.CreatePeerForElement(status);
-			peer?.RaiseAutomationEvent(AutomationEvents.LiveRegionChanged);
+				_announcementCount));
 		}
 	}
 

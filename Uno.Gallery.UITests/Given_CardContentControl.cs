@@ -11,6 +11,7 @@ public class Given_CardContentControl : TestBase
 		NavigateToSample("CardContentControl", "Material");
 
 		App.WaitForElement("CardContentControl_Card");
+		App.WaitForElement("CardContentControl_CardButton");
 		App.WaitThenTap("CardContentControl_Reset");
 		var card = new QueryEx(q => q.All().Marked("CardContentControl_Card"));
 		Assert.AreEqual(8d, card.GetDependencyPropertyValue<double>("Elevation"));
@@ -24,7 +25,7 @@ public class Given_CardContentControl : TestBase
 		NavigateToSample("CardContentControl", "Material");
 
 		App.WaitThenTap("CardContentControl_Reset");
-		App.WaitThenTap("CardContentControl_Activate");
+		App.WaitThenTap("CardContentControl_CardButton");
 		Assert.AreEqual("Elevation: 8; Shadow: #FF483D8B; Clickable: True; activations: 1", GetStatus());
 
 		App.WaitThenTap("CardContentControl_ToggleConfiguration");
@@ -32,9 +33,20 @@ public class Given_CardContentControl : TestBase
 		Assert.AreEqual(2d, card.GetDependencyPropertyValue<double>("Elevation"));
 		Assert.IsFalse(card.GetDependencyPropertyValue<bool>("IsClickable"));
 		Assert.AreEqual("Elevation: 2; Shadow: #FF008080; Clickable: False; activations: 1", GetStatus());
+		var button = new QueryEx(q => q.All().Marked("CardContentControl_CardButton"));
+		Assert.IsFalse(button.GetDependencyPropertyValue<bool>("IsEnabled"));
+	}
 
-		App.WaitThenTap("CardContentControl_Activate");
-		Assert.AreEqual("Elevation: 2; Shadow: #FF008080; Clickable: False; activations: 1", GetStatus());
+	[Test]
+	public void When_Card_Has_Focus_Enter_Activates_It()
+	{
+		NavigateToSample("CardContentControl", "Material");
+
+		App.WaitThenTap("CardContentControl_Reset");
+		App.WaitThenTap("CardContentControl_CardButton");
+		App.PressEnter();
+
+		Assert.AreEqual("Elevation: 8; Shadow: #FF483D8B; Clickable: True; activations: 2", GetStatus());
 	}
 
 	private static string GetStatus()

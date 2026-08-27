@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "targets": {
     "Desktop": {
-      "minimumSampleCount": 111,
+      "minimumSampleCount": 114,
       "requiredSlugs": [
         "overview",
         "button",
@@ -12,7 +12,7 @@
       ]
     },
     "WASM-DOM": {
-      "minimumSampleCount": 111,
+      "minimumSampleCount": 114,
       "requiredSlugs": [
         "overview",
         "button",
@@ -22,7 +22,7 @@
       ]
     },
     "WASM-Skia": {
-      "minimumSampleCount": 109,
+      "minimumSampleCount": 112,
       "requiredSlugs": [
         "overview",
         "button",
