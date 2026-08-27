@@ -312,9 +312,14 @@ public sealed partial class Shell : UserControl
 #if PERF_MEASUREMENTS
 	private static void RecordDurationAfterNextRender(string name, long started)
 	{
+		var renderedFrames = 0;
 		EventHandler<object>? rendering = null;
 		rendering = (_, _) =>
 		{
+			if (++renderedFrames < 2)
+			{
+				return;
+			}
 			Microsoft.UI.Xaml.Media.CompositionTarget.Rendering -= rendering;
 			PerformanceMarks.RecordDuration(name, started);
 		};

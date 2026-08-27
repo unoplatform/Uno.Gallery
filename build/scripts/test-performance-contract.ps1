@@ -68,9 +68,14 @@ try {
         generatedAt = [DateTime]::UtcNow.ToString('O')
         buildCommit = 'abcdef0'
         target = 'WASM-DOM'
+        flavor = 'instrumented'
         configuration = [ordered]@{
             configSha256 = ('a' * 64)
             toolSha256 = ('c' * 64)
+            runCounts = [ordered]@{
+                cold = 5
+                warm = 5
+            }
             viewport = [ordered]@{
                 width = 1200
                 height = 900
@@ -266,6 +271,20 @@ try {
     $startupSchema = Join-Path $repoRoot 'docs\performance\startup-probe-v1.schema.json'
     if (-not ($startupProbe | Test-Json -SchemaFile $startupSchema)) {
         throw 'Release startup probe failed schema validation.'
+    }
+
+    Remove-Item (Join-Path $framework 'dotnet.native.fixture.wasm.br') -Force
+    Remove-Item (Join-Path $framework 'Uno.Gallery.fixture.wasm.br') -Force
+    $noSidecarPath = Join-Path $scratch 'bundle-without-sidecars.json'
+    & (Join-Path $PSScriptRoot 'measure-wasm-bundle.ps1') `
+        -WasmRoot $artifact `
+        -TargetName 'WASM-DOM' `
+        -OutputPath $noSidecarPath
+    $noSidecars = Get-Content $noSidecarPath -Raw | ConvertFrom-Json -Depth 10
+    if ($noSidecars.metrics.precompressedBrotliBytes -ne 0 -or
+        $null -ne $noSidecars.metrics.dotnetNativeBrotliBytes -or
+        $noSidecars.metrics.estimatedBrotliTransferBytes -ne 1400) {
+        throw 'Sidecar-free bundle fixture produced incorrect fallback metrics.'
     }
 } finally {
     if (Test-Path $scratch) {

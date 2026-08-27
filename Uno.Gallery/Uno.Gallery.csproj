@@ -88,7 +88,7 @@
 		<EnableExtensionsPatterns Condition="'$(EnableExtensionsPatterns)'==''">false</EnableExtensionsPatterns>
 		<DefineConstants Condition="'$(EnableExtensionsPatterns)'=='true'">$(DefineConstants);EXTENSIONS_PATTERNS</DefineConstants>
 		<DefineConstants Condition="'$(TargetFramework)'=='net10.0-browserwasm' AND '$(Configuration)'=='Release'">$(DefineConstants);WASM_INTERPRETER_AOT</DefineConstants>
-		<DefineConstants Condition="'$(TargetFramework)'=='net10.0-browserwasm' AND '$(Configuration)'=='Release' AND '$(UseNativeRendering)'=='true' AND '$(EnableVisualRegression)'!='true' AND '$(EnableExtensionsPatterns)'!='true'">$(DefineConstants);WASM_PROFILED_AOT</DefineConstants>
+		<DefineConstants Condition="'$(TargetFramework)'=='net10.0-browserwasm' AND '$(Configuration)'=='Release' AND '$(UseNativeRendering)'=='true' AND '$(EnablePerformanceMeasurements)'!='true' AND '$(EnableVisualRegression)'!='true' AND '$(EnableExtensionsPatterns)'!='true'">$(DefineConstants);WASM_PROFILED_AOT</DefineConstants>
 		<DefineConstants Condition="'$(TargetFramework)'=='net10.0-browserwasm' AND '$(Configuration)'!='Release'">$(DefineConstants);WASM_INTERPRETER</DefineConstants>
 		<DefineConstants Condition="'$(PublishAot)'=='true'">$(DefineConstants);NATIVE_AOT</DefineConstants>
 		<DefineConstants>$(DefineConstants);ENFORCE_SAMPLE_CONTRACT</DefineConstants>
@@ -264,6 +264,8 @@
 		-->
 
 		<WasmAotFileName Condition="'$(IsUiAutomationMappingEnabled)'=='True'">aot-uitests.profile</WasmAotFileName>
+		<!-- Runtime observations contain new instrumentation methods that are intentionally absent from production profiles. -->
+		<WasmAotFileName Condition="'$(EnablePerformanceMeasurements)'=='true' AND '$(EnableVisualRegression)'!='true' AND '$(EnableExtensionsPatterns)'!='true'">performance-full-aot.profile</WasmAotFileName>
 		<!-- The historical profiles predate Uno.Extensions and leave required startup methods in an unsupported interpreter path. -->
 		<WasmAotFileName Condition="'$(EnableExtensionsPatterns)'=='true'">extensions-patterns-full-aot.profile</WasmAotFileName>
 	</PropertyGroup>

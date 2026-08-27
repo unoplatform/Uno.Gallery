@@ -4,7 +4,7 @@
   "status": "advisory",
   "approvedOn": "2026-08-27",
   "runtimeConfigSha256": "7f0b349703d496b63c4c545eebde98a77c00bde83680f69e55ba8cea1e438dfc",
-  "runtimeToolSha256": "8ccc594b525fafa60b43bf323ec81b91e7c8f98060d91bd715dd1590915630c8",
+  "runtimeToolSha256": "17bd977bdd5e3a712a5e5285c0f1b587d6353e891342fc0e73bb943c3ec52fcf",
   "minimumRuntimeObservations": 10,
   "targets": {
     "WASM-DOM": {
@@ -29,46 +29,46 @@
       "runtime": {
         "cold": {
           "firstContentfulPaintMs": {
-            "baseline": 996,
+            "baseline": 956,
             "maximum": 1200
           },
           "shellReadyMs": {
-            "baseline": 3831.7,
-            "maximum": 4300
+            "baseline": 4075,
+            "maximum": 4600
           },
           "firstInputLatencyMs": {
-            "baseline": 64.1,
+            "baseline": 55.8,
             "maximum": 120
           },
           "searchRenderedMs": {
-            "baseline": 112.5,
+            "baseline": 106.8,
             "maximum": 150
           },
           "navigationRenderedMs": {
-            "baseline": 775.5,
-            "maximum": 950
+            "baseline": 541.6,
+            "maximum": 700
           }
         },
         "warm": {
           "firstContentfulPaintMs": {
-            "baseline": 204,
+            "baseline": 208,
             "maximum": 300
           },
           "shellReadyMs": {
-            "baseline": 2791.2,
-            "maximum": 3300
+            "baseline": 3005.5,
+            "maximum": 3500
           },
           "firstInputLatencyMs": {
-            "baseline": 41.8,
+            "baseline": 39.1,
             "maximum": 100
           },
           "searchRenderedMs": {
-            "baseline": 91.5,
+            "baseline": 91.9,
             "maximum": 140
           },
           "navigationRenderedMs": {
-            "baseline": 802.1,
-            "maximum": 950
+            "baseline": 523,
+            "maximum": 700
           }
         }
       }

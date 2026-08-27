@@ -425,7 +425,6 @@ stages:
   - job: Build_Performance_DOM_WASM
     displayName: 'Build instrumented DOM WebAssembly (advisory)'
     timeoutInMinutes: 60
-    continueOnError: true
     pool:
       vmImage: ubuntu-latest
     variables:
@@ -442,9 +441,8 @@ stages:
   - job: Windows_DOM_Performance
     displayName: 'Pinned Chromium DOM runtime trends (advisory)'
     timeoutInMinutes: 60
-    continueOnError: true
     dependsOn: Build_Performance_DOM_WASM
-    condition: succeededOrFailed()
+    condition: succeeded()
     pool:
       vmImage: windows-2022
     variables:

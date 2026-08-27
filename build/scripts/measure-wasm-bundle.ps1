@@ -29,6 +29,14 @@ $rawFiles = @($files | Where-Object {
     $_.Extension -notin @('.br', '.gz', '.map')
 })
 $brotliFiles = @($files | Where-Object Extension -eq '.br')
+
+function Get-LengthSum([object[]] $Items) {
+    if ($Items.Count -eq 0) {
+        return [long]0
+    }
+    return [long]($Items | Measure-Object Length -Sum).Sum
+}
+
 $rawByPath = @{}
 foreach ($file in $files) {
     $rawByPath[$file.FullName] = $file
@@ -69,11 +77,12 @@ $nativeBrotliBytes = if ($rawByPath.ContainsKey($nativeBrotliPath)) {
 }
 
 $frameworkRoot = Join-Path $resolvedRoot '_framework'
-[long]$managedWebcilBytes = @($rawFiles | Where-Object {
+$managedWebcilFiles = @($rawFiles | Where-Object {
     $_.Extension -eq '.wasm' -and
     $_.FullName.StartsWith($frameworkRoot, [StringComparison]::OrdinalIgnoreCase) -and
     $_.FullName -ne $nativeWasm[0].FullName
-} | Measure-Object Length -Sum).Sum
+})
+[long]$managedWebcilBytes = Get-LengthSum $managedWebcilFiles
 
 $commit = if ([string]::IsNullOrWhiteSpace($BuildCommit)) {
     $null
@@ -92,8 +101,8 @@ $report = [ordered]@{
     flavor = $Flavor
     metrics = [ordered]@{
         fileCount = $rawFiles.Count
-        rawPayloadBytes = [long]($rawFiles | Measure-Object Length -Sum).Sum
-        precompressedBrotliBytes = [long]($brotliFiles | Measure-Object Length -Sum).Sum
+        rawPayloadBytes = Get-LengthSum $rawFiles
+        precompressedBrotliBytes = Get-LengthSum $brotliFiles
         estimatedBrotliTransferBytes = $estimatedTransferBytes
         dotnetNativeWasmBytes = [long]$nativeWasm[0].Length
         dotnetNativeBrotliBytes = $nativeBrotliBytes

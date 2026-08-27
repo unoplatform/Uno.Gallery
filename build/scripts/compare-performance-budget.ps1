@@ -111,6 +111,9 @@ foreach ($metricsPath in $BundleMetricsPath) {
 
 if (-not [string]::IsNullOrWhiteSpace($RuntimeObservationPath)) {
     $runtime = Read-ValidatedJson $RuntimeObservationPath $runtimeSchema 'Runtime observation'
+    if ([string]$runtime.flavor -cne 'instrumented') {
+        throw "Runtime observation must use the instrumented flavor, got '$($runtime.flavor)'."
+    }
     if ([string]$runtime.configuration.configSha256 -cne [string]$budget.runtimeConfigSha256) {
         throw "Runtime observation config '$($runtime.configuration.configSha256)' does not match budget '$($budget.runtimeConfigSha256)'."
     }

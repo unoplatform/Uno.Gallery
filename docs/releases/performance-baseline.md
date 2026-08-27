@@ -27,6 +27,8 @@ transfer, native WASM, and managed WebCIL bytes from a fresh publish directory.
 readiness, first-input processing delay, search rendering, and sample navigation.
 DOM retains its validated production profile; Skia is measured with unprofiled
 AOT because its historical profile no longer covers generated theme resources.
+Runtime observations use a separate instrumented, unprofiled-AOT DOM flavor and
+are labeled as such in their schema.
 
 The CI `performance` artifact contains the ten cold and ten warm raw runs and
 the comparison report. The `WASM-DOM-catalog` and `WASM-Skia-catalog` artifacts
@@ -53,11 +55,11 @@ The initial Release DOM observation used the committed Chrome
 
 | Runtime p75 | Cold | Warm |
 |---|---:|---:|
-| First-contentful paint | 996 ms | 204 ms |
-| Shell ready | 3,831.7 ms | 2,791.2 ms |
-| First-input processing delay | 64.1 ms | 41.8 ms |
-| Search rendered | 112.5 ms | 91.5 ms |
-| Sample navigation rendered | 775.5 ms | 802.1 ms |
+| First-contentful paint | 956 ms | 208 ms |
+| Shell ready | 4,075 ms | 3,005.5 ms |
+| First-input processing delay | 55.8 ms | 39.1 ms |
+| Search rendered | 106.8 ms | 91.9 ms |
+| Sample navigation rendered | 541.6 ms | 523 ms |
 
 These values establish the advisory baseline, not blocking status. CI records
 its exact Windows image, Node version, and every raw observation so hosted-run

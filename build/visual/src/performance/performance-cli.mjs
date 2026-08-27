@@ -282,23 +282,22 @@ async function observeRun(browser, baseUrl, config, cacheEnabled) {
       globalThis.__unoGalleryFirstInputObserver.observe({ type: "first-input", buffered: true });
       return true;
     });
-    const clickStarted = await page.evaluate(() => performance.now());
+    if (!observesFirstInput) {
+      throw new Error("Pinned browser does not support the first-input PerformanceObserver entry.");
+    }
     await searchInput.click();
-    const firstInput = await waitForEntry(
+    await waitForEntry(
       page,
       "mark",
       config.marks.firstInput,
       config.timeouts.actionMs
     );
-    if (observesFirstInput) {
-      await page.waitForFunction(
-        () => globalThis.__unoGalleryFirstInputDelay !== null,
-        { timeout: config.timeouts.actionMs }
-      );
-    }
-    const firstInputEventDelay = observesFirstInput
-      ? await page.evaluate(() => globalThis.__unoGalleryFirstInputDelay)
-      : null;
+    await page.waitForFunction(
+      () => globalThis.__unoGalleryFirstInputDelay !== null,
+      { timeout: config.timeouts.actionMs }
+    );
+    const firstInputEventDelay =
+      await page.evaluate(() => globalThis.__unoGalleryFirstInputDelay);
 
     await page.evaluate(name => performance.clearMeasures(name), config.marks.searchRendered);
     await searchInput.type(config.actions.searchQuery);
@@ -335,14 +334,13 @@ async function observeRun(browser, baseUrl, config, cacheEnabled) {
     return {
       firstContentfulPaintMs: round(firstContentfulPaint.startTime),
       shellReadyMs: round(shellReady.startTime),
-      firstInputLatencyMs: round(
-        firstInputEventDelay ?? Math.max(0, firstInput.startTime - clickStarted)
-      ),
+      firstInputLatencyMs: round(firstInputEventDelay),
       searchRenderedMs: round(latestSearch ?? search.duration),
       navigationRenderedMs: round(navigation.duration)
     };
   } finally {
-    await withTimeout(page.close(), 5000, "performance page did not close within 5 seconds");
+    await withTimeout(page.close(), 5000, "performance page did not close within 5 seconds")
+      .catch(() => {});
   }
 }
 
@@ -385,6 +383,7 @@ async function main() {
   await access(wasmRoot);
   const config = JSON.parse(await readFile(configPath, "utf8"));
   validateConfig(config);
+  const configSha256 = createHash("sha256").update(JSON.stringify(config)).digest("hex");
   if (args.cold) config.runs.cold = Number(args.cold);
   if (args.warm) config.runs.warm = Number(args.warm);
   validateConfig(config);
@@ -403,10 +402,12 @@ async function main() {
       generatedAt: new Date().toISOString(),
       buildCommit,
       target: config.target,
+      flavor: "instrumented",
       configuration: {
-        configSha256: createHash("sha256").update(JSON.stringify(config)).digest("hex"),
+        configSha256,
         toolSha256: await digestPerformanceTool(),
-        viewport: config.viewport
+        viewport: config.viewport,
+        runCounts: config.runs
       },
       browser: {
         version: browserVersion,

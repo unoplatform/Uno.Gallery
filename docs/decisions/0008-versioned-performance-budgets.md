@@ -33,9 +33,11 @@ warm-up launch. The local server serves precompressed Brotli assets and models
 immutable fingerprinted-resource caching while keeping boot files revalidated.
 
 The runtime artifact is Release DOM WebAssembly with
-`EnablePerformanceMeasurements=true`; it is evidence, not a deployable artifact.
-The production DOM and Skia artifacts remain uninstrumented and are the only
-inputs to bundle budgets.
+`EnablePerformanceMeasurements=true` and unprofiled AOT. New instrumentation
+methods are intentionally absent from the production profile, so using that
+profile would route them through a fragile interpreter path. This flavor is
+evidence, not a deployable artifact. The production DOM and Skia artifacts
+remain uninstrumented and are the only inputs to bundle budgets.
 
 The measured runtime metrics are:
 
