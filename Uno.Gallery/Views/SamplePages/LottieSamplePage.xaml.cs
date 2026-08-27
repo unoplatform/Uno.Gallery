@@ -21,6 +21,15 @@ namespace Uno.Gallery.Views.Samples
 		DocumentationLink = "https://platform.uno/docs/articles/features/lottie.html",
 		Slug = "lottie",
 		Tags = new[] { "animation", "lottie", "offline", "rendering" },
+		Status = SampleStatus.Stable,
+		ContractVersion = 1,
+		SupportedDesigns = SampleDesigns.Agnostic,
+		SupportedRenderers = SampleRenderers.Native | SampleRenderers.Skia | SampleRenderers.DOM,
+		Requirements = new[] { "The Lottie JSON asset is bundled with the Gallery and requires no network access." },
+		AccessibilityNotes = new[] { "Initialization state is exposed as text; the animation is decorative and conveys no unique information." },
+		ResetBehavior = "Reload the sample to recreate the visual source and restart playback.",
+		Variants = new[] { "Bundled Lottie source", "Automatic playback", "Renderer initialization status" },
+		KnownLimitations = new[] { "Rendering fidelity and frame timing can vary by renderer and device performance." },
 		Owner = "unoplatform",
 		ReviewedOn = "2026-08-27")]
 	public sealed partial class LottieSamplePage : Page

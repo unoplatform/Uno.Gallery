@@ -23,12 +23,20 @@ namespace Uno.Gallery.Views.Samples
 		}
 	}
 
-	[SamplePage(SampleCategory.Canary, "Diagnostics",
+	[SamplePage(SampleCategory.NonUIFeatures, "Diagnostics",
 		Description = "Offline build, renderer, platform, execution-mode, feature-availability, and performance diagnostics.",
 		DocumentationLink = "https://platform.uno/docs/articles/uno-development/uno-internals.html",
 		Slug = "diagnostics",
 		Tags = new[] { "diagnostics", "renderer", "platform", "aot", "offline" },
 		Status = SampleStatus.Experimental,
+		ContractVersion = 1,
+		SupportedDesigns = SampleDesigns.Agnostic,
+		SupportedRenderers = SampleRenderers.Native | SampleRenderers.Skia | SampleRenderers.DOM,
+		Requirements = new[] { "Build identity and loaded-assembly data are local; performance marks are populated only in instrumented builds." },
+		AccessibilityNotes = new[] { "Diagnostics are exposed as selectable text with named controls and no color-only state." },
+		ResetBehavior = "Choose Refresh to recapture performance marks; reload the sample to rebuild the loaded-assembly list.",
+		Variants = new[] { "Build and renderer identity", "Feature availability", "Performance marks", "Loaded assemblies" },
+		KnownLimitations = new[] { "Compile-time capability reporting does not probe device drivers, permissions, codecs, or hardware." },
 		Owner = "unoplatform/maintainers",
 		ReviewedOn = "2026-08-27")]
 	public sealed partial class CanarySamplePage : Page
@@ -39,6 +47,13 @@ namespace Uno.Gallery.Views.Samples
 		public CanarySamplePage()
 		{
 			this.InitializeComponent();
+		}
+
+		private void NavigateAllPagesButton_Loaded(object sender, RoutedEventArgs e)
+		{
+#if !DEBUG && !IS_CANARY_BUILD && !USE_UITESTS
+			((Button)sender).Visibility = Visibility.Collapsed;
+#endif
 		}
 
 		private void NavigateAllPages_Click(object sender, RoutedEventArgs e)

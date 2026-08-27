@@ -16,7 +16,9 @@
 						<smtx:XamlDisplay UniqueKey="GeolocatorSamplePage_Sample"
 										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel"
 										  smtx:XamlDisplayExtensions.Header="Geolocator">
-							<StackPanel Spacing="20">
+							<StackPanel x:Name="GeolocatorRoot"
+										Spacing="20"
+										Unloaded="GeolocatorRoot_Unloaded">
 								<StackPanel.DataContext>
 									<samples:GeolocatorSamplePageViewModel />
 								</StackPanel.DataContext>

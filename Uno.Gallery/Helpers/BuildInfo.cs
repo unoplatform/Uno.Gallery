@@ -110,7 +110,7 @@ internal static class BuildInfo
 		Backend = "WinAppSDK / DirectComposition";
 #elif __WASM__
 		Platform = "WebAssembly";
-#if HAS_SKIA_RENDERER && !WINDOWS
+#if HAS_SKIA_RENDERER && (__WASM__ || __DESKTOP__)
 		Backend = "CanvasKit / WebGL";
 #else
 		Backend = "Browser DOM / CSS";
@@ -153,9 +153,9 @@ internal static class BuildInfo
 
 		FeatureAvailability =
 #if HAS_SKIA_RENDERER && !WINDOWS
-			"Composition: available; SKCanvasElement: available; drag/drop: available; " +
+			"Composition: available; SKCanvasElement: available; drag/drop sample: available (pointer support is platform-dependent); " +
 #else
-			"Composition: available; SKCanvasElement: unavailable on this renderer; drag/drop: available; " +
+			"Composition: available; SKCanvasElement: unavailable on this renderer; drag/drop sample: available (pointer support is platform-dependent); " +
 #endif
 #if WINDOWS
 			"SystemBackdrop/AppWindow: Windows-only";

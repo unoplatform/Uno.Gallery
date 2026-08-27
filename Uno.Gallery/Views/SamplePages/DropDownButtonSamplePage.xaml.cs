@@ -8,6 +8,13 @@ namespace Uno.Gallery.Views.Samples
 		Slug = "drop-down-button",
 		Tags = new[] { "button", "input", "command", "flyout", "dropdown" },
 		Status = SampleStatus.Stable,
+		ContractVersion = 1,
+		SupportedDesigns = SampleDesigns.Fluent,
+		SupportedRenderers = SampleRenderers.Native | SampleRenderers.Skia | SampleRenderers.DOM,
+		Requirements = new[] { SampleContractDefaults.NoExternalRequirements },
+		AccessibilityNotes = new[] { "Each enabled button and menu item supports keyboard focus and exposes its visible action label." },
+		ResetBehavior = "Dismiss the menu flyout; selections do not persist outside the open menu.",
+		Variants = new[] { "Text button", "Icon button", "Disabled button" },
 		Owner = "unoplatform",
 		ReviewedOn = "2026-08-26",
 		RelatedSamples = new[] { "button", "split-button", "flyout" })]

@@ -223,7 +223,7 @@
       ],
       "owner": "unoplatform",
       "issue": null,
-      "reason": "The sample transfers app-owned text through XAML drag/drop and exposes the same transfer path through a deterministic automation action."
+      "reason": "The sample transfers text through XAML drag/drop and exposes the same in-app payload through a deterministic automation action."
     },
     {
       "id": "system-backdrop",

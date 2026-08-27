@@ -21,8 +21,8 @@ $ErrorActionPreference = 'Stop'
 $gallery = Get-Content $GalleryManifestPath -Raw | ConvertFrom-Json -Depth 100
 $upstream = Get-Content $UpstreamManifestPath -Raw | ConvertFrom-Json -Depth 100
 $coverage = Get-Content $CoveragePath -Raw | ConvertFrom-Json -Depth 100
-if ($gallery.schemaVersion -ne 1 -or $upstream.schemaVersion -ne 1 -or $coverage.schemaVersion -ne 1) {
-    throw 'Gallery, upstream, and coverage manifests must use schema version 1.'
+if ($gallery.schemaVersion -notin @(1, 2) -or $upstream.schemaVersion -ne 1 -or $coverage.schemaVersion -ne 1) {
+    throw 'Gallery manifest must use schema version 1 or 2; upstream and coverage manifests must use version 1.'
 }
 
 $gallerySlugs = [System.Collections.Generic.Dictionary[string, bool]]::new([StringComparer]::Ordinal)

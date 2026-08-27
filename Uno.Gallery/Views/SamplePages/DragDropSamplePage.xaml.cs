@@ -1,3 +1,4 @@
+using System;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Uno.Gallery.Helpers;
@@ -11,6 +12,18 @@ namespace Uno.Gallery.Views.Samples;
 	Slug = "drag-drop",
 	Tags = new[] { "input", "drag", "drop", "transfer", "offline" },
 	Status = SampleStatus.Stable,
+	ContractVersion = 1,
+	SupportedDesigns = SampleDesigns.Agnostic,
+	SupportedRenderers = SampleRenderers.Native | SampleRenderers.Skia | SampleRenderers.DOM,
+	Requirements = new[] { "Uses an in-app text payload and requires no file-system permission or external data." },
+	AccessibilityNotes = new[] { "The deterministic transfer button provides a keyboard alternative and every result is announced as text." },
+	ResetBehavior = "Reload the sample to clear the transfer count and status.",
+	Variants = new[] { "Pointer drag and drop", "Keyboard-accessible deterministic transfer", "Rejected non-text payload" },
+	KnownLimitations = new[]
+	{
+		"Pointer drag gesture support varies by target; the keyboard-accessible deterministic transfer remains available.",
+		"OS file drops are excluded because they require host permissions and an external payload."
+	},
 	Owner = "unoplatform",
 	ReviewedOn = "2026-08-27",
 	RelatedSamples = new[] { "clipboard", "composition-visuals" })]
@@ -39,13 +52,20 @@ public sealed partial class DragDropSamplePage : Page
 
 	private async void Target_Drop(object sender, DragEventArgs e)
 	{
-		if (e.DataView.Contains(StandardDataFormats.Text))
+		try
 		{
-			CompleteTransfer(await e.DataView.GetTextAsync(), "drag/drop");
+			if (e.DataView.Contains(StandardDataFormats.Text))
+			{
+				CompleteTransfer(await e.DataView.GetTextAsync(), "drag/drop");
+			}
+			else
+			{
+				UpdateStatus("Rejected transfer: the payload did not contain text.");
+			}
 		}
-		else
+		catch (Exception error)
 		{
-			UpdateStatus("Rejected transfer: the payload did not contain app-owned text.");
+			UpdateStatus($"Transfer failed: {error.GetType().Name}.");
 		}
 	}
 

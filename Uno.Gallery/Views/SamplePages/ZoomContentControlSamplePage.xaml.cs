@@ -13,6 +13,13 @@ namespace Uno.Gallery.Views.SamplePages
 		DocumentationLink = "https://platform.uno/docs/articles/external/uno.toolkit.ui/doc/controls/ZoomContentControl.html",
 		Tags = new[] { "zoom", "pan", "gesture", "interaction" },
 		Status = SampleStatus.Stable,
+		ContractVersion = 1,
+		SupportedDesigns = SampleDesigns.Agnostic,
+		SupportedRenderers = SampleRenderers.Native | SampleRenderers.Skia | SampleRenderers.DOM,
+		Requirements = new[] { "Pinch requires touch; named zoom buttons provide an equivalent keyboard and pointer interaction." },
+		AccessibilityNotes = new[] { "Zoom In, Zoom Out, and Reset buttons provide non-gesture operation with visible labels." },
+		ResetBehavior = "Choose Reset to restore the default zoom factor and pan offset.",
+		Variants = new[] { "Gesture and button zoom with panning", "Zoom and pan disabled" },
 		Owner = "unoplatform",
 		ReviewedOn = "2026-08-26",
 		SortOrder = 60)]

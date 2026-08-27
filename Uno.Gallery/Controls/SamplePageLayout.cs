@@ -112,6 +112,8 @@ namespace Uno.Gallery
 #else
 					IsFooterVisible = sample.DocumentationLink != null
 						|| sample.SourceLink != null
+						|| sample.IssueLink != null
+						|| sample.ApiLink != null
 						|| !string.IsNullOrEmpty(sample.ShareUri);
 					IsShareVisible = false;
 #endif

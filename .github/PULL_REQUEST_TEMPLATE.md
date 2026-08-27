@@ -40,12 +40,17 @@ Fixes # <!-- issue number -->
 
 <!-- Complete this section when adding or modifying a sample page. -->
 
-- [ ] `[SamplePage]` attribute is filled (category, title, description)
-- [ ] `DocumentationLink` is set (if official docs exist)
+- [ ] New Stable samples use `ContractVersion = 1` with description, docs, tags,
+      owner, ISO review date, typed design/renderer support, requirements,
+      accessibility notes, reset behavior, and meaningful variants
+- [ ] Optional known limitations and issue/API links are accurate and omitted
+      when they do not apply
 - [ ] `[SampleConditional]` reflects actual platform support
 - [ ] Cupertino samples use `SampleCategory.Canary`
       (hidden in stable Release — see [ADR 0001](docs/decisions/0001-cupertino-containment.md))
 - [ ] Design templates are provided for each supported design system
+- [ ] `SupportedDesigns` matches the authored templates and
+      `SupportedRenderers` matches verified renderer support
 - [ ] Automation IDs (`x:Name` / `AutomationProperties.AutomationId`) are set on
       interactive elements that UITests need to locate
 

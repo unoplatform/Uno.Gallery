@@ -84,9 +84,11 @@
 		<DefineConstants Condition="$(IsSkiaAndroid)">$(DefineConstants);IS_ANDROID_SKIA</DefineConstants>
 		<DefineConstants Condition="$(IsSkiaUIKit)">$(DefineConstants);IS_UIKIT_SKIA</DefineConstants>
 		<DefineConstants Condition="'$(UseNativeRendering)'!='true'">$(DefineConstants);HAS_SKIA_RENDERER</DefineConstants>
-		<DefineConstants Condition="'$(TargetFramework)'=='net10.0-browserwasm' AND '$(Configuration)'=='Release'">$(DefineConstants);WASM_INTERPRETER_AOT;WASM_PROFILED_AOT</DefineConstants>
+		<DefineConstants Condition="'$(TargetFramework)'=='net10.0-browserwasm' AND '$(Configuration)'=='Release'">$(DefineConstants);WASM_INTERPRETER_AOT</DefineConstants>
+		<DefineConstants Condition="'$(TargetFramework)'=='net10.0-browserwasm' AND '$(Configuration)'=='Release' AND '$(EnableVisualRegression)'!='true' AND '$(EnableExtensionsPatterns)'!='true'">$(DefineConstants);WASM_PROFILED_AOT</DefineConstants>
 		<DefineConstants Condition="'$(TargetFramework)'=='net10.0-browserwasm' AND '$(Configuration)'!='Release'">$(DefineConstants);WASM_INTERPRETER</DefineConstants>
 		<DefineConstants Condition="'$(PublishAot)'=='true'">$(DefineConstants);NATIVE_AOT</DefineConstants>
+		<DefineConstants>$(DefineConstants);ENFORCE_SAMPLE_CONTRACT</DefineConstants>
 
 		<DefineConstants Condition="$(BUILD_SOURCEBRANCH.StartsWith('refs/heads/canaries'))">$(DefineConstants);IS_CANARY_BUILD</DefineConstants>
 	</PropertyGroup>
@@ -100,9 +102,8 @@
 	<!--
 	    NOTE: When EnablePerformanceMeasurements=true in an otherwise normal Release build (no DEBUG /
 	    IS_CANARY_BUILD / USE_UITESTS), PERF_MEASUREMENTS is defined so marks are recorded and forwarded
-	    to the browser PerformanceTimeline, but the Diagnostics/Canary UI page remains hidden (the Canary
-	    category is filtered out in App.BuildShell for such configurations). Consume marks externally:
-	        performance.getEntriesByType('mark').filter(e => e.name.startsWith('app.'))
+	    to the browser PerformanceTimeline and the production-visible Diagnostics page can export them.
+	    They remain externally consumable through performance.getEntriesByType('mark').filter(e => e.name.startsWith('app.'))
 	-->
 	<PropertyGroup Condition="'$(EnablePerformanceMeasurements)'=='true' or '$(Configuration)'=='Debug' or '$(IsUiAutomationMappingEnabled)'=='True'">
 		<EnablePerformanceMeasurements>true</EnablePerformanceMeasurements>
@@ -121,6 +122,9 @@
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(EnableVisualRegression)'=='true'">
 		<EnablePerformanceMeasurements>true</EnablePerformanceMeasurements>
+		<!-- Visual pages evolve independently of the historical production profile.
+		     A non-existent filename leaves WasmAotProfilePath empty and selects full AOT. -->
+		<WasmAotFileName>visual-full-aot.profile</WasmAotFileName>
 		<WasmShellEnableDotnetJsFingerprinting>false</WasmShellEnableDotnetJsFingerprinting>
 		<WasmAppDir>$(MSBuildProjectDirectory)/obj/$(Configuration)/$(TargetFramework)/visual-appbundle/</WasmAppDir>
 		<DefineConstants>$(DefineConstants);VISUAL_REGRESSION;PERF_MEASUREMENTS</DefineConstants>
@@ -227,18 +231,14 @@
 		<!-- CommonServiceLocator 2.0.5's netcoreapp3.0 asset references System.Diagnostics.Debug 4.1.1.0 (old PCL facade, absent from .NET 10 AOT); keep it in interpreter mode. -->
 		<MonoRuntimeMixedModeExcludedAssembly Include="CommonServiceLocator" />
 		<!-- Newtonsoft.Json's transitive net6 asset references System.Collections 6.0 and cannot be profile-AOT compiled by the .NET 10 toolchain. -->
-		<MonoRuntimeMixedModeExcludedAssembly Include="Newtonsoft.Json" />
-		<!-- System.ClientModel's transitive net8 asset similarly binds runtime contract assemblies at version 8. -->
-		<MonoRuntimeMixedModeExcludedAssembly Include="System.ClientModel" />
-		<MonoRuntimeMixedModeExcludedAssembly Include="Microsoft.SemanticKernel.Agents.Core" />
-		<MonoRuntimeMixedModeExcludedAssembly Include="Uno.AI.XamlGeneration" />
-		<MonoRuntimeMixedModeExcludedAssembly Include="Uno.Core.Extensions.Logging.Singleton" />
-		<_AOT_InternalForceInterpretAssemblies Include="CommonServiceLocator.dll;Newtonsoft.Json.dll;System.ClientModel.dll;Microsoft.SemanticKernel.Agents.Core.dll;Uno.AI.XamlGeneration.dll;Uno.Core.Extensions.Logging.Singleton.dll" />
+		<MonoRuntimeMixedModeExcludedAssembly Include="Newtonsoft.Json" Condition="'$(EnableVisualRegression)'=='true'" />
+		<_AOT_InternalForceInterpretAssemblies Include="CommonServiceLocator.dll;Newtonsoft.Json.dll"
+											 Condition="'$(EnableVisualRegression)'=='true'" />
 	</ItemGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='Release' and '$(WasmShellMonoRuntimeExecutionMode)'=='InterpreterAndAOT'">
-		<WasmAotFileName Condition="'$(IsUiAutomationMappingEnabled)'=='' AND '$(UseNativeRendering)' == 'true' ">aot.profile</WasmAotFileName>
-		<WasmAotFileName Condition="'$(IsUiAutomationMappingEnabled)'=='' AND '$(UseNativeRendering)' != 'true' ">aot-skiawasm.profile</WasmAotFileName>
+		<WasmAotFileName Condition="'$(EnableVisualRegression)'!='true' AND '$(IsUiAutomationMappingEnabled)'=='' AND '$(UseNativeRendering)' == 'true' ">aot.profile</WasmAotFileName>
+		<WasmAotFileName Condition="'$(EnableVisualRegression)'!='true' AND '$(IsUiAutomationMappingEnabled)'=='' AND '$(UseNativeRendering)' != 'true' ">aot-skiawasm.profile</WasmAotFileName>
 
 		<!--
 		Use smaller profile for UI tests to avoid the browser's memory
@@ -291,28 +291,6 @@
 		<ItemGroup>
 			<_WasmAssembliesInternal Remove="@(_WasmAssembliesInternal)"
 				Condition="$([System.String]::Copy('%(_WasmAssembliesInternal.Identity)').Contains('uno.ai.xamlgeneration.assets'))" />
-		</ItemGroup>
-	</Target>
-	<Target Name="ExcludeReleaseWasmBuildToolAssemblies"
-			BeforeTargets="_WasmAotCompileApp;_GenerateManagedToNative"
-			Condition="'$(TargetFramework)'=='net10.0-browserwasm' AND '$(Configuration)'=='Release'">
-		<ItemGroup>
-			<_WasmAssembliesInternal Remove="@(_WasmAssembliesInternal)"
-				Condition="$([System.String]::Copy('%(_WasmAssembliesInternal.Identity)').Contains('Uno.AI.XamlGeneration'))" />
-			<_WasmAssembliesInternal Remove="@(_WasmAssembliesInternal)"
-				Condition="$([System.String]::Copy('%(_WasmAssembliesInternal.Identity)').Contains('Microsoft.SemanticKernel'))" />
-			<_WasmAssembliesInternal Remove="@(_WasmAssembliesInternal)"
-				Condition="$([System.String]::Copy('%(_WasmAssembliesInternal.Identity)').Contains('Microsoft.Extensions.AI'))" />
-			<_WasmAssembliesInternal Remove="@(_WasmAssembliesInternal)"
-				Condition="$([System.String]::Copy('%(_WasmAssembliesInternal.Identity)').Contains('Microsoft.Extensions.VectorData'))" />
-			<_WasmAssembliesInternal Remove="@(_WasmAssembliesInternal)"
-				Condition="$([System.String]::Copy('%(_WasmAssembliesInternal.Identity)').Contains('OpenAI'))" />
-			<_WasmAssembliesInternal Remove="@(_WasmAssembliesInternal)"
-				Condition="$([System.String]::Copy('%(_WasmAssembliesInternal.Identity)').Contains('Anthropic.SDK'))" />
-			<_WasmAssembliesInternal Remove="@(_WasmAssembliesInternal)"
-				Condition="$([System.String]::Copy('%(_WasmAssembliesInternal.Identity)').Contains('Azure.Core'))" />
-			<_WasmAssembliesInternal Remove="@(_WasmAssembliesInternal)"
-				Condition="$([System.String]::Copy('%(_WasmAssembliesInternal.Identity)').Contains('System.ClientModel'))" />
 		</ItemGroup>
 	</Target>
 	<Target Name="CopyVisualRegressionWasmRuntime"

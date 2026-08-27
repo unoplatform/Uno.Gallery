@@ -3,7 +3,7 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Uno.Gallery.Helpers;
 
-#if HAS_SKIA_RENDERER && !WINDOWS
+#if HAS_SKIA_RENDERER && (__WASM__ || __DESKTOP__)
 using SkiaSharp;
 using Uno.WinUI.Graphics2DSK;
 using Windows.Foundation;
@@ -17,6 +17,14 @@ namespace Uno.Gallery.Views.Samples;
 	Slug = "skia-canvas",
 	Tags = new[] { "rendering", "skia", "canvas", "graphics", "offline" },
 	Status = SampleStatus.Stable,
+	ContractVersion = 1,
+	SupportedDesigns = SampleDesigns.Agnostic,
+	SupportedRenderers = SampleRenderers.Skia,
+	Requirements = new[] { "Requires the Skia desktop or Skia WebAssembly renderer; all drawing is local and deterministic." },
+	AccessibilityNotes = new[] { "Redraw is keyboard-focusable, the canvas has an accessible name, and completed render state is announced as text." },
+	ResetBehavior = "Reload the sample to restore drawing state zero and reset the completed-render count.",
+	Variants = new[] { "Initial blue drawing", "Alternate purple drawing", "RenderOverride completion status" },
+	KnownLimitations = new[] { "Automation verifies page-owned render completion and state rather than comparing canvas pixels." },
 	Owner = "unoplatform",
 	ReviewedOn = "2026-08-27",
 	RelatedSamples = new[] { "composition-visuals", "diagnostics" })]
@@ -26,7 +34,7 @@ public sealed partial class SkiaCanvasSamplePage : Page
 {
 	private int _requestedState;
 	private int _completedRenders;
-#if HAS_SKIA_RENDERER && !WINDOWS
+#if HAS_SKIA_RENDERER && (__WASM__ || __DESKTOP__)
 	private GalleryCanvas? _canvas;
 #endif
 
@@ -37,7 +45,7 @@ public sealed partial class SkiaCanvasSamplePage : Page
 
 	private void CanvasHost_Loaded(object sender, RoutedEventArgs e)
 	{
-#if HAS_SKIA_RENDERER && !WINDOWS
+#if HAS_SKIA_RENDERER && (__WASM__ || __DESKTOP__)
 		if (!SKCanvasElement.IsSupportedOnCurrentPlatform())
 		{
 			UpdateStatus("SKCanvasElement is unavailable in this Skia host.");
@@ -53,7 +61,7 @@ public sealed partial class SkiaCanvasSamplePage : Page
 
 	private void Redraw_Click(object sender, RoutedEventArgs e)
 	{
-#if HAS_SKIA_RENDERER && !WINDOWS
+#if HAS_SKIA_RENDERER && (__WASM__ || __DESKTOP__)
 		if (_canvas is null)
 		{
 			UpdateStatus("SKCanvasElement is not initialized.");
@@ -86,7 +94,7 @@ public sealed partial class SkiaCanvasSamplePage : Page
 		}
 	}
 
-#if HAS_SKIA_RENDERER && !WINDOWS
+#if HAS_SKIA_RENDERER && (__WASM__ || __DESKTOP__)
 	private sealed class GalleryCanvas : SKCanvasElement
 	{
 		private readonly Action<int> _rendered;
@@ -124,7 +132,7 @@ public sealed partial class SkiaCanvasSamplePage : Page
 			var width = Math.Max(180f, (float)area.Width);
 			canvas.DrawRoundRect(new SKRect(24, 28, width - 24, 132), 18, 18, fill);
 			canvas.DrawCircle(width - 68, 80, 30, outline);
-			canvas.DrawText($"Uno + Skia · state {DrawingState}", 28, 190, text);
+			canvas.DrawText($"Uno + Skia - state {DrawingState}", 28, 190, text);
 			if (_lastReportedState != DrawingState)
 			{
 				_lastReportedState = DrawingState;

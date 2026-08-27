@@ -1,8 +1,7 @@
 using System;
 using System.ComponentModel;
-using Windows.ApplicationModel.Core;
 using Windows.Devices.Geolocation;
-using Windows.UI.Core;
+using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Uno.Gallery.Helpers;
@@ -14,6 +13,15 @@ namespace Uno.Gallery.Views.Samples;
 	DocumentationLink = "https://learn.microsoft.com/en-us/uwp/api/windows.devices.geolocation.geolocator",
 	Slug = "geolocator",
 	Tags = new[] { "location", "permissions", "sensor", "platform" },
+	Status = SampleStatus.Stable,
+	ContractVersion = 1,
+	SupportedDesigns = SampleDesigns.Agnostic,
+	SupportedRenderers = SampleRenderers.Native | SampleRenderers.Skia | SampleRenderers.DOM,
+	Requirements = new[] { "Live location requires a platform location provider and user permission; the denied-state preview is local and deterministic." },
+	AccessibilityNotes = new[] { "Actions are keyboard-focusable and permission, tracking, success, empty, and failure states are exposed as text." },
+	ResetBehavior = "Stop tracking to detach the position listener; leaving the sample also stops active tracking.",
+	Variants = new[] { "One-shot position", "Position tracking", "Deterministic denied-permission preview" },
+	KnownLimitations = new[] { "Coordinates, precision, permission prompts, and provider availability depend on the host device and browser." },
 	Owner = "unoplatform",
 	ReviewedOn = "2026-08-27")]
 public sealed partial class GeolocatorSamplePage : Page
@@ -50,12 +58,21 @@ public sealed partial class GeolocatorSamplePage : Page
 			}
 		}
 	}
+
+	private void GeolocatorRoot_Unloaded(object sender, RoutedEventArgs e)
+	{
+		if ((sender as FrameworkElement)?.DataContext is GeolocatorSamplePageViewModel viewModel)
+		{
+			viewModel.StopTracking();
+		}
+	}
 }
 
 [Microsoft.UI.Xaml.Data.Bindable]
 public class GeolocatorSamplePageViewModel : INotifyPropertyChanged
 {
 	private readonly Geolocator _geolocator = new();
+	private readonly DispatcherQueue _dispatcherQueue = DispatcherQueue.GetForCurrentThread();
 	private bool _isTracking;
 	private string _statusMessage = "Location has not been requested.";
 
@@ -178,12 +195,17 @@ public class GeolocatorSamplePageViewModel : INotifyPropertyChanged
 			_ => $"Unknown location access state: {accessStatus}."
 		};
 
-	private async void Geolocator_PositionChanged(Geolocator sender, PositionChangedEventArgs args)
+	public void StopTracking()
 	{
-		await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(
-			CoreDispatcherPriority.Normal,
-			() => UpdateGeolocation(args?.Position));
+		if (!IsTracking) return;
+
+		_geolocator.PositionChanged -= Geolocator_PositionChanged;
+		IsTracking = false;
+		StatusMessage = "Position tracking stopped.";
 	}
+
+	private void Geolocator_PositionChanged(Geolocator sender, PositionChangedEventArgs args)
+		=> _ = _dispatcherQueue.TryEnqueue(() => UpdateGeolocation(args?.Position));
 
 	private void UpdateGeolocation(Geoposition? position)
 	{

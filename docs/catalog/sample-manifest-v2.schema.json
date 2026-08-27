@@ -1,0 +1,391 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gallery.platform.uno/schemas/sample-manifest-v2.json",
+  "title": "Uno Gallery sample manifest v2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "samples"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 2
+    },
+    "samples": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/sample"
+      }
+    }
+  },
+  "$defs": {
+    "enumValue": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "value",
+        "name"
+      ],
+      "properties": {
+        "value": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "sampleStatus": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "name"
+          ],
+          "properties": {
+            "value": {
+              "const": 0
+            },
+            "name": {
+              "const": "Stable"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "name"
+          ],
+          "properties": {
+            "value": {
+              "const": 1
+            },
+            "name": {
+              "const": "Preview"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "name"
+          ],
+          "properties": {
+            "value": {
+              "const": 2
+            },
+            "name": {
+              "const": "Experimental"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "name"
+          ],
+          "properties": {
+            "value": {
+              "const": 3
+            },
+            "name": {
+              "const": "Deprecated"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "name"
+          ],
+          "properties": {
+            "value": {
+              "const": 4
+            },
+            "name": {
+              "const": "Incomplete"
+            }
+          }
+        }
+      ]
+    },
+    "nullableString": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "nullableUri": {
+      "oneOf": [
+        {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^[Hh][Tt][Tt][Pp][Ss]?://"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "flagsValue": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "value",
+        "name"
+      ],
+      "properties": {
+        "value": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "sample": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "fqn",
+        "slug",
+        "title",
+        "category",
+        "description",
+        "glyph",
+        "documentationLink",
+        "sourceSdk",
+        "sortOrder",
+        "status",
+        "tags",
+        "owner",
+        "reviewedOn",
+        "contractVersion",
+        "supportedDesigns",
+        "supportedRenderers",
+        "requirements",
+        "accessibilityNotes",
+        "resetBehavior",
+        "variants",
+        "knownLimitations",
+        "issueLink",
+        "apiLink",
+        "statusExplicit",
+        "relatedSamples",
+        "sourcePath",
+        "platformConditionals"
+      ],
+      "properties": {
+        "fqn": {
+          "type": "string",
+          "minLength": 1
+        },
+        "slug": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "category": {
+          "$ref": "#/$defs/enumValue"
+        },
+        "description": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "glyph": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "documentationLink": {
+          "$ref": "#/$defs/nullableUri"
+        },
+        "sourceSdk": {
+          "$ref": "#/$defs/enumValue"
+        },
+        "sortOrder": {
+          "type": "integer"
+        },
+        "status": {
+          "$ref": "#/$defs/sampleStatus"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "owner": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "reviewedOn": {
+          "oneOf": [
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "contractVersion": {
+          "type": "integer",
+          "enum": [
+            0,
+            1
+          ]
+        },
+        "supportedDesigns": {
+          "$ref": "#/$defs/flagsValue"
+        },
+        "supportedRenderers": {
+          "$ref": "#/$defs/flagsValue"
+        },
+        "requirements": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "accessibilityNotes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "resetBehavior": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "variants": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "knownLimitations": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "issueLink": {
+          "$ref": "#/$defs/nullableUri"
+        },
+        "apiLink": {
+          "$ref": "#/$defs/nullableUri"
+        },
+        "statusExplicit": {
+          "type": "boolean"
+        },
+        "relatedSamples": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+          },
+          "uniqueItems": true
+        },
+        "sourcePath": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "platformConditionals": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "contractVersion": {
+                "const": 1
+              }
+            },
+            "required": [
+              "contractVersion"
+            ]
+          },
+          "then": {
+            "properties": {
+              "description": {
+                "type": "string",
+                "minLength": 1
+              },
+              "documentationLink": {
+                "type": "string",
+                "format": "uri",
+                "minLength": 1
+              },
+              "tags": {
+                "minItems": 1
+              },
+              "owner": {
+                "type": "string",
+                "minLength": 1
+              },
+              "reviewedOn": {
+                "type": "string",
+                "format": "date",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+              },
+              "supportedDesigns": {
+                "properties": {
+                  "value": {
+                    "minimum": 1,
+                    "maximum": 31
+                  }
+                }
+              },
+              "supportedRenderers": {
+                "properties": {
+                  "value": {
+                    "minimum": 1,
+                    "maximum": 7
+                  }
+                }
+              },
+              "requirements": {
+                "minItems": 1
+              },
+              "accessibilityNotes": {
+                "minItems": 1
+              },
+              "resetBehavior": {
+                "type": "string",
+                "minLength": 1
+              },
+              "variants": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

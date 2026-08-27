@@ -61,10 +61,7 @@ namespace Uno.Gallery
 			Title = attribute.Title;
 			Description = attribute.Description;
 			Glyph = attribute.Glyph;
-			if (attribute.DocumentationLink != null)
-			{
-				DocumentationLink = new Uri(attribute.DocumentationLink);
-			}
+			DocumentationLink = CreateUri(attribute.DocumentationLink);
 
 			ViewType = viewType;
 			_dataType = attribute.DataType;
@@ -98,6 +95,67 @@ namespace Uno.Gallery
 				: (IReadOnlyList<string>)Array.Empty<string>();
 			Owner = attribute.Owner;
 			ReviewedOn = attribute.ReviewedOn;
+			ContractVersion = attribute.ContractVersion;
+			SupportedDesigns = attribute.SupportedDesigns;
+			SupportedRenderers = attribute.SupportedRenderers;
+			SupportedDesignsDisplay = FormatDesigns(attribute.SupportedDesigns);
+			SupportedRenderersDisplay = FormatRenderers(attribute.SupportedRenderers);
+			Requirements = AsReadOnly(attribute.Requirements);
+			RequirementsDisplay = FormatList(Requirements);
+			AccessibilityNotes = AsReadOnly(attribute.AccessibilityNotes);
+			AccessibilityNotesDisplay = FormatList(AccessibilityNotes);
+			ResetBehavior = attribute.ResetBehavior;
+			Variants = AsReadOnly(attribute.Variants);
+			VariantsDisplay = FormatList(Variants);
+			KnownLimitations = AsReadOnly(attribute.KnownLimitations);
+			KnownLimitationsDisplay = FormatList(KnownLimitations);
+			IssueLink = CreateUri(attribute.IssueLink);
+			ApiLink = CreateUri(attribute.ApiLink);
+		}
+
+		private static IReadOnlyList<string> AsReadOnly(string[]? values) =>
+			values is { Length: > 0 }
+				? Array.AsReadOnly(values)
+				: (IReadOnlyList<string>)Array.Empty<string>();
+
+		private static Uri? CreateUri(string? value) =>
+			Uri.TryCreate(value, UriKind.Absolute, out var uri) ? uri : null;
+
+		private static string FormatList(IReadOnlyList<string> values) =>
+			string.Join(Environment.NewLine, values.Select(static value => "• " + value));
+
+		private static string FormatDesigns(SampleDesigns designs)
+		{
+			var names = new List<string>();
+			AddFlag(names, designs, SampleDesigns.Material, "SampleContractDesignMaterial", "Material");
+			AddFlag(names, designs, SampleDesigns.Fluent, "SampleContractDesignFluent", "Fluent");
+			AddFlag(names, designs, SampleDesigns.Cupertino, "SampleContractDesignCupertino", "Cupertino");
+			AddFlag(names, designs, SampleDesigns.Native, "SampleContractDesignNative", "Native");
+			AddFlag(names, designs, SampleDesigns.Agnostic, "SampleContractDesignAgnostic", "Design agnostic");
+			return string.Join(", ", names);
+		}
+
+		private static string FormatRenderers(SampleRenderers renderers)
+		{
+			var names = new List<string>();
+			AddFlag(names, renderers, SampleRenderers.Native, "SampleContractRendererNative", "Native");
+			AddFlag(names, renderers, SampleRenderers.Skia, "SampleContractRendererSkia", "Skia");
+			AddFlag(names, renderers, SampleRenderers.DOM, "SampleContractRendererDom", "DOM");
+			return string.Join(", ", names);
+		}
+
+		private static void AddFlag<T>(
+			ICollection<string> names,
+			T value,
+			T flag,
+			string resourceKey,
+			string fallback)
+			where T : struct, Enum
+		{
+			if ((Convert.ToUInt64(value) & Convert.ToUInt64(flag)) != 0)
+			{
+				names.Add(LocalizationHelper.GetString(resourceKey, fallback));
+			}
 		}
 
 		// Wraps Activator for the legacy reflection path so the DynamicallyAccessedMembers
@@ -163,7 +221,7 @@ namespace Uno.Gallery
 
 		public string Glyph { get; }
 
-		public Uri DocumentationLink { get; }
+		public Uri? DocumentationLink { get; }
 
 		/// <summary>
 		/// Lazily-constructed instance of <see cref="SamplePageAttribute.DataType"/>.
@@ -303,5 +361,38 @@ namespace Uno.Gallery
 		/// Date of the last quality review in ISO 8601 format (<c>YYYY-MM-DD</c>), or null if not reviewed.
 		/// </summary>
 		public string? ReviewedOn { get; }
+
+		/// <summary>Version of the authored sample-detail contract, or zero for legacy samples.</summary>
+		public int ContractVersion { get; }
+
+		public SampleDesigns SupportedDesigns { get; }
+
+		public SampleRenderers SupportedRenderers { get; }
+
+		public string SupportedDesignsDisplay { get; }
+
+		public string SupportedRenderersDisplay { get; }
+
+		public IReadOnlyList<string> Requirements { get; }
+
+		public string RequirementsDisplay { get; }
+
+		public IReadOnlyList<string> AccessibilityNotes { get; }
+
+		public string AccessibilityNotesDisplay { get; }
+
+		public string? ResetBehavior { get; }
+
+		public IReadOnlyList<string> Variants { get; }
+
+		public string VariantsDisplay { get; }
+
+		public IReadOnlyList<string> KnownLimitations { get; }
+
+		public string KnownLimitationsDisplay { get; }
+
+		public Uri? IssueLink { get; }
+
+		public Uri? ApiLink { get; }
 	}
 }

@@ -11,6 +11,15 @@ namespace Uno.Gallery.Views.Samples
 		DocumentationLink = "https://learn.microsoft.com/en-us/windows/windows-app-sdk/api/winrt/microsoft.ui.xaml.controls.mediaplayerelement",
 		Slug = "mediaplayerelement",
 		Tags = new[] { "media", "video", "audio", "platform" },
+		Status = SampleStatus.Stable,
+		ContractVersion = 1,
+		SupportedDesigns = SampleDesigns.Fluent,
+		SupportedRenderers = SampleRenderers.Native | SampleRenderers.Skia | SampleRenderers.DOM,
+		Requirements = new[] { "Playback requires media APIs and compatible platform codecs; remote variants additionally require network access." },
+		AccessibilityNotes = new[] { "Each variant has a labeled keyboard-focusable action and platform media transport controls provide playback semantics." },
+		ResetBehavior = "Return from a nested media page to stop that scenario and select another variant.",
+		Variants = new[] { "Remote video", "Bundled video", "Remote audio", "Configurable player", "Playlist when supported" },
+		KnownLimitations = new[] { "Codec, autoplay, network, playlist, and protected-media behavior is supplied by the target platform." },
 		Owner = "unoplatform",
 		ReviewedOn = "2026-08-27")]
 	public sealed partial class MediaPlayerElementSamplePage : Page
@@ -38,7 +47,7 @@ namespace Uno.Gallery.Views.Samples
 			if ((TextBlock)LocalSamplePageLayout.FindName("MediaAvailabilityStatus") is { } status)
 			{
 				AccessibilityHelper.Announce(status, playlistAvailable
-					? "Media APIs available. Local playback avoids network; actual codec support is supplied by the target platform."
+					? "Media playback-list API available. Local playback avoids network; actual codec support is supplied by the target platform."
 					: "Media playback-list API unavailable. The playlist scenario is hidden rather than shown as a no-op.");
 			}
 		}

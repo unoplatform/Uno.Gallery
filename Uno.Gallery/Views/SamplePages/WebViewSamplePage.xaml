@@ -24,7 +24,7 @@
 									<WebView2 Loaded="WebView_Loaded"
 											  NavigationCompleted="WebView_NavigationCompleted"
 											  Height="400"
-											  AutomationProperties.Name="Offline WebView content" />
+											  AutomationProperties.Name="Self-contained WebView content" />
 									<TextBlock x:Name="WebViewStatus"
 											   Text="WebView has not initialized."
 											   AutomationProperties.AutomationId="WebView_Status"

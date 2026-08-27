@@ -4,15 +4,15 @@
 
 | Capability | Gallery slug | Truthful boundary |
 | --- | --- | --- |
-| Build and renderer diagnostics | `diagnostics` | Reports compile-time target, backend, execution mode, and availability; no probing or network |
-| `SKCanvasElement` | `skia-canvas` | Skia Desktop/Skia WebAssembly only; tests assert page-owned `RenderOverride` completion state, not pixels |
+| Build and renderer diagnostics | `diagnostics` | Production-visible Experimental page reports compile-time target, backend, execution mode, and availability; no probing or network |
+| `SKCanvasElement` | `skia-canvas` | Skia Desktop/Skia WebAssembly only; page-owned `RenderOverride` completion state is exposed for a supported-host test, while DOM automation cannot execute it |
 | Composition | `composition-visuals` | Creates a `SpriteVisual` and deterministically changes offset, opacity, and scale |
 | System backdrop/AppWindow | `windows-backdrops` | Windows catalog only; changes the existing window and clears the backdrop on unload |
-| XAML drag/drop | `drag-drop` | Real app-owned text transfer plus deterministic page-owned action for WebDriver |
+| XAML drag/drop | `drag-drop` | Real text transfer plus deterministic in-app action for WebDriver |
 
 Picker initialization now calls WinRT `InitializeWithWindow` only in `WINDOWS`
 builds. Geolocation explicitly reports denied, unspecified, empty, and exception
-states. WebView uses packaged inline HTML and reports navigation success/failure;
+states. WebView uses self-contained inline HTML and reports navigation success/failure;
 Lottie reports packaged-source initialization; media reports API/codec boundaries.
 
 ## Explicitly not added
@@ -31,26 +31,21 @@ in `build/manifest-fixtures/upstream-features-v1.json`.
 
 No new package reference was added.
 
-## Catalog and bundle measurements
+## Catalog and performance accounting
 
 Target catalogs exported after Wave C contain **117 Desktop**, **116 DOM
 WebAssembly**, and **117 Skia WebAssembly** samples. The renderer-aware
 conditional excludes `skia-canvas` from the DOM catalog while retaining it in
-both supported Skia catalogs.
+both supported Skia catalogs. Their contract reports contain 29 Desktop, 28 DOM,
+and 29 Skia contract-v1 samples.
 
-The Release Skia WebAssembly `InterpreterAndAOT` publish used the production AOT
-profile, `NuGetAudit=false`, and no network-backed sample. The .NET 10.0.10/Uno
-Bootstrap combination required `WasmShellEnableDotnetJsFingerprinting=false`
-after its default publish failed `UNOWASM001`; this changes asset names, not
-sample code. `publish/wwwroot` measured:
+The DOM target loads all 115 target-compatible Stable samples and runs focused
+diagnostics, Composition, drag/drop, geolocation, and WebView interactions. The
+production Skia WebAssembly AOT output reaches a non-empty renderer canvas;
+`SKCanvasElement` interaction remains explicit until a Skia semantic
+UI-automation host is available.
 
-| Measurement | Waves A–B recorded baseline | Wave C | Delta |
-| --- | ---: | ---: | ---: |
-| Raw payload (excluding `.br`, `.gz`, `.map`) | 100,691,982 B | 32,635,866 B | -68,056,116 B |
-| Published Brotli payload | 20,631,876 B | 5,238,171 B | -15,393,705 B |
-| Published files | 747 | 446 | -301 |
-
-The large negative delta is primarily the corrected production AOT exclusion of
-build-time `Uno.AI.XamlGeneration`/Semantic Kernel assemblies and incompatible
-transitive contract-version assemblies, not the three new sample pages. The
-normal and `EnableVisualRegression=true` app-bundle paths remain separate.
+Wave C adds no package reference. Exact bundle and startup deltas belong to the
+versioned performance-budget pipeline: prior ad-hoc outputs used different
+fingerprinting and artifact-counting rules and are not a valid release
+comparison.

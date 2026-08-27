@@ -25,6 +25,10 @@ public sealed class SamplesGeneratorTests
 		    public enum SampleCategory { Controls = 0, Layout = 1, Media = 2 }
 		    public enum SourceSdk { WinUI = 0, UWP = 1 }
 		    public enum SampleStatus { Stable = 0, Preview = 1, Experimental = 2, Deprecated = 3, Incomplete = 4 }
+		    [Flags]
+		    public enum SampleDesigns { None = 0, Material = 1, Fluent = 2, Cupertino = 4, Native = 8, Agnostic = 16 }
+		    [Flags]
+		    public enum SampleRenderers { None = 0, Native = 1, Skia = 2, DOM = 4 }
 
 		    [Flags]
 		    public enum SampleConditionals : uint
@@ -67,6 +71,16 @@ public sealed class SamplesGeneratorTests
 		        public string? Owner { get; set; }
 		        public string? ReviewedOn { get; set; }
 		        public string[]? RelatedSamples { get; set; }
+		        public int ContractVersion { get; set; }
+		        public SampleDesigns SupportedDesigns { get; set; }
+		        public SampleRenderers SupportedRenderers { get; set; }
+		        public string[]? Requirements { get; set; }
+		        public string[]? AccessibilityNotes { get; set; }
+		        public string? ResetBehavior { get; set; }
+		        public string[]? Variants { get; set; }
+		        public string[]? KnownLimitations { get; set; }
+		        public string? IssueLink { get; set; }
+		        public string? ApiLink { get; set; }
 		    }
 
 		    [AttributeUsage(AttributeTargets.Class, Inherited = false)]
@@ -719,6 +733,31 @@ public sealed class SamplesGeneratorTests
 		Assert.That(generated.Contains("SkiaRendererSample"), Is.EqualTo(shouldBeIncluded));
 	}
 
+	[TestCase(new[] { "__WASM__", "HAS_SKIA_RENDERER" }, true)]
+	[TestCase(new[] { "__WASM__" }, false)]
+	[TestCase(new[] { "__ANDROID__", "HAS_SKIA_RENDERER" }, true)]
+	public void SampleConditional_renderer_only_applies_across_platforms(
+		string[] preprocessorSymbols,
+		bool shouldBeIncluded)
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Skia renderer")]
+			    [SampleConditional(SampleConditionals.SkiaRenderer)]
+			    public class SkiaRendererSample { }
+			}
+			""";
+
+		var result = RunGenerator([source], preprocessorSymbols);
+
+		Assert.That(result.Exception, Is.Null);
+		Assert.That(
+			GetGeneratedSource(result).Contains("SkiaRendererSample"),
+			Is.EqualTo(shouldBeIncluded));
+	}
+
 	// ─── Phase 2: metadata forwarding ────────────────────────────────────────
 
 	[Test]
@@ -790,7 +829,7 @@ public sealed class SamplesGeneratorTests
 			using Uno.Gallery;
 			namespace Uno.Gallery
 			{
-			    [SamplePage(SampleCategory.Controls, "Stable Control")]
+			    [SamplePage(SampleCategory.Controls, "Button")]
 			    public class StableControlPage { }
 			}
 			""";
@@ -801,6 +840,42 @@ public sealed class SamplesGeneratorTests
 		Assert.That(UggDiagnostics(result), Is.Empty);
 		Assert.That(GetGeneratedSource(result), Does.Contain("(global::Uno.Gallery.SampleStatus)(0)"),
 			"Omitted Status must default to Stable (0)");
+	}
+
+	[Test]
+	public void UGG0011_new_implicit_stable_requires_contract_v1()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "New Stable Control")]
+			    public class NewStableControlPage : Page { }
+			}
+			""";
+
+		var result = RunGenerator([source], ["ENFORCE_SAMPLE_CONTRACT"]);
+		var diagnostic = UggDiagnostics(result).Single(d => d.Id == "UGG0011");
+
+		Assert.That(diagnostic.GetMessage(), Does.Contain("ContractVersion (must be 1)"));
+	}
+
+	[Test]
+	public void UGG0011_undefined_status_is_rejected()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Undefined Status", Status = (SampleStatus)99)]
+			    public class UndefinedStatusPage : Page { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+		var diagnostic = UggDiagnostics(result).Single(d => d.Id == "UGG0011");
+
+		Assert.That(diagnostic.GetMessage(), Does.Contain("Status (undefined or inconsistent value 99/99)"));
 	}
 
 	[Test]
@@ -2629,7 +2704,204 @@ public sealed class SamplesGeneratorTests
 	// ─── SampleManifest ───────────────────────────────────────────────────────
 
 	[Test]
-	public void SampleManifest_emits_valid_json_with_schema_version_1()
+	public void UGG0011_explicit_stable_lists_every_missing_contract_field()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Incomplete", Status = SampleStatus.Stable)]
+			    public class IncompleteStablePage : Page { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+		var diagnostic = UggDiagnostics(result).Single(d => d.Id == "UGG0011");
+
+		Assert.Multiple(() =>
+		{
+			Assert.That(diagnostic.Severity, Is.EqualTo(DiagnosticSeverity.Error));
+			Assert.That(diagnostic.GetMessage(), Does.Contain("ContractVersion (must be 1)"));
+			Assert.That(diagnostic.GetMessage(), Does.Contain("Description"));
+			Assert.That(diagnostic.GetMessage(), Does.Contain("DocumentationLink"));
+			Assert.That(diagnostic.GetMessage(), Does.Contain("SupportedDesigns"));
+			Assert.That(diagnostic.GetMessage(), Does.Contain("SupportedRenderers"));
+			Assert.That(diagnostic.GetMessage(), Does.Contain("AccessibilityNotes"));
+			Assert.That(diagnostic.GetMessage(), Does.Contain("Variants"));
+		});
+		Assert.That(GetGeneratedSource(result), Does.Not.Contain("IncompleteStablePage"));
+	}
+
+	[Test]
+	public void UGG0011_contract_v1_applies_to_non_stable_status_and_validates_iso_date()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Preview Contract",
+			        ContractVersion = 1,
+			        Status = SampleStatus.Preview,
+			        Description = "Description",
+			        DocumentationLink = "https://example.com",
+			        Tags = new[] { "preview" },
+			        Owner = "team",
+			        ReviewedOn = "2026-02-30",
+			        SupportedDesigns = SampleDesigns.Fluent,
+			        SupportedRenderers = SampleRenderers.DOM,
+			        Requirements = new[] { "None" },
+			        AccessibilityNotes = new[] { "Keyboard supported" },
+			        ResetBehavior = "Reload",
+			        Variants = new[] { "Default" })]
+			    public class InvalidDateContractPage : Page { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+		var diagnostic = UggDiagnostics(result).Single(d => d.Id == "UGG0011");
+		Assert.That(diagnostic.GetMessage(), Does.Contain("ReviewedOn (expected YYYY-MM-DD)"));
+	}
+
+	[Test]
+	public void UGG0011_rejects_unknown_contract_version()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Future Contract",
+			        ContractVersion = 2,
+			        Status = SampleStatus.Preview)]
+			    public class FutureContractPage : Page { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+		var diagnostic = UggDiagnostics(result).Single(d => d.Id == "UGG0011");
+		Assert.That(diagnostic.GetMessage(), Does.Contain("ContractVersion (supported values are 0 and 1)"));
+	}
+
+	[Test]
+	public void UGG0011_rejects_malformed_contract_links()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Bad Links",
+			        ContractVersion = 1,
+			        Status = SampleStatus.Preview,
+			        Description = "Description",
+			        DocumentationLink = "relative-docs",
+			        Tags = new[] { "links" },
+			        Owner = "team",
+			        ReviewedOn = "2026-08-27",
+			        SupportedDesigns = SampleDesigns.Fluent,
+			        SupportedRenderers = SampleRenderers.DOM,
+			        Requirements = new[] { "None" },
+			        AccessibilityNotes = new[] { "Keyboard supported" },
+			        ResetBehavior = "Reload",
+			        Variants = new[] { "Default" },
+			        IssueLink = "not a URI",
+			        ApiLink = "/relative-api")]
+			    public class BadLinksPage : Page { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+		var diagnostic = UggDiagnostics(result).Single(d => d.Id == "UGG0011");
+		Assert.Multiple(() =>
+		{
+			Assert.That(diagnostic.GetMessage(), Does.Contain("DocumentationLink (expected absolute URI)"));
+			Assert.That(diagnostic.GetMessage(), Does.Contain("IssueLink (expected absolute URI)"));
+			Assert.That(diagnostic.GetMessage(), Does.Contain("ApiLink (expected absolute URI)"));
+		});
+	}
+
+	[Test]
+	public void Contract_v1_emits_all_fields_and_exact_flag_values_and_names()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Contract Sample",
+			        ContractVersion = 1,
+			        Status = SampleStatus.Stable,
+			        Description = "A \"quoted\" description",
+			        DocumentationLink = "https://example.com/docs?q=a&b=c",
+			        Tags = new[] { "contract" },
+			        Owner = "team",
+			        ReviewedOn = "2026-08-27",
+			        SupportedDesigns = SampleDesigns.Material | SampleDesigns.Agnostic,
+			        SupportedRenderers = SampleRenderers.Native | SampleRenderers.Skia | SampleRenderers.DOM,
+			        Requirements = new[] { "Network: none", "Setup: C:\\demo" },
+			        AccessibilityNotes = new[] { "Screen reader says \"ready\"" },
+			        ResetBehavior = "Choose Reset.",
+			        Variants = new[] { "Default", "Dense" },
+			        KnownLimitations = new[] { "None known." },
+			        IssueLink = "https://example.com/issues/1",
+			        ApiLink = "https://example.com/api")]
+			    public class ContractSamplePage : Page { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+		Assert.That(UggDiagnostics(result), Is.Empty);
+
+		var json = InvokeGetJson(result, source)!;
+		using var doc = System.Text.Json.JsonDocument.Parse(json);
+		var sample = doc.RootElement.GetProperty("samples")[0];
+		Assert.Multiple(() =>
+		{
+			Assert.That(sample.GetProperty("contractVersion").GetInt32(), Is.EqualTo(1));
+			Assert.That(sample.GetProperty("statusExplicit").GetBoolean(), Is.True);
+			Assert.That(sample.GetProperty("supportedDesigns").GetProperty("value").GetInt32(), Is.EqualTo(17));
+			Assert.That(sample.GetProperty("supportedDesigns").GetProperty("name").GetString(), Is.EqualTo("Material, Agnostic"));
+			Assert.That(sample.GetProperty("supportedRenderers").GetProperty("value").GetInt32(), Is.EqualTo(7));
+			Assert.That(sample.GetProperty("supportedRenderers").GetProperty("name").GetString(), Is.EqualTo("Native, Skia, DOM"));
+			Assert.That(sample.GetProperty("requirements")[1].GetString(), Is.EqualTo(@"Setup: C:\demo"));
+			Assert.That(sample.GetProperty("accessibilityNotes")[0].GetString(), Is.EqualTo("Screen reader says \"ready\""));
+			Assert.That(sample.GetProperty("knownLimitations")[0].GetString(), Is.EqualTo("None known."));
+			Assert.That(sample.GetProperty("issueLink").GetString(), Is.EqualTo("https://example.com/issues/1"));
+			Assert.That(sample.GetProperty("apiLink").GetString(), Is.EqualTo("https://example.com/api"));
+		});
+	}
+
+	[Test]
+	public void UGG0011_accepts_case_insensitive_http_schemes()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Upper Scheme",
+			        ContractVersion = 1,
+			        Status = SampleStatus.Stable,
+			        Description = "Description",
+			        DocumentationLink = "HTTPS://example.com/docs",
+			        Tags = new[] { "contract" },
+			        Owner = "team",
+			        ReviewedOn = "2026-08-27",
+			        SupportedDesigns = SampleDesigns.Fluent,
+			        SupportedRenderers = SampleRenderers.DOM,
+			        Requirements = new[] { "None" },
+			        AccessibilityNotes = new[] { "Keyboard" },
+			        ResetBehavior = "Reload",
+			        Variants = new[] { "Default" },
+			        IssueLink = "HTTP://example.com/issues/1")]
+			    public class UpperSchemePage : Page { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+
+		Assert.That(UggDiagnostics(result), Is.Empty);
+		Assert.That(InvokeGetJson(result, source), Does.Contain("HTTPS://example.com/docs"));
+	}
+
+	[Test]
+	public void SampleManifest_emits_valid_json_with_schema_version_2()
 	{
 		const string source = """
 			using Uno.Gallery;
@@ -2657,8 +2929,8 @@ public sealed class SamplesGeneratorTests
 		// Parse with System.Text.Json.
 		using var doc = System.Text.Json.JsonDocument.Parse(json!);
 		var root = doc.RootElement;
-		Assert.That(root.GetProperty("schemaVersion").GetInt32(), Is.EqualTo(1),
-			"schemaVersion must be 1");
+		Assert.That(root.GetProperty("schemaVersion").GetInt32(), Is.EqualTo(2),
+			"schemaVersion must be 2");
 
 		var samples = root.GetProperty("samples");
 		Assert.That(samples.GetArrayLength(), Is.EqualTo(1), "Exactly one sample in catalog");
@@ -2750,10 +3022,23 @@ public sealed class SamplesGeneratorTests
 		Assert.That(s.GetProperty("reviewedOn").ValueKind, Is.EqualTo(System.Text.Json.JsonValueKind.Null));
 		Assert.That(s.GetProperty("sourcePath").ValueKind, Is.EqualTo(System.Text.Json.JsonValueKind.Null));
 		Assert.That(s.GetProperty("platformConditionals").ValueKind, Is.EqualTo(System.Text.Json.JsonValueKind.Null));
+		Assert.That(s.GetProperty("contractVersion").GetInt32(), Is.Zero);
+		Assert.That(s.GetProperty("statusExplicit").GetBoolean(), Is.False);
+		Assert.That(s.GetProperty("supportedDesigns").GetProperty("value").GetInt32(), Is.Zero);
+		Assert.That(s.GetProperty("supportedDesigns").GetProperty("name").GetString(), Is.EqualTo("None"));
+		Assert.That(s.GetProperty("supportedRenderers").GetProperty("value").GetInt32(), Is.Zero);
+		Assert.That(s.GetProperty("supportedRenderers").GetProperty("name").GetString(), Is.EqualTo("None"));
+		Assert.That(s.GetProperty("resetBehavior").ValueKind, Is.EqualTo(System.Text.Json.JsonValueKind.Null));
+		Assert.That(s.GetProperty("issueLink").ValueKind, Is.EqualTo(System.Text.Json.JsonValueKind.Null));
+		Assert.That(s.GetProperty("apiLink").ValueKind, Is.EqualTo(System.Text.Json.JsonValueKind.Null));
 
 		// Empty arrays, not null
 		Assert.That(s.GetProperty("tags").GetArrayLength(), Is.EqualTo(0));
 		Assert.That(s.GetProperty("relatedSamples").GetArrayLength(), Is.EqualTo(0));
+		Assert.That(s.GetProperty("requirements").GetArrayLength(), Is.EqualTo(0));
+		Assert.That(s.GetProperty("accessibilityNotes").GetArrayLength(), Is.EqualTo(0));
+		Assert.That(s.GetProperty("variants").GetArrayLength(), Is.EqualTo(0));
+		Assert.That(s.GetProperty("knownLimitations").GetArrayLength(), Is.EqualTo(0));
 
 		// Default sourceSdk when unspecified is WinUI (value 0, name "WinUI").
 		var sdk = s.GetProperty("sourceSdk");

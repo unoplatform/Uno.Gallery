@@ -21,21 +21,6 @@ public class Given_RenderingPlatform : TestBase
 	}
 
 	[Test]
-	[Category("SkiaCanvas")]
-	public void When_SkiaCanvasRedraws_RenderOverrideOwnsCompletionStatus()
-	{
-		NavigateToSample("Skia Canvas");
-
-		App.WaitThenTap("SkiaCanvas_Redraw");
-		var completed = PollForText("SkiaCanvas_Status", "RenderOverride completed:", TimeSpan.FromSeconds(5));
-		Assert.That(completed, Is.True,
-			"Canvas status must be updated by a completed RenderOverride call, not by the redraw request.");
-		var status = GetText("SkiaCanvas_Status");
-		Assert.That(status, Does.Contain("state: 1"));
-		Assert.That(status, Does.Contain("shapes: rectangle, circle, text"));
-	}
-
-	[Test]
 	public void When_CompositionStateIsApplied_PageReportsDeterministicVisualValues()
 	{
 		NavigateToSample("Composition Visuals");
@@ -70,7 +55,7 @@ public class Given_RenderingPlatform : TestBase
 	{
 		NavigateToSample("WebView");
 
-		var reported = PollForText("WebView_Status", "Offline HTML", TimeSpan.FromSeconds(10)) ||
+		var reported = PollForText("WebView_Status", "Self-contained HTML loaded successfully.", TimeSpan.FromSeconds(10)) ||
 			PollForText("WebView_Status", "WebView unavailable:", TimeSpan.FromSeconds(1)) ||
 			PollForText("WebView_Status", "WebView navigation failed:", TimeSpan.FromSeconds(1));
 		Assert.That(reported, Is.True, "WebView must expose success, unavailable, or failure status.");
@@ -94,4 +79,34 @@ public class Given_RenderingPlatform : TestBase
 
 	private static string GetText(string automationId)
 		=> new QueryEx(q => q.All().Marked(automationId)).GetDependencyPropertyValue<string>("Text");
+}
+
+[Category("SkiaCanvas")]
+public class Given_SkiaRenderingPlatform : UITestBase
+{
+	[Test]
+	[Explicit("Requires a Skia-renderer UI-test host; DOM automation cannot exercise SKCanvasElement.")]
+	public void When_SkiaCanvasRedraws_RenderOverrideOwnsCompletionStatus()
+	{
+		NavigateToSample("Skia Canvas");
+
+		App.WaitThenTap("SkiaCanvas_Redraw");
+		var statusQuery = new QueryEx(q => q.All().Marked("SkiaCanvas_Status"));
+		var deadline = DateTime.UtcNow + TimeSpan.FromSeconds(5);
+		string status;
+		do
+		{
+			status = statusQuery.GetDependencyPropertyValue<string>("Text") ?? string.Empty;
+			if (status.Contains("RenderOverride completed:", StringComparison.Ordinal))
+			{
+				Assert.That(status, Does.Contain("state: 1"));
+				Assert.That(status, Does.Contain("shapes: rectangle, circle, text"));
+				return;
+			}
+			App.Wait(TimeSpan.FromMilliseconds(100));
+		}
+		while (DateTime.UtcNow < deadline);
+
+		Assert.Fail("Canvas status must be updated by a completed RenderOverride call, not by the redraw request.");
+	}
 }

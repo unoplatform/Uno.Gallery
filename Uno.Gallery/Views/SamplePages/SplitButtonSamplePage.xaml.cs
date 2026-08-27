@@ -9,6 +9,13 @@ namespace Uno.Gallery.Views.Samples
 		Slug = "split-button",
 		Tags = new[] { "button", "input", "command", "flyout" },
 		Status = SampleStatus.Stable,
+		ContractVersion = 1,
+		SupportedDesigns = SampleDesigns.Fluent,
+		SupportedRenderers = SampleRenderers.Native | SampleRenderers.Skia | SampleRenderers.DOM,
+		Requirements = new[] { SampleContractDefaults.NoExternalRequirements },
+		AccessibilityNotes = new[] { "Primary and secondary actions are separately keyboard accessible; toggle state is also shown as text." },
+		ResetBehavior = SampleContractDefaults.ReloadToReset,
+		Variants = new[] { "SplitButton", "Disabled SplitButton", "ToggleSplitButton", "Disabled ToggleSplitButton" },
 		Owner = "unoplatform",
 		ReviewedOn = "2026-08-26",
 		RelatedSamples = new[] { "button", "drop-down-button", "command-bar-flyout" })]
