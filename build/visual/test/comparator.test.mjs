@@ -36,3 +36,20 @@ test("dimension mismatch and malformed PNG fail clearly", () => {
   assert.match(mismatch.reason, /dimension mismatch/);
   assert.throws(() => decodePng(Buffer.from("not png"), "baseline"), /not a valid PNG/);
 });
+
+test("overlapping masks cannot make unmasked differences pass", () => {
+  const baseline = png(2, 2);
+  const changed = decodePng(baseline);
+  changed.data.set([255, 255, 255, 255], 8);
+  const current = PNG.sync.write(changed);
+  const result = comparePngBuffers(baseline, current, {
+    maxDiffRatio: 0,
+    masks: [
+      { x: 0, y: 0, width: 2, height: 1 },
+      { x: 0, y: 0, width: 2, height: 1 }
+    ]
+  });
+  assert.equal(result.passed, false);
+  assert.equal(result.differentPixels, 1);
+  assert.equal(result.diffRatio, 0.5);
+});

@@ -1,7 +1,7 @@
 # ADR 0004 — Deterministic visual-regression pilot
 
-**Date:** 2026-08-27  
-**Status:** Proposed  
+**Date:** 2026-08-27
+**Status:** Proposed
 **Branch:** `modernization/visual-pilot`
 
 ## Context
@@ -59,13 +59,14 @@ existing code paths and labels.
 
 ### Tolerance and masks
 
-PNG dimensions must match. Pixelmatch uses threshold `0.05`, anti-alias
-classification excluded, and a maximum different-pixel ratio of `0.0001`
-(`0.01%`, 90 pixels at this viewport). Current masks are empty. A mask is allowed
+PNG dimensions must match. Pixelmatch uses a YIQ color-distance threshold of
+`0.05`, excludes anti-alias classification, and permits a maximum
+different-pixel ratio of `0.0001` (`0.01%`, 108 pixels at this viewport).
+Current masks are empty. A mask is allowed
 only for a reviewed, unavoidable nondeterministic subregion; it must use fixed
 integer coordinates in config, be visible in metadata, and may not hide a whole
-control or text region. Raising tolerance or adding a mask requires ADR-level
-review and fresh five-run evidence.
+control or text region. Masks may not overlap or cover every pixel. Raising
+tolerance or adding a mask requires ADR-level review and fresh five-run evidence.
 
 ### Approval and rebaseline
 
@@ -78,6 +79,12 @@ closed. The maintainer must:
 3. update and inspect all changed PNGs and metadata;
 4. run five clean comparisons and attach mismatch counts;
 5. explain intentional visual changes in the pull request.
+
+Updates capture a complete staging set, hash every PNG into metadata, validate
+the staged set, and only then atomically replace the committed baseline
+directory. A failed or interrupted capture cannot leave a partially accepted
+baseline. Comparison verifies Windows/x64 host, Chrome executable, observed
+SwiftShader renderer, image hashes, and normalized tool/lockfile hashes.
 
 Two-person review is required for baseline, tolerance, mask, browser, viewport,
 font, or sample-list changes. Reviewers inspect rendered current/diff evidence,

@@ -67,12 +67,27 @@ export function validateConfig(config) {
     if (!Array.isArray(sample.masks)) {
       throw new Error(`masks must be an array for ${sample.id}`);
     }
+    const maskedPixels = new Uint8Array(viewport.width * viewport.height);
+    let maskedPixelCount = 0;
     for (const mask of sample.masks) {
       if (![mask.x, mask.y, mask.width, mask.height].every(Number.isInteger)
           || mask.x < 0 || mask.y < 0 || mask.width < 1 || mask.height < 1
           || mask.x + mask.width > viewport.width || mask.y + mask.height > viewport.height) {
         throw new Error(`invalid mask for ${sample.id}`);
       }
+      for (let y = mask.y; y < mask.y + mask.height; y++) {
+        for (let x = mask.x; x < mask.x + mask.width; x++) {
+          const offset = y * viewport.width + x;
+          if (maskedPixels[offset]) {
+            throw new Error(`overlapping masks are not allowed for ${sample.id}`);
+          }
+          maskedPixels[offset] = 1;
+          maskedPixelCount++;
+        }
+      }
+    }
+    if (maskedPixelCount >= viewport.width * viewport.height) {
+      throw new Error(`masks must leave comparable pixels for ${sample.id}`);
     }
   }
 

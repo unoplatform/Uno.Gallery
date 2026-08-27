@@ -1,7 +1,7 @@
 import { fork } from "node:child_process";
 import { createHash } from "node:crypto";
-import { readFile, readdir, rm, mkdir, writeFile, copyFile } from "node:fs/promises";
-import { dirname, join, resolve } from "node:path";
+import { access, readFile, readdir, rm, mkdir, writeFile, copyFile, rename } from "node:fs/promises";
+import { basename, dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import puppeteer from "puppeteer";
 import { PNG } from "pngjs";
@@ -13,30 +13,66 @@ const moduleDirectory = dirname(fileURLToPath(import.meta.url));
 async function startServer(wasmRoot) {
   const serverPath = join(moduleDirectory, "server.mjs");
   const child = fork(serverPath, [wasmRoot, "0"], { stdio: ["ignore", "inherit", "inherit", "ipc"] });
-  const ready = await new Promise((resolveReady, reject) => {
-    const timer = setTimeout(() => reject(new Error("visual server did not start within 30 seconds")), 30000);
-    child.once("error", reject);
-    child.once("exit", code => reject(new Error(`visual server exited before readiness (${code})`)));
-    child.on("message", message => {
-      if (message?.type === "ready") {
+  let ready;
+  try {
+    ready = await new Promise((resolveReady, reject) => {
+      const onError = error => settle(reject, error);
+      const onExit = code => settle(reject, new Error(`visual server exited before readiness (${code})`));
+      const onMessage = message => {
+        if (message?.type === "ready") settle(resolveReady, message);
+      };
+      const timer = setTimeout(
+        () => settle(reject, new Error("visual server did not start within 30 seconds")),
+        30000
+      );
+      timer.unref();
+      const settle = (callback, value) => {
         clearTimeout(timer);
-        resolveReady(message);
-      }
+        child.off("error", onError);
+        child.off("exit", onExit);
+        child.off("message", onMessage);
+        callback(value);
+      };
+      child.once("error", onError);
+      child.once("exit", onExit);
+      child.on("message", onMessage);
     });
-  });
+  } catch (error) {
+    await terminateChild(child);
+    throw error;
+  }
   return {
     baseUrl: `http://127.0.0.1:${ready.port}/`,
     pid: ready.pid,
     async stop() {
       if (child.exitCode !== null) return;
       child.send({ type: "stop" });
-      await Promise.race([
-        new Promise(resolveExit => child.once("exit", resolveExit)),
-        new Promise(resolveTimeout => setTimeout(resolveTimeout, 5000))
-      ]);
-      if (child.exitCode === null) child.kill();
+      if (!await waitForExit(child, 5000)) {
+        await terminateChild(child);
+      }
     }
   };
+}
+
+async function waitForExit(child, timeoutMs) {
+  if (child.exitCode !== null) return true;
+  return new Promise(resolveWait => {
+    const onExit = () => settle(true);
+    const timer = setTimeout(() => settle(false), timeoutMs);
+    timer.unref();
+    const settle = result => {
+      clearTimeout(timer);
+      child.off("exit", onExit);
+      resolveWait(result);
+    };
+    child.once("exit", onExit);
+  });
+}
+
+async function terminateChild(child) {
+  if (child.exitCode !== null) return;
+  child.kill("SIGKILL");
+  await waitForExit(child, 5000);
 }
 
 async function launchBrowser(config, profilePath) {
@@ -67,15 +103,49 @@ async function launchBrowser(config, profilePath) {
   });
 }
 
-async function captureSample(page, baseUrl, sample, config, currentPath) {
-  const pageErrors = [];
-  const failedRequests = [];
-  const onPageError = error => pageErrors.push(error.message);
-  const onRequestFailed = request => failedRequests.push(
-    `${request.url()}: ${request.failure()?.errorText ?? "failed"}`
-  );
+function monitorPage(page, baseUrl) {
+  const origin = new URL(baseUrl).origin;
+  const errors = [];
+  const failures = [];
+  const isLocal = value => {
+    try { return new URL(value).origin === origin; } catch { return false; }
+  };
+  const onPageError = error => errors.push(error.message);
+  const onRequestFailed = request => {
+    if (isLocal(request.url())) {
+      failures.push(`${request.url()}: ${request.failure()?.errorText ?? "failed"}`);
+    }
+  };
+  const onResponse = response => {
+    if (isLocal(response.url()) && response.status() >= 400) {
+      failures.push(`${response.url()}: HTTP ${response.status()}`);
+    }
+  };
   page.on("pageerror", onPageError);
   page.on("requestfailed", onRequestFailed);
+  page.on("response", onResponse);
+  return {
+    reset() {
+      errors.length = 0;
+      failures.length = 0;
+    },
+    assertClean(context) {
+      if (errors.length || failures.length) {
+        throw new Error(
+          `${context} browser failure(s): ${[...errors, ...failures].join("; ")}`
+        );
+      }
+    },
+    dispose() {
+      page.off("pageerror", onPageError);
+      page.off("requestfailed", onRequestFailed);
+      page.off("response", onResponse);
+    }
+  };
+}
+
+async function captureSample(page, monitor, baseUrl, sample, config, currentPath) {
+  monitor.reset();
   try {
     await navigateClientSide(page, baseUrl, sample, config);
     await page.evaluate(selector => document.querySelector(selector)?.remove(), config.capture.loadingSelector);
@@ -93,23 +163,22 @@ async function captureSample(page, baseUrl, sample, config, currentPath) {
         || canonical.design?.toLowerCase() !== sample.design.toLowerCase()) {
       throw new Error(`route did not canonicalize to ?design=${sample.design}#${sample.slug}: ${JSON.stringify(canonical)}`);
     }
-    if (pageErrors.length) {
-      throw new Error(`page error(s): ${pageErrors.join("; ")}`);
-    }
     const screenshot = await captureSettledScreenshot(
       page,
       config.capture.settledFrames,
       config.capture.minContentPixels
     );
+    monitor.assertClean(sample.id);
     await writeFile(currentPath, screenshot);
-  } finally {
-    page.off("pageerror", onPageError);
-    page.off("requestfailed", onRequestFailed);
+  } catch (error) {
+    monitor.assertClean(sample.id);
+    throw error;
   }
 }
 
 async function openAppPage(browser, baseUrl, config) {
   const page = await browser.newPage();
+  const monitor = monitorPage(page, baseUrl);
   try {
     await page.emulateTimezone(config.browser.timezone);
     await page.emulateMediaFeatures([
@@ -127,8 +196,14 @@ async function openAppPage(browser, baseUrl, config) {
       config.capture.readyMark
     );
     await new Promise(resolveDelay => setTimeout(resolveDelay, warmup.delayMs));
-    return page;
+    await page.evaluate(async () => {
+      if (document.fonts?.ready) await document.fonts.ready;
+    });
+    monitor.assertClean("warmup");
+    monitor.reset();
+    return { page, monitor };
   } catch (error) {
+    monitor.dispose();
     await page.close();
     throw error;
   }
@@ -207,7 +282,7 @@ async function captureSettledScreenshot(page, settledFrames, minContentPixels) {
   throw new Error(`page pixels remained below ${minContentPixels} content pixels or unstable (${lastContentPixels})`);
 }
 
-export async function verifyBaselineMetadata(config, baselineDir, metadata, browserVersion, lockDigest, toolDigest) {
+export async function verifyBaselineMetadata(config, baselineDir, metadata, runtime, lockDigest, toolDigest) {
   const expectedIds = config.samples.map(sample => sample.id);
   const actualIds = metadata?.samples?.map(sample => sample.id);
   if (metadata?.schemaVersion !== 1 || metadata?.suiteVersion !== config.suiteVersion) {
@@ -217,8 +292,14 @@ export async function verifyBaselineMetadata(config, baselineDir, metadata, brow
       || metadata.toolDigest !== toolDigest) {
     throw new Error("baseline metadata is stale for config, lockfile, or visual tool sources");
   }
-  if (metadata.browserVersion !== browserVersion) {
-    throw new Error(`baseline browser is stale: expected ${browserVersion}, metadata has ${metadata.browserVersion}`);
+  if (metadata.browserVersion !== runtime.browserVersion) {
+    throw new Error(`baseline browser is stale: expected ${runtime.browserVersion}, metadata has ${metadata.browserVersion}`);
+  }
+  if (metadata.browserExecutable !== runtime.browserExecutable
+      || metadata.renderer !== runtime.renderer
+      || metadata.host?.os !== runtime.host.os
+      || metadata.host?.architecture !== runtime.host.architecture) {
+    throw new Error("baseline host, browser executable, or renderer provenance is stale");
   }
   if (JSON.stringify(actualIds) !== JSON.stringify(expectedIds)) {
     throw new Error("baseline sample list/order is missing or stale");
@@ -228,47 +309,76 @@ export async function verifyBaselineMetadata(config, baselineDir, metadata, brow
   if (JSON.stringify(actualPngs) !== JSON.stringify(expectedPngs)) {
     throw new Error(`baseline PNG set is missing or stale: expected ${expectedPngs.join(", ")}, found ${actualPngs.join(", ")}`);
   }
+  for (const sample of metadata.samples) {
+    const imagePath = join(baselineDir, `${sample.id}.png`);
+    const actualHash = createHash("sha256").update(await readFile(imagePath)).digest("hex");
+    if (!/^[0-9a-f]{64}$/.test(sample.sha256 ?? "") || sample.sha256 !== actualHash) {
+      throw new Error(`baseline PNG hash is missing or stale for ${sample.id}`);
+    }
+  }
 }
 
 export async function runVisual({ mode, config, visualRoot, wasmRoot }) {
   const baselineDir = join(visualRoot, "baselines");
+  const baselineStagingDir = join(visualRoot, ".baselines-staging");
+  const baselineBackupDir = join(visualRoot, ".baselines-backup");
   const artifactDir = join(visualRoot, "artifacts");
   const currentDir = join(artifactDir, "current");
   const diffDir = join(artifactDir, "diff");
   const profileDir = join(artifactDir, "browser-profile");
+  await recoverBaselineSet(baselineDir, baselineBackupDir);
   await rm(currentDir, { recursive: true, force: true });
   await rm(diffDir, { recursive: true, force: true });
+  await rm(baselineStagingDir, { recursive: true, force: true });
   await mkdir(currentDir, { recursive: true });
   await mkdir(diffDir, { recursive: true });
-  const lockDigest = digest(await readFile(join(visualRoot, "package-lock.json")));
+  if (mode === "update") await mkdir(baselineStagingDir, { recursive: true });
+  const lockDigest = digest(normalizeText(await readFile(join(visualRoot, "package-lock.json"), "utf8")));
   const toolDigest = await digestToolSources(join(visualRoot, "src"));
 
   const server = await startServer(resolve(wasmRoot));
   let browser;
   let page;
+  let monitor;
   try {
     browser = await launchBrowser(config, profileDir);
     const browserVersion = await browser.version();
     if (browserVersion !== config.browser.expectedVersion) {
       throw new Error(`browser version mismatch: expected ${config.browser.expectedVersion}, launched ${browserVersion}`);
     }
+    const browserExecutable = basename(browser.process()?.spawnfile ?? "");
+    if (!/^chrome(?:\.exe)?$/i.test(browserExecutable)) {
+      throw new Error(`unexpected browser executable '${browserExecutable}'`);
+    }
+    if (mode === "compare") {
+      // Provenance is verified after the page is open and the actual WebGL renderer is observed.
+    }
+    ({ page, monitor } = await openAppPage(browser, server.baseUrl, config));
+    const renderer = await observeRenderer(page);
+    if (config.browser.softwareRendering && !renderer.toLowerCase().includes("swiftshader")) {
+      throw new Error(`software rendering was requested but Chromium reported '${renderer}'`);
+    }
+    const runtime = {
+      browserVersion,
+      browserExecutable,
+      renderer,
+      host: { os: process.platform, architecture: process.arch }
+    };
     if (mode === "compare") {
       const metadata = JSON.parse(await readFile(join(baselineDir, "metadata.json"), "utf8"));
-      await verifyBaselineMetadata(config, baselineDir, metadata, browserVersion, lockDigest, toolDigest);
+      await verifyBaselineMetadata(config, baselineDir, metadata, runtime, lockDigest, toolDigest);
     }
-    page = await openAppPage(browser, server.baseUrl, config);
 
     const results = [];
     for (const sample of config.samples) {
       const currentPath = join(currentDir, `${sample.id}.png`);
       try {
-        await captureSample(page, server.baseUrl, sample, config, currentPath);
+        await captureSample(page, monitor, server.baseUrl, sample, config, currentPath);
       } catch (error) {
         throw new Error(`${sample.id}: ${error.message}`, { cause: error });
       }
       if (mode === "update") {
-        await mkdir(baselineDir, { recursive: true });
-        await copyFile(currentPath, join(baselineDir, `${sample.id}.png`));
+        await copyFile(currentPath, join(baselineStagingDir, `${sample.id}.png`));
         results.push({ id: sample.id, passed: true, updated: true });
         continue;
       }
@@ -288,52 +398,143 @@ export async function runVisual({ mode, config, visualRoot, wasmRoot }) {
     }
 
     if (mode === "update") {
-      await writeFile(join(baselineDir, "metadata.json"), JSON.stringify({
+      const samples = [];
+      for (const { id, slug, design, area, masks } of config.samples) {
+        const image = await readFile(join(baselineStagingDir, `${id}.png`));
+        samples.push({
+          id, slug, design, area, masks,
+          sha256: createHash("sha256").update(image).digest("hex")
+        });
+      }
+      const metadata = {
         schemaVersion: 1,
         suiteVersion: config.suiteVersion,
         generatedAtUtc: new Date().toISOString(),
-        host: { os: process.platform, architecture: process.arch },
+        host: runtime.host,
         browserVersion,
+        browserExecutable,
         viewport: config.viewport,
-        renderer: "Skia-WASM / Chromium SwiftShader",
+        renderer,
         fonts: config.fonts,
         configDigest: digest(config),
         lockDigest,
         toolDigest,
-        samples: config.samples.map(({ id, slug, design, area, masks }) => ({
-          id, slug, design, area, masks
-        }))
-      }, null, 2) + "\n");
+        samples
+      };
+      await writeFile(
+        join(baselineStagingDir, "metadata.json"),
+        JSON.stringify(metadata, null, 2) + "\n"
+      );
+      await verifyBaselineMetadata(
+        config,
+        baselineStagingDir,
+        metadata,
+        runtime,
+        lockDigest,
+        toolDigest
+      );
+      await replaceBaselineSet(baselineDir, baselineStagingDir, baselineBackupDir);
     }
     return {
       passed: results.every(result => result.passed),
       mode,
       serverPid: server.pid,
       browserVersion,
+      browserExecutable,
+      renderer,
+      host: runtime.host,
       viewport: `${config.viewport.width}x${config.viewport.height}@${config.viewport.deviceScaleFactor}`,
       tolerance: config.comparison,
       results
     };
   } finally {
+    monitor?.dispose();
     await closeBounded(page);
     await closeBounded(browser);
     await server.stop();
     await rm(profileDir, { recursive: true, force: true });
+    await rm(baselineStagingDir, { recursive: true, force: true });
+    await recoverBaselineSet(baselineDir, baselineBackupDir);
   }
 }
 
 async function closeBounded(resource) {
   if (!resource) return;
-  await Promise.race([
-    resource.close().catch(() => undefined),
-    new Promise(resolveTimeout => setTimeout(resolveTimeout, 10000))
+  let timer;
+  const closed = await Promise.race([
+    resource.close().then(() => true).catch(() => true),
+    new Promise(resolveTimeout => {
+      timer = setTimeout(() => resolveTimeout(false), 10000);
+      timer.unref();
+    })
   ]);
+  clearTimeout(timer);
+  if (!closed && typeof resource.process === "function") {
+    const process = resource.process();
+    if (process) await terminateChild(process);
+  }
 }
 
 async function digestToolSources(sourceDirectory) {
   const names = (await readdir(sourceDirectory)).filter(name => name.endsWith(".mjs")).sort();
   const contents = await Promise.all(names.map(async name =>
-    `${name}\n${await readFile(join(sourceDirectory, name), "utf8")}`
+    `${name}\n${normalizeText(await readFile(join(sourceDirectory, name), "utf8"))}`
   ));
   return digest(contents.join("\n"));
+}
+
+function normalizeText(value) {
+  return value.replace(/\r\n?/g, "\n");
+}
+
+async function observeRenderer(page) {
+  return page.evaluate(() => {
+    const canvas = document.createElement("canvas");
+    const context = canvas.getContext("webgl") ?? canvas.getContext("experimental-webgl");
+    if (!context) return "WebGL unavailable";
+    const extension = context.getExtension("WEBGL_debug_renderer_info");
+    return extension
+      ? context.getParameter(extension.UNMASKED_RENDERER_WEBGL)
+      : context.getParameter(context.RENDERER);
+  });
+}
+
+export async function replaceBaselineSet(baselineDir, stagingDir, backupDir) {
+  let hadBaseline = true;
+  try {
+    await rename(baselineDir, backupDir);
+  } catch (error) {
+    if (error.code !== "ENOENT") throw error;
+    hadBaseline = false;
+  }
+
+  try {
+    await rename(stagingDir, baselineDir);
+    if (hadBaseline) await rm(backupDir, { recursive: true, force: true });
+  } catch (error) {
+    if (hadBaseline) {
+      await rm(baselineDir, { recursive: true, force: true });
+      await rename(backupDir, baselineDir);
+    }
+    throw error;
+  }
+}
+
+export async function recoverBaselineSet(baselineDir, backupDir) {
+  const baselineExists = await pathExists(baselineDir);
+  const backupExists = await pathExists(backupDir);
+  if (!baselineExists && backupExists) {
+    await rename(backupDir, baselineDir);
+  } else if (baselineExists && backupExists) {
+    await rm(backupDir, { recursive: true, force: true });
+  }
+}
+
+async function pathExists(path) {
+  try {
+    await access(path);
+    return true;
+  } catch {
+    return false;
+  }
 }

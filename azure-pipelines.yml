@@ -260,12 +260,14 @@ stages:
       matrix:
         DOM:
           ArtifactName: WASM-DOM
+          CatalogTargetName: WASM-DOM
           UseNativeRendering: true
           EnableVisualRegression: false
         Skia:
           ArtifactName: WASM-Skia
+          CatalogTargetName: WASM-Skia
           UseNativeRendering: false
-          EnableVisualRegression: true
+          EnableVisualRegression: false
 
     variables:
       SkipUnknownFrameworks: true
@@ -275,11 +277,28 @@ stages:
 
 - stage: Visual_Regression
   displayName: 'Visual Regression'
-  dependsOn: WebAssembly
+  dependsOn: []
   jobs:
+  - job: Build_Visual_Skia_WASM
+    displayName: 'Build visual-mode Skia-WASM (advisory)'
+    timeoutInMinutes: 60
+    continueOnError: true
+    pool:
+      vmImage: ubuntu-latest
+    variables:
+      ArtifactName: WASM-Skia-Visual
+      CatalogTargetName: WASM-Skia
+      UseNativeRendering: false
+      EnableVisualRegression: true
+      SkipUnknownFrameworks: true
+    steps:
+      - template: build/stage-build-wasm.yml
+
   - job: Windows_Skia_WASM_Visual_Pilot
     displayName: 'Windows / Chromium / Skia-WASM pilot (advisory)'
     timeoutInMinutes: 45
+    dependsOn: Build_Visual_Skia_WASM
+    condition: succeededOrFailed()
     pool:
       vmImage: windows-latest
     variables:
@@ -297,8 +316,9 @@ stages:
       inputs:
         buildType: current
         downloadType: single
-        artifactName: WASM-Skia
+        artifactName: WASM-Skia-Visual
         downloadPath: $(Pipeline.Workspace)
+      continueOnError: true
     - pwsh: |
         New-Item -ItemType Directory -Path 'build/visual/artifacts/current' -Force | Out-Null
         New-Item -ItemType Directory -Path 'build/visual/artifacts/diff' -Force | Out-Null
@@ -308,7 +328,7 @@ stages:
     - script: npm ci --no-audit --no-fund
       displayName: 'Install pinned visual tool and Chromium'
       workingDirectory: build/visual
-    - script: npm run compare -- --wasm "$(Pipeline.Workspace)\WASM-Skia"
+    - script: npm run compare -- --wasm "$(Pipeline.Workspace)\WASM-Skia-Visual"
       displayName: 'Compare visual pilot (advisory)'
       workingDirectory: build/visual
       continueOnError: true

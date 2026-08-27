@@ -32,6 +32,9 @@ try {
     if (process.env.VISUAL_ACCEPT_BASELINES !== "1") {
       throw new Error("local update requires both the update command and VISUAL_ACCEPT_BASELINES=1");
     }
+    if (process.platform !== "win32" || process.arch !== "x64") {
+      throw new Error(`baseline update requires the approved Windows x64 host (got ${process.platform}/${process.arch})`);
+    }
   }
   report = await runVisual({ mode: command, config, visualRoot, wasmRoot });
   await writeReport(reportPath, report);

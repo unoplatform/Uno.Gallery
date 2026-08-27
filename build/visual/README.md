@@ -33,11 +33,11 @@ Comparison writes `artifacts/current/*.png`, `artifacts/diff/*.png`,
 `artifacts/report.json`, and `artifacts/report.html`. A missing, extra, malformed,
 wrong-sized, or config/browser/lock-stale baseline fails before approval.
 
-Pixelmatch uses a per-channel threshold of `0.05`, excludes its anti-alias
-classification, and permits at most `0.01%` different unmasked pixels (90 pixels
+Pixelmatch uses a YIQ color-distance threshold of `0.05`, excludes its anti-alias
+classification, and permits at most `0.01%` different unmasked pixels (108 pixels
 at this viewport). The pilot currently has **no masks**. A future mask must be an
 explicit rectangle in `visual.config.json`, is hashed into baseline metadata,
-and requires the same review as a baseline image.
+may not overlap another mask, and requires the same review as a baseline image.
 
 ## Local baseline update
 
@@ -59,5 +59,7 @@ Remove-Item Env:VISUAL_ACCEPT_BASELINES
 ```
 
 The update command refuses to run when `CI`, `TF_BUILD`, or `BUILD_BUILDID` is
-present. Review every PNG and `baselines/metadata.json`; never regenerate from a
+present or the host is not Windows x64. It stages and hashes the complete PNG
+set before atomically replacing `baselines`. Review every PNG and
+`baselines/metadata.json`; never regenerate from a
 developer server, non-Windows host, system browser, or normal app build.

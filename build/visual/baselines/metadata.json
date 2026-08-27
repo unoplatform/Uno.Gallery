@@ -1,124 +1,139 @@
 {
   "schemaVersion": 1,
   "suiteVersion": 1,
-  "generatedAtUtc": "2026-08-27T05:27:27.788Z",
+  "generatedAtUtc": "2026-08-27T06:35:27.797Z",
   "host": {
     "os": "win32",
     "architecture": "x64"
   },
   "browserVersion": "Chrome/152.0.7977.42",
+  "browserExecutable": "chrome.exe",
   "viewport": {
     "width": 1200,
     "height": 900,
     "deviceScaleFactor": 1
   },
-  "renderer": "Skia-WASM / Chromium SwiftShader",
+  "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
   "fonts": [
     "Uno.Fonts.OpenSans/Fonts/OpenSans.ttf",
     "Uno.Material bundled typefaces",
     "WinUI symbol font bundled by Uno"
   ],
   "configDigest": "107bbee62472bbd73e2ea8a78e70d653b22e444102b804ba055475abda1e7260",
-  "lockDigest": "94cd68ca877785a1b5f04bc1be75e2d72916f6f2e1f9b63166b73622cc7ec5e4",
-  "toolDigest": "91ce1da4242cedd056ed0df4c82ffedbdfd1cc68418dbd022a26c7de10bb0511",
+  "lockDigest": "e331b3d9d27e89eac15b64af35a5aad631704c6ed04eea0ebce90c02ef5878ca",
+  "toolDigest": "4b7d0317dd06f2758a1785df067be5a2677e07586119e9eeebc34b7d93263cdc",
   "samples": [
     {
       "id": "overview-material",
       "slug": "overview",
       "design": "Material",
       "area": "shell/overview",
-      "masks": []
+      "masks": [],
+      "sha256": "63b0f076f958f94a9ea69c63949375c4d73a59a6c9813ab9ebed72b03b992362"
     },
     {
       "id": "overview-fluent",
       "slug": "overview",
       "design": "Fluent",
       "area": "shell/overview",
-      "masks": []
+      "masks": [],
+      "sha256": "82fdaca108819b0d7b8954c55fa4693c9f120fa59d4b4d8146e5f58b6477ae37"
     },
     {
       "id": "button-material",
       "slug": "button",
       "design": "Material",
       "area": "Material control",
-      "masks": []
+      "masks": [],
+      "sha256": "1ed04e164c09895ab429ac5ba6f427d577760c1f41419a8bee114036e5a1a918"
     },
     {
       "id": "button-fluent",
       "slug": "button",
       "design": "Fluent",
       "area": "Fluent control",
-      "masks": []
+      "masks": [],
+      "sha256": "484817258df91b46f4eb094bededf4ae73c0ca50892091bfd90d2c6d6f148770"
     },
     {
       "id": "text-box-fluent",
       "slug": "textbox",
       "design": "Fluent",
       "area": "Fluent input",
-      "masks": []
+      "masks": [],
+      "sha256": "da947f3ce43c4bf6c1bf6da3bd2f28587867c5471b8862b076d2310b0eb6626b"
     },
     {
       "id": "design-tokens-material",
       "slug": "design-tokens",
       "design": "Material",
       "area": "design tokens",
-      "masks": []
+      "masks": [],
+      "sha256": "54fd8cbbe2dcb18068f7e704f035e5de7f7893d4c6bdcfda57054c130ced8cc0"
     },
     {
       "id": "material-palette",
       "slug": "material-palette",
       "design": "Material",
       "area": "Material theming",
-      "masks": []
+      "masks": [],
+      "sha256": "986f9ede6330c2083c35b6cfaa3e195c0c71df8b3c3fe2ea4cb48de89512af92"
     },
     {
       "id": "fluent-palette",
       "slug": "fluent-palette",
       "design": "Fluent",
       "area": "Fluent theming",
-      "masks": []
+      "masks": [],
+      "sha256": "de12065ad2d0d358b0a44a3b9f9866fe2561ec8c3531f4aedafa197c26a4835d"
     },
     {
       "id": "grid-fluent",
       "slug": "grid",
       "design": "Fluent",
       "area": "layout",
-      "masks": []
+      "masks": [],
+      "sha256": "f2782adf555d0026d67d232dc5e9aea3acb53d744286443c512954b30f02a182"
     },
     {
       "id": "list-view-fluent",
       "slug": "listview",
       "design": "Fluent",
       "area": "collection",
-      "masks": []
+      "masks": [],
+      "sha256": "35b0d4b06f88e6ad88037cb59740ba372973392b5356b4aed57dc913622a22dd"
     },
     {
       "id": "auto-layout-agnostic",
       "slug": "autolayout",
       "design": "Agnostic",
       "area": "Toolkit layout",
-      "masks": []
+      "masks": [],
+      "sha256": "1aeadb73bf4a217b83b47f99c3b3282384a576b8c6c8bb29ed9020c7cb22a146"
     },
     {
       "id": "card-content-control-material",
       "slug": "card-content-control",
       "design": "Material",
       "area": "Toolkit control",
-      "masks": []
+      "masks": [],
+      "sha256": "187f98a2fcc7bc4f2eff2840d2d0ebc89950020eba2a65611f534ff140103630"
     },
     {
       "id": "accessibility-agnostic",
       "slug": "accessibility",
       "design": "Agnostic",
       "area": "accessibility",
-      "masks": []
+      "masks": [],
+      "sha256": "0301ce96177ae06cb72481c1c4b0dbf80481cf2984378d88bc575495006b676d"
     },
     {
       "id": "localization-rtl-agnostic",
       "slug": "localization-rtl",
       "design": "Agnostic",
       "area": "localization",
-      "masks": []
+      "masks": [],
+      "sha256": "e3dfb2e949c2ad0cf7ed839f9878bd9d454025281ed99ca2320889cb4ccb8e4c"
     }
   ]
 }

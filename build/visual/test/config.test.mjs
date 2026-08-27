@@ -28,4 +28,10 @@ test("loose tolerances and invalid masks are rejected", () => {
   const masked = structuredClone(config);
   masked.samples[0].masks = [{ x: 1199, y: 0, width: 2, height: 1 }];
   assert.throws(() => validateConfig(masked), /invalid mask/);
+  const overlapping = structuredClone(config);
+  overlapping.samples[0].masks = [
+    { x: 0, y: 0, width: 2, height: 2 },
+    { x: 1, y: 1, width: 2, height: 2 }
+  ];
+  assert.throws(() => validateConfig(overlapping), /overlapping masks/);
 });

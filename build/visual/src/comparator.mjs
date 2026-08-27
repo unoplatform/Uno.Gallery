@@ -11,16 +11,23 @@ export function decodePng(buffer, label = "PNG") {
 
 function applyMasks(image, masks) {
   const result = new PNG({ width: image.width, height: image.height });
+  const maskedPixels = new Uint8Array(image.width * image.height);
+  let maskedPixelCount = 0;
   image.data.copy(result.data);
   for (const mask of masks) {
     for (let y = mask.y; y < mask.y + mask.height; y++) {
       for (let x = mask.x; x < mask.x + mask.width; x++) {
         const offset = (y * result.width + x) * 4;
         result.data.fill(0, offset, offset + 4);
+        const pixelOffset = y * result.width + x;
+        if (!maskedPixels[pixelOffset]) {
+          maskedPixels[pixelOffset] = 1;
+          maskedPixelCount++;
+        }
       }
     }
   }
-  return result;
+  return { image: result, maskedPixelCount };
 }
 
 export function comparePngBuffers(expectedBuffer, actualBuffer, options = {}) {
@@ -43,8 +50,8 @@ export function comparePngBuffers(expectedBuffer, actualBuffer, options = {}) {
   const maskedActual = applyMasks(actual, masks);
   const diff = new PNG({ width: actual.width, height: actual.height });
   const differentPixels = pixelmatch(
-    maskedExpected.data,
-    maskedActual.data,
+    maskedExpected.image.data,
+    maskedActual.image.data,
     diff.data,
     actual.width,
     actual.height,
@@ -55,9 +62,19 @@ export function comparePngBuffers(expectedBuffer, actualBuffer, options = {}) {
       aaColor: [255, 255, 0]
     }
   );
-  const comparedPixels = actual.width * actual.height
-    - masks.reduce((sum, mask) => sum + mask.width * mask.height, 0);
-  const diffRatio = comparedPixels === 0 ? 0 : differentPixels / comparedPixels;
+  const comparedPixels = actual.width * actual.height - maskedExpected.maskedPixelCount;
+  if (comparedPixels <= 0) {
+    return {
+      passed: false,
+      reason: "masks leave no comparable pixels",
+      width: actual.width,
+      height: actual.height,
+      differentPixels,
+      diffRatio: 1,
+      diffBuffer: PNG.sync.write(diff)
+    };
+  }
+  const diffRatio = differentPixels / comparedPixels;
   const maxDiffRatio = options.maxDiffRatio ?? 0;
   return {
     passed: diffRatio <= maxDiffRatio,
