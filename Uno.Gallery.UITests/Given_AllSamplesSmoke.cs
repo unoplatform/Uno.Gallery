@@ -13,17 +13,36 @@ public sealed class Given_AllSamplesSmoke : UITestBase
 	[Test]
 	public void All_target_compatible_stable_samples_load()
 	{
-		var manifest = RetrieveManifest();
-		var samples = SmokeCatalog.ParseStableSamples(manifest);
 		var failures = new List<SmokeFailure>();
-
-		Assert.That(samples, Is.Not.Empty, "The target manifest must contain stable samples.");
-		TestContext.Progress.WriteLine(
-			$"Catalog smoke: {samples.Count} target-compatible stable samples, design={SmokeDesign}.");
-
-		foreach (var sample in samples)
+		var smokeStarted = false;
+		try
 		{
-			SmokeSample(sample, failures);
+			BeginSmoke();
+			smokeStarted = true;
+			var manifest = RetrieveManifest();
+			var samples = SmokeCatalog.ParseStableSamples(manifest);
+
+			Assert.That(samples, Is.Not.Empty, "The target manifest must contain stable samples.");
+			TestContext.Progress.WriteLine(
+				$"Catalog smoke: {samples.Count} target-compatible stable samples, preferred design={SmokeDesign}.");
+
+			foreach (var sample in samples)
+			{
+				SmokeSample(sample, failures);
+			}
+
+			var lateError = TryGetUITestState("get-error");
+			if (!string.IsNullOrWhiteSpace(lateError))
+			{
+				failures.Add(new SmokeFailure("post-batch", "unknown", lateError));
+			}
+		}
+		finally
+		{
+			if (smokeStarted)
+			{
+				EndSmoke();
+			}
 		}
 
 		Assert.That(failures, Is.Empty, SmokeCatalog.FormatFailures(failures));
@@ -59,21 +78,27 @@ public sealed class Given_AllSamplesSmoke : UITestBase
 
 	private void SmokeSample(SmokeSample sample, ICollection<SmokeFailure> failures)
 	{
-		var expectedMarker = sample.Slug + "\n" + SmokeDesign;
+		var renderedDesign = SmokeDesign;
 		Exception? harnessFailure = null;
 
 		try
 		{
+			var pendingError = GetUITestState("get-error");
+			if (!string.IsNullOrWhiteSpace(pendingError))
+			{
+				failures.Add(new SmokeFailure(sample.Slug, "before-navigation", pendingError));
+			}
 			ResetUnhandledException();
 			var token = Guid.NewGuid().ToString("N");
 			SendBackdoorCommand($"uitest:navigate:{sample.Slug}:{SmokeDesign}:{token}", token);
-			WaitForHostMarker(expectedMarker);
+			renderedDesign = WaitForHostMarker(sample.Slug);
 
 			var unhandled = GetUITestState("get-error");
 			if (!string.IsNullOrWhiteSpace(unhandled))
 			{
-				failures.Add(new SmokeFailure(sample.Slug, SmokeDesign, unhandled));
+				failures.Add(new SmokeFailure(sample.Slug, renderedDesign, unhandled));
 			}
+			ResetUnhandledException();
 		}
 		catch (Exception exception)
 		{
@@ -82,13 +107,13 @@ public sealed class Given_AllSamplesSmoke : UITestBase
 			var details = string.IsNullOrWhiteSpace(appException)
 				? exception.ToString()
 				: exception + Environment.NewLine + "App exception:" + Environment.NewLine + appException;
-			failures.Add(new SmokeFailure(sample.Slug, SmokeDesign, details));
+			failures.Add(new SmokeFailure(sample.Slug, renderedDesign, details));
 		}
 		finally
 		{
 			try
 			{
-				TakeScreenshot($"smoke_{sample.Slug}_{SmokeDesign}");
+				TakeScreenshot($"smoke_{sample.Slug}_{renderedDesign}");
 			}
 			catch (Exception screenshotException)
 			{
@@ -96,37 +121,53 @@ public sealed class Given_AllSamplesSmoke : UITestBase
 				{
 					failures.Add(new SmokeFailure(
 						sample.Slug,
-						SmokeDesign,
+						renderedDesign,
 						"Diagnostic screenshot failed: " + screenshotException));
 				}
 			}
 		}
 	}
 
-	private void WaitForHostMarker(string expected)
+	private string WaitForHostMarker(string slug)
 	{
+		var expectedPrefix = slug + "\n";
 		var stopwatch = Stopwatch.StartNew();
 		while (stopwatch.Elapsed < HostLoadTimeout)
 		{
 			var marker = TryGetUITestState("get-marker");
-			if (string.Equals(marker, expected, StringComparison.Ordinal))
+			if (marker.StartsWith(expectedPrefix, StringComparison.Ordinal))
 			{
-				return;
+				var renderedDesign = marker[expectedPrefix.Length..];
+				TestContext.Progress.WriteLine(
+					$"Smoke loaded '{slug}' using rendered design '{renderedDesign}'.");
+				return renderedDesign;
 			}
 
 			var exception = TryGetUITestState("get-error");
 			if (!string.IsNullOrWhiteSpace(exception))
 			{
 				throw new InvalidOperationException(
-					$"The app reported an exception before host marker '{expected}':{Environment.NewLine}{exception}");
+					$"The app reported an exception before host marker for '{slug}':{Environment.NewLine}{exception}");
 			}
 
 			Thread.Sleep(TimeSpan.FromMilliseconds(100));
 		}
 
 		throw new TimeoutException(
-			$"Timed out after {HostLoadTimeout.TotalSeconds:0}s waiting for sample host marker '{expected}'. " +
+			$"Timed out after {HostLoadTimeout.TotalSeconds:0}s waiting for sample host marker for '{slug}'. " +
 			$"Last marker was '{TryGetUITestState("get-marker")}'.");
+	}
+
+	private void BeginSmoke()
+	{
+		var token = Guid.NewGuid().ToString("N");
+		SendBackdoorCommand("uitest:begin-smoke:" + token, token);
+	}
+
+	private void EndSmoke()
+	{
+		var token = Guid.NewGuid().ToString("N");
+		SendBackdoorCommand("uitest:end-smoke:" + token, token);
 	}
 
 	private void ResetUnhandledException()

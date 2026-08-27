@@ -17,7 +17,7 @@ public partial class SamplePageLayout
 		if (DataContext is Sample sample)
 		{
 			var shell = Shell.GetForElement(this);
-			shell.UITestSampleHostLoadedState = sample.Slug + "\n" + CurrentDesign;
+			shell.UITestSampleHostLoadedState = sample.Slug + "\n" + UITestRenderedDesign;
 		}
 	}
 }

@@ -7,6 +7,8 @@ public sealed partial class Shell
 
 	internal string UITestUnhandledExceptionState { get; set; } = string.Empty;
 
+	internal bool UITestSmokeCaptureEnabled { get; set; }
+
 	private void InitializeUITestResponse()
 		=> UITestBackdoorResponse.Visibility = Microsoft.UI.Xaml.Visibility.Visible;
 

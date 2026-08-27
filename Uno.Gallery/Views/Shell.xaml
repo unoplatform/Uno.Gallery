@@ -663,6 +663,7 @@
 				 Height="1"
 				 Opacity="1"
 				 IsHitTestVisible="False"
+				 IsTabStop="False"
 				 Visibility="Collapsed"
 				 AutomationProperties.AutomationId="UITestBackdoorResponse" />
 	</Grid>

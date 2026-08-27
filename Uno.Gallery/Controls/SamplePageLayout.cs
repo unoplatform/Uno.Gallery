@@ -265,6 +265,10 @@ namespace Uno.Gallery
 		/// <summary>Returns the currently preferred design.</summary>
 		public static Design CurrentDesign => _design;
 
+#if USE_UITESTS
+		internal Design UITestRenderedDesign { get; private set; }
+#endif
+
 		private void RegisterEvent(RoutedEventHandler click)
 		{
 			click += OnLayoutRadioButtonChecked;
@@ -318,6 +322,9 @@ namespace Uno.Gallery
 			var current = LayoutModeMappings.FirstOrDefault(x => x.Design == design);
 			if (current != null)
 			{
+#if USE_UITESTS
+				UITestRenderedDesign = design;
+#endif
 				current.RadioButton?.Apply(x => x.IsChecked = true);
 				current.StickyRadioButton?.Apply(x => x.IsChecked = true);
 

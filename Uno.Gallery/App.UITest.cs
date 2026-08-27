@@ -25,6 +25,18 @@ public partial class App
 		{
 			switch (parts.ElementAtOrDefault(1))
 			{
+				case "begin-smoke" when parts.Length == 3:
+					shell.UITestUnhandledExceptionState = string.Empty;
+					shell.UITestSampleHostLoadedState = string.Empty;
+					shell.UITestSmokeCaptureEnabled = true;
+					ReturnUITestResponse(shell, parts[2], "ok");
+					break;
+
+				case "end-smoke" when parts.Length == 3:
+					shell.UITestSmokeCaptureEnabled = false;
+					ReturnUITestResponse(shell, parts[2], "ok");
+					break;
+
 				case "manifest" when parts.Length == 4 && int.TryParse(parts[3], out var chunkIndex):
 					ReturnUITestManifestChunk(shell, parts[2], chunkIndex);
 					break;
@@ -108,13 +120,12 @@ public partial class App
 	private void OnUITestUnhandledException(object sender, Microsoft.UI.Xaml.UnhandledExceptionEventArgs args)
 	{
 		var shell = MainWindow?.Content as Shell;
-		if (shell is not null)
+		if (shell?.UITestSmokeCaptureEnabled == true)
 		{
 			RecordUITestException(shell, args.Exception);
+			// Keep the process alive only while the smoke batch is deliberately aggregating failures.
+			args.Handled = true;
 		}
-
-		// Keep the process alive so the batched smoke test can report every failing sample.
-		args.Handled = true;
 	}
 
 	private static void RecordUITestException(Shell shell, Exception exception)

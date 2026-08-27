@@ -42,6 +42,14 @@ mkdir -p $UNO_UITEST_SCREENSHOT_PATH
 
 # Start the server
 dotnet-serve -p 5000 -d "$UNO_UITEST_WASM_OUTPUT_PATH" &
+SERVER_PID=$!
+cleanup() {
+	if kill -0 "$SERVER_PID" 2>/dev/null; then
+		kill "$SERVER_PID" 2>/dev/null || true
+		wait "$SERVER_PID" 2>/dev/null || true
+	fi
+}
+trap cleanup EXIT
 
 cd $UNO_UITEST_PROJECT
 
@@ -58,7 +66,8 @@ if [[ "$TEST_TIER" != "All" ]]; then
 fi
 
 echo "Running $TEST_TIER UITest tier"
-dotnet test "${TEST_ARGS[@]}" \
-	|| true
-
-kill %%
+set +e
+dotnet test "${TEST_ARGS[@]}"
+TEST_EXIT=$?
+set -e
+exit "$TEST_EXIT"

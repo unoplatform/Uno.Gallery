@@ -1,5 +1,6 @@
 using System.Reflection;
 using Microsoft.UI.Dispatching;
+using Uno.Gallery.Helpers;
 using Uno.Gallery.Views.GeneralPages;
 using MUXC = Microsoft.UI.Xaml.Controls;
 
@@ -121,8 +122,12 @@ internal sealed class ShellNavigator : IGalleryNavigator
 		page.DataContext = canonical;
 #if USE_UITESTS
 		page.Loaded += (_, _) =>
-			_shell.UITestSampleHostLoadedState =
-				canonical.Slug + "\n" + SamplePageLayout.CurrentDesign;
+		{
+			if (VisualTreeHelperEx.GetFirstDescendant<SamplePageLayout>(page) is null)
+			{
+				_shell.UITestSampleHostLoadedState = canonical.Slug + "\n" + Design.Agnostic;
+			}
+		};
 #endif
 
 #if __WASM__
