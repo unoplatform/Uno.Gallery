@@ -10,7 +10,7 @@ public sealed class SmokeCatalogTests
 	{
 		const string json = """
 			{
-			  "schemaVersion": 1,
+			  "schemaVersion": 2,
 			  "samples": [
 			    { "fqn": "Gallery.A", "slug": "z-slug", "title": "A", "status": { "value": 0, "name": "Stable" } },
 			    { "fqn": "Gallery.B", "slug": "preview", "title": "B", "status": { "value": 1, "name": "Preview" } },
@@ -40,6 +40,24 @@ public sealed class SmokeCatalogTests
 		Assert.That(
 			() => SmokeCatalog.ParseStableSamples(json),
 			Throws.TypeOf<InvalidDataException>().With.Message.Contains("deterministically ordered"));
+	}
+
+	[TestCase(99, "99")]
+	[TestCase(0, "Preview")]
+	public void Parse_rejects_unknown_or_inconsistent_status(int value, string name)
+	{
+		var json = $$"""
+			{
+			  "schemaVersion": 2,
+			  "samples": [
+			    { "fqn": "Gallery.A", "slug": "a", "status": { "value": {{value}}, "name": "{{name}}" } }
+			  ]
+			}
+			""";
+
+		Assert.That(
+			() => SmokeCatalog.ParseStableSamples(json),
+			Throws.TypeOf<InvalidDataException>().With.Message.Contains("unknown or inconsistent status"));
 	}
 
 	[Test]

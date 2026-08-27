@@ -57,6 +57,12 @@ turns off app-owned `SamplePageLayout` transitions. It does not write
 Every hook is preprocessor-guarded; disabled Release builds retain their
 existing code paths and labels.
 
+The visual artifact uses full AOT rather than the historical production profile.
+Visual routes change as samples join the pilot, and a stale profile can leave a
+newly rendered resource getter in the interpreter even when that opcode cannot
+be interpreted. The deployable Skia artifact keeps its production profile;
+full AOT applies only to the separate advisory visual build.
+
 ### Tolerance and masks
 
 PNG dimensions must match. Pixelmatch uses a YIQ color-distance threshold of

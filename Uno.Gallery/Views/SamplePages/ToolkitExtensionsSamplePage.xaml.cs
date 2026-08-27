@@ -22,7 +22,7 @@ namespace Uno.Gallery.Views.Samples;
 	SupportedRenderers = SampleRenderers.Native | SampleRenderers.Skia | SampleRenderers.DOM,
 	Requirements = new[] { SampleContractDefaults.NoExternalRequirements },
 	AccessibilityNotes = new[] { "Input, toggle, resource, state, and selection examples provide named controls plus deterministic text status." },
-	ResetBehavior = SampleContractDefaults.ReloadToReset,
+	ResetBehavior = "Page-local visual states reset when reopened; command result text is cached for this window until the Gallery process restarts.",
 	Variants = new[] { "Input and command helpers", "Scoped resources", "Attached visual states", "Selector synchronization" },
 	Owner = "unoplatform",
 	ReviewedOn = "2026-08-27",

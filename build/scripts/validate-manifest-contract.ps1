@@ -17,7 +17,8 @@ $repoRoot = (Resolve-Path (Join-Path $PSScriptRoot '..\..')).Path
 $exportScript = Join-Path $PSScriptRoot 'export-sample-manifest.ps1'
 $contractReportScript = Join-Path $PSScriptRoot 'report-sample-contract.ps1'
 $compareScript = Join-Path $PSScriptRoot 'compare-feature-coverage.ps1'
-$sampleSchema = Join-Path $repoRoot 'docs\catalog\sample-manifest-v1.schema.json'
+$sampleSchemaV1 = Join-Path $repoRoot 'docs\catalog\sample-manifest-v1.schema.json'
+$sampleSchemaV2 = Join-Path $repoRoot 'docs\catalog\sample-manifest-v2.schema.json'
 $upstreamSchema = Join-Path $repoRoot 'docs\catalog\upstream-feature-manifest-v1.schema.json'
 $coverageSchema = Join-Path $repoRoot 'docs\catalog\feature-coverage-v1.schema.json'
 $baselinePath = Join-Path $repoRoot 'docs\catalog\sample-manifest-baseline-v1.json'
@@ -38,10 +39,18 @@ $previewCoveragePath = Join-Path $scratchDirectory 'preview-coverage.json'
 $invalidSourcePath = Join-Path $scratchDirectory 'invalid-source.json'
 $invalidContractPath = Join-Path $scratchDirectory 'invalid-contract.json'
 $escapedStablePath = Join-Path $scratchDirectory 'escaped-stable.json'
+$newImplicitStablePath = Join-Path $scratchDirectory 'new-implicit-stable.json'
+$promotedLegacyPath = Join-Path $scratchDirectory 'promoted-legacy.json'
 $contractReportPath = Join-Path $OutputDirectory 'sample-contract-report.json'
 $secondContractReportPath = Join-Path $scratchDirectory 'sample-contract-report-second.json'
 
 & $exportScript -GeneratedSourcePath $GeneratedSourcePath -OutputPath $manifestPath
+$manifestEnvelope = Get-Content $manifestPath -Raw | ConvertFrom-Json -Depth 5
+$sampleSchema = switch ([int]$manifestEnvelope.schemaVersion) {
+    1 { $sampleSchemaV1 }
+    2 { $sampleSchemaV2 }
+    default { throw "Unsupported sample manifest schema version '$($manifestEnvelope.schemaVersion)'." }
+}
 
 foreach ($pair in @(
     @($manifestPath, $sampleSchema),
@@ -136,6 +145,54 @@ try {
 }
 if (-not $escapedStableWasRejected) {
     throw 'The contract completeness report accepted an explicitly Stable legacy entry.'
+}
+
+$newImplicitStable = Get-Content $manifestPath -Raw | ConvertFrom-Json -Depth 100
+$newImplicitStableSample = @($newImplicitStable.samples | Where-Object { $_.contractVersion -eq 0 })[0]
+$newImplicitStableSample.slug = 'new-implicit-stable'
+$newImplicitStableSample.status.value = 0
+$newImplicitStableSample.status.name = 'Stable'
+$newImplicitStableSample.statusExplicit = $false
+$newImplicitStable | ConvertTo-Json -Depth 20 -Compress | Set-Content $newImplicitStablePath -Encoding utf8NoBOM
+$newImplicitStableWasRejected = $false
+try {
+    & $contractReportScript `
+        -ManifestPath $newImplicitStablePath `
+        -BaselinePath $baselinePath `
+        -TargetName $TargetName `
+        -OutputPath (Join-Path $scratchDirectory 'new-implicit-stable-report.json') `
+        -Quiet
+} catch {
+    if ($_.Exception.Message -notmatch 'not in the frozen legacy allowlist') { throw }
+    $newImplicitStableWasRejected = $true
+}
+if (-not $newImplicitStableWasRejected) {
+    throw 'The contract completeness report accepted a new implicit-Stable legacy entry.'
+}
+
+$promotedLegacy = Get-Content $manifestPath -Raw | ConvertFrom-Json -Depth 100
+$promotedLegacySample = @($promotedLegacy.samples | Where-Object { $_.slug -eq 'diagnostics' })[0]
+if ($null -eq $promotedLegacySample) {
+    throw "The contract self-test requires the Experimental 'diagnostics' sample."
+}
+$promotedLegacySample.status.value = 0
+$promotedLegacySample.status.name = 'Stable'
+$promotedLegacySample.statusExplicit = $false
+$promotedLegacy | ConvertTo-Json -Depth 20 -Compress | Set-Content $promotedLegacyPath -Encoding utf8NoBOM
+$promotedLegacyWasRejected = $false
+try {
+    & $contractReportScript `
+        -ManifestPath $promotedLegacyPath `
+        -BaselinePath $baselinePath `
+        -TargetName $TargetName `
+        -OutputPath (Join-Path $scratchDirectory 'promoted-legacy-report.json') `
+        -Quiet
+} catch {
+    if ($_.Exception.Message -notmatch 'not in the frozen legacy allowlist') { throw }
+    $promotedLegacyWasRejected = $true
+}
+if (-not $promotedLegacyWasRejected) {
+    throw 'The contract completeness report accepted a legacy Experimental sample promoted implicitly to Stable.'
 }
 
 $invalidCoverage = Get-Content $contractCoveragePath -Raw | ConvertFrom-Json -Depth 100

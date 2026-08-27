@@ -99,17 +99,21 @@
 						   Opacity="0.45"
 						   Style="{StaticResource BodySmall}"
 						   Text="COMPATIBILITY" />
-				<TextBlock Margin="0,4,0,0"
+				<TextBlock AutomationProperties.AutomationId="PART_DesignsText"
+						   Margin="0,4,0,0"
 						   Foreground="{ThemeResource OnBackgroundBrush}"
 						   Opacity="0.8"
-						   Style="{StaticResource BodySmall}">
+						   Style="{StaticResource BodySmall}"
+						   TextWrapping="Wrap">
 					<Run x:Uid="SampleDesignsLabel"
 						 Text="Designs: " />
 					<Run Text="{Binding SupportedDesignsDisplay}" />
 				</TextBlock>
-				<TextBlock Foreground="{ThemeResource OnBackgroundBrush}"
+				<TextBlock AutomationProperties.AutomationId="PART_RenderersText"
+						   Foreground="{ThemeResource OnBackgroundBrush}"
 						   Opacity="0.8"
-						   Style="{StaticResource BodySmall}">
+						   Style="{StaticResource BodySmall}"
+						   TextWrapping="Wrap">
 					<Run x:Uid="SampleRenderersLabel"
 						 Text="Renderers: " />
 					<Run Text="{Binding SupportedRenderersDisplay}" />

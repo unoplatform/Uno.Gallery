@@ -6,7 +6,7 @@ namespace Uno.Gallery.Views.SamplePages
 	[SamplePage(SampleCategory.Toolkit, "AutoLayout",
 		SourceSdk.UnoToolkit,
 		Description = "A Figma-inspired layout panel that stacks children with configurable spacing, alignment, and independent overlay support.",
-		DocumentationLink = "https://platform.uno/docs/articles/external/uno.toolkit.ui/doc/controls/AutoLayout.html",
+		DocumentationLink = "https://platform.uno/docs/articles/external/uno.toolkit.ui/doc/controls/AutoLayoutControl.html",
 		Tags = new[] { "layout", "panel", "figma" },
 		Status = SampleStatus.Stable,
 		ContractVersion = 1,

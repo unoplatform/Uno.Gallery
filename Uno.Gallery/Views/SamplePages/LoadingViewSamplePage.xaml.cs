@@ -22,7 +22,7 @@ namespace Uno.Gallery.Views.SamplePages
 		SupportedRenderers = SampleRenderers.Native | SampleRenderers.Skia | SampleRenderers.DOM,
 		Requirements = new[] { "Loading is simulated locally with deterministic delays; no network access is required." },
 		AccessibilityNotes = new[] { "Named load buttons initiate each operation and visible loading text communicates the active state." },
-		ResetBehavior = "Wait for the simulated operation to finish, or reopen the sample to cancel and reset it.",
+		ResetBehavior = "Wait for active operations to finish. Result text is cached for this window; restart the Gallery process to clear it.",
 		Variants = new[] { "Single ILoadable source", "CompositeLoadableSource with fast and slow operations", "Transitions enabled or disabled" },
 		Owner = "unoplatform",
 		ReviewedOn = "2026-08-26",

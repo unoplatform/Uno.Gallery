@@ -5,7 +5,7 @@ generator emits `SampleManifest.g.cs`; it does not write arbitrary files.
 
 During a normal platform build, CI enables compiler-generated source output.
 `build/scripts/export-sample-manifest.ps1` parses that generated C# with Roslyn,
-reconstructs the exact schema-v1 JSON returned by `SampleManifest.GetJson()`,
+reconstructs the exact schema-v2 JSON returned by `SampleManifest.GetJson()`,
 checks deterministic FQN ordering and unique slugs, then writes:
 
 - `sample-manifest.json`;
@@ -15,11 +15,12 @@ checks deterministic FQN ordering and unique slugs, then writes:
 `validate-manifest-contract.ps1` validates the committed schemas, checks the
 sample and contract-v1 count/slug baselines, and proves the comparator rejects a
 missing Gallery slug. It also hard-fails if a contract-v1 entry is incomplete or
-an explicitly Stable entry escaped generator enforcement. The report keeps the
-legacy backlog count and slugs visible; it does not claim that migration is
-complete. The exported JSON, SHA, and report are published for the DOM and Skia WebAssembly build
-targets. The Desktop baseline is available for local validation but is not yet
-published by CI.
+an explicitly Stable entry escaped generator enforcement, or a new implicit
+Stable slug is not in the frozen per-target legacy allowlist. The report keeps
+the grandfathered legacy backlog count and slugs visible; it does not claim that
+migration is complete. The exported JSON, SHA, and report are published for the
+DOM and Skia WebAssembly build targets. The Desktop baseline is available for
+local validation but is not yet published by CI.
 The DOM build also produces an advisory `feature-coverage-report.json`.
 
 ## Upstream handoff
@@ -43,3 +44,7 @@ The intended handoff is:
 
 Until step 1 is accepted cross-repository, CI compares the local fixture only
 and labels its report accordingly.
+
+`sample-manifest-v1.schema.json` is retained unchanged for existing artifacts.
+Contract metadata required a breaking producer-shape change, so current builds
+emit schema version 2 and validate against `sample-manifest-v2.schema.json`.

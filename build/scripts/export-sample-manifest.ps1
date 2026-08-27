@@ -121,8 +121,8 @@ foreach ($call in $appendCalls) {
 
 $json = $jsonBuilder.ToString()
 $manifest = $json | ConvertFrom-Json -Depth 100
-if ($manifest.schemaVersion -ne 1 -or $null -eq $manifest.samples) {
-    throw 'Generated manifest does not match the schema-v1 envelope.'
+if ($manifest.schemaVersion -notin @(1, 2) -or $null -eq $manifest.samples) {
+    throw 'Generated manifest does not match a supported schema-v1/v2 envelope.'
 }
 
 $fqns = @($manifest.samples | ForEach-Object { [string]$_.fqn })

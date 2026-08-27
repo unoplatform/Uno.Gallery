@@ -2,7 +2,7 @@
 
 ## Status
 
-Accepted
+Proposed
 
 ## Context
 
@@ -20,15 +20,17 @@ renderer support use stable `[Flags]` enums. The manifest records both the
 numeric flag value and deterministic member names, plus whether Status was
 explicitly authored.
 
-Schema version 1 is retained because the change only adds fields and consumers
-are expected to ignore additions. All new fields are present with zero, empty,
-or null defaults for legacy entries. The schema and exporter remain strict for
-the current producer shape.
+The producer advances to sample-manifest schema version 2. The original strict
+schema-v1 document remains unchanged because required fields and
+`additionalProperties: false` make the new shape incompatible in both
+directions. All v2 fields are present with zero, empty, or null defaults for
+legacy entries.
 
 A deterministic per-target report hard-fails incomplete contract-v1 metadata,
-an explicit Stable entry outside contract v1, or configured count/slug
-regressions. It reports both contract-v1 and legacy backlog counts; the first
-migration wave is not represented as catalog-wide completion.
+an explicit Stable entry outside contract v1, a new implicit-Stable slug outside
+the frozen grandfathered allowlist, or configured count/slug regressions. It
+reports both contract-v1 and legacy backlog counts; the first migration wave is
+not represented as catalog-wide completion.
 
 ## Consequences
 

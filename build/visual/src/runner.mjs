@@ -76,7 +76,7 @@ async function terminateChild(child) {
 }
 
 async function launchBrowser(config, profilePath) {
-  await rm(profilePath, { recursive: true, force: true });
+  await removeDirectory(profilePath);
   await mkdir(profilePath, { recursive: true });
   const softwareArgs = config.browser.softwareRendering ? [
     "--use-angle=swiftshader",
@@ -190,11 +190,24 @@ async function openAppPage(browser, baseUrl, config) {
       `${baseUrl}?design=${encodeURIComponent(warmup.design)}#${encodeURIComponent(warmup.slug)}`,
       { waitUntil: "domcontentloaded", timeout: config.capture.timeoutMs }
     );
-    await page.waitForFunction(
-      prefix => performance.getEntriesByType("mark").some(entry => entry.name.startsWith(`${prefix}.`)),
-      { timeout: config.capture.timeoutMs },
-      config.capture.readyMark
-    );
+    const readyDeadline = Date.now() + config.capture.timeoutMs;
+    let ready = false;
+    while (Date.now() < readyDeadline) {
+      monitor.assertClean("warmup");
+      ready = await withTimeout(
+        page.evaluate(
+          prefix => performance.getEntriesByType("mark").some(entry => entry.name.startsWith(`${prefix}.`)),
+          config.capture.readyMark
+        ),
+        readyDeadline - Date.now(),
+        `warmup readiness evaluation exceeded ${config.capture.timeoutMs}ms`
+      );
+      if (ready) break;
+      await new Promise(resolveDelay => setTimeout(resolveDelay, 100));
+    }
+    if (!ready) {
+      throw new Error(`warmup did not emit ${config.capture.readyMark} within ${config.capture.timeoutMs}ms`);
+    }
     await new Promise(resolveDelay => setTimeout(resolveDelay, warmup.delayMs));
     await page.evaluate(async () => {
       if (document.fonts?.ready) await document.fonts.ready;
@@ -452,14 +465,15 @@ export async function runVisual({ mode, config, visualRoot, wasmRoot }) {
     await closeBounded(page);
     await closeBounded(browser);
     await server.stop();
-    await rm(profileDir, { recursive: true, force: true });
-    await rm(baselineStagingDir, { recursive: true, force: true });
+    await removeDirectory(profileDir);
+    await removeDirectory(baselineStagingDir);
     await recoverBaselineSet(baselineDir, baselineBackupDir);
   }
 }
 
 async function closeBounded(resource) {
   if (!resource) return;
+  const child = typeof resource.process === "function" ? resource.process() : null;
   let timer;
   const closed = await Promise.race([
     resource.close().then(() => true).catch(() => true),
@@ -469,9 +483,10 @@ async function closeBounded(resource) {
     })
   ]);
   clearTimeout(timer);
-  if (!closed && typeof resource.process === "function") {
-    const process = resource.process();
-    if (process) await terminateChild(process);
+  if (child && child.exitCode === null) {
+    if (!closed || !await waitForExit(child, 5000)) {
+      await terminateChild(child);
+    }
   }
 }
 
@@ -536,5 +551,29 @@ async function pathExists(path) {
     return true;
   } catch {
     return false;
+  }
+}
+
+async function removeDirectory(path) {
+  await rm(path, {
+    recursive: true,
+    force: true,
+    maxRetries: 20,
+    retryDelay: 200
+  });
+}
+
+async function withTimeout(promise, timeoutMs, message) {
+  let timer;
+  try {
+    return await Promise.race([
+      promise,
+      new Promise((_, reject) => {
+        timer = setTimeout(() => reject(new Error(message)), Math.max(1, timeoutMs));
+        timer.unref();
+      })
+    ]);
+  } finally {
+    clearTimeout(timer);
   }
 }

@@ -67,11 +67,11 @@ built inside a generated `StringBuilder`-based method so that no single string
 literal exceeds the IL US-heap 64 KB limit. No file I/O, no MSBuild targets, and
 no new runtime packages are needed.
 
-**Schema version 1:**
+**Schema version 2:**
 
 ```json
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "samples": [
     {
       "fqn":               "Uno.Gallery.MySamplePage",
@@ -110,7 +110,7 @@ Field notes:
 
 | Field | Type | Notes |
 |---|---|---|
-| `schemaVersion` | `int` | Always `1` in this iteration |
+| `schemaVersion` | `int` | `2` for the contract-aware producer shape |
 | `fqn` | `string` | Fully-qualified C# type name, FQN-sorted deterministically |
 | `slug` | `string` | Final slug (explicit or derived) |
 | `category` / `sourceSdk` / `status` | `{value, name}` | Numeric enum value + member name |
@@ -156,12 +156,17 @@ the generator:
    Roslyn and reconstructs the exact `GetJson()` content.
 3. The script validates ordering and unique slugs, then writes
    `sample-manifest.json` and its SHA-256 sidecar.
-4. CI validates schema-v1 and target-specific minimum/required-slug baselines,
+4. CI validates schema-v2 and target-specific minimum/required-slug baselines,
    then publishes separate DOM and Skia catalog artifacts.
 
 The app is not launched, target assemblies are not loaded through reflection,
 and no catalog file is committed as a second source of truth. ADR 0006 defines
 the separate upstream feature-classification and drift policy.
+
+The original schema-v1 document remains committed unchanged. Adding required
+contract fields and retaining `additionalProperties: false` is not
+bidirectionally compatible, so contract-aware manifests use version 2 rather
+than silently changing version 1.
 
 No app UI change was made as part of this ADR.
 

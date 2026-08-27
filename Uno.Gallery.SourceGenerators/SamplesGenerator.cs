@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Text;
 using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Text;
 
@@ -10,6 +11,105 @@ namespace Uno.Gallery.SourceGenerators;
 [Generator]
 public sealed class SamplesGenerator : IIncrementalGenerator
 {
+	private static readonly HashSet<string> FrozenLegacyStableSlugs = new(StringComparer.Ordinal)
+	{
+		"accelerometer",
+		"acrylic",
+		"animation",
+		"autosuggestbox",
+		"barometer",
+		"binding",
+		"breadcrumbbar",
+		"brush",
+		"button",
+		"calendardatepicker",
+		"calendarview",
+		"card",
+		"checkbox",
+		"chip",
+		"chipgroup",
+		"clipboard",
+		"colorpicker",
+		"combobox",
+		"commandbar",
+		"contentdialog",
+		"cupertino-palette",
+		"datagrid",
+		"datepicker",
+		"display-request",
+		"divider",
+		"elevatedview",
+		"email-manager",
+		"file-and-folder-pickers",
+		"flipview",
+		"floating-action-button",
+		"fluent-palette",
+		"flyout",
+		"gamepad",
+		"geolocator",
+		"grid",
+		"gridview",
+		"gyrometer",
+		"hyperlinkbutton",
+		"icon",
+		"image",
+		"infobadge",
+		"itemsview",
+		"lamp",
+		"launcher",
+		"light-sensor",
+		"lightweight-styling",
+		"listview",
+		"local-settings",
+		"lottie",
+		"magnetometer",
+		"material-palette",
+		"mediaplayerelement",
+		"menubar",
+		"navigationbar",
+		"navigationview",
+		"network-information",
+		"numberbox",
+		"overview",
+		"panel",
+		"passwordbox",
+		"passwordvault",
+		"path",
+		"pedometer",
+		"personpicture",
+		"phonecallmanager",
+		"pipspager",
+		"progress-ring-bar",
+		"radiobutton",
+		"ratingcontrol",
+		"refreshcontainer",
+		"relativepanel",
+		"scrollview",
+		"segmentedcontrol",
+		"shadowcontainer",
+		"shape",
+		"sharing",
+		"simple-orientation",
+		"slider",
+		"stackpanel",
+		"swipecontrol",
+		"tabbar",
+		"tabview",
+		"teachingtip",
+		"textblock",
+		"textbox",
+		"timepicker",
+		"toggleswitch",
+		"transforms",
+		"treeview",
+		"twopaneview",
+		"typography",
+		"variablesizedwrapgrid",
+		"vibration",
+		"viewbox",
+		"webview",
+	};
+
 	// ─── Diagnostics ──────────────────────────────────────────────────────────
 	// UGG0001  Error    Unexpected SamplePageAttribute constructor shape (param count or names)
 	// UGG0002  Error    SamplePageAttribute applied to a non-named-type target
@@ -144,11 +244,11 @@ public sealed class SamplesGenerator : IIncrementalGenerator
 			id: "UGG0011",
 			title: "Sample detail contract is incomplete",
 			messageFormat: "Sample detail contract on '{0}' has missing or invalid fields: {1}. " +
-						   "Explicit Stable samples must author ContractVersion = 1 and a complete contract.",
+						   "Stable samples outside the frozen legacy set must author ContractVersion = 1 and a complete contract.",
 			category: "SamplesGenerator",
 			defaultSeverity: DiagnosticSeverity.Error,
 			isEnabledByDefault: true,
-			description: "Contract-v1 and explicitly Stable samples must provide complete, reviewed detail metadata. " +
+			description: "Contract-v1 and non-grandfathered Stable samples must provide complete, reviewed detail metadata. " +
 						 "Fill every listed field rather than suppressing this diagnostic.");
 	}
 
@@ -621,6 +721,25 @@ public sealed class SamplesGenerator : IIncrementalGenerator
 
 		var (statusValue, statusName) = GetNamedEnumWithName(samplePageAttribute, "Status", 0, "Stable");
 		var statusExplicit = HasNamedArgument(samplePageAttribute, "Status");
+		var enforceFrozenLegacySet = context.TargetNode.SyntaxTree.Options is CSharpParseOptions parseOptions
+			&& parseOptions.PreprocessorSymbolNames.Contains("ENFORCE_SAMPLE_CONTRACT");
+		var expectedStatusName = statusValue switch
+		{
+			0 => "Stable",
+			1 => "Preview",
+			2 => "Experimental",
+			3 => "Deprecated",
+			4 => "Incomplete",
+			_ => null,
+		};
+		if (expectedStatusName is null || !string.Equals(statusName, expectedStatusName, StringComparison.Ordinal))
+		{
+			return TransformResult.Fail(new DiagnosticInfo(
+				Diagnostics.IncompleteSampleContract,
+				declLoc,
+				attributedSymbol.ToDisplayString(),
+				$"Status (undefined or inconsistent value {statusValue}/{statusName})"));
+		}
 		var owner = GetNamedArgumentOrDefault<string>(samplePageAttribute, "Owner", null);
 		var reviewedOn = GetNamedArgumentOrDefault<string>(samplePageAttribute, "ReviewedOn", null);
 		var contractVersion = GetNamedArgumentOrDefault<int>(samplePageAttribute, "ContractVersion", 0);
@@ -632,11 +751,15 @@ public sealed class SamplesGenerator : IIncrementalGenerator
 		var issueLink = GetNamedArgumentOrDefault<string>(samplePageAttribute, "IssueLink", null);
 		var apiLink = GetNamedArgumentOrDefault<string>(samplePageAttribute, "ApiLink", null);
 
-		if ((statusExplicit && statusValue == 0) || contractVersion != 0)
+		var requiresContractV1 = statusValue == 0
+			&& (statusExplicit ||
+				(enforceFrozenLegacySet &&
+				 conditionals?.HasFlag(SampleConditionals.Disabled) != true &&
+				 !FrozenLegacyStableSlugs.Contains(finalSlug)));
+		if (requiresContractV1 || contractVersion != 0)
 		{
 			var invalidContractFields = GetInvalidContractFields(
-				statusExplicit,
-				statusValue,
+				requiresContractV1,
 				contractVersion,
 				description,
 				documentationLink,
@@ -702,8 +825,7 @@ public sealed class SamplesGenerator : IIncrementalGenerator
 	}
 
 	private static List<string> GetInvalidContractFields(
-		bool statusExplicit,
-		int statusValue,
+		bool requiresContractV1,
 		int contractVersion,
 		string? description,
 		string? documentationLink,
@@ -721,7 +843,7 @@ public sealed class SamplesGenerator : IIncrementalGenerator
 	{
 		var invalid = new List<string>();
 		if (contractVersion is not 0 and not 1) invalid.Add("ContractVersion (supported values are 0 and 1)");
-		if (statusExplicit && statusValue == 0 && contractVersion != 1) invalid.Add("ContractVersion (must be 1)");
+		if (requiresContractV1 && contractVersion != 1) invalid.Add("ContractVersion (must be 1)");
 		if (string.IsNullOrWhiteSpace(description)) invalid.Add("Description");
 		if (!IsValidAbsoluteUri(documentationLink)) invalid.Add("DocumentationLink (expected absolute URI)");
 		if (!HasNonWhiteSpaceValues(tags)) invalid.Add("Tags");
@@ -961,7 +1083,7 @@ public sealed class SamplesGenerator : IIncrementalGenerator
 	/// Emits <c>SampleManifest.g.cs</c> — a deterministic JSON catalog of all samples in the
 	/// current compilation target, sorted by FQN and wrapped in a <c>GetJson()</c> method.
 	/// No file I/O or external packages are used; escaping is implemented inline.
-	/// Schema version 1.
+	/// Schema version 2.
 	/// </summary>
 	private static void GenerateManifest(SourceProductionContext context, List<SamplesModel?> sorted)
 	{
@@ -982,18 +1104,18 @@ public sealed class SamplesGenerator : IIncrementalGenerator
 		file.AppendLine("{");
 		file.AppendLine("\t/// <summary>");
 		file.AppendLine("\t/// Deterministic JSON catalog of samples compiled into this target.");
-		file.AppendLine("\t/// Schema version 1. Entries are sorted by fully-qualified type name.");
+		file.AppendLine("\t/// Schema version 2. Entries are sorted by fully-qualified type name.");
 		file.AppendLine("\t/// This is the stable internal contract; physical file export is a future step.");
 		file.AppendLine("\t/// </summary>");
 		file.AppendLine("\t/// <remarks>Generated by <c>SamplesGenerator</c>; do not edit manually.</remarks>");
 		file.AppendLine("\tinternal static class SampleManifest");
 		file.AppendLine("\t{");
-		file.AppendLine("\t\t/// <summary>Returns the deterministic JSON catalog (schema version 1).</summary>");
+		file.AppendLine("\t\t/// <summary>Returns the deterministic JSON catalog (schema version 2).</summary>");
 		file.AppendLine("\t\tpublic static string GetJson()");
 		file.AppendLine("\t\t{");
 		file.AppendLine("\t\t\tvar sb = new global::System.Text.StringBuilder();");
 
-		EmitCSharpStringAppendSafe(file, "{\"schemaVersion\":1,\"samples\":[", 3);
+		EmitCSharpStringAppendSafe(file, "{\"schemaVersion\":2,\"samples\":[", 3);
 
 		bool firstSample = true;
 		foreach (var item in sorted)

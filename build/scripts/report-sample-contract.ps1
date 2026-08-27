@@ -22,8 +22,8 @@ $ErrorActionPreference = 'Stop'
 $manifest = Get-Content $ManifestPath -Raw | ConvertFrom-Json -Depth 100
 $baseline = Get-Content $BaselinePath -Raw | ConvertFrom-Json -Depth 20
 $targetProperty = $baseline.targets.PSObject.Properties[$TargetName]
-if ($manifest.schemaVersion -ne 1 -or $baseline.schemaVersion -ne 1 -or $null -eq $targetProperty) {
-    throw "Contract completeness requires schema-v1 inputs and a '$TargetName' target baseline."
+if ($manifest.schemaVersion -ne 2 -or $baseline.schemaVersion -ne 1 -or $null -eq $targetProperty) {
+    throw "Contract completeness requires a schema-v2 manifest, schema-v1 baseline, and '$TargetName' target."
 }
 
 $designNames = [ordered]@{ 1 = 'Material'; 2 = 'Fluent'; 4 = 'Cupertino'; 8 = 'Native'; 16 = 'Agnostic' }
@@ -46,9 +46,22 @@ function Test-NonEmpty([object] $Value) {
 $contractSlugs = [System.Collections.Generic.List[string]]::new()
 $legacySlugs = [System.Collections.Generic.List[string]]::new()
 $errors = [System.Collections.Generic.List[string]]::new()
+$allowedLegacySlugs = [System.Collections.Generic.HashSet[string]]::new(
+    [string[]]@($baseline.allowedLegacySlugs),
+    [StringComparer]::Ordinal)
+foreach ($slug in @($targetProperty.Value.additionalAllowedLegacySlugs)) {
+    [void]$allowedLegacySlugs.Add([string]$slug)
+}
 
 foreach ($sample in @($manifest.samples)) {
     $slug = [string]$sample.slug
+    $expectedStatusNames = @('Stable', 'Preview', 'Experimental', 'Deprecated', 'Incomplete')
+    $statusValue = [int]$sample.status.value
+    if ($statusValue -lt 0 -or $statusValue -ge $expectedStatusNames.Count -or
+        [string]$sample.status.name -cne $expectedStatusNames[$statusValue]) {
+        $errors.Add("${slug}: unknown or inconsistent status '$($sample.status.value)/$($sample.status.name)'.")
+        continue
+    }
     $isContractV1 = [int]$sample.contractVersion -eq 1
     if ([int]$sample.contractVersion -notin @(0, 1)) {
         $errors.Add("${slug}: unsupported contractVersion '$($sample.contractVersion)'; expected 0 or 1.")
@@ -63,6 +76,10 @@ foreach ($sample in @($manifest.samples)) {
 
     if (-not $isContractV1) {
         $legacySlugs.Add($slug)
+        $isStable = [int]$sample.status.value -eq 0 -and [string]$sample.status.name -eq 'Stable'
+        if ($isStable -and -not $allowedLegacySlugs.Contains($slug)) {
+            $errors.Add("${slug}: implicit Stable sample is not in the frozen legacy allowlist; author ContractVersion = 1.")
+        }
         continue
     }
 

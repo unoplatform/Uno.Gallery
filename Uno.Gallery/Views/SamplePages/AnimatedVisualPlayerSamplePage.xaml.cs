@@ -6,7 +6,7 @@ namespace Uno.Gallery.Views.Samples
 {
 	[SamplePage(SampleCategory.UIComponents, "AnimatedVisualPlayer",
 		Description = Description,
-		DocumentationLink = "https://learn.microsoft.com/windows/apps/design/controls/animated-visual-player",
+		DocumentationLink = "https://learn.microsoft.com/windows/windows-app-sdk/api/winrt/microsoft.ui.xaml.controls.animatedvisualplayer",
 		Slug = "animated-visual-player",
 		Tags = new[] { "animation", "lottie", "visual", "player" },
 		Status = SampleStatus.Stable,

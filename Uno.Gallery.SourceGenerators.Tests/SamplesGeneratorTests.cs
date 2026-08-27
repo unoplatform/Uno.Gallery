@@ -775,7 +775,7 @@ public sealed class SamplesGeneratorTests
 			using Uno.Gallery;
 			namespace Uno.Gallery
 			{
-			    [SamplePage(SampleCategory.Controls, "Stable Control")]
+			    [SamplePage(SampleCategory.Controls, "Button")]
 			    public class StableControlPage { }
 			}
 			""";
@@ -786,6 +786,42 @@ public sealed class SamplesGeneratorTests
 		Assert.That(UggDiagnostics(result), Is.Empty);
 		Assert.That(GetGeneratedSource(result), Does.Contain("(global::Uno.Gallery.SampleStatus)(0)"),
 			"Omitted Status must default to Stable (0)");
+	}
+
+	[Test]
+	public void UGG0011_new_implicit_stable_requires_contract_v1()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "New Stable Control")]
+			    public class NewStableControlPage : Page { }
+			}
+			""";
+
+		var result = RunGenerator([source], ["ENFORCE_SAMPLE_CONTRACT"]);
+		var diagnostic = UggDiagnostics(result).Single(d => d.Id == "UGG0011");
+
+		Assert.That(diagnostic.GetMessage(), Does.Contain("ContractVersion (must be 1)"));
+	}
+
+	[Test]
+	public void UGG0011_undefined_status_is_rejected()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Undefined Status", Status = (SampleStatus)99)]
+			    public class UndefinedStatusPage : Page { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+		var diagnostic = UggDiagnostics(result).Single(d => d.Id == "UGG0011");
+
+		Assert.That(diagnostic.GetMessage(), Does.Contain("Status (undefined or inconsistent value 99/99)"));
 	}
 
 	[Test]
@@ -2779,7 +2815,39 @@ public sealed class SamplesGeneratorTests
 	}
 
 	[Test]
-	public void SampleManifest_emits_valid_json_with_schema_version_1()
+	public void UGG0011_accepts_case_insensitive_http_schemes()
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "Upper Scheme",
+			        ContractVersion = 1,
+			        Status = SampleStatus.Stable,
+			        Description = "Description",
+			        DocumentationLink = "HTTPS://example.com/docs",
+			        Tags = new[] { "contract" },
+			        Owner = "team",
+			        ReviewedOn = "2026-08-27",
+			        SupportedDesigns = SampleDesigns.Fluent,
+			        SupportedRenderers = SampleRenderers.DOM,
+			        Requirements = new[] { "None" },
+			        AccessibilityNotes = new[] { "Keyboard" },
+			        ResetBehavior = "Reload",
+			        Variants = new[] { "Default" },
+			        IssueLink = "HTTP://example.com/issues/1")]
+			    public class UpperSchemePage : Page { }
+			}
+			""";
+
+		var result = RunGenerator([source]);
+
+		Assert.That(UggDiagnostics(result), Is.Empty);
+		Assert.That(InvokeGetJson(result, source), Does.Contain("HTTPS://example.com/docs"));
+	}
+
+	[Test]
+	public void SampleManifest_emits_valid_json_with_schema_version_2()
 	{
 		const string source = """
 			using Uno.Gallery;
@@ -2807,8 +2875,8 @@ public sealed class SamplesGeneratorTests
 		// Parse with System.Text.Json.
 		using var doc = System.Text.Json.JsonDocument.Parse(json!);
 		var root = doc.RootElement;
-		Assert.That(root.GetProperty("schemaVersion").GetInt32(), Is.EqualTo(1),
-			"schemaVersion must be 1");
+		Assert.That(root.GetProperty("schemaVersion").GetInt32(), Is.EqualTo(2),
+			"schemaVersion must be 2");
 
 		var samples = root.GetProperty("samples");
 		Assert.That(samples.GetArrayLength(), Is.EqualTo(1), "Exactly one sample in catalog");

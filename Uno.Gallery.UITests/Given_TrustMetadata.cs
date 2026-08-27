@@ -178,6 +178,8 @@ namespace Uno.Gallery.UITests
 			NavigateToSample("Accessibility");
 
 			App.WaitForElement("PART_CompatibilitySection");
+			App.WaitForElement("PART_DesignsText");
+			App.WaitForElement("PART_RenderersText");
 			App.WaitForElement("PART_RequirementsText");
 			App.WaitForElement("PART_AccessibilityNotesText");
 			App.WaitForElement("PART_VariantsText");
@@ -189,12 +191,18 @@ namespace Uno.Gallery.UITests
 				.GetDependencyPropertyValue<string>("Text");
 			var variants = new QueryEx(x => x.All().Marked("PART_VariantsText"))
 				.GetDependencyPropertyValue<string>("Text");
+			var designsWrapping = new QueryEx(x => x.All().Marked("PART_DesignsText"))
+				.GetDependencyPropertyValue<string>("TextWrapping");
+			var renderersWrapping = new QueryEx(x => x.All().Marked("PART_RenderersText"))
+				.GetDependencyPropertyValue<string>("TextWrapping");
 
 			Assert.Multiple(() =>
 			{
 				Assert.That(requirements, Does.Contain("No permissions"));
 				Assert.That(accessibility, Does.Contain("screen reader"));
 				Assert.That(variants, Does.Contain("Live announcements"));
+				Assert.That(designsWrapping, Is.EqualTo("Wrap"));
+				Assert.That(renderersWrapping, Is.EqualTo("Wrap"));
 			});
 		}
 	}
