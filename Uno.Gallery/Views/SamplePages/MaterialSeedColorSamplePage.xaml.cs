@@ -3,6 +3,7 @@ using Microsoft.UI.Xaml.Controls;
 using Uno.Gallery.ViewModels;
 using Uno.Themes;
 using Windows.UI;
+using Command = Uno.Gallery.ViewModels.Command;
 
 namespace Uno.Gallery.Views.Samples
 {

@@ -33,5 +33,10 @@ namespace Uno.Gallery
 
 		[SampleCategoryInfo("\uE776", "CategoryAccessibility", "Accessibility")]
 		Accessibility = 8,
+
+#if EXTENSIONS_PATTERNS
+		[SampleCategoryInfo("\uE8F1", "CategoryAppPatterns", "App Patterns")]
+		AppPatterns = 9,
+#endif
 	}
 }

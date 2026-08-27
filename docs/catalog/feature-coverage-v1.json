@@ -184,10 +184,12 @@
     {
       "id": "extensions-localization",
       "disposition": "optional-flavor",
-      "gallerySlugs": [],
+      "gallerySlugs": [
+        "extensions-localization"
+      ],
       "owner": "unoplatform",
       "issue": null,
-      "reason": "The core Gallery demonstrates platform resource localization; the Uno.Extensions service belongs in the contained offline app-pattern flavor."
+      "reason": "Built only with EnableExtensionsPatterns=true so the default Gallery retains its dependency graph and x:Uid sample."
     },
     {
       "id": "extensions-authentication",

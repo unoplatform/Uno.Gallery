@@ -21,8 +21,8 @@ else
 	TEST_TIER="Interaction"
 fi
 
-if [[ "$TEST_TIER" != "Smoke" && "$TEST_TIER" != "Interaction" && "$TEST_TIER" != "All" ]]; then
-	echo "UNO_UITEST_TEST_TIER must be Smoke, Interaction, or All (got '$TEST_TIER')." >&2
+if [[ "$TEST_TIER" != "Smoke" && "$TEST_TIER" != "Interaction" && "$TEST_TIER" != "ExtensionsPatterns" && "$TEST_TIER" != "All" ]]; then
+	echo "UNO_UITEST_TEST_TIER must be Smoke, Interaction, ExtensionsPatterns, or All (got '$TEST_TIER')." >&2
 	exit 2
 fi
 
@@ -61,13 +61,28 @@ TEST_ARGS=(
 	-v m
 )
 
+if [[ "${ENABLE_EXTENSIONS_PATTERNS:-false}" == "true" ]]; then
+	TEST_ARGS+=("-p:EnableExtensionsPatterns=true")
+fi
+
 if [[ "$TEST_TIER" != "All" ]]; then
 	TEST_ARGS+=(--filter "TestCategory=$TEST_TIER")
 fi
 
 echo "Running $TEST_TIER UITest tier"
+RESULT_PATH="$BUILD_SOURCESDIRECTORY/build/TestResult.xml"
+rm -f "$RESULT_PATH"
 set +e
 dotnet test "${TEST_ARGS[@]}"
 TEST_EXIT=$?
 set -e
+if [[ "$TEST_EXIT" -eq 0 ]]; then
+	if [[ ! -f "$RESULT_PATH" ]]; then
+		echo "dotnet test succeeded without producing $RESULT_PATH." >&2
+		TEST_EXIT=1
+	elif grep -Eq '<test-run[^>]+total="0"' "$RESULT_PATH"; then
+		echo "dotnet test matched zero tests." >&2
+		TEST_EXIT=1
+	fi
+fi
 exit "$TEST_EXIT"
