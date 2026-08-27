@@ -160,6 +160,8 @@ public sealed class Given_AllSamplesSmoke : UITestBase
 
 	private void BeginSmoke()
 	{
+		App.WaitForElement("AppShell", timeout: TimeSpan.FromSeconds(60));
+		App.WaitForElement("UITestBackdoorResponse", timeout: TimeSpan.FromSeconds(60));
 		var token = Guid.NewGuid().ToString("N");
 		SendBackdoorCommand("uitest:begin-smoke:" + token, token);
 	}
