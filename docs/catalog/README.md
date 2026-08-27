@@ -45,6 +45,9 @@ The intended handoff is:
 Until step 1 is accepted cross-repository, CI compares the local fixture only
 and labels its report accordingly.
 
+Phase-specific decisions and measured deltas are recorded in
+`phase-4-wave-ab-dispositions.md` and `phase-4-wave-c-dispositions.md`.
+
 `sample-manifest-v1.schema.json` is retained unchanged for existing artifacts.
 Contract metadata required a breaking producer-shape change, so current builds
 emit schema version 2 and validate against `sample-manifest-v2.schema.json`.

@@ -119,7 +119,7 @@ public class Given_SearchNavigation : TestBase
 		App.ClearText("SamplesSearchBox");
 		App.EnterText("SamplesSearchBox", "experimental");
 
-		// "diagnostics" is the slug for the Diagnostics sample (SampleCategory.Canary, Status=Experimental).
+		// "diagnostics" is the slug for the Experimental Diagnostics sample.
 		App.WaitForElement("diagnostics");
 	}
 }

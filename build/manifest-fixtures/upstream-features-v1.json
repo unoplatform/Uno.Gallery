@@ -200,6 +200,96 @@
       "package": "Uno.Extensions.Authentication",
       "minimalSamplePath": null,
       "documentation": "https://platform.uno/docs/articles/external/uno.extensions/doc/Learn/Authentication/AuthenticationOverview.html"
+    },
+    {
+      "id": "skcanvas-element",
+      "repository": "unoplatform/uno",
+      "name": "SKCanvasElement",
+      "status": "stable",
+      "package": "Uno.WinUI.Graphics2DSK",
+      "minimalSamplePath": "src/SamplesApp/SamplesApp.Samples/Windows_UI_Composition/SKCanvasElement_Simple.xaml.cs",
+      "documentation": "https://aka.platform.uno/skcanvaselement"
+    },
+    {
+      "id": "composition-visuals",
+      "repository": "unoplatform/uno",
+      "name": "ElementCompositionPreview and compositor visuals",
+      "status": "stable",
+      "package": "Uno.WinUI",
+      "minimalSamplePath": "src/SamplesApp/SamplesApp.Samples/Windows_UI_Composition/VisualTranslationSample.xaml.cs",
+      "documentation": "https://learn.microsoft.com/windows/apps/windows-app-sdk/composition"
+    },
+    {
+      "id": "drag-drop",
+      "repository": "unoplatform/uno",
+      "name": "XAML drag and drop",
+      "status": "stable",
+      "package": "Uno.WinUI",
+      "minimalSamplePath": "src/SamplesApp/SamplesApp.Samples/Windows_UI_Xaml/DragAndDrop/DragDrop_TestPage.xaml.cs",
+      "documentation": "https://learn.microsoft.com/windows/apps/design/input/drag-and-drop"
+    },
+    {
+      "id": "system-backdrop",
+      "repository": "unoplatform/uno",
+      "name": "Mica and Desktop Acrylic SystemBackdrop",
+      "status": "stable",
+      "package": "Uno.WinUI",
+      "minimalSamplePath": "src/SamplesApp/SamplesApp.Samples/Microsoft_UI_Windowing/MicaBackdropTests.xaml.cs",
+      "documentation": "https://learn.microsoft.com/windows/apps/windows-app-sdk/system-backdrop-controller"
+    },
+    {
+      "id": "glcanvas-element",
+      "repository": "unoplatform/uno",
+      "name": "GLCanvasElement",
+      "status": "stable",
+      "package": "Uno.WinUI.Graphics3DGL",
+      "minimalSamplePath": "src/SamplesApp/SamplesApp.Samples/Windows_UI_Composition/GLCanvasElement_Simple.xaml.cs",
+      "documentation": "https://platform.uno/docs/articles/controls/GLCanvasElement.html"
+    },
+    {
+      "id": "camera-capture",
+      "repository": "unoplatform/uno",
+      "name": "CameraCaptureUI",
+      "status": "stable",
+      "package": "Uno.WinUI",
+      "minimalSamplePath": "src/SamplesApp/SamplesApp.Samples/Windows_Media/CameraCaptureUISample.xaml.cs",
+      "documentation": "https://learn.microsoft.com/uwp/api/windows.media.capture.cameracaptureui"
+    },
+    {
+      "id": "map-control",
+      "repository": "unoplatform/uno",
+      "name": "MapControl",
+      "status": "stable",
+      "package": "Uno.WinUI",
+      "minimalSamplePath": "src/SamplesApp/SamplesApp.Samples/Windows_UI_Xaml_Controls/MapPresenter/MapControl.xaml.cs",
+      "documentation": "https://learn.microsoft.com/windows/windows-app-sdk/api/winrt/microsoft.ui.xaml.controls.maps.mapcontrol"
+    },
+    {
+      "id": "printing",
+      "repository": "unoplatform/uno",
+      "name": "PrintManager",
+      "status": "stable",
+      "package": "Uno.WinUI",
+      "minimalSamplePath": null,
+      "documentation": "https://learn.microsoft.com/uwp/api/windows.graphics.printing.printmanager"
+    },
+    {
+      "id": "vulkan-backend",
+      "repository": "unoplatform/uno",
+      "name": "Skia Vulkan backend",
+      "status": "experimental",
+      "package": "Uno.WinUI",
+      "minimalSamplePath": null,
+      "documentation": null
+    },
+    {
+      "id": "native-view-embedding",
+      "repository": "unoplatform/uno",
+      "name": "Native view embedding",
+      "status": "stable",
+      "package": "Uno.WinUI",
+      "minimalSamplePath": "src/SamplesApp/SamplesApp.Samples/Windows_UI_Xaml/UIElementTests/UIElement_Native_Child.xaml",
+      "documentation": "https://platform.uno/docs/articles/native-views.html"
     }
   ]
 }

@@ -12,10 +12,9 @@ namespace Uno.Gallery.Helpers;
 /// <remarks>
 /// <para>
 /// When building with <c>-p:EnablePerformanceMeasurements=true</c> in a Release configuration (without
-/// <c>IS_CANARY_BUILD</c>, <c>DEBUG</c>, or <c>USE_UITESTS</c>), the Diagnostics/Canary UI page remains
-/// hidden — the Canary category is filtered out in <see cref="App.BuildShell"/> for such configurations.
-/// Marks are still recorded and, on WASM, are forwarded to the browser PerformanceTimeline; they can be
-/// read externally via <c>performance.getEntriesByType('mark')</c> without any marshaled export method.
+/// <c>IS_CANARY_BUILD</c>, <c>DEBUG</c>, or <c>USE_UITESTS</c>), the production-visible Diagnostics page
+/// can export the marks. On WASM they are also forwarded to the browser PerformanceTimeline and can be
+/// read externally via <c>performance.getEntriesByType('mark')</c> without a marshaled export method.
 /// </para>
 /// </remarks>
 internal static class PerformanceMarks

@@ -8,7 +8,12 @@ export UNO_UITEST_WASM_PUBLISH_OUT=$BUILD_ARTIFACTSTAGINGDIRECTORY/wasm-uitest-p
 
 cd $BUILD_SOURCESDIRECTORY
 
-dotnet publish -f net10.0-browserwasm -c Debug $UNO_UITEST_WASM_PROJECT -p:UseNativeRendering=true -p:IsUiAutomationMappingEnabled=True -o "$UNO_UITEST_WASM_PUBLISH_OUT" -bl:$UNO_UITEST_SCREENSHOT_PATH/msbuild.binlog
+EXTENSIONS_ARGS=()
+if [[ "${ENABLE_EXTENSIONS_PATTERNS:-false}" == "true" ]]; then
+	EXTENSIONS_ARGS+=("-p:EnableExtensionsPatterns=true")
+fi
+
+dotnet publish -f net10.0-browserwasm -c Debug $UNO_UITEST_WASM_PROJECT -p:UseNativeRendering=true -p:IsUiAutomationMappingEnabled=True "${EXTENSIONS_ARGS[@]}" -o "$UNO_UITEST_WASM_PUBLISH_OUT" -bl:$UNO_UITEST_SCREENSHOT_PATH/msbuild.binlog
 
 WASM_OUT="$UNO_UITEST_WASM_PUBLISH_OUT/wwwroot"
 
