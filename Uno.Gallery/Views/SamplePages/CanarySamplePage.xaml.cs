@@ -24,9 +24,13 @@ namespace Uno.Gallery.Views.Samples
 	}
 
 	[SamplePage(SampleCategory.Canary, "Diagnostics",
+		Description = "Offline build, renderer, platform, execution-mode, feature-availability, and performance diagnostics.",
+		DocumentationLink = "https://platform.uno/docs/articles/uno-development/uno-internals.html",
+		Slug = "diagnostics",
+		Tags = new[] { "diagnostics", "renderer", "platform", "aot", "offline" },
 		Status = SampleStatus.Experimental,
 		Owner = "unoplatform/maintainers",
-		ReviewedOn = "2026-08-25")]
+		ReviewedOn = "2026-08-27")]
 	public sealed partial class CanarySamplePage : Page
 	{
 		private bool _assembliesLoaded;
@@ -40,6 +44,17 @@ namespace Uno.Gallery.Views.Samples
 		private void NavigateAllPages_Click(object sender, RoutedEventArgs e)
 		{
 			_ = App.Instance.NavigateToAllPages();
+		}
+
+		private void BuildDiagnostics_Loaded(object sender, RoutedEventArgs e)
+		{
+			((TextBlock)sender).Text =
+				$"Renderer: {BuildInfo.Renderer}{Environment.NewLine}" +
+				$"Backend: {BuildInfo.Backend}{Environment.NewLine}" +
+				$"Platform: {BuildInfo.Platform}{Environment.NewLine}" +
+				$"Target framework: {BuildInfo.TargetFramework}{Environment.NewLine}" +
+				$"Build: {BuildInfo.Configuration}; execution: {BuildInfo.ExecutionMode}{Environment.NewLine}" +
+				$"Features: {BuildInfo.FeatureAvailability}";
 		}
 
 		private void PerfMarksTextBox_Loaded(object sender, RoutedEventArgs e)

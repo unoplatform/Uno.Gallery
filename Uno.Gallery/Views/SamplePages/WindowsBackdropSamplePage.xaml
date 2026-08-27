@@ -1,0 +1,39 @@
+<Page
+	x:Class="Uno.Gallery.Views.Samples.WindowsBackdropSamplePage"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:local="using:Uno.Gallery"
+	xmlns:smtx="using:ShowMeTheXAML">
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<local:SamplePageLayout x:Name="SamplePageLayoutRoot" IsDesignAgnostic="True">
+			<local:SamplePageLayout.DesignAgnosticTemplate>
+				<DataTemplate>
+					<smtx:XamlDisplay UniqueKey="WindowsBackdrop_Window"
+									 smtx:XamlDisplayExtensions.Header="Windows system backdrop and AppWindow">
+						<StackPanel Spacing="12">
+							<TextBlock Text="This Windows-only sample applies a backdrop to the existing Gallery window. It does not create a second window or replace the navigator."
+									   TextWrapping="Wrap" />
+							<StackPanel Orientation="Horizontal" Spacing="8">
+								<Button Content="Apply Mica"
+										Click="ApplyMica_Click"
+										AutomationProperties.AutomationId="Backdrop_ApplyMica" />
+								<Button Content="Apply Desktop Acrylic"
+										Click="ApplyAcrylic_Click"
+										AutomationProperties.AutomationId="Backdrop_ApplyAcrylic" />
+								<Button Content="Clear"
+										Click="ClearBackdrop_Click"
+										AutomationProperties.AutomationId="Backdrop_Clear" />
+							</StackPanel>
+							<TextBlock x:Name="Backdrop_Status"
+									   Loaded="WindowStatus_Loaded"
+									   TextWrapping="Wrap"
+									   AutomationProperties.AutomationId="Backdrop_Status"
+									   AutomationProperties.LiveSetting="Polite"
+									   AutomationProperties.Name="Windows backdrop and AppWindow status" />
+						</StackPanel>
+					</smtx:XamlDisplay>
+				</DataTemplate>
+			</local:SamplePageLayout.DesignAgnosticTemplate>
+		</local:SamplePageLayout>
+	</Grid>
+</Page>

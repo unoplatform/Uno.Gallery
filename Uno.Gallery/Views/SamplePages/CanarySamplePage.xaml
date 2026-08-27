@@ -16,6 +16,14 @@
 						<Button Content="Navigate to all pages"
 								Click="NavigateAllPages_Click" />
 
+						<TextBlock Text="Rendering and platform"
+								   FontSize="20"
+								   Margin="0,20,0,0" />
+						<TextBlock Loaded="BuildDiagnostics_Loaded"
+								   TextWrapping="Wrap"
+								   AutomationProperties.AutomationId="Diagnostics_BuildInfo"
+								   AutomationProperties.Name="Rendering and platform build diagnostics" />
+
 						<TextBlock Text="Performance Marks"
 								   FontSize="20"
 								   Margin="0,20,0,0" />

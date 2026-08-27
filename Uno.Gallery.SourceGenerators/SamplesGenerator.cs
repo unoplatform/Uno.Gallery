@@ -443,22 +443,45 @@ public sealed class SamplesGenerator : IIncrementalGenerator
 		if (conditionals.Value.HasFlag(SampleConditionals.Disabled))
 			return false;
 
-		return conditionals.Value.HasFlag(compilationConditionals);
+		const SampleConditionals platformMask =
+			SampleConditionals.Windows |
+			SampleConditionals.Wasm |
+			SampleConditionals.SkiaDesktop |
+			SampleConditionals.Droid |
+			SampleConditionals.iOS |
+			SampleConditionals.macOS;
+
+		var requestedPlatforms = conditionals.Value & platformMask;
+		var compilationPlatform = compilationConditionals & platformMask;
+		if ((requestedPlatforms & compilationPlatform) == 0)
+			return false;
+
+		var requestedRenderers = conditionals.Value & SampleConditionals.Renderer;
+		return requestedRenderers == SampleConditionals.Renderer ||
+			requestedRenderers == 0 ||
+			(requestedRenderers & compilationConditionals) != 0;
 	}
 
 	private static SampleConditionals GetSampleConditionalsFromPreprocessorSymbolNames(
 		IEnumerable<string> preprocessorSymbolNames)
 	{
-		foreach (var preprocessorSymbol in preprocessorSymbolNames)
-		{
-			if (preprocessorSymbol == "WINDOWS") return SampleConditionals.Windows;
-			if (preprocessorSymbol == "__ANDROID__") return SampleConditionals.Droid;
-			if (preprocessorSymbol == "__MACOS__") return SampleConditionals.macOS;
-			if (preprocessorSymbol == "__IOS__") return SampleConditionals.iOS;
-			if (preprocessorSymbol == "__WASM__") return SampleConditionals.Wasm;
-			if (preprocessorSymbol == "HAS_UNO_SKIA") return SampleConditionals.SkiaDesktop;
-		}
-		return SampleConditionals.Always;
+		var symbols = new HashSet<string>(preprocessorSymbolNames, StringComparer.Ordinal);
+		var platform = symbols.Contains("WINDOWS") ? SampleConditionals.Windows
+			: symbols.Contains("__ANDROID__") ? SampleConditionals.Droid
+			: symbols.Contains("__MACOS__") ? SampleConditionals.macOS
+			: symbols.Contains("__IOS__") ? SampleConditionals.iOS
+			: symbols.Contains("__WASM__") ? SampleConditionals.Wasm
+			: symbols.Contains("HAS_UNO_SKIA") ? SampleConditionals.SkiaDesktop
+			: SampleConditionals.Always;
+
+		if (platform == SampleConditionals.Always)
+			return 0;
+
+		var renderer = platform != SampleConditionals.Windows &&
+			symbols.Contains("HAS_SKIA_RENDERER")
+				? SampleConditionals.SkiaRenderer
+				: SampleConditionals.NativeRenderer;
+		return platform | renderer;
 	}
 
 	// ─── Transform ────────────────────────────────────────────────────────────
