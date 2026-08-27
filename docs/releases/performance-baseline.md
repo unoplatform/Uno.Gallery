@@ -25,10 +25,43 @@ states. The versioned scripts intentionally reject those comparisons.
 transfer, native WASM, and managed WebCIL bytes from a fresh publish directory.
 `build/visual/src/performance-cli.mjs` records first-contentful paint, shell
 readiness, first-input processing delay, search rendering, and sample navigation.
+DOM retains its validated production profile; Skia is measured with unprofiled
+AOT because its historical profile no longer covers generated theme resources.
 
 The CI `performance` artifact contains the ten cold and ten warm raw runs and
 the comparison report. The `WASM-DOM-catalog` and `WASM-Skia-catalog` artifacts
-contain production bundle metrics and their reports.
+contain production bundle metrics and their reports. Optional Extensions
+catalog artifacts carry `flavor=extensions` metrics for an explicit
+default-versus-optional delta.
+
+## Budget version 1 observations
+
+Fresh production artifacts establish these bundle baselines:
+
+| Bundle metric | DOM | Skia |
+|---|---:|---:|
+| Raw payload | 90,869,680 B | 171,267,191 B |
+| Estimated Brotli transfer | 38,738,942 B | 49,210,466 B |
+| `dotnet.native.wasm` | 23,760,263 B | 97,129,152 B |
+| `dotnet.native.wasm.br` | 5,066,241 B | 13,854,939 B |
+
+Skia's larger native payload is the explicit correctness cost of unprofiled AOT;
+the smaller historical profile aborts in a generated theme-resource getter.
+
+The initial Release DOM observation used the committed Chrome
+`152.0.7977.42`/SwiftShader configuration and ten runs per cache profile:
+
+| Runtime p75 | Cold | Warm |
+|---|---:|---:|
+| First-contentful paint | 996 ms | 204 ms |
+| Shell ready | 3,831.7 ms | 2,791.2 ms |
+| First-input processing delay | 64.1 ms | 41.8 ms |
+| Search rendered | 112.5 ms | 91.5 ms |
+| Sample navigation rendered | 775.5 ms | 802.1 ms |
+
+These values establish the advisory baseline, not blocking status. CI records
+its exact Windows image, Node version, and every raw observation so hosted-run
+drift can be evaluated before promotion.
 
 ## Certification method
 

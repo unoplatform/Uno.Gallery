@@ -2,71 +2,73 @@
   "schemaVersion": 1,
   "budgetVersion": 1,
   "status": "advisory",
-  "approvedOn": null,
+  "approvedOn": "2026-08-27",
+  "runtimeConfigSha256": "7f0b349703d496b63c4c545eebde98a77c00bde83680f69e55ba8cea1e438dfc",
+  "runtimeToolSha256": "8ccc594b525fafa60b43bf323ec81b91e7c8f98060d91bd715dd1590915630c8",
   "minimumRuntimeObservations": 10,
   "targets": {
     "WASM-DOM": {
       "bundle": {
         "rawPayloadBytes": {
-          "baseline": 117379749,
-          "maximum": 123248737
+          "baseline": 90869680,
+          "maximum": 95413164
         },
         "estimatedBrotliTransferBytes": {
-          "baseline": 48990444,
-          "maximum": 51439966
+          "baseline": 38738942,
+          "maximum": 40675890
         },
         "dotnetNativeWasmBytes": {
-          "baseline": 25013733,
-          "maximum": 26264420
+          "baseline": 23760263,
+          "maximum": 24948277
         },
         "dotnetNativeBrotliBytes": {
-          "baseline": 5184710,
-          "maximum": 5443946
+          "baseline": 5066241,
+          "maximum": 5319554
         }
       },
       "runtime": {
         "cold": {
           "firstContentfulPaintMs": {
-            "baseline": 1104,
-            "maximum": 2000
-          },
-          "shellReadyMs": {
-            "baseline": 4960.2,
-            "maximum": 8000
-          },
-          "firstInputLatencyMs": {
-            "baseline": 48.4,
-            "maximum": 150
-          },
-          "searchRenderedMs": {
-            "baseline": 743.5,
+            "baseline": 996,
             "maximum": 1200
           },
+          "shellReadyMs": {
+            "baseline": 3831.7,
+            "maximum": 4300
+          },
+          "firstInputLatencyMs": {
+            "baseline": 64.1,
+            "maximum": 120
+          },
+          "searchRenderedMs": {
+            "baseline": 112.5,
+            "maximum": 150
+          },
           "navigationRenderedMs": {
-            "baseline": 1402.9,
-            "maximum": 2200
+            "baseline": 775.5,
+            "maximum": 950
           }
         },
         "warm": {
           "firstContentfulPaintMs": {
-            "baseline": 176,
-            "maximum": 500
+            "baseline": 204,
+            "maximum": 300
           },
           "shellReadyMs": {
-            "baseline": 4019.3,
-            "maximum": 6500
+            "baseline": 2791.2,
+            "maximum": 3300
           },
           "firstInputLatencyMs": {
-            "baseline": 32,
-            "maximum": 150
+            "baseline": 41.8,
+            "maximum": 100
           },
           "searchRenderedMs": {
-            "baseline": 726.4,
-            "maximum": 1200
+            "baseline": 91.5,
+            "maximum": 140
           },
           "navigationRenderedMs": {
-            "baseline": 1176.1,
-            "maximum": 2000
+            "baseline": 802.1,
+            "maximum": 950
           }
         }
       }
@@ -74,20 +76,20 @@
     "WASM-Skia": {
       "bundle": {
         "rawPayloadBytes": {
-          "baseline": 100993674,
-          "maximum": 106043358
+          "baseline": 171267191,
+          "maximum": 179830551
         },
         "estimatedBrotliTransferBytes": {
-          "baseline": 42320387,
-          "maximum": 44436406
+          "baseline": 49210466,
+          "maximum": 51670990
         },
         "dotnetNativeWasmBytes": {
-          "baseline": 26863061,
-          "maximum": 28206214
+          "baseline": 97129152,
+          "maximum": 101985610
         },
         "dotnetNativeBrotliBytes": {
-          "baseline": 5723302,
-          "maximum": 6009468
+          "baseline": 13854939,
+          "maximum": 14547686
         }
       },
       "runtime": null

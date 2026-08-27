@@ -48,14 +48,22 @@ The measured runtime metrics are:
   frames.
 
 All raw observations are retained in the CI artifact. p50 and p75 use the
-discrete nearest-rank definition rather than interpolation.
+discrete nearest-rank definition rather than interpolation. The canonical
+configuration and the three runtime harness sources are SHA-256-bound to the
+budget so changing measurement semantics requires an explicit baseline update.
 
 ## Enforcement
 
 Every production WebAssembly build emits bundle metrics and an advisory budget
 report. Non-PR builds additionally collect ten cold and ten warm runtime
-observations. Budget violations produce a warning while budget status is
+observations. Optional Extensions builds publish the same metrics with
+`flavor=extensions` so their incremental cost remains visible without applying
+the core budget. Budget violations produce a warning while budget status is
 `advisory`.
+
+Release DOM and Skia artifacts must also pass a pinned-browser startup probe.
+That probe is a correctness gate, not a performance threshold, and remains
+blocking while numeric budgets are advisory.
 
 Changing a budget requires a reviewed budget-version increment and evidence,
 not merely making CI green. Blocking status requires at least five consecutive

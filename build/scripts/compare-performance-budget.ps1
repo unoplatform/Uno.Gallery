@@ -82,6 +82,7 @@ function Add-Check(
 }
 
 $budget = Read-ValidatedJson $BudgetPath $budgetSchema 'Performance budget'
+$bundleCommitsByTarget = @{}
 $bundleMetricNames = @(
     'rawPayloadBytes',
     'estimatedBrotliTransferBytes',
@@ -92,6 +93,9 @@ foreach ($metricsPath in $BundleMetricsPath) {
     $metrics = Read-ValidatedJson $metricsPath $bundleSchema 'Bundle metrics'
     if ($metrics.flavor -ne 'core') {
         throw "Budget comparison accepts core bundle metrics only; '$metricsPath' is '$($metrics.flavor)'."
+    }
+    if ($null -ne $metrics.buildCommit) {
+        $bundleCommitsByTarget[[string]$metrics.target] = [string]$metrics.buildCommit
     }
     $targetBudget = Get-TargetBudget $budget ([string]$metrics.target)
     foreach ($metricName in $bundleMetricNames) {
@@ -107,6 +111,18 @@ foreach ($metricsPath in $BundleMetricsPath) {
 
 if (-not [string]::IsNullOrWhiteSpace($RuntimeObservationPath)) {
     $runtime = Read-ValidatedJson $RuntimeObservationPath $runtimeSchema 'Runtime observation'
+    if ([string]$runtime.configuration.configSha256 -cne [string]$budget.runtimeConfigSha256) {
+        throw "Runtime observation config '$($runtime.configuration.configSha256)' does not match budget '$($budget.runtimeConfigSha256)'."
+    }
+    if ([string]$runtime.configuration.toolSha256 -cne [string]$budget.runtimeToolSha256) {
+        throw "Runtime observation tool '$($runtime.configuration.toolSha256)' does not match budget '$($budget.runtimeToolSha256)'."
+    }
+    $bundleCommit = $bundleCommitsByTarget[[string]$runtime.target]
+    if ($null -ne $runtime.buildCommit -and
+        $null -ne $bundleCommit -and
+        [string]$runtime.buildCommit -cne [string]$bundleCommit) {
+        throw "Runtime observation commit '$($runtime.buildCommit)' does not match bundle commit '$bundleCommit'."
+    }
     $targetBudget = Get-TargetBudget $budget ([string]$runtime.target)
     if ($null -eq $targetBudget.runtime) {
         throw "Performance budget target '$($runtime.target)' has no runtime budget."

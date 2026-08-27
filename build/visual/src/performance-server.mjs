@@ -60,14 +60,22 @@ const server = createServer(async (request, response) => {
     const cacheControl = noCacheNames.has(fileName)
       ? "no-cache"
       : "public, max-age=31536000, immutable";
+    const etag = `W/"${selected.size.toString(16)}-${Math.trunc(selected.mtimeMs).toString(16)}"`;
     const headers = {
       "Cache-Control": cacheControl,
       "Content-Length": selected.size,
       "Content-Type": mimeTypes.get(extname(filePath).toLowerCase()) ?? "application/octet-stream",
+      "ETag": etag,
+      "Last-Modified": selected.mtime.toUTCString(),
       "Vary": "Accept-Encoding"
     };
     if (brotli) {
       headers["Content-Encoding"] = "br";
+    }
+    if (request.headers["if-none-match"] === etag) {
+      delete headers["Content-Length"];
+      response.writeHead(304, headers).end();
+      return;
     }
     response.writeHead(200, headers);
     if (request.method === "HEAD") {

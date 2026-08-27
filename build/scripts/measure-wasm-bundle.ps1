@@ -33,6 +33,12 @@ $rawByPath = @{}
 foreach ($file in $files) {
     $rawByPath[$file.FullName] = $file
 }
+foreach ($sidecar in @($files | Where-Object Extension -in @('.br', '.gz'))) {
+    $sourcePath = $sidecar.FullName.Substring(0, $sidecar.FullName.Length - $sidecar.Extension.Length)
+    if (-not $rawByPath.ContainsKey($sourcePath)) {
+        throw "Compressed sidecar '$($sidecar.FullName)' has no source file; publish into a clean directory."
+    }
+}
 
 [long]$estimatedTransferBytes = 0
 foreach ($file in $rawFiles) {

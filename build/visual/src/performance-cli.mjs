@@ -1,8 +1,9 @@
 import { fork } from "node:child_process";
+import { createHash } from "node:crypto";
 import { access, mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { arch, platform, release, tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 import puppeteer from "puppeteer";
 import { round, summarizeRuns } from "./performance-metrics.mjs";
 
@@ -42,7 +43,21 @@ function validateConfig(config) {
   }
 }
 
-async function startServer(wasmRoot) {
+async function digestPerformanceTool() {
+  const hash = createHash("sha256");
+  for (const name of [
+    "performance-cli.mjs",
+    "performance-metrics.mjs",
+    "performance-server.mjs"
+  ]) {
+    hash.update(name);
+    hash.update("\0");
+    hash.update(await readFile(join(sourceDirectory, name)));
+  }
+  return hash.digest("hex");
+}
+
+export async function startServer(wasmRoot) {
   const serverPath = join(sourceDirectory, "performance-server.mjs");
   const child = fork(serverPath, [wasmRoot, "0"], {
     stdio: ["ignore", "inherit", "inherit", "ipc"]
@@ -104,7 +119,7 @@ async function waitForExit(child, timeoutMs) {
   });
 }
 
-async function removeDirectory(path) {
+export async function removeDirectory(path) {
   for (let attempt = 1; attempt <= 5; attempt++) {
     try {
       await rm(path, { recursive: true, force: true, maxRetries: 3, retryDelay: 200 });
@@ -131,7 +146,7 @@ async function withTimeout(promise, timeoutMs, message) {
   }
 }
 
-async function closeBrowser(browser) {
+export async function closeBrowser(browser) {
   const child = browser.process();
   try {
     await withTimeout(browser.close(), 10000, "browser did not close within 10 seconds");
@@ -143,7 +158,7 @@ async function closeBrowser(browser) {
   }
 }
 
-async function launchBrowser(config, profilePath) {
+export async function launchBrowser(config, profilePath) {
   await removeDirectory(profilePath);
   await mkdir(profilePath, { recursive: true });
   const softwareArguments = config.browser.softwareRendering
@@ -175,7 +190,7 @@ async function launchBrowser(config, profilePath) {
   return browser;
 }
 
-function monitorPage(page, baseUrl) {
+export function monitorPage(page, baseUrl) {
   const origin = new URL(baseUrl).origin;
   const failures = [];
   const isLocal = value => {
@@ -186,6 +201,11 @@ function monitorPage(page, baseUrl) {
     }
   };
   page.on("pageerror", error => failures.push(error.message));
+  page.on("console", message => {
+    if (message.type() === "error") {
+      failures.push(`console: ${message.text()}`);
+    }
+  });
   page.on("requestfailed", request => {
     if (isLocal(request.url())) {
       failures.push(`${request.url()}: ${request.failure()?.errorText ?? "failed"}`);
@@ -383,6 +403,11 @@ async function main() {
       generatedAt: new Date().toISOString(),
       buildCommit,
       target: config.target,
+      configuration: {
+        configSha256: createHash("sha256").update(JSON.stringify(config)).digest("hex"),
+        toolSha256: await digestPerformanceTool(),
+        viewport: config.viewport
+      },
       browser: {
         version: browserVersion,
         headless: config.browser.headless,
@@ -411,7 +436,9 @@ async function main() {
   }
 }
 
-main().catch(error => {
-  console.error(error.stack ?? error);
-  process.exitCode = 1;
-});
+if (import.meta.url === pathToFileURL(process.argv[1]).href) {
+  main().catch(error => {
+    console.error(error.stack ?? error);
+    process.exitCode = 1;
+  });
+}

@@ -23,7 +23,7 @@ namespace Uno.Gallery.Views.Samples;
 	KnownLimitations = new[] { "The sample changes composition properties deterministically and does not demonstrate timed animations." },
 	Owner = "unoplatform",
 	ReviewedOn = "2026-08-27",
-	RelatedSamples = new[] { "skia-canvas", "diagnostics" })]
+	RelatedSamples = new[] { "diagnostics" })]
 public sealed partial class CompositionVisualsSamplePage : Page
 {
 	private SpriteVisual? _visual;

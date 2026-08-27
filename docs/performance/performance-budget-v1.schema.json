@@ -9,6 +9,8 @@
     "budgetVersion",
     "status",
     "approvedOn",
+    "runtimeConfigSha256",
+    "runtimeToolSha256",
     "minimumRuntimeObservations",
     "targets"
   ],
@@ -33,6 +35,14 @@
       ],
       "format": "date"
     },
+    "runtimeConfigSha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "runtimeToolSha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
     "minimumRuntimeObservations": {
       "type": "integer",
       "minimum": 5
@@ -48,6 +58,25 @@
       "additionalProperties": false
     }
   },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "blocking"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "approvedOn": {
+            "type": "string",
+            "format": "date"
+          }
+        }
+      }
+    }
+  ],
   "$defs": {
     "limit": {
       "type": "object",

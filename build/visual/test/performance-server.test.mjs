@@ -28,6 +28,12 @@ test("performance server models Brotli and immutable cache headers", async () =>
 
     const indexResponse = await fetch(`${baseUrl}/`);
     assert.equal(indexResponse.headers.get("cache-control"), "no-cache");
+    const etag = indexResponse.headers.get("etag");
+    assert.ok(etag);
+    const revalidated = await fetch(`${baseUrl}/`, {
+      headers: { "if-none-match": etag }
+    });
+    assert.equal(revalidated.status, 304);
 
     const scriptResponse = await fetch(`${baseUrl}/app.js`, {
       headers: { "accept-encoding": "br" }

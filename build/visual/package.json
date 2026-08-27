@@ -9,6 +9,7 @@
   "scripts": {
     "compare": "node src/cli.mjs compare",
     "performance": "node src/performance-cli.mjs",
+    "startup-probe": "node src/startup-probe.mjs",
     "test": "node --test test/*.test.mjs",
     "update": "node src/cli.mjs update",
     "validate": "node src/cli.mjs validate"

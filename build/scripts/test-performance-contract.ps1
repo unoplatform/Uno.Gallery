@@ -37,6 +37,23 @@ try {
         $metrics.metrics.dotnetNativeBrotliBytes -ne 400) {
         throw 'Bundle fixture produced unexpected size metrics.'
     }
+    $orphanPath = Join-Path $framework 'orphan.wasm.br'
+    [IO.File]::WriteAllBytes($orphanPath, [byte[]]::new(10))
+    $orphanRejected = $false
+    try {
+        & (Join-Path $PSScriptRoot 'measure-wasm-bundle.ps1') `
+            -WasmRoot $artifact `
+            -TargetName 'WASM-DOM' `
+            -OutputPath (Join-Path $scratch 'orphan.json')
+    } catch {
+        if ($_.Exception.Message -notmatch 'has no source file') { throw }
+        $orphanRejected = $true
+    } finally {
+        Remove-Item $orphanPath -Force
+    }
+    if (-not $orphanRejected) {
+        throw 'Bundle measurement accepted an orphaned compressed sidecar.'
+    }
 
     $run = [ordered]@{
         firstContentfulPaintMs = 100
@@ -51,6 +68,15 @@ try {
         generatedAt = [DateTime]::UtcNow.ToString('O')
         buildCommit = 'abcdef0'
         target = 'WASM-DOM'
+        configuration = [ordered]@{
+            configSha256 = ('a' * 64)
+            toolSha256 = ('c' * 64)
+            viewport = [ordered]@{
+                width = 1200
+                height = 900
+                deviceScaleFactor = 1
+            }
+        }
         browser = [ordered]@{
             version = 'Chrome/fixture'
             headless = $true
@@ -116,6 +142,8 @@ try {
         budgetVersion = 1
         status = 'advisory'
         approvedOn = $null
+        runtimeConfigSha256 = ('a' * 64)
+        runtimeToolSha256 = ('c' * 64)
         minimumRuntimeObservations = 5
         targets = [ordered]@{
             'WASM-DOM' = [ordered]@{
@@ -141,6 +169,59 @@ try {
         throw 'Passing performance fixture did not produce fourteen successful checks.'
     }
 
+    $runtime.configuration.configSha256 = ('b' * 64)
+    $runtime | ConvertTo-Json -Depth 20 | Set-Content $runtimePath -Encoding utf8NoBOM
+    $configMismatchRejected = $false
+    try {
+        & (Join-Path $PSScriptRoot 'compare-performance-budget.ps1') `
+            -BudgetPath $budgetPath `
+            -BundleMetricsPath $metricsPath `
+            -RuntimeObservationPath $runtimePath `
+            -OutputPath $reportPath
+    } catch {
+        if ($_.Exception.Message -notmatch 'does not match budget') { throw }
+        $configMismatchRejected = $true
+    }
+    if (-not $configMismatchRejected) {
+        throw 'Performance comparison accepted a runtime config different from the budget.'
+    }
+    $runtime.configuration.configSha256 = ('a' * 64)
+    $runtime.configuration.toolSha256 = ('d' * 64)
+    $runtime | ConvertTo-Json -Depth 20 | Set-Content $runtimePath -Encoding utf8NoBOM
+    $toolMismatchRejected = $false
+    try {
+        & (Join-Path $PSScriptRoot 'compare-performance-budget.ps1') `
+            -BudgetPath $budgetPath `
+            -BundleMetricsPath $metricsPath `
+            -RuntimeObservationPath $runtimePath `
+            -OutputPath $reportPath
+    } catch {
+        if ($_.Exception.Message -notmatch 'tool .* does not match budget') { throw }
+        $toolMismatchRejected = $true
+    }
+    if (-not $toolMismatchRejected) {
+        throw 'Performance comparison accepted observations from a different tool revision.'
+    }
+    $runtime.configuration.toolSha256 = ('c' * 64)
+    $runtime.buildCommit = 'bbbbbbb'
+    $runtime | ConvertTo-Json -Depth 20 | Set-Content $runtimePath -Encoding utf8NoBOM
+    $commitMismatchRejected = $false
+    try {
+        & (Join-Path $PSScriptRoot 'compare-performance-budget.ps1') `
+            -BudgetPath $budgetPath `
+            -BundleMetricsPath $metricsPath `
+            -RuntimeObservationPath $runtimePath `
+            -OutputPath $reportPath
+    } catch {
+        if ($_.Exception.Message -notmatch 'does not match bundle commit') { throw }
+        $commitMismatchRejected = $true
+    }
+    if (-not $commitMismatchRejected) {
+        throw 'Performance comparison accepted runtime and bundle evidence from different commits.'
+    }
+    $runtime.buildCommit = 'abcdef0'
+    $runtime | ConvertTo-Json -Depth 20 | Set-Content $runtimePath -Encoding utf8NoBOM
+
     $metrics.metrics.rawPayloadBytes = [double]$bundleBudget.rawPayloadBytes.maximum + 1
     $metrics | ConvertTo-Json -Depth 20 | Set-Content $metricsPath -Encoding utf8NoBOM
     & (Join-Path $PSScriptRoot 'compare-performance-budget.ps1') `
@@ -153,6 +234,7 @@ try {
     }
 
     $budget.status = 'blocking'
+    $budget.approvedOn = '2026-08-27'
     $budget | ConvertTo-Json -Depth 20 | Set-Content $budgetPath -Encoding utf8NoBOM
     $blockingRejected = $false
     try {
@@ -172,6 +254,18 @@ try {
     $configSchema = Join-Path $repoRoot 'docs\performance\performance-config-v1.schema.json'
     if (-not ($configJson | Test-Json -SchemaFile $configSchema)) {
         throw 'Runtime performance configuration failed schema validation.'
+    }
+    $startupProbe = [ordered]@{
+        schemaVersion = 1
+        generatedAt = [DateTime]::UtcNow.ToString('O')
+        renderer = 'DOM'
+        browserVersion = 'Chrome/fixture'
+        readyMs = 100
+        passed = $true
+    } | ConvertTo-Json
+    $startupSchema = Join-Path $repoRoot 'docs\performance\startup-probe-v1.schema.json'
+    if (-not ($startupProbe | Test-Json -SchemaFile $startupSchema)) {
+        throw 'Release startup probe failed schema validation.'
     }
 } finally {
     if (Test-Path $scratch) {

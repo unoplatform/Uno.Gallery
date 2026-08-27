@@ -24,3 +24,16 @@ npm run performance -- `
 
 Use a new publish directory. Reusing a WebAssembly output can retain old
 fingerprinted runtime files and invalidates size and startup evidence.
+
+Release startup correctness:
+
+```powershell
+Set-Location build/visual
+npm run startup-probe -- `
+  --wasm <publish>\wwwroot `
+  --config ..\performance\performance.config.json `
+  --renderer DOM `
+  --output ..\performance\artifacts\startup\DOM.json
+```
+
+Run the same command with `--renderer Skia` for the production Skia artifact.

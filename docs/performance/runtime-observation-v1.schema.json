@@ -10,6 +10,7 @@
     "generatedAt",
     "buildCommit",
     "target",
+    "configuration",
     "browser",
     "host",
     "runs",
@@ -37,6 +38,48 @@
     "target": {
       "type": "string",
       "pattern": "^[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$"
+    },
+    "configuration": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "configSha256",
+        "toolSha256",
+        "viewport"
+      ],
+      "properties": {
+        "configSha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "toolSha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "viewport": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "width",
+            "height",
+            "deviceScaleFactor"
+          ],
+          "properties": {
+            "width": {
+              "type": "integer",
+              "minimum": 320
+            },
+            "height": {
+              "type": "integer",
+              "minimum": 320
+            },
+            "deviceScaleFactor": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            }
+          }
+        }
+      }
     },
     "browser": {
       "type": "object",
