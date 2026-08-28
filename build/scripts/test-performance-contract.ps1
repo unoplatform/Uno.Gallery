@@ -272,6 +272,26 @@ try {
     if (-not ($startupProbe | Test-Json -SchemaFile $startupSchema)) {
         throw 'Release startup probe failed schema validation.'
     }
+    $routeEntries = @(1..100 | ForEach-Object {
+        [ordered]@{
+            slug = "sample-$_"
+            design = 'Material'
+            durationMs = 100
+        }
+    })
+    $routeProbe = [ordered]@{
+        schemaVersion = 1
+        generatedAt = [DateTime]::UtcNow.ToString('O')
+        browserVersion = 'Chrome/fixture'
+        routeCount = 100
+        semanticElementCount = 2
+        passed = $true
+        routes = $routeEntries
+    } | ConvertTo-Json -Depth 10
+    $routeSchema = Join-Path $repoRoot 'docs\performance\skia-route-qa-v1.schema.json'
+    if (-not ($routeProbe | Test-Json -SchemaFile $routeSchema)) {
+        throw 'Skia route QA report failed schema validation.'
+    }
 
     Remove-Item (Join-Path $framework 'dotnet.native.fixture.wasm.br') -Force
     Remove-Item (Join-Path $framework 'Uno.Gallery.fixture.wasm.br') -Force

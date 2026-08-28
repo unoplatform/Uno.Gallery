@@ -24,6 +24,7 @@ namespace Uno.Gallery.Wasm
 #endif
 
 #if IS_WASM_SKIA
+			global::Uno.UI.FeatureConfiguration.AutomationPeer.AutoEnableAccessibility = true;
 			var host = UnoPlatformHostBuilder.Create()
 				.App(() => new App())
 				.UseWebAssembly()

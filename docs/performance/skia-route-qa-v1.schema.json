@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gallery.platform.uno/schemas/performance/skia-route-qa-v1.schema.json",
+  "title": "Uno Gallery Skia route QA report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "generatedAt",
+    "browserVersion",
+    "routeCount",
+    "semanticElementCount",
+    "passed",
+    "routes"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "generatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "browserVersion": {
+      "type": "string",
+      "minLength": 1
+    },
+    "routeCount": {
+      "type": "integer",
+      "minimum": 100
+    },
+    "semanticElementCount": {
+      "type": "integer",
+      "minimum": 2
+    },
+    "passed": {
+      "const": true
+    },
+    "routes": {
+      "type": "array",
+      "minItems": 100,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "slug",
+          "design",
+          "durationMs"
+        ],
+        "properties": {
+          "slug": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          },
+          "design": {
+            "enum": [
+              "Material",
+              "Fluent",
+              "Cupertino",
+              "Native",
+              "Agnostic"
+            ]
+          },
+          "durationMs": {
+            "type": "number",
+            "minimum": 0
+          }
+        }
+      }
+    }
+  }
+}

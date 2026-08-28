@@ -43,9 +43,11 @@ The DOM target loads all 114 target-compatible Stable samples and runs focused
 diagnostics, drag/drop, geolocation, Lottie, and WebView interactions. The
 production WebAssembly outputs use unprofiled AOT because historical profiles
 route evolving module and generated Uno.Themes initializers through unsupported
-Mono interpreter paths. The resulting Skia output reaches a non-empty renderer canvas;
-`SKCanvasElement` interaction remains explicit until a Skia semantic
-UI-automation host is available.
+Mono interpreter paths. The resulting Skia output reaches a non-empty renderer
+canvas. Skia WebAssembly auto-enables its semantic DOM so keyboard and
+assistive-technology surfaces are present without a manual "Enable
+accessibility" action. Direct `SKCanvasElement` interaction remains explicit
+until that canvas surface exposes a stable semantic locator.
 
 Wave C adds no package reference. Exact bundle and startup deltas belong to the
 versioned performance-budget pipeline: prior ad-hoc outputs used different

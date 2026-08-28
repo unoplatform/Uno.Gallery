@@ -381,6 +381,7 @@ stages:
         itemPattern: |
           WASM-DOM/**
           WASM-Skia/**
+          WASM-Skia-catalog/**
         downloadPath: $(Pipeline.Workspace)
     - pwsh: |
         New-Item -ItemType Directory -Path 'build/performance/artifacts/startup' -Force | Out-Null
@@ -404,6 +405,14 @@ stages:
         --output "$(Build.SourcesDirectory)\build\performance\artifacts\startup\Skia.json"
       displayName: 'Probe production Skia startup'
       workingDirectory: build/visual
+    - script: >
+        npm run skia-route-qa --
+        --wasm "$(Pipeline.Workspace)\WASM-Skia"
+        --manifest "$(Pipeline.Workspace)\WASM-Skia-catalog\sample-manifest.json"
+        --config "$(Build.SourcesDirectory)\build\performance\performance.config.json"
+        --output "$(Build.SourcesDirectory)\build\performance\artifacts\startup\Skia-routes.json"
+      displayName: 'Sweep production Skia sample routes'
+      workingDirectory: build/visual
     - pwsh: |
         foreach ($path in @(
           'build/performance/artifacts/startup/DOM.json',
@@ -413,6 +422,10 @@ stages:
           if (-not ($json | Test-Json -SchemaFile 'docs/performance/startup-probe-v1.schema.json')) {
             throw "Startup probe failed schema validation: $path"
           }
+        }
+        $routeJson = Get-Content 'build/performance/artifacts/startup/Skia-routes.json' -Raw
+        if (-not ($routeJson | Test-Json -SchemaFile 'docs/performance/skia-route-qa-v1.schema.json')) {
+          throw 'Skia route QA failed schema validation.'
         }
       displayName: 'Validate startup probe evidence'
     - task: PublishPipelineArtifact@1

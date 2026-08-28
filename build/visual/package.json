@@ -9,6 +9,7 @@
   "scripts": {
     "compare": "node src/cli.mjs compare",
     "performance": "node src/performance/performance-cli.mjs",
+    "skia-route-qa": "node src/performance/skia-route-qa.mjs",
     "startup-probe": "node src/performance/startup-probe.mjs",
     "test": "node --test test/*.test.mjs",
     "update": "node src/cli.mjs update",
