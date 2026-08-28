@@ -6,7 +6,7 @@
 | --- | --- | --- |
 | Build and renderer diagnostics | `diagnostics` | Production-visible Experimental page reports compile-time target, backend, execution mode, and availability; no probing or network |
 | `SKCanvasElement` | `skia-canvas` | Skia Desktop/Skia WebAssembly only; page-owned `RenderOverride` completion state is exposed for a supported-host test, while DOM automation cannot execute it |
-| Composition | `composition-visuals` | Creates a `SpriteVisual` and deterministically changes offset, opacity, and scale |
+| Composition | `composition-visuals` | Native/Skia only; creates a `SpriteVisual` and deterministically changes offset, opacity, and scale, while DOM is excluded because child-visual attachment is a no-op |
 | System backdrop/AppWindow | `windows-backdrops` | Windows catalog only; changes the existing window and clears the backdrop on unload |
 | XAML drag/drop | `drag-drop` | Real text transfer plus deterministic in-app action for WebDriver |
 
@@ -33,17 +33,17 @@ No new package reference was added.
 
 ## Catalog and performance accounting
 
-Target catalogs exported after Wave C contain **117 Desktop**, **116 DOM
+Target catalogs exported after Wave C contain **117 Desktop**, **115 DOM
 WebAssembly**, and **117 Skia WebAssembly** samples. The renderer-aware
-conditional excludes `skia-canvas` from the DOM catalog while retaining it in
-both supported Skia catalogs. Their contract reports contain 29 Desktop, 28 DOM,
+conditional excludes `skia-canvas` and `composition-visuals` from the DOM
+catalog while retaining them in supported Skia catalogs. Their contract reports contain 29 Desktop, 27 DOM,
 and 29 Skia contract-v1 samples.
 
-The DOM target loads all 115 target-compatible Stable samples and runs focused
-diagnostics, Composition, drag/drop, geolocation, and WebView interactions. The
-production Skia WebAssembly output uses unprofiled AOT because the historical
-profile routes generated Uno.Themes resource getters through an unsupported
-Mono interpreter path. The resulting output reaches a non-empty renderer canvas;
+The DOM target loads all 114 target-compatible Stable samples and runs focused
+diagnostics, drag/drop, geolocation, Lottie, and WebView interactions. The
+production WebAssembly outputs use unprofiled AOT because historical profiles
+route evolving module and generated Uno.Themes initializers through unsupported
+Mono interpreter paths. The resulting Skia output reaches a non-empty renderer canvas;
 `SKCanvasElement` interaction remains explicit until a Skia semantic
 UI-automation host is available.
 

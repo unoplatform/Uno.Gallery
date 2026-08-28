@@ -41,10 +41,11 @@ public sealed class SamplesGeneratorTests
 		        macOS      = 1 << 5,
 		        SkiaRenderer = 1 << 6,
 		        NativeRenderer = 1 << 7,
+		        DomRenderer = 1 << 8,
 		        Desktop    = Windows | Wasm | SkiaDesktop | macOS,
 		        Mobile     = Droid | iOS,
 		        SkiaBased  = Wasm | SkiaDesktop,
-		        Renderer   = SkiaRenderer | NativeRenderer,
+		        Renderer   = SkiaRenderer | NativeRenderer | DomRenderer,
 		        Disabled   = 1U << 31,
 		        Always     = uint.MaxValue ^ Disabled,
 		    }
@@ -756,6 +757,31 @@ public sealed class SamplesGeneratorTests
 		Assert.That(result.Exception, Is.Null);
 		Assert.That(
 			GetGeneratedSource(result).Contains("SkiaRendererSample"),
+			Is.EqualTo(shouldBeIncluded));
+	}
+
+	[TestCase(new[] { "__WASM__" }, true)]
+	[TestCase(new[] { "__WASM__", "HAS_SKIA_RENDERER" }, false)]
+	[TestCase(new[] { "__ANDROID__" }, false)]
+	public void SampleConditional_DomRenderer_requires_DOM_WebAssembly(
+		string[] preprocessorSymbols,
+		bool shouldBeIncluded)
+	{
+		const string source = """
+			using Uno.Gallery;
+			namespace Uno.Gallery
+			{
+			    [SamplePage(SampleCategory.Controls, "DOM renderer")]
+			    [SampleConditional(SampleConditionals.DomRenderer)]
+			    public class DomRendererSample { }
+			}
+			""";
+
+		var result = RunGenerator([source], preprocessorSymbols);
+
+		Assert.That(result.Exception, Is.Null);
+		Assert.That(
+			GetGeneratedSource(result).Contains("DomRendererSample"),
 			Is.EqualTo(shouldBeIncluded));
 	}
 

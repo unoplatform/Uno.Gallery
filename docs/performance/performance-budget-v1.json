@@ -10,20 +10,20 @@
     "WASM-DOM": {
       "bundle": {
         "rawPayloadBytes": {
-          "baseline": 90869680,
-          "maximum": 95413164
+          "baseline": 158981031,
+          "maximum": 166930083
         },
         "estimatedBrotliTransferBytes": {
-          "baseline": 38738942,
-          "maximum": 40675890
+          "baseline": 46154083,
+          "maximum": 48461788
         },
         "dotnetNativeWasmBytes": {
-          "baseline": 23760263,
-          "maximum": 24948277
+          "baseline": 91869053,
+          "maximum": 96462506
         },
         "dotnetNativeBrotliBytes": {
-          "baseline": 5066241,
-          "maximum": 5319554
+          "baseline": 12864467,
+          "maximum": 13507691
         }
       },
       "runtime": {

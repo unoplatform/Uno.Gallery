@@ -34,6 +34,9 @@ namespace Uno.Gallery.Views.Samples
 		ReviewedOn = "2026-08-27")]
 	public sealed partial class LottieSamplePage : Page
 	{
+		private AnimatedVisualPlayer? _player;
+		private long _loadedCallbackToken;
+
 		public LottieSamplePage()
 		{
 			this.InitializeComponent();
@@ -42,10 +45,40 @@ namespace Uno.Gallery.Views.Samples
 		private void LottiePlayer_Loaded(object sender, RoutedEventArgs e)
 		{
 			var player = (AnimatedVisualPlayer)sender;
-			UpdateStatus(player.Source is null
-				? "Lottie unavailable: the packaged visual source was not created."
-				: "Packaged Lottie source initialized; playback uses the current renderer.");
+			if (_player is not null && _loadedCallbackToken != 0)
+			{
+				_player.UnregisterPropertyChangedCallback(
+					AnimatedVisualPlayer.IsAnimatedVisualLoadedProperty,
+					_loadedCallbackToken);
+			}
+			_player = player;
+			_loadedCallbackToken = player.RegisterPropertyChangedCallback(
+				AnimatedVisualPlayer.IsAnimatedVisualLoadedProperty,
+				OnAnimatedVisualLoadedChanged);
+			UpdatePlayerStatus(player);
 		}
+
+		private void LottiePlayer_Unloaded(object sender, RoutedEventArgs e)
+		{
+			if (_player is not null && _loadedCallbackToken != 0)
+			{
+				_player.UnregisterPropertyChangedCallback(
+					AnimatedVisualPlayer.IsAnimatedVisualLoadedProperty,
+					_loadedCallbackToken);
+			}
+			_player = null;
+			_loadedCallbackToken = 0;
+		}
+
+		private void OnAnimatedVisualLoadedChanged(DependencyObject sender, DependencyProperty property)
+			=> UpdatePlayerStatus((AnimatedVisualPlayer)sender);
+
+		private void UpdatePlayerStatus(AnimatedVisualPlayer player)
+			=> UpdateStatus(player.Source is null
+				? "Lottie unavailable: the packaged visual source was not created."
+				: player.IsAnimatedVisualLoaded
+					? "Packaged Lottie source loaded; playback uses the current renderer."
+					: "Loading packaged Lottie source.");
 
 		private void UpdateStatus(string message)
 		{

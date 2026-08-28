@@ -25,8 +25,8 @@ states. The versioned scripts intentionally reject those comparisons.
 transfer, native WASM, and managed WebCIL bytes from a fresh publish directory.
 `build/visual/src/performance-cli.mjs` records first-contentful paint, shell
 readiness, first-input processing delay, search rendering, and sample navigation.
-DOM retains its validated production profile; Skia is measured with unprofiled
-AOT because its historical profile no longer covers generated theme resources.
+DOM and Skia are measured with unprofiled AOT because their historical profiles
+no longer cover evolving module and generated theme-resource initializers.
 Runtime observations use a separate instrumented, unprofiled-AOT DOM flavor and
 are labeled as such in their schema.
 
@@ -42,13 +42,19 @@ Fresh production artifacts establish these bundle baselines:
 
 | Bundle metric | DOM | Skia |
 |---|---:|---:|
-| Raw payload | 90,869,680 B | 171,267,191 B |
-| Estimated Brotli transfer | 38,738,942 B | 49,210,466 B |
-| `dotnet.native.wasm` | 23,760,263 B | 97,129,152 B |
-| `dotnet.native.wasm.br` | 5,066,241 B | 13,854,939 B |
+| Raw payload | 158,981,031 B | 171,267,191 B |
+| Estimated Brotli transfer | 46,154,083 B | 49,210,466 B |
+| `dotnet.native.wasm` | 91,869,053 B | 97,129,152 B |
+| `dotnet.native.wasm.br` | 12,864,467 B | 13,854,939 B |
 
-Skia's larger native payload is the explicit correctness cost of unprofiled AOT;
-the smaller historical profile aborts in a generated theme-resource getter.
+The larger native payloads are the explicit correctness cost of unprofiled AOT;
+the smaller historical profiles abort in evolving module/resource initializers.
+
+For comparison, the rejected profile-guided artifacts measured approximately
+90.87 MB raw / 38.74 MB estimated transfer for DOM and 101.00 MB / 42.32 MB for
+Skia. They are not eligible baselines: both later aborted before the shell after
+ordinary source/metadata changes. Release startup correctness takes precedence,
+and the blocking probe prevents silently returning to those invalid outputs.
 
 The initial Release DOM observation used the committed Chrome
 `152.0.7977.42`/SwiftShader configuration and ten runs per cache profile:

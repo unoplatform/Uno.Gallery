@@ -8,7 +8,7 @@ const config = JSON.parse(await readFile(resolve("visual.config.json"), "utf8"))
 
 test("committed pilot config is valid and representative", () => {
   assert.doesNotThrow(() => validateConfig(config));
-  assert.equal(config.samples.length, 14);
+  assert.equal(config.samples.length, 15);
 });
 
 test("duplicate IDs and routes are rejected", () => {

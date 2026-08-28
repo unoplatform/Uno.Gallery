@@ -57,8 +57,8 @@ serialization is disabled by AOT.
 Package discovery was performed before source edits. The Uno development feed exposes stable 7.2.3 for all five packages, and targeted restore placed the exact packages in the NuGet cache. NuGet.org TLS negotiation failed on the measurement host, but the configured Uno feed and cache completed the restore.
 
 The default and optional generated Desktop manifests contain 117 and 122
-entries respectively, with 29 and 34 contract-v1 samples. DOM contains 116/121
-and Skia WebAssembly contains 117/122. All five `extensions-*` slugs are absent
+entries respectively, with 29 and 34 contract-v1 samples. DOM contains 115/120
+with 27/32 contracts, and Skia WebAssembly contains 117/122. All five `extensions-*` slugs are absent
 from default and present only in the optional schema-v2 manifest. Each optional
 sample uses contract v1 and an explicit repository-relative source path into
 `Uno.Gallery.ExtensionsPatterns`.
@@ -80,12 +80,10 @@ The fresh DOM release artifacts measured:
 
 | Metric | Core | Extensions flavor | Delta |
 |---|---:|---:|---:|
-| Raw payload | 90,869,680 B | 162,686,702 B | +71,817,022 B |
-| Estimated Brotli transfer | 38,738,942 B | 46,385,581 B | +7,646,639 B |
-| `dotnet.native.wasm.br` | 5,066,241 B | 13,343,344 B | +8,277,103 B |
-| Managed WebCIL | 30,894,555 B | 31,869,882 B | +975,327 B |
+| Raw payload | 158,981,031 B | 162,686,702 B | +3,705,671 B |
+| Estimated Brotli transfer | 46,154,083 B | 46,385,581 B | +231,498 B |
+| `dotnet.native.wasm.br` | 12,864,467 B | 13,343,344 B | +478,877 B |
+| Managed WebCIL | 30,897,115 B | 31,869,882 B | +972,767 B |
 
-Most of the native delta is the flavor's deliberate unprofiled-AOT policy,
-which prevents stale profiles from routing new Extensions startup code through
-unsupported interpreter paths. The managed dependency delta is reported
-separately so package cost is not confused with AOT strategy.
+Both flavors use the same unprofiled-AOT policy, so the delta isolates the
+optional package/content cost instead of mixing it with AOT strategy.

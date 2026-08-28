@@ -60,8 +60,9 @@ existing code paths and labels.
 The visual artifact uses full AOT rather than the historical production profile.
 Visual routes change as samples join the pilot, and a stale profile can leave a
 newly rendered resource getter in the interpreter even when that opcode cannot
-be interpreted. The deployable Skia artifact keeps its production profile;
-full AOT applies only to the separate advisory visual build.
+be interpreted. Release DOM and Skia now use the same unprofiled-AOT safety policy after both
+historical profiles reproduced that failure; the visual artifact remains
+separate because it also changes identity, determinism hooks, and output paths.
 
 ### Tolerance and masks
 
@@ -101,7 +102,7 @@ not only binary-file names.
 `Visual_Regression` initially reports advisory because five repeated hosted
 executions on the selected `windows-latest` image have not yet been accumulated.
 It always publishes current, diff, and HTML/JSON reports. Promote only this
-14-entry pilot to blocking after five consecutive local runs and five
+15-entry pilot to blocking after five consecutive local runs and five
 consecutive hosted runs show zero failures, no stale-baseline bypass, and a
 maximum mismatch within tolerance, with no browser/image drift. Any unexplained
 flake returns it to advisory. Expansion beyond 15 entries is a separate decision.

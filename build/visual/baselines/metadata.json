@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "suiteVersion": 1,
-  "generatedAtUtc": "2026-08-27T13:26:22.993Z",
+  "suiteVersion": 2,
+  "generatedAtUtc": "2026-08-28T00:22:53.165Z",
   "host": {
     "os": "win32",
     "architecture": "x64"
@@ -19,9 +19,9 @@
     "Uno.Material bundled typefaces",
     "WinUI symbol font bundled by Uno"
   ],
-  "configDigest": "107bbee62472bbd73e2ea8a78e70d653b22e444102b804ba055475abda1e7260",
+  "configDigest": "02e876be342c35404c23864f46083b7cb4a2df554da7db51b7dd55c74cecd3b7",
   "lockDigest": "e331b3d9d27e89eac15b64af35a5aad631704c6ed04eea0ebce90c02ef5878ca",
-  "toolDigest": "784842fd88dfcc66765a6bd6a75e59aff593686042195793db369bc5038c6a3e",
+  "toolDigest": "2c94236304b1d2bae8b5a404d08696cf19a950dadbf1f2bd214cd649c66c2830",
   "samples": [
     {
       "id": "overview-material",
@@ -118,6 +118,14 @@
       "area": "Toolkit control",
       "masks": [],
       "sha256": "3cc6ee2f6194ac5338030160ef17df6ce94cca32f9c1a76077b9cbb81d8d6e7c"
+    },
+    {
+      "id": "composition-visuals-agnostic",
+      "slug": "composition-visuals",
+      "design": "Agnostic",
+      "area": "rendering",
+      "masks": [],
+      "sha256": "611e7878a78de4bb619ae9b97caae394b5c3be676f365df294c0ae856c3ea7d4"
     },
     {
       "id": "accessibility-agnostic",

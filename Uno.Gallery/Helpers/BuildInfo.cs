@@ -152,7 +152,9 @@ internal static class BuildInfo
 #endif
 
 		FeatureAvailability =
-#if HAS_SKIA_RENDERER && !WINDOWS
+#if __WASM__ && !HAS_SKIA_RENDERER
+			"Composition child visuals: unavailable on DOM; SKCanvasElement: unavailable on this renderer; drag/drop sample: available (pointer support is platform-dependent); " +
+#elif HAS_SKIA_RENDERER && (__WASM__ || __DESKTOP__)
 			"Composition: available; SKCanvasElement: available; drag/drop sample: available (pointer support is platform-dependent); " +
 #else
 			"Composition: available; SKCanvasElement: unavailable on this renderer; drag/drop sample: available (pointer support is platform-dependent); " +

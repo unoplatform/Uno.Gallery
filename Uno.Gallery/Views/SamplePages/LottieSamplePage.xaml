@@ -21,6 +21,7 @@
 							<StackPanel Spacing="8">
 							<AnimatedVisualPlayer AutoPlay="true"
 														Loaded="LottiePlayer_Loaded"
+														Unloaded="LottiePlayer_Unloaded"
 														Height="120">
 								<lottie:LottieVisualSource UriSource="ms-appx:///Assets/Animations/loading_animation_data.json" />
 							</AnimatedVisualPlayer>

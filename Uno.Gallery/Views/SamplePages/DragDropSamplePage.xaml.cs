@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Uno.Gallery.Helpers;
@@ -26,7 +27,7 @@ namespace Uno.Gallery.Views.Samples;
 	},
 	Owner = "unoplatform",
 	ReviewedOn = "2026-08-27",
-	RelatedSamples = new[] { "clipboard", "composition-visuals" })]
+	RelatedSamples = new[] { "clipboard" })]
 public sealed partial class DragDropSamplePage : Page
 {
 	private const string Payload = "Gallery card: deterministic payload";
@@ -51,12 +52,25 @@ public sealed partial class DragDropSamplePage : Page
 	}
 
 	private async void Target_Drop(object sender, DragEventArgs e)
+		=> await ProcessTransferAsync(e.DataView, "drag/drop");
+
+	private async void DeterministicTransfer_Click(object sender, RoutedEventArgs e)
+	{
+		var package = new DataPackage
+		{
+			RequestedOperation = DataPackageOperation.Copy
+		};
+		package.SetText(Payload);
+		await ProcessTransferAsync(package.GetView(), "deterministic data package");
+	}
+
+	private async Task ProcessTransferAsync(DataPackageView dataView, string path)
 	{
 		try
 		{
-			if (e.DataView.Contains(StandardDataFormats.Text))
+			if (dataView.Contains(StandardDataFormats.Text))
 			{
-				CompleteTransfer(await e.DataView.GetTextAsync(), "drag/drop");
+				CompleteTransfer(await dataView.GetTextAsync(), path);
 			}
 			else
 			{
@@ -68,9 +82,6 @@ public sealed partial class DragDropSamplePage : Page
 			UpdateStatus($"Transfer failed: {error.GetType().Name}.");
 		}
 	}
-
-	private void DeterministicTransfer_Click(object sender, RoutedEventArgs e)
-		=> CompleteTransfer(Payload, "deterministic action");
 
 	private void CompleteTransfer(string payload, string path)
 	{

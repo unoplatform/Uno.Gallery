@@ -15,7 +15,7 @@ namespace Uno.Gallery.Views.Samples;
 	Status = SampleStatus.Stable,
 	ContractVersion = 1,
 	SupportedDesigns = SampleDesigns.Agnostic,
-	SupportedRenderers = SampleRenderers.Native | SampleRenderers.Skia | SampleRenderers.DOM,
+	SupportedRenderers = SampleRenderers.Native | SampleRenderers.Skia,
 	Requirements = new[] { "Uses the compositor supplied by the current Uno renderer and requires no network or external assets." },
 	AccessibilityNotes = new[] { "The state action is keyboard-focusable, the host has an accessible name, and exact visual properties are announced as text." },
 	ResetBehavior = "Apply the state twice to restore the initial values, or reload the sample to reset the state counter.",
@@ -24,6 +24,8 @@ namespace Uno.Gallery.Views.Samples;
 	Owner = "unoplatform",
 	ReviewedOn = "2026-08-27",
 	RelatedSamples = new[] { "diagnostics" })]
+[SampleConditional(SampleConditionals.Always ^ SampleConditionals.DomRenderer,
+	Reason = "ElementCompositionPreview.SetElementChildVisual is not implemented by the DOM renderer.")]
 public sealed partial class CompositionVisualsSamplePage : Page
 {
 	private SpriteVisual? _visual;

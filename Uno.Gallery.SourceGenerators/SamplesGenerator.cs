@@ -622,10 +622,12 @@ public sealed class SamplesGenerator : IIncrementalGenerator
 		if (platform == SampleConditionals.Always)
 			return 0;
 
-		var renderer = platform != SampleConditionals.Windows &&
-			symbols.Contains("HAS_SKIA_RENDERER")
-				? SampleConditionals.SkiaRenderer
-				: SampleConditionals.NativeRenderer;
+		var renderer = platform == SampleConditionals.Wasm &&
+			!symbols.Contains("HAS_SKIA_RENDERER")
+				? SampleConditionals.DomRenderer
+				: platform != SampleConditionals.Windows && symbols.Contains("HAS_SKIA_RENDERER")
+					? SampleConditionals.SkiaRenderer
+					: SampleConditionals.NativeRenderer;
 		return platform | renderer;
 	}
 

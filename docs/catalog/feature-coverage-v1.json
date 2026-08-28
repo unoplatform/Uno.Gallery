@@ -211,13 +211,13 @@
     },
     {
       "id": "composition-visuals",
-      "disposition": "covered-core",
+      "disposition": "optional-flavor",
       "gallerySlugs": [
         "composition-visuals"
       ],
       "owner": "unoplatform",
       "issue": null,
-      "reason": "The sample creates and attaches a SpriteVisual, then applies deterministic offset, opacity, and scale values."
+      "reason": "The sample creates and attaches a SpriteVisual on native and Skia renderers; DOM is excluded because SetElementChildVisual is a no-op there."
     },
     {
       "id": "drag-drop",

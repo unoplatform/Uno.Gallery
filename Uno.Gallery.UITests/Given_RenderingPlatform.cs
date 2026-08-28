@@ -21,23 +21,13 @@ public class Given_RenderingPlatform : TestBase
 	}
 
 	[Test]
-	public void When_CompositionStateIsApplied_PageReportsDeterministicVisualValues()
-	{
-		NavigateToSample("Composition Visuals");
-
-		App.WaitThenTap("Composition_ApplyState");
-		Assert.That(GetText("Composition_Status"),
-			Is.EqualTo("State 1; offset: 116,32; opacity: 0.55; scale: 0.80."));
-	}
-
-	[Test]
 	public void When_AppOwnedTransferRuns_PageReportsPayloadAndCount()
 	{
 		NavigateToSample("Drag and Drop");
 
 		App.WaitThenTap("DragDrop_DeterministicTransfer");
 		Assert.That(GetText("DragDrop_Status"),
-			Is.EqualTo("Transfer 1 via deterministic action: Gallery card: deterministic payload"));
+			Is.EqualTo("Transfer 1 via deterministic data package: Gallery card: deterministic payload"));
 	}
 
 	[Test]
@@ -51,14 +41,25 @@ public class Given_RenderingPlatform : TestBase
 	}
 
 	[Test]
-	public void When_OfflineWebViewLoads_StatusDoesNotRemainBlank()
+	public void When_PackagedLottieLoads_StatusReportsLoadedVisual()
+	{
+		NavigateToSample("Lottie");
+
+		Assert.That(
+			PollForText("Lottie_Status", "Packaged Lottie source loaded;", TimeSpan.FromSeconds(10)),
+			Is.True,
+			"The packaged Lottie visual must finish loading on the DOM renderer.");
+	}
+
+	[Test]
+	public void When_OfflineWebViewLoads_StatusReportsSuccess()
 	{
 		NavigateToSample("WebView");
 
-		var reported = PollForText("WebView_Status", "Self-contained HTML loaded successfully.", TimeSpan.FromSeconds(10)) ||
-			PollForText("WebView_Status", "WebView unavailable:", TimeSpan.FromSeconds(1)) ||
-			PollForText("WebView_Status", "WebView navigation failed:", TimeSpan.FromSeconds(1));
-		Assert.That(reported, Is.True, "WebView must expose success, unavailable, or failure status.");
+		Assert.That(
+			PollForText("WebView_Status", "Self-contained HTML loaded successfully.", TimeSpan.FromSeconds(10)),
+			Is.True,
+			"The DOM WebView must load the self-contained HTML successfully.");
 	}
 
 	private bool PollForText(string automationId, string expectedFragment, TimeSpan timeout)

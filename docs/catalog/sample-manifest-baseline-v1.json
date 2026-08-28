@@ -148,17 +148,16 @@
         "gyrometer",
         "phonecallmanager"
       ],
-      "minimumSampleCount": 116,
+      "minimumSampleCount": 115,
       "requiredSlugs": [
         "overview",
         "button",
         "itemsrepeater",
         "accessibility",
         "localization-rtl",
-        "composition-visuals",
         "drag-drop"
       ],
-      "minimumContractV1Count": 28,
+      "minimumContractV1Count": 27,
       "requiredContractV1Slugs": [
         "accessibility",
         "animated-icon",
@@ -166,7 +165,6 @@
         "autolayout",
         "card-content-control",
         "command-bar-flyout",
-        "composition-visuals",
         "design-tokens",
         "diagnostics",
         "drag-drop",
@@ -299,10 +297,9 @@
         "gyrometer",
         "phonecallmanager"
       ],
-      "minimumSampleCount": 121,
+      "minimumSampleCount": 120,
       "requiredSlugs": [
         "overview",
-        "composition-visuals",
         "drag-drop",
         "extensions-mvux-feedview",
         "extensions-localization",
@@ -310,7 +307,7 @@
         "extensions-configuration",
         "extensions-validation"
       ],
-      "minimumContractV1Count": 33,
+      "minimumContractV1Count": 32,
       "requiredContractV1Slugs": [
         "accessibility",
         "animated-icon",
@@ -318,7 +315,6 @@
         "autolayout",
         "card-content-control",
         "command-bar-flyout",
-        "composition-visuals",
         "design-tokens",
         "diagnostics",
         "drag-drop",

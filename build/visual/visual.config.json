@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "suiteVersion": 1,
+  "suiteVersion": 2,
   "viewport": {
     "width": 1200,
     "height": 900,
@@ -120,6 +120,13 @@
       "slug": "card-content-control",
       "design": "Material",
       "area": "Toolkit control",
+      "masks": []
+    },
+    {
+      "id": "composition-visuals-agnostic",
+      "slug": "composition-visuals",
+      "design": "Agnostic",
+      "area": "rendering",
       "masks": []
     },
     {

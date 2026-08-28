@@ -11,8 +11,10 @@ export async function loadConfig(path) {
 }
 
 export function validateConfig(config) {
-  if (config?.schemaVersion !== 1 || config?.suiteVersion !== 1) {
-    throw new Error("visual config requires schemaVersion=1 and suiteVersion=1");
+  if (config?.schemaVersion !== 1 ||
+      !Number.isInteger(config?.suiteVersion) ||
+      config.suiteVersion < 1) {
+    throw new Error("visual config requires schemaVersion=1 and a positive suiteVersion");
   }
   const viewport = config.viewport;
   if (!Number.isInteger(viewport?.width) || !Number.isInteger(viewport?.height)
