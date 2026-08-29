@@ -285,6 +285,14 @@ try {
         browserVersion = 'Chrome/fixture'
         routeCount = 100
         semanticElementCount = 2
+        verifiedAccessibleNames = @(
+            'Gallery navigation',
+            'Search samples',
+            'Toggle light and dark theme',
+            'Material design',
+            'Fluent design',
+            'Copy direct link'
+        )
         passed = $true
         routes = $routeEntries
     } | ConvertTo-Json -Depth 10

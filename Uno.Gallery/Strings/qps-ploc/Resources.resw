@@ -249,11 +249,38 @@
   <data name="ShellThemeToggle.Content" xml:space="preserve">
     <value>[!! Ľïğħŧ áñð Ðářķ ~~~~~ !!]</value>
   </data>
+  <data name="ShellThemeToggle.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>[!! Ŧöğğľë ľïğħŧ áñð ðářķ ŧħëɱë ~~~~~~~~~ !!]</value>
+  </data>
   <data name="ShellFpsIndicator.Content" xml:space="preserve">
     <value>[!! ƑÞŠ ïñðïçáŧöř ~~~~ !!]</value>
   </data>
   <data name="ShellSamplesSearchBox.PlaceholderText" xml:space="preserve">
     <value>[!! Šëářçħ ~~~ !!]</value>
+  </data>
+  <data name="ShellSamplesSearchBox.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>[!! Šëářçħ šáɱþľëš ~~~~~ !!]</value>
+  </data>
+  <data name="ShellNavigationView.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>[!! Ğáľľëřÿ ñáṽïğáŧïöñ ~~~~~~ !!]</value>
+  </data>
+  <data name="ShellNewWindowButton.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>[!! Öþëñ á ñëŵ Ğáľľëřÿ ŵïñðöŵ ~~~~~~~~ !!]</value>
+  </data>
+  <data name="DesignMaterialSelector.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>[!! Ɱáŧëřïáľ ðëšïğñ ~~~~~ !!]</value>
+  </data>
+  <data name="DesignFluentSelector.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>[!! Ƒľüëñŧ ðëšïğñ ~~~~ !!]</value>
+  </data>
+  <data name="DesignCupertinoSelector.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>[!! Çüþëřŧïñö ðëšïğñ ~~~~~ !!]</value>
+  </data>
+  <data name="DesignNativeSelector.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>[!! Ñáŧïṽë ðëšïğñ ~~~~ !!]</value>
+  </data>
+  <data name="SampleCopyDirectLinkButton.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>[!! Çöþÿ ðïřëçŧ ľïñķ ~~~~~ !!]</value>
   </data>
   <data name="ShellNewWindowButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
     <value>[!! Ñëŵ ŵïñðöŵ ~~~ !!]</value>

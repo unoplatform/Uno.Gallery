@@ -56,6 +56,15 @@ export function selectRoutes(manifest) {
   return routes;
 }
 
+const requiredAccessibleNames = [
+  "Gallery navigation",
+  "Search samples",
+  "Toggle light and dark theme",
+  "Material design",
+  "Fluent design",
+  "Copy direct link"
+];
+
 async function waitForFrames(page, count) {
   await page.evaluate(frameCount => new Promise(resolveFrames => {
     let remaining = frameCount;
@@ -103,6 +112,13 @@ async function main() {
       () => document.querySelectorAll('[id^="uno-semantics-"]').length > 1,
       { timeout: config.timeouts.actionMs }
     );
+    await page.waitForFunction(
+      names => names.every(name =>
+        [...document.querySelectorAll('[id^="uno-semantics-"]')]
+          .some(element => element.getAttribute("aria-label") === name)),
+      { timeout: config.timeouts.actionMs },
+      requiredAccessibleNames
+    );
     monitor.assertClean("Skia startup");
 
     const results = [];
@@ -141,6 +157,7 @@ async function main() {
       semanticElementCount: await page.evaluate(
         () => document.querySelectorAll('[id^="uno-semantics-"]').length
       ),
+      verifiedAccessibleNames: requiredAccessibleNames,
       passed: true,
       routes: results
     };

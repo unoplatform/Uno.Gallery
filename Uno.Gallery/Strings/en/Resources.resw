@@ -249,11 +249,38 @@
   <data name="ShellThemeToggle.Content" xml:space="preserve">
     <value>Light and Dark</value>
   </data>
+  <data name="ShellThemeToggle.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Toggle light and dark theme</value>
+  </data>
   <data name="ShellFpsIndicator.Content" xml:space="preserve">
     <value>FPS indicator</value>
   </data>
   <data name="ShellSamplesSearchBox.PlaceholderText" xml:space="preserve">
     <value>Search</value>
+  </data>
+  <data name="ShellSamplesSearchBox.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Search samples</value>
+  </data>
+  <data name="ShellNavigationView.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Gallery navigation</value>
+  </data>
+  <data name="ShellNewWindowButton.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Open a new Gallery window</value>
+  </data>
+  <data name="DesignMaterialSelector.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Material design</value>
+  </data>
+  <data name="DesignFluentSelector.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Fluent design</value>
+  </data>
+  <data name="DesignCupertinoSelector.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Cupertino design</value>
+  </data>
+  <data name="DesignNativeSelector.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Native design</value>
+  </data>
+  <data name="SampleCopyDirectLinkButton.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Copy direct link</value>
   </data>
   <data name="ShellNewWindowButton.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
     <value>New window</value>

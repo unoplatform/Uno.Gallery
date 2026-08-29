@@ -10,6 +10,7 @@
     "browserVersion",
     "routeCount",
     "semanticElementCount",
+    "verifiedAccessibleNames",
     "passed",
     "routes"
   ],
@@ -32,6 +33,15 @@
     "semanticElementCount": {
       "type": "integer",
       "minimum": 2
+    },
+    "verifiedAccessibleNames": {
+      "type": "array",
+      "minItems": 6,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
     },
     "passed": {
       "const": true

@@ -281,6 +281,7 @@
 
 											<!-- Material RadioButton -->
 											<RadioButton x:Name="PART_MaterialRadioButton"
+														 x:Uid="DesignMaterialSelector"
 														 Margin="0,0,16,0"
 														 AutomationProperties.AutomationId="PART_MaterialRadioButton"
 														 Style="{StaticResource SampleLayoutModeRadioButtonStyle}"
@@ -304,6 +305,7 @@
 
 											<!-- Fluent RadioButton -->
 											<RadioButton x:Name="PART_FluentRadioButton"
+														 x:Uid="DesignFluentSelector"
 														 Margin="0,0,16,0"
 														 AutomationProperties.AutomationId="PART_FluentRadioButton"
 														 Style="{StaticResource SampleLayoutModeRadioButtonStyle}"
@@ -327,6 +329,7 @@
 
 											<!-- Cupertino RadioButton -->
 											<RadioButton x:Name="PART_CupertinoRadioButton"
+														 x:Uid="DesignCupertinoSelector"
 														 Margin="0,0,16,0"
 														 AutomationProperties.AutomationId="PART_CupertinoRadioButton"
 														 Style="{StaticResource SampleLayoutModeRadioButtonStyle}"
@@ -350,6 +353,7 @@
 
 											<!-- Native RadioButton -->
 											<RadioButton x:Name="PART_NativeRadioButton"
+														 x:Uid="DesignNativeSelector"
 														 Margin="0,0,16,0"
 														 AutomationProperties.AutomationId="PART_NativeRadioButton"
 														 Style="{StaticResource SampleLayoutModeRadioButtonStyle}"
@@ -512,7 +516,8 @@
 											share URL via GetDependencyPropertyValue("Tag") without clicking.
 											No behavior effect — ClipboardExtensions.CopyContent drives the copy.
 										-->
-										<Button AutomationProperties.AutomationId="PART_DirectLinkCopyButton"
+										<Button x:Uid="SampleCopyDirectLinkButton"
+												AutomationProperties.AutomationId="PART_DirectLinkCopyButton"
 												Margin="0,0,0,16"
 												Tag="{Binding ShareUri}"
 													Visibility="{Binding ShareUri, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource IsNullOrEmptyToCollapsed}, FallbackValue=Collapsed}"
@@ -546,6 +551,7 @@
 
 									<!-- Material RadioButton -->
 									<RadioButton x:Name="PART_StickyMaterialRadioButton"
+												 x:Uid="DesignMaterialSelector"
 												 Margin="0,0,16,0"
 												 Style="{StaticResource SampleLayoutModeRadioButtonStyle}"
 												 Visibility="Collapsed">
@@ -568,6 +574,7 @@
 
 									<!-- Fluent RadioButton -->
 									<RadioButton x:Name="PART_StickyFluentRadioButton"
+												 x:Uid="DesignFluentSelector"
 												 Margin="0,0,16,0"
 												 Style="{StaticResource SampleLayoutModeRadioButtonStyle}"
 												 Visibility="Collapsed">
@@ -590,6 +597,7 @@
 
 									<!-- Cupertino RadioButton -->
 									<RadioButton x:Name="PART_StickyCupertinoRadioButton"
+												 x:Uid="DesignCupertinoSelector"
 												 Margin="0,0,16,0"
 												 Style="{StaticResource SampleLayoutModeRadioButtonStyle}"
 												 Visibility="Collapsed">
@@ -612,6 +620,7 @@
 
 									<!-- Native RadioButton -->
 									<RadioButton x:Name="PART_StickyNativeRadioButton"
+												 x:Uid="DesignNativeSelector"
 												 Margin="0,0,16,0"
 												 Style="{StaticResource SampleLayoutModeRadioButtonStyle}"
 												 Visibility="Collapsed">
