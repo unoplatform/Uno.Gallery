@@ -41,6 +41,7 @@
 									   Margin="16,16,16,0" />
 
 							<Button x:Name="PART_ViewButton"
+									AutomationProperties.AutomationId="{TemplateBinding ViewButtonAutomationId}"
 									Content="View component"
 									Margin="8,8"
 									Padding="8,8"

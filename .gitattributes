@@ -1,0 +1,5 @@
+build/visual/*.json text eol=lf
+build/visual/src/*.mjs text eol=lf
+build/visual/src/performance/*.mjs text eol=lf
+build/visual/test/*.mjs text eol=lf
+build/visual/baselines/metadata.json text eol=lf

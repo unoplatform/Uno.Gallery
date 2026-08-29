@@ -1,0 +1,113 @@
+<Page x:Class="Uno.Gallery.Views.Samples.ExpanderSamplePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:Uno.Gallery"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:smtx="using:ShowMeTheXAML"
+      mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <local:SamplePageLayout>
+            <local:SamplePageLayout.FluentTemplate>
+                <DataTemplate>
+                    <StackPanel Spacing="12">
+
+                        <!-- Expander: default expanded -->
+                        <smtx:XamlDisplay UniqueKey="Expander_Fluent_Default"
+                                          smtx:XamlDisplayExtensions.Header="Expander"
+                                          smtx:XamlDisplayExtensions.Description="Expander lets users show or hide supplementary content associated with an item."
+                                          smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+                            <StackPanel Spacing="8">
+                                <Expander AutomationProperties.AutomationId="Expander_Default"
+                                          IsExpanded="True">
+                                    <Expander.Header>
+                                        <TextBlock AutomationProperties.AutomationId="Expander_DefaultHeader"
+                                                   Text="Advanced settings" />
+                                    </Expander.Header>
+                                    <StackPanel Spacing="8"
+                                                Padding="0,4,0,4">
+                                        <CheckBox Content="Enable telemetry" />
+                                        <CheckBox Content="Automatic updates" IsChecked="True" />
+                                        <CheckBox Content="High contrast mode" />
+                                    </StackPanel>
+                                </Expander>
+                            </StackPanel>
+                        </smtx:XamlDisplay>
+
+                        <!-- Expander: collapsed (default) -->
+                        <smtx:XamlDisplay UniqueKey="Expander_Fluent_Collapsed"
+                                          smtx:XamlDisplayExtensions.Header="Expander — Collapsed"
+                                          smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+                            <StackPanel Spacing="8">
+                                <Expander AutomationProperties.AutomationId="Expander_Collapsed"
+                                          Header="More details"
+                                          IsExpanded="False">
+                                    <TextBlock TextWrapping="WrapWholeWords"
+                                               Text="This content is hidden until the user expands the section. Use Expander to progressively disclose supplementary information without navigating away from the current view." />
+                                </Expander>
+                            </StackPanel>
+                        </smtx:XamlDisplay>
+
+                        <!-- Expander: custom header with icon -->
+                        <smtx:XamlDisplay UniqueKey="Expander_Fluent_CustomHeader"
+                                          smtx:XamlDisplayExtensions.Header="Expander — Custom header"
+                                          smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+                            <StackPanel Spacing="8">
+                                <Expander AutomationProperties.AutomationId="Expander_CustomHeader">
+                                    <Expander.Header>
+                                        <StackPanel Orientation="Horizontal"
+                                                    Spacing="8">
+                                            <SymbolIcon Symbol="Setting" />
+                                            <TextBlock Text="Preferences"
+                                                       VerticalAlignment="Center" />
+                                        </StackPanel>
+                                    </Expander.Header>
+                                    <StackPanel Spacing="4"
+                                                Padding="0,4,0,4">
+                                        <Slider Header="Font size"
+                                                Minimum="8"
+                                                Maximum="24"
+                                                Value="14"
+                                                Width="220"
+                                                HorizontalAlignment="Left" />
+                                        <ToggleSwitch Header="Dark mode" />
+                                    </StackPanel>
+                                </Expander>
+                            </StackPanel>
+                        </smtx:XamlDisplay>
+
+                        <!-- Expander: expand down (default) vs expand up -->
+                        <smtx:XamlDisplay UniqueKey="Expander_Fluent_ExpandDirection"
+                                          smtx:XamlDisplayExtensions.Header="Expander — ExpandDirection Up"
+                                          smtx:XamlDisplayExtensions.Description="The content panel can expand above the header by setting ExpandDirection=Up."
+                                          smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+                            <StackPanel Spacing="8">
+                                <Expander AutomationProperties.AutomationId="Expander_ExpandUp"
+                                          Header="Expand upward"
+                                          ExpandDirection="Up">
+                                    <TextBlock Text="This content is above the header."
+                                               Margin="0,4" />
+                                </Expander>
+                            </StackPanel>
+                        </smtx:XamlDisplay>
+
+                        <!-- Expander: disabled -->
+                        <smtx:XamlDisplay UniqueKey="Expander_Fluent_Disabled"
+                                          smtx:XamlDisplayExtensions.Header="Expander — Disabled"
+                                          smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+                            <StackPanel Spacing="8">
+                                <Expander AutomationProperties.AutomationId="Expander_Disabled"
+                                          Header="Locked section"
+                                          IsEnabled="False">
+                                    <TextBlock Text="Cannot expand when disabled." />
+                                </Expander>
+                            </StackPanel>
+                        </smtx:XamlDisplay>
+
+                    </StackPanel>
+                </DataTemplate>
+            </local:SamplePageLayout.FluentTemplate>
+        </local:SamplePageLayout>
+    </Grid>
+</Page>

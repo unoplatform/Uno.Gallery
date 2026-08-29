@@ -1,0 +1,137 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gallery.platform.uno/schemas/sample-manifest-v1.json",
+  "title": "Uno Gallery sample manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "samples"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "samples": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/sample"
+      }
+    }
+  },
+  "$defs": {
+    "enumValue": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "value",
+        "name"
+      ],
+      "properties": {
+        "value": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "nullableString": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "sample": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "fqn",
+        "slug",
+        "title",
+        "category",
+        "description",
+        "glyph",
+        "documentationLink",
+        "sourceSdk",
+        "sortOrder",
+        "status",
+        "tags",
+        "owner",
+        "reviewedOn",
+        "relatedSamples",
+        "sourcePath",
+        "platformConditionals"
+      ],
+      "properties": {
+        "fqn": {
+          "type": "string",
+          "minLength": 1
+        },
+        "slug": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "category": {
+          "$ref": "#/$defs/enumValue"
+        },
+        "description": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "glyph": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "documentationLink": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "sourceSdk": {
+          "$ref": "#/$defs/enumValue"
+        },
+        "sortOrder": {
+          "type": "integer"
+        },
+        "status": {
+          "$ref": "#/$defs/enumValue"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "owner": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "reviewedOn": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "relatedSamples": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+          },
+          "uniqueItems": true
+        },
+        "sourcePath": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "platformConditionals": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        }
+      }
+    }
+  }
+}

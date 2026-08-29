@@ -70,7 +70,7 @@
     env:
       BUILD_SOURCESDIRECTORY: "$(build.sourcesdirectory)"
       BUILD_ARTIFACTSTAGINGDIRECTORY: "$(build.artifactstagingdirectory)"
-    displayName: 'Running tests'
+    displayName: 'Running tiered tests (PR smoke / branch interaction)'
 
   - task: PublishTestResults@2
     condition: always()

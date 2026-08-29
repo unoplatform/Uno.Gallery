@@ -1,0 +1,97 @@
+name: Sample Request
+description: Request a new sample or improved coverage for an existing control or feature.
+title: "[Sample Request]: "
+labels: ["kind/enhancement", "triage/untriaged"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form to request a new sample or improved coverage for an existing one.
+        If the control comes from an upstream source (WinUI, Uno Toolkit, etc.), include a link.
+
+  - type: input
+    id: sdk_version
+    attributes:
+      label: Uno.Sdk version
+      description: >
+        Version of Uno.Sdk you are targeting (from `global.json` or NuGet), if relevant.
+      placeholder: "e.g. 6.6.42"
+    validations:
+      required: false
+
+  - type: input
+    id: sample_name
+    attributes:
+      label: Control / feature name
+      placeholder: "e.g. NavigationView, FlipView, ShadowContainer"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: design_system
+    attributes:
+      label: Design system
+      description: Which design system should the sample demonstrate?
+      options:
+        - Material
+        - Fluent
+        - Cupertino
+        - Agnostic (design-independent)
+        - All / Multiple
+        - Not sure
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: platforms
+    attributes:
+      label: Target platforms
+      description: Which platforms should this sample be verified on?
+      options:
+        - label: Windows (WinAppSDK)
+        - label: Android
+        - label: iOS
+        - label: macOS (Catalyst)
+        - label: Linux (Skia Desktop)
+        - label: WebAssembly
+
+  - type: textarea
+    id: description
+    attributes:
+      label: What should the sample demonstrate?
+      description: >
+        Describe the behavior, variants, or interaction patterns you would like to see covered.
+    validations:
+      required: true
+
+  - type: input
+    id: source_link
+    attributes:
+      label: Source / upstream link
+      description: >
+        Link to WinUI docs, Uno Platform docs, or the upstream control definition.
+      placeholder: "https://learn.microsoft.com/en-us/windows/apps/design/controls/..."
+    validations:
+      required: false
+
+  - type: dropdown
+    id: coverage_disposition
+    attributes:
+      label: Preferred coverage
+      description: Where should this scenario live?
+      options:
+        - Core Gallery
+        - Optional Gallery flavor
+        - External companion sample
+        - Documentation only
+        - Not sure
+    validations:
+      required: true
+
+  - type: textarea
+    id: requirements
+    attributes:
+      label: Runtime requirements and limitations
+      description: Note permissions, credentials, network access, platform restrictions, renderer restrictions, or package impact.
+    validations:
+      required: false

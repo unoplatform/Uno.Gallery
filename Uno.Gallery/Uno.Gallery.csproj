@@ -79,11 +79,18 @@
 		<UnoFeatures Condition="$(IsSkiaWasm)">$(UnoFeatures)SkiaRenderer;</UnoFeatures>
 		<UnoFeatures Condition="$(IsSkiaAndroid)">$(UnoFeatures)SkiaRenderer;</UnoFeatures>
 		<UnoFeatures Condition="$(IsSkiaUIKit)">$(UnoFeatures)SkiaRenderer;</UnoFeatures>
+		<UnoFeatures Condition="'$(EnableExtensionsPatterns)'=='true'">$(UnoFeatures)Mvux;Hosting;Localization;Storage;Configuration;</UnoFeatures>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<DefineConstants Condition="$(IsSkiaWasm)">$(DefineConstants);IS_WASM_SKIA</DefineConstants>
 		<DefineConstants Condition="$(IsSkiaAndroid)">$(DefineConstants);IS_ANDROID_SKIA</DefineConstants>
 		<DefineConstants Condition="$(IsSkiaUIKit)">$(DefineConstants);IS_UIKIT_SKIA</DefineConstants>
 		<DefineConstants Condition="'$(UseNativeRendering)'!='true'">$(DefineConstants);HAS_SKIA_RENDERER</DefineConstants>
+		<EnableExtensionsPatterns Condition="'$(EnableExtensionsPatterns)'==''">false</EnableExtensionsPatterns>
+		<DefineConstants Condition="'$(EnableExtensionsPatterns)'=='true'">$(DefineConstants);EXTENSIONS_PATTERNS</DefineConstants>
+		<DefineConstants Condition="'$(TargetFramework)'=='net10.0-browserwasm' AND '$(Configuration)'=='Release'">$(DefineConstants);WASM_INTERPRETER_AOT</DefineConstants>
+		<DefineConstants Condition="'$(TargetFramework)'=='net10.0-browserwasm' AND '$(Configuration)'!='Release'">$(DefineConstants);WASM_INTERPRETER</DefineConstants>
+		<DefineConstants Condition="'$(PublishAot)'=='true'">$(DefineConstants);NATIVE_AOT</DefineConstants>
+		<DefineConstants>$(DefineConstants);ENFORCE_SAMPLE_CONTRACT</DefineConstants>
 
 		<DefineConstants Condition="$(BUILD_SOURCEBRANCH.StartsWith('refs/heads/canaries'))">$(DefineConstants);IS_CANARY_BUILD</DefineConstants>
 	</PropertyGroup>
@@ -92,13 +99,61 @@
 		<DefineConstants>$(DefineConstants);USE_UITESTS</DefineConstants>
 	</PropertyGroup>
 
+	<!-- PERF_MEASUREMENTS: enabled by opt-in flag, Debug builds, canary branches, and UITest builds. -->
+	<!-- A Release build without any of these compiles to zero mark storage, no Stopwatch, no JSImport. -->
+	<!--
+	    NOTE: When EnablePerformanceMeasurements=true in an otherwise normal Release build (no DEBUG /
+	    IS_CANARY_BUILD / USE_UITESTS), PERF_MEASUREMENTS is defined so marks are recorded and forwarded
+	    to the browser PerformanceTimeline and the production-visible Diagnostics page can export them.
+	    They remain externally consumable through performance.getEntriesByType('mark').filter(e => e.name.startsWith('app.'))
+	-->
+	<PropertyGroup Condition="'$(EnablePerformanceMeasurements)'=='true' or '$(Configuration)'=='Debug' or '$(IsUiAutomationMappingEnabled)'=='True'">
+		<EnablePerformanceMeasurements>true</EnablePerformanceMeasurements>
+	</PropertyGroup>
+	<PropertyGroup Condition="$(BUILD_SOURCEBRANCH.StartsWith('refs/heads/canaries'))">
+		<EnablePerformanceMeasurements>true</EnablePerformanceMeasurements>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(EnablePerformanceMeasurements)'=='true'">
+		<DefineConstants>$(DefineConstants);PERF_MEASUREMENTS</DefineConstants>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(EnablePseudoLocalization)'=='true'">
+		<DefineConstants>$(DefineConstants);PSEUDO_LOCALIZATION</DefineConstants>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(EnableRtlTestMode)'=='true'">
+		<DefineConstants>$(DefineConstants);RTL_TEST_MODE</DefineConstants>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(EnableVisualRegression)'=='true'">
+		<EnablePerformanceMeasurements>true</EnablePerformanceMeasurements>
+		<!-- Visual pages evolve independently of the historical production profile.
+		     A non-existent filename leaves WasmAotProfilePath empty and selects full AOT. -->
+		<WasmAotFileName>visual-full-aot.profile</WasmAotFileName>
+		<WasmShellEnableDotnetJsFingerprinting>false</WasmShellEnableDotnetJsFingerprinting>
+		<WasmAppDir>$(MSBuildProjectDirectory)/obj/$(Configuration)/$(TargetFramework)/visual-appbundle/</WasmAppDir>
+		<DefineConstants>$(DefineConstants);VISUAL_REGRESSION;PERF_MEASUREMENTS</DefineConstants>
+	</PropertyGroup>
+
 	<ItemGroup>
+		<AssemblyMetadata Include="UnoGalleryTargetFramework" Value="$(TargetFramework)" />
 		<PackageReference Include="Uno.ShowMeTheXAML" />
 		<PackageReference Include="Uno.ShowMeTheXAML.MSBuild" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Debug" />
-		<PackageReference Include="Uno.Core.Extensions.Disposables" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug">
+			<VersionOverride Condition="'$(EnableExtensionsPatterns)'=='true'">9.0.14</VersionOverride>
+		</PackageReference>
+		<PackageReference Include="Uno.Core.Extensions.Disposables">
+			<VersionOverride Condition="'$(EnableExtensionsPatterns)'=='true'">4.1.1</VersionOverride>
+		</PackageReference>
 		<PackageReference Include="Uno.Core.Extensions.Compatibility" />
 		<!--<PackageReference Include="SkiaSharp.Skottie" Condition="$(IsSkiaWasm) OR $(IsSkiaAndroid)" />-->
+		<PackageReference Include="Uno.Extensions.Validation" Condition="'$(EnableExtensionsPatterns)'=='true'" />
+	</ItemGroup>
+	<ItemGroup Condition="'$(EnableExtensionsPatterns)'=='true'">
+		<Compile Include="..\Uno.Gallery.ExtensionsPatterns\**\*.cs"
+				 Link="ExtensionsPatterns\%(RecursiveDir)%(Filename)%(Extension)" />
+		<Page Include="..\Uno.Gallery.ExtensionsPatterns\**\*.xaml"
+			  Link="ExtensionsPatterns\%(RecursiveDir)%(Filename)%(Extension)" />
+		<EmbeddedResource Include="..\Uno.Gallery.ExtensionsPatterns\appsettings.extensionspatterns.json"
+						  LogicalName="Uno.Gallery.ExtensionsPatterns.appsettings.extensionspatterns.json" />
+		<Using Remove="Uno.Extensions.Reactive" Condition="'$(EnableExtensionsPatterns)'=='true'" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\Uno.Gallery.SourceGenerators\Uno.Gallery.SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" SetPlatform="Platform=AnyCPU" />
@@ -134,12 +189,14 @@
 
 	<PropertyGroup Condition=" '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'browserwasm' ">
 		<WasmShellWebAppBasePath>/</WasmShellWebAppBasePath>
+		<!-- Opt-in: pass -p:EnableWasmProfiling=true at publish time to enable emcc profiling and disable post-link stripping. -->
+		<EnableWasmProfiling Condition="'$(EnableWasmProfiling)'==''">false</EnableWasmProfiling>
 	</PropertyGroup>
 
 	<PropertyGroup Condition=" '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'browserwasm' AND '$(Configuration)' == 'Release' ">
 		<WasmShellMonoRuntimeExecutionMode>InterpreterAndAOT</WasmShellMonoRuntimeExecutionMode>
-		<WasmShellEmccLinkOptimization>false</WasmShellEmccLinkOptimization>
-		<WasmShellEnableEmccProfiling>true</WasmShellEnableEmccProfiling>
+		<!-- Production disables emcc profiling/name data and strips native debug data post-link; -p:EnableWasmProfiling=true retains profiling information. -->
+		<WasmShellEnableEmccProfiling>$(EnableWasmProfiling)</WasmShellEnableEmccProfiling>
 		<!-- <UnoXamlResourcesTrimming>true</UnoXamlResourcesTrimming> -->
 
 		<!--
@@ -186,11 +243,20 @@
 		<ConfigFiles Include="Platforms\WebAssembly\tsconfig.json" />
 		
 		<WasmShellMonoEnvironment Include="MONO_GC_PARAMS" Value="soft-heap-limit=512m,nursery-size=64m,evacuation-threshold=66,major=marksweep" />
+
+		<!-- CommonServiceLocator 2.0.5's netcoreapp3.0 asset references System.Diagnostics.Debug 4.1.1.0 (old PCL facade, absent from .NET 10 AOT); keep it in interpreter mode. -->
+		<MonoRuntimeMixedModeExcludedAssembly Include="CommonServiceLocator" />
+		<!-- Newtonsoft.Json's transitive net6 asset references System.Collections 6.0 and cannot be profile-AOT compiled by the .NET 10 toolchain. -->
+		<MonoRuntimeMixedModeExcludedAssembly Include="Newtonsoft.Json" Condition="'$(EnableVisualRegression)'=='true'" />
+		<_AOT_InternalForceInterpretAssemblies Include="CommonServiceLocator.dll;Newtonsoft.Json.dll"
+											 Condition="'$(EnableVisualRegression)'=='true'" />
 	</ItemGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='Release' and '$(WasmShellMonoRuntimeExecutionMode)'=='InterpreterAndAOT'">
-		<WasmAotFileName Condition="'$(IsUiAutomationMappingEnabled)'=='' AND '$(UseNativeRendering)' == 'true' ">aot.profile</WasmAotFileName>
-		<WasmAotFileName Condition="'$(IsUiAutomationMappingEnabled)'=='' AND '$(UseNativeRendering)' != 'true' ">aot-skiawasm.profile</WasmAotFileName>
+		<!-- Production profiles are snapshots of method tokens and have repeatedly routed new module/resource initializers through unsupported interpreter paths. -->
+		<WasmAotFileName Condition="'$(EnableVisualRegression)'!='true' AND '$(IsUiAutomationMappingEnabled)'=='' AND '$(UseNativeRendering)' == 'true' ">production-dom-full-aot.profile</WasmAotFileName>
+		<!-- The historical Skia profile leaves generated theme-resource getters in an unsupported interpreter path. -->
+		<WasmAotFileName Condition="'$(EnableVisualRegression)'!='true' AND '$(IsUiAutomationMappingEnabled)'=='' AND '$(UseNativeRendering)' != 'true' ">production-skia-full-aot.profile</WasmAotFileName>
 
 		<!--
 		Use smaller profile for UI tests to avoid the browser's memory
@@ -198,6 +264,10 @@
 		-->
 
 		<WasmAotFileName Condition="'$(IsUiAutomationMappingEnabled)'=='True'">aot-uitests.profile</WasmAotFileName>
+		<!-- Runtime observations contain new instrumentation methods that are intentionally absent from production profiles. -->
+		<WasmAotFileName Condition="'$(EnablePerformanceMeasurements)'=='true' AND '$(EnableVisualRegression)'!='true' AND '$(EnableExtensionsPatterns)'!='true'">performance-full-aot.profile</WasmAotFileName>
+		<!-- The historical profiles predate Uno.Extensions and leave required startup methods in an unsupported interpreter path. -->
+		<WasmAotFileName Condition="'$(EnableExtensionsPatterns)'=='true'">extensions-patterns-full-aot.profile</WasmAotFileName>
 	</PropertyGroup>
 
 	<!-- https://github.com/dotnet/runtime/issues/109289 -->
@@ -219,10 +289,47 @@
 
 	<Target Name="AdjustStrip" BeforeTargets="_WasmCommonPrepareForWasmBuildNative">
 		<PropertyGroup>
-			<!-- Enable debug symbols for release mode to profiling -->
-			<WasmNativeStrip>false</WasmNativeStrip>
+			<!-- Debug-symbol generation stays enabled: nodebug AOT fails on current net6/net8 dependencies. -->
 			<WasmNativeDebugSymbols>true</WasmNativeDebugSymbols>
+			<!-- Release strips final native debug data from the output binary for a leaner artifact. -->
+			<!-- Stripping is disabled in Release when profiling so symbolicated stacks remain usable. -->
+			<!-- Pass -p:EnableWasmProfiling=true to disable stripping (no source change needed). -->
+			<WasmNativeStrip Condition="'$(Configuration)'=='Release'">true</WasmNativeStrip>
+			<WasmNativeStrip Condition="'$(Configuration)'=='Release' AND '$(EnableWasmProfiling)'=='true'">false</WasmNativeStrip>
 		</PropertyGroup>
+	</Target>
+
+	<Target Name="ValidateVisualRegressionConfiguration"
+			BeforeTargets="PrepareForBuild"
+			Condition="'$(EnableVisualRegression)'=='true'">
+		<Error Condition="'$(TargetFramework)'!='net10.0-browserwasm'"
+			   Text="EnableVisualRegression=true is supported only for net10.0-browserwasm." />
+		<Error Condition="'$(UseNativeRendering)'=='true'"
+			   Text="EnableVisualRegression=true requires the Skia-WASM renderer (UseNativeRendering=false)." />
+	</Target>
+	<Target Name="RemoveExtensionsPatternsReactiveGlobalUsing"
+			BeforeTargets="GenerateGlobalUsings">
+		<ItemGroup>
+			<Using Remove="Uno.Extensions.Reactive" />
+		</ItemGroup>
+	</Target>
+	<Target Name="ExcludeVisualRegressionBuildToolAssemblies"
+			BeforeTargets="_WasmAotCompileApp;_GenerateManagedToNative"
+			Condition="'$(EnableVisualRegression)'=='true'">
+		<ItemGroup>
+			<_WasmAssembliesInternal Remove="@(_WasmAssembliesInternal)"
+				Condition="$([System.String]::Copy('%(_WasmAssembliesInternal.Identity)').Contains('uno.ai.xamlgeneration.assets'))" />
+		</ItemGroup>
+	</Target>
+	<Target Name="CopyVisualRegressionWasmRuntime"
+			AfterTargets="WasmTriggerPublishApp"
+			Condition="'$(EnableVisualRegression)'=='true' AND Exists('$(WasmAppDir)_framework/dotnet.boot.js')">
+		<ItemGroup>
+			<_VisualWasmRuntime Include="$(WasmAppDir)**/*" />
+		</ItemGroup>
+		<Copy SourceFiles="@(_VisualWasmRuntime)"
+			  DestinationFiles="@(_VisualWasmRuntime->'$(PublishDir)wwwroot/%(RecursiveDir)%(Filename)%(Extension)')"
+			  SkipUnchangedFiles="true" />
 	</Target>
 
 </Project>

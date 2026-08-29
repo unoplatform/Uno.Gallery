@@ -49,6 +49,49 @@ variables:
   AotCompileMaxDegreeOfParallelism: 3
 
 stages:
+- stage: Validation
+  displayName: 'Validation'
+  dependsOn: []
+  jobs:
+  - job: Validation_Policies
+    displayName: 'Validate repository policies'
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+    - checkout: self
+      clean: true
+    - task: PowerShell@2
+      displayName: 'Lint: ignored-test tracking policy'
+      inputs:
+        filePath: 'build/scripts/lint-test-ignores.ps1'
+        pwsh: true
+    - task: PowerShell@2
+      displayName: 'Lint: localization and accessibility'
+      inputs:
+        filePath: 'build/scripts/lint-localization-accessibility.ps1'
+        pwsh: true
+    - task: PowerShell@2
+      displayName: 'Validate performance contracts'
+      inputs:
+        filePath: 'build/scripts/test-performance-contract.ps1'
+        pwsh: true
+    - task: PowerShell@2
+      displayName: 'Generate release metadata fixture'
+      inputs:
+        targetType: filePath
+        filePath: 'build/scripts/write-release-metadata.ps1'
+        pwsh: true
+        arguments: >
+          -OutputPath "$(Agent.TempDirectory)/release-metadata.json"
+          -Version "0.0.0-ci"
+          -InformationalVersion "0.0.0-ci"
+    - pwsh: |
+        $json = Get-Content "$(Agent.TempDirectory)/release-metadata.json" -Raw
+        if (-not ($json | Test-Json -SchemaFile "docs/releases/release-metadata.schema.json")) {
+          throw "Release metadata fixture does not match schema version 1."
+        }
+      displayName: 'Validate release metadata fixture'
+
 - stage: Android
   displayName: 'Android'
   dependsOn: []
@@ -222,22 +265,419 @@ stages:
       matrix:
         DOM:
           ArtifactName: WASM-DOM
+          CatalogTargetName: WASM-DOM
           UseNativeRendering: true
+          EnableVisualRegression: false
+          EnablePerformanceMeasurements: false
+          PerformanceFlavor: core
         Skia:
           ArtifactName: WASM-Skia
+          CatalogTargetName: WASM-Skia
           UseNativeRendering: false
+          EnableVisualRegression: false
+          EnablePerformanceMeasurements: false
+          PerformanceFlavor: core
 
     variables:
       SkipUnknownFrameworks: true
 
     steps:
       - template: build/stage-build-wasm.yml
+
+- stage: Visual_Regression
+  displayName: 'Visual Regression'
+  dependsOn: []
+  jobs:
+  - job: Build_Visual_Skia_WASM
+    displayName: 'Build visual-mode Skia-WASM (advisory)'
+    timeoutInMinutes: 60
+    continueOnError: true
+    pool:
+      vmImage: ubuntu-latest
+    variables:
+      ArtifactName: WASM-Skia-Visual
+      CatalogTargetName: WASM-Skia
+      UseNativeRendering: false
+      EnableVisualRegression: true
+      EnablePerformanceMeasurements: true
+      PerformanceFlavor: visual
+      SkipUnknownFrameworks: true
+    steps:
+      - template: build/stage-build-wasm.yml
+
+  - job: Windows_Skia_WASM_Visual_Pilot
+    displayName: 'Windows / Chromium / Skia-WASM pilot (advisory)'
+    timeoutInMinutes: 45
+    dependsOn: Build_Visual_Skia_WASM
+    condition: succeededOrFailed()
+    pool:
+      vmImage: windows-latest
+    variables:
+      PUPPETEER_CACHE_DIR: $(Pipeline.Workspace)\puppeteer
+    steps:
+    - checkout: self
+      clean: true
+    - task: NodeTool@0
+      displayName: 'Use Node.js 22'
+      inputs:
+        versionSource: spec
+        versionSpec: 22.x
+    - task: DownloadBuildArtifacts@1
+      displayName: 'Download visual-mode WASM-Skia artifact'
+      inputs:
+        buildType: current
+        downloadType: single
+        artifactName: WASM-Skia-Visual
+        downloadPath: $(Pipeline.Workspace)
+      continueOnError: true
+    - pwsh: |
+        New-Item -ItemType Directory -Path 'build/visual/artifacts/current' -Force | Out-Null
+        New-Item -ItemType Directory -Path 'build/visual/artifacts/diff' -Force | Out-Null
+        '{"passed":false,"error":"visual comparison did not start","results":[]}' |
+          Set-Content 'build/visual/artifacts/report.json'
+      displayName: 'Prepare visual report directory'
+    - script: npm ci --no-audit --no-fund
+      displayName: 'Install pinned visual tool and Chromium'
+      workingDirectory: build/visual
+    - script: npm test
+      displayName: 'Test visual and performance tooling'
+      workingDirectory: build/visual
+    - script: npm run compare -- --wasm "$(Pipeline.Workspace)\WASM-Skia-Visual"
+      displayName: 'Compare visual pilot (advisory)'
+      workingDirectory: build/visual
+      continueOnError: true
+    - task: PublishPipelineArtifact@1
+      displayName: 'Publish visual current, diff, and report'
+      condition: always()
+      inputs:
+        targetPath: build/visual/artifacts
+        artifactName: visual-regression
+
+- stage: Performance
+  displayName: 'Performance Budgets'
+  dependsOn: WebAssembly
+  condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
+  jobs:
+  - job: Windows_WASM_Release_Startup
+    displayName: 'Release DOM and Skia startup'
+    timeoutInMinutes: 30
+    pool:
+      vmImage: windows-2022
+    variables:
+      PUPPETEER_CACHE_DIR: $(Pipeline.Workspace)\puppeteer
+    steps:
+    - checkout: self
+      clean: true
+    - task: NodeTool@0
+      displayName: 'Use Node.js 22'
+      inputs:
+        versionSource: spec
+        versionSpec: 22.x
+    - task: DownloadBuildArtifacts@1
+      displayName: 'Download production WebAssembly artifacts'
+      inputs:
+        buildType: current
+        downloadType: specific
+        itemPattern: |
+          WASM-DOM/**
+          WASM-Skia/**
+          WASM-Skia-catalog/**
+        downloadPath: $(Pipeline.Workspace)
+    - pwsh: |
+        New-Item -ItemType Directory -Path 'build/performance/artifacts/startup' -Force | Out-Null
+      displayName: 'Prepare startup artifacts'
+    - script: npm ci --no-audit --no-fund
+      displayName: 'Install pinned Chromium harness'
+      workingDirectory: build/visual
+    - script: >
+        npm run startup-probe --
+        --wasm "$(Pipeline.Workspace)\WASM-DOM"
+        --config "$(Build.SourcesDirectory)\build\performance\performance.config.json"
+        --renderer DOM
+        --output "$(Build.SourcesDirectory)\build\performance\artifacts\startup\DOM.json"
+      displayName: 'Probe production DOM startup'
+      workingDirectory: build/visual
+    - script: >
+        npm run startup-probe --
+        --wasm "$(Pipeline.Workspace)\WASM-Skia"
+        --config "$(Build.SourcesDirectory)\build\performance\performance.config.json"
+        --renderer Skia
+        --output "$(Build.SourcesDirectory)\build\performance\artifacts\startup\Skia.json"
+      displayName: 'Probe production Skia startup'
+      workingDirectory: build/visual
+    - script: >
+        npm run skia-route-qa --
+        --wasm "$(Pipeline.Workspace)\WASM-Skia"
+        --manifest "$(Pipeline.Workspace)\WASM-Skia-catalog\sample-manifest.json"
+        --config "$(Build.SourcesDirectory)\build\performance\performance.config.json"
+        --output "$(Build.SourcesDirectory)\build\performance\artifacts\startup\Skia-routes.json"
+      displayName: 'Sweep production Skia sample routes'
+      workingDirectory: build/visual
+    - pwsh: |
+        foreach ($path in @(
+          'build/performance/artifacts/startup/DOM.json',
+          'build/performance/artifacts/startup/Skia.json'
+        )) {
+          $json = Get-Content $path -Raw
+          if (-not ($json | Test-Json -SchemaFile 'docs/performance/startup-probe-v1.schema.json')) {
+            throw "Startup probe failed schema validation: $path"
+          }
+        }
+        $routeJson = Get-Content 'build/performance/artifacts/startup/Skia-routes.json' -Raw
+        if (-not ($routeJson | Test-Json -SchemaFile 'docs/performance/skia-route-qa-v1.schema.json')) {
+          throw 'Skia route QA failed schema validation.'
+        }
+      displayName: 'Validate startup probe evidence'
+    - task: PublishPipelineArtifact@1
+      displayName: 'Publish release startup probes'
+      condition: always()
+      inputs:
+        targetPath: build/performance/artifacts/startup
+        artifactName: wasm-release-startup
+
+  - job: Build_Performance_DOM_WASM
+    displayName: 'Build instrumented DOM WebAssembly (advisory)'
+    timeoutInMinutes: 60
+    pool:
+      vmImage: ubuntu-latest
+    variables:
+      ArtifactName: WASM-DOM-Performance
+      CatalogTargetName: WASM-DOM
+      UseNativeRendering: true
+      EnableVisualRegression: false
+      EnablePerformanceMeasurements: true
+      PerformanceFlavor: instrumented
+      SkipUnknownFrameworks: true
+    steps:
+      - template: build/stage-build-wasm.yml
+
+  - job: Windows_DOM_Performance
+    displayName: 'Pinned Chromium DOM runtime trends (advisory)'
+    timeoutInMinutes: 60
+    dependsOn: Build_Performance_DOM_WASM
+    condition: succeeded()
+    pool:
+      vmImage: windows-2022
+    variables:
+      PUPPETEER_CACHE_DIR: $(Pipeline.Workspace)\puppeteer
+    steps:
+    - checkout: self
+      clean: true
+    - task: NodeTool@0
+      displayName: 'Use Node.js 22'
+      inputs:
+        versionSource: spec
+        versionSpec: 22.x
+    - task: DownloadBuildArtifacts@1
+      displayName: 'Download instrumented WASM-DOM artifact'
+      inputs:
+        buildType: current
+        downloadType: single
+        artifactName: WASM-DOM-Performance
+        downloadPath: $(Pipeline.Workspace)
+    - task: DownloadBuildArtifacts@1
+      displayName: 'Download production WASM-DOM metrics'
+      inputs:
+        buildType: current
+        downloadType: single
+        artifactName: WASM-DOM-catalog
+        downloadPath: $(Pipeline.Workspace)
+    - pwsh: |
+        New-Item -ItemType Directory -Path 'build/performance/artifacts' -Force | Out-Null
+      displayName: 'Prepare performance artifacts'
+    - script: npm ci --no-audit --no-fund
+      displayName: 'Install pinned Chromium harness'
+      workingDirectory: build/visual
+    - script: >
+        npm run performance --
+        --wasm "$(Pipeline.Workspace)\WASM-DOM-Performance"
+        --config "$(Build.SourcesDirectory)\build\performance\performance.config.json"
+        --output "$(Build.SourcesDirectory)\build\performance\artifacts\runtime-observation.json"
+        --commit "$(Build.SourceVersion)"
+      displayName: 'Collect ten cold and ten warm observations'
+      workingDirectory: build/visual
+    - task: PowerShell@2
+      displayName: 'Validate and compare runtime budget (advisory)'
+      inputs:
+        targetType: inline
+        pwsh: true
+        script: |
+          $runtimePath = "build/performance/artifacts/runtime-observation.json"
+          $runtimeJson = Get-Content $runtimePath -Raw
+          if (-not ($runtimeJson | Test-Json -SchemaFile "docs/performance/runtime-observation-v1.schema.json")) {
+            throw "Runtime performance observation failed schema validation."
+          }
+          ./build/scripts/compare-performance-budget.ps1 `
+            -BudgetPath "docs/performance/performance-budget-v1.json" `
+            -BundleMetricsPath "$(Pipeline.Workspace)/WASM-DOM-catalog/wasm-bundle-metrics.json" `
+            -RuntimeObservationPath $runtimePath `
+            -OutputPath "build/performance/artifacts/performance-report.json"
+    - task: PublishPipelineArtifact@1
+      displayName: 'Publish performance observations and report'
+      condition: always()
+      inputs:
+        targetPath: build/performance/artifacts
+        artifactName: performance
  
 - stage: WebAssembly_Tests
   displayName: 'WebAssembly Tests'
   dependsOn: []
   jobs:
   - template: build/stage-uitests-wasm.yml
+
+- stage: Extensions_Patterns
+  displayName: 'Optional Uno.Extensions app patterns'
+  dependsOn: []
+  jobs:
+  - job: Extensions_Patterns_Windows
+    displayName: 'Logic, Desktop, Android, Windows x86, and manifest gating'
+    timeoutInMinutes: 90
+    pool:
+      vmImage: windows-2022
+    steps:
+    - checkout: self
+      clean: true
+    - template: build/templates/dotnet-install-windows.yml
+    - pwsh: |
+        dotnet test Uno.Gallery.ExtensionsPatterns.Tests/Uno.Gallery.ExtensionsPatterns.Tests.csproj -c Release
+        if ($LASTEXITCODE -ne 0) { throw "Extensions pattern logic tests failed." }
+        dotnet build Uno.Gallery/Uno.Gallery.csproj -c Release -p:TargetFrameworkOverride=net10.0-desktop -p:EnableExtensionsPatterns=true
+        if ($LASTEXITCODE -ne 0) { throw "Extensions pattern Desktop build failed." }
+        dotnet build Uno.Gallery/Uno.Gallery.csproj -c Release -p:TargetFrameworkOverride=net10.0-android -p:EnableExtensionsPatterns=true
+        if ($LASTEXITCODE -ne 0) { throw "Extensions pattern Android build failed." }
+        dotnet build Uno.Gallery/Uno.Gallery.csproj -c Release -p:TargetFrameworkOverride=net10.0-windows10.0.19041 -p:EnableExtensionsPatterns=true -p:Platform=x86
+        if ($LASTEXITCODE -ne 0) { throw "Extensions pattern Windows x86 build failed." }
+      displayName: 'Build optional Windows-hosted matrix'
+    - pwsh: |
+        dotnet build Uno.Gallery/Uno.Gallery.csproj -c Release -p:TargetFrameworkOverride=net10.0-desktop -p:EmitCompilerGeneratedFiles=true -p:CompilerGeneratedFilesOutputPath="$(Agent.TempDirectory)/generated-default"
+        if ($LASTEXITCODE -ne 0) { throw "Default manifest source build failed." }
+        dotnet build Uno.Gallery/Uno.Gallery.csproj -c Release -p:TargetFrameworkOverride=net10.0-desktop -p:EnableExtensionsPatterns=true -p:EmitCompilerGeneratedFiles=true -p:CompilerGeneratedFilesOutputPath="$(Agent.TempDirectory)/generated-optional"
+        if ($LASTEXITCODE -ne 0) { throw "Optional manifest source build failed." }
+        ./build/scripts/test-extensions-patterns-manifest.ps1 `
+          -DefaultGeneratedSourcePath "$(Agent.TempDirectory)/generated-default" `
+          -OptionalGeneratedSourcePath "$(Agent.TempDirectory)/generated-optional" `
+          -OutputDirectory "$(Agent.TempDirectory)/extensions-patterns-manifests"
+      displayName: 'Verify generated manifest gating'
+
+  - job: Extensions_Patterns_Wasm
+    displayName: 'DOM and Skia WebAssembly AOT'
+    timeoutInMinutes: 90
+    strategy:
+      matrix:
+        DOM:
+          UseNativeRendering: true
+          CatalogTargetName: WASM-DOM-ExtensionsPatterns
+        Skia:
+          UseNativeRendering: false
+          CatalogTargetName: WASM-Skia-ExtensionsPatterns
+    variables:
+      SkipUnknownFrameworks: true
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+    - checkout: self
+      clean: true
+    - template: build/templates/dotnet-install-linux.yml
+    - template: build/templates/host-cleanup-linux.yml
+    - bash: |
+        dotnet publish Uno.Gallery/Uno.Gallery.csproj -c Release -f net10.0-browserwasm \
+          -p:EnableExtensionsPatterns=true \
+          -p:UseNativeRendering=$(UseNativeRendering) \
+          -p:WasmGenerateAppBundle=true \
+          -p:EmitCompilerGeneratedFiles=true \
+          -p:CompilerGeneratedFilesOutputPath="$(Agent.TempDirectory)/generated-optional-wasm" \
+          -o "$(Agent.TempDirectory)/extensions-patterns-wasm"
+      displayName: 'Publish optional WebAssembly AOT'
+    - task: PowerShell@2
+      displayName: 'Verify linked validation properties'
+      inputs:
+        targetType: filePath
+        filePath: 'build/scripts/test-extensions-patterns-linked.ps1'
+        pwsh: true
+        arguments: >
+          -SearchRoot "$(Build.SourcesDirectory)/Uno.Gallery/obj/Release/net10.0-browserwasm"
+    - task: PowerShell@2
+      displayName: 'Validate optional catalog'
+      inputs:
+        targetType: filePath
+        filePath: 'build/scripts/validate-manifest-contract.ps1'
+        pwsh: true
+        arguments: >
+          -GeneratedSourcePath "$(Agent.TempDirectory)/generated-optional-wasm"
+          -OutputDirectory "$(Agent.TempDirectory)/extensions-patterns-catalog"
+          -TargetName "$(CatalogTargetName)"
+    - task: PowerShell@2
+      displayName: 'Measure optional WebAssembly bundle'
+      inputs:
+        targetType: filePath
+        filePath: 'build/scripts/measure-wasm-bundle.ps1'
+        pwsh: true
+        arguments: >
+          -WasmRoot "$(Agent.TempDirectory)/extensions-patterns-wasm/wwwroot"
+          -TargetName "$(CatalogTargetName)"
+          -Flavor "extensions"
+          -BuildCommit "$(Build.SourceVersion)"
+          -OutputPath "$(Agent.TempDirectory)/extensions-patterns-catalog/wasm-bundle-metrics.json"
+    - task: PublishPipelineArtifact@1
+      displayName: 'Publish optional catalog and bundle metrics'
+      inputs:
+        targetPath: "$(Agent.TempDirectory)/extensions-patterns-catalog"
+        artifactName: "ExtensionsPatterns-$(CatalogTargetName)-catalog"
+
+  - job: Extensions_Patterns_DOM_UITests_Build
+    displayName: 'Build optional DOM interactions'
+    timeoutInMinutes: 90
+    pool:
+      vmImage: ubuntu-latest
+    variables:
+      NUGET_PACKAGES: $(build.sourcesdirectory)/.nuget
+    steps:
+    - checkout: self
+      clean: true
+      fetchDepth: 0
+    - template: build/templates/dotnet-install-linux.yml
+    - template: build/templates/host-cleanup-linux.yml
+    - bash: |
+        chmod +x build/scripts/wasm-uitest-build.sh
+        build/scripts/wasm-uitest-build.sh
+      env:
+        BUILD_SOURCESDIRECTORY: "$(build.sourcesdirectory)"
+        BUILD_ARTIFACTSTAGINGDIRECTORY: "$(build.artifactstagingdirectory)"
+        ENABLE_EXTENSIONS_PATTERNS: "true"
+      displayName: 'Build optional DOM test app'
+    - publish: $(UNO_UITEST_WASM_OUTPUT_PATH)
+      artifact: ExtensionsPatterns_Wasm_UITest
+
+  - job: Extensions_Patterns_DOM_UITests
+    displayName: 'Run optional DOM interactions'
+    timeoutInMinutes: 90
+    dependsOn: Extensions_Patterns_DOM_UITests_Build
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+    - checkout: self
+      clean: true
+    - task: NodeTool@0
+      inputs:
+        versionSource: spec
+        versionSpec: 20.x
+    - download: current
+      artifact: ExtensionsPatterns_Wasm_UITest
+    - template: build/templates/dotnet-install-linux.yml
+      parameters:
+        installJava: false
+        installWorkloads: false
+    - template: build/templates/host-cleanup-linux.yml
+    - bash: |
+        export UNO_UITEST_WASM_OUTPUT_PATH=$(Pipeline.Workspace)/ExtensionsPatterns_Wasm_UITest
+        chmod +x build/scripts/wasm-uitest-run.sh
+        build/scripts/wasm-uitest-run.sh
+      env:
+        BUILD_SOURCESDIRECTORY: "$(build.sourcesdirectory)"
+        BUILD_ARTIFACTSTAGINGDIRECTORY: "$(build.artifactstagingdirectory)"
+        ENABLE_EXTENSIONS_PATTERNS: "true"
+        UNO_UITEST_TEST_TIER: "ExtensionsPatterns"
+      displayName: 'Run targeted optional DOM interactions'
 
 - stage: iOS_Tests
   displayName: 'iOS Tests'
@@ -262,7 +702,76 @@ stages:
   - template: build/templates/canary-publish/stage-publish-ios-canary.yml
   - template: build/templates/canary-publish/stage-publish-android-canary.yml
 
-- ${{ if startsWith(variables['Build.SourceBranch'], 'refs/heads/master') }}:
+- ${{ if or(eq(variables['Build.SourceBranch'], 'refs/heads/master'), startsWith(variables['Build.SourceBranch'], 'refs/heads/release/stable/')) }}:
+  - stage: Release_Validation
+    displayName: 'Release Validation'
+    dependsOn:
+    - Validation
+    - Android
+    - Windows
+    - Skia_Desktop
+    - Apple
+    - WebAssembly
+    - Performance
+    - WebAssembly_Tests
+    - iOS_Tests
+    - Android_Tests
+    - Android_Skia_NativeAOT_Instrumentation_Tests
+    - Extensions_Patterns
+    condition: succeeded()
+    jobs:
+    - job: Publish_Release_Metadata
+      displayName: 'Publish release metadata'
+      pool:
+        vmImage: ubuntu-latest
+      steps:
+      - checkout: self
+        fetchDepth: 0
+      - task: UseDotNet@2
+        displayName: 'Use .NET'
+        inputs:
+          packageType: sdk
+          version: '10.0.102'
+          includePreviewVersions: true
+      - pwsh: |
+          $toolPath = "$(Agent.TempDirectory)/nbgv"
+          dotnet tool install nbgv --tool-path $toolPath --version 3.6.139
+          if ($LASTEXITCODE -ne 0) {
+            throw "Unable to install NBGV."
+          }
+          & "$toolPath/nbgv" cloud -a
+          if ($LASTEXITCODE -ne 0) {
+            throw "Unable to set NBGV cloud build variables."
+          }
+        displayName: 'Version with NBGV'
+      - pwsh: |
+          $informationalVersion = "$(NBGV_SemVer2)+$(NBGV_GitCommitId)-$(NBGV_BuildingRef)".Replace("refs/heads/", "").Replace("/", "-")
+          Write-Host "##vso[task.setvariable variable=NBGV_InformationalVersion;]$informationalVersion"
+          Write-Host "Informational Version: $informationalVersion"
+        displayName: 'Generate informational version'
+      - task: PowerShell@2
+        displayName: 'Generate release metadata'
+        inputs:
+          targetType: filePath
+          pwsh: true
+          filePath: 'build/scripts/write-release-metadata.ps1'
+          arguments: >
+            -OutputPath "$(Build.ArtifactStagingDirectory)/release-metadata.json"
+            -Version "$(NBGV_SemVer2)"
+            -InformationalVersion "$(NBGV_InformationalVersion)"
+      - pwsh: |
+          $json = Get-Content "$(Build.ArtifactStagingDirectory)/release-metadata.json" -Raw
+          if (-not ($json | Test-Json -SchemaFile "docs/releases/release-metadata.schema.json")) {
+            throw "Release metadata does not match schema version 1."
+          }
+        displayName: 'Validate release metadata'
+      - task: PublishPipelineArtifact@1
+        displayName: 'Publish release metadata'
+        inputs:
+          targetPath: '$(Build.ArtifactStagingDirectory)/release-metadata.json'
+          artifactName: 'release-metadata'
+
+- ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/master') }}:
   - template: build/templates/master-publish/stage-publish-wasm.yml
   - template: build/templates/master-publish/stage-publish-ios.yml
   - template: build/templates/master-publish/stage-publish-android.yml

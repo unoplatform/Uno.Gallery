@@ -1,0 +1,55 @@
+area/automation:
+  - changed-files:
+      - any-glob-to-any-file:
+          - ".github/**/*"
+
+area/build:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "build/**/*"
+          - "azure-pipelines.yml"
+          - "Directory.Build.*"
+          - "Directory.Packages.props"
+          - "global.json"
+          - "version.json"
+
+area/catalog:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "Uno.Gallery.SourceGenerators/**/*"
+          - "Uno.Gallery.SourceGenerators.Tests/**/*"
+          - "Uno.Gallery/Entities/Sample*.cs"
+
+area/samples:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "Uno.Gallery/Views/SamplePages/**/*"
+          - "Uno.Gallery/Entities/Data/**/*"
+
+area/tests:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "Uno.Gallery.UITests/**/*"
+          - "Uno.Gallery.SourceGenerators.Tests/**/*"
+          - "build/scripts/*test*"
+
+area/documentation:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "docs/**/*"
+          - "README.md"
+          - "CONTRIBUTING.md"
+
+kind/dependency:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "Directory.Packages.props"
+          - "global.json"
+          - ".github/dependabot.yml"
+
+kind/performance:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "Uno.Gallery/Helpers/PerformanceMarks.cs"
+          - "Uno.Gallery/Platforms/WebAssembly/wwwroot/staticwebapp.config.json"
+          - "build/scripts/*perf*"

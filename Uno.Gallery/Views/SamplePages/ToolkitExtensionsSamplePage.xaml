@@ -1,0 +1,184 @@
+<Page x:Class="Uno.Gallery.Views.Samples.ToolkitExtensionsSamplePage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:local="using:Uno.Gallery"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  xmlns:smtx="using:ShowMeTheXAML"
+	  xmlns:utu="using:Uno.Toolkit.UI"
+	  mc:Ignorable="d">
+
+	<Page.Resources>
+		<Style x:Key="ToolkitExtensionsScopedButtonStyle"
+			   TargetType="Button"
+			   BasedOn="{StaticResource DefaultButtonStyle}">
+			<Setter Property="utu:ResourceExtensions.Resources">
+				<Setter.Value>
+					<ResourceDictionary>
+						<SolidColorBrush x:Key="ButtonBackground" Color="#FF0063B1" />
+						<SolidColorBrush x:Key="ButtonForeground" Color="White" />
+						<SolidColorBrush x:Key="ButtonBorderBrush" Color="#FF0063B1" />
+					</ResourceDictionary>
+				</Setter.Value>
+			</Setter>
+		</Style>
+
+		<ControlTemplate x:Key="ToolkitExtensionsStateTemplate" TargetType="Button">
+			<Grid x:Name="StateRoot" Padding="16,10" Background="Gray">
+				<VisualStateManager.VisualStateGroups>
+					<VisualStateGroup x:Name="PresentationStates">
+						<VisualState x:Name="Quiet">
+							<VisualState.Setters>
+								<Setter Target="StateRoot.Background" Value="Gray" />
+							</VisualState.Setters>
+						</VisualState>
+						<VisualState x:Name="Accent">
+							<VisualState.Setters>
+								<Setter Target="StateRoot.Background" Value="DarkOrange" />
+							</VisualState.Setters>
+						</VisualState>
+					</VisualStateGroup>
+				</VisualStateManager.VisualStateGroups>
+				<ContentPresenter Content="{TemplateBinding Content}"
+								  HorizontalAlignment="Center"
+								  VerticalAlignment="Center" />
+			</Grid>
+		</ControlTemplate>
+	</Page.Resources>
+
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<local:SamplePageLayout x:Name="SamplePageLayoutRoot"
+								IsDesignAgnostic="True">
+			<local:SamplePageLayout.DesignAgnosticTemplate>
+				<DataTemplate>
+					<StackPanel Spacing="20">
+						<smtx:XamlDisplay UniqueKey="ToolkitExtensions_InputAndCommand"
+										  smtx:XamlDisplayExtensions.Header="Input and commands"
+										  smtx:XamlDisplayExtensions.Description="InputExtensions configures return-key behavior. CommandExtensions forwards the meaningful control value to ICommand."
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+							<StackPanel Spacing="8">
+								<TextBox x:Name="NextInput"
+										 AutomationProperties.AutomationId="ToolkitExtensions_InputNext"
+										 AutomationProperties.Name="First form field"
+										 Header="First field"
+										 utu:InputExtensions.ReturnType="Next"
+										 utu:InputExtensions.AutoDismiss="False"
+										 utu:InputExtensions.AutoFocusNextElement="{Binding ElementName=SubmitInput}" />
+								<TextBox x:Name="SubmitInput"
+										 AutomationProperties.AutomationId="ToolkitExtensions_InputSubmit"
+										 AutomationProperties.Name="Submission field"
+										 Header="Submit on Enter"
+										 utu:InputExtensions.ReturnType="Done"
+										 utu:InputExtensions.AutoDismiss="True"
+										 utu:CommandExtensions.Command="{Binding Data.SubmitCommand}" />
+								<Button AutomationProperties.AutomationId="ToolkitExtensions_VerifyInput"
+										AutomationProperties.Name="Verify input extension settings"
+										Content="Verify input settings"
+										Click="VerifyInput_Click" />
+								<TextBlock x:Name="InputStatus"
+										   AutomationProperties.AutomationId="ToolkitExtensions_InputStatus"
+										   AutomationProperties.LiveSetting="Polite"
+										   Text="Input settings not checked"
+										   Style="{StaticResource BodyMedium}" />
+								<TextBlock x:Name="SubmitStatusText"
+										   AutomationProperties.AutomationId="ToolkitExtensions_SubmitStatus"
+										   AutomationProperties.LiveSetting="Polite"
+										   Text="{Binding Data.SubmitStatus}"
+										   Style="{StaticResource BodyMedium}" />
+
+								<ToggleSwitch x:Name="CommandToggle"
+											  AutomationProperties.AutomationId="ToolkitExtensions_CommandToggle"
+											  Header="Command receives IsOn"
+											  utu:CommandExtensions.Command="{Binding Data.ToggleCommand}" />
+								<Button AutomationProperties.AutomationId="ToolkitExtensions_ToggleProgrammatically"
+										AutomationProperties.Name="Toggle command source"
+										Content="Toggle with deterministic action"
+										Click="ToggleProgrammatically_Click" />
+								<TextBlock x:Name="CommandStatusText"
+										   AutomationProperties.AutomationId="ToolkitExtensions_CommandStatus"
+										   AutomationProperties.LiveSetting="Polite"
+										   Text="{Binding Data.ToggleStatus}"
+										   Style="{StaticResource BodyMedium}" />
+							</StackPanel>
+						</smtx:XamlDisplay>
+
+						<smtx:XamlDisplay UniqueKey="ToolkitExtensions_ResourcesAndStates"
+										  smtx:XamlDisplayExtensions.Header="Scoped resources and visual states"
+										  smtx:XamlDisplayExtensions.Description="ResourceExtensions carries a lightweight resource dictionary in a Style. VisualStateManagerExtensions drives named template states from an attached string."
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+							<StackPanel Spacing="8">
+								<Button x:Name="ScopedResourceButton"
+										AutomationProperties.AutomationId="ToolkitExtensions_ResourceButton"
+										Style="{StaticResource ToolkitExtensionsScopedButtonStyle}"
+										Content="Scoped blue resources" />
+								<Button AutomationProperties.AutomationId="ToolkitExtensions_VerifyResources"
+										AutomationProperties.Name="Verify scoped button resources"
+										Content="Verify scoped resources"
+										Click="VerifyResources_Click" />
+								<TextBlock x:Name="ResourceStatus"
+										   AutomationProperties.AutomationId="ToolkitExtensions_ResourceStatus"
+										   AutomationProperties.LiveSetting="Polite"
+										   Text="Scoped resources not checked"
+										   Style="{StaticResource BodyMedium}" />
+
+								<Button x:Name="StateButton"
+										AutomationProperties.AutomationId="ToolkitExtensions_StateButton"
+										Content="Attached visual state"
+										Template="{StaticResource ToolkitExtensionsStateTemplate}"
+										utu:VisualStateManagerExtensions.States="Quiet" />
+								<Button AutomationProperties.AutomationId="ToolkitExtensions_ToggleState"
+										AutomationProperties.Name="Toggle attached visual state"
+										Content="Toggle visual state"
+										Click="ToggleState_Click" />
+								<TextBlock x:Name="StateStatus"
+										   AutomationProperties.AutomationId="ToolkitExtensions_StateStatus"
+										   AutomationProperties.LiveSetting="Polite"
+										   Text="State: Quiet"
+										   Style="{StaticResource BodyMedium}" />
+							</StackPanel>
+						</smtx:XamlDisplay>
+
+						<smtx:XamlDisplay UniqueKey="ToolkitExtensions_Selection"
+										  smtx:XamlDisplayExtensions.Header="Selection synchronization"
+										  smtx:XamlDisplayExtensions.Description="SelectorExtensions links PipsPager to a selector. TabBarSelectorBehavior keeps the same selector synchronized with TabBar."
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+							<StackPanel Spacing="8">
+								<utu:TabBar x:Name="ExtensionsTabBar"
+											AutomationProperties.AutomationId="ToolkitExtensions_TabBar"
+											utu:TabBarSelectorBehavior.Selector="{Binding ElementName=ExtensionsFlipView}">
+									<utu:TabBar.Items>
+										<utu:TabBarItem Content="One" />
+										<utu:TabBarItem Content="Two" />
+										<utu:TabBarItem Content="Three" />
+									</utu:TabBar.Items>
+								</utu:TabBar>
+								<FlipView x:Name="ExtensionsFlipView"
+										  AutomationProperties.AutomationId="ToolkitExtensions_FlipView"
+										  Height="90"
+										  SelectionChanged="ExtensionsFlipView_SelectionChanged"
+										  utu:SelectorExtensions.PipsPager="{Binding ElementName=ExtensionsPager}">
+									<Border Background="SteelBlue"><TextBlock Text="Page one" HorizontalAlignment="Center" VerticalAlignment="Center" /></Border>
+									<Border Background="DarkSeaGreen"><TextBlock Text="Page two" HorizontalAlignment="Center" VerticalAlignment="Center" /></Border>
+									<Border Background="Peru"><TextBlock Text="Page three" HorizontalAlignment="Center" VerticalAlignment="Center" /></Border>
+								</FlipView>
+								<PipsPager x:Name="ExtensionsPager"
+										   AutomationProperties.AutomationId="ToolkitExtensions_PipsPager"
+										   NumberOfPages="3"
+										   HorizontalAlignment="Left" />
+								<Button AutomationProperties.AutomationId="ToolkitExtensions_NextSelection"
+										AutomationProperties.Name="Select next synchronized page"
+										Content="Next synchronized page"
+										Click="NextSelection_Click" />
+								<TextBlock x:Name="SelectionStatus"
+										   AutomationProperties.AutomationId="ToolkitExtensions_SelectionStatus"
+										   AutomationProperties.LiveSetting="Polite"
+										   Text="FlipView: 0; TabBar: 0; PipsPager: 0"
+										   Style="{StaticResource BodyMedium}" />
+							</StackPanel>
+						</smtx:XamlDisplay>
+					</StackPanel>
+				</DataTemplate>
+			</local:SamplePageLayout.DesignAgnosticTemplate>
+		</local:SamplePageLayout>
+	</Grid>
+</Page>

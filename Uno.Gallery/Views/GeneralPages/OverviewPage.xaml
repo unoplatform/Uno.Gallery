@@ -29,7 +29,7 @@
 				<StackPanel>
 
 					<!-- Button -->
-					<local:OverviewSampleView SamplePageType="samples:ButtonSamplePage">
+					<local:OverviewSampleView SamplePageType="samples:ButtonSamplePage" SampleDesign="Material">
 						<StackPanel Spacing="8">
 
 							<Button Content="ELEVATED"
@@ -56,7 +56,7 @@
 					</local:OverviewSampleView>
 
 					<!-- TextBox -->
-					<local:OverviewSampleView SamplePageType="samples:TextBoxSamplePage">
+					<local:OverviewSampleView SamplePageType="samples:TextBoxSamplePage" SampleDesign="Material">
 						<StackPanel Spacing="8">
 
 							<TextBox PlaceholderText="Filled"
@@ -84,7 +84,7 @@
 					</local:OverviewSampleView>
 
 					<!-- CheckBox -->
-					<local:OverviewSampleView SamplePageType="samples:CheckBoxSamplePage">
+					<local:OverviewSampleView SamplePageType="samples:CheckBoxSamplePage" SampleDesign="Material">
 						<StackPanel Spacing="8">
 
 							<CheckBox Content="Checked"
@@ -106,7 +106,7 @@
 					</local:OverviewSampleView>
 
 					<!-- RadioButton -->
-					<local:OverviewSampleView SamplePageType="samples:RadioButtonSamplePage">
+					<local:OverviewSampleView SamplePageType="samples:RadioButtonSamplePage" SampleDesign="Material">
 						<StackPanel Spacing="8">
 
 							<RadioButton GroupName="Material_RadioButton"
@@ -125,7 +125,7 @@
 					</local:OverviewSampleView>
 
 					<!-- ToggleSwitch -->
-					<local:OverviewSampleView SamplePageType="samples:ToggleSwitchSamplePage">
+					<local:OverviewSampleView SamplePageType="samples:ToggleSwitchSamplePage" SampleDesign="Material">
 						<StackPanel Spacing="8">
 
 							<TextBlock Text="ToggleSwitch"
@@ -142,12 +142,6 @@
 						</StackPanel>
 					</local:OverviewSampleView>
 
-					<TextBlock x:Name="version"
-							   Margin="0,10,0,0"
-							   Foreground="LightGray"
-							   FontSize="8"
-							   Text="local build" />
-
 				</StackPanel>
 			</DataTemplate>
 		</local:SamplePageLayout.MaterialTemplate>
@@ -156,7 +150,7 @@
 				<StackPanel>
 
 					<!-- Button -->
-					<local:OverviewSampleView SamplePageType="samples:ButtonSamplePage">
+					<local:OverviewSampleView SamplePageType="samples:ButtonSamplePage" SampleDesign="Fluent">
 						<StackPanel Spacing="8">
 
 							<Button Content="Button" />
@@ -168,7 +162,7 @@
 					</local:OverviewSampleView>
 
 					<!-- TextBox -->
-					<local:OverviewSampleView SamplePageType="samples:TextBoxSamplePage">
+					<local:OverviewSampleView SamplePageType="samples:TextBoxSamplePage" SampleDesign="Fluent">
 						<StackPanel Spacing="8">
 
 							<TextBox PlaceholderText="TextBox" />
@@ -179,7 +173,7 @@
 					</local:OverviewSampleView>
 
 					<!-- CheckBox -->
-					<local:OverviewSampleView SamplePageType="samples:CheckBoxSamplePage">
+					<local:OverviewSampleView SamplePageType="samples:CheckBoxSamplePage" SampleDesign="Fluent">
 						<StackPanel Spacing="8">
 
 							<CheckBox Content="Checked"
@@ -197,7 +191,7 @@
 					</local:OverviewSampleView>
 
 					<!-- RadioButton -->
-					<local:OverviewSampleView SamplePageType="samples:RadioButtonSamplePage">
+					<local:OverviewSampleView SamplePageType="samples:RadioButtonSamplePage" SampleDesign="Fluent">
 						<StackPanel Spacing="8">
 
 							<RadioButton GroupName="Fluent_RadioButton"
@@ -212,7 +206,7 @@
 					</local:OverviewSampleView>
 
 					<!-- ToggleSwitch -->
-					<local:OverviewSampleView SamplePageType="samples:ToggleSwitchSamplePage">
+					<local:OverviewSampleView SamplePageType="samples:ToggleSwitchSamplePage" SampleDesign="Fluent">
 						<StackPanel Spacing="8">
 
 							<ToggleSwitch Header="ToggleSwitch"
@@ -231,7 +225,7 @@
 				<StackPanel>
 
 					<!-- Button -->
-					<local:OverviewSampleView SamplePageType="samples:ButtonSamplePage">
+					<local:OverviewSampleView SamplePageType="samples:ButtonSamplePage" SampleDesign="Cupertino">
 						<StackPanel Spacing="8"
 									Padding="11,0">
 
@@ -246,7 +240,7 @@
 					</local:OverviewSampleView>
 
 					<!-- TextBox -->
-					<local:OverviewSampleView SamplePageType="samples:TextBoxSamplePage">
+					<local:OverviewSampleView SamplePageType="samples:TextBoxSamplePage" SampleDesign="Cupertino">
 						<StackPanel Spacing="8"
 									Padding="11,0">
 
@@ -263,7 +257,7 @@
 					</local:OverviewSampleView>
 
 					<!-- CheckBox -->
-					<local:OverviewSampleView SamplePageType="samples:CheckBoxSamplePage">
+					<local:OverviewSampleView SamplePageType="samples:CheckBoxSamplePage" SampleDesign="Cupertino">
 						<StackPanel Spacing="8">
 
 							<CheckBox Content="Checked"
@@ -285,7 +279,7 @@
 					</local:OverviewSampleView>
 
 					<!-- RadioButton -->
-					<local:OverviewSampleView SamplePageType="samples:RadioButtonSamplePage">
+					<local:OverviewSampleView SamplePageType="samples:RadioButtonSamplePage" SampleDesign="Cupertino">
 						<StackPanel Spacing="8"
 									Padding="11,0">
 
@@ -305,7 +299,7 @@
 					</local:OverviewSampleView>
 
 					<!-- ToggleSwitch -->
-					<local:OverviewSampleView SamplePageType="samples:ToggleSwitchSamplePage">
+					<local:OverviewSampleView SamplePageType="samples:ToggleSwitchSamplePage" SampleDesign="Cupertino">
 						<StackPanel Spacing="8"
 									Padding="11,0">
 

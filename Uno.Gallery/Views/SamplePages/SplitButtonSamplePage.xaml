@@ -1,0 +1,113 @@
+<Page x:Class="Uno.Gallery.Views.Samples.SplitButtonSamplePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:Uno.Gallery"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:smtx="using:ShowMeTheXAML"
+      mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <local:SamplePageLayout>
+            <local:SamplePageLayout.FluentTemplate>
+                <DataTemplate>
+                    <StackPanel Spacing="12">
+
+                        <!-- SplitButton: default -->
+                        <smtx:XamlDisplay UniqueKey="SplitButton_Fluent_Default"
+                                          smtx:XamlDisplayExtensions.Header="SplitButton"
+                                          smtx:XamlDisplayExtensions.Description="The left part fires the primary action; the right chevron opens a flyout with additional actions."
+                                          smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+                            <StackPanel Spacing="8">
+                                <SplitButton AutomationProperties.AutomationId="SplitButton_Default"
+                                             Click="OnSplitButtonPrimaryClick">
+                                    <TextBlock AutomationProperties.AutomationId="SplitButton_PrimaryContent"
+                                               Text="New" />
+                                    <SplitButton.Flyout>
+                                        <MenuFlyout Placement="Bottom">
+                                            <MenuFlyoutItem Text="Plain Text Document"
+                                                            AutomationProperties.AutomationId="SplitButton_FlyoutItem_Plain" />
+                                            <MenuFlyoutItem Text="Rich Text Document" />
+                                            <MenuFlyoutItem Text="Other Formats" />
+                                        </MenuFlyout>
+                                    </SplitButton.Flyout>
+                                </SplitButton>
+
+                                <TextBlock x:Name="SplitButtonResult"
+                                           Text="Click the button or choose an option."
+                                           AutomationProperties.AutomationId="SplitButton_Result"
+                                           Style="{StaticResource BodyMedium}" />
+                            </StackPanel>
+                        </smtx:XamlDisplay>
+
+                        <!-- SplitButton: disabled -->
+                        <smtx:XamlDisplay UniqueKey="SplitButton_Fluent_Disabled"
+                                          smtx:XamlDisplayExtensions.Header="SplitButton — Disabled"
+                                          smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+                            <StackPanel Spacing="8">
+                                <SplitButton Content="New"
+                                             IsEnabled="False">
+                                    <SplitButton.Flyout>
+                                        <MenuFlyout>
+                                            <MenuFlyoutItem Text="Option A" />
+                                        </MenuFlyout>
+                                    </SplitButton.Flyout>
+                                </SplitButton>
+                            </StackPanel>
+                        </smtx:XamlDisplay>
+
+                        <!-- ToggleSplitButton -->
+                        <smtx:XamlDisplay UniqueKey="ToggleSplitButton_Fluent_Default"
+                                          smtx:XamlDisplayExtensions.Header="ToggleSplitButton"
+                                          smtx:XamlDisplayExtensions.Description="The primary part toggles on/off; the flyout offers additional toggle options."
+                                          smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+                            <StackPanel Spacing="8">
+                                <ToggleSplitButton AutomationProperties.AutomationId="ToggleSplitButton_Default"
+                                                   IsCheckedChanged="OnToggleSplitButtonCheckedChanged">
+                                    <ToggleSplitButton.Content>
+                                        <Grid AutomationProperties.AutomationId="ToggleSplitButton_PrimaryContent">
+                                            <SymbolIcon Symbol="Bold" />
+                                        </Grid>
+                                    </ToggleSplitButton.Content>
+                                    <ToggleSplitButton.Flyout>
+                                        <MenuFlyout Placement="Bottom">
+                                            <MenuFlyoutItem Text="Bold"
+                                                            AutomationProperties.AutomationId="ToggleSplitButton_FlyoutItem_Bold" />
+                                            <MenuFlyoutItem Text="Italic" />
+                                            <MenuFlyoutItem Text="Underline" />
+                                        </MenuFlyout>
+                                    </ToggleSplitButton.Flyout>
+                                </ToggleSplitButton>
+
+                                <TextBlock x:Name="ToggleSplitButtonResult"
+                                           Text="Toggle state: Off"
+                                           AutomationProperties.AutomationId="ToggleSplitButton_Result"
+                                           Style="{StaticResource BodyMedium}" />
+                            </StackPanel>
+                        </smtx:XamlDisplay>
+
+                        <!-- ToggleSplitButton: disabled -->
+                        <smtx:XamlDisplay UniqueKey="ToggleSplitButton_Fluent_Disabled"
+                                          smtx:XamlDisplayExtensions.Header="ToggleSplitButton — Disabled"
+                                          smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+                            <StackPanel Spacing="8">
+                                <ToggleSplitButton IsEnabled="False"
+                                                   IsChecked="True">
+                                    <ToggleSplitButton.Content>
+                                        <SymbolIcon Symbol="Italic" />
+                                    </ToggleSplitButton.Content>
+                                    <ToggleSplitButton.Flyout>
+                                        <MenuFlyout>
+                                            <MenuFlyoutItem Text="Option" />
+                                        </MenuFlyout>
+                                    </ToggleSplitButton.Flyout>
+                                </ToggleSplitButton>
+                            </StackPanel>
+                        </smtx:XamlDisplay>
+
+                    </StackPanel>
+                </DataTemplate>
+            </local:SamplePageLayout.FluentTemplate>
+        </local:SamplePageLayout>
+    </Grid>
+</Page>

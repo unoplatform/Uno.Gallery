@@ -1,0 +1,323 @@
+#Requires -Version 7.0
+[CmdletBinding()]
+param(
+    [string] $ScratchRoot = ''
+)
+
+Set-StrictMode -Version Latest
+$ErrorActionPreference = 'Stop'
+
+$repoRoot = (Resolve-Path (Join-Path $PSScriptRoot '..\..')).Path
+if ([string]::IsNullOrWhiteSpace($ScratchRoot)) {
+    $ScratchRoot = [IO.Path]::GetTempPath()
+}
+$scratchBase = [IO.Path]::GetFullPath($ScratchRoot)
+$scratch = Join-Path $scratchBase "uno-gallery-performance-contract-$PID-$([Guid]::NewGuid().ToString('N'))"
+New-Item -ItemType Directory -Path $scratch -Force | Out-Null
+
+try {
+    $artifact = Join-Path $scratch 'wwwroot'
+    $framework = Join-Path $artifact '_framework'
+    New-Item -ItemType Directory -Path $framework -Force | Out-Null
+    [IO.File]::WriteAllBytes((Join-Path $artifact 'index.html'), [byte[]]::new(100))
+    [IO.File]::WriteAllBytes((Join-Path $framework 'dotnet.native.fixture.wasm'), [byte[]]::new(1000))
+    [IO.File]::WriteAllBytes((Join-Path $framework 'dotnet.native.fixture.wasm.br'), [byte[]]::new(400))
+    [IO.File]::WriteAllBytes((Join-Path $framework 'Uno.Gallery.fixture.wasm'), [byte[]]::new(300))
+    [IO.File]::WriteAllBytes((Join-Path $framework 'Uno.Gallery.fixture.wasm.br'), [byte[]]::new(120))
+
+    $metricsPath = Join-Path $scratch 'bundle.json'
+    & (Join-Path $PSScriptRoot 'measure-wasm-bundle.ps1') `
+        -WasmRoot $artifact `
+        -TargetName 'WASM-DOM' `
+        -OutputPath $metricsPath `
+        -BuildCommit 'abcdef0'
+    $metrics = Get-Content $metricsPath -Raw | ConvertFrom-Json -Depth 20
+    if ($metrics.metrics.rawPayloadBytes -ne 1400 -or
+        $metrics.metrics.estimatedBrotliTransferBytes -ne 620 -or
+        $metrics.metrics.dotnetNativeBrotliBytes -ne 400) {
+        throw 'Bundle fixture produced unexpected size metrics.'
+    }
+    $orphanPath = Join-Path $framework 'orphan.wasm.br'
+    [IO.File]::WriteAllBytes($orphanPath, [byte[]]::new(10))
+    $orphanRejected = $false
+    try {
+        & (Join-Path $PSScriptRoot 'measure-wasm-bundle.ps1') `
+            -WasmRoot $artifact `
+            -TargetName 'WASM-DOM' `
+            -OutputPath (Join-Path $scratch 'orphan.json')
+    } catch {
+        if ($_.Exception.Message -notmatch 'has no source file') { throw }
+        $orphanRejected = $true
+    } finally {
+        Remove-Item $orphanPath -Force
+    }
+    if (-not $orphanRejected) {
+        throw 'Bundle measurement accepted an orphaned compressed sidecar.'
+    }
+
+    $run = [ordered]@{
+        firstContentfulPaintMs = 100
+        shellReadyMs = 200
+        firstInputLatencyMs = 5
+        searchRenderedMs = 10
+        navigationRenderedMs = 20
+    }
+    $runtime = [ordered]@{
+        schemaVersion = 1
+        suiteVersion = 1
+        generatedAt = [DateTime]::UtcNow.ToString('O')
+        buildCommit = 'abcdef0'
+        target = 'WASM-DOM'
+        flavor = 'instrumented'
+        configuration = [ordered]@{
+            configSha256 = ('a' * 64)
+            toolSha256 = ('c' * 64)
+            runCounts = [ordered]@{
+                cold = 5
+                warm = 5
+            }
+            viewport = [ordered]@{
+                width = 1200
+                height = 900
+                deviceScaleFactor = 1
+            }
+        }
+        browser = [ordered]@{
+            version = 'Chrome/fixture'
+            headless = $true
+            softwareRendering = $true
+            locale = 'en-US'
+            timezone = 'UTC'
+        }
+        host = [ordered]@{
+            platform = 'fixture'
+            release = '1'
+            architecture = 'x64'
+            nodeVersion = 'v22.0.0'
+        }
+        runs = [ordered]@{
+            cold = @($run, $run, $run, $run, $run)
+            warm = @($run, $run, $run, $run, $run)
+        }
+        summaries = [ordered]@{
+            cold = [ordered]@{
+                observationCount = 5
+                firstContentfulPaintMs = [ordered]@{ minimum = 100; p50 = 100; p75 = 100; maximum = 100 }
+                shellReadyMs = [ordered]@{ minimum = 200; p50 = 200; p75 = 200; maximum = 200 }
+                firstInputLatencyMs = [ordered]@{ minimum = 5; p50 = 5; p75 = 5; maximum = 5 }
+                searchRenderedMs = [ordered]@{ minimum = 10; p50 = 10; p75 = 10; maximum = 10 }
+                navigationRenderedMs = [ordered]@{ minimum = 20; p50 = 20; p75 = 20; maximum = 20 }
+            }
+            warm = [ordered]@{
+                observationCount = 5
+                firstContentfulPaintMs = [ordered]@{ minimum = 100; p50 = 100; p75 = 100; maximum = 100 }
+                shellReadyMs = [ordered]@{ minimum = 200; p50 = 200; p75 = 200; maximum = 200 }
+                firstInputLatencyMs = [ordered]@{ minimum = 5; p50 = 5; p75 = 5; maximum = 5 }
+                searchRenderedMs = [ordered]@{ minimum = 10; p50 = 10; p75 = 10; maximum = 10 }
+                navigationRenderedMs = [ordered]@{ minimum = 20; p50 = 20; p75 = 20; maximum = 20 }
+            }
+        }
+    }
+    $runtimePath = Join-Path $scratch 'runtime.json'
+    $runtime | ConvertTo-Json -Depth 20 | Set-Content $runtimePath -Encoding utf8NoBOM
+
+    $bundleBudget = [ordered]@{}
+    foreach ($name in @(
+        'rawPayloadBytes',
+        'estimatedBrotliTransferBytes',
+        'dotnetNativeWasmBytes',
+        'dotnetNativeBrotliBytes'
+    )) {
+        $value = [double]$metrics.metrics.$name
+        $bundleBudget[$name] = [ordered]@{ baseline = $value; maximum = $value + 1 }
+    }
+    $runtimeBudget = [ordered]@{}
+    foreach ($name in @(
+        'firstContentfulPaintMs',
+        'shellReadyMs',
+        'firstInputLatencyMs',
+        'searchRenderedMs',
+        'navigationRenderedMs'
+    )) {
+        $value = [double]$runtime.summaries.cold.$name.p75
+        $runtimeBudget[$name] = [ordered]@{ baseline = $value; maximum = $value + 1 }
+    }
+    $budget = [ordered]@{
+        schemaVersion = 1
+        budgetVersion = 1
+        status = 'advisory'
+        approvedOn = $null
+        runtimeConfigSha256 = ('a' * 64)
+        runtimeToolSha256 = ('c' * 64)
+        minimumRuntimeObservations = 5
+        targets = [ordered]@{
+            'WASM-DOM' = [ordered]@{
+                bundle = $bundleBudget
+                runtime = [ordered]@{
+                    cold = $runtimeBudget
+                    warm = $runtimeBudget
+                }
+            }
+        }
+    }
+    $budgetPath = Join-Path $scratch 'budget.json'
+    $budget | ConvertTo-Json -Depth 20 | Set-Content $budgetPath -Encoding utf8NoBOM
+
+    $reportPath = Join-Path $scratch 'report.json'
+    & (Join-Path $PSScriptRoot 'compare-performance-budget.ps1') `
+        -BudgetPath $budgetPath `
+        -BundleMetricsPath $metricsPath `
+        -RuntimeObservationPath $runtimePath `
+        -OutputPath $reportPath
+    $report = Get-Content $reportPath -Raw | ConvertFrom-Json -Depth 20
+    if (-not $report.passed -or @($report.checks).Count -ne 14) {
+        throw 'Passing performance fixture did not produce fourteen successful checks.'
+    }
+
+    $runtime.configuration.configSha256 = ('b' * 64)
+    $runtime | ConvertTo-Json -Depth 20 | Set-Content $runtimePath -Encoding utf8NoBOM
+    $configMismatchRejected = $false
+    try {
+        & (Join-Path $PSScriptRoot 'compare-performance-budget.ps1') `
+            -BudgetPath $budgetPath `
+            -BundleMetricsPath $metricsPath `
+            -RuntimeObservationPath $runtimePath `
+            -OutputPath $reportPath
+    } catch {
+        if ($_.Exception.Message -notmatch 'does not match budget') { throw }
+        $configMismatchRejected = $true
+    }
+    if (-not $configMismatchRejected) {
+        throw 'Performance comparison accepted a runtime config different from the budget.'
+    }
+    $runtime.configuration.configSha256 = ('a' * 64)
+    $runtime.configuration.toolSha256 = ('d' * 64)
+    $runtime | ConvertTo-Json -Depth 20 | Set-Content $runtimePath -Encoding utf8NoBOM
+    $toolMismatchRejected = $false
+    try {
+        & (Join-Path $PSScriptRoot 'compare-performance-budget.ps1') `
+            -BudgetPath $budgetPath `
+            -BundleMetricsPath $metricsPath `
+            -RuntimeObservationPath $runtimePath `
+            -OutputPath $reportPath
+    } catch {
+        if ($_.Exception.Message -notmatch 'tool .* does not match budget') { throw }
+        $toolMismatchRejected = $true
+    }
+    if (-not $toolMismatchRejected) {
+        throw 'Performance comparison accepted observations from a different tool revision.'
+    }
+    $runtime.configuration.toolSha256 = ('c' * 64)
+    $runtime.buildCommit = 'bbbbbbb'
+    $runtime | ConvertTo-Json -Depth 20 | Set-Content $runtimePath -Encoding utf8NoBOM
+    $commitMismatchRejected = $false
+    try {
+        & (Join-Path $PSScriptRoot 'compare-performance-budget.ps1') `
+            -BudgetPath $budgetPath `
+            -BundleMetricsPath $metricsPath `
+            -RuntimeObservationPath $runtimePath `
+            -OutputPath $reportPath
+    } catch {
+        if ($_.Exception.Message -notmatch 'does not match bundle commit') { throw }
+        $commitMismatchRejected = $true
+    }
+    if (-not $commitMismatchRejected) {
+        throw 'Performance comparison accepted runtime and bundle evidence from different commits.'
+    }
+    $runtime.buildCommit = 'abcdef0'
+    $runtime | ConvertTo-Json -Depth 20 | Set-Content $runtimePath -Encoding utf8NoBOM
+
+    $metrics.metrics.rawPayloadBytes = [double]$bundleBudget.rawPayloadBytes.maximum + 1
+    $metrics | ConvertTo-Json -Depth 20 | Set-Content $metricsPath -Encoding utf8NoBOM
+    & (Join-Path $PSScriptRoot 'compare-performance-budget.ps1') `
+        -BudgetPath $budgetPath `
+        -BundleMetricsPath $metricsPath `
+        -OutputPath $reportPath
+    $report = Get-Content $reportPath -Raw | ConvertFrom-Json -Depth 20
+    if ($report.passed) {
+        throw 'Advisory performance comparison accepted an over-budget bundle.'
+    }
+
+    $budget.status = 'blocking'
+    $budget.approvedOn = '2026-08-27'
+    $budget | ConvertTo-Json -Depth 20 | Set-Content $budgetPath -Encoding utf8NoBOM
+    $blockingRejected = $false
+    try {
+        & (Join-Path $PSScriptRoot 'compare-performance-budget.ps1') `
+            -BudgetPath $budgetPath `
+            -BundleMetricsPath $metricsPath `
+            -OutputPath $reportPath
+    } catch {
+        if ($_.Exception.Message -notmatch 'failed or unevaluated') { throw }
+        $blockingRejected = $true
+    }
+    if (-not $blockingRejected) {
+        throw 'Blocking performance comparison accepted an over-budget bundle.'
+    }
+
+    $configJson = Get-Content (Join-Path $repoRoot 'build\performance\performance.config.json') -Raw
+    $configSchema = Join-Path $repoRoot 'docs\performance\performance-config-v1.schema.json'
+    if (-not ($configJson | Test-Json -SchemaFile $configSchema)) {
+        throw 'Runtime performance configuration failed schema validation.'
+    }
+    $startupProbe = [ordered]@{
+        schemaVersion = 1
+        generatedAt = [DateTime]::UtcNow.ToString('O')
+        renderer = 'DOM'
+        browserVersion = 'Chrome/fixture'
+        readyMs = 100
+        passed = $true
+    } | ConvertTo-Json
+    $startupSchema = Join-Path $repoRoot 'docs\performance\startup-probe-v1.schema.json'
+    if (-not ($startupProbe | Test-Json -SchemaFile $startupSchema)) {
+        throw 'Release startup probe failed schema validation.'
+    }
+    $routeEntries = @(1..100 | ForEach-Object {
+        [ordered]@{
+            slug = "sample-$_"
+            design = 'Material'
+            durationMs = 100
+        }
+    })
+    $routeProbe = [ordered]@{
+        schemaVersion = 1
+        generatedAt = [DateTime]::UtcNow.ToString('O')
+        browserVersion = 'Chrome/fixture'
+        routeCount = 100
+        semanticElementCount = 2
+        verifiedAccessibleNames = @(
+            'Gallery navigation',
+            'Search samples',
+            'Toggle light and dark theme',
+            'Material design',
+            'Fluent design',
+            'Copy direct link'
+        )
+        passed = $true
+        routes = $routeEntries
+    } | ConvertTo-Json -Depth 10
+    $routeSchema = Join-Path $repoRoot 'docs\performance\skia-route-qa-v1.schema.json'
+    if (-not ($routeProbe | Test-Json -SchemaFile $routeSchema)) {
+        throw 'Skia route QA report failed schema validation.'
+    }
+
+    Remove-Item (Join-Path $framework 'dotnet.native.fixture.wasm.br') -Force
+    Remove-Item (Join-Path $framework 'Uno.Gallery.fixture.wasm.br') -Force
+    $noSidecarPath = Join-Path $scratch 'bundle-without-sidecars.json'
+    & (Join-Path $PSScriptRoot 'measure-wasm-bundle.ps1') `
+        -WasmRoot $artifact `
+        -TargetName 'WASM-DOM' `
+        -OutputPath $noSidecarPath
+    $noSidecars = Get-Content $noSidecarPath -Raw | ConvertFrom-Json -Depth 10
+    if ($noSidecars.metrics.precompressedBrotliBytes -ne 0 -or
+        $null -ne $noSidecars.metrics.dotnetNativeBrotliBytes -or
+        $noSidecars.metrics.estimatedBrotliTransferBytes -ne 1400) {
+        throw 'Sidecar-free bundle fixture produced incorrect fallback metrics.'
+    }
+} finally {
+    if (Test-Path $scratch) {
+        Remove-Item $scratch -Recurse -Force
+    }
+}
+
+Write-Host 'Performance schemas, measurement, advisory, and blocking contracts passed.'

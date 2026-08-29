@@ -1,0 +1,147 @@
+{
+  "schemaVersion": 1,
+  "suiteVersion": 2,
+  "viewport": {
+    "width": 1200,
+    "height": 900,
+    "deviceScaleFactor": 1
+  },
+  "browser": {
+    "expectedVersion": "Chrome/152.0.7977.42",
+    "headless": true,
+    "locale": "en-US",
+    "timezone": "UTC",
+    "colorScheme": "light",
+    "reducedMotion": "reduce",
+    "softwareRendering": true
+  },
+  "capture": {
+    "readyMark": "app.visual_ready",
+    "warmup": {
+      "design": "Material",
+      "slug": "overview",
+      "delayMs": 2000
+    },
+    "loadingSelector": ".uno-loader",
+    "minContentPixels": 100000,
+    "settledFrames": 4,
+    "timeoutMs": 120000
+  },
+  "comparison": {
+    "pixelThreshold": 0.05,
+    "maxDiffRatio": 0.0001,
+    "includeAA": false
+  },
+  "fonts": [
+    "Uno.Fonts.OpenSans/Fonts/OpenSans.ttf",
+    "Uno.Material bundled typefaces",
+    "WinUI symbol font bundled by Uno"
+  ],
+  "samples": [
+    {
+      "id": "overview-material",
+      "slug": "overview",
+      "design": "Material",
+      "area": "shell/overview",
+      "masks": []
+    },
+    {
+      "id": "overview-fluent",
+      "slug": "overview",
+      "design": "Fluent",
+      "area": "shell/overview",
+      "masks": []
+    },
+    {
+      "id": "button-material",
+      "slug": "button",
+      "design": "Material",
+      "area": "Material control",
+      "masks": []
+    },
+    {
+      "id": "button-fluent",
+      "slug": "button",
+      "design": "Fluent",
+      "area": "Fluent control",
+      "masks": []
+    },
+    {
+      "id": "text-box-fluent",
+      "slug": "textbox",
+      "design": "Fluent",
+      "area": "Fluent input",
+      "masks": []
+    },
+    {
+      "id": "design-tokens-material",
+      "slug": "design-tokens",
+      "design": "Material",
+      "area": "design tokens",
+      "masks": []
+    },
+    {
+      "id": "material-palette",
+      "slug": "material-palette",
+      "design": "Material",
+      "area": "Material theming",
+      "masks": []
+    },
+    {
+      "id": "fluent-palette",
+      "slug": "fluent-palette",
+      "design": "Fluent",
+      "area": "Fluent theming",
+      "masks": []
+    },
+    {
+      "id": "grid-fluent",
+      "slug": "grid",
+      "design": "Fluent",
+      "area": "layout",
+      "masks": []
+    },
+    {
+      "id": "list-view-fluent",
+      "slug": "listview",
+      "design": "Fluent",
+      "area": "collection",
+      "masks": []
+    },
+    {
+      "id": "auto-layout-agnostic",
+      "slug": "autolayout",
+      "design": "Agnostic",
+      "area": "Toolkit layout",
+      "masks": []
+    },
+    {
+      "id": "card-content-control-material",
+      "slug": "card-content-control",
+      "design": "Material",
+      "area": "Toolkit control",
+      "masks": []
+    },
+    {
+      "id": "composition-visuals-agnostic",
+      "slug": "composition-visuals",
+      "design": "Agnostic",
+      "area": "rendering",
+      "masks": []
+    },
+    {
+      "id": "accessibility-agnostic",
+      "slug": "accessibility",
+      "design": "Agnostic",
+      "area": "accessibility",
+      "masks": []
+    },
+    {
+      "id": "localization-rtl-agnostic",
+      "slug": "localization-rtl",
+      "design": "Agnostic",
+      "area": "localization",
+      "masks": []
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "budgetVersion": 1,
+  "status": "advisory",
+  "approvedOn": "2026-08-27",
+  "runtimeConfigSha256": "7f0b349703d496b63c4c545eebde98a77c00bde83680f69e55ba8cea1e438dfc",
+  "runtimeToolSha256": "17bd977bdd5e3a712a5e5285c0f1b587d6353e891342fc0e73bb943c3ec52fcf",
+  "minimumRuntimeObservations": 10,
+  "targets": {
+    "WASM-DOM": {
+      "bundle": {
+        "rawPayloadBytes": {
+          "baseline": 158981031,
+          "maximum": 166930083
+        },
+        "estimatedBrotliTransferBytes": {
+          "baseline": 46154083,
+          "maximum": 48461788
+        },
+        "dotnetNativeWasmBytes": {
+          "baseline": 91869053,
+          "maximum": 96462506
+        },
+        "dotnetNativeBrotliBytes": {
+          "baseline": 12864467,
+          "maximum": 13507691
+        }
+      },
+      "runtime": {
+        "cold": {
+          "firstContentfulPaintMs": {
+            "baseline": 956,
+            "maximum": 1200
+          },
+          "shellReadyMs": {
+            "baseline": 4075,
+            "maximum": 4600
+          },
+          "firstInputLatencyMs": {
+            "baseline": 55.8,
+            "maximum": 120
+          },
+          "searchRenderedMs": {
+            "baseline": 106.8,
+            "maximum": 150
+          },
+          "navigationRenderedMs": {
+            "baseline": 541.6,
+            "maximum": 700
+          }
+        },
+        "warm": {
+          "firstContentfulPaintMs": {
+            "baseline": 208,
+            "maximum": 300
+          },
+          "shellReadyMs": {
+            "baseline": 3005.5,
+            "maximum": 3500
+          },
+          "firstInputLatencyMs": {
+            "baseline": 39.1,
+            "maximum": 100
+          },
+          "searchRenderedMs": {
+            "baseline": 91.9,
+            "maximum": 140
+          },
+          "navigationRenderedMs": {
+            "baseline": 523,
+            "maximum": 700
+          }
+        }
+      }
+    },
+    "WASM-Skia": {
+      "bundle": {
+        "rawPayloadBytes": {
+          "baseline": 171267191,
+          "maximum": 179830551
+        },
+        "estimatedBrotliTransferBytes": {
+          "baseline": 49210466,
+          "maximum": 51670990
+        },
+        "dotnetNativeWasmBytes": {
+          "baseline": 97129152,
+          "maximum": 101985610
+        },
+        "dotnetNativeBrotliBytes": {
+          "baseline": 13854939,
+          "maximum": 14547686
+        }
+      },
+      "runtime": null
+    }
+  }
+}

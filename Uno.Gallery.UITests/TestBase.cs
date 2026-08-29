@@ -13,11 +13,11 @@ using Uno.UITests.Helpers;
 namespace Uno.Gallery.UITests
 {
     [TestFixture]
-    public abstract class TestBase
+    public abstract class UITestBase
     {
         private IApp _app;
 
-        static TestBase()
+        static UITestBase()
         {
             AppInitializer.TestEnvironment.AndroidAppName = Constants.AndroidAppName;
             AppInitializer.TestEnvironment.WebAssemblyDefaultUri = Constants.WebAssemblyDefaultUri;
@@ -149,5 +149,10 @@ namespace Uno.Gallery.UITests
             return fileInfo;
         }
 
+    }
+
+    [Category("Interaction")]
+    public abstract class TestBase : UITestBase
+    {
     }
 }

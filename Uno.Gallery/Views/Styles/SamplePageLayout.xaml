@@ -1,4 +1,4 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 					xmlns:android="http://uno.ui/android"
 					xmlns:ios="http://uno.ui/ios"
@@ -26,19 +26,177 @@
 					   Text="{Binding Description}"
 					   Visibility="{Binding Description, Converter={StaticResource IsNullOrEmptyToCollapsed}, FallbackValue=Collapsed}" />
 
+			<!-- Status badge: compact outlined label for non-Stable samples -->
+			<Border AutomationProperties.AutomationId="PART_StatusBadge"
+					Margin="0,8,0,0"
+					Padding="6,2"
+					HorizontalAlignment="Left"
+					BorderBrush="{ThemeResource OnBackgroundBrush}"
+					BorderThickness="1"
+					CornerRadius="4"
+					Visibility="{Binding IsNotStable, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}">
+				<TextBlock AutomationProperties.AutomationId="PART_StatusLabel"
+						   Foreground="{ThemeResource OnBackgroundBrush}"
+						   Opacity="0.8"
+						   Style="{StaticResource BodySmall}"
+						   Text="{Binding StatusLabel}" />
+			</Border>
+
 			<!-- Source label -->
-			<TextBlock Margin="0,30,0,0"
+			<TextBlock x:Uid="SampleSourceLabel"
+					   Margin="0,30,0,0"
 					   Foreground="{ThemeResource OnBackgroundBrush}"
 					   Opacity="0.45"
 					   Style="{StaticResource BodySmall}"
 					   Text="SOURCE" />
 
 			<!-- Source value -->
-			<TextBlock Margin="0,0,0,16"
+			<TextBlock Margin="0,0,0,8"
 					   Foreground="{ThemeResource OnBackgroundBrush}"
 					   Opacity="0.8"
 					   Style="{StaticResource BodyMedium}"
 					   Text="{Binding Source, Converter={StaticResource EnumToDescription}}" />
+
+			<!-- Owner row (optional) -->
+			<StackPanel AutomationProperties.AutomationId="PART_OwnerRow"
+						Margin="0,8,0,0"
+						Orientation="Horizontal"
+						Visibility="{Binding Owner, Converter={StaticResource IsNullOrEmptyToCollapsed}, FallbackValue=Collapsed}">
+				<TextBlock x:Uid="SampleOwnerLabel"
+						   Foreground="{ThemeResource OnBackgroundBrush}"
+						   Opacity="0.45"
+						   Style="{StaticResource BodySmall}"
+						   Text="OWNER  " />
+				<TextBlock AutomationProperties.AutomationId="PART_OwnerText"
+						   Foreground="{ThemeResource OnBackgroundBrush}"
+						   Opacity="0.8"
+						   Style="{StaticResource BodySmall}"
+						   Text="{Binding Owner}" />
+			</StackPanel>
+
+			<!-- ReviewedOn row (optional) -->
+			<StackPanel AutomationProperties.AutomationId="PART_ReviewedOnRow"
+						Margin="0,4,0,0"
+						Orientation="Horizontal"
+						Visibility="{Binding ReviewedOn, Converter={StaticResource IsNullOrEmptyToCollapsed}, FallbackValue=Collapsed}">
+				<TextBlock x:Uid="SampleReviewedLabel"
+						   Foreground="{ThemeResource OnBackgroundBrush}"
+						   Opacity="0.45"
+						   Style="{StaticResource BodySmall}"
+						   Text="REVIEWED  " />
+				<TextBlock AutomationProperties.AutomationId="PART_ReviewedOnText"
+						   Foreground="{ThemeResource OnBackgroundBrush}"
+						   Opacity="0.8"
+						   Style="{StaticResource BodySmall}"
+						   Text="{Binding ReviewedOn}" />
+			</StackPanel>
+
+			<StackPanel AutomationProperties.AutomationId="PART_CompatibilitySection"
+						Margin="0,16,0,0"
+						Visibility="{Binding SupportedDesignsDisplay, Converter={StaticResource IsNullOrEmptyToCollapsed}, FallbackValue=Collapsed}">
+				<TextBlock x:Uid="SampleCompatibilityLabel"
+						   Foreground="{ThemeResource OnBackgroundBrush}"
+						   Opacity="0.45"
+						   Style="{StaticResource BodySmall}"
+						   Text="COMPATIBILITY" />
+				<TextBlock AutomationProperties.AutomationId="PART_DesignsText"
+						   Margin="0,4,0,0"
+						   Foreground="{ThemeResource OnBackgroundBrush}"
+						   Opacity="0.8"
+						   Style="{StaticResource BodySmall}"
+						   TextWrapping="Wrap">
+					<Run x:Uid="SampleDesignsLabel"
+						 Text="Designs: " />
+					<Run Text="{Binding SupportedDesignsDisplay}" />
+				</TextBlock>
+				<TextBlock AutomationProperties.AutomationId="PART_RenderersText"
+						   Foreground="{ThemeResource OnBackgroundBrush}"
+						   Opacity="0.8"
+						   Style="{StaticResource BodySmall}"
+						   TextWrapping="Wrap">
+					<Run x:Uid="SampleRenderersLabel"
+						 Text="Renderers: " />
+					<Run Text="{Binding SupportedRenderersDisplay}" />
+				</TextBlock>
+			</StackPanel>
+
+			<StackPanel AutomationProperties.AutomationId="PART_RequirementsSection"
+						Margin="0,16,0,0"
+						Visibility="{Binding RequirementsDisplay, Converter={StaticResource IsNullOrEmptyToCollapsed}, FallbackValue=Collapsed}">
+				<TextBlock x:Uid="SampleRequirementsLabel"
+						   Foreground="{ThemeResource OnBackgroundBrush}"
+						   Opacity="0.45"
+						   Style="{StaticResource BodySmall}"
+						   Text="REQUIREMENTS" />
+				<TextBlock AutomationProperties.AutomationId="PART_RequirementsText"
+						   Margin="0,4,0,0"
+						   Foreground="{ThemeResource OnBackgroundBrush}"
+						   Opacity="0.8"
+						   Style="{StaticResource BodySmall}"
+						   Text="{Binding RequirementsDisplay}"
+						   TextWrapping="Wrap" />
+			</StackPanel>
+
+			<StackPanel AutomationProperties.AutomationId="PART_AccessibilitySection"
+						Margin="0,16,0,0"
+						Visibility="{Binding AccessibilityNotesDisplay, Converter={StaticResource IsNullOrEmptyToCollapsed}, FallbackValue=Collapsed}">
+				<TextBlock x:Uid="SampleAccessibilityNotesLabel"
+						   Foreground="{ThemeResource OnBackgroundBrush}"
+						   Opacity="0.45"
+						   Style="{StaticResource BodySmall}"
+						   Text="ACCESSIBILITY" />
+				<TextBlock AutomationProperties.AutomationId="PART_AccessibilityNotesText"
+						   Margin="0,4,0,0"
+						   Foreground="{ThemeResource OnBackgroundBrush}"
+						   Opacity="0.8"
+						   Style="{StaticResource BodySmall}"
+						   Text="{Binding AccessibilityNotesDisplay}"
+						   TextWrapping="Wrap" />
+			</StackPanel>
+
+			<StackPanel AutomationProperties.AutomationId="PART_VariantsSection"
+						Margin="0,16,0,0"
+						Visibility="{Binding VariantsDisplay, Converter={StaticResource IsNullOrEmptyToCollapsed}, FallbackValue=Collapsed}">
+				<TextBlock x:Uid="SampleVariantsLabel"
+						   Foreground="{ThemeResource OnBackgroundBrush}"
+						   Opacity="0.45"
+						   Style="{StaticResource BodySmall}"
+						   Text="VARIANTS AND RESET" />
+				<TextBlock AutomationProperties.AutomationId="PART_VariantsText"
+						   Margin="0,4,0,0"
+						   Foreground="{ThemeResource OnBackgroundBrush}"
+						   Opacity="0.8"
+						   Style="{StaticResource BodySmall}"
+						   Text="{Binding VariantsDisplay}"
+						   TextWrapping="Wrap" />
+				<TextBlock AutomationProperties.AutomationId="PART_ResetBehaviorText"
+						   Margin="0,4,0,0"
+						   Foreground="{ThemeResource OnBackgroundBrush}"
+						   Opacity="0.8"
+						   Style="{StaticResource BodySmall}"
+						   Text="{Binding ResetBehavior}"
+						   TextWrapping="Wrap"
+						   Visibility="{Binding ResetBehavior, Converter={StaticResource IsNullOrEmptyToCollapsed}, FallbackValue=Collapsed}" />
+			</StackPanel>
+
+			<StackPanel AutomationProperties.AutomationId="PART_KnownLimitationsSection"
+						Margin="0,16,0,0"
+						Visibility="{Binding KnownLimitationsDisplay, Converter={StaticResource IsNullOrEmptyToCollapsed}, FallbackValue=Collapsed}">
+				<TextBlock x:Uid="SampleKnownLimitationsLabel"
+						   Foreground="{ThemeResource OnBackgroundBrush}"
+						   Opacity="0.45"
+						   Style="{StaticResource BodySmall}"
+						   Text="KNOWN LIMITATIONS" />
+				<TextBlock AutomationProperties.AutomationId="PART_KnownLimitationsText"
+						   Margin="0,4,0,0"
+						   Foreground="{ThemeResource OnBackgroundBrush}"
+						   Opacity="0.8"
+						   Style="{StaticResource BodySmall}"
+						   Text="{Binding KnownLimitationsDisplay}"
+						   TextWrapping="Wrap" />
+			</StackPanel>
+
+			<Border Height="16" />
 		</StackPanel>
 	</DataTemplate>
 
@@ -123,6 +281,7 @@
 
 											<!-- Material RadioButton -->
 											<RadioButton x:Name="PART_MaterialRadioButton"
+														 x:Uid="DesignMaterialSelector"
 														 Margin="0,0,16,0"
 														 AutomationProperties.AutomationId="PART_MaterialRadioButton"
 														 Style="{StaticResource SampleLayoutModeRadioButtonStyle}"
@@ -130,7 +289,8 @@
 												<StackPanel Orientation="Horizontal">
 
 													<!-- Label -->
-													<TextBlock Style="{StaticResource TitleLarge}"
+													<TextBlock x:Uid="DesignMaterial"
+															   Style="{StaticResource TitleLarge}"
 															   Text="Material" />
 
 													<!-- Icon -->
@@ -145,6 +305,7 @@
 
 											<!-- Fluent RadioButton -->
 											<RadioButton x:Name="PART_FluentRadioButton"
+														 x:Uid="DesignFluentSelector"
 														 Margin="0,0,16,0"
 														 AutomationProperties.AutomationId="PART_FluentRadioButton"
 														 Style="{StaticResource SampleLayoutModeRadioButtonStyle}"
@@ -152,7 +313,8 @@
 												<StackPanel Orientation="Horizontal">
 
 													<!-- Label -->
-													<TextBlock Style="{StaticResource TitleLarge}"
+													<TextBlock x:Uid="DesignFluent"
+															   Style="{StaticResource TitleLarge}"
 															   Text="Fluent" />
 
 													<!-- Icon -->
@@ -167,6 +329,7 @@
 
 											<!-- Cupertino RadioButton -->
 											<RadioButton x:Name="PART_CupertinoRadioButton"
+														 x:Uid="DesignCupertinoSelector"
 														 Margin="0,0,16,0"
 														 AutomationProperties.AutomationId="PART_CupertinoRadioButton"
 														 Style="{StaticResource SampleLayoutModeRadioButtonStyle}"
@@ -174,7 +337,8 @@
 												<StackPanel Orientation="Horizontal">
 
 													<!-- Label -->
-													<TextBlock Style="{StaticResource TitleLarge}"
+													<TextBlock x:Uid="DesignCupertino"
+															   Style="{StaticResource TitleLarge}"
 															   Text="Cupertino" />
 
 													<!-- Icon -->
@@ -189,6 +353,7 @@
 
 											<!-- Native RadioButton -->
 											<RadioButton x:Name="PART_NativeRadioButton"
+														 x:Uid="DesignNativeSelector"
 														 Margin="0,0,16,0"
 														 AutomationProperties.AutomationId="PART_NativeRadioButton"
 														 Style="{StaticResource SampleLayoutModeRadioButtonStyle}"
@@ -196,7 +361,8 @@
 												<StackPanel Orientation="Horizontal">
 
 													<!-- Label -->
-													<TextBlock Style="{StaticResource TitleLarge}"
+													<TextBlock x:Uid="DesignNative"
+															   Style="{StaticResource TitleLarge}"
 															   Text="Native" />
 
 													<!-- Icon -->
@@ -286,15 +452,36 @@
 														  Style="{StaticResource DividerStyle}" />
 
 										<!-- Optional link to documentation -->
-										<TextBlock Visibility="{Binding DocumentationLink, Converter={StaticResource IsNullOrEmptyToCollapsed}}"
+										<TextBlock Visibility="{Binding DocumentationLink, Converter={StaticResource NullToCollapsed}, FallbackValue=Collapsed}"
 												   Margin="0,0,0,32"
 												   Foreground="{ThemeResource OnBackgroundBrush}"
 												   Opacity="0.8"
 												   Style="{StaticResource BodyMedium}">
-											<Run Text="For more information refer to the " />
-
 											<Hyperlink NavigateUri="{Binding DocumentationLink}">
-												<Run Text="official documentation." />
+												<Run x:Uid="SampleDocumentationAction"
+													 Text="Open the official documentation." />
+											</Hyperlink>
+										</TextBlock>
+
+										<TextBlock Visibility="{Binding ApiLink, Converter={StaticResource NullToCollapsed}, FallbackValue=Collapsed}"
+												   Margin="0,0,0,16"
+												   Foreground="{ThemeResource OnBackgroundBrush}"
+												   Opacity="0.8"
+												   Style="{StaticResource BodyMedium}">
+											<Hyperlink NavigateUri="{Binding ApiLink}">
+												<Run x:Uid="SampleApiAction"
+													 Text="Open the API reference." />
+											</Hyperlink>
+										</TextBlock>
+
+										<TextBlock Visibility="{Binding IssueLink, Converter={StaticResource NullToCollapsed}, FallbackValue=Collapsed}"
+												   Margin="0,0,0,16"
+												   Foreground="{ThemeResource OnBackgroundBrush}"
+												   Opacity="0.8"
+												   Style="{StaticResource BodyMedium}">
+											<Hyperlink NavigateUri="{Binding IssueLink}">
+												<Run x:Uid="SampleIssueAction"
+													 Text="View the known issue." />
 											</Hyperlink>
 										</TextBlock>
 
@@ -304,14 +491,41 @@
 														   Foreground="{ThemeResource OnBackgroundBrush}"
 														   Opacity="0.8"
 														   Style="{StaticResource BodyMedium}">
-											<Run Text="You can" />
-
 											<Hyperlink x:Name="PART_ShareHyperlink">
-												<Run Text="share" />
+												<Run x:Uid="SampleShareAction"
+													 Text="Share this page." />
 											</Hyperlink>
-
-											<Run Text="this page." />
 										</TextBlock>
+
+										<!-- View source hyperlink -->
+										<TextBlock AutomationProperties.AutomationId="PART_SourceLinkText"
+												   Visibility="{Binding IsSourceLinkVisible, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
+												   Margin="0,0,0,16"
+												   Foreground="{ThemeResource OnBackgroundBrush}"
+												   Opacity="0.8"
+												   Style="{StaticResource BodyMedium}">
+											<Hyperlink NavigateUri="{Binding SourceLink}">
+												<Run x:Uid="SampleSourceAction"
+													 Text="View source on GitHub." />
+											</Hyperlink>
+										</TextBlock>
+
+										<!-- Copy direct link button -->
+										<!--
+											Tag mirrors ShareUri so UI-automation tests can read the canonical
+											share URL via GetDependencyPropertyValue("Tag") without clicking.
+											No behavior effect — ClipboardExtensions.CopyContent drives the copy.
+										-->
+										<Button x:Uid="SampleCopyDirectLinkButton"
+												AutomationProperties.AutomationId="PART_DirectLinkCopyButton"
+												Margin="0,0,0,16"
+												Tag="{Binding ShareUri}"
+													Visibility="{Binding ShareUri, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource IsNullOrEmptyToCollapsed}, FallbackValue=Collapsed}"
+												local:ClipboardExtensions.CopyTrigger="ButtonClicked"
+												local:ClipboardExtensions.CopyContent="{Binding ShareUri}">
+											<TextBlock x:Uid="SampleCopyDirectLink"
+													   Text="Copy direct link" />
+										</Button>
 									</StackPanel>
 								</StackPanel>
 							</Grid>
@@ -337,13 +551,15 @@
 
 									<!-- Material RadioButton -->
 									<RadioButton x:Name="PART_StickyMaterialRadioButton"
+												 x:Uid="DesignMaterialSelector"
 												 Margin="0,0,16,0"
 												 Style="{StaticResource SampleLayoutModeRadioButtonStyle}"
 												 Visibility="Collapsed">
 										<StackPanel Orientation="Horizontal">
 
 											<!-- Label -->
-											<TextBlock Style="{StaticResource TitleLarge}"
+											<TextBlock x:Uid="DesignMaterial"
+													   Style="{StaticResource TitleLarge}"
 													   Text="Material" />
 
 											<!-- Icon -->
@@ -358,13 +574,15 @@
 
 									<!-- Fluent RadioButton -->
 									<RadioButton x:Name="PART_StickyFluentRadioButton"
+												 x:Uid="DesignFluentSelector"
 												 Margin="0,0,16,0"
 												 Style="{StaticResource SampleLayoutModeRadioButtonStyle}"
 												 Visibility="Collapsed">
 										<StackPanel Orientation="Horizontal">
 
 											<!-- Label -->
-											<TextBlock Style="{StaticResource TitleLarge}"
+											<TextBlock x:Uid="DesignFluent"
+													   Style="{StaticResource TitleLarge}"
 													   Text="Fluent" />
 
 											<!-- Icon -->
@@ -379,13 +597,15 @@
 
 									<!-- Cupertino RadioButton -->
 									<RadioButton x:Name="PART_StickyCupertinoRadioButton"
+												 x:Uid="DesignCupertinoSelector"
 												 Margin="0,0,16,0"
 												 Style="{StaticResource SampleLayoutModeRadioButtonStyle}"
 												 Visibility="Collapsed">
 										<StackPanel Orientation="Horizontal">
 
 											<!-- Label -->
-											<TextBlock Style="{StaticResource TitleLarge}"
+											<TextBlock x:Uid="DesignCupertino"
+													   Style="{StaticResource TitleLarge}"
 													   Text="Cupertino" />
 
 											<!-- Icon -->
@@ -400,13 +620,15 @@
 
 									<!-- Native RadioButton -->
 									<RadioButton x:Name="PART_StickyNativeRadioButton"
+												 x:Uid="DesignNativeSelector"
 												 Margin="0,0,16,0"
 												 Style="{StaticResource SampleLayoutModeRadioButtonStyle}"
 												 Visibility="Collapsed">
 										<StackPanel Orientation="Horizontal">
 
 											<!-- Label -->
-											<TextBlock Style="{StaticResource TitleLarge}"
+											<TextBlock x:Uid="DesignNative"
+													   Style="{StaticResource TitleLarge}"
 													   Text="Native" />
 
 											<!-- Icon -->

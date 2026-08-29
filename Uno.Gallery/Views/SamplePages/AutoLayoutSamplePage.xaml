@@ -1,0 +1,141 @@
+<!-- Adapted from unoplatform/uno.toolkit.ui samples/Uno.Toolkit.Samples/Content/Controls/AutoLayoutPage.xaml (MIT) -->
+<Page x:Class="Uno.Gallery.Views.SamplePages.AutoLayoutSamplePage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  xmlns:local="using:Uno.Gallery"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  xmlns:smtx="using:ShowMeTheXAML"
+	  xmlns:utu="using:Uno.Toolkit.UI"
+	  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+	  mc:Ignorable="d">
+
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<local:SamplePageLayout IsDesignAgnostic="True">
+			<local:SamplePageLayout.DesignAgnosticTemplate>
+				<DataTemplate>
+					<ScrollViewer HorizontalScrollMode="Disabled">
+						<StackPanel Padding="0,20"
+									Spacing="20">
+
+							<!-- Vertical with spacing -->
+							<smtx:XamlDisplay UniqueKey="AutoLayoutSamplePage_Vertical"
+											  smtx:XamlDisplayExtensions.Header="Vertical layout with Spacing">
+								<utu:AutoLayout Spacing="8"
+												Padding="8"
+												Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+												AutomationProperties.AutomationId="AutoLayout_Vertical">
+									<Rectangle Fill="#3F7D20"
+											   Height="40"
+											   utu:AutoLayout.CounterAlignment="Stretch" />
+									<Rectangle Fill="#68B04A"
+											   Height="40"
+											   utu:AutoLayout.CounterAlignment="Stretch" />
+									<Rectangle Fill="#99D08A"
+											   Height="40"
+											   utu:AutoLayout.CounterAlignment="Stretch" />
+								</utu:AutoLayout>
+							</smtx:XamlDisplay>
+
+							<!-- Horizontal with Stretch item -->
+							<smtx:XamlDisplay UniqueKey="AutoLayoutSamplePage_Horizontal"
+											  smtx:XamlDisplayExtensions.Header="Horizontal with PrimaryAlignment=Stretch">
+								<utu:AutoLayout Spacing="8"
+												Padding="8"
+												Orientation="Horizontal"
+												Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+												AutomationProperties.AutomationId="AutoLayout_Horizontal">
+									<Rectangle Fill="#7A67F8"
+											   Width="60"
+											   Height="60" />
+									<TextBlock Text="Stretched — fills remaining width"
+											   VerticalAlignment="Center"
+											   utu:AutoLayout.PrimaryAlignment="Stretch" />
+									<Rectangle Fill="#159BFF"
+											   Width="60"
+											   Height="60" />
+								</utu:AutoLayout>
+							</smtx:XamlDisplay>
+
+							<!-- SpaceBetween -->
+							<smtx:XamlDisplay UniqueKey="AutoLayoutSamplePage_SpaceBetween"
+											  smtx:XamlDisplayExtensions.Header="Justify=SpaceBetween">
+								<utu:AutoLayout Spacing="8"
+												Padding="8"
+												Justify="SpaceBetween"
+												Height="120"
+												Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+												AutomationProperties.AutomationId="AutoLayout_SpaceBetween">
+									<Rectangle Fill="#F85977"
+											   Width="80"
+											   Height="40"
+											   utu:AutoLayout.CounterAlignment="Center" />
+									<Rectangle Fill="#FF8C00"
+											   Width="80"
+											   Height="40"
+											   utu:AutoLayout.CounterAlignment="Center" />
+									<Rectangle Fill="#FFD700"
+											   Width="80"
+											   Height="40"
+											   utu:AutoLayout.CounterAlignment="Center" />
+								</utu:AutoLayout>
+							</smtx:XamlDisplay>
+
+							<!-- Negative spacing (overlapping) -->
+							<smtx:XamlDisplay UniqueKey="AutoLayoutSamplePage_NegativeSpacing"
+											  smtx:XamlDisplayExtensions.Header="Negative Spacing (overlapping layers)">
+								<utu:AutoLayout Spacing="-16"
+												Padding="16"
+												Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+												AutomationProperties.AutomationId="AutoLayout_NegativeSpacing">
+									<Rectangle Fill="#FFD700"
+											   utu:AutoLayout.CounterAlignment="Center"
+											   utu:AutoLayout.PrimaryLength="56"
+											   utu:AutoLayout.CounterLength="240" />
+									<Rectangle Fill="#FF6347"
+											   utu:AutoLayout.CounterAlignment="Center"
+											   utu:AutoLayout.PrimaryLength="56"
+											   utu:AutoLayout.CounterLength="180" />
+									<Rectangle Fill="#20B2AA"
+											   utu:AutoLayout.CounterAlignment="Center"
+											   utu:AutoLayout.PrimaryLength="56"
+											   utu:AutoLayout.CounterLength="120" />
+								</utu:AutoLayout>
+							</smtx:XamlDisplay>
+
+							<!-- IsIndependentLayout -->
+							<smtx:XamlDisplay UniqueKey="AutoLayoutSamplePage_IndependentLayout"
+											  smtx:XamlDisplayExtensions.Header="IsIndependentLayout (overlay child)">
+								<utu:AutoLayout Spacing="8"
+												Padding="16"
+												Height="140"
+												Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+												AutomationProperties.AutomationId="AutoLayout_IndependentLayout">
+									<Rectangle Fill="#7A67F8"
+											   utu:AutoLayout.CounterAlignment="Stretch"
+											   utu:AutoLayout.PrimaryLength="50" />
+									<Rectangle Fill="#159BFF"
+											   utu:AutoLayout.CounterAlignment="Stretch"
+											   utu:AutoLayout.PrimaryLength="50" />
+									<!-- Independent child floats above the flow -->
+									<Border Background="#CC000000"
+											CornerRadius="4"
+											Padding="8,4"
+											HorizontalAlignment="Right"
+											VerticalAlignment="Top"
+											Margin="0,8,8,0"
+											utu:AutoLayout.IsIndependentLayout="True">
+										<TextBlock Text="Overlay"
+												   Foreground="White"
+												   FontSize="12" />
+									</Border>
+								</utu:AutoLayout>
+							</smtx:XamlDisplay>
+
+						</StackPanel>
+					</ScrollViewer>
+				</DataTemplate>
+			</local:SamplePageLayout.DesignAgnosticTemplate>
+		</local:SamplePageLayout>
+	</Grid>
+</Page>
