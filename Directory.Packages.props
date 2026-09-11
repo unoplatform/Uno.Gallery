@@ -34,8 +34,8 @@
 		<PackageVersion Include="Microsoft.TypeScript.Compiler" Version="3.1.5" />
 		<PackageVersion Include="Microsoft.TypeScript.MSBuild" Version="4.6.4" />
 		<PackageVersion Include="Microsoft.WindowsAppSDK" Version="1.8.260101001" />
-		<!-- Canary-only: the canary updater pulls Uno.UI.HotDesign dev builds whose Microsoft.Windows.SDK.BuildTools floor (>=10.0.28000.2270) exceeds this pin, causing an NU1605 downgrade on the Windows head. Raised to satisfy the dev floor; master keeps its own value. -->
-		<PackageVersion Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.28000.2270" />
+		<!-- Canary-only: the canary updater pulls Uno.UI.HotDesign dev builds whose Microsoft.Windows.SDK.BuildTools floor exceeds this pin, causing an NU1605 downgrade on the Windows head. Raised to satisfy the current dev floor (>=10.0.28000.2705, from Uno.UI.HotDesign 1.23.0-dev.4); master keeps its own value. -->
+		<PackageVersion Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.28000.2705" />
 		<PackageVersion Include="nventive.Nimue.Application.Packaging" Version="0.1.0-alpha.58" />
 		<PackageVersion Include="Xamarin.TestCloud.Agent" Version="0.23.2" />
 	</ItemGroup>
