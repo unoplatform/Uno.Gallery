@@ -44,14 +44,14 @@ public sealed partial class DragDropSamplePage : Page
 		args.Data.RequestedOperation = DataPackageOperation.Copy;
 	}
 
-	private void Target_DragOver(object sender, DragEventArgs e)
+	private void Target_DragOver(object sender, Microsoft.UI.Xaml.DragEventArgs e)
 	{
 		e.AcceptedOperation = e.DataView.Contains(StandardDataFormats.Text)
 			? DataPackageOperation.Copy
 			: DataPackageOperation.None;
 	}
 
-	private async void Target_Drop(object sender, DragEventArgs e)
+	private async void Target_Drop(object sender, Microsoft.UI.Xaml.DragEventArgs e)
 		=> await ProcessTransferAsync(e.DataView, "drag/drop");
 
 	private async void DeterministicTransfer_Click(object sender, RoutedEventArgs e)
