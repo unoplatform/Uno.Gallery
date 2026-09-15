@@ -1,0 +1,236 @@
+<!-- Adapted from unoplatform/uno.toolkit.ui samples/Uno.Toolkit.Samples/Content/Controls/ResponsiveViewSamplePage.xaml (MIT) -->
+<Page x:Class="Uno.Gallery.Views.SamplePages.ResponsiveViewSamplePage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  xmlns:local="using:Uno.Gallery"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  xmlns:smtx="using:ShowMeTheXAML"
+	  xmlns:utu="using:Uno.Toolkit.UI"
+	  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+	  mc:Ignorable="d">
+
+	<Page.Resources>
+		<Color x:Key="RvGreen">#67E5AD</Color>
+		<Color x:Key="RvPurple">#7A67F8</Color>
+		<Color x:Key="RvRed">#F85977</Color>
+		<Color x:Key="RvBlue">#159BFF</Color>
+	</Page.Resources>
+
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<local:SamplePageLayout IsDesignAgnostic="True">
+			<local:SamplePageLayout.DesignAgnosticTemplate>
+				<DataTemplate>
+					<ScrollViewer HorizontalScrollMode="Disabled">
+						<StackPanel Padding="0,20"
+									Spacing="24">
+
+							<TextBlock Style="{StaticResource BodyTextBlockStyle}"
+									   Text="ResponsiveView switches between templates as the available width crosses layout breakpoints. Resize the window to see the change." />
+
+							<!-- Default breakpoints -->
+							<smtx:XamlDisplay UniqueKey="ResponsiveViewSamplePage_Default"
+											  smtx:XamlDisplayExtensions.Header="Default breakpoints (Narrowest / Narrow / Normal / Wide / Widest)">
+								<utu:ResponsiveView AutomationProperties.AutomationId="ResponsiveView_Default">
+									<utu:ResponsiveView.NarrowestTemplate>
+										<DataTemplate>
+											<StackPanel Spacing="8">
+												<TextBlock HorizontalAlignment="Center"
+														   Style="{StaticResource TitleLarge}"
+														   Text="Narrowest (≤ 150)" />
+												<StackPanel HorizontalAlignment="Center"
+															Spacing="8">
+													<Rectangle Fill="{StaticResource RvGreen}"
+																Height="60"
+																Width="60" />
+													<Ellipse Fill="{StaticResource RvPurple}"
+															 Height="60"
+															 Width="60" />
+												</StackPanel>
+											</StackPanel>
+										</DataTemplate>
+									</utu:ResponsiveView.NarrowestTemplate>
+									<utu:ResponsiveView.NarrowTemplate>
+										<DataTemplate>
+											<StackPanel Spacing="8">
+												<TextBlock HorizontalAlignment="Center"
+														   Style="{StaticResource TitleLarge}"
+														   Text="Narrow (151–300)" />
+												<StackPanel HorizontalAlignment="Center"
+															Orientation="Horizontal"
+															Spacing="8">
+													<Rectangle Fill="{StaticResource RvGreen}"
+																Height="80"
+																Width="80" />
+													<Ellipse Fill="{StaticResource RvPurple}"
+															 Height="80"
+															 Width="80" />
+												</StackPanel>
+											</StackPanel>
+										</DataTemplate>
+									</utu:ResponsiveView.NarrowTemplate>
+									<utu:ResponsiveView.NormalTemplate>
+										<DataTemplate>
+											<StackPanel Spacing="8">
+												<TextBlock HorizontalAlignment="Center"
+														   Style="{StaticResource DisplaySmall}"
+														   Text="Normal (301–600)" />
+												<StackPanel HorizontalAlignment="Center"
+															Orientation="Horizontal"
+															Spacing="12">
+													<Rectangle Fill="{StaticResource RvGreen}"
+																Height="100"
+																Width="100" />
+													<Ellipse Fill="{StaticResource RvPurple}"
+															 Height="100"
+															 Width="100" />
+													<Rectangle Fill="{StaticResource RvRed}"
+																Height="100"
+																Width="100" />
+												</StackPanel>
+											</StackPanel>
+										</DataTemplate>
+									</utu:ResponsiveView.NormalTemplate>
+									<utu:ResponsiveView.WideTemplate>
+										<DataTemplate>
+											<StackPanel Spacing="8">
+												<TextBlock HorizontalAlignment="Center"
+														   Style="{StaticResource DisplayMedium}"
+														   Text="Wide (601–800)" />
+												<StackPanel HorizontalAlignment="Center"
+															Orientation="Horizontal"
+															Spacing="16">
+													<Rectangle Fill="{StaticResource RvGreen}"
+																Height="120"
+																Width="120" />
+													<Ellipse Fill="{StaticResource RvPurple}"
+															 Height="120"
+															 Width="120" />
+													<Rectangle Fill="{StaticResource RvRed}"
+																Height="120"
+																Width="120" />
+													<Ellipse Fill="{StaticResource RvBlue}"
+															 Height="120"
+															 Width="120" />
+												</StackPanel>
+											</StackPanel>
+										</DataTemplate>
+									</utu:ResponsiveView.WideTemplate>
+									<utu:ResponsiveView.WidestTemplate>
+										<DataTemplate>
+											<StackPanel Spacing="8">
+												<TextBlock HorizontalAlignment="Center"
+														   Style="{StaticResource DisplayLarge}"
+														   Text="Widest (&gt; 800)" />
+												<StackPanel HorizontalAlignment="Center"
+															Orientation="Horizontal"
+															Spacing="20">
+													<Rectangle Fill="{StaticResource RvGreen}"
+																Height="150"
+																Width="150" />
+													<Ellipse Fill="{StaticResource RvPurple}"
+															 Height="150"
+															 Width="150" />
+													<Rectangle Fill="{StaticResource RvRed}"
+																Height="150"
+																Width="150" />
+													<Ellipse Fill="{StaticResource RvBlue}"
+															 Height="150"
+															 Width="150" />
+												</StackPanel>
+											</StackPanel>
+										</DataTemplate>
+									</utu:ResponsiveView.WidestTemplate>
+								</utu:ResponsiveView>
+							</smtx:XamlDisplay>
+
+							<!-- Inherited layout override -->
+							<smtx:XamlDisplay UniqueKey="ResponsiveViewSamplePage_InheritedOverride"
+											  smtx:XamlDisplayExtensions.Header="Inherited ResponsiveLayout override via resource">
+								<StackPanel>
+									<StackPanel.Resources>
+										<!-- +50 px on every breakpoint compared to the defaults -->
+										<utu:ResponsiveLayout x:Key="DefaultResponsiveLayout"
+															  Narrowest="200"
+															  Narrow="350"
+															  Normal="650"
+															  Wide="850"
+															  Widest="1130" />
+									</StackPanel.Resources>
+
+									<utu:ResponsiveView AutomationProperties.AutomationId="ResponsiveView_Inherited">
+										<utu:ResponsiveView.NarrowestTemplate>
+											<DataTemplate>
+												<TextBlock Text="Inherited: Narrowest (≤ 200)" />
+											</DataTemplate>
+										</utu:ResponsiveView.NarrowestTemplate>
+										<utu:ResponsiveView.NarrowTemplate>
+											<DataTemplate>
+												<TextBlock Text="Inherited: Narrow (201–350)" />
+											</DataTemplate>
+										</utu:ResponsiveView.NarrowTemplate>
+										<utu:ResponsiveView.NormalTemplate>
+											<DataTemplate>
+												<TextBlock Text="Inherited: Normal (351–650)" />
+											</DataTemplate>
+										</utu:ResponsiveView.NormalTemplate>
+										<utu:ResponsiveView.WideTemplate>
+											<DataTemplate>
+												<TextBlock Text="Inherited: Wide (651–850)" />
+											</DataTemplate>
+										</utu:ResponsiveView.WideTemplate>
+										<utu:ResponsiveView.WidestTemplate>
+											<DataTemplate>
+												<TextBlock Text="Inherited: Widest (&gt; 1130)" />
+											</DataTemplate>
+										</utu:ResponsiveView.WidestTemplate>
+									</utu:ResponsiveView>
+								</StackPanel>
+							</smtx:XamlDisplay>
+
+							<!-- Local layout override -->
+							<smtx:XamlDisplay UniqueKey="ResponsiveViewSamplePage_LocalOverride"
+											  smtx:XamlDisplayExtensions.Header="Local ResponsiveLayout override">
+								<utu:ResponsiveView AutomationProperties.AutomationId="ResponsiveView_Local">
+									<utu:ResponsiveView.ResponsiveLayout>
+										<utu:ResponsiveLayout Narrowest="250"
+															  Narrow="400"
+															  Normal="700"
+															  Wide="900"
+															  Widest="1180" />
+									</utu:ResponsiveView.ResponsiveLayout>
+									<utu:ResponsiveView.NarrowestTemplate>
+										<DataTemplate>
+											<TextBlock Text="LocalOverride: Narrowest (≤ 250)" />
+										</DataTemplate>
+									</utu:ResponsiveView.NarrowestTemplate>
+									<utu:ResponsiveView.NarrowTemplate>
+										<DataTemplate>
+											<TextBlock Text="LocalOverride: Narrow (251–400)" />
+										</DataTemplate>
+									</utu:ResponsiveView.NarrowTemplate>
+									<utu:ResponsiveView.NormalTemplate>
+										<DataTemplate>
+											<TextBlock Text="LocalOverride: Normal (401–700)" />
+										</DataTemplate>
+									</utu:ResponsiveView.NormalTemplate>
+									<utu:ResponsiveView.WideTemplate>
+										<DataTemplate>
+											<TextBlock Text="LocalOverride: Wide (701–900)" />
+										</DataTemplate>
+									</utu:ResponsiveView.WideTemplate>
+									<utu:ResponsiveView.WidestTemplate>
+										<DataTemplate>
+											<TextBlock Text="LocalOverride: Widest (&gt; 1180)" />
+										</DataTemplate>
+									</utu:ResponsiveView.WidestTemplate>
+								</utu:ResponsiveView>
+							</smtx:XamlDisplay>
+
+						</StackPanel>
+					</ScrollViewer>
+				</DataTemplate>
+			</local:SamplePageLayout.DesignAgnosticTemplate>
+		</local:SamplePageLayout>
+	</Grid>
+</Page>

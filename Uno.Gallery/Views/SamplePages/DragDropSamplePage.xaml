@@ -1,0 +1,48 @@
+<Page
+	x:Class="Uno.Gallery.Views.Samples.DragDropSamplePage"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:local="using:Uno.Gallery"
+	xmlns:smtx="using:ShowMeTheXAML">
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<local:SamplePageLayout x:Name="SamplePageLayoutRoot" IsDesignAgnostic="True">
+			<local:SamplePageLayout.DesignAgnosticTemplate>
+				<DataTemplate>
+					<smtx:XamlDisplay UniqueKey="DragDrop_InternalTransfer"
+									 smtx:XamlDisplayExtensions.Header="Internal text/card drag and drop">
+						<StackPanel Spacing="12">
+							<Border CanDrag="True"
+									DragStarting="Source_DragStarting"
+									Padding="16"
+									Background="{ThemeResource AccentFillColorDefaultBrush}"
+									AutomationProperties.Name="Draggable Gallery card">
+								<TextBlock Text="Gallery card: deterministic payload"
+										   Foreground="{ThemeResource TextOnAccentFillColorPrimaryBrush}" />
+							</Border>
+							<Border AllowDrop="True"
+									DragOver="Target_DragOver"
+									Drop="Target_Drop"
+									MinHeight="100"
+									Padding="16"
+									BorderThickness="2"
+									BorderBrush="{ThemeResource AccentFillColorDefaultBrush}"
+									AutomationProperties.Name="Internal card drop target">
+								<TextBlock Text="Drop the Gallery card here." />
+							</Border>
+							<Button Content="Run deterministic app-owned transfer"
+									Click="DeterministicTransfer_Click"
+									AutomationProperties.AutomationId="DragDrop_DeterministicTransfer" />
+							<TextBlock x:Name="DragDrop_Status"
+									   Text="No transfer completed."
+									   AutomationProperties.AutomationId="DragDrop_Status"
+									   AutomationProperties.LiveSetting="Polite"
+									   AutomationProperties.Name="Drag and drop transfer status" />
+							<TextBlock Text="OS file drop is intentionally not demonstrated: it requires host permissions and an external file-system payload."
+									   TextWrapping="Wrap" />
+						</StackPanel>
+					</smtx:XamlDisplay>
+				</DataTemplate>
+			</local:SamplePageLayout.DesignAgnosticTemplate>
+		</local:SamplePageLayout>
+	</Grid>
+</Page>

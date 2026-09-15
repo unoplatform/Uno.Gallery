@@ -6,33 +6,64 @@
 	xmlns:samples="using:Uno.Gallery.Views.Samples"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
-	xmlns:smtx="using:ShowMeTheXAML"
 	mc:Ignorable="d">
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-		<ScrollViewer>
-			<StackPanel>
-				<Button Content="Navigate to all pages" Click="{x:Bind OnNavigateAllPages}" />
+		<local:SamplePageLayout IsDesignAgnostic="True">
+			<local:SamplePageLayout.DesignAgnosticTemplate>
+				<DataTemplate>
+					<StackPanel>
+						<Button x:Name="NavigateAllPagesButton"
+								Content="Navigate to all pages"
+								Loaded="NavigateAllPagesButton_Loaded"
+								Click="NavigateAllPages_Click" />
 
-				<TextBlock Text="Loaded assemblies" FontSize="20" Margin="0,20,0,0" />
-				<ItemsControl x:Name="assembliesList">
-					<ItemsControl.ItemTemplate>
-						<DataTemplate>
-							<StackPanel>
-								<TextBlock Text="{Binding Name}"
-										   FontFamily="Courier New" />
-								<TextBlock Margin="20,0,0,0"
-										   FontFamily="Courier New"
-										   Text="{Binding Version}" />
-								<TextBlock Margin="20,0,0,0"
-										   FontFamily="Courier New"
-										   Text="{Binding DisplayVersion}" />
-							</StackPanel>
-						</DataTemplate>
-					</ItemsControl.ItemTemplate>
-				</ItemsControl>
-			</StackPanel>
-		</ScrollViewer>
+						<TextBlock Text="Rendering and platform"
+								   FontSize="20"
+								   Margin="0,20,0,0" />
+						<TextBlock Loaded="BuildDiagnostics_Loaded"
+								   TextWrapping="Wrap"
+								   AutomationProperties.AutomationId="Diagnostics_BuildInfo"
+								   AutomationProperties.Name="Rendering and platform build diagnostics" />
+
+						<TextBlock Text="Performance Marks"
+								   FontSize="20"
+								   Margin="0,20,0,0" />
+						<Button Content="Refresh"
+								Click="RefreshMarks_Click"
+								AutomationProperties.AutomationId="PerfMarks_RefreshButton" />
+						<TextBox Loaded="PerfMarksTextBox_Loaded"
+								 IsReadOnly="True"
+								 AcceptsReturn="True"
+								 TextWrapping="Wrap"
+								 FontFamily="Courier New"
+								 MinHeight="100"
+								 Margin="0,4,0,0"
+								 AutomationProperties.AutomationId="PerfMarksOutput" />
+
+						<TextBlock Text="Loaded assemblies"
+								   FontSize="20"
+								   Margin="0,20,0,0" />
+
+						<ItemsControl Loaded="AssembliesList_Loaded">
+							<ItemsControl.ItemTemplate>
+								<DataTemplate x:DataType="samples:AssemblyInfoItem">
+									<StackPanel>
+										<TextBlock Text="{x:Bind Name}"
+												   FontFamily="Courier New" />
+										<TextBlock Margin="20,0,0,0"
+												   FontFamily="Courier New"
+												   Text="{x:Bind Version}" />
+										<TextBlock Margin="20,0,0,0"
+												   FontFamily="Courier New"
+												   Text="{x:Bind DisplayVersion}" />
+									</StackPanel>
+								</DataTemplate>
+							</ItemsControl.ItemTemplate>
+						</ItemsControl>
+					</StackPanel>
+				</DataTemplate>
+			</local:SamplePageLayout.DesignAgnosticTemplate>
+		</local:SamplePageLayout>
 	</Grid>
 </Page>

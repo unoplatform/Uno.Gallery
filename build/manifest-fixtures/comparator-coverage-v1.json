@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "features": [
+    {
+      "id": "feature-a",
+      "disposition": "covered-core",
+      "gallerySlugs": [
+        "sample-a"
+      ],
+      "owner": "unoplatform",
+      "issue": null,
+      "reason": ""
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gallery.platform.uno/schemas/performance/performance-report-v1.schema.json",
+  "title": "Uno Gallery performance budget report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "budgetVersion",
+    "enforcement",
+    "generatedAt",
+    "passed",
+    "checks"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "budgetVersion": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "enforcement": {
+      "enum": [
+        "advisory",
+        "blocking"
+      ]
+    },
+    "generatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "passed": {
+      "type": "boolean"
+    },
+    "checks": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "target",
+          "scope",
+          "metric",
+          "evaluated",
+          "actual",
+          "baseline",
+          "maximum",
+          "passed",
+          "reason"
+        ],
+        "properties": {
+          "target": {
+            "type": "string",
+            "minLength": 1
+          },
+          "scope": {
+            "enum": [
+              "bundle",
+              "cold",
+              "warm"
+            ]
+          },
+          "metric": {
+            "type": "string",
+            "minLength": 1
+          },
+          "evaluated": {
+            "type": "boolean"
+          },
+          "actual": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "baseline": {
+            "type": "number",
+            "minimum": 0
+          },
+          "maximum": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "passed": {
+            "type": "boolean"
+          },
+          "reason": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

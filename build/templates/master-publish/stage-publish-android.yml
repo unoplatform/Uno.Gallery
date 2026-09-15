@@ -1,7 +1,7 @@
 ﻿stages:
 - stage: Android_Publish
   displayName: 'Android Publish'
-  dependsOn: Android
+  dependsOn: Release_Validation
 
   jobs:
   - deployment: 'Android_Publish_Native'
@@ -55,4 +55,3 @@
               applicationId: 'com.nventive.uno.ui.demo'
               bundleFile: '$(Pipeline.Workspace)/drop/publish/com.nventive.uno.ui.demo-Signed.aab'
               track: 'alpha'
-

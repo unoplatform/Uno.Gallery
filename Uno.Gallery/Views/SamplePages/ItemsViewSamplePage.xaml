@@ -1,0 +1,119 @@
+<Page x:Class="Uno.Gallery.Views.Samples.ItemsViewSamplePage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:local="using:Uno.Gallery"
+	  xmlns:data="using:Uno.Gallery.Entities.Data"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  xmlns:smtx="using:ShowMeTheXAML"
+	  mc:Ignorable="d">
+
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<local:SamplePageLayout x:Name="SamplePageLayoutRoot">
+
+			<local:SamplePageLayout.FluentTemplate>
+				<DataTemplate>
+					<StackPanel Spacing="16"
+								Padding="0,8">
+
+						<!-- Single selection -->
+						<smtx:XamlDisplay UniqueKey="ItemsViewSamplePage_Single"
+										  smtx:XamlDisplayExtensions.Header="Single Selection"
+										  smtx:XamlDisplayExtensions.Description="ItemsView with SelectionMode=Single. Each item is wrapped in an ItemContainer which manages selection state and keyboard/pointer input.">
+							<StackPanel Spacing="8">
+								<TextBlock AutomationProperties.AutomationId="ItemsView_SelectedTitle"
+										   x:Name="SelectedTitle_Single"
+										   Text="Selected: (none)" />
+								<ItemsView x:Name="ItemsViewSingle"
+										   AutomationProperties.AutomationId="ItemsView_Single"
+										   ItemsSource="{Binding Data}"
+										   SelectionMode="Single"
+										   SelectionChanged="ItemsViewSingle_SelectionChanged"
+										   MaxHeight="260">
+									<ItemsView.Layout>
+										<StackLayout Spacing="4" />
+									</ItemsView.Layout>
+									<ItemsView.ItemTemplate>
+										<DataTemplate x:DataType="data:GalleryItem">
+											<ItemContainer AutomationProperties.AutomationId="{Binding Title}"
+														   AutomationProperties.Name="{Binding Title}"
+														   IsEnabled="{Binding IsEnabled}"
+														   Padding="12,8">
+												<Grid>
+													<Grid.ColumnDefinitions>
+														<ColumnDefinition Width="Auto" />
+														<ColumnDefinition Width="*" />
+													</Grid.ColumnDefinitions>
+													<Border Width="32"
+															Height="32"
+															CornerRadius="4"
+															Background="{Binding Accent}" />
+													<StackPanel Grid.Column="1"
+																Margin="12,0,0,0"
+																VerticalAlignment="Center">
+														<TextBlock Text="{Binding Title}"
+																   Style="{StaticResource BodyStrong}" />
+														<TextBlock Text="{Binding Subtitle}"
+																   Style="{ThemeResource CaptionTextBlockStyle}" />
+													</StackPanel>
+												</Grid>
+											</ItemContainer>
+										</DataTemplate>
+									</ItemsView.ItemTemplate>
+								</ItemsView>
+								<TextBlock Text="Note: &quot;Dune&quot; is disabled (IsEnabled=False on its ItemContainer)."
+										   Style="{ThemeResource CaptionTextBlockStyle}"
+										   Foreground="{ThemeResource SystemFillColorCautionBrush}" />
+								<Button AutomationProperties.AutomationId="ItemsView_SelectFirst"
+										Content="Select first"
+										Click="SelectFirst_Click" />
+							</StackPanel>
+						</smtx:XamlDisplay>
+
+						<!-- Multiple selection -->
+						<smtx:XamlDisplay UniqueKey="ItemsViewSamplePage_Multiple"
+										  smtx:XamlDisplayExtensions.Header="Multiple Selection"
+										  smtx:XamlDisplayExtensions.Description="ItemsView with SelectionMode=Multiple. Each ItemContainer handles its own checked state.">
+							<StackPanel Spacing="8">
+								<TextBlock x:Name="MultiSelectionCountDisplay"
+										   AutomationProperties.AutomationId="ItemsView_MultiSelectionCount"
+										   Text="Selected count: 0" />
+								<ItemsView x:Name="ItemsViewMultiple"
+										   AutomationProperties.AutomationId="ItemsView_Multiple"
+										   ItemsSource="{Binding Data}"
+										   SelectionMode="Multiple"
+										   SelectionChanged="ItemsViewMultiple_SelectionChanged"
+										   MaxHeight="200">
+									<ItemsView.Layout>
+										<UniformGridLayout MinItemWidth="140"
+														   MinItemHeight="60"
+														   MinColumnSpacing="4"
+														   MinRowSpacing="4" />
+									</ItemsView.Layout>
+									<ItemsView.ItemTemplate>
+										<DataTemplate x:DataType="data:GalleryItem">
+											<ItemContainer Padding="8,4"
+																		   AutomationProperties.AutomationId="{Binding MultipleAutomationName}"
+																		   AutomationProperties.Name="{Binding Title}"
+																		   IsEnabled="{Binding IsEnabled}">
+												<TextBlock Text="{Binding Title}"
+														   Style="{StaticResource BodyStrong}"
+														   TextTrimming="CharacterEllipsis"
+														   VerticalAlignment="Center" />
+											</ItemContainer>
+										</DataTemplate>
+									</ItemsView.ItemTemplate>
+								</ItemsView>
+								<Button AutomationProperties.AutomationId="ItemsView_SelectFirstTwo"
+										Content="Select first two"
+										Click="SelectFirstTwo_Click" />
+							</StackPanel>
+						</smtx:XamlDisplay>
+
+					</StackPanel>
+				</DataTemplate>
+			</local:SamplePageLayout.FluentTemplate>
+
+		</local:SamplePageLayout>
+	</Grid>
+</Page>

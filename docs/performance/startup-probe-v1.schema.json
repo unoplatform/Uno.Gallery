@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gallery.platform.uno/schemas/performance/startup-probe-v1.schema.json",
+  "title": "Uno Gallery release startup probe",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "generatedAt",
+    "renderer",
+    "browserVersion",
+    "readyMs",
+    "passed"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "generatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "renderer": {
+      "enum": [
+        "DOM",
+        "Skia"
+      ]
+    },
+    "browserVersion": {
+      "type": "string",
+      "minLength": 1
+    },
+    "readyMs": {
+      "type": "number",
+      "minimum": 0
+    },
+    "passed": {
+      "const": true
+    }
+  }
+}

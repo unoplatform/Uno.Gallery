@@ -14,8 +14,9 @@ namespace Uno.Gallery.UITests
 	{
 		[Test]
 		[Ignore("""
-			On Wasm: CI, it produces NaN for unknown reason. Locally, it types 3^3 and produces 27
-			On iOS and Android: Fails with 'Timed out waiting for keyboard'
+			On WASM: EnterText("15") does not commit the value correctly (observed result differs from expected 15).
+			On iOS and Android: fails with 'Timed out waiting for keyboard'.
+			https://github.com/unoplatform/Uno.Gallery/issues/1117 | review-date: 2026-11-23
 			""")]
 		public void NumberBox_Fluent()
 		{

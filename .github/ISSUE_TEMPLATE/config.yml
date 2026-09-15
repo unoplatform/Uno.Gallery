@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Uno Platform documentation
+    url: https://platform.uno/docs/articles/intro.html
+    about: Read the official Uno Platform documentation.
+  - name: Community support (Discord)
+    url: https://platform.uno/discord
+    about: Ask questions and get help from the Uno Platform community.

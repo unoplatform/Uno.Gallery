@@ -1,0 +1,97 @@
+<Page x:Class="Uno.Gallery.Views.Samples.TabViewSamplePage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:local="using:Uno.Gallery"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  xmlns:smtx="using:ShowMeTheXAML"
+	  mc:Ignorable="d">
+
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<local:SamplePageLayout>
+
+			<local:SamplePageLayout.FluentTemplate>
+				<DataTemplate>
+					<StackPanel Spacing="16"
+								Padding="0,8">
+
+						<!-- Basic static tabs -->
+						<smtx:XamlDisplay UniqueKey="TabViewSamplePage_Basic"
+										  smtx:XamlDisplayExtensions.Header="Basic TabView"
+										  smtx:XamlDisplayExtensions.Description="TabView renders a row of tabs. The first tab has IsClosable=False (e.g. a Home tab). Others are closable by default.">
+							<TabView x:Name="StaticTabView"
+									 AutomationProperties.AutomationId="TabView_Basic"
+									 IsAddTabButtonVisible="False"
+									 SelectedIndex="0"
+									 HorizontalAlignment="Stretch">
+								<TabViewItem Header="Home"
+											 IsClosable="False"
+											 AutomationProperties.AutomationId="TabView_Tab_Home">
+									<TabViewItem.IconSource>
+										<SymbolIconSource Symbol="Home" />
+									</TabViewItem.IconSource>
+									<TextBlock Text="Home tab content"
+											   Margin="16" />
+								</TabViewItem>
+								<TabViewItem Header="Documents"
+											 AutomationProperties.AutomationId="TabView_Tab_Documents">
+									<TabViewItem.IconSource>
+										<SymbolIconSource Symbol="Document" />
+									</TabViewItem.IconSource>
+									<TextBlock Text="Documents tab content"
+											   Margin="16" />
+								</TabViewItem>
+								<TabViewItem Header="Settings"
+											 AutomationProperties.AutomationId="TabView_Tab_Settings">
+									<TabViewItem.IconSource>
+										<SymbolIconSource Symbol="Setting" />
+									</TabViewItem.IconSource>
+									<TextBlock Text="Settings tab content"
+											   Margin="16" />
+								</TabViewItem>
+							</TabView>
+						</smtx:XamlDisplay>
+
+						<!-- Dynamic tabs with add/close -->
+						<smtx:XamlDisplay UniqueKey="TabViewSamplePage_Dynamic"
+										  smtx:XamlDisplayExtensions.Header="Dynamic Tabs (Add &amp; Close)"
+										  smtx:XamlDisplayExtensions.Description="IsAddTabButtonVisible=True shows the + button. Handle AddTabButtonClick to create a new tab. Handle TabCloseRequested to remove tabs.">
+							<StackPanel Spacing="8">
+								<TextBlock AutomationProperties.AutomationId="TabView_Dynamic_TabCount"
+										   Text="3"
+										   Style="{ThemeResource CaptionTextBlockStyle}" />
+								<TabView x:Name="DynamicTabView"
+										 AutomationProperties.AutomationId="TabView_Dynamic"
+										 IsAddTabButtonVisible="True"
+										 AddTabButtonClick="DynamicTabView_AddTabButtonClick"
+										 TabCloseRequested="DynamicTabView_TabCloseRequested"
+										 Loaded="DynamicTabView_Loaded"
+										 SelectedIndex="0"
+										 HorizontalAlignment="Stretch">
+									<TabViewItem Header="Tab 1"
+												 AutomationProperties.AutomationId="TabView_Dynamic_Tab1"
+												 IsClosable="False">
+										<TextBlock Text="Pin this tab — it cannot be closed."
+												   Margin="16" />
+									</TabViewItem>
+									<TabViewItem Header="Tab 2"
+												 AutomationProperties.AutomationId="TabView_Dynamic_Tab2">
+										<TextBlock Text="Close this tab using the × button."
+												   Margin="16" />
+									</TabViewItem>
+									<TabViewItem Header="Tab 3"
+												 AutomationProperties.AutomationId="TabView_Dynamic_Tab3">
+										<TextBlock Text="Close this tab using the × button."
+												   Margin="16" />
+									</TabViewItem>
+								</TabView>
+							</StackPanel>
+						</smtx:XamlDisplay>
+
+					</StackPanel>
+				</DataTemplate>
+			</local:SamplePageLayout.FluentTemplate>
+
+		</local:SamplePageLayout>
+	</Grid>
+</Page>

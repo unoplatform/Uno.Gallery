@@ -10,6 +10,36 @@
 	},
 	"routes": [
 	  {
+		"route": "/",
+		"headers": {
+		  "cache-control": "no-cache"
+		}
+	  },
+	  {
+		"route": "/index.html",
+		"headers": {
+		  "cache-control": "no-cache"
+		}
+	  },
+	  {
+		"route": "/service-worker.js",
+		"headers": {
+		  "cache-control": "no-cache"
+		}
+	  },
+	  {
+		"route": "/_framework/*/*.wasm",
+		"headers": {
+		  "cache-control": "public, immutable, max-age=31536000"
+		}
+	  },
+	  {
+		"route": "/_framework/*.{wasm,js,dll,dat,pdb}",
+		"headers": {
+		  "cache-control": "public, immutable, max-age=31536000"
+		}
+	  },
+	  {
 		"route": "/package_*",
 		"headers": {
 		  "cache-control": "public, immutable, max-age=31536000"

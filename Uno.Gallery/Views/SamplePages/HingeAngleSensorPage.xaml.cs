@@ -7,7 +7,21 @@ using Microsoft.UI.Xaml.Controls;
 
 namespace Uno.Gallery.Views.Samples
 {
-	[SamplePage(SampleCategory.NonUIFeatures, "Hinge Angle Sensor", Description = "Represents a hinge angle sensor. This sensor exposes the angle of the device hinge.", DocumentationLink = "https://learn.microsoft.com/en-us/uwp/api/windows.devices.sensors.hingeanglesensor?view=winrt-22621")]
+	[SamplePage(SampleCategory.NonUIFeatures, "Hinge Angle Sensor",
+		Description = "Represents a hinge angle sensor. This sensor exposes the angle of the device hinge.",
+		DocumentationLink = "https://learn.microsoft.com/en-us/uwp/api/windows.devices.sensors.hingeanglesensor?view=winrt-22621",
+		Tags = new[] { "sensor", "hinge", "foldable", "android" },
+		Status = SampleStatus.Stable,
+		ContractVersion = 1,
+		SupportedDesigns = SampleDesigns.Agnostic,
+		SupportedRenderers = SampleRenderers.Native | SampleRenderers.Skia,
+		Requirements = new[] { "Requires an Android foldable device that exposes a hinge-angle sensor." },
+		AccessibilityNotes = new[] { "A labeled button starts and stops monitoring; numeric angle and timestamp values are exposed as text." },
+		ResetBehavior = "Stop monitoring with the same button, or reopen the page to create a fresh sensor view model.",
+		Variants = new[] { "Sensor unavailable state", "Live hinge-angle monitoring" },
+		KnownLimitations = new[] { "Available only on supported Android foldable hardware." },
+		Owner = "unoplatform",
+		ReviewedOn = "2026-08-27")]
 	[SampleConditional(SampleConditionals.Droid, Reason = "Hinge Angle Sensor is currently only available on Android")]
 	public sealed partial class HingeAngleSensorSamplePage : Page
 	{

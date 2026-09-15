@@ -6,7 +6,7 @@ repository:
   # The name of the repository. Changing this will rename the repository
   #name: template
 
-  description: template for brand new github repositories 
+  description: Cross-platform showcase and reference application for Uno Platform
   homepage: https://platform.uno/
   topics: uno, uno-platform, webassembly, wasm, uwp, mono, xamarin, csharp, first-timers-friendly
 
@@ -38,6 +38,22 @@ labels:
   - name: area/community
     color: 5DADE2
     description: Categorizes an issue or PR as relevant to community or interactions
+
+  - name: area/catalog
+    color: 5DADE2
+    description: Categorizes an issue or PR as relevant to the generated sample catalog
+
+  - name: area/documentation
+    color: 5DADE2
+    description: Categorizes an issue or PR as relevant to documentation
+
+  - name: area/samples
+    color: 5DADE2
+    description: Categorizes an issue or PR as relevant to Gallery sample content
+
+  - name: area/tests
+    color: 5DADE2
+    description: Categorizes an issue or PR as relevant to automated tests
 
   - name: do-not-merge/breaking-change
     color: E74C3C
@@ -86,14 +102,14 @@ labels:
     color: 336699
     description: Categorizes issue or PR as related to improving the experience of contributors 
 
-  - name:  kind/dependency
+  - name: kind/dependency
     color: 336699
     description: Categorizes an issue or PR as relevant to 3rd party dependencies that are consumed by this project 
 
   - name: kind/discussion
     color: fcbb3a
 
-  - name:  kind/documentation 
+  - name: kind/documentation
     color: 336699
     description: Categorizes an issue or PR as relevant to 3rd party dependencies that are consumed by this project 
 
@@ -172,6 +188,10 @@ labels:
   - name: triage/untriaged
     color: BB8FCE
     description: Indicates an issue requires triaging or verification.
+
+  - name: triage/sla-breached
+    color: E74C3C
+    description: Indicates an issue or PR exceeded the documented first-response target
 
   #- name: first-timers-only
   # include the old name to rename an existing label

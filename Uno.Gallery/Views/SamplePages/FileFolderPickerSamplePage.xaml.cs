@@ -7,11 +7,29 @@ using Windows.UI.Popups;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media.Imaging;
+#if WINDOWS
 using WinRT.Interop;
+#endif
 
 namespace Uno.Gallery.Views.Samples
 {
-	[SamplePage(SampleCategory.NonUIFeatures, "File and Folder Pickers", Description = "A file picker displays information to orient users and provide a consistent experience when opening or saving files.", DocumentationLink = "https://learn.microsoft.com/en-us/windows/uwp/files/quickstart-using-file-and-folder-pickers")]
+	[SamplePage(SampleCategory.NonUIFeatures, "File and Folder Pickers",
+		Description = "Opens platform file and folder pickers and demonstrates single, multiple, filtered, save, and folder-backed operations.",
+		DocumentationLink = "https://learn.microsoft.com/en-us/windows/uwp/files/quickstart-using-file-and-folder-pickers",
+		Slug = "file-and-folder-pickers",
+		Tags = new[] { "files", "folders", "picker", "storage", "platform" },
+		Status = SampleStatus.Stable,
+		ContractVersion = 1,
+		SupportedDesigns = SampleDesigns.Agnostic,
+		SupportedRenderers = SampleRenderers.Native | SampleRenderers.Skia | SampleRenderers.DOM,
+		Requirements = new[] { "Picker capabilities and available locations depend on the host platform, browser, permissions, and app packaging identity." },
+		AccessibilityNotes = new[] { "Each scenario uses a labeled keyboard-focusable button and returns its result through a platform dialog." },
+		ResetBehavior = "Each picker request is independent; dismiss the picker or result dialog to return to the unchanged sample.",
+		Variants = new[] { "Single file", "Multiple files", "Filtered images", "Folder", "Save file", "Save multiple files" },
+		KnownLimitations = new[] { "Unsupported browser folder or save picker scenarios are hidden after capability detection." },
+		Owner = "unoplatform",
+		ReviewedOn = "2026-08-27",
+		RelatedSamples = new[] { "local-settings" })]
 	public sealed partial class FileFolderPickerSamplePage : Page
 	{
 		public FileFolderPickerSamplePage()
@@ -230,8 +248,10 @@ namespace Uno.Gallery.Views.Samples
 
 		private void InitForWin(object instance) // `object` here can be replaced by whatever type of 1st param of InitializeWithWindow.Initialize
 		{
+#if WINDOWS
 			var handle = WindowNative.GetWindowHandle(App.Instance.MainWindow);
 			InitializeWithWindow.Initialize(instance, handle);
+#endif
 		}
 	}
 }

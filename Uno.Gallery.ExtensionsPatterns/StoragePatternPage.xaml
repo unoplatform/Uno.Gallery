@@ -1,0 +1,35 @@
+<Page
+	x:Class="Uno.Gallery.ExtensionsPatterns.StoragePatternPage"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:local="using:Uno.Gallery.ExtensionsPatterns">
+	<ScrollViewer>
+		<StackPanel Padding="24" Spacing="16" MaxWidth="900" HorizontalAlignment="Left">
+			<local:PatternInfoHeader
+				PackageName="Uno.Extensions.Storage.WinUI 7.2.3"
+				Requirements="EnableExtensionsPatterns=true. Uses the named ApplicationData local provider. No credentials or remote storage."
+				AccessibilityStatus="The note field is labelled, operations are keyboard reachable, and results/errors use a polite live region."
+				DocumentationUri="https://platform.uno/docs/articles/external/uno.extensions/doc/Learn/Storage/StorageOverview.html"
+				SourceUri="https://github.com/unoplatform/Uno.Gallery/tree/master/Uno.Gallery.ExtensionsPatterns" />
+			<TextBlock Text="Local storage abstraction" Style="{StaticResource TitleTextBlockStyle}" />
+			<TextBlock Text="The sample resolves the ApplicationData IKeyValueStorage from a page-local UnoHost. Values survive page re-entry under the current app identity." TextWrapping="Wrap" />
+			<TextBox
+				x:Name="NoteInput"
+				Header="Offline note"
+				AutomationProperties.AutomationId="ExtensionsStorage_Note"
+				PlaceholderText="Type a note stored only on this device" />
+			<StackPanel Orientation="Horizontal" Spacing="8">
+				<Button Content="Save" AutomationProperties.AutomationId="ExtensionsStorage_Save" Click="Save_Click" />
+				<Button Content="Load" AutomationProperties.AutomationId="ExtensionsStorage_Load" Click="Load_Click" />
+				<Button Content="Clear" AutomationProperties.AutomationId="ExtensionsStorage_Clear" Click="Clear_Click" />
+				<Button Content="Reset" AutomationProperties.AutomationId="ExtensionsStorage_Reset" Click="Reset_Click" />
+			</StackPanel>
+			<TextBlock
+				x:Name="StorageStatus"
+				AutomationProperties.AutomationId="ExtensionsStorage_Status"
+				AutomationProperties.LiveSetting="Polite"
+				Text="No storage operation yet."
+				TextWrapping="Wrap" />
+		</StackPanel>
+	</ScrollViewer>
+</Page>

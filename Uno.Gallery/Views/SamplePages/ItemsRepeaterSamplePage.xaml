@@ -1,0 +1,207 @@
+<Page x:Class="Uno.Gallery.Views.Samples.ItemsRepeaterSamplePage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:local="using:Uno.Gallery"
+	  xmlns:data="using:Uno.Gallery.Entities.Data"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  xmlns:smtx="using:ShowMeTheXAML"
+	  xmlns:utu="using:Uno.Toolkit.UI"
+	  mc:Ignorable="d">
+
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<local:SamplePageLayout x:Name="SamplePageLayoutRoot">
+
+			<local:SamplePageLayout.FluentTemplate>
+				<DataTemplate>
+					<StackPanel Spacing="16"
+								Padding="0,8">
+
+						<!-- StackLayout -->
+						<smtx:XamlDisplay UniqueKey="ItemsRepeaterSamplePage_Stack"
+										  smtx:XamlDisplayExtensions.Header="StackLayout (vertical list)"
+										  smtx:XamlDisplayExtensions.Description="ItemsRepeater with StackLayout — no built-in scrolling, wrap in ScrollViewer.">
+							<ScrollViewer MaxHeight="300"
+										  x:Name="StackScrollViewer"
+										  AutomationProperties.AutomationId="ItemsRepeater_Stack_ScrollViewer">
+								<ItemsRepeater x:Name="StackRepeater"
+											   AutomationProperties.AutomationId="ItemsRepeater_Stack"
+											   ItemsSource="{Binding Data}">
+									<ItemsRepeater.Layout>
+										<StackLayout Orientation="Vertical"
+													 Spacing="4" />
+									</ItemsRepeater.Layout>
+									<ItemsRepeater.ItemTemplate>
+										<DataTemplate x:DataType="data:GalleryItem">
+											<Grid Height="56"
+												  Padding="12,0"
+												  CornerRadius="4"
+												  Background="{ThemeResource CardBackgroundFillColorDefaultBrush}">
+												<Grid.ColumnDefinitions>
+													<ColumnDefinition Width="Auto" />
+													<ColumnDefinition Width="*" />
+												</Grid.ColumnDefinitions>
+												<Border Width="36"
+														Height="36"
+														CornerRadius="4"
+														Background="{Binding Accent}"
+														VerticalAlignment="Center" />
+												<StackPanel Grid.Column="1"
+															Margin="12,0,0,0"
+															VerticalAlignment="Center">
+													<TextBlock Text="{Binding Title}"
+															   Style="{StaticResource BodyStrong}"
+															   TextTrimming="CharacterEllipsis" />
+													<TextBlock Text="{Binding Subtitle}"
+															   Style="{ThemeResource CaptionTextBlockStyle}"
+															   TextTrimming="CharacterEllipsis" />
+												</StackPanel>
+											</Grid>
+										</DataTemplate>
+									</ItemsRepeater.ItemTemplate>
+								</ItemsRepeater>
+							</ScrollViewer>
+						</smtx:XamlDisplay>
+
+						<!-- Programmatic scroll — tap to set a deterministic positive offset via ChangeView -->
+						<StackPanel Spacing="4">
+							<Button AutomationProperties.AutomationId="ItemsRepeater_Stack_ScrollDown"
+									Content="Scroll stack down"
+									Click="ScrollStackDown_Click" />
+							<TextBlock x:Name="StackScrollStatus"
+									   AutomationProperties.AutomationId="ItemsRepeater_Stack_ScrollStatus"
+									   Text="Offset: 0.0"
+									   Style="{ThemeResource CaptionTextBlockStyle}" />
+						</StackPanel>
+
+						<!-- Toolkit selection -->
+						<smtx:XamlDisplay UniqueKey="ItemsRepeaterSamplePage_ToolkitSelection"
+										  smtx:XamlDisplayExtensions.Header="Toolkit single selection"
+										  smtx:XamlDisplayExtensions.Description="ItemsRepeaterExtensions adds selector-style state to ItemsRepeater without changing its layout or item source."
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+							<StackPanel Spacing="8">
+								<ItemsRepeater x:Name="SelectionRepeater"
+											   AutomationProperties.AutomationId="ItemsRepeater_Selection"
+											   Loaded="SelectionRepeater_Loaded"
+											   ItemsSource="{Binding Data}"
+											   utu:ItemsRepeaterExtensions.SelectionMode="Single"
+											   utu:ItemsRepeaterExtensions.SelectedIndex="0">
+									<ItemsRepeater.Layout>
+										<StackLayout Orientation="Horizontal" Spacing="8" />
+									</ItemsRepeater.Layout>
+									<ItemsRepeater.ItemTemplate>
+										<DataTemplate x:DataType="data:GalleryItem">
+											<ToggleButton Content="{Binding Title}"
+														  AutomationProperties.AutomationId="{Binding ItemsRepeaterSelectionAutomationId}"
+														  Click="SelectionItem_Click"
+														  MinWidth="120" />
+										</DataTemplate>
+									</ItemsRepeater.ItemTemplate>
+								</ItemsRepeater>
+								<Button AutomationProperties.AutomationId="ItemsRepeater_Selection_Next"
+										AutomationProperties.Name="Select next repeater item"
+										Content="Select next item"
+										Click="SelectNext_Click" />
+								<Button AutomationProperties.AutomationId="ItemsRepeater_Selection_FocusSecond"
+										AutomationProperties.Name="Focus the second repeater item"
+										Content="Focus second item"
+										Click="FocusSecondSelectionItem_Click" />
+								<TextBlock x:Name="SelectionStatus"
+										   AutomationProperties.AutomationId="ItemsRepeater_Selection_Status"
+										   AutomationProperties.LiveSetting="Polite"
+										   Text="Selected index: 0"
+										   Style="{StaticResource BodyMedium}" />
+							</StackPanel>
+						</smtx:XamlDisplay>
+
+						<!-- Toolkit incremental loading -->
+						<smtx:XamlDisplay UniqueKey="ItemsRepeaterSamplePage_IncrementalLoading"
+										  smtx:XamlDisplayExtensions.Header="Toolkit incremental loading"
+										  smtx:XamlDisplayExtensions.Description="SupportsIncrementalLoading observes the effective viewport and requests another local batch when the scroll position approaches the end."
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+							<StackPanel Spacing="8">
+								<ScrollViewer x:Name="IncrementalScrollViewer"
+											  AutomationProperties.AutomationId="ItemsRepeater_Incremental_ScrollViewer"
+											  MaxHeight="220">
+									<ItemsRepeater x:Name="IncrementalRepeater"
+												   AutomationProperties.AutomationId="ItemsRepeater_Incremental"
+												   Loaded="IncrementalRepeater_Loaded"
+												   utu:ItemsRepeaterExtensions.SupportsIncrementalLoading="True"
+												   utu:ItemsRepeaterExtensions.DataFetchSize="1"
+												   utu:ItemsRepeaterExtensions.IncrementalLoadingThreshold="0">
+										<ItemsRepeater.Layout>
+											<StackLayout Orientation="Vertical" Spacing="4" />
+										</ItemsRepeater.Layout>
+										<ItemsRepeater.ItemTemplate>
+											<DataTemplate>
+												<Border Height="44"
+														Padding="12,0"
+														CornerRadius="4"
+														Background="{ThemeResource CardBackgroundFillColorDefaultBrush}">
+													<TextBlock Text="{Binding}"
+															   VerticalAlignment="Center"
+															   Style="{StaticResource BodyMedium}" />
+												</Border>
+											</DataTemplate>
+										</ItemsRepeater.ItemTemplate>
+									</ItemsRepeater>
+								</ScrollViewer>
+								<Button AutomationProperties.AutomationId="ItemsRepeater_Incremental_LoadNext"
+										AutomationProperties.Name="Scroll to request the next local batch"
+										Content="Scroll to next batch"
+										Click="LoadNextBatch_Click" />
+								<TextBlock x:Name="IncrementalStatus"
+										   AutomationProperties.AutomationId="ItemsRepeater_Incremental_Status"
+										   AutomationProperties.LiveSetting="Polite"
+										   Text="Items loaded: 12; batches: 0"
+										   Style="{StaticResource BodyMedium}" />
+							</StackPanel>
+						</smtx:XamlDisplay>
+
+						<!-- UniformGridLayout -->
+						<smtx:XamlDisplay UniqueKey="ItemsRepeaterSamplePage_Grid"
+										  smtx:XamlDisplayExtensions.Header="UniformGridLayout (tile grid)"
+										  smtx:XamlDisplayExtensions.Description="ItemsRepeater with UniformGridLayout — equal-sized tiles in a wrapping grid.">
+							<ScrollViewer MaxHeight="300"
+										  AutomationProperties.AutomationId="ItemsRepeater_Grid_ScrollViewer">
+								<ItemsRepeater x:Name="GridRepeater"
+											   AutomationProperties.AutomationId="ItemsRepeater_Grid"
+											   ItemsSource="{Binding Data}">
+									<ItemsRepeater.Layout>
+										<UniformGridLayout MinItemWidth="120"
+														   MinItemHeight="120"
+														   MinColumnSpacing="8"
+														   MinRowSpacing="8"
+														   ItemsJustification="Start" />
+									</ItemsRepeater.Layout>
+									<ItemsRepeater.ItemTemplate>
+										<DataTemplate x:DataType="data:GalleryItem">
+											<Grid Width="120"
+												  Height="120"
+												  AutomationProperties.AutomationId="{Binding ItemsRepeaterGridAutomationId}"
+												  CornerRadius="8"
+												  Background="{Binding Accent}">
+												<StackPanel VerticalAlignment="Bottom"
+															Padding="8"
+															Background="#88000000"
+															CornerRadius="0,0,8,8">
+													<TextBlock Text="{Binding Title}"
+															   Foreground="White"
+															   Style="{StaticResource CaptionTextBlockStyle}"
+															   TextTrimming="CharacterEllipsis"
+															   TextWrapping="NoWrap" />
+												</StackPanel>
+											</Grid>
+										</DataTemplate>
+									</ItemsRepeater.ItemTemplate>
+								</ItemsRepeater>
+							</ScrollViewer>
+						</smtx:XamlDisplay>
+
+					</StackPanel>
+				</DataTemplate>
+			</local:SamplePageLayout.FluentTemplate>
+
+		</local:SamplePageLayout>
+	</Grid>
+</Page>

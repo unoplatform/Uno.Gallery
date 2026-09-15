@@ -1,0 +1,147 @@
+{
+  "schemaVersion": 1,
+  "suiteVersion": 2,
+  "generatedAtUtc": "2026-08-28T00:22:53.165Z",
+  "host": {
+    "os": "win32",
+    "architecture": "x64"
+  },
+  "browserVersion": "Chrome/152.0.7977.42",
+  "browserExecutable": "chrome.exe",
+  "viewport": {
+    "width": 1200,
+    "height": 900,
+    "deviceScaleFactor": 1
+  },
+  "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+  "fonts": [
+    "Uno.Fonts.OpenSans/Fonts/OpenSans.ttf",
+    "Uno.Material bundled typefaces",
+    "WinUI symbol font bundled by Uno"
+  ],
+  "configDigest": "02e876be342c35404c23864f46083b7cb4a2df554da7db51b7dd55c74cecd3b7",
+  "lockDigest": "e331b3d9d27e89eac15b64af35a5aad631704c6ed04eea0ebce90c02ef5878ca",
+  "toolDigest": "2c94236304b1d2bae8b5a404d08696cf19a950dadbf1f2bd214cd649c66c2830",
+  "samples": [
+    {
+      "id": "overview-material",
+      "slug": "overview",
+      "design": "Material",
+      "area": "shell/overview",
+      "masks": [],
+      "sha256": "63b0f076f958f94a9ea69c63949375c4d73a59a6c9813ab9ebed72b03b992362"
+    },
+    {
+      "id": "overview-fluent",
+      "slug": "overview",
+      "design": "Fluent",
+      "area": "shell/overview",
+      "masks": [],
+      "sha256": "82fdaca108819b0d7b8954c55fa4693c9f120fa59d4b4d8146e5f58b6477ae37"
+    },
+    {
+      "id": "button-material",
+      "slug": "button",
+      "design": "Material",
+      "area": "Material control",
+      "masks": [],
+      "sha256": "63bf51a81e1becc208a4de2d1a64c037ab24aab69694c6a82e1fbabd7c95b6bd"
+    },
+    {
+      "id": "button-fluent",
+      "slug": "button",
+      "design": "Fluent",
+      "area": "Fluent control",
+      "masks": [],
+      "sha256": "9c2408524f19bd724037c863a35b39ca8032d3982883f1a4e5322c4018b73a6a"
+    },
+    {
+      "id": "text-box-fluent",
+      "slug": "textbox",
+      "design": "Fluent",
+      "area": "Fluent input",
+      "masks": [],
+      "sha256": "951b3a8e833d0f7279cbb2dca739a826d39ce8631ccfe1574b447b49bbf80ed2"
+    },
+    {
+      "id": "design-tokens-material",
+      "slug": "design-tokens",
+      "design": "Material",
+      "area": "design tokens",
+      "masks": [],
+      "sha256": "6d93bbbb3b8f93e276247448dcc8773bfb8405b42898588132d4e3873f77626e"
+    },
+    {
+      "id": "material-palette",
+      "slug": "material-palette",
+      "design": "Material",
+      "area": "Material theming",
+      "masks": [],
+      "sha256": "986f9ede6330c2083c35b6cfaa3e195c0c71df8b3c3fe2ea4cb48de89512af92"
+    },
+    {
+      "id": "fluent-palette",
+      "slug": "fluent-palette",
+      "design": "Fluent",
+      "area": "Fluent theming",
+      "masks": [],
+      "sha256": "de12065ad2d0d358b0a44a3b9f9866fe2561ec8c3531f4aedafa197c26a4835d"
+    },
+    {
+      "id": "grid-fluent",
+      "slug": "grid",
+      "design": "Fluent",
+      "area": "layout",
+      "masks": [],
+      "sha256": "52709f1ce739adc50a252640d69d6ca49c10b630fd5eb773db6923b274bc753a"
+    },
+    {
+      "id": "list-view-fluent",
+      "slug": "listview",
+      "design": "Fluent",
+      "area": "collection",
+      "masks": [],
+      "sha256": "8be1ce829791f8b32c1bf59fec8bf3b4a418a82d1d7b2f306bf7ca2b6a5ddfcc"
+    },
+    {
+      "id": "auto-layout-agnostic",
+      "slug": "autolayout",
+      "design": "Agnostic",
+      "area": "Toolkit layout",
+      "masks": [],
+      "sha256": "818c5843606e46e951e52cf027bb8e6213a88a833e4d14dab7f4bb19953102fa"
+    },
+    {
+      "id": "card-content-control-material",
+      "slug": "card-content-control",
+      "design": "Material",
+      "area": "Toolkit control",
+      "masks": [],
+      "sha256": "3cc6ee2f6194ac5338030160ef17df6ce94cca32f9c1a76077b9cbb81d8d6e7c"
+    },
+    {
+      "id": "composition-visuals-agnostic",
+      "slug": "composition-visuals",
+      "design": "Agnostic",
+      "area": "rendering",
+      "masks": [],
+      "sha256": "611e7878a78de4bb619ae9b97caae394b5c3be676f365df294c0ae856c3ea7d4"
+    },
+    {
+      "id": "accessibility-agnostic",
+      "slug": "accessibility",
+      "design": "Agnostic",
+      "area": "accessibility",
+      "masks": [],
+      "sha256": "84d350aa00c1a98c3f13bcbf036d661c9323f689ac515e4765e0007024e2d2a6"
+    },
+    {
+      "id": "localization-rtl-agnostic",
+      "slug": "localization-rtl",
+      "design": "Agnostic",
+      "area": "localization",
+      "masks": [],
+      "sha256": "c623951ecb8157d8923a3cedb8ea6dcfccd3eddaccdc459a5918cf8690b43403"
+    }
+  ]
+}

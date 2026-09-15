@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net10.0</TargetFramework>
+		<IsTestProject>true</IsTestProject>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" />
+		<PackageReference Include="NUnit" />
+		<PackageReference Include="NUnit3TestAdapter" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<!-- Reference the generator to instantiate SamplesGenerator in driver tests.
+		     ReferenceOutputAssembly=true (default) exposes its public/internal types;
+		     we do NOT set OutputItemType=Analyzer here — tests drive the generator via
+		     CSharpGeneratorDriver, not through the MSBuild compilation pipeline.
+		     InternalsVisibleTo on the generator grants access to internal types including
+		     SlugHelper and IsValidSlugPublicForTest. -->
+		<ProjectReference Include="..\Uno.Gallery.SourceGenerators\Uno.Gallery.SourceGenerators.csproj" />
+		<!-- Link pure scorer (no WinUI/Sample dependency) for focused unit testing. -->
+		<Compile Include="..\Uno.Gallery\Helpers\SampleSearchScorer.cs" />
+		<!-- Link helper (depends on Sample stub below) for RankAndFilter unit testing. -->
+		<Compile Include="..\Uno.Gallery\Helpers\SampleSearchHelper.cs" />
+	</ItemGroup>
+
+</Project>

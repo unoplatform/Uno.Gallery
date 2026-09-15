@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,7 +14,6 @@ namespace Uno.Gallery.UITests
 	public class Given_AutoSuggestBox : TestBase
 	{
 		[Test]
-		[Ignore("Fails on CI")]
 		public void AutoSuggestBox_Default()
 		{
 			NavigateToSample("AutoSuggestBox", "Fluent");
@@ -48,7 +47,6 @@ namespace Uno.Gallery.UITests
 		}
 
 		[Test]
-		[Ignore("Suggestion list open assertion fails for unknown reason")]
 		public void AutoSuggestBox_Default_Text()
 		{
 			NavigateToSample("AutoSuggestBox", "Fluent");

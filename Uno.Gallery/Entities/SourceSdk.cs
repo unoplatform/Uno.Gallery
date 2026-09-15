@@ -15,6 +15,10 @@ namespace Uno.Gallery
 		[Description("Windows Community Toolkit")]
 		WCT,
 		[Description("Uno.Toolkit")]
-		UnoToolkit
+		UnoToolkit,
+#if EXTENSIONS_PATTERNS
+		[Description("Uno.Extensions 7.2.3")]
+		UnoExtensions
+#endif
 	}
 }

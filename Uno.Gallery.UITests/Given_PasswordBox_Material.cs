@@ -18,7 +18,7 @@ namespace Uno.Gallery.UITests
 			if (AppInitializer.GetLocalPlatform() == Platform.iOS)
 			{
 				// The entered text fails to show more than one character
-				Assert.Ignore("Not working on Xamarin.UITest 4.3");
+				Assert.Ignore("Not working on Xamarin.UITest 4.3 — iOS text input limitation. https://github.com/unoplatform/Uno.Gallery/issues/1117 | review-date: 2026-11-23");
 			}
 
 			NavigateToSample("PasswordBox", "Material");
@@ -53,7 +53,6 @@ namespace Uno.Gallery.UITests
 		//}
 
 		[Test]
-		[Ignore("Fails on CI")]
 		public void WhenPasswordBoxOutlined()
 		{
 			NavigateToSample("PasswordBox", "Material");

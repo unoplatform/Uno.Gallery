@@ -13,6 +13,8 @@ namespace Uno.Gallery
 	{
 		private const string ViewButtonPartName = "PART_ViewButton";
 
+		private Button? _viewButton;
+
 		public Type SamplePageType
 		{
 			get { return (Type)GetValue(SamplePageTypeProperty); }
@@ -28,6 +30,7 @@ namespace Uno.Gallery
 			{
 				var that = (OverviewSampleView)d;
 				that.Sample = new Sample(type.GetTypeInfo().GetCustomAttribute<SamplePageAttribute>(), type);
+				that.UpdateViewButtonAutomationId();
 			}
 		}
 
@@ -40,19 +43,58 @@ namespace Uno.Gallery
 		public static readonly DependencyProperty SampleProperty =
 			DependencyProperty.Register("Sample", typeof(Sample), typeof(OverviewSampleView), new PropertyMetadata(null));
 
+		public Design SampleDesign
+		{
+			get => (Design)GetValue(SampleDesignProperty);
+			set => SetValue(SampleDesignProperty, value);
+		}
+
+		public static readonly DependencyProperty SampleDesignProperty =
+			DependencyProperty.Register(nameof(SampleDesign), typeof(Design), typeof(OverviewSampleView), new PropertyMetadata(Design.Material, OnSampleDesignChanged));
+
+		private static void OnSampleDesignChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+			=> ((OverviewSampleView)d).UpdateViewButtonAutomationId();
+
+		public string ViewButtonAutomationId
+		{
+			get => (string)GetValue(ViewButtonAutomationIdProperty);
+			private set => SetValue(ViewButtonAutomationIdProperty, value);
+		}
+
+		public static readonly DependencyProperty ViewButtonAutomationIdProperty =
+			DependencyProperty.Register(nameof(ViewButtonAutomationId), typeof(string), typeof(OverviewSampleView), new PropertyMetadata(null));
+
+		private void UpdateViewButtonAutomationId()
+		{
+			if (SamplePageType is null) return;
+			ViewButtonAutomationId = $"ViewButton_{SamplePageType.Name}_{SampleDesign}";
+		}
+
 		protected override void OnApplyTemplate()
 		{
 			base.OnApplyTemplate();
 
-			var viewButton = (Button)GetTemplateChild(ViewButtonPartName);
-			viewButton.Click -= OnViewClicked;
-			viewButton.Click += OnViewClicked;
+			if (_viewButton is not null)
+				_viewButton.Click -= OnViewClicked;
 
-			void OnViewClicked(object sender, RoutedEventArgs e)
-			{
-				var shell = VisualTreeHelperEx.FindAncestor<Shell>(this);
-				(Application.Current as App)?.ShellNavigateTo(shell, Sample);
-			}
+			_viewButton = GetTemplateChild(ViewButtonPartName) as Button;
+
+			if (_viewButton is not null)
+				_viewButton.Click += OnViewClicked;
+		}
+
+		private void OnViewClicked(object sender, RoutedEventArgs e)
+		{
+			var shell = VisualTreeHelperEx.FindAncestor<Shell>(this)
+				?? throw new InvalidOperationException(
+					"Cannot find Shell ancestor; cannot navigate from OverviewSampleView. " +
+					"OverviewSampleView must be placed inside a Shell in the visual tree.");
+			var nav = shell.Navigator
+				?? throw new InvalidOperationException(
+					"Shell.Navigator is not set; cannot navigate from OverviewSampleView. " +
+					"Navigator must be assigned before the visual tree is entered.");
+			SamplePageLayout.SetPreferredDesign(SampleDesign);
+			nav.NavigateTo(Sample);
 		}
 	}
 }

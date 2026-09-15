@@ -1,0 +1,79 @@
+<Page x:Class="Uno.Gallery.Views.Samples.LocalizationSamplePage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:local="using:Uno.Gallery"
+	  xmlns:smtx="using:ShowMeTheXAML">
+
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<local:SamplePageLayout x:Name="SamplePageLayoutRoot"
+								IsDesignAgnostic="True">
+			<local:SamplePageLayout.DesignAgnosticTemplate>
+				<DataTemplate>
+					<StackPanel Spacing="16">
+						<smtx:XamlDisplay UniqueKey="Localization_Rtl"
+										  smtx:XamlDisplayExtensions.Header="Right-to-left and state preservation"
+										  smtx:XamlDisplayExtensions.Description="FlowDirection mirrors layout without clearing user-entered state. Mixed-direction text still needs explicit testing."
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+							<StackPanel Spacing="8">
+								<Button x:Uid="LocalizationToggleRtl"
+										AutomationProperties.AutomationId="Localization_ToggleRtl"
+										Content="Toggle right-to-left"
+										Click="ToggleRtl_Click" />
+								<Border Padding="12"
+										BorderBrush="{ThemeResource DividerBrush}"
+										BorderThickness="1">
+									<StackPanel x:Name="LocalizedPreview"
+												AutomationProperties.AutomationId="Localization_Preview"
+												Loaded="LocalizedPreview_Loaded"
+												Spacing="8">
+										<TextBlock x:Uid="LocalizationStart"
+												   Text="Start" />
+										<TextBox x:Name="StatefulInput"
+												 x:Uid="LocalizationStatefulInput"
+												 AutomationProperties.AutomationId="Localization_StatefulInput"
+												 Header="Stateful input"
+												 Text="State survives direction changes" />
+										<TextBlock x:Uid="LocalizationBidiText"
+												   Text="English 123 | العربية ١٢٣ | עברית 123"
+												   TextWrapping="Wrap" />
+										<TextBlock x:Uid="LocalizationLongText"
+												   Text="This deliberately long localized sentence checks expansion, wrapping, clipping, and resilient layout at narrow widths."
+												   TextWrapping="Wrap" />
+										<TextBlock x:Uid="LocalizationEnd"
+												   Text="End" />
+									</StackPanel>
+								</Border>
+								<TextBlock x:Name="DirectionStatus"
+										   x:Uid="LocalizationDirectionStatus"
+										   AutomationProperties.AutomationId="Localization_DirectionStatus"
+										   Text="Direction: LeftToRight" />
+							</StackPanel>
+						</smtx:XamlDisplay>
+
+						<smtx:XamlDisplay UniqueKey="Localization_Pseudo"
+										  smtx:XamlDisplayExtensions.Header="Pseudo-localization"
+										  smtx:XamlDisplayExtensions.Description="Pseudo-localization adds diacritics and expansion so untranslated, clipped, and concatenated text becomes visible before translation."
+										  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
+							<StackPanel Spacing="8">
+								<TextBlock x:Uid="LocalizationResolvedText"
+										   x:Name="ResolvedResourceText"
+										   AutomationProperties.AutomationId="Localization_ResolvedResource"
+										   Text="Localized text should expand without clipping."
+										   TextWrapping="Wrap" />
+								<Button x:Uid="LocalizationTogglePseudo"
+										AutomationProperties.AutomationId="Localization_TogglePseudo"
+										Content="Toggle pseudo-localization preview"
+										Click="TogglePseudo_Click" />
+								<TextBlock x:Name="PseudoPreviewText"
+										   x:Uid="LocalizationPseudoPreview"
+										   AutomationProperties.AutomationId="Localization_PseudoPreview"
+										   Text="Pseudo-localization preview is off."
+										   TextWrapping="Wrap" />
+							</StackPanel>
+						</smtx:XamlDisplay>
+					</StackPanel>
+				</DataTemplate>
+			</local:SamplePageLayout.DesignAgnosticTemplate>
+		</local:SamplePageLayout>
+	</Grid>
+</Page>

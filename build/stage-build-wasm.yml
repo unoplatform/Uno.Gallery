@@ -8,8 +8,150 @@
 - template: templates/host-cleanup-linux.yml
 
 - bash: |
-    dotnet publish Uno.Gallery/Uno.Gallery.csproj -c Release -f net10.0-browserwasm -p:UseNativeRendering=$(UseNativeRendering) -p:InformationalVersion=$(NBGV_InformationalVersion) -o "$(Agent.TempDirectory)/wasm-publish" -bl:$(Build.ArtifactStagingDirectory)/wasm-publish.binlog
+    # CompilerGeneratedFilesOutputPath is job-local. Keep it scoped if another
+    # project starts running SamplesGenerator in this build graph.
+    # Full-AOT compiler fan-out exceeds hosted-agent memory for the expanded Gallery graph.
+    publish_args=(
+      publish Uno.Gallery/Uno.Gallery.csproj
+      -c Release
+      -f net10.0-browserwasm
+      -p:UseNativeRendering=$(UseNativeRendering)
+      -p:EnableVisualRegression=$(EnableVisualRegression)
+      -p:EnablePerformanceMeasurements=$(EnablePerformanceMeasurements)
+      -p:WasmGenerateAppBundle=true
+      -p:DisableParallelAot=true
+      -p:InformationalVersion=$(NBGV_InformationalVersion)
+      -p:EmitCompilerGeneratedFiles=true
+      -p:CompilerGeneratedFilesOutputPath="$(Agent.TempDirectory)/generated-sources"
+      -o "$(Agent.TempDirectory)/wasm-publish"
+      -bl:$(Build.ArtifactStagingDirectory)/wasm-publish.binlog
+    )
+
+    source_head="$(git rev-parse HEAD^2 2>/dev/null || git rev-parse HEAD)"
+    source_parent="$(git rev-parse "${source_head}^" 2>/dev/null || true)"
+    if [[ "$(ArtifactName)" != "WASM-DOM" ||
+          "$(Build.SourceBranch)" != "refs/pull/1257/merge" ||
+          "$source_parent" != "9db5f9994c95f188702ace2319950db59b484348" ]]; then
+      dotnet "${publish_args[@]}"
+      exit $?
+    fi
+
+    set -euo pipefail
+    diagnostics_script="$(Build.SourcesDirectory)/build/scripts/wasm-aot-diagnostics.py"
+    diagnostics_root="$(Build.ArtifactStagingDirectory)/full-aot-diagnostics"
+    diagnostics_events="$diagnostics_root/events.jsonl"
+    dotnet_root="$(Build.SourcesDirectory)/.dotnet"
+    mkdir -p "$diagnostics_root"
+    export UNO_AOT_DIAGNOSTICS_EVENTS="$diagnostics_events"
+    echo "[AOTDIAG] one-shot ordinary-DOM diagnostics enabled for the direct child of 9db5f999"
+
+    monitor_pid=""
+    diagnostics_installed=false
+    cleanup_diagnostics() {
+      if [[ -n "$monitor_pid" ]]; then
+        kill "$monitor_pid" 2>/dev/null || true
+        wait "$monitor_pid" 2>/dev/null || true
+      fi
+      if [[ "$diagnostics_installed" == "true" ]]; then
+        python3 "$diagnostics_script" restore-wrapper \
+          --dotnet-root "$dotnet_root" \
+          --runtime-pack-version 10.0.2 || true
+      fi
+    }
+    trap cleanup_diagnostics EXIT INT TERM
+
+    python3 "$diagnostics_script" install-wrapper \
+      --dotnet-root "$dotnet_root" \
+      --runtime-pack-version 10.0.2 \
+      --script "$diagnostics_script"
+    diagnostics_installed=true
+
+    diagnostic_publish_args=(
+      "${publish_args[@]}"
+      -p:EnableFullAotDiagnostics=true
+      -p:FullAotDiagnosticsOutputPath="$diagnostics_root"
+    )
+    set +e
+    dotnet "${diagnostic_publish_args[@]}" &
+    publish_pid=$!
+    python3 "$diagnostics_script" monitor \
+      --root-pid "$publish_pid" \
+      --output "$diagnostics_events" \
+      --interval-seconds 10 &
+    monitor_pid=$!
+    wait "$publish_pid"
+    publish_status=$?
+    kill "$monitor_pid" 2>/dev/null || true
+    wait "$monitor_pid" 2>/dev/null || true
+    monitor_pid=""
+    if python3 "$diagnostics_script" restore-wrapper \
+        --dotnet-root "$dotnet_root" \
+        --runtime-pack-version 10.0.2; then
+      diagnostics_installed=false
+      trap - EXIT INT TERM
+    else
+      echo "[AOTDIAG] wrapper restore failed; the exit trap will retry cleanup"
+    fi
+    set -e
+    echo "[AOTDIAG] dotnet publish exit code: $publish_status"
+    exit "$publish_status"
   displayName: 'Builds Wasm $(ArtifactName)'
+  env:
+    EMCC_CORES: 1
+    BINARYEN_CORES: 1
+
+- task: PowerShell@2
+  displayName: 'Validate generated catalog and feature coverage'
+  inputs:
+    targetType: filePath
+    filePath: 'build/scripts/validate-manifest-contract.ps1'
+    pwsh: true
+    arguments: >
+      -GeneratedSourcePath "$(Agent.TempDirectory)/generated-sources"
+      -OutputDirectory "$(Agent.TempDirectory)/catalog"
+      -TargetName "$(CatalogTargetName)"
+
+- task: PowerShell@2
+  displayName: 'Compare upstream feature coverage (advisory)'
+  condition: eq(variables['ArtifactName'], 'WASM-DOM')
+  inputs:
+    targetType: filePath
+    filePath: 'build/scripts/check-feature-coverage.ps1'
+    pwsh: true
+    arguments: >
+      -GalleryManifestPath "$(Agent.TempDirectory)/catalog/sample-manifest.json"
+      -OutputPath "$(Agent.TempDirectory)/catalog/feature-coverage-report.json"
+
+- task: PowerShell@2
+  displayName: 'Measure WebAssembly bundle'
+  inputs:
+    targetType: filePath
+    filePath: 'build/scripts/measure-wasm-bundle.ps1'
+    pwsh: true
+    arguments: >
+      -WasmRoot "$(Agent.TempDirectory)/wasm-publish/wwwroot"
+      -TargetName "$(CatalogTargetName)"
+      -Flavor "$(PerformanceFlavor)"
+      -BuildCommit "$(Build.SourceVersion)"
+      -OutputPath "$(Agent.TempDirectory)/catalog/wasm-bundle-metrics.json"
+
+- task: PowerShell@2
+  displayName: 'Compare WebAssembly bundle budget (advisory)'
+  condition: eq(variables['PerformanceFlavor'], 'core')
+  inputs:
+    targetType: filePath
+    filePath: 'build/scripts/compare-performance-budget.ps1'
+    pwsh: true
+    arguments: >
+      -BudgetPath "docs/performance/performance-budget-v1.json"
+      -BundleMetricsPath "$(Agent.TempDirectory)/catalog/wasm-bundle-metrics.json"
+      -OutputPath "$(Agent.TempDirectory)/catalog/performance-report.json"
+
+- task: PublishBuildArtifacts@1
+  retryCountOnTaskFailure: 3
+  inputs:
+    PathtoPublish: '$(Agent.TempDirectory)/catalog'
+    ArtifactName: $(ArtifactName)-catalog
 
 - task: PublishBuildArtifacts@1
   condition: always()

@@ -10,7 +10,6 @@ using Uno.UITests.Helpers;
 
 namespace Uno.Gallery.UITests
 {
-	[Ignore("Failing on CI")]
 	public class Given_TextBox : TestBase
 	{
 		[Test]
@@ -67,6 +66,7 @@ namespace Uno.Gallery.UITests
 
 			//Material :- Default
 			var TextBox_Material = new QueryEx(x => x.All().Marked("TextBox_Default_Material"));
+			TextBox_Material.ClearText();
 			TextBox_Material.EnterText("Uno platform");
 			Assert.AreEqual("Uno platform", TextBox_Material.GetDependencyPropertyValue<string>("Text"));
 
@@ -79,12 +79,13 @@ namespace Uno.Gallery.UITests
 			//Material :- Default with Disabled
 			var TextBox_Default_Disabled = new QueryEx(x => x.All().Marked("TextBox_Default_Disabled_Material"));
 			bool TextBox_Default_Disabled_bool = TextBox_Default_Disabled.GetDependencyPropertyValue<bool>("IsEnabled");
-			Assert.AreEqual("", TextBox_Default_Disabled.GetDependencyPropertyValue<string>("Text"));
+			Assert.AreEqual("Disabled", TextBox_Default_Disabled.GetDependencyPropertyValue<string>("Text"));
 			Assert.IsFalse(TextBox_Default_Disabled_bool, "Is TextBox Disabled ?");
 
 
 			//Material :- Outlined
 			var TextBox_Outline = new QueryEx(x => x.All().Marked("TextBox_Outlined_Material"));
+			TextBox_Outline.ClearText();
 			TextBox_Outline.EnterText("Uno platform");
 			Assert.AreEqual("Uno platform", TextBox_Outline.GetDependencyPropertyValue<string>("Text"));
 
@@ -96,7 +97,7 @@ namespace Uno.Gallery.UITests
 			//Material :- Outlined with Disabled
 			var TextBox_Outlined_Disabled = new QueryEx(x => x.All().Marked("TextBox_Outlined_Disabled_Material"));
 			bool TextBox_Outlined_Disabled_bool = TextBox_Outlined_Disabled.GetDependencyPropertyValue<bool>("IsEnabled");
-			Assert.AreEqual("", TextBox_Outlined_Disabled.GetDependencyPropertyValue<string>("Text"));
+			Assert.AreEqual("Disabled", TextBox_Outlined_Disabled.GetDependencyPropertyValue<string>("Text"));
 			Assert.IsFalse(TextBox_Outlined_Disabled_bool, "Is TextBox Disabled ?");
 
 			//Material :- MultiLine

@@ -1,0 +1,96 @@
+<!-- Adapted from unoplatform/uno.toolkit.ui samples/Uno.Toolkit.Samples/Content/Controls/SafeAreaSamplePage.xaml (MIT) -->
+<Page x:Class="Uno.Gallery.Views.SamplePages.SafeAreaSamplePage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  xmlns:local="using:Uno.Gallery"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  xmlns:smtx="using:ShowMeTheXAML"
+	  xmlns:utu="using:Uno.Toolkit.UI"
+	  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+	  mc:Ignorable="d">
+
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<local:SamplePageLayout IsDesignAgnostic="True">
+			<local:SamplePageLayout.DesignAgnosticTemplate>
+				<DataTemplate>
+					<ScrollViewer HorizontalScrollMode="Disabled">
+						<StackPanel Padding="0,20"
+									Spacing="24">
+
+							<TextBlock Style="{StaticResource BodyTextBlockStyle}"
+									   Text="SafeArea ensures content stays within the visible screen bounds, away from notches, rounded corners, and system UI overlays. On desktop platforms insets are zero, so the samples below look flat — run on a mobile device to see the padding in action." />
+
+							<!-- Padding mode (default) -->
+							<smtx:XamlDisplay UniqueKey="SafeAreaSamplePage_Padding"
+											  smtx:XamlDisplayExtensions.Header="Insets=Left,Right,Top,Bottom — Padding mode (default)">
+								<Border AutomationProperties.AutomationId="SafeArea_Padding"
+										Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+										CornerRadius="8">
+									<StackPanel utu:SafeArea.Insets="Left,Right,Top,Bottom"
+												Padding="12"
+												Spacing="4">
+										<TextBlock Style="{StaticResource BodySmall}"
+												   Text="SafeArea.Insets=&quot;Left,Right,Top,Bottom&quot;" />
+										<TextBlock Style="{StaticResource BodyTextBlockStyle}"
+												   Text="This StackPanel's Padding is automatically expanded by the device's safe-area insets so content is never clipped by a notch or system bar." />
+									</StackPanel>
+								</Border>
+							</smtx:XamlDisplay>
+
+							<!-- VisibleBounds preset -->
+							<smtx:XamlDisplay UniqueKey="SafeAreaSamplePage_VisibleBounds"
+											  smtx:XamlDisplayExtensions.Header="Insets=VisibleBounds — shorthand for all edges">
+								<Border AutomationProperties.AutomationId="SafeArea_VisibleBounds"
+										Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+										CornerRadius="8">
+									<Grid utu:SafeArea.Insets="VisibleBounds"
+										  Padding="12">
+										<TextBlock Style="{StaticResource BodyTextBlockStyle}"
+												   Text="Insets=&quot;VisibleBounds&quot; is equivalent to all four edges." />
+									</Grid>
+								</Border>
+							</smtx:XamlDisplay>
+
+							<!-- Margin mode -->
+							<smtx:XamlDisplay UniqueKey="SafeAreaSamplePage_Margin"
+											  smtx:XamlDisplayExtensions.Header="Insets mode = Margin">
+								<Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+										CornerRadius="8">
+									<StackPanel utu:SafeArea.Insets="Bottom"
+												utu:SafeArea.Mode="Margin"
+												AutomationProperties.AutomationId="SafeArea_Margin"
+												Background="{ThemeResource SurfaceVariantBrush}"
+												Padding="12"
+												Spacing="4">
+										<TextBlock Style="{StaticResource BodySmall}"
+												   Text="SafeArea.Mode=&quot;Margin&quot;, Insets=&quot;Bottom&quot;" />
+										<TextBlock Style="{StaticResource BodyTextBlockStyle}"
+												   Text="The element's Margin is inflated instead of its Padding. Useful when the target element doesn't have a Padding property (e.g. ItemsRepeater)." />
+									</StackPanel>
+								</Border>
+							</smtx:XamlDisplay>
+
+							<!-- SoftInput (keyboard) mode — only visible with a soft keyboard -->
+							<smtx:XamlDisplay UniqueKey="SafeAreaSamplePage_SoftInput"
+											  smtx:XamlDisplayExtensions.Header="Insets=SoftInput — keyboard avoidance">
+								<Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+										CornerRadius="8">
+									<StackPanel Spacing="8"
+												Padding="12">
+										<TextBlock Style="{StaticResource BodySmall}"
+												   Text="Type in the box below — on mobile, the container's padding grows to keep content above the keyboard." />
+										<TextBox AutomationProperties.AutomationId="SafeArea_SoftInputTextBox"
+												 PlaceholderText="Focus me on mobile to see SoftInput avoidance"
+												 utu:SafeArea.Insets="SoftInput" />
+									</StackPanel>
+								</Border>
+							</smtx:XamlDisplay>
+
+						</StackPanel>
+					</ScrollViewer>
+				</DataTemplate>
+			</local:SamplePageLayout.DesignAgnosticTemplate>
+		</local:SamplePageLayout>
+	</Grid>
+</Page>

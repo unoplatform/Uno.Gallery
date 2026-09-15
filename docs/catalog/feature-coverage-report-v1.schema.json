@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gallery.platform.uno/schemas/feature-coverage-report-v1.json",
+  "title": "Uno Gallery feature coverage report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "generatedAtUtc",
+    "advisory",
+    "upstreamScope",
+    "upstreamComplete",
+    "sources",
+    "gallerySampleCount",
+    "upstreamFeatureCount",
+    "classifiedFeatureCount",
+    "errorCount",
+    "results",
+    "errors"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "generatedAtUtc": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "advisory": {
+      "const": true
+    },
+    "upstreamScope": {
+      "type": "string"
+    },
+    "upstreamComplete": {
+      "type": "boolean"
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "gallerySampleCount": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "upstreamFeatureCount": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "classifiedFeatureCount": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "errorCount": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "disposition",
+          "gallerySlugs",
+          "owner",
+          "issue"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "disposition": {
+            "type": "string"
+          },
+          "gallerySlugs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "owner": {
+            "type": "string"
+          },
+          "issue": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

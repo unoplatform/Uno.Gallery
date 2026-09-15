@@ -21,6 +21,8 @@ thumbs.db
 [Dd]ebugPublic/
 [Rr]elease/
 [Rr]eleases/
+!docs/releases/
+!docs/releases/**
 x64/
 x86/
 bld/

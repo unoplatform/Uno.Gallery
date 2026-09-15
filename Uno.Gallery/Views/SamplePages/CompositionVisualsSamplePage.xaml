@@ -1,0 +1,36 @@
+<Page
+	x:Class="Uno.Gallery.Views.Samples.CompositionVisualsSamplePage"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:local="using:Uno.Gallery"
+	xmlns:smtx="using:ShowMeTheXAML">
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<local:SamplePageLayout x:Name="SamplePageLayoutRoot" IsDesignAgnostic="True">
+			<local:SamplePageLayout.DesignAgnosticTemplate>
+				<DataTemplate>
+					<smtx:XamlDisplay UniqueKey="CompositionVisuals_Deterministic"
+									 smtx:XamlDisplayExtensions.Header="Compositor visual">
+						<StackPanel Spacing="12">
+							<TextBlock Text="ElementCompositionPreview attaches a compositor-created SpriteVisual. The button changes offset, opacity, and scale without animation."
+									   TextWrapping="Wrap" />
+							<Border Loaded="VisualHost_Loaded"
+									Width="240"
+									Height="160"
+									HorizontalAlignment="Left"
+									Background="{ThemeResource SubtleFillColorSecondaryBrush}"
+									AutomationProperties.Name="Composition visual host" />
+							<Button Content="Apply deterministic visual state"
+									Click="ApplyVisualState_Click"
+									AutomationProperties.AutomationId="Composition_ApplyState" />
+							<TextBlock x:Name="Composition_Status"
+									   Text="Waiting for compositor visual initialization."
+									   AutomationProperties.AutomationId="Composition_Status"
+									   AutomationProperties.LiveSetting="Polite"
+									   AutomationProperties.Name="Composition visual status" />
+						</StackPanel>
+					</smtx:XamlDisplay>
+				</DataTemplate>
+			</local:SamplePageLayout.DesignAgnosticTemplate>
+		</local:SamplePageLayout>
+	</Grid>
+</Page>

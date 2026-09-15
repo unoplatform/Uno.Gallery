@@ -12,6 +12,12 @@
 			<local:SamplePageLayout.FluentTemplate>
 				<DataTemplate>
 					<StackPanel>
+						<TextBlock Name="MediaAvailabilityStatus"
+								   Text="Media availability has not been evaluated."
+								   TextWrapping="Wrap"
+								   AutomationProperties.AutomationId="Media_Status"
+								   AutomationProperties.LiveSetting="Polite"
+								   AutomationProperties.Name="Media feature availability" />
 						<TextBlock Text="MediaPlayerElement sample using AutoPlay, TransportControls, and a URL link with mp4 format"
 								   Style="{StaticResource TitleLarge}"
 								   Margin="0,16" />

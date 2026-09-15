@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,7 +13,6 @@ namespace Uno.Gallery.UITests
 	public class Given_RatingControl : TestBase
 	{
 		[Test]
-		[Ignore("Flaky on CI. But is passing locally")]
 		public void RatingControl()
 		{
 			NavigateToSample("RatingControl", "Fluent");

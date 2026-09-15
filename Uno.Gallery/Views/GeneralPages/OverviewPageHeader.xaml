@@ -59,7 +59,7 @@
 
 			<FontIcon Style="{StaticResource BulletPointIconStyle}" Grid.Row="2" />
 
-			<TextBlock Text="Check how Uno.Material and Uno.Cupertino controls and color palettes can help you build your app faster."
+			<TextBlock Text="Check how supported Uno design system controls and color palettes can help you build your app faster."
 					   TextWrapping="Wrap"
 					   Style="{StaticResource BulletPointTextStyle}"
 					   Grid.Column="1"
@@ -67,7 +67,7 @@
 
 			<FontIcon Style="{StaticResource BulletPointIconStyle}" Grid.Row="3" />
 
-			<TextBlock Text="Compare Fluent, Material, and Cupertino design for best fit and reuse with ease."
+			<TextBlock Text="Compare supported design systems for best fit and reuse with ease."
 					   TextWrapping="Wrap"
 					   Style="{StaticResource BulletPointTextStyle}"
 					   Grid.Column="1"

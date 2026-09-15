@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "suiteVersion": 1,
+  "target": "WASM-DOM",
+  "viewport": {
+    "width": 1200,
+    "height": 900,
+    "deviceScaleFactor": 1
+  },
+  "browser": {
+    "expectedVersion": "Chrome/152.0.7977.42",
+    "headless": true,
+    "locale": "en-US",
+    "timezone": "UTC",
+    "colorScheme": "light",
+    "reducedMotion": "reduce",
+    "softwareRendering": true
+  },
+  "runs": {
+    "cold": 10,
+    "warm": 10
+  },
+  "timeouts": {
+    "startupMs": 120000,
+    "actionMs": 30000
+  },
+  "marks": {
+    "shellReady": "app.shell_loaded",
+    "firstInput": "app.first_input",
+    "searchRendered": "app.search_rendered",
+    "navigationRendered": "app.navigation_rendered"
+  },
+  "actions": {
+    "searchSelector": "[xamltype=\"Uno.Gallery.Shell\"] [xamltype=\"Microsoft.UI.Xaml.Controls.AutoSuggestBox\"] textarea",
+    "searchQuery": "animated icon",
+    "navigationSlug": "button",
+    "navigationDesign": "Material"
+  }
+}

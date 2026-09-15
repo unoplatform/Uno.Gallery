@@ -12,14 +12,31 @@ namespace Uno.Gallery;
 
 public sealed partial class Shell : UserControl
 {
-	private const string NoSuggestionsFoundText = "No suggestions found";
+#if PSEUDO_LOCALIZATION
+	private const bool IsPseudoLocalizationEnabled = true;
+#else
+	private const bool IsPseudoLocalizationEnabled = false;
+#endif
+#if RTL_TEST_MODE
+	private const bool IsRtlTestModeEnabled = true;
+#else
+	private const bool IsRtlTestModeEnabled = false;
+#endif
 
-	private static IEnumerable<Sample> SearchSamples(string query)
-		=> App.GetSamples()
-			.OrderByDescending(x => x.SortOrder.HasValue)
-			.ThenBy(x => x.SortOrder)
-			.ThenBy(x => x.Title)
-			.Where(sample => query.ToLower().Split(" ").All(key => sample.Title.Contains(key, StringComparison.OrdinalIgnoreCase)));
+	private static string NoSuggestionsFoundText
+		=> LocalizationHelper.GetString("NoSuggestionsFound", "No suggestions found");
+
+	/// <summary>Window-scoped sorted sample catalog. Assigned once by <see cref="App"/>.<c>BuildShell</c>.</summary>
+	internal IReadOnlyList<Sample> Samples { get; init; } = Array.Empty<Sample>();
+
+	/// <summary>
+	/// Typed navigator assigned by <see cref="App"/>.<c>BuildShell</c> after nav items are added.
+	/// Non-null once the shell enters the visual tree under normal startup.
+	/// </summary>
+	internal IGalleryNavigator? Navigator { get; set; }
+
+	private IEnumerable<Sample> SearchSamples(string query)
+		=> SampleSearchHelper.RankAndFilter(Samples, query);
 
 	public Shell()
 	{
@@ -49,20 +66,51 @@ public sealed partial class Shell : UserControl
 		set { SetValue(CurrentSampleBackdoorProperty, value); }
 	}
 
+#if PERF_MEASUREMENTS
+	// Stored delegate instances required for correct AddHandler/RemoveHandler identity matching.
+	private bool _firstInputSubscribed;
+	private PointerEventHandler? _firstPointerHandler;
+	private KeyEventHandler? _firstKeyHandler;
+#endif
+
 	public static readonly DependencyProperty CurrentSampleBackdoorProperty =
 		DependencyProperty.Register(nameof(CurrentSampleBackdoor), typeof(string), typeof(Shell), new PropertyMetadata(null));
 
 	private void OnLoaded(object sender, RoutedEventArgs e)
 	{
+		PerformanceMarks.Record(PerformanceMarks.ShellLoaded);
+
+#if USE_UITESTS
+		InitializeUITestResponse();
+#endif
+
 		SetDarkLightToggleInitialState();
 
-#if (__IOS__ || __ANDROID__) && !NET6_0_OR_GREATER
-		this.Log().Debug("Loaded Shell.");
-		Uno.Gallery.Deeplinking.BranchService.Instance.SetIsAppReady();
+		BuildIdentityLabel.Text = BuildInfo.Label;
+		BuildIdentityLabel.Tag =
+			$"Pseudo={IsPseudoLocalizationEnabled};Rtl={IsRtlTestModeEnabled}";
+#if VISUAL_REGRESSION
+		if (FindName("WebBanner") is FrameworkElement webBanner)
+		{
+			webBanner.Visibility = Visibility.Collapsed;
+		}
 #endif
 
 #if DEBUG || IS_CANARY_BUILD
 		FindName("FPSIndicatorCheckBox"); // materialize x:Load=false element
+#endif
+
+#if PERF_MEASUREMENTS
+		// Guard against repeated Loaded (e.g. visual-tree re-parenting): subscribe once only.
+		if (!_firstInputSubscribed)
+		{
+			_firstInputSubscribed = true;
+			_firstPointerHandler = OnFirstPointerInput;
+			_firstKeyHandler     = OnFirstKeyInput;
+			// handledEventsToo=true ensures we catch taps/keys already marked Handled by child controls.
+			AddHandler(PointerPressedEvent, _firstPointerHandler, handledEventsToo: true);
+			AddHandler(KeyDownEvent,        _firstKeyHandler,     handledEventsToo: true);
+		}
 #endif
 	}
 
@@ -243,9 +291,12 @@ public sealed partial class Shell : UserControl
 			return;
 		}
 
-		var filteredSamples = SearchSamples(sender.Text);
+#if PERF_MEASUREMENTS
+		var searchStarted = System.Diagnostics.Stopwatch.GetTimestamp();
+#endif
+		var filteredSamples = SearchSamples(sender.Text).ToArray();
 
-		if (!filteredSamples.Any())
+		if (filteredSamples.Length == 0)
 		{
 			sender.ItemsSource = new List<Sample>() { new(new SamplePageAttribute(SampleCategory.None, NoSuggestionsFoundText), null) };
 		}
@@ -253,18 +304,39 @@ public sealed partial class Shell : UserControl
 		{
 			sender.ItemsSource = filteredSamples;
 		}
+#if PERF_MEASUREMENTS
+		RecordDurationAfterNextRender(PerformanceMarks.SearchRendered, searchStarted);
+#endif
 	}
+
+#if PERF_MEASUREMENTS
+	private static void RecordDurationAfterNextRender(string name, long started)
+	{
+		var renderedFrames = 0;
+		EventHandler<object>? rendering = null;
+		rendering = (_, _) =>
+		{
+			if (++renderedFrames < 2)
+			{
+				return;
+			}
+			Microsoft.UI.Xaml.Media.CompositionTarget.Rendering -= rendering;
+			PerformanceMarks.RecordDuration(name, started);
+		};
+		Microsoft.UI.Xaml.Media.CompositionTarget.Rendering += rendering;
+	}
+#endif
 
 	private void SamplesSearchBox_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
 	{
 		var sample = args.SelectedItem as Sample;
 
-		if (sample.Title.Contains(NoSuggestionsFoundText))
+		if (sample is null || sample.Title.Contains(NoSuggestionsFoundText))
 		{
 			return;
 		}
 
-		(Application.Current as App)?.SearchShellNavigateTo(this, sample);
+		Navigator?.NavigateTo(sample, NavigationOptions.ExpandCategory);
 	}
 
 	private void CtrlF_Invoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
@@ -277,15 +349,16 @@ public sealed partial class Shell : UserControl
 		if (args.ChosenSuggestion is Sample sample)
 		{
 			// User selected an item, take an action
-			(Application.Current as App)?.SearchShellNavigateTo(this, sample);
+			Navigator?.NavigateTo(sample, NavigationOptions.ExpandCategory);
 		}
 		else if (!string.IsNullOrEmpty(args.QueryText))
 		{
 			//Do a fuzzy search based on the text
 			var suggestions = SearchSamples(sender.Text);
-			if (Enumerable.Count(suggestions) > 0)
+			var first = suggestions.FirstOrDefault();
+			if (first is not null)
 			{
-				(Application.Current as App)?.SearchShellNavigateTo(this, suggestions.FirstOrDefault());
+				Navigator?.NavigateTo(first, NavigationOptions.ExpandCategory);
 			}
 		}
 	}
@@ -304,4 +377,37 @@ public sealed partial class Shell : UserControl
 		App.Instance.InitializeWindow(secondaryWindow);
 		secondaryWindow.Activate();
 	}
+
+#if PERF_MEASUREMENTS
+	private void OnFirstPointerInput(object sender, PointerRoutedEventArgs e)
+	{
+		PerformanceMarks.Record(PerformanceMarks.FirstInput);
+		RemoveFirstInputHandlers();
+	}
+
+	private void OnFirstKeyInput(object sender, KeyRoutedEventArgs e)
+	{
+		PerformanceMarks.Record(PerformanceMarks.FirstInput);
+		RemoveFirstInputHandlers();
+	}
+
+	/// <summary>
+	/// Removes both first-input handlers and clears the subscription flag so that
+	/// repeated Loaded events can safely re-guard without leaking handler references.
+	/// </summary>
+	private void RemoveFirstInputHandlers()
+	{
+		if (_firstPointerHandler is { } ph)
+		{
+			RemoveHandler(PointerPressedEvent, ph);
+			_firstPointerHandler = null;
+		}
+		if (_firstKeyHandler is { } kh)
+		{
+			RemoveHandler(KeyDownEvent, kh);
+			_firstKeyHandler = null;
+		}
+		_firstInputSubscribed = false;
+	}
+#endif
 }
