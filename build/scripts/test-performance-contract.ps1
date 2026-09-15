@@ -37,6 +37,17 @@ if ($optionalAotJob -notmatch '(?m)-p:DisableParallelAot=true(?:\s|$)') {
 }
 Assert-WasmToolchainCoreLimits $optionalAotJob 'Optional WebAssembly AOT job'
 
+$project = Get-Content (Join-Path $repoRoot 'Uno.Gallery\Uno.Gallery.csproj') -Raw
+$linkDebugOverride = [regex]::Match(
+    $project,
+    '<EmccExtraLDFlags\s+Condition="([^"]+)">([^<]+)</EmccExtraLDFlags>')
+if (-not $linkDebugOverride.Success -or
+    $linkDebugOverride.Groups[1].Value -notmatch 'EnableWasmProfiling' -or
+    $linkDebugOverride.Groups[1].Value -notmatch 'IsUiAutomationMappingEnabled' -or
+    $linkDebugOverride.Groups[2].Value -notmatch '(?:^|\s)-g0(?:\s|$)') {
+    throw 'Stripped full-AOT Release builds must remove link debug data before Binaryen optimization.'
+}
+
 if ([string]::IsNullOrWhiteSpace($ScratchRoot)) {
     $ScratchRoot = [IO.Path]::GetTempPath()
 }

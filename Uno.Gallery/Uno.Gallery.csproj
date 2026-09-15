@@ -197,6 +197,8 @@
 		<WasmShellMonoRuntimeExecutionMode>InterpreterAndAOT</WasmShellMonoRuntimeExecutionMode>
 		<!-- Production disables emcc profiling/name data and strips native debug data post-link; -p:EnableWasmProfiling=true retains profiling information. -->
 		<WasmShellEnableEmccProfiling>$(EnableWasmProfiling)</WasmShellEnableEmccProfiling>
+		<!-- AOT compilation still emits required DWARF, but stripped release artifacts do not need it during Binaryen optimization. -->
+		<EmccExtraLDFlags Condition="'$(IsUiAutomationMappingEnabled)'!='True' AND '$(EnableWasmProfiling)'!='true'">$(EmccExtraLDFlags) -g0</EmccExtraLDFlags>
 		<!-- <UnoXamlResourcesTrimming>true</UnoXamlResourcesTrimming> -->
 
 		<!--
