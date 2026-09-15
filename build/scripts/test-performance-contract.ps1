@@ -52,6 +52,50 @@ if (-not $linkDebugOverride.Success -or
     throw 'Stripped full-AOT Release builds must append -g0 after the SDK constructs the emcc link response.'
 }
 
+$diagnosticTarget = [regex]::Match(
+    $project,
+    '(?s)<Target\s+Name="CaptureFullAotLinkDiagnostics"([^>]*)>(.*?)</Target>')
+if (-not $diagnosticTarget.Success -or
+    $diagnosticTarget.Groups[1].Value -notmatch 'AfterTargets="_WasmWriteRspForLinking"' -or
+    $diagnosticTarget.Groups[1].Value -match 'BeforeTargets=|DependsOnTargets=' -or
+    $diagnosticTarget.Groups[1].Value -notmatch 'EnableFullAotDiagnostics' -or
+    $diagnosticTarget.Groups[2].Value -match '<_EmccLinkStepArgs\s|<_WasmLinkStepArgs\s' -or
+    $diagnosticTarget.Groups[2].Value -notmatch 'response --path.+\$\(_WasmLinkRsp\)') {
+    throw 'Full-AOT diagnostics must observe the written link response without changing its target or item sequence.'
+}
+
+foreach ($requiredDiagnosticFragment in @(
+    'ArtifactName\)" != "WASM-DOM"',
+    'Build\.SourceBranch\)" != "refs/pull/1257/merge"',
+    'source_parent" != "9db5f9994c95f188702ace2319950db59b484348"',
+    '-p:EnableFullAotDiagnostics=true',
+    'install-wrapper',
+    'monitor',
+    'restore-wrapper'
+)) {
+    if ($wasmBuildTemplate -notmatch $requiredDiagnosticFragment) {
+        throw "Shared WebAssembly build template is missing diagnostic contract: $requiredDiagnosticFragment"
+    }
+}
+if ($wasmBuildTemplate -match '(?m)^\s*(printenv|env|set)\s*$') {
+    throw 'Full-AOT diagnostics must not dump the build environment.'
+}
+
+$diagnosticsScript = Join-Path $PSScriptRoot 'wasm-aot-diagnostics.py'
+if (-not (Test-Path $diagnosticsScript)) {
+    throw 'Full-AOT diagnostics script is missing.'
+}
+$previousDiagnosticsQuiet = $env:UNO_AOT_DIAGNOSTICS_QUIET
+try {
+    $env:UNO_AOT_DIAGNOSTICS_QUIET = '1'
+    & python $diagnosticsScript self-test
+    if ($LASTEXITCODE -ne 0) {
+        throw 'Full-AOT diagnostics self-test failed.'
+    }
+} finally {
+    $env:UNO_AOT_DIAGNOSTICS_QUIET = $previousDiagnosticsQuiet
+}
+
 if ([string]::IsNullOrWhiteSpace($ScratchRoot)) {
     $ScratchRoot = [IO.Path]::GetTempPath()
 }

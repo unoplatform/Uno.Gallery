@@ -312,6 +312,20 @@
 		</ItemGroup>
 	</Target>
 
+	<Target Name="CaptureFullAotLinkDiagnostics"
+			AfterTargets="_WasmWriteRspForLinking"
+			Condition="'$(EnableFullAotDiagnostics)'=='true'">
+		<PropertyGroup>
+			<_FullAotDiagnosticsScript>$(MSBuildProjectDirectory)/../build/scripts/wasm-aot-diagnostics.py</_FullAotDiagnosticsScript>
+			<_FullAotDiagnosticsOutputPath Condition="'$(FullAotDiagnosticsOutputPath)'==''">$(BaseIntermediateOutputPath)full-aot-diagnostics</_FullAotDiagnosticsOutputPath>
+			<_EmccExtraLDFlagsHasG0>$([System.String]::Copy('$(EmccExtraLDFlags)').Contains('-g0'))</_EmccExtraLDFlagsHasG0>
+			<_EmccExtraLDFlagsLength>$([System.String]::Copy('$(EmccExtraLDFlags)').Length)</_EmccExtraLDFlagsLength>
+		</PropertyGroup>
+		<Message Importance="High"
+				 Text="[AOTDIAG] properties Configuration=$(Configuration) TargetFramework=$(TargetFramework) UseNativeRendering=$(UseNativeRendering) EnableVisualRegression=$(EnableVisualRegression) EnablePerformanceMeasurements=$(EnablePerformanceMeasurements) EnableExtensionsPatterns=$(EnableExtensionsPatterns) IsUiAutomationMappingEnabled=$(IsUiAutomationMappingEnabled) EnableWasmProfiling=$(EnableWasmProfiling) WasmNativeDebugSymbols=$(WasmNativeDebugSymbols) WasmNativeStrip=$(WasmNativeStrip) DisableParallelAot=$(DisableParallelAot) WasmLinkOptimizationFlag=$(WasmLinkOptimizationFlag) EmccLinkOptimizationFlag=$(EmccLinkOptimizationFlag) WasmInitialHeapSize=$(WasmInitialHeapSize) EmccStackSize=$(EmccStackSize) EmccExtraLDFlagsHasG0=$(_EmccExtraLDFlagsHasG0) EmccExtraLDFlagsLength=$(_EmccExtraLDFlagsLength) NETCoreSdkVersion=$(NETCoreSdkVersion)" />
+		<Exec Command="python3 &quot;$(_FullAotDiagnosticsScript)&quot; response --path &quot;$(_WasmLinkRsp)&quot; --output &quot;$(_FullAotDiagnosticsOutputPath)/link-response.json&quot; --events &quot;$(_FullAotDiagnosticsOutputPath)/events.jsonl&quot;" />
+	</Target>
+
 	<Target Name="ValidateVisualRegressionConfiguration"
 			BeforeTargets="PrepareForBuild"
 			Condition="'$(EnableVisualRegression)'=='true'">
