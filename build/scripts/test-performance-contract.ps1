@@ -42,13 +42,14 @@ $linkDebugOverride = [regex]::Match(
     $project,
     '(?s)<Target\s+Name="AppendStrippedReleaseLinkFlags"([^>]*)>(.*?)</Target>')
 if (-not $linkDebugOverride.Success -or
-    $linkDebugOverride.Groups[1].Value -notmatch 'AfterTargets="_BrowserWasmWriteRspForLinking"' -or
+    $linkDebugOverride.Groups[1].Value -match 'AfterTargets=' -or
     $linkDebugOverride.Groups[1].Value -notmatch 'BeforeTargets="_WasmWriteRspForLinking"' -or
+    $linkDebugOverride.Groups[1].Value -notmatch 'DependsOnTargets="_BrowserWasmWriteRspForLinking"' -or
     $linkDebugOverride.Groups[1].Value -notmatch 'EnableWasmProfiling' -or
     $linkDebugOverride.Groups[1].Value -notmatch 'IsUiAutomationMappingEnabled' -or
     $linkDebugOverride.Groups[2].Value -notmatch '<_EmccLinkStepArgs Include="-g0"\s*/>' -or
     $linkDebugOverride.Groups[2].Value -notmatch '<_WasmLinkStepArgs Include="-g0"\s*/>') {
-    throw 'Stripped full-AOT Release builds must append -g0 to the generated emcc link response.'
+    throw 'Stripped full-AOT Release builds must append -g0 after the SDK constructs the emcc link response.'
 }
 
 if ([string]::IsNullOrWhiteSpace($ScratchRoot)) {

@@ -300,8 +300,8 @@
 	</Target>
 
 	<Target Name="AppendStrippedReleaseLinkFlags"
-			AfterTargets="_BrowserWasmWriteRspForLinking"
 			BeforeTargets="_WasmWriteRspForLinking"
+			DependsOnTargets="_BrowserWasmWriteRspForLinking"
 			Condition="'$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'browserwasm'
 				AND '$(Configuration)' == 'Release'
 				AND '$(IsUiAutomationMappingEnabled)' != 'True'
