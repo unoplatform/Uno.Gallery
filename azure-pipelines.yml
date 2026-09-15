@@ -589,6 +589,9 @@ stages:
           -p:CompilerGeneratedFilesOutputPath="$(Agent.TempDirectory)/generated-optional-wasm" \
           -o "$(Agent.TempDirectory)/extensions-patterns-wasm"
       displayName: 'Publish optional WebAssembly AOT'
+      env:
+        EMCC_CORES: 1
+        BINARYEN_CORES: 1
     - task: PowerShell@2
       displayName: 'Verify linked validation properties'
       inputs:

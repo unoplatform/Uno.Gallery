@@ -8,10 +8,19 @@ Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 
 $repoRoot = (Resolve-Path (Join-Path $PSScriptRoot '..\..')).Path
+function Assert-WasmToolchainCoreLimits([string] $Content, [string] $Name) {
+    foreach ($variable in @('EMCC_CORES', 'BINARYEN_CORES')) {
+        if ($Content -notmatch "(?m)^\s+$($variable):\s*1\s*$") {
+            throw "$Name must set $variable to 1 for full-AOT hosted-agent builds."
+        }
+    }
+}
+
 $wasmBuildTemplate = Get-Content (Join-Path $repoRoot 'build\stage-build-wasm.yml') -Raw
 if ($wasmBuildTemplate -notmatch '(?m)-p:DisableParallelAot=true(?:\s|$)') {
     throw 'Shared full-AOT WebAssembly builds must disable parallel AOT compilation on hosted agents.'
 }
+Assert-WasmToolchainCoreLimits $wasmBuildTemplate 'Shared WebAssembly build template'
 
 $pipeline = Get-Content (Join-Path $repoRoot 'azure-pipelines.yml') -Raw
 $optionalAotStart = $pipeline.IndexOf('  - job: Extensions_Patterns_Wasm', [StringComparison]::Ordinal)
@@ -26,6 +35,7 @@ $optionalAotJob = $pipeline.Substring($optionalAotStart, $optionalAotEnd - $opti
 if ($optionalAotJob -notmatch '(?m)-p:DisableParallelAot=true(?:\s|$)') {
     throw 'Optional full-AOT WebAssembly builds must disable parallel AOT compilation on hosted agents.'
 }
+Assert-WasmToolchainCoreLimits $optionalAotJob 'Optional WebAssembly AOT job'
 
 if ([string]::IsNullOrWhiteSpace($ScratchRoot)) {
     $ScratchRoot = [IO.Path]::GetTempPath()
