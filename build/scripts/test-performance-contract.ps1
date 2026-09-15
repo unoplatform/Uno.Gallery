@@ -40,12 +40,15 @@ Assert-WasmToolchainCoreLimits $optionalAotJob 'Optional WebAssembly AOT job'
 $project = Get-Content (Join-Path $repoRoot 'Uno.Gallery\Uno.Gallery.csproj') -Raw
 $linkDebugOverride = [regex]::Match(
     $project,
-    '<EmccExtraLDFlags\s+Condition="([^"]+)">([^<]+)</EmccExtraLDFlags>')
+    '(?s)<Target\s+Name="AppendStrippedReleaseLinkFlags"([^>]*)>(.*?)</Target>')
 if (-not $linkDebugOverride.Success -or
+    $linkDebugOverride.Groups[1].Value -notmatch 'AfterTargets="_BrowserWasmWriteRspForLinking"' -or
+    $linkDebugOverride.Groups[1].Value -notmatch 'BeforeTargets="_WasmWriteRspForLinking"' -or
     $linkDebugOverride.Groups[1].Value -notmatch 'EnableWasmProfiling' -or
     $linkDebugOverride.Groups[1].Value -notmatch 'IsUiAutomationMappingEnabled' -or
-    $linkDebugOverride.Groups[2].Value -notmatch '(?:^|\s)-g0(?:\s|$)') {
-    throw 'Stripped full-AOT Release builds must remove link debug data before Binaryen optimization.'
+    $linkDebugOverride.Groups[2].Value -notmatch '<_EmccLinkStepArgs Include="-g0"\s*/>' -or
+    $linkDebugOverride.Groups[2].Value -notmatch '<_WasmLinkStepArgs Include="-g0"\s*/>') {
+    throw 'Stripped full-AOT Release builds must append -g0 to the generated emcc link response.'
 }
 
 if ([string]::IsNullOrWhiteSpace($ScratchRoot)) {

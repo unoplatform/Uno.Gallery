@@ -197,8 +197,6 @@
 		<WasmShellMonoRuntimeExecutionMode>InterpreterAndAOT</WasmShellMonoRuntimeExecutionMode>
 		<!-- Production disables emcc profiling/name data and strips native debug data post-link; -p:EnableWasmProfiling=true retains profiling information. -->
 		<WasmShellEnableEmccProfiling>$(EnableWasmProfiling)</WasmShellEnableEmccProfiling>
-		<!-- AOT compilation still emits required DWARF, but stripped release artifacts do not need it during Binaryen optimization. -->
-		<EmccExtraLDFlags Condition="'$(IsUiAutomationMappingEnabled)'!='True' AND '$(EnableWasmProfiling)'!='true'">$(EmccExtraLDFlags) -g0</EmccExtraLDFlags>
 		<!-- <UnoXamlResourcesTrimming>true</UnoXamlResourcesTrimming> -->
 
 		<!--
@@ -299,6 +297,19 @@
 			<WasmNativeStrip Condition="'$(Configuration)'=='Release'">true</WasmNativeStrip>
 			<WasmNativeStrip Condition="'$(Configuration)'=='Release' AND '$(EnableWasmProfiling)'=='true'">false</WasmNativeStrip>
 		</PropertyGroup>
+	</Target>
+
+	<Target Name="AppendStrippedReleaseLinkFlags"
+			AfterTargets="_BrowserWasmWriteRspForLinking"
+			BeforeTargets="_WasmWriteRspForLinking"
+			Condition="'$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'browserwasm'
+				AND '$(Configuration)' == 'Release'
+				AND '$(IsUiAutomationMappingEnabled)' != 'True'
+				AND '$(EnableWasmProfiling)' != 'true'">
+		<ItemGroup>
+			<_EmccLinkStepArgs Include="-g0" />
+			<_WasmLinkStepArgs Include="-g0" />
+		</ItemGroup>
 	</Target>
 
 	<Target Name="ValidateVisualRegressionConfiguration"
