@@ -256,7 +256,7 @@ stages:
   dependsOn: []
   jobs:
   - job: WebAssembly
-    timeoutInMinutes: 60
+    timeoutInMinutes: 90
 
     pool:
       vmImage: ubuntu-latest
@@ -290,7 +290,7 @@ stages:
   jobs:
   - job: Build_Visual_Skia_WASM
     displayName: 'Build visual-mode Skia-WASM (advisory)'
-    timeoutInMinutes: 60
+    timeoutInMinutes: 90
     continueOnError: true
     pool:
       vmImage: ubuntu-latest
@@ -437,7 +437,7 @@ stages:
 
   - job: Build_Performance_DOM_WASM
     displayName: 'Build instrumented DOM WebAssembly (advisory)'
-    timeoutInMinutes: 60
+    timeoutInMinutes: 90
     pool:
       vmImage: ubuntu-latest
     variables:
@@ -584,6 +584,7 @@ stages:
           -p:EnableExtensionsPatterns=true \
           -p:UseNativeRendering=$(UseNativeRendering) \
           -p:WasmGenerateAppBundle=true \
+          -p:DisableParallelAot=true \
           -p:EmitCompilerGeneratedFiles=true \
           -p:CompilerGeneratedFilesOutputPath="$(Agent.TempDirectory)/generated-optional-wasm" \
           -o "$(Agent.TempDirectory)/extensions-patterns-wasm"

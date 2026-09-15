@@ -8,6 +8,25 @@ Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 
 $repoRoot = (Resolve-Path (Join-Path $PSScriptRoot '..\..')).Path
+$wasmBuildTemplate = Get-Content (Join-Path $repoRoot 'build\stage-build-wasm.yml') -Raw
+if ($wasmBuildTemplate -notmatch '(?m)-p:DisableParallelAot=true(?:\s|$)') {
+    throw 'Shared full-AOT WebAssembly builds must disable parallel AOT compilation on hosted agents.'
+}
+
+$pipeline = Get-Content (Join-Path $repoRoot 'azure-pipelines.yml') -Raw
+$optionalAotStart = $pipeline.IndexOf('  - job: Extensions_Patterns_Wasm', [StringComparison]::Ordinal)
+$optionalAotEnd = $pipeline.IndexOf(
+    '  - job: Extensions_Patterns_DOM_UITests_Build',
+    $optionalAotStart,
+    [StringComparison]::Ordinal)
+if ($optionalAotStart -lt 0 -or $optionalAotEnd -le $optionalAotStart) {
+    throw 'Optional WebAssembly AOT job boundaries were not found.'
+}
+$optionalAotJob = $pipeline.Substring($optionalAotStart, $optionalAotEnd - $optionalAotStart)
+if ($optionalAotJob -notmatch '(?m)-p:DisableParallelAot=true(?:\s|$)') {
+    throw 'Optional full-AOT WebAssembly builds must disable parallel AOT compilation on hosted agents.'
+}
+
 if ([string]::IsNullOrWhiteSpace($ScratchRoot)) {
     $ScratchRoot = [IO.Path]::GetTempPath()
 }

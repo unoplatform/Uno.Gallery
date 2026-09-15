@@ -10,7 +10,8 @@
 - bash: |
     # CompilerGeneratedFilesOutputPath is job-local. Keep it scoped if another
     # project starts running SamplesGenerator in this build graph.
-    dotnet publish Uno.Gallery/Uno.Gallery.csproj -c Release -f net10.0-browserwasm -p:UseNativeRendering=$(UseNativeRendering) -p:EnableVisualRegression=$(EnableVisualRegression) -p:EnablePerformanceMeasurements=$(EnablePerformanceMeasurements) -p:WasmGenerateAppBundle=true -p:InformationalVersion=$(NBGV_InformationalVersion) -p:EmitCompilerGeneratedFiles=true -p:CompilerGeneratedFilesOutputPath="$(Agent.TempDirectory)/generated-sources" -o "$(Agent.TempDirectory)/wasm-publish" -bl:$(Build.ArtifactStagingDirectory)/wasm-publish.binlog
+    # Full-AOT compiler fan-out exceeds hosted-agent memory for the expanded Gallery graph.
+    dotnet publish Uno.Gallery/Uno.Gallery.csproj -c Release -f net10.0-browserwasm -p:UseNativeRendering=$(UseNativeRendering) -p:EnableVisualRegression=$(EnableVisualRegression) -p:EnablePerformanceMeasurements=$(EnablePerformanceMeasurements) -p:WasmGenerateAppBundle=true -p:DisableParallelAot=true -p:InformationalVersion=$(NBGV_InformationalVersion) -p:EmitCompilerGeneratedFiles=true -p:CompilerGeneratedFilesOutputPath="$(Agent.TempDirectory)/generated-sources" -o "$(Agent.TempDirectory)/wasm-publish" -bl:$(Build.ArtifactStagingDirectory)/wasm-publish.binlog
   displayName: 'Builds Wasm $(ArtifactName)'
 
 - task: PowerShell@2
