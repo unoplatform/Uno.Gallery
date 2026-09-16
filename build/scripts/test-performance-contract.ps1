@@ -60,18 +60,19 @@ if (-not $diagnosticTarget.Success -or
     $diagnosticTarget.Groups[1].Value -match 'BeforeTargets=|DependsOnTargets=' -or
     $diagnosticTarget.Groups[1].Value -notmatch 'EnableFullAotDiagnostics' -or
     $diagnosticTarget.Groups[2].Value -match '<_EmccLinkStepArgs\s|<_WasmLinkStepArgs\s' -or
-    $diagnosticTarget.Groups[2].Value -notmatch 'response --path.+\$\(_WasmLinkRsp\)') {
+    $diagnosticTarget.Groups[2].Value -notmatch 'response --path.+\$\(_WasmLinkRsp\)' -or
+    $diagnosticTarget.Groups[2].Value -notmatch 'IgnoreExitCode="true"' -or
+    $diagnosticTarget.Groups[2].Value -notmatch '_FullAotDiagnosticsResponseExitCode' -or
+    $diagnosticTarget.Groups[2].Value -notmatch 'warning: link response metadata unavailable') {
     throw 'Full-AOT diagnostics must observe the written link response without changing its target or item sequence.'
 }
 
 foreach ($requiredDiagnosticFragment in @(
     'ArtifactName\)" != "WASM-DOM"',
     'Build\.SourceBranch\)" != "refs/pull/1257/merge"',
-    'source_parent" != "9db5f9994c95f188702ace2319950db59b484348"',
+    'source_parent" != "4f9cde7e1122b08d8139c22ccfd82db18e26c1a1"',
     '-p:EnableFullAotDiagnostics=true',
-    'install-wrapper',
-    'monitor',
-    'restore-wrapper'
+    'run-publisher'
 )) {
     if ($wasmBuildTemplate -notmatch $requiredDiagnosticFragment) {
         throw "Shared WebAssembly build template is missing diagnostic contract: $requiredDiagnosticFragment"
@@ -84,6 +85,10 @@ if ($wasmBuildTemplate -match '(?m)^\s*(printenv|env|set)\s*$') {
 $diagnosticsScript = Join-Path $PSScriptRoot 'wasm-aot-diagnostics.py'
 if (-not (Test-Path $diagnosticsScript)) {
     throw 'Full-AOT diagnostics script is missing.'
+}
+$diagnosticsContent = Get-Content $diagnosticsScript -Raw
+if ($diagnosticsContent -match 'emcc[^\r\n]*--version|run_version\(\[str\(emcc\)') {
+    throw 'Full-AOT diagnostics must not invoke emcc before MSBuild configures its environment.'
 }
 $previousDiagnosticsQuiet = $env:UNO_AOT_DIAGNOSTICS_QUIET
 try {

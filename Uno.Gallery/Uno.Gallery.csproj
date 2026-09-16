@@ -323,7 +323,13 @@
 		</PropertyGroup>
 		<Message Importance="High"
 				 Text="[AOTDIAG] properties Configuration=$(Configuration) TargetFramework=$(TargetFramework) UseNativeRendering=$(UseNativeRendering) EnableVisualRegression=$(EnableVisualRegression) EnablePerformanceMeasurements=$(EnablePerformanceMeasurements) EnableExtensionsPatterns=$(EnableExtensionsPatterns) IsUiAutomationMappingEnabled=$(IsUiAutomationMappingEnabled) EnableWasmProfiling=$(EnableWasmProfiling) WasmNativeDebugSymbols=$(WasmNativeDebugSymbols) WasmNativeStrip=$(WasmNativeStrip) DisableParallelAot=$(DisableParallelAot) WasmLinkOptimizationFlag=$(WasmLinkOptimizationFlag) EmccLinkOptimizationFlag=$(EmccLinkOptimizationFlag) WasmInitialHeapSize=$(WasmInitialHeapSize) EmccStackSize=$(EmccStackSize) EmccExtraLDFlagsHasG0=$(_EmccExtraLDFlagsHasG0) EmccExtraLDFlagsLength=$(_EmccExtraLDFlagsLength) NETCoreSdkVersion=$(NETCoreSdkVersion)" />
-		<Exec Command="python3 &quot;$(_FullAotDiagnosticsScript)&quot; response --path &quot;$(_WasmLinkRsp)&quot; --output &quot;$(_FullAotDiagnosticsOutputPath)/link-response.json&quot; --events &quot;$(_FullAotDiagnosticsOutputPath)/events.jsonl&quot;" />
+		<Exec Command="python3 &quot;$(_FullAotDiagnosticsScript)&quot; response --path &quot;$(_WasmLinkRsp)&quot; --output &quot;$(_FullAotDiagnosticsOutputPath)/link-response.json&quot; --events &quot;$(_FullAotDiagnosticsOutputPath)/events.jsonl&quot;"
+			  IgnoreExitCode="true">
+			<Output TaskParameter="ExitCode" PropertyName="_FullAotDiagnosticsResponseExitCode" />
+		</Exec>
+		<Message Condition="'$(_FullAotDiagnosticsResponseExitCode)'!='0'"
+				 Importance="High"
+				 Text="[AOTDIAG] warning: link response metadata unavailable; publisher and optimizer execution will continue unchanged." />
 	</Target>
 
 	<Target Name="ValidateVisualRegressionConfiguration"

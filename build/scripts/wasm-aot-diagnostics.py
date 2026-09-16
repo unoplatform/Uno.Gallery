@@ -18,8 +18,18 @@ import time
 PREFIX = "[AOTDIAG]"
 EXPECTED_RUNTIME_PACK_VERSION = "10.0.2"
 SAFE_SWITCHES = {
+    "--enable-bulk-memory",
+    "--enable-exception-handling",
+    "--enable-multivalue",
+    "--enable-mutable-globals",
+    "--enable-reference-types",
+    "--enable-sign-ext",
+    "--enable-simd",
+    "--enable-tail-call",
+    "--enable-threads",
     "--low-memory-unused",
     "--mvp-features",
+    "--pass-arg=directize-initial-contents-immutable",
     "--post-emscripten",
     "--strip-debug",
     "--strip-target-features",
@@ -27,11 +37,6 @@ SAFE_SWITCHES = {
     "-fwasm-exceptions",
     "-pthread",
 }
-SAFE_SWITCH_PREFIXES = (
-    "--enable-",
-    "--pass-arg=",
-    "-O",
-)
 SAFE_SETTINGS = {
     "ALLOW_MEMORY_GROWTH",
     "ASSERTIONS",
@@ -108,12 +113,30 @@ def emit(event, output=None, **fields):
         "timestampUtc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         **fields,
     }
-    if os.environ.get("UNO_AOT_DIAGNOSTICS_QUIET") != "1":
-        print(
-            f"{PREFIX} {json.dumps(payload, sort_keys=True, separators=(',', ':'))}",
-            flush=True,
-        )
-    append_jsonl(output, payload)
+    rendered = json.dumps(payload, sort_keys=True, separators=(",", ":"))
+    try:
+        if os.environ.get("UNO_AOT_DIAGNOSTICS_QUIET") != "1":
+            print(f"{PREFIX} {rendered}", flush=True)
+    except (BrokenPipeError, OSError):
+        pass
+    try:
+        append_jsonl(output, payload)
+    except OSError as error:
+        warning = {
+            "event": "diagnostic-warning",
+            "timestampUtc": payload["timestampUtc"],
+            "scope": "event-artifact",
+            "status": "unavailable",
+            "errorType": type(error).__name__,
+        }
+        try:
+            print(
+                f"{PREFIX} "
+                f"{json.dumps(warning, sort_keys=True, separators=(',', ':'))}",
+                flush=True,
+            )
+        except (BrokenPipeError, OSError):
+            pass
 
 
 def digest_text(value):
@@ -123,6 +146,11 @@ def digest_text(value):
 def safe_basename(value):
     normalized = value.strip().strip("\"'")
     return Path(normalized.replace("\\", "/")).name or "<none>"
+
+
+def safe_option_name(value):
+    match = re.match(r"^(--[A-Za-z0-9][A-Za-z0-9-]*|-[A-Za-z])", value)
+    return match.group(1) if match else "<redacted-option>"
 
 
 def split_setting(line):
@@ -163,7 +191,8 @@ def sanitize_response_line(index, raw_line):
         return {
             "index": index,
             "category": "setting-redacted",
-            "name": name,
+            "name": "<redacted-setting>",
+            "nameSha256": digest_text(name),
             "characterCount": len(value),
             "sha256": digest_text(value),
         }
@@ -182,15 +211,14 @@ def sanitize_response_line(index, raw_line):
                 "option": first,
                 "value": safe_basename(tokens[1]) if len(tokens) > 1 else "<missing>",
             }
-        if first in SAFE_SWITCHES or first.startswith(SAFE_SWITCH_PREFIXES):
+        if len(tokens) == 1 and first in SAFE_SWITCHES:
             return {"index": index, "category": "flag", "value": first}
 
     if line.startswith("-"):
-        option = line.split(None, 1)[0]
         return {
             "index": index,
             "category": "option-redacted",
-            "option": option,
+            "option": safe_option_name(line),
             "characterCount": len(line),
             "sha256": digest_text(line),
         }
@@ -320,7 +348,7 @@ def sanitize_optimizer_arguments(arguments):
             safe.append({"index": index, "category": "debug", "value": value})
         elif re.fullmatch(r"-O(?:[0-3]|g|s|z)", value):
             safe.append({"index": index, "category": "optimization", "value": value})
-        elif value in SAFE_SWITCHES or value.startswith(SAFE_SWITCH_PREFIXES):
+        elif value in SAFE_SWITCHES:
             safe.append({"index": index, "category": "flag", "value": value})
         elif value.endswith(".wasm"):
             safe.append(
@@ -335,7 +363,7 @@ def sanitize_optimizer_arguments(arguments):
                 {
                     "index": index,
                     "category": "option-redacted",
-                    "option": value.split("=", 1)[0],
+                    "option": safe_option_name(value),
                     "characterCount": len(value),
                     "sha256": digest_text(value),
                 }
@@ -359,40 +387,55 @@ def wasm_opt_command(args):
     output = os.environ.get("UNO_AOT_DIAGNOSTICS_EVENTS")
     is_post_link = "--post-emscripten" in optimizer_args
     if is_post_link:
-        safe_arguments = sanitize_optimizer_arguments(optimizer_args)
-        emit(
-            "wasm-opt-invocation",
-            output=output,
-            arguments=safe_arguments,
-            debugFlagsInOrder=[
-                item
-                for item in safe_arguments
-                if item.get("category") == "debug"
-            ],
-            optimizationFlagsInOrder=[
-                item
-                for item in safe_arguments
-                if item.get("category") == "optimization"
-            ],
-        )
-        input_path = next(
-            (
-                Path(value)
-                for value in optimizer_args
-                if value.endswith(".wasm") and Path(value).is_file()
-            ),
-            None,
-        )
-        if input_path is not None:
-            metadata = inspect_wasm(input_path)
+        try:
+            safe_arguments = sanitize_optimizer_arguments(optimizer_args)
             emit(
-                "wasm-opt-input",
+                "wasm-opt-invocation",
                 output=output,
-                inputFile=input_path.name,
-                **metadata,
+                arguments=safe_arguments,
+                debugFlagsInOrder=[
+                    item
+                    for item in safe_arguments
+                    if item.get("category") == "debug"
+                ],
+                optimizationFlagsInOrder=[
+                    item
+                    for item in safe_arguments
+                    if item.get("category") == "optimization"
+                ],
             )
-        else:
-            emit("wasm-opt-input-missing", output=output)
+            input_path = next(
+                (
+                    Path(value)
+                    for value in optimizer_args
+                    if value.endswith(".wasm") and Path(value).is_file()
+                ),
+                None,
+            )
+            if input_path is not None:
+                metadata = inspect_wasm(input_path)
+                emit(
+                    "wasm-opt-input",
+                    output=output,
+                    inputFile=input_path.name,
+                    **metadata,
+                )
+            else:
+                emit(
+                    "diagnostic-warning",
+                    output=output,
+                    scope="wasm-opt-input",
+                    status="unavailable",
+                    reason="input-file-not-found",
+                )
+        except Exception as error:
+            emit(
+                "diagnostic-warning",
+                output=output,
+                scope="wasm-opt-metadata",
+                status="unavailable",
+                errorType=type(error).__name__,
+            )
 
     child = None
 
@@ -417,16 +460,31 @@ def wasm_opt_command(args):
     return 128 + (-return_code) if return_code < 0 else return_code
 
 
-def run_version(command):
-    completed = subprocess.run(
-        command,
-        check=True,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.STDOUT,
-        text=True,
-        timeout=30,
-    )
-    return completed.stdout.splitlines()[0].strip()
+def optional_version(command):
+    try:
+        completed = subprocess.run(
+            command,
+            check=False,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            text=True,
+            timeout=30,
+        )
+    except (OSError, subprocess.SubprocessError) as error:
+        return {
+            "status": "unavailable",
+            "errorType": type(error).__name__,
+        }
+    if completed.returncode != 0:
+        return {
+            "status": "unavailable",
+            "returnCode": completed.returncode,
+        }
+    lines = completed.stdout.splitlines()
+    return {
+        "status": "available",
+        "value": lines[0].strip() if lines else "<empty>",
+    }
 
 
 def find_toolchain(dotnet_root, runtime_pack_version):
@@ -461,24 +519,54 @@ def safe_pack_versions(dotnet_root):
         for pack in sorted(pack_root.glob(pattern)):
             if not pack.is_dir():
                 continue
-            result[pack.name] = sorted(
-                child.name for child in pack.iterdir() if child.is_dir()
-            )
+            try:
+                result[pack.name] = sorted(
+                    child.name for child in pack.iterdir() if child.is_dir()
+                )
+            except OSError:
+                result[pack.name] = ["unavailable"]
     return result
 
 
-def install_wrapper_command(args):
+def safe_directory_versions(path):
+    try:
+        return sorted(child.name for child in path.iterdir() if child.is_dir())
+    except OSError:
+        return ["unavailable"]
+
+
+def install_wrapper_command(args, version_probe=optional_version):
     dotnet_root = Path(args.dotnet_root).resolve()
     wasm_opt, emcc = find_toolchain(dotnet_root, args.runtime_pack_version)
     backup = wasm_opt.with_name(f"{wasm_opt.name}.uno-aot-diagnostics-real")
     if backup.exists():
         raise RuntimeError("A diagnostics wasm-opt backup already exists.")
-    dotnet = dotnet_root / ("dotnet.exe" if os.name == "nt" else "dotnet")
+    pack_name = wasm_opt.parents[3].name
+    emscripten_match = re.fullmatch(
+        r"Microsoft\.NET\.Runtime\.Emscripten\.(.+)\.Sdk\.linux-x64",
+        pack_name,
+    )
+    wasm_opt_version = version_probe([str(wasm_opt), "--version"])
+    if wasm_opt_version["status"] != "available":
+        emit(
+            "diagnostic-warning",
+            scope="wasm-opt-version",
+            status="unavailable",
+            **{
+                key: value
+                for key, value in wasm_opt_version.items()
+                if key != "status"
+            },
+        )
     emit(
         "toolchain",
-        dotnetSdkVersion=run_version([str(dotnet), "--version"]),
-        emccVersion=run_version([str(emcc), "--version"]),
-        wasmOptVersion=run_version([str(wasm_opt), "--version"]),
+        dotnetSdkVersions=safe_directory_versions(dotnet_root / "sdk"),
+        emscriptenVersion=(
+            emscripten_match.group(1) if emscripten_match else "unavailable"
+        ),
+        emscriptenSdkPack=pack_name,
+        emccMetadata="static-pack-metadata",
+        wasmOptVersion=wasm_opt_version,
         packs=safe_pack_versions(dotnet_root),
         expectedRuntimePackVersion=args.runtime_pack_version,
     )
@@ -526,6 +614,138 @@ def restore_wrapper_command(args):
             runtimePackVersion=args.runtime_pack_version,
         )
     return 0
+
+
+def normalized_return_code(return_code):
+    return 128 + (-return_code) if return_code < 0 else return_code
+
+
+def run_publisher_core(command, install_wrapper, restore_wrapper, start_monitor):
+    publisher = None
+    monitor = None
+    wrapper_installed = False
+    previous_handlers = {}
+    pending_signal = None
+
+    def forward_signal(signal_number, _frame):
+        nonlocal pending_signal
+        if publisher is not None and publisher.poll() is None:
+            publisher.send_signal(signal_number)
+        elif pending_signal is None:
+            pending_signal = signal_number
+
+    for signal_number in (signal.SIGINT, signal.SIGTERM):
+        previous_handlers[signal_number] = signal.getsignal(signal_number)
+        signal.signal(signal_number, forward_signal)
+
+    try:
+        try:
+            wrapper_installed = install_wrapper()
+        except Exception as error:
+            emit(
+                "diagnostic-warning",
+                scope="wrapper-install",
+                status="unavailable",
+                errorType=type(error).__name__,
+            )
+
+        if pending_signal is not None:
+            return_code = 128 + pending_signal
+            emit(
+                "publisher-cancelled-before-start",
+                returnCode=return_code,
+                signal=pending_signal,
+            )
+            return return_code
+
+        publisher = subprocess.Popen(command)
+        if pending_signal is not None and publisher.poll() is None:
+            publisher.send_signal(pending_signal)
+            pending_signal = None
+        try:
+            monitor = start_monitor(publisher.pid)
+        except Exception as error:
+            emit(
+                "diagnostic-warning",
+                scope="compiler-telemetry",
+                status="unavailable",
+                errorType=type(error).__name__,
+            )
+
+        return_code = publisher.wait()
+        if return_code < 0:
+            emit(
+                "publisher-exit",
+                returnCode=return_code,
+                signal=-return_code,
+            )
+        else:
+            emit("publisher-exit", returnCode=return_code)
+        return normalized_return_code(return_code)
+    finally:
+        if monitor is not None and monitor.poll() is None:
+            monitor.terminate()
+            try:
+                monitor.wait(timeout=10)
+            except subprocess.TimeoutExpired:
+                monitor.kill()
+                monitor.wait()
+        if wrapper_installed:
+            try:
+                restore_wrapper()
+            except Exception as error:
+                emit(
+                    "diagnostic-warning",
+                    scope="wrapper-restore",
+                    status="unavailable",
+                    errorType=type(error).__name__,
+                )
+        for signal_number, handler in previous_handlers.items():
+            signal.signal(signal_number, handler)
+
+
+def run_publisher_command(args):
+    command = args.publisher
+    if command and command[0] == "--":
+        command = command[1:]
+    if not command:
+        raise ValueError("A publisher command is required.")
+
+    os.environ["UNO_AOT_DIAGNOSTICS_EVENTS"] = args.events
+    install_args = argparse.Namespace(
+        dotnet_root=args.dotnet_root,
+        runtime_pack_version=args.runtime_pack_version,
+        script=args.script,
+    )
+    restore_args = argparse.Namespace(
+        dotnet_root=args.dotnet_root,
+        runtime_pack_version=args.runtime_pack_version,
+    )
+
+    def install():
+        return install_wrapper_command(install_args) == 0
+
+    def restore():
+        restore_wrapper_command(restore_args)
+
+    def start_monitor(root_pid):
+        if args.disable_monitor:
+            return None
+        return subprocess.Popen(
+            [
+                sys.executable,
+                args.script,
+                "monitor",
+                "--root-pid",
+                str(root_pid),
+                "--output",
+                args.events,
+                "--interval-seconds",
+                str(args.interval_seconds),
+            ]
+        )
+
+    return run_publisher_core(command, install, restore, start_monitor)
 
 
 def read_processes():
@@ -666,6 +886,7 @@ def encode_u32_leb(value):
 def self_test_command(_args):
     with tempfile.TemporaryDirectory(prefix="uno-gallery-aot-diagnostics-") as temp:
         root = Path(temp)
+        fixture_secret = "fixture-secret-shaped-value"
         response = root / "emcc-link.rsp"
         response.write_text(
             "\n".join(
@@ -675,6 +896,9 @@ def self_test_command(_args):
                     "-s INITIAL_MEMORY=33554432",
                     "\"/safe/public/path/Uno.UI.dll.o\"",
                     "-g0",
+                    f"--unknown-token={fixture_secret}",
+                    f"--pass-arg={fixture_secret}",
+                    f"-O{fixture_secret}",
                 )
             )
             + "\n",
@@ -694,7 +918,12 @@ def self_test_command(_args):
             "-g0",
         ]
         assert document["items"][3]["value"] == "Uno.UI.dll.o"
-        assert "/safe/public/path" not in output.read_text(encoding="utf-8")
+        rendered_response = output.read_text(encoding="utf-8")
+        assert "/safe/public/path" not in rendered_response
+        assert fixture_secret not in rendered_response
+        assert document["items"][5]["option"] == "--unknown-token"
+        assert document["items"][6]["option"] == "--pass-arg"
+        assert document["items"][7]["option"] == "-O"
 
         custom_name = b"name"
         custom_payload = encode_u32_leb(len(custom_name)) + custom_name + b"\x01"
@@ -746,6 +975,172 @@ def self_test_command(_args):
         }
         assert {"wasm-opt-invocation", "wasm-opt-input", "wasm-opt-exit"} <= event_names
 
+        invalid_wasm = root / "invalid.wasm"
+        invalid_wasm.write_bytes(b"not-a-wasm-module")
+        fake_optimizer.write_text(
+            "import sys\nsys.exit(37)\n",
+            encoding="utf-8",
+        )
+        failed_events = root / "failed-events.jsonl"
+        os.environ["UNO_AOT_DIAGNOSTICS_EVENTS"] = str(failed_events)
+        try:
+            return_code = wasm_opt_command(
+                argparse.Namespace(
+                    real=sys.executable,
+                    arguments=[
+                        str(fake_optimizer),
+                        "--post-emscripten",
+                        "-O2",
+                        str(invalid_wasm),
+                        f"--unknown-token={fixture_secret}",
+                        "-g",
+                    ],
+                )
+            )
+        finally:
+            if previous_events is None:
+                os.environ.pop("UNO_AOT_DIAGNOSTICS_EVENTS", None)
+            else:
+                os.environ["UNO_AOT_DIAGNOSTICS_EVENTS"] = previous_events
+        assert return_code == 37
+        rendered_failed_events = failed_events.read_text(encoding="utf-8")
+        assert fixture_secret not in rendered_failed_events
+        failed_event_documents = [
+            json.loads(line) for line in rendered_failed_events.splitlines()
+        ]
+        assert any(
+            event["event"] == "diagnostic-warning"
+            and event.get("scope") == "wasm-opt-metadata"
+            for event in failed_event_documents
+        )
+        assert any(
+            event["event"] == "wasm-opt-exit"
+            and event.get("returnCode") == 37
+            for event in failed_event_documents
+        )
+
+        publisher = root / "publisher.py"
+        publisher.write_text(
+            "from pathlib import Path\n"
+            "import sys\n"
+            "Path(sys.argv[1]).write_text('started', encoding='utf-8')\n"
+            "sys.exit(23)\n",
+            encoding="utf-8",
+        )
+        publisher_marker = root / "publisher-started.txt"
+        runner_events = root / "runner-events.jsonl"
+        fake_dotnet_root = root / "dotnet"
+        fake_wasm_opt = (
+            fake_dotnet_root
+            / "packs"
+            / "Microsoft.NET.Runtime.Emscripten.3.1.56.Sdk.linux-x64"
+            / EXPECTED_RUNTIME_PACK_VERSION
+            / "tools"
+            / "bin"
+            / "wasm-opt"
+        )
+        fake_emcc = fake_wasm_opt.parent.parent / "emscripten" / "emcc"
+        fake_wasm_opt.parent.mkdir(parents=True)
+        fake_emcc.parent.mkdir(parents=True)
+        original_wasm_opt = b"fixture-wasm-opt"
+        fake_wasm_opt.write_bytes(original_wasm_opt)
+        fake_emcc.write_bytes(b"fixture-emcc")
+        (fake_dotnet_root / "sdk" / "10.0.102").mkdir(parents=True)
+        previous_events = os.environ.get("UNO_AOT_DIAGNOSTICS_EVENTS")
+        try:
+            publisher_return_code = run_publisher_command(
+                argparse.Namespace(
+                    dotnet_root=str(fake_dotnet_root),
+                    runtime_pack_version=EXPECTED_RUNTIME_PACK_VERSION,
+                    script=str(Path(__file__).resolve()),
+                    events=str(runner_events),
+                    interval_seconds=0.01,
+                    disable_monitor=True,
+                    publisher=[
+                        sys.executable,
+                        str(publisher),
+                        str(publisher_marker),
+                    ],
+                )
+            )
+        finally:
+            if previous_events is None:
+                os.environ.pop("UNO_AOT_DIAGNOSTICS_EVENTS", None)
+            else:
+                os.environ["UNO_AOT_DIAGNOSTICS_EVENTS"] = previous_events
+        assert publisher_return_code == 23
+        assert publisher_marker.read_text(encoding="utf-8") == "started"
+        assert fake_wasm_opt.read_bytes() == original_wasm_opt
+        assert not fake_wasm_opt.with_name(
+            "wasm-opt.uno-aot-diagnostics-real"
+        ).exists()
+        runner_event_documents = [
+            json.loads(line)
+            for line in runner_events.read_text(encoding="utf-8").splitlines()
+        ]
+        assert any(
+            event["event"] == "diagnostic-warning"
+            and event.get("scope") == "wasm-opt-version"
+            for event in runner_event_documents
+        )
+        assert any(
+            event["event"] == "publisher-exit"
+            and event.get("returnCode") == 23
+            for event in runner_event_documents
+        )
+
+        cancelled_publisher_marker = root / "cancelled-publisher-started.txt"
+        cancellation_events = root / "cancellation-events.jsonl"
+        previous_events = os.environ.get("UNO_AOT_DIAGNOSTICS_EVENTS")
+        os.environ["UNO_AOT_DIAGNOSTICS_EVENTS"] = str(cancellation_events)
+
+        def cancel_before_publisher():
+            signal.raise_signal(signal.SIGTERM)
+            return False
+
+        cancellation_return_code = run_publisher_core(
+            [sys.executable, str(publisher), str(cancelled_publisher_marker)],
+            cancel_before_publisher,
+            lambda: None,
+            lambda _root_pid: None,
+        )
+        assert cancellation_return_code == 128 + signal.SIGTERM
+        assert not cancelled_publisher_marker.exists()
+
+        installed_wrapper_marker = root / "cancelled-wrapper-installed.txt"
+
+        def install_then_cancel():
+            installed_wrapper_marker.write_text("installed", encoding="utf-8")
+            signal.raise_signal(signal.SIGTERM)
+            return True
+
+        def restore_after_cancel():
+            installed_wrapper_marker.unlink()
+
+        cancellation_return_code = run_publisher_core(
+            [sys.executable, str(publisher), str(cancelled_publisher_marker)],
+            install_then_cancel,
+            restore_after_cancel,
+            lambda _root_pid: None,
+        )
+        assert cancellation_return_code == 128 + signal.SIGTERM
+        assert not cancelled_publisher_marker.exists()
+        assert not installed_wrapper_marker.exists()
+        if previous_events is None:
+            os.environ.pop("UNO_AOT_DIAGNOSTICS_EVENTS", None)
+        else:
+            os.environ["UNO_AOT_DIAGNOSTICS_EVENTS"] = previous_events
+        cancellation_event_documents = [
+            json.loads(line)
+            for line in cancellation_events.read_text(encoding="utf-8").splitlines()
+        ]
+        assert any(
+            event["event"] == "publisher-cancelled-before-start"
+            and event.get("returnCode") == 128 + signal.SIGTERM
+            and event.get("signal") == signal.SIGTERM
+            for event in cancellation_event_documents
+        )
+
         processes = {
             10: {"pid": 10, "ppid": 1, "name": "dotnet", "rssKb": 10, "cpuPercent": 1.0},
             11: {"pid": 11, "ppid": 10, "name": "wasm-opt", "rssKb": 20, "cpuPercent": 2.0},
@@ -755,7 +1150,13 @@ def self_test_command(_args):
             10,
             11,
         }
-    print("WebAssembly AOT diagnostics self-test passed.")
+    print(
+        "WebAssembly AOT diagnostics self-test passed: "
+        "version_probe_nonfatal=true, publisher_exit=23, wrapper_restored=true, "
+        "optimizer_metadata_failure_nonfatal=true, optimizer_exit=37, "
+        "secret_shaped_options_redacted=true, preflight_cancel_exit=143, "
+        "cancelled_publisher_started=false, cancel_cleanup_restored=true."
+    )
     return 0
 
 
@@ -791,6 +1192,19 @@ def build_parser():
     wasm_opt.add_argument("arguments", nargs=argparse.REMAINDER)
     wasm_opt.set_defaults(handler=wasm_opt_command)
 
+    run_publisher = subparsers.add_parser("run-publisher")
+    run_publisher.add_argument("--dotnet-root", required=True)
+    run_publisher.add_argument("--script", required=True)
+    run_publisher.add_argument("--events", required=True)
+    run_publisher.add_argument(
+        "--runtime-pack-version",
+        default=EXPECTED_RUNTIME_PACK_VERSION,
+    )
+    run_publisher.add_argument("--interval-seconds", type=float, default=10.0)
+    run_publisher.add_argument("--disable-monitor", action="store_true")
+    run_publisher.add_argument("publisher", nargs=argparse.REMAINDER)
+    run_publisher.set_defaults(handler=run_publisher_command)
+
     monitor = subparsers.add_parser("monitor")
     monitor.add_argument("--root-pid", required=True, type=int)
     monitor.add_argument("--output")
@@ -808,7 +1222,11 @@ def main():
     try:
         return args.handler(args)
     except Exception as error:
-        emit("diagnostic-error", errorType=type(error).__name__, message=str(error))
+        emit(
+            "diagnostic-error",
+            status="unavailable",
+            errorType=type(error).__name__,
+        )
         return 1
 
 
