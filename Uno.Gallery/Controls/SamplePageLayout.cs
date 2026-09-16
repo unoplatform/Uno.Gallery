@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Uno.Disposables;
 using Uno.Extensions;
 using Uno.Gallery.Helpers;
+using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -48,7 +49,14 @@ namespace Uno.Gallery
 		{
 			new LayoutModeMapping(Design.Material, () => !IsDesignAgnostic, _materialRadioButton, _stickyMaterialRadioButton, VisualStateMaterial, MaterialTemplate),
 			new LayoutModeMapping(Design.Fluent, () => !IsDesignAgnostic, _fluentRadioButton, _stickyFluentRadioButton, VisualStateFluent, FluentTemplate),
-			new LayoutModeMapping(Design.Cupertino, () => !IsDesignAgnostic, _cupertinoRadioButton, _stickyCupertinoRadioButton, VisualStateCupertino, CupertinoTemplate),
+			// Cupertino tab hidden in stable Release; visible in debug/canary/UI-test builds — see https://github.com/unoplatform/uno.gallery/issues/1210
+			new LayoutModeMapping(Design.Cupertino, () => !IsDesignAgnostic, _cupertinoRadioButton, _stickyCupertinoRadioButton, VisualStateCupertino,
+#if DEBUG || IS_CANARY_BUILD || USE_UITESTS || AOT_PROFILE_GEN
+				CupertinoTemplate
+#else
+				default
+#endif
+			),
 			new LayoutModeMapping(Design.Agnostic, () => IsDesignAgnostic, null, null, VisualStateAgnostic, DesignAgnosticTemplate),
 #if __IOS__ || __MACOS__ || __ANDROID__
 			// native tab is only shown when applicable
@@ -73,11 +81,19 @@ namespace Uno.Gallery
 		private ScrollViewer _scrollViewer;
 		private FrameworkElement _scrollingContent;
 
+#if __IOS__ || __ANDROID__
+		private DataTransferManager? _shareManager;
+		private Sample? _shareSample;
+#endif
+
 		private readonly SerialDisposable _subscriptions = new SerialDisposable();
 
 		public SamplePageLayout()
 		{
 			DataContextChanged += OnDataContextChanged;
+#if USE_UITESTS
+			InitializeUITestMarker();
+#endif
 
 			void OnDataContextChanged(object sender, DataContextChangedEventArgs args)
 			{
@@ -87,20 +103,42 @@ namespace Uno.Gallery
 					Description = sample.Description;
 					DocumentationLink = sample.DocumentationLink;
 					Source = sample.Source;
+					ShareUri = sample.ShareUri;
+					IsSourceLinkVisible = sample.SourceLink is not null;
 
 #if __IOS__ || __ANDROID__
 					IsFooterVisible = true;
-					IsShareVisible = true;
+					IsShareVisible = DataTransferManager.IsSupported();
 #else
-					IsFooterVisible = sample.DocumentationLink != null;
+					IsFooterVisible = sample.DocumentationLink != null
+						|| sample.SourceLink != null
+						|| sample.IssueLink != null
+						|| sample.ApiLink != null
+						|| !string.IsNullOrEmpty(sample.ShareUri);
 					IsShareVisible = false;
 #endif
+				}
+				else
+				{
+					Title = null;
+					Description = null;
+					DocumentationLink = null;
+					Source = null;
+					ShareUri = null;
+					IsSourceLinkVisible = false;
+					IsFooterVisible = false;
+					IsShareVisible = false;
 				}
 			}
 		}
 
 		protected override void OnApplyTemplate()
 		{
+#if !DEBUG && !IS_CANARY_BUILD && !USE_UITESTS && !AOT_PROFILE_GEN
+			// Null the DP before the control template is applied so the Cupertino ContentPresenter
+			// never receives or instantiates the sample DataTemplate in stable Release builds.
+			CupertinoTemplate = null;
+#endif
 			base.OnApplyTemplate();
 
 			_materialRadioButton = (RadioButton)GetTemplateChild(MaterialRadioButtonPartName);
@@ -170,11 +208,51 @@ namespace Uno.Gallery
 
 		private void OnShareClicked(Hyperlink sender, HyperlinkClickEventArgs args)
 		{
-#if (__IOS__ || __ANDROID__) && !NET6_0_OR_GREATER
-			var sample = DataContext as Sample;
-			_ = Deeplinking.BranchService.Instance.ShareSample(sample, _design);
+#if __IOS__ || __ANDROID__
+			if (DataContext is not Sample sample || !DataTransferManager.IsSupported())
+			{
+				return;
+			}
+
+			var manager = DataTransferManager.GetForCurrentView();
+			if (_shareManager != null)
+			{
+				_shareManager.DataRequested -= OnShareDataRequested;
+			}
+
+			_shareManager = manager;
+			_shareSample = sample;
+			manager.DataRequested += OnShareDataRequested;
+
+			try
+			{
+				DataTransferManager.ShowShareUI();
+			}
+			catch
+			{
+				manager.DataRequested -= OnShareDataRequested;
+				_shareManager = null;
+				_shareSample = null;
+				throw;
+			}
 #endif
 		}
+
+#if __IOS__ || __ANDROID__
+		private void OnShareDataRequested(DataTransferManager sender, DataRequestedEventArgs e)
+		{
+			sender.DataRequested -= OnShareDataRequested;
+			var sample = _shareSample;
+			_shareManager = null;
+			_shareSample = null;
+
+			if (sample is null) { return; }
+			e.Request.Data.Properties.Title = sample?.Title ?? "Uno Gallery";
+			e.Request.Data.Properties.Description = "Check out this control in Uno Gallery";
+			e.Request.Data.SetText(sample.ShareUri);
+			e.Request.Data.SetWebLink(new Uri(sample.ShareUri));
+		}
+#endif
 
 		/// <summary>
 		/// Changes the preferred design.
@@ -185,6 +263,13 @@ namespace Uno.Gallery
 		{
 			_design = design;
 		}
+
+		/// <summary>Returns the currently preferred design.</summary>
+		public static Design CurrentDesign => _design;
+
+#if USE_UITESTS
+		internal Design UITestRenderedDesign { get; private set; }
+#endif
 
 		private void RegisterEvent(RoutedEventHandler click)
 		{
@@ -225,6 +310,10 @@ namespace Uno.Gallery
 			{
 				_design = mapping.Design;
 				UpdateLayoutMode();
+#if __WASM__
+				// Update ?design= query param in the current URL without adding a history entry.
+				Wasm.BrowserHistoryHandler.ReplaceDesign(_design.ToString());
+#endif
 			}
 		}
 
@@ -235,10 +324,21 @@ namespace Uno.Gallery
 			var current = LayoutModeMappings.FirstOrDefault(x => x.Design == design);
 			if (current != null)
 			{
+#if USE_UITESTS
+				UITestRenderedDesign = design;
+#endif
 				current.RadioButton?.Apply(x => x.IsChecked = true);
 				current.StickyRadioButton?.Apply(x => x.IsChecked = true);
 
-				VisualStateManager.GoToState(this, current.VisualStateName, useTransitions: true);
+				VisualStateManager.GoToState(
+					this,
+					current.VisualStateName,
+#if VISUAL_REGRESSION
+					useTransitions: false
+#else
+					useTransitions: true
+#endif
+				);
 			}
 		}
 

@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "scope": "pinned-fixture",
+  "complete": false,
+  "sources": [
+    {
+      "repository": "unoplatform/uno",
+      "commit": "7b58a4712ca0fb64395d455dd19c634d2d7126d5"
+    }
+  ],
+  "features": [
+    {
+      "id": "feature-a",
+      "repository": "unoplatform/uno",
+      "status": "stable"
+    },
+    {
+      "id": "feature-preview",
+      "repository": "unoplatform/uno",
+      "status": "preview"
+    }
+  ]
+}

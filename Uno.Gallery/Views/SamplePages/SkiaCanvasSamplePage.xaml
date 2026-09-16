@@ -1,0 +1,35 @@
+<Page
+	x:Class="Uno.Gallery.Views.Samples.SkiaCanvasSamplePage"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:local="using:Uno.Gallery"
+	xmlns:smtx="using:ShowMeTheXAML">
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<local:SamplePageLayout x:Name="SamplePageLayoutRoot" IsDesignAgnostic="True">
+			<local:SamplePageLayout.DesignAgnosticTemplate>
+				<DataTemplate>
+					<smtx:XamlDisplay UniqueKey="SkiaCanvas_Deterministic"
+									 smtx:XamlDisplayExtensions.Header="SKCanvasElement">
+						<StackPanel Spacing="12">
+							<TextBlock Text="A real SKCanvasElement draws deterministic shapes and text. The status counts completed RenderOverride calls; it is not a pixel assertion."
+									   TextWrapping="Wrap" />
+							<Border Loaded="CanvasHost_Loaded"
+									Height="240"
+									BorderThickness="1"
+									BorderBrush="{ThemeResource DividerStrokeColorDefaultBrush}"
+									AutomationProperties.Name="Skia canvas drawing surface" />
+							<Button Content="Change drawing and redraw"
+									Click="Redraw_Click"
+									AutomationProperties.AutomationId="SkiaCanvas_Redraw" />
+							<TextBlock x:Name="SkiaCanvas_Status"
+									   Text="Waiting for the first RenderOverride call."
+									   AutomationProperties.AutomationId="SkiaCanvas_Status"
+									   AutomationProperties.LiveSetting="Polite"
+									   AutomationProperties.Name="Skia canvas render status" />
+						</StackPanel>
+					</smtx:XamlDisplay>
+				</DataTemplate>
+			</local:SamplePageLayout.DesignAgnosticTemplate>
+		</local:SamplePageLayout>
+	</Grid>
+</Page>

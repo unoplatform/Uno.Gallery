@@ -1,0 +1,105 @@
+<!-- Adapted from unoplatform/uno.toolkit.ui samples/Uno.Toolkit.Samples/Content/Controls/ZoomContentControlSamplePage.xaml (MIT) -->
+<Page x:Class="Uno.Gallery.Views.SamplePages.ZoomContentControlSamplePage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  xmlns:local="using:Uno.Gallery"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  xmlns:smtx="using:ShowMeTheXAML"
+	  xmlns:utu="using:Uno.Toolkit.UI"
+	  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+	  mc:Ignorable="d">
+
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<local:SamplePageLayout x:Name="SamplePageLayout"
+								IsDesignAgnostic="True">
+			<local:SamplePageLayout.DesignAgnosticTemplate>
+				<DataTemplate>
+					<ScrollViewer HorizontalScrollMode="Disabled">
+						<StackPanel Padding="0,20"
+									Spacing="20">
+
+							<TextBlock Style="{StaticResource BodyTextBlockStyle}"
+									   Text="ZoomContentControl supports pinch-to-zoom and pan gestures on all platforms. Use the buttons below or a trackpad/mouse wheel on desktop." />
+
+							<!-- Basic zoom control -->
+							<smtx:XamlDisplay UniqueKey="ZoomContentControlSamplePage_Basic"
+											  smtx:XamlDisplayExtensions.Header="ZoomContentControl">
+								<StackPanel Spacing="12">
+									<utu:ZoomContentControl x:Name="ZoomContent"
+															AutomationProperties.AutomationId="ZoomContentControl_Basic"
+															Width="360"
+															Height="260"
+															HorizontalAlignment="Center"
+															VerticalAlignment="Center"
+															ZoomLevel="1"
+															MinZoomLevel="0.5"
+															MaxZoomLevel="8"
+															IsZoomAllowed="True"
+															IsPanAllowed="True">
+										<Border BorderBrush="{ThemeResource OnSurfaceBrush}"
+												BorderThickness="2"
+												CornerRadius="8"
+												Padding="24">
+											<StackPanel Spacing="16"
+														HorizontalAlignment="Center">
+												<Ellipse Fill="#7A67F8"
+														 Width="80"
+														 Height="80" />
+												<TextBlock HorizontalAlignment="Center"
+														   Style="{StaticResource TitleTextBlockStyle}"
+														   Text="Pinch or scroll to zoom" />
+												<Rectangle Fill="#F85977"
+														   Width="120"
+														   Height="40"
+														   RadiusX="8"
+														   RadiusY="8" />
+											</StackPanel>
+										</Border>
+									</utu:ZoomContentControl>
+
+									<StackPanel HorizontalAlignment="Center"
+												Orientation="Horizontal"
+												Spacing="8">
+										<Button x:Name="ZoomInButton"
+												AutomationProperties.AutomationId="ZoomContentControl_ZoomIn"
+												Content="Zoom In (+)"
+												Style="{StaticResource FilledButtonStyle}" />
+										<Button x:Name="ZoomOutButton"
+												AutomationProperties.AutomationId="ZoomContentControl_ZoomOut"
+												Content="Zoom Out (−)"
+												Style="{StaticResource OutlinedButtonStyle}" />
+										<Button x:Name="ResetButton"
+												AutomationProperties.AutomationId="ZoomContentControl_Reset"
+												Content="Reset"
+												Style="{StaticResource TextButtonStyle}" />
+									</StackPanel>
+								</StackPanel>
+							</smtx:XamlDisplay>
+
+							<!-- Disabled zoom / pan -->
+							<smtx:XamlDisplay UniqueKey="ZoomContentControlSamplePage_DisabledPan"
+											  smtx:XamlDisplayExtensions.Header="IsZoomAllowed=False, IsPanAllowed=False">
+								<utu:ZoomContentControl AutomationProperties.AutomationId="ZoomContentControl_Disabled"
+														Width="360"
+														Height="160"
+														HorizontalAlignment="Center"
+														IsZoomAllowed="False"
+														IsPanAllowed="False">
+									<Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+											Padding="16">
+										<TextBlock HorizontalAlignment="Center"
+												   VerticalAlignment="Center"
+												   Style="{StaticResource BodyTextBlockStyle}"
+												   Text="Gestures disabled — content is static" />
+									</Border>
+								</utu:ZoomContentControl>
+							</smtx:XamlDisplay>
+
+						</StackPanel>
+					</ScrollViewer>
+				</DataTemplate>
+			</local:SamplePageLayout.DesignAgnosticTemplate>
+		</local:SamplePageLayout>
+	</Grid>
+</Page>

@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gallery.platform.uno/schemas/release-metadata-v1.json",
+  "title": "Uno Gallery release metadata",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "generatedAtUtc",
+    "version",
+    "informationalVersion",
+    "commit",
+    "unoSdk",
+    "performanceBudgetVersion",
+    "performanceBudgetStatus",
+    "evidence"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "generatedAtUtc": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "informationalVersion": {
+      "type": "string",
+      "minLength": 1
+    },
+    "commit": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "sourceBranch": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "buildId": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "buildUri": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "unoSdk": {
+      "type": "string",
+      "minLength": 1
+    },
+    "performanceBudgetVersion": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "performanceBudgetStatus": {
+      "enum": [
+        "advisory",
+        "blocking"
+      ]
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "compatibilityMatrix",
+        "qualityChecklist",
+        "performanceBaseline",
+        "performanceBudget",
+        "releaseNotesTemplate"
+      ],
+      "properties": {
+        "compatibilityMatrix": {
+          "type": "string"
+        },
+        "qualityChecklist": {
+          "type": "string"
+        },
+        "performanceBaseline": {
+          "type": "string"
+        },
+        "performanceBudget": {
+          "type": "string"
+        },
+        "releaseNotesTemplate": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

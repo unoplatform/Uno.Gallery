@@ -16,6 +16,7 @@ using Uno.Gallery.Views.Samples;
 using Uno.Logging;
 using Uno.UI;
 using Windows.ApplicationModel;
+using Windows.Globalization;
 using LaunchActivatedEventArgs = Microsoft.UI.Xaml.LaunchActivatedEventArgs;
 using MUXC = Microsoft.UI.Xaml.Controls;
 using MUXCP = Microsoft.UI.Xaml.Controls.Primitives;
@@ -45,25 +46,36 @@ namespace Uno.Gallery
 
 		public App(bool exitAfterLaunching)
 		{
+			PerformanceMarks.Record(PerformanceMarks.Constructed);
 			_exitAfterLaunching = exitAfterLaunching;
 			Instance = this;
+
+#if PSEUDO_LOCALIZATION
+			ApplicationLanguages.PrimaryLanguageOverride = "qps-ploc";
+#endif
 
 			ConfigureFeatureFlags();
 			InitializeLogging();
 			ConfigureXamlDisplay();
+#if USE_UITESTS
+			InitializeUITestHooks();
+#endif
 
 #if HAS_UNO
 			global::Uno.UI.FeatureConfiguration.Font.DefaultTextFontFamily = "ms-appx:///Uno.Fonts.OpenSans/Fonts/OpenSans.ttf";
 #endif
 
 			this.InitializeComponent();
+			PerformanceMarks.Record(PerformanceMarks.ResourcesInitialized);
 
 #if !WINDOWS
 			this.Suspending += OnSuspending;
 #endif
 
 #if __WASM__
+#if !VISUAL_REGRESSION
 			_ = DispatcherQueue.GetForCurrentThread().TryEnqueue(DispatcherQueuePriority.Low, () => AnalyticsService.Initialize());
+#endif
 #endif
 		}
 
@@ -108,6 +120,8 @@ namespace Uno.Gallery
 
 			// Ensure the current window is active
 			MainWindow.Activate();
+			// Recorded after Activate() so the timestamp reflects the window being live.
+			PerformanceMarks.Record(PerformanceMarks.WindowActivated);
 		}
 
 		public void InitializeWindow(Window window)
@@ -117,37 +131,6 @@ namespace Uno.Gallery
 
 		private Shell GetWindowShell(Window window) =>
 			window.Content as Shell ?? throw new InvalidOperationException("Window content is not a Shell.");
-
-		/// <summary>
-		/// This method is invoked from JavaScript within the branch.js file.
-		/// </summary>
-		/// <param name="title"></param>
-		/// <param name="design"></param>
-		public static void TryNavigateToLaunchSample(string title, string design)
-		{
-			const string UndefinedValue = "undefined";
-
-			if (!HasValue(title))
-			{
-				return;
-			}
-
-			var sample = GetSamples().FirstOrDefault(s => s.ViewType.Name.ToLowerInvariant() == title.ToLowerInvariant());
-			if (sample != null)
-			{
-				if (HasValue(design) && Enum.TryParse<Design>(design, out var designType))
-				{
-					SamplePageLayout.SetPreferredDesign(designType);
-				}
-
-				var shell = App.Instance.GetWindowShell(App.Instance.MainWindow);
-				(Application.Current as App)?.ShellNavigateTo(shell, sample);
-			}
-
-			bool HasValue(string val) =>
-				!string.IsNullOrWhiteSpace(val) && !string.Equals(UndefinedValue, val, StringComparison.OrdinalIgnoreCase);
-
-		}
 
 #if !WINDOWS
 		/// <summary>
@@ -165,109 +148,78 @@ namespace Uno.Gallery
 		}
 #endif
 
-		public void ShellNavigateTo(Shell shell, Sample sample) => ShellNavigateTo(shell, sample, trySynchronizeCurrentItem: true);
+		public void ShellNavigateTo(Shell shell, Sample sample) => shell.Navigator?.NavigateTo(sample);
 
-		private void ShellNavigateTo<TPage>(Shell shell, bool trySynchronizeCurrentItem = true) where TPage : Page
+		private void ShellNavigateTo<TPage>(Shell shell, bool trySynchronizeCurrentItem = true) where TPage : Page, new()
+		{
+			var pageType = typeof(TPage);
+			var sample = shell.Samples.FirstOrDefault(s => s.ViewType == pageType)
+				?? CreateLegacySample<TPage>();
+			shell.Navigator!.NavigateTo(sample,
+				trySynchronizeCurrentItem ? NavigationOptions.None : NavigationOptions.SkipNavSync);
+		}
+
+		private static Sample CreateLegacySample<TPage>() where TPage : Page, new()
 		{
 			var pageType = typeof(TPage);
 			var attribute = pageType.GetCustomAttribute<SamplePageAttribute>()
 				?? throw new NotSupportedException($"{pageType} isn't tagged with [{nameof(SamplePageAttribute)}].");
-			var sample = new Sample(attribute, pageType);
-
-			ShellNavigateTo(shell, sample, trySynchronizeCurrentItem);
-		}
-
-		private void ShellNavigateTo(Shell shell, Sample sample, bool trySynchronizeCurrentItem)
-		{
-			var nv = shell.NavigationView;
-			if (nv.Content?.GetType() != sample.ViewType)
-			{
-				var selected = trySynchronizeCurrentItem
-					? nv.MenuItems
-						.OfType<MUXC.NavigationViewItem>()
-						.FirstOrDefault(x => (x.DataContext as Sample)?.ViewType == sample.ViewType)
-					: default;
-				if (selected != null)
-				{
-					nv.SelectedItem = selected;
-				}
-
-				var page = (Page)Activator.CreateInstance(sample.ViewType);
-				page.DataContext = sample;
-
-#if __WASM__
-				_ = DispatcherQueue.GetForCurrentThread()?.TryEnqueue(DispatcherQueuePriority.Low, () => AnalyticsService.TrackView(sample?.Title ?? page.GetType().Name));
-#endif
-
-				shell.NavigationView.Content = page;
-			}
+			return new Sample(attribute, pageType, () => new TPage(), null);
 		}
 
 		public void SearchShellNavigateTo(Shell shell, Sample sample)
-		{
-			var nv = shell.NavigationView;
-			if (nv.Content?.GetType() == sample.ViewType)
-			{
-				return;
-			}
-
-			MUXC.NavigationViewItem selectedItem = null;
-			MUXC.NavigationViewItem selectedCategory = null;
-
-			foreach (MUXC.NavigationViewItem category in nv.MenuItems)
-			{
-				selectedItem = category.MenuItems.OfType<MUXC.NavigationViewItem>()
-					.FirstOrDefault(item => item.DataContext is Sample s && s.ViewType == sample.ViewType);
-
-				if (selectedItem != null)
-				{
-					selectedCategory = category;
-					break;
-				}
-			}
-
-			if (selectedItem is null)
-			{
-				nv.SelectedItem = nv.MenuItems[0];
-			}
-			else
-			{
-				selectedCategory.IsExpanded = true;
-				nv.UpdateLayout();
-
-				nv.SelectedItem = selectedItem;
-			}
-
-			var page = (Page)Activator.CreateInstance(sample.ViewType);
-			page.DataContext = sample;
-
-#if __WASM__
-			_ = DispatcherQueue.GetForCurrentThread()?.TryEnqueue(DispatcherQueuePriority.Low, () => AnalyticsService.TrackView(sample?.Title ?? page.GetType().Name));
-#endif
-
-			shell.NavigationView.Content = page;
-		}
+			=> shell.Navigator?.NavigateTo(sample, NavigationOptions.ExpandCategory);
 
 		private Shell BuildShell()
 		{
-			var shell = new Shell();
-			AutomationProperties.SetAutomationId(shell, "AppShell");
-			shell.RegisterPropertyChangedCallback(Shell.CurrentSampleBackdoorProperty, OnCurrentSampleBackdoorChanged);
-			var nv = shell.NavigationView;
-			AddNavigationItems(nv);
-#if __WASM__
-			if (!IsThereSampleFilteredByArgs(shell, nv))
+			var sortedSamples = GetSamples()
+				.OrderByDescending(x => x.SortOrder.HasValue)
+				.ThenBy(x => x.SortOrder)
+				.ThenBy(x => x.Title)
+#if !AOT_PROFILE_GEN && !IS_CANARY_BUILD && !DEBUG && !USE_UITESTS
+					.Where(x => x.Category != SampleCategory.Canary)
 #endif
+					.ToArray();
+
+			var shell = new Shell
 			{
-				// landing navigation
-				ShellNavigateTo<OverviewPage>(
-					shell
-#if !WINDOWS
-					// workaround for uno#5069: setting NavView.SelectedItem at launch bricks it
-					, trySynchronizeCurrentItem: false
+				Samples = sortedSamples,
+#if VISUAL_REGRESSION
+				RequestedTheme = ElementTheme.Light,
 #endif
-				);
+			};
+#if RTL_TEST_MODE
+			shell.FlowDirection = FlowDirection.RightToLeft;
+#endif
+			PerformanceMarks.Record(PerformanceMarks.ShellBuilt);
+			AutomationProperties.SetAutomationId(shell, "AppShell");
+			var nv = shell.NavigationView;
+			AddNavigationItems(nv, sortedSamples);
+			PerformanceMarks.Record(PerformanceMarks.CatalogReady);
+
+			// Navigator must be assigned before the backdoor callback fires and before initial navigation.
+			var navigator = new ShellNavigator(shell);
+			shell.Navigator = navigator;
+
+			shell.RegisterPropertyChangedCallback(Shell.CurrentSampleBackdoorProperty, OnCurrentSampleBackdoorChanged);
+#if __WASM__
+			if (!IsThereSampleFilteredByArgs(shell))
+			{
+				navigator.NavigateToOverview(NavigationOptions.SkipNavSync | NavigationOptions.SkipHistory);
+				Wasm.BrowserHistoryHandler.ReplaceState("overview", SamplePageLayout.CurrentDesign.ToString());
 			}
+			// Subscribe after initial navigation so back/forward callbacks don't fire during startup.
+			var uiQueue = DispatcherQueue.GetForCurrentThread()
+				?? throw new InvalidOperationException("BuildShell must run on the UI thread.");
+			Wasm.BrowserHistoryHandler.Subscribe(state => OnBrowserNavigated(uiQueue, navigator, state));
+#else
+			navigator.NavigateToOverview(
+#if !WINDOWS
+				// workaround for uno#5069: setting NavView.SelectedItem at launch bricks it
+				NavigationOptions.SkipNavSync
+#endif
+			);
+#endif
 
 			// navigation + setting handler
 			nv.ItemInvoked += OnNavigationItemInvoked;
@@ -275,44 +227,101 @@ namespace Uno.Gallery
 			return shell;
 		}
 #if __WASM__
-		private bool IsThereSampleFilteredByArgs(Shell shell, MUXC.NavigationView nv)
+		/// <summary>
+		/// Reads the initial URL state (hash + design query), resolves the target sample via
+		/// navigator lookup, navigates with <see cref="NavigationOptions.SkipHistory"/>, then
+		/// canonicalizes the URL with <c>replaceState</c>.
+		/// </summary>
+		/// <returns>
+		/// <see langword="true"/> when a non-overview sample was navigated to (caller must not
+		/// issue a separate NavigateToOverview call); <see langword="false"/> when the URL is
+		/// empty, is the canonical overview hash, or contains an unknown fragment (caller
+		/// should navigate to overview and canonicalize).
+		/// </returns>
+		private bool IsThereSampleFilteredByArgs(Shell shell)
 		{
-			var argumentsHash = Wasm.FragmentNavigationHandler.CurrentFragment;
-			if (argumentsHash.Contains("#"))
+			var rawHash = Wasm.BrowserHistoryHandler.GetHash();
+			var designStr = Wasm.BrowserHistoryHandler.GetDesign();
+
+			// Apply design preference before the first page is created so SamplePageLayout picks it up.
+			if (Enum.TryParse<Design>(designStr, ignoreCase: true, out var parsedDesign))
+				SamplePageLayout.SetPreferredDesign(parsedDesign);
+
+			if (string.IsNullOrWhiteSpace(rawHash) || rawHash == "overview")
+				return false;
+
+			var decoded = Uri.UnescapeDataString(rawHash);
+
+			// 1. Exact slug match — canonical new-format (#button) and case variations (#Button).
+			var sample = shell.Navigator!.FindBySlug(rawHash);
+
+			// 2. Decoded slug match — handles percent-encoded slugs (rare but safe).
+			if (sample is null && decoded != rawHash)
+				sample = shell.Navigator!.FindBySlug(decoded);
+
+			// 3. Exact title match — legacy share links use the sample title verbatim (#Text%20Box).
+			sample ??= shell.Navigator!.FindByTitle(decoded);
+
+			// 4. Case-insensitive Contains fallback — partial/legacy fragments (#Tex → "Text Box").
+			sample ??= shell.Samples.FirstOrDefault(s =>
+				s.Title.Contains(decoded, StringComparison.InvariantCultureIgnoreCase));
+
+			if (sample is not null)
 			{
-				string searchTerm = (argumentsHash + string.Empty).Replace("#", string.Empty);
-
-				foreach (MUXC.NavigationViewItem item in nv.MenuItems)
-				{
-					MUXC.NavigationViewItem? sampleItem = item.MenuItems
-						.Cast<MUXC.NavigationViewItem>()
-						.FirstOrDefault(i => i.Content?.ToString()?.Contains(searchTerm, StringComparison.InvariantCultureIgnoreCase) == true);
-
-					if (sampleItem != null)
-					{
-						ShellNavigateTo(
-							shell,
-							(Uno.Gallery.Sample)sampleItem.DataContext
-							, trySynchronizeCurrentItem: false
-						);
-						return true;
-					}
-				}
-				//If there is a Hash that is not valid, redirect it to the root of the site.
-				Wasm.LocationHrefNavigationHandler.CurrentLocationHref = "/";
+				shell.Navigator!.NavigateTo(sample, NavigationOptions.SkipNavSync | NavigationOptions.SkipHistory);
+				// Canonicalize: replace legacy title-fragment with slug, add missing design query.
+				Wasm.BrowserHistoryHandler.ReplaceState(sample.Slug, SamplePageLayout.CurrentDesign.ToString());
+				return true;
 			}
+
+			// Unknown fragment: let caller navigate to overview and canonicalize.
 			return false;
+		}
+
+		/// <summary>
+		/// Handles popstate/hashchange callbacks dispatched from <c>BrowserHistory.ts</c>.
+		/// Invoked on the UI thread by the browser event loop; <paramref name="uiQueue"/> was
+		/// captured on the UI thread at subscription time.
+		/// </summary>
+		private static void OnBrowserNavigated(DispatcherQueue uiQueue, ShellNavigator navigator, string state)
+		{
+			var nl = state.IndexOf('\n');
+			var slug = nl >= 0 ? state.Substring(0, nl) : state;
+			var designStr = nl >= 0 ? state.Substring(nl + 1) : string.Empty;
+
+			uiQueue.TryEnqueue(() =>
+			{
+				if (Enum.TryParse<Design>(designStr, ignoreCase: true, out var design))
+					SamplePageLayout.SetPreferredDesign(design);
+
+				if (string.IsNullOrWhiteSpace(slug) || slug == "overview")
+				{
+					navigator.NavigateToOverview(NavigationOptions.SkipNavSync | NavigationOptions.SkipHistory);
+				}
+				else if (!navigator.NavigateToSlug(slug, NavigationOptions.SkipNavSync | NavigationOptions.SkipHistory))
+				{
+					// Unknown slug from browser history — canonicalize to overview.
+					navigator.NavigateToOverview(NavigationOptions.SkipNavSync | NavigationOptions.SkipHistory);
+					Wasm.BrowserHistoryHandler.ReplaceState("overview", SamplePageLayout.CurrentDesign.ToString());
+				}
+			});
 		}
 #endif
 
 		private void OnCurrentSampleBackdoorChanged(DependencyObject sender, DependencyProperty dp)
 		{
 			var shell = sender as Shell ?? throw new InvalidOperationException("CurrentSampleBackdoor changed on a non-Shell object.");
+#if USE_UITESTS
+			if (TryHandleUITestBackdoor(shell))
+			{
+				return;
+			}
+#endif
 			var backdoorParts = shell.CurrentSampleBackdoor.Split("-");
 			var title = backdoorParts.FirstOrDefault();
 			var designName = backdoorParts.Length > 1 ? backdoorParts[1] : string.Empty;
 
-			var sample = GetSamples()
+			var sample = shell.Samples
 				.FirstOrDefault(x => string.Equals(x.Title, title, StringComparison.OrdinalIgnoreCase));
 
 			if (sample == null)
@@ -326,8 +335,8 @@ namespace Uno.Gallery
 				SamplePageLayout.SetPreferredDesign(design);
 			}
 
-			ShellNavigateTo<OverviewPage>(shell);
-			ShellNavigateTo(shell, sample);
+			shell.Navigator!.NavigateToOverview();
+			shell.Navigator!.NavigateTo(sample);
 		}
 
 
@@ -337,26 +346,17 @@ namespace Uno.Gallery
 			{
 				var shell = VisualTreeHelperEx.FindAncestor<Shell>(sender)
 					?? throw new InvalidOperationException("NavigationView is not inside a Shell.");
-				ShellNavigateTo(shell, sample, trySynchronizeCurrentItem: false);
+				shell.Navigator!.NavigateTo(sample, NavigationOptions.SkipNavSync);
 			}
 		}
 
-		private void AddNavigationItems(MUXC.NavigationView nv)
+		private void AddNavigationItems(MUXC.NavigationView nv, IReadOnlyList<Sample> samples)
 		{
-			var categories = GetSamples()
-				.OrderByDescending(x => x.SortOrder.HasValue)
-				.ThenBy(x => x.SortOrder)
-				.ThenBy(x => x.Title)
-				.Where(x =>
-#if AOT_PROFILE_GEN || IS_CANARY_BUILD || DEBUG
-					true
-#else
-					x.Category != SampleCategory.Canary
-#endif
-				)
-				.GroupBy(x => x.Category);
+			var categories = samples
+					.GroupBy(x => x.Category);
 
-			foreach (var category in categories.OrderBy(x => x.Key))
+			foreach (var category in categories.OrderBy(x =>
+				x.Key == SampleCategory.Canary ? int.MaxValue : (int)x.Key))
 			{
 				var tier = 1;
 
@@ -367,11 +367,13 @@ namespace Uno.Gallery
 					parentItem = new MUXC.NavigationViewItem
 					{
 						Icon = categoryInfo != null ? new FontIcon() { Glyph = categoryInfo.Glyph } : null,
-						Content = categoryInfo != null ? categoryInfo.Caption : category.Key.ToString(),
+						Content = categoryInfo != null
+							? LocalizationHelper.GetString(categoryInfo.ResourceKey, categoryInfo.Caption)
+							: category.Key.ToString(),
 						SelectsOnInvoked = false,
 						Style = (Style)Resources[$"T{tier++}NavigationViewItemStyle"]
 					}.Apply(NavViewItemVisualStateFix);
-					AutomationProperties.SetAutomationId(parentItem, "Section_" + parentItem.Content);
+					AutomationProperties.SetAutomationId(parentItem, "Category_" + category.Key);
 
 					nv.MenuItems.Add(parentItem);
 				}
@@ -410,11 +412,11 @@ namespace Uno.Gallery
 		internal async Task NavigateToAllPages()
 		{
 			var shell = GetWindowShell(MainWindow);
-			var samples = GetSamples();
+			var samples = shell.Samples;
 
 			foreach (var sample in samples)
 			{
-				ShellNavigateTo(shell, sample);
+				shell.Navigator!.NavigateTo(sample);
 
 				var tcs = new TaskCompletionSource();
 
@@ -433,7 +435,7 @@ namespace Uno.Gallery
 		/// </summary>
 		internal static void InitializeLogging()
 		{
-#if true // Force enable logging for debugging CI // DEBUG || __IOS__
+#if DEBUG || IS_CANARY_BUILD || USE_UITESTS
 			// Logging is disabled by default for release builds, as it incurs a significant
 			// initialization cost from Microsoft.Extensions.Logging setup. If startup performance
 			// is a concern for your application, keep this disabled. If you're running on web or

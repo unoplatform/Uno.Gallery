@@ -13,10 +13,14 @@ namespace Uno.Gallery
 		Droid = 1 << 3,
 		iOS = 1 << 4,
 		macOS = 1 << 5,
+		SkiaRenderer = 1 << 6,
+		NativeRenderer = 1 << 7,
+		DomRenderer = 1 << 8,
 
 		Desktop = Windows | Wasm | SkiaDesktop | macOS,
 		Mobile = Droid | iOS,
 		SkiaBased = Wasm | SkiaDesktop,
+		Renderer = SkiaRenderer | NativeRenderer | DomRenderer,
 
 		Disabled = 1U << 31,
 		Always = uint.MaxValue ^ Disabled,

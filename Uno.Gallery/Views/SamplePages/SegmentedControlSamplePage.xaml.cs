@@ -17,7 +17,13 @@ using Microsoft.UI.Xaml.Navigation;
 
 namespace Uno.Gallery.Views.SamplePages
 {
-    [SamplePage(SampleCategory.Toolkit, "SegmentedControl",
+    [SamplePage(
+#if DEBUG || IS_CANARY_BUILD || USE_UITESTS || AOT_PROFILE_GEN
+        SampleCategory.Toolkit,
+#else
+        SampleCategory.Canary,
+#endif
+        "SegmentedControl",
         SourceSdk.UnoToolkit,
         Description = "A segmented control is a Cupertino-only linear set of two or more segments, each of which functions as a mutually exclusive button.")]
     public sealed partial class SegmentedControlSamplePage : Page

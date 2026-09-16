@@ -1,0 +1,191 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gallery.platform.uno/schemas/performance/performance-config-v1.schema.json",
+  "title": "Uno Gallery runtime performance configuration",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "suiteVersion",
+    "target",
+    "viewport",
+    "browser",
+    "runs",
+    "timeouts",
+    "marks",
+    "actions"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "suiteVersion": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "target": {
+      "type": "string",
+      "minLength": 1
+    },
+    "viewport": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "width",
+        "height",
+        "deviceScaleFactor"
+      ],
+      "properties": {
+        "width": {
+          "type": "integer",
+          "minimum": 320
+        },
+        "height": {
+          "type": "integer",
+          "minimum": 320
+        },
+        "deviceScaleFactor": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        }
+      }
+    },
+    "browser": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "expectedVersion",
+        "headless",
+        "locale",
+        "timezone",
+        "colorScheme",
+        "reducedMotion",
+        "softwareRendering"
+      ],
+      "properties": {
+        "expectedVersion": {
+          "type": "string",
+          "minLength": 1
+        },
+        "headless": {
+          "type": "boolean"
+        },
+        "locale": {
+          "type": "string",
+          "minLength": 1
+        },
+        "timezone": {
+          "type": "string",
+          "minLength": 1
+        },
+        "colorScheme": {
+          "enum": [
+            "light",
+            "dark"
+          ]
+        },
+        "reducedMotion": {
+          "enum": [
+            "reduce",
+            "no-preference"
+          ]
+        },
+        "softwareRendering": {
+          "type": "boolean"
+        }
+      }
+    },
+    "runs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "cold",
+        "warm"
+      ],
+      "properties": {
+        "cold": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "warm": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "timeouts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "startupMs",
+        "actionMs"
+      ],
+      "properties": {
+        "startupMs": {
+          "type": "integer",
+          "minimum": 1000
+        },
+        "actionMs": {
+          "type": "integer",
+          "minimum": 1000
+        }
+      }
+    },
+    "marks": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "shellReady",
+        "firstInput",
+        "searchRendered",
+        "navigationRendered"
+      ],
+      "properties": {
+        "shellReady": {
+          "type": "string",
+          "minLength": 1
+        },
+        "firstInput": {
+          "type": "string",
+          "minLength": 1
+        },
+        "searchRendered": {
+          "type": "string",
+          "minLength": 1
+        },
+        "navigationRendered": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "actions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "searchSelector",
+        "searchQuery",
+        "navigationSlug",
+        "navigationDesign"
+      ],
+      "properties": {
+        "searchSelector": {
+          "type": "string",
+          "minLength": 1
+        },
+        "searchQuery": {
+          "type": "string",
+          "minLength": 1
+        },
+        "navigationSlug": {
+          "type": "string",
+          "minLength": 1
+        },
+        "navigationDesign": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}

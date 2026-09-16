@@ -3,4 +3,31 @@
 # standard @username or @org/team-name format. You can also refer to a user by an
 # email address that has been added to their GitHub account, for example user@example.com
 
+# ── Default owner: every file — more-specific rules below override it (last match wins) ──
 *                                          @unoplatform/maintainers
+
+# ── Infrastructure & source generator ───────────────────────────────────────
+Uno.Gallery.SourceGenerators/              @unoplatform/maintainers
+
+# ── Application shell, shared controls, domain entities ─────────────────────
+Uno.Gallery/App.xaml                       @unoplatform/maintainers
+Uno.Gallery/App.xaml.cs                    @unoplatform/maintainers
+Uno.Gallery/Controls/                      @unoplatform/maintainers
+Uno.Gallery/Entities/                      @unoplatform/maintainers
+Uno.Gallery/ViewModels/                    @unoplatform/maintainers
+Uno.Gallery/Views/Shell.xaml               @unoplatform/maintainers
+Uno.Gallery/Views/Shell.xaml.cs            @unoplatform/maintainers
+
+# ── Sample content (pages, XAML snippets) ───────────────────────────────────
+Uno.Gallery/Views/SamplePages/             @unoplatform/maintainers
+Uno.Gallery/Views/GeneralPages/            @unoplatform/maintainers
+
+# ── UI tests ────────────────────────────────────────────────────────────────
+Uno.Gallery.UITests/                       @unoplatform/maintainers
+
+# ── Build system and CI pipelines ───────────────────────────────────────────
+build/                                     @unoplatform/maintainers
+azure-pipelines.yml                        @unoplatform/maintainers
+
+# ── GitHub policy (workflow automation, bots, templates) ────────────────────
+.github/                                   @unoplatform/maintainers

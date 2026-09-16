@@ -1,0 +1,291 @@
+{
+  "schemaVersion": 1,
+  "features": [
+    {
+      "id": "items-repeater",
+      "disposition": "covered-core",
+      "gallerySlugs": [
+        "itemsrepeater"
+      ],
+      "owner": "unoplatform",
+      "issue": null,
+      "reason": ""
+    },
+    {
+      "id": "items-view",
+      "disposition": "covered-core",
+      "gallerySlugs": [
+        "itemsview"
+      ],
+      "owner": "unoplatform",
+      "issue": null,
+      "reason": ""
+    },
+    {
+      "id": "tab-view",
+      "disposition": "covered-core",
+      "gallerySlugs": [
+        "tabview"
+      ],
+      "owner": "unoplatform",
+      "issue": null,
+      "reason": ""
+    },
+    {
+      "id": "scroll-view",
+      "disposition": "covered-core",
+      "gallerySlugs": [
+        "scrollview"
+      ],
+      "owner": "unoplatform",
+      "issue": null,
+      "reason": ""
+    },
+    {
+      "id": "selector-bar",
+      "disposition": "covered-core",
+      "gallerySlugs": [
+        "selector-bar"
+      ],
+      "owner": "unoplatform",
+      "issue": null,
+      "reason": ""
+    },
+    {
+      "id": "animated-visual-player",
+      "disposition": "covered-core",
+      "gallerySlugs": [
+        "animated-visual-player"
+      ],
+      "owner": "unoplatform",
+      "issue": null,
+      "reason": ""
+    },
+    {
+      "id": "animated-icon",
+      "disposition": "covered-core",
+      "gallerySlugs": [
+        "animated-icon"
+      ],
+      "owner": "unoplatform",
+      "issue": null,
+      "reason": ""
+    },
+    {
+      "id": "auto-layout",
+      "disposition": "covered-core",
+      "gallerySlugs": [
+        "autolayout"
+      ],
+      "owner": "unoplatform",
+      "issue": null,
+      "reason": ""
+    },
+    {
+      "id": "drawer-control",
+      "disposition": "covered-core",
+      "gallerySlugs": [
+        "drawer"
+      ],
+      "owner": "unoplatform",
+      "issue": null,
+      "reason": ""
+    },
+    {
+      "id": "loading-view",
+      "disposition": "covered-core",
+      "gallerySlugs": [
+        "loadingview"
+      ],
+      "owner": "unoplatform",
+      "issue": null,
+      "reason": ""
+    },
+    {
+      "id": "card-content-control",
+      "disposition": "covered-core",
+      "gallerySlugs": [
+        "card-content-control"
+      ],
+      "owner": "unoplatform",
+      "issue": null,
+      "reason": ""
+    },
+    {
+      "id": "toolkit-input-extensions",
+      "disposition": "covered-core",
+      "gallerySlugs": [
+        "toolkit-extensions"
+      ],
+      "owner": "unoplatform",
+      "issue": null,
+      "reason": ""
+    },
+    {
+      "id": "toolkit-command-extensions",
+      "disposition": "covered-core",
+      "gallerySlugs": [
+        "toolkit-extensions"
+      ],
+      "owner": "unoplatform",
+      "issue": null,
+      "reason": ""
+    },
+    {
+      "id": "toolkit-resource-extensions",
+      "disposition": "covered-core",
+      "gallerySlugs": [
+        "toolkit-extensions"
+      ],
+      "owner": "unoplatform",
+      "issue": null,
+      "reason": ""
+    },
+    {
+      "id": "toolkit-visual-state-manager-extensions",
+      "disposition": "covered-core",
+      "gallerySlugs": [
+        "toolkit-extensions"
+      ],
+      "owner": "unoplatform",
+      "issue": null,
+      "reason": ""
+    },
+    {
+      "id": "toolkit-selector-extensions",
+      "disposition": "covered-core",
+      "gallerySlugs": [
+        "toolkit-extensions"
+      ],
+      "owner": "unoplatform",
+      "issue": null,
+      "reason": ""
+    },
+    {
+      "id": "toolkit-tabbar-selector-behavior",
+      "disposition": "covered-core",
+      "gallerySlugs": [
+        "toolkit-extensions"
+      ],
+      "owner": "unoplatform",
+      "issue": null,
+      "reason": ""
+    },
+    {
+      "id": "material-seed-color",
+      "disposition": "covered-core",
+      "gallerySlugs": [
+        "material-seed-color"
+      ],
+      "owner": "unoplatform",
+      "issue": null,
+      "reason": ""
+    },
+    {
+      "id": "extensions-localization",
+      "disposition": "optional-flavor",
+      "gallerySlugs": [
+        "extensions-localization"
+      ],
+      "owner": "unoplatform",
+      "issue": null,
+      "reason": "Built only with EnableExtensionsPatterns=true so the default Gallery retains its dependency graph and x:Uid sample."
+    },
+    {
+      "id": "extensions-authentication",
+      "disposition": "external-companion",
+      "gallerySlugs": [],
+      "owner": "unoplatform",
+      "issue": null,
+      "reason": "Authentication requires provider credentials and remains an external companion rather than a core Gallery dependency."
+    },
+    {
+      "id": "skcanvas-element",
+      "disposition": "optional-flavor",
+      "gallerySlugs": [
+        "skia-canvas"
+      ],
+      "owner": "unoplatform",
+      "issue": null,
+      "reason": "The skia-canvas page is compile-gated to Skia desktop and Skia WebAssembly and reports completed RenderOverride calls without claiming pixel verification."
+    },
+    {
+      "id": "composition-visuals",
+      "disposition": "optional-flavor",
+      "gallerySlugs": [
+        "composition-visuals"
+      ],
+      "owner": "unoplatform",
+      "issue": null,
+      "reason": "The sample creates and attaches a SpriteVisual on native and Skia renderers; DOM is excluded because SetElementChildVisual is a no-op there."
+    },
+    {
+      "id": "drag-drop",
+      "disposition": "covered-core",
+      "gallerySlugs": [
+        "drag-drop"
+      ],
+      "owner": "unoplatform",
+      "issue": null,
+      "reason": "The sample transfers text through XAML drag/drop and exposes the same in-app payload through a deterministic automation action."
+    },
+    {
+      "id": "system-backdrop",
+      "disposition": "optional-flavor",
+      "gallerySlugs": [
+        "windows-backdrops"
+      ],
+      "owner": "unoplatform",
+      "issue": null,
+      "reason": "The windows-backdrops page is emitted only in the Windows platform catalog and applies supported Mica or Desktop Acrylic to the existing Gallery window, clearing it on unload."
+    },
+    {
+      "id": "glcanvas-element",
+      "disposition": "docs-only",
+      "gallerySlugs": [],
+      "owner": "unoplatform",
+      "issue": null,
+      "reason": "Uno source marks its samples manual and hardware-acceleration-dependent; Gallery does not currently resolve Uno.WinUI.Graphics3DGL, so adding the feature would be a speculative package and bundle increase."
+    },
+    {
+      "id": "camera-capture",
+      "disposition": "external-companion",
+      "gallerySlugs": [],
+      "owner": "unoplatform",
+      "issue": null,
+      "reason": "A truthful camera sample requires a physical camera, runtime permission, and device automation; no deterministic device-independent Gallery result is available."
+    },
+    {
+      "id": "map-control",
+      "disposition": "external-companion",
+      "gallerySlugs": [],
+      "owner": "unoplatform",
+      "issue": null,
+      "reason": "The upstream Android sample manifest explicitly requires a Google Maps API key. Credentialed map content is outside the offline core Gallery."
+    },
+    {
+      "id": "printing",
+      "disposition": "docs-only",
+      "gallerySlugs": [],
+      "owner": "unoplatform",
+      "issue": null,
+      "reason": "The pinned source exposes PrintManager as not implemented on Android, iOS, WebAssembly, and Skia, while Windows printing needs an OS print UI and installed printer."
+    },
+    {
+      "id": "vulkan-backend",
+      "disposition": "not-applicable",
+      "gallerySlugs": [],
+      "owner": "unoplatform",
+      "issue": null,
+      "reason": "Vulkan is an experimental internal Skia host renderer backend rather than a page-level public control; renderer identity belongs in Diagnostics."
+    },
+    {
+      "id": "native-view-embedding",
+      "disposition": "external-companion",
+      "gallerySlugs": [],
+      "owner": "unoplatform",
+      "issue": null,
+      "reason": "Embedding requires target-specific native source types and separate Android/iOS heads; the current shared multi-target Gallery page cannot demonstrate one truthful common contract."
+    }
+  ]
+}

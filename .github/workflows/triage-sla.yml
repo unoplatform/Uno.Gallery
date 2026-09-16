@@ -1,0 +1,264 @@
+name: Triage SLA
+
+on:
+  schedule:
+    - cron: "17 8 * * 1-5"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+
+concurrency:
+  group: uno-gallery-triage-sla
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Audit open issues and pull requests
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issueMarker = "<!-- uno-gallery-triage-sla:issue -->";
+            const pullMarker = "<!-- uno-gallery-triage-sla:pull-request -->";
+            const needsInfoMarker = "<!-- uno-gallery-triage-sla:needs-information-closed -->";
+            const breachLabel = "triage/sla-breached";
+            const auditStart = new Date("2026-09-01T00:00:00Z");
+            const maxCommentsPerRun = 10;
+            let commentsCreated = 0;
+            const now = new Date();
+
+            function businessDaysSince(value) {
+              const start = new Date(value);
+              start.setUTCHours(0, 0, 0, 0);
+              const end = new Date(now);
+              end.setUTCHours(0, 0, 0, 0);
+              let days = 0;
+              for (const cursor = new Date(start); cursor < end; cursor.setUTCDate(cursor.getUTCDate() + 1)) {
+                const day = cursor.getUTCDay();
+                if (day !== 0 && day !== 6) {
+                  days++;
+                }
+              }
+              return days;
+            }
+
+            function calendarDaysSince(value) {
+              return Math.floor((now - new Date(value)) / 86400000);
+            }
+
+            async function ensureLabel(number, labels, shouldExist) {
+              const hasLabel = labels.includes(breachLabel);
+              if (shouldExist && !hasLabel) {
+                await github.rest.issues.addLabels({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: number,
+                  labels: [breachLabel],
+                });
+              } else if (!shouldExist && hasLabel) {
+                await github.rest.issues.removeLabel({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: number,
+                  name: breachLabel,
+                }).catch(error => {
+                  if (error.status !== 404) throw error;
+                });
+              }
+            }
+
+            async function commentOnce(number, marker, body, comments) {
+              if (comments.some(comment => comment.body?.includes(marker))) {
+                return true;
+              }
+              if (commentsCreated < maxCommentsPerRun) {
+                await github.rest.issues.createComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: number,
+                  body: `${marker}\n${body}`,
+                });
+                commentsCreated++;
+                return true;
+              }
+              return false;
+            }
+
+            const items = await github.paginate(github.rest.issues.listForRepo, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: "open",
+              per_page: 100,
+            });
+
+            const breaches = [];
+            const followUps = [];
+            const closedForNoResponse = [];
+            const errors = [];
+            for (const item of items) {
+              const labels = item.labels.map(label => typeof label === "string" ? label : label.name);
+              const age = businessDaysSince(item.created_at);
+
+              if (new Date(item.created_at) < auditStart) {
+                await ensureLabel(item.number, labels, false);
+                continue;
+              }
+
+              try {
+                if (item.pull_request) {
+                  if (item.draft === true || item.user?.type === "Bot") {
+                    await ensureLabel(item.number, labels, false);
+                    continue;
+                  }
+
+                  const [reviews, comments] = await Promise.all([
+                    github.paginate(github.rest.pulls.listReviews, {
+                      owner: context.repo.owner,
+                      repo: context.repo.repo,
+                      pull_number: item.number,
+                      per_page: 100,
+                    }),
+                    github.paginate(github.rest.issues.listComments, {
+                      owner: context.repo.owner,
+                      repo: context.repo.repo,
+                      issue_number: item.number,
+                      per_page: 100,
+                    }),
+                  ]);
+                  const maintainerAssociations = new Set(["OWNER", "MEMBER", "COLLABORATOR"]);
+                  const isMaintainerResponse = response =>
+                    response.user?.login !== item.user?.login &&
+                    response.user?.type !== "Bot" &&
+                    maintainerAssociations.has(response.author_association);
+                  const hasResponse = reviews.some(isMaintainerResponse) || comments.some(isMaintainerResponse);
+                  const breached = age > 7 && !hasResponse;
+                  await ensureLabel(item.number, labels, breached);
+                  if (breached) {
+                    breaches.push(`PR #${item.number}: no maintainer response after ${age} business days`);
+                    await commentOnce(
+                      item.number,
+                      pullMarker,
+                      "This pull request has not received a maintainer response within the seven-business-day target. Maintainers: assign a reviewer or record the blocking reason.",
+                      comments
+                    );
+                  }
+                  continue;
+                }
+
+                if (labels.includes("triage/needs-information")) {
+                  await ensureLabel(item.number, labels, false);
+                  const [events, comments] = await Promise.all([
+                    github.paginate("GET /repos/{owner}/{repo}/issues/{issue_number}/timeline", {
+                      owner: context.repo.owner,
+                      repo: context.repo.repo,
+                      issue_number: item.number,
+                      per_page: 100,
+                      headers: {
+                        accept: "application/vnd.github+json",
+                      },
+                    }),
+                    github.paginate(github.rest.issues.listComments, {
+                      owner: context.repo.owner,
+                      repo: context.repo.repo,
+                      issue_number: item.number,
+                      per_page: 100,
+                    }),
+                  ]);
+                  const labelEvent = events
+                    .filter(event => event.event === "labeled" && event.label?.name === "triage/needs-information")
+                    .sort((left, right) => new Date(left.created_at) - new Date(right.created_at))
+                    .at(-1);
+                  if (!labelEvent) {
+                    followUps.push(`Issue #${item.number}: needs-information label date could not be determined`);
+                    continue;
+                  }
+
+                  const alreadyClosedByAutomation = comments.some(comment => comment.body?.includes(needsInfoMarker));
+                  if (alreadyClosedByAutomation) {
+                    followUps.push(`Issue #${item.number}: reopened after an automated no-response closure`);
+                    continue;
+                  }
+
+                  const reporterResponded = comments.some(comment =>
+                    comment.user?.login === item.user?.login &&
+                    new Date(comment.created_at) > new Date(labelEvent.created_at)
+                  );
+                  if (reporterResponded) {
+                    followUps.push(`Issue #${item.number}: reporter responded; maintainer reevaluation required`);
+                    continue;
+                  }
+
+                  if (calendarDaysSince(labelEvent.created_at) >= 14) {
+                    const notified = await commentOnce(
+                      item.number,
+                      needsInfoMarker,
+                      "This issue is being closed because the requested information was not provided within fourteen days. Open a new issue with the missing reproduction details if the problem still occurs.",
+                      comments
+                    );
+                    if (notified) {
+                      await github.rest.issues.update({
+                        owner: context.repo.owner,
+                        repo: context.repo.repo,
+                        issue_number: item.number,
+                        state: "closed",
+                        state_reason: "not_planned",
+                      });
+                      closedForNoResponse.push(`Issue #${item.number}`);
+                    } else {
+                      followUps.push(`Issue #${item.number}: no-response closure deferred by notification limit`);
+                    }
+                  }
+                  continue;
+                }
+
+                const untriaged =
+                  labels.includes("triage/untriaged") ||
+                  !labels.some(label => label.startsWith("kind/")) ||
+                  !labels.some(label => label.startsWith("area/")) ||
+                  !labels.some(label => label.startsWith("priority/"));
+                const breached = untriaged && age > 5;
+                await ensureLabel(item.number, labels, breached);
+                if (breached) {
+                  const comments = await github.paginate(github.rest.issues.listComments, {
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    issue_number: item.number,
+                    per_page: 100,
+                  });
+                  breaches.push(`Issue #${item.number}: untriaged after ${age} business days`);
+                  await commentOnce(
+                    item.number,
+                    issueMarker,
+                    "This issue has exceeded the five-business-day classification target. Maintainers: assign kind, area, priority, owner, and milestone or document the blocking information.",
+                    comments
+                  );
+                }
+              } catch (error) {
+                errors.push(`#${item.number}: ${error.message}`);
+              }
+            }
+
+            await core.summary
+              .addHeading("Uno Gallery triage SLA")
+              .addRaw(breaches.length === 0 ? "No open SLA breaches." : breaches.map(value => `- ${value}`).join("\n"))
+              .addHeading("Reporter responses requiring follow-up", 2)
+              .addRaw(followUps.length === 0 ? "None." : followUps.map(value => `- ${value}`).join("\n"))
+              .addHeading("Closed after needs-information window", 2)
+              .addRaw(closedForNoResponse.length === 0 ? "None." : closedForNoResponse.map(value => `- ${value}`).join("\n"))
+              .addHeading("Automation errors", 2)
+              .addRaw(errors.length === 0 ? "None." : errors.map(value => `- ${value}`).join("\n"))
+              .write();
+
+            if (breaches.length > 0) {
+              core.warning(`${breaches.length} triage SLA breach(es) require maintainer action.`);
+            }
+            if (commentsCreated === maxCommentsPerRun) {
+              core.warning(`Comment limit reached; remaining notifications will be sent on a later run.`);
+            }
+            if (errors.length > 0) {
+              core.warning(`${errors.length} item(s) could not be audited; see the workflow summary.`);
+            }

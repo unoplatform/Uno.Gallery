@@ -22,6 +22,27 @@ Available on:
 - [Uno Gallery on Google Play](https://play.google.com/store/apps/details?id=com.nventive.uno.ui.demo) (Android)
 - [Uno Gallery in the App Store](https://apps.apple.com/us/app/uno-gallery/id1380984680) (iOS)
 
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for environment setup, build commands, how to add a
+sample page, and the PR / commit expectations.
+
+> **Cupertino design system:** Cupertino samples are hidden from stable Release builds and are
+> only visible in Debug, canary, and UITest configurations. See
+> [docs/decisions/0001-cupertino-containment.md](docs/decisions/0001-cupertino-containment.md)
+> for the rationale and limitations.
+
+## Maintenance and releases
+
+- [Backlog triage](docs/maintainers/backlog-triage.md)
+- [Dependency freshness policy](docs/maintainers/dependency-policy.md)
+- [Stable quality checklist](docs/releases/stable-quality-checklist.md)
+- [Compatibility matrix](docs/releases/compatibility-matrix.md)
+- [Native store delivery plan](docs/releases/native-store-delivery-plan.md)
+- [Accessibility renderer matrix](docs/accessibility/renderer-matrix.md)
+- [Localization and RTL testing](docs/localization/testing.md)
+- [Generated catalog and feature coverage](docs/catalog/README.md)
+
 ## Acknowledgments
 
 - [Uno Platform](https://platform.uno)

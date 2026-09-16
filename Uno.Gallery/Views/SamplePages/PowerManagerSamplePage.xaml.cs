@@ -10,7 +10,21 @@ using Microsoft.UI.Dispatching;
 
 namespace Uno.Gallery.Views.Samples
 {
-	[SamplePage(SampleCategory.NonUIFeatures, "Power Manager", Description = "Provides access to information about a device's battery and power supply status.", DocumentationLink = "https://learn.microsoft.com/en-us/uwp/api/windows.system.power.powermanager")]
+	[SamplePage(SampleCategory.NonUIFeatures, "Power Manager",
+		Description = "Provides access to information about a device's battery and power supply status.",
+		DocumentationLink = "https://learn.microsoft.com/en-us/uwp/api/windows.system.power.powermanager",
+		Tags = new[] { "power", "battery", "energy-saver", "device" },
+		Status = SampleStatus.Stable,
+		ContractVersion = 1,
+		SupportedDesigns = SampleDesigns.Agnostic,
+		SupportedRenderers = SampleRenderers.Native | SampleRenderers.Skia,
+		Requirements = new[] { "Requires a supported Windows, Android, or iOS device power-status API." },
+		AccessibilityNotes = new[] { "The monitoring button is labeled and every battery, power-supply, and charge value is exposed as text." },
+		ResetBehavior = "Use the monitoring button to stop updates; reopening the page creates a fresh page-local power view model.",
+		Variants = new[] { "Static power snapshot", "Live power-status monitoring" },
+		KnownLimitations = new[] { "Remaining discharge time is shown only on Windows where the API is available." },
+		Owner = "unoplatform",
+		ReviewedOn = "2026-08-27")]
 	[SampleConditional(SampleConditionals.Mobile | SampleConditionals.Windows, Reason = "PowerManager is currently only implemented on Android and iOS")]
 	public sealed partial class PowerManagerSamplePage : Page
 	{

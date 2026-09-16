@@ -9,6 +9,23 @@ updates:
   labels:
   - kind/dependency
   - do-not-merge/work-in-progress
+  groups:
+    uno-platform:
+      patterns:
+      - "Uno.*"
+    test-tooling:
+      patterns:
+      - "*Test*"
+      - "NUnit*"
+      - "Xamarin.UITest"
+    microsoft-dotnet:
+      patterns:
+      - "Microsoft.*"
+      - "System.*"
+    community-toolkits:
+      patterns:
+      - "CommunityToolkit.*"
+      - "SkiaSharp*"
   ignore:
   - dependency-name: Xamarin.UITest
     versions:
@@ -42,3 +59,13 @@ updates:
   - dependency-name: Microsoft.NETCore.UniversalWindowsPlatform
     versions:
     - 6.2.11
+
+- package-ecosystem: github-actions
+  directory: "/"
+  schedule:
+    interval: weekly
+    time: "01:30"
+  open-pull-requests-limit: 5
+  labels:
+  - kind/dependency
+  - area/automation

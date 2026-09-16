@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gallery.platform.uno/schemas/performance/wasm-bundle-metrics-v1.schema.json",
+  "title": "Uno Gallery WebAssembly bundle metrics",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "generatedAt",
+    "buildCommit",
+    "target",
+    "flavor",
+    "metrics"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "generatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "buildCommit": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[0-9a-f]{7,40}$"
+    },
+    "target": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$"
+    },
+    "flavor": {
+      "enum": [
+        "core",
+        "instrumented",
+        "extensions",
+        "visual"
+      ]
+    },
+    "metrics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "fileCount",
+        "rawPayloadBytes",
+        "precompressedBrotliBytes",
+        "estimatedBrotliTransferBytes",
+        "dotnetNativeWasmBytes",
+        "dotnetNativeBrotliBytes",
+        "managedWebcilBytes"
+      ],
+      "properties": {
+        "fileCount": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "rawPayloadBytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "precompressedBrotliBytes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "estimatedBrotliTransferBytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "dotnetNativeWasmBytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "dotnetNativeBrotliBytes": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1
+        },
+        "managedWebcilBytes": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    }
+  }
+}
