@@ -1,4 +1,4 @@
-﻿<Project Sdk="Uno.Sdk">
+<Project Sdk="Uno.Sdk">
 	<PropertyGroup>
 		<!-- Building with dotnet build -f net10.0-platform will still cause restore to happen for all TargetFrameworks -->
 		<!-- which will force us to install all workloads even if not needed -->
@@ -80,6 +80,12 @@
 		<UnoFeatures Condition="$(IsSkiaAndroid)">$(UnoFeatures)SkiaRenderer;</UnoFeatures>
 		<UnoFeatures Condition="$(IsSkiaUIKit)">$(UnoFeatures)SkiaRenderer;</UnoFeatures>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<!-- Uno 7.0 migration: the SDK-pinned Uno.UI.HotDesign is a 6.x build (UNOB0023) -->
+		<UnoDisableHotDesign>true</UnoDisableHotDesign>
+		<!-- Uno 7.0 migration: the SDK-pinned Uno.UI.App.Mcp 2.0.0-dev.5 binds to the removed Uno/Uno.UI.Toolkit assemblies -->
+		<UnoAppMcpVersion>2.0.0-dev.6</UnoAppMcpVersion>
+		<!-- Uno 7.0 migration: CS1705, Uno binaries need WinRT.Runtime 2.3.1 (unoplatform/uno#24905) -->
+		<WindowsSdkPackageVersion Condition="'$(TargetFramework)'=='net10.0-windows10.0.19041'">10.0.19041.87</WindowsSdkPackageVersion>
 		<DefineConstants Condition="$(IsSkiaWasm)">$(DefineConstants);IS_WASM_SKIA</DefineConstants>
 		<DefineConstants Condition="$(IsSkiaAndroid)">$(DefineConstants);IS_ANDROID_SKIA</DefineConstants>
 		<DefineConstants Condition="$(IsSkiaUIKit)">$(DefineConstants);IS_UIKIT_SKIA</DefineConstants>
@@ -153,10 +159,13 @@
 
 	</PropertyGroup>
 	
-	<ItemGroup Condition="'$(TargetFramework)'!='net10.0-windows10.0.19041'">
-		<PackageReference Include="Uno.CommunityToolkit.WinUI.UI.Controls" />
-		<PackageReference Include="Uno.CommunityToolkit.WinUI.UI.Controls.DataGrid" />
-	</ItemGroup>
+	<!-- Uno 7.0 migration: no Uno.CommunityToolkit.WinUI build targets Uno 7.0, so its DataGrid sample is Windows-only -->
+	<Target Name="RemoveDataGridSample" BeforeTargets="PrepareForBuild" Condition="'$(TargetFramework)'!='net10.0-windows10.0.19041'">
+		<ItemGroup>
+			<Compile Remove="Views\SamplePages\DataGridSamplePage.xaml.cs" />
+			<Page Remove="Views\SamplePages\DataGridSamplePage.xaml" />
+		</ItemGroup>
+	</Target>
 
 	<ItemGroup Condition="'$(TargetFramework)'=='net10.0-windows10.0.19041'">
 		<PackageReference Include="CommunityToolkit.WinUI.Lottie" />

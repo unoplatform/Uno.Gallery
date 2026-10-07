@@ -7,7 +7,6 @@
 	  xmlns:local="using:Uno.Gallery"
 	  xmlns:smtx="using:ShowMeTheXAML"
 	  xmlns:utu="using:Uno.Toolkit.UI"
-	  xmlns:toolkit="using:Uno.UI.Toolkit"
 	  xmlns:not_win="http://uno.ui/not_win"
 	  mc:Ignorable="d not_win"
 	  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
