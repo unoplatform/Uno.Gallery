@@ -1,4 +1,4 @@
-<Page x:Class="Uno.Gallery.Views.GeneralPages.OverviewPage"
+﻿<Page x:Class="Uno.Gallery.Views.GeneralPages.OverviewPage"
 	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	  xmlns:gallery="using:Uno.Gallery.Views.GeneralPages"

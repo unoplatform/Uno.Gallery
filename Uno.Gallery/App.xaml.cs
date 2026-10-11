@@ -90,7 +90,7 @@ namespace Uno.Gallery
 		{
 			MainWindow = new Window();
 
-#if DEBUG && USE_HOTDESIGN // Uno 7.0 migration: UseStudio ships in Uno.UI.HotDesign, which has no 7.0 build yet
+#if DEBUG
 			MainWindow.UseStudio();
 #endif
 

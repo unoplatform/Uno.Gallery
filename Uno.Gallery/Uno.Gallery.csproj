@@ -80,12 +80,10 @@
 		<UnoFeatures Condition="$(IsSkiaAndroid)">$(UnoFeatures)SkiaRenderer;</UnoFeatures>
 		<UnoFeatures Condition="$(IsSkiaUIKit)">$(UnoFeatures)SkiaRenderer;</UnoFeatures>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-		<!-- Uno 7.0 migration: the SDK-pinned Uno.UI.HotDesign is a 6.x build (UNOB0023) -->
-		<UnoDisableHotDesign>true</UnoDisableHotDesign>
-		<!-- Uno 7.0 migration: the SDK-pinned Uno.UI.App.Mcp 2.0.0-dev.5 binds to the removed Uno/Uno.UI.Toolkit assemblies -->
-		<UnoAppMcpVersion>2.0.0-dev.6</UnoAppMcpVersion>
 		<!-- Uno 7.0 migration: CS1705, Uno binaries need WinRT.Runtime 2.3.1 (unoplatform/uno#24905) -->
 		<WindowsSdkPackageVersion Condition="'$(TargetFramework)'=='net10.0-windows10.0.19041'">10.0.19041.87</WindowsSdkPackageVersion>
+		<!-- Uno 7.0 migration: Debug WinAppSDK builds fail with MSB4057 in Uno.UI.HotDesign.props (unoplatform/uno#24983) -->
+		<HotDesignUnoAssets Condition="'$(TargetFramework)'=='net10.0-windows10.0.19041'">-</HotDesignUnoAssets>
 		<DefineConstants Condition="$(IsSkiaWasm)">$(DefineConstants);IS_WASM_SKIA</DefineConstants>
 		<DefineConstants Condition="$(IsSkiaAndroid)">$(DefineConstants);IS_ANDROID_SKIA</DefineConstants>
 		<DefineConstants Condition="$(IsSkiaUIKit)">$(DefineConstants);IS_UIKIT_SKIA</DefineConstants>
