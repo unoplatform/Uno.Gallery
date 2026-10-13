@@ -1,6 +1,6 @@
 jobs:
-- job: Android_Skia_NativeAOT_Instrumentation_Build
-  displayName: 'Build Android+Skia+NativeAOT Instrumentation APK'
+- job: Android_NativeAOT_Instrumentation_Build
+  displayName: 'Build Android+NativeAOT Instrumentation APK'
   timeoutInMinutes: 90
   variables:
     CI_Build: true
@@ -26,7 +26,7 @@ jobs:
   - bash: |
       chmod +x $(build.sourcesdirectory)/build/scripts/android-uitest-build.sh
       NAOT=1 $(build.sourcesdirectory)/build/scripts/android-uitest-build.sh
-    displayName: 'Build Android+Skia+NativeAOT APK'
+    displayName: 'Build Android+NativeAOT APK'
     env:
       BUILD_SOURCESDIRECTORY: "$(build.sourcesdirectory)"
       BUILD_ARTIFACTSTAGINGDIRECTORY: "$(build.artifactstagingdirectory)"
@@ -49,11 +49,11 @@ jobs:
       TargetFolder: $(Build.ArtifactStagingDirectory)
 
   - publish: $(Build.ArtifactStagingDirectory)
-    artifact: Android_Skia_NativeAOT_Instrumentation
+    artifact: Android_NativeAOT_Instrumentation
 
-- job: Android_Skia_NativeAOT_Instrumentation_Run
-  displayName: 'Run Android+Skia+NativeAOT Instrumentation Test'
-  dependsOn: Android_Skia_NativeAOT_Instrumentation_Build
+- job: Android_NativeAOT_Instrumentation_Run
+  displayName: 'Run Android+NativeAOT Instrumentation Test'
+  dependsOn: Android_NativeAOT_Instrumentation_Build
   timeoutInMinutes: 90
   variables:
     CI_Build: true
@@ -68,7 +68,7 @@ jobs:
     persistCredentials: true
 
   - download: current
-    artifact: Android_Skia_NativeAOT_Instrumentation
+    artifact: Android_NativeAOT_Instrumentation
 
   - task: UseDotNet@2
     displayName: 'Ensure .NET SDK 10.0.102 for canary'
@@ -88,10 +88,10 @@ jobs:
         brew install coreutils
 
   - bash: |
-      export UNO_TEST_ANDROIDAPK_BASEPATH="$(Pipeline.Workspace)/Android_Skia_NativeAOT_Instrumentation"
+      export UNO_TEST_ANDROIDAPK_BASEPATH="$(Pipeline.Workspace)/Android_NativeAOT_Instrumentation"
       chmod +x "$(build.sourcesdirectory)/build/scripts/android-test-run.sh"
       "$(build.sourcesdirectory)/build/scripts/android-test-run.sh"
-    displayName: 'Run Android+Skia+NativeAOT Instrumentation Test'
+    displayName: 'Run Android+NativeAOT Instrumentation Test'
     env:
       BUILD_SOURCESDIRECTORY: "$(build.sourcesdirectory)"
       BUILD_ARTIFACTSTAGINGDIRECTORY: "$(build.artifactstagingdirectory)"

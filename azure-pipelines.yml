@@ -229,8 +229,8 @@ stages:
   jobs:
   - template: build/stage-uitests-android.yml
 
-- stage: Android_Skia_NativeAOT_Instrumentation_Tests
-  displayName: 'Android+Skia+NativeAOT Instrumentation Tests'
+- stage: Android_NativeAOT_Instrumentation_Tests
+  displayName: 'Android+NativeAOT Instrumentation Tests'
   dependsOn: []
   jobs:
   - template: build/stage-tests-android.yml
