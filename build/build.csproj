@@ -58,7 +58,6 @@
 			<_SourceBasePath>$(MSBuildThisFileDirectory)../$(AppName)</_SourceBasePath>
 			<_AppxManifestPath>$(_SourceBasePath)/Package.appxmanifest</_AppxManifestPath>
 			<_MobileAndroidManifestPath>$(_SourceBasePath)/Platforms/Android/AndroidManifest.xml</_MobileAndroidManifestPath>
-			<_catalystPlistFilePath>$(_SourceBasePath)/Platforms/MacCatalyst/Info.plist</_catalystPlistFilePath>
 			<_MobileiOSPlistFilePath>$(_SourceBasePath)/Platforms/iOS/Info.plist</_MobileiOSPlistFilePath>
 
 			<_AndroidNamespace>
@@ -74,32 +73,23 @@
 
 		<!-- Android -->
 		<XmlPoke 
+			Condition="Exists('$(_MobileAndroidManifestPath)')"
             XmlInputPath="$(_MobileAndroidManifestPath)"
             Query="/manifest/@android:versionName"
             Value="$(_AppVersion)"
             Namespaces="$(_AndroidNamespace)" />
 
 		<XmlPoke 
+			Condition="Exists('$(_MobileAndroidManifestPath)')"
             XmlInputPath="$(_MobileAndroidManifestPath)"
             Query="/manifest/@android:versionCode"
             Value="$(_VersionCode)"
             Namespaces="$(_AndroidNamespace)" />
 
-		<!-- catalyst -->
-		<!-- Using our own _XmlUpdate instead of XmlPoke to avoid unecessary (and possibly breaking) changes in the plist -->
-		<_XmlUpdate 
-            XmlFileName="$(_catalystPlistFilePath)"
-            XPath="//plist/dict/key[text() = 'CFBundleShortVersionString']/following-sibling::string[1]"
-            Value="$(_AppVersion)" />
-
-		<_XmlUpdate 
-            XmlFileName="$(_catalystPlistFilePath)"
-            XPath="//plist/dict/key[text() = 'CFBundleVersion']/following-sibling::string[1]"
-            Value="$(_AppleBuildNumber)" />
-
 		<!-- iOS -->
 		<!-- Using our own _XmlUpdate instead of XmlPoke to avoid unecessary (and possibly breaking) changes in the plist -->
-		<_XmlUpdate 
+		<_XmlUpdate
+			Condition="Exists('$(_MobileiOSPlistFilePath)')"
             XmlFileName="$(_MobileiOSPlistFilePath)"
             XPath="//plist/dict/key[text() = 'CFBundleShortVersionString']/following-sibling::string[1]"
             Value="$(_AppVersion)" />
