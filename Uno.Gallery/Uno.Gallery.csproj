@@ -19,11 +19,6 @@
 		<PublishAot Condition=" '$(PublishAot)' == '' And '$(SkiaPublishAot)' != '' ">$(SkiaPublishAot)</PublishAot>
 		<IsAotCompatible Condition=" '$(IsAotCompatible)' == '' And '$(PublishAot)' == 'true' ">true</IsAotCompatible>
 
-		<!--
-		Uncomment to use Native rendering for iOS/Android/Wasm
-		<UseNativeRendering>true</UseNativeRendering>
-		-->
-		
 		<OutputType>Exe</OutputType>
 		<UnoSingleProject>true</UnoSingleProject>
 		<!-- Display name -->
@@ -33,11 +28,8 @@
 		<!-- App Identifier -->
 		<ApplicationId>uno.platform.gallery</ApplicationId>
 
-		<ApplicationId Condition=" '$(TargetFramework)' == 'net10.0-android' AND '$(UseNativeRendering)' != 'true' ">com.nventive.uno.ui.demo</ApplicationId>
-		<ApplicationId Condition=" '$(TargetFramework)' == 'net10.0-android' AND '$(UseNativeRendering)' == 'true' ">uno.platform.gallery_native</ApplicationId>
-
-		<ApplicationId Condition=" '$(TargetFramework)' == 'net10.0-ios' AND '$(UseNativeRendering)' != 'true' ">com.nventive.uno.gallery</ApplicationId>
-		<ApplicationId Condition=" '$(TargetFramework)' == 'net10.0-ios' AND '$(UseNativeRendering)' == 'true' ">uno.platform.gallery.native</ApplicationId>
+		<ApplicationId Condition=" '$(TargetFramework)' == 'net10.0-android' ">com.nventive.uno.ui.demo</ApplicationId>
+		<ApplicationId Condition=" '$(TargetFramework)' == 'net10.0-ios' ">com.nventive.uno.gallery</ApplicationId>
 
 		<ApplicationId Condition=" '$(ApplicationIdVendorSuffix)' != '' ">$(ApplicationId)$(ApplicationIdVendorSuffix)</ApplicationId>
 
@@ -60,11 +52,11 @@
 		https://aka.platform.uno/singleproject-features
 		-->
 	
-		<IsSkiaWasm Condition="'$(UseNativeRendering)'!='true' AND '$(TargetFramework)'=='net10.0-browserwasm'">true</IsSkiaWasm>
+		<IsSkiaWasm Condition="'$(TargetFramework)'=='net10.0-browserwasm'">true</IsSkiaWasm>
 		<IsSkiaWasm Condition="'$(IsSkiaWasm)'==''">false</IsSkiaWasm>
-		<IsSkiaAndroid Condition="'$(UseNativeRendering)'!='true' AND '$(TargetFramework)'=='net10.0-android'">true</IsSkiaAndroid>
+		<IsSkiaAndroid Condition="'$(TargetFramework)'=='net10.0-android'">true</IsSkiaAndroid>
 		<IsSkiaAndroid Condition="'$(IsSkiaAndroid)'==''">false</IsSkiaAndroid>
-		<IsSkiaUIKit Condition="'$(UseNativeRendering)'!='true' AND '$(TargetFramework)'=='net10.0-ios'">true</IsSkiaUIKit>
+		<IsSkiaUIKit Condition="'$(TargetFramework)'=='net10.0-ios'">true</IsSkiaUIKit>
 		<IsSkiaUIKit Condition="'$(IsSkiaUIKit)'==''">false</IsSkiaUIKit>
 		<UnoFeatures>
 			Material;
@@ -87,7 +79,7 @@
 		<DefineConstants Condition="$(IsSkiaWasm)">$(DefineConstants);IS_WASM_SKIA</DefineConstants>
 		<DefineConstants Condition="$(IsSkiaAndroid)">$(DefineConstants);IS_ANDROID_SKIA</DefineConstants>
 		<DefineConstants Condition="$(IsSkiaUIKit)">$(DefineConstants);IS_UIKIT_SKIA</DefineConstants>
-		<DefineConstants Condition="'$(UseNativeRendering)'!='true'">$(DefineConstants);HAS_SKIA_RENDERER</DefineConstants>
+		<DefineConstants>$(DefineConstants);HAS_SKIA_RENDERER</DefineConstants>
 
 		<DefineConstants Condition="$(BUILD_SOURCEBRANCH.StartsWith('refs/heads/canaries'))">$(DefineConstants);IS_CANARY_BUILD</DefineConstants>
 	</PropertyGroup>
@@ -196,8 +188,7 @@
 	</ItemGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='Release' and '$(WasmShellMonoRuntimeExecutionMode)'=='InterpreterAndAOT'">
-		<WasmAotFileName Condition="'$(IsUiAutomationMappingEnabled)'=='' AND '$(UseNativeRendering)' == 'true' ">aot.profile</WasmAotFileName>
-		<WasmAotFileName Condition="'$(IsUiAutomationMappingEnabled)'=='' AND '$(UseNativeRendering)' != 'true' ">aot-skiawasm.profile</WasmAotFileName>
+		<WasmAotFileName Condition="'$(IsUiAutomationMappingEnabled)'==''">aot-skiawasm.profile</WasmAotFileName>
 
 		<!--
 		Use smaller profile for UI tests to avoid the browser's memory
