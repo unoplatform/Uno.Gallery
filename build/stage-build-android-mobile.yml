@@ -20,13 +20,13 @@ steps:
 
 - script: |
     cd $(build.sourcesdirectory)/Uno.Gallery
-    dotnet publish -f:net10.0-android -p:TargetFrameworkOverride=net10.0-android -c:Release -p:UseNativeRendering=$(UseNativeRendering) "/p:InformationalVersion=$(NBGV_InformationalVersion)" /p:AndroidSigningKeyStore=$(keyStore.secureFilePath) /p:AndroidSigningStorePass=$(AndroidSigningStorePass) /p:AndroidSigningKeyPass=$(AndroidSigningKeyPass) /p:AndroidSigningKeyAlias=$(AndroidSigningKeyAlias) /p:AndroidKeyStore=true /bl:$(build.artifactstagingdirectory)/build-$(BuildForPlayStore).binlog
+    dotnet publish -f:net10.0-android -p:TargetFrameworkOverride=net10.0-android -c:Release "/p:InformationalVersion=$(NBGV_InformationalVersion)" /p:AndroidSigningKeyStore=$(keyStore.secureFilePath) /p:AndroidSigningStorePass=$(AndroidSigningStorePass) /p:AndroidSigningKeyPass=$(AndroidSigningKeyPass) /p:AndroidSigningKeyAlias=$(AndroidSigningKeyAlias) /p:AndroidKeyStore=true /bl:$(build.artifactstagingdirectory)/build-$(BuildForPlayStore).binlog
   displayName: 'Build Android Package'
   condition: and(succeeded(), eq(variables['System.PullRequest.IsFork'],'False'))
 
 - script: |
     cd $(build.sourcesdirectory)/Uno.Gallery
-    dotnet publish -f:net10.0-android -p:TargetFrameworkOverride=net10.0-android -c:Release -p:UseNativeRendering=$(UseNativeRendering) "/p:InformationalVersion=$(NBGV_InformationalVersion)" /p:AndroidKeyStore=False /bl:$(build.artifactstagingdirectory)/build-$(BuildForPlayStore).binlog
+    dotnet publish -f:net10.0-android -p:TargetFrameworkOverride=net10.0-android -c:Release "/p:InformationalVersion=$(NBGV_InformationalVersion)" /p:AndroidKeyStore=False /bl:$(build.artifactstagingdirectory)/build-$(BuildForPlayStore).binlog
   displayName: 'Build Android Package (Fork)'
   condition: and(succeeded(), eq(variables['System.PullRequest.IsFork'],'True'))
 
@@ -48,14 +48,14 @@ steps:
 - script: |
     cd $(build.sourcesdirectory)/Uno.Gallery
     git clean -xdf .
-    dotnet publish -m:1 -f:net10.0-android -p:TargetFrameworkOverride=net10.0-android -c:Release -r android-x64 -p:SkiaPublishAot=true "-p:ApplicationTitleVendorSuffix= (NAOT)" -p:ApplicationIdVendorSuffix=.naot -p:UseNativeRendering=$(UseNativeRendering) "/p:InformationalVersion=$(NBGV_InformationalVersion)" /p:AndroidSigningKeyStore=$(keyStore.secureFilePath) /p:AndroidSigningStorePass=$(AndroidSigningStorePass) /p:AndroidSigningKeyPass=$(AndroidSigningKeyPass) /p:AndroidSigningKeyAlias=$(AndroidSigningKeyAlias) /p:AndroidKeyStore=true /bl:$(build.artifactstagingdirectory)/build-naot-$(BuildForPlayStore).binlog
+    dotnet publish -m:1 -f:net10.0-android -p:TargetFrameworkOverride=net10.0-android -c:Release -r android-x64 -p:SkiaPublishAot=true "-p:ApplicationTitleVendorSuffix= (NAOT)" -p:ApplicationIdVendorSuffix=.naot "/p:InformationalVersion=$(NBGV_InformationalVersion)" /p:AndroidSigningKeyStore=$(keyStore.secureFilePath) /p:AndroidSigningStorePass=$(AndroidSigningStorePass) /p:AndroidSigningKeyPass=$(AndroidSigningKeyPass) /p:AndroidSigningKeyAlias=$(AndroidSigningKeyAlias) /p:AndroidKeyStore=true /bl:$(build.artifactstagingdirectory)/build-naot-$(BuildForPlayStore).binlog
   displayName: 'Build Android+NativeAOT Package'
   condition: and(succeeded(), eq(variables['System.PullRequest.IsFork'],'False'))
 
 - script: |
     cd $(build.sourcesdirectory)/Uno.Gallery
     git clean -xdf .
-    dotnet publish -m:1 -f:net10.0-android -p:TargetFrameworkOverride=net10.0-android -c:Release -r android-x64 -p:SkiaPublishAot=true "-p:ApplicationTitleVendorSuffix= (NAOT)" -p:ApplicationIdVendorSuffix=.naot -p:UseNativeRendering=$(UseNativeRendering) "/p:InformationalVersion=$(NBGV_InformationalVersion)" /p:AndroidKeyStore=False /bl:$(build.artifactstagingdirectory)/build-naot-$(BuildForPlayStore).binlog
+    dotnet publish -m:1 -f:net10.0-android -p:TargetFrameworkOverride=net10.0-android -c:Release -r android-x64 -p:SkiaPublishAot=true "-p:ApplicationTitleVendorSuffix= (NAOT)" -p:ApplicationIdVendorSuffix=.naot "/p:InformationalVersion=$(NBGV_InformationalVersion)" /p:AndroidKeyStore=False /bl:$(build.artifactstagingdirectory)/build-naot-$(BuildForPlayStore).binlog
   displayName: 'Build Android+NativeAOT Package (Fork)'
   condition: and(succeeded(), eq(variables['System.PullRequest.IsFork'],'True'))
 
@@ -76,4 +76,4 @@ steps:
   retryCountOnTaskFailure: 3
   condition: always()
   inputs:
-    ArtifactName: android-mobile-$(VariantName)
+    ArtifactName: android-mobile

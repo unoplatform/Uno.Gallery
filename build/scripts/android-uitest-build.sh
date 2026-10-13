@@ -58,7 +58,7 @@ fi
 if [ "${SKIA:-0}" = "1" ]; then
 	publish_extra+=("-p:UseSkiaRendering=true")
 else
-	publish_extra+=("-p:UseNativeRendering=true" "/p:IsUiAutomationMappingEnabled=true")
+	publish_extra+=("/p:IsUiAutomationMappingEnabled=true")
 fi
 
 dotnet publish -f net10.0-android -p:TargetFrameworkOverride=net10.0-android "${publish_extra[@]}" \
