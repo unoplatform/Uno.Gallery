@@ -69,7 +69,7 @@ stages:
     - group: 'UADO Keystore' # Import all variables for the signing from the library in azure devops
 
     steps:
-    - template: build/stage-build-android-mobile.yml
+    - template: build/stage-build-android.yml
 
 
 - stage: Windows
@@ -110,7 +110,7 @@ stages:
     - group: 'UADO Keystore' # Import all variables for the signing from the library in azure devops
   
     steps:
-    - template: build/stage-build-skia-desktop.yml
+    - template: build/stage-build-desktop.yml
 
 - stage: Apple
   displayName: 'Apple'
@@ -188,7 +188,7 @@ stages:
       parameters:
         xCodeRoot: $(XCODE_ROOT)
   
-    - template: build/stage-build-mobile.yml
+    - template: build/stage-build-ios.yml
 
 - stage: WebAssembly
   displayName: 'WebAssembly'
