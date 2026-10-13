@@ -14,8 +14,6 @@
 			net10.0-browserwasm;
 		</TargetFrameworks>
 
-		<PublishAot Condition=" '$(PublishAot)' == '' And '$(SkiaPublishAot)' == 'true' And $([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios' ">true</PublishAot>
-		<PublishAot Condition=" '$(PublishAot)' == '' And '$(SkiaPublishAot)' == 'true' And $([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst' ">true</PublishAot>
 		<PublishAot Condition=" '$(PublishAot)' == '' And '$(SkiaPublishAot)' != '' ">$(SkiaPublishAot)</PublishAot>
 		<IsAotCompatible Condition=" '$(IsAotCompatible)' == '' And '$(PublishAot)' == 'true' ">true</IsAotCompatible>
 
