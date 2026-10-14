@@ -13,7 +13,7 @@ namespace Uno.Gallery.Droid
 		HardwareAccelerated = true,
 		Theme = "@style/AppTheme"
 	)]
-	public class Application : Microsoft.UI.Xaml.NativeApplication
+	public class Application : Uno.UI.Runtime.Android.NativeApplication
 	{
 		[DynamicDependency(DynamicallyAccessedMemberTypes.All, "Android.Text.ITextWatcherInvoker", "Mono.Android")] // xamarin/xamarin-android#7097
 		public Application(IntPtr javaReference, JniHandleOwnership transfer)
