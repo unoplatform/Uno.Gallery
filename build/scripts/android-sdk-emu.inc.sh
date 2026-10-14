@@ -101,7 +101,7 @@ install_android_sdk() {
 	if [[ ! -f "$SDK_MGR_TOOLS_FLAG" ]]; then
 		touch "$SDK_MGR_TOOLS_FLAG"
 
-		sdkmanager_install 'tools'
+		sdkmanager_install 'emulator'
 		sdkmanager_install 'platform-tools'
 		sdkmanager_install 'build-tools;36.0.0'
 		sdkmanager_install 'extras;android;m2repository'
