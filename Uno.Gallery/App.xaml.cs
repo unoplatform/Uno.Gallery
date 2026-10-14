@@ -98,11 +98,6 @@ namespace Uno.Gallery
 
 			if (isFirstLaunch)
 			{
-#if __IOS__ && USE_UITESTS && !__MACCATALYST__ && !DEBUG
-				// requires Xamarin Test Cloud Agent
-				Xamarin.Calabash.Start();
-#endif
-
 				InitializeWindow(MainWindow);
 			}
 
@@ -252,7 +247,6 @@ namespace Uno.Gallery
 		{
 			var shell = new Shell();
 			AutomationProperties.SetAutomationId(shell, "AppShell");
-			shell.RegisterPropertyChangedCallback(Shell.CurrentSampleBackdoorProperty, OnCurrentSampleBackdoorChanged);
 			var nv = shell.NavigationView;
 			AddNavigationItems(nv);
 #if __WASM__
@@ -304,31 +298,6 @@ namespace Uno.Gallery
 			return false;
 		}
 #endif
-
-		private void OnCurrentSampleBackdoorChanged(DependencyObject sender, DependencyProperty dp)
-		{
-			var shell = sender as Shell ?? throw new InvalidOperationException("CurrentSampleBackdoor changed on a non-Shell object.");
-			var backdoorParts = shell.CurrentSampleBackdoor.Split("-");
-			var title = backdoorParts.FirstOrDefault();
-			var designName = backdoorParts.Length > 1 ? backdoorParts[1] : string.Empty;
-
-			var sample = GetSamples()
-				.FirstOrDefault(x => string.Equals(x.Title, title, StringComparison.OrdinalIgnoreCase));
-
-			if (sample == null)
-			{
-				this.Log().Warn($"No SampleAttribute found with a Title that matches: {shell.CurrentSampleBackdoor}");
-				return;
-			}
-
-			if (Enum.TryParse<Design>(designName, out var design))
-			{
-				SamplePageLayout.SetPreferredDesign(design);
-			}
-
-			ShellNavigateTo<OverviewPage>(shell);
-			ShellNavigateTo(shell, sample);
-		}
 
 
 		private void OnNavigationItemInvoked(MUXC.NavigationView sender, MUXC.NavigationViewItemInvokedEventArgs e)

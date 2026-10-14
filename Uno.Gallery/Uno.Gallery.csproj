@@ -83,9 +83,8 @@
 
 		<DefineConstants Condition="$(BUILD_SOURCEBRANCH.StartsWith('refs/heads/canaries'))">$(DefineConstants);IS_CANARY_BUILD</DefineConstants>
 	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)'=='Debug' or '$(IsUiAutomationMappingEnabled)'=='True'">
+	<PropertyGroup Condition="'$(Configuration)'=='Debug'">
 		<IsUiAutomationMappingEnabled>True</IsUiAutomationMappingEnabled>
-		<DefineConstants>$(DefineConstants);USE_UITESTS</DefineConstants>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -119,13 +118,6 @@
 
 	<ItemGroup Condition=" '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'ios' ">
 		<TrimmerRootDescriptor Include="Platforms/iOS/LinkerConfig.xml"/>
-	</ItemGroup>
-
-	<ItemGroup Condition="
-			   ('$(Configuration)'=='Debug' or '$(IsUiAutomationMappingEnabled)'=='True')
-			   AND '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'ios'
-			   ">
-		<PackageReference Include="Xamarin.TestCloud.Agent" />
 	</ItemGroup>
 
 	<PropertyGroup Condition=" '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'browserwasm' ">
@@ -188,14 +180,7 @@
 	</ItemGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='Release' and '$(WasmShellMonoRuntimeExecutionMode)'=='InterpreterAndAOT'">
-		<WasmAotFileName Condition="'$(IsUiAutomationMappingEnabled)'==''">aot-skiawasm.profile</WasmAotFileName>
-
-		<!--
-		Use smaller profile for UI tests to avoid the browser's memory
-		use to go higher than the Ci agent's availability
-		-->
-
-		<WasmAotFileName Condition="'$(IsUiAutomationMappingEnabled)'=='True'">aot-uitests.profile</WasmAotFileName>
+		<WasmAotFileName>aot-skiawasm.profile</WasmAotFileName>
 	</PropertyGroup>
 
 	<!-- https://github.com/dotnet/runtime/issues/109289 -->
