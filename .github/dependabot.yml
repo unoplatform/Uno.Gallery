@@ -10,11 +10,6 @@ updates:
   - kind/dependency
   - do-not-merge/work-in-progress
   ignore:
-  - dependency-name: Xamarin.UITest
-    versions:
-    - 3.0.14
-    - 3.0.15
-    - 3.0.16
   - dependency-name: Microsoft.TypeScript.MSBuild
     versions:
     - 4.1.2
