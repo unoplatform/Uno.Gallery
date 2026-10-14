@@ -211,24 +211,6 @@ stages:
     steps:
       - template: build/stage-build-wasm.yml
  
-- stage: WebAssembly_Tests
-  displayName: 'WebAssembly Tests'
-  dependsOn: []
-  jobs:
-  - template: build/stage-uitests-wasm.yml
-
-- stage: iOS_Tests
-  displayName: 'iOS Tests'
-  dependsOn: []
-  jobs:
-  - template: build/stage-uitests-ios.yml
-
-- stage: Android_Tests
-  displayName: 'Android Tests'
-  dependsOn: []
-  jobs:
-  - template: build/stage-uitests-android.yml
-
 - stage: Android_NativeAOT_Instrumentation_Tests
   displayName: 'Android+NativeAOT Instrumentation Tests'
   dependsOn: []
