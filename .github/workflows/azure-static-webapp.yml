@@ -79,7 +79,7 @@ jobs:
 
       - run: |
           cd Uno.Gallery
-          dotnet publish -c Release -f net10.0-browserwasm "/p:PackageVersion=${{ steps.nbgv.outputs.SemVer2 }}" /bl:../binlogs/output.binlog
+          dotnet publish -c Release -f net10.0-browserwasm -p:TargetFrameworkOverride=net10.0-browserwasm "/p:PackageVersion=${{ steps.nbgv.outputs.SemVer2 }}" /bl:../binlogs/output.binlog
         name: Build Gallery
 
       - uses: actions/upload-artifact@v4
