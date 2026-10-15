@@ -189,30 +189,6 @@
 					</smtx:XamlDisplay>
 				</DataTemplate>
 			</local:SamplePageLayout.CupertinoTemplate>
-			<local:SamplePageLayout.NativeTemplate>
-				<DataTemplate>
-
-					<smtx:XamlDisplay UniqueKey="ToggleSwitchSamplePage_Native"
-									  smtx:XamlDisplayExtensions.Header="Default"
-									  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
-						<StackPanel Spacing="20">
-
-							<TextBlock Text="Enabled" />
-							<ToggleSwitch Style="{StaticResource NativeDefaultToggleSwitch}" />
-							<ToggleSwitch IsOn="True"
-										  Style="{StaticResource NativeDefaultToggleSwitch}" />
-
-							<TextBlock Text="Disabled" />
-							<ToggleSwitch IsEnabled="False"
-										  Style="{StaticResource NativeDefaultToggleSwitch}" />
-							<ToggleSwitch IsOn="True"
-										  IsEnabled="False"
-										  Style="{StaticResource NativeDefaultToggleSwitch}" />
-
-						</StackPanel>
-					</smtx:XamlDisplay>
-				</DataTemplate>
-			</local:SamplePageLayout.NativeTemplate>
 
 		</local:SamplePageLayout>
 	</Grid>
