@@ -2,6 +2,9 @@ using Microsoft.UI.Xaml.Input;
 using Uno.Extensions;
 using Uno.Extensions.Specialized;
 using Uno.Gallery.Helpers;
+using Uno.Gallery.Views.Samples;
+using Uno.UI.Extensions;
+using Windows.ApplicationModel.DataTransfer;
 using Windows.System;
 using Windows.UI.Core;
 using Windows.UI.ViewManagement;
@@ -55,6 +58,15 @@ public sealed partial class Shell : UserControl
 #if DEBUG || IS_CANARY_BUILD
 		FindName("FPSIndicatorCheckBox"); // materialize x:Load=false element
 #endif
+
+#if DEBUG && false
+		ActivateDebugPanel();
+#endif
+	}
+
+	internal void ActivateDebugPanel()
+	{
+		FindName("DebugPanel"); // materialize x:Load=false element
 	}
 
 	private void SetDarkLightToggleInitialState()
@@ -294,5 +306,77 @@ public sealed partial class Shell : UserControl
 		var secondaryWindow = new Window();
 		App.Instance.InitializeWindow(secondaryWindow);
 		secondaryWindow.Activate();
+	}
+
+	private void DebugVT(object sender, RoutedEventArgs e)
+	{
+		object? FindViewOfInterest()
+		{
+			// the view of interest is:
+			// - the top-most open popup if present
+			// - in nested sample, the content of that page
+			// - in RuntimeTestsSamplePage, the "UnitTestsUIContentHelper.Content"
+			// - for any page, the active section of SamplePageLayout if present OR the content of that page
+
+			var popups = VisualTreeHelper.GetOpenPopupsForXamlRoot(XamlRoot);
+			var popup = popups
+				.Where(x => x.Child?.GetType().Namespace?.StartsWith("Uno.Diagnostics.UI") != true)
+				.LastOrDefault();
+			if (popup is { })
+			{
+				return popup.Child;
+			}
+
+			var content = NestedSampleFrame.Content ?? NavigationViewControl.Content;
+			if (content is RuntimeTestsSamplePage runner)
+			{
+				return VisualTreeHelperEx.GetFirstDescendant<ContentControl>(runner, x => x.Name == "unitTestContentRoot")?.Content;
+			}
+			else if (content is Page page)
+			{
+				if (VisualTreeHelperEx.GetFirstDescendant<SamplePageLayout>(page) is { } layout &&
+					layout.GetActivePresenter() is { } presenter)
+				{
+					// presenter.Content is the Sample (DataContext), so we want the materialized template root instead
+					return VisualTreeHelperEx.GetChildren(presenter).FirstOrDefault();
+				}
+				else
+				{
+					return page.Content;
+				}
+			}
+
+			return null;
+		}
+
+#if HAS_UNO
+		// for the best viewing experience, paste the tree in VSCode (you can collapse node) with `ini` syntax highlighting
+		var tree = this.TreeGraph();
+		var target = FindViewOfInterest();
+		var targetTree = (target as DependencyObject)?.TreeGraph();
+
+		// note: you can also tag element with unique x:Name to inspect here
+		//var sut = VisualTreeHelperEx.GetFirstDescendant<FrameworkElement>(this, x => x.Name == "SUT");
+		//var tree = Uno.UI.Extensions.ViewExtensions.TreeGraph(sut);
+
+#if __WASM__
+		Console.WriteLine(targetTree ?? tree);
+#else
+		var data = new DataPackage();
+		data.SetText(targetTree ?? tree);
+
+		Clipboard.SetContent(data);
+#endif
+#endif
+
+		// note: insert a breakpoint around here or uncomment the next line to debug.
+		//if (System.Diagnostics.Debugger.IsAttached) System.Diagnostics.Debugger.Break();
+	}
+
+	private async void DebugVTAsync(object sender, RoutedEventArgs e)
+	{
+		await Task.Delay(5000);
+
+		DebugVT(sender, e);
 	}
 }

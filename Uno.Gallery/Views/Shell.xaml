@@ -243,7 +243,6 @@
 	</UserControl.Resources>
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
 		<Grid.RowDefinitions>
 			<RowDefinition x:Name="TopPaddingRow"
 						   Height="0" />
@@ -570,5 +569,20 @@
 				HorizontalAlignment="Left"
 				AutomationProperties.AutomationId="NavToggle"
 				Style="{StaticResource PaneToggleButtonStyle}" />
+
+		<StackPanel x:Name="DebugPanel"
+					x:Load="False"
+					Grid.RowSpan="3"
+					Background="Pink"
+					Padding="5"
+					HorizontalAlignment="Center"
+					VerticalAlignment="Bottom">
+			<StackPanel Orientation="Horizontal">
+				<Button Content="DebugVT"
+						Click="DebugVT" />
+				<Button Content="T"
+						Click="DebugVTAsync" />
+			</StackPanel>
+		</StackPanel>
 	</Grid>
 </UserControl>
