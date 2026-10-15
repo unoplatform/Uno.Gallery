@@ -62,6 +62,10 @@ public sealed partial class Shell : UserControl
 #if DEBUG && false
 		ActivateDebugPanel();
 #endif
+		if (App.IsDebugMode)
+		{
+			ActivateDebugPanel();
+		}
 	}
 
 	internal void ActivateDebugPanel()

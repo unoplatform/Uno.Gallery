@@ -335,8 +335,50 @@ namespace Uno.Gallery
 #if DEBUG
 			true;
 #else
-			RuntimeTestModeDetector.IsEnabled;
+			RuntimeTestModeDetector.IsEnabled || IsDebugMode;
 #endif
+
+		/// <summary>
+		/// Gets whether the debug mode was entered, see <see cref="EnterDebugMode(Shell)"/>.
+		/// </summary>
+		public static bool IsDebugMode { get; private set; }
+
+		/// <summary>
+		/// Enters the debug mode, which reveals the runtime tests navigation item and the debug panel of the shell.
+		/// </summary>
+		/// <remarks>This is safe to call again, eg: for a shell of another window opened before entering the debug mode.</remarks>
+		internal void EnterDebugMode(Shell shell)
+		{
+			IsDebugMode = true;
+
+			AddRuntimeTestsNavigationItem(shell.NavigationView);
+			shell.ActivateDebugPanel();
+		}
+
+		private void AddRuntimeTestsNavigationItem(MUXC.NavigationView nv)
+		{
+			var hasItem = nv.MenuItems
+				.OfType<MUXC.NavigationViewItem>()
+				.SelectMany(x => x.MenuItems.OfType<MUXC.NavigationViewItem>().Prepend(x))
+				.Any(x => (x.DataContext as Sample)?.ViewType == typeof(RuntimeTestsSamplePage));
+			if (hasItem)
+			{
+				return;
+			}
+
+			var sample = GetAllSamples().First(x => x.ViewType == typeof(RuntimeTestsSamplePage));
+			var parentItem = nv.MenuItems
+				.OfType<MUXC.NavigationViewItem>()
+				.FirstOrDefault(x => x.Tag is SampleCategory category && category == sample.Category);
+			if (parentItem is null)
+			{
+				// the canary category is the last one, so its section goes at the end
+				parentItem = CreateCategoryNavigationItem(sample.Category, tier: 1);
+				nv.MenuItems.Add(parentItem);
+			}
+
+			parentItem.MenuItems.Add(CreateSampleNavigationItem(sample, tier: 2));
+		}
 
 		private void AddNavigationItems(MUXC.NavigationView nv)
 		{
@@ -361,48 +403,63 @@ namespace Uno.Gallery
 				var parentItem = default(MUXC.NavigationViewItem);
 				if (category.Key != SampleCategory.None)
 				{
-					var categoryInfo = category.Key.GetAttribute<SampleCategoryInfoAttribute>();
-					parentItem = new MUXC.NavigationViewItem
-					{
-						Icon = categoryInfo != null ? new FontIcon() { Glyph = categoryInfo.Glyph } : null,
-						Content = categoryInfo != null ? categoryInfo.Caption : category.Key.ToString(),
-						SelectsOnInvoked = false,
-						Style = (Style)Resources[$"T{tier++}NavigationViewItemStyle"]
-					}.Apply(NavViewItemVisualStateFix);
-					AutomationProperties.SetAutomationId(parentItem, "Section_" + parentItem.Content);
+					parentItem = CreateCategoryNavigationItem(category.Key, tier++);
 
 					nv.MenuItems.Add(parentItem);
 				}
 
 				foreach (var sample in category)
 				{
-					var item = new MUXC.NavigationViewItem
-					{
-						Content = sample.Title,
-						Icon = !string.IsNullOrEmpty(sample.Glyph) ? new FontIcon() { Glyph = sample.Glyph } : null,
-						DataContext = sample,
-						Style = (Style)Resources[$"T{tier}NavigationViewItemStyle"]
-					}.Apply(NavViewItemVisualStateFix);
-					AutomationProperties.SetAutomationId(item, "Section_" + item.Content);
+					var item = CreateSampleNavigationItem(sample, tier);
 
 					(parentItem?.MenuItems ?? nv.MenuItems).Add(item);
 				}
 			}
+		}
 
-			void NavViewItemVisualStateFix(MUXC.NavigationViewItem nvi)
+		private MUXC.NavigationViewItem CreateCategoryNavigationItem(SampleCategory category, int tier)
+		{
+			var categoryInfo = category.GetAttribute<SampleCategoryInfoAttribute>();
+			var item = new MUXC.NavigationViewItem
 			{
-				// gallery#107: on uwp and uno, deselecting a NVI by selecting another NVI will leave the former in the "Selected" state
-				// to workaround this, we force reset the visual state when IsSelected becomes false
-				nvi.RegisterPropertyChangedCallback(MUXC.NavigationViewItemBase.IsSelectedProperty, (s, e) =>
+				Icon = categoryInfo != null ? new FontIcon() { Glyph = categoryInfo.Glyph } : null,
+				Content = categoryInfo != null ? categoryInfo.Caption : category.ToString(),
+				SelectsOnInvoked = false,
+				Tag = category,
+				Style = (Style)Resources[$"T{tier}NavigationViewItemStyle"]
+			}.Apply(NavViewItemVisualStateFix);
+			AutomationProperties.SetAutomationId(item, "Section_" + item.Content);
+
+			return item;
+		}
+
+		private MUXC.NavigationViewItem CreateSampleNavigationItem(Sample sample, int tier)
+		{
+			var item = new MUXC.NavigationViewItem
+			{
+				Content = sample.Title,
+				Icon = !string.IsNullOrEmpty(sample.Glyph) ? new FontIcon() { Glyph = sample.Glyph } : null,
+				DataContext = sample,
+				Style = (Style)Resources[$"T{tier}NavigationViewItemStyle"]
+			}.Apply(NavViewItemVisualStateFix);
+			AutomationProperties.SetAutomationId(item, "Section_" + item.Content);
+
+			return item;
+		}
+
+		private static void NavViewItemVisualStateFix(MUXC.NavigationViewItem nvi)
+		{
+			// gallery#107: on uwp and uno, deselecting a NVI by selecting another NVI will leave the former in the "Selected" state
+			// to workaround this, we force reset the visual state when IsSelected becomes false
+			nvi.RegisterPropertyChangedCallback(MUXC.NavigationViewItemBase.IsSelectedProperty, (s, e) =>
+			{
+				if (!nvi.IsSelected)
 				{
-					if (!nvi.IsSelected)
-					{
-						// depending on the DisplayMode, a NVIP may or may not be used.
-						var nvip = VisualTreeHelperEx.GetFirstDescendant<MUXCP.NavigationViewItemPresenter>(nvi, x => x.Name == "NavigationViewItemPresenter");
-						VisualStateManager.GoToState((Control)nvip ?? nvi, "Normal", true);
-					}
-				});
-			}
+					// depending on the DisplayMode, a NVIP may or may not be used.
+					var nvip = VisualTreeHelperEx.GetFirstDescendant<MUXCP.NavigationViewItemPresenter>(nvi, x => x.Name == "NavigationViewItemPresenter");
+					VisualStateManager.GoToState((Control)nvip ?? nvi, "Normal", true);
+				}
+			});
 		}
 
 		internal async Task NavigateToAllPages()

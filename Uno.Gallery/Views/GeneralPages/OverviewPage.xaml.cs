@@ -22,6 +22,12 @@ namespace Uno.Gallery.Views.GeneralPages
 	[SamplePage(SampleCategory.None, "Overview", glyph: "\uE10F")]
 	public sealed partial class OverviewPage : Page
 	{
+		private const int DebugModeClicksRequired = 7;
+		private const int DebugModeCountdownClicks = 3;
+
+		private string _versionText;
+		private int _versionClickCount;
+
 		public OverviewPage()
 		{
 			this.InitializeComponent();
@@ -31,9 +37,30 @@ namespace Uno.Gallery.Views.GeneralPages
 
 		private void OverviewPage_Loaded(object sender, RoutedEventArgs e)
 		{
-			if (FindName("version") is TextBlock tb)
+			if (FindName("VersionLabel") is TextBlock tb)
 			{
-				tb.Text = GetAppVersion();
+				tb.Text = _versionText = GetAppVersion();
+			}
+		}
+
+		private void VersionLabel_Tapped(object sender, TappedRoutedEventArgs e)
+		{
+			if (sender is not TextBlock tb)
+			{
+				return;
+			}
+
+			var remaining = DebugModeClicksRequired - ++_versionClickCount;
+			if (App.IsDebugMode || remaining <= 0)
+			{
+				// note: always re-enter, so the shell of a window opened before entering the debug mode also gets updated
+				App.Instance.EnterDebugMode(Shell.GetForElement(this));
+
+				tb.Text = $"{_versionText} (already in debug mode)";
+			}
+			else if (remaining <= DebugModeCountdownClicks)
+			{
+				tb.Text = $"{_versionText} ({remaining} more {(remaining == 1 ? "click" : "clicks")} to enter debug mode)";
 			}
 		}
 

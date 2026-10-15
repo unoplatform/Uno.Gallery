@@ -142,7 +142,8 @@
 						</StackPanel>
 					</local:OverviewSampleView>
 
-					<TextBlock x:Name="version"
+					<TextBlock x:Name="VersionLabel"
+							   Tapped="VersionLabel_Tapped"
 							   Margin="0,10,0,0"
 							   Foreground="LightGray"
 							   FontSize="8"
