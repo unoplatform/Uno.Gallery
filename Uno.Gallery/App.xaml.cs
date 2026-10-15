@@ -11,6 +11,7 @@ using System.Reflection;
 using Uno.Extensions;
 using Uno.Gallery.Entities;
 using Uno.Gallery.Helpers;
+using Uno.Gallery.RuntimeTests;
 using Uno.Gallery.Views.GeneralPages;
 using Uno.Gallery.Views.Samples;
 using Uno.Logging;
@@ -78,6 +79,7 @@ namespace Uno.Gallery
 			base.OnLaunched(e);
 
 			this.Log().Debug("Launched app.");
+			RuntimeTestModeDetector.Initialize(e.Arguments);
 			OnLaunchedOrActivated();
 
 			if (_exitAfterLaunching)
@@ -98,7 +100,15 @@ namespace Uno.Gallery
 
 			if (isFirstLaunch)
 			{
-				InitializeWindow(MainWindow);
+				if (RuntimeTestModeDetector.IsAutomatedRun)
+				{
+					// The runtime tests replace the window content once they start, so the shell isn't built
+					MainWindow.Content = new RuntimeTestsSamplePage();
+				}
+				else
+				{
+					InitializeWindow(MainWindow);
+				}
 			}
 
 			// Ensure the current window is active
@@ -310,6 +320,20 @@ namespace Uno.Gallery
 			}
 		}
 
+		/// <summary>
+		/// Gets the samples of this platform, without the runtime tests page unless it's a Debug build or the app was launched with `--rtt=1`.
+		/// </summary>
+		public static Sample[] GetSamples() => GetAllSamples()
+			.Where(x => x.ViewType != typeof(RuntimeTestsSamplePage) || ShowRuntimeTests)
+			.ToArray();
+
+		private static bool ShowRuntimeTests =>
+#if DEBUG
+			true;
+#else
+			RuntimeTestModeDetector.IsEnabled;
+#endif
+
 		private void AddNavigationItems(MUXC.NavigationView nv)
 		{
 			var categories = GetSamples()
@@ -320,7 +344,8 @@ namespace Uno.Gallery
 #if AOT_PROFILE_GEN || IS_CANARY_BUILD || DEBUG
 					true
 #else
-					x.Category != SampleCategory.Canary
+					// GetSamples() already decides whether the runtime tests page is listed
+					x.Category != SampleCategory.Canary || x.ViewType == typeof(RuntimeTestsSamplePage)
 #endif
 				)
 				.GroupBy(x => x.Category);
