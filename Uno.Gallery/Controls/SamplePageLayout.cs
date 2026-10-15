@@ -275,6 +275,17 @@ namespace Uno.Gallery
 			return VisualTreeHelperEx.GetFirstDescendant<T>(presenter, x => x.Name == name);
 		}
 
+		/// <summary>
+		/// Get the content presenter of the currently displayed layout mode.
+		/// </summary>
+		public ContentPresenter GetActivePresenter()
+		{
+			// note: _design is not reliable here, as the layout can fallback to another available template
+			return Enum.GetValues<Design>()
+				.Select(x => GetTemplateChild($"{x}ContentPresenter") as ContentPresenter)
+				.FirstOrDefault(x => x?.Visibility == Visibility.Visible);
+		}
+
 		private class LayoutModeMapping
 		{
 			public Design Design { get; set; }
