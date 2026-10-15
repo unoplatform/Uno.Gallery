@@ -113,6 +113,10 @@ namespace Uno.Gallery
 
 			// Ensure the current window is active
 			MainWindow.Activate();
+
+#if __ANDROID__ || __IOS__
+			MobileRuntimeTestsAutostart.StartIfRequested(MainWindow);
+#endif
 		}
 
 		public void InitializeWindow(Window window)
