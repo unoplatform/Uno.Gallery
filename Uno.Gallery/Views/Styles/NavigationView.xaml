@@ -1154,7 +1154,6 @@
 
 								<SplitView.Pane>
 									<Grid x:Name="PaneContentGrid"
-										  HorizontalAlignment="Left"
 										  BorderBrush="{ThemeResource NavigationViewPaneBorderBrush}"
 										  BorderThickness="{StaticResource NavigationViewPaneBorderThickness}"
 										  Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.LeftPaneVisibility}">
@@ -1440,6 +1439,7 @@
 										<Setter Target="PaneContentGrid.Width" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CompactPaneLength}" />
 										<Setter Target="PaneTitleTextBlock.Visibility" Value="Collapsed" />
 										<Setter Target="PaneHeaderContentBorder.Visibility" Value="Collapsed" />
+										<Setter Target="PaneContentGrid.HorizontalAlignment" Value="Left" />
 										<Setter Target="PaneCustomContentBorder.HorizontalAlignment" Value="Left" />
 										<Setter Target="FooterContentBorder.HorizontalAlignment" Value="Left" />
 									</VisualState.Setters>
