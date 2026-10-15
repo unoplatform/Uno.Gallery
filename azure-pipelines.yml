@@ -44,6 +44,9 @@ variables:
 
   XCODE_ROOT: '/Applications/Xcode_26.1.1.app'
   XCODE_ROOT_UITESTS: '/Applications/Xcode_26.1.1.app'
+  # The simulator the iOS runtime tests run on: its runtime must match the iOS SDK of XCODE_ROOT, so change them together
+  IOS_SIMULATOR_DEVICE: 'iPhone 16'
+  IOS_SIMULATOR_RUNTIME_PREFIX: 'com.apple.CoreSimulator.SimRuntime.iOS-26-1'
 
   # Required to about trashing azdo hosted agents
   AotCompileMaxDegreeOfParallelism: 3
@@ -228,6 +231,12 @@ stages:
   dependsOn: Android
   jobs:
   - template: build/stage-runtime-tests-android.yml
+
+- stage: Runtime_Tests_iOS
+  displayName: 'Runtime Tests - iOS'
+  dependsOn: []
+  jobs:
+  - template: build/stage-runtime-tests-ios.yml
 
 - stage: Android_NativeAOT_Instrumentation_Tests
   displayName: 'Android+NativeAOT Instrumentation Tests'

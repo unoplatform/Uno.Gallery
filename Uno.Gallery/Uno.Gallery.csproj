@@ -109,7 +109,8 @@
 		<ExcludeXamlNamespaces Include="mobile" Visible="False" />
 	</ItemGroup>
 
-	<PropertyGroup Condition="'$(Configuration)'=='Release' and '$(System_PullRequest_IsFork)'!='True' and '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'ios' ">
+	<!-- Device builds only: the iOS runtime tests lane builds Release for the simulator (-p:RuntimeIdentifier=iossimulator-*), which needs no signing identity -->
+	<PropertyGroup Condition="'$(Configuration)'=='Release' and '$(System_PullRequest_IsFork)'!='True' and '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'ios' and !$(RuntimeIdentifier.StartsWith('iossimulator'))">
 		<CodesignKey>iPhone Distribution</CodesignKey>
 		<RuntimeIdentifier>ios-arm64</RuntimeIdentifier>
 	</PropertyGroup>

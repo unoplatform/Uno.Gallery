@@ -1,0 +1,51 @@
+# Runs the runtime tests (Uno.Gallery/RuntimeTests) on an iOS simulator.
+# The Apple stage only produces a device .ipa, so this job builds the Release iOS head for the simulator itself.
+
+jobs:
+- job: Runtime_Tests_iOS
+  displayName: 'Runtime Tests - iOS'
+  timeoutInMinutes: 90
+
+  pool:
+    vmImage: 'macos-15'
+
+  steps:
+  - checkout: self
+    clean: true
+
+  - template: templates/dotnet-install-mac.yml
+    parameters:
+      UnoCheckParameters: '--tfm net10.0-ios'
+
+  - template: templates/canary-updater.yml
+
+  - template: templates/xcode-select.yml
+    parameters:
+      xCodeRoot: $(XCODE_ROOT)
+
+  - bash: |
+      case "$(uname -m)" in
+        arm64) rid=iossimulator-arm64 ;;
+        x86_64) rid=iossimulator-x64 ;;
+        *) echo "ERROR: Unexpected host architecture $(uname -m)" >&2; exit 1 ;;
+      esac
+      mkdir -p build/runtime-tests/ios
+      dotnet build Uno.Gallery/Uno.Gallery.csproj -c Release -f net10.0-ios -p:TargetFrameworkOverride=net10.0-ios -p:RuntimeIdentifier=$rid \
+        -p:CodesignRequireProvisioningProfile=false \
+        -bl:$(Build.SourcesDirectory)/build/runtime-tests/ios/build.binlog
+    displayName: 'Build the iOS head for the simulator'
+
+  - bash: |
+      chmod +x build/scripts/ios-runtime-tests.sh
+      build/scripts/ios-runtime-tests.sh
+    displayName: 'Run the runtime tests'
+    env:
+      BUILD_SOURCESDIRECTORY: $(Build.SourcesDirectory)
+      RUNTIME_TESTS_APP_PATH: $(Build.SourcesDirectory)/Uno.Gallery/bin/Release/net10.0-ios
+      SIMULATOR_DEVICE: $(IOS_SIMULATOR_DEVICE)
+      SIMULATOR_RUNTIME_PREFIX: $(IOS_SIMULATOR_RUNTIME_PREFIX)
+
+  - template: templates/publish-runtime-tests-results.yml
+    parameters:
+      platform: ios
+      title: iOS
