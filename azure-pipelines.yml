@@ -217,6 +217,12 @@ stages:
   jobs:
   - template: build/stage-runtime-tests-desktop.yml
 
+- stage: Runtime_Tests_WebAssembly
+  displayName: 'Runtime Tests - WebAssembly'
+  dependsOn: WebAssembly
+  jobs:
+  - template: build/stage-runtime-tests-wasm.yml
+
 - stage: Android_NativeAOT_Instrumentation_Tests
   displayName: 'Android+NativeAOT Instrumentation Tests'
   dependsOn: []
