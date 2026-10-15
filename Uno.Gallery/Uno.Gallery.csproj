@@ -86,6 +86,17 @@
 		<ProjectReference Include="..\Uno.Gallery.SourceGenerators\Uno.Gallery.SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" SetPlatform="Platform=AnyCPU" />
 	</ItemGroup>
 
+	<!-- Runtime tests (RuntimeTests\**) are compiled into every build, Release included, so the CI lanes can run them against the shipped app -->
+	<ItemGroup>
+		<PackageReference Include="Uno.UI.RuntimeTests.Engine" />
+	</ItemGroup>
+	<!-- MSTest (from the engine) adds a global using for its namespace, and its DescriptionAttribute clashes with System.ComponentModel's in the app code -->
+	<Target Name="RemoveMSTestGlobalUsing" BeforeTargets="GenerateGlobalUsings">
+		<ItemGroup>
+			<Using Remove="Microsoft.VisualStudio.TestTools.UnitTesting" />
+		</ItemGroup>
+	</Target>
+
 	<ItemGroup Condition="
 			   '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'android'
 			   or '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'ios'

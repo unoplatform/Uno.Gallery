@@ -25,5 +25,6 @@
 		<PackageVersion Include="Microsoft.WindowsAppSDK" Version="2.5.1" />
 		<PackageVersion Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.28000.2705" />
 		<PackageVersion Include="nventive.Nimue.Application.Packaging" Version="0.1.0-alpha.58" />
+		<PackageVersion Include="Uno.UI.RuntimeTests.Engine" Version="3.0.0-dev.2" />
 	</ItemGroup>
 </Project>
