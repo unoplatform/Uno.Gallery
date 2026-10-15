@@ -52,12 +52,6 @@
 		https://aka.platform.uno/singleproject-features
 		-->
 	
-		<IsSkiaWasm Condition="'$(TargetFramework)'=='net10.0-browserwasm'">true</IsSkiaWasm>
-		<IsSkiaWasm Condition="'$(IsSkiaWasm)'==''">false</IsSkiaWasm>
-		<IsSkiaAndroid Condition="'$(TargetFramework)'=='net10.0-android'">true</IsSkiaAndroid>
-		<IsSkiaAndroid Condition="'$(IsSkiaAndroid)'==''">false</IsSkiaAndroid>
-		<IsSkiaUIKit Condition="'$(TargetFramework)'=='net10.0-ios'">true</IsSkiaUIKit>
-		<IsSkiaUIKit Condition="'$(IsSkiaUIKit)'==''">false</IsSkiaUIKit>
 		<UnoFeatures>
 			Material;
 			Toolkit;
@@ -68,18 +62,11 @@
 			MediaElement;
 			WebView;
 		</UnoFeatures>
-		<UnoFeatures Condition="$(IsSkiaWasm)">$(UnoFeatures)SkiaRenderer;</UnoFeatures>
-		<UnoFeatures Condition="$(IsSkiaAndroid)">$(UnoFeatures)SkiaRenderer;</UnoFeatures>
-		<UnoFeatures Condition="$(IsSkiaUIKit)">$(UnoFeatures)SkiaRenderer;</UnoFeatures>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<!-- Uno 7.0 migration: CS1705, Uno binaries need WinRT.Runtime 2.3.1 (unoplatform/uno#24905) -->
 		<WindowsSdkPackageVersion Condition="'$(TargetFramework)'=='net10.0-windows10.0.19041'">10.0.19041.87</WindowsSdkPackageVersion>
 		<!-- Uno 7.0 migration: Debug WinAppSDK builds fail with MSB4057 in Uno.UI.HotDesign.props (unoplatform/uno#24983) -->
 		<HotDesignUnoAssets Condition="'$(TargetFramework)'=='net10.0-windows10.0.19041'">-</HotDesignUnoAssets>
-		<DefineConstants Condition="$(IsSkiaWasm)">$(DefineConstants);IS_WASM_SKIA</DefineConstants>
-		<DefineConstants Condition="$(IsSkiaAndroid)">$(DefineConstants);IS_ANDROID_SKIA</DefineConstants>
-		<DefineConstants Condition="$(IsSkiaUIKit)">$(DefineConstants);IS_UIKIT_SKIA</DefineConstants>
-		<DefineConstants>$(DefineConstants);HAS_SKIA_RENDERER</DefineConstants>
 
 		<DefineConstants Condition="$(BUILD_SOURCEBRANCH.StartsWith('refs/heads/canaries'))">$(DefineConstants);IS_CANARY_BUILD</DefineConstants>
 	</PropertyGroup>
@@ -93,7 +80,7 @@
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" />
 		<PackageReference Include="Uno.Core.Extensions.Disposables" />
 		<PackageReference Include="Uno.Core.Extensions.Compatibility" />
-		<!--<PackageReference Include="SkiaSharp.Skottie" Condition="$(IsSkiaWasm) OR $(IsSkiaAndroid)" />-->
+		<!--<PackageReference Include="SkiaSharp.Skottie" />-->
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\Uno.Gallery.SourceGenerators\Uno.Gallery.SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" SetPlatform="Platform=AnyCPU" />
