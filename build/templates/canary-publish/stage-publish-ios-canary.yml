@@ -5,7 +5,7 @@
 
   jobs:
   - deployment: 'iOS_Publish_Skia'
-    displayName: 'Publish iOS Skia'
+    displayName: 'Publish iOS'
     environment: Uno Gallery
     pool:
       vmImage: macos-latest

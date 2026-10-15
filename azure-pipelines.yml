@@ -56,7 +56,7 @@ stages:
   - job: Windows_Android_Mobile
     strategy:
       matrix:
-        Android_Skia_Store:
+        Android_Store:
           ApplicationPlatform: AnyCPU
           ArtifactName: Android
           BuildForPlayStore: True
@@ -120,7 +120,7 @@ stages:
     timeoutInMinutes: 90
     strategy:
       matrix:
-        iOS_Skia:
+        iOS:
           BuildTargetFramework: net10.0-ios
           ArtifactName: iOS-mobile
           ApplicationBuildNumberOffset: 50

@@ -5,7 +5,7 @@
 
   jobs:
   - deployment: 'Android_Publish_Skia'
-    displayName: 'Publish Android Skia'
+    displayName: 'Publish Android'
     environment: Uno Gallery
     pool:
       vmImage: ubuntu-latest

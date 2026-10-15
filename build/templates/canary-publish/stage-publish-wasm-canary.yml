@@ -5,7 +5,7 @@
 
   jobs:
   - deployment: 'WebAssembly_Publish_SKIA'
-    displayName: 'Publish WebAssembly Skia'
+    displayName: 'Publish WebAssembly'
     environment: Uno Gallery
     pool:
       vmImage: ubuntu-latest

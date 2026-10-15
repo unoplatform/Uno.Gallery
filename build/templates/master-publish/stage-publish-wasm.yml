@@ -5,7 +5,7 @@
 
   jobs:
   - deployment: 'WebAssembly_Publish_SKIA'
-    displayName: 'Publish WebAssembly Skia'
+    displayName: 'Publish WebAssembly'
     environment: Uno Gallery Wasm Staging
     pool:
       vmImage: ubuntu-latest
@@ -39,7 +39,7 @@
   jobs:
 
   - deployment: 'WebAssembly_Publish_SKIA'
-    displayName: 'Publish WebAssembly Skia'
+    displayName: 'Publish WebAssembly'
     environment: Uno Gallery Wasm Production
     pool:
       vmImage: ubuntu-latest
