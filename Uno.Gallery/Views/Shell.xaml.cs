@@ -271,7 +271,7 @@ public sealed partial class Shell : UserControl
 			return;
 		}
 
-		(Application.Current as App)?.SearchShellNavigateTo(this, sample);
+		(Application.Current as App)?.ShellNavigateTo(this, sample);
 	}
 
 	private void CtrlF_Invoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
@@ -284,7 +284,7 @@ public sealed partial class Shell : UserControl
 		if (args.ChosenSuggestion is Sample sample)
 		{
 			// User selected an item, take an action
-			(Application.Current as App)?.SearchShellNavigateTo(this, sample);
+			(Application.Current as App)?.ShellNavigateTo(this, sample);
 		}
 		else if (!string.IsNullOrEmpty(args.QueryText))
 		{
@@ -292,7 +292,7 @@ public sealed partial class Shell : UserControl
 			var suggestions = SearchSamples(sender.Text);
 			if (Enumerable.Count(suggestions) > 0)
 			{
-				(Application.Current as App)?.SearchShellNavigateTo(this, suggestions.FirstOrDefault());
+				(Application.Current as App)?.ShellNavigateTo(this, suggestions.FirstOrDefault());
 			}
 		}
 	}
