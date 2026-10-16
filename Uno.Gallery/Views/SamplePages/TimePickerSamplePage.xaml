@@ -60,22 +60,6 @@
 					</smtx:XamlDisplay>
 				</DataTemplate>
 			</local:SamplePageLayout.FluentTemplate>
-			<local:SamplePageLayout.NativeTemplate>
-				<mobile:DataTemplate>
-					<smtx:XamlDisplay UniqueKey="TimePickerSamplePage_Native"
-									  smtx:XamlDisplayExtensions.Header="Default with Native picker"
-									  smtx:XamlDisplayExtensions.Description="The TimePicker is composed of two parts: the text button which uses the fluent style, and the flyout picker which is native to the platform (with UseNativeStyle set to True by default)."
-									  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
-						<StackPanel Spacing="20">
-
-							<TimePicker />
-							<TimePicker Header="TimePicker Disabled"
-										IsEnabled="False" />
-
-						</StackPanel>
-					</smtx:XamlDisplay>
-				</mobile:DataTemplate>
-			</local:SamplePageLayout.NativeTemplate>
 		</local:SamplePageLayout>
 	</Grid>
 </Page>

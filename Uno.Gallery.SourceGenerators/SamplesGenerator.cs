@@ -42,7 +42,7 @@ public sealed class SamplesGenerator : IIncrementalGenerator
 			{
 				public partial class App
 				{
-					public static Sample[] GetSamples()
+					private static Sample[] GetAllSamples()
 					{
 						return new[]
 						{

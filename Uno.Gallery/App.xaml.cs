@@ -11,6 +11,7 @@ using System.Reflection;
 using Uno.Extensions;
 using Uno.Gallery.Entities;
 using Uno.Gallery.Helpers;
+using Uno.Gallery.RuntimeTests;
 using Uno.Gallery.Views.GeneralPages;
 using Uno.Gallery.Views.Samples;
 using Uno.Logging;
@@ -28,6 +29,13 @@ namespace Uno.Gallery
 	/// </summary>
 	public partial class App : Application
 	{
+		private static readonly Dictionary<Type, Func<bool>> _sampleVisibilityRuleSet = new()
+		{
+			[typeof(RuntimeTestsSamplePage)] = CanShowRuntimeTests,
+			[typeof(CanarySamplePage)] = CanShowCanarySamples,
+			// always true if omitted
+		};
+
 		private readonly bool _exitAfterLaunching;
 
 		public static App Instance { get; private set; }
@@ -78,6 +86,7 @@ namespace Uno.Gallery
 			base.OnLaunched(e);
 
 			this.Log().Debug("Launched app.");
+			RuntimeTestModeDetector.Initialize(e.Arguments);
 			OnLaunchedOrActivated();
 
 			if (_exitAfterLaunching)
@@ -98,16 +107,23 @@ namespace Uno.Gallery
 
 			if (isFirstLaunch)
 			{
-#if __IOS__ && USE_UITESTS && !__MACCATALYST__ && !DEBUG
-				// requires Xamarin Test Cloud Agent
-				Xamarin.Calabash.Start();
-#endif
-
-				InitializeWindow(MainWindow);
+				if (RuntimeTestModeDetector.IsAutomatedRun)
+				{
+					// The runtime tests replace the window content once they start, so the shell isn't built
+					MainWindow.Content = new RuntimeTestsSamplePage();
+				}
+				else
+				{
+					InitializeWindow(MainWindow);
+				}
 			}
 
 			// Ensure the current window is active
 			MainWindow.Activate();
+
+#if __ANDROID__ || __IOS__
+			MobileRuntimeTestsAutostart.StartIfRequested(MainWindow);
+#endif
 		}
 
 		public void InitializeWindow(Window window)
@@ -165,7 +181,8 @@ namespace Uno.Gallery
 		}
 #endif
 
-		public void ShellNavigateTo(Shell shell, Sample sample) => ShellNavigateTo(shell, sample, trySynchronizeCurrentItem: true);
+		public void ShellNavigateTo(Shell shell, Sample sample) =>
+			ShellNavigateTo(shell, sample, trySynchronizeCurrentItem: true);
 
 		private void ShellNavigateTo<TPage>(Shell shell, bool trySynchronizeCurrentItem = true) where TPage : Page
 		{
@@ -182,17 +199,26 @@ namespace Uno.Gallery
 			var nv = shell.NavigationView;
 			if (nv.Content?.GetType() != sample.ViewType)
 			{
-				var selected = trySynchronizeCurrentItem
-					? nv.MenuItems
-						.OfType<MUXC.NavigationViewItem>()
-						.FirstOrDefault(x => (x.DataContext as Sample)?.ViewType == sample.ViewType)
-					: default;
-				if (selected != null)
+				if (trySynchronizeCurrentItem)
 				{
-					nv.SelectedItem = selected;
+					if (FindSampleNVI(nv, sample.ViewType) is { } nvi)
+					{
+						// note: only the direct parent is expanded, expand every ancestor if deeper nesting gets added
+						if (FindParentNVI(nv, nvi) is { } parentNVI)
+						{
+							parentNVI.IsExpanded = true;
+							nv.UpdateLayout();
+						}
+
+						nv.SelectedItem = nvi;
+					}
+					else
+					{
+						nv.SelectedItem = null;
+					}
 				}
 
-				var page = (Page)Activator.CreateInstance(sample.ViewType);
+				var page = (Page)Activator.CreateInstance(sample.ViewType)!;
 				page.DataContext = sample;
 
 #if __WASM__
@@ -203,58 +229,13 @@ namespace Uno.Gallery
 			}
 		}
 
-		public void SearchShellNavigateTo(Shell shell, Sample sample)
-		{
-			var nv = shell.NavigationView;
-			if (nv.Content?.GetType() == sample.ViewType)
-			{
-				return;
-			}
-
-			MUXC.NavigationViewItem selectedItem = null;
-			MUXC.NavigationViewItem selectedCategory = null;
-
-			foreach (MUXC.NavigationViewItem category in nv.MenuItems)
-			{
-				selectedItem = category.MenuItems.OfType<MUXC.NavigationViewItem>()
-					.FirstOrDefault(item => item.DataContext is Sample s && s.ViewType == sample.ViewType);
-
-				if (selectedItem != null)
-				{
-					selectedCategory = category;
-					break;
-				}
-			}
-
-			if (selectedItem is null)
-			{
-				nv.SelectedItem = nv.MenuItems[0];
-			}
-			else
-			{
-				selectedCategory.IsExpanded = true;
-				nv.UpdateLayout();
-
-				nv.SelectedItem = selectedItem;
-			}
-
-			var page = (Page)Activator.CreateInstance(sample.ViewType);
-			page.DataContext = sample;
-
-#if __WASM__
-			_ = DispatcherQueue.GetForCurrentThread()?.TryEnqueue(DispatcherQueuePriority.Low, () => AnalyticsService.TrackView(sample?.Title ?? page.GetType().Name));
-#endif
-
-			shell.NavigationView.Content = page;
-		}
-
 		private Shell BuildShell()
 		{
 			var shell = new Shell();
 			AutomationProperties.SetAutomationId(shell, "AppShell");
-			shell.RegisterPropertyChangedCallback(Shell.CurrentSampleBackdoorProperty, OnCurrentSampleBackdoorChanged);
 			var nv = shell.NavigationView;
 			AddNavigationItems(nv);
+
 #if __WASM__
 			if (!IsThereSampleFilteredByArgs(shell, nv))
 #endif
@@ -274,62 +255,32 @@ namespace Uno.Gallery
 
 			return shell;
 		}
+
 #if __WASM__
 		private bool IsThereSampleFilteredByArgs(Shell shell, MUXC.NavigationView nv)
 		{
 			var argumentsHash = Wasm.FragmentNavigationHandler.CurrentFragment;
 			if (argumentsHash.Contains("#"))
 			{
-				string searchTerm = (argumentsHash + string.Empty).Replace("#", string.Empty);
-
-				foreach (MUXC.NavigationViewItem item in nv.MenuItems)
+				var searchTerm = (argumentsHash + string.Empty).Replace("#", string.Empty);
+				var matchedNVI = FindSampleNVI(nv, sample => sample.Title.Contains(searchTerm, StringComparison.InvariantCultureIgnoreCase));
+				if (matchedNVI is { })
 				{
-					MUXC.NavigationViewItem? sampleItem = item.MenuItems
-						.Cast<MUXC.NavigationViewItem>()
-						.FirstOrDefault(i => i.Content?.ToString()?.Contains(searchTerm, StringComparison.InvariantCultureIgnoreCase) == true);
-
-					if (sampleItem != null)
-					{
-						ShellNavigateTo(
-							shell,
-							(Uno.Gallery.Sample)sampleItem.DataContext
-							, trySynchronizeCurrentItem: false
-						);
-						return true;
-					}
+					ShellNavigateTo(
+						shell,
+						(Uno.Gallery.Sample)matchedNVI.DataContext
+						, trySynchronizeCurrentItem: false
+					);
+					return true;
 				}
+
 				//If there is a Hash that is not valid, redirect it to the root of the site.
 				Wasm.LocationHrefNavigationHandler.CurrentLocationHref = "/";
 			}
+
 			return false;
 		}
 #endif
-
-		private void OnCurrentSampleBackdoorChanged(DependencyObject sender, DependencyProperty dp)
-		{
-			var shell = sender as Shell ?? throw new InvalidOperationException("CurrentSampleBackdoor changed on a non-Shell object.");
-			var backdoorParts = shell.CurrentSampleBackdoor.Split("-");
-			var title = backdoorParts.FirstOrDefault();
-			var designName = backdoorParts.Length > 1 ? backdoorParts[1] : string.Empty;
-
-			var sample = GetSamples()
-				.FirstOrDefault(x => string.Equals(x.Title, title, StringComparison.OrdinalIgnoreCase));
-
-			if (sample == null)
-			{
-				this.Log().Warn($"No SampleAttribute found with a Title that matches: {shell.CurrentSampleBackdoor}");
-				return;
-			}
-
-			if (Enum.TryParse<Design>(designName, out var design))
-			{
-				SamplePageLayout.SetPreferredDesign(design);
-			}
-
-			ShellNavigateTo<OverviewPage>(shell);
-			ShellNavigateTo(shell, sample);
-		}
-
 
 		private void OnNavigationItemInvoked(MUXC.NavigationView sender, MUXC.NavigationViewItemInvokedEventArgs e)
 		{
@@ -341,70 +292,162 @@ namespace Uno.Gallery
 			}
 		}
 
+		/// <summary>
+		/// Gets the samples of this platform that are currently visible, see <see cref="IsSampleVisible(Sample)"/>.
+		/// </summary>
+		public static Sample[] GetSamples() => GetAllSamples()
+			.Where(IsSampleVisible)
+			.ToArray();
+
+		/// <summary>
+		/// Gets whether the debug mode was entered, see <see cref="EnterDebugMode(Shell)"/>.
+		/// </summary>
+		public static bool IsDebugMode { get; private set; }
+
+		/// <summary>
+		/// Enters the debug mode, which reveals the navigation items gated by it (eg: runtime tests, diagnostics) and the debug panel of the shell.
+		/// </summary>
+		/// <remarks>This is safe to call again, eg: for a shell of another window opened before entering the debug mode.</remarks>
+		internal void EnterDebugMode(Shell shell)
+		{
+			IsDebugMode = true;
+
+			UpdateRuleBasedNavigationItems(shell.NavigationView);
+			shell.ActivateDebugPanel();
+		}
+
+		/// <summary>
+		/// Re-evaluates the visibility of every navigation item that has a rule in <see cref="_sampleVisibilityRuleSet"/>.
+		/// </summary>
+		private static void UpdateRuleBasedNavigationItems(MUXC.NavigationView nv)
+		{
+			foreach (var (pageType, rule) in _sampleVisibilityRuleSet)
+			{
+				UpdateNavigationItemVisibilityAndCascade(
+					nv,
+					FindSampleNVI(nv, pageType, respectVisibility: false),
+					rule() ? Visibility.Visible : Visibility.Collapsed);
+			}
+		}
+
+		/// <summary>
+		/// Shows or hides the navigation item, then updates its parents: a parent is visible if it is navigable or if any of its children is visible.
+		/// </summary>
+		/// <remarks>If the selected item becomes hidden, the selection is cleared, but the current page is kept.</remarks>
+		private static void UpdateNavigationItemVisibilityAndCascade(MUXC.NavigationView nv, MUXC.NavigationViewItem? item, Visibility visibility)
+		{
+			if (item is null ||
+				item.Visibility == visibility)
+			{
+				return;
+			}
+
+			item.Visibility = visibility;
+
+			if (visibility == Visibility.Collapsed &&
+				nv.SelectedItem is MUXC.NavigationViewItem selected &&
+				item.Flatten(x => x.MenuItems.OfType<MUXC.NavigationViewItem>()).Any(x => x == selected))
+			{
+				nv.SelectedItem = null;
+			}
+
+			if (FindParentNVI(nv, item) is { } parent)
+			{
+				var isParentVisible =
+					parent.DataContext is Sample ||
+					parent.MenuItems.OfType<MUXC.NavigationViewItem>().Any(x => x.Visibility == Visibility.Visible);
+				UpdateNavigationItemVisibilityAndCascade(nv, parent, isParentVisible ? Visibility.Visible : Visibility.Collapsed);
+			}
+		}
+
 		private void AddNavigationItems(MUXC.NavigationView nv)
 		{
-			var categories = GetSamples()
+			// note: every sample is added, the hidden ones are collapsed, see IsSampleVisible
+			var categories = GetAllSamples()
 				.OrderByDescending(x => x.SortOrder.HasValue)
 				.ThenBy(x => x.SortOrder)
 				.ThenBy(x => x.Title)
-				.Where(x =>
-#if AOT_PROFILE_GEN || IS_CANARY_BUILD || DEBUG
-					true
-#else
-					x.Category != SampleCategory.Canary
-#endif
-				)
 				.GroupBy(x => x.Category);
 
 			foreach (var category in categories.OrderBy(x => x.Key))
 			{
 				var tier = 1;
 
+				// if the grouping has a category, create a parent item for it,
+				// otherwise the samples are added directly to the root of the navigation view
 				var parentItem = default(MUXC.NavigationViewItem);
 				if (category.Key != SampleCategory.None)
 				{
-					var categoryInfo = category.Key.GetAttribute<SampleCategoryInfoAttribute>();
-					parentItem = new MUXC.NavigationViewItem
-					{
-						Icon = categoryInfo != null ? new FontIcon() { Glyph = categoryInfo.Glyph } : null,
-						Content = categoryInfo != null ? categoryInfo.Caption : category.Key.ToString(),
-						SelectsOnInvoked = false,
-						Style = (Style)Resources[$"T{tier++}NavigationViewItemStyle"]
-					}.Apply(NavViewItemVisualStateFix);
-					AutomationProperties.SetAutomationId(parentItem, "Section_" + parentItem.Content);
-
-					nv.MenuItems.Add(parentItem);
+					parentItem = CreateCategoryNavigationItem(category.Key, tier++);
 				}
 
 				foreach (var sample in category)
 				{
-					var item = new MUXC.NavigationViewItem
+					var item = CreateSampleNavigationItem(sample, tier);
+					if (!IsSampleVisible(sample))
 					{
-						Content = sample.Title,
-						Icon = !string.IsNullOrEmpty(sample.Glyph) ? new FontIcon() { Glyph = sample.Glyph } : null,
-						DataContext = sample,
-						Style = (Style)Resources[$"T{tier}NavigationViewItemStyle"]
-					}.Apply(NavViewItemVisualStateFix);
-					AutomationProperties.SetAutomationId(item, "Section_" + item.Content);
+						item.Visibility = Visibility.Collapsed;
+					}
 
 					(parentItem?.MenuItems ?? nv.MenuItems).Add(item);
 				}
-			}
 
-			void NavViewItemVisualStateFix(MUXC.NavigationViewItem nvi)
-			{
-				// gallery#107: on uwp and uno, deselecting a NVI by selecting another NVI will leave the former in the "Selected" state
-				// to workaround this, we force reset the visual state when IsSelected becomes false
-				nvi.RegisterPropertyChangedCallback(MUXC.NavigationViewItemBase.IsSelectedProperty, (s, e) =>
+				if (parentItem is { })
 				{
-					if (!nvi.IsSelected)
-					{
-						// depending on the DisplayMode, a NVIP may or may not be used.
-						var nvip = VisualTreeHelperEx.GetFirstDescendant<MUXCP.NavigationViewItemPresenter>(nvi, x => x.Name == "NavigationViewItemPresenter");
-						VisualStateManager.GoToState((Control)nvip ?? nvi, "Normal", true);
-					}
-				});
+					parentItem.Visibility = parentItem.MenuItems
+						.OfType<MUXC.NavigationViewItem>()
+						.Any(x => x.Visibility == Visibility.Visible)
+							? Visibility.Visible
+							: Visibility.Collapsed;
+
+					nv.MenuItems.Add(parentItem);
+				}
 			}
+		}
+
+		private MUXC.NavigationViewItem CreateCategoryNavigationItem(SampleCategory category, int tier)
+		{
+			var categoryInfo = category.GetAttribute<SampleCategoryInfoAttribute>();
+			var item = new MUXC.NavigationViewItem
+			{
+				Icon = categoryInfo != null ? new FontIcon() { Glyph = categoryInfo.Glyph } : null,
+				Content = categoryInfo != null ? categoryInfo.Caption : category.ToString(),
+				SelectsOnInvoked = false,
+				Tag = category,
+				Style = (Style)Resources[$"T{tier}NavigationViewItemStyle"]
+			}.Apply(NavViewItemVisualStateFix);
+			AutomationProperties.SetAutomationId(item, "Section_" + item.Content);
+
+			return item;
+		}
+
+		private MUXC.NavigationViewItem CreateSampleNavigationItem(Sample sample, int tier)
+		{
+			var item = new MUXC.NavigationViewItem
+			{
+				Content = sample.Title,
+				Icon = !string.IsNullOrEmpty(sample.Glyph) ? new FontIcon() { Glyph = sample.Glyph } : null,
+				DataContext = sample,
+				Style = (Style)Resources[$"T{tier}NavigationViewItemStyle"]
+			}.Apply(NavViewItemVisualStateFix);
+			AutomationProperties.SetAutomationId(item, "Section_" + item.Content);
+
+			return item;
+		}
+
+		private static void NavViewItemVisualStateFix(MUXC.NavigationViewItem nvi)
+		{
+			// gallery#107: on uwp and uno, deselecting a NVI by selecting another NVI will leave the former in the "Selected" state
+			// to workaround this, we force reset the visual state when IsSelected becomes false
+			nvi.RegisterPropertyChangedCallback(MUXC.NavigationViewItemBase.IsSelectedProperty, (s, e) =>
+			{
+				if (!nvi.IsSelected)
+				{
+					// depending on the DisplayMode, a NVIP may or may not be used.
+					var nvip = VisualTreeHelperEx.GetFirstDescendant<MUXCP.NavigationViewItemPresenter>(nvi, x => x.Name == "NavigationViewItemPresenter");
+					VisualStateManager.GoToState((Control)nvip ?? nvi, "Normal", true);
+				}
+			});
 		}
 
 		internal async Task NavigateToAllPages()
@@ -512,6 +555,52 @@ namespace Uno.Gallery
 			FeatureConfiguration.ApiInformation.NotImplementedLogLevel = Foundation.Logging.LogLevel.Debug; // Raise not implemented usages as Debug messages
 			FeatureConfiguration.ToolTip.UseToolTips = true;
 #endif
+		}
+
+		private static bool IsSampleVisible(Sample sample)
+		{
+			if (_sampleVisibilityRuleSet.TryGetValue(sample.ViewType, out var rule))
+			{
+				return rule();
+			}
+
+			return true;
+		}
+
+		private static bool CanShowCanarySamples()
+		{
+#if (AOT_PROFILE_GEN || IS_CANARY_BUILD || DEBUG)
+			return true;
+#else
+			return App.IsDebugMode;
+#endif
+		}
+
+		private static bool CanShowRuntimeTests()
+		{
+#if (IS_CANARY_BUILD || DEBUG)
+			return true;
+#else
+			return App.IsDebugMode || RuntimeTestModeDetector.IsEnabled;
+#endif
+		}
+
+		private static MUXC.NavigationViewItem? FindSampleNVI(NavigationView nv, Type type, bool respectVisibility = true) =>
+			FindSampleNVI(nv, sample => sample.ViewType == type, respectVisibility);
+
+		private static MUXC.NavigationViewItem? FindSampleNVI(NavigationView nv, Func<Sample, bool> predicate, bool respectVisibility = true)
+		{
+			return nv.MenuItems.OfType<MUXC.NavigationViewItem>()
+				.Flatten(x => x.MenuItems.OfType<MUXC.NavigationViewItem>())
+				.Where(x => !respectVisibility || x.Visibility == Visibility.Visible)
+				.FirstOrDefault(x => (x.DataContext as Sample) is { } sample && predicate(sample));
+		}
+
+		private static MUXC.NavigationViewItem? FindParentNVI(NavigationView nv, MUXC.NavigationViewItem child)
+		{
+			return nv.MenuItems.OfType<MUXC.NavigationViewItem>()
+				.Flatten(x => x.MenuItems.OfType<MUXC.NavigationViewItem>())
+				.FirstOrDefault(x => x.MenuItems.OfType<MUXC.NavigationViewItem>().Any(y => y == child));
 		}
 	}
 }

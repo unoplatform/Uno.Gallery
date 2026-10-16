@@ -50,7 +50,7 @@ namespace Uno.Gallery
 			new LayoutModeMapping(Design.Fluent, () => !IsDesignAgnostic, _fluentRadioButton, _stickyFluentRadioButton, VisualStateFluent, FluentTemplate),
 			new LayoutModeMapping(Design.Cupertino, () => !IsDesignAgnostic, _cupertinoRadioButton, _stickyCupertinoRadioButton, VisualStateCupertino, CupertinoTemplate),
 			new LayoutModeMapping(Design.Agnostic, () => IsDesignAgnostic, null, null, VisualStateAgnostic, DesignAgnosticTemplate),
-#if __IOS__ || __MACOS__ || __ANDROID__
+#if __IOS__ || __ANDROID__
 			// native tab is only shown when applicable
 			new LayoutModeMapping(Design.Native, () => !IsDesignAgnostic, _nativeRadioButton, _stickyNativeRadioButton, VisualStateNative, NativeTemplate),
 #else
@@ -273,6 +273,17 @@ namespace Uno.Gallery
 			var presenter = (ContentPresenter)GetTemplateChild($"{mode}ContentPresenter");
 
 			return VisualTreeHelperEx.GetFirstDescendant<T>(presenter, x => x.Name == name);
+		}
+
+		/// <summary>
+		/// Get the content presenter of the currently displayed layout mode.
+		/// </summary>
+		public ContentPresenter GetActivePresenter()
+		{
+			// note: _design is not reliable here, as the layout can fallback to another available template
+			return Enum.GetValues<Design>()
+				.Select(x => GetTemplateChild($"{x}ContentPresenter") as ContentPresenter)
+				.FirstOrDefault(x => x?.Visibility == Visibility.Visible);
 		}
 
 		private class LayoutModeMapping

@@ -1,11 +1,13 @@
-﻿<Project Sdk="Uno.Sdk">
+<Project Sdk="Uno.Sdk">
 	<PropertyGroup>
 		<!-- Building with dotnet build -f net10.0-platform will still cause restore to happen for all TargetFrameworks -->
 		<!-- which will force us to install all workloads even if not needed -->
 		<!-- To prevent that, we will pass TargetFrameworkOverride as a global property (i.e, dotnet build -p:TargetFrameworkOverride=net10.0-platform) -->
 		<!-- That way, we set TargetFrameworks property to only the needed TargetFramework -->
 		<!-- NOTE: We cannot build with dotnet build -p:TargetFrameworks=net10.0-platform as that will flow to source generator project, which is incorrect -->
-		<TargetFramework Condition="'$(TargetFrameworkOverride)'!=''">$(TargetFrameworkOverride)</TargetFramework>
+		<TargetFramework Condition="'$(TargetFrameworkOverride)'!='' AND '$(TargetFrameworkOverride)'!='net10.0-browserwasm'">$(TargetFrameworkOverride)</TargetFramework>
+		<!-- The WebAssembly SDK picks its defaults (RID, output path) in props, before this file sets TargetFramework, so WASM keeps an inner build where TargetFramework is a global property -->
+		<TargetFrameworks Condition="'$(TargetFrameworkOverride)'=='net10.0-browserwasm'">net10.0-browserwasm</TargetFrameworks>
 		<TargetFrameworks Condition="'$(TargetFrameworkOverride)'==''">
 			net10.0-android;
 			net10.0-ios;
@@ -14,16 +16,9 @@
 			net10.0-browserwasm;
 		</TargetFrameworks>
 
-		<PublishAot Condition=" '$(PublishAot)' == '' And '$(SkiaPublishAot)' == 'true' And $([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios' ">true</PublishAot>
-		<PublishAot Condition=" '$(PublishAot)' == '' And '$(SkiaPublishAot)' == 'true' And $([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst' ">true</PublishAot>
 		<PublishAot Condition=" '$(PublishAot)' == '' And '$(SkiaPublishAot)' != '' ">$(SkiaPublishAot)</PublishAot>
 		<IsAotCompatible Condition=" '$(IsAotCompatible)' == '' And '$(PublishAot)' == 'true' ">true</IsAotCompatible>
 
-		<!--
-		Uncomment to use Native rendering for iOS/Android/Wasm
-		<UseNativeRendering>true</UseNativeRendering>
-		-->
-		
 		<OutputType>Exe</OutputType>
 		<UnoSingleProject>true</UnoSingleProject>
 		<!-- Display name -->
@@ -33,11 +28,8 @@
 		<!-- App Identifier -->
 		<ApplicationId>uno.platform.gallery</ApplicationId>
 
-		<ApplicationId Condition=" '$(TargetFramework)' == 'net10.0-android' AND '$(UseNativeRendering)' != 'true' ">com.nventive.uno.ui.demo</ApplicationId>
-		<ApplicationId Condition=" '$(TargetFramework)' == 'net10.0-android' AND '$(UseNativeRendering)' == 'true' ">uno.platform.gallery_native</ApplicationId>
-
-		<ApplicationId Condition=" '$(TargetFramework)' == 'net10.0-ios' AND '$(UseNativeRendering)' != 'true' ">com.nventive.uno.gallery</ApplicationId>
-		<ApplicationId Condition=" '$(TargetFramework)' == 'net10.0-ios' AND '$(UseNativeRendering)' == 'true' ">uno.platform.gallery.native</ApplicationId>
+		<ApplicationId Condition=" '$(TargetFramework)' == 'net10.0-android' ">com.nventive.uno.ui.demo</ApplicationId>
+		<ApplicationId Condition=" '$(TargetFramework)' == 'net10.0-ios' ">com.nventive.uno.gallery</ApplicationId>
 
 		<ApplicationId Condition=" '$(ApplicationIdVendorSuffix)' != '' ">$(ApplicationId)$(ApplicationIdVendorSuffix)</ApplicationId>
 
@@ -60,12 +52,6 @@
 		https://aka.platform.uno/singleproject-features
 		-->
 	
-		<IsSkiaWasm Condition="'$(UseNativeRendering)'!='true' AND '$(TargetFramework)'=='net10.0-browserwasm'">true</IsSkiaWasm>
-		<IsSkiaWasm Condition="'$(IsSkiaWasm)'==''">false</IsSkiaWasm>
-		<IsSkiaAndroid Condition="'$(UseNativeRendering)'!='true' AND '$(TargetFramework)'=='net10.0-android'">true</IsSkiaAndroid>
-		<IsSkiaAndroid Condition="'$(IsSkiaAndroid)'==''">false</IsSkiaAndroid>
-		<IsSkiaUIKit Condition="'$(UseNativeRendering)'!='true' AND '$(TargetFramework)'=='net10.0-ios'">true</IsSkiaUIKit>
-		<IsSkiaUIKit Condition="'$(IsSkiaUIKit)'==''">false</IsSkiaUIKit>
 		<UnoFeatures>
 			Material;
 			Toolkit;
@@ -76,20 +62,16 @@
 			MediaElement;
 			WebView;
 		</UnoFeatures>
-		<UnoFeatures Condition="$(IsSkiaWasm)">$(UnoFeatures)SkiaRenderer;</UnoFeatures>
-		<UnoFeatures Condition="$(IsSkiaAndroid)">$(UnoFeatures)SkiaRenderer;</UnoFeatures>
-		<UnoFeatures Condition="$(IsSkiaUIKit)">$(UnoFeatures)SkiaRenderer;</UnoFeatures>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-		<DefineConstants Condition="$(IsSkiaWasm)">$(DefineConstants);IS_WASM_SKIA</DefineConstants>
-		<DefineConstants Condition="$(IsSkiaAndroid)">$(DefineConstants);IS_ANDROID_SKIA</DefineConstants>
-		<DefineConstants Condition="$(IsSkiaUIKit)">$(DefineConstants);IS_UIKIT_SKIA</DefineConstants>
-		<DefineConstants Condition="'$(UseNativeRendering)'!='true'">$(DefineConstants);HAS_SKIA_RENDERER</DefineConstants>
+		<!-- Uno 7.0 migration: CS1705, Uno binaries need WinRT.Runtime 2.3.1 (unoplatform/uno#24905) -->
+		<WindowsSdkPackageVersion Condition="'$(TargetFramework)'=='net10.0-windows10.0.19041'">10.0.19041.87</WindowsSdkPackageVersion>
+		<!-- Uno 7.0 migration: Debug WinAppSDK builds fail with MSB4057 in Uno.UI.HotDesign.props (unoplatform/uno#24983) -->
+		<HotDesignUnoAssets Condition="'$(TargetFramework)'=='net10.0-windows10.0.19041'">-</HotDesignUnoAssets>
 
 		<DefineConstants Condition="$(BUILD_SOURCEBRANCH.StartsWith('refs/heads/canaries'))">$(DefineConstants);IS_CANARY_BUILD</DefineConstants>
 	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)'=='Debug' or '$(IsUiAutomationMappingEnabled)'=='True'">
+	<PropertyGroup Condition="'$(Configuration)'=='Debug'">
 		<IsUiAutomationMappingEnabled>True</IsUiAutomationMappingEnabled>
-		<DefineConstants>$(DefineConstants);USE_UITESTS</DefineConstants>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -98,16 +80,26 @@
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" />
 		<PackageReference Include="Uno.Core.Extensions.Disposables" />
 		<PackageReference Include="Uno.Core.Extensions.Compatibility" />
-		<!--<PackageReference Include="SkiaSharp.Skottie" Condition="$(IsSkiaWasm) OR $(IsSkiaAndroid)" />-->
+		<!--<PackageReference Include="SkiaSharp.Skottie" />-->
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\Uno.Gallery.SourceGenerators\Uno.Gallery.SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" SetPlatform="Platform=AnyCPU" />
 	</ItemGroup>
 
+	<!-- Runtime tests (RuntimeTests\**) are compiled into every build, Release included, so the CI lanes can run them against the shipped app -->
+	<ItemGroup>
+		<PackageReference Include="Uno.UI.RuntimeTests.Engine" />
+	</ItemGroup>
+	<!-- MSTest (from the engine) adds a global using for its namespace, and its DescriptionAttribute clashes with System.ComponentModel's in the app code -->
+	<Target Name="RemoveMSTestGlobalUsing" BeforeTargets="GenerateGlobalUsings">
+		<ItemGroup>
+			<Using Remove="Microsoft.VisualStudio.TestTools.UnitTesting" />
+		</ItemGroup>
+	</Target>
+
 	<ItemGroup Condition="
 			   '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'android'
-			   or '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'ios'
-			   or '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'maccatayst'">
+			   or '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'ios'">
 		<IncludeXamlNamespaces Include="mobile" Visible="False" />
 		<ExcludeXamlNamespaces Include="not_mobile" Visible="False" />
 	</ItemGroup>
@@ -116,20 +108,14 @@
 		<ExcludeXamlNamespaces Include="mobile" Visible="False" />
 	</ItemGroup>
 
-	<PropertyGroup Condition="'$(Configuration)'=='Release' and '$(System_PullRequest_IsFork)'!='True' and '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'ios' ">
+	<!-- Device builds only: the iOS runtime tests lane builds Release for the simulator (-p:RuntimeIdentifier=iossimulator-*), which needs no signing identity -->
+	<PropertyGroup Condition="'$(Configuration)'=='Release' and '$(System_PullRequest_IsFork)'!='True' and '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'ios' and !$(RuntimeIdentifier.StartsWith('iossimulator'))">
 		<CodesignKey>iPhone Distribution</CodesignKey>
 		<RuntimeIdentifier>ios-arm64</RuntimeIdentifier>
 	</PropertyGroup>
 
 	<ItemGroup Condition=" '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'ios' ">
 		<TrimmerRootDescriptor Include="Platforms/iOS/LinkerConfig.xml"/>
-	</ItemGroup>
-
-	<ItemGroup Condition="
-			   ('$(Configuration)'=='Debug' or '$(IsUiAutomationMappingEnabled)'=='True')
-			   AND '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'ios'
-			   ">
-		<PackageReference Include="Xamarin.TestCloud.Agent" />
 	</ItemGroup>
 
 	<PropertyGroup Condition=" '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'browserwasm' ">
@@ -153,10 +139,13 @@
 
 	</PropertyGroup>
 	
-	<ItemGroup Condition="'$(TargetFramework)'!='net10.0-windows10.0.19041'">
-		<PackageReference Include="Uno.CommunityToolkit.WinUI.UI.Controls" />
-		<PackageReference Include="Uno.CommunityToolkit.WinUI.UI.Controls.DataGrid" />
-	</ItemGroup>
+	<!-- Uno 7.0 migration: no Uno.CommunityToolkit.WinUI build targets Uno 7.0, so its DataGrid sample is Windows-only -->
+	<Target Name="RemoveDataGridSample" BeforeTargets="PrepareForBuild" Condition="'$(TargetFramework)'!='net10.0-windows10.0.19041'">
+		<ItemGroup>
+			<Compile Remove="Views\SamplePages\DataGridSamplePage.xaml.cs" />
+			<Page Remove="Views\SamplePages\DataGridSamplePage.xaml" />
+		</ItemGroup>
+	</Target>
 
 	<ItemGroup Condition="'$(TargetFramework)'=='net10.0-windows10.0.19041'">
 		<PackageReference Include="CommunityToolkit.WinUI.Lottie" />
@@ -189,15 +178,7 @@
 	</ItemGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='Release' and '$(WasmShellMonoRuntimeExecutionMode)'=='InterpreterAndAOT'">
-		<WasmAotFileName Condition="'$(IsUiAutomationMappingEnabled)'=='' AND '$(UseNativeRendering)' == 'true' ">aot.profile</WasmAotFileName>
-		<WasmAotFileName Condition="'$(IsUiAutomationMappingEnabled)'=='' AND '$(UseNativeRendering)' != 'true' ">aot-skiawasm.profile</WasmAotFileName>
-
-		<!--
-		Use smaller profile for UI tests to avoid the browser's memory
-		use to go higher than the Ci agent's availability
-		-->
-
-		<WasmAotFileName Condition="'$(IsUiAutomationMappingEnabled)'=='True'">aot-uitests.profile</WasmAotFileName>
+		<WasmAotFileName>aot-skiawasm.profile</WasmAotFileName>
 	</PropertyGroup>
 
 	<!-- https://github.com/dotnet/runtime/issues/109289 -->

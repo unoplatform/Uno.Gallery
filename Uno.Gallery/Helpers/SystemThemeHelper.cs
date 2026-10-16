@@ -38,39 +38,6 @@ namespace Uno.Gallery.Helpers
 				}
 			}
 			return ApplicationTheme.Light;
-#elif __MACOS__
-			var macosVersion = GetOperatingSystemVersion();
-			if (macosVersion >= new Version(10, 14))
-			{
-				var app = AppKit.NSAppearance.CurrentAppearance?.FindBestMatch(new string[]
-				{
-					AppKit.NSAppearance.NameAqua,
-					AppKit.NSAppearance.NameDarkAqua
-				});
-
-				if (app == AppKit.NSAppearance.NameDarkAqua)
-				{
-					return ApplicationTheme.Dark;
-				}
-			}
-			return ApplicationTheme.Light;
-
-			Version GetOperatingSystemVersion()
-			{
-				using (var info = new global::Foundation.NSProcessInfo())
-				{
-					var version = info.OperatingSystemVersion.ToString();
-					if (Version.TryParse(version, out var systemVersion))
-					{
-						return systemVersion;
-					}
-					else if (int.TryParse(version, out var major))
-					{
-						return new Version(major, 0);
-					}
-					return new Version(0, 0);
-				}
-			}
 #elif __WASM__
 			var serializedTheme = Interop.GetDefaultSystemTheme();
 

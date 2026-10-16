@@ -74,22 +74,6 @@
 					</smtx:XamlDisplay>
 				</DataTemplate>
 			</local:SamplePageLayout.CupertinoTemplate>
-			<local:SamplePageLayout.NativeTemplate>
-				<mobile:DataTemplate>
-					<smtx:XamlDisplay UniqueKey="DatePickerSamplePage_Native"
-									  smtx:XamlDisplayExtensions.Header="Default with Native picker"
-									  smtx:XamlDisplayExtensions.Description="The DatePicker is composed of two parts: the text button which uses the Fluent style, and the Flyout Picker which is native to the platform (with UseNativeStyle set to True by default)."
-									  smtx:XamlDisplayExtensions.IgnorePath="XamlDisplay\StackPanel">
-						<StackPanel Spacing="20">
-
-							<DatePicker />
-							<DatePicker Header="DatePicker Disabled"
-										IsEnabled="False" />
-
-						</StackPanel>
-					</smtx:XamlDisplay>
-				</mobile:DataTemplate>
-			</local:SamplePageLayout.NativeTemplate>
 
 		</local:SamplePageLayout>
 	</Grid>

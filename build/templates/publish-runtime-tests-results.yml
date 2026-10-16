@@ -1,0 +1,22 @@
+parameters:
+  platform: ''
+  title: ''
+
+steps:
+- task: PublishTestResults@2
+  displayName: 'Publish the runtime tests results'
+  condition: always()
+  inputs:
+    testRunTitle: '${{ parameters.title }} Runtime Tests'
+    testResultsFormat: 'NUnit'
+    testResultsFiles: '$(Build.SourcesDirectory)/build/runtime-tests/${{ parameters.platform }}/${{ parameters.platform }}-runtime-tests-results.xml'
+    failTaskOnFailedTests: true
+    failTaskOnMissingResultsFile: true
+
+# The results, logs and binlog, which are all a failing device run leaves to diagnose it
+- task: PublishPipelineArtifact@1
+  displayName: 'Publish the runtime tests logs'
+  condition: always()
+  inputs:
+    targetPath: '$(Build.SourcesDirectory)/build/runtime-tests/${{ parameters.platform }}'
+    artifact: 'runtime-tests-${{ parameters.platform }}-$(System.JobAttempt)'

@@ -25,7 +25,7 @@ namespace Uno.Gallery.Views.Samples
 			foreach (var item in desc)
 			{
 
-				var border = item.GetTemplateChild("SuggestionsContainer") as Border;
+				var border = VisualTreeHelperEx.GetDescendants(item).OfType<Border>().FirstOrDefault(b => b.Name == "SuggestionsContainer");
 				border?.EnsureXamlControlsResources(true);
 			}
 #endif

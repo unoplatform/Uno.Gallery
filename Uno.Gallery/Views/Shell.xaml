@@ -8,10 +8,9 @@
 			 xmlns:utu="using:Uno.Toolkit.UI"
 			 xmlns:win="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 			 xmlns:wasm="http://uno.ui/wasm"
-			 xmlns:xamarin="http://uno.ui/xamarin"
-			 xmlns:skia="http://uno.ui/skia"
+			 xmlns:not_win="http://uno.ui/not_win"
 			 xmlns:todo="what should be done"
-			 mc:Ignorable="wasm xamarin todo skia">
+			 mc:Ignorable="wasm not_win todo">
 
 	<UserControl.Resources>
 		<Style x:Key="AppBarButtonStyle"
@@ -244,7 +243,6 @@
 	</UserControl.Resources>
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
 		<Grid.RowDefinitions>
 			<RowDefinition x:Name="TopPaddingRow"
 						   Height="0" />
@@ -529,7 +527,7 @@
 					</Grid>
 
 					<!-- FPS indicator Toggle -->
-					<skia:CheckBox x:Name="FPSIndicatorCheckBox"
+					<not_win:CheckBox x:Name="FPSIndicatorCheckBox"
 					               x:Load="False"
 								   Content="FPS indicator"
 								   Click="FPSIndicatorCheckBox_Click" />
@@ -571,5 +569,20 @@
 				HorizontalAlignment="Left"
 				AutomationProperties.AutomationId="NavToggle"
 				Style="{StaticResource PaneToggleButtonStyle}" />
+
+		<StackPanel x:Name="DebugPanel"
+					x:Load="False"
+					Grid.RowSpan="3"
+					Background="Pink"
+					Padding="5"
+					HorizontalAlignment="Center"
+					VerticalAlignment="Bottom">
+			<StackPanel Orientation="Horizontal">
+				<Button Content="DebugVT"
+						Click="DebugVT" />
+				<Button Content="T"
+						Click="DebugVTAsync" />
+			</StackPanel>
+		</StackPanel>
 	</Grid>
 </UserControl>

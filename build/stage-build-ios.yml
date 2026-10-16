@@ -6,29 +6,23 @@ steps:
 
 - template: templates/dotnet-install-mac.yml
   parameters:
-    UnoCheckParameters: '--tfm net10.0-ios --tfm net10.0-maccatalyst'
+    UnoCheckParameters: '--tfm net10.0-ios'
 
 - template: templates/canary-updater.yml
-
-- task: DownloadSecureFile@1
-  name: keyStore
-  displayName: "Download keystore from secure files"
-  inputs:
-    secureFile: nventive.jks
 
 - template: templates/gitversion.yml
 
 - bash: |
     cd $(build.sourcesdirectory)/Uno.Gallery
     echo "BUILD_SOURCEBRANCH: $BUILD_SOURCEBRANCH"
-    dotnet $(BuildCommand) -v:n -f $(BuildTargetFramework) -p:TargetFrameworkOverride=$(BuildTargetFramework) -c Release -p:UseNativeRendering=$(UseNativeRendering) /p:ArchiveOnBuild=true /bl:$(build.artifactstagingdirectory)/build-$(BuildTargetFramework).binlog "/p:InformationalVersion=$(NBGV_InformationalVersion)"
+    dotnet $(BuildCommand) -v:n -f $(BuildTargetFramework) -p:TargetFrameworkOverride=$(BuildTargetFramework) -c Release /p:ArchiveOnBuild=true /bl:$(build.artifactstagingdirectory)/build-$(BuildTargetFramework).binlog "/p:InformationalVersion=$(NBGV_InformationalVersion)"
   displayName: Build project for Release - $(BuildTargetFramework)
   condition: and(succeeded(), eq(variables['System.PullRequest.IsFork'],'False'))
 
 - bash: |
     cd $(build.sourcesdirectory)/Uno.Gallery
     echo "BUILD_SOURCEBRANCH: $BUILD_SOURCEBRANCH"
-    dotnet build -f $(BuildTargetFramework) -p:TargetFrameworkOverride=$(BuildTargetFramework) -c Release -p:UseNativeRendering=$(UseNativeRendering) /bl:$(build.artifactstagingdirectory)/build-$(BuildTargetFramework).binlog "/p:InformationalVersion=$(NBGV_InformationalVersion)"
+    dotnet build -f $(BuildTargetFramework) -p:TargetFrameworkOverride=$(BuildTargetFramework) -c Release /bl:$(build.artifactstagingdirectory)/build-$(BuildTargetFramework).binlog "/p:InformationalVersion=$(NBGV_InformationalVersion)"
   displayName: Build project for Release - $(BuildTargetFramework)
   condition: and(succeeded(), eq(variables['System.PullRequest.IsFork'],'True'))
 
@@ -37,10 +31,8 @@ steps:
   inputs:
     SourceFolder: $(build.sourcesdirectory)/Uno.Gallery/bin/Release/
     Contents:  |
-      **/*.apk
       **/*.ipa
       **/*.dSym/**
-      **/*.pkg
     TargetFolder: $(build.artifactstagingdirectory)
     CleanTargetFolder: false
     OverWrite: false
@@ -50,10 +42,10 @@ steps:
   retryCountOnTaskFailure: 3
   condition: succeeded()
   inputs:
-    ArtifactName: $(ArtifactName)-$(VariantName)
+    ArtifactName: $(ArtifactName)
 
 - task: PublishBuildArtifacts@1
   retryCountOnTaskFailure: 3
   condition: always()
   inputs:
-    ArtifactName: $(ArtifactName)-$(VariantName)-logs
+    ArtifactName: $(ArtifactName)-logs
