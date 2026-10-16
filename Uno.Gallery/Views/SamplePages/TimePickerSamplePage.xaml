@@ -3,21 +3,17 @@
 	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	  xmlns:local="using:Uno.Gallery"
 	  xmlns:smtx="using:ShowMeTheXAML"
-	  xmlns:mobile="http://uno.ui/mobile"
-	  xmlns:not_mobile="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	  xmlns:ios="http://uno.ui/ios"
-	  xmlns:android="http://uno.ui/android"
 	  xmlns:not_win="http://uno.ui/not_win"
-	  mc:Ignorable="d ios android mobile not_win">
+	  mc:Ignorable="d not_win">
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 		<local:SamplePageLayout>
 			<!-- Material sample will be added when the TimePicker style is available in Material v2 -->
 			<!-- cf. https://github.com/unoplatform/Uno.Themes/issues/1329 -->
 			<!--<local:SamplePageLayout.MaterialTemplate>
-				<not_mobile:DataTemplate>
+				<DataTemplate>
 					<StackPanel>
 
 						<smtx:XamlDisplay UniqueKey="TimePickerSamplePage_Material_Default"
@@ -36,7 +32,7 @@
 						</smtx:XamlDisplay>
 			
 					</StackPanel>
-				</not_mobile:DataTemplate>
+				</DataTemplate>
 			</local:SamplePageLayout.MaterialTemplate>-->
 			<local:SamplePageLayout.FluentTemplate>
 				<DataTemplate>

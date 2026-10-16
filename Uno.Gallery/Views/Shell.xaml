@@ -3,7 +3,6 @@
 			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 xmlns:local="using:Uno.Gallery"
-			 xmlns:not_wasm="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 			 xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
 			 xmlns:utu="using:Uno.Toolkit.UI"
 			 xmlns:win="http://schemas.microsoft.com/winfx/2006/xaml/presentation"

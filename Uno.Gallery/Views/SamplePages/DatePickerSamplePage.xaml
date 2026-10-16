@@ -4,13 +4,9 @@
 	  xmlns:local="using:Uno.Gallery"
 	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	  xmlns:mobile="http://uno.ui/mobile"
-	  xmlns:not_mobile="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	  xmlns:smtx="using:ShowMeTheXAML"
-	  xmlns:ios="http://uno.ui/ios"
 	  xmlns:not_win="http://uno.ui/not_win"
-	  xmlns:android="http://uno.ui/android"
-	  mc:Ignorable="d ios android not_win mobile">
+	  mc:Ignorable="d not_win">
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 		<local:SamplePageLayout>

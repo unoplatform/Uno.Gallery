@@ -6,9 +6,7 @@
 	  xmlns:local="using:Uno.Gallery"
 	  xmlns:ut="using:Uno.Themes"
 	  xmlns:smtx="using:ShowMeTheXAML"
-	  xmlns:android="http://uno.ui/android"
-	  xmlns:ios="http://uno.ui/ios"
-	  mc:Ignorable="d android ios">
+	  mc:Ignorable="d">
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 		<local:SamplePageLayout>
