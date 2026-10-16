@@ -114,6 +114,7 @@
 		</PropertyGroup>
 
 		<XmlPoke 
+			Condition="Exists('$(_AppxManifestPath)')"
 			XmlInputPath="$(_AppxManifestPath)"
             Query="/x:Package/x:Identity/@Version"
             Value="$(_WindowsVersion)"
