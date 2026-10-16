@@ -48,16 +48,14 @@ internal static class RuntimeTestModeDetector
 			? []
 			: ParseArguments(arguments.Split(['?', '&', ' '], StringSplitOptions.RemoveEmptyEntries));
 
-	private static IEnumerable<KeyValuePair<string, string?>> ParseArguments(IEnumerable<string> arguments)
-	{
-		foreach (var argument in arguments)
+	private static IEnumerable<KeyValuePair<string, string?>> ParseArguments(IEnumerable<string> arguments) =>
+		arguments.Select(KeyValuePair<string, string?> (argument) =>
 		{
 			var token = argument.TrimStart('-');
 			var separator = token.IndexOf('=');
 
-			yield return separator < 0
+			return separator < 0
 				? new(token, null)
 				: new(token[..separator], Uri.UnescapeDataString(token[(separator + 1)..]));
-		}
-	}
+		});
 }
