@@ -99,8 +99,7 @@
 
 	<ItemGroup Condition="
 			   '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'android'
-			   or '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'ios'
-			   or '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'maccatayst'">
+			   or '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'ios'">
 		<IncludeXamlNamespaces Include="mobile" Visible="False" />
 		<ExcludeXamlNamespaces Include="not_mobile" Visible="False" />
 	</ItemGroup>
