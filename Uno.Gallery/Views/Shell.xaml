@@ -288,7 +288,7 @@
 				   Height="35"
 				   IsTabStop="False"
 				   Stretch="Fill"
-				   wasm:Source="{ThemeResource UnoLogoWebBannerImageSource}" />
+				   Source="{ThemeResource UnoLogoWebBannerImageSource}" />
 
 			<StackPanel Grid.Column="2"
 						Orientation="Horizontal"
