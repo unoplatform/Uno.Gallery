@@ -643,21 +643,7 @@
 										</Storyboard>
 									</VisualTransition>
 								</VisualStateGroup.Transitions>
-								<VisualState x:Name="Closed">
-									<!--  Workaround because values aren't properly reset on Wasm.  -->
-									<!--<Storyboard>
-										<netstdref:ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility"
-																			Storyboard.TargetName="PaneRoot">
-											<DiscreteObjectKeyFrame KeyTime="0:0:0"
-																	Value="Collapsed" />
-										</netstdref:ObjectAnimationUsingKeyFrames>
-										<netstdref:ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Grid.Column)"
-																			Storyboard.TargetName="ContentRoot">
-											<DiscreteObjectKeyFrame KeyTime="0:0:0"
-																	Value="0" />
-										</netstdref:ObjectAnimationUsingKeyFrames>
-									</Storyboard>-->
-								</VisualState>
+								<VisualState x:Name="Closed" />
 								<VisualState x:Name="ClosedCompactLeft">
 									<VisualState.Setters>
 										<Setter Target="PaneTransform.TranslateX" Value="0" />
