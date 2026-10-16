@@ -24,17 +24,14 @@ namespace Uno.Gallery
 		private const string VisualStateMaterial = nameof(Design.Material);
 		private const string VisualStateFluent = nameof(Design.Fluent);
 		private const string VisualStateCupertino = nameof(Design.Cupertino);
-		private const string VisualStateNative = nameof(Design.Native);
 		private const string VisualStateAgnostic = nameof(Design.Agnostic);
 
 		private const string MaterialRadioButtonPartName = "PART_MaterialRadioButton";
 		private const string FluentRadioButtonPartName = "PART_FluentRadioButton";
 		private const string CupertinoRadioButtonPartName = "PART_CupertinoRadioButton";
-		private const string NativeRadioButtonPartName = "PART_NativeRadioButton";
 		private const string StickyMaterialRadioButtonPartName = "PART_StickyMaterialRadioButton";
 		private const string StickyFluentRadioButtonPartName = "PART_StickyFluentRadioButton";
 		private const string StickyCupertinoRadioButtonPartName = "PART_StickyCupertinoRadioButton";
-		private const string StickyNativeRadioButtonPartName = "PART_StickyNativeRadioButton";
 		private const string ScrollingTabsPartName = "PART_ScrollingTabs";
 		private const string StickyTabsPartName = "PART_StickyTabs";
 		private const string ScrollViewerPartName = "PART_ScrollViewer";
@@ -50,23 +47,14 @@ namespace Uno.Gallery
 			new LayoutModeMapping(Design.Fluent, () => !IsDesignAgnostic, _fluentRadioButton, _stickyFluentRadioButton, VisualStateFluent, FluentTemplate),
 			new LayoutModeMapping(Design.Cupertino, () => !IsDesignAgnostic, _cupertinoRadioButton, _stickyCupertinoRadioButton, VisualStateCupertino, CupertinoTemplate),
 			new LayoutModeMapping(Design.Agnostic, () => IsDesignAgnostic, null, null, VisualStateAgnostic, DesignAgnosticTemplate),
-#if __IOS__ || __ANDROID__
-			// native tab is only shown when applicable
-			new LayoutModeMapping(Design.Native, () => !IsDesignAgnostic, _nativeRadioButton, _stickyNativeRadioButton, VisualStateNative, NativeTemplate),
-#else
-			// undefined template are not selectable and wont be selected by default
-			new LayoutModeMapping(Design.Native, () => !IsDesignAgnostic, _nativeRadioButton, _stickyNativeRadioButton, VisualStateNative, default),
-#endif
 		};
 
 		private RadioButton _materialRadioButton;
 		private RadioButton _fluentRadioButton;
 		private RadioButton _cupertinoRadioButton;
-		private RadioButton _nativeRadioButton;
 		private RadioButton _stickyMaterialRadioButton;
 		private RadioButton _stickyFluentRadioButton;
 		private RadioButton _stickyCupertinoRadioButton;
-		private RadioButton _stickyNativeRadioButton;
 		private FrameworkElement _scrollingTabs;
 		private FrameworkElement _stickyTabs;
 		private FrameworkElement _top;
@@ -106,11 +94,9 @@ namespace Uno.Gallery
 			_materialRadioButton = (RadioButton)GetTemplateChild(MaterialRadioButtonPartName);
 			_fluentRadioButton = (RadioButton)GetTemplateChild(FluentRadioButtonPartName);
 			_cupertinoRadioButton = (RadioButton)GetTemplateChild(CupertinoRadioButtonPartName);
-			_nativeRadioButton = (RadioButton)GetTemplateChild(NativeRadioButtonPartName);
 			_stickyMaterialRadioButton = (RadioButton)GetTemplateChild(StickyMaterialRadioButtonPartName);
 			_stickyFluentRadioButton = (RadioButton)GetTemplateChild(StickyFluentRadioButtonPartName);
 			_stickyCupertinoRadioButton = (RadioButton)GetTemplateChild(StickyCupertinoRadioButtonPartName);
-			_stickyNativeRadioButton = (RadioButton)GetTemplateChild(StickyNativeRadioButtonPartName);
 			_scrollingTabs = (FrameworkElement)GetTemplateChild(ScrollingTabsPartName);
 			_stickyTabs = (FrameworkElement)GetTemplateChild(StickyTabsPartName);
 			_scrollViewer = (ScrollViewer)GetTemplateChild(ScrollViewerPartName);
@@ -138,11 +124,9 @@ namespace Uno.Gallery
 			BindOnClick(_materialRadioButton);
 			BindOnClick(_fluentRadioButton);
 			BindOnClick(_cupertinoRadioButton);
-			BindOnClick(_nativeRadioButton);
 			BindOnClick(_stickyMaterialRadioButton);
 			BindOnClick(_stickyFluentRadioButton);
 			BindOnClick(_stickyCupertinoRadioButton);
-			BindOnClick(_stickyNativeRadioButton);
 
 			UpdateLayoutRadioButtons();
 

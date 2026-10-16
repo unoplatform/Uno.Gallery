@@ -129,21 +129,6 @@ namespace Uno.Gallery
 		}
 
 		#endregion
-		#region Property: NativeTemplate
-
-		public static DependencyProperty NativeTemplateProperty { get; } = DependencyProperty.Register(
-			nameof(NativeTemplate),
-			typeof(DataTemplate),
-			typeof(SamplePageLayout),
-			new PropertyMetadata(default));
-
-		public DataTemplate NativeTemplate
-		{
-			get => (DataTemplate)GetValue(NativeTemplateProperty);
-			set => SetValue(NativeTemplateProperty, value);
-		}
-
-		#endregion
 		#region Property: DesignAgnosticTemplate
 
 		public static DependencyProperty DesignAgnosticTemplateProperty { get; } = DependencyProperty.Register(
@@ -162,7 +147,7 @@ namespace Uno.Gallery
 
 		#region Property: HeaderTemplate
 		/// <summary>
-		/// The Header is the part above the design tabs (Material|Fluent|Native).
+		/// The Header is the part above the design tabs (Material|Fluent|Cupertino).
 		/// It contains the Description and the Source in the default style.
 		/// </summary>
 		public DataTemplate HeaderTemplate
