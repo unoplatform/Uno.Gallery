@@ -285,7 +285,7 @@ namespace Uno.Gallery
 		public static bool IsDebugMode { get; private set; }
 
 		/// <summary>
-		/// Enters the debug mode, which reveals the navigation items gated by it (eg: runtime tests, diagnostics) and the debug panel of the shell.
+		/// Enters the debug mode, which reveals the navigation items gated by it (eg: runtime tests) and the debug panel of the shell.
 		/// </summary>
 		/// <remarks>This is safe to call again, eg: for a shell of another window opened before entering the debug mode.</remarks>
 		internal void EnterDebugMode(Shell shell)
@@ -552,7 +552,7 @@ namespace Uno.Gallery
 #if (AOT_PROFILE_GEN || IS_CANARY_BUILD || DEBUG)
 			return true;
 #else
-			return App.IsDebugMode;
+			return false;
 #endif
 		}
 
