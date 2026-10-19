@@ -20,10 +20,7 @@ namespace Uno.Gallery.Views.SamplePages
 	/// <summary>
 	/// An empty page that can be used on its own or navigated to within a Frame.
 	/// </summary>
-#if !__IOS__ && !__ANDROID__
 	[SamplePage(SampleCategory.UIComponents, "CalendarView", Description = "Represents a control that enables a user to select a date by using a visual calendar display.", DocumentationLink = "https://learn.microsoft.com/en-us/windows/windows-app-sdk/api/winrt/microsoft.ui.xaml.controls.calendarview")]
-#endif
-
 	public sealed partial class CalendarViewSamplePage : Page
 	{
 		public CalendarViewSamplePage()
