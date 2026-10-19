@@ -49,6 +49,13 @@
 				</ResourceDictionary>
 
 			</ResourceDictionary.MergedDictionaries>
+
+			<!--
+				Material and Cupertino share this root typeface key since Uno.Themes 9 (every type scale, eg: TitleLargeFontFamily, aliases it),
+				so the last merged one wins, which is CupertinoFonts' bare "SF Pro": it doesn't exist off Apple platforms, and WebAssembly renders it with a monospace fallback.
+				Pin it to Material's, the Gallery's base design. Cupertino controls aren't affected, they use CupertinoFontFamily (see CupertinoFontsOverride.xaml).
+			-->
+			<FontFamily x:Key="DefaultFontFamily">ms-appx:///Uno.Fonts.Roboto/Fonts/Roboto.ttf#Roboto</FontFamily>
 		</ResourceDictionary>
 	</Application.Resources>
 </Application>
