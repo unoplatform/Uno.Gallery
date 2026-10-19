@@ -66,10 +66,6 @@ namespace Uno.Gallery
 
 			this.InitializeComponent();
 
-#if !WINDOWS
-			this.Suspending += OnSuspending;
-#endif
-
 #if __WASM__
 			_ = DispatcherQueue.GetForCurrentThread().TryEnqueue(DispatcherQueuePriority.Low, () => AnalyticsService.Initialize());
 #endif
@@ -164,22 +160,6 @@ namespace Uno.Gallery
 				!string.IsNullOrWhiteSpace(val) && !string.Equals(UndefinedValue, val, StringComparison.OrdinalIgnoreCase);
 
 		}
-
-#if !WINDOWS
-		/// <summary>
-		/// Invoked when application execution is being suspended. Application state is saved
-		/// without knowing whether the application will be terminated or resumed with the contents
-		/// of memory still intact.
-		/// </summary>
-		/// <param name="sender">The source of the suspend request.</param>
-		/// <param name="e">Details about the suspend request.</param>
-		private void OnSuspending(object sender, SuspendingEventArgs e)
-		{
-			var deferral = e.SuspendingOperation.GetDeferral();
-			//TODO: Save application state and stop any background activity
-			deferral.Complete();
-		}
-#endif
 
 		public void ShellNavigateTo(Shell shell, Sample sample) =>
 			ShellNavigateTo(shell, sample, trySynchronizeCurrentItem: true);
