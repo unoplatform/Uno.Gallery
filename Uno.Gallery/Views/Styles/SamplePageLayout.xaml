@@ -250,21 +250,6 @@
 												<Run Text="official documentation." />
 											</Hyperlink>
 										</TextBlock>
-
-										<!-- Share button -->
-										<TextBlock Visibility="{Binding IsShareVisible, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
-														   Margin="0,0,0,16"
-														   Foreground="{ThemeResource OnBackgroundBrush}"
-														   Opacity="0.8"
-														   Style="{StaticResource BodyMedium}">
-											<Run Text="You can" />
-
-											<Hyperlink x:Name="PART_ShareHyperlink">
-												<Run Text="share" />
-											</Hyperlink>
-
-											<Run Text="this page." />
-										</TextBlock>
 									</StackPanel>
 								</StackPanel>
 							</Grid>

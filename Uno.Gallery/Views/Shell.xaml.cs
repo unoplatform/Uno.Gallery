@@ -50,11 +50,6 @@ public sealed partial class Shell : UserControl
 	{
 		SetDarkLightToggleInitialState();
 
-#if (__IOS__ || __ANDROID__) && !NET6_0_OR_GREATER
-		this.Log().Debug("Loaded Shell.");
-		Uno.Gallery.Deeplinking.BranchService.Instance.SetIsAppReady();
-#endif
-
 #if DEBUG || IS_CANARY_BUILD
 		FindName("FPSIndicatorCheckBox"); // materialize x:Load=false element
 #endif

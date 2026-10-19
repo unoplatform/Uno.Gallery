@@ -10,7 +10,6 @@ using Windows.Foundation;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Documents;
 using Microsoft.UI.Xaml.Media;
 using Uno.UI.Extensions;
 
@@ -37,7 +36,6 @@ namespace Uno.Gallery
 		private const string ScrollViewerPartName = "PART_ScrollViewer";
 		private const string TopPartName = "PART_MobileTopBar";
 		private const string ScrollingContentName = "ScrollingContent";
-		private const string ShareHyperlinkPartName = "PART_ShareHyperlink";
 
 		private static Design _design = Design.Material;
 
@@ -76,13 +74,7 @@ namespace Uno.Gallery
 					DocumentationLink = sample.DocumentationLink;
 					Source = sample.Source;
 
-#if __IOS__ || __ANDROID__
-					IsFooterVisible = true;
-					IsShareVisible = true;
-#else
 					IsFooterVisible = sample.DocumentationLink != null;
-					IsShareVisible = false;
-#endif
 				}
 			}
 		}
@@ -102,7 +94,6 @@ namespace Uno.Gallery
 			_scrollViewer = (ScrollViewer)GetTemplateChild(ScrollViewerPartName);
 			_top = (FrameworkElement)GetTemplateChild(TopPartName);
 			_scrollingContent = (FrameworkElement)GetTemplateChild(ScrollingContentName);
-			var shareHyperlink = (Hyperlink)GetTemplateChild(ShareHyperlinkPartName);
 
 			// ensure previous subscriptions is removed before adding new ones, in case OnApplyTemplate is called multiple times
 			var disposables = new CompositeDisposable();
@@ -112,14 +103,6 @@ namespace Uno.Gallery
 			Disposable
 				.Create(() => _scrollViewer.ViewChanged -= OnScrolled)
 				.DisposeWith(disposables);
-
-			if (shareHyperlink != null) // This feature is not available on all platforms.
-			{
-				shareHyperlink.Click += OnShareClicked;
-				Disposable
-					.Create(() => shareHyperlink.Click -= OnShareClicked)
-					.DisposeWith(disposables);
-			}
 
 			BindOnClick(_materialRadioButton);
 			BindOnClick(_fluentRadioButton);
@@ -150,14 +133,6 @@ namespace Uno.Gallery
 					_stickyTabs.Visibility = Visibility.Collapsed;
 				}
 			}
-		}
-
-		private void OnShareClicked(Hyperlink sender, HyperlinkClickEventArgs args)
-		{
-#if (__IOS__ || __ANDROID__) && !NET6_0_OR_GREATER
-			var sample = DataContext as Sample;
-			_ = Deeplinking.BranchService.Instance.ShareSample(sample, _design);
-#endif
 		}
 
 		/// <summary>

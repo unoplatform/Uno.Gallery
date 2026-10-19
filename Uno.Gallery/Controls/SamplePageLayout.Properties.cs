@@ -170,16 +170,5 @@ namespace Uno.Gallery
 		public static readonly DependencyProperty IsFooterVisibleProperty =
 			DependencyProperty.Register("IsFooterVisible", typeof(bool), typeof(SamplePageLayout), new PropertyMetadata(false));
 		#endregion
-
-		#region IsShareVisible
-		public bool IsShareVisible
-		{
-			get { return (bool)GetValue(IsShareVisibleProperty); }
-			set { SetValue(IsShareVisibleProperty, value); }
-		}
-
-		public static readonly DependencyProperty IsShareVisibleProperty =
-			DependencyProperty.Register("IsShareVisible", typeof(bool), typeof(SamplePageLayout), new PropertyMetadata(false));
-		#endregion
 	}
 }
