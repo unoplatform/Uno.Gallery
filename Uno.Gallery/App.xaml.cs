@@ -29,11 +29,17 @@ namespace Uno.Gallery
 	/// </summary>
 	public partial class App : Application
 	{
+		// The visibility of a sample is decided by the first rule found, see GetVisibilityRule:
+		// 1. its own rule, from _sampleVisibilityRuleSet by page type (eg: Runtime Tests)
+		// 2. the rule of its category, from _categoryVisibilityRuleSet (eg: every Canary sample)
+		// 3. otherwise, always visible
+		private static readonly Dictionary<SampleCategory, Func<bool>> _categoryVisibilityRuleSet = new()
+		{
+			[SampleCategory.Canary] = CanShowCanarySamples,
+		};
 		private static readonly Dictionary<Type, Func<bool>> _sampleVisibilityRuleSet = new()
 		{
 			[typeof(RuntimeTestsSamplePage)] = CanShowRuntimeTests,
-			[typeof(CanarySamplePage)] = CanShowCanarySamples,
-			// always true if omitted
 		};
 
 		private readonly bool _exitAfterLaunching;
@@ -297,16 +303,19 @@ namespace Uno.Gallery
 		}
 
 		/// <summary>
-		/// Re-evaluates the visibility of every navigation item that has a rule in <see cref="_sampleVisibilityRuleSet"/>.
+		/// Re-evaluates the visibility of every navigation item whose sample has a rule, see <see cref="GetVisibilityRule(Sample)"/>.
 		/// </summary>
 		private static void UpdateRuleBasedNavigationItems(MUXC.NavigationView nv)
 		{
-			foreach (var (pageType, rule) in _sampleVisibilityRuleSet)
+			var items = nv.MenuItems.OfType<MUXC.NavigationViewItem>()
+				.Flatten(x => x.MenuItems.OfType<MUXC.NavigationViewItem>())
+				.ToArray();
+			foreach (var item in items)
 			{
-				UpdateNavigationItemVisibilityAndCascade(
-					nv,
-					FindSampleNVI(nv, pageType, respectVisibility: false),
-					rule() ? Visibility.Visible : Visibility.Collapsed);
+				if (item.DataContext is Sample sample && GetVisibilityRule(sample) is { } rule)
+				{
+					UpdateNavigationItemVisibilityAndCascade(nv, item, rule() ? Visibility.Visible : Visibility.Collapsed);
+				}
 			}
 		}
 
@@ -537,15 +546,11 @@ namespace Uno.Gallery
 #endif
 		}
 
-		private static bool IsSampleVisible(Sample sample)
-		{
-			if (_sampleVisibilityRuleSet.TryGetValue(sample.ViewType, out var rule))
-			{
-				return rule();
-			}
+		private static bool IsSampleVisible(Sample sample) => GetVisibilityRule(sample)?.Invoke() ?? true;
 
-			return true;
-		}
+		private static Func<bool>? GetVisibilityRule(Sample sample) =>
+			_sampleVisibilityRuleSet.GetValueOrDefault(sample.ViewType) ??
+			_categoryVisibilityRuleSet.GetValueOrDefault(sample.Category);
 
 		private static bool CanShowCanarySamples()
 		{
