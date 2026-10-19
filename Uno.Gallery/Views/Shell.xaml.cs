@@ -189,15 +189,6 @@ public sealed partial class Shell : UserControl
 		else
 		{
 			NestedSampleFrame.Content = null;
-
-#if __IOS__
-			// This will force reset the UINavigationController, to prevent the back button from appearing when the stack is supposedly empty.
-			// note: Merely setting the Frame.Content to null, doesn't fully reset the stack.
-			// When revisiting the page1 again, the previous page1 is still in the UINavigationController stack
-			// causing a back button to appear that takes us back to the previous page1
-			NestedSampleFrame.BackStack.Add(default);
-			NestedSampleFrame.BackStack.Clear();
-#endif
 		}
 
 		return true;
