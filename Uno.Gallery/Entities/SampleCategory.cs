@@ -27,6 +27,10 @@ namespace Uno.Gallery
 		[SampleCategoryInfo("\uE821", "Community Toolkit")]
 		CommunityToolkit,
 
+		// Hidden unless the runtime tests are enabled, see App.CanShowRuntimeTests
+		[SampleCategoryInfo("\uE9D9", "Testing")]
+		Testing,
+
 		// Hidden for non-canary builds
 		[SampleCategoryInfo("\uE115", "Canary")]
 		Canary,
