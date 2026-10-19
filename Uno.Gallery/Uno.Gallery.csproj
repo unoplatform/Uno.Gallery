@@ -67,6 +67,9 @@
 		<WindowsSdkPackageVersion Condition="'$(TargetFramework)'=='net10.0-windows10.0.19041'">10.0.19041.87</WindowsSdkPackageVersion>
 		<!-- Uno 7.0 migration: Debug WinAppSDK builds fail with MSB4057 in Uno.UI.HotDesign.props (unoplatform/uno#24983) -->
 		<HotDesignUnoAssets Condition="'$(TargetFramework)'=='net10.0-windows10.0.19041'">-</HotDesignUnoAssets>
+		<!-- GALLERY0001: the samples generator could not map the TargetFramework to a SampleConditionals value and fell back to Always, which emits every non-Disabled sample. -->
+		<!-- It stays a warning in the generator (so the code is still generated), but the app treats it as an error so a new or misspelled TFM can't silently ship samples to platforms that don't support them. -->
+		<WarningsAsErrors>$(WarningsAsErrors);GALLERY0001</WarningsAsErrors>
 
 		<DefineConstants Condition="$(BUILD_SOURCEBRANCH.StartsWith('refs/heads/canaries'))">$(DefineConstants);IS_CANARY_BUILD</DefineConstants>
 	</PropertyGroup>
@@ -84,6 +87,8 @@
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\Uno.Gallery.SourceGenerators\Uno.Gallery.SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" SetPlatform="Platform=AnyCPU" />
+		<!-- The samples generator filters the samples by TargetFramework, see SampleConditionals -->
+		<CompilerVisibleProperty Include="TargetFramework" />
 	</ItemGroup>
 
 	<!-- Runtime tests (RuntimeTests\**) are compiled into every build, Release included, so the CI lanes can run them against the shipped app -->
