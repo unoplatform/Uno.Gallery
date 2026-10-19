@@ -149,11 +149,11 @@ public sealed class SamplesGenerator : IIncrementalGenerator
 
 		return platform.ToLowerInvariant() switch
 		{
-			"android" => SampleConditionals.Droid,
+			"android" => SampleConditionals.Android,
 			"ios" => SampleConditionals.iOS,
 			"windows" => SampleConditionals.Windows,
-			"desktop" => SampleConditionals.SkiaDesktop,
-			"browserwasm" => SampleConditionals.Wasm,
+			"desktop" => SampleConditionals.Desktop,
+			"browserwasm" => SampleConditionals.BrowserWasm,
 			_ => null,
 		};
 	}

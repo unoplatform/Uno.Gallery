@@ -6,7 +6,7 @@ using Microsoft.UI.Xaml.Controls;
 namespace Uno.Gallery.Views.Samples
 {
 	[SamplePage(SampleCategory.NonUIFeatures, "PhoneCallManager", Description = "Allows apps to present a phone call UI to the user to allow them to initiate a call.", DocumentationLink = "https://learn.microsoft.com/en-us/uwp/api/windows.applicationmodel.calls.phonecallmanager?view=winrt-22000")]
-	[SampleConditional(SampleConditionals.Mobile | SampleConditionals.Wasm, Reason = "PhoneCallManager is currently only implemented on Android, iOS and WASM")]
+	[SampleConditional(SampleConditionals.Mobile | SampleConditionals.BrowserWasm, Reason = "PhoneCallManager is currently only implemented on Android, iOS and WASM")]
 	public sealed partial class PhoneCallManagerSamplePage : Page
 	{
 		public PhoneCallManagerSamplePage()
