@@ -116,7 +116,7 @@ public sealed partial class Shell : UserControl
 	}
 #endif
 
-#if __UNO_SKIA__
+#if __UNO__
 	private void FPSIndicatorCheckBox_Click(object sender, RoutedEventArgs e)
 	{
 		Application.Current.DebugSettings.EnableFrameRateCounter = FPSIndicatorCheckBox.IsChecked ?? false;
