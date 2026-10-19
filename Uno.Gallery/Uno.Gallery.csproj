@@ -144,6 +144,11 @@
 
 	</PropertyGroup>
 	
+	<ItemGroup Condition="'$(TargetFramework)'!='net10.0-windows10.0.19041'">
+		<PackageReference Include="Uno.CommunityToolkit.WinUI.UI.Controls" />
+		<PackageReference Include="Uno.CommunityToolkit.WinUI.UI.Controls.DataGrid" />
+	</ItemGroup>
+
 	<!-- Uno 7.0 migration: no Uno.CommunityToolkit.WinUI build targets Uno 7.0, so its DataGrid sample is Windows-only -->
 	<Target Name="RemoveDataGridSample" BeforeTargets="PrepareForBuild" Condition="'$(TargetFramework)'!='net10.0-windows10.0.19041'">
 		<ItemGroup>
