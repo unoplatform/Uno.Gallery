@@ -25,7 +25,9 @@ namespace Uno.Gallery.Views.Samples
 			foreach (var item in desc)
 			{
 
-				var border = VisualTreeHelperEx.GetDescendants(item).OfType<Border>().FirstOrDefault(b => b.Name == "SuggestionsContainer");
+				// SuggestionsContainer is the popup's child, which isn't below the popup in the visual tree
+				var popup = VisualTreeHelperEx.GetDescendants(item).OfType<Popup>().FirstOrDefault(p => p.Name == "SuggestionsPopup");
+				var border = popup?.Child as Border;
 				border?.EnsureXamlControlsResources(true);
 			}
 #endif
