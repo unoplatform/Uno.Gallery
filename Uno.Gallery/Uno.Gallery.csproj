@@ -177,9 +177,13 @@
 		<WasmShellMonoEnvironment Include="MONO_GC_PARAMS" Value="soft-heap-limit=512m,nursery-size=64m,evacuation-threshold=66,major=marksweep" />
 	</ItemGroup>
 
+	<!--
+	Uno 7.0 migration: the AOT profile was recorded on Uno 6.x and no longer matches the 7.0 assemblies, so it was removed.
+	Record a new one once the stable 7.0 packages are out, then restore this block.
 	<PropertyGroup Condition="'$(Configuration)'=='Release' and '$(WasmShellMonoRuntimeExecutionMode)'=='InterpreterAndAOT'">
 		<WasmAotFileName>aot-skiawasm.profile</WasmAotFileName>
 	</PropertyGroup>
+	-->
 
 	<!-- https://github.com/dotnet/runtime/issues/109289 -->
 	<Target Name="Issue109289_Workaround" AfterTargets="_BrowserWasmWriteRspForLinking" Condition=" $(NETCoreSdkVersion.Contains('9.0.100')) ">
