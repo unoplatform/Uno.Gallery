@@ -250,7 +250,13 @@
 		</Grid.RowDefinitions>
 
 		<!-- Banner similar to the Uno website (WASM only) -->
+		<!--
+			Turned off with x:Load="False" (Uno 7.0 migration): the 6.x Skia WebAssembly head never showed it, since `wasm:` didn't
+			apply there, but in 7.0 `wasm:` covers Skia WebAssembly, so it reappeared, without its logo. Kept off to match the
+			current gallery.platform.uno. See https://github.com/unoplatform/Uno.Gallery/pull/1261#discussion_r4298483253
+		-->
 		<wasm:Grid x:Name="WebBanner"
+				   x:Load="False"
 				   Grid.Row="1"
 				   Padding="32,16">
 			<VisualStateManager.VisualStateGroups>
