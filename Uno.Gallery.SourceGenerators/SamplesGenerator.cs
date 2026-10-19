@@ -7,6 +7,21 @@ using Microsoft.CodeAnalysis.Text;
 
 namespace Uno.Gallery.SourceGenerators;
 
+/// <summary>
+/// Generates <c>App.GetAllSamples()</c>, the list of every [SamplePage] in the app, so the navigation is built without reflection.
+/// </summary>
+/// <remarks>
+/// Samples are filtered at compile time against the current platform, which is mapped from the TargetFramework
+/// (eg: net10.0-windows10.0.19041 -> <see cref="SampleConditionals.Windows"/>):
+/// <list type="bullet">
+/// <item>a sample without [SampleConditional] is always included;</item>
+/// <item>a <see cref="SampleConditionals.Disabled"/> sample is always excluded;</item>
+/// <item>otherwise, the sample is included when its conditionals contain the current platform.</item>
+/// </list>
+/// An unknown TargetFramework reports GALLERY0001 and falls back to <see cref="SampleConditionals.Always"/>, which includes every non-disabled sample.
+/// GALLERY0001 is only a warning here, but Uno.Gallery.csproj lists it in WarningsAsErrors, so it still fails the app build.
+/// The samples are further filtered at runtime, see App.IsSampleVisible.
+/// </remarks>
 [Generator]
 public sealed class SamplesGenerator : IIncrementalGenerator
 {
