@@ -129,7 +129,6 @@
 
 	<PropertyGroup Condition=" '$([MSBuild]::GetTargetPlatformIdentifier($(TargetFramework)))' == 'browserwasm' AND '$(Configuration)' == 'Release' ">
 		<WasmShellMonoRuntimeExecutionMode>InterpreterAndAOT</WasmShellMonoRuntimeExecutionMode>
-		<WasmShellEmccLinkOptimization>false</WasmShellEmccLinkOptimization>
 		<WasmShellEnableEmccProfiling>true</WasmShellEnableEmccProfiling>
 		<!-- <UnoXamlResourcesTrimming>true</UnoXamlResourcesTrimming> -->
 
