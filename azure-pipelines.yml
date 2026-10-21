@@ -47,9 +47,6 @@ variables:
   IOS_SIMULATOR_DEVICE: 'iPhone 16'
   IOS_SIMULATOR_RUNTIME_PREFIX: 'com.apple.CoreSimulator.SimRuntime.iOS-26-1'
 
-  # Required to about trashing azdo hosted agents
-  AotCompileMaxDegreeOfParallelism: 3
-
 stages:
 - stage: Android
   displayName: 'Android'
