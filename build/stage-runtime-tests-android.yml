@@ -8,7 +8,7 @@ jobs:
   timeoutInMinutes: 120
 
   pool:
-    vmImage: 'ubuntu-latest'
+    vmImage: 'ubuntu-24.04'
 
   steps:
   - checkout: self

@@ -8,7 +8,7 @@
     displayName: 'Publish Android'
     environment: Uno Gallery
     pool:
-      vmImage: ubuntu-latest
+      vmImage: ubuntu-24.04
 
     strategy:
       runOnce:

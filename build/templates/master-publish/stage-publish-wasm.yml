@@ -8,7 +8,7 @@
     displayName: 'Publish WebAssembly'
     environment: Uno Gallery Wasm Staging
     pool:
-      vmImage: ubuntu-latest
+      vmImage: ubuntu-24.04
 
     strategy:
       runOnce:
@@ -42,7 +42,7 @@
     displayName: 'Publish WebAssembly'
     environment: Uno Gallery Wasm Production
     pool:
-      vmImage: ubuntu-latest
+      vmImage: ubuntu-24.04
 
     strategy:
       runOnce:
