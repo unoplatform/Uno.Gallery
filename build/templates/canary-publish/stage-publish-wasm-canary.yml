@@ -1,6 +1,6 @@
 ﻿stages:
 - stage: WebAssembly_Publish
-  displayName: 'WebAssembly'
+  displayName: 'WebAssembly (Canary)'
   dependsOn: WebAssembly
 
   jobs:
@@ -30,5 +30,5 @@
               skip_api_build: true
               is_static_export: false
               verbose: false
-              azure_static_web_apps_api_token: '$(PROD_SWA_TOKEN)'
+              azure_static_web_apps_api_token: '$(DEV_SWA_TOKEN)'
               deployment_environment: 'canary-skia'
