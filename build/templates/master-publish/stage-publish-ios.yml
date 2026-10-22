@@ -29,4 +29,4 @@
               appIdentifier: com.nventive.uno.gallery
               ipaPath: '$(Pipeline.Workspace)/drop/net10.0-ios/ios-arm64/publish/Uno.Gallery.ipa'
               shouldSkipWaitingForProcessing: true
-              appSpecificId: 1619130328
+              appSpecificId: 1380984680

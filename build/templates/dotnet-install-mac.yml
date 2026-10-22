@@ -29,11 +29,7 @@ steps:
   - template: jdk-setup.yml
 
   - bash: |
-      if [[ "$(Build.SourceBranch)" == refs/heads/canaries/* ]]; then
-        dotnet tool update --global uno.check --prerelease --add-source https://api.nuget.org/v3/index.json
-      else
-        dotnet tool update --global uno.check --version ${{ parameters.UnoCheck_Version }} --add-source https://api.nuget.org/v3/index.json
-      fi
+      dotnet tool update --global uno.check --version ${{ parameters.UnoCheck_Version }} --add-source https://api.nuget.org/v3/index.json
       uno-check --verbose --ci --non-interactive --fix --skip androidemulator --skip gtk3 --skip xcode --skip vswin --skip maui --skip unosdk --skip vsmac --skip dotnetnewunotemplates ${{ parameters.UnoCheckParameters }}
     displayName: Install .NET Workloads
     condition: and(succeeded(), and(eq(variables['Agent.OS'], 'Darwin'), eq('${{ parameters.installWorkloads }}', 'true')))
