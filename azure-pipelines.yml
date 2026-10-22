@@ -43,10 +43,9 @@ variables:
   IsCanaryBranch: $[startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries/')]
 
   XCODE_ROOT: '/Applications/Xcode_26.1.1.app'
-  XCODE_ROOT_UITESTS: '/Applications/Xcode_26.1.1.app'
-
-  # Required to about trashing azdo hosted agents
-  AotCompileMaxDegreeOfParallelism: 3
+  # The simulator the iOS runtime tests run on: its runtime must match the iOS SDK of XCODE_ROOT, so change them together
+  IOS_SIMULATOR_DEVICE: 'iPhone 16'
+  IOS_SIMULATOR_RUNTIME_PREFIX: 'com.apple.CoreSimulator.SimRuntime.iOS-26-1'
 
 stages:
 - stage: Android
@@ -61,15 +60,6 @@ stages:
           ArtifactName: Android
           BuildForPlayStore: True
           VersionCodeOffset: 1
-          UseNativeRendering: true
-          VariantName: Native
-        Android_Skia_Store:
-          ApplicationPlatform: AnyCPU
-          ArtifactName: Android
-          BuildForPlayStore: True
-          VersionCodeOffset: 1
-          UseNativeRendering: false
-          VariantName: Skia
 
     pool:
       vmImage: windows-2022
@@ -78,7 +68,7 @@ stages:
     - group: 'UADO Keystore' # Import all variables for the signing from the library in azure devops
 
     steps:
-    - template: build/stage-build-android-mobile.yml
+    - template: build/stage-build-android.yml
 
 
 - stage: Windows
@@ -119,7 +109,7 @@ stages:
     - group: 'UADO Keystore' # Import all variables for the signing from the library in azure devops
   
     steps:
-    - template: build/stage-build-skia-desktop.yml
+    - template: build/stage-build-desktop.yml
 
 - stage: Apple
   displayName: 'Apple'
@@ -134,15 +124,6 @@ stages:
           ArtifactName: iOS-mobile
           ApplicationBuildNumberOffset: 50
           BuildCommand: publish
-          UseNativeRendering: true
-          VariantName: Native
-        iOS_Skia:
-          BuildTargetFramework: net10.0-ios
-          ArtifactName: iOS-mobile
-          ApplicationBuildNumberOffset: 50
-          BuildCommand: publish
-          UseNativeRendering: false
-          VariantName: Skia
     pool:
       vmImage: macos-15
   
@@ -160,19 +141,7 @@ stages:
         keychain: temp
         # disabled because of azure devops failing to uninstall as of 2022-11-16
         # deleteCert: true
-  
-    - task: InstallAppleCertificate@2
-      displayName: Install Certificate
-      inputs:
-        certSecureFile: UnoPlatform-MacInstaller.p12
-        certPwd: $(appleappstorecertificatepassword)
-        keychain: temp
-        # disabled because of azure devops failing to uninstall as of 2022-11-16
-        # deleteCert: true
 
-    #
-    # Gallery Skia
-    #
     - task: InstallAppleProvisioningProfile@1
       displayName: 'Install Apple Provisioning Profile'
       inputs:
@@ -185,28 +154,11 @@ stages:
         provisioningProfileLocation: 'secureFiles'
         provProfileSecureFile: Uno_Gallery_Canary_iOS.mobileprovision
 
-    #
-    # Gallery Native
-    #
-      
-    - task: InstallAppleProvisioningProfile@1
-      displayName: 'Install Apple Provisioning Profile'
-      inputs:
-        provisioningProfileLocation: 'secureFiles'
-        provProfileSecureFile: Uno_Gallery_Native_iOS.mobileprovision
-  
-    - task: InstallAppleProvisioningProfile@1
-      displayName: 'Install Apple Provisioning Profile'
-      inputs:
-        provisioningProfileLocation: 'secureFiles'
-        provProfileSecureFile: Uno_Gallery_Native_Canary_iOS.mobileprovision
-
-
     - template: build/templates/xcode-select.yml
       parameters:
         xCodeRoot: $(XCODE_ROOT)
   
-    - template: build/stage-build-mobile.yml
+    - template: build/stage-build-ios.yml
 
 - stage: WebAssembly
   displayName: 'WebAssembly'
@@ -216,16 +168,12 @@ stages:
     timeoutInMinutes: 60
 
     pool:
-      vmImage: ubuntu-latest
+      vmImage: ubuntu-24.04
 
     strategy:
       matrix:
-        DOM:
-          ArtifactName: WASM-DOM
-          UseNativeRendering: true
         Skia:
           ArtifactName: WASM-Skia
-          UseNativeRendering: false
 
     variables:
       SkipUnknownFrameworks: true
@@ -233,26 +181,32 @@ stages:
     steps:
       - template: build/stage-build-wasm.yml
  
-- stage: WebAssembly_Tests
-  displayName: 'WebAssembly Tests'
+- stage: Runtime_Tests_Desktop
+  displayName: 'Runtime Tests - Desktop'
+  dependsOn: Skia_Desktop
+  jobs:
+  - template: build/stage-runtime-tests-desktop.yml
+
+- stage: Runtime_Tests_WebAssembly
+  displayName: 'Runtime Tests - WebAssembly'
+  dependsOn: WebAssembly
+  jobs:
+  - template: build/stage-runtime-tests-wasm.yml
+
+- stage: Runtime_Tests_Android
+  displayName: 'Runtime Tests - Android'
+  dependsOn: Android
+  jobs:
+  - template: build/stage-runtime-tests-android.yml
+
+- stage: Runtime_Tests_iOS
+  displayName: 'Runtime Tests - iOS'
   dependsOn: []
   jobs:
-  - template: build/stage-uitests-wasm.yml
+  - template: build/stage-runtime-tests-ios.yml
 
-- stage: iOS_Tests
-  displayName: 'iOS Tests'
-  dependsOn: []
-  jobs:
-  - template: build/stage-uitests-ios.yml
-
-- stage: Android_Tests
-  displayName: 'Android Tests'
-  dependsOn: []
-  jobs:
-  - template: build/stage-uitests-android.yml
-
-- stage: Android_Skia_NativeAOT_Instrumentation_Tests
-  displayName: 'Android+Skia+NativeAOT Instrumentation Tests'
+- stage: Android_NativeAOT_Instrumentation_Tests
+  displayName: 'Android+NativeAOT Instrumentation Tests'
   dependsOn: []
   jobs:
   - template: build/stage-tests-android.yml

@@ -1,0 +1,46 @@
+# Runs the runtime tests (Uno.Gallery/RuntimeTests) against the Release Android app built by the Android stage, on an emulator.
+# Release builds produce an APK next to the store's .aab by default (AndroidPackageFormats=aab;apk), and that APK is the one tested.
+
+jobs:
+- job: Runtime_Tests_Android
+  displayName: 'Runtime Tests - Android'
+  # Most of it goes to downloading the Android SDK and booting the emulator on a clean agent (uno.extensions found 60 too short)
+  timeoutInMinutes: 120
+
+  pool:
+    vmImage: 'ubuntu-24.04'
+
+  steps:
+  - checkout: self
+    clean: true
+
+  - template: templates/host-cleanup-linux.yml
+
+  - task: DownloadPipelineArtifact@2
+    displayName: 'Download the Android app'
+    inputs:
+      artifactName: android-mobile
+      targetPath: $(Pipeline.Workspace)/android
+
+  # Without access to /dev/kvm the emulator falls back to software emulation, ~10x slower, which shows up as a boot timeout
+  - bash: |
+      if [ ! -e /dev/kvm ]; then
+        echo "ERROR: /dev/kvm is not available on this agent." >&2
+        exit 1
+      fi
+      sudo chown "$USER" /dev/kvm
+      sudo chmod 666 /dev/kvm
+    displayName: 'Enable KVM'
+
+  - bash: |
+      chmod +x build/scripts/android-runtime-tests.sh
+      build/scripts/android-runtime-tests.sh
+    displayName: 'Run the runtime tests'
+    env:
+      BUILD_SOURCESDIRECTORY: $(Build.SourcesDirectory)
+      RUNTIME_TESTS_APP_PATH: $(Pipeline.Workspace)/android
+
+  - template: templates/publish-runtime-tests-results.yml
+    parameters:
+      platform: android
+      title: Android

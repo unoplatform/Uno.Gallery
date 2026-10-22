@@ -1,0 +1,40 @@
+# Runs the runtime tests (Uno.Gallery/RuntimeTests) against the Release desktop head built by the Skia_Desktop stage.
+
+jobs:
+- job: Runtime_Tests_Desktop
+  displayName: 'Runtime Tests - Desktop'
+  timeoutInMinutes: 60
+
+  pool:
+    vmImage: 'ubuntu-24.04'
+
+  steps:
+  - checkout: self
+    clean: true
+
+  - template: templates/host-cleanup-linux.yml
+
+  # Only the runtime is needed to run the app
+  - template: templates/dotnet-install-linux.yml
+    parameters:
+      installJava: false
+      installWorkloads: false
+
+  - task: DownloadPipelineArtifact@2
+    displayName: 'Download the desktop app'
+    inputs:
+      artifactName: desktop
+      targetPath: $(Pipeline.Workspace)/desktop
+
+  - bash: |
+      chmod +x build/scripts/desktop-runtime-tests.sh
+      build/scripts/desktop-runtime-tests.sh
+    displayName: 'Run the runtime tests'
+    env:
+      BUILD_SOURCESDIRECTORY: $(Build.SourcesDirectory)
+      RUNTIME_TESTS_APP_PATH: $(Pipeline.Workspace)/desktop/bin
+
+  - template: templates/publish-runtime-tests-results.yml
+    parameters:
+      platform: desktop
+      title: Desktop

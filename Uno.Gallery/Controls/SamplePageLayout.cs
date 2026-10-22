@@ -10,7 +10,6 @@ using Windows.Foundation;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Documents;
 using Microsoft.UI.Xaml.Media;
 using Uno.UI.Extensions;
 
@@ -24,23 +23,19 @@ namespace Uno.Gallery
 		private const string VisualStateMaterial = nameof(Design.Material);
 		private const string VisualStateFluent = nameof(Design.Fluent);
 		private const string VisualStateCupertino = nameof(Design.Cupertino);
-		private const string VisualStateNative = nameof(Design.Native);
 		private const string VisualStateAgnostic = nameof(Design.Agnostic);
 
 		private const string MaterialRadioButtonPartName = "PART_MaterialRadioButton";
 		private const string FluentRadioButtonPartName = "PART_FluentRadioButton";
 		private const string CupertinoRadioButtonPartName = "PART_CupertinoRadioButton";
-		private const string NativeRadioButtonPartName = "PART_NativeRadioButton";
 		private const string StickyMaterialRadioButtonPartName = "PART_StickyMaterialRadioButton";
 		private const string StickyFluentRadioButtonPartName = "PART_StickyFluentRadioButton";
 		private const string StickyCupertinoRadioButtonPartName = "PART_StickyCupertinoRadioButton";
-		private const string StickyNativeRadioButtonPartName = "PART_StickyNativeRadioButton";
 		private const string ScrollingTabsPartName = "PART_ScrollingTabs";
 		private const string StickyTabsPartName = "PART_StickyTabs";
 		private const string ScrollViewerPartName = "PART_ScrollViewer";
 		private const string TopPartName = "PART_MobileTopBar";
 		private const string ScrollingContentName = "ScrollingContent";
-		private const string ShareHyperlinkPartName = "PART_ShareHyperlink";
 
 		private static Design _design = Design.Material;
 
@@ -50,23 +45,14 @@ namespace Uno.Gallery
 			new LayoutModeMapping(Design.Fluent, () => !IsDesignAgnostic, _fluentRadioButton, _stickyFluentRadioButton, VisualStateFluent, FluentTemplate),
 			new LayoutModeMapping(Design.Cupertino, () => !IsDesignAgnostic, _cupertinoRadioButton, _stickyCupertinoRadioButton, VisualStateCupertino, CupertinoTemplate),
 			new LayoutModeMapping(Design.Agnostic, () => IsDesignAgnostic, null, null, VisualStateAgnostic, DesignAgnosticTemplate),
-#if __IOS__ || __MACOS__ || __ANDROID__
-			// native tab is only shown when applicable
-			new LayoutModeMapping(Design.Native, () => !IsDesignAgnostic, _nativeRadioButton, _stickyNativeRadioButton, VisualStateNative, NativeTemplate),
-#else
-			// undefined template are not selectable and wont be selected by default
-			new LayoutModeMapping(Design.Native, () => !IsDesignAgnostic, _nativeRadioButton, _stickyNativeRadioButton, VisualStateNative, default),
-#endif
 		};
 
 		private RadioButton _materialRadioButton;
 		private RadioButton _fluentRadioButton;
 		private RadioButton _cupertinoRadioButton;
-		private RadioButton _nativeRadioButton;
 		private RadioButton _stickyMaterialRadioButton;
 		private RadioButton _stickyFluentRadioButton;
 		private RadioButton _stickyCupertinoRadioButton;
-		private RadioButton _stickyNativeRadioButton;
 		private FrameworkElement _scrollingTabs;
 		private FrameworkElement _stickyTabs;
 		private FrameworkElement _top;
@@ -88,13 +74,7 @@ namespace Uno.Gallery
 					DocumentationLink = sample.DocumentationLink;
 					Source = sample.Source;
 
-#if __IOS__ || __ANDROID__
-					IsFooterVisible = true;
-					IsShareVisible = true;
-#else
 					IsFooterVisible = sample.DocumentationLink != null;
-					IsShareVisible = false;
-#endif
 				}
 			}
 		}
@@ -106,17 +86,14 @@ namespace Uno.Gallery
 			_materialRadioButton = (RadioButton)GetTemplateChild(MaterialRadioButtonPartName);
 			_fluentRadioButton = (RadioButton)GetTemplateChild(FluentRadioButtonPartName);
 			_cupertinoRadioButton = (RadioButton)GetTemplateChild(CupertinoRadioButtonPartName);
-			_nativeRadioButton = (RadioButton)GetTemplateChild(NativeRadioButtonPartName);
 			_stickyMaterialRadioButton = (RadioButton)GetTemplateChild(StickyMaterialRadioButtonPartName);
 			_stickyFluentRadioButton = (RadioButton)GetTemplateChild(StickyFluentRadioButtonPartName);
 			_stickyCupertinoRadioButton = (RadioButton)GetTemplateChild(StickyCupertinoRadioButtonPartName);
-			_stickyNativeRadioButton = (RadioButton)GetTemplateChild(StickyNativeRadioButtonPartName);
 			_scrollingTabs = (FrameworkElement)GetTemplateChild(ScrollingTabsPartName);
 			_stickyTabs = (FrameworkElement)GetTemplateChild(StickyTabsPartName);
 			_scrollViewer = (ScrollViewer)GetTemplateChild(ScrollViewerPartName);
 			_top = (FrameworkElement)GetTemplateChild(TopPartName);
 			_scrollingContent = (FrameworkElement)GetTemplateChild(ScrollingContentName);
-			var shareHyperlink = (Hyperlink)GetTemplateChild(ShareHyperlinkPartName);
 
 			// ensure previous subscriptions is removed before adding new ones, in case OnApplyTemplate is called multiple times
 			var disposables = new CompositeDisposable();
@@ -127,22 +104,12 @@ namespace Uno.Gallery
 				.Create(() => _scrollViewer.ViewChanged -= OnScrolled)
 				.DisposeWith(disposables);
 
-			if (shareHyperlink != null) // This feature is not available on all platforms.
-			{
-				shareHyperlink.Click += OnShareClicked;
-				Disposable
-					.Create(() => shareHyperlink.Click -= OnShareClicked)
-					.DisposeWith(disposables);
-			}
-
 			BindOnClick(_materialRadioButton);
 			BindOnClick(_fluentRadioButton);
 			BindOnClick(_cupertinoRadioButton);
-			BindOnClick(_nativeRadioButton);
 			BindOnClick(_stickyMaterialRadioButton);
 			BindOnClick(_stickyFluentRadioButton);
 			BindOnClick(_stickyCupertinoRadioButton);
-			BindOnClick(_stickyNativeRadioButton);
 
 			UpdateLayoutRadioButtons();
 
@@ -166,14 +133,6 @@ namespace Uno.Gallery
 					_stickyTabs.Visibility = Visibility.Collapsed;
 				}
 			}
-		}
-
-		private void OnShareClicked(Hyperlink sender, HyperlinkClickEventArgs args)
-		{
-#if (__IOS__ || __ANDROID__) && !NET6_0_OR_GREATER
-			var sample = DataContext as Sample;
-			_ = Deeplinking.BranchService.Instance.ShareSample(sample, _design);
-#endif
 		}
 
 		/// <summary>
@@ -273,6 +232,17 @@ namespace Uno.Gallery
 			var presenter = (ContentPresenter)GetTemplateChild($"{mode}ContentPresenter");
 
 			return VisualTreeHelperEx.GetFirstDescendant<T>(presenter, x => x.Name == name);
+		}
+
+		/// <summary>
+		/// Get the content presenter of the currently displayed layout mode.
+		/// </summary>
+		public ContentPresenter GetActivePresenter()
+		{
+			// note: _design is not reliable here, as the layout can fallback to another available template
+			return Enum.GetValues<Design>()
+				.Select(x => GetTemplateChild($"{x}ContentPresenter") as ContentPresenter)
+				.FirstOrDefault(x => x?.Visibility == Visibility.Visible);
 		}
 
 		private class LayoutModeMapping

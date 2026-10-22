@@ -2,6 +2,9 @@ using Microsoft.UI.Xaml.Input;
 using Uno.Extensions;
 using Uno.Extensions.Specialized;
 using Uno.Gallery.Helpers;
+using Uno.Gallery.Views.Samples;
+using Uno.UI.Extensions;
+using Windows.ApplicationModel.DataTransfer;
 using Windows.System;
 using Windows.UI.Core;
 using Windows.UI.ViewManagement;
@@ -43,27 +46,26 @@ public sealed partial class Shell : UserControl
 
 	public MUXC.NavigationView NavigationView => NavigationViewControl;
 
-	public string CurrentSampleBackdoor
-	{
-		get { return (string)GetValue(CurrentSampleBackdoorProperty); }
-		set { SetValue(CurrentSampleBackdoorProperty, value); }
-	}
-
-	public static readonly DependencyProperty CurrentSampleBackdoorProperty =
-		DependencyProperty.Register(nameof(CurrentSampleBackdoor), typeof(string), typeof(Shell), new PropertyMetadata(null));
-
 	private void OnLoaded(object sender, RoutedEventArgs e)
 	{
 		SetDarkLightToggleInitialState();
 
-#if (__IOS__ || __ANDROID__) && !NET6_0_OR_GREATER
-		this.Log().Debug("Loaded Shell.");
-		Uno.Gallery.Deeplinking.BranchService.Instance.SetIsAppReady();
-#endif
-
 #if DEBUG || IS_CANARY_BUILD
 		FindName("FPSIndicatorCheckBox"); // materialize x:Load=false element
 #endif
+
+#if DEBUG && false
+		ActivateDebugPanel();
+#endif
+		if (App.IsDebugMode)
+		{
+			ActivateDebugPanel();
+		}
+	}
+
+	internal void ActivateDebugPanel()
+	{
+		FindName("DebugPanel"); // materialize x:Load=false element
 	}
 
 	private void SetDarkLightToggleInitialState()
@@ -109,7 +111,7 @@ public sealed partial class Shell : UserControl
 	}
 #endif
 
-#if __UNO_SKIA__
+#if __UNO__
 	private void FPSIndicatorCheckBox_Click(object sender, RoutedEventArgs e)
 	{
 		Application.Current.DebugSettings.EnableFrameRateCounter = FPSIndicatorCheckBox.IsChecked ?? false;
@@ -187,15 +189,6 @@ public sealed partial class Shell : UserControl
 		else
 		{
 			NestedSampleFrame.Content = null;
-
-#if __IOS__
-			// This will force reset the UINavigationController, to prevent the back button from appearing when the stack is supposedly empty.
-			// note: Merely setting the Frame.Content to null, doesn't fully reset the stack.
-			// When revisiting the page1 again, the previous page1 is still in the UINavigationController stack
-			// causing a back button to appear that takes us back to the previous page1
-			NestedSampleFrame.BackStack.Add(default);
-			NestedSampleFrame.BackStack.Clear();
-#endif
 		}
 
 		return true;
@@ -264,7 +257,7 @@ public sealed partial class Shell : UserControl
 			return;
 		}
 
-		(Application.Current as App)?.SearchShellNavigateTo(this, sample);
+		(Application.Current as App)?.ShellNavigateTo(this, sample);
 	}
 
 	private void CtrlF_Invoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
@@ -277,7 +270,7 @@ public sealed partial class Shell : UserControl
 		if (args.ChosenSuggestion is Sample sample)
 		{
 			// User selected an item, take an action
-			(Application.Current as App)?.SearchShellNavigateTo(this, sample);
+			(Application.Current as App)?.ShellNavigateTo(this, sample);
 		}
 		else if (!string.IsNullOrEmpty(args.QueryText))
 		{
@@ -285,7 +278,7 @@ public sealed partial class Shell : UserControl
 			var suggestions = SearchSamples(sender.Text);
 			if (Enumerable.Count(suggestions) > 0)
 			{
-				(Application.Current as App)?.SearchShellNavigateTo(this, suggestions.FirstOrDefault());
+				(Application.Current as App)?.ShellNavigateTo(this, suggestions.FirstOrDefault());
 			}
 		}
 	}
@@ -303,5 +296,77 @@ public sealed partial class Shell : UserControl
 		var secondaryWindow = new Window();
 		App.Instance.InitializeWindow(secondaryWindow);
 		secondaryWindow.Activate();
+	}
+
+	private void DebugVT(object sender, RoutedEventArgs e)
+	{
+		object? FindViewOfInterest()
+		{
+			// the view of interest is:
+			// - the top-most open popup if present
+			// - in nested sample, the content of that page
+			// - in RuntimeTestsSamplePage, the "UnitTestsUIContentHelper.Content"
+			// - for any page, the active section of SamplePageLayout if present OR the content of that page
+
+			var popups = VisualTreeHelper.GetOpenPopupsForXamlRoot(XamlRoot);
+			var popup = popups
+				.Where(x => x.Child?.GetType().Namespace?.StartsWith("Uno.Diagnostics.UI") != true)
+				.LastOrDefault();
+			if (popup is { })
+			{
+				return popup.Child;
+			}
+
+			var content = NestedSampleFrame.Content ?? NavigationViewControl.Content;
+			if (content is RuntimeTestsSamplePage runner)
+			{
+				return VisualTreeHelperEx.GetFirstDescendant<ContentControl>(runner, x => x.Name == "unitTestContentRoot")?.Content;
+			}
+			else if (content is Page page)
+			{
+				if (VisualTreeHelperEx.GetFirstDescendant<SamplePageLayout>(page) is { } layout &&
+					layout.GetActivePresenter() is { } presenter)
+				{
+					// presenter.Content is the Sample (DataContext), so we want the materialized template root instead
+					return VisualTreeHelperEx.GetChildren(presenter).FirstOrDefault();
+				}
+				else
+				{
+					return page.Content;
+				}
+			}
+
+			return null;
+		}
+
+#if HAS_UNO
+		// for the best viewing experience, paste the tree in VSCode (you can collapse node) with `ini` syntax highlighting
+		var tree = this.TreeGraph();
+		var target = FindViewOfInterest();
+		var targetTree = (target as DependencyObject)?.TreeGraph();
+
+		// note: you can also tag element with unique x:Name to inspect here
+		//var sut = VisualTreeHelperEx.GetFirstDescendant<FrameworkElement>(this, x => x.Name == "SUT");
+		//var tree = Uno.UI.Extensions.ViewExtensions.TreeGraph(sut);
+
+#if __WASM__
+		Console.WriteLine(targetTree ?? tree);
+#else
+		var data = new DataPackage();
+		data.SetText(targetTree ?? tree);
+
+		Clipboard.SetContent(data);
+#endif
+#endif
+
+		// note: insert a breakpoint around here or uncomment the next line to debug.
+		//if (System.Diagnostics.Debugger.IsAttached) System.Diagnostics.Debugger.Break();
+	}
+
+	private async void DebugVTAsync(object sender, RoutedEventArgs e)
+	{
+		await Task.Delay(5000);
+
+		DebugVT(sender, e);
 	}
 }

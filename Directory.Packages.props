@@ -5,23 +5,13 @@
     See https://aka.platform.uno/using-uno-sdk for more information.
   -->
 	<ItemGroup>
-		<PackageVersion Include="coverlet.collector" Version="6.0.2" />
-		<PackageVersion Include="FluentAssertions" Version="6.12.0" />
-		<PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.9.0" />
-		<PackageVersion Include="NUnit" Version="3.14.0" />
-		<PackageVersion Include="NUnit3TestAdapter" Version="4.2.0" />
-		<PackageVersion Include="NunitXml.TestLogger" Version="3.1.15" />
-		<PackageVersion Include="Newtonsoft.Json" Version="13.0.3" />
-		<PackageVersion Include="Uno.UITest.Helpers" Version="1.1.0-dev.70" />
-		<PackageVersion Include="Xamarin.UITest" Version="4.4.1" />
+		<PackageVersion Include="Uno.ShowMeTheXAML" Version="3.0.0-dev0001" />
+		<PackageVersion Include="Uno.ShowMeTheXAML.MSBuild" Version="3.0.0-dev0001" />
 
-		<PackageVersion Include="Uno.ShowMeTheXAML" Version="2.0.0-dev0026" />
-		<PackageVersion Include="Uno.ShowMeTheXAML.MSBuild" Version="2.0.0-dev0026" />
-
-		<PackageVersion Include="Uno.CommunityToolkit.WinUI.UI.Controls" Version="7.1.200" />
-		<PackageVersion Include="Uno.CommunityToolkit.WinUI.UI.Controls.DataGrid" Version="7.1.200" />
-		<PackageVersion Include="Uno.Core.Extensions.Compatibility" Version="4.0.1" />
-		<PackageVersion Include="Uno.Core.Extensions.Disposables" Version="4.0.1" />
+		<PackageVersion Include="Uno.CommunityToolkit.WinUI.UI.Controls" Version="7.2.0-dev.30" />
+		<PackageVersion Include="Uno.CommunityToolkit.WinUI.UI.Controls.DataGrid" Version="7.2.0-dev.30" />
+		<PackageVersion Include="Uno.Core.Extensions.Compatibility" Version="5.0.0-dev.34" />
+		<PackageVersion Include="Uno.Core.Extensions.Disposables" Version="5.0.0-dev.34" />
 		<PackageVersion Include="CommunityToolkit.WinUI.Lottie" Version="8.0.280225" />
 		<PackageVersion Include="CommunityToolkit.WinUI.UI.Controls" Version="7.1.2" />
 		<PackageVersion Include="CommunityToolkit.WinUI.UI.Controls.DataGrid" Version="7.1.2" />
@@ -32,9 +22,9 @@
 		<PackageVersion Include="Microsoft.Extensions.Logging.Debug" Version="9.0.0" />
 		<PackageVersion Include="Microsoft.TypeScript.Compiler" Version="3.1.5" />
 		<PackageVersion Include="Microsoft.TypeScript.MSBuild" Version="4.6.4" />
-		<PackageVersion Include="Microsoft.WindowsAppSDK" Version="1.8.260101001" />
-		<PackageVersion Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.28000.1-RTM" />
+		<PackageVersion Include="Microsoft.WindowsAppSDK" Version="2.5.1" />
+		<PackageVersion Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.28000.2705" />
 		<PackageVersion Include="nventive.Nimue.Application.Packaging" Version="0.1.0-alpha.58" />
-		<PackageVersion Include="Xamarin.TestCloud.Agent" Version="0.23.2" />
+		<PackageVersion Include="Uno.UI.RuntimeTests.Engine" Version="3.0.0-dev.2" />
 	</ItemGroup>
 </Project>

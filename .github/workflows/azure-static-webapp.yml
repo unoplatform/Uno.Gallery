@@ -18,7 +18,7 @@ jobs:
       DotnetVersion: '10.0.102'
 
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     container: 'unoplatform/wasm-build:3.0'
     name: Build and Deploy Job
     steps:
@@ -66,9 +66,11 @@ jobs:
           dotnet-version: ${{ env.DotnetVersion }}
           include-prerelease: true
 
+      # --skip-manifest-update: otherwise the install moves to the latest workload set and downloads the manifests of every
+      # workload in it (iOS, Android, MAUI...), so a manifest missing from nuget.org fails this WASM-only build
       - run: |
           cd Uno.Gallery
-          dotnet workload install wasm-tools
+          dotnet workload install wasm-tools --skip-manifest-update
         name: Setup Workloads
 
       - uses: dotnet/nbgv@f088059084cb5d872e9d1a994433ca6440c2bf72 # v0.4.2
@@ -79,7 +81,7 @@ jobs:
 
       - run: |
           cd Uno.Gallery
-          dotnet publish -c Release -f net10.0-browserwasm "/p:PackageVersion=${{ steps.nbgv.outputs.SemVer2 }}" /bl:../binlogs/output.binlog
+          dotnet publish -c Release -f net10.0-browserwasm -p:TargetFrameworkOverride=net10.0-browserwasm "/p:PackageVersion=${{ steps.nbgv.outputs.SemVer2 }}" /bl:../binlogs/output.binlog
         name: Build Gallery
 
       - uses: actions/upload-artifact@v4

@@ -1,0 +1,51 @@
+steps:
+- checkout: self
+  clean: true
+  fetchDepth: 0
+  persistCredentials: true
+
+- template: templates/dotnet-install-mac.yml
+  parameters:
+    UnoCheckParameters: '--tfm net10.0-ios'
+
+- template: templates/canary-updater.yml
+
+- template: templates/gitversion.yml
+
+- bash: |
+    cd $(build.sourcesdirectory)/Uno.Gallery
+    echo "BUILD_SOURCEBRANCH: $BUILD_SOURCEBRANCH"
+    dotnet $(BuildCommand) -v:n -f $(BuildTargetFramework) -p:TargetFrameworkOverride=$(BuildTargetFramework) -c Release /p:ArchiveOnBuild=true /bl:$(build.artifactstagingdirectory)/build-$(BuildTargetFramework).binlog "/p:InformationalVersion=$(NBGV_InformationalVersion)"
+  displayName: Build project for Release - $(BuildTargetFramework)
+  condition: and(succeeded(), eq(variables['System.PullRequest.IsFork'],'False'))
+
+- bash: |
+    cd $(build.sourcesdirectory)/Uno.Gallery
+    echo "BUILD_SOURCEBRANCH: $BUILD_SOURCEBRANCH"
+    dotnet build -f $(BuildTargetFramework) -p:TargetFrameworkOverride=$(BuildTargetFramework) -c Release /bl:$(build.artifactstagingdirectory)/build-$(BuildTargetFramework).binlog "/p:InformationalVersion=$(NBGV_InformationalVersion)"
+  displayName: Build project for Release - $(BuildTargetFramework)
+  condition: and(succeeded(), eq(variables['System.PullRequest.IsFork'],'True'))
+
+- task: CopyFiles@2
+  displayName: 'Publish Binaries'
+  inputs:
+    SourceFolder: $(build.sourcesdirectory)/Uno.Gallery/bin/Release/
+    Contents:  |
+      **/*.ipa
+      **/*.dSym/**
+    TargetFolder: $(build.artifactstagingdirectory)
+    CleanTargetFolder: false
+    OverWrite: false
+    flattenFolders: false
+
+- task: PublishBuildArtifacts@1
+  retryCountOnTaskFailure: 3
+  condition: succeeded()
+  inputs:
+    ArtifactName: $(ArtifactName)
+
+- task: PublishBuildArtifacts@1
+  retryCountOnTaskFailure: 3
+  condition: always()
+  inputs:
+    ArtifactName: $(ArtifactName)-logs

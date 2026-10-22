@@ -7,6 +7,21 @@ using Microsoft.CodeAnalysis.Text;
 
 namespace Uno.Gallery.SourceGenerators;
 
+/// <summary>
+/// Generates <c>App.GetAllSamples()</c>, the list of every [SamplePage] in the app, so the navigation is built without reflection.
+/// </summary>
+/// <remarks>
+/// Samples are filtered at compile time against the current platform, which is mapped from the TargetFramework
+/// (eg: net10.0-windows10.0.19041 -> <see cref="SampleConditionals.Windows"/>):
+/// <list type="bullet">
+/// <item>a sample without [SampleConditional] is always included;</item>
+/// <item>a <see cref="SampleConditionals.Disabled"/> sample is always excluded;</item>
+/// <item>otherwise, the sample is included when its conditionals contain the current platform.</item>
+/// </list>
+/// An unknown TargetFramework reports GALLERY0001 and falls back to <see cref="SampleConditionals.Always"/>, which includes every non-disabled sample.
+/// GALLERY0001 is only a warning here, but Uno.Gallery.csproj lists it in WarningsAsErrors, so it still fails the app build.
+/// The samples are further filtered at runtime, see App.IsSampleVisible.
+/// </remarks>
 [Generator]
 public sealed class SamplesGenerator : IIncrementalGenerator
 {
@@ -23,15 +38,44 @@ public sealed class SamplesGenerator : IIncrementalGenerator
 		int SortOrder
 		);
 
+	private record struct PlatformModel(string? TargetFramework, SampleConditionals Platform, bool IsKnown);
+
+#pragma warning disable RS2008 // Enable analyzer release tracking
+	private static readonly DiagnosticDescriptor UnsupportedTargetFramework = new(
+		id: "GALLERY0001",
+		title: "Unsupported TargetFramework",
+		messageFormat: "Unsupported TargetFramework '{0}': it does not map to any SampleConditionals value, falling back to Always",
+		category: "Uno.Gallery.SourceGenerators",
+		defaultSeverity: DiagnosticSeverity.Warning,
+		isEnabledByDefault: true);
+#pragma warning restore RS2008
+
 	public void Initialize(IncrementalGeneratorInitializationContext context)
 	{
-		var currentPlatformProvider = context.ParseOptionsProvider.Select((options, _) => GetSampleConditionalsFromPreprocessorSymbolNames(options.PreprocessorSymbolNames));
+		var currentPlatformProvider = context.AnalyzerConfigOptionsProvider.Select((options, _) =>
+		{
+			options.GlobalOptions.TryGetValue("build_property.TargetFramework", out var targetFramework);
+			var platform = GetSampleConditionalsFromTargetFramework(targetFramework);
+
+			return new PlatformModel(targetFramework, platform ?? SampleConditionals.Always, platform is not null);
+		});
 		var samplesProvider = context.SyntaxProvider.ForAttributeWithMetadataName("Uno.Gallery.SamplePageAttribute",
 			predicate: (_, _) => true,
 			transform: Transform);
 
+		context.RegisterSourceOutput(currentPlatformProvider, ReportUnsupportedTargetFramework);
+
 		var filteredSamples = samplesProvider.Combine(currentPlatformProvider).Select(FilterSamples).Where(m => m is not null).Collect();
 		context.RegisterSourceOutput(filteredSamples, GenerateCode);
+	}
+
+	private static void ReportUnsupportedTargetFramework(SourceProductionContext context, PlatformModel platform)
+	{
+		if (!platform.IsKnown)
+		{
+			var targetFramework = string.IsNullOrEmpty(platform.TargetFramework) ? "(empty)" : platform.TargetFramework;
+			context.ReportDiagnostic(Diagnostic.Create(UnsupportedTargetFramework, Location.None, targetFramework));
+		}
 	}
 
 	private static void GenerateCode(SourceProductionContext context, ImmutableArray<SamplesModel?> samples)
@@ -42,7 +86,7 @@ public sealed class SamplesGenerator : IIncrementalGenerator
 			{
 				public partial class App
 				{
-					public static Sample[] GetSamples()
+					private static Sample[] GetAllSamples()
 					{
 						return new[]
 						{
@@ -75,10 +119,10 @@ public sealed class SamplesGenerator : IIncrementalGenerator
 			""";
 	}
 
-	private static SamplesModel? FilterSamples((SamplesModel Left, SampleConditionals Right) tuple, CancellationToken token)
+	private static SamplesModel? FilterSamples((SamplesModel Left, PlatformModel Right) tuple, CancellationToken token)
 	{
-		var (sampleModel, compilationConditional) = tuple;
-		if (ShouldBeDisplayed(sampleModel.Conditionals, compilationConditional))
+		var (sampleModel, platform) = tuple;
+		if (ShouldBeDisplayed(sampleModel.Conditionals, platform.Platform))
 		{
 			return sampleModel;
 		}
@@ -98,36 +142,35 @@ public sealed class SamplesGenerator : IIncrementalGenerator
 			return false;
 		}
 
-		return conditionals.Value.HasFlag(compilationConditionals);
+		// note: the platform is a single flag, or Always when the target framework is not supported (see GALLERY0001)
+		return (conditionals.Value & compilationConditionals) != 0;
 	}
 
-	private static SampleConditionals GetSampleConditionalsFromPreprocessorSymbolNames(IEnumerable<string> preprocessorSymbolNames)
+	private static SampleConditionals? GetSampleConditionalsFromTargetFramework(string? targetFramework)
 	{
-		foreach (var preprocessorSymbol in preprocessorSymbolNames)
+		// eg: net10.0-windows10.0.19041 -> windows
+		var separatorIndex = targetFramework?.IndexOf('-') ?? -1;
+		if (separatorIndex < 0)
 		{
-			if (preprocessorSymbol == "WINDOWS")
-			{
-				return SampleConditionals.Windows;
-			}
-			else if (preprocessorSymbol == "__MACOS__")
-			{
-				return SampleConditionals.macOS;
-			}
-			else if (preprocessorSymbol == "__IOS__")
-			{
-				return SampleConditionals.iOS;
-			}
-			else if (preprocessorSymbol == "__WASM__")
-			{
-				return SampleConditionals.Wasm;
-			}
-			else if (preprocessorSymbol == "HAS_UNO_SKIA")
-			{
-				return SampleConditionals.SkiaDesktop;
-			}
+			return null;
 		}
 
-		return SampleConditionals.Always;
+		var platform = targetFramework!.Substring(separatorIndex + 1);
+		var versionIndex = platform.IndexOfAny("0123456789.".ToCharArray());
+		if (versionIndex >= 0)
+		{
+			platform = platform.Substring(0, versionIndex);
+		}
+
+		return platform.ToLowerInvariant() switch
+		{
+			"android" => SampleConditionals.Android,
+			"ios" => SampleConditionals.iOS,
+			"windows" => SampleConditionals.Windows,
+			"desktop" => SampleConditionals.Desktop,
+			"browserwasm" => SampleConditionals.BrowserWasm,
+			_ => null,
+		};
 	}
 
 	private static SamplesModel Transform(GeneratorAttributeSyntaxContext context, CancellationToken cancellationToken)
