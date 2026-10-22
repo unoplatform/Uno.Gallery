@@ -60,7 +60,7 @@ jobs:
     SourceLinkEnabled: false
 
   pool:
-    vmImage: 'macos-14'
+    vmImage: 'macos-15'
 
   steps:
   - checkout: self
