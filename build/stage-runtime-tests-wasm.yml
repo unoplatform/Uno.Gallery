@@ -1,0 +1,40 @@
+# Runs the runtime tests (Uno.Gallery/RuntimeTests) against the Release WebAssembly app published by the WebAssembly stage.
+
+jobs:
+- job: Runtime_Tests_Wasm
+  displayName: 'Runtime Tests - WebAssembly'
+  timeoutInMinutes: 60
+
+  pool:
+    vmImage: 'ubuntu-24.04'
+
+  steps:
+  - checkout: self
+    clean: true
+
+  - template: templates/host-cleanup-linux.yml
+
+  # Only the SDK is needed, for the runner tool
+  - template: templates/dotnet-install-linux.yml
+    parameters:
+      installJava: false
+      installWorkloads: false
+
+  - task: DownloadPipelineArtifact@2
+    displayName: 'Download the WebAssembly app'
+    inputs:
+      artifactName: WASM-Skia
+      targetPath: $(Pipeline.Workspace)/wasm
+
+  - bash: |
+      chmod +x build/scripts/wasm-runtime-tests.sh
+      build/scripts/wasm-runtime-tests.sh
+    displayName: 'Run the runtime tests'
+    env:
+      BUILD_SOURCESDIRECTORY: $(Build.SourcesDirectory)
+      RUNTIME_TESTS_APP_PATH: $(Pipeline.Workspace)/wasm
+
+  - template: templates/publish-runtime-tests-results.yml
+    parameters:
+      platform: wasm
+      title: WebAssembly

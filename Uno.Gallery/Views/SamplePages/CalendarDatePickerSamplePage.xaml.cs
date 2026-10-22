@@ -17,9 +17,7 @@ using Microsoft.UI.Xaml.Navigation;
 
 namespace Uno.Gallery.Views.SamplePages
 {
-#if !__IOS__ && !__ANDROID__ && !__MACOS__
 	[SamplePage(SampleCategory.UIComponents, "CalendarDatePicker", Description = "Represents a control that allows a user to pick a date from a calendar display.", DocumentationLink = "https://learn.microsoft.com/en-us/windows/windows-app-sdk/api/winrt/microsoft.ui.xaml.controls.calendardatepicker")]
-#endif
 	public sealed partial class CalendarDatePickerSamplePage : Page
 	{
 		public CalendarDatePickerSamplePage()

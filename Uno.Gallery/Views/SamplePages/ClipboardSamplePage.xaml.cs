@@ -58,7 +58,7 @@ namespace Uno.Gallery.Views.Samples
 
 		private async void CopyFile_Click(object sender, RoutedEventArgs args)
 		{
-#if WINDOWS || HAS_UNO_SKIA
+#if WINDOWS || __DESKTOP__
 			var sFile = await StorageFile.GetFileFromApplicationUriAsync(_sampleBitmapUri);
 			var package = new DataPackage();
 			package.SetStorageItems(new IStorageItem[] { sFile });

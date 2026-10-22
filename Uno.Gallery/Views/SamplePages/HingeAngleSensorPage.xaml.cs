@@ -8,7 +8,7 @@ using Microsoft.UI.Xaml.Controls;
 namespace Uno.Gallery.Views.Samples
 {
 	[SamplePage(SampleCategory.NonUIFeatures, "Hinge Angle Sensor", Description = "Represents a hinge angle sensor. This sensor exposes the angle of the device hinge.", DocumentationLink = "https://learn.microsoft.com/en-us/uwp/api/windows.devices.sensors.hingeanglesensor?view=winrt-22621")]
-	[SampleConditional(SampleConditionals.Droid, Reason = "Hinge Angle Sensor is currently only available on Android")]
+	[SampleConditional(SampleConditionals.Android, Reason = "Hinge Angle Sensor is currently only available on Android")]
 	public sealed partial class HingeAngleSensorSamplePage : Page
 	{
 		public HingeAngleSensorSamplePage()

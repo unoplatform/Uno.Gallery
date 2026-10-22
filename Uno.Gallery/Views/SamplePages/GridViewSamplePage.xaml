@@ -5,9 +5,9 @@
 	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	  xmlns:smtx="using:ShowMeTheXAML"
-	  xmlns:xamarin="http://uno.ui/xamarin"
+	  xmlns:not_win="http://uno.ui/not_win"
 	  xmlns:converters="using:Uno.Gallery.Converters"
-	  mc:Ignorable="d xamarin">
+	  mc:Ignorable="d not_win">
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 		<local:SamplePageLayout>
