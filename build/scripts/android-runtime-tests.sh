@@ -15,8 +15,9 @@ IFS=$'\n\t'
 # The Release build output of the Android head (the `android-mobile` artifact of the Android stage)
 : "${RUNTIME_TESTS_APP_PATH:?}"
 
-# The JIT build of the store package; the artifact also holds the NativeAOT one (.naot), which isn't tested
-APK_NAME="com.nventive.uno.ui.demo-Signed.apk"
+# The JIT build of the store package; the artifact also holds the NativeAOT one (.naot), which isn't tested.
+# Canary builds add .canary to the app ID (build/templates/canary-updater.yml), which renames the APK.
+APK_NAMES=("com.nventive.uno.ui.demo-Signed.apk" "com.nventive.uno.ui.demo.canary-Signed.apk")
 AVD_NAME="gallery-runtime-tests"
 AVD_IMAGE="system-images;android-34;default;x86_64"
 AVD_DEVICE="pixel_6"
@@ -37,9 +38,15 @@ LOGCAT_LOG="$RESULTS_DIR/logcat.log"
 mkdir -p "$RESULTS_DIR"
 rm -f "$RESULTS_PATH"
 
-apk_path="$RUNTIME_TESTS_APP_PATH/$APK_NAME"
-if [[ ! -f "$apk_path" ]]; then
-	echo "ERROR: $APK_NAME not found under $RUNTIME_TESTS_APP_PATH" >&2
+apk_path=""
+for apk_name in "${APK_NAMES[@]}"; do
+	if [[ -f "$RUNTIME_TESTS_APP_PATH/$apk_name" ]]; then
+		apk_path="$RUNTIME_TESTS_APP_PATH/$apk_name"
+		break
+	fi
+done
+if [[ -z "$apk_path" ]]; then
+	echo "ERROR: ${APK_NAMES[0]} (or its .canary variant) not found under $RUNTIME_TESTS_APP_PATH" >&2
 	find "$RUNTIME_TESTS_APP_PATH" -maxdepth 6 -type f -name '*.apk' >&2 || true
 	exit 1
 fi
