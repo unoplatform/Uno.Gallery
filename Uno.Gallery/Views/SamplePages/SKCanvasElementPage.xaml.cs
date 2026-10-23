@@ -39,8 +39,14 @@ public sealed partial class SKCanvasElementPage : Page
 	private void SKCanvasElementPage_Loaded(object sender, RoutedEventArgs e)
 	{
 #if HAS_UNO_SKIA
+		// Loaded fires again each time the page is put back in the tree, so reuse the canvas the container already has.
+		// A new container (when the layout re-creates its template) gets a new canvas.
 		var container = (Grid)FindName("SKContainer");
-		container.Children.Add(_canvasElement = new SampleSKCanvasElement());
+		_canvasElement = container.Children.OfType<SampleSKCanvasElement>().FirstOrDefault();
+		if (_canvasElement is null)
+		{
+			container.Children.Add(_canvasElement = new SampleSKCanvasElement());
+		}
 #endif
 	}
 
