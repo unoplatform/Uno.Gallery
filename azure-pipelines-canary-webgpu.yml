@@ -3,9 +3,10 @@
 # with GalleryWebGpu=true (see Uno.Gallery.csproj). It builds the WebAssembly, Desktop and Android heads, and
 # publishes the WebAssembly app to its own canary web site, so Skia and WebGPU can be compared in a browser.
 # The build agents have no GPU, so this checks that the WebGPU builds compile and package.
-# The nightly schedule is set on the pipeline definition (03:44 Eastern, an hour after the Skia canary). The push
-# trigger is here: a push trigger set on a definition created through the REST API doesn't fire, so the definition
-# takes it from this file.
+# Triggers match the Skia canary's: nightly at 02:44 Eastern (set on the pipeline definition, at the same time so both
+# canaries test the same dev packages), pushes to canaries/dev, and pull requests into canaries/dev (not from forks).
+# The push and pull-request triggers are here: a trigger set on a definition created through the REST API doesn't fire,
+# so the definition takes them from this file.
 # Tracked in https://github.com/unoplatform/uno.gallery-private/issues/90.
 
 trigger:
@@ -13,7 +14,10 @@ trigger:
     include:
     - canaries/dev
 
-pr: none
+pr:
+  branches:
+    include:
+    - canaries/dev
 
 variables:
   IsLightBuild: false
@@ -92,33 +96,35 @@ stages:
         PathtoPublish: $(build.artifactstagingdirectory)
         ArtifactName: Android-WebGpu-logs
 
-- stage: WebAssembly_Publish
-  displayName: 'WebAssembly (WebGPU canary)'
-  dependsOn: WebAssembly
-  jobs:
-  - deployment: WebAssembly_Publish_WebGpu
-    displayName: 'Publish WebAssembly'
-    environment: Uno Gallery
-    pool:
-      vmImage: ubuntu-24.04
-    strategy:
-      runOnce:
-        deploy:
-          steps:
-          # https://github.com/microsoft/azure-pipelines-tasks/issues/17207
-          - download: none
-          - task: DownloadPipelineArtifact@2
-            inputs:
-              artifactName: 'WASM-WebGpu'
-              targetPath: '$(Pipeline.Workspace)/WASM-WebGpu'
-            displayName: Download artifacts
-          - task: AzureStaticWebApp@0
-            displayName: 'Deploy to azure static app'
-            inputs:
-              workingDirectory: '$(Pipeline.Workspace)/WASM-WebGpu'
-              skip_app_build: true
-              skip_api_build: true
-              is_static_export: false
-              verbose: false
-              azure_static_web_apps_api_token: '$(DEV_SWA_TOKEN)'
-              deployment_environment: 'canary-webgpu'
+# Like the Skia canary's publish stages: only for builds of canaries/dev itself, not pull requests into it
+- ${{ if startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries/dev') }}:
+  - stage: WebAssembly_Publish
+    displayName: 'WebAssembly (WebGPU canary)'
+    dependsOn: WebAssembly
+    jobs:
+    - deployment: WebAssembly_Publish_WebGpu
+      displayName: 'Publish WebAssembly'
+      environment: Uno Gallery
+      pool:
+        vmImage: ubuntu-24.04
+      strategy:
+        runOnce:
+          deploy:
+            steps:
+            # https://github.com/microsoft/azure-pipelines-tasks/issues/17207
+            - download: none
+            - task: DownloadPipelineArtifact@2
+              inputs:
+                artifactName: 'WASM-WebGpu'
+                targetPath: '$(Pipeline.Workspace)/WASM-WebGpu'
+              displayName: Download artifacts
+            - task: AzureStaticWebApp@0
+              displayName: 'Deploy to azure static app'
+              inputs:
+                workingDirectory: '$(Pipeline.Workspace)/WASM-WebGpu'
+                skip_app_build: true
+                skip_api_build: true
+                is_static_export: false
+                verbose: false
+                azure_static_web_apps_api_token: '$(DEV_SWA_TOKEN)'
+                deployment_environment: 'canary-webgpu'
