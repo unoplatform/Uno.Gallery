@@ -54,7 +54,7 @@ public class SampleSKCanvasElement : SKCanvasElement
 	// https://fiddle.skia.org/c/@shapes
 	private void SkiaDrawing0(SKCanvas canvas)
 	{
-		var paint = new SKPaint();
+		using var paint = new SKPaint();
 		paint.Style = SKPaintStyle.Fill;
 		paint.IsAntialias = true;
 		paint.StrokeWidth = 4;
@@ -63,8 +63,9 @@ public class SampleSKCanvasElement : SKCanvasElement
 		var rect = SKRect.Create(10, 10, 100, 160);
 		canvas.DrawRect(rect, paint);
 
-		var oval = new SKPath();
-		oval.AddRoundRect(rect, 20, 20);
+		using var builder = new SKPathBuilder();
+		builder.AddRoundRect(rect, 20, 20, SKPathDirection.Clockwise);
+		using var oval = builder.Detach();
 		oval.Offset(new SKPoint(40, 80));
 		paint.Color = new SKColor(0xffDB4437);
 		canvas.DrawPath(oval, paint);
@@ -81,24 +82,25 @@ public class SampleSKCanvasElement : SKCanvasElement
 	// https://fiddle.skia.org/c/@bezier_curves
 	private void SkiaDrawing1(SKCanvas canvas)
 	{
-		var paint = new SKPaint();
+		using var paint = new SKPaint();
 		paint.Style = SKPaintStyle.Stroke;
 		paint.StrokeWidth = 8;
 		paint.Color = new SKColor(0xff4285F4);
 		paint.IsAntialias = true;
 		paint.StrokeCap = SKStrokeCap.Round;
 
-		var path = new SKPath();
-		path.MoveTo(10, 10);
-		path.QuadTo(256, 64, 128, 128);
-		path.QuadTo(10, 192, 250, 250);
+		using var builder = new SKPathBuilder();
+		builder.MoveTo(10, 10);
+		builder.QuadTo(256, 64, 128, 128);
+		builder.QuadTo(10, 192, 250, 250);
+		using var path = builder.Detach();
 		canvas.DrawPath(path, paint);
 	}
 
 	// https://fiddle.skia.org/c/@shader
 	private void SkiaDrawing2(SKCanvas canvas)
 	{
-		var paint = new SKPaint();
+		using var paint = new SKPaint();
 		using var pathEffect = SKPathEffect.CreateDiscrete(10.0f, 4.0f);
 		paint.PathEffect = pathEffect;
 		SKPoint[] points =
@@ -111,23 +113,24 @@ public class SampleSKCanvasElement : SKCanvasElement
 			new SKColor(66, 133, 244),
 			new SKColor(15, 157, 88)
 		};
-		paint.Shader = SKShader.CreateLinearGradient(points[0], points[1], colors, SKShaderTileMode.Clamp);
+		using var shader = SKShader.CreateLinearGradient(points[0], points[1], colors, SKShaderTileMode.Clamp);
+		paint.Shader = shader;
 		paint.IsAntialias = true;
-		var path = Star();
+		using var path = Star();
 		canvas.DrawPath(path, paint);
 
 		SKPath Star()
 		{
 			const float R = 60.0f, C = 128.0f;
-			var path = new SKPath();
-			path.MoveTo(C + R, C);
+			using var builder = new SKPathBuilder();
+			builder.MoveTo(C + R, C);
 			for (var i = 1; i < 15; ++i)
 			{
 				var a = 0.44879895f * i;
 				var r = R + R * (i % 2);
-				path.LineTo((float)(C + r * Math.Cos(a)), (float)(C + r * Math.Sin(a)));
+				builder.LineTo((float)(C + r * Math.Cos(a)), (float)(C + r * Math.Sin(a)));
 			}
-			return path;
+			return builder.Detach();
 		}
 	}
 }

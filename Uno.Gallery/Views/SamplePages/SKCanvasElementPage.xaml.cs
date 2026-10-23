@@ -26,7 +26,7 @@ public sealed partial class SKCanvasElementPage : Page
 #if HAS_UNO_SKIA
 	public int MaxSampleIndex => SampleSKCanvasElement.SampleCount - 1;
 
-	private SampleSKCanvasElement _canvasElement;
+	private SampleSKCanvasElement? _canvasElement;
 #endif
 
 	public SKCanvasElementPage()
@@ -53,7 +53,10 @@ public sealed partial class SKCanvasElementPage : Page
 	private void NextSample_Click(object sender, RoutedEventArgs e)
 	{
 #if HAS_UNO_SKIA
-		_canvasElement.Sample = (_canvasElement.Sample + 1) % SampleSKCanvasElement.SampleCount;
+		if (_canvasElement is not null)
+		{
+			_canvasElement.Sample = (_canvasElement.Sample + 1) % SampleSKCanvasElement.SampleCount;
+		}
 #endif
 	}
 }
