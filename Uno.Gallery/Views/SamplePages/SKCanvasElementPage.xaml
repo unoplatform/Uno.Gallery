@@ -16,30 +16,20 @@
                     <smtx:XamlDisplay UniqueKey="SKCanvasElementPage_Basic"
                                       smtx:XamlDisplayExtensions.Header="Basic SKCanvasElement">
                         <Grid>
-                            <Grid RowSpacing="20">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="*" />
-                                </Grid.RowDefinitions>
-                                <Button HorizontalAlignment="Center"
-                                        Click="NextSample_Click">
-                                    Next sample
-                                </Button>
-                                <Grid Height="140"
-                                      Grid.Row="1"
-                                      x:Name="SKContainer" />
+                            <Grid RowDefinitions="Auto,*" RowSpacing="20">
+                                <Button Content="Next sample" Click="NextSample_Click" HorizontalAlignment="Center" />
+                                <Grid Grid.Row="1" x:Name="SKContainer" Height="140"/>
                             </Grid>
                         </Grid>
 
-                        <!--
-                            C# code
-                            public class SampleSKCanvasElement : SKCanvasElement
-                            {
-                            protected override void RenderOverride(SKCanvas canvas, Size area)
-                            {
-                            // Custom rendering logic goes here
-                            }
-                            }
+                        <!-- C# code
+public class SampleSKCanvasElement : SKCanvasElement
+{
+	protected override void RenderOverride(SKCanvas canvas, Size area)
+	{
+		// Custom rendering logic goes here
+	}
+}
                         -->
                     </smtx:XamlDisplay>
                 </DataTemplate>
