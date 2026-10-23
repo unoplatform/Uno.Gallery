@@ -1,0 +1,26 @@
+<Project>
+	<!-- WebGPU canary only: Uno.Gallery.csproj imports this file when GalleryWebGpu=true.
+	     Workarounds for WebGPU bugs in the Uno 7.0 dev packages, tracked in https://github.com/unoplatform/uno.gallery-private/issues/90.
+	     Remove each one once its fix ships in a Uno.Sdk dev build. -->
+
+	<!-- unoplatform/uno#25336: the published Uno.Sdk 7.0 dev packages can't load Uno.Sdk.Tasks.DetectWebGpuUsage_v0 (MSB4062).
+	     An empty _UnoWebGpuDetectUsage skips that check, which only trims the unused native payload, so both renderers stay
+	     available. -->
+	<Target Name="_UnoWebGpuDetectUsage" />
+
+	<!-- unoplatform/uno#25657, iOS: the package's _UnoWebGpuLinkIosNative links libwgpu_native.a statically, but unlike Uno's in-repo build
+	     (_ProvisionWgpuNativeIos in wgpu-native.targets) it doesn't list the wgpu functions as ReferenceNativeSymbol. The final
+	     link only exports listed symbols, so the WebGPU loader finds none in the app and the app aborts at startup
+	     (EntryPointNotFoundException). Listing every public wgpu* function, as the in-repo target does, fixes it. Needs macOS nm. -->
+	<Target Name="_GalleryExportWgpuSymbols" AfterTargets="_UnoWebGpuLinkIosNative"
+			Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios' And $([MSBuild]::IsOSPlatform('OSX')) And Exists('$(_UnoWgpuIosLib)')">
+		<Exec Command="nm -gUj '$(_UnoWgpuIosLib)' 2&gt;/dev/null | grep '^_wgpu' | sed 's/^_//' | sort -u &gt; '$(IntermediateOutputPath)gallery-wgpu.symbols'" />
+		<ReadLinesFromFile File="$(IntermediateOutputPath)gallery-wgpu.symbols">
+			<Output TaskParameter="Lines" ItemName="_GalleryWgpuSymbol" />
+		</ReadLinesFromFile>
+		<ItemGroup>
+			<ReferenceNativeSymbol Include="@(_GalleryWgpuSymbol)" SymbolType="Function" />
+		</ItemGroup>
+		<Message Importance="high" Text="WebGPU canary: exporting @(_GalleryWgpuSymbol->Count()) wgpu symbols from $(_UnoWgpuIosLib)" />
+	</Target>
+</Project>

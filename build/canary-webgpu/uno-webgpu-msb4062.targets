@@ -1,7 +1,0 @@
-<Project>
-	<!-- WebGPU canary only (Uno.Gallery.csproj imports it when GalleryWebGpu=true).
-	     unoplatform/uno#25336: the published Uno.Sdk 7.0 dev packages can't load Uno.Sdk.Tasks.DetectWebGpuUsage_v0 (MSB4062).
-	     An empty _UnoWebGpuDetectUsage skips that check, which only trims the unused native payload, so both renderers stay
-	     available. Remove once #25336 ships. -->
-	<Target Name="_UnoWebGpuDetectUsage" />
-</Project>

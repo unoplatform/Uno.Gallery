@@ -74,14 +74,14 @@
 		<DefineConstants Condition="$(BUILD_SOURCEBRANCH.StartsWith('refs/heads/canaries'))">$(DefineConstants);IS_CANARY_BUILD</DefineConstants>
 	</PropertyGroup>
 	<!-- WebGPU canary only (azure-pipelines-canary-webgpu.yml sets GalleryWebGpu=true): adds the WebGpu feature next to Skia,
-	     and GALLERY_WEBGPU makes the WebAssembly, Desktop and Android heads register the WebGPU backend on their host builder.
+	     and GALLERY_WEBGPU makes the WebAssembly, Desktop, Android and iOS heads register the WebGPU backend on their host builder.
 	     Without the property nothing changes. -->
 	<PropertyGroup Condition="'$(GalleryWebGpu)' == 'true'">
 		<!-- Skia stays listed: the Uno.Sdk implies Skia only when no renderer feature is listed, and the samples draw with SkiaSharp themselves (SKCanvasElement, Lottie, Svg) -->
 		<UnoFeatures>$(UnoFeatures);WebGpu</UnoFeatures>
 		<DefineConstants>$(DefineConstants);GALLERY_WEBGPU</DefineConstants>
-		<!-- unoplatform/uno#25336: the published Uno.Sdk 7.0 dev packages can't load DetectWebGpuUsage_v0 (MSB4062) once the WebGpu feature is on; remove once #25336 ships -->
-		<CustomAfterDirectoryBuildTargets>$(MSBuildThisFileDirectory)../build/canary-webgpu/uno-webgpu-msb4062.targets</CustomAfterDirectoryBuildTargets>
+		<!-- Workarounds for WebGPU bugs in the Uno 7.0 dev packages, each with its Uno issue; remove them as the fixes ship -->
+		<CustomAfterDirectoryBuildTargets>$(MSBuildThisFileDirectory)../build/canary-webgpu/uno-webgpu-workarounds.targets</CustomAfterDirectoryBuildTargets>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)'=='Debug'">
 		<IsUiAutomationMappingEnabled>True</IsUiAutomationMappingEnabled>
