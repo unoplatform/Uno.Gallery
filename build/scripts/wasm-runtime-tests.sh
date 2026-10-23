@@ -34,12 +34,22 @@ if [[ -n "${TEST_FILTER:-}" ]]; then
 	filter_args=(--filter "$TEST_FILTER")
 fi
 
+# Extra browser flags, space-separated: the WebGPU canary passes the ones that give headless Chromium a WebGPU adapter
+browser_args=()
+if [[ -n "${RUNTIME_TESTS_BROWSER_ARGS:-}" ]]; then
+	IFS=' ' read -r -a flags <<< "$RUNTIME_TESTS_BROWSER_ARGS"
+	for flag in "${flags[@]}"; do
+		browser_args+=("--browser-arg=$flag")
+	done
+fi
+
 # The runner exits with 1 when a test fails; the results file is checked below either way.
 "$TOOL_PATH/uno-runtimetests-wasm" \
 	--app-path "$RUNTIME_TESTS_APP_PATH" \
 	--output "$RESULTS_PATH" \
 	--timeout 1200 \
 	"${filter_args[@]}" \
+	"${browser_args[@]}" \
 	--browser-log-level verbose \
 	2>&1 | tee "$RESULTS_DIR/runner.log" || echo "The runner exited with code $?"
 

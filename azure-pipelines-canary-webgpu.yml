@@ -1,8 +1,10 @@
 # Uno Gallery WebGPU canary: the canaries/dev branch built with WebGPU drawing the UI instead of Skia.
 # Same branch, Uno 7.0 dev packages (canary updater) and build steps as the Skia canary (azure-pipelines.yml),
-# with GalleryWebGpu=true (see Uno.Gallery.csproj). It builds the WebAssembly, Desktop and Android heads, and
-# publishes the WebAssembly app to its own canary web site, so Skia and WebGPU can be compared in a browser.
-# The build agents have no GPU, so this checks that the WebGPU builds compile and package.
+# with GalleryWebGpu=true (see Uno.Gallery.csproj). It builds the WebAssembly, Desktop, Android and iOS heads, runs the
+# runtime tests on each with WebGPU drawing, and publishes the WebAssembly app to its own canary web site, so Skia and
+# WebGPU can be compared in a browser. The agents have no GPU, so the tests run on software adapters, as in Uno's own
+# WebGPU lanes: Mesa lavapipe (Desktop), Chrome's SwiftShader (WebAssembly), the emulator's SwiftShader (Android), and
+# the simulator's Metal (iOS). The Windows (WinAppSDK) head has no Uno renderer, so it isn't built here.
 # Triggers match the Skia canary's: nightly at 02:44 Eastern (set on the pipeline definition, at the same time so both
 # canaries test the same dev packages), pushes to canaries/dev, and pull requests into canaries/dev (not from forks).
 # The push and pull-request triggers are here: a trigger set on a definition created through the REST API doesn't fire,
@@ -24,6 +26,11 @@ variables:
   IsCanaryBranch: $[startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries/')]
   # Pipeline variables become environment variables, which MSBuild reads as properties ($(GalleryWebGpu))
   GalleryWebGpu: true
+
+  # Same as azure-pipelines.yml, for the iOS runtime tests
+  XCODE_ROOT: '/Applications/Xcode_26.1.1.app'
+  IOS_SIMULATOR_DEVICE: 'iPhone 16'
+  IOS_SIMULATOR_RUNTIME_PREFIX: 'com.apple.CoreSimulator.SimRuntime.iOS-26-1'
 
 stages:
 - stage: WebAssembly
@@ -83,18 +90,120 @@ stages:
 
     - template: build/templates/gitversion.yml
 
-    # Unsigned: this canary only checks that the WebGPU build compiles and packages, and doesn't publish it
+    # Unsigned (debug key): this canary doesn't publish the Android app, only tests it
     - script: |
         cd $(build.sourcesdirectory)/Uno.Gallery
         dotnet publish -f:net10.0-android -p:TargetFrameworkOverride=net10.0-android -c:Release "/p:InformationalVersion=$(NBGV_InformationalVersion)" /p:AndroidKeyStore=False /bl:$(build.artifactstagingdirectory)/build-android.binlog
       displayName: 'Build Android Package'
 
+    - task: CopyFiles@2
+      displayName: 'Copy the APK for the runtime tests'
+      inputs:
+        SourceFolder: $(build.sourcesdirectory)/Uno.Gallery/bin/Release/net10.0-android
+        Contents: '*.apk'
+        TargetFolder: $(build.artifactstagingdirectory)
+
+    # Same artifact name as the Skia canary's Android stage, which build/stage-runtime-tests-android.yml downloads
     - task: PublishBuildArtifacts@1
       condition: always()
       retryCountOnTaskFailure: 3
       inputs:
         PathtoPublish: $(build.artifactstagingdirectory)
-        ArtifactName: Android-WebGpu-logs
+        ArtifactName: android-mobile
+
+- stage: Runtime_Tests_Desktop
+  displayName: 'Runtime Tests - Desktop (WebGPU)'
+  dependsOn: Desktop
+  jobs:
+  # build/stage-runtime-tests-desktop.yml, plus a software Vulkan driver for WebGPU
+  - job: Runtime_Tests_Desktop
+    displayName: 'Runtime Tests - Desktop'
+    timeoutInMinutes: 60
+    pool:
+      vmImage: 'ubuntu-24.04'
+    steps:
+    - checkout: self
+      clean: true
+    - template: build/templates/host-cleanup-linux.yml
+    - template: build/templates/dotnet-install-linux.yml
+      parameters:
+        installJava: false
+        installWorkloads: false
+    - task: DownloadPipelineArtifact@2
+      displayName: 'Download the desktop app'
+      inputs:
+        artifactName: desktop
+        targetPath: $(Pipeline.Workspace)/desktop
+    # Without a Vulkan driver, wgpu falls back to OpenGL and the app aborts (unoplatform/uno#25653); lavapipe is Uno's own CI choice
+    - bash: |
+        sudo apt-get update -qq
+        sudo apt-get install -y -qq mesa-vulkan-drivers vulkan-tools
+        vulkaninfo --summary | grep -E 'deviceName|driverName'
+        vulkaninfo --summary | grep -q llvmpipe || { echo "##[error]lavapipe did not register as a Vulkan device"; exit 1; }
+      displayName: 'Install Mesa lavapipe (software Vulkan)'
+    - bash: |
+        chmod +x build/scripts/desktop-runtime-tests.sh
+        build/scripts/desktop-runtime-tests.sh
+      displayName: 'Run the runtime tests'
+      env:
+        BUILD_SOURCESDIRECTORY: $(Build.SourcesDirectory)
+        RUNTIME_TESTS_APP_PATH: $(Pipeline.Workspace)/desktop/bin
+        UNO_WEBGPU_LOG: warn
+    - template: build/templates/publish-runtime-tests-results.yml
+      parameters:
+        platform: desktop
+        title: Desktop WebGPU
+
+- stage: Runtime_Tests_WebAssembly
+  displayName: 'Runtime Tests - WebAssembly (WebGPU)'
+  dependsOn: WebAssembly
+  jobs:
+  # build/stage-runtime-tests-wasm.yml, on the WebGPU app, with the Chrome flags Uno's own WebGPU lane uses:
+  # the agents have no GPU, so Chrome's bundled SwiftShader provides the WebGPU adapter
+  - job: Runtime_Tests_Wasm
+    displayName: 'Runtime Tests - WebAssembly'
+    timeoutInMinutes: 60
+    pool:
+      vmImage: 'ubuntu-24.04'
+    steps:
+    - checkout: self
+      clean: true
+    - template: build/templates/host-cleanup-linux.yml
+    - template: build/templates/dotnet-install-linux.yml
+      parameters:
+        installJava: false
+        installWorkloads: false
+    - task: DownloadPipelineArtifact@2
+      displayName: 'Download the WebAssembly app'
+      inputs:
+        artifactName: WASM-WebGpu
+        targetPath: $(Pipeline.Workspace)/wasm
+    - bash: |
+        chmod +x build/scripts/wasm-runtime-tests.sh
+        build/scripts/wasm-runtime-tests.sh
+      displayName: 'Run the runtime tests'
+      env:
+        BUILD_SOURCESDIRECTORY: $(Build.SourcesDirectory)
+        RUNTIME_TESTS_APP_PATH: $(Pipeline.Workspace)/wasm
+        RUNTIME_TESTS_BROWSER_ARGS: '--enable-unsafe-webgpu --enable-features=Vulkan --use-webgpu-adapter=swiftshader'
+    - template: build/templates/publish-runtime-tests-results.yml
+      parameters:
+        platform: wasm
+        title: WebAssembly WebGPU
+
+- stage: Runtime_Tests_Android
+  displayName: 'Runtime Tests - Android (WebGPU)'
+  dependsOn: Android
+  jobs:
+  # The emulator already uses -gpu swiftshader_indirect, whose software Vulkan WebGPU runs on (API 34; API 36 crashes: unoplatform/uno#25655)
+  - template: build/stage-runtime-tests-android.yml
+
+- stage: Runtime_Tests_iOS
+  displayName: 'Runtime Tests - iOS (WebGPU)'
+  dependsOn: []
+  jobs:
+  # Builds the iOS head for the simulator with GalleryWebGpu=true and runs the tests there (Metal)
+  - template: build/stage-runtime-tests-ios.yml
 
 # Like the Skia canary's publish stages: only for builds of canaries/dev itself, not pull requests into it
 - ${{ if startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries/dev') }}:
