@@ -3,10 +3,16 @@
 # with GalleryWebGpu=true (see Uno.Gallery.csproj). It builds the WebAssembly, Desktop and Android heads, and
 # publishes the WebAssembly app to its own canary web site, so Skia and WebGPU can be compared in a browser.
 # The build agents have no GPU, so this checks that the WebGPU builds compile and package.
-# Triggers (nightly, and pushes to canaries/dev) are set on the pipeline definition, like the Skia canary.
+# The nightly schedule is set on the pipeline definition (03:44 Eastern, an hour after the Skia canary). The push
+# trigger is here: a push trigger set on a definition created through the REST API doesn't fire, so the definition
+# takes it from this file.
 # Tracked in https://github.com/unoplatform/uno.gallery-private/issues/90.
 
-trigger: none
+trigger:
+  branches:
+    include:
+    - canaries/dev
+
 pr: none
 
 variables:
