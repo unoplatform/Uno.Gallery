@@ -1,0 +1,118 @@
+# Uno Gallery WebGPU canary: the canaries/dev branch built with WebGPU drawing the UI instead of Skia.
+# Same branch, Uno 7.0 dev packages (canary updater) and build steps as the Skia canary (azure-pipelines.yml),
+# with GalleryWebGpu=true (see Uno.Gallery.csproj). It builds the WebAssembly, Desktop and Android heads, and
+# publishes the WebAssembly app to its own canary web site, so Skia and WebGPU can be compared in a browser.
+# The build agents have no GPU, so this checks that the WebGPU builds compile and package.
+# Triggers (nightly, and pushes to canaries/dev) are set on the pipeline definition, like the Skia canary.
+# Tracked in https://github.com/unoplatform/uno.gallery-private/issues/90.
+
+trigger: none
+pr: none
+
+variables:
+  IsLightBuild: false
+  IsCanaryBranch: $[startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries/')]
+  # Pipeline variables become environment variables, which MSBuild reads as properties ($(GalleryWebGpu))
+  GalleryWebGpu: true
+
+stages:
+- stage: WebAssembly
+  displayName: 'WebAssembly (WebGPU)'
+  dependsOn: []
+  jobs:
+  - job: WebAssembly
+    timeoutInMinutes: 60
+    pool:
+      vmImage: ubuntu-24.04
+    variables:
+      SkipUnknownFrameworks: true
+      ArtifactName: WASM-WebGpu
+    steps:
+    - template: build/stage-build-wasm.yml
+    - bash: |
+        if ! ls "$(Agent.TempDirectory)/wasm-publish/wwwroot/_framework/" | grep -q '^Uno\.UI\.Composition\.WebGpu\.'; then
+          echo "##[error]No Uno.UI.Composition.WebGpu assembly in the app: GalleryWebGpu didn't reach MSBuild"
+          exit 1
+        fi
+      displayName: 'Check the app uses WebGPU'
+
+- stage: Desktop
+  displayName: 'Desktop (WebGPU)'
+  dependsOn: []
+  jobs:
+  - job: Windows_Desktop
+    pool:
+      vmImage: windows-2022
+    steps:
+    - template: build/stage-build-desktop.yml
+    - bash: |
+        if [ ! -f Uno.Gallery/bin/Release/net10.0-desktop/Uno.UI.Composition.WebGpu.dll ]; then
+          echo "##[error]No Uno.UI.Composition.WebGpu.dll in the app: GalleryWebGpu didn't reach MSBuild"
+          exit 1
+        fi
+      displayName: 'Check the app uses WebGPU'
+
+- stage: Android
+  displayName: 'Android (WebGPU)'
+  dependsOn: []
+  jobs:
+  - job: Windows_Android
+    pool:
+      vmImage: windows-2022
+    steps:
+    - checkout: self
+      clean: true
+      fetchDepth: 0
+      persistCredentials: true
+
+    - template: build/templates/dotnet-install-windows.yml
+      parameters:
+        UnoCheckParameters: '--tfm net10.0-android'
+
+    - template: build/templates/canary-updater.yml
+
+    - template: build/templates/gitversion.yml
+
+    # Unsigned: this canary only checks that the WebGPU build compiles and packages, and doesn't publish it
+    - script: |
+        cd $(build.sourcesdirectory)/Uno.Gallery
+        dotnet publish -f:net10.0-android -p:TargetFrameworkOverride=net10.0-android -c:Release "/p:InformationalVersion=$(NBGV_InformationalVersion)" /p:AndroidKeyStore=False /bl:$(build.artifactstagingdirectory)/build-android.binlog
+      displayName: 'Build Android Package'
+
+    - task: PublishBuildArtifacts@1
+      condition: always()
+      retryCountOnTaskFailure: 3
+      inputs:
+        PathtoPublish: $(build.artifactstagingdirectory)
+        ArtifactName: Android-WebGpu-logs
+
+- stage: WebAssembly_Publish
+  displayName: 'WebAssembly (WebGPU canary)'
+  dependsOn: WebAssembly
+  jobs:
+  - deployment: WebAssembly_Publish_WebGpu
+    displayName: 'Publish WebAssembly'
+    environment: Uno Gallery
+    pool:
+      vmImage: ubuntu-24.04
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          # https://github.com/microsoft/azure-pipelines-tasks/issues/17207
+          - download: none
+          - task: DownloadPipelineArtifact@2
+            inputs:
+              artifactName: 'WASM-WebGpu'
+              targetPath: '$(Pipeline.Workspace)/WASM-WebGpu'
+            displayName: Download artifacts
+          - task: AzureStaticWebApp@0
+            displayName: 'Deploy to azure static app'
+            inputs:
+              workingDirectory: '$(Pipeline.Workspace)/WASM-WebGpu'
+              skip_app_build: true
+              skip_api_build: true
+              is_static_export: false
+              verbose: false
+              azure_static_web_apps_api_token: '$(DEV_SWA_TOKEN)'
+              deployment_environment: 'canary-webgpu'

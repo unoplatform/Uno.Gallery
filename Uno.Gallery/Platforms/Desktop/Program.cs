@@ -17,6 +17,11 @@ public class Program
             .UseLinuxFrameBuffer()
             .UseMacOS()
             .UseWin32()
+#if GALLERY_WEBGPU
+            // WebGPU canary: WebGPU draws the UI instead of Skia, over the managed geometry engine, as in Uno's SamplesApp
+            .GraphicsBackend(global::Uno.UI.Composition.WebGpu.WebGpuBackend.CreateGraphicsProvider())
+            .GeometryFactory(global::Uno.UI.Composition.Managed.ManagedBackend.CreateGeometryFactory())
+#endif
             .Build();
 
         host.Run();
